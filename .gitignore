@@ -1,8 +1,26 @@
-# ---> VisualStudioCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+## sptarkov-server
+package-lock.json
+Server.exe
+Server-Uncompressed.exe
+Server-Icon.exe
+.zip
+ResourceHacker.ini
+output
+logs
+events
+mods
+[Pp]roject/[Uu]ser/[Cc]ache/
+[Pp]roject/[Uu]ser/[Pp]rofiles/
 
+## visual studio
+.vs
+.idea
+slnx.sqlite
+slnx-journal.sqlite
+
+## nodejs
+node_modules
+node.exe
+
+## windows
+desktop.ini

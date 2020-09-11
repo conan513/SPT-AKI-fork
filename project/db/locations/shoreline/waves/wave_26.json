@@ -1,0 +1,12 @@
+{
+	"number": 27,
+	"time_min": 650,
+	"time_max": 1000,
+	"slots_min": 2,
+	"slots_max": 7,
+	"SpawnPoints": "ZoneSanatorium1",
+	"BotSide": "Savage",
+	"BotPreset": "hard",
+	"isPlayers": true,
+	"WildSpawnType": "assault"
+}
