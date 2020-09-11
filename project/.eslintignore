@@ -1,0 +1,12 @@
+# Exclude these folders from linting
+.vscode
+db
+dev
+node_modules
+res
+user
+
+# Exclude these filetypes from linting
+*.json
+*.txt
+*.exe
