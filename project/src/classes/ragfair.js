@@ -615,3 +615,4 @@ class RagfairCallbacks
 
 module.exports.ragfairServer = new ragfairServer();
 module.exports.RagfairCallbacks = new RagfairCallbacks();
+module.exports.getOffers = getOffers;
