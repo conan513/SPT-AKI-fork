@@ -98,14 +98,12 @@ class TraderServer
 
     getAssort(sessionID, traderID)
     {
-        // fence broke, idk why, plz fix
-        /*
+
         if (traderID === "579dc571d53a0658a154fbec")
         {
             logger.logWarning("generating fence");
             this.generateFenceAssort();
         }
-        */
 
         const pmcData = profile_f.profileServer.getPmcProfile(sessionID);
         let assorts = JSON.parse(JSON.stringify(database_f.database.tables.traders[traderID].assort));
@@ -138,10 +136,9 @@ class TraderServer
             }
         }
 
-        return assorts;s
+        return assorts;
     }
 
-    // fence broke, idk why, plz fix
     generateFenceAssort()
     {
         const fenceID = "579dc571d53a0658a154fbec";
@@ -149,23 +146,19 @@ class TraderServer
         const names = Object.keys(assort.loyal_level_items);
         let base = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
         let added = [];
-
         for (let i = 0; i < gameplayConfig.trading.fenceAssortSize; i++)
         {
             let itemID = names[utility.getRandomInt(0, names.length - 1)];
-
             if (added.includes(itemID))
             {
                 i--;
                 continue;
             }
-
             added.push(itemID);
-
             //it's the item
             if (!(itemID in database_f.database.tables.globals.ItemPresets))
             {
-                base.items.push(assort.items[itemID]);
+                base.items.push(assort.items[assort.items.findIndex(i => i._id == itemID)]);
                 base.barter_scheme[itemID] = assort.barter_scheme[itemID];
                 base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
                 continue;
