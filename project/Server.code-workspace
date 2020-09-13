@@ -34,8 +34,13 @@
 			{
 				"label": "lint",
 				"type": "npm",
-				"script": "lint",
+				"script": "lint"
 			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"mhutchie.git-graph"
 		]
 	},
 	"settings": {
