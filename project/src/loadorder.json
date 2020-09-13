@@ -21,7 +21,7 @@
     "trade_f": "src/classes/trade.js",
     "customization_f": "src/classes/customization.js",
     "hideout_f": "src/classes/hideout.js",
-    "weaponBuilds_f": "src/classes/userbuilds.js",
+    "weaponbuilds_f": "src/classes/weaponbuilds.js",
     "repair_f": "src/classes/repair.js",
     "insurance_f": "src/classes/insurance.js",
     "trader_f": "src/classes/trader.js",
@@ -38,6 +38,5 @@
     "keepalive_r": "src/responses/keepalive.js",
     "profile_r": "src/responses/profile.js",
     "status_r": "src/responses/status.js",
-    "trade_r": "src/responses/trade.js",
-    "userbuilds_r": "src/responses/userbuilds.js"
+    "trade_r": "src/responses/trade.js"
 }
