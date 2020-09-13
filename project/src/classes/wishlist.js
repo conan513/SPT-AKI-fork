@@ -1,52 +1,63 @@
 "use strict";
 
-/* Adding item to wishlist
-*  input: playerProfileData, Request body
-*  output: OK (saved profile)
-* */
-function addToWishList(pmcData, body, sessionID)
+class WishlistController
 {
-    for (let item in pmcData["Wishlist"])
+    /* Adding item to wishlist
+    *  input: playerProfileData, Request body
+    *  output: OK (saved profile)
+    * */
+    addToWishList(pmcData, body, sessionID)
     {
-        // don't add the item
-        if (pmcData.WishList[item] === body["templateId"])
+        for (let item in pmcData["Wishlist"])
         {
-            return item_f.itemServer.getOutput();
+            // don't add the item
+            if (pmcData.WishList[item] === body["templateId"])
+            {
+                return item_f.itemServer.getOutput();
+            }
         }
+
+        // add the item to the wishlist
+        pmcData.WishList.push(body["templateId"]);
+        return item_f.itemServer.getOutput();
     }
 
-    // add the item to the wishlist
-    pmcData.WishList.push(body["templateId"]);
-    return item_f.itemServer.getOutput();
+    /* Removing item to wishlist
+    *  input: playerProfileData, Request body
+    *  output: OK (saved profile)
+    * */
+    removeFromWishList(pmcData, body, sessionID)
+    {
+        for (let i = 0; i < pmcData.WishList.length; i++)
+        {
+            if (pmcData.WishList[i] === body["templateId"])
+            {
+                pmcData.WishList.splice(i, 1);
+            }
+        }
+
+        return item_f.itemServer.getOutput();
+    }
 }
 
-/* Removing item to wishlist
-*  input: playerProfileData, Request body
-*  output: OK (saved profile)
-* */
-function removeFromWishList(pmcData, body, sessionID)
+class WishlistCallbacks
 {
-
-    for (let i = 0; i < pmcData.WishList.length; i++)
+    constructor()
     {
-        if (pmcData.WishList[i] === body["templateId"])
-        {
-            pmcData.WishList.splice(i, 1);
-        }
+        item_f.itemServer.addRoute("AddToWishList", this.addToWishlist.bind());
+        item_f.itemServer.addRoute("RemoveFromWishList", this.removeFromWishlist.bind());
     }
 
-    return item_f.itemServer.getOutput();
+    addToWishlist(pmcData, body, sessionID)
+    {
+        return wishList_f.addToWishList(pmcData, body, sessionID);
+    }
+
+    removeFromWishlist(pmcData, body, sessionID)
+    {
+        return wishList_f.removeFromWishList(pmcData, body, sessionID);
+    }
 }
 
-/* Reset wishlist to empty []
-*  input: playerProfileData
-*  output: none
-* */
-function resetWishList(pmcData)
-{
-    pmcData.WishList = [];
-}
-
-module.exports.addToWishList = addToWishList;
-module.exports.removeFromWishList = removeFromWishList;
-module.exports.resetWishList = resetWishList;
+module.exports.wishlistController = new WishlistController();
+module.exports.wishlistCallbacks = new WishlistCallbacks();

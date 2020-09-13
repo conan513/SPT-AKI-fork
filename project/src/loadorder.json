@@ -47,6 +47,5 @@
     "repair_r": "src/responses/repair.js",
     "status_r": "src/responses/status.js",
     "trade_r": "src/responses/trade.js",
-    "userbuilds_r": "src/responses/userbuilds.js",
-    "wishlist_r": "src/responses/wishlist.js"
+    "userbuilds_r": "src/responses/userbuilds.js"
 }
