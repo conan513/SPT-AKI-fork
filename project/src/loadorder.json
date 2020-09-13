@@ -37,7 +37,6 @@
 
     "keepalive_r": "src/responses/keepalive.js",
     "profile_r": "src/responses/profile.js",
-    "repair_r": "src/responses/repair.js",
     "status_r": "src/responses/status.js",
     "trade_r": "src/responses/trade.js",
     "userbuilds_r": "src/responses/userbuilds.js"
