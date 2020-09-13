@@ -54,6 +54,5 @@
     "match_r": "src/responses/match.js",
 
     "loadlocation_c": "src/callbacks/start/location.js",
-    "loadpresets_c": "src/callbacks/start/preset.js",
-    "notifier_c": "src/callbacks/response/notifier.js"
+    "loadpresets_c": "src/callbacks/start/preset.js"
 }

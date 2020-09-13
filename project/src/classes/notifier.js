@@ -99,13 +99,33 @@ class NotifierService
 
         server.sendTextJson(resp, data.join("\n"));
     }
+
+    /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
+    createNewMessageNotification(dialogueMessage)
+    {
+        return {type: "new_message", eventId: dialogueMessage._id, data : {"dialogId": dialogueMessage.uid, "message": dialogueMessage}};
+    }
 }
 
-/* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
-function createNewMessageNotification(dialogueMessage)
+class NotfierCallbacks
 {
-    return {type: "new_message", eventId: dialogueMessage._id, data : {"dialogId": dialogueMessage.uid, "message": dialogueMessage}};
+    constructor()
+    {
+        server.addRespondCallback("NOTIFY", this.sendNotification.bind());
+    }
+
+    // If we don't have anything to send, it's ok to not send anything back
+    // because notification requests are long-polling. In fact, we SHOULD wait
+    // until we actually have something to send because otherwise we'd spam the client
+    // and the client would abort the connection due to spam.
+    sendNotification(sessionID, req, resp, data)
+    {
+        let splittedUrl = req.url.split("/");
+
+        sessionID = splittedUrl[splittedUrl.length - 1].split("?last_id")[0];
+        notifier_f.notifierService.notificationWaitAsync(resp, sessionID);
+    }
 }
 
 module.exports.notifierService = new NotifierService();
-module.exports.createNewMessageNotification = createNewMessageNotification;
+module.exports.notfierCallbacks = new NotfierCallbacks();

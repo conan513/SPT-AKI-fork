@@ -144,9 +144,8 @@ class DialogueServer
 
         dialogue.messages.push(message);
 
-        let notificationMessage = notifier_f.createNewMessageNotification(message);
+        let notificationMessage = notifier_f.notifierService.createNewMessageNotification(message);
         notifier_f.notifierService.addToMessageQueue(notificationMessage, sessionID);
-
     }
 
     /*
