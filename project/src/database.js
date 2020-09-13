@@ -39,7 +39,7 @@ class DatabaseCallbacks
     load()
     {
         // global
-        database_f.database.tables.globals = json.parse(json.read(db.globals));
+        database_f.database.tables.globals = json.parse(json.read(db.others.globals));
 
         // locations
         database_f.database.tables.locations = {
@@ -58,9 +58,9 @@ class DatabaseCallbacks
             "tarkovstreets": json.parse(json.read(db.locations.tarkovstreets)),
             "terminal": json.parse(json.read(db.locations.terminal)),
             "town": json.parse(json.read(db.locations.town)),
-            "woods": json.parse(json.read(db.locations.woods))
+            "woods": json.parse(json.read(db.locations.woods)),
+            "base": json.parse(json.read(db.locations.base))
         };
-        database_f.database.tables.locations_base = json.parse(json.read(db.locations.base));
 
         // templates
         database_f.database.tables.templates = {
@@ -105,10 +105,23 @@ class DatabaseCallbacks
 
         // traders
         let traders = {};
+        let ragfair = {
+            "offers": {}
+        };
 
         for (const file in db.traders)
         {
-            let traderID = file.replace("base_", "").replace("suits_", "").replace("questassort_", "").replace("assort_", "");
+            let traderID = file.replace("base_", "")
+                               .replace("suits_", "")
+                               .replace("questassort_", "")
+                               .replace("assort_", "");
+            
+            // skip if there is no id
+            if (file === "ragfair_offer")
+            {
+                ragfair.baseOffer = json.parse(json.read(db.traders.ragfair_offer))
+                continue;
+            }
 
             // add trader if it doesn't exist
             if (!(traderID in traders))
@@ -140,11 +153,7 @@ class DatabaseCallbacks
         }
 
         database_f.database.tables.traders = traders;
-
-        // ragfair
-        database_f.database.tables.ragfair = {
-            "offers": {}
-        };
+        database_f.database.tables.ragfair = ragfair;
 
         // bots
         let bots = {

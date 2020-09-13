@@ -153,7 +153,7 @@ class MatchCallbacks
 
     getMetrics(url, info, sessionID)
     {
-        return json.read(db.match.metrics);
+        return json.read(db.others.metrics);
     }
 
     getGroupStatus(url, info, sessionID)
