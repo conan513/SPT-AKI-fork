@@ -1,0 +1,151 @@
+"use strict";
+
+/*
+* NotifierService class maintains a queue of notifications which will be pushed upon notification
+* request from client per session.
+*/
+class NotifierService
+{
+    constructor()
+    {
+        this.messageQueue = {};
+    }
+
+    /* Get messageQueue for a particular sessionID. */
+    getMessageQueue(sessionID)
+    {
+        if (!this.hasMessageQueue(sessionID))
+        {
+            return [];
+        }
+
+        return this.messageQueue[sessionID];
+    }
+
+    /* Pop first message from the queue for a particular sessionID and return the message. */
+    popMessageFromQueue(sessionID)
+    {
+        if (!this.hasMessageQueue(sessionID))
+        {
+            return null;
+        }
+
+        return this.messageQueue[sessionID].splice(0, 1)[0];
+    }
+
+    /* Add notificationMessage to the messageQueue for a particular sessionID. */
+    addToMessageQueue(notificationMessage, sessionID)
+    {
+        if (!this.hasMessageQueue(sessionID))
+        {
+            this.messageQueue[sessionID] = [notificationMessage];
+            return;
+        }
+
+        this.messageQueue[sessionID].push(notificationMessage);
+    }
+
+    /* Checks whether we already have a message queue created for a particular sessionID. */
+    hasMessageQueue(sessionID)
+    {
+        return sessionID in this.messageQueue;
+    }
+
+    /* Checks whether a particular sessionID has notifications waiting to be processed. */
+    hasMessagesInQueue(sessionID)
+    {
+        if (!this.hasMessageQueue(sessionID))
+        {
+            return false;
+        }
+
+        return this.messageQueue[sessionID].length > 0;
+    }
+
+    async notificationWaitAsync(resp, sessionID)
+    {
+        await new Promise(resolve =>
+        {
+            // Timeout after 15 seconds even if no messages have been received to keep the poll requests going.
+            setTimeout(function()
+            {
+                resolve();
+            }, 15000);
+
+            setInterval(function()
+            {
+                if (notifier_f.notifierService.hasMessagesInQueue(sessionID))
+                {
+                    resolve();
+                }
+            }, 300);
+        });
+
+        let data = [];
+
+        while (this.hasMessagesInQueue(sessionID))
+        {
+            let message = this.popMessageFromQueue(sessionID);
+            // Purposefully using default JSON stringify function here to avoid newline insertion
+            // since the client expects different messages to be split by the newline character.
+            data.push(JSON.stringify(message));
+        }
+
+        // If we timed out and don't have anything to send, just send a ping notification.
+        if (data.length == 0)
+        {
+            data.push("{\"type\": \"ping\", \"eventId\": \"ping\"}");
+        }
+
+        server.sendTextJson(resp, data.join("\n"));
+    }
+
+    /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
+    createNewMessageNotification(dialogueMessage)
+    {
+        return {type: "new_message", eventId: dialogueMessage._id, data : {"dialogId": dialogueMessage.uid, "message": dialogueMessage}};
+    }
+}
+
+class NotfierCallbacks
+{
+    constructor()
+    {
+        server.addRespondCallback("NOTIFY", this.sendNotification.bind());
+        router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
+        router.addDynamicRoute("/?last_id", this.notify.bind());
+        router.addDynamicRoute("/notifierServer", this.notify.bind());
+        router.addDynamicRoute("/notifierBase", response_f.emptyArrayResponse);
+        router.addDynamicRoute("/push/notifier/get/", response_f.emptyArrayResponse);
+    }
+
+    // If we don't have anything to send, it's ok to not send anything back
+    // because notification requests are long-polling. In fact, we SHOULD wait
+    // until we actually have something to send because otherwise we'd spam the client
+    // and the client would abort the connection due to spam.
+    sendNotification(sessionID, req, resp, data)
+    {
+        let splittedUrl = req.url.split("/");
+
+        sessionID = splittedUrl[splittedUrl.length - 1].split("?last_id")[0];
+        notifier_f.notifierService.notificationWaitAsync(resp, sessionID);
+    }
+
+    createNotifierChannel(url, info, sessionID)
+    {
+        return response_f.getBody({
+            "notifier": {"server": server.getBackendUrl() + "/",
+            "channel_id": "testChannel",
+            "url": server.getBackendUrl() + "/notifierServer/get/" + sessionID},
+            "notifierServer": server.getBackendUrl() + "/notifierServer/get/" + sessionID
+        });
+    }
+
+    notify(url, info, sessionID)
+    {
+        return "NOTIFY";
+    }
+}
+
+module.exports.notifierService = new NotifierService();
+module.exports.notfierCallbacks = new NotfierCallbacks();
