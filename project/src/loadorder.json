@@ -36,7 +36,6 @@
     "modules_f": "src/classes/modules.js",
 
     "keepalive_r": "src/responses/keepalive.js",
-    "notifier_r": "src/responses/notifier.js",
     "offraid_r": "src/responses/offraid.js",
     "profile_r": "src/responses/profile.js",
     "repair_r": "src/responses/repair.js",
