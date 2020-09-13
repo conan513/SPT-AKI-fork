@@ -258,8 +258,6 @@ function getOffersFromTraders(sessionID, request)
             jsonToReturn = fillCatagories(jsonToReturn,offersFilters);
         }
 
-
-
         if (request.removeBartering == true)
         {
             jsonToReturn = removeBarterOffers(jsonToReturn);
@@ -324,7 +322,6 @@ function fillCatagories(response,filters)
 
     return response;
 }
-
 
 function removeBarterOffers(response)
 {
@@ -430,6 +427,7 @@ function createOffer(template, onlyFunc, usePresets = true)
 
     let offerBase = json.parse(json.read(db.ragfair.offer));
     let offers = [];
+    let time = Math.floor(new Date().getTime() / 1000);
 
     // Preset
     if (usePresets && preset_f.itemPresets.hasPreset(template))
@@ -455,6 +453,8 @@ function createOffer(template, onlyFunc, usePresets = true)
             offer.items = mods;
             offer.requirements[0].count = Math.round(rub * gameplayConfig.trading.ragfairMultiplier);
             offers.push(offer);
+            offer.startTime = time;
+            offer.emdTime = time * 3153600000;   // 1 century
         }
     }
 
@@ -468,6 +468,8 @@ function createOffer(template, onlyFunc, usePresets = true)
         offerBase.itemsCost = rubPrice;
         offerBase.requirementsCost = rubPrice;
         offerBase.summaryCost = rubPrice;
+        offerBase.startTime = time;
+        offerBase.emdTime = time * 3153600000;   // 1 century
         offers.push(offerBase);
     }
 
@@ -483,6 +485,7 @@ function storeOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter =
     let offers = [];
     let offerBase = json.parse(json.read(db.ragfair.offer));
     let trader = json.parse(json.read(db.traders["base_" + traderID]));
+    let time = Math.floor(new Date().getTime() / 1000);
 
     offerBase._id = itemsToSell[0]._id;
     offerBase.intId = counter;
@@ -498,6 +501,8 @@ function storeOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter =
     offerBase.items = itemsToSell;
     offerBase.requirements = barter_scheme;
     offerBase.loyaltyLevel = loyal_level;
+    offerBase.startTime = time;
+    offerBase.emdTime = time * 3153600000;   // 1 century
 
     offers.push(offerBase);
     return offers;
