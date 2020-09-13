@@ -5,7 +5,7 @@ class RoutesCallbacks
 {
     constructor()
     {
-        server.addStartCallback("routeMissing", load);
+        server.addStartCallback("routeMissing", this.load.bind());
     }
 
     load()
