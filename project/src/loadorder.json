@@ -39,7 +39,6 @@
     "health_r": "src/responses/health.js",
     "keepalive_r": "src/responses/keepalive.js",
     "singleplayer_r": "src/responses/singleplayer.js",
-    "location_r": "src/responses/location.js",
     "move_r": "src/responses/move.js",
     "note_r": "src/responses/note.js",
     "notifier_r": "src/responses/notifier.js",
@@ -50,7 +49,5 @@
     "trade_r": "src/responses/trade.js",
     "userbuilds_r": "src/responses/userbuilds.js",
     "wishlist_r": "src/responses/wishlist.js",
-    "match_r": "src/responses/match.js",
-
-    "loadlocation_c": "src/callbacks/start/location.js"
+    "match_r": "src/responses/match.js"
 }
