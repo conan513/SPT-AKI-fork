@@ -35,7 +35,6 @@
     "gamestartup_f": "src/classes/gamestartup.js",
     "modules_f": "src/classes/modules.js",
 
-    "dialogue_r": "src/responses/dialogue.js",
     "keepalive_r": "src/responses/keepalive.js",
     "move_r": "src/responses/move.js",
     "notifier_r": "src/responses/notifier.js",

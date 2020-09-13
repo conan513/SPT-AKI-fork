@@ -190,14 +190,14 @@ class InsuranceServer
             let dialogueTemplates = json.parse(json.read(db.dialogues[traderId]));
             let messageContent = {
                 "templateId": dialogueTemplates.insuranceStart[utility.getRandomInt(0, dialogueTemplates.insuranceStart.length - 1)],
-                "type": dialogue_f.getMessageTypeValue("npcTrader")
+                "type": dialogue_f.dialogueServer.getMessageTypeValue("npcTrader")
             };
 
             dialogue_f.dialogueServer.addDialogueMessage(traderId, messageContent, sessionID);
 
             messageContent = {
                 "templateId": dialogueTemplates.insuranceFound[utility.getRandomInt(0, dialogueTemplates.insuranceFound.length - 1)],
-                "type": dialogue_f.getMessageTypeValue("insuranceReturn"),
+                "type": dialogue_f.dialogueServer.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
                     "date": utility.getDate(),

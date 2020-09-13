@@ -55,19 +55,9 @@ function getOwnerInventoryItems(body, sessionID)
 function moveItem(pmcData, body, sessionID)
 {
     let output = item_f.itemServer.getOutput();
-
     let items = getOwnerInventoryItems(body, sessionID);
-    /*  if (items.isMail) {
-        let idsToMove = dialogue_f.findAndReturnChildren(items.from, body.item);
-        for (let itemId of idsToMove) {
-            for (let messageItem of items.from) {
-                if (messageItem._id === itemId) {
-                    items.to.push(messageItem);
-                }
-            }
-        }
-        moveItemInternal(items.to, body);
-    } else */ if (items.sameInventory)
+
+    if (items.sameInventory)
     {
         moveItemInternal(items.from, body);
     }

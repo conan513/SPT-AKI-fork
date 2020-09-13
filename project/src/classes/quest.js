@@ -104,7 +104,7 @@ class QuestController
         let questRewards = this.getQuestRewardItems(quest, state);
         let messageContent = {
             "templateId": questLocale.startedMessageText,
-            "type": dialogue_f.getMessageTypeValue("questStart"),
+            "type": dialogue_f.dialogueServer.getMessageTypeValue("questStart"),
             "maxStorageTime": gameplayConfig.other.RedeemTime * 3600
 
         };
@@ -113,7 +113,7 @@ class QuestController
         {
             messageContent = {
                 "templateId": questLocale.description,
-                "type": dialogue_f.getMessageTypeValue("questStart"),
+                "type": dialogue_f.dialogueServer.getMessageTypeValue("questStart"),
                 "maxStorageTime": gameplayConfig.other.RedeemTime * 3600
             };
         }
@@ -225,7 +225,7 @@ class QuestController
         let questLocale = database_f.database.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.successMessageText,
-            "type": dialogue_f.getMessageTypeValue("questSuccess"),
+            "type": dialogue_f.dialogueServer.getMessageTypeValue("questSuccess"),
             "maxStorageTime": gameplayConfig.other.RedeemTime * 3600
         };
 
