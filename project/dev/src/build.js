@@ -30,7 +30,7 @@ compile({
 		'dev/res/icon.ico',
 		'-mask',
 		'ICONGROUP,MAINICON,'
-	]);
-
-	fs.unlinkSync('Server-Intermediate.exe');
+	], function(err) {
+		fs.unlinkSync('Server-Intermediate.exe');
+	});
 });
