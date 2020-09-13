@@ -37,6 +37,5 @@
 
     "keepalive_r": "src/responses/keepalive.js",
     "profile_r": "src/responses/profile.js",
-    "status_r": "src/responses/status.js",
-    "trade_r": "src/responses/trade.js"
+    "status_r": "src/responses/status.js"
 }
