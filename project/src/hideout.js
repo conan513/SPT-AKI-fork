@@ -292,7 +292,7 @@ class HideoutController
             }
             else
             {
-                output = move_f.removeItem(pmcData, requestedItem.id, output, sessionID);
+                output = inventory_f.inventoryController.removeItem(pmcData, requestedItem.id, output, sessionID);
             }
         }
 
@@ -559,7 +559,7 @@ class HideoutController
     updatePlayerHideout(sessionID)
     {
         const recipes = database_f.database.tables.hideout.production;
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
 
