@@ -38,7 +38,6 @@
     "keepalive_r": "src/responses/keepalive.js",
     "singleplayer_r": "src/responses/singleplayer.js",
     "move_r": "src/responses/move.js",
-    "note_r": "src/responses/note.js",
     "notifier_r": "src/responses/notifier.js",
     "offraid_r": "src/responses/offraid.js",
     "profile_r": "src/responses/profile.js",
