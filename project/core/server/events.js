@@ -17,7 +17,7 @@ class ScheduledEventHandler
     {
         this.scheduleIntervalMillis = 60;
         this.eventCallbacks = {};
-        
+
         this.loadSchedule();
 
         setInterval(() =>
