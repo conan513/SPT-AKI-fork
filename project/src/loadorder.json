@@ -1,6 +1,5 @@
 {
-    "routemissing_c": "src/callbacks/start/routes.js",
-
+    "routes_c": "src/classes/routes.js",
     "response_f": "src/classes/response.js",
     "database_f": "src/classes/database.js",
     "save_f": "src/classes/save.js",
