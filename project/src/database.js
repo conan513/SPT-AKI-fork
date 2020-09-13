@@ -58,9 +58,9 @@ class DatabaseCallbacks
             "tarkovstreets": json.parse(json.read(db.locations.tarkovstreets)),
             "terminal": json.parse(json.read(db.locations.terminal)),
             "town": json.parse(json.read(db.locations.town)),
-            "woods": json.parse(json.read(db.locations.woods))
+            "woods": json.parse(json.read(db.locations.woods)),
+            "base": json.parse(json.read(db.locations.base))
         };
-        database_f.database.tables.locations_base = json.parse(json.read(db.locations.base));
 
         // templates
         database_f.database.tables.templates = {
