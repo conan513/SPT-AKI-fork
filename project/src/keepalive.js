@@ -49,7 +49,7 @@ class KeepAliveCallbacks
 
     execute(url, info, sessionID)
     {
-        return response_f.getBody(keepalive_f.execute(sessionID));
+        return response_f.getBody(execute(sessionID));
     }
 }
 
