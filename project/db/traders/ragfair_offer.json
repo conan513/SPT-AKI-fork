@@ -16,22 +16,22 @@
             "_tpl": "54009119af1c881c07000029",
             "upd": {
                 "UnlimitedCount": true,
-                "StackObjectsCount": 999
+                "StackObjectsCount": 999999999
             }
         }
     ],
-    "itemsCost": 1337,
+    "itemsCost": 0,
     "requirements": [
         {
             "count": 1,
             "_tpl": "5449016a4bdc2d6f028b456f"
         }
     ],
-    "requirementsCost": 1337,
-    "summaryCost": 1337,
+    "requirementsCost": 0,
+    "summaryCost": 0,
     "sellInOnePiece": false,
-    "startTime": 1000000000,
-    "endTime": 1600000000,
+    "startTime": 0,
+    "endTime": 0,
     "priority": false,
     "loyaltyLevel": 1
 }

@@ -18,8 +18,6 @@ class LocationServer
     generate(name)
     {
         let location = database_f.database.tables.locations[name];
-
-
         const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
         let output = location.base;
         let ids = {};
@@ -179,12 +177,17 @@ class LocationServer
     generateAll()
     {
         let locations = database_f.database.tables.locations;
-        let base = database_f.database.tables.locations_base;
+        let base = database_f.database.tables.locations.base;
         let data = {};
 
         // use right id's and strip loot
         for (let name in locations)
         {
+            if (name === "base")
+            {
+                continue;
+            }
+
             let map = locations[name].base;
 
             map.Loot = [];
