@@ -32,12 +32,12 @@
     "location_f": "src/classes/location.js",
     "match_f": "src/classes/match.js",
     "bundles_f": "src/classes/bundles.js",
+    "image_f": "src/classes/image.js",
 
     "item_r": "src/responses/item.js",
     "dialogue_r": "src/responses/dialogue.js",
     "game_r": "src/responses/game.js",
     "health_r": "src/responses/health.js",
-    "image_r": "src/responses/image.js",
     "keepalive_r": "src/responses/keepalive.js",
     "singleplayer_r": "src/responses/singleplayer.js",
     "location_r": "src/responses/location.js",
@@ -58,6 +58,5 @@
     "loadpresets_c": "src/callbacks/start/preset.js",
 
     "notifier_c": "src/callbacks/response/notifier.js",
-    "savehandler_c": "src/callbacks/response/savehandler.js",
-    "image_c": "src/callbacks/response/image.js"
+    "savehandler_c": "src/callbacks/response/savehandler.js"
 }
