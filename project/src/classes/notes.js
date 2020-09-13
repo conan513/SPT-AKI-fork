@@ -34,7 +34,7 @@ class NoteCallbacks
     constructor()
     {
         item_f.itemServer.addRoute("AddNote", this.addNote.bind());
-        item_f.itemServer.addRoute("EditNote", this.editNode.bind());
+        item_f.itemServer.addRoute("EditNote", this.editNote.bind());
         item_f.itemServer.addRoute("DeleteNote", this.deleteNote.bind());
     }
 
