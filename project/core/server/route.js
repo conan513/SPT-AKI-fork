@@ -164,7 +164,7 @@ function all()
     }
 
     routeAll();
-    detectAllMods()
+    detectAllMods();
     loadAllMods();
 }
 

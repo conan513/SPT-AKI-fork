@@ -776,7 +776,7 @@
 		"GlobalItemPriceModifier": 1,
 		"TradingUnlimitedItems": false,
 		"MaxLoyaltyLevelForAll": false,
-		"GlobalLootChanceModifier": 5,
+		"GlobalLootChanceModifier": 50,
 		"TimeBeforeDeploy": 20,
 		"TimeBeforeDeployLocal": 10,
 		"LoadTimeSpeedProgress": 1,
