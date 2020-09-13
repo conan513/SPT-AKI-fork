@@ -69,17 +69,17 @@ class WeaponBuildsCallbacks
 
     getHandbookUserlist(url, info, sessionID)
     {
-        return response_f.getBody(weaponBuilds_f.weaponBuildsController.getUserBuilds(sessionID));
+        return response_f.getBody(weaponbuilds_f.weaponBuildsController.getUserBuilds(sessionID));
     }
 
     saveBuild(pmcData, body, sessionID)
     {
-        return weaponBuilds_f.weaponBuildsController.saveBuild(pmcData, body, sessionID);
+        return weaponbuilds_f.weaponBuildsController.saveBuild(pmcData, body, sessionID);
     }
 
     removeBuild(pmcData, body, sessionID)
     {
-        return weaponBuilds_f.weaponBuildsController.removeBuild(pmcData, body, sessionID);
+        return weaponbuilds_f.weaponBuildsController.removeBuild(pmcData, body, sessionID);
     }
 }
 

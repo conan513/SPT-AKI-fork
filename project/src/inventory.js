@@ -979,67 +979,62 @@ class InventoryCallbacks
 
     moveItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.moveItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.moveItem(pmcData, body, sessionID);
     }
 
     removeItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.discardItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.discardItem(pmcData, body, sessionID);
     }
 
     splitItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.splitItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.splitItem(pmcData, body, sessionID);
     }
 
     mergeItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.mergeItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.mergeItem(pmcData, body, sessionID);
     }
 
     transferItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.transferItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.transferItem(pmcData, body, sessionID);
     }
 
     swapItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.swapItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.swapItem(pmcData, body, sessionID);
     }
 
     foldItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.swapItem(pmcData, body, sessionID);
-    }
-
-    swapItem(pmcData, body, sessionID)
-    {
-        return inventory_f.InventoryController.swapItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.foldItem(pmcData, body, sessionID);
     }
 
     toggleItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.toggleItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.toggleItem(pmcData, body, sessionID);
     }
 
     tagItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.tagItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.tagItem(pmcData, body, sessionID);
     }
 
     bindItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.bindItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.bindItem(pmcData, body, sessionID);
     }
 
     examineItem(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.examineItem(pmcData, body, sessionID);
+        return inventory_f.inventoryController.examineItem(pmcData, body, sessionID);
     }
 
     readEncyclopedia(pmcData, body, sessionID)
     {
-        return inventory_f.InventoryController.readEncyclopedia(pmcData, body, sessionID);
+        return inventory_f.inventoryController.readEncyclopedia(pmcData, body, sessionID);
     }
 }
 

@@ -4,7 +4,7 @@
     "database_f": "src/database.js",
     "save_f": "src/save.js",
     "item_f": "src/item.js",
-    "keepAlive_f": "src/keepalive.js",
+    "keepalive_f": "src/keepalive.js",
     "health_f": "src/health.js",
     "offraid_f": "src/offraid.js",
     "dialogue_f": "src/dialogue.js",

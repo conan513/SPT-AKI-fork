@@ -28,7 +28,7 @@ class TradeController
             "tid": body.tid
         };
     
-        return inventory_f.InventoryController.addItem(pmcData, newReq, item_f.itemServer.getOutput(), sessionID, callback);
+        return inventory_f.inventoryController.addItem(pmcData, newReq, item_f.itemServer.getOutput(), sessionID, callback);
     }
     
     // Selling item to trader
@@ -58,7 +58,7 @@ class TradeController
     
                     // remove item
                     insurance_f.insuranceServer.remove(pmcData, checkID, sessionID);
-                    output = inventory_f.InventoryController.removeItem(pmcData, checkID, output, sessionID);
+                    output = inventory_f.inventoryController.removeItem(pmcData, checkID, output, sessionID);
     
                     // add money to return to the player
                     if (output !== "")
@@ -140,12 +140,12 @@ class TradeCallbacks
 
     processTrade(pmcData, body, sessionID)
     {
-        return trade_f.tradeServer.confirmTrading(pmcData, body, sessionID)
+        return trade_f.tradeController.confirmTrading(pmcData, body, sessionID)
     }
 
     processRagfairTrade(pmcData, body, sessionID)
     {
-        return trade_f.confirmRagfairTrading(pmcData, body, sessionID);
+        return trade_f.tradeController.confirmRagfairTrading(pmcData, body, sessionID);
     }
 }
 
