@@ -33,10 +33,10 @@
     "bundles_f": "src/classes/bundles.js",
     "image_f": "src/classes/image.js",
     "gamestartup_f": "src/classes/gamestartup.js",
+    "modules_f": "src/classes/modules.js",
 
     "dialogue_r": "src/responses/dialogue.js",
     "keepalive_r": "src/responses/keepalive.js",
-    "singleplayer_r": "src/responses/singleplayer.js",
     "move_r": "src/responses/move.js",
     "notifier_r": "src/responses/notifier.js",
     "offraid_r": "src/responses/offraid.js",

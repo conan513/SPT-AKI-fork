@@ -133,7 +133,7 @@ class ProfileServer
         const pmcData = this.getPmcProfile(sessionID);
 
         // get scav profile
-        let scavProfiles = bots_f.botServer.generate({ "conditions": [{ "Role": "playerScav", "Limit": 1, "Difficulty": "normal" }] });
+        let scavProfiles = bots_f.botController.generate({ "conditions": [{ "Role": "playerScav", "Limit": 1, "Difficulty": "normal" }] });
         let scavData = scavProfiles[0];
 
         // add proper metadata

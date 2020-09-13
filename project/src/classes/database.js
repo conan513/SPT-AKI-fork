@@ -125,6 +125,33 @@ class DatabaseCallbacks
             "offers": {}
         };
 
+        // bots
+        let bots = {
+            "base": {},
+            "type": {},
+            "globalDifficulty": {}
+        };
+
+        for (let file in db.bots)
+        {
+            // skip bot base
+            if (file.includes("bot_base"))
+            {
+                bots.base = json.parse(json.read(db.bots[file]));
+            }
+
+            // load global bots difficulty
+            if (file.includes("difficulty_global"))
+            {
+                bots.globalDifficulty = json.parse(json.read(db.bots[file]));
+            }
+
+            // load bot to the server
+            bots.type[file.replace("bot_", "")] = json.parse(json.read(db.bots[file]));
+        }
+
+        database_f.database.tables.bots = bots;
+
         // TODO: remove from global space
         global.gameplayConfig = json.parse(json.read(db.user.configs.gameplay));
     }
