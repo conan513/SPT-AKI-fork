@@ -38,7 +38,6 @@
     "game_r": "src/responses/game.js",
     "health_r": "src/responses/health.js",
     "image_r": "src/responses/image.js",
-    "insurance_r": "src/responses/insurance.js",
     "keepalive_r": "src/responses/keepalive.js",
     "singleplayer_r": "src/responses/singleplayer.js",
     "location_r": "src/responses/location.js",
@@ -60,6 +59,5 @@
 
     "notifier_c": "src/callbacks/response/notifier.js",
     "savehandler_c": "src/callbacks/response/savehandler.js",
-    "image_c": "src/callbacks/response/image.js",
-    "insurance_c": "src/callbacks/receive/insurance.js"
+    "image_c": "src/callbacks/response/image.js"
 }

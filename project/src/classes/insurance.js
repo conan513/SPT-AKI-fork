@@ -233,110 +233,135 @@ class InsuranceServer
 
         dialogue_f.dialogueServer.addDialogueMessage(event.data.traderId, event.data.messageContent, event.sessionId, event.data.items);
     }
-}
 
-// TODO: Move to helper functions
-function getItemPrice(_tpl)
-{
-    let price = 0;
-
-    if (typeof (global.templatesById) === "undefined")
+    /* add insurance to an item */
+    insure(pmcData, body, sessionID)
     {
-        global.templatesById = {};
-        database_f.database.tables.templates.handbook.Items.forEach(i => templatesById[i.Id] = i);
-    }
+        let itemsToPay = [];
+        let inventoryItemsHash = {};
+        pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);
 
-    if (_tpl in templatesById)
-    {
-        let template = templatesById[_tpl];
-        price = template.Price;
-    }
-    else
-    {
-        let item = database_f.database.tables.templates.items[_tpl];
-        price = item._props.CreditsPrice;
-    }
-
-    return price;
-}
-
-function getPremium(pmcData, inventoryItem, traderId)
-{
-    let premium = getItemPrice(inventoryItem._tpl) * (gameplayConfig.trading.insureMultiplier * 3);
-    premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
-    return Math.round(premium);
-}
-
-/* calculates insurance cost */
-function cost(info, sessionID)
-{
-    let output = {};
-    let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
-
-    let inventoryItemsHash = {};
-    pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);
-
-    for (let trader of info.traders)
-    {
-        let items = {};
-
-        for (let key of info.items)
+        // get the price of all items
+        for (let key of body.items)
         {
-            try
-            {
-                items[inventoryItemsHash[key]._tpl] = Math.round(getPremium(pmcData, inventoryItemsHash[key], trader));
-            }
-            catch (e)
-            {
-                logger.logError("Anomalies in the calculation of insurance prices");
-                logger.logError("InventoryItemId:" + key);
-                logger.logError("ItemId:" + inventoryItemsHash[key]._tpl);
-            }
+            itemsToPay.push({
+                "id": inventoryItemsHash[key]._id,
+                "count": Math.round(this.getPremium(pmcData, inventoryItemsHash[key], body.tid))
+            });
         }
 
-        output[trader] = items;
+        // pay the item	to profile
+        if (!itm_hf.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        {
+            logger.logError("no money found");
+            return "";
+        }
+
+        // add items to InsuredItems list once money has been paid
+        for (let key of body.items)
+        {
+            pmcData.InsuredItems.push({
+                "tid": body.tid,
+                "itemId": inventoryItemsHash[key]._id
+            });
+        }
+
+        return item_f.itemServer.getOutput();
     }
 
-    return output;
+    // TODO: Move to helper functions
+    getItemPrice(_tpl)
+    {
+        let price = 0;
+
+        if (typeof (global.templatesById) === "undefined")
+        {
+            global.templatesById = {};
+            database_f.database.tables.templates.handbook.Items.forEach(i => templatesById[i.Id] = i);
+        }
+
+        if (_tpl in templatesById)
+        {
+            let template = templatesById[_tpl];
+            price = template.Price;
+        }
+        else
+        {
+            let item = database_f.database.tables.templates.items[_tpl];
+            price = item._props.CreditsPrice;
+        }
+
+        return price;
+    }
+
+    getPremium(pmcData, inventoryItem, traderId)
+    {
+        let premium = this.getItemPrice(inventoryItem._tpl) * (gameplayConfig.trading.insureMultiplier * 3);
+        premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
+        return Math.round(premium);
+    }
+
+    /* calculates insurance cost */
+    cost(info, sessionID)
+    {
+        let output = {};
+        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+
+        let inventoryItemsHash = {};
+        pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);
+
+        for (let trader of info.traders)
+        {
+            let items = {};
+
+            for (let key of info.items)
+            {
+                try
+                {
+                    items[inventoryItemsHash[key]._tpl] = Math.round(this.getPremium(pmcData, inventoryItemsHash[key], trader));
+                }
+                catch (e)
+                {
+                    logger.logError("Anomalies in the calculation of insurance prices");
+                    logger.logError("InventoryItemId:" + key);
+                    logger.logError("ItemId:" + inventoryItemsHash[key]._tpl);
+                }
+            }
+
+            output[trader] = items;
+        }
+
+        return output;
+    }
 }
 
-/* add insurance to an item */
-function insure(pmcData, body, sessionID)
+class InsuranceCallback
 {
-    let itemsToPay = [];
-
-    let inventoryItemsHash = {};
-    pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);
-
-    // get the price of all items
-    for (let key of body.items)
+    constructor()
     {
-        itemsToPay.push({
-            "id": inventoryItemsHash[key]._id,
-            "count": Math.round(getPremium(pmcData, inventoryItemsHash[key], body.tid))
-        });
+        server.addReceiveCallback("INSURANCE", this.checkInsurance.bind());
+        router.addStaticRoute("/client/insurance/items/list/cost", this.getInsuranceCost.bind());
+        item_f.itemServer.addRoute("Insure", this.insure.bind());
     }
 
-
-    // pay the item	to profile
-    if (!itm_hf.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+    checkInsurance(sessionID, req, resp, body, output)
     {
-        logger.logError("no money found");
-        return "";
+        if (req.url === "/client/notifier/channel/create")
+        {
+            insurance_f.insuranceServer.checkExpiredInsurance();
+        }
     }
 
-    // add items to InsuredItems list once money has been paid
-    for (let key of body.items)
+    getInsuranceCost(url, info, sessionID)
     {
-        pmcData.InsuredItems.push({
-            "tid": body.tid,
-            "itemId": inventoryItemsHash[key]._id
-        });
+        return response_f.getBody(insurance_f.insuranceServer.cost(info, sessionID));
     }
 
-    return item_f.itemServer.getOutput();
+    insure(pmcData, body, sessionID)
+    {
+        return insurance_f.insuranceServer.insure(pmcData, body, sessionID);
+    }
 }
 
 module.exports.insuranceServer = new InsuranceServer();
-module.exports.cost = cost;
-module.exports.insure = insure;
+module.exports.insuranceCallback = new InsuranceCallback();
