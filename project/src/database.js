@@ -39,7 +39,7 @@ class DatabaseCallbacks
     load()
     {
         // global
-        database_f.database.tables.globals = json.parse(json.read(db.globals));
+        database_f.database.tables.globals = json.parse(json.read(db.others.globals));
 
         // locations
         database_f.database.tables.locations = {
@@ -108,7 +108,11 @@ class DatabaseCallbacks
 
         for (const file in db.traders)
         {
-            let traderID = file.replace("base_", "").replace("suits_", "").replace("questassort_", "").replace("assort_", "");
+            let traderID = file.replace("base_", "")
+                               .replace("suits_", "")
+                               .replace("questassort_", "")
+                               .replace("assort_", "")
+                               .replace("ragfair_offer", "");
 
             // add trader if it doesn't exist
             if (!(traderID in traders))
@@ -143,6 +147,7 @@ class DatabaseCallbacks
 
         // ragfair
         database_f.database.tables.ragfair = {
+            "baseOffer": json.parse(json.read(db.trader.ragfair_offer)),
             "offers": {}
         };
 
