@@ -1,5 +1,5 @@
 {
-    "routes_c": "src/classes/routes.js",
+    "routes_f": "src/classes/routes.js",
     "response_f": "src/classes/response.js",
     "database_f": "src/classes/database.js",
     "save_f": "src/classes/save.js",
@@ -32,10 +32,10 @@
     "match_f": "src/classes/match.js",
     "bundles_f": "src/classes/bundles.js",
     "image_f": "src/classes/image.js",
+    "gamestartup_f": "src/classes/gamestartup.js",
 
     "item_r": "src/responses/item.js",
     "dialogue_r": "src/responses/dialogue.js",
-    "game_r": "src/responses/game.js",
     "health_r": "src/responses/health.js",
     "keepalive_r": "src/responses/keepalive.js",
     "singleplayer_r": "src/responses/singleplayer.js",
