@@ -37,5 +37,9 @@
 				"script": "lint",
 			}
 		]
+	},
+	"settings": {
+		"window.title": "SPT-AKI Server",
+		"git-graph.commitDetailsViewLocation": "Docked to Bottom",
 	}
 }
