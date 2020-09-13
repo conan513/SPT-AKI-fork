@@ -17,7 +17,7 @@ class RoutesCallbacks
             "dialogue": "user/profiles/__REPLACEME__/dialogue.json",
             "storage": "user/profiles/__REPLACEME__/storage.json",
             "userbuilds": "user/profiles/__REPLACEME__/userbuilds.json"
-        }
+        };
     }
 }
 

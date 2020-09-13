@@ -8,7 +8,7 @@ class TradeController
         {
             body.tid = "ragfair";
         }
-    
+
         let callback = () =>
         {
             if (!itm_hf.payMoney(pmcData, body, sessionID))
@@ -16,10 +16,10 @@ class TradeController
                 logger.logError("no money found");
                 throw "Transaction failed";
             }
-    
+
             logger.logSuccess("Bought item: " + body.item_id);
         };
-    
+
         const newReq = {
             "items": [{
                 "item_id": body.item_id,
@@ -27,17 +27,17 @@ class TradeController
             }],
             "tid": body.tid
         };
-    
+
         return inventory_f.inventoryController.addItem(pmcData, newReq, item_f.itemServer.getOutput(), sessionID, callback);
     }
-    
+
     // Selling item to trader
     sellItem(pmcData, body, sessionID)
     {
         let money = 0;
         let prices = trader_f.traderServer.getPurchasesData(body.tid, sessionID);
         let output = item_f.itemServer.getOutput();
-    
+
         for (let sellItem of body.items)
         {
             for (let item of pmcData.Inventory.items)
@@ -45,37 +45,37 @@ class TradeController
                 // profile inventory, look into it if item exist
                 let isThereSpace = sellItem.id.search(" ");
                 let checkID = sellItem.id;
-    
+
                 if (isThereSpace !== -1)
                 {
                     checkID = checkID.substr(0, isThereSpace);
                 }
-    
+
                 // item found
                 if (item._id === checkID)
                 {
                     logger.logInfo("Selling: " + checkID);
-    
+
                     // remove item
                     insurance_f.insuranceServer.remove(pmcData, checkID, sessionID);
                     output = inventory_f.inventoryController.removeItem(pmcData, checkID, output, sessionID);
-    
+
                     // add money to return to the player
                     if (output !== "")
                     {
                         money += parseInt(prices[item._id][0][0].count);
                         break;
                     }
-    
+
                     return "";
                 }
             }
         }
-    
+
         // get money the item]
         return itm_hf.getMoney(pmcData, money, body, output, sessionID);
     }
-    
+
     // separate is that selling or buying
     confirmTrading(pmcData, body, sessionID)
     {
@@ -84,23 +84,23 @@ class TradeController
         {
             return this.buyItem(pmcData, body, sessionID);
         }
-    
+
         // selling
         if (body.type === "sell_to_trader")
         {
             return this.sellItem(pmcData, body, sessionID);
         }
-    
+
         return "";
     }
-    
+
     // Ragfair trading
     confirmRagfairTrading(pmcData, body, sessionID)
     {
         let ragfair_offers_traders = database_f.database.tables.ragfair.offers;
         let offers = body.offers;
         let output = item_f.itemServer.getOutput();
-    
+
         for (let offer of offers)
         {
             pmcData = profile_f.profileController.getPmcProfile(sessionID);
@@ -113,7 +113,7 @@ class TradeController
                 "scheme_id": 0,
                 "scheme_items": offer.items
             };
-    
+
             for (let offerFromTrader of ragfair_offers_traders.offers)
             {
                 if (offerFromTrader._id == offer.id)
@@ -122,10 +122,10 @@ class TradeController
                     break;
                 }
             }
-    
+
             output = this.confirmTrading(pmcData, body, sessionID);
         }
-    
+
         return output;
     }
 }
@@ -140,7 +140,7 @@ class TradeCallbacks
 
     processTrade(pmcData, body, sessionID)
     {
-        return trade_f.tradeController.confirmTrading(pmcData, body, sessionID)
+        return trade_f.tradeController.confirmTrading(pmcData, body, sessionID);
     }
 
     processRagfairTrade(pmcData, body, sessionID)

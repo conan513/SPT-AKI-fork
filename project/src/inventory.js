@@ -338,7 +338,7 @@ class InventoryController
     transferItem(pmcData, body, sessionID)
     {
         let output = item_f.itemServer.getOutput();
-        let itemFrom = null
+        let itemFrom = null;
         let itemTo = null;
 
         for (let iterItem of pmcData.Inventory.items)
@@ -954,7 +954,7 @@ class InventoryController
         {
             pmcData.Encyclopedia[id] = true;
         }
-        
+
         return item_f.itemServer.getOutput();
     }
 }

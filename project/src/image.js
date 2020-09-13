@@ -52,4 +52,4 @@ class ImageCallbacks
     }
 }
 
-module.exports.imageCallbacks = new ImageCallbacks()
+module.exports.imageCallbacks = new ImageCallbacks();
