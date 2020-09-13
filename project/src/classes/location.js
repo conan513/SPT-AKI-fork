@@ -249,4 +249,30 @@ class LocationServer
     }
 }
 
+class LocationCallbacks
+{
+    constructor()
+    {
+        server.addStartCallback("loadLocations", this.load.bind());
+        router.addStaticRoute("/client/locations", this.getLocationData.bind());
+        router.addDynamicRoute("/api/location", this.getLocation.bind());
+    }
+
+    load()
+    {
+        location_f.locationServer.initialize();
+    }
+
+    getLocationData(url, info, sessionID)
+    {
+        return response_f.getBody(location_f.locationServer.generateAll());
+    }
+
+    getLocation(url, info, sessionID)
+    {
+        return location_f.locationServer.get(url.replace("/api/location/", ""));
+    }
+}
+
 module.exports.locationServer = new LocationServer();
+module.exports.locationCallbacks = new LocationCallbacks();
