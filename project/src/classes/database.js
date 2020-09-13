@@ -41,6 +41,27 @@ class DatabaseCallbacks
         // global
         database_f.database.tables.globals = json.parse(json.read(db.globals));
 
+        // locations
+        database_f.database.tables.locations = {
+            "bigmap": json.parse(json.read(db.locations.bigmap)),
+            "develop": json.parse(json.read(db.locations.develop)),
+            "factory4_day": json.parse(json.read(db.locations.factory4_day)),
+            "factory4_night": json.parse(json.read(db.locations.factory4_night)),
+            "hideout": json.parse(json.read(db.locations.hideout)),
+            "interchange": json.parse(json.read(db.locations.interchange)),
+            "laboratory": json.parse(json.read(db.locations.laboratory)),
+            "lighthouse": json.parse(json.read(db.locations.lighthouse)),
+            "privatearea": json.parse(json.read(db.locations.privatearea)),
+            "rezervbase": json.parse(json.read(db.locations.rezervbase)),
+            "shoreline": json.parse(json.read(db.locations.shoreline)),
+            "suburbs": json.parse(json.read(db.locations.suburbs)),
+            "tarkovstreets": json.parse(json.read(db.locations.tarkovstreets)),
+            "terminal": json.parse(json.read(db.locations.terminal)),
+            "town": json.parse(json.read(db.locations.town)),
+            "woods": json.parse(json.read(db.locations.woods))
+        };
+        database_f.database.tables.locations_base = json.parse(json.read(db.locations.base));
+
         // templates
         database_f.database.tables.templates = {
             "items": json.parse(json.read(db.templates.items)),

@@ -22,7 +22,7 @@ class TraderServer
         trader.loyalty.currentLevel = pmcData.TraderStandings[traderID].currentLevel;
         trader.loyalty.currentStanding = pmcData.TraderStandings[traderID].currentStanding;
         trader.loyalty.currentSalesSum = pmcData.TraderStandings[traderID].currentSalesSum;
-        
+
         return trader;
     }
 
