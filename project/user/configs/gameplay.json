@@ -1,25 +1,12 @@
 {
-    "autosave": {
-        "saveOnReceive": true,
-        "saveOnExit": false,
-        "saveIntervalSec": 0
-    },
     "inraid": {
         "saveLootEnabled": true,
-        "saveWeaponDurability": true,
         "saveHealthEnabled": true,
         "saveHealthMultiplier": 0.1
     },
     "other":{
         "RedeemTime": 48
     },
-	"defaultRaidSettings": {
-		"aiAmount": "AsOnline",
-		"aiDifficulty": "AsOnline",
-		"bossEnabled": true,
-		"scavWars": false,
-		"taggedAndCursed": false
-	},
     "trading": {
         "ragfairMultiplier": 3.5,
         "repairMultiplier": 1,
