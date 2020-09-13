@@ -35,7 +35,6 @@
     "gamestartup_f": "src/classes/gamestartup.js",
 
     "dialogue_r": "src/responses/dialogue.js",
-    "health_r": "src/responses/health.js",
     "keepalive_r": "src/responses/keepalive.js",
     "singleplayer_r": "src/responses/singleplayer.js",
     "move_r": "src/responses/move.js",

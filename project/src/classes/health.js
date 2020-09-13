@@ -320,4 +320,45 @@ class HealthServer
     }
 }
 
+class HealthCallbacks
+{
+    constructor()
+    {
+        router.addStaticRoute("/player/health/sync", this.syncHealth.bind());
+        router.addStaticRoute("/player/health/events", this.updateHealth.bind());
+        item_f.itemServer.addRoute("Eat", this.offraidEat.bind());
+        item_f.itemServer.addRoute("Heal", this.offraidHeal.bind());
+        item_f.itemServer.addRoute("RestoreHealth", this.healthTreatment.bind());
+    }
+
+    syncHealth(url, info, sessionID)
+    {
+        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        health_f.healthServer.saveHealth(pmcData, info, sessionID);
+        return response_f.nullResponse();
+    }
+
+    updateHealth(url, info, sessionID)
+    {
+        health_f.healthServer.updateHealth(info, sessionID);
+        return response_f.nullResponse();
+    }
+
+    offraidEat(pmcData, body, sessionID)
+    {
+        return health_f.healthServer.offraidEat(pmcData, body, sessionID);
+    }
+
+    offraidHeal(pmcData, body, sessionID)
+    {
+        return health_f.healthServer.offraidHeal(pmcData, body, sessionID);
+    }
+
+    healthTreatment(pmcData, info, sessionID)
+    {
+        return health_f.healthServer.healthTreatment(pmcData, info, sessionID);
+    }
+}
+
 module.exports.healthServer = new HealthServer();
+module.exports.healthCallbacks = new HealthCallbacks();
