@@ -1,7 +1,6 @@
 # Exclude these folders from linting
 .vscode
 db
-dev
 node_modules
 res
 user
