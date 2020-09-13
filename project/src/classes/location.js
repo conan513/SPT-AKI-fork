@@ -1,18 +1,22 @@
 "use strict";
 
 /* LocationServer class maintains list of locations in memory. */
-class LocationServer {
-    constructor() {
+class LocationServer
+{
+    constructor()
+    {
         this.globalLootChanceModifier = 0;
     }
 
     /* Load all the locations into memory. */
-    initialize() {
+    initialize()
+    {
         this.globalLootChanceModifier = database_f.database.tables.globals.config.GlobalLootChanceModifier;
     }
 
     /* generates a random location preset to use for local session */
-    generate(name) {
+    generate(name)
+    {
         let location = database_f.database.tables.locations[name];
 
 
@@ -21,7 +25,8 @@ class LocationServer {
         let ids = {};
 
         // don't generate loot on hideout
-        if (name === "hideout") {
+        if (name === "hideout")
+        {
             return output;
         }
 
@@ -31,12 +36,15 @@ class LocationServer {
         output.Loot = [];
 
         // forced loot
-        for (let i in forced) {
+        for (let i in forced)
+        {
             let data = forced[i].data[0];
-            if (data.Id in ids) {
+            if (data.Id in ids)
+            {
                 continue;
             }
-            else {
+            else
+            {
                 ids[data.Id] = true;
             }
 
@@ -44,14 +52,17 @@ class LocationServer {
         }
 
         // static loot
-        for (let i in statics) {
+        for (let i in statics)
+        {
             let dataLength = statics[i].data.length;
             let data = statics[i].data[utility.getRandomInt(0, dataLength - 1)];
 
-            if (data.Id in ids) {
+            if (data.Id in ids)
+            {
                 continue;
             }
-            else {
+            else
+            {
                 ids[data.Id] = true;
             }
             output.Loot.push(data);
@@ -65,12 +76,14 @@ class LocationServer {
         let lootPositions = [];
         let maxCount = 0;
 
-        while (maxCount < max && dynamic.length > 0) {
+        while (maxCount < max && dynamic.length > 0)
+        {
             maxCount += 1;
             let rndLootIndex = utility.getRandomInt(0, dynamic.length - 1);
             let rndLoot = dynamic[rndLootIndex];
 
-            if (!rndLoot.data) {
+            if (!rndLoot.data)
+            {
                 maxCount -= 1;
                 continue;
             }
@@ -80,11 +93,13 @@ class LocationServer {
 
             //Check if LootItem is overlapping
             let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
-            if (!gameplayConfig.locationloot.allowLootOverlay && lootPositions.includes(position)) {
+            if (!gameplayConfig.locationloot.allowLootOverlay && lootPositions.includes(position))
+            {
                 //Clear selected loot
                 dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
 
-                if (dynamic[rndLootIndex].data.length == 0) {
+                if (dynamic[rndLootIndex].data.length == 0)
+                {
                     delete dynamic.splice(rndLootIndex, 1);
                 }
 
@@ -99,7 +114,8 @@ class LocationServer {
             let lootItemsHash = {};
             let lootItemsByParentId = {};
 
-            for (const i in data.Items) {
+            for (const i in data.Items)
+            {
 
                 let loot = data.Items[i];
                 // Check for the item spawnchance
@@ -114,7 +130,8 @@ class LocationServer {
             }
 
             //reset itemId and childrenItemId
-            for (const itemId of Object.keys(lootItemsHash)) {
+            for (const itemId of Object.keys(lootItemsHash))
+            {
                 let newId = utility.generateNewItemId();
                 lootItemsHash[itemId]._id = newId;
 
@@ -124,7 +141,8 @@ class LocationServer {
                 if (lootItemsByParentId[itemId] == undefined)
                     continue;
 
-                for (const childrenItem of lootItemsByParentId[itemId]) {
+                for (const childrenItem of lootItemsByParentId[itemId])
+                {
                     childrenItem.parentId = newId;
                 }
             }
@@ -132,12 +150,14 @@ class LocationServer {
             const num = utility.getRandomInt(0, 100);
             const spawnChance = database_f.database.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
             const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
-            if (itemChance >= num) {
+            if (itemChance >= num)
+            {
                 count += 1;
                 lootPositions.push(position);
                 output.Loot.push(data);
             }
-            else {
+            else
+            {
                 continue;
             }
         }
@@ -149,19 +169,22 @@ class LocationServer {
     }
 
     /* get a location with generated loot data */
-    get(location) {
+    get(location)
+    {
         let name = location.toLowerCase().replace(" ", "");
         return json.stringify(this.generate(name));
     }
 
     /* get all locations without loot data */
-    generateAll() {
+    generateAll()
+    {
         let locations = database_f.database.tables.locations;
         let base = database_f.database.tables.locations_base;
         let data = {};
 
         // use right id's and strip loot
-        for (let name in locations) {
+        for (let name in locations)
+        {
             let map = locations[name].base;
 
             map.Loot = [];
