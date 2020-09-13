@@ -1,6 +1,6 @@
-/* singleplayer.js
- * contains responses for emutarkov singleplayer module requests
- * dependencies: EmuTarkov.Singleplayer
+/* modules.js
+ * contains responses for sptarkov singleplayer module requests
+ * dependencies: NLog.SPTarkov.Singleplayer
  */
 
 class ModulesController
@@ -47,10 +47,23 @@ class ModulesCallbacks
 {
     constructor()
     {
+        router.addStaticRoute("/raid/map/name", this.registerPlayer.bind());
+        router.addStaticRoute("/raid/profile/save", this.saveProgress.bind());
         router.addDynamicRoute("/singleplayer/settings/weapon/durability/", this.getWeaponDurability.bind());
         router.addDynamicRoute("/singleplayer/settings/defaultRaidSettings/", this.getDefaultRaidSettings.bind());
         router.addDynamicRoute("/singleplayer/settings/bot/limit/", this.getBotLimit.bind());
         router.addDynamicRoute("/singleplayer/settings/bot/difficulty/", this.getBotDifficulty.bind());
+    }
+
+    registerPlayer(url, info, sessionID)
+    {
+        offraid_f.inraidServer.addPlayer(sessionID, info);
+    }
+
+    saveProgress(url, info, sessionID)
+    {
+        offraid_f.saveProgress(info, sessionID);
+        return response_f.nullResponse();
     }
 
     getWeaponDurability(url, info, sessionID)

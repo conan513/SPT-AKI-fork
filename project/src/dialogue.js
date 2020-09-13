@@ -5,6 +5,13 @@ class DialogueServer
     constructor()
     {
         this.dialogues = {};
+        this.messageTypes = {
+            "npcTrader": 2,
+            "insuranceReturn": 8,
+            "questStart": 10,
+            "questFail": 11,
+            "questSuccess": 12
+        };
     }
 
     initializeDialogue(sessionID)
@@ -249,6 +256,13 @@ class DialogueServer
         }
     }
 
+    /*
+    * Return the int value associated with the messageType, for readability.
+    */
+    getMessageTypeValue(messageType)
+    {
+        return this.messageTypes[messageType];
+    }
 }
 
 function getPath(sessionID)
@@ -257,46 +271,78 @@ function getPath(sessionID)
     return path.replace("__REPLACEME__", sessionID);
 }
 
-let messageTypes = {
-    "npcTrader": 2,
-    "insuranceReturn": 8,
-    "questStart": 10,
-    "questFail": 11,
-    "questSuccess": 12
-};
-
-/*
-* Return the int value associated with the messageType, for readability.
-*/
-function getMessageTypeValue(messageType)
+class DialogueCallbacks
 {
-    return messageTypes[messageType];
-}
-
-// TODO(camo1018): Coalesce all findAndReturnChildren functions.
-/* Find And Return Children (TRegular)
-* input: MessageItems, InitialItem._id
-* output: list of item._id
-* List is backward first item is the furthest child and last item is main item
-* returns all child items ids in array, includes itself and children
-* Same as the function in helpFunctions, just adapted for message ittems.
-* */
-function findAndReturnChildren(messageItems, itemid)
-{
-    let list = [];
-
-    for (let childitem of messageItems)
+    constructor()
     {
-        if (childitem.parentId === itemid)
-        {
-            list.push.apply(list, findAndReturnChildren(messageItems, childitem._id));
-        }
+        router.addStaticRoute("/client/friend/list", this.getFriendList.bind());
+        router.addStaticRoute("/client/chatServer/list", this.getChatServerList.bind());
+        router.addStaticRoute("/client/mail/dialog/list", this.getMailDialogList.bind());
+        router.addStaticRoute("/client/mail/dialog/view", this.getMailDialogView.bind());
+        router.addStaticRoute("/client/mail/dialog/info", this.getMailDialogInfo.bind());
+        router.addStaticRoute("/client/mail/dialog/remove", this.removeDialog.bind());
+        router.addStaticRoute("/client/mail/dialog/pin", this.pinDialog.bind());
+        router.addStaticRoute("/client/mail/dialog/unpin", this.unpinDialog.bind());
+        router.addStaticRoute("/client/mail/dialog/read", this.setRead.bind());
+        router.addStaticRoute("/client/mail/dialog/getAllAttachments", this.getAllAttachments.bind());
+        router.addStaticRoute("/client/friend/request/list/outbox", response_f.emptyArrayResponse);
+        router.addStaticRoute("/client/friend/request/list/inbox", response_f.emptyArrayResponse);
     }
 
-    list.push(itemid);// it's required
-    return list;
+    getFriendList(url, info, sessionID)
+    {
+        return response_f.getBody({"Friends":[], "Ignore":[], "InIgnoreList":[]});
+    }
+
+    getChatServerList(url, info, sessionID)
+    {
+        return response_f.getBody([{"_id": "5ae20a0dcb1c13123084756f", "RegistrationId": 20, "DateTime": Math.floor(new Date() / 1000), "IsDeveloper": true, "Regions": ["EUR"], "VersionId": "bgkidft87ddd", "Ip": "", "Port": 0, "Chats": [{"_id": "0", "Members": 0}]}]);
+    }
+
+    getMailDialogList(url, info, sessionID)
+    {
+        return dialogue_f.dialogueServer.generateDialogueList(sessionID);
+    }
+
+    getMailDialogView(url, info, sessionID)
+    {
+        return dialogue_f.dialogueServer.generateDialogueView(info.dialogId, sessionID);
+    }
+
+    getMailDialogInfo(url, info, sessionID)
+    {
+        return response_f.getBody(dialogue_f.dialogueServer.getDialogueInfo(info.dialogId, sessionID));
+    }
+
+    removeDialog(url, info, sessionID)
+    {
+        dialogue_f.dialogueServer.removeDialogue(info.dialogId, sessionID);
+        return response_f.emptyArrayResponse();
+    }
+
+    pinDialog(url, info, sessionID)
+    {
+        dialogue_f.dialogueServer.setDialoguePin(info.dialogId, true, sessionID);
+        return response_f.emptyArrayResponse();
+    }
+
+    unpinDialog(url, info, sessionID)
+    {
+        dialogue_f.dialogueServer.setDialoguePin(info.dialogId, false, sessionID);
+        return response_f.emptyArrayResponse();
+    }
+
+    setRead(url, info, sessionID)
+    {
+        dialogue_f.dialogueServer.setRead(info.dialogs, sessionID);
+        return response_f.emptyArrayResponse();
+    }
+
+    getAllAttachments(url, info, sessionID)
+    {
+        return response_f.getBody(dialogue_f.dialogueServer.getAllAttachments(info.dialogId, sessionID));
+    }
 }
 
 module.exports.dialogueServer = new DialogueServer();
-module.exports.getMessageTypeValue = getMessageTypeValue;
-module.exports.findAndReturnChildren = findAndReturnChildren;
+module.exports.dialogueCallbacks = new DialogueCallbacks();

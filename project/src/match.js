@@ -35,12 +35,12 @@ class MatchServer
     {
         if (info.profileId.includes("pmcAID"))
         {
-            return profile_f.profileServer.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
+            return profile_f.profileController.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
         }
 
         if (info.profileId.includes("scavAID"))
         {
-            return profile_f.profileServer.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
+            return profile_f.profileController.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
         }
 
         return null;

@@ -1,12 +1,14 @@
 "use strict";
 
-function main(sessionID)
+function execute(sessionID)
 {
     if (!account_f.accountServer.isWiped(sessionID))
     {
         updateTraders(sessionID);
         updatePlayerHideout(sessionID);
     }
+
+    return {"msg": "OK"};
 }
 
 function updateTraders(sessionID)
@@ -40,7 +42,7 @@ function updateTraders(sessionID)
 
 function updatePlayerHideout(sessionID)
 {
-    let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+    let pmcData = profile_f.profileController.getPmcProfile(sessionID);
     let recipes = database_f.database.tables.hideout.production;
     let solarPowerLevel = 0;
     let btcFarmCGs = 0;
@@ -287,4 +289,17 @@ function updateBitcoinFarm(btcProd, farmrecipe, btcFarmCGs, isGeneratorOn)
     return btcProd;
 }
 
-module.exports.main = main;
+class KeepAliveCallbacks
+{
+    constructor()
+    {
+        router.addStaticRoute("/client/game/keepalive", this.execute.bind());
+    }
+
+    execute(url, info, sessionID)
+    {
+        return response_f.getBody(keepalive_f.execute(sessionID));
+    }
+}
+
+module.exports.KeepAliveCallbacks = new KeepAliveCallbacks();

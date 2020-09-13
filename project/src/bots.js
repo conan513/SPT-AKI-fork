@@ -48,7 +48,7 @@ class BotController
         bot.Info.Settings.Role = role;
         bot.Info.Nickname = utility.getRandomValue(node.names);
         bot.Info.experience = itm_hf.getRandomExperience();
-        bot.Info.Level = profile_f.calculateLevel(bot);
+        bot.Info.Level = itm_hf.calculateLevel(bot);
         bot.Info.Settings.Experience = utility.getRandomValue(node.experience);
         bot.Info.Voice = utility.getRandomValue(node.appearance.voice);
         bot.Health = utility.getRandomValue(node.health);
