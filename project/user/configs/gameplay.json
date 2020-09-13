@@ -1,9 +1,4 @@
 {
-    "autosave": {
-        "saveOnReceive": true,
-        "saveOnExit": false,
-        "saveIntervalSec": 0
-    },
     "inraid": {
         "saveLootEnabled": true,
         "saveWeaponDurability": true,

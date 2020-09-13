@@ -3,7 +3,7 @@
 
     "response_f": "src/classes/response.js",
     "database_f": "src/classes/database.js",
-    "saveHandler": "src/classes/savehandler.js",
+    "save_f": "src/classes/save.js",
     "item_f": "src/classes/item.js",
     "keepAlive_f": "src/classes/keepalive.js",
     "health_f": "src/classes/health.js",
@@ -53,10 +53,7 @@
     "wishlist_r": "src/responses/wishlist.js",
     "match_r": "src/responses/match.js",
 
-    "loadsavehandler_c": "src/callbacks/start/savehandler.js",
     "loadlocation_c": "src/callbacks/start/location.js",
     "loadpresets_c": "src/callbacks/start/preset.js",
-
-    "notifier_c": "src/callbacks/response/notifier.js",
-    "savehandler_c": "src/callbacks/response/savehandler.js"
+    "notifier_c": "src/callbacks/response/notifier.js"
 }
