@@ -112,6 +112,11 @@ class NotfierCallbacks
     constructor()
     {
         server.addRespondCallback("NOTIFY", this.sendNotification.bind());
+        router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
+        router.addDynamicRoute("/?last_id", this.notify.bind());
+        router.addDynamicRoute("/notifierServer", this.notify.bind());
+        router.addDynamicRoute("/notifierBase", response_f.emptyArrayResponse);
+        router.addDynamicRoute("/push/notifier/get/", response_f.emptyArrayResponse);
     }
 
     // If we don't have anything to send, it's ok to not send anything back
@@ -124,6 +129,21 @@ class NotfierCallbacks
 
         sessionID = splittedUrl[splittedUrl.length - 1].split("?last_id")[0];
         notifier_f.notifierService.notificationWaitAsync(resp, sessionID);
+    }
+
+    createNotifierChannel(url, info, sessionID)
+    {
+        return response_f.getBody({
+            "notifier": {"server": server.getBackendUrl() + "/",
+            "channel_id": "testChannel",
+            "url": server.getBackendUrl() + "/notifierServer/get/" + sessionID},
+            "notifierServer": server.getBackendUrl() + "/notifierServer/get/" + sessionID
+        });
+    }
+
+    notify(url, info, sessionID)
+    {
+        return "NOTIFY";
     }
 }
 
