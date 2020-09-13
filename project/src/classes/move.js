@@ -795,6 +795,49 @@ function findSlotForItem(StashFS_2D, stashX, stashY, item, items)
     return { success: false, x: null, y: null, rotation: false };
 }
 
+class InventoryCallbacks
+{
+    constructor()
+    {
+        item_f.itemServer.addRoute("Move", this.move.bind());
+        item_f.itemServer.addRoute("Remove", this.remove.bind());
+        item_f.itemServer.addRoute("Split", this.split.bind());
+        item_f.itemServer.addRoute("Merge", this.merge.bind());
+        item_f.itemServer.addRoute("Transfer", this.transfer.bind());
+        item_f.itemServer.addRoute("Swap", this.swap.bind());
+    }
+
+    move(pmcData, body, sessionID)
+    {
+        return move_f.moveItem(pmcData, body, sessionID);
+    }
+
+    remove(pmcData, body, sessionID)
+    {
+        return move_f.discardItem(pmcData, body, sessionID);
+    }
+
+    split(pmcData, body, sessionID)
+    {
+        return move_f.splitItem(pmcData, body, sessionID);
+    }
+
+    merge(pmcData, body, sessionID)
+    {
+        return move_f.mergeItem(pmcData, body, sessionID);
+    }
+
+    transfer(pmcData, body, sessionID)
+    {
+        return move_f.transferItem(pmcData, body, sessionID);
+    }
+
+    swap(pmcData, body, sessionID)
+    {
+        return move_f.swapItem(pmcData, body, sessionID);
+    }
+}
+
 module.exports.moveItem = moveItem;
 module.exports.removeItemFromProfile = removeItemFromProfile;
 module.exports.removeItem = removeItem;
@@ -804,3 +847,5 @@ module.exports.mergeItem = mergeItem;
 module.exports.transferItem = transferItem;
 module.exports.swapItem = swapItem;
 module.exports.addItem = addItem;
+
+module.exports.inventoryCallbacks = new InventoryCallbacks();
