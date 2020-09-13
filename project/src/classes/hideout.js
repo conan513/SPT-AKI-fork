@@ -574,7 +574,6 @@ class HideoutController
                     isGeneratorOn = area.active;
                     if (isGeneratorOn)
                     {
-                        // TODO: Check if solarPowerLevel gets updated as expected and is used properly
                         area = this.updateFuel(area, solarPowerLevel);
                     }
                     break;
@@ -767,7 +766,7 @@ class HideoutController
             }
         }
 
-        btcProd.StartTime = (Math.floor(Date.now() / 1000)); // TODO: Find out if this isn't causing problems
+        btcProd.StartTime = (Math.floor(Date.now() / 1000));
         return btcProd;
     }
 }
