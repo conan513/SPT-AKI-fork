@@ -89,4 +89,18 @@ class ItemPresets
     }
 }
 
+class PresetCallbacks
+{
+    constructor()
+    {
+        server.addStartCallback("loadPresets", this.load.bind());
+    }
+
+    load()
+    {
+        preset_f.itemPresets.initialize();
+    }
+}
+
 module.exports.itemPresets = new ItemPresets();
+module.exports.presetCallback = new PresetCallbacks();
