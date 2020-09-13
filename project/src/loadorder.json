@@ -15,8 +15,7 @@
     "itm_hf": "src/classes/helpfunc.js",
     "quest_f": "src/classes/quest.js",
     "note_f": "src/classes/notes.js",
-    "move_f": "src/classes/move.js",
-    "status_f": "src/classes/status.js",
+    "inventory_f": "src/classes/inventory.js",
     "wishList_f": "src/classes/wishlist.js",
     "trade_f": "src/classes/trade.js",
     "customization_f": "src/classes/customization.js",
@@ -36,6 +35,5 @@
     "modules_f": "src/classes/modules.js",
 
     "keepalive_r": "src/responses/keepalive.js",
-    "profile_r": "src/responses/profile.js",
-    "status_r": "src/responses/status.js"
+    "profile_r": "src/responses/profile.js"
 }

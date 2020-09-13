@@ -20,7 +20,7 @@ class HideoutController
                 }
                 else
                 {
-                    move_f.removeItem(pmcData, item._id, item_f.itemServer.getOutput(), sessionID);
+                    inventory_f.InventoryController.removeItem(pmcData, item._id, item_f.itemServer.getOutput(), sessionID);
                 }
             }
         }
@@ -130,7 +130,7 @@ class HideoutController
                         area.slots.splice(slot_position, 1, slot_to_add);
                     }
 
-                    output = move_f.removeItem(pmcData, inventoryItem._id, output, sessionID);
+                    output = inventory_f.InventoryController.removeItem(pmcData, inventoryItem._id, output, sessionID);
                 }
             }
         }
@@ -160,7 +160,7 @@ class HideoutController
                     "tid": "ragfair"
                 };
 
-                output = move_f.addItem(pmcData, newReq, output, sessionID, null);
+                output = inventory_f.InventoryController.addItem(pmcData, newReq, output, sessionID, null);
 
                 // If addItem returned with errors, don't continue any further
                 if (output.badRequest && output.badRequest.length > 0)
@@ -193,7 +193,7 @@ class HideoutController
                     "tid": "ragfair"
                 };
 
-                output = move_f.addItem(pmcData, newReq, output, sessionID, null);
+                output = inventory_f.InventoryController.addItem(pmcData, newReq, output, sessionID, null);
 
                 // If addItem returned with errors, don't continue any further
                 if (output.badRequest && output.badRequest.length > 0)
@@ -230,7 +230,7 @@ class HideoutController
 
         for (let itemToDelete of body.items)
         {
-            output = move_f.removeItem(pmcData, itemToDelete.id, output, sessionID);
+            output = inventory_f.InventoryController.removeItem(pmcData, itemToDelete.id, output, sessionID);
         }
 
         return output;
@@ -251,7 +251,7 @@ class HideoutController
                 {
                     for (let itemToDelete of body.items)
                     {
-                        output = move_f.removeItem(pmcData, itemToDelete.id, output, sessionID);
+                        output = inventory_f.InventoryController.removeItem(pmcData, itemToDelete.id, output, sessionID);
                     }
                 }
             }
@@ -332,7 +332,7 @@ class HideoutController
             pmcData.Hideout.Production["20"].Products = [];
         };
 
-        return move_f.addItem(pmcData, newBTC, output, sessionID, callback, true);
+        return inventory_f.InventoryController.addItem(pmcData, newBTC, output, sessionID, callback, true);
     }
 
     takeProduction(pmcData, body, sessionID)
@@ -380,7 +380,7 @@ class HideoutController
                 }
             };
 
-            return move_f.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return inventory_f.InventoryController.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         for (let recipe in database_f.database.tables.hideout.scavcase)
@@ -415,7 +415,7 @@ class HideoutController
                     delete pmcData.Hideout.Production["141"];
                 };
 
-                return move_f.addItem(pmcData, newReq, output, sessionID, callback, true);
+                return inventory_f.InventoryController.addItem(pmcData, newReq, output, sessionID, callback, true);
             }
         }
 

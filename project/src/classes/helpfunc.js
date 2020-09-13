@@ -306,7 +306,7 @@ function payMoney(pmcData, body, sessionID)
             {
                 if (!isMoneyTpl(item._tpl))
                 {
-                    output = move_f.removeItem(pmcData, item._id, output, sessionID);
+                    output = inventory_f.InventoryController.removeItem(pmcData, item._id, output, sessionID);
                     body.scheme_items[index].count = 0;
                 }
                 else
@@ -352,7 +352,7 @@ function payMoney(pmcData, body, sessionID)
         if (leftToPay >= itemAmount)
         {
             leftToPay -= itemAmount;
-            output = move_f.removeItem(pmcData, moneyItem._id, output, sessionID);
+            output = inventory_f.InventoryController.removeItem(pmcData, moneyItem._id, output, sessionID);
         }
         else
         {

@@ -28,7 +28,7 @@ class TradeController
             "tid": body.tid
         };
     
-        return move_f.addItem(pmcData, newReq, item_f.itemServer.getOutput(), sessionID, callback);
+        return inventory_f.InventoryController.addItem(pmcData, newReq, item_f.itemServer.getOutput(), sessionID, callback);
     }
     
     // Selling item to trader
@@ -58,7 +58,7 @@ class TradeController
     
                     // remove item
                     insurance_f.insuranceServer.remove(pmcData, checkID, sessionID);
-                    output = move_f.removeItem(pmcData, checkID, output, sessionID);
+                    output = inventory_f.InventoryController.removeItem(pmcData, checkID, output, sessionID);
     
                     // add money to return to the player
                     if (output !== "")

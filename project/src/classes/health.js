@@ -66,7 +66,7 @@ class HealthServer
 
                 if (item.upd.MedKit.HpResource === 0)
                 {
-                    move_f.removeItem(pmcData, body.item, output, sessionID);
+                    inventory_f.InventoryController.removeItem(pmcData, body.item, output, sessionID);
                 }
             }
         }
@@ -105,7 +105,7 @@ class HealthServer
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = move_f.removeItem(pmcData, body.item, output, sessionID);
+            output = inventory_f.InventoryController.removeItem(pmcData, body.item, output, sessionID);
         }
 
         return output;

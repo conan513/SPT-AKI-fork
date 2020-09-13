@@ -54,7 +54,7 @@ class InraidServer
 
                 if (item.upd.Key.NumberOfUsages >= itm_hf.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
                 {
-                    move_f.removeItemFromProfile(offraidData.profile, item._id);
+                    inventory_f.InventoryController.removeItemFromProfile(offraidData.profile, item._id);
                 }
 
                 break;
@@ -128,9 +128,9 @@ function RemoveFoundItems(profile)
 
 function setInventory(pmcData, profile)
 {
-    move_f.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
-    move_f.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
-    move_f.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
+    inventory_f.InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
+    inventory_f.InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
+    inventory_f.InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
 
     for (let item of profile.Inventory.items)
     {
@@ -173,7 +173,7 @@ function deleteInventory(pmcData, sessionID)
     // delete items
     for (let item of toDelete)
     {
-        move_f.removeItemFromProfile(pmcData, item);
+        inventory_f.InventoryController.removeItemFromProfile(pmcData, item);
     }
 
     pmcData.Inventory.fastPanel = {};
