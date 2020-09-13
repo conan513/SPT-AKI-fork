@@ -1,16 +1,14 @@
-## sptarkov-server
+## SPT-AKI server
 package-lock.json
 Server.exe
-Server-Uncompressed.exe
-Server-Icon.exe
+Server-Intermediate.exe
 .zip
 ResourceHacker.ini
-output
-logs
-events
-mods
-[Pp]roject/[Uu]ser/[Cc]ache/
-[Pp]roject/[Uu]ser/[Pp]rofiles/
+project/user/logs
+project/user/events
+project/user/mods
+project/user/profiles/
+project/user/cert/
 
 ## visual studio
 .vs

@@ -11,10 +11,11 @@
 				"type": "node",
 				"request": "launch",
 				"name": "Launch Program",
-				"program": "${workspaceFolder}/core/main.js",
+				"runtimeExecutable": "npm",
+  				"runtimeArgs": ["run-script", "start"],
 				"cwd": "${workspaceFolder}",
 				"skipFiles": [
-					"<node_internals>/**"
+					"!**/node_modules/**"
 				]
 			}
 		],

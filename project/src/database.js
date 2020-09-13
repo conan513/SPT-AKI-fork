@@ -112,14 +112,14 @@ class DatabaseCallbacks
         for (const file in db.traders)
         {
             let traderID = file.replace("base_", "")
-                               .replace("suits_", "")
-                               .replace("questassort_", "")
-                               .replace("assort_", "");
-            
+                .replace("suits_", "")
+                .replace("questassort_", "")
+                .replace("assort_", "");
+
             // skip if there is no id
             if (file === "ragfair_offer")
             {
-                ragfair.baseOffer = json.parse(json.read(db.traders.ragfair_offer))
+                ragfair.baseOffer = json.parse(json.read(db.traders.ragfair_offer));
                 continue;
             }
 
