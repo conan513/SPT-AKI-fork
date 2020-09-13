@@ -305,7 +305,7 @@ class InsuranceServer
     cost(info, sessionID)
     {
         let output = {};
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
 
         let inventoryItemsHash = {};
         pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);

@@ -303,8 +303,8 @@ function saveProgress(offraidData, sessionID)
 
     let map = database_f.database.tables.locations[locationName].base;
     let insuranceEnabled = map.Insurance;
-    let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
-    let scavData = profile_f.profileServer.getScavProfile(sessionID);
+    let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+    let scavData = profile_f.profileController.getScavProfile(sessionID);
     const isPlayerScav = offraidData.isPlayerScav;
     const isDead = (offraidData.exit !== "survived" && offraidData.exit !== "runner");
     const preRaidGear = (isPlayerScav) ? [] : getPlayerGear(pmcData.Inventory.items);
@@ -357,7 +357,7 @@ function saveProgress(offraidData, sessionID)
     {
         scavData = setInventory(scavData, offraidData.profile);
         health_f.healthServer.initializeHealth(sessionID);
-        profile_f.profileServer.setScavProfile(sessionID, scavData);
+        profile_f.profileController.setScavProfile(sessionID, scavData);
         return;
     }
     else

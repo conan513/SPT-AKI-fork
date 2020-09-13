@@ -22,7 +22,7 @@ class ItemServer
 
         for (let body of info.data)
         {
-            let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+            let pmcData = profile_f.profileController.getPmcProfile(sessionID);
 
             if (body.Action in this.routes)
             {

@@ -5,6 +5,40 @@
 //////////////////////////////////// THIS CODE SHOULD BE STORED SOMEWHERE ELSE ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function getStashType(sessionID)
+{
+    let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+
+    for (let item of pmcData.Inventory.items)
+    {
+        if (item._id === pmcData.Inventory.stash)
+        {
+            return item._tpl;
+        }
+    }
+
+    logger.logError("No stash found");
+    return "";
+}
+
+function calculateLevel(pmcData)
+{
+    let exp = 0;
+
+    for (let level in database_f.database.tables.globals.config.exp.level.exp_table)
+    {
+        if (pmcData.Info.Experience < exp)
+        {
+            break;
+        }
+
+        pmcData.Info.Level = parseInt(level);
+        exp += database_f.database.tables.globals.config.exp.level.exp_table[level].exp;
+    }
+
+    return pmcData.Info.Level;
+}
+
 function getRandomExperience()
 {
     let exp = 0;
@@ -577,7 +611,7 @@ function getMoney(pmcData, amount, body, output, sessionID)
 * */
 function getPlayerStash(sessionID)
 { //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
-    let stashTPL = profile_f.getStashType(sessionID);
+    let stashTPL = getStashType(sessionID);
     let stashX = (database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0) ? database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
     let stashY = (database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0) ? database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
     return [stashX, stashY];
@@ -971,6 +1005,8 @@ function appendErrorToOutput(output, message, title = "Error")
     return output;
 }
 
+module.exports.getStashType = getStashType;
+module.exports.calculateLevel = calculateLevel;
 module.exports.getRandomExperience = getRandomExperience;
 module.exports.addDogtag = addDogtag;
 module.exports.generateInventoryID = generateInventoryID;

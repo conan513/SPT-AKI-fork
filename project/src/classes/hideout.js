@@ -168,7 +168,7 @@ class HideoutController
                     return output;
                 }
 
-                pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+                pmcData = profile_f.profileController.getPmcProfile(sessionID);
                 output.items.new[0].upd = itemToMove.upd;
 
                 for (let item of pmcData.Inventory.items)
@@ -201,7 +201,7 @@ class HideoutController
                     return output;
                 }
 
-                pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+                pmcData = profile_f.profileController.getPmcProfile(sessionID);
                 area.slots.splice(0, 1);
             }
         }

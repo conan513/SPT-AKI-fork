@@ -27,7 +27,7 @@ class CustomizationController
 
     getTraderSuits(traderID, sessionID)
     {
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let suitTemplates = database_f.database.tables.templates.suits;
         let suitArray = database_f.database.tables.traders[traderID].suits;
         let suitList = [];

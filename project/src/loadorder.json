@@ -34,6 +34,5 @@
     "gamestartup_f": "src/classes/gamestartup.js",
     "modules_f": "src/classes/modules.js",
 
-    "keepalive_r": "src/responses/keepalive.js",
-    "profile_r": "src/responses/profile.js"
+    "keepalive_r": "src/responses/keepalive.js"
 }

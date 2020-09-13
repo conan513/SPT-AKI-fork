@@ -34,9 +34,9 @@ class SaveController
         account_f.accountServer.saveToDisk();
         events.scheduledEventHandler.saveToDisk();
     
-        for (let sessionId of profile_f.profileServer.getOpenSessions())
+        for (let sessionId of profile_f.profileController.getOpenSessions())
         {
-            profile_f.profileServer.saveToDisk(sessionId);
+            profile_f.profileController.saveToDisk(sessionId);
             dialogue_f.dialogueServer.saveToDisk(sessionId);
         }
     }

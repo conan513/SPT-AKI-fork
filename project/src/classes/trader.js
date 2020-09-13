@@ -10,7 +10,7 @@ class TraderServer
 
     getTrader(traderID, sessionID)
     {
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let trader = database_f.database.tables.traders[traderID].base;
 
         if (!(traderID in pmcData.TraderStandings))
@@ -28,7 +28,7 @@ class TraderServer
 
     changeTraderDisplay(traderID, status, sessionID)
     {
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         pmcData.TraderStandings[traderID].display = status;
     }
 
@@ -52,11 +52,11 @@ class TraderServer
 
     lvlUp(traderID, sessionID)
     {
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let loyaltyLevels = database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
-        pmcData.Info.Level = profile_f.calculateLevel(pmcData);
+        pmcData.Info.Level = itm_hf.calculateLevel(pmcData);
 
         // level up traders
         let targetLevel = 0;
@@ -81,7 +81,7 @@ class TraderServer
     resetTrader(sessionID, traderID)
     {
         let account = account_f.accountServer.find(sessionID);
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let traderWipe = json.parse(json.read(db.profile[account.edition]["trader_" + pmcData.Info.Side.toLowerCase()]));
 
         pmcData.TraderStandings[traderID] = {
@@ -105,7 +105,7 @@ class TraderServer
             this.generateFenceAssort();
         }
 
-        const pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        const pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let assorts = JSON.parse(JSON.stringify(database_f.database.tables.traders[traderID].assort));
 
         // strip quest assorts
@@ -230,7 +230,7 @@ class TraderServer
 
     getPurchasesData(traderID, sessionID)
     {
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let trader = database_f.database.tables.traders[traderID].base;
         let currency = itm_hf.getCurrency(trader.currency);
         let output = {};

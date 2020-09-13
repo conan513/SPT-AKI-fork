@@ -1,10 +1,10 @@
 ﻿"use strict";
 
 /*
-* ProfileServer class maintains list of active profiles for each sessionID in memory. All first-time loads and save
+* profileController class maintains list of active profiles for each sessionID in memory. All first-time loads and save
 * operations also write to disk.*
 */
-class ProfileServer
+class ProfileController
 {
     constructor()
     {
@@ -75,8 +75,8 @@ class ProfileServer
 
         if (!account_f.accountServer.isWiped(sessionID))
         {
-            output.push(profile_f.profileServer.getPmcProfile(sessionID));
-            output.push(profile_f.profileServer.getScavProfile(sessionID));
+            output.push(profile_f.profileController.getPmcProfile(sessionID));
+            output.push(profile_f.profileController.getScavProfile(sessionID));
         }
 
         return output;
@@ -218,40 +218,82 @@ function getPmcPath(sessionID)
     return pmcPath.replace("__REPLACEME__", sessionID);
 }
 
-function getStashType(sessionID)
+class ProfileCallbacks
 {
-    let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
-
-    for (let item of pmcData.Inventory.items)
+    constructor()
     {
-        if (item._id === pmcData.Inventory.stash)
-        {
-            return item._tpl;
-        }
+        router.addStaticRoute("/client/game/profile/create", this.createProfile.bind());
+        router.addStaticRoute("/client/game/profile/list", this.getProfileData.bind());
+        router.addStaticRoute("/client/game/profile/savage/regenerate", this.regenerateScav.bind());
+        router.addStaticRoute("/client/game/profile/voice/change", this.changeVoice.bind());
+        router.addStaticRoute("/client/game/profile/nickname/change", this.changeNickname.bind());
+        router.addStaticRoute("/client/game/profile/nickname/validate", this.validateNickname.bind());
+        router.addStaticRoute("/client/game/profile/nickname/reserved", this.getReservedNickname.bind());
     }
 
-    logger.logError("No stash found");
-    return "";
-}
-
-function calculateLevel(pmcData)
-{
-    let exp = 0;
-
-    for (let level in database_f.database.tables.globals.config.exp.level.exp_table)
+    createProfile(url, info, sessionID)
     {
-        if (pmcData.Info.Experience < exp)
-        {
-            break;
-        }
-
-        pmcData.Info.Level = parseInt(level);
-        exp += database_f.database.tables.globals.config.exp.level.exp_table[level].exp;
+        profile_f.profileController.createProfile(info, sessionID);
+        return response_f.getBody({"uid": "pmc" + sessionID});
     }
 
-    return pmcData.Info.Level;
+    getProfileData(url, info, sessionID)
+    {
+        return response_f.getBody(profile_f.profileController.getCompleteProfile(sessionID));
+    }
+
+    regenerateScav(url, info, sessionID)
+    {
+        return response_f.getBody([profile_f.profileController.generateScav(sessionID)]);
+    }
+
+    changeVoice(url, info, sessionID)
+    {
+        profile_f.profileController.changeVoice(info, sessionID);
+        return response_f.nullResponse();
+    }
+
+    /// --- TODO: USE LOCALIZED STRINGS --- ///
+    changeNickname(url, info, sessionID)
+    {
+        const output = profile_f.profileController.changeNickname(info, sessionID);
+
+        if (output == "taken")
+        {
+            return response_f.getBody(null, 255, "The nickname is already in use");
+        }
+
+        if (output == "tooshort")
+        {
+            return response_f.getBody(null, 1, "The nickname is too short");
+        }
+
+        return response_f.getBody({"status": 0, "nicknamechangedate": Math.floor(new Date() / 1000)});
+    }
+    /// --- TODO: USE LOCALIZED STRINGS --- ///
+    validateNickname(url, info, sessionID)
+    {
+        const output = profile_f.profileController.validateNickname(info, sessionID);
+
+        if (output == "taken")
+        {
+            return response_f.getBody(null, 255, "The nickname is already in use");
+        }
+
+        if (output == "tooshort")
+        {
+            return response_f.getBody(null, 256, "The nickname is too short");
+        }
+
+        return response_f.getBody({"status": "ok"});
+    }
+    /// --- TODO: USE LOCALIZED STRINGS --- ///
+
+    getReservedNickname(url, info, sessionID)
+    {
+        return response_f.getBody(account_f.accountServer.getReservedNickname(sessionID));
+    }
 }
 
-module.exports.profileServer = new ProfileServer();
-module.exports.getStashType = getStashType;
-module.exports.calculateLevel = calculateLevel;
+module.exports.profileController = new ProfileController();
+module.exports.profileCallbacks = new ProfileCallbacks();

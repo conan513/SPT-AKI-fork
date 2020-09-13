@@ -103,7 +103,7 @@ class TradeController
     
         for (let offer of offers)
         {
-            pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+            pmcData = profile_f.profileController.getPmcProfile(sessionID);
             body = {
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",

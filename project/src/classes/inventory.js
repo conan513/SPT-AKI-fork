@@ -6,8 +6,8 @@ class InventoryController
     getOwnerInventoryItems(body, sessionID)
     {
         let isSameInventory = false;
-        let pmcItems = profile_f.profileServer.getPmcProfile(sessionID).Inventory.items;
-        let scavData = profile_f.profileServer.getScavProfile(sessionID);
+        let pmcItems = profile_f.profileController.getPmcProfile(sessionID).Inventory.items;
+        let scavData = profile_f.profileController.getScavProfile(sessionID);
         let fromInventoryItems = pmcItems;
         let fromType = "pmc";
 

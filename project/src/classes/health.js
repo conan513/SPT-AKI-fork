@@ -333,7 +333,7 @@ class HealthCallbacks
 
     syncHealth(url, info, sessionID)
     {
-        let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         health_f.healthServer.saveHealth(pmcData, info, sessionID);
         return response_f.nullResponse();
     }

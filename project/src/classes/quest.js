@@ -185,7 +185,7 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
-                    pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+                    pmcData = profile_f.profileController.getPmcProfile(sessionID);
 
                     for (let skill of pmcData.Skills.Common)
                     {
@@ -198,12 +198,12 @@ class QuestController
                     break;
 
                 case "Experience":
-                    pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+                    pmcData = profile_f.profileController.getPmcProfile(sessionID);
                     pmcData.Info.Experience += parseInt(reward.value);
                     break;
 
                 case "TraderStanding":
-                    pmcData = profile_f.profileServer.getPmcProfile(sessionID);
+                    pmcData = profile_f.profileController.getPmcProfile(sessionID);
                     pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
 
                     if (pmcData.TraderStandings[reward.target].currentStanding < 0)
