@@ -1,21 +1,23 @@
 {
-  "name": "sptarkov-server",
-  "version": "1.0.0",
-  "main": "scripts/main.js",
-  "author": "SPTarkov",
-  "license": "MIT",
-  "scripts": {
-    "build": "npm run version-check && node dev/src/build.js",
-    "start": "npm run version-check && node core/main.js",
-    "lint": "eslint --fix ./**/*.js",
-    "version-check": "node core/util/check-version.js"
-  },
-  "dependencies": {
-    "nexe": "^3.3.7",
-    "selfsigned": "^1.10.7",
-    "upx": "^1.0.6"
-  },
-  "devDependencies": {
-    "eslint": "^7.8.1"
-  }
+    "name": "spt-aki_server",
+    "version": "1.0.0",
+    "main": "scripts/main.js",
+    "author": "SPT-AKI",
+    "contributors": [
+        "Merijn Hendriks (Senko-san, InNoHurryToCode)",
+        "Ginja"
+    ],
+    "license": "NCSA Open Source",
+    "scripts": {
+        "build": "node dev/src/build.js",
+        "start": "node dev/src/start.js",
+        "lint": "eslint --fix ./**/*.js"
+    },
+    "dependencies": {
+        "selfsigned": "^1.10.7"
+    },
+    "devDependencies": {
+        "nexe": "^3.3.7",
+        "eslint": "^7.9.0"
+    }
 }

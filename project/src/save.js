@@ -10,7 +10,7 @@ class SaveController
             {
                 this.saveOpenSessions();
             });
-    
+
             process.on("SIGINT", (code) =>
             {
                 this.saveOpenSessions();
@@ -18,7 +18,7 @@ class SaveController
                 process.exit(1);
             });
         }
-    
+
         if (save_f.saveConfig.saveIntervalSec > 0)
         {
             setInterval(function()
@@ -28,12 +28,12 @@ class SaveController
             }, save_f.saveConfig.saveIntervalSec * 1000);
         }
     }
-    
+
     saveOpenSessions()
     {
         account_f.accountServer.saveToDisk();
         events.scheduledEventHandler.saveToDisk();
-    
+
         for (let sessionId of profile_f.profileController.getOpenSessions())
         {
             profile_f.profileController.saveToDisk(sessionId);
@@ -49,7 +49,7 @@ class SaveCallback
         server.addStartCallback("loadSavehandler", this.load.bind());
         server.addReceiveCallback("SAVE", this.saveCallback.bind());
     }
-    
+
     load()
     {
         save_f.saveController.initialize();

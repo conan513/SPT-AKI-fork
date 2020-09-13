@@ -1,7 +1,8 @@
-const fs = require('fs');
-const childProcess = require('child_process');
-const UPX = require('upx')('best')
-const { compile } = require('nexe');
+const fs = require("fs");
+const childProcess = require("child_process");
+const { compile } = require("nexe");
+
+require("./check-version.js");
 
 // compile the application
 console.log("Building server");
@@ -14,7 +15,7 @@ if (fs.existsSync("Server.exe"))
 
 compile({
 	input: 'core/main.js',
-	output: 'Server-Uncompressed',
+	output: 'Server-Intermediate',
 	build: false,
 	ico: 'dev/res/icon.ico'
 }).then(function(err) {
@@ -22,9 +23,9 @@ compile({
 
 	childProcess.execFile('dev/bin/ResourceHacker.exe', [
 		'-open',
-		'Server-Uncompressed.exe',
+		'Server-Intermediate.exe',
 		'-save',
-		'Server-Icon.exe',
+		'Server.exe',
 		'-action',
 		'addoverwrite',
 		'-res',
@@ -32,17 +33,6 @@ compile({
 		'-mask',
 		'ICONGROUP,MAINICON,'
 	], function(err) {
-		fs.unlinkSync('Server-Uncompressed.exe');
-
-		console.log("Compress executable");
-
-		UPX('Server-Icon.exe')
-		.output('Server.exe')
-		.start().then(function(stats) {
-			console.log(stats);
-			fs.unlinkSync('Server-Icon.exe');			
-		}).catch(function (err) {
-			console.log(err);
-		});
+		fs.unlinkSync('Server-Intermediate.exe');
 	});
 });
