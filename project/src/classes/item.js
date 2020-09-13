@@ -59,4 +59,18 @@ class ItemServer
     }
 }
 
+class ItemCallbacks
+{
+    constructor()
+    {
+        router.addStaticRoute("/client/game/profile/items/moving", this.handleRoutes.bind());
+    }
+
+    handleRoutes(url, info, sessionID)
+    {
+        return response_f.getBody(item_f.itemServer.handleRoutes(info, sessionID));
+    }
+}
+
 module.exports.itemServer = new ItemServer();
+module.exports.ItemCallbacks = new ItemCallbacks();

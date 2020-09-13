@@ -34,7 +34,6 @@
     "image_f": "src/classes/image.js",
     "gamestartup_f": "src/classes/gamestartup.js",
 
-    "item_r": "src/responses/item.js",
     "dialogue_r": "src/responses/dialogue.js",
     "health_r": "src/responses/health.js",
     "keepalive_r": "src/responses/keepalive.js",
