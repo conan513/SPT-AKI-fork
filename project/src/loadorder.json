@@ -48,6 +48,5 @@
     "status_r": "src/responses/status.js",
     "trade_r": "src/responses/trade.js",
     "userbuilds_r": "src/responses/userbuilds.js",
-    "wishlist_r": "src/responses/wishlist.js",
-    "match_r": "src/responses/match.js"
+    "wishlist_r": "src/responses/wishlist.js"
 }
