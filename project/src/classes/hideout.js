@@ -45,7 +45,7 @@ class HideoutController
             if (!item.inventoryItem)
             {
                 logger.logError(`Failed to find item in inventory with id ${item.requestedItem.id}`);
-                return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput(), "An unknown error occurred");
+                return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
             }
 
             if (itm_hf.isMoneyTpl(item.inventoryItem._tpl) && item.inventoryItem.upd?.StackObjectsCount > item.requestedItem.count)
@@ -63,14 +63,14 @@ class HideoutController
         if (!hideoutArea)
         {
             logger.logError(`Could not find area of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput(), "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
         }
 
         const hideoutData = database_f.database.tables.hideout.areas.find(area => area.type === body.areaType);
         if (!hideoutData)
         {
             logger.logError(`Could not find area in database of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput(), "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
         }
 
         let ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
@@ -91,7 +91,7 @@ class HideoutController
         if (!hideoutArea)
         {
             logger.logError(`Could not find area of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput(), "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
         }
 
         // Upgrade area
@@ -103,7 +103,7 @@ class HideoutController
         if (!hideoutData)
         {
             logger.logError(`Could not find area in database of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput(), "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
         }
 
         // Apply bonuses
@@ -129,7 +129,8 @@ class HideoutController
             const item = pmcData.Inventory.items.find(invItem => invItem._id === kvp[1].id);
             return {
                 inventoryItem: item,
-                requestedItem: kvp[1]
+                requestedItem: kvp[1],
+                slot: kvp[0]
             };
         });
 
@@ -137,18 +138,18 @@ class HideoutController
         if (!hideoutArea)
         {
             logger.logError(`Could not find area of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(output);
         }
 
-        for (let [index, item] of items.entries())
+        for (let item of items)
         {
             if (!item.inventoryItem)
             {
                 logger.logError(`Failed to find item in inventory with id ${item.requestedItem.id}`);
-                return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+                return itm_hf.appendErrorToOutput(output);
             }
 
-            const slot_position = index;
+            const slot_position = item.slot;
             const slot_to_add = {
                 "item": [{
                     "_id": item.inventoryItem._id,
@@ -180,7 +181,7 @@ class HideoutController
         if (!hideoutArea)
         {
             logger.logError(`Could not find area of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(output);
         }
 
         if (hideoutArea.type === areaTypes.GENERATOR)
@@ -205,7 +206,7 @@ class HideoutController
             pmcData = profile_f.profileServer.getPmcProfile(sessionID);
             output.items.new[0].upd = itemToMove.upd;
 
-            const item = pmcData.Inventory.Items.find(i => i._id == output.items.new[0]._id);
+            const item = pmcData.Inventory.items.find(i => i._id == output.items.new[0]._id);
             if (item)
             {
                 item.upd = itemToMove.upd;
@@ -221,6 +222,12 @@ class HideoutController
         }
         else
         {
+            if (!hideoutArea.slots[0]?.item[0]?._tpl)
+            {
+                logger.logError(`Could not find item to take out of slot 0 for areaType ${hideoutArea.type}`);
+                return itm_hf.appendErrorToOutput(output);
+            }
+
             let newReq = {
                 "items": [{
                     "item_id": hideoutArea.slots[0].item[0]._tpl,
@@ -237,7 +244,6 @@ class HideoutController
                 return output;
             }
 
-            pmcData = profile_f.profileServer.getPmcProfile(sessionID);
             hideoutArea.slots.splice(0, 1);
         }
 
@@ -250,7 +256,7 @@ class HideoutController
         if (!hideoutArea)
         {
             logger.logError(`Could not find area of type ${body.areaType}`);
-            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput(), "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
         }
 
         hideoutArea.active = body.enabled;
@@ -294,7 +300,7 @@ class HideoutController
         if (!recipe)
         {
             logger.logError(`Failed to find Scav Case recipe with id ${body.recipeId}`);
-            return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(output);
         }
 
         let rarityItemCounter = {};
@@ -357,6 +363,13 @@ class HideoutController
     {
         let output = item_f.itemServer.getOutput();
 
+        const bitCoinCount = pmcData.Hideout.Production[areaTypes.BITCOIN_FARM]?.Products?.length;
+        if (!bitCoinCount)
+        {
+            logger.logError("No bitcoins are ready for pickup!");
+            return itm_hf.appendErrorToOutput(output);
+        }
+
         let newBTC = {
             "items": [{
                 "item_id": "59faff1d86f7746c51718c9c",
@@ -406,7 +419,7 @@ class HideoutController
             if (!kvp || !kvp[0])
             {
                 logger.logError(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
-                return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+                return itm_hf.appendErrorToOutput(output);
             }
 
             // delete the production in profile Hideout.Production if addItem passes validation
@@ -425,7 +438,7 @@ class HideoutController
             if (!kvp || !kvp[0])
             {
                 logger.logError(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
-                return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+                return itm_hf.appendErrorToOutput(output);
             }
             const prod = kvp[0];
 
@@ -451,7 +464,7 @@ class HideoutController
         }
 
         logger.logError(`Failed to locate any recipe with id ${body.recipeId}`);
-        return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+        return itm_hf.appendErrorToOutput(output);
     }
 
     registerProduction(pmcData, body, sessionID)
@@ -460,7 +473,7 @@ class HideoutController
         if (!recipe)
         {
             logger.logError(`Failed to locate recipe with _id ${body.recipeId}`);
-            return itm_hf.appendErrorToOutput(output, "An unknown error occurred");
+            return itm_hf.appendErrorToOutput(item_f.itemServer.getOutput());
         }
 
         pmcData.Hideout.Production[recipe.areaType] = {
