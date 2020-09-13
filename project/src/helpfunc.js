@@ -995,7 +995,7 @@ function arrayIntersect(a, b)
     return a.filter(x => b.includes(x));
 }
 
-function appendErrorToOutput(output, message, title = "Error")
+function appendErrorToOutput(output, message = "An unknown error occurred", title = "Error")
 {
     output.badRequest = [{
         "index": 0,
