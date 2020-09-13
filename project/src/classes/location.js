@@ -5,63 +5,23 @@ class LocationServer
 {
     constructor()
     {
-        this.locations = {};
-        this.lootPresets = {};
+        this.globalLootChanceModifier = 0;
     }
 
     /* Load all the locations into memory. */
     initialize()
     {
-        for (let name in db.locations)
-        {
-            if (name === "base")
-            {
-                continue;
-            }
-
-            let node = db.locations[name];
-            let location = json.parse(json.read(node.base));
-
-            // set infill locations
-            for (let entry in node.entries)
-            {
-                location.SpawnAreas.push(json.parse(json.read(node.entries[entry])));
-            }
-
-            // set exfill locations
-            for (let exit in node.exits)
-            {
-                location.exits.push(json.parse(json.read(node.exits[exit])));
-            }
-
-            // set scav locations
-            for (let wave in node.waves)
-            {
-                location.waves.push(json.parse(json.read(node.waves[wave])));
-            }
-
-            // set boss locations
-            for (let spawn in node.bosses)
-            {
-                location.BossLocationSpawn.push(json.parse(json.read(node.bosses[spawn])));
-            }
-
-            let presets;
-            if (node.loot_file)
-            {
-                presets = json.parse(json.read(node.loot_file)).Loot;
-            }
-
-            this.locations[name] = location;
-            this.lootPresets[name] = presets;
-        }
+        this.globalLootChanceModifier = database_f.database.tables.globals.config.GlobalLootChanceModifier;
     }
 
     /* generates a random location preset to use for local session */
     generate(name)
     {
-        let output = this.locations[name];
-        let presets = this.lootPresets[name];
+        let location = database_f.database.tables.locations[name];
+
+
+        const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
+        let output = location.base;
         let ids = {};
 
         // don't generate loot on hideout
@@ -70,31 +30,15 @@ class LocationServer
             return output;
         }
 
-        let forced = {};
-        let statics = {};
-        let dynamic = {};
+        let forced = location.loot.Forced;
+        let statics = location.loot.Static;
+        let dynamic = location.loot.Dynamic;
         output.Loot = [];
-
-        for (let i in presets)
-        {
-            switch (presets[i].Type)
-            {
-                case "Forced":
-                    forced = presets[i].LootList;
-                    break;
-                case "Static":
-                    statics = presets[i].LootList;
-                    break;
-                case "Dynamic":
-                    dynamic = presets[i].LootList;
-                    break;
-            }
-        }
 
         // forced loot
         for (let i in forced)
         {
-            let data = forced[i].Data[0];
+            let data = forced[i].data[0];
             if (data.Id in ids)
             {
                 continue;
@@ -110,8 +54,8 @@ class LocationServer
         // static loot
         for (let i in statics)
         {
-            let dataLength = statics[i].Data.length;
-            let data = statics[i].Data[utility.getRandomInt(0, dataLength - 1)];
+            let dataLength = statics[i].data.length;
+            let data = statics[i].data[utility.getRandomInt(0, dataLength - 1)];
 
             if (data.Id in ids)
             {
@@ -138,23 +82,23 @@ class LocationServer
             let rndLootIndex = utility.getRandomInt(0, dynamic.length - 1);
             let rndLoot = dynamic[rndLootIndex];
 
-            if (!rndLoot.Data)
+            if (!rndLoot.data)
             {
                 maxCount -= 1;
                 continue;
             }
 
-            let rndLootTypeIndex = utility.getRandomInt(0, rndLoot.Data.length - 1);
-            let data = rndLoot.Data[rndLootTypeIndex];
+            let rndLootTypeIndex = utility.getRandomInt(0, rndLoot.data.length - 1);
+            let data = rndLoot.data[rndLootTypeIndex];
 
             //Check if LootItem is overlapping
             let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
             if (!gameplayConfig.locationloot.allowLootOverlay && lootPositions.includes(position))
             {
-                //Clearly selected loot
-                dynamic[rndLootIndex].Data.splice(rndLootTypeIndex, 1);
+                //Clear selected loot
+                dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
 
-                if (dynamic[rndLootIndex].Data.length == 0)
+                if (dynamic[rndLootIndex].data.length == 0)
                 {
                     delete dynamic.splice(rndLootIndex, 1);
                 }
@@ -202,8 +146,10 @@ class LocationServer
                     childrenItem.parentId = newId;
                 }
             }
+
             const num = utility.getRandomInt(0, 100);
-            const itemChance = (database_f.database.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance * database_f.database.tables.globals.config.GlobalLootChanceModifier * location_f.locationServer.locations[name].GlobalLootChanceModifier).toFixed(0);
+            const spawnChance = database_f.database.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
+            const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
             if (itemChance >= num)
             {
                 count += 1;
@@ -232,16 +178,17 @@ class LocationServer
     /* get all locations without loot data */
     generateAll()
     {
-        let base = json.parse(json.read(db.locations.base));
+        let locations = database_f.database.tables.locations;
+        let base = database_f.database.tables.locations_base;
         let data = {};
 
         // use right id's and strip loot
-        for (let name in this.locations)
+        for (let name in locations)
         {
-            let map = this.locations[name];
+            let map = locations[name].base;
 
             map.Loot = [];
-            data[this.locations[name]._Id] = map;
+            data[map._Id] = map;
         }
 
         base.data.locations = data;

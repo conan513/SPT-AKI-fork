@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Launch Program",
+				"program": "${workspaceFolder}/core/main.js",
+				"cwd": "${workspaceFolder}",
+				"skipFiles": [
+					"<node_internals>/**"
+				]
+			}
+		],
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "build",
+				"type": "npm",
+				"script": "build",
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				}
+			},
+			{
+				"label": "lint",
+				"type": "npm",
+				"script": "lint"
+			}
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"mhutchie.git-graph"
+		]
+	},
+	"settings": {
+		"window.title": "SPT-AKI Server",
+		"git-graph.commitDetailsViewLocation": "Docked to Bottom",
+	}
+}

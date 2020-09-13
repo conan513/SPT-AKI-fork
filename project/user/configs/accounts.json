@@ -1,1 +1,10 @@
-{}
+{
+	"AID812150441502554516qJr": {
+		"id": "AID812150441502554516qJr",
+		"nickname": "",
+		"email": "test",
+		"password": "test",
+		"wipe": false,
+		"edition": "Standard"
+	}
+}
