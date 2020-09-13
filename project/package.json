@@ -9,8 +9,8 @@
     ],
     "license": "NCSA Open Source",
     "scripts": {
-        "build": "npm run version-check && node dev/src/build.js",
-        "start": "npm run version-check && node core/main.js",
+        "build": "node dev/src/build.js",
+        "start": "node dev/src/start.js",
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {

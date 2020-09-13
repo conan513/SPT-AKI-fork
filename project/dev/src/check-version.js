@@ -1,4 +1,5 @@
 const semver = require("semver");
+
 if (!semver.satisfies(process.version, "v14.5.0"))
 {
     console.log("Server requires node version v14.5.0");

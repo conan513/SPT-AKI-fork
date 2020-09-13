@@ -1,6 +1,8 @@
-const fs = require('fs');
-const childProcess = require('child_process');
-const { compile } = require('nexe');
+const fs = require("fs");
+const childProcess = require("child_process");
+const { compile } = require("nexe");
+
+require("./check-version.js");
 
 // compile the application
 console.log("Building server");
