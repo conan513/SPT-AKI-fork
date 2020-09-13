@@ -259,7 +259,7 @@ class DialogueServer
     /*
     * Return the int value associated with the messageType, for readability.
     */
-    dialogueServer.getMessageTypeValue(messageType)
+    getMessageTypeValue(messageType)
     {
         return this.messageTypes[messageType];
     }
@@ -340,7 +340,7 @@ class DialogueCallbacks
 
     getAllAttachments(url, info, sessionID)
     {
-        return response_f.getBody(dialogue_f.dialogueServer.getAllAttachments(info.dialogId, sessionID);
+        return response_f.getBody(dialogue_f.dialogueServer.getAllAttachments(info.dialogId, sessionID));
     }
 }
 
