@@ -13,7 +13,7 @@ if (fs.existsSync("Server.exe"))
 
 compile({
 	input: 'core/main.js',
-	output: 'Server-Uncompressed',
+	output: 'Server-Intermediate',
 	build: false,
 	ico: 'dev/res/icon.ico'
 }).then(function(err) {
@@ -21,7 +21,7 @@ compile({
 
 	childProcess.execFile('dev/bin/ResourceHacker.exe', [
 		'-open',
-		'Server-Uncompressed.exe',
+		'Server-Intermediate.exe',
 		'-save',
 		'Server.exe',
 		'-action',
@@ -32,5 +32,5 @@ compile({
 		'ICONGROUP,MAINICON,'
 	]);
 
-	fs.unlinkSync('Server-Uncompressed.exe');
+	fs.unlinkSync('Server-Intermediate.exe');
 });
