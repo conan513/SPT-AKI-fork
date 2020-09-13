@@ -19,7 +19,8 @@ class InraidServer
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        let map = json.parse(json.read(db.locations[offraid_f.inraidServer.players[sessionID].Location.toLowerCase()].base));
+        let locationName = offraid_f.inraidServer.players[sessionID].Location.toLowerCase();
+        let map = database_f.database.tables.locations[locationName].base;
         let mapKey = map.AccessKeys[0];
 
         if (!mapKey)
@@ -297,7 +298,10 @@ function saveProgress(offraidData, sessionID)
     {
         return;
     }
-    let map = json.parse(json.read(db.locations[offraid_f.inraidServer.players[sessionID].Location.toLowerCase()].base));
+
+    let locationName = offraid_f.inraidServer.players[sessionID].Location.toLowerCase();
+
+    let map = database_f.database.tables.locations[locationName].base;
     let insuranceEnabled = map.Insurance;
     let pmcData = profile_f.profileServer.getPmcProfile(sessionID);
     let scavData = profile_f.profileServer.getScavProfile(sessionID);
