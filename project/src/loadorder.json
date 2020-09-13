@@ -52,5 +52,5 @@
     "wishlist_r": "src/responses/wishlist.js",
     "match_r": "src/responses/match.js",
 
-    "loadlocation_c": "src/callbacks/start/location.js",
+    "loadlocation_c": "src/callbacks/start/location.js"
 }
