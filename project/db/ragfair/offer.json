@@ -30,8 +30,8 @@
     "requirementsCost": 1337,
     "summaryCost": 1337,
     "sellInOnePiece": false,
-    "startTime": 1000000000,
-    "endTime": 1600000000,
+    "startTime": 0,
+    "endTime": 0,
     "priority": false,
     "loyaltyLevel": 1
 }
