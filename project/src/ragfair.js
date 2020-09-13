@@ -425,7 +425,7 @@ function createOffer(template, onlyFunc, usePresets = true)
         return [];
     }
 
-    let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer););
+    let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
     let offers = [];
     let time = Math.floor(new Date().getTime() / 1000);
 
@@ -483,7 +483,7 @@ function createOffer(template, onlyFunc, usePresets = true)
 function storeOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
 {
     let offers = [];
-    let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer););
+    let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
     let trader = json.parse(json.read(db.traders["base_" + traderID]));
     let time = Math.floor(new Date().getTime() / 1000);
 

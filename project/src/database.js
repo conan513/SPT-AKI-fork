@@ -105,14 +105,23 @@ class DatabaseCallbacks
 
         // traders
         let traders = {};
+        let ragfair = {
+            "offers": {}
+        };
 
         for (const file in db.traders)
         {
             let traderID = file.replace("base_", "")
                                .replace("suits_", "")
                                .replace("questassort_", "")
-                               .replace("assort_", "")
-                               .replace("ragfair_offer", "");
+                               .replace("assort_", "");
+            
+            // skip if there is no id
+            if (file === "ragfair_offer")
+            {
+                ragfair.baseOffer = json.parse(json.read(db.traders.ragfair_offer))
+                continue;
+            }
 
             // add trader if it doesn't exist
             if (!(traderID in traders))
@@ -144,12 +153,7 @@ class DatabaseCallbacks
         }
 
         database_f.database.tables.traders = traders;
-
-        // ragfair
-        database_f.database.tables.ragfair = {
-            "baseOffer": json.parse(json.read(db.trader.ragfair_offer)),
-            "offers": {}
-        };
+        database_f.database.tables.ragfair = ragfair;
 
         // bots
         let bots = {
