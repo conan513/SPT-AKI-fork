@@ -4,7 +4,6 @@ class DialogueServer
 {
     constructor()
     {
-        this.dialogues = {};
         this.messageTypes = {
             "npcTrader": 2,
             "insuranceReturn": 8,
@@ -14,25 +13,12 @@ class DialogueServer
         };
     }
 
-    initializeDialogue(sessionID)
-    {
-        this.dialogues[sessionID] = json.parse(json.read(this.getPath(sessionID)));
-    }
-
-    saveToDisk(sessionID)
-    {
-        if (sessionID in this.dialogues)
-        {
-            json.write(this.getPath(sessionID), this.dialogues[sessionID]);
-        }
-    }
-
     /* Set the content of the dialogue on the list tab. */
     generateDialogueList(sessionID)
     {
         let data = [];
 
-        for (let dialogueId in this.dialogues[sessionID])
+        for (let dialogueId in save_f.saveServer.dialogues[sessionID])
         {
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
@@ -43,7 +29,7 @@ class DialogueServer
     /* Get the content of a dialogue. */
     getDialogueInfo(dialogueId, sessionID)
     {
-        let dialogue = this.dialogues[sessionID][dialogueId];
+        let dialogue = save_f.saveServer.dialogues[sessionID][dialogueId];
 
         return {
             "_id": dialogueId,
@@ -61,7 +47,7 @@ class DialogueServer
 	*/
     generateDialogueView(dialogueId, sessionID)
     {
-        let dialogue = this.dialogues[sessionID][dialogueId];
+        let dialogue = save_f.saveServer.dialogues[sessionID][dialogueId];
         dialogue.new = 0;
 
         // Set number of new attachments, but ignore those that have expired.
@@ -78,7 +64,7 @@ class DialogueServer
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return response_f.responseController.getBody({"messages": this.dialogues[sessionID][dialogueId].messages});
+        return response_f.responseController.getBody({"messages": save_f.saveServer.dialogues[sessionID][dialogueId].messages});
     }
 
     /*
@@ -86,12 +72,12 @@ class DialogueServer
 	*/
     addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
-        if (this.dialogues[sessionID] === undefined)
+        if (save_f.saveServer.dialogues[sessionID] === undefined)
         {
             this.initializeDialogue(sessionID);
         }
 
-        let dialogueData = this.dialogues[sessionID];
+        let dialogueData = save_f.saveServer.dialogues[sessionID];
         let isNewDialogue = !(dialogueID in dialogueData);
         let dialogue = dialogueData[dialogueID];
 
@@ -176,7 +162,7 @@ class DialogueServer
 	*/
     getMessageItemContents(messageId, sessionID)
     {
-        let dialogueData = this.dialogues[sessionID];
+        let dialogueData = save_f.saveServer.dialogues[sessionID];
 
         for (let dialogueId in dialogueData)
         {
@@ -186,10 +172,10 @@ class DialogueServer
             {
                 if (message._id === messageId)
                 {
-                    let attachmentsNew = this.dialogues[sessionID][dialogueId].attachmentsNew;
+                    let attachmentsNew = save_f.saveServer.dialogues[sessionID][dialogueId].attachmentsNew;
                     if (attachmentsNew > 0)
                     {
-                        this.dialogues[sessionID][dialogueId].attachmentsNew = attachmentsNew - 1;
+                        save_f.saveServer.dialogues[sessionID][dialogueId].attachmentsNew = attachmentsNew - 1;
                     }
                     message.rewardCollected = true;
                     return message.items.data;
@@ -202,17 +188,17 @@ class DialogueServer
 
     removeDialogue(dialogueId, sessionID)
     {
-        delete this.dialogues[sessionID][dialogueId];
+        delete save_f.saveServer.dialogues[sessionID][dialogueId];
     }
 
     setDialoguePin(dialogueId, shouldPin, sessionID)
     {
-        this.dialogues[sessionID][dialogueId].pinned = shouldPin;
+        save_f.saveServer.dialogues[sessionID][dialogueId].pinned = shouldPin;
     }
 
     setRead(dialogueIds, sessionID)
     {
-        let dialogueData = this.dialogues[sessionID];
+        let dialogueData = save_f.saveServer.dialogues[sessionID];
 
         for (let dialogId of dialogueIds)
         {
@@ -227,7 +213,7 @@ class DialogueServer
         let output = [];
         let timeNow = Date.now() / 1000;
 
-        for (let message of this.dialogues[sessionID][dialogueId].messages)
+        for (let message of save_f.saveServer.dialogues[sessionID][dialogueId].messages)
         {
             if (timeNow < (message.dt + message.maxStorageTime))
             {
@@ -235,7 +221,7 @@ class DialogueServer
             }
         }
 
-        this.dialogues[sessionID][dialogueId].attachmentsNew = 0;
+        save_f.saveServer.dialogues[sessionID][dialogueId].attachmentsNew = 0;
         return {"messages": output};
     }
 
@@ -244,9 +230,9 @@ class DialogueServer
 
     removeExpiredItems(sessionID)
     {
-        for (let dialogueId in this.dialogues[sessionID])
+        for (let dialogueId in save_f.saveServer.dialogues[sessionID])
         {
-            for (let message of this.dialogues[sessionID][dialogueId].messages)
+            for (let message of save_f.saveServer.dialogues[sessionID][dialogueId].messages)
             {
                 if ((Date.now() / 1000) > (message.dt + message.maxStorageTime))
                 {
@@ -262,12 +248,6 @@ class DialogueServer
     getMessageTypeValue(messageType)
     {
         return this.messageTypes[messageType];
-    }
-
-    getPath(sessionID)
-    {
-        let path = db.user.profiles.dialogue;
-        return path.replace("__REPLACEME__", sessionID);
     }
 }
 

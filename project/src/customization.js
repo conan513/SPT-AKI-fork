@@ -67,7 +67,7 @@ class CustomizationController
     buyClothing(pmcData, body, sessionID)
     {
         let output = item_f.itemServer.getOutput();
-        let storage = json.parse(json.read(this.getPath(sessionID)));
+        let storage = json.parse(json.read(save_f.saveServer.getSuitsPath(sessionID)));
         let offers = this.getAllTraderSuits(sessionID);
 
         // check if outfit already exists
@@ -122,14 +122,8 @@ class CustomizationController
             }
         }
 
-        json.write(this.getPath(sessionID), storage);
+        json.write(save_f.saveServer.getSuitsPath(sessionID), storage);
         return output;
-    }
-
-    getPath(sessionID)
-    {
-        let path = db.user.profiles.suits;
-        return path.replace("__REPLACEME__", sessionID);
     }
 }
 
@@ -145,7 +139,7 @@ class CustomizationCallbacks
 
     getCustomizationStorage(url, info, sessionID)
     {
-        return json.read(customization_f.customizationController.getPath(sessionID));
+        return json.read(save_f.saveServer.getSuitsPath(sessionID));
     }
 
     getTraderSuits(url, info, sessionID)

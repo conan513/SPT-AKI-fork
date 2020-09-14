@@ -4,7 +4,7 @@ class WeaponBuildsController
 {
     getUserBuilds(sessionID)
     {
-        let userBuildsMap = json.parse(json.read(this.getPath(sessionID)));
+        let userBuildsMap = json.parse(json.read(save_f.saveServer.getWeaponBuildPath(sessionID)));
         let userBuilds = [];
 
         for (let buildName in userBuildsMap)
@@ -21,7 +21,7 @@ class WeaponBuildsController
         body.id = utility.generateNewItemId();
 
         let output = item_f.itemServer.getOutput();
-        let savedBuilds = json.parse(json.read(this.getPath(sessionID)));
+        let savedBuilds = json.parse(json.read(save_f.saveServer.getWeaponBuildPath(sessionID)));
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
@@ -29,32 +29,26 @@ class WeaponBuildsController
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
-        json.write(this.getPath(sessionID), savedBuilds);
+        json.write(tsave_f.saveServer.getWeaponBuildPath(sessionID), savedBuilds);
         output.builds.push(body);
         return output;
     }
 
     removeBuild(pmcData, body, sessionID)
     {
-        let savedBuilds = json.parse(json.read(this.getPath(sessionID)));
+        let savedBuilds = json.parse(json.read(save_f.saveServer.getWeaponBuildPath(sessionID)));
 
         for (let name in savedBuilds)
         {
             if (savedBuilds[name].id === body.id)
             {
                 delete savedBuilds[name];
-                json.write(this.getPath(sessionID), savedBuilds);
+                json.write(save_f.saveServer.getWeaponBuildPath(sessionID), savedBuilds);
                 break;
             }
         }
 
         return item_f.itemServer.getOutput();
-    }
-
-    getPath(sessionID)
-    {
-        let path = db.user.profiles.weaponbuilds;
-        return path.replace("__REPLACEME__", sessionID);
     }
 }
 
