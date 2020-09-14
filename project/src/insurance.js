@@ -187,7 +187,7 @@ class InsuranceServer
         for (let traderId in this.insured[sessionID])
         {
             let trader = trader_f.traderServer.getTrader(traderId, sessionID);
-            let dialogueTemplates = json.parse(json.read(db.dialogues[traderId]));
+            let dialogueTemplates = database_f.database.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": dialogueTemplates.insuranceStart[utility.getRandomInt(0, dialogueTemplates.insuranceStart.length - 1)],
                 "type": dialogue_f.dialogueServer.getMessageTypeValue("npcTrader")
@@ -226,7 +226,7 @@ class InsuranceServer
         // Inject a little bit of a surprise by failing the insurance from time to time ;)
         if (utility.getRandomInt(0, 99) >= gameplayConfig.trading.insureReturnChance)
         {
-            let insuranceFailedTemplates = json.parse(json.read(db.dialogues[event.data.traderId])).insuranceFailed;
+            const insuranceFailedTemplates = database_f.database.tables.traders[event.data.traderId].dialogue.insuranceFailed;
             event.data.messageContent.templateId = insuranceFailedTemplates[utility.getRandomInt(0, insuranceFailedTemplates.length - 1)];
             event.data.items = [];
         }
