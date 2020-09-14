@@ -9,7 +9,7 @@ class ResponseController
     
     getBody(data, err = 0, errmsg = null)
     {
-        return utility.clearString(this.getUnclearedBody(err, errmsg, data));
+        return utility.clearString(this.getUnclearedBody(data, err, errmsg));
     }
     
     getUnclearedBody(data, err = 0, errmsg = null)

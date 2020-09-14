@@ -80,7 +80,7 @@ class InventoryController
     {
         this.handleCartridges(fromItems, body);
 
-        let idsToMove = helpfunc_f.findAndReturnChildrenByItems(fromItems, body.item);
+        let idsToMove = helpfunc_f.helpFunctions.findAndReturnChildrenByItems(fromItems, body.item);
 
         for (let itemId of idsToMove)
         {
@@ -172,7 +172,7 @@ class InventoryController
     removeItemFromProfile(profileData, itemId, output = null)
     {
         // get items to remove
-        let ids_toremove = helpfunc_f.findAndReturnChildren(profileData, itemId);
+        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(profileData, itemId);
 
         //remove one by one all related items and itself
         for (let i in ids_toremove)
@@ -431,7 +431,7 @@ class InventoryController
     addItem(pmcData, body, output, sessionID, callback, foundInRaid = false)
     {
         const fenceID = "579dc571d53a0658a154fbec";
-        let PlayerStash = helpfunc_f.getPlayerStash(sessionID);
+        let PlayerStash = helpfunc_f.helpFunctions.getPlayerStash(sessionID);
         let stashY = PlayerStash[1];
         let stashX = PlayerStash[0];
         let itemLib = [];
@@ -441,7 +441,7 @@ class InventoryController
         {
             if (baseItem.item_id in database_f.database.tables.globals.ItemPresets)
             {
-                const presetItems = helpfunc_f.clone(database_f.database.tables.globals.ItemPresets[baseItem.item_id]._items);
+                const presetItems = helpfunc_f.helpFunctions.clone(database_f.database.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
@@ -455,7 +455,7 @@ class InventoryController
             {
                 // Only grab the relevant trader items and add unique values
                 const traderItems = trader_f.traderServer.getAssort(sessionID, body.tid).items;
-                const relevantItems = helpfunc_f.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
+                const relevantItems = helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
                 const toAdd = relevantItems.filter(traderItem => !itemLib.some(item => traderItem._id === item._id));
                 itemLib.push(...toAdd);
             }
@@ -464,7 +464,7 @@ class InventoryController
             {
                 if (item._id === baseItem.item_id)
                 {
-                    const tmpItem = helpfunc_f.getItem(item._tpl)[1];
+                    const tmpItem = helpfunc_f.helpFunctions.getItem(item._tpl)[1];
                     const itemToAdd = { itemRef: item, count: baseItem.count, isPreset: baseItem.isPreset };
                     let MaxStacks = 1;
 
@@ -480,7 +480,7 @@ class InventoryController
                         {
                             if (count > 0)
                             {
-                                let newItemToAdd = helpfunc_f.clone(itemToAdd);
+                                let newItemToAdd = helpfunc_f.helpFunctions.clone(itemToAdd);
                                 if (count > tmpItem._props.StackMaxSize)
                                 {
                                     count = count - tmpItem._props.StackMaxSize;
@@ -504,7 +504,7 @@ class InventoryController
         }
 
         // Find an empty slot in stash for each of the items being added
-        let StashFS_2D = helpfunc_f.recheckInventoryFreeSpace(pmcData, sessionID);
+        let StashFS_2D = helpfunc_f.helpFunctions.recheckInventoryFreeSpace(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
             let findSlotResult = this.findSlotForItem(StashFS_2D, stashX, stashY, itemToAdd.itemRef, itemLib);
@@ -513,7 +513,7 @@ class InventoryController
             {
                 /* Fill in the StashFS_2D with an imaginary item, to simulate it already being added
                 * so the next item to search for a free slot won't find the same one */
-                let itemSize = helpfunc_f.getSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
+                let itemSize = helpfunc_f.helpFunctions.getSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
                 let itemSizeX = findSlotResult.rotation ? itemSize[1] : itemSize[0];
                 let itemSizeY = findSlotResult.rotation ? itemSize[0] : itemSize[1];
 
@@ -529,7 +529,7 @@ class InventoryController
                         {
                             // Something went wrong - the slot is already filled!
                             logger.logError("FindSlotForItem probably didn't work correctly!");
-                            return helpfunc_f.appendErrorToOutput(output, "Not enough stash space");
+                            return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
                         }
                     }
                 }
@@ -538,7 +538,7 @@ class InventoryController
             }
             else
             {
-                return helpfunc_f.appendErrorToOutput(output, "Not enough stash space");
+                return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
             }
         }
 
@@ -553,7 +553,7 @@ class InventoryController
         catch (err)
         {
             let message = typeof err === "string" ? err : "An unknown error occurred";
-            return helpfunc_f.appendErrorToOutput(output, message);
+            return helpfunc_f.helpFunctions.appendErrorToOutput(output, message);
         }
 
         for (let itemToAdd of itemsToAdd)
@@ -603,14 +603,14 @@ class InventoryController
 
             // If this is an ammobox, add cartridges to it.
             // Damaged ammo box are not loaded.
-            const itemInfo = helpfunc_f.getItem(itemToAdd.itemRef._tpl)[1];
+            const itemInfo = helpfunc_f.helpFunctions.getItem(itemToAdd.itemRef._tpl)[1];
             let ammoBoxInfo = itemInfo._props.StackSlots;
             if (ammoBoxInfo !== undefined && itemInfo._name.indexOf("_damaged") < 0)
             {
                 // Cartridge info seems to be an array of size 1 for some reason... (See AmmoBox constructor in client code)
                 let maxCount = ammoBoxInfo[0]._max_count;
                 let ammoTmplId = ammoBoxInfo[0]._props.filters[0].Filter[0];
-                let ammoStackMaxSize = helpfunc_f.getItem(ammoTmplId)[1]._props.StackMaxSize;
+                let ammoStackMaxSize = helpfunc_f.helpFunctions.getItem(ammoTmplId)[1]._props.StackMaxSize;
                 let ammos = [];
                 let location = 0;
 
@@ -700,13 +700,11 @@ class InventoryController
             }
         }
         return output;
-
-        // return helpfunc_f.appendErrorToOutput(output, "An unknown error occurred");
     }
 
     findSlotForItem(StashFS_2D, stashX, stashY, item, items)
     {
-        let ItemSize = helpfunc_f.getSize(item._tpl, item._id, items);
+        let ItemSize = helpfunc_f.helpFunctions.getSize(item._tpl, item._id, items);
         let tmpSizeX = ItemSize[0];
         let tmpSizeY = ItemSize[1];
         let rotation = false;
@@ -925,7 +923,8 @@ class InventoryController
         if (itemID === "")
         {
             // player/trader inventory
-            let result = helpfunc_f.getItem(body.item);
+            let result = helpfunc_f.helpFunctions.getItem(body.item);
+
             if (result[0])
             {
                 itemID = result[1]._id;

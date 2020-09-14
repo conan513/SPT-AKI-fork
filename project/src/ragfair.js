@@ -36,7 +36,7 @@ class ragfairController
             let items = [];
 
             items.push(item);
-            items = [...items, ...helpfunc_f.findAndReturnChildrenByAssort(item._id, assort.items)];
+            items = [...items, ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
 
             // barter scheme
             let barter_scheme = null;
@@ -111,17 +111,17 @@ class ragfairController
         // Preset
         if (usePresets && preset_f.itemPresets.hasPreset(template))
         {
-            let presets = helpfunc_f.clone(preset_f.itemPresets.getPresets(template));
+            let presets = helpfunc_f.helpFunctions.clone(preset_f.itemPresets.getPresets(template));
 
             for (let p of presets)
             {
-                let offer = helpfunc_f.clone(offerBase);
+                let offer = helpfunc_f.helpFunctions.clone(offerBase);
                 let mods = p._items;
                 let rub = 0;
 
                 for (let it of mods)
                 {
-                    rub += helpfunc_f.getTemplatePrice(it._tpl);
+                    rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
                 }
 
                 mods[0].upd = mods[0].upd || {}; // append the stack count
@@ -140,7 +140,7 @@ class ragfairController
         // Single item
         if (!preset_f.itemPresets.hasPreset(template) || !onlyFunc)
         {
-            let rubPrice = Math.round(helpfunc_f.getTemplatePrice(template) * gameplayConfig.trading.ragfairMultiplier);
+            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * gameplayConfig.trading.ragfairMultiplier);
             offerBase._id = template;
             offerBase.items[0]._tpl = template;
             offerBase.requirements[0].count = rubPrice;
@@ -170,8 +170,8 @@ class ragfairController
         // @TODO: Get localized item names
         try
         {
-            let aa = helpfunc_f.getItem(a._id)[1]._name;
-            let bb = helpfunc_f.getItem(b._id)[1]._name;
+            let aa = helpfunc_f.helpFunctions.getItem(a._id)[1]._name;
+            let bb = helpfunc_f.helpFunctions.getItem(b._id)[1]._name;
 
             aa = aa.substring(aa.indexOf("_") + 1);
             bb = bb.substring(bb.indexOf("_") + 1);
@@ -283,7 +283,7 @@ class ragfairController
 
                 if (itemsToAdd.length)
                 {
-                    itemsToAdd = helpfunc_f.arrayIntersect(itemsToAdd, handbook);
+                    itemsToAdd = helpfunc_f.helpFunctions.arrayIntersect(itemsToAdd, handbook);
                 }
                 else
                 {
@@ -355,7 +355,7 @@ class ragfairController
 
                 if (offersFilters.length)
                 {
-                    offersFilters = helpfunc_f.arrayIntersect(offersFilters, handbookList);
+                    offersFilters = helpfunc_f.helpFunctions.arrayIntersect(offersFilters, handbookList);
                 }
                 else
                 {
@@ -405,7 +405,7 @@ class ragfairController
 
         for (let barter of barter_scheme)
         {
-            summaryCost += helpfunc_f.getTemplatePrice(barter._tpl) * barter.count;
+            summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
         }
 
         return Math.round(summaryCost);
@@ -430,24 +430,24 @@ class ragfairController
         // if its "mods" great-parent category, do double recursive loop
         if (handbookId === "5b5f71a686f77447ed5636ab")
         {
-            for (let categ2 of helpfunc_f.childrenCategories(handbookId))
+            for (let categ2 of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
-                for (let categ3 of helpfunc_f.childrenCategories(categ2))
+                for (let categ3 of helpfunc_f.helpFunctions.childrenCategories(categ2))
                 {
-                    result = result.concat(helpfunc_f.templatesWithParent(categ3));
+                    result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(categ3));
                 }
             }
         }
         else
         {
-            if (helpfunc_f.isCategory(handbookId))
+            if (helpfunc_f.helpFunctions.isCategory(handbookId))
             {
                 // list all item of the category
-                result = result.concat(helpfunc_f.templatesWithParent(handbookId));
+                result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(handbookId));
 
-                for (let categ of helpfunc_f.childrenCategories(handbookId))
+                for (let categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
                 {
-                    result = result.concat(helpfunc_f.templatesWithParent(categ));
+                    result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(categ));
                 }
             }
             else
@@ -466,7 +466,7 @@ class ragfairController
         
         for (const offer of response.offers)
         {
-            if (helpfunc_f.isMoneyTpl(offer.requirements[0]._tpl) === true)
+            if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === true)
             {
                 override.push(offer);
             }
@@ -598,7 +598,7 @@ class RagfairCallbacks
 
     search(url, info, sessionID)
     {
-        return response_f.responseController.getBody(ragfair_f.getOffers(sessionID, info));
+        return response_f.responseController.getBody(ragfair_f.ragfairController.getOffers(sessionID, info));
     }
 
     itemMarketPrice(url, info, sessionID)

@@ -47,8 +47,8 @@ class BotController
 
         bot.Info.Settings.Role = role;
         bot.Info.Nickname = utility.getRandomValue(node.names);
-        bot.Info.experience = helpfunc_f.getRandomExperience();
-        bot.Info.Level = helpfunc_f.calculateLevel(bot);
+        bot.Info.experience = helpfunc_f.helpFunctions.getRandomExperience();
+        bot.Info.Level = helpfunc_f.helpFunctions.calculateLevel(bot);
         bot.Info.Settings.Experience = utility.getRandomValue(node.experience);
         bot.Info.Voice = utility.getRandomValue(node.appearance.voice);
         bot.Health = utility.getRandomValue(node.health);
@@ -61,11 +61,11 @@ class BotController
         // add dogtag to PMC's
         if (type === "usec" || type === "bear")
         {
-            bot = helpfunc_f.addDogtag(bot, sessionID);
+            bot = helpfunc_f.helpFunctions.addDogtag(bot, sessionID);
         }
 
         // generate new inventory ID
-        bot = helpfunc_f.generateInventoryID(bot);
+        bot = helpfunc_f.helpFunctions.generateInventoryID(bot);
 
         return bot;
     }

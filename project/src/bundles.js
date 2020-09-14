@@ -54,7 +54,7 @@ class BundleServer
 
     getBundles(local)
     {
-        let bundles = helpfunc_f.clone(this.bundles);
+        let bundles = helpfunc_f.helpFunctions.clone(this.bundles);
 
         for (const bundle of bundles)
         {
@@ -71,7 +71,7 @@ class BundleServer
 
     getBundleByKey(key, local)
     {
-        let bundle = helpfunc_f.clone(this.bundleBykey[key]);
+        let bundle = helpfunc_f.helpFunctions.clone(this.bundleBykey[key]);
 
         if (local)
         {
