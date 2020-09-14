@@ -54,7 +54,7 @@ class BundleServer
 
     getBundles(local)
     {
-        let bundles = itm_hf.clone(this.bundles);
+        let bundles = helpfunc_f.helpFunctions.clone(this.bundles);
 
         for (const bundle of bundles)
         {
@@ -71,7 +71,7 @@ class BundleServer
 
     getBundleByKey(key, local)
     {
-        let bundle = itm_hf.clone(this.bundleBykey[key]);
+        let bundle = helpfunc_f.helpFunctions.clone(this.bundleBykey[key]);
 
         if (local)
         {
@@ -123,7 +123,7 @@ class BundleCallbacks
     getBundles(url, info, sessionID)
     {
         const local = (server.ip === "127.0.0.1" || server.ip === "localhost");
-        return response_f.noBody(bundles_f.bundleServer.getBundles(local));
+        return response_f.responseController.noBody(bundles_f.bundleServer.getBundles(local));
     }
 
     getBundle(url, info, sessionID)

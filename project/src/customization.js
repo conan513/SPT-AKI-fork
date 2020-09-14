@@ -146,7 +146,7 @@ class CustomizationCallbacks
     {
         let splittedUrl = url.split("/");
         let traderID = splittedUrl[splittedUrl.length - 2];
-        return response_f.getBody(customization_f.CustomizationController.getTraderSuits(traderID, sessionID));
+        return response_f.responseController.getBody(customization_f.CustomizationController.getTraderSuits(traderID, sessionID));
     }
 
     wearClothing(pmcData, body, sessionID)

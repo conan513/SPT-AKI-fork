@@ -56,7 +56,7 @@ class TraderServer
         let loyaltyLevels = database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
-        pmcData.Info.Level = itm_hf.calculateLevel(pmcData);
+        pmcData.Info.Level = helpfunc_f.helpFunctions.calculateLevel(pmcData);
 
         // level up traders
         let targetLevel = 0;
@@ -94,6 +94,34 @@ class TraderServer
         };
 
         this.lvlUp(traderID, sessionID);
+    }
+
+    updateTraders(sessionID)
+    {
+        // update each hour
+        const update_per = 3600;
+        const timeNow = Math.floor(Date.now() / 1000);
+        let tradersToUpdateList = trader_f.traderServer.getAllTraders(sessionID);
+
+        dialogue_f.dialogueServer.removeExpiredItems(sessionID);
+
+        for (let i = 0; i < tradersToUpdateList.length; i++)
+        {
+            if ((tradersToUpdateList[i].supply_next_time + update_per) > timeNow)
+            {
+                continue;
+            }
+
+            // update restock timer
+            const substracted_time = timeNow - tradersToUpdateList[i].supply_next_time;
+            const days_passed = Math.floor((substracted_time) / 86400);
+            const time_co_compensate = days_passed * 86400;
+            let newTraderTime = tradersToUpdateList[i].supply_next_time + time_co_compensate;
+            const compensateUpdate_per = (Math.floor((timeNow - newTraderTime) / update_per)) * update_per;
+
+            newTraderTime = newTraderTime + compensateUpdate_per + update_per;
+            tradersToUpdateList[i].supply_next_time = newTraderTime;
+        }
     }
 
     getAssort(sessionID, traderID)
@@ -195,7 +223,7 @@ class TraderServer
             //calculate preset price
             for (let it of items)
             {
-                rub += itm_hf.getTemplatePrice(it._tpl);
+                rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
             }
 
             base.barter_scheme[itemID] = assort.barter_scheme[itemID];
@@ -209,7 +237,7 @@ class TraderServer
     // delete assort keys
     removeItemFromAssort(assort, itemID)
     {
-        let ids_toremove = itm_hf.findAndReturnChildrenByItems(assort.items, itemID);
+        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildrenByItems(assort.items, itemID);
 
         delete assort.barter_scheme[itemID];
         delete assort.loyal_level_items[itemID];
@@ -232,7 +260,7 @@ class TraderServer
     {
         let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         let trader = database_f.database.tables.traders[traderID].base;
-        let currency = itm_hf.getCurrency(trader.currency);
+        let currency = helpfunc_f.helpFunctions.getCurrency(trader.currency);
         let output = {};
 
         // get sellable items
@@ -244,14 +272,14 @@ class TraderServer
             || item._id === pmcData.Inventory.stash
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
-            || itm_hf.isNotSellable(item._tpl)
+            || helpfunc_f.helpFunctions.isNotSellable(item._tpl)
             || traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
 
             // find all child of the item (including itself) and sum the price
-            for (let childItem of itm_hf.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
+            for (let childItem of helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
                 let tempPrice = (database_f.database.tables.templates.items[childItem._tpl]._props.CreditsPrice >= 1) ? database_f.database.tables.templates.items[childItem._tpl]._props.CreditsPrice : 1;
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
@@ -259,7 +287,7 @@ class TraderServer
             }
 
             // dogtag calculation
-            if ("upd" in item && "Dogtag" in item.upd && itm_hf.isDogtag(item._tpl))
+            if ("upd" in item && "Dogtag" in item.upd && helpfunc_f.helpFunctions.isDogtag(item._tpl))
             {
                 price *= item.upd.Dogtag.Level;
             }
@@ -269,7 +297,7 @@ class TraderServer
 
             if (hpresource > 0)
             {
-                let maxHp = itm_hf.getItem(item._tpl)[1]._props.MaxHpResource;
+                let maxHp = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
                 price *= (hpresource / maxHp);
             }
 
@@ -286,7 +314,7 @@ class TraderServer
             {
                 price -= (trader.discount / 100) * price;
             }
-            price = itm_hf.fromRUB(price, currency);
+            price = helpfunc_f.helpFunctions.fromRUB(price, currency);
             price = (price > 0 && price !== "NaN") ? price : 1;
 
             output[item._id] = [[{ "_tpl": currency, "count": price.toFixed(0) }]];
@@ -306,7 +334,7 @@ function traderFilter(traderFilters, tplToCheck)
 
     for (let filter of traderFilters)
     {
-        for (let iaaaaa of itm_hf.templatesWithParent(filter))
+        for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
         {
             if (iaaaaa == tplToCheck)
             {
@@ -314,9 +342,9 @@ function traderFilter(traderFilters, tplToCheck)
             }
         }
 
-        for (let subcateg of itm_hf.childrenCategories(filter))
+        for (let subcateg of helpfunc_f.helpFunctions.childrenCategories(filter))
         {
-            for (let itemFromSubcateg of itm_hf.templatesWithParent(subcateg))
+            for (let itemFromSubcateg of helpfunc_f.helpFunctions.templatesWithParent(subcateg))
             {
                 if (itemFromSubcateg === tplToCheck)
                 {
@@ -341,22 +369,22 @@ class TraderCallbacks
 
     getTraderList(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getAllTraders(sessionID));
+        return response_f.responseController.getBody(trader_f.traderServer.getAllTraders(sessionID));
     }
 
     getProfilePurchases(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
+        return response_f.responseController.getBody(trader_f.traderServer.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
     }
 
     getTrader(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
+        return response_f.responseController.getBody(trader_f.traderServer.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
     }
 
     getAssort(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
+        return response_f.responseController.getBody(trader_f.traderServer.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
     }
 }
 

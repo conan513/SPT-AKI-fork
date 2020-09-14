@@ -142,7 +142,7 @@ class ProfileController
         scavData.Info.Settings = {};
 
         // remove secure container
-        scavData = itm_hf.removeSecureContainer(scavData);
+        scavData = helpfunc_f.helpFunctions.removeSecureContainer(scavData);
 
         // set cooldown timer
         scavData = this.setScavCooldownTimer(scavData, pmcData);
@@ -234,23 +234,23 @@ class ProfileCallbacks
     createProfile(url, info, sessionID)
     {
         profile_f.profileController.createProfile(info, sessionID);
-        return response_f.getBody({"uid": "pmc" + sessionID});
+        return response_f.responseController.getBody({"uid": "pmc" + sessionID});
     }
 
     getProfileData(url, info, sessionID)
     {
-        return response_f.getBody(profile_f.profileController.getCompleteProfile(sessionID));
+        return response_f.responseController.getBody(profile_f.profileController.getCompleteProfile(sessionID));
     }
 
     regenerateScav(url, info, sessionID)
     {
-        return response_f.getBody([profile_f.profileController.generateScav(sessionID)]);
+        return response_f.responseController.getBody([profile_f.profileController.generateScav(sessionID)]);
     }
 
     changeVoice(url, info, sessionID)
     {
         profile_f.profileController.changeVoice(info, sessionID);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     /// --- TODO: USE LOCALIZED STRINGS --- ///
@@ -260,15 +260,15 @@ class ProfileCallbacks
 
         if (output == "taken")
         {
-            return response_f.getBody(null, 255, "The nickname is already in use");
+            return response_f.responseController.getBody(null, 255, "The nickname is already in use");
         }
 
         if (output == "tooshort")
         {
-            return response_f.getBody(null, 1, "The nickname is too short");
+            return response_f.responseController.getBody(null, 1, "The nickname is too short");
         }
 
-        return response_f.getBody({"status": 0, "nicknamechangedate": Math.floor(new Date() / 1000)});
+        return response_f.responseController.getBody({"status": 0, "nicknamechangedate": Math.floor(new Date() / 1000)});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     validateNickname(url, info, sessionID)
@@ -277,21 +277,21 @@ class ProfileCallbacks
 
         if (output == "taken")
         {
-            return response_f.getBody(null, 255, "The nickname is already in use");
+            return response_f.responseController.getBody(null, 255, "The nickname is already in use");
         }
 
         if (output == "tooshort")
         {
-            return response_f.getBody(null, 256, "The nickname is too short");
+            return response_f.responseController.getBody(null, 256, "The nickname is too short");
         }
 
-        return response_f.getBody({"status": "ok"});
+        return response_f.responseController.getBody({"status": "ok"});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
 
     getReservedNickname(url, info, sessionID)
     {
-        return response_f.getBody(account_f.accountServer.getReservedNickname(sessionID));
+        return response_f.responseController.getBody(account_f.accountServer.getReservedNickname(sessionID));
     }
 }
 

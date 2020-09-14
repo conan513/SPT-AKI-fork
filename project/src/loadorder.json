@@ -12,7 +12,7 @@
     "profile_f": "src/profile.js",
     "notifier_f": "src/notifier.js",
     "bots_f": "src/bots.js",
-    "itm_hf": "src/helpfunc.js",
+    "helpfunc_f": "src/helpfunc.js",
     "quest_f": "src/quest.js",
     "note_f": "src/notes.js",
     "inventory_f": "src/inventory.js",

@@ -60,7 +60,7 @@ class HealthServer
                 }
                 else
                 {
-                    let maxhp = itm_hf.getItem(item._tpl)[1]._props.MaxHpResource;
+                    let maxhp = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
                     item.upd.MedKit = {"HpResource": maxhp - body.count};
                 }
 
@@ -84,7 +84,7 @@ class HealthServer
         {
             if (item._id === body.item)
             {
-                let itemProps = itm_hf.getItem(item._tpl)[1]._props;
+                let itemProps = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props;
                 maxResource = itemProps.MaxResource;
 
                 if (maxResource > 1)
@@ -184,7 +184,7 @@ class HealthServer
             "tid": "54cb57776803fa99248b456e",
             "scheme_items": info.items
         };
-        itm_hf.payMoney(pmcData, body, sessionID);
+        helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID);
 
         let BodyParts = info.difference.BodyParts;
         let BodyPartKeys = Object.keys(BodyParts);
@@ -335,13 +335,13 @@ class HealthCallbacks
     {
         let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         health_f.healthServer.saveHealth(pmcData, info, sessionID);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     updateHealth(url, info, sessionID)
     {
         health_f.healthServer.updateHealth(info, sessionID);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     offraidEat(pmcData, body, sessionID)

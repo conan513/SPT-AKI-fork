@@ -37,7 +37,7 @@ class DialogueServer
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
 
-        return response_f.getBody(data);
+        return response_f.responseController.getBody(data);
     }
 
     /* Get the content of a dialogue. */
@@ -78,7 +78,7 @@ class DialogueServer
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return response_f.getBody({"messages": this.dialogues[sessionID][dialogueId].messages});
+        return response_f.responseController.getBody({"messages": this.dialogues[sessionID][dialogueId].messages});
     }
 
     /*
@@ -119,7 +119,7 @@ class DialogueServer
 
             items.stash = stashId;
             items.data = [];
-            rewards = itm_hf.replaceIDs(null, rewards);
+            rewards = helpfunc_f.helpFunctions.replaceIDs(null, rewards);
 
             for (let reward of rewards)
             {
@@ -285,18 +285,18 @@ class DialogueCallbacks
         router.addStaticRoute("/client/mail/dialog/unpin", this.unpinDialog.bind());
         router.addStaticRoute("/client/mail/dialog/read", this.setRead.bind());
         router.addStaticRoute("/client/mail/dialog/getAllAttachments", this.getAllAttachments.bind());
-        router.addStaticRoute("/client/friend/request/list/outbox", response_f.emptyArrayResponse);
-        router.addStaticRoute("/client/friend/request/list/inbox", response_f.emptyArrayResponse);
+        router.addStaticRoute("/client/friend/request/list/outbox", this.listOutbox.bind());
+        router.addStaticRoute("/client/friend/request/list/inbox", this.listInbox.bind());
     }
 
     getFriendList(url, info, sessionID)
     {
-        return response_f.getBody({"Friends":[], "Ignore":[], "InIgnoreList":[]});
+        return response_f.responseController.getBody({"Friends":[], "Ignore":[], "InIgnoreList":[]});
     }
 
     getChatServerList(url, info, sessionID)
     {
-        return response_f.getBody([{"_id": "5ae20a0dcb1c13123084756f", "RegistrationId": 20, "DateTime": Math.floor(new Date() / 1000), "IsDeveloper": true, "Regions": ["EUR"], "VersionId": "bgkidft87ddd", "Ip": "", "Port": 0, "Chats": [{"_id": "0", "Members": 0}]}]);
+        return response_f.responseController.getBody([{"_id": "5ae20a0dcb1c13123084756f", "RegistrationId": 20, "DateTime": Math.floor(new Date() / 1000), "IsDeveloper": true, "Regions": ["EUR"], "VersionId": "bgkidft87ddd", "Ip": "", "Port": 0, "Chats": [{"_id": "0", "Members": 0}]}]);
     }
 
     getMailDialogList(url, info, sessionID)
@@ -311,36 +311,46 @@ class DialogueCallbacks
 
     getMailDialogInfo(url, info, sessionID)
     {
-        return response_f.getBody(dialogue_f.dialogueServer.getDialogueInfo(info.dialogId, sessionID));
+        return response_f.responseController.getBody(dialogue_f.dialogueServer.getDialogueInfo(info.dialogId, sessionID));
     }
 
     removeDialog(url, info, sessionID)
     {
         dialogue_f.dialogueServer.removeDialogue(info.dialogId, sessionID);
-        return response_f.emptyArrayResponse();
+        return response_f.responseController.emptyArrayResponse();
     }
 
     pinDialog(url, info, sessionID)
     {
         dialogue_f.dialogueServer.setDialoguePin(info.dialogId, true, sessionID);
-        return response_f.emptyArrayResponse();
+        return response_f.responseController.emptyArrayResponse();
     }
 
     unpinDialog(url, info, sessionID)
     {
         dialogue_f.dialogueServer.setDialoguePin(info.dialogId, false, sessionID);
-        return response_f.emptyArrayResponse();
+        return response_f.responseController.emptyArrayResponse();
     }
 
     setRead(url, info, sessionID)
     {
         dialogue_f.dialogueServer.setRead(info.dialogs, sessionID);
-        return response_f.emptyArrayResponse();
+        return response_f.responseController.emptyArrayResponse();
     }
 
     getAllAttachments(url, info, sessionID)
     {
-        return response_f.getBody(dialogue_f.dialogueServer.getAllAttachments(info.dialogId, sessionID));
+        return response_f.responseController.getBody(dialogue_f.dialogueServer.getAllAttachments(info.dialogId, sessionID));
+    }
+
+    listOutbox(url, info, sessionID)
+    {
+        return response_f.responseController.emptyArrayResponse();
+    }
+
+    listInbox(url, info, sessionID)
+    {
+        return response_f.responseController.emptyArrayResponse();
     }
 }
 

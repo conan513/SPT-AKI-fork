@@ -25,7 +25,7 @@ class WeaponBuildsController
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
-        body.items = itm_hf.replaceIDs(pmcData, body.items, false);
+        body.items = helpfunc_f.helpFunctions.replaceIDs(pmcData, body.items, false);
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
@@ -69,7 +69,7 @@ class WeaponBuildsCallbacks
 
     getHandbookUserlist(url, info, sessionID)
     {
-        return response_f.getBody(weaponbuilds_f.weaponBuildsController.getUserBuilds(sessionID));
+        return response_f.responseController.getBody(weaponbuilds_f.weaponBuildsController.getUserBuilds(sessionID));
     }
 
     saveBuild(pmcData, body, sessionID)

@@ -215,7 +215,7 @@ class LocationCallbacks
 
     getLocationData(url, info, sessionID)
     {
-        return response_f.getBody(location_f.locationServer.generateAll());
+        return response_f.responseController.getBody(location_f.locationServer.generateAll());
     }
 
     getLocation(url, info, sessionID)
