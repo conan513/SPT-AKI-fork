@@ -175,7 +175,7 @@ class QuestController
 
         if (intelCenterBonus > 0)
         {
-            quest = this.applyMoneyBoost(quest,intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
+            quest = this.applyMoneyBoost(quest, intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
         }
 
         let questRewards = this.getQuestRewardItems(quest, state);
