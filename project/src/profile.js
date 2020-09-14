@@ -6,67 +6,19 @@
 */
 class ProfileController
 {
-    constructor()
-    {
-        this.profiles = {};
-    }
-
-    initializeProfile(sessionID)
-    {
-        this.profiles[sessionID] = {};
-        this.loadProfilesFromDisk(sessionID);
-    }
-
-    loadProfilesFromDisk(sessionID)
-    {
-        this.profiles[sessionID]["pmc"] = json.parse(json.read(getPmcPath(sessionID)));
-        this.generateScav(sessionID);
-    }
-
-    getOpenSessions()
-    {
-        return Object.keys(this.profiles);
-    }
-
-    saveToDisk(sessionID)
-    {
-        if ("pmc" in this.profiles[sessionID])
-        {
-            json.write(getPmcPath(sessionID), this.profiles[sessionID]["pmc"]);
-        }
-    }
-
-    /*
-    * Get profile with sessionID of type (profile type in string, i.e. 'pmc').
-    * If we don't have a profile for this sessionID yet, then load it and other related data
-    * from disk.
-    */
-    getProfile(sessionID, type)
-    {
-        if (!(sessionID in this.profiles))
-        {
-            this.initializeProfile(sessionID);
-            dialogue_f.dialogueServer.initializeDialogue(sessionID);
-            health_f.healthServer.initializeHealth(sessionID);
-            insurance_f.insuranceServer.resetSession(sessionID);
-        }
-
-        return this.profiles[sessionID][type];
-    }
-
     getPmcProfile(sessionID)
     {
-        return this.getProfile(sessionID, "pmc");
+        return save_f.saveServer.getProfile(sessionID, "pmc");
     }
 
     getScavProfile(sessionID)
     {
-        return this.getProfile(sessionID, "scav");
+        return save_f.saveServer.getProfile(sessionID, "scav");
     }
 
     setScavProfile(sessionID, scavData)
     {
-        this.profiles[sessionID]["scav"] = scavData;
+        save_f.saveServer.profiles[sessionID]["scav"] = scavData;
     }
 
     getCompleteProfile(sessionID)
@@ -85,15 +37,14 @@ class ProfileController
     createProfile(info, sessionID)
     {
         let account = account_f.accountServer.find(sessionID);
-        let folder = account_f.getPath(account.id);
+        let folder = save_f.saveServer.getAccountPath(account.id);
         let pmcData = json.parse(json.read(db.profile[account.edition]["character_" + info.side.toLowerCase()]));
         let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
 
         // delete existing profile
-        if (this.profiles[account.id])
+        if (save_f.saveServer.profiles[account.id])
         {
-            delete this.profiles[account.id];
-
+            delete save_f.saveServer.profiles[account.id];
             events.scheduledEventHandler.wipeScheduleForSession(sessionID);
         }
 
@@ -116,7 +67,7 @@ class ProfileController
         json.write(folder + "dialogue.json", {});
 
         // load to memory
-        let profile = this.getProfile(account.id, "pmc");
+        this.getPmcProfile(account.id);
 
         // traders
         for (let traderID in database_f.database.tables.traders)
@@ -148,7 +99,7 @@ class ProfileController
         scavData = this.setScavCooldownTimer(scavData, pmcData);
 
         // add scav to the profile
-        this.profiles[sessionID]["scav"] = scavData;
+        this.setScavProfile(sessionID, scavData);
         return scavData;
     }
 
@@ -210,12 +161,6 @@ class ProfileController
         let pmcData = this.getPmcProfile(sessionID);
         pmcData.Info.Voice = info.voice;
     }
-}
-
-function getPmcPath(sessionID)
-{
-    let pmcPath = db.user.profiles.character;
-    return pmcPath.replace("__REPLACEME__", sessionID);
 }
 
 class ProfileCallbacks

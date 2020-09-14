@@ -114,7 +114,8 @@ class DatabaseCallbacks
             let traderID = file.replace("base_", "")
                 .replace("suits_", "")
                 .replace("questassort_", "")
-                .replace("assort_", "");
+                .replace("assort_", "")
+                .replace("dialogue_", "");
 
             // skip if there is no id
             if (file === "ragfair_offer")
@@ -149,6 +150,11 @@ class DatabaseCallbacks
             {
                 // assortiment
                 traders[traderID].assort = json.parse(json.read(db.traders[file]));
+            }
+            else if (file.includes("dialogue_"))
+            {
+                // dialogue
+                traders[traderID].dialogue = json.parse(json.read(db.traders[file]));
             }
         }
 

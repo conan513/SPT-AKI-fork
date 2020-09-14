@@ -27,5 +27,5 @@ class KeepAliveCallbacks
     }
 }
 
-module.exports.KeepAliveController = new KeepAliveController();
-module.exports.KeepAliveCallbacks = new KeepAliveCallbacks();
+module.exports.keepAliveController = new KeepAliveController();
+module.exports.keepAliveCallbacks = new KeepAliveCallbacks();
