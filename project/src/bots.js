@@ -102,7 +102,7 @@ class BotCallbacks
 
     generateBots(url, info, sessionID)
     {
-        return response_f.getBody(bots_f.botController.generate(info, sessionID));
+        return response_f.responseController.getBody(bots_f.botController.generate(info, sessionID));
     }
 }
 

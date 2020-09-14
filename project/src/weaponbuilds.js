@@ -69,7 +69,7 @@ class WeaponBuildsCallbacks
 
     getHandbookUserlist(url, info, sessionID)
     {
-        return response_f.getBody(weaponbuilds_f.weaponBuildsController.getUserBuilds(sessionID));
+        return response_f.responseController.getBody(weaponbuilds_f.weaponBuildsController.getUserBuilds(sessionID));
     }
 
     saveBuild(pmcData, body, sessionID)

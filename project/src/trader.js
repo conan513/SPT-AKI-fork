@@ -369,22 +369,22 @@ class TraderCallbacks
 
     getTraderList(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getAllTraders(sessionID));
+        return response_f.responseController.getBody(trader_f.traderServer.getAllTraders(sessionID));
     }
 
     getProfilePurchases(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
+        return response_f.responseController.getBody(trader_f.traderServer.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
     }
 
     getTrader(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
+        return response_f.responseController.getBody(trader_f.traderServer.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
     }
 
     getAssort(url, info, sessionID)
     {
-        return response_f.getBody(trader_f.traderServer.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
+        return response_f.responseController.getBody(trader_f.traderServer.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
     }
 }
 

@@ -49,7 +49,7 @@ class WeatherCallbacks
 
     getWeather(url, info, sessionID)
     {
-        return response_f.getBody(weather_f.weatherController.generate());
+        return response_f.responseController.getBody(weather_f.weatherController.generate());
     }
 }
 

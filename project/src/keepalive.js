@@ -23,7 +23,7 @@ class KeepAliveCallbacks
 
     execute(url, info, sessionID)
     {
-        return response_f.getBody(keepalive_f.keepAliveController.execute(sessionID));
+        return response_f.responseController.getBody(keepalive_f.keepAliveController.execute(sessionID));
     }
 }
 

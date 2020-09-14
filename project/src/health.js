@@ -335,13 +335,13 @@ class HealthCallbacks
     {
         let pmcData = profile_f.profileController.getPmcProfile(sessionID);
         health_f.healthServer.saveHealth(pmcData, info, sessionID);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     updateHealth(url, info, sessionID)
     {
         health_f.healthServer.updateHealth(info, sessionID);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     offraidEat(pmcData, body, sessionID)

@@ -63,24 +63,24 @@ class ModulesCallbacks
     saveProgress(url, info, sessionID)
     {
         offraid_f.saveProgress(info, sessionID);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     getWeaponDurability(url, info, sessionID)
     {
-        return response_f.noBody(modules_f.modulesConfig.saveWeaponDurability);
+        return response_f.responseController.noBody(modules_f.modulesConfig.saveWeaponDurability);
     }
 
     getDefaultRaidSettings(url, info, sessionID)
     {
-        return response_f.noBody(modules_f.modulesConfig.defaultRaidSettings);
+        return response_f.responseController.noBody(modules_f.modulesConfig.defaultRaidSettings);
     }
 
     getBotLimit(url, info, sessionID)
     {
         let splittedUrl = url.split("/");
         let type = splittedUrl[splittedUrl.length - 1];
-        return response_f.noBody(modules_f.modulesController.getBotLimit(type));
+        return response_f.responseController.noBody(modules_f.modulesController.getBotLimit(type));
     }
 
     getBotDifficulty(url, info, sessionID)
@@ -88,7 +88,7 @@ class ModulesCallbacks
         let splittedUrl = url.split("/");
         let type = splittedUrl[splittedUrl.length - 2].toLowerCase();
         let difficulty = splittedUrl[splittedUrl.length - 1];
-        return response_f.noBody(modules_f.modulesController.getBotDifficulty(type, difficulty));
+        return response_f.responseController.noBody(modules_f.modulesController.getBotDifficulty(type, difficulty));
     }
 }
 

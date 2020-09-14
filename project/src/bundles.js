@@ -123,7 +123,7 @@ class BundleCallbacks
     getBundles(url, info, sessionID)
     {
         const local = (server.ip === "127.0.0.1" || server.ip === "localhost");
-        return response_f.noBody(bundles_f.bundleServer.getBundles(local));
+        return response_f.responseController.noBody(bundles_f.bundleServer.getBundles(local));
     }
 
     getBundle(url, info, sessionID)

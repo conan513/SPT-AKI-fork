@@ -599,17 +599,17 @@ class RagfairCallbacks
 
     search(url, info, sessionID)
     {
-        return response_f.getBody(ragfair_f.getOffers(sessionID, info));
+        return response_f.responseController.getBody(ragfair_f.getOffers(sessionID, info));
     }
 
     itemMarketPrice(url, info, sessionID)
     {
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     getItemPrices(url, info, sessionID)
     {
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 
     addOffer()

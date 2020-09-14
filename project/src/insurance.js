@@ -354,7 +354,7 @@ class InsuranceCallback
 
     getInsuranceCost(url, info, sessionID)
     {
-        return response_f.getBody(insurance_f.insuranceServer.cost(info, sessionID));
+        return response_f.responseController.getBody(insurance_f.insuranceServer.cost(info, sessionID));
     }
 
     insure(pmcData, body, sessionID)

@@ -1,32 +1,31 @@
 "use strict";
 
-function noBody(data)
+class ResponseController
 {
-    return utility.clearString(json.stringify(data));
+    noBody(data)
+    {
+        return utility.clearString(json.stringify(data));
+    }
+    
+    getBody(data, err = 0, errmsg = null)
+    {
+        return utility.clearString(this.getUnclearedBody(err, errmsg, data));
+    }
+    
+    getUnclearedBody(data, err = 0, errmsg = null)
+    {
+        return json.stringify({"err": err, "errmsg": errmsg, "data": data});
+    }
+    
+    nullResponse()
+    {
+        return this.getBody(null);
+    }
+    
+    emptyArrayResponse()
+    {
+        return this.getBody([]);
+    }
 }
 
-function getBody(data, err = 0, errmsg = null)
-{
-    return utility.clearString(json.stringify({"err": err, "errmsg": errmsg, "data": data}));
-}
-
-function getUnclearedBody(data, err = 0, errmsg = null)
-{
-    return json.stringify({"err": err, "errmsg": errmsg, "data": data});
-}
-
-function nullResponse()
-{
-    return getBody(null);
-}
-
-function emptyArrayResponse()
-{
-    return getBody([]);
-}
-
-module.exports.noBody = noBody;
-module.exports.getBody = getBody;
-module.exports.getUnclearedBody = getUnclearedBody;
-module.exports.nullResponse = nullResponse;
-module.exports.emptyArrayResponse = emptyArrayResponse;
+module.exports.responseController = new ResponseController();

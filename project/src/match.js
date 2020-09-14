@@ -112,26 +112,71 @@ class MatchCallbacks
     {
         router.addStaticRoute("/raid/profile/list", this.getProfile.bind());
         router.addStaticRoute("/client/match/available", this.serverAvailable.bind());
-        router.addStaticRoute("/client/match/updatePing", response_f.nullResponse);
+        router.addStaticRoute("/client/match/updatePing", this.updatePing());
         router.addStaticRoute("/client/match/join", this.joinMatch.bind());
-        router.addStaticRoute("/client/match/exit", response_f.nullResponse);
+        router.addStaticRoute("/client/match/exit", this.exitMatch());
         router.addStaticRoute("/client/match/group/create", this.createGroup.bind());
         router.addStaticRoute("/client/match/group/delete", this.deleteGroup.bind());
         router.addStaticRoute("/client/match/group/status", this.getGroupStatus.bind());
         router.addStaticRoute("/client/match/group/start_game", this.joinMatch.bind());
-        router.addStaticRoute("/client/match/group/exit_from_menu", response_f.nullResponse);
-        router.addStaticRoute("/client/match/group/looking/start", response_f.nullResponse);
-        router.addStaticRoute("/client/match/group/looking/stop", response_f.nullResponse);
-        router.addStaticRoute("/client/match/group/invite/send", response_f.nullResponse);
-        router.addStaticRoute("/client/match/group/invite/accept", response_f.nullResponse);
-        router.addStaticRoute("/client/match/group/invite/cancel", response_f.nullResponse);
-        router.addStaticRoute("/client/putMetrics", response_f.nullResponse);
+        router.addStaticRoute("/client/match/group/exit_from_menu", this.exitToMenu());
+        router.addStaticRoute("/client/match/group/looking/start", this.startGroupSearch());
+        router.addStaticRoute("/client/match/group/looking/stop", this.stopGroupSearch());
+        router.addStaticRoute("/client/match/group/invite/send", this.sendGroupInvite());
+        router.addStaticRoute("/client/match/group/invite/accept", this.acceptGroupInvite());
+        router.addStaticRoute("/client/match/group/invite/cancel", this.cancelGroupInvite());
+        router.addStaticRoute("/client/putMetrics", this.putMetrics.bind());
         router.addStaticRoute("/client/getMetricsConfig", this.getMetrics.bind());
+    }
+
+    updatePing(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    exitMatch(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    exitToMenu(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    startGroupSearch(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    stopGroupSearch(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    sendGroupInvite(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    acceptGroupInvite(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    cancelGroupInvite(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
+    }
+
+    putMetrics(url, info, sessionID)
+    {
+        return response_f.responseController.nullResponse();
     }
 
     getProfile(url, info, sessionID)
     {
-        return response_f.getBody(match_f.matchServer.getProfile(info));
+        return response_f.responseController.getBody(match_f.matchServer.getProfile(info));
     }
 
     serverAvailable(url, info, sessionID)
@@ -140,15 +185,15 @@ class MatchCallbacks
 
         if (output === false)
         {
-            return response_f.getBody(null, 420, "Please play as PMC and go through the offline settings screen before pressing ready.");
+            return response_f.responseController.getBody(null, 420, "Please play as PMC and go through the offline settings screen before pressing ready.");
         }
 
-        return response_f.getBody(output);
+        return response_f.responseController.getBody(output);
     }
 
     joinMatch(url, info, sessionID)
     {
-        return response_f.getBody(match_f.matchServer.joinMatch(info, sessionID));
+        return response_f.responseController.getBody(match_f.matchServer.joinMatch(info, sessionID));
     }
 
     getMetrics(url, info, sessionID)
@@ -158,18 +203,18 @@ class MatchCallbacks
 
     getGroupStatus(url, info, sessionID)
     {
-        return response_f.getBody(match_f.matchServer.getGroupStatus(info));
+        return response_f.responseController.getBody(match_f.matchServer.getGroupStatus(info));
     }
 
     createGroup(url, info, sessionID)
     {
-        return response_f.getBody(match_f.matchServer.createGroup(sessionID, info));
+        return response_f.responseController.getBody(match_f.matchServer.createGroup(sessionID, info));
     }
 
     deleteGroup(url, info, sessionID)
     {
         match_f.matchServer.deleteGroup(info);
-        return response_f.nullResponse();
+        return response_f.responseController.nullResponse();
     }
 }
 
