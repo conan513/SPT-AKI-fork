@@ -4,18 +4,45 @@ class SaveServer
 {
     constructor()
     {
+        this.users = {};
+
         this.accounts = {};
         this.profiles = {};
         this.dialogues = {};
         this.healths = {};
         this.effects = {};
         this.insured = {};
-        this.players = {};
     }
 
     initialize()
     {
         this.accounts = json.parse(json.read(db.user.configs.accounts));
+
+        const files = utility.getDirList("user/profiles/");
+
+        for (let file of files)
+        {
+            this.users[file] = {
+                "info": {},
+                "profiles": {
+                    "pmc": {},
+                    "scav": {}
+                },
+                "dialogs": {},
+                "suits": {},
+                "weaponpresets": {},
+                "insurance": {},
+                "inraid": {
+                    "location": "none"
+                },
+                "vitality": {
+                    "health": {},
+                    "effects": {}
+                }
+            }
+        }
+
+        logger.logData(this.users);
     }
 
     initializeDialogue(sessionID)

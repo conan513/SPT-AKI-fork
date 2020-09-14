@@ -4,17 +4,17 @@ class InraidServer
 {
     addPlayer(sessionID, info)
     {
-        save_f.saveServer.players[sessionID] = info;
+        save_f.saveServer.users[sessionID].inraid.location = info.Location;
     }
 
     removePlayer(sessionID)
     {
-        delete save_f.saveServer.players[sessionID];
+        save_f.saveServer.users[sessionID].inraid.location = "none";
     }
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        let locationName = save_f.saveServer.players[sessionID].Location.toLowerCase();
+        let locationName = save_f.saveServer.users[sessionID].inraid.location.toLowerCase();
         let map = database_f.database.tables.locations[locationName].base;
         let mapKey = map.AccessKeys[0];
 
@@ -294,7 +294,7 @@ function saveProgress(offraidData, sessionID)
         return;
     }
 
-    let locationName = save_f.saveServer.players[sessionID].Location.toLowerCase();
+    let locationName = save_f.saveServer.users[sessionID].inraid.location.toLowerCase();
 
     let map = database_f.database.tables.locations[locationName].base;
     let insuranceEnabled = map.Insurance;
