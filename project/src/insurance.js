@@ -161,15 +161,6 @@ class InsuranceServer
         {
             if (preRaidGearHash[insuredItem.itemId] && !(securedContainerItemHash[insuredItem.itemId]) && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined") && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
             {
-                /*if (utility.getRandomInt(0, 99) >= gameplayConfig.trading.insureReturnChance) {
-                    parentIds.push(insuredItem.itemId);
-                    continue;
-                }*/
-
-                /*if(parentIds(insuredItem.itemId) > -1) {
-
-                }*/
-
                 let item = pmcItemsHash[insuredItem.itemId];
                 gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsHash[insuredItem.itemId], "sessionID": sessionID });
             }
