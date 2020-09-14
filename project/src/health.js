@@ -3,43 +3,6 @@
 /* HealthServer class maintains list of health for each sessionID in memory. */
 class HealthServer
 {
-    constructor()
-    {
-        this.healths = {};
-        this.effects = {};
-    }
-
-    /* resets the healh response */
-    initializeHealth(sessionID)
-    {
-        this.healths[sessionID] = {
-            "Hydration": 0,
-            "Energy": 0,
-            "Head": 0,
-            "Chest": 0,
-            "Stomach": 0,
-            "LeftArm": 0,
-            "RightArm": 0,
-            "LeftLeg": 0,
-            "RightLeg": 0
-        };
-        this.effects[sessionID] = {
-            "Head": {},
-            "Chest": {},
-            "Stomach": {},
-            "LeftArm": {},
-            "RightArm": {},
-            "LeftLeg": {},
-            "RightLeg": {}
-        };
-
-        return this.healths[sessionID];
-    }
-
-    // setHealth(sessionID) {
-    //     return this.health[sessionID] || this.initializeHealth(sessionID);
-    // }
-
     offraidHeal(pmcData, body, sessionID)
     {
         let output = item_f.itemServer.getOutput();
@@ -114,8 +77,8 @@ class HealthServer
     /* stores in-raid player health */
     saveHealth(pmcData, info, sessionID)
     {
-        let nodeHealth = this.healths[sessionID];
-        let nodeEffects = this.effects[sessionID];
+        let nodeHealth = save_f.saveServer.healths[sessionID];
+        let nodeEffects = save_f.saveServer.effects[sessionID];
         let BodyPartsList = info.Health;
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
@@ -143,7 +106,7 @@ class HealthServer
     /* stores the player health changes */
     updateHealth(info, sessionID)
     {
-        let node = this.healths[sessionID];
+        let node = save_f.saveServer.healths[sessionID];
 
         switch (info.type)
         {
@@ -161,8 +124,8 @@ class HealthServer
             /* store state and make server aware to kill all body parts */
             case "Died":
                 node = {
-                    "Hydration": this.healths[sessionID].Hydration,
-                    "Energy": this.healths[sessionID].Energy,
+                    "Hydration": save_f.saveServer.healths[sessionID].Hydration,
+                    "Energy": save_f.saveServer.healths[sessionID].Energy,
                     "Head": -1,
                     "Chest": -1,
                     "Stomach": -1,
@@ -174,7 +137,7 @@ class HealthServer
                 break;
         }
 
-        this.healths[sessionID] = node;
+        save_f.saveServer.healths[sessionID] = node;
     }
 
     healthTreatment(pmcData, info, sessionID)
@@ -259,7 +222,7 @@ class HealthServer
             return;
         }
 
-        let nodeHealth = this.healths[sessionID];
+        let nodeHealth = save_f.saveServer.healths[sessionID];
         let keys = Object.keys(nodeHealth);
 
         for (let item of keys)
@@ -283,7 +246,7 @@ class HealthServer
             }
         }
 
-        let nodeEffects = this.effects[sessionID];
+        let nodeEffects = save_f.saveServer.effects[sessionID];
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
             // clear effects
@@ -302,8 +265,7 @@ class HealthServer
         });
 
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-
-        this.initializeHealth(sessionID);
+        save_f.saveServer.initializeHealth(sessionID);
     }
 
     isEmpty(map)

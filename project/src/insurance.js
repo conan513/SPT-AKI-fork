@@ -4,7 +4,6 @@ class InsuranceServer
 {
     constructor()
     {
-        this.insured = {};
         events.scheduledEventHandler.addEvent("insuranceReturn", this.processReturn.bind(this));
     }
 
@@ -57,12 +56,6 @@ class InsuranceServer
         }
     }
 
-    /* resets items to send on flush */
-    resetSession(sessionID)
-    {
-        this.insured[sessionID] = {};
-    }
-
     /* adds gear to store */
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
@@ -98,8 +91,8 @@ class InsuranceServer
             actualItem.slotId = "hideout";
         }
 
-        this.insured[sessionID][insuredItem.tid] = this.insured[sessionID][insuredItem.tid] || [];
-        this.insured[sessionID][insuredItem.tid].push(actualItem);
+        save_f.saveServer.insured[sessionID][insuredItem.tid] = save_f.saveServer.insured[sessionID][insuredItem.tid] || [];
+        save_f.saveServer.insured[sessionID][insuredItem.tid].push(actualItem);
         this.remove(pmcData, insuredItem.itemId);
     }
 
@@ -175,7 +168,7 @@ class InsuranceServer
     /* sends stored insured items as message */
     sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in this.insured[sessionID])
+        for (let traderId in save_f.saveServer.insured[sessionID])
         {
             let trader = trader_f.traderServer.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.database.tables.traders[traderId].dialogue;
@@ -204,12 +197,12 @@ class InsuranceServer
                 "data": {
                     "traderId": traderId,
                     "messageContent": messageContent,
-                    "items": this.insured[sessionID][traderId]
+                    "items": save_f.saveServer.insured[sessionID][traderId]
                 }
             });
         }
 
-        this.resetSession(sessionID);
+        save_f.saveServer.initializeInsurance(sessionID);
     }
 
     processReturn(event)

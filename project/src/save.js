@@ -7,6 +7,10 @@ class SaveServer
         this.accounts = {};
         this.profiles = {};
         this.dialogues = {};
+        this.healths = {};
+        this.effects = {};
+        this.insured = {};
+        this.players = {};
     }
 
     initialize()
@@ -23,6 +27,39 @@ class SaveServer
     {
         this.profiles[sessionID] = {};
         this.loadProfilesFromDisk(sessionID);
+    }
+
+    /* resets the healh response */
+    initializeHealth(sessionID)
+    {
+        this.healths[sessionID] = {
+            "Hydration": 0,
+            "Energy": 0,
+            "Head": 0,
+            "Chest": 0,
+            "Stomach": 0,
+            "LeftArm": 0,
+            "RightArm": 0,
+            "LeftLeg": 0,
+            "RightLeg": 0
+        };
+        this.effects[sessionID] = {
+            "Head": {},
+            "Chest": {},
+            "Stomach": {},
+            "LeftArm": {},
+            "RightArm": {},
+            "LeftLeg": {},
+            "RightLeg": {}
+        };
+
+        return this.healths[sessionID];
+    }
+
+    /* resets items to send on flush */
+    initializeInsurance(sessionID)
+    {
+        this.insured[sessionID] = {};
     }
 
     loadProfilesFromDisk(sessionID)
@@ -71,8 +108,8 @@ class SaveServer
         {
             this.initializeProfile(sessionID);
             this.initializeDialogue(sessionID);
-            health_f.healthServer.initializeHealth(sessionID);
-            insurance_f.insuranceServer.resetSession(sessionID);
+            this.initializeHealth(sessionID);
+            this.initializeInsurance(sessionID);
         }
 
         return this.profiles[sessionID][type];

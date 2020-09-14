@@ -2,24 +2,19 @@
 
 class InraidServer
 {
-    constructor()
-    {
-        this.players = {};
-    }
-
     addPlayer(sessionID, info)
     {
-        this.players[sessionID] = info;
+        save_f.saveServer.players[sessionID] = info;
     }
 
     removePlayer(sessionID)
     {
-        delete this.players[sessionID];
+        delete save_f.saveServer.players[sessionID];
     }
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        let locationName = offraid_f.inraidServer.players[sessionID].Location.toLowerCase();
+        let locationName = save_f.saveServer.players[sessionID].Location.toLowerCase();
         let map = database_f.database.tables.locations[locationName].base;
         let mapKey = map.AccessKeys[0];
 
@@ -299,7 +294,7 @@ function saveProgress(offraidData, sessionID)
         return;
     }
 
-    let locationName = offraid_f.inraidServer.players[sessionID].Location.toLowerCase();
+    let locationName = save_f.saveServer.players[sessionID].Location.toLowerCase();
 
     let map = database_f.database.tables.locations[locationName].base;
     let insuranceEnabled = map.Insurance;
@@ -356,7 +351,7 @@ function saveProgress(offraidData, sessionID)
     if (isPlayerScav)
     {
         scavData = setInventory(scavData, offraidData.profile);
-        health_f.healthServer.initializeHealth(sessionID);
+        save_f.saveServer.initializeHealth(sessionID);
         profile_f.profileController.setScavProfile(sessionID, scavData);
         return;
     }
