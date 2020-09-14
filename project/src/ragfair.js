@@ -505,7 +505,7 @@ class ragfairController
             if (item.slotId !== "hideout")
             {
                 // only use base items
-                return;
+                continue;
             }
 
             // items
