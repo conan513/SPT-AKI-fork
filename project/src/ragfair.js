@@ -469,7 +469,7 @@ function createOffer(template, onlyFunc, usePresets = true)
         offerBase.requirementsCost = rubPrice;
         offerBase.summaryCost = rubPrice;
         offerBase.startTime = time;
-        offerBase.emdTime = time * 3153600000;   // 1 century
+        offerBase.endTime = time + 3153600000;   // 1 century
         offers.push(offerBase);
     }
 
