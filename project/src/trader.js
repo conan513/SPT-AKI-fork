@@ -96,6 +96,34 @@ class TraderServer
         this.lvlUp(traderID, sessionID);
     }
 
+    updateTraders(sessionID)
+    {
+        // update each hour
+        const update_per = 3600;
+        const timeNow = Math.floor(Date.now() / 1000);
+        let tradersToUpdateList = trader_f.traderServer.getAllTraders(sessionID);
+
+        dialogue_f.dialogueServer.removeExpiredItems(sessionID);
+
+        for (let i = 0; i < tradersToUpdateList.length; i++)
+        {
+            if ((tradersToUpdateList[i].supply_next_time + update_per) > timeNow)
+            {
+                continue;
+            }
+
+            // update restock timer
+            const substracted_time = timeNow - tradersToUpdateList[i].supply_next_time;
+            const days_passed = Math.floor((substracted_time) / 86400);
+            const time_co_compensate = days_passed * 86400;
+            let newTraderTime = tradersToUpdateList[i].supply_next_time + time_co_compensate;
+            const compensateUpdate_per = (Math.floor((timeNow - newTraderTime) / update_per)) * update_per;
+
+            newTraderTime = newTraderTime + compensateUpdate_per + update_per;
+            tradersToUpdateList[i].supply_next_time = newTraderTime;
+        }
+    }
+
     getAssort(sessionID, traderID)
     {
 
