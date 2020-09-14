@@ -19,7 +19,7 @@ class ProfileController
 
     loadProfilesFromDisk(sessionID)
     {
-        this.profiles[sessionID]["pmc"] = json.parse(json.read(getPmcPath(sessionID)));
+        this.profiles[sessionID]["pmc"] = json.parse(json.read(this.getPath(sessionID)));
         this.generateScav(sessionID);
     }
 
@@ -32,7 +32,7 @@ class ProfileController
     {
         if ("pmc" in this.profiles[sessionID])
         {
-            json.write(getPmcPath(sessionID), this.profiles[sessionID]["pmc"]);
+            json.write(this.getPath(sessionID), this.profiles[sessionID]["pmc"]);
         }
     }
 
@@ -85,7 +85,7 @@ class ProfileController
     createProfile(info, sessionID)
     {
         let account = account_f.accountServer.find(sessionID);
-        let folder = account_f.getPath(account.id);
+        let folder = account_f.accountServer.getPath(account.id);
         let pmcData = json.parse(json.read(db.profile[account.edition]["character_" + info.side.toLowerCase()]));
         let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
 
@@ -210,12 +210,12 @@ class ProfileController
         let pmcData = this.getPmcProfile(sessionID);
         pmcData.Info.Voice = info.voice;
     }
-}
 
-function getPmcPath(sessionID)
-{
-    let pmcPath = db.user.profiles.character;
-    return pmcPath.replace("__REPLACEME__", sessionID);
+    getPath(sessionID)
+    {
+        let pmcPath = db.user.profiles.character;
+        return pmcPath.replace("__REPLACEME__", sessionID);
+    }
 }
 
 class ProfileCallbacks

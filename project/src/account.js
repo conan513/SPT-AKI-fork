@@ -157,6 +157,11 @@ class AccountServer
 
         return false;
     }
+
+    getPath(sessionID)
+    {
+        return "user/profiles/" + sessionID + "/";
+    }
 }
 
 class AccountCallbacks
@@ -232,11 +237,5 @@ class AccountCallbacks
     }
 }
 
-function getPath(sessionID)
-{
-    return "user/profiles/" + sessionID + "/";
-}
-
 module.exports.accountServer = new AccountServer();
 module.exports.accountCallbacks = new AccountCallbacks();
-module.exports.getPath = getPath;

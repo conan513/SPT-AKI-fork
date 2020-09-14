@@ -16,14 +16,14 @@ class DialogueServer
 
     initializeDialogue(sessionID)
     {
-        this.dialogues[sessionID] = json.parse(json.read(getPath(sessionID)));
+        this.dialogues[sessionID] = json.parse(json.read(this.getPath(sessionID)));
     }
 
     saveToDisk(sessionID)
     {
         if (sessionID in this.dialogues)
         {
-            json.write(getPath(sessionID), this.dialogues[sessionID]);
+            json.write(this.getPath(sessionID), this.dialogues[sessionID]);
         }
     }
 
@@ -263,12 +263,12 @@ class DialogueServer
     {
         return this.messageTypes[messageType];
     }
-}
 
-function getPath(sessionID)
-{
-    let path = db.user.profiles.dialogue;
-    return path.replace("__REPLACEME__", sessionID);
+    getPath(sessionID)
+    {
+        let path = db.user.profiles.dialogue;
+        return path.replace("__REPLACEME__", sessionID);
+    }
 }
 
 class DialogueCallbacks

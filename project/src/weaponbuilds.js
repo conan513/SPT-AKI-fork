@@ -53,7 +53,7 @@ class WeaponBuildsController
 
     getPath(sessionID)
     {
-        let path = db.user.profiles.userbuilds;
+        let path = db.user.profiles.weaponbuilds;
         return path.replace("__REPLACEME__", sessionID);
     }
 }
