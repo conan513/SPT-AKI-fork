@@ -454,7 +454,7 @@ function createOffer(template, onlyFunc, usePresets = true)
             offer.requirements[0].count = Math.round(rub * gameplayConfig.trading.ragfairMultiplier);
             offers.push(offer);
             offer.startTime = time;
-            offer.emdTime = time * 3153600000;   // 1 century
+            offer.endTime = time + 3153600000;   // 1 century
         }
     }
 
@@ -469,7 +469,7 @@ function createOffer(template, onlyFunc, usePresets = true)
         offerBase.requirementsCost = rubPrice;
         offerBase.summaryCost = rubPrice;
         offerBase.startTime = time;
-        offerBase.emdTime = time * 3153600000;   // 1 century
+        offerBase.endTime = time + 3153600000;   // 1 century
         offers.push(offerBase);
     }
 
@@ -502,7 +502,7 @@ function storeOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter =
     offerBase.requirements = barter_scheme;
     offerBase.loyaltyLevel = loyal_level;
     offerBase.startTime = time;
-    offerBase.emdTime = time * 3153600000;   // 1 century
+    offerBase.endTime = time + 3153600000;   // 1 century
 
     offers.push(offerBase);
     return offers;
