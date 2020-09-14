@@ -454,7 +454,7 @@ function createOffer(template, onlyFunc, usePresets = true)
             offer.requirements[0].count = Math.round(rub * gameplayConfig.trading.ragfairMultiplier);
             offers.push(offer);
             offer.startTime = time;
-            offer.emdTime = time * 3153600000;   // 1 century
+            offer.endTime = time + 3153600000;   // 1 century
         }
     }
 
