@@ -647,6 +647,7 @@ class HelpFunctions
             {
                 continue;
             }
+
             if (!(item.parentId in inventoryItemHash.byParentId))
             {
                 inventoryItemHash.byParentId[item.parentId] = [];
@@ -1020,7 +1021,7 @@ class HelpFunctions
             "err": title,
             "errmsg": message
         }];
-        
+
         return output;
     }
 }

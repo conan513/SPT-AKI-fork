@@ -189,7 +189,7 @@ class ragfairController
         return a.requirements[0].count - b.requirements[0].count;
     }
 
-    sortOffersByPriceSummaryCost(a,b)
+    sortOffersByPriceSummaryCost(a, b)
     {
         return a.summaryCost - b.summaryCost;
     }
@@ -463,7 +463,7 @@ class ragfairController
     removeBarterOffers(response)
     {
         let override = [];
-        
+
         for (const offer of response.offers)
         {
             if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === true)
@@ -519,6 +519,7 @@ class ragfairController
             categ[item._tpl] = categ[item._tpl] || 0;
             categ[item._tpl]++;
         }
+
         // not in search mode, add back non-weapon items
         for (let c in response.categories)
         {

@@ -33,6 +33,17 @@
         "no-constant-condition": "warn",
         "no-trailing-spaces": "warn",
         "keyword-spacing": "warn",
-        "space-infix-ops": "warn"
+        "space-infix-ops": "warn",
+        "space-in-parens": "warn",
+        "eqeqeq": "warn",
+        "comma-spacing": "warn",
+        "padding-line-between-statements": [
+            "warn",
+            { "blankLine": "always", "prev": "*", "next": "block-like" },
+            { "blankLine": "any", "prev": "const", "next": "block-like" },
+            { "blankLine": "any", "prev": "let", "next": "block-like" },
+            { "blankLine": "any", "prev": "var", "next": "block-like" },
+            { "blankLine": "any", "prev": "expression", "next": "block-like" }
+        ]
     }
 }

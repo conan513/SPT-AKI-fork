@@ -759,6 +759,7 @@ class InventoryController
                             foundSlot = false;
                             break;
                         }
+
                         for (let itemX = 0; itemX < tmpSizeY; itemX++)
                         {
                             if (foundSlot && x + tmpSizeY - 1 > stashX - 1)
