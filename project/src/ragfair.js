@@ -247,7 +247,7 @@ class ragfairController
         //if its traders items, just a placeholder it will be handled differently later
         if (request.offerOwnerType ===  1)
         {
-            return getOffersFromTraders(sessionID, request);
+            return this.getOffersFromTraders(sessionID, request);
         }
 
         let response = {"categories": {}, "offers": [], "offersCount": 10, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
@@ -300,7 +300,7 @@ class ragfairController
         // merge trader offers with player offers display offers is set to 'ALL'
         if (request.offerOwnerType === 0)
         {
-            const traderOffers = getOffersFromTraders(sessionID, request).offers;
+            const traderOffers = this.getOffersFromTraders(sessionID, request).offers;
 
             offers = [...offers, ...traderOffers];
         }
