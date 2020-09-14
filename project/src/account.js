@@ -6,26 +6,11 @@
 */
 class AccountServer
 {
-    constructor()
-    {
-        this.accounts = {};
-    }
-
-    initialize()
-    {
-        this.accounts = json.parse(json.read(db.user.configs.accounts));
-    }
-
-    saveToDisk()
-    {
-        json.write(db.user.configs.accounts, this.accounts);
-    }
-
     find(sessionID)
     {
-        for (let accountID in this.accounts)
+        for (let accountID in save_f.saveServer.accounts)
         {
-            let account = this.accounts[accountID];
+            let account = save_f.saveServer.accounts[accountID];
 
             if (account.id === sessionID)
             {
@@ -38,19 +23,19 @@ class AccountServer
 
     isWiped(sessionID)
     {
-        return this.accounts[sessionID].wipe;
+        return save_f.saveServer.accounts[sessionID].wipe;
     }
 
     setWipe(sessionID, state)
     {
-        this.accounts[sessionID].wipe = state;
+        save_f.saveServer.accounts[sessionID].wipe = state;
     }
 
     login(info)
     {
-        for (let accountID in this.accounts)
+        for (let accountID in save_f.saveServer.accounts)
         {
-            let account = this.accounts[accountID];
+            let account = save_f.saveServer.accounts[accountID];
 
             if (info.email === account.email && info.password === account.password)
             {
@@ -63,9 +48,9 @@ class AccountServer
 
     register(info)
     {
-        for (let accountID in this.accounts)
+        for (let accountID in save_f.saveServer.accounts)
         {
-            if (info.email === this.accounts[accountID].email)
+            if (info.email === save_f.saveServer.accounts[accountID].email)
             {
                 return accountID;
             }
@@ -73,7 +58,7 @@ class AccountServer
 
         let accountID = utility.generateNewAccountId();
 
-        this.accounts[accountID] = {
+        save_f.saveServer.accounts[accountID] = {
             "id": accountID,
             "nickname": "",
             "email": info.email,
@@ -82,7 +67,7 @@ class AccountServer
             "edition": info.edition
         };
 
-        this.saveToDisk();
+        save_f.saveServer.saveToDisk();
         return "";
     }
 
@@ -92,9 +77,9 @@ class AccountServer
 
         if (accountID !== "")
         {
-            delete this.accounts[accountID];
+            delete save_f.saveServer.accounts[accountID];
             utility.removeDir("user/profiles/" + accountID + "/");
-            this.saveToDisk();
+            save_f.saveServer.saveToDisk();
         }
 
         return accountID;
@@ -106,8 +91,8 @@ class AccountServer
 
         if (accountID !== "")
         {
-            this.accounts[accountID].email = info.change;
-            this.saveToDisk();
+            save_f.saveServer.accounts[accountID].email = info.change;
+            save_f.saveServer.saveToDisk();
         }
 
         return accountID;
@@ -119,8 +104,8 @@ class AccountServer
 
         if (accountID !== "")
         {
-            this.accounts[accountID].password = info.change;
-            this.saveToDisk();
+            save_f.saveServer.accounts[accountID].password = info.change;
+            save_f.saveServer.saveToDisk();
         }
 
         return accountID;
@@ -132,9 +117,9 @@ class AccountServer
 
         if (accountID !== "")
         {
-            this.accounts[accountID].edition = info.edition;
+            save_f.saveServer.accounts[accountID].edition = info.edition;
             this.setWipe(accountID, true);
-            this.saveToDisk();
+            save_f.saveServer.saveToDisk();
         }
 
         return accountID;
@@ -142,14 +127,14 @@ class AccountServer
 
     getReservedNickname(sessionID)
     {
-        return this.accounts[sessionID].nickname;
+        return save_f.saveServer.accounts[sessionID].nickname;
     }
 
     nicknameTaken(info)
     {
-        for (let accountID in this.accounts)
+        for (let accountID in save_f.saveServer.accounts)
         {
-            if (info.nickname.toLowerCase() === this.accounts[accountID].nickname.toLowerCase())
+            if (info.nickname.toLowerCase() === save_f.saveServer.accounts[accountID].nickname.toLowerCase())
             {
                 return true;
             }
@@ -163,7 +148,6 @@ class AccountCallbacks
 {
     constructor()
     {
-        server.addStartCallback("loadAccounts",                    this.load.bind());
         router.addStaticRoute("/launcher/server/connect",          this.connect.bind());
         router.addStaticRoute("/launcher/profile/login",           this.login.bind());
         router.addStaticRoute("/launcher/profile/register",        this.register.bind());
@@ -232,11 +216,5 @@ class AccountCallbacks
     }
 }
 
-function getPath(sessionID)
-{
-    return "user/profiles/" + sessionID + "/";
-}
-
 module.exports.accountServer = new AccountServer();
 module.exports.accountCallbacks = new AccountCallbacks();
-module.exports.getPath = getPath;
