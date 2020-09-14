@@ -15,8 +15,8 @@ function sortOffersByName(a, b)
     // @TODO: Get localized item names
     try
     {
-        let aa = itm_hf.getItem(a._id)[1]._name;
-        let bb = itm_hf.getItem(b._id)[1]._name;
+        let aa = helpfunc_f.getItem(a._id)[1]._name;
+        let bb = helpfunc_f.getItem(b._id)[1]._name;
 
         aa = aa.substring(aa.indexOf("_") + 1);
         bb = bb.substring(bb.indexOf("_") + 1);
@@ -199,7 +199,7 @@ function getOffers(sessionID, request)
 
             if (itemsToAdd.length)
             {
-                itemsToAdd = itm_hf.arrayIntersect(itemsToAdd, handbook);
+                itemsToAdd = helpfunc_f.arrayIntersect(itemsToAdd, handbook);
             }
             else
             {
@@ -271,7 +271,7 @@ function getOffersFromTraders(sessionID, request)
 
             if (offersFilters.length)
             {
-                offersFilters = itm_hf.arrayIntersect(offersFilters, handbookList);
+                offersFilters = helpfunc_f.arrayIntersect(offersFilters, handbookList);
             }
             else
             {
@@ -328,7 +328,7 @@ function removeBarterOffers(response)
     let override = [];
     for (let offer of response.offers)
     {
-        if ( itm_hf.isMoneyTpl(offer.requirements[0]._tpl) == true )
+        if ( helpfunc_f.isMoneyTpl(offer.requirements[0]._tpl) == true )
         {
             override.push(offer);
         }
@@ -343,7 +343,7 @@ function calculateCost(barter_scheme)//theorical , not tested not implemented
 
     for (let barter of barter_scheme)
     {
-        summaryCost += itm_hf.getTemplatePrice(barter._tpl) * barter.count;
+        summaryCost += helpfunc_f.getTemplatePrice(barter._tpl) * barter.count;
     }
 
     return Math.round(summaryCost);
@@ -386,24 +386,24 @@ function getCategoryList(handbookId)
     // if its "mods" great-parent category, do double recursive loop
     if (handbookId === "5b5f71a686f77447ed5636ab")
     {
-        for (let categ2 of itm_hf.childrenCategories(handbookId))
+        for (let categ2 of helpfunc_f.childrenCategories(handbookId))
         {
-            for (let categ3 of itm_hf.childrenCategories(categ2))
+            for (let categ3 of helpfunc_f.childrenCategories(categ2))
             {
-                result = result.concat(itm_hf.templatesWithParent(categ3));
+                result = result.concat(helpfunc_f.templatesWithParent(categ3));
             }
         }
     }
     else
     {
-        if (itm_hf.isCategory(handbookId))
+        if (helpfunc_f.isCategory(handbookId))
         {
             // list all item of the category
-            result = result.concat(itm_hf.templatesWithParent(handbookId));
+            result = result.concat(helpfunc_f.templatesWithParent(handbookId));
 
-            for (let categ of itm_hf.childrenCategories(handbookId))
+            for (let categ of helpfunc_f.childrenCategories(handbookId))
             {
-                result = result.concat(itm_hf.templatesWithParent(categ));
+                result = result.concat(helpfunc_f.templatesWithParent(categ));
             }
         }
         else
@@ -432,17 +432,17 @@ function createOffer(template, onlyFunc, usePresets = true)
     // Preset
     if (usePresets && preset_f.itemPresets.hasPreset(template))
     {
-        let presets = itm_hf.clone(preset_f.itemPresets.getPresets(template));
+        let presets = helpfunc_f.clone(preset_f.itemPresets.getPresets(template));
 
         for (let p of presets)
         {
-            let offer = itm_hf.clone(offerBase);
+            let offer = helpfunc_f.clone(offerBase);
             let mods = p._items;
             let rub = 0;
 
             for (let it of mods)
             {
-                rub += itm_hf.getTemplatePrice(it._tpl);
+                rub += helpfunc_f.getTemplatePrice(it._tpl);
             }
 
             mods[0].upd = mods[0].upd || {}; // append the stack count
@@ -461,7 +461,7 @@ function createOffer(template, onlyFunc, usePresets = true)
     // Single item
     if (!preset_f.itemPresets.hasPreset(template) || !onlyFunc)
     {
-        let rubPrice = Math.round(itm_hf.getTemplatePrice(template) * gameplayConfig.trading.ragfairMultiplier);
+        let rubPrice = Math.round(helpfunc_f.getTemplatePrice(template) * gameplayConfig.trading.ragfairMultiplier);
         offerBase._id = template;
         offerBase.items[0]._tpl = template;
         offerBase.requirements[0].count = rubPrice;

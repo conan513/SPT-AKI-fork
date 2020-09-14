@@ -145,7 +145,7 @@ function removeSecureContainer(profile)
     {
         if (item.slotId === "SecuredContainer")
         {
-            let toRemove = itm_hf.findAndReturnChildrenByItems(items, item._id);
+            let toRemove = helpfunc_f.findAndReturnChildrenByItems(items, item._id);
             let n = items.length;
 
             while (n-- > 0)
@@ -353,7 +353,7 @@ function payMoney(pmcData, body, sessionID)
     }
 
     // find all items with currency _tpl id
-    const moneyItems = itm_hf.findMoney("tpl", pmcData, currencyTpl);
+    const moneyItems = helpfunc_f.findMoney("tpl", pmcData, currencyTpl);
 
     // prepare a price for barter
     let barterPrice = 0;

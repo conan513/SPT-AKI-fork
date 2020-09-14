@@ -119,7 +119,7 @@ class DialogueServer
 
             items.stash = stashId;
             items.data = [];
-            rewards = itm_hf.replaceIDs(null, rewards);
+            rewards = helpfunc_f.replaceIDs(null, rewards);
 
             for (let reward of rewards)
             {

@@ -37,7 +37,7 @@ class InsuranceServer
             return;
         }
 
-        let ids_toremove = itm_hf.findAndReturnChildren(pmcData, toDo[0]); // get all ids related to this item, +including this item itself
+        let ids_toremove = helpfunc_f.findAndReturnChildren(pmcData, toDo[0]); // get all ids related to this item, +including this item itself
 
         for (let i in ids_toremove)
         { // remove one by one all related items and itself
@@ -251,7 +251,7 @@ class InsuranceServer
         }
 
         // pay the item	to profile
-        if (!itm_hf.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        if (!helpfunc_f.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
             logger.logError("no money found");
             return "";

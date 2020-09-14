@@ -11,7 +11,7 @@ class TradeController
 
         let callback = () =>
         {
-            if (!itm_hf.payMoney(pmcData, body, sessionID))
+            if (!helpfunc_f.payMoney(pmcData, body, sessionID))
             {
                 logger.logError("no money found");
                 throw "Transaction failed";
@@ -73,7 +73,7 @@ class TradeController
         }
 
         // get money the item]
-        return itm_hf.getMoney(pmcData, money, body, output, sessionID);
+        return helpfunc_f.getMoney(pmcData, money, body, output, sessionID);
     }
 
     // separate is that selling or buying
