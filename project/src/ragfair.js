@@ -476,107 +476,99 @@ function createOffer(template, onlyFunc, usePresets = true)
     return offers;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////
-/// USED BY LOAD() ///////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-
-function storeOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
-{
-    let offers = [];
-    let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
-    let trader = json.parse(json.read(db.traders["base_" + traderID]));
-    let time = Math.floor(new Date().getTime() / 1000);
-
-    offerBase._id = itemsToSell[0]._id;
-    offerBase.intId = counter;
-    offerBase.user = {
-        "id": trader._id,
-        "memberType": 4,
-        "nickname": trader.surname,
-        "rating": 1,
-        "isRatingGrowing": true,
-        "avatar": trader.avatar
-    };
-    offerBase.root = itemsToSell[0]._id;
-    offerBase.items = itemsToSell;
-    offerBase.requirements = barter_scheme;
-    offerBase.loyaltyLevel = loyal_level;
-    offerBase.startTime = time;
-    offerBase.emdTime = time * 3153600000;   // 1 century
-
-    offers.push(offerBase);
-    return offers;
-}
-
-//find childs of the item in a given assort (weapons pars for example, need recursive loop function)
-function findChildren(itemIdToFind, assort)
-{
-    let array = [];
-
-    for (let itemFromAssort of assort)
-    {
-        if (itemFromAssort.parentId == itemIdToFind)
-        {
-            array.push(itemFromAssort);
-            array = array.concat(findChildren(itemFromAssort._id, assort));
-        }
-    }
-
-    return array;
-}
-
-class ragfairServer
+class ragfairController
 {
     initialize()
     {
-        let base = {"categories": {}, "offers": [], "offersCount": 100, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
-        let counter = 0;
+        database_f.database.tables.ragfair.offers = {"categories": {}, "offers": [], "offersCount": 100, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
 
-        for (let trader in database_f.database.tables.traders)
+        for (let traderID in database_f.database.tables.traders)
         {
-            if (trader === "ragfair" || trader === "579dc571d53a0658a154fbec")
+            this.addTraderAssort(traderID);
+        }
+    }
+
+    addTraderAssort(traderID)
+    {
+        let base = database_f.database.tables.ragfair.offers;
+
+        // skip ragfair and fence trader
+        if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+        {
+            return;
+        }
+
+        const assort = database_f.database.tables.traders[traderID].assort;
+
+        for (const item of assort.items)
+        {
+            if (item.slotId !== "hideout")
             {
-                continue;
+                // only use base items
+                return;
             }
 
-            let allAssort = database_f.database.tables.traders[trader].assort;
+            // items
+            let items = [];
 
-            for (let itemAssort of allAssort.items)
+            items.push(item);
+            items = [...items, ...helpfunc_f.findAndReturnChildrenByAssort(item._id, assort.items)];
+
+            // barter scheme
+            let barter_scheme = null;
+
+            for (const barter in assort.barter_scheme)
             {
-                if (itemAssort.slotId === "hideout")
+                if (item._id === barter)
                 {
-                    let barter_scheme = null;
-                    let loyal_level = 0;
-
-                    let itemsToSell = [];
-                    itemsToSell.push(itemAssort);
-                    itemsToSell = [...itemsToSell, ...findChildren(itemAssort._id, allAssort.items)];
-
-                    for (let barterFromAssort in allAssort.barter_scheme)
-                    {
-                        if (itemAssort._id == barterFromAssort)
-                        {
-                            barter_scheme = allAssort.barter_scheme[barterFromAssort][0];
-                            break;
-                        }
-                    }
-
-                    for (let loyal_levelFromAssort in allAssort.loyal_level_items)
-                    {
-                        if (itemAssort._id == loyal_levelFromAssort)
-                        {
-                            loyal_level = allAssort.loyal_level_items[loyal_levelFromAssort];
-                            break;
-                        }
-                    }
-
-                    base.offers = base.offers.concat(storeOffer(itemsToSell, barter_scheme, loyal_level, trader, counter));
-                    counter += 1;
+                    barter_scheme = assort.barter_scheme[barter][0];
+                    break;
                 }
             }
+
+            // loyal level
+            let loyal_level = 0;
+
+            for (const loyalLevel in assort.loyal_level_items)
+            {
+                if (item._id === loyalLevel)
+                {
+                    loyal_level = assort.loyal_level_items[loyalLevel];
+                    break;
+                }
+            }
+
+            // add the offer
+            base.offers = base.offers.concat(this.storeTraderOffer(items, barter_scheme, loyal_level, traderID));
         }
 
         database_f.database.tables.ragfair.offers = base;
+    }
+
+    storeTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
+    {
+        const trader = database_f.database.tables.traders[traderID].base;
+        const time = Math.floor(new Date().getTime() / 1000);
+        let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
+
+        offerBase._id = itemsToSell[0]._id;
+        offerBase.intId = counter;
+        offerBase.user = {
+            "id": trader._id,
+            "memberType": 4,
+            "nickname": trader.surname,
+            "rating": 1,
+            "isRatingGrowing": true,
+            "avatar": trader.avatar
+        };
+        offerBase.root = itemsToSell[0]._id;
+        offerBase.items = itemsToSell;
+        offerBase.requirements = barter_scheme;
+        offerBase.loyaltyLevel = loyal_level;
+        offerBase.startTime = time;
+        offerBase.emdTime = time * 3153600000;   // 1 century
+
+        return [offerBase];
     }
 }
 
@@ -594,7 +586,7 @@ class RagfairCallbacks
 
     load()
     {
-        ragfair_f.ragfairServer.initialize();
+        ragfair_f.ragfairController.initialize();
     }
 
     search(url, info, sessionID)
@@ -618,6 +610,6 @@ class RagfairCallbacks
     }
 }
 
-module.exports.ragfairServer = new ragfairServer();
+module.exports.ragfairController = new ragfairController();
 module.exports.RagfairCallbacks = new RagfairCallbacks();
 module.exports.getOffers = getOffers;

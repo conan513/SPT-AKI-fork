@@ -804,6 +804,23 @@ function findAndReturnChildrenAsItems(items, itemID)
     return list;
 }
 
+//find childs of the item in a given assort (weapons pars for example, need recursive loop function)
+function findAndReturnChildrenByAssort(itemIdToFind, assort)
+{
+    let list = [];
+
+    for (let itemFromAssort of assort)
+    {
+        if (itemFromAssort.parentId == itemIdToFind)
+        {
+            list.push(itemFromAssort);
+            list = list.concat(findAndReturnChildrenByAssort(itemFromAssort._id, assort));
+        }
+    }
+
+    return list;
+}
+
 /* Is Dogtag
 * input: itemId
 * output: bool
@@ -1027,6 +1044,7 @@ module.exports.getPlayerStash = getPlayerStash;
 module.exports.getItem = getItem;
 module.exports.getSize = getSize;
 module.exports.findAndReturnChildren = findAndReturnChildren;
+module.exports.findAndReturnChildrenByAssort = findAndReturnChildrenByAssort;
 module.exports.findAndReturnChildrenByItems = findAndReturnChildrenByItems;
 module.exports.findAndReturnChildrenAsItems = findAndReturnChildrenAsItems;
 module.exports.isDogtag = isDogtag;
