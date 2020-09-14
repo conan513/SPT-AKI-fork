@@ -463,7 +463,7 @@ class ragfairController
     removeBarterOffers(response)
     {
         let override = [];
-        
+
         for (const offer of response.offers)
         {
             if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === true)

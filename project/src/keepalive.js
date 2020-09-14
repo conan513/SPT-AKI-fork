@@ -9,7 +9,7 @@ class KeepAliveController
             trader_f.traderServer.updateTraders(sessionID);
             hideout_f.hideoutController.updatePlayerHideout(sessionID);
         }
-    
+
         return {"msg": "OK"};
     }
 }

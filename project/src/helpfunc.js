@@ -1020,7 +1020,7 @@ class HelpFunctions
             "err": title,
             "errmsg": message
         }];
-        
+
         return output;
     }
 }
