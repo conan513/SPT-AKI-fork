@@ -15,7 +15,7 @@ class WeaponBuildsController
         return userBuilds;
     }
 
-    SaveBuild(pmcData, body, sessionID)
+    saveBuild(pmcData, body, sessionID)
     {
         delete body.Action;
         body.id = utility.generateNewItemId();
@@ -34,7 +34,7 @@ class WeaponBuildsController
         return output;
     }
 
-    RemoveBuild(pmcData, body, sessionID)
+    removeBuild(pmcData, body, sessionID)
     {
         let savedBuilds = json.parse(json.read(this.getPath(sessionID)));
 
