@@ -189,7 +189,7 @@ class ragfairController
         return a.requirements[0].count - b.requirements[0].count;
     }
 
-    sortOffersByPriceSummaryCost(a,b)
+    sortOffersByPriceSummaryCost(a, b)
     {
         return a.summaryCost - b.summaryCost;
     }
@@ -519,6 +519,7 @@ class ragfairController
             categ[item._tpl] = categ[item._tpl] || 0;
             categ[item._tpl]++;
         }
+
         // not in search mode, add back non-weapon items
         for (let c in response.categories)
         {

@@ -647,6 +647,7 @@ class HelpFunctions
             {
                 continue;
             }
+
             if (!(item.parentId in inventoryItemHash.byParentId))
             {
                 inventoryItemHash.byParentId[item.parentId] = [];
