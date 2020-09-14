@@ -383,6 +383,7 @@ function saveProgress(offraidData, sessionID)
         //Delete carried quests items
         offraidData.profile.Stats.CarriedQuestItems = [];
     }
+
     if (insuranceEnabled)
     {
         insurance_f.insuranceServer.sendInsuredItems(pmcData, sessionID);
