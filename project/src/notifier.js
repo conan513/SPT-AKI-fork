@@ -115,8 +115,18 @@ class NotfierCallbacks
         router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
         router.addDynamicRoute("/?last_id", this.notify.bind());
         router.addDynamicRoute("/notifierServer", this.notify.bind());
-        router.addDynamicRoute("/notifierBase", response_f.emptyArrayResponse);
-        router.addDynamicRoute("/push/notifier/get/", response_f.emptyArrayResponse);
+        router.addDynamicRoute("/notifierBase", this.getBaseNotifier.bind());
+        router.addDynamicRoute("/push/notifier/get/", this.getNotifier.bind());
+    }
+
+    getBaseNotifier(url, info, sessionID)
+    {
+        return response_f.responseController.emptyArrayResponse();
+    }
+
+    getNotifier(url, info, sessionID)
+    {
+        return response_f.responseController.emptyArrayResponse();
     }
 
     // If we don't have anything to send, it's ok to not send anything back
@@ -133,7 +143,7 @@ class NotfierCallbacks
 
     createNotifierChannel(url, info, sessionID)
     {
-        return response_f.getBody({
+        return response_f.responseController.getBody({
             "notifier": {"server": server.getBackendUrl() + "/",
                 "channel_id": "testChannel",
                 "url": server.getBackendUrl() + "/notifierServer/get/" + sessionID},

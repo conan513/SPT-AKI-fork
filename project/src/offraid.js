@@ -34,7 +34,7 @@ class InraidServer
             {
                 let usages = -1;
 
-                if (!itm_hf.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
+                if (!helpfunc_f.helpFunctions.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
                 {
                     usages = 1;
                 }
@@ -52,7 +52,7 @@ class InraidServer
                     item.upd.Key.NumberOfUsages += 1;
                 }
 
-                if (item.upd.Key.NumberOfUsages >= itm_hf.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
+                if (item.upd.Key.NumberOfUsages >= helpfunc_f.helpFunctions.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
                 {
                     inventory_f.inventoryController.removeItemFromProfile(offraidData.profile, item._id);
                 }
@@ -350,7 +350,7 @@ function saveProgress(offraidData, sessionID)
         offraidData.profile = RemoveFoundItems(offraidData.profile);
     }
 
-    offraidData.profile.Inventory.items = itm_hf.replaceIDs(offraidData.profile, offraidData.profile.Inventory.items, offraidData.profile.Inventory.fastPanel);
+    offraidData.profile.Inventory.items = helpfunc_f.helpFunctions.replaceIDs(offraidData.profile, offraidData.profile.Inventory.items, offraidData.profile.Inventory.fastPanel);
 
     // set profile equipment to the raid equipment
     if (isPlayerScav)

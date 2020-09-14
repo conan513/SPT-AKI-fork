@@ -37,7 +37,7 @@ class InsuranceServer
             return;
         }
 
-        let ids_toremove = itm_hf.findAndReturnChildren(pmcData, toDo[0]); // get all ids related to this item, +including this item itself
+        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, toDo[0]); // get all ids related to this item, +including this item itself
 
         for (let i in ids_toremove)
         { // remove one by one all related items and itself
@@ -251,7 +251,7 @@ class InsuranceServer
         }
 
         // pay the item	to profile
-        if (!itm_hf.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        if (!helpfunc_f.helpFunctions.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
             logger.logError("no money found");
             return "";
@@ -354,7 +354,7 @@ class InsuranceCallback
 
     getInsuranceCost(url, info, sessionID)
     {
-        return response_f.getBody(insurance_f.insuranceServer.cost(info, sessionID));
+        return response_f.responseController.getBody(insurance_f.insuranceServer.cost(info, sessionID));
     }
 
     insure(pmcData, body, sessionID)

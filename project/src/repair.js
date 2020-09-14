@@ -30,7 +30,7 @@ class RepairController
             // get repair price and pay the money
             let repairCost = Math.round((database_f.database.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * gameplayConfig.trading.repairMultiplier);
 
-            if (!itm_hf.payMoney(pmcData, {"scheme_items": [{"id": repairItem._id, "count": Math.round(repairCost)}], "tid": body.tid}, sessionID))
+            if (!helpfunc_f.helpFunctions.payMoney(pmcData, {"scheme_items": [{"id": repairItem._id, "count": Math.round(repairCost)}], "tid": body.tid}, sessionID))
             {
                 logger.logError("no money found");
                 return "";
