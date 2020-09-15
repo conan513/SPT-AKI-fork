@@ -507,31 +507,24 @@ class InventoryController
         let StashFS_2D = helpfunc_f.helpFunctions.recheckInventoryFreeSpace(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
-            let findSlotResult = this.findSlotForItem(StashFS_2D, stashX, stashY, itemToAdd.itemRef, itemLib);
+            let itemSize = helpfunc_f.helpFunctions.getSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
+            let findSlotResult = helpfunc_f.helpFunctions.findSlotForItem(StashFS_2D, itemSize[0], itemSize[1]);
 
             if (findSlotResult.success)
             {
                 /* Fill in the StashFS_2D with an imaginary item, to simulate it already being added
                 * so the next item to search for a free slot won't find the same one */
-                let itemSize = helpfunc_f.helpFunctions.getSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
                 let itemSizeX = findSlotResult.rotation ? itemSize[1] : itemSize[0];
                 let itemSizeY = findSlotResult.rotation ? itemSize[0] : itemSize[1];
 
-                for (let tmpY = findSlotResult.y; tmpY < findSlotResult.y + itemSizeY; tmpY++)
+                try
                 {
-                    for (let tmpX = findSlotResult.x; tmpX < findSlotResult.x + itemSizeX; tmpX++)
-                    {
-                        if (StashFS_2D[tmpY][tmpX] === 0)
-                        {
-                            StashFS_2D[tmpY][tmpX] = 1;
-                        }
-                        else
-                        {
-                            // Something went wrong - the slot is already filled!
-                            logger.logError("FindSlotForItem probably didn't work correctly!");
-                            return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
-                        }
-                    }
+                    StashFS_2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(StashFS_2D, findSlotResult.x, findSlotResult.y, itemSizeX, itemSizeY);
+                }
+                catch (err)
+                {
+                    logger.logError("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
+                    return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
                 }
 
                 itemToAdd.location = { x: findSlotResult.x, y: findSlotResult.y, rotation: findSlotResult.rotation };
@@ -700,103 +693,6 @@ class InventoryController
             }
         }
         return output;
-    }
-
-    findSlotForItem(StashFS_2D, stashX, stashY, item, items)
-    {
-        let ItemSize = helpfunc_f.helpFunctions.getSize(item._tpl, item._id, items);
-        let tmpSizeX = ItemSize[0];
-        let tmpSizeY = ItemSize[1];
-        let rotation = false;
-        let minVolume = (tmpSizeX < tmpSizeY ? tmpSizeX : tmpSizeY) - 1;
-        let limitY = stashY - minVolume;
-        let limitX = stashX - minVolume;
-
-        for (let y = 0; y < limitY; y++)
-        {
-            for (let x = 0; x < limitX; x++)
-            {
-                let foundSlot = true;
-                for (let itemY = 0; itemY < tmpSizeY; itemY++)
-                {
-                    if (foundSlot && y + tmpSizeY - 1 > stashY - 1)
-                    {
-                        foundSlot = false;
-                        break;
-                    }
-
-                    for (let itemX = 0; itemX < tmpSizeX; itemX++)
-                    {
-                        if (foundSlot && x + tmpSizeX - 1 > stashX - 1)
-                        {
-                            foundSlot = false;
-                            break;
-                        }
-
-                        if (StashFS_2D[y + itemY][x + itemX] !== 0)
-                        {
-                            foundSlot = false;
-                            break;
-                        }
-                    }
-
-                    if (!foundSlot)
-                    {
-                        break;
-                    }
-                }
-
-                /**Try to rotate if there is enough room for the item
-                 * Only occupies one grid of items, no rotation required
-                 * */
-                if (!foundSlot && tmpSizeX * tmpSizeY > 1)
-                {
-                    foundSlot = true;
-                    for (let itemY = 0; itemY < tmpSizeX; itemY++)
-                    {
-                        if (foundSlot && y + tmpSizeX - 1 > stashY - 1)
-                        {
-                            foundSlot = false;
-                            break;
-                        }
-
-                        for (let itemX = 0; itemX < tmpSizeY; itemX++)
-                        {
-                            if (foundSlot && x + tmpSizeY - 1 > stashX - 1)
-                            {
-                                foundSlot = false;
-                                break;
-                            }
-
-                            if (StashFS_2D[y + itemY][x + itemX] !== 0)
-                            {
-                                foundSlot = false;
-                                break;
-                            }
-                        }
-
-                        if (!foundSlot)
-                        {
-                            break;
-                        }
-                    }
-
-                    if (foundSlot)
-                    {
-                        rotation = true;
-                    }
-                }
-
-                if (!foundSlot)
-                {
-                    continue;
-                }
-
-                return { success: true, x, y, rotation };
-            }
-        }
-
-        return { success: false, x: null, y: null, rotation: false };
     }
 
     foldItem(pmcData, body, sessionID)
