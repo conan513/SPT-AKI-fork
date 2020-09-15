@@ -1028,83 +1028,62 @@ class HelpFunctions
     /* Finds a slot for an item in a given 2D container map
      * Output: { success: boolean, x: number, y: number, rotation: boolean }
      */
-    findSlotForItem(container2D, itemW, itemH)
+    findSlotForItem(container2D, itemWidth, itemHeight)
     {
         let rotation = false;
-        let minVolume = (itemW < itemH ? itemW : itemH) - 1;
+        let minVolume = (itemWidth < itemHeight ? itemWidth : itemHeight) - 1;
         let containerY = container2D.length;
         let containerX = container2D[0].length;
         let limitY = containerY - minVolume;
         let limitX = containerX - minVolume;
 
-        for (let y = 0; y < limitY; y++)
+        let locateSlot = (x, y, itemW, itemH) =>
         {
-            for (let x = 0; x < limitX; x++)
+            let foundSlot = true;
+            for (let itemY = 0; itemY < itemH; itemY++)
             {
-                let foundSlot = true;
-                for (let itemY = 0; itemY < itemH; itemY++)
+                if (foundSlot && y + itemH - 1 > containerY - 1)
                 {
-                    if (foundSlot && y + itemH - 1 > containerY - 1)
+                    foundSlot = false;
+                    break;
+                }
+
+                for (let itemX = 0; itemX < itemW; itemX++)
+                {
+                    if (foundSlot && x + itemW - 1 > containerX - 1)
                     {
                         foundSlot = false;
                         break;
                     }
 
-                    for (let itemX = 0; itemX < itemW; itemX++)
+                    if (container2D[y + itemY][x + itemX] !== 0)
                     {
-                        if (foundSlot && x + itemW - 1 > containerX - 1)
-                        {
-                            foundSlot = false;
-                            break;
-                        }
-
-                        if (container2D[y + itemY][x + itemX] !== 0)
-                        {
-                            foundSlot = false;
-                            break;
-                        }
-                    }
-
-                    if (!foundSlot)
-                    {
+                        foundSlot = false;
                         break;
                     }
                 }
 
+                if (!foundSlot)
+                {
+                    break;
+                }
+            }
+
+            return foundSlot;
+        };
+
+        for (let y = 0; y < limitY; y++)
+        {
+            for (let x = 0; x < limitX; x++)
+            {
+                let foundSlot = locateSlot(x, y, itemWidth, itemHeight);
+
                 /**Try to rotate if there is enough room for the item
                  * Only occupies one grid of items, no rotation required
                  * */
-                if (!foundSlot && itemW * itemH > 1)
+                if (!foundSlot && itemWidth * itemHeight > 1)
                 {
-                    foundSlot = true;
-                    for (let itemY = 0; itemY < itemW; itemY++)
-                    {
-                        if (foundSlot && y + itemW - 1 > containerY - 1)
-                        {
-                            foundSlot = false;
-                            break;
-                        }
-
-                        for (let itemX = 0; itemX < itemH; itemX++)
-                        {
-                            if (foundSlot && x + itemH - 1 > containerX - 1)
-                            {
-                                foundSlot = false;
-                                break;
-                            }
-
-                            if (container2D[y + itemY][x + itemX] !== 0)
-                            {
-                                foundSlot = false;
-                                break;
-                            }
-                        }
-
-                        if (!foundSlot)
-                        {
-                            break;
-                        }
-                    }
+                    foundSlot = locateSlot(x, y, itemHeight, itemWidth);
 
                     if (foundSlot)
                     {
