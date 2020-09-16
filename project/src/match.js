@@ -119,9 +119,9 @@ class MatchCallbacks
         router.addStaticRoute("/client/match/group/delete", this.deleteGroup.bind());
         router.addStaticRoute("/client/match/group/status", this.getGroupStatus.bind());
         router.addStaticRoute("/client/match/group/start_game", this.joinMatch.bind());
-        router.addStaticRoute("/client/match/group/exit_from_menu", this.exitToMenu());
+        router.addStaticRoute("/client/match/group/exit_from_menu", this.exitToMenu.bind());
         router.addStaticRoute("/client/match/group/looking/start", this.startGroupSearch());
-        router.addStaticRoute("/client/match/group/looking/stop", this.stopGroupSearch());
+        router.addStaticRoute("/client/match/group/looking/stop", this.stopGroupSearch.bind());
         router.addStaticRoute("/client/match/group/invite/send", this.sendGroupInvite());
         router.addStaticRoute("/client/match/group/invite/accept", this.acceptGroupInvite());
         router.addStaticRoute("/client/match/group/invite/cancel", this.cancelGroupInvite());

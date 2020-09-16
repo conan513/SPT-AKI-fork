@@ -29,7 +29,7 @@ class LocationServer
         }
 
         let forced = location.loot.Forced;
-        let statics = location.loot.Static;
+        let statics = location.loot.static;
         let dynamic = location.loot.Dynamic;
         output.Loot = [];
 
@@ -49,26 +49,29 @@ class LocationServer
             output.Loot.push(data);
         }
 
+        let count = 0;
         // static loot
         for (let i in statics)
         {
-            let dataLength = statics[i].data.length;
-            let data = statics[i].data[utility.getRandomInt(0, dataLength - 1)];
+            let data = statics[i];
 
             if (data.Id in ids)
-            {
                 continue;
-            }
-            else
-            {
-                ids[data.Id] = true;
-            }
+
+            ids[data.Id] = true;
+
+            if (data.Items.length > 1)
+                data.Items.splice(1);
+
+            this.generateContainerLoot(data.Items);
             output.Loot.push(data);
+            count++;
         }
+        logger.logSuccess("A total of " + count + " containers generated");
 
         // dyanmic loot
         let max = gameplayConfig.locationloot[name];
-        let count = 0;
+        count = 0;
 
         // Loot position list for filtering the lootItem in the same position.
         let lootPositions = [];
@@ -196,6 +199,58 @@ class LocationServer
 
         base.data.locations = data;
         return base.data;
+    }
+
+    generateContainerLoot(items)
+    {
+        let container = database_f.database.tables.loot.statics[items[0]._tpl];
+        let parentId = items[0]._id;
+        let idPrefix = parentId.substring(0, parentId.length - 4);
+        let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
+        let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0))
+        let maxProbability = container.maxProbability;
+        let minCount = container.minCount;
+
+        for (let i = minCount; i < container.maxCount; i++)
+        {
+            let roll = utility.getRandomInt(0, 100);
+
+            if (roll < container.chance)
+            {
+                minCount++;
+            }
+        }
+
+        for (let i = 0; i < minCount; i++)
+        {            
+            let item = {};
+            let result = { success: false };
+            let maxAttempts = 20;
+
+            while (!result.success && maxAttempts)
+            {
+                let roll = utility.getRandomInt(0, maxProbability);
+                item = container.items.filter(i => i.cumulativeChance >= roll)[0];
+                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, item.width, item.height);
+                maxAttempts--;
+            }
+
+            if (!result.success)
+                break;
+            
+            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(container2D, result.x, result.y, item.width, item.height, result.rotation);
+
+            let rot = result.rotation ? 1 : 0;
+            items.push({
+                "_id": idPrefix + idSuffix.toString(16),
+                "_tpl": item.id,
+                "parentId": parentId,
+                "slotId": "main",
+                "location": { "x": result.x, "y": result.y, "r": rot}
+            });
+
+            idSuffix++;
+        }
     }
 }
 

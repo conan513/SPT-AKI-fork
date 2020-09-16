@@ -90,7 +90,7 @@ class ragfairController
         offerBase.requirements = barter_scheme;
         offerBase.loyaltyLevel = loyal_level;
         offerBase.startTime = time;
-        offerBase.endTime = time * 3153600000;   // 1 century
+        offerBase.endTime = time + 3153600000;   // 1 century
 
         return [offerBase];
     }
@@ -133,7 +133,7 @@ class ragfairController
                 offer.requirements[0].count = Math.round(rub * gameplayConfig.trading.ragfairMultiplier);
                 offers.push(offer);
                 offer.startTime = time;
-                offer.endTime = time * 3153600000;   // 1 century
+                offer.endTime = time + 3153600000;   // 1 century
             }
         }
 
@@ -148,7 +148,7 @@ class ragfairController
             offerBase.requirementsCost = rubPrice;
             offerBase.summaryCost = rubPrice;
             offerBase.startTime = time;
-            offerBase.endTime = time * 3153600000;   // 1 century
+            offerBase.endTime = time + 3153600000;   // 1 century
             offers.push(offerBase);
         }
 

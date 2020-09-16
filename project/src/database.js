@@ -62,6 +62,11 @@ class DatabaseCallbacks
             "base": json.parse(json.read(db.locations.base))
         };
 
+        // loot
+        database_f.database.tables.loot = {
+            "statics": json.parse(json.read(db.loot.statics))
+        };
+
         // templates
         database_f.database.tables.templates = {
             "items": json.parse(json.read(db.templates.items)),
