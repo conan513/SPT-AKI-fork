@@ -18,7 +18,7 @@ class ProfileController
 
     setScavProfile(sessionID, scavData)
     {
-        save_f.saveServer.profiles[sessionID]["scav"] = scavData;
+        save_f.saveServer.users[sessionID].profiles.scav = scavData;
     }
 
     getCompleteProfile(sessionID)
@@ -42,9 +42,9 @@ class ProfileController
         let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
 
         // delete existing profile
-        if (save_f.saveServer.profiles[account.id])
+        if (save_f.saveServer.users[account.id].profiles)
         {
-            delete save_f.saveServer.profiles[account.id];
+            delete save_f.saveServer.users[account.id].profiles;
             events.scheduledEventHandler.wipeScheduleForSession(sessionID);
         }
 

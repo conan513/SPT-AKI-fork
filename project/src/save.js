@@ -6,8 +6,8 @@ class SaveServer
     {
         this.users = {};
 
+        // refactor this
         this.accounts = {};
-        this.profiles = {};
     }
 
     initialize()
@@ -48,7 +48,7 @@ class SaveServer
 
     initializeProfile(sessionID)
     {
-        this.profiles[sessionID] = {};
+        this.users[sessionID].profiles = {};
         this.loadProfilesFromDisk(sessionID);
     }
 
@@ -87,7 +87,7 @@ class SaveServer
 
     loadProfilesFromDisk(sessionID)
     {
-        this.profiles[sessionID]["pmc"] = json.parse(json.read(this.getProfilePath(sessionID)));
+        this.users[sessionID].profiles.pmc = json.parse(json.read(this.getProfilePath(sessionID)));
         profile_f.profileController.generateScav(sessionID);
     }
 
@@ -135,26 +135,20 @@ class SaveServer
             this.initializeInsurance(sessionID);
         }
 
-        return this.profiles[sessionID][type];
+        return this.users[sessionID].profiles[type];
     }
 
     saveToDisk()
     {
-        // accounts
+        // accounts (TODO: REFACTOR ACCOUNTS)
         json.write(db.user.configs.accounts, this.accounts);
 
         for (let sessionID of this.getOpenSessions())
         {
-            // dialogues
             if (sessionID in this.users)
             {
                 json.write(this.getDialoguePath(sessionID), this.users[sessionID].dialogues);
-            }
-
-            // profile
-            if ("pmc" in this.profiles[sessionID])
-            {
-                json.write(this.getProfilePath(sessionID), this.profiles[sessionID]["pmc"]);
+                json.write(this.getProfilePath(sessionID), this.profiles[sessionID].pmc);
             }
         }
     }
