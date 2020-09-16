@@ -8,10 +8,6 @@ class SaveServer
 
         this.accounts = {};
         this.profiles = {};
-        this.dialogues = {};
-        this.healths = {};
-        this.effects = {};
-        this.insured = {};
     }
 
     initialize()
@@ -28,7 +24,7 @@ class SaveServer
                     "pmc": {},
                     "scav": {}
                 },
-                "dialogs": {},
+                "dialogues": {},
                 "suits": {},
                 "weaponpresets": {},
                 "insurance": {},
@@ -47,7 +43,7 @@ class SaveServer
 
     initializeDialogue(sessionID)
     {
-        this.dialogues[sessionID] = json.parse(json.read(this.getDialoguePath(sessionID)));
+        this.users[sessionID].dialogues = json.parse(json.read(this.getDialoguePath(sessionID)));
     }
 
     initializeProfile(sessionID)
@@ -59,34 +55,34 @@ class SaveServer
     /* resets the healh response */
     initializeHealth(sessionID)
     {
-        this.healths[sessionID] = {
-            "Hydration": 0,
-            "Energy": 0,
-            "Head": 0,
-            "Chest": 0,
-            "Stomach": 0,
-            "LeftArm": 0,
-            "RightArm": 0,
-            "LeftLeg": 0,
-            "RightLeg": 0
-        };
-        this.effects[sessionID] = {
-            "Head": {},
-            "Chest": {},
-            "Stomach": {},
-            "LeftArm": {},
-            "RightArm": {},
-            "LeftLeg": {},
-            "RightLeg": {}
-        };
-
-        return this.healths[sessionID];
+        this.users[sessionID].vitality = {
+            "health": {
+                "Hydration": 0,
+                "Energy": 0,
+                "Head": 0,
+                "Chest": 0,
+                "Stomach": 0,
+                "LeftArm": 0,
+                "RightArm": 0,
+                "LeftLeg": 0,
+                "RightLeg": 0
+            },
+            "effects": {
+                "Head": {},
+                "Chest": {},
+                "Stomach": {},
+                "LeftArm": {},
+                "RightArm": {},
+                "LeftLeg": {},
+                "RightLeg": {}
+            }
+        }
     }
 
     /* resets items to send on flush */
     initializeInsurance(sessionID)
     {
-        this.insured[sessionID] = {};
+        this.users[sessionID].insurance = {};
     }
 
     loadProfilesFromDisk(sessionID)
@@ -150,9 +146,9 @@ class SaveServer
         for (let sessionID of this.getOpenSessions())
         {
             // dialogues
-            if (sessionID in this.dialogues)
+            if (sessionID in this.users)
             {
-                json.write(this.getDialoguePath(sessionID), this.dialogues[sessionID]);
+                json.write(this.getDialoguePath(sessionID), this.users[sessionID].dialogues);
             }
 
             // profile

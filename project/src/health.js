@@ -77,8 +77,8 @@ class HealthServer
     /* stores in-raid player health */
     saveHealth(pmcData, info, sessionID)
     {
-        let nodeHealth = save_f.saveServer.healths[sessionID];
-        let nodeEffects = save_f.saveServer.effects[sessionID];
+        let nodeHealth = save_f.saveServer.users[sessionID].vitality.health[sessionID];
+        let nodeEffects = save_f.saveServer.users[sessionID].vitality.effects;
         let BodyPartsList = info.Health;
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
@@ -106,7 +106,7 @@ class HealthServer
     /* stores the player health changes */
     updateHealth(info, sessionID)
     {
-        let node = save_f.saveServer.healths[sessionID];
+        let node = save_f.saveServer.users[sessionID].vitality.health[sessionID];
 
         switch (info.type)
         {
@@ -124,8 +124,8 @@ class HealthServer
             /* store state and make server aware to kill all body parts */
             case "Died":
                 node = {
-                    "Hydration": save_f.saveServer.healths[sessionID].Hydration,
-                    "Energy": save_f.saveServer.healths[sessionID].Energy,
+                    "Hydration": save_f.saveServer.users[sessionID].vitality.health[sessionID].Hydration,
+                    "Energy": save_f.saveServer.users[sessionID].vitality.health[sessionID].Energy,
                     "Head": -1,
                     "Chest": -1,
                     "Stomach": -1,
@@ -137,7 +137,7 @@ class HealthServer
                 break;
         }
 
-        save_f.saveServer.healths[sessionID] = node;
+        save_f.saveServer.users[sessionID].vitality.health[sessionID] = node;
     }
 
     healthTreatment(pmcData, info, sessionID)
@@ -222,7 +222,7 @@ class HealthServer
             return;
         }
 
-        let nodeHealth = save_f.saveServer.healths[sessionID];
+        let nodeHealth = save_f.saveServer.users[sessionID].vitality.health[sessionID];
         let keys = Object.keys(nodeHealth);
 
         for (let item of keys)
@@ -246,7 +246,7 @@ class HealthServer
             }
         }
 
-        let nodeEffects = save_f.saveServer.effects[sessionID];
+        let nodeEffects = save_f.saveServer.users[sessionID].vitality.effects;
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
             // clear effects
