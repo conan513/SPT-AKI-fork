@@ -1103,11 +1103,14 @@ class HelpFunctions
         return { success: false, x: null, y: null, rotation: false };
     }
 
-    fillContainerMapWithItem(container2D, x, y, itemW, itemH)
+    fillContainerMapWithItem(container2D, x, y, itemW, itemH, rotate)
     {
-        for (let tmpY = y; tmpY < y + itemH; tmpY++)
+        let itemWidth = rotate ? itemH : itemW;
+        let itemHeight = rotate ? itemW : itemH;
+
+        for (let tmpY = y; tmpY < y + itemHeight; tmpY++)
         {
-            for (let tmpX = x; tmpX < x + itemW; tmpX++)
+            for (let tmpX = x; tmpX < x + itemWidth; tmpX++)
             {
                 if (container2D[tmpY][tmpX] === 0)
                 {
