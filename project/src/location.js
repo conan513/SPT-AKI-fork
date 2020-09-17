@@ -28,24 +28,33 @@ class LocationServer
             return output;
         }
 
-        let forced = location.loot.Forced;
+        let forced = location.loot.forced;
+        let mounted = location.loot.mounted;
         let statics = location.loot.static;
-        let dynamic = location.loot.Dynamic;
+        let dynamic = location.loot.dynamic;
         output.Loot = [];
+
+        // mounted weapons
+        for (let i in mounted)
+        {
+            let data = mounted[i];
+
+            if (data.Id in ids)
+                continue;
+
+            ids[data.Id] = true;
+            output.Loot.push(data);
+        }
 
         // forced loot
         for (let i in forced)
         {
             let data = forced[i].data[0];
-            if (data.Id in ids)
-            {
-                continue;
-            }
-            else
-            {
-                ids[data.Id] = true;
-            }
 
+            if (data.Id in ids)
+                continue;
+
+            ids[data.Id] = true;
             output.Loot.push(data);
         }
 
