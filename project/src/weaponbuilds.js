@@ -29,7 +29,7 @@ class WeaponBuildsController
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
-        json.write(tsave_f.saveServer.getWeaponBuildPath(sessionID), savedBuilds);
+        json.write(save_f.saveServer.getWeaponBuildPath(sessionID), savedBuilds);
         output.builds.push(body);
         return output;
     }
