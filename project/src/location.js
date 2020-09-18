@@ -216,7 +216,7 @@ class LocationServer
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
-        let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0))
+        let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0));
         let maxProbability = container.maxProbability;
         let minCount = container.minCount;
 
@@ -231,7 +231,7 @@ class LocationServer
         }
 
         for (let i = 0; i < minCount; i++)
-        {            
+        {
             let item = {};
             let result = { success: false };
             let maxAttempts = 20;
@@ -246,7 +246,7 @@ class LocationServer
 
             if (!result.success)
                 break;
-            
+
             container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(container2D, result.x, result.y, item.width, item.height, result.rotation);
 
             let rot = result.rotation ? 1 : 0;

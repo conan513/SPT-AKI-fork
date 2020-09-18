@@ -39,7 +39,7 @@ class SaveServer
                     "health": {},
                     "effects": {}
                 }
-            }
+            };
         }
 
         logger.logData(this.users);
