@@ -250,14 +250,21 @@ class LocationServer
             container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(container2D, result.x, result.y, item.width, item.height, result.rotation);
 
             let rot = result.rotation ? 1 : 0;
-            items.push({
+            let itemJson = {
                 "_id": idPrefix + idSuffix.toString(16),
                 "_tpl": item.id,
                 "parentId": parentId,
                 "slotId": "main",
                 "location": { "x": result.x, "y": result.y, "r": rot}
-            });
+            };
 
+            if (item.stackMax > 0)
+            {
+                let stack = utility.getRandomInt(item.stackMin, item.stackMax);
+                itemJson.upd = { "StackObjectsCount": stack };
+            }
+
+            items.push(itemJson);
             idSuffix++;
         }
     }
