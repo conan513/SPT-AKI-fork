@@ -431,9 +431,6 @@ class InventoryController
     addItem(pmcData, body, output, sessionID, callback, foundInRaid = false)
     {
         const fenceID = "579dc571d53a0658a154fbec";
-        let PlayerStash = helpfunc_f.helpFunctions.getPlayerStash(sessionID);
-        let stashY = PlayerStash[1];
-        let stashX = PlayerStash[0];
         let itemLib = [];
         let itemsToAdd = [];
 
@@ -504,10 +501,10 @@ class InventoryController
         }
 
         // Find an empty slot in stash for each of the items being added
-        let StashFS_2D = helpfunc_f.helpFunctions.recheckInventoryFreeSpace(pmcData, sessionID);
+        let StashFS_2D = helpfunc_f.helpFunctions.getPlayerStashSlotMap(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
-            let itemSize = helpfunc_f.helpFunctions.getSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
+            let itemSize = helpfunc_f.helpFunctions.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
             let findSlotResult = helpfunc_f.helpFunctions.findSlotForItem(StashFS_2D, itemSize[0], itemSize[1]);
 
             if (findSlotResult.success)
