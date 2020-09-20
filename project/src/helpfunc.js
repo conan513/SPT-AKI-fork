@@ -9,18 +9,16 @@ class HelpFunctions
 {
     getStashType(sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        const pmcData = profile_f.profileController.getPmcProfile(sessionID);
 
-        for (let item of pmcData.Inventory.items)
+        const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
+        if (!stashObj)
         {
-            if (item._id === pmcData.Inventory.stash)
-            {
-                return item._tpl;
-            }
+            logger.logError("No stash found");
+            return "";
         }
 
-        logger.logError("No stash found");
-        return "";
+        return stashObj._tpl;
     }
 
     calculateLevel(pmcData)
@@ -230,11 +228,11 @@ class HelpFunctions
     * input: PlayerData
     * output: table[y][x]
     * */
-    recheckInventoryFreeSpace(pmcData, sessionID)
+    getPlayerStashSlotMap(pmcData, sessionID)
     {
         // recalculate stach taken place
-        let PlayerStash = this.getPlayerStash(sessionID);
-        let Stash2D = Array(PlayerStash[1]).fill(0).map(x => Array(PlayerStash[0]).fill(0));
+        let PlayerStashSize = this.getPlayerStashSize(sessionID);
+        let Stash2D = Array(PlayerStashSize[1]).fill(0).map(x => Array(PlayerStashSize[0]).fill(0));
 
         let inventoryItemHash = this.getInventoryItemHash(pmcData.Inventory.items);
 
@@ -260,7 +258,7 @@ class HelpFunctions
                 }
                 catch (e)
                 {
-                    logger.logError("[OOB] for item " + item._id + " [" + item._id + "] with error message: " + e);
+                    logger.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
                 }
             }
         }
@@ -271,7 +269,7 @@ class HelpFunctions
     isMoneyTpl(tpl)
     {
         const moneyTplArray = ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"];
-        return moneyTplArray.findIndex(moneyTlp => moneyTlp === tpl) > -1;
+        return moneyTplArray.includes(tpl);
     }
 
     /* Gets currency TPL from TAG
@@ -324,15 +322,7 @@ class HelpFunctions
         {
             for (let index in body.scheme_items)
             {
-                let item = undefined;
-
-                for (let element of pmcData.Inventory.items)
-                {
-                    if (body.scheme_items[index].id === element._id)
-                    {
-                        item = element;
-                    }
-                }
+                let item = pmcData.Inventory.items.find(i => i._id === body.scheme_items[index].id);
 
                 if (item !== undefined)
                 {
@@ -351,7 +341,7 @@ class HelpFunctions
         }
 
         // find all items with currency _tpl id
-        const moneyItems = this.findMoney("tpl", pmcData, currencyTpl);
+        const moneyItems = this.findBarterItems("tpl", pmcData, currencyTpl);
 
         // prepare a price for barter
         let barterPrice = 0;
@@ -417,7 +407,7 @@ class HelpFunctions
     * input: object of player data, string BarteredItem ID
     * output: array of Item from inventory
     * */
-    findMoney(by, pmcData, barter_itemID)
+    findBarterItems(by, pmcData, barter_itemID)
     { // find required items to take after buying (handles multiple items)
         const barterIDs = typeof barter_itemID === "string" ? [barter_itemID] : barter_itemID;
         let itemsArray = [];
@@ -435,40 +425,6 @@ class HelpFunctions
         return itemsArray;
     }
 
-    /*
-    * Finds an item given its id using linear search
-    */
-    findItemById(items, id)
-    {
-        for (let item of items)
-        {
-            if (item._id === id)
-            {
-                return item;
-            }
-        }
-
-        return false;
-    }
-
-    /*
-    * Find in the player profile the template of an given id
-    * input : character data, item id from inventory
-    * output : the whole item object, false if not found
-    */
-    findInventoryItemById(pmcData, idToFind)
-    {
-        for (let item of pmcData.Inventory.items)
-        {
-            if (item._id == idToFind)
-            {
-                return item;
-            }
-        }
-
-        return false;
-    }
-
     /* Recursively checks if the given item is
     * inside the stash, that is it has the stash as
     * ancestor with slotId=hideout
@@ -484,7 +440,7 @@ class HelpFunctions
                 return true;
             }
 
-            container = this.findItemById(pmcData.Inventory.items, container.parentId);
+            container = pmcData.Inventory.items.find(i => i._id === container.parentId);
 
             if (!container)
             {
@@ -548,50 +504,15 @@ class HelpFunctions
 
         if (!skip)
         {
-            let StashFS_2D = this.recheckInventoryFreeSpace(pmcData, sessionID);
+            const request = {
+                "items": [{
+                    "item_id": currency,
+                    "count": calcAmount,
+                }],
+                "tid": body.tid
+            };
 
-            // creating item
-            let stashSize = this.getPlayerStash(sessionID);
-
-            wholeLoop:
-            for (let My = 0; My <= stashSize[1]; My++)
-            {
-                for (let Mx = 0; Mx <= stashSize[0]; Mx++)
-                {
-                    if (StashFS_2D[My][Mx] !== 0)
-                    {
-                        continue;
-                    }
-
-                    let amount = calcAmount;
-                    if (amount > maxStackSize)
-                    {
-                        calcAmount -= maxStackSize;
-                        amount = maxStackSize;
-                    }
-                    else
-                    {
-                        calcAmount = 0;
-                    }
-
-                    let MoneyItem = {
-                        "_id": utility.generateNewItemId(),
-                        "_tpl": currency,
-                        "parentId": pmcData.Inventory.stash,
-                        "slotId": "hideout",
-                        "location": { x: Mx, y: My, r: "Horizontal" },
-                        "upd": { "StackObjectsCount": amount }
-                    };
-
-                    pmcData.Inventory.items.push(MoneyItem);
-                    output.items.new.push(MoneyItem);
-
-                    if (calcAmount <= 0)
-                    {
-                        break wholeLoop;
-                    }
-                }
-            }
+            output = inventory_f.inventoryController.addItem(pmcData, request, output, sessionID, null, false);
         }
 
         // set current sale sum
@@ -608,7 +529,7 @@ class HelpFunctions
     * input: null
     * output: [stashSizeWidth, stashSizeHeight]
     * */
-    getPlayerStash(sessionID)
+    getPlayerStashSize(sessionID)
     { //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
         let stashTPL = this.getStashType(sessionID);
         let stashX = (database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0) ? database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
@@ -661,7 +582,7 @@ class HelpFunctions
     * inputs Item template ID, Item Id, InventoryItem (item from inventory having _id and _tpl)
     * outputs [width, height]
     * */
-    getSize(itemtpl, itemID, InventoryItem)
+    getItemSize(itemtpl, itemID, InventoryItem)
     { // -> Prepares item Width and height returns [sizeX, sizeY]
         return this.getSizeByInventoryItemHash(itemtpl, itemID, this.getInventoryItemHash(InventoryItem));
     }
@@ -790,7 +711,7 @@ class HelpFunctions
         for (let childitem of items)
         {
             // Include itself.
-            if (childitem._id == itemID)
+            if (childitem._id === itemID)
             {
                 list.push(childitem);
                 continue;
@@ -830,7 +751,7 @@ class HelpFunctions
     */
     isDogtag(itemId)
     {
-        return itemId === "59f32bb586f774757e1e8442" || itemId === "59f32c3b86f77472a31742f0" ? true : false;
+        return itemId === "59f32bb586f774757e1e8442" || itemId === "59f32c3b86f77472a31742f0";
     }
 
     isNotSellable(itemid)
@@ -842,15 +763,7 @@ class HelpFunctions
             "5696686a4bdc2da3298b456a" // dolars
         ];
 
-        for (let tpl of items)
-        {
-            if (itemid === tpl)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return items.includes(itemid);
     }
 
     /* Gets the identifier for a child using slotId, locationX and locationY. */

@@ -49,9 +49,9 @@ class HideoutController
             }
 
             if (helpfunc_f.helpFunctions.isMoneyTpl(item.inventoryItem._tpl)
-            && item.inventoryItem.upd
-            && item.inventoryItem.upd.StackObjectsCount
-            && item.inventoryItem.upd.StackObjectsCount > item.requestedItem.count)
+                && item.inventoryItem.upd
+                && item.inventoryItem.upd.StackObjectsCount
+                && item.inventoryItem.upd.StackObjectsCount > item.requestedItem.count)
             {
                 item.inventoryItem.upd.StackObjectsCount -= item.requestedItem.count;
             }
@@ -225,9 +225,7 @@ class HideoutController
         }
         else
         {
-            if (!hideoutArea.slots[0]
-            && !hideoutArea.slots[0].item[0]
-            && !hideoutArea.slots[0].item[0]._tpl)
+            if (!hideoutArea.slots[0] || !hideoutArea.slots[0].item[0] || !hideoutArea.slots[0].item[0]._tpl)
             {
                 logger.logError(`Could not find item to take out of slot 0 for areaType ${hideoutArea.type}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(output);
@@ -290,10 +288,15 @@ class HideoutController
         for (let requestedItem of body.items)
         {
             const inventoryItem = pmcData.Inventory.items.find(item => item._id === requestedItem.id);
+            if (!inventoryItem)
+            {
+                logger.logError(`Could not find item requested by ScavCase with id ${requestedItem.id}`);
+                return helpfunc_f.helpFunctions.appendErrorToOutput(output);
+            }
 
             if (inventoryItem.upd
-            && inventoryItem.upd.StackObjectsCount
-            && inventoryItem.upd.StackObjectsCount > requestedItem.count)
+                && inventoryItem.upd.StackObjectsCount
+                && inventoryItem.upd.StackObjectsCount > requestedItem.count)
             {
                 inventoryItem.upd.StackObjectsCount -= requestedItem.count;
             }
@@ -332,7 +335,7 @@ class HideoutController
                 let randomKey = Object.keys(database_f.database.tables.templates.items)[random];
                 let tempItem = database_f.database.tables.templates.items[randomKey];
 
-                if (tempItem._props.Rarity && tempItem._props.Rarity === rarityType)
+                if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
                     products.push({
                         "_id": utility.generateNewItemId(),
@@ -370,9 +373,7 @@ class HideoutController
     {
         let output = item_f.itemServer.getOutput();
 
-        const bitCoinCount = pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products
-                          && pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products.length;
-
+        const bitCoinCount = pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products.length;
         if (!bitCoinCount)
         {
             logger.logError("No bitcoins are ready for pickup!");
@@ -656,9 +657,9 @@ class HideoutController
             }
             else
             {
-                let resourceValue = generatorArea.slots[i].item[0].upd
-                                 && generatorArea.slots[i].item[0].upd.Resource
-                                 && generatorArea.slots[i].item[0].upd.Resource.Value;
+                let resourceValue = (generatorArea.slots[i].item[0].upd && generatorArea.slots[i].item[0].upd.Resource)
+                    ? generatorArea.slots[i].item[0].upd.Resource.Value
+                    : null;
                 if (!resourceValue)
                 {
                     resourceValue = 100 - fuelDrainRate;
@@ -714,10 +715,9 @@ class HideoutController
             }
             else
             {
-                let resourceValue = airFilterArea.slots[i].item[0].upd
-                                 && airFilterArea.slots[i].item[0].upd.Resource
-                                 && airFilterArea.slots[i].item[0].upd.Resource.Value;
-
+                let resourceValue = (airFilterArea.slots[i].item[0].upd && airFilterArea.slots[i].item[0].upd.Resource)
+                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
+                    : null;
                 if (!resourceValue)
                 {
                     resourceValue = 300 - filterDrainRate;

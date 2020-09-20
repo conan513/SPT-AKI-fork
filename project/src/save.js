@@ -35,7 +35,7 @@ class SaveServer
                     "health": {},
                     "effects": {}
                 }
-            }
+            };
         }
     }
 

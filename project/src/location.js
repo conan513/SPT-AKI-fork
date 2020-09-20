@@ -28,24 +28,33 @@ class LocationServer
             return output;
         }
 
-        let forced = location.loot.Forced;
+        let forced = location.loot.forced;
+        let mounted = location.loot.mounted;
         let statics = location.loot.static;
-        let dynamic = location.loot.Dynamic;
+        let dynamic = location.loot.dynamic;
         output.Loot = [];
+
+        // mounted weapons
+        for (let i in mounted)
+        {
+            let data = mounted[i];
+
+            if (data.Id in ids)
+                continue;
+
+            ids[data.Id] = true;
+            output.Loot.push(data);
+        }
 
         // forced loot
         for (let i in forced)
         {
             let data = forced[i].data[0];
-            if (data.Id in ids)
-            {
-                continue;
-            }
-            else
-            {
-                ids[data.Id] = true;
-            }
 
+            if (data.Id in ids)
+                continue;
+
+            ids[data.Id] = true;
             output.Loot.push(data);
         }
 
@@ -207,7 +216,7 @@ class LocationServer
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
-        let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0))
+        let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0));
         let maxProbability = container.maxProbability;
         let minCount = container.minCount;
 
@@ -222,7 +231,7 @@ class LocationServer
         }
 
         for (let i = 0; i < minCount; i++)
-        {            
+        {
             let item = {};
             let result = { success: false };
             let maxAttempts = 20;
@@ -237,18 +246,25 @@ class LocationServer
 
             if (!result.success)
                 break;
-            
+
             container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(container2D, result.x, result.y, item.width, item.height, result.rotation);
 
             let rot = result.rotation ? 1 : 0;
-            items.push({
+            let itemJson = {
                 "_id": idPrefix + idSuffix.toString(16),
                 "_tpl": item.id,
                 "parentId": parentId,
                 "slotId": "main",
                 "location": { "x": result.x, "y": result.y, "r": rot}
-            });
+            };
 
+            if (item.stackMax > 0)
+            {
+                let stack = utility.getRandomInt(item.stackMin, item.stackMax);
+                itemJson.upd = { "StackObjectsCount": stack };
+            }
+
+            items.push(itemJson);
             idSuffix++;
         }
     }
