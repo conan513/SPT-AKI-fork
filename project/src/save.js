@@ -37,8 +37,6 @@ class SaveServer
                 }
             }
         }
-
-        logger.logData(this.users);
     }
 
     initializeDialogue(sessionID)
@@ -48,7 +46,11 @@ class SaveServer
 
     initializeProfile(sessionID)
     {
-        this.users[sessionID].profiles = {};
+        this.users[sessionID].profiles = {
+            "pmc": {},
+            "scav": {}
+        };
+        
         this.loadProfilesFromDisk(sessionID);
     }
 
@@ -122,12 +124,12 @@ class SaveServer
 
     getOpenSessions()
     {
-        return Object.keys(this.profiles);
+        return Object.keys(this.users);
     }
 
     getProfile(sessionID, type)
     {
-        if (!(sessionID in this.profiles))
+        if (!(sessionID in this.users[sessionID]))
         {
             this.initializeProfile(sessionID);
             this.initializeDialogue(sessionID);
@@ -145,11 +147,8 @@ class SaveServer
 
         for (let sessionID of this.getOpenSessions())
         {
-            if (sessionID in this.users)
-            {
-                json.write(this.getDialoguePath(sessionID), this.users[sessionID].dialogues);
-                json.write(this.getProfilePath(sessionID), this.profiles[sessionID].pmc);
-            }
+            json.write(this.getDialoguePath(sessionID), this.users[sessionID].dialogues);
+            json.write(this.getProfilePath(sessionID), this.users[sessionID].profiles.pmc);
         }
     }
 }

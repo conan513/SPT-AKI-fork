@@ -4,7 +4,7 @@
 		"nickname": "",
 		"email": "Senko-san",
 		"password": "password",
-		"wipe": false,
+		"wipe": true,
 		"edition": "Edge Of Darkness"
 	}
 }
