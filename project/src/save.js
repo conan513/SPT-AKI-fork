@@ -116,7 +116,7 @@ class SaveController
     {
         save_f.saveServer.onSave();
         events.scheduledEventHandler.saveToDisk();
-        logger.logSuccess("Saved profiles");
+        //logger.logSuccess("Saved profiles");
     }
 }
 
