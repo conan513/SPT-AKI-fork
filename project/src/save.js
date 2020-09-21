@@ -4,152 +4,68 @@ class SaveServer
 {
     constructor()
     {
-        this.users = {};
-
-        // refactor this
-        this.accounts = {};
+        this.profiles = {};
+        this.onLoadCallback = {};
+        this.onSaveCallback = {};
     }
 
-    initialize()
+    createVPath()
     {
-        this.accounts = json.parse(json.read(db.user.configs.accounts));
-
-        const files = utility.getDirList("user/profiles/");
+        let paths = [];
+        let files = utility.getFileList("user/profiles/");
 
         for (let file of files)
         {
-            this.users[file] = {
-                "info": {},
-                "profiles": {
-                    "pmc": {},
-                    "scav": {}
-                },
-                "dialogues": {},
-                "suits": {},
-                "weaponpresets": {},
-                "insurance": {},
-                "inraid": {
-                    "location": "none"
-                },
-                "vitality": {
-                    "health": {},
-                    "effects": {}
-                }
-            };
+            file = file.split('.').slice(0, -1).join('.');
+            paths[file] = `user/profiles/${file}.json`;
         }
+
+        db.user.profiles = paths;
     }
 
-    initializeDialogue(sessionID)
+    onLoad()
     {
-        this.users[sessionID].dialogues = json.parse(json.read(this.getDialoguePath(sessionID)));
-    }
+        // get virual paths
+        this.createVPath();
 
-    initializeProfile(sessionID)
-    {
-        this.users[sessionID].profiles = {
-            "pmc": {},
-            "scav": {}
-        };
-        
-        this.loadProfilesFromDisk(sessionID);
-    }
-
-    /* resets the healh response */
-    initializeHealth(sessionID)
-    {
-        this.users[sessionID].vitality = {
-            "health": {
-                "Hydration": 0,
-                "Energy": 0,
-                "Head": 0,
-                "Chest": 0,
-                "Stomach": 0,
-                "LeftArm": 0,
-                "RightArm": 0,
-                "LeftLeg": 0,
-                "RightLeg": 0
-            },
-            "effects": {
-                "Head": {},
-                "Chest": {},
-                "Stomach": {},
-                "LeftArm": {},
-                "RightArm": {},
-                "LeftLeg": {},
-                "RightLeg": {}
-            }
-        }
-    }
-
-    /* resets items to send on flush */
-    initializeInsurance(sessionID)
-    {
-        this.users[sessionID].insurance = {};
-    }
-
-    loadProfilesFromDisk(sessionID)
-    {
-        this.users[sessionID].profiles.pmc = json.parse(json.read(this.getProfilePath(sessionID)));
-        profile_f.profileController.generateScav(sessionID);
-    }
-
-    getAccountPath(sessionID)
-    {
-        return "user/profiles/" + sessionID + "/";
-    }
-
-    getProfilePath(sessionID)
-    {
-        let pmcPath = db.user.profiles.character;
-        return pmcPath.replace("__REPLACEME__", sessionID);
-    }
-
-    getDialoguePath(sessionID)
-    {
-        let path = db.user.profiles.dialogue;
-        return path.replace("__REPLACEME__", sessionID);
-    }
-
-    getSuitsPath(sessionID)
-    {
-        let path = db.user.profiles.suits;
-        return path.replace("__REPLACEME__", sessionID);
-    }
-
-    getWeaponBuildPath(sessionID)
-    {
-        let path = db.user.profiles.weaponbuilds;
-        return path.replace("__REPLACEME__", sessionID);
-    }
-
-    getOpenSessions()
-    {
-        return Object.keys(this.users);
-    }
-
-    getProfile(sessionID, type)
-    {
-        if (!(sessionID in this.users[sessionID]))
+        // load profiles
+        for (const file in db.user.profiles)
         {
-            this.initializeProfile(sessionID);
-            this.initializeDialogue(sessionID);
-            this.initializeHealth(sessionID);
-            this.initializeInsurance(sessionID);
+            this.onLoadProfile(file);
         }
-
-        return this.users[sessionID].profiles[type];
     }
 
-    saveToDisk()
+    onSave()
     {
-        // accounts (TODO: REFACTOR ACCOUNTS)
-        json.write(db.user.configs.accounts, this.accounts);
-
-        for (let sessionID of this.getOpenSessions())
+        // load profiles
+        for (const sessionID in this.profiles)
         {
-            json.write(this.getDialoguePath(sessionID), this.users[sessionID].dialogues);
-            json.write(this.getProfilePath(sessionID), this.users[sessionID].profiles.pmc);
+            this.onSaveProfile(sessionID);
         }
+    }
+
+    onLoadProfile(sessionID)
+    {
+        // initialize profile
+        this.profiles[sessionID] = json.parse(json.read(db.user.profiles[sessionID])) || {};
+
+        // run callbacks
+        for (const callback in this.onLoadCallback)
+        {
+            this.profiles[sessionID] = this.onLoadCallback[callback](this.profiles[sessionID]);
+        }
+    }
+
+    onSaveProfile(sessionID)
+    {
+        // run callbacks
+        for (const callback in this.onSaveCallback)
+        {
+            this.profiles[sessionID] = this.onSaveCallback[callback](this.profiles[sessionID]);
+        }
+
+        // save profile
+        json.write(`user/profiles/${sessionID}.json`, this.profiles[sessionID]);
     }
 }
 
@@ -161,12 +77,12 @@ class SaveController
         {
             process.on("exit", (code) =>
             {
-                this.saveOpenSessions();
+                this.onSave();
             });
 
             process.on("SIGINT", (code) =>
             {
-                this.saveOpenSessions();
+                this.onSave();
                 logger.logInfo("Ctrl-C, exiting ...");
                 process.exit(1);
             });
@@ -176,15 +92,15 @@ class SaveController
         {
             setInterval(function()
             {
-                this.saveOpenSessions();
+                this.onSave();
                 logger.logSuccess("Player progress autosaved!");
             }, save_f.saveConfig.saveIntervalSec * 1000);
         }
     }
 
-    saveOpenSessions()
+    onSave()
     {
-        save_f.saveServer.saveToDisk();
+        save_f.saveServer.onSave();
         events.scheduledEventHandler.saveToDisk();
     }
 }
@@ -194,20 +110,20 @@ class SaveCallback
     constructor()
     {
         server.addStartCallback("loadSavehandler", this.load.bind());
-        server.addReceiveCallback("SAVE", this.saveCallback.bind());
+        server.addReceiveCallback("SAVE", this.save.bind());
     }
 
     load()
     {
-        save_f.saveServer.initialize();
+        save_f.saveServer.onLoad();
         save_f.saveController.initialize();
     }
 
-    saveCallback(sessionID, req, resp, body, output)
+    save(sessionID, req, resp, body, output)
     {
         if (save_f.saveConfig.saveOnReceive)
         {
-            save_f.saveController.saveOpenSessions();
+            save_f.saveController.onSave();
         }
     }
 }

@@ -8,14 +8,9 @@ class AccountServer
 {
     find(sessionID)
     {
-        for (let accountID in save_f.saveServer.accounts)
+        if (sessionID in save_f.saveServer.profiles)
         {
-            let account = save_f.saveServer.accounts[accountID];
-
-            if (account.id === sessionID)
-            {
-                return account;
-            }
+            return save_f.saveServer.profiles[sessionID].info;
         }
 
         return undefined;
@@ -23,23 +18,23 @@ class AccountServer
 
     isWiped(sessionID)
     {
-        return save_f.saveServer.accounts[sessionID].wipe;
+        return save_f.saveServer.profiles[sessionID].info.wipe;
     }
 
     setWipe(sessionID, state)
     {
-        save_f.saveServer.accounts[sessionID].wipe = state;
+        save_f.saveServer.profiles[sessionID].info.wipe = state;
     }
 
     login(info)
     {
-        for (let accountID in save_f.saveServer.accounts)
+        for (let sessionID in save_f.saveServer.profiles)
         {
-            let account = save_f.saveServer.accounts[accountID];
+            let account = save_f.saveServer.profiles[sessionID].info;
 
             if (info.email === account.email && info.password === account.password)
             {
-                return accountID;
+                return sessionID;
             }
         }
 
@@ -48,93 +43,82 @@ class AccountServer
 
     register(info)
     {
-        for (let accountID in save_f.saveServer.accounts)
+        for (const sessionID in save_f.saveServer.profiles)
         {
-            if (info.email === save_f.saveServer.accounts[accountID].email)
+            if (info.email === save_f.saveServer.profiles[sessionID].info.email)
             {
-                return accountID;
+                return "";
             }
         }
 
-        let accountID = utility.generateNewAccountId();
-
-        save_f.saveServer.accounts[accountID] = {
-            "id": accountID,
-            "nickname": "",
-            "email": info.email,
-            "password": info.password,
-            "wipe": true,
-            "edition": info.edition
-        };
-
-        save_f.saveServer.saveToDisk();
-        return "";
+        return this.createAccount(info);
     }
 
-    remove(info)
+    createAccount(info)
     {
-        let accountID = this.login(info);
+        const sessionID = utility.generateNewAccountId();
 
-        if (accountID !== "")
-        {
-            delete save_f.saveServer.accounts[accountID];
-            utility.removeDir("user/profiles/" + accountID + "/");
-            save_f.saveServer.saveToDisk();
-        }
+        save_f.saveServer.profiles[sessionID] = {
+            "info": {
+                "id": sessionID,
+                "nickname": "",
+                "email": info.email,
+                "password": info.password,
+                "wipe": true,
+                "edition": info.edition
+            }
+        };
 
-        return accountID;
+        return sessionID;
     }
 
     changeEmail(info)
     {
-        let accountID = this.login(info);
+        const sessionID = this.login(info);
 
-        if (accountID !== "")
+        if (sessionID)
         {
-            save_f.saveServer.accounts[accountID].email = info.change;
-            save_f.saveServer.saveToDisk();
+            save_f.saveServer.profiles[sessionID].info.email = info.change;
         }
 
-        return accountID;
+        return sessionID;
     }
 
     changePassword(info)
     {
-        let accountID = this.login(info);
+        const sessionID = this.login(info);
 
-        if (accountID !== "")
+        if (sessionID)
         {
-            save_f.saveServer.accounts[accountID].password = info.change;
-            save_f.saveServer.saveToDisk();
+            save_f.saveServer.profiles[sessionID].info.password = info.change;
         }
 
-        return accountID;
+        return sessionID;
     }
 
     wipe(info)
     {
-        let accountID = this.login(info);
+        const sessionID = this.login(info);
 
-        if (accountID !== "")
+        if (sessionID)
         {
-            save_f.saveServer.accounts[accountID].edition = info.edition;
-            this.setWipe(accountID, true);
-            save_f.saveServer.saveToDisk();
+            save_f.saveServer.profiles[sessionID].info.edition = info.edition;
+            this.setWipe(sessionID, true);
         }
 
-        return accountID;
+        return sessionID;
     }
 
     getReservedNickname(sessionID)
     {
-        return save_f.saveServer.accounts[sessionID].nickname;
+        return save_f.saveServer.profiles[sessionID].info.nickname;
     }
 
     nicknameTaken(info)
     {
-        for (let accountID in save_f.saveServer.accounts)
+        for (let sessionID in save_f.saveServer.profiles)
         {
-            if (info.nickname.toLowerCase() === save_f.saveServer.accounts[accountID].nickname.toLowerCase())
+            if (info.nickname.toLowerCase() === save_f.saveServer.profiles[sessionID].info.nickname.toLowerCase())
             {
                 return true;
             }
@@ -148,10 +132,11 @@ class AccountCallbacks
 {
     constructor()
     {
+        // TODO: REFACTOR THIS
         router.addStaticRoute("/launcher/server/connect",          this.connect.bind());
+
         router.addStaticRoute("/launcher/profile/login",           this.login.bind());
         router.addStaticRoute("/launcher/profile/register",        this.register.bind());
-        router.addStaticRoute("/launcher/profile/remove",          this.remove.bind());
         router.addStaticRoute("/launcher/profile/get",             this.get.bind());
         router.addStaticRoute("/launcher/profile/change/email",    this.changeEmail.bind());
         router.addStaticRoute("/launcher/profile/change/password", this.changePassword.bind());
@@ -163,9 +148,10 @@ class AccountCallbacks
         account_f.accountServer.initialize();
     }
 
+    // TODO: REFACTOR THIS
     connect()
     {
-        return json.stringify({
+        return response_f.responseController.noBody({
             "backendUrl": server.getBackendUrl(),
             "name": server.getName(),
             "editions": Object.keys(db.profile)
@@ -174,45 +160,38 @@ class AccountCallbacks
 
     login(url, info, sessionID)
     {
-        let output = account_f.accountServer.login(info);
-        return (output === "") ? "FAILED" : output;
+        const output = account_f.accountServer.login(info);
+        return (!output) ? "FAILED" : output;
     }
 
     register(url, info, sessionID)
     {
-        let output = account_f.accountServer.register(info);
-        return (output !== "") ? "FAILED" : "OK";
-    }
-
-    remove(url, info, sessionID)
-    {
-        let output = account_f.accountServer.remove(info);
-        return (output === "") ? "FAILED" : "OK";
+        const output = account_f.accountServer.register(info);
+        return (!output) ? "FAILED" : "OK";
     }
 
     get(url, info, sessionID)
     {
-        let accountId = account_f.accountServer.login(info);
-        let output = account_f.accountServer.find(accountId);
-        return json.stringify(output);
+        const output = account_f.accountServer.find(account_f.accountServer.login(info));
+        return response_f.responseController.noBody(output);
     }
 
     changeEmail(url, info, sessionID)
     {
-        let output = account_f.accountServer.changeEmail(info);
-        return (output === "") ? "FAILED" : "OK";
+        const output = account_f.accountServer.changeEmail(info);
+        return (!output) ? "FAILED" : "OK";
     }
 
     changePassword(url, info, sessionID)
     {
-        let output = account_f.accountServer.changePassword(info);
-        return (output === "") ? "FAILED" : "OK";
+        const output = account_f.accountServer.changePassword(info);
+        return (!output) ? "FAILED" : "OK";
     }
 
     wipe(url, info, sessionID)
     {
-        let output = account_f.accountServer.wipe(info);
-        return (output === "") ? "FAILED" : "OK";
+        const output = account_f.accountServer.wipe(info);
+        return (!output) ? "FAILED" : "OK";
     }
 }
 
