@@ -7,6 +7,26 @@ class InsuranceServer
         events.scheduledEventHandler.addEvent("insuranceReturn", this.processReturn.bind(this));
     }
 
+    resetInsurance(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        profile.insurance = {};
+        return profile;
+    }
+
+    onSave(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        if ("insurance" in profile)
+        {
+            delete profile.insurance;
+        }
+
+        return profile;
+    }
+
     checkExpiredInsurance()
     {
         let scheduledEvents = events.scheduledEventHandler.scheduledEvents;
@@ -91,8 +111,8 @@ class InsuranceServer
             actualItem.slotId = "hideout";
         }
 
-        save_f.users[sessionID].insurance[insuredItem.tid] = save_f.users[sessionID].insurance[insuredItem.tid] || [];
-        save_f.users[sessionID].insurance[insuredItem.tid].push(actualItem);
+        save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] = save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] || [];
+        save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
         this.remove(pmcData, insuredItem.itemId);
     }
 
@@ -133,12 +153,7 @@ class InsuranceServer
     storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
     {
         let gears = [];
-        let parentItems = {};
-
         let securedContainerItems = offraid_f.getSecuredContainer(offraidData.profile.Inventory.items);
-        let offraidGearItems = offraid_f.getPlayerGear(offraidData.profile.Inventory.items);
-
-        let notInSecuredContainerHash = {};
 
         const preRaidGearHash = {};
         preRaidGear.forEach(i => preRaidGearHash[i._id] = i);
@@ -149,12 +164,10 @@ class InsuranceServer
         const pmcItemsHash = {};
         pmcData.Inventory.items.forEach(i => pmcItemsHash[i._id] = i);
 
-        let parentIds = [];
         for (let insuredItem of pmcData.InsuredItems)
         {
             if (preRaidGearHash[insuredItem.itemId] && !(securedContainerItemHash[insuredItem.itemId]) && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined") && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
             {
-                let item = pmcItemsHash[insuredItem.itemId];
                 gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsHash[insuredItem.itemId], "sessionID": sessionID });
             }
         }
@@ -168,7 +181,7 @@ class InsuranceServer
     /* sends stored insured items as message */
     sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in save_f.saveServer.users[sessionID].insurance)
+        for (let traderId in save_f.saveServer.profiles[sessionID].insurance)
         {
             let trader = trader_f.traderServer.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.database.tables.traders[traderId].dialogue;
@@ -197,12 +210,12 @@ class InsuranceServer
                 "data": {
                     "traderId": traderId,
                     "messageContent": messageContent,
-                    "items": save_f.saveServer.users[sessionID].insurance[traderId]
+                    "items": save_f.saveServer.profiles[sessionID].insurance[traderId]
                 }
             });
         }
 
-        save_f.saveServer.initializeInsurance(sessionID);
+        this.resetInsurance(sessionID);
     }
 
     processReturn(event)
@@ -323,9 +336,22 @@ class InsuranceCallback
 {
     constructor()
     {
+        save_f.saveServer.onLoadCallback["insurance"] = this.onLoad.bind();
+        save_f.saveServer.onSaveCallback["insurance"] = this.onSave.bind();
+        
         server.addReceiveCallback("INSURANCE", this.checkInsurance.bind());
         router.addStaticRoute("/client/insurance/items/list/cost", this.getInsuranceCost.bind());
         item_f.itemServer.addRoute("Insure", this.insure.bind());
+    }
+
+    onLoad(sessionID)
+    {
+        return insurance_f.insuranceServer.resetInsurance(sessionID);
+    }
+
+    onSave(sessionID)
+    {
+        return insurance_f.insuranceServer.onSave(sessionID);
     }
 
     checkInsurance(sessionID, req, resp, body, output)

@@ -3,6 +3,36 @@
 /* HealthServer class maintains list of health for each sessionID in memory. */
 class HealthServer
 {
+    resetHealth(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        profile.vitality  = {
+            "health": {
+                "Hydration": 0,
+                "Energy": 0,
+                "Head": 0,
+                "Chest": 0,
+                "Stomach": 0,
+                "LeftArm": 0,
+                "RightArm": 0,
+                "LeftLeg": 0,
+                "RightLeg": 0
+            },
+            "effects": {
+                "Head": {},
+                "Chest": {},
+                "Stomach": {},
+                "LeftArm": {},
+                "RightArm": {},
+                "LeftLeg": {},
+                "RightLeg": {}
+            }
+        };
+
+        return profile;
+    }
+
     offraidHeal(pmcData, body, sessionID)
     {
         let output = item_f.itemServer.getOutput();
@@ -77,9 +107,10 @@ class HealthServer
     /* stores in-raid player health */
     saveHealth(pmcData, info, sessionID)
     {
-        let nodeHealth = save_f.saveServer.users[sessionID].vitality.health[sessionID];
-        let nodeEffects = save_f.saveServer.users[sessionID].vitality.effects;
+        let nodeHealth = save_f.saveServer.profiles[sessionID].vitality.health;
+        let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
         let BodyPartsList = info.Health;
+
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
 
@@ -106,7 +137,7 @@ class HealthServer
     /* stores the player health changes */
     updateHealth(info, sessionID)
     {
-        let node = save_f.saveServer.users[sessionID].vitality.health[sessionID];
+        let node = save_f.saveServer.profiles[sessionID].vitality.health;
 
         switch (info.type)
         {
@@ -124,8 +155,8 @@ class HealthServer
             /* store state and make server aware to kill all body parts */
             case "Died":
                 node = {
-                    "Hydration": save_f.saveServer.users[sessionID].vitality.health[sessionID].Hydration,
-                    "Energy": save_f.saveServer.users[sessionID].vitality.health[sessionID].Energy,
+                    "Hydration": save_f.saveServer.profiles[sessionID].vitality.health.Hydration,
+                    "Energy": save_f.saveServer.profiles[sessionID].vitality.health.Energy,
                     "Head": -1,
                     "Chest": -1,
                     "Stomach": -1,
@@ -137,7 +168,7 @@ class HealthServer
                 break;
         }
 
-        save_f.saveServer.users[sessionID].vitality.health[sessionID] = node;
+        save_f.saveServer.profiles[sessionID].vitality.health = node;
     }
 
     healthTreatment(pmcData, info, sessionID)
@@ -147,18 +178,20 @@ class HealthServer
             "tid": "54cb57776803fa99248b456e",
             "scheme_items": info.items
         };
+
         helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID);
 
         let BodyParts = info.difference.BodyParts;
         let BodyPartKeys = Object.keys(BodyParts);
         let healthInfo = { "IsAlive": true, "Health": {} };
+
         for (let key of BodyPartKeys)
         {
             let bodyPart = info.difference.BodyParts[key];
             healthInfo.Health[key] = {};
             healthInfo.Health[key].Current = Math.round(pmcData.Health.BodyParts[key].Health.Current + bodyPart.Health);
 
-            if ("Effects" in bodyPart && bodyPart.Effects != undefined && bodyPart.Effects != null)
+            if ("Effects" in bodyPart && bodyPart.Effects)
             {
                 healthInfo.Health[key].Effects = bodyPart.Effects;
             }
@@ -175,7 +208,7 @@ class HealthServer
     {
         let bodyPart = pmcData.Health.BodyParts[info.bodyPart];
 
-        if (bodyPart.Effects == undefined)
+        if (!bodyPart.Effects)
         {
             bodyPart.Effects = {};
         }
@@ -189,12 +222,15 @@ class HealthServer
 
         // delete empty property to prevent client bugs
         if (this.isEmpty(bodyPart.Effects))
+        {
             delete bodyPart.Effects;
+        }
     }
 
     removeEffect(pmcData, sessionID, info)
     {
         let bodyPart = pmcData.Health.BodyParts[info.bodyPart];
+
         if (!("Effects" in bodyPart))
         {
             return;
@@ -211,7 +247,9 @@ class HealthServer
 
         // delete empty property to prevent client bugs
         if (this.isEmpty(bodyPart.Effects))
+        {
             delete bodyPart.Effects;
+        }
     }
 
     /* apply the health changes to the profile */
@@ -222,7 +260,7 @@ class HealthServer
             return;
         }
 
-        let nodeHealth = save_f.saveServer.users[sessionID].vitality.health[sessionID];
+        let nodeHealth = save_f.saveServer.profiles[sessionID].vitality.health;
         let keys = Object.keys(nodeHealth);
 
         for (let item of keys)
@@ -246,7 +284,8 @@ class HealthServer
             }
         }
 
-        let nodeEffects = save_f.saveServer.users[sessionID].vitality.effects;
+        let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
+        
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
             // clear effects
@@ -265,7 +304,7 @@ class HealthServer
         });
 
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-        save_f.saveServer.initializeHealth(sessionID);
+        this.resetHealth(sessionID);
     }
 
     isEmpty(map)
@@ -286,11 +325,18 @@ class HealthCallbacks
 {
     constructor()
     {
+        save_f.saveServer.onLoadCallback["health"] = this.onLoad.bind();
+
         router.addStaticRoute("/player/health/sync", this.syncHealth.bind());
         router.addStaticRoute("/player/health/events", this.updateHealth.bind());
         item_f.itemServer.addRoute("Eat", this.offraidEat.bind());
         item_f.itemServer.addRoute("Heal", this.offraidHeal.bind());
         item_f.itemServer.addRoute("RestoreHealth", this.healthTreatment.bind());
+    }
+
+    onLoad(sessionID)
+    {
+        return health_f.healthServer.resetHealth(sessionID);
     }
 
     syncHealth(url, info, sessionID)

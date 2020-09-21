@@ -6,19 +6,34 @@
 */
 class ProfileController
 {
+    onLoad(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        if (!("characters" in profile))
+        {
+            profile.characters = {
+                "pmc": {},
+                "scav": {}
+            };
+        }
+        
+        return profile;
+    }
+
     getPmcProfile(sessionID)
     {
-        return save_f.saveServer.getProfile(sessionID, "pmc");
+        return save_f.saveServer.profiles[sessionID].characters.pmc;
     }
 
     getScavProfile(sessionID)
     {
-        return save_f.saveServer.getProfile(sessionID, "scav");
+        return save_f.saveServer.profiles[sessionID].characters.scav;
     }
 
     setScavProfile(sessionID, scavData)
     {
-        save_f.saveServer.users[sessionID].profiles.scav = scavData;
+        save_f.saveServer.profiles[sessionID].characters.scav = scavData;
     }
 
     getCompleteProfile(sessionID)
@@ -27,8 +42,8 @@ class ProfileController
 
         if (!account_f.accountServer.isWiped(sessionID))
         {
-            output.push(profile_f.profileController.getPmcProfile(sessionID));
-            output.push(profile_f.profileController.getScavProfile(sessionID));
+            output.push(this.getPmcProfile(sessionID));
+            output.push(this.getScavProfile(sessionID));
         }
 
         return output;
@@ -37,46 +52,49 @@ class ProfileController
     createProfile(info, sessionID)
     {
         let account = account_f.accountServer.find(sessionID);
-        let folder = save_f.saveServer.getAccountPath(account.id);
         let pmcData = json.parse(json.read(db.profile[account.edition]["character_" + info.side.toLowerCase()]));
         let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
 
         // delete existing profile
-        if (save_f.saveServer.users[account.id].profiles)
+        if (sessionID in save_f.saveServer.profiles)
         {
-            delete save_f.saveServer.users[account.id].profiles;
+            delete save_f.saveServer.profiles[sessionID];
             events.scheduledEventHandler.wipeScheduleForSession(sessionID);
         }
 
         // pmc
-        pmcData._id = "pmc" + account.id;
-        pmcData.aid = account.id;
-        pmcData.savage = "scav" + account.id;
+        pmcData._id = "pmc" + sessionID;
+        pmcData.aid = sessionID;
+        pmcData.savage = "scav" + sessionID;
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = Math.floor(new Date() / 1000);
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
 
-        // storage
-        storage.data._id = "pmc" + account.id;
-
         // create profile
-        json.write(folder + "character.json", pmcData);
-        json.write(folder + "storage.json", storage);
-        json.write(folder + "userbuilds.json", {});
-        json.write(folder + "dialogue.json", {});
+        save_f.saveServer.profiles[sessionID] = {
+            "info": account,
+            "characters": {
+                "pmc": pmcData,
+                "scav": {}
+            },
+            "suits": storage
+        };
 
-        // load to memory
-        this.getPmcProfile(account.id);
+        // pmc profile needs to exist first
+        save_f.saveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
 
-        // traders
         for (let traderID in database_f.database.tables.traders)
         {
-            trader_f.traderServer.resetTrader(account.id, traderID);
+            trader_f.traderServer.resetTrader(sessionID, traderID);
         }
 
         // don't wipe profile again
-        account_f.accountServer.setWipe(account.id, false);
+        account_f.accountServer.setWipe(sessionID, false);
+
+        // store minimal profile and reload it
+        save_f.saveServer.onSaveProfile(sessionID);
+        save_f.saveServer.onLoadProfile(sessionID);
     }
 
     generateScav(sessionID)
@@ -167,6 +185,8 @@ class ProfileCallbacks
 {
     constructor()
     {
+        save_f.saveServer.onLoadCallback["profile"] = this.onLoad.bind();
+
         router.addStaticRoute("/client/game/profile/create", this.createProfile.bind());
         router.addStaticRoute("/client/game/profile/list", this.getProfileData.bind());
         router.addStaticRoute("/client/game/profile/savage/regenerate", this.regenerateScav.bind());
@@ -174,6 +194,11 @@ class ProfileCallbacks
         router.addStaticRoute("/client/game/profile/nickname/change", this.changeNickname.bind());
         router.addStaticRoute("/client/game/profile/nickname/validate", this.validateNickname.bind());
         router.addStaticRoute("/client/game/profile/nickname/reserved", this.getReservedNickname.bind());
+    }
+
+    onLoad(sessionID)
+    {
+        return profile_f.profileController.onLoad(sessionID);
     }
 
     createProfile(url, info, sessionID)

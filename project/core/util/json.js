@@ -2,16 +2,6 @@
 
 const fs = require("fs");
 
-function createDir(file)
-{
-    let filePath = file.substr(0, file.lastIndexOf("/"));
-
-    if (!fs.existsSync(filePath))
-    {
-        fs.mkdirSync(filePath, { recursive: true });
-    }
-}
-
 function stringify(data)
 {
     return JSON.stringify(data, null, "\t");
@@ -29,7 +19,7 @@ function read(file)
 
 function write(file, data)
 {
-    createDir(file);
+    utility.createDir(file);
     fs.writeFileSync(file, stringify(data), "utf8");
 }
 
