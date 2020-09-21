@@ -20,16 +20,16 @@ class SaveServer
             utility.createDir(filepath);
         }
 
-        let paths = [];
-        let files = utility.getFileList(filepath);
+        const files = utility.getFileList(filepath);
+        let result = [];
 
         for (let file of files)
         {
             file = file.split('.').slice(0, -1).join('.');
-            paths[file] = `${filepath}${file}.json`;
+            result[file] = `${filepath}${file}.json`;
         }
 
-        db.user.profiles = paths;
+        db.user.profiles = result;
     }
 
     onLoad()
@@ -97,18 +97,17 @@ class SaveController
 
             process.on("SIGINT", (code) =>
             {
+                // linux ctrl-c
                 this.onSave();
-                logger.logInfo("Ctrl-C, exiting ...");
                 process.exit(1);
             });
         }
 
         if (save_f.saveConfig.saveIntervalSec > 0)
         {
-            setInterval(function()
+            setInterval(() =>
             {
                 this.onSave();
-                logger.logSuccess("Player progress autosaved!");
             }, save_f.saveConfig.saveIntervalSec * 1000);
         }
     }
@@ -117,6 +116,7 @@ class SaveController
     {
         save_f.saveServer.onSave();
         events.scheduledEventHandler.saveToDisk();
+        logger.logSuccess("Saved profiles");
     }
 }
 

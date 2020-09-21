@@ -81,12 +81,9 @@ class ProfileController
             "suits": storage
         };
 
+        // pmc profile needs to exist first
         save_f.saveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
-        console.log(save_f.saveServer.profiles[sessionID]);
-        save_f.saveServer.onLoadProfile(sessionID);
-        console.log(save_f.saveServer.profiles[sessionID]);
 
-        // traders
         for (let traderID in database_f.database.tables.traders)
         {
             trader_f.traderServer.resetTrader(sessionID, traderID);
@@ -94,6 +91,10 @@ class ProfileController
 
         // don't wipe profile again
         account_f.accountServer.setWipe(sessionID, false);
+
+        // store minimal profile and reload it
+        save_f.saveServer.onSaveProfile(sessionID);
+        save_f.saveServer.onLoadProfile(sessionID);
     }
 
     generateScav(sessionID)

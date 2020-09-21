@@ -19,7 +19,11 @@ class InsuranceServer
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        delete profile.insurance;
+        if ("insurance" in profile)
+        {
+            delete profile.insurance;
+        }
+
         return profile;
     }
 
