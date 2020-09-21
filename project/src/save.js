@@ -34,7 +34,7 @@ class SaveServer
 
     onLoad()
     {
-        // get virual paths
+        // genrate virual paths
         this.createVPath();
 
         // load profiles
@@ -51,6 +51,9 @@ class SaveServer
         {
             this.onSaveProfile(sessionID);
         }
+
+        // rebuild virual paths
+        this.createVPath();
     }
 
     onLoadProfile(sessionID)
