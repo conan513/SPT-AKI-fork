@@ -7,9 +7,27 @@ class HealthServer
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        profile.vitality = {
-            "health": {},
-            "effects": {}
+        profile.vitality  = {
+            "health": {
+                "Hydration": 0,
+                "Energy": 0,
+                "Head": 0,
+                "Chest": 0,
+                "Stomach": 0,
+                "LeftArm": 0,
+                "RightArm": 0,
+                "LeftLeg": 0,
+                "RightLeg": 0
+            },
+            "effects": {
+                "Head": {},
+                "Chest": {},
+                "Stomach": {},
+                "LeftArm": {},
+                "RightArm": {},
+                "LeftLeg": {},
+                "RightLeg": {}
+            }
         };
 
         return profile;
