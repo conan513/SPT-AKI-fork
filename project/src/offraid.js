@@ -368,7 +368,7 @@ function saveProgress(offraidData, sessionID)
     if (isPlayerScav)
     {
         scavData = setInventory(scavData, offraidData.profile);
-        save_f.saveServer.initializeHealth(sessionID);
+        health_f.healthServer.resetHealth(sessionID);
         profile_f.profileController.setScavProfile(sessionID, scavData);
         return;
     }
