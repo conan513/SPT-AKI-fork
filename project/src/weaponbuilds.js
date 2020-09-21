@@ -6,7 +6,11 @@ class WeaponBuildsController
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        profile.weaponbuilds = profile.weaponbuilds || {};
+        if (!("weaponbuilds" in profile))
+        {
+            profile.weaponbuilds = {};
+        }
+        
         return profile;
     }
 

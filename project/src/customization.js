@@ -6,7 +6,11 @@ class CustomizationController
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        profile.suits = profile.suits || {};
+        if (!("suits" in profile))
+        {
+            profile.suits = [];
+        }
+        
         return profile;
     }
 

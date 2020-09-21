@@ -10,7 +10,14 @@ class ProfileController
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        profile.characters = profile.characters || {"pmc": {}, "scav": {}};
+        if (!("characters" in profile))
+        {
+            profile.characters = {
+                "pmc": {},
+                "scav": {}
+            };
+        }
+        
         return profile;
     }
 
@@ -44,7 +51,6 @@ class ProfileController
 
     createProfile(info, sessionID)
     {
-        let profiles = save_f.saveServer.profiles;
         let account = account_f.accountServer.find(sessionID);
         let pmcData = json.parse(json.read(db.profile[account.edition]["character_" + info.side.toLowerCase()]));
         let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
@@ -52,8 +58,7 @@ class ProfileController
         // delete existing profile
         if (sessionID in save_f.saveServer.profiles)
         {
-            delete profiles[sessionID];
-            save_f.saveServer.profiles = profiles;
+            delete save_f.saveServer.profiles[sessionID];
             events.scheduledEventHandler.wipeScheduleForSession(sessionID);
         }
 
@@ -67,11 +72,19 @@ class ProfileController
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
 
         // create profile
+        save_f.saveServer.profiles[sessionID] = {
+            "info": account,
+            "characters": {
+                "pmc": pmcData,
+                "scav": {}
+            },
+            "suits": storage
+        };
+
+        save_f.saveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
+        console.log(save_f.saveServer.profiles[sessionID]);
         save_f.saveServer.onLoadProfile(sessionID);
-        profiles[sessionID].info = account;
-        profiles[sessionID].characters = {"pmc": pmcData, "scav": {}};
-        profiles[sessionID].characters.scav = this.generateScav(sessionID);
-        profiles[sessionID].suits = storage;
+        console.log(save_f.saveServer.profiles[sessionID]);
 
         // traders
         for (let traderID in database_f.database.tables.traders)

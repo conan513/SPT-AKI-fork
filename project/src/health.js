@@ -3,7 +3,7 @@
 /* HealthServer class maintains list of health for each sessionID in memory. */
 class HealthServer
 {
-    onLoad(sessionID)
+    resetHealth(sessionID)
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
@@ -30,14 +30,6 @@ class HealthServer
             }
         };
 
-        return profile;
-    }
-
-    onSave(sessionID)
-    {
-        let profile = save_f.saveServer.profiles[sessionID];
-
-        delete profile.vitality;
         return profile;
     }
 
@@ -230,7 +222,9 @@ class HealthServer
 
         // delete empty property to prevent client bugs
         if (this.isEmpty(bodyPart.Effects))
+        {
             delete bodyPart.Effects;
+        }
     }
 
     removeEffect(pmcData, sessionID, info)
@@ -291,6 +285,7 @@ class HealthServer
         }
 
         let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
+        
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
             // clear effects
@@ -309,7 +304,7 @@ class HealthServer
         });
 
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-        save_f.saveServer.initializeHealth(sessionID);
+        this.resetHealth(sessionID);
     }
 
     isEmpty(map)
@@ -331,7 +326,6 @@ class HealthCallbacks
     constructor()
     {
         save_f.saveServer.onLoadCallback["health"] = this.onLoad.bind();
-        save_f.saveServer.onSaveCallback["health"] = this.onSave.bind();
 
         router.addStaticRoute("/player/health/sync", this.syncHealth.bind());
         router.addStaticRoute("/player/health/events", this.updateHealth.bind());
@@ -342,12 +336,7 @@ class HealthCallbacks
 
     onLoad(sessionID)
     {
-        return health_f.healthServer.onLoad(sessionID);
-    }
-
-    onSave(sessionID)
-    {
-        return health_f.healthServer.onSave(sessionID);
+        return health_f.healthServer.resetHealth(sessionID);
     }
 
     syncHealth(url, info, sessionID)

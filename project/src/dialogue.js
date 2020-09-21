@@ -17,7 +17,11 @@ class DialogueServer
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        profile.dialogues = profile.dialogues || {};
+        if (!("dialogues" in profile))
+        {
+            profile.dialogues = {};
+        }
+
         return profile;
     }
 

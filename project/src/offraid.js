@@ -6,7 +6,14 @@ class InraidServer
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
-        profile.inraid = profile.inraid || {"location": "none", "character": "none" };
+        if (!("inraid" in profile))
+        {
+            profile.inraid = {
+                "location": "none",
+                "character": "none"
+            };
+        }
+        
         return profile;
     }
 
