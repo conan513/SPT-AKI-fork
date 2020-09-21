@@ -46,8 +46,16 @@ class SaveServer
 
     onLoadProfile(sessionID)
     {
-        // initialize profile
-        this.profiles[sessionID] = json.parse(json.read(db.user.profiles[sessionID])) || {};
+        if (sessionID in db.user.profiles)
+        {
+            // load profile
+            this.profiles[sessionID] = json.parse(json.read(db.user.profiles[sessionID]));
+        }
+        else
+        {
+            // create new profile
+            this.profiles[sessionID] = {};
+        }
 
         // run callbacks
         for (const callback in this.onLoadCallback)
