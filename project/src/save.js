@@ -1,5 +1,7 @@
 "use strict";
 
+const fs = require("fs");
+
 class SaveServer
 {
     constructor()
@@ -11,13 +13,20 @@ class SaveServer
 
     createVPath()
     {
+        const filepath = "user/profiles/";
+
+        if (!fs.existsSync(filepath))
+        {
+            utility.createDir(filepath);
+        }
+
         let paths = [];
-        let files = utility.getFileList("user/profiles/");
+        let files = utility.getFileList(filepath);
 
         for (let file of files)
         {
             file = file.split('.').slice(0, -1).join('.');
-            paths[file] = `user/profiles/${file}.json`;
+            paths[file] = `${filepath}${file}.json`;
         }
 
         db.user.profiles = paths;

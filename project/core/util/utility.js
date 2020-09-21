@@ -2,6 +2,16 @@
 
 const fs = require("fs");
 
+function createDir(file)
+{
+    let filePath = file.substr(0, file.lastIndexOf("/"));
+
+    if (!fs.existsSync(filePath))
+    {
+        fs.mkdirSync(filePath, { recursive: true });
+    }
+}
+
 function clearString(s)
 {
     return s.replace(/[\b]/g, "")
@@ -164,6 +174,7 @@ function secondsToTime(timestamp)
     return hours + "h" + minutes + ":" + seconds;
 }
 
+module.exports.createDir = createDir;
 module.exports.clearString = clearString;
 module.exports.getRandomInt = getRandomInt;
 module.exports.getRandomIntEx = getRandomIntEx;
