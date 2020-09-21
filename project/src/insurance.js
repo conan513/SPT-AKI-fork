@@ -107,8 +107,8 @@ class InsuranceServer
             actualItem.slotId = "hideout";
         }
 
-        save_f.save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] = save_f.save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] || [];
-        save_f.save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
+        save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] = save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] || [];
+        save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
         this.remove(pmcData, insuredItem.itemId);
     }
 
@@ -177,7 +177,7 @@ class InsuranceServer
     /* sends stored insured items as message */
     sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in save_f.save_f.saveServer.profiles[sessionID].insurance)
+        for (let traderId in save_f.saveServer.profiles[sessionID].insurance)
         {
             let trader = trader_f.traderServer.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.database.tables.traders[traderId].dialogue;
@@ -206,7 +206,7 @@ class InsuranceServer
                 "data": {
                     "traderId": traderId,
                     "messageContent": messageContent,
-                    "items": save_f.save_f.saveServer.profiles[sessionID].insurance[traderId]
+                    "items": save_f.saveServer.profiles[sessionID].insurance[traderId]
                 }
             });
         }
