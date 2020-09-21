@@ -1,5 +1,7 @@
 "use strict";
 
+const { saveServer } = require("./save");
+
 class DialogueServer
 {
     constructor()
@@ -11,6 +13,12 @@ class DialogueServer
             "questFail": 11,
             "questSuccess": 12
         };
+    }
+
+    onLoad(profile)
+    {
+        profile.dialogues = profile.dialogues || {};
+        return profile;
     }
 
     /* Set the content of the dialogue on the list tab. */
@@ -255,6 +263,8 @@ class DialogueCallbacks
 {
     constructor()
     {
+        save_f.saveServer.onLoadCallback["dialogues"] = this.onLoad.bind();
+
         router.addStaticRoute("/client/friend/list", this.getFriendList.bind());
         router.addStaticRoute("/client/chatServer/list", this.getChatServerList.bind());
         router.addStaticRoute("/client/mail/dialog/list", this.getMailDialogList.bind());
@@ -267,6 +277,11 @@ class DialogueCallbacks
         router.addStaticRoute("/client/mail/dialog/getAllAttachments", this.getAllAttachments.bind());
         router.addStaticRoute("/client/friend/request/list/outbox", this.listOutbox.bind());
         router.addStaticRoute("/client/friend/request/list/inbox", this.listInbox.bind());
+    }
+
+    onLoad(profile)
+    {
+        return dialogue_f.dialogueServer.onLoad(profile);
     }
 
     getFriendList(url, info, sessionID)
