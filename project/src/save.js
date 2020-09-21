@@ -51,16 +51,11 @@ class SaveServer
             // load profile
             this.profiles[sessionID] = json.parse(json.read(db.user.profiles[sessionID]));
         }
-        else
-        {
-            // create new profile
-            this.profiles[sessionID] = {};
-        }
 
         // run callbacks
         for (const callback in this.onLoadCallback)
         {
-            this.profiles[sessionID] = this.onLoadCallback[callback](this.profiles[sessionID]);
+            this.profiles[sessionID] = this.onLoadCallback[callback](sessionID);
         }
     }
 
@@ -69,7 +64,7 @@ class SaveServer
         // run callbacks
         for (const callback in this.onSaveCallback)
         {
-            this.profiles[sessionID] = this.onSaveCallback[callback](this.profiles[sessionID]);
+            this.profiles[sessionID] = this.onSaveCallback[callback](sessionID);
         }
 
         // save profile

@@ -57,7 +57,7 @@ class AccountServer
     createAccount(info)
     {
         const sessionID = utility.generateNewAccountId();
-
+        
         save_f.saveServer.profiles[sessionID] = {
             "info": {
                 "id": sessionID,
@@ -69,6 +69,7 @@ class AccountServer
             }
         };
 
+        save_f.saveServer.onLoadProfile(sessionID);
         return sessionID;
     }
 
