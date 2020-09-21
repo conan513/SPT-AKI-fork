@@ -161,7 +161,7 @@ class Server
 
     sendZlibJson(resp, output, sessionID)
     {
-        resp.writeHead(200, "OK", {"Content-Type": this.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : "PHPSESSID=" + sessionID});
+        resp.writeHead(200, "OK", {"Content-Type": this.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : `PHPSESSID=${sessionID}`});
 
         zlib.deflate(output, function (err, buf)
         {
@@ -258,7 +258,6 @@ class Server
             });
         }
 
-        // emulib responses
         if (req.method === "PUT")
         {
             req.on("data", function(data)
@@ -273,7 +272,9 @@ class Server
                         resp.writeContinue();
                     }
                 }
-            }).on("end", function()
+            });
+            
+            req.on("end", function()
             {
                 let data = server.getFromBuffer(sessionID);
                 server.resetBuffer(sessionID);

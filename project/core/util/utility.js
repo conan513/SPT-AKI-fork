@@ -2,6 +2,16 @@
 
 const fs = require("fs");
 
+function createDir(file)
+{
+    let filePath = file.substr(0, file.lastIndexOf("/"));
+
+    if (!fs.existsSync(filePath))
+    {
+        fs.mkdirSync(filePath, { recursive: true });
+    }
+}
+
 function clearString(s)
 {
     return s.replace(/[\b]/g, "")
@@ -28,6 +38,14 @@ function getRandomValue(node)
 {
     let keys = Object.keys(node);
     return node[keys[utility.getRandomInt(0, keys.length - 1)]];
+}
+
+function getFileList(path)
+{
+    return fs.readdirSync(path).filter(function(file)
+    {
+        return fs.statSync(path + "/" + file).isFile();
+    });
 }
 
 function getDirList(path)
@@ -156,10 +174,12 @@ function secondsToTime(timestamp)
     return hours + "h" + minutes + ":" + seconds;
 }
 
+module.exports.createDir = createDir;
 module.exports.clearString = clearString;
 module.exports.getRandomInt = getRandomInt;
 module.exports.getRandomIntEx = getRandomIntEx;
 module.exports.getRandomValue = getRandomValue;
+module.exports.getFileList = getFileList;
 module.exports.getDirList = getDirList;
 module.exports.removeDir = removeDir;
 module.exports.getServerUptimeInSeconds = getServerUptimeInSeconds;

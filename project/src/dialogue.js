@@ -13,12 +13,24 @@ class DialogueServer
         };
     }
 
+    onLoad(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        if (!("dialogues" in profile))
+        {
+            profile.dialogues = {};
+        }
+
+        return profile;
+    }
+
     /* Set the content of the dialogue on the list tab. */
     generateDialogueList(sessionID)
     {
         let data = [];
 
-        for (let dialogueId in save_f.saveServer.dialogues[sessionID])
+        for (let dialogueId in save_f.saveServer.profiles[sessionID].dialogues)
         {
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
@@ -29,7 +41,7 @@ class DialogueServer
     /* Get the content of a dialogue. */
     getDialogueInfo(dialogueId, sessionID)
     {
-        let dialogue = save_f.saveServer.dialogues[sessionID][dialogueId];
+        let dialogue = save_f.saveServer.profiles[sessionID].dialogues[dialogueId];
 
         return {
             "_id": dialogueId,
@@ -47,7 +59,7 @@ class DialogueServer
 	*/
     generateDialogueView(dialogueId, sessionID)
     {
-        let dialogue = save_f.saveServer.dialogues[sessionID][dialogueId];
+        let dialogue = save_f.saveServer.profiles[sessionID].dialogues[dialogueId];
         dialogue.new = 0;
 
         // Set number of new attachments, but ignore those that have expired.
@@ -64,7 +76,7 @@ class DialogueServer
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return response_f.responseController.getBody({"messages": save_f.saveServer.dialogues[sessionID][dialogueId].messages});
+        return response_f.responseController.getBody({"messages": save_f.saveServer.profiles[sessionID].dialogues[dialogueId].messages});
     }
 
     /*
@@ -72,12 +84,12 @@ class DialogueServer
 	*/
     addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
-        if (save_f.saveServer.dialogues[sessionID] === undefined)
+        if (save_f.saveServer.profiles[sessionID].dialogues === undefined)
         {
             this.initializeDialogue(sessionID);
         }
 
-        let dialogueData = save_f.saveServer.dialogues[sessionID];
+        let dialogueData = save_f.saveServer.profiles[sessionID].dialogues;
         let isNewDialogue = !(dialogueID in dialogueData);
         let dialogue = dialogueData[dialogueID];
 
@@ -162,7 +174,7 @@ class DialogueServer
 	*/
     getMessageItemContents(messageId, sessionID)
     {
-        let dialogueData = save_f.saveServer.dialogues[sessionID];
+        let dialogueData = save_f.saveServer.profiles[sessionID].dialogues;
 
         for (let dialogueId in dialogueData)
         {
@@ -172,10 +184,10 @@ class DialogueServer
             {
                 if (message._id === messageId)
                 {
-                    let attachmentsNew = save_f.saveServer.dialogues[sessionID][dialogueId].attachmentsNew;
+                    let attachmentsNew = save_f.saveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
                     if (attachmentsNew > 0)
                     {
-                        save_f.saveServer.dialogues[sessionID][dialogueId].attachmentsNew = attachmentsNew - 1;
+                        save_f.saveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = attachmentsNew - 1;
                     }
                     message.rewardCollected = true;
                     return message.items.data;
@@ -188,17 +200,17 @@ class DialogueServer
 
     removeDialogue(dialogueId, sessionID)
     {
-        delete save_f.saveServer.dialogues[sessionID][dialogueId];
+        delete save_f.saveServer.profiles[sessionID].dialogues[dialogueId];
     }
 
     setDialoguePin(dialogueId, shouldPin, sessionID)
     {
-        save_f.saveServer.dialogues[sessionID][dialogueId].pinned = shouldPin;
+        save_f.saveServer.profiles[sessionID].dialogues[dialogueId].pinned = shouldPin;
     }
 
     setRead(dialogueIds, sessionID)
     {
-        let dialogueData = save_f.saveServer.dialogues[sessionID];
+        let dialogueData = save_f.saveServer.profiles[sessionID].dialogues;
 
         for (let dialogId of dialogueIds)
         {
@@ -213,7 +225,7 @@ class DialogueServer
         let output = [];
         let timeNow = Date.now() / 1000;
 
-        for (let message of save_f.saveServer.dialogues[sessionID][dialogueId].messages)
+        for (let message of save_f.saveServer.profiles[sessionID].dialogues[dialogueId].messages)
         {
             if (timeNow < (message.dt + message.maxStorageTime))
             {
@@ -221,7 +233,7 @@ class DialogueServer
             }
         }
 
-        save_f.saveServer.dialogues[sessionID][dialogueId].attachmentsNew = 0;
+        save_f.saveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
         return {"messages": output};
     }
 
@@ -230,9 +242,9 @@ class DialogueServer
 
     removeExpiredItems(sessionID)
     {
-        for (let dialogueId in save_f.saveServer.dialogues[sessionID])
+        for (let dialogueId in save_f.saveServer.profiles[sessionID].dialogues)
         {
-            for (let message of save_f.saveServer.dialogues[sessionID][dialogueId].messages)
+            for (let message of save_f.saveServer.profiles[sessionID].dialogues[dialogueId].messages)
             {
                 if ((Date.now() / 1000) > (message.dt + message.maxStorageTime))
                 {
@@ -255,6 +267,8 @@ class DialogueCallbacks
 {
     constructor()
     {
+        save_f.saveServer.onLoadCallback["dialogues"] = this.onLoad.bind();
+
         router.addStaticRoute("/client/friend/list", this.getFriendList.bind());
         router.addStaticRoute("/client/chatServer/list", this.getChatServerList.bind());
         router.addStaticRoute("/client/mail/dialog/list", this.getMailDialogList.bind());
@@ -267,6 +281,11 @@ class DialogueCallbacks
         router.addStaticRoute("/client/mail/dialog/getAllAttachments", this.getAllAttachments.bind());
         router.addStaticRoute("/client/friend/request/list/outbox", this.listOutbox.bind());
         router.addStaticRoute("/client/friend/request/list/inbox", this.listInbox.bind());
+    }
+
+    onLoad(sessionID)
+    {
+        return dialogue_f.dialogueServer.onLoad(sessionID);
     }
 
     getFriendList(url, info, sessionID)

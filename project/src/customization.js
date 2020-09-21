@@ -2,6 +2,18 @@
 
 class CustomizationController
 {
+    onLoad(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        if (!("suits" in profile))
+        {
+            profile.suits = [];
+        }
+        
+        return profile;
+    }
+
     wearClothing(pmcData, body, sessionID)
     {
         for (let i = 0; i < body.suites.length; i++)
@@ -67,11 +79,11 @@ class CustomizationController
     buyClothing(pmcData, body, sessionID)
     {
         let output = item_f.itemServer.getOutput();
-        let storage = json.parse(json.read(save_f.saveServer.getSuitsPath(sessionID)));
+        let suits = save_f.saveServer.profiles[sessionID].suits;
         let offers = this.getAllTraderSuits(sessionID);
 
         // check if outfit already exists
-        for (let suiteId of storage.data.suites)
+        for (let suiteId of suits)
         {
             if (suiteId === body.offer)
             {
@@ -112,17 +124,17 @@ class CustomizationController
             }
         }
 
-        // add outfit to storage
+        // add outfit to suits
         for (let offer of offers)
         {
             if (body.offer === offer._id)
             {
-                storage.data.suites.push(offer.suiteId);
+                suits.push(offer.suiteId);
                 break;
             }
         }
 
-        json.write(save_f.saveServer.getSuitsPath(sessionID), storage);
+        save_f.saveServer.profiles[sessionID].suits = suits;
         return output;
     }
 }
@@ -131,21 +143,32 @@ class CustomizationCallbacks
 {
     constructor()
     {
+        save_f.saveServer.onLoadCallback["customization"] = this.onLoad.bind();
+
         router.addDynamicRoute("/client/trading/customization/", this.getTraderSuits.bind());
-        router.addStaticRoute("/client/trading/customization/storage", this.getCustomizationStorage.bind());
+        router.addStaticRoute("/client/trading/customization/storage", this.getSuits.bind());
         item_f.itemServer.addRoute("CustomizationWear", this.wearClothing.bind());
         item_f.itemServer.addRoute("CustomizationBuy", this.buyClothing.bind());
     }
 
-    getCustomizationStorage(url, info, sessionID)
+    onLoad(sessionID)
     {
-        return json.read(save_f.saveServer.getSuitsPath(sessionID));
+        return customization_f.customizationController.onLoad(sessionID);
+    }
+
+    getSuits(url, info, sessionID)
+    {
+        return response_f.responseController.getBody({
+            "_id": `pmc${sessionID}`,
+            "suites": save_f.saveServer.profiles[sessionID].suits 
+        });
     }
 
     getTraderSuits(url, info, sessionID)
     {
         let splittedUrl = url.split("/");
         let traderID = splittedUrl[splittedUrl.length - 2];
+
         return response_f.responseController.getBody(customization_f.customizationController.getTraderSuits(traderID, sessionID));
     }
 

@@ -1,166 +1,86 @@
 "use strict";
 
+const fs = require("fs");
+
 class SaveServer
 {
     constructor()
     {
-        this.users = {};
-
-        this.accounts = {};
         this.profiles = {};
-        this.dialogues = {};
-        this.healths = {};
-        this.effects = {};
-        this.insured = {};
+        this.onLoadCallback = {};
+        this.onSaveCallback = {};
     }
 
-    initialize()
+    createVPath()
     {
-        this.accounts = json.parse(json.read(db.user.configs.accounts));
+        const filepath = "user/profiles/";
 
-        const files = utility.getDirList("user/profiles/");
+        if (!fs.existsSync(filepath))
+        {
+            utility.createDir(filepath);
+        }
+
+        const files = utility.getFileList(filepath);
+        let result = [];
 
         for (let file of files)
         {
-            this.users[file] = {
-                "info": {},
-                "profiles": {
-                    "pmc": {},
-                    "scav": {}
-                },
-                "dialogs": {},
-                "suits": {},
-                "weaponpresets": {},
-                "insurance": {},
-                "inraid": {
-                    "location": "none"
-                },
-                "vitality": {
-                    "health": {},
-                    "effects": {}
-                }
-            };
+            file = file.split('.').slice(0, -1).join('.');
+            result[file] = `${filepath}${file}.json`;
         }
 
-        logger.logData(this.users);
+        db.user.profiles = result;
     }
 
-    initializeDialogue(sessionID)
+    onLoad()
     {
-        this.dialogues[sessionID] = json.parse(json.read(this.getDialoguePath(sessionID)));
-    }
+        // genrate virual paths
+        this.createVPath();
 
-    initializeProfile(sessionID)
-    {
-        this.profiles[sessionID] = {};
-        this.loadProfilesFromDisk(sessionID);
-    }
-
-    /* resets the healh response */
-    initializeHealth(sessionID)
-    {
-        this.healths[sessionID] = {
-            "Hydration": 0,
-            "Energy": 0,
-            "Head": 0,
-            "Chest": 0,
-            "Stomach": 0,
-            "LeftArm": 0,
-            "RightArm": 0,
-            "LeftLeg": 0,
-            "RightLeg": 0
-        };
-        this.effects[sessionID] = {
-            "Head": {},
-            "Chest": {},
-            "Stomach": {},
-            "LeftArm": {},
-            "RightArm": {},
-            "LeftLeg": {},
-            "RightLeg": {}
-        };
-
-        return this.healths[sessionID];
-    }
-
-    /* resets items to send on flush */
-    initializeInsurance(sessionID)
-    {
-        this.insured[sessionID] = {};
-    }
-
-    loadProfilesFromDisk(sessionID)
-    {
-        this.profiles[sessionID]["pmc"] = json.parse(json.read(this.getProfilePath(sessionID)));
-        profile_f.profileController.generateScav(sessionID);
-    }
-
-    getAccountPath(sessionID)
-    {
-        return "user/profiles/" + sessionID + "/";
-    }
-
-    getProfilePath(sessionID)
-    {
-        let pmcPath = db.user.profiles.character;
-        return pmcPath.replace("__REPLACEME__", sessionID);
-    }
-
-    getDialoguePath(sessionID)
-    {
-        let path = db.user.profiles.dialogue;
-        return path.replace("__REPLACEME__", sessionID);
-    }
-
-    getSuitsPath(sessionID)
-    {
-        let path = db.user.profiles.suits;
-        return path.replace("__REPLACEME__", sessionID);
-    }
-
-    getWeaponBuildPath(sessionID)
-    {
-        let path = db.user.profiles.weaponbuilds;
-        return path.replace("__REPLACEME__", sessionID);
-    }
-
-    getOpenSessions()
-    {
-        return Object.keys(this.profiles);
-    }
-
-    getProfile(sessionID, type)
-    {
-        if (!(sessionID in this.profiles))
+        // load profiles
+        for (const file in db.user.profiles)
         {
-            this.initializeProfile(sessionID);
-            this.initializeDialogue(sessionID);
-            this.initializeHealth(sessionID);
-            this.initializeInsurance(sessionID);
+            this.onLoadProfile(file);
         }
-
-        return this.profiles[sessionID][type];
     }
 
-    saveToDisk()
+    onSave()
     {
-        // accounts
-        json.write(db.user.configs.accounts, this.accounts);
-
-        for (let sessionID of this.getOpenSessions())
+        // load profiles
+        for (const sessionID in this.profiles)
         {
-            // dialogues
-            if (sessionID in this.dialogues)
-            {
-                json.write(this.getDialoguePath(sessionID), this.dialogues[sessionID]);
-            }
-
-            // profile
-            if ("pmc" in this.profiles[sessionID])
-            {
-                json.write(this.getProfilePath(sessionID), this.profiles[sessionID]["pmc"]);
-            }
+            this.onSaveProfile(sessionID);
         }
+
+        // rebuild virual paths
+        this.createVPath();
+    }
+
+    onLoadProfile(sessionID)
+    {
+        if (sessionID in db.user.profiles)
+        {
+            // load profile
+            this.profiles[sessionID] = json.parse(json.read(db.user.profiles[sessionID]));
+        }
+
+        // run callbacks
+        for (const callback in this.onLoadCallback)
+        {
+            this.profiles[sessionID] = this.onLoadCallback[callback](sessionID);
+        }
+    }
+
+    onSaveProfile(sessionID)
+    {
+        // run callbacks
+        for (const callback in this.onSaveCallback)
+        {
+            this.profiles[sessionID] = this.onSaveCallback[callback](sessionID);
+        }
+
+        // save profile
+        json.write(`user/profiles/${sessionID}.json`, this.profiles[sessionID]);
     }
 }
 
@@ -172,31 +92,31 @@ class SaveController
         {
             process.on("exit", (code) =>
             {
-                this.saveOpenSessions();
+                this.onSave();
             });
 
             process.on("SIGINT", (code) =>
             {
-                this.saveOpenSessions();
-                logger.logInfo("Ctrl-C, exiting ...");
+                // linux ctrl-c
+                this.onSave();
                 process.exit(1);
             });
         }
 
         if (save_f.saveConfig.saveIntervalSec > 0)
         {
-            setInterval(function()
+            setInterval(() =>
             {
-                this.saveOpenSessions();
-                logger.logSuccess("Player progress autosaved!");
+                this.onSave();
             }, save_f.saveConfig.saveIntervalSec * 1000);
         }
     }
 
-    saveOpenSessions()
+    onSave()
     {
-        save_f.saveServer.saveToDisk();
+        save_f.saveServer.onSave();
         events.scheduledEventHandler.saveToDisk();
+        //logger.logSuccess("Saved profiles");
     }
 }
 
@@ -205,20 +125,20 @@ class SaveCallback
     constructor()
     {
         server.addStartCallback("loadSavehandler", this.load.bind());
-        server.addReceiveCallback("SAVE", this.saveCallback.bind());
+        server.addReceiveCallback("SAVE", this.save.bind());
     }
 
     load()
     {
-        save_f.saveServer.initialize();
+        save_f.saveServer.onLoad();
         save_f.saveController.initialize();
     }
 
-    saveCallback(sessionID, req, resp, body, output)
+    save(sessionID, req, resp, body, output)
     {
         if (save_f.saveConfig.saveOnReceive)
         {
-            save_f.saveController.saveOpenSessions();
+            save_f.saveController.onSave();
         }
     }
 }

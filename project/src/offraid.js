@@ -2,19 +2,34 @@
 
 class InraidServer
 {
+    onLoad(sessionID)
+    {
+        let profile = save_f.saveServer.profiles[sessionID];
+
+        if (!("inraid" in profile))
+        {
+            profile.inraid = {
+                "location": "none",
+                "character": "none"
+            };
+        }
+        
+        return profile;
+    }
+
     addPlayer(sessionID, info)
     {
-        save_f.saveServer.users[sessionID].inraid.location = info.Location;
+        save_f.saveServer.profiles[sessionID].inraid.location = info.Location;
     }
 
     removePlayer(sessionID)
     {
-        save_f.saveServer.users[sessionID].inraid.location = "none";
+        save_f.saveServer.profiles[sessionID].inraid.location = "none";
     }
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        let locationName = save_f.saveServer.users[sessionID].inraid.location.toLowerCase();
+        let locationName = save_f.saveServer.profiles[sessionID].inraid.location.toLowerCase();
         let map = database_f.database.tables.locations[locationName].base;
         let mapKey = map.AccessKeys[0];
 
@@ -294,7 +309,7 @@ function saveProgress(offraidData, sessionID)
         return;
     }
 
-    let locationName = save_f.saveServer.users[sessionID].inraid.location.toLowerCase();
+    let locationName = save_f.saveServer.profiles[sessionID].inraid.location.toLowerCase();
 
     let map = database_f.database.tables.locations[locationName].base;
     let insuranceEnabled = map.Insurance;
@@ -303,6 +318,8 @@ function saveProgress(offraidData, sessionID)
     const isPlayerScav = offraidData.isPlayerScav;
     const isDead = (offraidData.exit !== "survived" && offraidData.exit !== "runner");
     const preRaidGear = (isPlayerScav) ? [] : getPlayerGear(pmcData.Inventory.items);
+
+    save_f.saveServer.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
 
     // set pmc data
     if (!isPlayerScav)
@@ -374,9 +391,9 @@ function saveProgress(offraidData, sessionID)
         {
             insurance_f.insuranceServer.storeDeadGear(pmcData, offraidData, preRaidGear, sessionID);
         }
+
         pmcData = deleteInventory(pmcData, sessionID);
-        //Delete carried quests items
-        offraidData.profile.Stats.CarriedQuestItems = [];
+        offraidData.profile.Stats.CarriedQuestItems = [];       //Delete carried quests items
     }
 
     if (insuranceEnabled)
@@ -385,7 +402,23 @@ function saveProgress(offraidData, sessionID)
     }
 }
 
+class InraidCallbacks
+{
+    constructor()
+    {
+        save_f.saveServer.onLoadCallback["inraid"] = this.onLoad.bind();
+    }
+
+    onLoad(sessionID)
+    {
+        return offraid_f.inraidServer.onLoad(sessionID);
+    }
+}
+
 module.exports.inraidServer = new InraidServer();
+module.exports.inraidCallbacks = new InraidCallbacks();
+
+// todo: refactor this
 module.exports.saveProgress = saveProgress;
 module.exports.getSecuredContainer = getSecuredContainer;
 module.exports.getPlayerGear = getPlayerGear;
