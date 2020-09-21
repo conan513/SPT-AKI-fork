@@ -25,7 +25,7 @@ class WeaponBuildsController
         body.id = utility.generateNewItemId();
 
         let output = item_f.itemServer.getOutput();
-        let savedBuilds = save_f.saveServer.profiles[sessionID].weaponbuild;
+        let savedBuilds = save_f.saveServer.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
