@@ -7,7 +7,7 @@ class InsuranceServer
         events.scheduledEventHandler.addEvent("insuranceReturn", this.processReturn.bind(this));
     }
 
-    onLoad(sessionID)
+    resetInsurance(sessionID)
     {
         let profile = save_f.saveServer.profiles[sessionID];
 
@@ -215,7 +215,7 @@ class InsuranceServer
             });
         }
 
-        save_f.saveServer.initializeInsurance(sessionID);
+        this.resetInsurance(sessionID);
     }
 
     processReturn(event)
@@ -346,7 +346,7 @@ class InsuranceCallback
 
     onLoad(sessionID)
     {
-        return insurance_f.insuranceServer.onLoad(sessionID);
+        return insurance_f.insuranceServer.resetInsurance(sessionID);
     }
 
     onSave(sessionID)
