@@ -71,7 +71,7 @@ class CustomizationController
         let offers = this.getAllTraderSuits(sessionID);
 
         // check if outfit already exists
-        for (let suiteId of storage.data.suites)
+        for (let suiteId of storage)
         {
             if (suiteId === body.offer)
             {
@@ -117,7 +117,7 @@ class CustomizationController
         {
             if (body.offer === offer._id)
             {
-                storage.data.suites.push(offer.suiteId);
+                storage.push(offer.suiteId);
                 break;
             }
         }
@@ -139,13 +139,17 @@ class CustomizationCallbacks
 
     getCustomizationStorage(url, info, sessionID)
     {
-        return json.read(save_f.saveServer.getSuitsPath(sessionID));
+        return response_f.responseController.getBody({
+            "_id": `pmc${sessionID}`,
+            "suites": json.parse(json.read(save_f.saveServer.getSuitsPath(sessionID)))
+        });
     }
 
     getTraderSuits(url, info, sessionID)
     {
         let splittedUrl = url.split("/");
         let traderID = splittedUrl[splittedUrl.length - 2];
+
         return response_f.responseController.getBody(customization_f.customizationController.getTraderSuits(traderID, sessionID));
     }
 

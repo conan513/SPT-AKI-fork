@@ -57,9 +57,6 @@ class ProfileController
         pmcData.Info.RegistrationDate = Math.floor(new Date() / 1000);
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
 
-        // storage
-        storage.data._id = "pmc" + account.id;
-
         // create profile
         json.write(folder + "character.json", pmcData);
         json.write(folder + "storage.json", storage);
