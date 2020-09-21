@@ -27,7 +27,7 @@ class WeaponBuildsController
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
-        jsave_f.saveServer.profiles[sessionID].weaponbuilds = savedBuilds;
+        save_f.saveServer.profiles[sessionID].weaponbuilds = savedBuilds;
 
         output.builds.push(body);
         return output;
