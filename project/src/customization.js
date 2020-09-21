@@ -2,8 +2,10 @@
 
 class CustomizationController
 {
-    onLoad(profile)
+    onLoad(sessionID)
     {
+        let profile = save_f.saveServer.profiles[sessionID];
+
         profile.suits = profile.suits || {};
         return profile;
     }
@@ -145,9 +147,9 @@ class CustomizationCallbacks
         item_f.itemServer.addRoute("CustomizationBuy", this.buyClothing.bind());
     }
 
-    onLoad(profile)
+    onLoad(sessionID)
     {
-        return customization_f.customizationController.onLoad(profile);
+        return customization_f.customizationController.onLoad(sessionID);
     }
 
     getSuits(url, info, sessionID)

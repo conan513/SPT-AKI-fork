@@ -1,7 +1,5 @@
 "use strict";
 
-const { saveServer } = require("./save");
-
 class DialogueServer
 {
     constructor()
@@ -15,8 +13,10 @@ class DialogueServer
         };
     }
 
-    onLoad(profile)
+    onLoad(sessionID)
     {
+        let profile = save_f.saveServer.profiles[sessionID];
+
         profile.dialogues = profile.dialogues || {};
         return profile;
     }
@@ -279,9 +279,9 @@ class DialogueCallbacks
         router.addStaticRoute("/client/friend/request/list/inbox", this.listInbox.bind());
     }
 
-    onLoad(profile)
+    onLoad(sessionID)
     {
-        return dialogue_f.dialogueServer.onLoad(profile);
+        return dialogue_f.dialogueServer.onLoad(sessionID);
     }
 
     getFriendList(url, info, sessionID)

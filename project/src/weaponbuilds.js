@@ -2,8 +2,10 @@
 
 class WeaponBuildsController
 {
-    onLoad(profile)
+    onLoad(sessionID)
     {
+        let profile = save_f.saveServer.profiles[sessionID];
+
         profile.weaponbuilds = profile.weaponbuilds || {};
         return profile;
     }
@@ -61,11 +63,10 @@ class WeaponBuildsCallbacks
         item_f.itemServer.addRoute("SaveBuild", this.saveBuild.bind());
         item_f.itemServer.addRoute("RemoveBuild", this.removeBuild.bind());
     }
-
     
-    onLoad(profile)
+    onLoad(sessionID)
     {
-        return weaponbuilds_f.weaponBuildsController.onLoad(profile);
+        return weaponbuilds_f.weaponBuildsController.onLoad(sessionID);
     }
 
     getHandbookUserlist(url, info, sessionID)
