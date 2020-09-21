@@ -233,38 +233,77 @@ class LocationServer
         for (let i = 0; i < minCount; i++)
         {
             let item = {};
+            let props = {};
             let result = { success: false };
             let maxAttempts = 20;
 
             while (!result.success && maxAttempts)
             {
                 let roll = utility.getRandomInt(0, maxProbability);
-                item = container.items.filter(i => i.cumulativeChance >= roll)[0];
-                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, item.width, item.height);
+                let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
+                item = helpfunc_f.helpFunctions.getItem(rolled.id)[1];
+                props = item._props;
+                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, props.Width, props.Height);
                 maxAttempts--;
             }
 
             if (!result.success)
                 break;
 
-            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(container2D, result.x, result.y, item.width, item.height, result.rotation);
+            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(
+                container2D, result.x, result.y, props.Width, props.Height, result.rotation);
 
+            
             let rot = result.rotation ? 1 : 0;
             let itemJson = {
                 "_id": idPrefix + idSuffix.toString(16),
-                "_tpl": item.id,
+                "_tpl": item._id,
                 "parentId": parentId,
                 "slotId": "main",
                 "location": { "x": result.x, "y": result.y, "r": rot}
             };
-
-            if (item.stackMax > 0)
+            
+            let cartridges;
+            if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
-                let stack = utility.getRandomInt(item.stackMin, item.stackMax);
-                itemJson.upd = { "StackObjectsCount": stack };
+                // Money or Ammo stack
+                let stackCount = utility.getRandomInt(props.StackMinRandom, props.StackMaxRandom);
+                itemJson.upd = { "StackObjectsCount": stackCount };
             }
+            else if (item._parent === "543be5cb4bdc2deb348b4568")
+            {
+                // Ammo container
+                idSuffix++;
+
+                cartridges = {
+                    "_id": idPrefix + idSuffix.toString(16),
+                    "_tpl": props.StackSlots[0]._props.filters[0].Filter[0],
+                    "parentId": itemJson._id,
+                    "slotId": "cartridges",
+                    "upd": { "StackObjectsCount": props.StackMaxRandom }
+                };
+            }
+            else if (item._parent === "5448bc234bdc2d3c308b4569")
+            {
+                // Magazine
+                idSuffix++;
+                let carts = props.Cartridges[0];
+                let cartFilter = carts._props.filters[0].Filter;
+
+                cartridges = {
+                    "_id": idPrefix + idSuffix.toString(16),
+                    "_tpl": cartFilter[0],
+                    "parentId": itemJson._id,
+                    "slotId": "cartridges",
+                    "upd": { "StackObjectsCount": carts._max_count }
+                };
+            }            
 
             items.push(itemJson);
+            if (cartridges)
+            {
+                items.push(cartridges);
+            }
             idSuffix++;
         }
     }
