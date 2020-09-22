@@ -61,34 +61,6 @@ class HelpFunctions
         return exp;
     }
 
-    addDogtag(profile, sessionID)
-    {
-        let dogtagItem = {
-            _id: utility.generateNewItemId(),
-            _tpl: ((profile.Info.Side === "Usec") ? "59f32c3b86f77472a31742f0" : "59f32bb586f774757e1e8442"),
-            parentId: profile.Inventory.equipment,
-            slotId: "Dogtag",
-            upd: {
-                "Dogtag": {
-                    "AccountId": profile.aid,
-                    "ProfileId": profile._id,
-                    "Nickname": profile.Info.Nickname,
-                    "Side": profile.Info.Side,
-                    "Level": profile.Info.Level,
-                    "Time": (new Date().toISOString()),
-                    "Status": "Killed by ",
-                    "KillerAccountId": "Unknown",
-                    "KillerProfileId": "Unknown",
-                    "KillerName": "Unknown",
-                    "WeaponName": "Unknown"
-                }
-            }
-        };
-
-        profile.Inventory.items.push(dogtagItem);
-        return profile;
-    }
-
     generateInventoryID(profile)
     {
         let itemsByParentHash = {};
