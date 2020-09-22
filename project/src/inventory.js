@@ -443,9 +443,16 @@ class InventoryController
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
             }
+            else if (helpfunc_f.helpFunctions.isMoneyTpl(baseItem.item_id))
+            {
+                itemLib.push({ _id: baseItem.item_id, _tpl: baseItem.item_id });
+            }
             else if (body.tid === fenceID)
             {
-                const item = database_f.database.tables.traders[fenceID].items[baseItem.item_id];
+                /* Note by reider123: Idk when it is used; even when I buy stuffs from fence, this is not called since body.tid is changed to "ragfair" in trade.js.
+                I think It can be just deleted. I just fixed it to make more sense, though. */
+                const fenceItem = database_f.database.tables.traders[fenceID].assort.items;
+                const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
                 itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
             }
             else
