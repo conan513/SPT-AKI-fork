@@ -79,6 +79,7 @@ class InsuranceServer
     /* adds gear to store */
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
+        save_f.saveServer.profiles[sessionID] = this.resetInsurance(sessionID);
         // Don't process insurance for melee weapon or secure container.
         if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer")
         {
@@ -113,7 +114,13 @@ class InsuranceServer
 
         save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] = save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid] || [];
         save_f.saveServer.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
-        this.remove(pmcData, insuredItem.itemId);
+        for (let insurance in pmcData.InsuredItems)
+        {
+            if (pmcData.InsuredItems[insurance].itemId == insuredItem.itemId)
+            {
+                pmcData.InsuredItems.splice(insurance, 1);
+            }
+        }
     }
 
     /* store lost pmc gear */
