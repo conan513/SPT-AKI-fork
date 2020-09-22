@@ -449,7 +449,8 @@ class InventoryController
             }
             else if (body.tid === fenceID)
             {
-                // Note by reider123: Idk when it is used; even when I buy stuffs from fence, this is not called. I think It can be just deleted. I just fixed it to make more sense, though.
+                /* Note by reider123: Idk when it is used; even when I buy stuffs from fence, this is not called since body.tid is changed to "ragfair" in trade.js.
+                I think It can be just deleted. I just fixed it to make more sense, though. */
                 const fenceItem = database_f.database.tables.traders[fenceID].assort.items;
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
                 itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
