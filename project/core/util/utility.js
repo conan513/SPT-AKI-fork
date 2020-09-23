@@ -40,6 +40,11 @@ function getRandomValue(node)
     return node[keys[utility.getRandomInt(0, keys.length - 1)]];
 }
 
+function getRandomArrayValue(arr)
+{
+    return arr[utility.getRandomInt(0, arr.length - 1)];
+}
+
 function getFileList(path)
 {
     return fs.readdirSync(path).filter(function(file)
@@ -179,6 +184,7 @@ module.exports.clearString = clearString;
 module.exports.getRandomInt = getRandomInt;
 module.exports.getRandomIntEx = getRandomIntEx;
 module.exports.getRandomValue = getRandomValue;
+module.exports.getRandomArrayValue = getRandomArrayValue;
 module.exports.getFileList = getFileList;
 module.exports.getDirList = getDirList;
 module.exports.removeDir = removeDir;
