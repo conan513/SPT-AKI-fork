@@ -39,8 +39,7 @@ class ModulesController
                 break;
         }
 
-        // TODO: Remove .experience when new bot files are fixed
-        return database_f.database.tables.bots.type[type].experience.difficulty[difficulty];
+        return database_f.database.tables.bots.type[type].difficulty[difficulty];
     }
 }
 
