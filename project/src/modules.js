@@ -39,7 +39,7 @@ class ModulesController
                 break;
         }
 
-        return database_f.database.tables.bots.type[type].difficulties[difficulty];
+        return database_f.database.tables.bots.type[type].difficulty[difficulty];
     }
 }
 
