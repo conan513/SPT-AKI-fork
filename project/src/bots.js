@@ -42,13 +42,13 @@ class BotController
 
         // generate bot
         const node = database_f.database.tables.bots.type[type.toLowerCase()];
-        const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max); // TODO: Add checks for level.min/max just in case
+        const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Settings.Role = role;
         bot.Info.Nickname = utility.getRandomArrayValue(node.names);
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
-        bot.Info.Settings.Experience = utility.getRandomInt(node.experience.reward.min, node.experience.reward.max); // TODO: Add check?
+        bot.Info.Settings.Experience = utility.getRandomInt(node.experience.reward.min, node.experience.reward.max);
         bot.Info.Voice = utility.getRandomArrayValue(node.appearance.voice);
         bot.Health = this.generateHealth(node.health);
         bot.Customization.Head = utility.getRandomArrayValue(node.appearance.head);
@@ -78,7 +78,7 @@ class BotController
             for (let i = 0; i < condition.Limit; i++)
             {
                 let bot = json.parse(json.stringify(database_f.database.tables.bots.base));
-                let botId = utility.getRandomIntEx(99999999); // TODO: Possible collisions?
+                let botId = utility.getRandomIntEx(99999999);
 
                 bot._id = "bot" + botId;
                 bot.aid = botId;
