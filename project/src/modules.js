@@ -49,8 +49,9 @@ class ModulesCallbacks
     {
         router.addStaticRoute("/raid/map/name", this.registerPlayer.bind());
         router.addStaticRoute("/raid/profile/save", this.saveProgress.bind());
-        router.addDynamicRoute("/singleplayer/settings/weapon/durability/", this.getWeaponDurability.bind());
-        router.addDynamicRoute("/singleplayer/settings/defaultRaidSettings/", this.getDefaultRaidSettings.bind());
+        router.addStaticRoute("/singleplayer/settings/raid/endstate", this.getRaidEndState.bind());
+        router.addStaticRoute("/singleplayer/settings/weapon/durability", this.getWeaponDurability.bind());
+        router.addStaticRoute("/singleplayer/settings/raid/menu", this.getRaidMenuSettings.bind());
         router.addDynamicRoute("/singleplayer/settings/bot/limit/", this.getBotLimit.bind());
         router.addDynamicRoute("/singleplayer/settings/bot/difficulty/", this.getBotDifficulty.bind());
     }
@@ -71,9 +72,9 @@ class ModulesCallbacks
         return response_f.responseController.noBody(modules_f.modulesConfig.saveWeaponDurability);
     }
 
-    getDefaultRaidSettings(url, info, sessionID)
+    getRaidMenuSettings(url, info, sessionID)
     {
-        return response_f.responseController.noBody(modules_f.modulesConfig.defaultRaidSettings);
+        return response_f.responseController.noBody(modules_f.modulesConfig.raidMenuSettings);
     }
 
     getBotLimit(url, info, sessionID)
@@ -90,14 +91,20 @@ class ModulesCallbacks
         let difficulty = splittedUrl[splittedUrl.length - 1];
         return response_f.responseController.noBody(modules_f.modulesController.getBotDifficulty(type, difficulty));
     }
+
+    getRaidEndState()
+    {
+        return response_f.responseController.noBody(modules_f.modulesConfig.failOnRaidEnd);
+    }
 }
 
 class ModulesConfig
 {
     constructor()
     {
+        this.failOnRaidEnd = false;
         this.saveWeaponDurability = true;
-        this.defaultRaidSettings = {
+        this.raidMenuSettings = {
             "aiAmount": "AsOnline",
             "aiDifficulty": "AsOnline",
             "bossEnabled": true,
