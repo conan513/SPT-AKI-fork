@@ -56,6 +56,7 @@ class BotController
         bot.Customization.Feet = utility.getRandomArrayValue(node.appearance.feet);
         bot.Customization.Hands = utility.getRandomArrayValue(node.appearance.hands);
         bot.Inventory = this.getInventoryTemp(type.toLowerCase());
+        // bot.Inventory = this.generateInventory(node.inventory);
 
         // add dogtag to PMC's
         if (type === "usec" || type === "bear")
@@ -203,12 +204,153 @@ class BotController
     }
 
     /** Temporary method to fetch an inventory from old bot files.
-     *  To be removed when bot loadout generation is implemented */
+     *  To be removed when bot loadout generation is fully implemented */
     getInventoryTemp(botType)
     {
         const oldBotDbFile = Object.keys(db.bots_old).find(key => key.includes(`bot_${botType}`));
         const oldBotDb = json.parse(json.read(db.bots_old[oldBotDbFile]));
         return utility.getRandomValue(oldBotDb.inventory);
+    }
+
+    generateInventory(templateInventory)
+    {
+        let inventory = this.generateInventoryBase();
+        for (const equipmentSlot in templateInventory.equipment)
+        {
+            inventory = this.generateEquipment(inventory, equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods);
+        }
+
+        // TODO: Generate meds/magazines/bullets/loot/etc.
+
+        return inventory;
+    }
+
+    generateInventoryBase()
+    {
+        const equipmentId = utility.generateNewItemId();
+        const equipmentTpl = "55d7217a4bdc2d86028b456d";
+
+        const stashId = utility.generateNewItemId();
+        const stashTpl = "566abbc34bdc2d92178b4576";
+
+        const questRaidItemsId = utility.generateNewItemId();
+        const questRaidItemsTpl = "5963866286f7747bf429b572";
+
+        const questStashItemsId = utility.generateNewItemId();
+        const questStashItemsTpl = "5963866b86f7747bfa1c4462";
+
+        return {
+            "items": [
+                {
+                    "_id": equipmentId,
+                    "_tpl": equipmentTpl
+                },
+                {
+                    "_id": stashId,
+                    "_tpl": stashTpl
+                },
+                {
+                    "_id": questRaidItemsId,
+                    "_tpl": questRaidItemsTpl
+                },
+                {
+                    "_id": questStashItemsId,
+                    "_tpl": questStashItemsTpl
+                }
+            ],
+            "equipment": equipmentId,
+            "stash": stashId,
+            "questRaidItems": questRaidItemsId,
+            "questStashItems": questStashItemsId,
+            "fastPanel": {}
+        };
+    }
+
+    generateEquipment(inventory, equipmentSlot, equipmentPool, modPool)
+    {
+        const itemPool = equipmentPool[equipmentSlot];
+
+        // TODO: Need to split chances by bot type (ex. bosses should always spawn with headwear)
+        if (itemPool.length && utility.getRandomIntEx(100) <= bots_f.botConfig.slotSpawnChance[equipmentSlot])
+        {
+            const id = utility.generateNewItemId();
+            const tpl = utility.getRandomArrayValue(itemPool);
+
+            // TODO: Check if generated item is compatible with current inventory (ex. earpiece & helmet compatibility)
+
+            inventory.push({
+                "_id": id,
+                "_tpl": tpl,
+                "parentId": inventory.equipment,
+                "slotId": equipmentSlot
+            });
+
+            if (Object.keys(modPool).includes(tpl))
+            {
+                inventory = this.generateModsForItem(inventory, modPool[tpl], id, tpl, this.generateExtraPropertiesForItemMod(equipmentSlot));
+            }
+        }
+
+        return inventory;
+    }
+
+    generateModsForItem(inventory, itemModPool, itemId, itemTpl, extraItemProperties = {})
+    {
+        const itemTemplate = database_f.database.tables.templates.items[itemTpl];
+        if (!itemTemplate)
+        {
+            logger.logError(`Could not find item template with tpl ${itemTpl}`);
+            return inventory;
+        }
+
+        if (!itemTemplate._props.Slots.length)
+        {
+            logger.logError(`Item ${itemTpl} had mods defined, but no slots to support them`);
+            return inventory;
+        }
+
+        const itemSlots = itemTemplate._props.Slots;
+        for (const modSlot in itemModPool)
+        {
+            const itemSlot = itemSlots.find(s => s._name === modSlot);
+            if (!itemSlot)
+            {
+                logger.logError(`Slot '${modSlot}' does not exist for item ${itemTpl}`);
+                continue;
+            }
+
+            const modTpl = utility.getRandomArrayValue(itemModPool[modSlot]);
+
+            if (!itemSlot._props.filters[0].Filter.includes(modTpl))
+            {
+                logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${itemTpl}`);
+                continue;
+            }
+
+            inventory.push({
+                "_id": utility.generateNewItemId(),
+                "_tpl": modTpl,
+                "parentId": itemId,
+                "slotId": modSlot,
+                ...extraItemProperties
+            });
+        }
+
+        // TODO: Implement recursive mod generation (mods can have mods of their own)
+
+        return inventory;
+    }
+
+    generateExtraPropertiesForItemMod(type)
+    {
+        // TODO: Fill in all extra item properties
+        switch (type)
+        {
+            case "Headwear":
+                return {"upd": {"Togglable": {"On": true}}};
+            default:
+                return {};
+        }
     }
 }
 
@@ -233,6 +375,18 @@ class BotConfig
             "enabled": true,
             "spawnChance": 35,
             "usecChance": 50
+        };
+
+        // TODO: Add chances for all equipment types
+        this.slotSpawnChance = {
+            "Eyewear": 30,
+            "FaceCover": 40,
+            "Headwear": 40,
+            "backpack": 25,
+            "ArmorVest": 25,
+            "medPocket": 10,
+            "itemPocket": 10,
+            "Earpiece": 30
         };
     }
 }
