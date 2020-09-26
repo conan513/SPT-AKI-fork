@@ -217,10 +217,25 @@ class BotController
         let inventory = this.generateInventoryBase();
         for (const equipmentSlot in templateInventory.equipment)
         {
-            inventory = this.generateEquipment(inventory, equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods);
+            // Weapons have special generation and will be generated seperately; ArmorVest should be generated after TactivalVest
+            if (["FirstPrimaryWeapon", "SecondPrimaryWeapon", "Holster", "ArmorVest"].includes(equipmentSlot))
+            {
+                continue;
+            }
+            this.generateEquipment(inventory, equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods);
         }
 
-        // TODO: Generate meds/magazines/bullets/loot/etc.
+        // ArmorVest is generated afterwards to ensure that TacticalVest is always first, in case it is incompatible
+        this.generateEquipment(inventory, "ArmorVest", templateInventory.equipment["ArmorVest"], templateInventory.mods);
+
+        this.generateWeapons(
+            inventory,
+            templateInventory.equipment["FirstPrimaryWeapon"],
+            templateInventory.equipment["SecondPrimaryWeapon"],
+            templateInventory.equipment["Holster"],
+            templateInventory.mods);
+
+        // TODO: Generate meds/loot/etc.
 
         return inventory;
     }
@@ -268,44 +283,164 @@ class BotController
 
     generateEquipment(inventory, equipmentSlot, equipmentPool, modPool)
     {
-        const itemPool = equipmentPool[equipmentSlot];
+        const shouldSpawn = !(["Pockets", "SecuredContainer"].includes(equipmentSlot))
+            ? utility.getRandomIntEx(100) <= bots_f.botConfig.slotSpawnChance[equipmentSlot]
+            : true;
 
-        // TODO: Need to split chances by bot type (ex. bosses should always spawn with headwear)
-        if (itemPool.length && utility.getRandomIntEx(100) <= bots_f.botConfig.slotSpawnChance[equipmentSlot])
+        if (equipmentPool.length && shouldSpawn)
         {
             const id = utility.generateNewItemId();
-            const tpl = utility.getRandomArrayValue(itemPool);
+            const tpl = utility.getRandomArrayValue(equipmentPool);
+            const itemTemplate = database_f.database.tables.templates.items[tpl];
 
-            // TODO: Check if generated item is compatible with current inventory (ex. earpiece & helmet compatibility)
+            if (!itemTemplate)
+            {
+                logger.logError(`Could not find item template with tpl ${tpl}`);
+                return inventory;
+            }
+
+            if (this.isItemIncompatibleWithCurrentInventory(inventory, tpl, equipmentSlot))
+            {
+                // Bad luck - randomly picked item was not compatible with current gear
+                return inventory;
+            }
 
             inventory.push({
                 "_id": id,
                 "_tpl": tpl,
                 "parentId": inventory.equipment,
-                "slotId": equipmentSlot
+                "slotId": equipmentSlot,
+                ...this.generateExtraPropertiesForItem(itemTemplate)
             });
 
             if (Object.keys(modPool).includes(tpl))
             {
-                inventory = this.generateModsForItem(inventory, modPool[tpl], id, tpl, this.generateExtraPropertiesForItemMod(equipmentSlot));
+                this.generateModsForItem(inventory, modPool, id, itemTemplate);
             }
         }
 
         return inventory;
     }
 
-    generateModsForItem(inventory, itemModPool, itemId, itemTpl, extraItemProperties = {})
+    generateWeapons(inventory, primaryWeaponPool, secondaryWeaponPool, holsterPool, modPool)
     {
-        const itemTemplate = database_f.database.tables.templates.items[itemTpl];
+        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= bots_f.botConfig.slotSpawnChance["FirstPrimaryWeapon"];
+        // If roll for primary failed, at least generate a pistol. Otherwise, roll for an extra
+        const shouldSpawnHolster = shouldSpawnPrimary ? utility.getRandomIntEx(100) <= bots_f.botConfig.slotSpawnChance["Holster"] : true;
+        // If roll for primary failed, don't roll for chance at secondary
+        const shouldSpawnSecondary = shouldSpawnPrimary ? utility.getRandomIntEx(100) <= bots_f.botConfig.slotSpawnChance["SecondPrimaryWeapon"] : false;
+
+        if (shouldSpawnPrimary && primaryWeaponPool.length)
+        {
+            this.generateWeapon(inventory, primaryWeaponPool, modPool);
+        }
+
+        if (shouldSpawnHolster && holsterPool.length)
+        {
+            this.generateWeapon(inventory, holsterPool, modPool);
+        }
+
+        if (shouldSpawnSecondary && secondaryWeaponPool.length)
+        {
+            this.generateWeapon(inventory, secondaryWeaponPool, modPool);
+        }
+
+        return inventory;
+    }
+
+    generateWeapon(inventory, equipmentSlot, weaponPool, modPool)
+    {
+        const id = utility.generateNewItemId();
+        const tpl = utility.getRandomArrayValue(weaponPool);
+        const itemTemplate = database_f.database.tables.templates.items[tpl];
+
         if (!itemTemplate)
         {
-            logger.logError(`Could not find item template with tpl ${itemTpl}`);
+            logger.logError(`Could not find item template with tpl ${tpl}`);
             return inventory;
         }
 
+        inventory.push({
+            "_id": id,
+            "_tpl": tpl,
+            "parentId": inventory.equipment,
+            "slotId": equipmentSlot,
+            ...this.generateExtraPropertiesForItem(itemTemplate)
+        });
+
+        let weaponMods = [];
+        if (Object.keys(modPool).includes(tpl))
+        {
+            this.generateModsForItem(weaponMods, modPool, id, itemTemplate);
+        }
+        else
+        {
+            logger.logError(`Weapon with tpl ${tpl} did not have any mods defined!`);
+            // TODO: Implement fallback to default weapon preset
+        }
+
+        // Find ammo to use when generating extra magazines
+        let ammoTpl = "";
+        let ammoToUse = weaponMods.find(mod => mod.slotId === "patron_in_weapon");
+        if (!ammoToUse)
+        {
+            // No bullet found in chamber, search for ammo in magazines instead
+            ammoToUse = weaponMods.find(mod => mod.slotId === "cartridges");
+            if (!ammoToUse)
+            {
+                // Still could not locate ammo to use? Fallback to weapon default
+                ammoTpl = itemTemplate._props.defAmmo;
+                logger.logWarning(`Could not locate ammo to use for ${tpl}, falling back to default -> ${ammoTpl}`);
+            }
+            else
+            {
+                ammoTpl = ammoToUse._tpl;
+            }
+        }
+        else
+        {
+            ammoTpl = ammoToUse._tpl;
+        }
+
+        // Fill existing magazines to full
+        weaponMods.forEach(mod =>
+        {
+            if (mod.slotId === "mod_magazine")
+            {
+                const stackSize = database_f.database.tables.templates.items[mod._tpl].Cartriges[0]._max_count;
+                const cartridges = weaponMods.find(m => m.parentId === mod._id);
+
+                if (!cartridges)
+                {
+                    logger.logError(`Magazine with tpl ${mod._tpl} had no ammo`);
+                    weaponMods.push({
+                        "_id": utility.generateNewItemId(),
+                        "_tpl": ammoTpl,
+                        "parentId": mod._id,
+                        "slotId": "cartridges",
+                        "upd": {"StackObjectsCount": stackSize}
+                    });
+                }
+                else
+                {
+                    cartridges.upd = {"StackObjectsCount": stackSize};
+                }
+            }
+        });
+
+        // TODO: Generate extra magazines and add them to vest or pockets
+
+        inventory.push(...weaponMods);
+        return inventory;
+    }
+
+    generateModsForItem(inventory, modPool, itemId, itemTemplate)
+    {
+        const itemModPool = modPool[itemTemplate._id];
+
         if (!itemTemplate._props.Slots.length)
         {
-            logger.logError(`Item ${itemTpl} had mods defined, but no slots to support them`);
+            logger.logError(`Item ${itemTemplate._id} had mods defined, but no slots to support them`);
             return inventory;
         }
 
@@ -315,7 +450,7 @@ class BotController
             const itemSlot = itemSlots.find(s => s._name === modSlot);
             if (!itemSlot)
             {
-                logger.logError(`Slot '${modSlot}' does not exist for item ${itemTpl}`);
+                logger.logError(`Slot '${modSlot}' does not exist for item ${itemTemplate._id}`);
                 continue;
             }
 
@@ -323,34 +458,66 @@ class BotController
 
             if (!itemSlot._props.filters[0].Filter.includes(modTpl))
             {
-                logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${itemTpl}`);
+                logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${itemTemplate._id}`);
                 continue;
             }
 
+            const modTemplate = database_f.database.tables.templates.items[modTpl];
+            if (!modTemplate)
+            {
+                logger.logError(`Could not find item template with tpl ${modTpl}`);
+                continue;
+            }
+
+            const modId = utility.generateNewItemId();
             inventory.push({
-                "_id": utility.generateNewItemId(),
+                "_id": modId,
                 "_tpl": modTpl,
                 "parentId": itemId,
                 "slotId": modSlot,
-                ...extraItemProperties
+                ...this.generateExtraPropertiesForItem(itemTemplate)
             });
-        }
 
-        // TODO: Implement recursive mod generation (mods can have mods of their own)
+            if (Object.keys(modPool).includes(itemTemplate._id))
+            {
+                this.generateModsForItem(inventory, modPool, modId, modTemplate);
+            }
+        }
 
         return inventory;
     }
 
-    generateExtraPropertiesForItemMod(type)
+    generateExtraPropertiesForItem(itemTemplate)
     {
-        // TODO: Fill in all extra item properties
-        switch (type)
+        let properties = {};
+        if (itemTemplate._props.MaxDurability)
         {
-            case "Headwear":
-                return {"upd": {"Togglable": {"On": true}}};
-            default:
-                return {};
+            properties.Repairable = {"Durability": itemTemplate._props.MaxDurability};
         }
+
+        if (itemTemplate._props.HasHinge)
+        {
+            properties.Togglable = {"On": true};
+        }
+
+        if (itemTemplate._props.Foldable)
+        {
+            properties.Foldable = {"Folded": false};
+        }
+
+        if (itemTemplate._props.weapFireType && itemTemplate._props.weapFireType.length)
+        {
+            properties.FireMode = {"FireMode": itemTemplate._props.weapFireType[0]};
+        }
+
+        return Object.keys(properties).length ? {"upd": properties} : {};
+    }
+
+    isItemIncompatibleWithCurrentInventory(inventory, tplToCheck, equipmentSlot)
+    {
+        // TODO: Can probably be optimized to cache itemTemplates as items are added to inventory
+        const itemTemplates = inventory.map(i => database_f.database.tables.templates.items[i._tpl]);
+        return itemTemplates.some(item => item._props[`Blocks${equipmentSlot}`] || item._props.ConflictingItems.includes(tplToCheck));
     }
 }
 
@@ -377,16 +544,20 @@ class BotConfig
             "usecChance": 50
         };
 
-        // TODO: Add chances for all equipment types
+        // TODO: Need to split chances by bot type (ex. Killa should always spawn with headwear)
         this.slotSpawnChance = {
-            "Eyewear": 30,
-            "FaceCover": 40,
-            "Headwear": 40,
-            "backpack": 25,
-            "ArmorVest": 25,
-            "medPocket": 10,
-            "itemPocket": 10,
-            "Earpiece": 30
+            "Headwear": 65,
+            "Earpiece": 30,
+            "FaceCover": 75,
+            "ArmorVest": 50,
+            "Eyewear": 50,
+            "ArmBand": 10,
+            "TacticalVest": 100,
+            "Backpack": 50,
+            "FirstPrimaryWeapon": 80, // Chance of primary - if roll fails, holster is spawned instead
+            "SecondPrimaryWeapon": 2, // Chance of extra primary (used only if first primary was generated)
+            "Holster": 15, // Chance of extra sidearm (used only if primary was generated)
+            "Scabbard": 80
         };
     }
 }
