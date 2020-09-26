@@ -50,12 +50,12 @@ class WishlistCallbacks
 
     addToWishlist(pmcData, body, sessionID)
     {
-        return wishList_f.addToWishList(pmcData, body, sessionID);
+        return wishList_f.wishlistController.addToWishList(pmcData, body, sessionID);
     }
 
     removeFromWishlist(pmcData, body, sessionID)
     {
-        return wishList_f.removeFromWishList(pmcData, body, sessionID);
+        return wishList_f.wishlistController.removeFromWishList(pmcData, body, sessionID);
     }
 }
 
