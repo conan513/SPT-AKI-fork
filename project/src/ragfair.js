@@ -72,7 +72,6 @@ class ragfairController
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.database.tables.traders[traderID].base;
-        const time = Math.floor(new Date().getTime() / 1000);
         let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
 
         offerBase._id = itemsToSell[0]._id;
@@ -89,8 +88,6 @@ class ragfairController
         offerBase.items = itemsToSell;
         offerBase.requirements = barter_scheme;
         offerBase.loyaltyLevel = loyal_level;
-        offerBase.startTime = time;
-        offerBase.endTime = time + 3153600000;   // 1 century
 
         return [offerBase];
     }
@@ -106,7 +103,6 @@ class ragfairController
 
         let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
         let offers = [];
-        let time = Math.floor(new Date().getTime() / 1000);
 
         // Preset
         if (usePresets && preset_f.itemPresets.hasPreset(template))
@@ -132,8 +128,6 @@ class ragfairController
                 offer.items = mods;
                 offer.requirements[0].count = Math.round(rub * gameplayConfig.trading.ragfairMultiplier);
                 offers.push(offer);
-                offer.startTime = time;
-                offer.endTime = time + 3153600000;   // 1 century
             }
         }
 
@@ -147,8 +141,6 @@ class ragfairController
             offerBase.itemsCost = rubPrice;
             offerBase.requirementsCost = rubPrice;
             offerBase.summaryCost = rubPrice;
-            offerBase.startTime = time;
-            offerBase.endTime = time + 3153600000;   // 1 century
             offers.push(offerBase);
         }
 
