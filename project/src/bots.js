@@ -296,6 +296,7 @@ class BotController
             if (!itemTemplate)
             {
                 logger.logError(`Could not find item template with tpl ${tpl}`);
+                logger.logInfo(`EquipmentSlot -> ${equipmentSlot}`);
                 return inventory;
             }
 
@@ -357,26 +358,39 @@ class BotController
         if (!itemTemplate)
         {
             logger.logError(`Could not find item template with tpl ${tpl}`);
+            logger.logError(`WeaponSlot -> ${equipmentSlot}`);
             return inventory;
         }
 
-        inventory.items.push({
-            "_id": id,
-            "_tpl": tpl,
-            "parentId": inventory.equipment,
-            "slotId": equipmentSlot,
-            ...this.generateExtraPropertiesForItem(itemTemplate)
-        });
+        let weaponMods = {
+            "items": [{
+                "_id": id,
+                "_tpl": tpl,
+                "parentId": inventory.equipment,
+                "slotId": equipmentSlot,
+                ...this.generateExtraPropertiesForItem(itemTemplate)
+            }]
+        };
 
-        let weaponMods = {"items": []};
         if (Object.keys(modPool).includes(tpl))
         {
             this.generateModsForItem(weaponMods, modPool, id, itemTemplate);
         }
-        else
+
+        if (!this.isWeaponValid(weaponMods.items))
         {
-            logger.logError(`Weapon with tpl ${tpl} did not have any mods defined!`);
-            // TODO: Implement fallback to default weapon preset
+            // Invalid weapon generated, fallback to preset
+            logger.logWarning(`Weapon ${tpl} was generated incorrectly, see error above`);
+            weaponMods = {
+                "items": [{
+                    "_id": id,
+                    "_tpl": tpl,
+                    "parentId": inventory.equipment,
+                    "slotId": equipmentSlot,
+                    ...this.generateExtraPropertiesForItem(itemTemplate)
+                }]
+            };
+            this.getPresetForWeapon(weaponMods, tpl);
         }
 
         // Find ammo to use when generating extra magazines
@@ -410,7 +424,7 @@ class BotController
                 const modTemplate = database_f.database.tables.templates.items[mod._tpl];
                 if (!modTemplate)
                 {
-                    logger.logError(`Could not find mod item template with tpl ${mod._tpl}`);
+                    logger.logError(`Could not find magazine template with tpl ${mod._tpl}`);
                     return;
                 }
 
@@ -419,7 +433,7 @@ class BotController
 
                 if (!cartridges)
                 {
-                    logger.logError(`Magazine with tpl ${mod._tpl} had no ammo`);
+                    logger.logWarning(`Magazine with tpl ${mod._tpl} had no ammo`);
                     weaponMods.items.push({
                         "_id": utility.generateNewItemId(),
                         "_tpl": ammoTpl,
@@ -435,22 +449,22 @@ class BotController
             }
         });
 
-        // TODO: Check if generated weapon is valid
+        inventory.items.push(...weaponMods.items);
+
         // TODO: Generate extra magazines and add them to vest or pockets
 
-        inventory.items.push(...weaponMods.items);
         return inventory;
     }
 
-    generateModsForItem(inventory, modPool, itemId, itemTemplate)
+    generateModsForItem(inventory, modPool, parentId, parentTemplate)
     {
-        const itemModPool = modPool[itemTemplate._id];
+        const itemModPool = modPool[parentTemplate._id];
 
-        if (!itemTemplate._props.Slots.length
-            && !itemTemplate._props.Cartridges.length
-            && !itemTemplate._props.Chambers.length)
+        if (!parentTemplate._props.Slots.length
+            && !parentTemplate._props.Cartridges.length
+            && !parentTemplate._props.Chambers.length)
         {
-            logger.logError(`Item ${itemTemplate._id} had mods defined, but no slots to support them`);
+            logger.logError(`Item ${parentTemplate._id} had mods defined, but no slots to support them`);
             return inventory;
         }
 
@@ -459,20 +473,20 @@ class BotController
             let itemSlot;
             if (modSlot === "patron_in_weapon")
             {
-                itemSlot = itemTemplate._props.Chambers.find(c => c._name === modSlot);
+                itemSlot = parentTemplate._props.Chambers.find(c => c._name === modSlot);
             }
             else if (modSlot === "cartridges")
             {
-                itemSlot = itemTemplate._props.Cartridges.find(c => c._name === modSlot);
+                itemSlot = parentTemplate._props.Cartridges.find(c => c._name === modSlot);
             }
             else
             {
-                itemSlot = itemTemplate._props.Slots.find(s => s._name === modSlot);
+                itemSlot = parentTemplate._props.Slots.find(s => s._name === modSlot);
             }
 
             if (!itemSlot)
             {
-                logger.logError(`Slot '${modSlot}' does not exist for item ${itemTemplate._id}`);
+                logger.logError(`Slot '${modSlot}' does not exist for item ${parentTemplate._id}`);
                 continue;
             }
 
@@ -480,14 +494,15 @@ class BotController
 
             if (!itemSlot._props.filters[0].Filter.includes(modTpl))
             {
-                logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${itemTemplate._id}`);
+                logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${parentTemplate._id}`);
                 continue;
             }
 
             const modTemplate = database_f.database.tables.templates.items[modTpl];
             if (!modTemplate)
             {
-                logger.logError(`Could not find item template with tpl ${modTpl}`);
+                logger.logError(`Could not find mod item template with tpl ${modTpl}`);
+                logger.logInfo(`Item -> ${parentTemplate._id}; Slot -> ${modSlot}`);
                 continue;
             }
 
@@ -495,7 +510,7 @@ class BotController
             inventory.items.push({
                 "_id": modId,
                 "_tpl": modTpl,
-                "parentId": itemId,
+                "parentId": parentId,
                 "slotId": modSlot,
                 ...this.generateExtraPropertiesForItem(modTemplate)
             });
@@ -541,6 +556,61 @@ class BotController
         const itemTemplates = inventory.items.map(i => database_f.database.tables.templates.items[i._tpl]);
         return itemTemplates.some(item => item._props[`Blocks${equipmentSlot}`] || item._props.ConflictingItems.includes(tplToCheck));
     }
+
+    getPresetForWeapon(inventory, weaponTpl)
+    {
+        let preset = {};
+        // TODO: This is kind of inefficient, but I'm not sure how it could be improved - Terkoiz
+        for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.ItemPresets))
+        {
+            if (presetObj._items[0]._tpl === weaponTpl)
+            {
+                preset = presetObj;
+                break;
+            }
+        }
+
+        if (preset)
+        {
+            // Don't add the base weapon item again, as it was included previously
+            inventory.items.push(...preset._items.filter(i => i._tpl !== weaponTpl));
+        }
+        else
+        {
+            logger.logError(`Could not find preset for weapon with tpl ${weaponTpl}`);
+        }
+
+        return inventory;
+    }
+
+    isWeaponValid(itemList)
+    {
+        for (const item of itemList)
+        {
+            const template = database_f.database.tables.templates.items[item._tpl];
+            if (!template._props.Slots || !template._props.Slots.length)
+            {
+                continue;
+            }
+
+            for (const slot of template._props.Slots)
+            {
+                if (!slot._required)
+                {
+                    continue;
+                }
+
+                const slotItem = itemList.find(i => i.parentId === item._id && i.slotId === slot._name);
+                if (!slotItem)
+                {
+                    logger.logError(`Required slot '${slot._name}' on ${template._id} was empty`);
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }
 
 class BotCallbacks
@@ -566,20 +636,20 @@ class BotConfig
             "usecChance": 50
         };
 
-        // TODO: Need to split chances by bot type (ex. Killa should always spawn with headwear)
         this.slotSpawnChance = {
-            "Headwear": 65,
-            "Earpiece": 30,
-            "FaceCover": 75,
-            "ArmorVest": 50,
-            "Eyewear": 50,
-            "ArmBand": 10,
+            // Testing placeholder - we want to generate as much as possible to catch potential issues
+            "Headwear": 100,
+            "Earpiece": 100,
+            "FaceCover": 100,
+            "ArmorVest": 100,
+            "Eyewear": 100,
+            "ArmBand": 100,
             "TacticalVest": 100,
-            "Backpack": 50,
-            "FirstPrimaryWeapon": 80, // Chance of primary - if roll fails, holster is spawned instead
-            "SecondPrimaryWeapon": 2, // Chance of extra primary (used only if first primary was generated)
-            "Holster": 15, // Chance of extra sidearm (used only if primary was generated)
-            "Scabbard": 80
+            "Backpack": 100,
+            "FirstPrimaryWeapon": 100, // Chance of primary - if roll fails, holster is spawned instead
+            "SecondPrimaryWeapon": 100, // Chance of extra primary (used only if first primary was generated)
+            "Holster": 100, // Chance of extra sidearm (used only if primary was generated)
+            "Scabbard": 100
         };
     }
 }
