@@ -33,7 +33,7 @@ class SaveServer
 
         for (let file of files)
         {
-            file = file.split('.').slice(0, -1).join('.');
+            file = file.split(".").slice(0, -1).join(".");
             result[file] = `${filepath}${file}.json`;
         }
 

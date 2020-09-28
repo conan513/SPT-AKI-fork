@@ -293,7 +293,7 @@ class HealthServer
         }
 
         let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
-        
+
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
             // clear effects

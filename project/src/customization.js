@@ -19,7 +19,7 @@ class CustomizationController
         {
             profile.suits = [];
         }
-        
+
         return profile;
     }
 
@@ -169,7 +169,7 @@ class CustomizationCallbacks
     {
         return response_f.responseController.getBody({
             "_id": `pmc${sessionID}`,
-            "suites": save_f.saveServer.profiles[sessionID].suits 
+            "suites": save_f.saveServer.profiles[sessionID].suits
         });
     }
 

@@ -355,7 +355,7 @@ class InsuranceCallback
     {
         save_f.saveServer.onLoadCallback["insurance"] = this.onLoad.bind();
         save_f.saveServer.onSaveCallback["insurance"] = this.onSave.bind();
-        
+
         server.addReceiveCallback("INSURANCE", this.checkInsurance.bind());
         router.addStaticRoute("/client/insurance/items/list/cost", this.getInsuranceCost.bind());
         item_f.itemServer.addRoute("Insure", this.insure.bind());

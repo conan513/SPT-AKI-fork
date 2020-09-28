@@ -25,7 +25,7 @@ class ProfileController
                 "scav": {}
             };
         }
-        
+
         return profile;
     }
 

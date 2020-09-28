@@ -282,7 +282,7 @@ class Server
                     }
                 }
             });
-            
+
             req.on("end", function()
             {
                 let data = server.getFromBuffer(sessionID);

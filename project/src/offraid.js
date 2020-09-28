@@ -24,7 +24,7 @@ class InraidServer
                 "character": "none"
             };
         }
-        
+
         return profile;
     }
 

@@ -263,7 +263,7 @@ class LocationServer
             container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(
                 container2D, result.x, result.y, props.Width, props.Height, result.rotation);
 
-            
+
             let rot = result.rotation ? 1 : 0;
             let itemJson = {
                 "_id": idPrefix + idSuffix.toString(16),
@@ -272,7 +272,7 @@ class LocationServer
                 "slotId": "main",
                 "location": { "x": result.x, "y": result.y, "r": rot}
             };
-            
+
             let cartridges;
             if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
@@ -307,7 +307,7 @@ class LocationServer
                     "slotId": "cartridges",
                     "upd": { "StackObjectsCount": carts._max_count }
                 };
-            }            
+            }
 
             items.push(itemJson);
             if (cartridges)

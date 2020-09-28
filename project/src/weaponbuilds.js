@@ -19,7 +19,7 @@ class WeaponBuildsController
         {
             profile.weaponbuilds = {};
         }
-        
+
         return profile;
     }
 
@@ -76,7 +76,7 @@ class WeaponBuildsCallbacks
         item_f.itemServer.addRoute("SaveBuild", this.saveBuild.bind());
         item_f.itemServer.addRoute("RemoveBuild", this.removeBuild.bind());
     }
-    
+
     onLoad(sessionID)
     {
         return weaponbuilds_f.weaponBuildsController.onLoad(sessionID);
