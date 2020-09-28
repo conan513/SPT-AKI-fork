@@ -1,3 +1,12 @@
+/* account.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - PoloYolo
+ */
+
 "use strict";
 
 const fs = require("fs");

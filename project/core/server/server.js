@@ -1,4 +1,13 @@
-﻿"use strict";
+﻿/* server.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - Apofis
+ */
+
+"use strict";
 
 const fs = require("fs");
 const { resolve } = require("path");

@@ -1,3 +1,11 @@
+/* health.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 "use strict";
 
 /* HealthServer class maintains list of health for each sessionID in memory. */

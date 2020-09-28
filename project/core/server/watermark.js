@@ -1,47 +1,85 @@
-﻿"use strict";
+﻿/* watermark.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
 
-function show()
+"use strict";
+
+class Watermark
 {
-    let text_1 = "SPT-AKI " + server.version;
-    let text_2 = "https://guilded.gg/senkospub";
-    let diffrence = Math.abs(text_1.length - text_2.length);
-    let whichIsLonger = ((text_1.length >= text_2.length) ? text_1.length : text_2.length);
-    let box_spacing_between_1 = "";
-    let box_spacing_between_2 = "";
-    let box_width = "";
-
-    /* calculate space */
-    if (text_1.length >= text_2.length)
+    constructor()
     {
-        for (let i = 0; i < diffrence; i++)
+        this.name = "SPT-AKI";
+        this.version = "Alpha";
+        this.url = "https://www.guilded.gg/senkospub";
+        this.colors = {
+            "front": "\x1b[33m",    // gold
+            "back": "\x1b[40m"      // black
+        };
+        this.text = [
+            `${this.name} ${this.version}`,
+            `${this.url}`
+        ];
+    }
+
+    /** Set window title */
+    setTitle()
+    {
+        process.title = `${this.name} ${this.version}`;
+    }
+
+    /** Reset console cursor to top */
+    resetCursor()
+    {
+        process.stdout.write("\u001B[2J\u001B[0;0f");
+    }
+
+    /** Draw the watermark */
+    draw()
+    {
+        let result = [];
+
+        // calculate size
+        const longestLength = this.text.reduce((a, b) =>
         {
-            box_spacing_between_2 += " ";
+            return a.length > b.length ? a : b;
+        }).length;
+
+        // get top-bottom line
+        let line = "";
+
+        for (let i = 0; i < longestLength; ++i)
+        {
+            line += "─";
+        }
+
+        // get watermark to draw
+        result.push(`┌─${line}─┐`);
+
+        for (const text of this.text)
+        {
+            const spacingSize = longestLength - text.length;
+            let spacingText = text;
+
+            for (let i = 0; i < spacingSize; ++i)
+            {
+                spacingText += " ";
+            }
+
+            result.push(`│ ${spacingText} │`);
+        }
+
+        result.push(`└─${line}─┘`);
+
+        // draw the watermark
+        for (const text of result)
+        {
+            console.log(`${this.colors.front + this.colors.back}${text}\x1b[0m`);
         }
     }
-    else
-    {
-        for (let i = 0; i < diffrence; i++)
-        {
-            box_spacing_between_1 += " ";
-        }
-    }
-
-    for (let i = 0; i < whichIsLonger; i++)
-    {
-        box_width += "─";
-    }
-
-    /* reset cursor to begin */
-    process.stdout.write("\u001B[2J\u001B[0;0f");
-
-    /* show watermark */
-    logger.logLogo("┌─" + box_width + "─┐");
-    logger.logLogo("│ " + text_1 + box_spacing_between_1 + " │");
-    logger.logLogo("│ " + text_2 + box_spacing_between_2 + " │");
-    logger.logLogo("└─" + box_width + "─┘");
-
-    /* set window name */
-    process.title = text_1;
 }
 
-module.exports.show = show;
+const watermark = new Watermark();

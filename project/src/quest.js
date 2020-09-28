@@ -1,3 +1,13 @@
+/* quest.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - BALIST0N
+ * - Emperor06
+ */
+
 "use strict";
 
 class QuestController
