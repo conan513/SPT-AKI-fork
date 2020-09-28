@@ -82,4 +82,4 @@ class Watermark
     }
 }
 
-const watermark = new Watermark();
+module.exports.instance = new Watermark();
