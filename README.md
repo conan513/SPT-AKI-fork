@@ -18,9 +18,9 @@ VSCodium -> menu bar -> tasks -> run build task
 
 ## Authors
 
-- InNoHurryToCode
+- Merijn Hendriks (InNoHurryToCode, Senko-san)
 - BALIST0N
-- Sorata-sempai
+- Ereshkigal
 - Emperor06
 - Craink
 - Ginja
