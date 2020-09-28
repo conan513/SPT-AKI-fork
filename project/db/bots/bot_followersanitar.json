@@ -2377,5 +2377,19 @@
 				"RecoilYMax": 1
 			}
 		}
+	},
+	"equipmentChances": {
+		"Headwear": 99,
+		"Earpiece": 0,
+		"FaceCover": 94,
+		"ArmorVest": 95,
+		"Eyewear": 30,
+		"ArmBand": 0,
+		"TacticalVest": 100,
+		"Backpack": 100,
+		"FirstPrimaryWeapon": 100,
+		"SecondPrimaryWeapon": 0,
+		"Holster": 0,
+		"Scabbard": 0
 	}
 }

@@ -4362,5 +4362,19 @@
 		"Богдан Дерзкий",
 		"Максим Сыч",
 		"Мишган Стамеска"
-	]
+	],
+	"equipmentChances": {
+		"Headwear": 72,
+		"Earpiece": 0,
+		"FaceCover": 53,
+		"ArmorVest": 41,
+		"Eyewear": 49,
+		"ArmBand": 0,
+		"TacticalVest": 100,
+		"Backpack": 58,
+		"FirstPrimaryWeapon": 99,
+		"SecondPrimaryWeapon": 0,
+		"Holster": 17,
+		"Scabbard": 100
+	}
 }

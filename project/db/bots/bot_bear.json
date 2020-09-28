@@ -4495,5 +4495,19 @@
 		"Лёха Кацман",
 		"Санёк Окурок",
 		"Димон Поехавший"
-	]
+	],
+	"equipmentChances": {
+		"Headwear": 74,
+		"Earpiece": 0,
+		"FaceCover": 52,
+		"ArmorVest": 39,
+		"Eyewear": 51,
+		"ArmBand": 0,
+		"TacticalVest": 100,
+		"Backpack": 45,
+		"FirstPrimaryWeapon": 99,
+		"SecondPrimaryWeapon": 0,
+		"Holster": 20,
+		"Scabbard": 100
+	}
 }
