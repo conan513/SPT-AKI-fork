@@ -1,3 +1,12 @@
+/* customization.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - BALIST0N
+ */
+
 "use strict";
 
 class CustomizationController
@@ -10,7 +19,7 @@ class CustomizationController
         {
             profile.suits = [];
         }
-        
+
         return profile;
     }
 
@@ -160,7 +169,7 @@ class CustomizationCallbacks
     {
         return response_f.responseController.getBody({
             "_id": `pmc${sessionID}`,
-            "suites": save_f.saveServer.profiles[sessionID].suits 
+            "suites": save_f.saveServer.profiles[sessionID].suits
         });
     }
 

@@ -1,127 +1,99 @@
-"use strict";
+/* logger.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
 
 const fs = require("fs");
 const util = require("util");
-
-// colorData[0] -> front, colorData[1] -> back
-const colorData = [
-    {
-        black: "\x1b[30m",
-        red: "\x1b[31m",
-        green: "\x1b[32m",
-        yellow: "\x1b[33m",
-        blue: "\x1b[34m",
-        magenta: "\x1b[35m",
-        cyan: "\x1b[36m",
-        white: "\x1b[37m"
-    },
-    {
-        black: "\x1b[40m",
-        red: "\x1b[41m",
-        green: "\x1b[42m",
-        yellow: "\x1b[43m",
-        blue: "\x1b[44m",
-        magenta: "\x1b[45m",
-        cyan: "\x1b[46m",
-        white: "\x1b[47m"
-    }
-];
 
 class Logger
 {
     constructor()
     {
-        let file = utility.getDate() + "_" + utility.getTime() + ".log";
-        let folder = "user/logs/";
-        let filepath = folder + file;
+        this.filepath = "user/logs/server.log";
+        this.colors = {
+            "front": {
+                "black": "\x1b[30m",
+                "red": "\x1b[31m",
+                "green": "\x1b[32m",
+                "yellow": "\x1b[33m",
+                "blue": "\x1b[34m",
+                "magenta": "\x1b[35m",
+                "cyan": "\x1b[36m",
+                "white": "\x1b[37m"
+            },
+            "back": {
+                "black": "\x1b[40m",
+                "red": "\x1b[41m",
+                "green": "\x1b[42m",
+                "yellow": "\x1b[43m",
+                "blue": "\x1b[44m",
+                "magenta": "\x1b[45m",
+                "cyan": "\x1b[46m",
+                "white": "\x1b[47m"
+            }
+        };
 
-        // create log folder
-        if (!fs.existsSync(folder))
-        {
-            +
-            fs.mkdirSync(folder);
-        }
+        this.create("user/logs/");
+    }
+
+    create(path)
+    {
+        // get file name and path
+        const file = `${utility.getDate()}_${utility.getTime()}.log`;
+        const filepath = `${path}/${file}`;
 
         // create log file
         if (!fs.existsSync(filepath))
         {
+            utility.createDir(path);
             fs.writeFileSync(filepath, "");
         }
 
-        this.fileStream = fs.createWriteStream(filepath, {flags: "w"});
+        // set target logfile
+        this.filepath = filepath;
     }
 
-    log(data, colorFront = "", colorBack = "")
+    log(data, front = "", back = "")
     {
-        let setColors = "";
-        let colors = ["", ""];
+        // set colors
+        const colors = `${(this.colors.front[front] || "")}${this.colors.back[back] || ""}`;
 
-        if (colorFront !== "")
+        // show logged message
+        if (colors)
         {
-            colors[0] = colorFront;
-        }
-
-        if (colorBack !== "")
-        {
-            colors[1] = colorBack;
-        }
-
-        // properly set colorString indicator
-        for (let i = 0; i < colors.length; i++)
-        {
-            if (colors[i] !== "")
-            {
-                setColors += colorData[i][colors[i]];
-            }
-        }
-
-        // print data
-        if (colors[0] !== "" || colors[1] !== "")
-        {
-            console.log(setColors + data + "\x1b[0m");
+            console.log(`${colors}${data}\x1b[0m`);
         }
         else
         {
             console.log(data);
         }
 
-        // write the logged data to the file
-        this.fileStream.write(util.format(data) + "\n");
+        // save logged message
+        fs.writeFileSync(this.filepath, `${util.format(data)}\n`, { "flag": "a" });
     }
 
-    logError(text)
+    logError(data)
     {
-        this.log("[ERROR] " + text, "white", "red");
+        this.log(`[ERROR] ${data}`, "white", "red");
     }
 
-    logWarning(text)
+    logWarning(data)
     {
-        this.log("[WARNING] " + text, "white", "yellow");
+        this.log(`[WARNING] ${data}`, "white", "yellow");
     }
 
-    logSuccess(text)
+    logSuccess(data)
     {
-        this.log("[SUCCESS] " + text, "white", "green");
+        this.log(`[SUCCESS] ${data}`, "white", "green");
     }
 
-    logInfo(text)
+    logInfo(data)
     {
-        this.log("[INFO] " + text, "cyan", "black");
-    }
-
-    logLogo(text)
-    {
-        this.log(text, "yellow", "black");
-    }
-
-    logRequest(text)
-    {
-        this.log(text, "white", "black");
-    }
-
-    logData(data)
-    {
-        this.log(data);
+        this.log(`[INFO] ${data}`, "cyan", "black");
     }
 }
 

@@ -1,4 +1,12 @@
-﻿"use strict";
+﻿/* profile.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
+"use strict";
 
 /*
 * profileController class maintains list of active profiles for each sessionID in memory. All first-time loads and save
@@ -17,7 +25,7 @@ class ProfileController
                 "scav": {}
             };
         }
-        
+
         return profile;
     }
 

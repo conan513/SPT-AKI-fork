@@ -1,4 +1,13 @@
-﻿"use strict";
+﻿/* server.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - Apofis
+ */
+
+"use strict";
 
 const fs = require("fs");
 const { resolve } = require("path");
@@ -38,7 +47,7 @@ class Server
         this.ip = config.ip;
         this.port = config.port;
         this.backendUrl = "https://" + this.ip + ":" + this.port;
-        this.version = "0.12.7-R7";
+        this.version = "SPT-AKI Alpha";
         this.mime = {
             txt: "text/plain",
             jpg: "image/jpeg",
@@ -210,9 +219,9 @@ class Server
         /* route doesn't exist or response is not properly set up */
         if (output === "")
         {
-            logger.logError("[UNHANDLED][" + req.url + "]");
-            logger.logData(body);
-            output = "{\"err\": 404, \"errmsg\": \"UNHANDLED RESPONSE: " + req.url + "\", \"data\": null}";
+            logger.logError(`[UNHANDLED][${req.url}]`);
+            logger.log(body);
+            output = response_f.responseController.getBody(null, 404 `UNHANDLED RESPONSE: ${req.url}`);
         }
 
         // execute data received callback
@@ -237,7 +246,7 @@ class Server
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
         const sessionID = getCookies(req)["PHPSESSID"];
 
-        logger.logRequest("[" + sessionID + "][" + IP + "] " + req.url);
+        logger.log(`[${sessionID}][${IP}] ${req.url}`);
 
         // request without data
         if (req.method === "GET")
@@ -273,7 +282,7 @@ class Server
                     }
                 }
             });
-            
+
             req.on("end", function()
             {
                 let data = server.getFromBuffer(sessionID);

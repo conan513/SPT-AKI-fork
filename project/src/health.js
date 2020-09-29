@@ -1,3 +1,11 @@
+/* health.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 "use strict";
 
 /* HealthServer class maintains list of health for each sessionID in memory. */
@@ -285,7 +293,7 @@ class HealthServer
         }
 
         let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
-        
+
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
             // clear effects
