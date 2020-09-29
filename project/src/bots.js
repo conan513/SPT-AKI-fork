@@ -245,6 +245,7 @@ class BotController
             templateInventory.mods);
 
         // TODO: Generate meds/loot/etc.
+        // TODO: Add a way to override randomized gear/loot generation with supplied presets
 
         return inventory;
     }
@@ -460,7 +461,9 @@ class BotController
 
         inventory.items.push(...weaponMods.items);
 
-        // TODO: Generate extra magazines and add them to vest or pockets
+        // Generate extra magazines and add them to TacticalVest, Pockets or SecureContainer
+        const magCount = utility.getRandomInt(0, 3); // TODO: Replace with "generation.items.magazines" when they're available in bot files
+        this.generateExtraMagazines(inventory, weaponMods, itemTemplate, magCount, ammoTpl);
 
         return inventory;
     }
@@ -620,6 +623,101 @@ class BotController
 
         return true;
     }
+
+    generateExtraMagazines(inventory, weaponMods, weaponTemplate, count, ammoTpl)
+    {
+        // TODO: Check if magazine is internal - if so, give some loose bullets instead
+        let magazineTpl = "";
+        let magazine = weaponMods.items.find(m => m.slotId === "mod_magazine");
+        if (!magazine)
+        {
+            logger.logWarning(`Generated weapon with tpl ${weaponTemplate._id} had no magazine`);
+            magazineTpl = weaponTemplate._props.defMagType;
+        }
+        else
+        {
+            magazineTpl = magazine._tpl;
+        }
+
+        const magTemplate = database_f.database.tables.templates.items[magazineTpl];
+        if (!magTemplate)
+        {
+            logger.logError(`Could not find magazine template with tpl ${magazineTpl}`);
+            return inventory;
+        }
+
+        for (let i = 0; i < count; i++)
+        {
+            const magId = utility.generateNewItemId();
+            const magWithAmmo = [
+                {
+                    "_id": magId,
+                    "_tpl": magazineTpl
+                },
+                {
+                    "_id": utility.generateNewItemId(),
+                    "_tpl": ammoTpl,
+                    "parentId": magId,
+                    "slotId": "cartridges",
+                    "upd": {"StackObjectsCount": magTemplate._props.Cartridges[0]._max_count}
+                }
+            ];
+
+            for (const slot of ["TacticalVest", "Pockets", "SecuredContainer"])
+            {
+                const container = inventory.items.find(i => i.slotId === slot);
+                const containerTemplate = database_f.database.tables.templates.items[container._tpl];
+                if (!containerTemplate)
+                {
+                    logger.logError(`Could not find container template with tpl ${container._tpl}`);
+                    continue;
+                }
+
+                if (this.addItemToContainer(inventory, containerTemplate, container._id, magId, magazineTpl, magWithAmmo))
+                {
+                    break;
+                }
+            }
+        }
+
+        return inventory;
+    }
+
+    addItemToContainer(inventory, containerTemplate, containerId, parentId, parentTpl, itemWithChildren)
+    {
+        if (!containerTemplate._props.Grids || !containerTemplate._props.Grids.length)
+        {
+            // Container has no slots to hold items
+            return false;
+        }
+
+        const itemSize = helpfunc_f.helpFunctions.getItemSize(parentTpl, parentId, itemWithChildren);
+        const itemW = itemSize[0];
+        const itemH = itemSize[1];
+
+        for (const slot of containerTemplate._props.Grids)
+        {
+            const containerItems = inventory.items.filter(i => i.parentId === containerId && i.slotId === slot._name);
+            const slotMap = helpfunc_f.helpFunctions.getContainerMap(slot._props.cellsH, slot._props.cellsV, containerItems, containerId);
+            const findSlotResult = helpfunc_f.helpFunctions.findSlotForItem(slotMap, itemW, itemH);
+
+            if (findSlotResult.success)
+            {
+                const parentItem = itemWithChildren.find(i => i._id === parentId);
+                parentItem.parentId = containerId;
+                parentItem.slotId = slot._name;
+                parentItem.location = {
+                    "x": findSlotResult.x,
+                    "y": findSlotResult.y,
+                    "r": findSlotResult.rotation ? 1 : 0
+                };
+                inventory.items.push(...itemWithChildren);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
 
 class BotCallbacks
@@ -647,6 +745,7 @@ class BotConfig
 
         this.slotSpawnChance = {
             // Testing placeholder - we want to generate as much as possible to catch potential issues
+            // TODO: This was moved to botfiles
             "Headwear": 100,
             "Earpiece": 100,
             "FaceCover": 100,
