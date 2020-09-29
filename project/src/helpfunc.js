@@ -215,40 +215,8 @@ class HelpFunctions
     * */
     getPlayerStashSlotMap(pmcData, sessionID)
     {
-        // recalculate stach taken place
-        let PlayerStashSize = this.getPlayerStashSize(sessionID);
-        let Stash2D = Array(PlayerStashSize[1]).fill(0).map(x => Array(PlayerStashSize[0]).fill(0));
-
-        let inventoryItemHash = this.getInventoryItemHash(pmcData.Inventory.items);
-
-        for (let item of inventoryItemHash.byParentId[pmcData.Inventory.stash])
-        {
-            if (!("location" in item))
-            {
-                continue;
-            }
-
-            let tmpSize = this.getSizeByInventoryItemHash(item._tpl, item._id, inventoryItemHash);
-            let iW = tmpSize[0]; // x
-            let iH = tmpSize[1]; // y
-            let fH = ((item.location.r === 1 || item.location.r === "Vertical" || item.location.rotation === "Vertical") ? iW : iH);
-            let fW = ((item.location.r === 1 || item.location.r === "Vertical" || item.location.rotation === "Vertical") ? iH : iW);
-            let fillTo = item.location.x + fW;
-
-            for (let y = 0; y < fH; y++)
-            {
-                try
-                {
-                    Stash2D[item.location.y + y].fill(1, item.location.x, fillTo);
-                }
-                catch (e)
-                {
-                    logger.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
-                }
-            }
-        }
-
-        return Stash2D;
+        const PlayerStashSize = this.getPlayerStashSize(sessionID);
+        return this.getContainerMap(PlayerStashSize[0], PlayerStashSize[1], pmcData.Inventory.items, pmcData.Inventory.stash);
     }
 
     isMoneyTpl(tpl)
@@ -1017,6 +985,48 @@ class HelpFunctions
                 else
                 {
                     throw `Slot at (${x}, ${y}) is already filled`;
+                }
+            }
+        }
+
+        return container2D;
+    }
+
+    getContainerMap(containerW, containerH, itemList, containerId)
+    {
+        const container2D = Array(containerH).fill(0).map(() => Array(containerW).fill(0));
+        const inventoryItemHash = this.getInventoryItemHash(itemList);
+
+        const containerItemHash = inventoryItemHash.byParentId[containerId];
+        if (!containerItemHash)
+        {
+            // No items in the container
+            return container2D;
+        }
+
+        for (const item of containerItemHash)
+        {
+            if (!("location" in item))
+            {
+                continue;
+            }
+
+            const tmpSize = this.getSizeByInventoryItemHash(item._tpl, item._id, inventoryItemHash);
+            const iW = tmpSize[0]; // x
+            const iH = tmpSize[1]; // y
+            const fH = ((item.location.r === 1 || item.location.r === "Vertical" || item.location.rotation === "Vertical") ? iW : iH);
+            const fW = ((item.location.r === 1 || item.location.r === "Vertical" || item.location.rotation === "Vertical") ? iH : iW);
+            const fillTo = item.location.x + fW;
+
+            for (let y = 0; y < fH; y++)
+            {
+                try
+                {
+                    container2D[item.location.y + y].fill(1, item.location.x, fillTo);
+                }
+                catch (e)
+                {
+                    logger.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
                 }
             }
         }
