@@ -14,7 +14,7 @@ let mods = [];
 
 function getModFilepath(mod)
 {
-    return "user/mods/" + mod.author + "-" + mod.name + "-" + mod.version + "/";
+    return `user/mods/${mod.author}-${mod.name}/`;
 }
 
 function scanRecursiveMod(filepath, baseNode, modNode)
@@ -42,7 +42,7 @@ function scanRecursiveMod(filepath, baseNode, modNode)
 
 function loadMod(mod, filepath)
 {
-    logger.logInfo("Loading mod " + mod.author + "-" + mod.name + "-" + mod.version);
+    logger.logInfo(`Loading mod ${mod.author}-${mod.name}`);
 
     if ("db" in mod)
     {
@@ -72,33 +72,26 @@ function detectAllMods()
     for (let mod of utility.getDirList(dir))
     {
         /* check if config exists */
-        if (!fs.existsSync(dir + mod + "/mod.config.json"))
+        if (!fs.existsSync(`${dir}${mod}/mod.config.json`))
         {
-            logger.logError("Mod " + mod + " is missing mod.config.json");
+            logger.logError(`Mod ${mod} is missing mod.config.json`);
             logger.logError("Forcing server shutdown...");
             process.exit(1);
         }
 
-        let config = json.parse(json.read(dir + mod + "/mod.config.json"));
-        let found = false;
+        let config = json.parse(json.read(`${dir}${mod}/mod.config.json`));
 
-        /* check for duplicate mod */
-        for (let installed of mods)
+        /* check legacy mod */
+        if (!("experimental" in config) || !config.experimental)
         {
-            if (installed.name === config.name)
-            {
-                logger.logInfo("You have 2 different version of " + mod + " installed");
-                logger.logError("Forcing server shutdown...");
-                process.exit(1);
-            }
+            logger.logError("Legacy mod detected");
+            logger.logError("Forcing server shutdown...");
+            process.exit(1);
         }
 
         /* add mod to the list */
-        if (!found)
-        {
-            logger.logWarning("Mod " + mod + " not installed, adding it to the modlist");
-            mods.push({"name": config.name, "author": config.author, "version": config.version});
-        }
+        logger.logWarning(`Mod ${mod} not installed, adding it to the modlist`);
+        mods.push({"name": config.name, "author": config.author});
     }
 }
 
@@ -107,7 +100,7 @@ function loadAllMods()
     for (let element of mods)
     {
         let filepath = getModFilepath(element);
-        let mod = json.parse(json.read(filepath + "mod.config.json"));
+        let mod = json.parse(json.read(`${filepath}mod.config.json`));
         loadMod(mod, filepath);
     }
 }
@@ -140,7 +133,7 @@ function scanRecursiveRoute(filepath)
     // deep tree search
     for (let node of directories)
     {
-        baseNode[node] = scanRecursiveRoute(filepath + node + "/");
+        baseNode[node] = scanRecursiveRoute(`${filepath}${node}/`);
     }
 
     return baseNode;
