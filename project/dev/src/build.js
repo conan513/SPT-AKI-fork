@@ -1,3 +1,11 @@
+/* build.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 const fs = require("fs");
 const childProcess = require("child_process");
 const { compile } = require("nexe");

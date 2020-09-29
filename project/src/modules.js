@@ -1,6 +1,9 @@
 /* modules.js
- * contains responses for sptarkov singleplayer module requests
- * dependencies: NLog.SPTarkov.Singleplayer
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
  */
 
 class ModulesController
