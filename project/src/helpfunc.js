@@ -1,3 +1,16 @@
+/* helpfunc.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - BALIST0N
+ * - Terkoiz
+ * - Ginja
+ * - Emperor06
+ * - PoloYolo
+ */
+
 "use strict";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

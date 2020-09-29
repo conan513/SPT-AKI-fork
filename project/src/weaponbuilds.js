@@ -1,3 +1,12 @@
+/* weaponbuilds.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - BALIST0N
+ */
+
 "use strict";
 
 class WeaponBuildsController
@@ -10,7 +19,7 @@ class WeaponBuildsController
         {
             profile.weaponbuilds = {};
         }
-        
+
         return profile;
     }
 
@@ -67,7 +76,7 @@ class WeaponBuildsCallbacks
         item_f.itemServer.addRoute("SaveBuild", this.saveBuild.bind());
         item_f.itemServer.addRoute("RemoveBuild", this.removeBuild.bind());
     }
-    
+
     onLoad(sessionID)
     {
         return weaponbuilds_f.weaponBuildsController.onLoad(sessionID);

@@ -1,3 +1,13 @@
+/* location.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - Ginja
+ * - Craink
+ */
+
 "use strict";
 
 /* LocationServer class maintains list of locations in memory. */
@@ -108,7 +118,7 @@ class LocationServer
                 //Clear selected loot
                 dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
 
-                if (dynamic[rndLootIndex].data.length == 0)
+                if (dynamic[rndLootIndex].data.length === 0)
                 {
                     delete dynamic.splice(rndLootIndex, 1);
                 }
@@ -134,7 +144,7 @@ class LocationServer
                 if (!("parentId" in loot))
                     continue;
 
-                if (lootItemsByParentId[loot.parentId] == undefined)
+                if (lootItemsByParentId[loot.parentId] === undefined)
                     lootItemsByParentId[loot.parentId] = [];
                 lootItemsByParentId[loot.parentId].push(loot);
             }
@@ -145,10 +155,10 @@ class LocationServer
                 let newId = utility.generateNewItemId();
                 lootItemsHash[itemId]._id = newId;
 
-                if (itemId == data.Root)
+                if (itemId === data.Root)
                     data.Root = newId;
 
-                if (lootItemsByParentId[itemId] == undefined)
+                if (lootItemsByParentId[itemId] === undefined)
                     continue;
 
                 for (const childrenItem of lootItemsByParentId[itemId])
@@ -233,40 +243,114 @@ class LocationServer
         for (let i = 0; i < minCount; i++)
         {
             let item = {};
+            let props = {};
+            let containerItem = {};
             let result = { success: false };
             let maxAttempts = 20;
 
             while (!result.success && maxAttempts)
             {
                 let roll = utility.getRandomInt(0, maxProbability);
-                item = container.items.filter(i => i.cumulativeChance >= roll)[0];
-                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, item.width, item.height);
+                let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
+                item = helpfunc_f.helpFunctions.getItem(rolled.id)[1];
+                props = { ...item._props };
+
+                if (rolled.preset)
+                {
+                    props.presetId = rolled.preset.id;
+                    props.Width = rolled.preset.w;
+                    props.Height = rolled.preset.h;
+                }
+
+                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, props.Width, props.Height);
                 maxAttempts--;
             }
 
             if (!result.success)
                 break;
 
-            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(container2D, result.x, result.y, item.width, item.height, result.rotation);
-
+            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(
+                container2D, result.x, result.y, props.Width, props.Height, result.rotation);
             let rot = result.rotation ? 1 : 0;
-            let itemJson = {
+
+            if (props.presetId)
+            {
+                let preset = preset_f.itemPresets.getStandardPreset(item._id);
+                let presetItem = { ...preset._items};
+                presetItem[0].parentId = parentId;
+                presetItem[0].slotId = "main";
+                presetItem[0].location = { "x": result.x, "y": result.y, "r": rot};
+
+                for (var p in presetItem)
+                {
+                    items.push(presetItem[p]);
+
+                    if (presetItem[p].slotId === "mod_magazine")
+                    {
+                        let cId = idPrefix + idSuffix.toString(16);
+                        let mag = helpfunc_f.helpFunctions.getItem(presetItem[p]._tpl)[1];
+                        items.push(this.generateCartridgesForMagazine(cId, presetItem[p]._id, mag._props));
+                        idSuffix++;
+                    }
+                }
+
+                continue;
+            }
+
+            containerItem = {
                 "_id": idPrefix + idSuffix.toString(16),
-                "_tpl": item.id,
+                "_tpl": item._id,
                 "parentId": parentId,
                 "slotId": "main",
                 "location": { "x": result.x, "y": result.y, "r": rot}
             };
 
-            if (item.stackMax > 0)
+            let cartridges;
+            if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
-                let stack = utility.getRandomInt(item.stackMin, item.stackMax);
-                itemJson.upd = { "StackObjectsCount": stack };
+                // Money or Ammo stack
+                let stackCount = utility.getRandomInt(props.StackMinRandom, props.StackMaxRandom);
+                containerItem.upd = { "StackObjectsCount": stackCount };
+            }
+            else if (item._parent === "543be5cb4bdc2deb348b4568")
+            {
+                // Ammo container
+                idSuffix++;
+
+                cartridges = {
+                    "_id": idPrefix + idSuffix.toString(16),
+                    "_tpl": props.StackSlots[0]._props.filters[0].Filter[0],
+                    "parentId": containerItem._id,
+                    "slotId": "cartridges",
+                    "upd": { "StackObjectsCount": props.StackMaxRandom }
+                };
+            }
+            else if (item._parent === "5448bc234bdc2d3c308b4569")
+            {
+                // Magazine
+                idSuffix++;
+                let cId = idPrefix + idSuffix.toString(16);
+                cartridges = this.generateCartridgesForMagazine(cId, containerItem._id, props);
             }
 
-            items.push(itemJson);
+            items.push(containerItem);
+            if (cartridges)
+            {
+                items.push(cartridges);
+            }
             idSuffix++;
         }
+    }
+
+    generateCartridgesForMagazine(id, parentId, magProps)
+    {
+        return {
+            "_id": id,
+            "_tpl": magProps.Cartridges[0]._props.filters[0].Filter[0],
+            "parentId": parentId,
+            "slotId": "cartridges",
+            "upd": { "StackObjectsCount": magProps.Cartridges[0]._max_count }
+        };
     }
 }
 

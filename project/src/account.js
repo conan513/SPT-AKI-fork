@@ -1,3 +1,11 @@
+/* account.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 "use strict";
 
 /**
@@ -57,7 +65,7 @@ class AccountServer
     createAccount(info)
     {
         const sessionID = utility.generateNewAccountId();
-        
+
         save_f.saveServer.profiles[sessionID] = {
             "info": {
                 "id": sessionID,

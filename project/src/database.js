@@ -1,3 +1,11 @@
+/* database.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 "use strict";
 
 class DatabaseServer
@@ -126,6 +134,8 @@ class DatabaseCallbacks
             if (file === "ragfair_offer")
             {
                 ragfair.baseOffer = json.parse(json.read(db.traders.ragfair_offer));
+                ragfair.baseOffer.startTime = Math.floor(new Date().getTime() / 1000);
+                ragfair.baseOffer.endTime = ragfair.baseOffer.startTime + 3153600000;   // 1 century
                 continue;
             }
 

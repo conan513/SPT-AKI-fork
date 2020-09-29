@@ -1,3 +1,11 @@
+/* save.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 "use strict";
 
 const fs = require("fs");
@@ -25,7 +33,7 @@ class SaveServer
 
         for (let file of files)
         {
-            file = file.split('.').slice(0, -1).join('.');
+            file = file.split(".").slice(0, -1).join(".");
             result[file] = `${filepath}${file}.json`;
         }
 

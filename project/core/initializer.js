@@ -1,3 +1,11 @@
+/* initializer.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ */
+
 "use strict";
 
 class Initializer
@@ -32,7 +40,6 @@ class Initializer
         global.router = (require("./server/router.js").router);
         global.events = require("./server/events.js");
         global.server = (require("./server/server.js").server);
-        global.watermark = require("./server/watermark.js");
     }
 
     /* load exception handler */
@@ -42,7 +49,7 @@ class Initializer
         {
             logger.logError("Server:" + server.getVersion());
             logger.logError("Trace:");
-            logger.logData(error);
+            logger.log(error);
         });
     }
 

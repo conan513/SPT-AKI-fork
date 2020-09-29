@@ -1,3 +1,14 @@
+/* offraid.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - PoloYolo
+ * - Emperor06
+ * - Ereshkigal
+ */
+
 "use strict";
 
 class InraidServer
@@ -13,7 +24,7 @@ class InraidServer
                 "character": "none"
             };
         }
-        
+
         return profile;
     }
 
