@@ -243,7 +243,6 @@ class LocationServer
         for (let i = 0; i < minCount; i++)
         {
             let item = {};
-            let props = {};
             let containerItem = {};
             let result = { success: false };
             let maxAttempts = 20;
@@ -252,44 +251,53 @@ class LocationServer
             {
                 let roll = utility.getRandomInt(0, maxProbability);
                 let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
-                item = helpfunc_f.helpFunctions.getItem(rolled.id)[1];
-                props = { ...item._props };
+
+                item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
 
                 if (rolled.preset)
                 {
-                    props.presetId = rolled.preset.id;
-                    props.Width = rolled.preset.w;
-                    props.Height = rolled.preset.h;
+                    // Guns will need to load a preset of items
+                    item._props.presetId = rolled.preset.id;
+                    item._props.Width = rolled.preset.w;
+                    item._props.Height = rolled.preset.h;
                 }
 
-                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, props.Width, props.Height);
+                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, item._props.Width, item._props.Height);
                 maxAttempts--;
             }
 
+            // if we weren't able to find an item to fit after 20 tries then container is probably full
             if (!result.success)
                 break;
 
             container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(
-                container2D, result.x, result.y, props.Width, props.Height, result.rotation);
+                container2D, result.x, result.y, item._props.Width, item._props.Height, result.rotation);
             let rot = result.rotation ? 1 : 0;
 
-            if (props.presetId)
+            if (item._props.presetId)
             {
-                let preset = preset_f.itemPresets.getStandardPreset(item._id);
-                let presetItem = { ...preset._items};
-                presetItem[0].parentId = parentId;
-                presetItem[0].slotId = "main";
-                presetItem[0].location = { "x": result.x, "y": result.y, "r": rot};
+                // Process gun preset into container items
+                let preset = helpfunc_f.helpFunctions.clone(preset_f.itemPresets.getStandardPreset(item._id));
+                preset._items[0].parentId = parentId;
+                preset._items[0].slotId = "main";
+                preset._items[0].location = { "x": result.x, "y": result.y, "r": rot};
 
-                for (var p in presetItem)
+                for (var p in preset._items)
                 {
-                    items.push(presetItem[p]);
+                    items.push(preset._items[p]);
 
-                    if (presetItem[p].slotId === "mod_magazine")
+                    if (preset._items[p].slotId === "mod_magazine")
                     {
-                        let cId = idPrefix + idSuffix.toString(16);
-                        let mag = helpfunc_f.helpFunctions.getItem(presetItem[p]._tpl)[1];
-                        items.push(this.generateCartridgesForMagazine(cId, presetItem[p]._id, mag._props));
+                        let mag = helpfunc_f.helpFunctions.getItem(preset._items[p]._tpl)[1];
+                        let cartridges = {
+                            "_id": idPrefix + idSuffix.toString(16),
+                            "_tpl": item._props.defAmmo,
+                            "parentId": preset._items[p]._id,
+                            "slotId": "cartridges",
+                            "upd": { "StackObjectsCount": mag._props.Cartridges[0]._max_count }
+                        };
+
+                        items.push(cartridges);
                         idSuffix++;
                     }
                 }
@@ -309,7 +317,7 @@ class LocationServer
             if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
                 // Money or Ammo stack
-                let stackCount = utility.getRandomInt(props.StackMinRandom, props.StackMaxRandom);
+                let stackCount = utility.getRandomInt(item._props.StackMinRandom, item._props.StackMaxRandom);
                 containerItem.upd = { "StackObjectsCount": stackCount };
             }
             else if (item._parent === "543be5cb4bdc2deb348b4568")
@@ -322,15 +330,20 @@ class LocationServer
                     "_tpl": props.StackSlots[0]._props.filters[0].Filter[0],
                     "parentId": containerItem._id,
                     "slotId": "cartridges",
-                    "upd": { "StackObjectsCount": props.StackMaxRandom }
+                    "upd": { "StackObjectsCount": item._props.StackMaxRandom }
                 };
             }
             else if (item._parent === "5448bc234bdc2d3c308b4569")
             {
                 // Magazine
                 idSuffix++;
-                let cId = idPrefix + idSuffix.toString(16);
-                cartridges = this.generateCartridgesForMagazine(cId, containerItem._id, props);
+                cartridges = {
+                    "_id": idPrefix + idSuffix.toString(16),
+                    "_tpl": item._props.Cartridges[0]._props.filters[0].Filter[0],
+                    "parentId": parentId,
+                    "slotId": "cartridges",
+                    "upd": { "StackObjectsCount": item._props.Cartridges[0]._max_count }
+                };
             }
 
             items.push(containerItem);
@@ -340,17 +353,6 @@ class LocationServer
             }
             idSuffix++;
         }
-    }
-
-    generateCartridgesForMagazine(id, parentId, magProps)
-    {
-        return {
-            "_id": id,
-            "_tpl": magProps.Cartridges[0]._props.filters[0].Filter[0],
-            "parentId": parentId,
-            "slotId": "cartridges",
-            "upd": { "StackObjectsCount": magProps.Cartridges[0]._max_count }
-        };
     }
 }
 
