@@ -445,17 +445,17 @@ class BotGenerator
         for (const modSlot in itemModPool)
         {
             let itemSlot;
-            if (modSlot === "patron_in_weapon")
+            switch (modSlot)
             {
-                itemSlot = parentTemplate._props.Chambers.find(c => c._name === modSlot);
-            }
-            else if (modSlot === "cartridges")
-            {
-                itemSlot = parentTemplate._props.Cartridges.find(c => c._name === modSlot);
-            }
-            else
-            {
-                itemSlot = parentTemplate._props.Slots.find(s => s._name === modSlot);
+                case "patron_in_weapon":
+                    itemSlot = parentTemplate._props.Chambers.find(c => c._name === modSlot);
+                    break;
+                case "cartridges":
+                    itemSlot = parentTemplate._props.Cartridges.find(c => c._name === modSlot);
+                    break;
+                default:
+                    itemSlot = parentTemplate._props.Slots.find(s => s._name === modSlot);
+                    break;
             }
 
             if (!itemSlot)
