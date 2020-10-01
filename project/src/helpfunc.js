@@ -862,6 +862,7 @@ class HelpFunctions
             let amount = Math.min(count, maxStack);
             let newStack = this.clone(item);
 
+            newStack._id = utility.generateNewItemId();
             newStack.upd.StackObjectsCount = amount;
             count -= amount;
             stacks.push(newStack);
