@@ -1,8 +1,6 @@
 {
     "inraid": {
-        "saveLootEnabled": true,
-        "saveHealthEnabled": true,
-        "saveHealthMultiplier": 0.1
+        "saveLootEnabled": true
     },
     "other":{
         "RedeemTime": 48

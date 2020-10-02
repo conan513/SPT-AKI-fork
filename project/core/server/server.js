@@ -44,7 +44,7 @@ class Server
         this.name = "Local SPT-AKI Server";
         this.ip = "127.0.0.1";
         this.port = 443;
-        this.backendUrl = "https://" + this.ip + ":" + this.port;
+        this.backendUrl = `https://${this.ip}:${this.port}`;
         this.version = "SPT-AKI Alpha";
         this.mime = {
             txt: "text/plain",
