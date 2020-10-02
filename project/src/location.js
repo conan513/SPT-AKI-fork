@@ -327,7 +327,7 @@ class LocationServer
 
                 cartridges = {
                     "_id": idPrefix + idSuffix.toString(16),
-                    "_tpl": props.StackSlots[0]._props.filters[0].Filter[0],
+                    "_tpl": item._props.StackSlots[0]._props.filters[0].Filter[0],
                     "parentId": containerItem._id,
                     "slotId": "cartridges",
                     "upd": { "StackObjectsCount": item._props.StackMaxRandom }
