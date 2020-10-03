@@ -264,58 +264,9 @@ function getPlayerGear(items)
     return inventoryItems;
 }
 
-function getSecuredContainer(items)
-{
-    // Player Slots we care about
-    const inventorySlots = [
-        "SecuredContainer",
-    ];
-
-    let inventoryItems = [];
-
-    // Get an array of root player items
-    for (let item of items)
-    {
-        if (inventorySlots.includes(item.slotId))
-        {
-            inventoryItems.push(item);
-        }
-    }
-
-    // Loop through these items and get all of their children
-    let newItems = inventoryItems;
-
-    while (newItems.length > 0)
-    {
-        let foundItems = [];
-
-        for (let item of newItems)
-        {
-            for (let newItem of items)
-            {
-                if (newItem.parentId === item._id)
-                {
-                    foundItems.push(newItem);
-                }
-            }
-        }
-
-        // Add these new found items to our list of inventory items
-        inventoryItems = [
-            ...inventoryItems,
-            ...foundItems,
-        ];
-
-        // Now find the children of these items
-        newItems = foundItems;
-    }
-
-    return inventoryItems;
-}
-
 function saveProgress(offraidData, sessionID)
 {
-    if (!gameplayConfig.inraid.saveLootEnabled)
+    if (!inraid_f.inraidConfig.saveloot)
     {
         return;
     }
@@ -357,8 +308,8 @@ function saveProgress(offraidData, sessionID)
         }
 
         // Remove the Lab card
-        offraid_f.inraidServer.removeMapAccessKey(offraidData, sessionID);
-        offraid_f.inraidServer.removePlayer(sessionID);
+        inraid_f.inraidServer.removeMapAccessKey(offraidData, sessionID);
+        inraid_f.inraidServer.removePlayer(sessionID);
     }
 
     //Check for exit status
@@ -418,18 +369,69 @@ class InraidCallbacks
     constructor()
     {
         save_f.saveServer.onLoadCallback["inraid"] = this.onLoad.bind();
+
+        router.addStaticRoute("/raid/map/name", this.registerPlayer.bind());
+        router.addStaticRoute("/raid/profile/save", this.saveProgress.bind());
+        router.addStaticRoute("/singleplayer/settings/raid/endstate", this.getRaidEndState.bind());
+        router.addStaticRoute("/singleplayer/settings/weapon/durability", this.getWeaponDurability.bind());
+        router.addStaticRoute("/singleplayer/settings/raid/menu", this.getRaidMenuSettings.bind());
     }
 
     onLoad(sessionID)
     {
-        return offraid_f.inraidServer.onLoad(sessionID);
+        return inraid_f.inraidServer.onLoad(sessionID);
+    }
+
+    registerPlayer(url, info, sessionID)
+    {
+        inraid_f.inraidServer.addPlayer(sessionID, info);
+    }
+
+    saveProgress(url, info, sessionID)
+    {
+        inraid_f.saveProgress(info, sessionID);
+        return response_f.responseController.nullResponse();
+    }
+
+    getRaidEndState()
+    {
+        return response_f.responseController.noBody(inraid_f.inraidConfig.MIAOnRaidEnd);
+    }
+
+    getRaidMenuSettings(url, info, sessionID)
+    {
+        return response_f.responseController.noBody(inraid_f.inraidConfig.raidMenuSettings);
+    }
+
+    getWeaponDurability(url, info, sessionID)
+    {
+        return response_f.responseController.noBody(inraid_f.inraidConfig.save.durability);
+    }
+}
+
+class InraidConfig
+{
+    constructor()
+    {
+        this.MIAOnRaidEnd = false;
+        this.raidMenuSettings = {
+            "aiAmount": "AsOnline",
+            "aiDifficulty": "AsOnline",
+            "bossEnabled": true,
+            "scavWars": false,
+            "taggedAndCursed": false
+        };
+        this.save = {
+            "loot": true,
+            "durability": true
+        }
     }
 }
 
 module.exports.inraidServer = new InraidServer();
 module.exports.inraidCallbacks = new InraidCallbacks();
+module.exports.inraidConfig = new InraidConfig();
 
 // todo: refactor this
 module.exports.saveProgress = saveProgress;
-module.exports.getSecuredContainer = getSecuredContainer;
 module.exports.getPlayerGear = getPlayerGear;

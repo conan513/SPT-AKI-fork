@@ -170,7 +170,7 @@ class InsuranceServer
     storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
     {
         let gears = [];
-        let securedContainerItems = offraid_f.getSecuredContainer(offraidData.profile.Inventory.items);
+        let securedContainerItems = helpfunc_f.helpFunctions.getSecuredContainer(offraidData.profile.Inventory.items);
 
         const preRaidGearHash = {};
         preRaidGear.forEach(i => preRaidGearHash[i._id] = i);

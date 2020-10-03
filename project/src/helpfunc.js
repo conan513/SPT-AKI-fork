@@ -20,6 +20,55 @@
 
 class HelpFunctions
 {
+    getSecureContainer(items)
+    {
+        // Player Slots we care about
+        const inventorySlots = [
+            "SecuredContainer",
+        ];
+    
+        let inventoryItems = [];
+    
+        // Get an array of root player items
+        for (let item of items)
+        {
+            if (inventorySlots.includes(item.slotId))
+            {
+                inventoryItems.push(item);
+            }
+        }
+    
+        // Loop through these items and get all of their children
+        let newItems = inventoryItems;
+    
+        while (newItems.length > 0)
+        {
+            let foundItems = [];
+    
+            for (let item of newItems)
+            {
+                for (let newItem of items)
+                {
+                    if (newItem.parentId === item._id)
+                    {
+                        foundItems.push(newItem);
+                    }
+                }
+            }
+    
+            // Add these new found items to our list of inventory items
+            inventoryItems = [
+                ...inventoryItems,
+                ...foundItems,
+            ];
+    
+            // Now find the children of these items
+            newItems = foundItems;
+        }
+    
+        return inventoryItems;
+    }
+
     getStashType(sessionID)
     {
         const pmcData = profile_f.profileController.getPmcProfile(sessionID);
