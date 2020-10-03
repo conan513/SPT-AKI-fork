@@ -137,7 +137,7 @@ class ragfairController
                 offer._id = p._id;               // The offer's id is now the preset's id
                 offer.root = mods[0]._id;        // Sets the main part of the weapon
                 offer.items = mods;
-                offer.requirements[0].count = Math.round(rub * gameplayConfig.trading.ragfairMultiplier);
+                offer.requirements[0].count = Math.round(rub * ragfair_f.ragfairConfig.priceMultiplier);
                 offers.push(offer);
             }
         }
@@ -145,7 +145,7 @@ class ragfairController
         // Single item
         if (!preset_f.itemPresets.hasPreset(template) || !onlyFunc)
         {
-            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * gameplayConfig.trading.ragfairMultiplier);
+            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * ragfair_f.ragfairConfig.priceMultiplier);
             offerBase._id = template;
             offerBase.items[0]._tpl = template;
             offerBase.requirements[0].count = rubPrice;
@@ -621,5 +621,14 @@ class RagfairCallbacks
     }
 }
 
+class RagfairConfig
+{
+    constructor()
+    {
+        this.priceMultiplier = 3.5;
+    }
+}
+
 module.exports.ragfairController = new ragfairController();
-module.exports.RagfairCallbacks = new RagfairCallbacks();
+module.exports.ragfairCallbacks = new RagfairCallbacks();
+module.exports.ragfairConfig = new RagfairConfig();
