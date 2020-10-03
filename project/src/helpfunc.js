@@ -26,9 +26,9 @@ class HelpFunctions
         const inventorySlots = [
             "SecuredContainer",
         ];
-    
+
         let inventoryItems = [];
-    
+
         // Get an array of root player items
         for (let item of items)
         {
@@ -37,14 +37,14 @@ class HelpFunctions
                 inventoryItems.push(item);
             }
         }
-    
+
         // Loop through these items and get all of their children
         let newItems = inventoryItems;
-    
+
         while (newItems.length > 0)
         {
             let foundItems = [];
-    
+
             for (let item of newItems)
             {
                 for (let newItem of items)
@@ -55,17 +55,17 @@ class HelpFunctions
                     }
                 }
             }
-    
+
             // Add these new found items to our list of inventory items
             inventoryItems = [
                 ...inventoryItems,
                 ...foundItems,
             ];
-    
+
             // Now find the children of these items
             newItems = foundItems;
         }
-    
+
         return inventoryItems;
     }
 

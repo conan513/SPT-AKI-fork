@@ -403,8 +403,8 @@ class LocationConfig
             "tarkovstreets": 0,
             "terminal": 0,
             "town": 0
-        }
-    };
+        };
+    }
 }
 
 module.exports.locationServer = new LocationServer();

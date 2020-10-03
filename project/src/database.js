@@ -64,7 +64,7 @@ class DatabaseCallbacks
         // loot
         for (let file in database_f.database.tables.loot)
         {
-            database_f.database.tables.loot[file] = json.parse(json.read(db.loot.statics))
+            database_f.database.tables.loot[file] = json.parse(json.read(db.loot.statics));
         }
 
         // templates
@@ -94,7 +94,7 @@ class DatabaseCallbacks
                 // startup locale
                 locales.menu[file.replace("menu_", "")] = json.parse(json.read(db.locales[file]));
             }
-            
+
             else if (file.includes("global_"))
             {
                 // game locale
@@ -113,10 +113,10 @@ class DatabaseCallbacks
         for (const file in db.traders)
         {
             let traderID = file.replace("base_", "")
-                               .replace("suits_", "")
-                               .replace("questassort_", "")
-                               .replace("assort_", "")
-                               .replace("dialogue_", "");
+                .replace("suits_", "")
+                .replace("questassort_", "")
+                .replace("assort_", "")
+                .replace("dialogue_", "");
 
             // skip if there is no id
             if (file === "ragfair_offer")
@@ -139,25 +139,25 @@ class DatabaseCallbacks
                 // trader info
                 traders[traderID].base = json.parse(json.read(db.traders[file]));
             }
-            
+
             else if (file.includes("suits_"))
             {
                 // customization
                 traders[traderID].suits = json.parse(json.read(db.traders[file]));
             }
-            
+
             else if (file.includes("questassort_"))
             {
                 // assortiment unlocked by quests
                 traders[traderID].questassort = json.parse(json.read(db.traders[file]));
             }
-            
+
             else if (file.includes("assort_"))
             {
                 // assortiment
                 traders[traderID].assort = json.parse(json.read(db.traders[file]));
             }
-            
+
             else if (file.includes("dialogue_"))
             {
                 // dialogue

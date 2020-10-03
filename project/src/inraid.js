@@ -424,7 +424,7 @@ class InraidConfig
         this.save = {
             "loot": true,
             "durability": true
-        }
+        };
     }
 }
 
