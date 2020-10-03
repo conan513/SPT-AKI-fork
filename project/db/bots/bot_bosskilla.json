@@ -2200,5 +2200,25 @@
 		"SecondPrimaryWeapon": 0,
 		"Holster": 3,
 		"Scabbard": 22
+	},
+	"generation": {
+		"items": {
+			"healing": {
+				"min": 1,
+				"max": 4
+			},
+			"looseLoot": {
+				"min": 0,
+				"max": 0
+			},
+			"magazines": {
+				"min": 3,
+				"max": 5
+			},
+			"looseBullets": {
+				"min": 0,
+				"max": 0
+			}
+		}
 	}
 }
