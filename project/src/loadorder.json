@@ -1,5 +1,4 @@
 {
-    "routes_f": "src/routes.js",
     "response_f": "src/response.js",
     "database_f": "src/database.js",
     "save_f": "src/save.js",

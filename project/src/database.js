@@ -197,9 +197,6 @@ class DatabaseCallbacks
         }
 
         database_f.database.tables.bots = bots;
-
-        // TODO: remove from global space
-        global.gameplayConfig = json.parse(json.read(db.user.configs.gameplay));
     }
 
     getGlobals(url, info, sessionID)
