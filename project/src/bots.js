@@ -246,16 +246,18 @@ class BotGenerator
         }
 
         // ArmorVest is generated afterwards to ensure that TacticalVest is always first, in case it is incompatible
-        this.generateEquipment("ArmorVest", templateInventory.equipment["ArmorVest"], templateInventory.mods, equipmentChances["ArmorVest"]);
+        this.generateEquipment("ArmorVest", templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances.ArmorVest);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
-        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances["FirstPrimaryWeapon"];
+        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances.FirstPrimaryWeapon;
         const shouldWeaponSpawn = {
             "FirstPrimaryWeapon": shouldSpawnPrimary,
+
             // Only roll for a chance at secondary if primary roll was successful
-            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances["SecondPrimaryWeapon"] : false,
+            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.SecondPrimaryWeapon : false,
+
             // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
-            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances["Holster"] : true
+            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.Holster : true
         };
 
         for (const weaponType in shouldWeaponSpawn)
@@ -266,9 +268,9 @@ class BotGenerator
             }
         }
 
-        return helpfunc_f.helpFunctions.clone(this.inventory);
+        this.generateLoot(templateInventory.items);
 
-        // TODO: Generate meds/loot/etc.
+        return helpfunc_f.helpFunctions.clone(this.inventory);
     }
 
     generateInventoryBase()
@@ -395,24 +397,33 @@ class BotGenerator
         {
             // Invalid weapon generated, fallback to preset
             logger.logWarning(`Weapon ${tpl} was generated incorrectly, see error above`);
-            weaponMods = [{
-                "_id": id,
-                "_tpl": tpl,
-                "parentId": this.inventory.equipment,
-                "slotId": equipmentSlot,
-                ...this.generateExtraPropertiesForItem(itemTemplate)
-            }];
+            weaponMods = [];
 
-            const preset = Object.entries(database_f.database.tables.globals.ItemPresets)
-                .find(([presetId, presetObj]) => presetObj._items[0]._tpl === tpl);
+            // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
+            let preset;
+            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.ItemPresets))
+            {
+                if (presetObj._items[0]._tpl === tpl)
+                {
+                    preset = presetObj;
+                    break;
+                }
+            }
+
             if (preset)
             {
-                // Don't add the base weapon item again, as it was included previously with needed properties
-                weaponMods.push(...preset._items.filter(i => i._tpl !== tpl));
+                const parentItem = preset._items[0];
+                preset._items[0] = {...parentItem, ...{
+                    "parentId": this.inventory.equipment,
+                    "slotId": equipmentSlot,
+                    ...this.generateExtraPropertiesForItem(itemTemplate)
+                }};
+                weaponMods.push(...preset._items);
             }
             else
             {
                 logger.logError(`Could not find preset for weapon with tpl ${tpl}`);
+                return;
             }
         }
 
@@ -420,13 +431,15 @@ class BotGenerator
         const ammoTpl = this.getCompatibleAmmo(weaponMods, itemTemplate);
 
         // Fill existing magazines to full and sync ammo type
-        weaponMods.filter(mod => mod.slotId === "mod_magazine")
-            .forEach(mod => this.fillExistingMagazines(weaponMods, mod, ammoTpl));
+        for (const mod of weaponMods.filter(mod => mod.slotId === "mod_magazine"))
+        {
+            this.fillExistingMagazines(weaponMods, mod, ammoTpl);
+        }
 
         this.inventory.items.push(...weaponMods);
 
         // Generate extra magazines and attempt add them to TacticalVest or Pockets
-        const magCount = utility.getRandomInt(3, 4); // TODO: Replace with "generation.items.magazines" when they're available in bot files
+        const magCount = utility.getRandomInt(1, 3); // TODO: Replace with "generation.items.magazines" when they're available in bot files
         this.generateExtraMagazines(weaponMods, itemTemplate, magCount, ammoTpl);
     }
 
@@ -464,7 +477,40 @@ class BotGenerator
                 continue;
             }
 
-            const modTpl = utility.getRandomValue(itemModPool[modSlot]);
+            let modSpawnChance = 100;
+            if (!itemSlot._required && !["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot))
+            {
+                // TODO: Replace 80 with mod slot spawn chance once it's added to bot files
+                modSpawnChance = 80;
+            }
+
+            if (utility.getRandomIntEx(100) > modSpawnChance)
+            {
+                continue;
+            }
+
+            const exhaustableModPool = new ExhaustableArray(itemModPool[modSlot]);
+
+            let modTpl;
+            let found = false;
+            while (exhaustableModPool.hasValues())
+            {
+                modTpl = exhaustableModPool.getRandomValue();
+                if (!this.isItemIncompatibleWithCurrentItems(items, modTpl, modSlot))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found || !modTpl)
+            {
+                if (itemSlot._required)
+                {
+                    logger.logError(`Could not locate any compatible items to fill '${modSlot}' for ${parentTemplate._id}`);
+                }
+                continue;
+            }
 
             if (!itemSlot._props.filters[0].Filter.includes(modTpl))
             {
@@ -477,12 +523,6 @@ class BotGenerator
             {
                 logger.logError(`Could not find mod item template with tpl ${modTpl}`);
                 logger.logInfo(`Item -> ${parentTemplate._id}; Slot -> ${modSlot}`);
-                continue;
-            }
-
-            if (this.isItemIncompatibleWithCurrentItems(items, modTpl, modSlot))
-            {
-                // Bad luck - randomly picked item was not compatible with current gear
                 continue;
             }
 
@@ -507,6 +547,7 @@ class BotGenerator
     generateExtraPropertiesForItem(itemTemplate)
     {
         let properties = {};
+
         if (itemTemplate._props.MaxDurability)
         {
             properties.Repairable = {"Durability": itemTemplate._props.MaxDurability};
@@ -525,6 +566,16 @@ class BotGenerator
         if (itemTemplate._props.weapFireType && itemTemplate._props.weapFireType.length)
         {
             properties.FireMode = {"FireMode": itemTemplate._props.weapFireType[0]};
+        }
+
+        if (itemTemplate._props.MaxHpResource)
+        {
+            properties.MedKit = {"HpResource": itemTemplate._props.MaxHpResource};
+        }
+
+        if (itemTemplate._props.MaxResource && itemTemplate._props.foodUseTime)
+        {
+            properties.FoodDrink = {"HpPercent": itemTemplate._props.MaxResource};
         }
 
         return Object.keys(properties).length ? {"upd": properties} : {};
@@ -599,17 +650,15 @@ class BotGenerator
              * and multiply by how many magazines were supposed to be created */
             const bulletCount = magTemplate._props.Cartridges[0]._max_count * count;
 
-            const ammoItem = {
+            const ammoItems = helpfunc_f.helpFunctions.splitStack({
                 "_id": utility.generateNewItemId(),
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": bulletCount}
-            };
+            });
 
-            const ammoStacks = helpfunc_f.helpFunctions.splitStack(ammoItem);
-
-            for (const ammoStack of ammoStacks)
+            for (const ammoItem of ammoItems)
             {
-                this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], ammoStack._id, ammoStack._tpl, [ammoStack]);
+                this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], ammoItem._id, ammoItem._tpl, [ammoItem]);
             }
         }
         else
@@ -680,7 +729,7 @@ class BotGenerator
             ammoTpl = ammoToUse._tpl;
         }
 
-        if (!weaponTemplate._props.Chambers[0]._props.filters[0].Filter.includes(ammoToUse._tpl))
+        if (weaponTemplate._props.Chambers[0] && !weaponTemplate._props.Chambers[0]._props.filters[0].Filter.includes(ammoToUse._tpl))
         {
             // Incompatible ammo was found, return default (can happen with .366 and 7.62x39 weapons)
             return weaponTemplate._props.defAmmo;
@@ -720,6 +769,59 @@ class BotGenerator
         }
     }
 
+    generateLoot(lootPool)
+    {
+        // TODO: Implement a mechanism for item rarity (maybe by value or something)
+
+        // Flatten all individual slot loot pools into one big pool, while filtering out potentially missing templates
+        let lootTemplates = [];
+        for (const [slot, pool] of Object.entries(lootPool))
+        {
+            if (!pool || !pool.length)
+            {
+                continue;
+            }
+            const poolItems = pool.map(lootTpl => database_f.database.tables.templates.items[lootTpl]);
+            lootTemplates.push(...poolItems.filter(x => !!x));
+        }
+
+        // Get all healing items
+        const healingItems = lootTemplates.filter(template => "medUseTime" in template._props);
+
+        // Get all grenades
+        const grenadeItems = lootTemplates.filter(template => "ThrowType" in template._props);
+
+        // Get all misc loot items (excluding magazines, bullets and healing items)
+        const lootItems = lootTemplates.filter(template =>
+            !("ammotype" in template._props)
+            && !("ReloadMagType" in template._props)
+            && !("medUseTime" in template._props)
+            && !("ThrowType" in template._props));
+
+        // TODO: Replace with item min/max counts when they're added to bot files
+        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], 0, 2);
+        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], 0, 2);
+        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], 1, 4);
+    }
+
+    addLootFromPool(pool, equipmentSlots, min, max)
+    {
+        if (pool.length)
+        {
+            for (let count = 0; count < utility.getRandomInt(min, max); count++)
+            {
+                const itemTemplate = utility.getRandomArrayValue(pool);
+                const id = utility.generateNewItemId();
+
+                this.addItemWithChildrenToEquipmentSlot(equipmentSlots, id, itemTemplate._id, [{
+                    "_id": id,
+                    "_tpl": itemTemplate._id,
+                    ...this.generateExtraPropertiesForItem(itemTemplate)
+                }]);
+            }
+        }
+    }
+
     /** Adds an item with all its childern into specified equipmentSlots, wherever it fits.
      * Returns a `boolean` indicating success. */
     addItemWithChildrenToEquipmentSlot(equipmentSlots, parentId, parentTpl, itemWithChildren)
@@ -727,6 +829,11 @@ class BotGenerator
         for (const slot of equipmentSlots)
         {
             const container = this.inventory.items.find(i => i.slotId === slot);
+            if (!container)
+            {
+                continue;
+            }
+
             const containerTemplate = database_f.database.tables.templates.items[container._tpl];
             if (!containerTemplate)
             {
@@ -762,6 +869,37 @@ class BotGenerator
                     return true;
                 }
             }
+        }
+
+        return false;
+    }
+}
+
+class ExhaustableArray
+{
+    constructor(itemPool)
+    {
+        this.pool = helpfunc_f.helpFunctions.clone(itemPool);
+    }
+
+    getRandomValue()
+    {
+        if (!this.pool || !this.pool.length)
+        {
+            return null;
+        }
+
+        const index = utility.getRandomInt(0, this.pool.length - 1);
+        const toReturn = helpfunc_f.helpFunctions.clone(this.pool[index]);
+        this.pool.splice(index, 1);
+        return toReturn;
+    }
+
+    hasValues()
+    {
+        if (this.pool && this.pool.length)
+        {
+            return true;
         }
 
         return false;
