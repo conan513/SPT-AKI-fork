@@ -36,7 +36,7 @@ class MatchServer
 
     getEnabled()
     {
-        return gameplayConfig.match.enabled;
+        return match_f.matchConfig.enabled;
     }
 
     getProfile(info)
@@ -226,5 +226,14 @@ class MatchCallbacks
     }
 }
 
+class MatchConfig
+{
+    constructor()
+    {
+        this.enabled = false;
+    }
+}
+
 module.exports.matchServer = new MatchServer();
 module.exports.matchCallbacks = new MatchCallbacks();
+module.exports.matchConfig = new MatchConfig();
