@@ -408,7 +408,7 @@ class BotGenerator
             if (preset)
             {
                 // Don't add the base weapon item again, as it was included previously with needed properties
-                weaponMods.push(...preset._items.filter(i => i._tpl !== tpl));
+                weaponMods.push(...preset[1]._items.filter(i => i._tpl !== tpl));
             }
             else
             {
@@ -680,7 +680,7 @@ class BotGenerator
             ammoTpl = ammoToUse._tpl;
         }
 
-        if (!weaponTemplate._props.Chambers[0]._props.filters[0].Filter.includes(ammoToUse._tpl))
+        if (weaponTemplate._props.Chambers.length > 0 && !weaponTemplate._props.Chambers[0]._props.filters[0].Filter.includes(ammoToUse._tpl))
         {
             // Incompatible ammo was found, return default (can happen with .366 and 7.62x39 weapons)
             return weaponTemplate._props.defAmmo;
