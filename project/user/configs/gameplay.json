@@ -13,11 +13,6 @@
         "fenceAssortSize": 60,
         "buyItemsMarkedFound": false
     },
-    "location": {
-        "realTimeEnabled": true,
-        "forceWeatherEnabled": false,
-        "forceWeatherId": 0
-    },
     "match": {
         "enabled": false
     }

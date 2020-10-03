@@ -16,9 +16,9 @@ class WeatherController
         let weather = database_f.database.tables.templates.weather;
 
         // set weather
-        if (gameplayConfig.location.forceWeatherEnabled)
+        if (weather_f.weatherConfig.force.enabled)
         {
-            output = weather[gameplayConfig.location.forceWeatherId];
+            output = weather[weather_f.weatherConfig.force.id];
         }
         else
         {
@@ -26,7 +26,7 @@ class WeatherController
         }
 
         // replace date and time
-        if (gameplayConfig.location.realTimeEnabled)
+        if (weather_f.weatherConfig.realtime)
         {
             // Apply acceleration to time computation.
             let computedDate = new Date();
@@ -61,5 +61,18 @@ class WeatherCallbacks
     }
 }
 
+class WeatherConfig
+{
+    constructor()
+    {
+        this.realtime = true;
+        this.force = {
+            "enabled": false,
+            "id": "sun"
+        };
+    }
+}
+
 module.exports.weatherController = new WeatherController();
-module.exports.WeatherCallbacks = new WeatherCallbacks();
+module.exports.weatherCallbacks = new WeatherCallbacks();
+module.exports.weatherConfig = new WeatherConfig();
