@@ -183,7 +183,7 @@ class TraderServer
         const names = Object.keys(assort.loyal_level_items);
         let base = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
         let added = [];
-        for (let i = 0; i < gameplayConfig.trading.fenceAssortSize; i++)
+        for (let i = 0; i < trader_f.traderConfig.fenceAssortSize; i++)
         {
             let itemID = names[utility.getRandomInt(0, names.length - 1)];
             if (added.includes(itemID))
@@ -397,5 +397,14 @@ class TraderCallbacks
     }
 }
 
+class TraderConfig
+{
+    constructor()
+    {
+        fenceAssortSize = 60;
+    }
+}
+
 module.exports.traderServer = new TraderServer();
 module.exports.traderCallbacks = new TraderCallbacks();
+module.exports.traderConfig = new TraderConfig();

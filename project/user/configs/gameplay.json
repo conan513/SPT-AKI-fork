@@ -1,6 +1,5 @@
 {
     "trading": {
-        "ragfairMultiplier": 3.5,
-        "fenceAssortSize": 60
+        "ragfairMultiplier": 3.5
     }
 }
