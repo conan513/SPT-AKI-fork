@@ -65,7 +65,7 @@ class BotController
         bot.Customization.Feet = utility.getRandomArrayValue(node.appearance.feet);
         bot.Customization.Hands = utility.getRandomArrayValue(node.appearance.hands);
         //bot.Inventory = this.getInventoryTemp(type.toLowerCase());
-        bot.Inventory = bots_f.botGenerator.generateInventory(node.inventory, node.equipmentChances);
+        bot.Inventory = bots_f.botGenerator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
         if (type === "usec" || type === "bear")
@@ -229,7 +229,7 @@ class BotGenerator
         this.inventory = {};
     }
 
-    generateInventory(templateInventory, equipmentChances)
+    generateInventory(templateInventory, equipmentChances, generationCounts)
     {
         // Generate base inventory with no items
         this.inventory = this.generateInventoryBase();
@@ -242,33 +242,33 @@ class BotGenerator
             {
                 continue;
             }
-            this.generateEquipment(equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods, equipmentChances[equipmentSlot]);
+            this.generateEquipment(equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods, equipmentChances);
         }
 
         // ArmorVest is generated afterwards to ensure that TacticalVest is always first, in case it is incompatible
-        this.generateEquipment("ArmorVest", templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances.ArmorVest);
+        this.generateEquipment("ArmorVest", templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
-        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances.FirstPrimaryWeapon;
+        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
         const shouldWeaponSpawn = {
             "FirstPrimaryWeapon": shouldSpawnPrimary,
 
             // Only roll for a chance at secondary if primary roll was successful
-            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.SecondPrimaryWeapon : false,
+            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false,
 
             // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
-            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.Holster : true
+            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.Holster : true
         };
 
         for (const weaponType in shouldWeaponSpawn)
         {
             if (shouldWeaponSpawn[weaponType] && templateInventory.equipment[weaponType].length)
             {
-                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods);
+                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods, equipmentChances.mods, generationCounts.magazines);
             }
         }
 
-        this.generateLoot(templateInventory.items);
+        this.generateLoot(templateInventory.items, generationCounts);
 
         return helpfunc_f.helpFunctions.clone(this.inventory);
     }
@@ -314,13 +314,9 @@ class BotGenerator
         };
     }
 
-    generateEquipment(equipmentSlot, equipmentPool, modPool, spawnChance)
+    generateEquipment(equipmentSlot, equipmentPool, modPool, spawnChances)
     {
-        if (["Pockets", "SecuredContainer"].includes(equipmentSlot))
-        {
-            spawnChance = 100;
-        }
-
+        const spawnChance = ["Pockets", "SecuredContainer"].includes(equipmentSlot) ? 100 : spawnChances.equipment[equipmentSlot];
         if (typeof spawnChance === "undefined")
         {
             logger.logWarning(`No spawn chance was defined for ${equipmentSlot}`);
@@ -357,7 +353,7 @@ class BotGenerator
 
             if (Object.keys(modPool).includes(tpl))
             {
-                const items = this.generateModsForItem([item], modPool, id, itemTemplate);
+                const items = this.generateModsForItem([item], modPool, id, itemTemplate, spawnChances.mods);
                 this.inventory.items.push(...items);
             }
             else
@@ -367,7 +363,7 @@ class BotGenerator
         }
     }
 
-    generateWeapon(equipmentSlot, weaponPool, modPool)
+    generateWeapon(equipmentSlot, weaponPool, modPool, modChances, magCounts)
     {
         const id = utility.generateNewItemId();
         const tpl = utility.getRandomArrayValue(weaponPool);
@@ -390,7 +386,7 @@ class BotGenerator
 
         if (Object.keys(modPool).includes(tpl))
         {
-            weaponMods = this.generateModsForItem(weaponMods, modPool, id, itemTemplate);
+            weaponMods = this.generateModsForItem(weaponMods, modPool, id, itemTemplate, modChances);
         }
 
         if (!this.isWeaponValid(weaponMods))
@@ -439,11 +435,11 @@ class BotGenerator
         this.inventory.items.push(...weaponMods);
 
         // Generate extra magazines and attempt add them to TacticalVest or Pockets
-        const magCount = utility.getRandomInt(1, 3); // TODO: Replace with "generation.items.magazines" when they're available in bot files
+        const magCount = utility.getRandomInt(magCounts.min, magCounts.max);
         this.generateExtraMagazines(weaponMods, itemTemplate, magCount, ammoTpl);
     }
 
-    generateModsForItem(items, modPool, parentId, parentTemplate)
+    generateModsForItem(items, modPool, parentId, parentTemplate, modSpawnChances)
     {
         const itemModPool = modPool[parentTemplate._id];
 
@@ -477,13 +473,9 @@ class BotGenerator
                 continue;
             }
 
-            let modSpawnChance = 100;
-            if (!itemSlot._required && !["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot))
-            {
-                // TODO: Replace 80 with mod slot spawn chance once it's added to bot files
-                modSpawnChance = 80;
-            }
-
+            const modSpawnChance = itemSlot._required || ["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot)
+                ? 100
+                : modSpawnChances[modSlot];
             if (utility.getRandomIntEx(100) > modSpawnChance)
             {
                 continue;
@@ -537,7 +529,7 @@ class BotGenerator
 
             if (Object.keys(modPool).includes(modTpl))
             {
-                this.generateModsForItem(items, modPool, modId, modTemplate);
+                this.generateModsForItem(items, modPool, modId, modTemplate, modSpawnChances);
             }
         }
 
@@ -769,7 +761,7 @@ class BotGenerator
         }
     }
 
-    generateLoot(lootPool)
+    generateLoot(lootPool, generationCounts)
     {
         // TODO: Implement a mechanism for item rarity (maybe by value or something)
 
@@ -791,17 +783,16 @@ class BotGenerator
         // Get all grenades
         const grenadeItems = lootTemplates.filter(template => "ThrowType" in template._props);
 
-        // Get all misc loot items (excluding magazines, bullets and healing items)
+        // Get all misc loot items (excluding magazines, bullets, grenades and healing items)
         const lootItems = lootTemplates.filter(template =>
             !("ammotype" in template._props)
             && !("ReloadMagType" in template._props)
             && !("medUseTime" in template._props)
             && !("ThrowType" in template._props));
 
-        // TODO: Replace with item min/max counts when they're added to bot files
-        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], 0, 2);
-        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], 0, 2);
-        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], 1, 4);
+        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], generationCounts.healing.min, generationCounts.healing.max);
+        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], generationCounts.looseLoot.min, generationCounts.looseLoot.max);
+        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], generationCounts.grenades.min, generationCounts.grenades.max);
     }
 
     addLootFromPool(pool, equipmentSlots, min, max)
