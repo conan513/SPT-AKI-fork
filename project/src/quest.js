@@ -115,7 +115,7 @@ class QuestController
         let messageContent = {
             "templateId": questLocale.startedMessageText,
             "type": dialogue_f.dialogueServer.getMessageTypeValue("questStart"),
-            "maxStorageTime": gameplayConfig.other.RedeemTime * 3600
+            "maxStorageTime": quest_f.questConfig.redeemTime * 3600
 
         };
 
@@ -124,7 +124,7 @@ class QuestController
             messageContent = {
                 "templateId": questLocale.description,
                 "type": dialogue_f.dialogueServer.getMessageTypeValue("questStart"),
-                "maxStorageTime": gameplayConfig.other.RedeemTime * 3600
+                "maxStorageTime": quest_f.questConfig.redeemTime * 3600
             };
         }
 
@@ -236,7 +236,7 @@ class QuestController
         let messageContent = {
             "templateId": questLocale.successMessageText,
             "type": dialogue_f.dialogueServer.getMessageTypeValue("questSuccess"),
-            "maxStorageTime": gameplayConfig.other.RedeemTime * 3600
+            "maxStorageTime": quest_f.questConfig.redeemTime * 3600
         };
 
         dialogue_f.dialogueServer.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
@@ -415,5 +415,14 @@ class QuestCallbacks
     }
 }
 
+class QuestConfig
+{
+    constructor
+    {
+        this.RedeemTime = 48;
+    }
+}
+
 module.exports.questController = new QuestController();
 module.exports.questCallbacks = new QuestCallbacks();
+module.exports.questConfig = new QuestConfig();
