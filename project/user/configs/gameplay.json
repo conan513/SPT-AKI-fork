@@ -5,12 +5,7 @@
     "trading": {
         "ragfairMultiplier": 3.5,
         "repairMultiplier": 1,
-        "insureMultiplier": 0.1,
-        "insureReturnChance": 75,
         "fenceAssortSize": 60,
         "buyItemsMarkedFound": false
-    },
-    "match": {
-        "enabled": false
     }
 }
