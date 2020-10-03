@@ -401,7 +401,7 @@ class TraderConfig
 {
     constructor()
     {
-        fenceAssortSize = 60;
+        this.fenceAssortSize = 60;
     }
 }
 

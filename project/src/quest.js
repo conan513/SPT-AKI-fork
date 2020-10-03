@@ -417,7 +417,7 @@ class QuestCallbacks
 
 class QuestConfig
 {
-    constructor
+    constructor()
     {
         this.RedeemTime = 48;
     }
