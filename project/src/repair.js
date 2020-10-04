@@ -36,7 +36,7 @@ class RepairController
             }
 
             // get repair price and pay the money
-            let repairCost = Math.round((database_f.database.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * gameplayConfig.trading.repairMultiplier);
+            let repairCost = Math.round((database_f.database.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * repair_f.repairConfig.priceMultiplier);
 
             if (!helpfunc_f.helpFunctions.payMoney(pmcData, {"scheme_items": [{"id": repairItem._id, "count": Math.round(repairCost)}], "tid": body.tid}, sessionID))
             {
@@ -81,5 +81,14 @@ class RepairCallbacks
     }
 }
 
+class RepairConfig
+{
+    constructor()
+    {
+        this.priceMultiplier = 1;
+    }
+}
+
 module.exports.repairController = new RepairController();
 module.exports.repairCallbacks = new RepairCallbacks();
+module.exports.repairConfig = new RepairConfig();

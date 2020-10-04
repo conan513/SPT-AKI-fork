@@ -579,7 +579,7 @@ class InventoryController
             }
 
             // in case people want all items to be marked as found in raid
-            if (gameplayConfig.trading.buyItemsMarkedFound)
+            if (inventory_f.inventoryConfig.newItemsMarkedFound)
             {
                 foundInRaid = true;
             }
@@ -948,5 +948,14 @@ class InventoryCallbacks
     }
 }
 
+class InventoryConfig
+{
+    constructor()
+    {
+        this.newItemsMarkedFound = false;
+    }
+}
+
 module.exports.inventoryController = new InventoryController();
 module.exports.inventoryCallbacks = new InventoryCallbacks();
+module.exports.inventoryConfig = new InventoryConfig();

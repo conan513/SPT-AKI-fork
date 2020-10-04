@@ -89,7 +89,7 @@ class InsuranceServer
     /* adds gear to store */
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
-        save_f.saveServer.profiles[sessionID] = this.resetInsurance(sessionID);
+        save_f.saveServer.profiles[sessionID].insurance = save_f.saveServer.profiles[sessionID].insurance || {};
         // Don't process insurance for melee weapon or secure container.
         if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer")
         {
@@ -170,7 +170,7 @@ class InsuranceServer
     storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
     {
         let gears = [];
-        let securedContainerItems = offraid_f.getSecuredContainer(offraidData.profile.Inventory.items);
+        let securedContainerItems = helpfunc_f.helpFunctions.getSecuredContainer(offraidData.profile.Inventory.items);
 
         const preRaidGearHash = {};
         preRaidGear.forEach(i => preRaidGearHash[i._id] = i);
@@ -238,7 +238,7 @@ class InsuranceServer
     processReturn(event)
     {
         // Inject a little bit of a surprise by failing the insurance from time to time ;)
-        if (utility.getRandomInt(0, 99) >= gameplayConfig.trading.insureReturnChance)
+        if (utility.getRandomInt(0, 99) >= insurance_f.insuranceConfig.returnChance)
         {
             const insuranceFailedTemplates = database_f.database.tables.traders[event.data.traderId].dialogue.insuranceFailed;
             event.data.messageContent.templateId = insuranceFailedTemplates[utility.getRandomInt(0, insuranceFailedTemplates.length - 1)];
@@ -310,7 +310,7 @@ class InsuranceServer
 
     getPremium(pmcData, inventoryItem, traderId)
     {
-        let premium = this.getItemPrice(inventoryItem._tpl) * (gameplayConfig.trading.insureMultiplier * 3);
+        let premium = this.getItemPrice(inventoryItem._tpl) * (insurance_f.insuranceConfig.priceMultiplier * 3);
         premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
         return Math.round(premium);
     }
@@ -390,5 +390,15 @@ class InsuranceCallback
     }
 }
 
+class InsuranceConfig
+{
+    constructor()
+    {
+        this.priceMultiplier = 1;
+        this.returnChance = 75;
+    }
+}
+
 module.exports.insuranceServer = new InsuranceServer();
 module.exports.insuranceCallback = new InsuranceCallback();
+module.exports.InsuranceConfig = new InsuranceConfig();

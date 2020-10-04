@@ -263,7 +263,7 @@ class HealthServer
     /* apply the health changes to the profile */
     applyHealth(pmcData, sessionID)
     {
-        if (!gameplayConfig.inraid.saveHealthEnabled)
+        if (!save_f.saveConfig.saveHealthEnabled)
         {
             return;
         }
@@ -277,7 +277,7 @@ class HealthServer
             {
                 /* set body part health */
                 pmcData.Health.BodyParts[item].Health.Current = (nodeHealth[item] <= 0)
-                    ? Math.round((pmcData.Health.BodyParts[item].Health.Maximum * gameplayConfig.inraid.saveHealthMultiplier))
+                    ? Math.round((pmcData.Health.BodyParts[item].Health.Maximum * health_f.healthConfig.saveHealthMultiplier))
                     : nodeHealth[item];
             }
             else
@@ -376,5 +376,15 @@ class HealthCallbacks
     }
 }
 
+class HealthConfig
+{
+    constructor()
+    {
+        this.saveHealthEnabled = true;
+        this.saveHealthMultiplier = 1;
+    }
+}
+
 module.exports.healthServer = new HealthServer();
 module.exports.healthCallbacks = new HealthCallbacks();
+module.exports.healthConfig = new HealthConfig();

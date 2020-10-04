@@ -1,12 +1,11 @@
 {
-    "routes_f": "src/routes.js",
     "response_f": "src/response.js",
     "database_f": "src/database.js",
     "save_f": "src/save.js",
     "item_f": "src/item.js",
     "keepalive_f": "src/keepalive.js",
     "health_f": "src/health.js",
-    "offraid_f": "src/offraid.js",
+    "inraid_f": "src/inraid.js",
     "dialogue_f": "src/dialogue.js",
     "account_f": "src/account.js",
     "profile_f": "src/profile.js",
@@ -28,9 +27,7 @@
     "ragfair_f": "src/ragfair.js",
     "weather_f": "src/weather.js",
     "location_f": "src/location.js",
-    "match_f": "src/match.js",
     "bundles_f": "src/bundles.js",
     "image_f": "src/image.js",
-    "gamestartup_f": "src/gamestartup.js",
-    "modules_f": "src/modules.js"
+    "gamestartup_f": "src/gamestartup.js"
 }

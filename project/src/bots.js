@@ -17,6 +17,43 @@ class BotController
         this.pmcSettings = {};
     }
 
+    getBotLimit(type)
+    {
+        if (type === "cursedAssault" || type === "assaultGroup")
+        {
+            type = "assault";
+        }
+
+        return bots_f.botConfig.limits[type];
+    }
+
+    getBotDifficulty(type, difficulty)
+    {
+        switch (type)
+        {
+            case "core":
+                return database_f.database.tables.bots.globalDifficulty;
+
+            case "cursedassault":
+                type = "assault";
+                break;
+
+            case "test":
+            case "assaultgroup":
+            case "followergluharsnipe":
+            case "bosstest":
+            case "followertest":
+                /* unused bots by BSG, might have use */
+                type = "pmcbot";
+                break;
+
+            default:
+                break;
+        }
+
+        return database_f.database.tables.bots.type[type].difficulty[difficulty];
+    }
+
     generateBot(bot, role, sessionID)
     {
         const pmcSettings = bots_f.botConfig.pmcSpawn;
@@ -65,7 +102,7 @@ class BotController
         bot.Customization.Feet = utility.getRandomArrayValue(node.appearance.feet);
         bot.Customization.Hands = utility.getRandomArrayValue(node.appearance.hands);
         //bot.Inventory = this.getInventoryTemp(type.toLowerCase());
-        bot.Inventory = bots_f.botGenerator.generateInventory(node.inventory, node.equipmentChances);
+        bot.Inventory = bots_f.botGenerator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
         if (type === "usec" || type === "bear")
@@ -229,7 +266,7 @@ class BotGenerator
         this.inventory = {};
     }
 
-    generateInventory(templateInventory, equipmentChances)
+    generateInventory(templateInventory, equipmentChances, generation)
     {
         // Generate base inventory with no items
         this.inventory = this.generateInventoryBase();
@@ -242,33 +279,35 @@ class BotGenerator
             {
                 continue;
             }
-            this.generateEquipment(equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods, equipmentChances[equipmentSlot]);
+            this.generateEquipment(equipmentSlot, templateInventory.equipment[equipmentSlot], templateInventory.mods, equipmentChances);
         }
 
         // ArmorVest is generated afterwards to ensure that TacticalVest is always first, in case it is incompatible
-        this.generateEquipment("ArmorVest", templateInventory.equipment["ArmorVest"], templateInventory.mods, equipmentChances["ArmorVest"]);
+        this.generateEquipment("ArmorVest", templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
-        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances["FirstPrimaryWeapon"];
+        const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
         const shouldWeaponSpawn = {
             "FirstPrimaryWeapon": shouldSpawnPrimary,
+
             // Only roll for a chance at secondary if primary roll was successful
-            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances["SecondPrimaryWeapon"] : false,
+            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false,
+
             // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
-            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances["Holster"] : true
+            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.Holster : true
         };
 
         for (const weaponType in shouldWeaponSpawn)
         {
             if (shouldWeaponSpawn[weaponType] && templateInventory.equipment[weaponType].length)
             {
-                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods);
+                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods, equipmentChances.mods, generation.items.magazines);
             }
         }
 
-        return helpfunc_f.helpFunctions.clone(this.inventory);
+        this.generateLoot(templateInventory.items, generation.items);
 
-        // TODO: Generate meds/loot/etc.
+        return helpfunc_f.helpFunctions.clone(this.inventory);
     }
 
     generateInventoryBase()
@@ -312,13 +351,9 @@ class BotGenerator
         };
     }
 
-    generateEquipment(equipmentSlot, equipmentPool, modPool, spawnChance)
+    generateEquipment(equipmentSlot, equipmentPool, modPool, spawnChances)
     {
-        if (["Pockets", "SecuredContainer"].includes(equipmentSlot))
-        {
-            spawnChance = 100;
-        }
-
+        const spawnChance = ["Pockets", "SecuredContainer"].includes(equipmentSlot) ? 100 : spawnChances.equipment[equipmentSlot];
         if (typeof spawnChance === "undefined")
         {
             logger.logWarning(`No spawn chance was defined for ${equipmentSlot}`);
@@ -355,7 +390,7 @@ class BotGenerator
 
             if (Object.keys(modPool).includes(tpl))
             {
-                const items = this.generateModsForItem([item], modPool, id, itemTemplate);
+                const items = this.generateModsForItem([item], modPool, id, itemTemplate, spawnChances.mods);
                 this.inventory.items.push(...items);
             }
             else
@@ -365,7 +400,7 @@ class BotGenerator
         }
     }
 
-    generateWeapon(equipmentSlot, weaponPool, modPool)
+    generateWeapon(equipmentSlot, weaponPool, modPool, modChances, magCounts)
     {
         const id = utility.generateNewItemId();
         const tpl = utility.getRandomArrayValue(weaponPool);
@@ -388,31 +423,40 @@ class BotGenerator
 
         if (Object.keys(modPool).includes(tpl))
         {
-            weaponMods = this.generateModsForItem(weaponMods, modPool, id, itemTemplate);
+            weaponMods = this.generateModsForItem(weaponMods, modPool, id, itemTemplate, modChances);
         }
 
         if (!this.isWeaponValid(weaponMods))
         {
             // Invalid weapon generated, fallback to preset
             logger.logWarning(`Weapon ${tpl} was generated incorrectly, see error above`);
-            weaponMods = [{
-                "_id": id,
-                "_tpl": tpl,
-                "parentId": this.inventory.equipment,
-                "slotId": equipmentSlot,
-                ...this.generateExtraPropertiesForItem(itemTemplate)
-            }];
+            weaponMods = [];
 
-            const preset = Object.entries(database_f.database.tables.globals.ItemPresets)
-                .find(([presetId, presetObj]) => presetObj._items[0]._tpl === tpl);
+            // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
+            let preset;
+            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.ItemPresets))
+            {
+                if (presetObj._items[0]._tpl === tpl)
+                {
+                    preset = presetObj;
+                    break;
+                }
+            }
+
             if (preset)
             {
-                // Don't add the base weapon item again, as it was included previously with needed properties
-                weaponMods.push(...preset._items.filter(i => i._tpl !== tpl));
+                const parentItem = preset._items[0];
+                preset._items[0] = {...parentItem, ...{
+                    "parentId": this.inventory.equipment,
+                    "slotId": equipmentSlot,
+                    ...this.generateExtraPropertiesForItem(itemTemplate)
+                }};
+                weaponMods.push(...preset._items);
             }
             else
             {
                 logger.logError(`Could not find preset for weapon with tpl ${tpl}`);
+                return;
             }
         }
 
@@ -420,17 +464,19 @@ class BotGenerator
         const ammoTpl = this.getCompatibleAmmo(weaponMods, itemTemplate);
 
         // Fill existing magazines to full and sync ammo type
-        weaponMods.filter(mod => mod.slotId === "mod_magazine")
-            .forEach(mod => this.fillExistingMagazines(weaponMods, mod, ammoTpl));
+        for (const mod of weaponMods.filter(mod => mod.slotId === "mod_magazine"))
+        {
+            this.fillExistingMagazines(weaponMods, mod, ammoTpl);
+        }
 
         this.inventory.items.push(...weaponMods);
 
         // Generate extra magazines and attempt add them to TacticalVest or Pockets
-        const magCount = utility.getRandomInt(3, 4); // TODO: Replace with "generation.items.magazines" when they're available in bot files
+        const magCount = utility.getRandomInt(magCounts.min, magCounts.max);
         this.generateExtraMagazines(weaponMods, itemTemplate, magCount, ammoTpl);
     }
 
-    generateModsForItem(items, modPool, parentId, parentTemplate)
+    generateModsForItem(items, modPool, parentId, parentTemplate, modSpawnChances)
     {
         const itemModPool = modPool[parentTemplate._id];
 
@@ -464,7 +510,36 @@ class BotGenerator
                 continue;
             }
 
-            const modTpl = utility.getRandomValue(itemModPool[modSlot]);
+            const modSpawnChance = itemSlot._required || ["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot)
+                ? 100
+                : modSpawnChances[modSlot];
+            if (utility.getRandomIntEx(100) > modSpawnChance)
+            {
+                continue;
+            }
+
+            const exhaustableModPool = new ExhaustableArray(itemModPool[modSlot]);
+
+            let modTpl;
+            let found = false;
+            while (exhaustableModPool.hasValues())
+            {
+                modTpl = exhaustableModPool.getRandomValue();
+                if (!this.isItemIncompatibleWithCurrentItems(items, modTpl, modSlot))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found || !modTpl)
+            {
+                if (itemSlot._required)
+                {
+                    logger.logError(`Could not locate any compatible items to fill '${modSlot}' for ${parentTemplate._id}`);
+                }
+                continue;
+            }
 
             if (!itemSlot._props.filters[0].Filter.includes(modTpl))
             {
@@ -480,12 +555,6 @@ class BotGenerator
                 continue;
             }
 
-            if (this.isItemIncompatibleWithCurrentItems(items, modTpl, modSlot))
-            {
-                // Bad luck - randomly picked item was not compatible with current gear
-                continue;
-            }
-
             const modId = utility.generateNewItemId();
             items.push({
                 "_id": modId,
@@ -497,7 +566,7 @@ class BotGenerator
 
             if (Object.keys(modPool).includes(modTpl))
             {
-                this.generateModsForItem(items, modPool, modId, modTemplate);
+                this.generateModsForItem(items, modPool, modId, modTemplate, modSpawnChances);
             }
         }
 
@@ -507,6 +576,7 @@ class BotGenerator
     generateExtraPropertiesForItem(itemTemplate)
     {
         let properties = {};
+
         if (itemTemplate._props.MaxDurability)
         {
             properties.Repairable = {"Durability": itemTemplate._props.MaxDurability};
@@ -525,6 +595,16 @@ class BotGenerator
         if (itemTemplate._props.weapFireType && itemTemplate._props.weapFireType.length)
         {
             properties.FireMode = {"FireMode": itemTemplate._props.weapFireType[0]};
+        }
+
+        if (itemTemplate._props.MaxHpResource)
+        {
+            properties.MedKit = {"HpResource": itemTemplate._props.MaxHpResource};
+        }
+
+        if (itemTemplate._props.MaxResource && itemTemplate._props.foodUseTime)
+        {
+            properties.FoodDrink = {"HpPercent": itemTemplate._props.MaxResource};
         }
 
         return Object.keys(properties).length ? {"upd": properties} : {};
@@ -599,17 +679,15 @@ class BotGenerator
              * and multiply by how many magazines were supposed to be created */
             const bulletCount = magTemplate._props.Cartridges[0]._max_count * count;
 
-            const ammoItem = {
+            const ammoItems = helpfunc_f.helpFunctions.splitStack({
                 "_id": utility.generateNewItemId(),
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": bulletCount}
-            };
+            });
 
-            const ammoStacks = helpfunc_f.helpFunctions.splitStack(ammoItem);
-
-            for (const ammoStack of ammoStacks)
+            for (const ammoItem of ammoItems)
             {
-                this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], ammoStack._id, ammoStack._tpl, [ammoStack]);
+                this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], ammoItem._id, ammoItem._tpl, [ammoItem]);
             }
         }
         else
@@ -680,7 +758,7 @@ class BotGenerator
             ammoTpl = ammoToUse._tpl;
         }
 
-        if (!weaponTemplate._props.Chambers[0]._props.filters[0].Filter.includes(ammoToUse._tpl))
+        if (weaponTemplate._props.Chambers[0] && !weaponTemplate._props.Chambers[0]._props.filters[0].Filter.includes(ammoToUse._tpl))
         {
             // Incompatible ammo was found, return default (can happen with .366 and 7.62x39 weapons)
             return weaponTemplate._props.defAmmo;
@@ -720,6 +798,58 @@ class BotGenerator
         }
     }
 
+    generateLoot(lootPool, itemCounts)
+    {
+        // TODO: Implement a mechanism for item rarity (maybe by value or something)
+
+        // Flatten all individual slot loot pools into one big pool, while filtering out potentially missing templates
+        let lootTemplates = [];
+        for (const [slot, pool] of Object.entries(lootPool))
+        {
+            if (!pool || !pool.length)
+            {
+                continue;
+            }
+            const poolItems = pool.map(lootTpl => database_f.database.tables.templates.items[lootTpl]);
+            lootTemplates.push(...poolItems.filter(x => !!x));
+        }
+
+        // Get all healing items
+        const healingItems = lootTemplates.filter(template => "medUseTime" in template._props);
+
+        // Get all grenades
+        const grenadeItems = lootTemplates.filter(template => "ThrowType" in template._props);
+
+        // Get all misc loot items (excluding magazines, bullets, grenades and healing items)
+        const lootItems = lootTemplates.filter(template =>
+            !("ammoType" in template._props)
+            && !("ReloadMagType" in template._props)
+            && !("medUseTime" in template._props)
+            && !("ThrowType" in template._props));
+
+        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], itemCounts.healing.min, itemCounts.healing.max);
+        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], itemCounts.looseLoot.min, itemCounts.looseLoot.max);
+        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], itemCounts.grenades.min, itemCounts.grenades.max);
+    }
+
+    addLootFromPool(pool, equipmentSlots, min, max)
+    {
+        if (pool.length)
+        {
+            for (let count = 0; count < utility.getRandomInt(min, max); count++)
+            {
+                const itemTemplate = utility.getRandomArrayValue(pool);
+                const id = utility.generateNewItemId();
+
+                this.addItemWithChildrenToEquipmentSlot(equipmentSlots, id, itemTemplate._id, [{
+                    "_id": id,
+                    "_tpl": itemTemplate._id,
+                    ...this.generateExtraPropertiesForItem(itemTemplate)
+                }]);
+            }
+        }
+    }
+
     /** Adds an item with all its childern into specified equipmentSlots, wherever it fits.
      * Returns a `boolean` indicating success. */
     addItemWithChildrenToEquipmentSlot(equipmentSlots, parentId, parentTpl, itemWithChildren)
@@ -727,6 +857,11 @@ class BotGenerator
         for (const slot of equipmentSlots)
         {
             const container = this.inventory.items.find(i => i.slotId === slot);
+            if (!container)
+            {
+                continue;
+            }
+
             const containerTemplate = database_f.database.tables.templates.items[container._tpl];
             if (!containerTemplate)
             {
@@ -768,11 +903,59 @@ class BotGenerator
     }
 }
 
+class ExhaustableArray
+{
+    constructor(itemPool)
+    {
+        this.pool = helpfunc_f.helpFunctions.clone(itemPool);
+    }
+
+    getRandomValue()
+    {
+        if (!this.pool || !this.pool.length)
+        {
+            return null;
+        }
+
+        const index = utility.getRandomInt(0, this.pool.length - 1);
+        const toReturn = helpfunc_f.helpFunctions.clone(this.pool[index]);
+        this.pool.splice(index, 1);
+        return toReturn;
+    }
+
+    hasValues()
+    {
+        if (this.pool && this.pool.length)
+        {
+            return true;
+        }
+
+        return false;
+    }
+}
+
 class BotCallbacks
 {
     constructor()
     {
+        router.addDynamicRoute("/singleplayer/settings/bot/limit/", this.getBotLimit.bind());
+        router.addDynamicRoute("/singleplayer/settings/bot/difficulty/", this.getBotDifficulty.bind());
         router.addStaticRoute("/client/game/bot/generate", this.generateBots.bind());
+    }
+
+    getBotLimit(url, info, sessionID)
+    {
+        let splittedUrl = url.split("/");
+        let type = splittedUrl[splittedUrl.length - 1];
+        return response_f.responseController.noBody(modules_f.modulesController.getBotLimit(type));
+    }
+
+    getBotDifficulty(url, info, sessionID)
+    {
+        let splittedUrl = url.split("/");
+        let type = splittedUrl[splittedUrl.length - 2].toLowerCase();
+        let difficulty = splittedUrl[splittedUrl.length - 1];
+        return response_f.responseController.noBody(modules_f.modulesController.getBotDifficulty(type, difficulty));
     }
 
     generateBots(url, info, sessionID)
@@ -789,6 +972,26 @@ class BotConfig
             "enabled": true,
             "spawnChance": 35,
             "usecChance": 50
+        };
+        this.limits = {
+            "assault": 30,
+            "marksman": 30,
+            "pmcBot": 30,
+            "bossBully": 30,
+            "bossGluhar": 30,
+            "bossKilla": 30,
+            "bossKojaniy": 30,
+            "bossSanitar": 30,
+            "followerBully": 30,
+            "followerGluharAssault": 30,
+            "followerGluharScout": 30,
+            "followerGluharSecurity": 30,
+            "followerGluharSnipe": 30,
+            "followerKojaniy": 30,
+            "followerSanitar": 30,
+            "test": 30,
+            "followerTest": 30,
+            "bossTest": 30
         };
     }
 }

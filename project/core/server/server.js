@@ -37,16 +37,14 @@ class Server
 {
     constructor()
     {
-        let config = json.parse(json.read("user/configs/server.json"));
-
         this.buffers = {};
         this.startCallback = {};
         this.receiveCallback = {};
         this.respondCallback = {};
-        this.name = config.name;
-        this.ip = config.ip;
-        this.port = config.port;
-        this.backendUrl = "https://" + this.ip + ":" + this.port;
+        this.name = "Local SPT-AKI Server";
+        this.ip = "127.0.0.1";
+        this.port = 443;
+        this.backendUrl = `https://${this.ip}:${this.port}`;
         this.version = "SPT-AKI Alpha";
         this.mime = {
             txt: "text/plain",

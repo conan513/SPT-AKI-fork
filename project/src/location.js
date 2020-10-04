@@ -89,7 +89,7 @@ class LocationServer
         logger.logSuccess("A total of " + count + " containers generated");
 
         // dyanmic loot
-        let max = gameplayConfig.locationloot[name];
+        let max = location_f.locationConfig.limits[name];
         count = 0;
 
         // Loot position list for filtering the lootItem in the same position.
@@ -113,7 +113,7 @@ class LocationServer
 
             //Check if LootItem is overlapping
             let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
-            if (!gameplayConfig.locationloot.allowLootOverlay && lootPositions.includes(position))
+            if (!location_f.locationConfig.allowLootOverlay && lootPositions.includes(position))
             {
                 //Clear selected loot
                 dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
@@ -381,5 +381,32 @@ class LocationCallbacks
     }
 }
 
+class LocationConfig
+{
+    constructor()
+    {
+        this.allowLootOverlay = false;
+        this.limits = {
+            "bigmap": 1000,
+            "develop": 30,
+            "factory4_day": 100,
+            "factory4_night": 100,
+            "interchange": 2000,
+            "laboratory": 1000,
+            "rezervbase": 3000,
+            "shoreline": 1000,
+            "woods": 200,
+            "hideout": 0,
+            "lighthouse": 0,
+            "privatearea": 0,
+            "suburbs": 0,
+            "tarkovstreets": 0,
+            "terminal": 0,
+            "town": 0
+        };
+    }
+}
+
 module.exports.locationServer = new LocationServer();
 module.exports.locationCallbacks = new LocationCallbacks();
+module.exports.LocationConfig = new LocationConfig();
