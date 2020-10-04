@@ -229,7 +229,7 @@ class BotGenerator
         this.inventory = {};
     }
 
-    generateInventory(templateInventory, equipmentChances, generationCounts)
+    generateInventory(templateInventory, equipmentChances, generation)
     {
         // Generate base inventory with no items
         this.inventory = this.generateInventoryBase();
@@ -264,11 +264,11 @@ class BotGenerator
         {
             if (shouldWeaponSpawn[weaponType] && templateInventory.equipment[weaponType].length)
             {
-                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods, equipmentChances.mods, generationCounts.magazines);
+                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods, equipmentChances.mods, generation.items.magazines);
             }
         }
 
-        this.generateLoot(templateInventory.items, generationCounts);
+        this.generateLoot(templateInventory.items, generation.items);
 
         return helpfunc_f.helpFunctions.clone(this.inventory);
     }
@@ -761,7 +761,7 @@ class BotGenerator
         }
     }
 
-    generateLoot(lootPool, generationCounts)
+    generateLoot(lootPool, itemCounts)
     {
         // TODO: Implement a mechanism for item rarity (maybe by value or something)
 
@@ -785,14 +785,14 @@ class BotGenerator
 
         // Get all misc loot items (excluding magazines, bullets, grenades and healing items)
         const lootItems = lootTemplates.filter(template =>
-            !("ammotype" in template._props)
+            !("ammoType" in template._props)
             && !("ReloadMagType" in template._props)
             && !("medUseTime" in template._props)
             && !("ThrowType" in template._props));
 
-        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], generationCounts.healing.min, generationCounts.healing.max);
-        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], generationCounts.looseLoot.min, generationCounts.looseLoot.max);
-        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], generationCounts.grenades.min, generationCounts.grenades.max);
+        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], itemCounts.healing.min, itemCounts.healing.max);
+        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], itemCounts.looseLoot.min, itemCounts.looseLoot.max);
+        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], itemCounts.grenades.min, itemCounts.grenades.max);
     }
 
     addLootFromPool(pool, equipmentSlots, min, max)
