@@ -62,7 +62,7 @@ class DatabaseCallbacks
         }
 
         // loot
-        for (let file in database_f.database.tables.loot)
+        for (let file in db.loot)
         {
             database_f.database.tables.loot[file] = json.parse(json.read(db.loot.statics));
         }

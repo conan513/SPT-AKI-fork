@@ -409,4 +409,4 @@ class LocationConfig
 
 module.exports.locationServer = new LocationServer();
 module.exports.locationCallbacks = new LocationCallbacks();
-module.exports.LocationConfig = new LocationConfig();
+module.exports.locationConfig = new LocationConfig();
