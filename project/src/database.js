@@ -56,7 +56,7 @@ class DatabaseCallbacks
         database_f.database.tables.globals = json.parse(json.read(db.others.globals));
 
         // locations
-        for (let file in db.location)
+        for (let file in db.locations)
         {
             database_f.database.tables.locations[file] = json.parse(json.read(db.locations[file]));
         }
