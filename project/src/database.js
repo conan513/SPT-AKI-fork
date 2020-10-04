@@ -46,51 +46,38 @@ class DatabaseCallbacks
 
     load()
     {
+        // warmup
+        database_f.database.tables.locations = {};
+        database_f.database.tables.loot = {};
+        database_f.database.tables.templates = {};
+        database_f.database.tables.hideout = {};
+
         // global
         database_f.database.tables.globals = json.parse(json.read(db.others.globals));
 
         // locations
-        database_f.database.tables.locations = {
-            "bigmap": json.parse(json.read(db.locations.bigmap)),
-            "develop": json.parse(json.read(db.locations.develop)),
-            "factory4_day": json.parse(json.read(db.locations.factory4_day)),
-            "factory4_night": json.parse(json.read(db.locations.factory4_night)),
-            "hideout": json.parse(json.read(db.locations.hideout)),
-            "interchange": json.parse(json.read(db.locations.interchange)),
-            "laboratory": json.parse(json.read(db.locations.laboratory)),
-            "lighthouse": json.parse(json.read(db.locations.lighthouse)),
-            "privatearea": json.parse(json.read(db.locations.privatearea)),
-            "rezervbase": json.parse(json.read(db.locations.rezervbase)),
-            "shoreline": json.parse(json.read(db.locations.shoreline)),
-            "suburbs": json.parse(json.read(db.locations.suburbs)),
-            "tarkovstreets": json.parse(json.read(db.locations.tarkovstreets)),
-            "terminal": json.parse(json.read(db.locations.terminal)),
-            "town": json.parse(json.read(db.locations.town)),
-            "woods": json.parse(json.read(db.locations.woods)),
-            "base": json.parse(json.read(db.locations.base))
-        };
+        for (let file in db.location)
+        {
+            database_f.database.tables.locations[file] = json.parse(json.read(db.locations[file]));
+        }
 
         // loot
-        database_f.database.tables.loot = {
-            "statics": json.parse(json.read(db.loot.statics))
-        };
+        for (let file in database_f.database.tables.loot)
+        {
+            database_f.database.tables.loot[file] = json.parse(json.read(db.loot.statics));
+        }
 
         // templates
-        database_f.database.tables.templates = {
-            "items": json.parse(json.read(db.templates.items)),
-            "handbook": json.parse(json.read(db.templates.handbook)),
-            "suits": json.parse(json.read(db.templates.suits)),
-            "quests": json.parse(json.read(db.templates.quests)),
-            "weather": json.parse(json.read(db.templates.weather))
-        };
+        for (let file in db.templates)
+        {
+            database_f.database.tables.templates[file] = json.parse(json.read(db.templates[file]));
+        }
 
         // hideout
-        database_f.database.tables.hideout = {
-            "settings": json.parse(json.read(db.hideout.settings)),
-            "areas": json.parse(json.read(db.hideout.areas)),
-            "production": json.parse(json.read(db.hideout.production)),
-            "scavcase": json.parse(json.read(db.hideout.scavcase))
-        };
+        for (let file in db.hideout)
+        {
+            database_f.database.tables.hideout[file] = json.parse(json.read(db.hideout[file]));
+        }
 
         // locales
         let locales = {
@@ -107,6 +94,7 @@ class DatabaseCallbacks
                 // startup locale
                 locales.menu[file.replace("menu_", "")] = json.parse(json.read(db.locales[file]));
             }
+
             else if (file.includes("global_"))
             {
                 // game locale
@@ -151,21 +139,25 @@ class DatabaseCallbacks
                 // trader info
                 traders[traderID].base = json.parse(json.read(db.traders[file]));
             }
+
             else if (file.includes("suits_"))
             {
                 // customization
                 traders[traderID].suits = json.parse(json.read(db.traders[file]));
             }
+
             else if (file.includes("questassort_"))
             {
                 // assortiment unlocked by quests
                 traders[traderID].questassort = json.parse(json.read(db.traders[file]));
             }
+
             else if (file.includes("assort_"))
             {
                 // assortiment
                 traders[traderID].assort = json.parse(json.read(db.traders[file]));
             }
+
             else if (file.includes("dialogue_"))
             {
                 // dialogue
@@ -192,19 +184,19 @@ class DatabaseCallbacks
             }
 
             // load global bots difficulty
-            if (file.includes("difficulty_global"))
+            else if (file.includes("difficulty_global"))
             {
                 bots.globalDifficulty = json.parse(json.read(db.bots[file]));
             }
 
             // load bot to the server
-            bots.type[file.replace("bot_", "")] = json.parse(json.read(db.bots[file]));
+            else if (file.includes("bot_"))
+            {
+                bots.type[file.replace("bot_", "")] = json.parse(json.read(db.bots[file]));
+            }
         }
 
         database_f.database.tables.bots = bots;
-
-        // TODO: remove from global space
-        global.gameplayConfig = json.parse(json.read(db.user.configs.gameplay));
     }
 
     getGlobals(url, info, sessionID)

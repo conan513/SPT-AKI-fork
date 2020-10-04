@@ -17,6 +17,43 @@ class BotController
         this.pmcSettings = {};
     }
 
+    getBotLimit(type)
+    {
+        if (type === "cursedAssault" || type === "assaultGroup")
+        {
+            type = "assault";
+        }
+
+        return bots_f.botConfig.limits[type];
+    }
+
+    getBotDifficulty(type, difficulty)
+    {
+        switch (type)
+        {
+            case "core":
+                return database_f.database.tables.bots.globalDifficulty;
+
+            case "cursedassault":
+                type = "assault";
+                break;
+
+            case "test":
+            case "assaultgroup":
+            case "followergluharsnipe":
+            case "bosstest":
+            case "followertest":
+                /* unused bots by BSG, might have use */
+                type = "pmcbot";
+                break;
+
+            default:
+                break;
+        }
+
+        return database_f.database.tables.bots.type[type].difficulty[difficulty];
+    }
+
     generateBot(bot, role, sessionID)
     {
         const pmcSettings = bots_f.botConfig.pmcSpawn;
@@ -901,7 +938,24 @@ class BotCallbacks
 {
     constructor()
     {
+        router.addDynamicRoute("/singleplayer/settings/bot/limit/", this.getBotLimit.bind());
+        router.addDynamicRoute("/singleplayer/settings/bot/difficulty/", this.getBotDifficulty.bind());
         router.addStaticRoute("/client/game/bot/generate", this.generateBots.bind());
+    }
+
+    getBotLimit(url, info, sessionID)
+    {
+        let splittedUrl = url.split("/");
+        let type = splittedUrl[splittedUrl.length - 1];
+        return response_f.responseController.noBody(modules_f.modulesController.getBotLimit(type));
+    }
+
+    getBotDifficulty(url, info, sessionID)
+    {
+        let splittedUrl = url.split("/");
+        let type = splittedUrl[splittedUrl.length - 2].toLowerCase();
+        let difficulty = splittedUrl[splittedUrl.length - 1];
+        return response_f.responseController.noBody(modules_f.modulesController.getBotDifficulty(type, difficulty));
     }
 
     generateBots(url, info, sessionID)
@@ -918,6 +972,26 @@ class BotConfig
             "enabled": true,
             "spawnChance": 35,
             "usecChance": 50
+        };
+        this.limits = {
+            "assault": 30,
+            "marksman": 30,
+            "pmcBot": 30,
+            "bossBully": 30,
+            "bossGluhar": 30,
+            "bossKilla": 30,
+            "bossKojaniy": 30,
+            "bossSanitar": 30,
+            "followerBully": 30,
+            "followerGluharAssault": 30,
+            "followerGluharScout": 30,
+            "followerGluharSecurity": 30,
+            "followerGluharSnipe": 30,
+            "followerKojaniy": 30,
+            "followerSanitar": 30,
+            "test": 30,
+            "followerTest": 30,
+            "bossTest": 30
         };
     }
 }
