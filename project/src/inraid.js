@@ -86,7 +86,7 @@ class Controller
 
     saveProgress(offraidData, sessionID)
     {
-        if (!inraid_f.config.saveloot)
+        if (!inraid_f.config.save.loot)
         {
             return;
         }

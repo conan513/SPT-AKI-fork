@@ -787,23 +787,34 @@ class Controller
     examineItem(pmcData, body, sessionID)
     {
         let itemID = "";
-        let items = pmcData.Inventory.items;
 
-        // outside player profile
         if ("fromOwner" in body)
         {
             // scan ragfair as a trader
             if (body.fromOwner.type === "RagFair")
             {
-                body.item = body.fromOwner.id;
                 body.fromOwner.type = "Trader";
-                body.fromOwner.id = "ragfair";
             }
 
             // get trader assort
             if (body.fromOwner.type === "Trader")
             {
-                items = trader_f.controller.getAssort(sessionID, body.fromOwner.id).items;
+                const traders = database_f.database.tables.traders;
+
+                for (const traderID in traders)
+                {
+                    if (!(body.item in traders[traderID].assort.loyal_level_items))
+                    {
+                        continue;
+                    }
+
+                    const assort = traders[traderID].assort.items.find((item) =>
+                    {
+                        return body.item === item._id;
+                    });
+
+                    itemID = assort._tpl;
+                }                
             }
 
             // get hideout item
@@ -815,46 +826,42 @@ class Controller
 
         if (preset_f.controller.isPreset(itemID))
         {
+            // item preset
             itemID = preset_f.controller.getBaseItemTpl(itemID);
         }
 
-        if (itemID === "")
+        if (!itemID)
         {
-            // player/trader inventory
-            for (let item of items)
+            // item template
+            if (body.item in database_f.database.tables.templates.items)
             {
-                if (item._id === body.item)
-                {
-                    itemID = item._tpl;
-                    break;
-                }
+                itemID = body.item;
             }
         }
 
-        if (itemID === "")
+        if (!itemID)
         {
-            // player/trader inventory
-            let result = helpfunc_f.helpFunctions.getItem(body.item);
-
-            if (result[0])
+            // player inventory
+            const target = pmcData.Inventory.items.find((item) =>
             {
-                itemID = result[1]._id;
+                return body.item === item._id;
+            });
+
+            if (target)
+            {
+                itemID = target._tpl;
             }
         }
 
-        // item not found
-        if (itemID === "")
+        if (itemID)
         {
-            logger.logError("Cannot find item to examine");
-            return "";
+            // item found
+            const item = database_f.database.tables.templates.items[itemID];
+
+            pmcData.Info.Experience += item._props.ExamineExperience;
+            pmcData.Encyclopedia[itemID] = true;
         }
 
-        // item found
-        let item = database_f.database.tables.templates.items[itemID];
-        pmcData.Info.Experience += item._props.ExamineExperience;
-        pmcData.Encyclopedia[itemID] = true;
-
-        logger.logSuccess("EXAMINED: " + itemID);
         return item_f.router.getOutput();
     }
 
