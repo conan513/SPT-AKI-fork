@@ -1,7 +1,7 @@
 {
-    "name": "spt-aki_server",
+    "name": "aki-server",
     "version": "1.0.0",
-    "main": "core/main.js",
+    "main": "app/main.js",
     "author": "SPT-AKI",
     "contributors": [
         "Merijn Hendriks (Senko-san, InNoHurryToCode)",
