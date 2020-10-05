@@ -101,7 +101,6 @@ class Controller
         bot.Customization.Body = utility.getRandomArrayValue(node.appearance.body);
         bot.Customization.Feet = utility.getRandomArrayValue(node.appearance.feet);
         bot.Customization.Hands = utility.getRandomArrayValue(node.appearance.hands);
-        //bot.Inventory = this.getInventoryTemp(type.toLowerCase());
         bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
@@ -247,15 +246,6 @@ class Controller
 
         bot.Inventory.items.push(dogtagItem);
         return bot;
-    }
-
-    /** Temporary method to fetch an inventory from old bot files.
-     *  To be removed when bot loadout generation is fully implemented */
-    getInventoryTemp(botType)
-    {
-        const oldBotDbFile = Object.keys(db.bots_old).find(key => key.includes(`bot_${botType}`));
-        const oldBotDb = json.parse(json.read(db.bots_old[oldBotDbFile]));
-        return utility.getRandomValue(oldBotDb.inventory);
     }
 }
 
