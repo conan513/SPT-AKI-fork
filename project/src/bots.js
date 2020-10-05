@@ -9,7 +9,7 @@
 
 "use strict";
 
-class BotController
+class Controller
 {
     constructor()
     {
@@ -24,7 +24,7 @@ class BotController
             type = "assault";
         }
 
-        return bots_f.botConfig.limits[type];
+        return bots_f.config.limits[type];
     }
 
     getBotDifficulty(type, difficulty)
@@ -56,7 +56,7 @@ class BotController
 
     generateBot(bot, role, sessionID)
     {
-        const pmcSettings = bots_f.botConfig.pmcSpawn;
+        const pmcSettings = bots_f.config.pmcSpawn;
         let type = (role === "cursedAssault") ? "assault" : role;
 
         // chance to spawn simulated PMC AIs
@@ -102,7 +102,7 @@ class BotController
         bot.Customization.Feet = utility.getRandomArrayValue(node.appearance.feet);
         bot.Customization.Hands = utility.getRandomArrayValue(node.appearance.hands);
         //bot.Inventory = this.getInventoryTemp(type.toLowerCase());
-        bot.Inventory = bots_f.botGenerator.generateInventory(node.inventory, node.chances, node.generation);
+        bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
         if (type === "usec" || type === "bear")
@@ -259,7 +259,7 @@ class BotController
     }
 }
 
-class BotGenerator
+class Generator
 {
     constructor()
     {
@@ -434,7 +434,7 @@ class BotGenerator
 
             // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
             let preset;
-            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.ItemPresets))
+            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.controller))
             {
                 if (presetObj._items[0]._tpl === tpl)
                 {
@@ -934,7 +934,7 @@ class ExhaustableArray
     }
 }
 
-class BotCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -947,7 +947,7 @@ class BotCallbacks
     {
         let splittedUrl = url.split("/");
         let type = splittedUrl[splittedUrl.length - 1];
-        return response_f.responseController.noBody(bots_f.botController.getBotLimit(type));
+        return response_f.controller.noBody(bots_f.controller.getBotLimit(type));
     }
 
     getBotDifficulty(url, info, sessionID)
@@ -955,16 +955,16 @@ class BotCallbacks
         let splittedUrl = url.split("/");
         let type = splittedUrl[splittedUrl.length - 2].toLowerCase();
         let difficulty = splittedUrl[splittedUrl.length - 1];
-        return response_f.responseController.noBody(bots_f.botController.getBotDifficulty(type, difficulty));
+        return response_f.controller.noBody(bots_f.controller.getBotDifficulty(type, difficulty));
     }
 
     generateBots(url, info, sessionID)
     {
-        return response_f.responseController.getBody(bots_f.botController.generate(info, sessionID));
+        return response_f.controller.getBody(bots_f.controller.generate(info, sessionID));
     }
 }
 
-class BotConfig
+class Config
 {
     constructor()
     {
@@ -996,7 +996,7 @@ class BotConfig
     }
 }
 
-module.exports.botController = new BotController();
-module.exports.botCallbacks = new BotCallbacks();
-module.exports.botConfig = new BotConfig();
-module.exports.botGenerator = new BotGenerator();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();
+module.exports.generator = new Generator();

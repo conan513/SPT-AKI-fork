@@ -9,7 +9,7 @@
 
 "use strict";
 
-class DialogueServer
+class Controller
 {
     constructor()
     {
@@ -24,7 +24,7 @@ class DialogueServer
 
     onLoad(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         if (!("dialogues" in profile))
         {
@@ -39,18 +39,18 @@ class DialogueServer
     {
         let data = [];
 
-        for (let dialogueId in save_f.saveServer.profiles[sessionID].dialogues)
+        for (let dialogueId in save_f.server.profiles[sessionID].dialogues)
         {
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
 
-        return response_f.responseController.getBody(data);
+        return response_f.controller.getBody(data);
     }
 
     /* Get the content of a dialogue. */
     getDialogueInfo(dialogueId, sessionID)
     {
-        let dialogue = save_f.saveServer.profiles[sessionID].dialogues[dialogueId];
+        let dialogue = save_f.server.profiles[sessionID].dialogues[dialogueId];
 
         return {
             "_id": dialogueId,
@@ -68,7 +68,7 @@ class DialogueServer
 	*/
     generateDialogueView(dialogueId, sessionID)
     {
-        let dialogue = save_f.saveServer.profiles[sessionID].dialogues[dialogueId];
+        let dialogue = save_f.server.profiles[sessionID].dialogues[dialogueId];
         dialogue.new = 0;
 
         // Set number of new attachments, but ignore those that have expired.
@@ -85,7 +85,7 @@ class DialogueServer
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return response_f.responseController.getBody({"messages": save_f.saveServer.profiles[sessionID].dialogues[dialogueId].messages});
+        return response_f.controller.getBody({"messages": save_f.server.profiles[sessionID].dialogues[dialogueId].messages});
     }
 
     /*
@@ -93,12 +93,12 @@ class DialogueServer
 	*/
     addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
-        if (save_f.saveServer.profiles[sessionID].dialogues === undefined)
+        if (save_f.server.profiles[sessionID].dialogues === undefined)
         {
             this.initializeDialogue(sessionID);
         }
 
-        let dialogueData = save_f.saveServer.profiles[sessionID].dialogues;
+        let dialogueData = save_f.server.profiles[sessionID].dialogues;
         let isNewDialogue = !(dialogueID in dialogueData);
         let dialogue = dialogueData[dialogueID];
 
@@ -158,8 +158,8 @@ class DialogueServer
 
         dialogue.messages.push(message);
 
-        let notificationMessage = notifier_f.notifierService.createNewMessageNotification(message);
-        notifier_f.notifierService.addToMessageQueue(notificationMessage, sessionID);
+        let notificationMessage = notifier_f.controller.createNewMessageNotification(message);
+        notifier_f.controller.addToMessageQueue(notificationMessage, sessionID);
     }
 
     /*
@@ -183,7 +183,7 @@ class DialogueServer
 	*/
     getMessageItemContents(messageId, sessionID)
     {
-        let dialogueData = save_f.saveServer.profiles[sessionID].dialogues;
+        let dialogueData = save_f.server.profiles[sessionID].dialogues;
 
         for (let dialogueId in dialogueData)
         {
@@ -193,10 +193,10 @@ class DialogueServer
             {
                 if (message._id === messageId)
                 {
-                    let attachmentsNew = save_f.saveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
+                    let attachmentsNew = save_f.server.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
                     if (attachmentsNew > 0)
                     {
-                        save_f.saveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = attachmentsNew - 1;
+                        save_f.server.profiles[sessionID].dialogues[dialogueId].attachmentsNew = attachmentsNew - 1;
                     }
                     message.rewardCollected = true;
                     return message.items.data;
@@ -209,17 +209,17 @@ class DialogueServer
 
     removeDialogue(dialogueId, sessionID)
     {
-        delete save_f.saveServer.profiles[sessionID].dialogues[dialogueId];
+        delete save_f.server.profiles[sessionID].dialogues[dialogueId];
     }
 
     setDialoguePin(dialogueId, shouldPin, sessionID)
     {
-        save_f.saveServer.profiles[sessionID].dialogues[dialogueId].pinned = shouldPin;
+        save_f.server.profiles[sessionID].dialogues[dialogueId].pinned = shouldPin;
     }
 
     setRead(dialogueIds, sessionID)
     {
-        let dialogueData = save_f.saveServer.profiles[sessionID].dialogues;
+        let dialogueData = save_f.server.profiles[sessionID].dialogues;
 
         for (let dialogId of dialogueIds)
         {
@@ -234,7 +234,7 @@ class DialogueServer
         let output = [];
         let timeNow = Date.now() / 1000;
 
-        for (let message of save_f.saveServer.profiles[sessionID].dialogues[dialogueId].messages)
+        for (let message of save_f.server.profiles[sessionID].dialogues[dialogueId].messages)
         {
             if (timeNow < (message.dt + message.maxStorageTime))
             {
@@ -242,7 +242,7 @@ class DialogueServer
             }
         }
 
-        save_f.saveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
+        save_f.server.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
         return {"messages": output};
     }
 
@@ -251,9 +251,9 @@ class DialogueServer
 
     removeExpiredItems(sessionID)
     {
-        for (let dialogueId in save_f.saveServer.profiles[sessionID].dialogues)
+        for (let dialogueId in save_f.server.profiles[sessionID].dialogues)
         {
-            for (let message of save_f.saveServer.profiles[sessionID].dialogues[dialogueId].messages)
+            for (let message of save_f.server.profiles[sessionID].dialogues[dialogueId].messages)
             {
                 if ((Date.now() / 1000) > (message.dt + message.maxStorageTime))
                 {
@@ -272,11 +272,11 @@ class DialogueServer
     }
 }
 
-class DialogueCallbacks
+class Callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["dialogues"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["dialogues"] = this.onLoad.bind();
 
         router.addStaticRoute("/client/friend/list", this.getFriendList.bind());
         router.addStaticRoute("/client/chatServer/list", this.getChatServerList.bind());
@@ -294,73 +294,73 @@ class DialogueCallbacks
 
     onLoad(sessionID)
     {
-        return dialogue_f.dialogueServer.onLoad(sessionID);
+        return dialogue_f.controller.onLoad(sessionID);
     }
 
     getFriendList(url, info, sessionID)
     {
-        return response_f.responseController.getBody({"Friends":[], "Ignore":[], "InIgnoreList":[]});
+        return response_f.controller.getBody({"Friends":[], "Ignore":[], "InIgnoreList":[]});
     }
 
     getChatServerList(url, info, sessionID)
     {
-        return response_f.responseController.getBody([{"_id": "5ae20a0dcb1c13123084756f", "RegistrationId": 20, "DateTime": Math.floor(new Date() / 1000), "IsDeveloper": true, "Regions": ["EUR"], "VersionId": "bgkidft87ddd", "Ip": "", "Port": 0, "Chats": [{"_id": "0", "Members": 0}]}]);
+        return response_f.controller.getBody([{"_id": "5ae20a0dcb1c13123084756f", "RegistrationId": 20, "DateTime": Math.floor(new Date() / 1000), "IsDeveloper": true, "Regions": ["EUR"], "VersionId": "bgkidft87ddd", "Ip": "", "Port": 0, "Chats": [{"_id": "0", "Members": 0}]}]);
     }
 
     getMailDialogList(url, info, sessionID)
     {
-        return dialogue_f.dialogueServer.generateDialogueList(sessionID);
+        return dialogue_f.controller.generateDialogueList(sessionID);
     }
 
     getMailDialogView(url, info, sessionID)
     {
-        return dialogue_f.dialogueServer.generateDialogueView(info.dialogId, sessionID);
+        return dialogue_f.controller.generateDialogueView(info.dialogId, sessionID);
     }
 
     getMailDialogInfo(url, info, sessionID)
     {
-        return response_f.responseController.getBody(dialogue_f.dialogueServer.getDialogueInfo(info.dialogId, sessionID));
+        return response_f.controller.getBody(dialogue_f.controller.getDialogueInfo(info.dialogId, sessionID));
     }
 
     removeDialog(url, info, sessionID)
     {
-        dialogue_f.dialogueServer.removeDialogue(info.dialogId, sessionID);
-        return response_f.responseController.emptyArrayResponse();
+        dialogue_f.controller.removeDialogue(info.dialogId, sessionID);
+        return response_f.controller.emptyArrayResponse();
     }
 
     pinDialog(url, info, sessionID)
     {
-        dialogue_f.dialogueServer.setDialoguePin(info.dialogId, true, sessionID);
-        return response_f.responseController.emptyArrayResponse();
+        dialogue_f.controller.setDialoguePin(info.dialogId, true, sessionID);
+        return response_f.controller.emptyArrayResponse();
     }
 
     unpinDialog(url, info, sessionID)
     {
-        dialogue_f.dialogueServer.setDialoguePin(info.dialogId, false, sessionID);
-        return response_f.responseController.emptyArrayResponse();
+        dialogue_f.controller.setDialoguePin(info.dialogId, false, sessionID);
+        return response_f.controller.emptyArrayResponse();
     }
 
     setRead(url, info, sessionID)
     {
-        dialogue_f.dialogueServer.setRead(info.dialogs, sessionID);
-        return response_f.responseController.emptyArrayResponse();
+        dialogue_f.controller.setRead(info.dialogs, sessionID);
+        return response_f.controller.emptyArrayResponse();
     }
 
     getAllAttachments(url, info, sessionID)
     {
-        return response_f.responseController.getBody(dialogue_f.dialogueServer.getAllAttachments(info.dialogId, sessionID));
+        return response_f.controller.getBody(dialogue_f.controller.getAllAttachments(info.dialogId, sessionID));
     }
 
     listOutbox(url, info, sessionID)
     {
-        return response_f.responseController.emptyArrayResponse();
+        return response_f.controller.emptyArrayResponse();
     }
 
     listInbox(url, info, sessionID)
     {
-        return response_f.responseController.emptyArrayResponse();
+        return response_f.controller.emptyArrayResponse();
     }
 }
 
-module.exports.dialogueServer = new DialogueServer();
-module.exports.dialogueCallbacks = new DialogueCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

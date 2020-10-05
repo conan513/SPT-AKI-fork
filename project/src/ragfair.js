@@ -11,7 +11,7 @@
 
 "use strict";
 
-class ragfairController
+class Controller
 {
     initialize()
     {
@@ -116,9 +116,9 @@ class ragfairController
         let offers = [];
 
         // Preset
-        if (usePresets && preset_f.itemPresets.hasPreset(template))
+        if (usePresets && preset_f.controller.hasPreset(template))
         {
-            let presets = helpfunc_f.helpFunctions.clone(preset_f.itemPresets.getPresets(template));
+            let presets = helpfunc_f.helpFunctions.clone(preset_f.controller.getPresets(template));
 
             for (let p of presets)
             {
@@ -137,15 +137,15 @@ class ragfairController
                 offer._id = p._id;               // The offer's id is now the preset's id
                 offer.root = mods[0]._id;        // Sets the main part of the weapon
                 offer.items = mods;
-                offer.requirements[0].count = Math.round(rub * ragfair_f.ragfairConfig.priceMultiplier);
+                offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
                 offers.push(offer);
             }
         }
 
         // Single item
-        if (!preset_f.itemPresets.hasPreset(template) || !onlyFunc)
+        if (!preset_f.controller.hasPreset(template) || !onlyFunc)
         {
-            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * ragfair_f.ragfairConfig.priceMultiplier);
+            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * ragfair_f.config.priceMultiplier);
             offerBase._id = template;
             offerBase.items[0]._tpl = template;
             offerBase.requirements[0].count = rubPrice;
@@ -259,7 +259,7 @@ class ragfairController
 
         if (!request.linkedSearchId && !request.neededSearchId)
         {
-            response.categories = (trader_f.traderServer.getAssort(sessionID, "ragfair")).loyal_level_items;
+            response.categories = (trader_f.controller.getAssort(sessionID, "ragfair")).loyal_level_items;
         }
 
         if (request.buildCount)
@@ -380,7 +380,7 @@ class ragfairController
                     // check if offer is really available, removes any quest locked items not in current assort of a trader
                     let tmpOffer = jsonToReturn.offers[offer];
                     let traderId = tmpOffer.user.id;
-                    let items = trader_f.traderServer.getAssort(sessionID, traderId).items;
+                    let items = trader_f.controller.getAssort(sessionID, traderId).items;
                     let keepItem = false; // for testing
 
                     for (let item of items)
@@ -583,7 +583,7 @@ class ragfairController
     }
 }
 
-class RagfairCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -592,27 +592,27 @@ class RagfairCallbacks
         router.addStaticRoute("/client/ragfair/find", this.search.bind());
         router.addStaticRoute("/client/ragfair/itemMarketPrice", this.itemMarketPrice.bind());
         router.addStaticRoute("/client/items/prices", this.getItemPrices.bind());
-        item_f.itemServer.addRoute("RagFairAddOffer", this.addOffer.bind());
+        item_f.router.addRoute("RagFairAddOffer", this.addOffer.bind());
     }
 
     load()
     {
-        ragfair_f.ragfairController.initialize();
+        ragfair_f.controller.initialize();
     }
 
     search(url, info, sessionID)
     {
-        return response_f.responseController.getBody(ragfair_f.ragfairController.getOffers(sessionID, info));
+        return response_f.controller.getBody(ragfair_f.controller.getOffers(sessionID, info));
     }
 
     itemMarketPrice(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     getItemPrices(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     addOffer()
@@ -621,7 +621,7 @@ class RagfairCallbacks
     }
 }
 
-class RagfairConfig
+class Config
 {
     constructor()
     {
@@ -629,6 +629,6 @@ class RagfairConfig
     }
 }
 
-module.exports.ragfairController = new ragfairController();
-module.exports.ragfairCallbacks = new RagfairCallbacks();
-module.exports.ragfairConfig = new RagfairConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

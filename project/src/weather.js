@@ -8,25 +8,15 @@
 
 "use strict";
 
-class WeatherController
+class Controller
 {
     generate()
     {
-        let output = {};
+        let output = utility.getRandomValue(weather);
         let weather = database_f.database.tables.templates.weather;
 
-        // set weather
-        if (weather_f.weatherConfig.force.enabled)
-        {
-            output = weather[weather_f.weatherConfig.force.id];
-        }
-        else
-        {
-            output = utility.getRandomValue(weather);
-        }
-
         // replace date and time
-        if (weather_f.weatherConfig.realtime)
+        if (weather_f.config.realtime)
         {
             // Apply acceleration to time computation.
             let computedDate = new Date();
@@ -48,7 +38,7 @@ class WeatherController
     }
 }
 
-class WeatherCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -57,22 +47,18 @@ class WeatherCallbacks
 
     getWeather(url, info, sessionID)
     {
-        return response_f.responseController.getBody(weather_f.weatherController.generate());
+        return response_f.controller.getBody(weather_f.controller.generate());
     }
 }
 
-class WeatherConfig
+class Config
 {
     constructor()
     {
         this.realtime = true;
-        this.force = {
-            "enabled": false,
-            "id": "sun"
-        };
     }
 }
 
-module.exports.weatherController = new WeatherController();
-module.exports.weatherCallbacks = new WeatherCallbacks();
-module.exports.weatherConfig = new WeatherConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

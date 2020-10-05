@@ -71,7 +71,7 @@ class HelpFunctions
 
     getStashType(sessionID)
     {
-        const pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
         const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
@@ -315,8 +315,8 @@ class HelpFunctions
     * */
     payMoney(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
-        let trader = trader_f.traderServer.getTrader(body.tid, sessionID);
+        let output = item_f.router.getOutput();
+        let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let currencyTpl = this.getCurrency(trader.currency);
 
         // delete barter things(not a money) from inventory
@@ -330,7 +330,7 @@ class HelpFunctions
                 {
                     if (!this.isMoneyTpl(item._tpl))
                     {
-                        output = inventory_f.inventoryController.removeItem(pmcData, item._id, output, sessionID);
+                        output = inventory_f.controller.removeItem(pmcData, item._id, output, sessionID);
                         body.scheme_items[index].count = 0;
                     }
                     else
@@ -376,7 +376,7 @@ class HelpFunctions
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = inventory_f.inventoryController.removeItem(pmcData, moneyItem._id, output, sessionID);
+                output = inventory_f.controller.removeItem(pmcData, moneyItem._id, output, sessionID);
             }
             else
             {
@@ -396,12 +396,12 @@ class HelpFunctions
         let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum += this.fromRUB(this.inRUB(barterPrice, currencyTpl), this.getCurrency(trader.currency));
 
         pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
-        trader_f.traderServer.lvlUp(body.tid, sessionID);
+        trader_f.controller.lvlUp(body.tid, sessionID);
         output.currentSalesSums[body.tid] = saleSum;
 
         // save changes
         logger.logSuccess("Items taken. Status OK.");
-        item_f.itemServer.setOutput(output);
+        item_f.router.setOutput(output);
         return true;
     }
 
@@ -459,7 +459,7 @@ class HelpFunctions
     * */
     getMoney(pmcData, amount, body, output, sessionID)
     {
-        let trader = trader_f.traderServer.getTrader(body.tid, sessionID);
+        let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let currency = this.getCurrency(trader.currency);
         let calcAmount = this.fromRUB(this.inRUB(amount, currency), currency);
         let maxStackSize = database_f.database.tables.templates.items[currency]._props.StackMaxSize;
@@ -514,14 +514,14 @@ class HelpFunctions
                 "tid": body.tid
             };
 
-            output = inventory_f.inventoryController.addItem(pmcData, request, output, sessionID, null, false);
+            output = inventory_f.controller.addItem(pmcData, request, output, sessionID, null, false);
         }
 
         // set current sale sum
         let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum + amount;
 
         pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
-        trader_f.traderServer.lvlUp(body.tid, sessionID);
+        trader_f.controller.lvlUp(body.tid, sessionID);
         output.currentSalesSums[body.tid] = saleSum;
 
         return output;

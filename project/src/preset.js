@@ -9,11 +9,11 @@
 
 "use strict";
 
-class ItemPresets
+class Controller
 {
     initialize()
     {
-        const presets = Object.values(database_f.database.tables.globals.ItemPresets);
+        const presets = Object.values(database_f.database.tables.globals.controller);
         const reverse = {};
 
         for (const p of presets)
@@ -33,7 +33,7 @@ class ItemPresets
 
     isPreset(id)
     {
-        return id in database_f.database.tables.globals.ItemPresets;
+        return id in database_f.database.tables.globals.controller;
     }
 
     hasPreset(templateId)
@@ -53,7 +53,7 @@ class ItemPresets
 
         for (const id of ids)
         {
-            presets.push(database_f.database.tables.globals.ItemPresets[id]);
+            presets.push(database_f.database.tables.globals.controller[id]);
         }
 
         return presets;
@@ -83,7 +83,7 @@ class ItemPresets
     {
         if (this.isPreset(presetId))
         {
-            let preset = database_f.database.tables.globals.ItemPresets[presetId];
+            let preset = database_f.database.tables.globals.controller[presetId];
 
             for (let item of preset._items)
             {
@@ -98,7 +98,7 @@ class ItemPresets
     }
 }
 
-class PresetCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -107,9 +107,9 @@ class PresetCallbacks
 
     load()
     {
-        preset_f.itemPresets.initialize();
+        preset_f.controller.initialize();
     }
 }
 
-module.exports.itemPresets = new ItemPresets();
-module.exports.presetCallback = new PresetCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

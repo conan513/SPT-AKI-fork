@@ -19,12 +19,12 @@ const fs = require("fs");
 *	data: Object corresponding to the type.*
 */
 
-class EventController
+class Controller
 {
     constructor()
     {
         this.scheduleIntervalMillis = 60;
-        this.eventCallbacks = {};
+        this.callbacks = {};
 
         setInterval(() =>
         {
@@ -34,7 +34,7 @@ class EventController
 
     onLoad(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         if (!("events" in profile))
         {
@@ -46,12 +46,12 @@ class EventController
 
     addEvent(type, worker)
     {
-        this.eventCallbacks[type] = worker;
+        this.callbacks[type] = worker;
     }
 
     processSchedule()
     {
-        let profiles = save_f.saveServer.profiles;
+        let profiles = save_f.server.profiles;
         let now = Date.now();
 
         for (const sessionID in profiles)
@@ -73,20 +73,20 @@ class EventController
             }
         }
 
-        save_f.saveServer.profiles = profiles;
+        save_f.server.profiles = profiles;
     }
 
     addToSchedule(sessionID, event)
     {
-        save_f.saveServer.profiles[sessionID].events.push(event);
-        save_f.saveServer.profiles[sessionID].events.sort(this.compareEvent);
+        save_f.server.profiles[sessionID].events.push(event);
+        save_f.server.profiles[sessionID].events.sort(this.compareEvent);
     }
 
     processEvent(event)
     {
-        if (event.type in this.eventCallbacks)
+        if (event.type in this.callbacks)
         {
-            this.eventCallbacks[event.type](event);
+            this.callbacks[event.type](event);
         }
     }
 
@@ -107,18 +107,18 @@ class EventController
     }
 }
 
-class EventCallbacks
+class Callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["events"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["events"] = this.onLoad.bind();
     }
 
     onLoad(sessionID)
     {
-        return event_f.eventController.onLoad(sessionID);
+        return event_f.controller.onLoad(sessionID);
     }
 }
 
-module.exports.eventController = new EventController();
-module.exports.eventCallbacks = new EventCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

@@ -9,11 +9,11 @@
 
 "use strict";
 
-class WeaponBuildsController
+class Controller
 {
     onLoad(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         if (!("weaponbuilds" in profile))
         {
@@ -25,7 +25,7 @@ class WeaponBuildsController
 
     getUserBuilds(sessionID)
     {
-        return Object.values(save_f.saveServer.profiles[sessionID].weaponbuilds);
+        return Object.values(save_f.server.profiles[sessionID].weaponbuilds);
     }
 
     saveBuild(pmcData, body, sessionID)
@@ -33,8 +33,8 @@ class WeaponBuildsController
         delete body.Action;
         body.id = utility.generateNewItemId();
 
-        let output = item_f.itemServer.getOutput();
-        let savedBuilds = save_f.saveServer.profiles[sessionID].weaponbuilds;
+        let output = item_f.router.getOutput();
+        let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
@@ -42,7 +42,7 @@ class WeaponBuildsController
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
-        save_f.saveServer.profiles[sessionID].weaponbuilds = savedBuilds;
+        save_f.server.profiles[sessionID].weaponbuilds = savedBuilds;
 
         output.builds.push(body);
         return output;
@@ -50,53 +50,53 @@ class WeaponBuildsController
 
     removeBuild(pmcData, body, sessionID)
     {
-        let savedBuilds = save_f.saveServer.profiles[sessionID].weaponbuilds;
+        let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;
 
         for (let name in savedBuilds)
         {
             if (savedBuilds[name].id === body.id)
             {
                 delete savedBuilds[name];
-                save_f.saveServer.profiles[sessionID].weaponbuilds = savedBuilds;
+                save_f.server.profiles[sessionID].weaponbuilds = savedBuilds;
                 break;
             }
         }
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 }
 
-class WeaponBuildsCallbacks
+class callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["weaponbuilds"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["weaponbuilds"] = this.onLoad.bind();
 
         router.addStaticRoute("/client/handbook/builds/my/list", this.getHandbookUserlist.bind());
-        item_f.itemServer.addRoute("SaveBuild", this.saveBuild.bind());
-        item_f.itemServer.addRoute("RemoveBuild", this.removeBuild.bind());
+        item_f.router.addRoute("SaveBuild", this.saveBuild.bind());
+        item_f.router.addRoute("RemoveBuild", this.removeBuild.bind());
     }
 
     onLoad(sessionID)
     {
-        return weaponbuilds_f.weaponBuildsController.onLoad(sessionID);
+        return weaponbuilds_f.controller.onLoad(sessionID);
     }
 
     getHandbookUserlist(url, info, sessionID)
     {
-        return response_f.responseController.getBody(weaponbuilds_f.weaponBuildsController.getUserBuilds(sessionID));
+        return response_f.controller.getBody(weaponbuilds_f.controller.getUserBuilds(sessionID));
     }
 
     saveBuild(pmcData, body, sessionID)
     {
-        return weaponbuilds_f.weaponBuildsController.saveBuild(pmcData, body, sessionID);
+        return weaponbuilds_f.controller.saveBuild(pmcData, body, sessionID);
     }
 
     removeBuild(pmcData, body, sessionID)
     {
-        return weaponbuilds_f.weaponBuildsController.removeBuild(pmcData, body, sessionID);
+        return weaponbuilds_f.controller.removeBuild(pmcData, body, sessionID);
     }
 }
 
-module.exports.weaponBuildsController = new WeaponBuildsController();
-module.exports.weaponBuildsCallbacks = new WeaponBuildsCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new callbacks();

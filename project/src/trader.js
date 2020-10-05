@@ -9,8 +9,8 @@
 
 "use strict";
 
-/* TraderServer class maintains list of traders for each sessionID in memory. */
-class TraderServer
+/* controller class maintains list of traders for each sessionID in memory. */
+class Controller
 {
     constructor()
     {
@@ -19,7 +19,7 @@ class TraderServer
 
     getTrader(traderID, sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let trader = database_f.database.tables.traders[traderID].base;
 
         if (!(traderID in pmcData.TraderStandings))
@@ -37,7 +37,7 @@ class TraderServer
 
     changeTraderDisplay(traderID, status, sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
         pmcData.TraderStandings[traderID].display = status;
     }
 
@@ -61,7 +61,7 @@ class TraderServer
 
     lvlUp(traderID, sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let loyaltyLevels = database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
@@ -89,8 +89,8 @@ class TraderServer
 
     resetTrader(sessionID, traderID)
     {
-        let account = account_f.accountServer.find(sessionID);
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        let account = account_f.server.find(sessionID);
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let traderWipe = json.parse(json.read(db.profile[account.edition]["trader_" + pmcData.Info.Side.toLowerCase()]));
 
         pmcData.TraderStandings[traderID] = {
@@ -110,9 +110,9 @@ class TraderServer
         // update each hour
         const update_per = 3600;
         const timeNow = Math.floor(Date.now() / 1000);
-        let tradersToUpdateList = trader_f.traderServer.getAllTraders(sessionID);
+        let tradersToUpdateList = trader_f.controller.getAllTraders(sessionID);
 
-        dialogue_f.dialogueServer.removeExpiredItems(sessionID);
+        dialogue_f.controller.removeExpiredItems(sessionID);
 
         for (let i = 0; i < tradersToUpdateList.length; i++)
         {
@@ -142,7 +142,7 @@ class TraderServer
             this.generateFenceAssort();
         }
 
-        const pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        const pmcData = profile_f.controller.getPmcProfile(sessionID);
         let assorts = JSON.parse(JSON.stringify(database_f.database.tables.traders[traderID].assort));
 
         // strip quest assorts
@@ -158,15 +158,15 @@ class TraderServer
                 {
                     assorts = this.removeItemFromAssort(assorts, key);
                 }
-                else if (key in questassort.started && quest_f.questController.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
+                else if (key in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
                 {
                     assorts = this.removeItemFromAssort(assorts, key);
                 }
-                else if (key in questassort.success && quest_f.questController.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
+                else if (key in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
                 {
                     assorts = this.removeItemFromAssort(assorts, key);
                 }
-                else if (key in questassort.fail && quest_f.questController.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
+                else if (key in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
                 {
                     assorts = this.removeItemFromAssort(assorts, key);
                 }
@@ -183,7 +183,7 @@ class TraderServer
         const names = Object.keys(assort.loyal_level_items);
         let base = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
         let added = [];
-        for (let i = 0; i < trader_f.traderConfig.fenceAssortSize; i++)
+        for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
             let itemID = names[utility.getRandomInt(0, names.length - 1)];
             if (added.includes(itemID))
@@ -193,7 +193,7 @@ class TraderServer
             }
             added.push(itemID);
             //it's the item
-            if (!(itemID in database_f.database.tables.globals.ItemPresets))
+            if (!(itemID in database_f.database.tables.globals.controller))
             {
                 base.items.push(assort.items[assort.items.findIndex(i => i._id == itemID)]);
                 base.barter_scheme[itemID] = assort.barter_scheme[itemID];
@@ -203,8 +203,8 @@ class TraderServer
 
             //it's itemPreset
             let rub = 0;
-            let items = JSON.parse(JSON.stringify(database_f.database.tables.globals.ItemPresets[itemID]._items));
-            let ItemRootOldId = database_f.database.tables.globals.ItemPresets[itemID]._parent;
+            let items = JSON.parse(JSON.stringify(database_f.database.tables.globals.controller[itemID]._items));
+            let ItemRootOldId = database_f.database.tables.globals.controller[itemID]._parent;
 
             for (let i = 0; i < items.length; i++)
             {
@@ -267,7 +267,7 @@ class TraderServer
 
     getPurchasesData(traderID, sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let trader = database_f.database.tables.traders[traderID].base;
         let currency = helpfunc_f.helpFunctions.getCurrency(trader.currency);
         let output = {};
@@ -366,7 +366,7 @@ function traderFilter(traderFilters, tplToCheck)
     return false;
 }
 
-class TraderCallbacks
+class callbacks
 {
     constructor()
     {
@@ -378,26 +378,26 @@ class TraderCallbacks
 
     getTraderList(url, info, sessionID)
     {
-        return response_f.responseController.getBody(trader_f.traderServer.getAllTraders(sessionID));
+        return response_f.controller.getBody(trader_f.controller.getAllTraders(sessionID));
     }
 
     getProfilePurchases(url, info, sessionID)
     {
-        return response_f.responseController.getBody(trader_f.traderServer.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
+        return response_f.controller.getBody(trader_f.controller.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
     }
 
     getTrader(url, info, sessionID)
     {
-        return response_f.responseController.getBody(trader_f.traderServer.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
+        return response_f.controller.getBody(trader_f.controller.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
     }
 
     getAssort(url, info, sessionID)
     {
-        return response_f.responseController.getBody(trader_f.traderServer.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
+        return response_f.controller.getBody(trader_f.controller.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
     }
 }
 
-class TraderConfig
+class config
 {
     constructor()
     {
@@ -405,6 +405,6 @@ class TraderConfig
     }
 }
 
-module.exports.traderServer = new TraderServer();
-module.exports.traderCallbacks = new TraderCallbacks();
-module.exports.traderConfig = new TraderConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new callbacks();
+module.exports.config = new Config();

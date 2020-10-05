@@ -11,7 +11,7 @@
 
 const path = require("path");
 
-class BundleServer
+class Controller
 {
     constructor()
     {
@@ -102,7 +102,7 @@ class BundleServer
     }
 }
 
-class BundleCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -114,7 +114,7 @@ class BundleCallbacks
 
     load()
     {
-        bundles_f.bundleServer.initialize();
+        bundles_f.controller.initialize();
     }
 
     sendBundle(sessionID, req, resp, body)
@@ -122,7 +122,7 @@ class BundleCallbacks
         logger.logInfo("[BUNDLE]:" + req.url);
 
         let bundleKey = req.url.split("/bundle/")[1];
-        let bundle = bundles_f.bundleServer.getBundleByKey(bundleKey, true);
+        let bundle = bundles_f.controller.getBundleByKey(bundleKey, true);
         let path = bundle.path;
 
         // send bundle
@@ -132,7 +132,7 @@ class BundleCallbacks
     getBundles(url, info, sessionID)
     {
         const local = (server.ip === "127.0.0.1" || server.ip === "localhost");
-        return response_f.responseController.noBody(bundles_f.bundleServer.getBundles(local));
+        return response_f.controller.noBody(bundles_f.controller.getBundles(local));
     }
 
     getBundle(url, info, sessionID)
@@ -141,5 +141,5 @@ class BundleCallbacks
     }
 }
 
-module.exports.bundleServer = new BundleServer();
-module.exports.bundleCallbacks = new BundleCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
