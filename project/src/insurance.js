@@ -348,7 +348,7 @@ class Controller
     }
 }
 
-class callback
+class Callbacks
 {
     constructor()
     {
@@ -399,5 +399,5 @@ class Config
 }
 
 module.exports.controller = new Controller();
-module.exports.callback = new Callback();
+module.exports.callbacks = new Callbacks();
 module.exports.config = new Config();

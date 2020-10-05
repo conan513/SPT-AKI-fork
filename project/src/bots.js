@@ -434,7 +434,7 @@ class Generator
 
             // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
             let preset;
-            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.controller))
+            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.ItemPresets))
             {
                 if (presetObj._items[0]._tpl === tpl)
                 {

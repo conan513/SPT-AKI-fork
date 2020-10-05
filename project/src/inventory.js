@@ -446,9 +446,9 @@ class Controller
 
         for (let baseItem of body.items)
         {
-            if (baseItem.item_id in database_f.database.tables.globals.controller)
+            if (baseItem.item_id in database_f.database.tables.globals.ItemPresets)
             {
-                const presetItems = helpfunc_f.helpFunctions.clone(database_f.database.tables.globals.controller[baseItem.item_id]._items);
+                const presetItems = helpfunc_f.helpFunctions.clone(database_f.database.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;

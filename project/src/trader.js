@@ -193,7 +193,7 @@ class Controller
             }
             added.push(itemID);
             //it's the item
-            if (!(itemID in database_f.database.tables.globals.controller))
+            if (!(itemID in database_f.database.tables.globals.ItemPresets))
             {
                 base.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
                 base.barter_scheme[itemID] = assort.barter_scheme[itemID];
@@ -203,8 +203,8 @@ class Controller
 
             //it's itemPreset
             let rub = 0;
-            let items = JSON.parse(JSON.stringify(database_f.database.tables.globals.controller[itemID]._items));
-            let ItemRootOldId = database_f.database.tables.globals.controller[itemID]._parent;
+            let items = JSON.parse(JSON.stringify(database_f.database.tables.globals.ItemPresets[itemID]._items));
+            let ItemRootOldId = database_f.database.tables.globals.ItemPresets[itemID]._parent;
 
             for (let i = 0; i < items.length; i++)
             {
@@ -366,7 +366,7 @@ function traderFilter(traderFilters, tplToCheck)
     return false;
 }
 
-class callbacks
+class Callbacks
 {
     constructor()
     {
@@ -397,7 +397,7 @@ class callbacks
     }
 }
 
-class config
+class Config
 {
     constructor()
     {
@@ -406,5 +406,5 @@ class config
 }
 
 module.exports.controller = new Controller();
-module.exports.callbacks = new callbacks();
+module.exports.callbacks = new Callbacks();
 module.exports.config = new Config();
