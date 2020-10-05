@@ -10,10 +10,10 @@
 "use strict";
 
 /*
-* NotifierService class maintains a queue of notifications which will be pushed upon notification
+* controller class maintains a queue of notifications which will be pushed upon notification
 * request from client per session.
 */
-class NotifierService
+class Controller
 {
     constructor()
     {
@@ -83,7 +83,7 @@ class NotifierService
 
             setInterval(function()
             {
-                if (notifier_f.notifierService.hasMessagesInQueue(sessionID))
+                if (notifier_f.controller.hasMessagesInQueue(sessionID))
                 {
                     resolve();
                 }
@@ -101,7 +101,7 @@ class NotifierService
         }
 
         // If we timed out and don't have anything to send, just send a ping notification.
-        if (data.length == 0)
+        if (data.length === 0)
         {
             data.push("{\"type\": \"ping\", \"eventId\": \"ping\"}");
         }
@@ -116,7 +116,7 @@ class NotifierService
     }
 }
 
-class NotfierCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -130,12 +130,12 @@ class NotfierCallbacks
 
     getBaseNotifier(url, info, sessionID)
     {
-        return response_f.responseController.emptyArrayResponse();
+        return response_f.controller.emptyArrayResponse();
     }
 
     getNotifier(url, info, sessionID)
     {
-        return response_f.responseController.emptyArrayResponse();
+        return response_f.controller.emptyArrayResponse();
     }
 
     // If we don't have anything to send, it's ok to not send anything back
@@ -147,12 +147,12 @@ class NotfierCallbacks
         let splittedUrl = req.url.split("/");
 
         sessionID = splittedUrl[splittedUrl.length - 1].split("?last_id")[0];
-        notifier_f.notifierService.notificationWaitAsync(resp, sessionID);
+        notifier_f.controller.notificationWaitAsync(resp, sessionID);
     }
 
     createNotifierChannel(url, info, sessionID)
     {
-        return response_f.responseController.getBody({
+        return response_f.controller.getBody({
             "notifier": {"server": server.getBackendUrl() + "/",
                 "channel_id": "testChannel",
                 "url": server.getBackendUrl() + "/notifierServer/get/" + sessionID},
@@ -166,5 +166,5 @@ class NotfierCallbacks
     }
 }
 
-module.exports.notifierService = new NotifierService();
-module.exports.notfierCallbacks = new NotfierCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

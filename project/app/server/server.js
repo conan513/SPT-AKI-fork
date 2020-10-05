@@ -219,7 +219,7 @@ class Server
         {
             logger.logError(`[UNHANDLED][${req.url}]`);
             logger.log(body);
-            output = response_f.responseController.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
+            output = response_f.controller.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
         // execute data received callback

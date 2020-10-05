@@ -9,16 +9,16 @@
 "use strict";
 
 /**
-* AccountServer class maintains list of accounts in memory. All account information should be
+* server class maintains list of accounts in memory. All account information should be
 * loaded during server init.
 */
-class AccountServer
+class Server
 {
     find(sessionID)
     {
-        if (sessionID in save_f.saveServer.profiles)
+        if (sessionID in save_f.server.profiles)
         {
-            return save_f.saveServer.profiles[sessionID].info;
+            return save_f.server.profiles[sessionID].info;
         }
 
         return undefined;
@@ -26,19 +26,19 @@ class AccountServer
 
     isWiped(sessionID)
     {
-        return save_f.saveServer.profiles[sessionID].info.wipe;
+        return save_f.server.profiles[sessionID].info.wipe;
     }
 
     setWipe(sessionID, state)
     {
-        save_f.saveServer.profiles[sessionID].info.wipe = state;
+        save_f.server.profiles[sessionID].info.wipe = state;
     }
 
     login(info)
     {
-        for (let sessionID in save_f.saveServer.profiles)
+        for (let sessionID in save_f.server.profiles)
         {
-            let account = save_f.saveServer.profiles[sessionID].info;
+            let account = save_f.server.profiles[sessionID].info;
 
             if (info.email === account.email && info.password === account.password)
             {
@@ -51,9 +51,9 @@ class AccountServer
 
     register(info)
     {
-        for (const sessionID in save_f.saveServer.profiles)
+        for (const sessionID in save_f.server.profiles)
         {
-            if (info.email === save_f.saveServer.profiles[sessionID].info.email)
+            if (info.email === save_f.server.profiles[sessionID].info.email)
             {
                 return "";
             }
@@ -66,7 +66,7 @@ class AccountServer
     {
         const sessionID = utility.generateNewAccountId();
 
-        save_f.saveServer.profiles[sessionID] = {
+        save_f.server.profiles[sessionID] = {
             "info": {
                 "id": sessionID,
                 "nickname": "",
@@ -77,7 +77,7 @@ class AccountServer
             }
         };
 
-        save_f.saveServer.onLoadProfile(sessionID);
+        save_f.server.onLoadProfile(sessionID);
         return sessionID;
     }
 
@@ -87,7 +87,7 @@ class AccountServer
 
         if (sessionID)
         {
-            save_f.saveServer.profiles[sessionID].info.email = info.change;
+            save_f.server.profiles[sessionID].info.email = info.change;
         }
 
         return sessionID;
@@ -99,7 +99,7 @@ class AccountServer
 
         if (sessionID)
         {
-            save_f.saveServer.profiles[sessionID].info.password = info.change;
+            save_f.server.profiles[sessionID].info.password = info.change;
         }
 
         return sessionID;
@@ -111,7 +111,7 @@ class AccountServer
 
         if (sessionID)
         {
-            save_f.saveServer.profiles[sessionID].info.edition = info.edition;
+            save_f.server.profiles[sessionID].info.edition = info.edition;
             this.setWipe(sessionID, true);
         }
 
@@ -120,14 +120,14 @@ class AccountServer
 
     getReservedNickname(sessionID)
     {
-        return save_f.saveServer.profiles[sessionID].info.nickname;
+        return save_f.server.profiles[sessionID].info.nickname;
     }
 
     nicknameTaken(info)
     {
-        for (let sessionID in save_f.saveServer.profiles)
+        for (let sessionID in save_f.server.profiles)
         {
-            if (info.nickname.toLowerCase() === save_f.saveServer.profiles[sessionID].info.nickname.toLowerCase())
+            if (info.nickname.toLowerCase() === save_f.server.profiles[sessionID].info.nickname.toLowerCase())
             {
                 return true;
             }
@@ -137,7 +137,7 @@ class AccountServer
     }
 }
 
-class AccountCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -154,13 +154,13 @@ class AccountCallbacks
 
     load()
     {
-        account_f.accountServer.initialize();
+        account_f.server.initialize();
     }
 
     // TODO: REFACTOR THIS
     connect()
     {
-        return response_f.responseController.noBody({
+        return response_f.controller.noBody({
             "backendUrl": server.getBackendUrl(),
             "name": server.getName(),
             "editions": Object.keys(db.profile)
@@ -169,40 +169,40 @@ class AccountCallbacks
 
     login(url, info, sessionID)
     {
-        const output = account_f.accountServer.login(info);
+        const output = account_f.server.login(info);
         return (!output) ? "FAILED" : output;
     }
 
     register(url, info, sessionID)
     {
-        const output = account_f.accountServer.register(info);
+        const output = account_f.server.register(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     get(url, info, sessionID)
     {
-        const output = account_f.accountServer.find(account_f.accountServer.login(info));
-        return response_f.responseController.noBody(output);
+        const output = account_f.server.find(account_f.server.login(info));
+        return response_f.controller.noBody(output);
     }
 
     changeEmail(url, info, sessionID)
     {
-        const output = account_f.accountServer.changeEmail(info);
+        const output = account_f.server.changeEmail(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     changePassword(url, info, sessionID)
     {
-        const output = account_f.accountServer.changePassword(info);
+        const output = account_f.server.changePassword(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     wipe(url, info, sessionID)
     {
-        const output = account_f.accountServer.wipe(info);
+        const output = account_f.server.wipe(info);
         return (!output) ? "FAILED" : "OK";
     }
 }
 
-module.exports.accountServer = new AccountServer();
-module.exports.accountCallbacks = new AccountCallbacks();
+module.exports.server = new Server();
+module.exports.callbacks = new Callbacks();

@@ -8,12 +8,12 @@
 
 "use strict";
 
-class RepairController
+class Controller
 {
     repair(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
-        let trader = trader_f.traderServer.getTrader(body.tid, sessionID);
+        let output = item_f.router.getOutput();
+        let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 
         // find the item to repair
@@ -36,7 +36,7 @@ class RepairController
             }
 
             // get repair price and pay the money
-            let repairCost = Math.round((database_f.database.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * repair_f.repairConfig.priceMultiplier);
+            let repairCost = Math.round((database_f.database.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * repair_f.config.priceMultiplier);
 
             if (!helpfunc_f.helpFunctions.payMoney(pmcData, {"scheme_items": [{"id": repairItem._id, "count": Math.round(repairCost)}], "tid": body.tid}, sessionID))
             {
@@ -68,20 +68,20 @@ class RepairController
     }
 }
 
-class RepairCallbacks
+class Callbacks
 {
     constructor()
     {
-        item_f.itemServer.addRoute("Repair", this.repair.bind());
+        item_f.router.addRoute("Repair", this.repair.bind());
     }
 
     repair(pmcData, body, sessionID)
     {
-        return repair_f.repairController.repair(pmcData, body, sessionID);
+        return repair_f.controller.repair(pmcData, body, sessionID);
     }
 }
 
-class RepairConfig
+class Config
 {
     constructor()
     {
@@ -89,6 +89,6 @@ class RepairConfig
     }
 }
 
-module.exports.repairController = new RepairController();
-module.exports.repairCallbacks = new RepairCallbacks();
-module.exports.repairConfig = new RepairConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

@@ -8,7 +8,7 @@
 
 "use strict";
 
-class GameStartupCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -24,43 +24,43 @@ class GameStartupCallbacks
 
     versionValidate(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     gameStart(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     gameLogout(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     getGameConfig(url, info, sessionID)
     {
-        return response_f.responseController.getBody({"queued": false, "banTime": 0, "hash": "BAN0", "lang": "en", "aid": sessionID, "token": "token_" + sessionID, "taxonomy": "341", "activeProfileId": "user" + sessionID + "pmc", "nickname": "user", "backend": {"Trading": server.getBackendUrl(), "Messaging": server.getBackendUrl(), "Main": server.getBackendUrl(), "RagFair": server.getBackendUrl()}, "totalInGame": 0});
+        return response_f.controller.getBody({"queued": false, "banTime": 0, "hash": "BAN0", "lang": "en", "aid": sessionID, "token": "token_" + sessionID, "taxonomy": "341", "activeProfileId": "user" + sessionID + "pmc", "nickname": "user", "backend": {"Trading": server.getBackendUrl(), "Messaging": server.getBackendUrl(), "Main": server.getBackendUrl(), "RagFair": server.getBackendUrl()}, "totalInGame": 0});
     }
 
     selectProfile(url, info, sessionID)
     {
-        return response_f.responseController.getBody({"status":"ok", "notifier": {"server": server.getBackendUrl() + "/", "channel_id": "testChannel"}});
+        return response_f.controller.getBody({"status":"ok", "notifier": {"server": server.getBackendUrl() + "/", "channel_id": "testChannel"}});
     }
 
     getProfileStatus(url, info, sessionID)
     {
-        return response_f.responseController.getBody([{"profileid": "scav" + sessionID, "status": "Free", "sid": "", "ip": "", "port": 0}, {"profileid": "pmc" + sessionID, "status": "Free", "sid": "", "ip": "", "port": 0}]);
+        return response_f.controller.getBody([{"profileid": "scav" + sessionID, "status": "Free", "sid": "", "ip": "", "port": 0}, {"profileid": "pmc" + sessionID, "status": "Free", "sid": "", "ip": "", "port": 0}]);
     }
 
     getServer(url, info, sessionID)
     {
-        return response_f.responseController.getBody([{"ip": server.getIp(), "port": server.getPort()}]);
+        return response_f.controller.getBody([{"ip": server.getIp(), "port": server.getPort()}]);
     }
 
     validateGameVersion(url, info, sessionID)
     {
-        return response_f.responseController.getBody({"isvalid": true, "latestVersion": ""});
+        return response_f.controller.getBody({"isvalid": true, "latestVersion": ""});
     }
 }
 
-module.exports.gameStartupCallbacks = new GameStartupCallbacks();
+module.exports.callbacks = new Callbacks();
