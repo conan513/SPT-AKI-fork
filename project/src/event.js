@@ -59,13 +59,13 @@ class EventController
             while (profiles[sessionID].events.length > 0)
             {
                 let event = profiles[sessionID].events.shift();
-    
+
                 if (event.scheduledTime < now)
                 {
                     this.processEvent(event);
                     continue;
                 }
-    
+
                 // The schedule is assumed to be sorted based on scheduledTime, so once we
                 // see an event that should not yet be processed, we can exit the loop.
                 profiles[sessionID].events.unshift(event);
