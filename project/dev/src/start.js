@@ -7,4 +7,4 @@
  */
 
 require("./check-version.js");
-require("../../core/main.js");
+require("../../app/main.js");

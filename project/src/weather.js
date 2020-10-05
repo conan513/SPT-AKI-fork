@@ -8,47 +8,36 @@
 
 "use strict";
 
-class WeatherController
+class Controller
 {
     generate()
     {
-        let output = {};
-        let weather = database_f.database.tables.templates.weather;
-
-        // set weather
-        if (weather_f.weatherConfig.force.enabled)
-        {
-            output = weather[weather_f.weatherConfig.force.id];
-        }
-        else
-        {
-            output = utility.getRandomValue(weather);
-        }
+        let result = utility.getRandomValue(database_f.database.tables.templates.weather);
 
         // replace date and time
-        if (weather_f.weatherConfig.realtime)
+        if (weather_f.config.realtime)
         {
             // Apply acceleration to time computation.
             let computedDate = new Date();
-            let deltaSeconds = utility.getServerUptimeInSeconds() * output.acceleration;
+            let deltaSeconds = utility.getServerUptimeInSeconds() * result.acceleration;
             computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
 
             let time = utility.formatTime(computedDate).replace("-", ":").replace("-", ":");
             let date = utility.formatDate(computedDate);
-            let datetime = date + " " + time;
+            let datetime = `${date} ${time}`;
 
-            output.weather.timestamp = Math.floor(computedDate / 1000);
-            output.weather.date = date;
-            output.weather.time = datetime;
-            output.date = date;
-            output.time = time;
+            result.weather.timestamp = Math.floor(computedDate / 1000);
+            result.weather.date = date;
+            result.weather.time = datetime;
+            result.date = date;
+            result.time = time;
         }
 
-        return output;
+        return result;
     }
 }
 
-class WeatherCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -57,22 +46,18 @@ class WeatherCallbacks
 
     getWeather(url, info, sessionID)
     {
-        return response_f.responseController.getBody(weather_f.weatherController.generate());
+        return response_f.controller.getBody(weather_f.controller.generate());
     }
 }
 
-class WeatherConfig
+class Config
 {
     constructor()
     {
         this.realtime = true;
-        this.force = {
-            "enabled": false,
-            "id": "sun"
-        };
     }
 }
 
-module.exports.weatherController = new WeatherController();
-module.exports.weatherCallbacks = new WeatherCallbacks();
-module.exports.weatherConfig = new WeatherConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

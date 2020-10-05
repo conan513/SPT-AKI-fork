@@ -9,14 +9,14 @@
 "use strict";
 
 /*
-* profileController class maintains list of active profiles for each sessionID in memory. All first-time loads and save
+* controller class maintains list of active profiles for each sessionID in memory. All first-time loads and save
 * operations also write to disk.*
 */
-class ProfileController
+class Controller
 {
     onLoad(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         if (!("characters" in profile))
         {
@@ -31,24 +31,24 @@ class ProfileController
 
     getPmcProfile(sessionID)
     {
-        return save_f.saveServer.profiles[sessionID].characters.pmc;
+        return save_f.server.profiles[sessionID].characters.pmc;
     }
 
     getScavProfile(sessionID)
     {
-        return save_f.saveServer.profiles[sessionID].characters.scav;
+        return save_f.server.profiles[sessionID].characters.scav;
     }
 
     setScavProfile(sessionID, scavData)
     {
-        save_f.saveServer.profiles[sessionID].characters.scav = scavData;
+        save_f.server.profiles[sessionID].characters.scav = scavData;
     }
 
     getCompleteProfile(sessionID)
     {
         let output = [];
 
-        if (!account_f.accountServer.isWiped(sessionID))
+        if (!account_f.server.isWiped(sessionID))
         {
             output.push(this.getPmcProfile(sessionID));
             output.push(this.getScavProfile(sessionID));
@@ -59,15 +59,14 @@ class ProfileController
 
     createProfile(info, sessionID)
     {
-        let account = account_f.accountServer.find(sessionID);
+        let account = account_f.server.find(sessionID);
         let pmcData = json.parse(json.read(db.profile[account.edition]["character_" + info.side.toLowerCase()]));
         let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
 
         // delete existing profile
-        if (sessionID in save_f.saveServer.profiles)
+        if (sessionID in save_f.server.profiles)
         {
-            delete save_f.saveServer.profiles[sessionID];
-            events.scheduledEventHandler.wipeScheduleForSession(sessionID);
+            delete save_f.server.profiles[sessionID];
         }
 
         // pmc
@@ -80,29 +79,30 @@ class ProfileController
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
 
         // create profile
-        save_f.saveServer.profiles[sessionID] = {
+        save_f.server.profiles[sessionID] = {
             "info": account,
             "characters": {
                 "pmc": pmcData,
                 "scav": {}
             },
-            "suits": storage
+            "suits": storage,
+            "events": []
         };
 
         // pmc profile needs to exist first
-        save_f.saveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
+        save_f.server.profiles[sessionID].characters.scav = this.generateScav(sessionID);
 
         for (let traderID in database_f.database.tables.traders)
         {
-            trader_f.traderServer.resetTrader(sessionID, traderID);
+            trader_f.controller.resetTrader(sessionID, traderID);
         }
 
         // don't wipe profile again
-        account_f.accountServer.setWipe(sessionID, false);
+        account_f.server.setWipe(sessionID, false);
 
         // store minimal profile and reload it
-        save_f.saveServer.onSaveProfile(sessionID);
-        save_f.saveServer.onLoadProfile(sessionID);
+        save_f.server.onSaveProfile(sessionID);
+        save_f.server.onLoadProfile(sessionID);
     }
 
     generateScav(sessionID)
@@ -110,7 +110,7 @@ class ProfileController
         const pmcData = this.getPmcProfile(sessionID);
 
         // get scav profile
-        let scavProfiles = bots_f.botController.generate({ "conditions": [{ "Role": "playerScav", "Limit": 1, "Difficulty": "normal" }] });
+        let scavProfiles = bots_f.controller.generate({ "conditions": [{ "Role": "playerScav", "Limit": 1, "Difficulty": "normal" }] });
         let scavData = scavProfiles[0];
 
         // add proper metadata
@@ -159,7 +159,7 @@ class ProfileController
             return "tooshort";
         }
 
-        if (account_f.accountServer.nicknameTaken(info))
+        if (account_f.server.nicknameTaken(info))
         {
             return "taken";
         }
@@ -189,11 +189,11 @@ class ProfileController
     }
 }
 
-class ProfileCallbacks
+class Callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["profile"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["profile"] = this.onLoad.bind();
 
         router.addStaticRoute("/client/game/profile/create", this.createProfile.bind());
         router.addStaticRoute("/client/game/profile/list", this.getProfileData.bind());
@@ -206,72 +206,72 @@ class ProfileCallbacks
 
     onLoad(sessionID)
     {
-        return profile_f.profileController.onLoad(sessionID);
+        return profile_f.controller.onLoad(sessionID);
     }
 
     createProfile(url, info, sessionID)
     {
-        profile_f.profileController.createProfile(info, sessionID);
-        return response_f.responseController.getBody({"uid": "pmc" + sessionID});
+        profile_f.controller.createProfile(info, sessionID);
+        return response_f.controller.getBody({"uid": "pmc" + sessionID});
     }
 
     getProfileData(url, info, sessionID)
     {
-        return response_f.responseController.getBody(profile_f.profileController.getCompleteProfile(sessionID));
+        return response_f.controller.getBody(profile_f.controller.getCompleteProfile(sessionID));
     }
 
     regenerateScav(url, info, sessionID)
     {
-        return response_f.responseController.getBody([profile_f.profileController.generateScav(sessionID)]);
+        return response_f.controller.getBody([profile_f.controller.generateScav(sessionID)]);
     }
 
     changeVoice(url, info, sessionID)
     {
-        profile_f.profileController.changeVoice(info, sessionID);
-        return response_f.responseController.nullResponse();
+        profile_f.controller.changeVoice(info, sessionID);
+        return response_f.controller.nullResponse();
     }
 
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     changeNickname(url, info, sessionID)
     {
-        const output = profile_f.profileController.changeNickname(info, sessionID);
+        const output = profile_f.controller.changeNickname(info, sessionID);
 
-        if (output == "taken")
+        if (output === "taken")
         {
-            return response_f.responseController.getBody(null, 255, "The nickname is already in use");
+            return response_f.controller.getBody(null, 255, "The nickname is already in use");
         }
 
-        if (output == "tooshort")
+        if (output === "tooshort")
         {
-            return response_f.responseController.getBody(null, 1, "The nickname is too short");
+            return response_f.controller.getBody(null, 1, "The nickname is too short");
         }
 
-        return response_f.responseController.getBody({"status": 0, "nicknamechangedate": Math.floor(new Date() / 1000)});
+        return response_f.controller.getBody({"status": 0, "nicknamechangedate": Math.floor(new Date() / 1000)});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     validateNickname(url, info, sessionID)
     {
-        const output = profile_f.profileController.validateNickname(info, sessionID);
+        const output = profile_f.controller.validateNickname(info, sessionID);
 
-        if (output == "taken")
+        if (output === "taken")
         {
-            return response_f.responseController.getBody(null, 255, "The nickname is already in use");
+            return response_f.controller.getBody(null, 255, "The nickname is already in use");
         }
 
-        if (output == "tooshort")
+        if (output === "tooshort")
         {
-            return response_f.responseController.getBody(null, 256, "The nickname is too short");
+            return response_f.controller.getBody(null, 256, "The nickname is too short");
         }
 
-        return response_f.responseController.getBody({"status": "ok"});
+        return response_f.controller.getBody({"status": "ok"});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
 
     getReservedNickname(url, info, sessionID)
     {
-        return response_f.responseController.getBody(account_f.accountServer.getReservedNickname(sessionID));
+        return response_f.controller.getBody(account_f.server.getReservedNickname(sessionID));
     }
 }
 
-module.exports.profileController = new ProfileController();
-module.exports.profileCallbacks = new ProfileCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

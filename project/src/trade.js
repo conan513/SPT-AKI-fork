@@ -9,7 +9,7 @@
 
 "use strict";
 
-class TradeController
+class Controller
 {
     buyItem(pmcData, body, sessionID)
     {
@@ -37,15 +37,15 @@ class TradeController
             "tid": body.tid
         };
 
-        return inventory_f.inventoryController.addItem(pmcData, newReq, item_f.itemServer.getOutput(), sessionID, callback);
+        return inventory_f.controller.addItem(pmcData, newReq, item_f.router.getOutput(), sessionID, callback);
     }
 
     // Selling item to trader
     sellItem(pmcData, body, sessionID)
     {
         let money = 0;
-        let prices = trader_f.traderServer.getPurchasesData(body.tid, sessionID);
-        let output = item_f.itemServer.getOutput();
+        let prices = trader_f.controller.getPurchasesData(body.tid, sessionID);
+        let output = item_f.router.getOutput();
 
         for (let sellItem of body.items)
         {
@@ -66,8 +66,8 @@ class TradeController
                     logger.logInfo("Selling: " + checkID);
 
                     // remove item
-                    insurance_f.insuranceServer.remove(pmcData, checkID, sessionID);
-                    output = inventory_f.inventoryController.removeItem(pmcData, checkID, output, sessionID);
+                    insurance_f.controller.remove(pmcData, checkID, sessionID);
+                    output = inventory_f.controller.removeItem(pmcData, checkID, output, sessionID);
 
                     // add money to return to the player
                     if (output !== "")
@@ -108,11 +108,11 @@ class TradeController
     {
         let ragfair_offers_traders = database_f.database.tables.ragfair.offers;
         let offers = body.offers;
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
 
         for (let offer of offers)
         {
-            pmcData = profile_f.profileController.getPmcProfile(sessionID);
+            pmcData = profile_f.controller.getPmcProfile(sessionID);
             body = {
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",
@@ -125,7 +125,7 @@ class TradeController
 
             for (let offerFromTrader of ragfair_offers_traders.offers)
             {
-                if (offerFromTrader._id == offer.id)
+                if (offerFromTrader._id === offer.id)
                 {
                     body.tid = offerFromTrader.user.id;
                     break;
@@ -139,24 +139,24 @@ class TradeController
     }
 }
 
-class TradeCallbacks
+class Callbacks
 {
     constructor()
     {
-        item_f.itemServer.addRoute("TradingConfirm", this.processTrade.bind());
-        item_f.itemServer.addRoute("RagFairBuyOffer", this.processRagfairTrade.bind());
+        item_f.router.addRoute("TradingConfirm", this.processTrade.bind());
+        item_f.router.addRoute("RagFairBuyOffer", this.processRagfairTrade.bind());
     }
 
     processTrade(pmcData, body, sessionID)
     {
-        return trade_f.tradeController.confirmTrading(pmcData, body, sessionID);
+        return trade_f.controller.confirmTrading(pmcData, body, sessionID);
     }
 
     processRagfairTrade(pmcData, body, sessionID)
     {
-        return trade_f.tradeController.confirmRagfairTrading(pmcData, body, sessionID);
+        return trade_f.controller.confirmRagfairTrading(pmcData, body, sessionID);
     }
 }
 
-module.exports.tradeController = new TradeController();
-module.exports.TradeCallbacks = new TradeCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

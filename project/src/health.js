@@ -8,12 +8,12 @@
 
 "use strict";
 
-/* HealthServer class maintains list of health for each sessionID in memory. */
-class HealthServer
+/* controller class maintains list of health for each sessionID in memory. */
+class Controller
 {
     resetHealth(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         profile.vitality  = {
             "health": {
@@ -43,7 +43,7 @@ class HealthServer
 
     offraidHeal(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
 
         // update medkit used (hpresource)
         for (let item of pmcData.Inventory.items)
@@ -67,7 +67,7 @@ class HealthServer
 
                 if (item.upd.MedKit.HpResource === 0)
                 {
-                    inventory_f.inventoryController.removeItem(pmcData, body.item, output, sessionID);
+                    inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
                 }
             }
         }
@@ -77,7 +77,7 @@ class HealthServer
 
     offraidEat(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
         let resourceLeft;
         let maxResource = {};
 
@@ -106,7 +106,7 @@ class HealthServer
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = inventory_f.inventoryController.removeItem(pmcData, body.item, output, sessionID);
+            output = inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
         }
 
         return output;
@@ -115,8 +115,8 @@ class HealthServer
     /* stores in-raid player health */
     saveHealth(pmcData, info, sessionID)
     {
-        let nodeHealth = save_f.saveServer.profiles[sessionID].vitality.health;
-        let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
+        let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
+        let nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
         let BodyPartsList = info.Health;
 
         nodeHealth.Hydration = info.Hydration;
@@ -124,7 +124,7 @@ class HealthServer
 
         for (let bodyPart of Object.keys(BodyPartsList))
         {
-            if (BodyPartsList[bodyPart].Effects != undefined)
+            if (BodyPartsList[bodyPart].Effects)
             {
                 nodeEffects[bodyPart] = BodyPartsList[bodyPart].Effects;
             }
@@ -145,7 +145,7 @@ class HealthServer
     /* stores the player health changes */
     updateHealth(info, sessionID)
     {
-        let node = save_f.saveServer.profiles[sessionID].vitality.health;
+        let node = save_f.server.profiles[sessionID].vitality.health;
 
         switch (info.type)
         {
@@ -163,8 +163,8 @@ class HealthServer
             /* store state and make server aware to kill all body parts */
             case "Died":
                 node = {
-                    "Hydration": save_f.saveServer.profiles[sessionID].vitality.health.Hydration,
-                    "Energy": save_f.saveServer.profiles[sessionID].vitality.health.Energy,
+                    "Hydration": save_f.server.profiles[sessionID].vitality.health.Hydration,
+                    "Energy": save_f.server.profiles[sessionID].vitality.health.Energy,
                     "Head": -1,
                     "Chest": -1,
                     "Stomach": -1,
@@ -176,7 +176,7 @@ class HealthServer
                 break;
         }
 
-        save_f.saveServer.profiles[sessionID].vitality.health = node;
+        save_f.server.profiles[sessionID].vitality.health = node;
     }
 
     healthTreatment(pmcData, info, sessionID)
@@ -209,7 +209,7 @@ class HealthServer
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
 
         this.saveHealth(pmcData, healthInfo, sessionID);
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     addEffect(pmcData, sessionID, info)
@@ -263,12 +263,12 @@ class HealthServer
     /* apply the health changes to the profile */
     applyHealth(pmcData, sessionID)
     {
-        if (!save_f.saveConfig.saveHealthEnabled)
+        if (!save_f.config.saveHealthEnabled)
         {
             return;
         }
 
-        let nodeHealth = save_f.saveServer.profiles[sessionID].vitality.health;
+        let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
         let keys = Object.keys(nodeHealth);
 
         for (let item of keys)
@@ -277,7 +277,7 @@ class HealthServer
             {
                 /* set body part health */
                 pmcData.Health.BodyParts[item].Health.Current = (nodeHealth[item] <= 0)
-                    ? Math.round((pmcData.Health.BodyParts[item].Health.Maximum * health_f.healthConfig.saveHealthMultiplier))
+                    ? Math.round((pmcData.Health.BodyParts[item].Health.Maximum * health_f.config.saveHealthMultiplier))
                     : nodeHealth[item];
             }
             else
@@ -292,7 +292,7 @@ class HealthServer
             }
         }
 
-        let nodeEffects = save_f.saveServer.profiles[sessionID].vitality.effects;
+        let nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
 
         Object.keys(nodeEffects).forEach(bodyPart =>
         {
@@ -329,54 +329,54 @@ class HealthServer
     }
 }
 
-class HealthCallbacks
+class Callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["health"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["health"] = this.onLoad.bind();
 
         router.addStaticRoute("/player/health/sync", this.syncHealth.bind());
         router.addStaticRoute("/player/health/events", this.updateHealth.bind());
-        item_f.itemServer.addRoute("Eat", this.offraidEat.bind());
-        item_f.itemServer.addRoute("Heal", this.offraidHeal.bind());
-        item_f.itemServer.addRoute("RestoreHealth", this.healthTreatment.bind());
+        item_f.router.addRoute("Eat", this.offraidEat.bind());
+        item_f.router.addRoute("Heal", this.offraidHeal.bind());
+        item_f.router.addRoute("RestoreHealth", this.healthTreatment.bind());
     }
 
     onLoad(sessionID)
     {
-        return health_f.healthServer.resetHealth(sessionID);
+        return health_f.controller.resetHealth(sessionID);
     }
 
     syncHealth(url, info, sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
-        health_f.healthServer.saveHealth(pmcData, info, sessionID);
-        return response_f.responseController.nullResponse();
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        health_f.controller.saveHealth(pmcData, info, sessionID);
+        return response_f.controller.nullResponse();
     }
 
     updateHealth(url, info, sessionID)
     {
-        health_f.healthServer.updateHealth(info, sessionID);
-        return response_f.responseController.nullResponse();
+        health_f.controller.updateHealth(info, sessionID);
+        return response_f.controller.nullResponse();
     }
 
     offraidEat(pmcData, body, sessionID)
     {
-        return health_f.healthServer.offraidEat(pmcData, body, sessionID);
+        return health_f.controller.offraidEat(pmcData, body, sessionID);
     }
 
     offraidHeal(pmcData, body, sessionID)
     {
-        return health_f.healthServer.offraidHeal(pmcData, body, sessionID);
+        return health_f.controller.offraidHeal(pmcData, body, sessionID);
     }
 
     healthTreatment(pmcData, info, sessionID)
     {
-        return health_f.healthServer.healthTreatment(pmcData, info, sessionID);
+        return health_f.controller.healthTreatment(pmcData, info, sessionID);
     }
 }
 
-class HealthConfig
+class Config
 {
     constructor()
     {
@@ -385,6 +385,6 @@ class HealthConfig
     }
 }
 
-module.exports.healthServer = new HealthServer();
-module.exports.healthCallbacks = new HealthCallbacks();
-module.exports.healthConfig = new HealthConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

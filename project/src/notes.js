@@ -9,7 +9,7 @@
 
 "use strict";
 
-class NoteController
+class Controller
 {
     addNote(pmcData, body, sessionID)
     {
@@ -18,7 +18,7 @@ class NoteController
             "Text": body.note.Text
         });
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     editNode(pmcData, body, sessionID)
@@ -28,40 +28,40 @@ class NoteController
             "Text": body.note.Text
         };
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     deleteNote(pmcData, body, sessionID)
     {
         pmcData.Notes.Notes.splice(body.index, 1);
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 }
 
-class NoteCallbacks
+class Callbacks
 {
     constructor()
     {
-        item_f.itemServer.addRoute("AddNote", this.addNote.bind());
-        item_f.itemServer.addRoute("EditNote", this.editNote.bind());
-        item_f.itemServer.addRoute("DeleteNote", this.deleteNote.bind());
+        item_f.router.addRoute("AddNote", this.addNote.bind());
+        item_f.router.addRoute("EditNote", this.editNote.bind());
+        item_f.router.addRoute("DeleteNote", this.deleteNote.bind());
     }
 
     addNote(pmcData, body, sessionID)
     {
-        return note_f.notesController.addNote(pmcData, body, sessionID);
+        return note_f.controller.addNote(pmcData, body, sessionID);
     }
 
     editNote(pmcData, body, sessionID)
     {
-        return note_f.notesController.editNote(pmcData, body, sessionID);
+        return note_f.controller.editNote(pmcData, body, sessionID);
     }
 
     deleteNote(pmcData, body, sessionID)
     {
-        return note_f.notesController.deleteNote(pmcData, body, sessionID);
+        return note_f.controller.deleteNote(pmcData, body, sessionID);
     }
 }
 
-module.exports.noteController = new NoteController();
-module.exports.noteCallbacks = new NoteCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

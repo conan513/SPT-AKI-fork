@@ -10,8 +10,8 @@
 
 "use strict";
 
-/* LocationServer class maintains list of locations in memory. */
-class LocationServer
+/* controller class maintains list of locations in memory. */
+class Controller
 {
     constructor()
     {
@@ -89,7 +89,7 @@ class LocationServer
         logger.logSuccess("A total of " + count + " containers generated");
 
         // dyanmic loot
-        let max = location_f.locationConfig.limits[name];
+        let max = location_f.config.limits[name];
         count = 0;
 
         // Loot position list for filtering the lootItem in the same position.
@@ -113,7 +113,7 @@ class LocationServer
 
             //Check if LootItem is overlapping
             let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
-            if (!location_f.locationConfig.allowLootOverlay && lootPositions.includes(position))
+            if (!location_f.config.allowLootOverlay && lootPositions.includes(position))
             {
                 //Clear selected loot
                 dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
@@ -277,7 +277,7 @@ class LocationServer
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = helpfunc_f.helpFunctions.clone(preset_f.itemPresets.getStandardPreset(item._id));
+                let preset = helpfunc_f.helpFunctions.clone(preset_f.controller.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot};
@@ -356,7 +356,7 @@ class LocationServer
     }
 }
 
-class LocationCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -367,21 +367,21 @@ class LocationCallbacks
 
     load()
     {
-        location_f.locationServer.initialize();
+        location_f.controller.initialize();
     }
 
     getLocationData(url, info, sessionID)
     {
-        return response_f.responseController.getBody(location_f.locationServer.generateAll());
+        return response_f.controller.getBody(location_f.controller.generateAll());
     }
 
     getLocation(url, info, sessionID)
     {
-        return location_f.locationServer.get(url.replace("/api/location/", ""));
+        return location_f.controller.get(url.replace("/api/location/", ""));
     }
 }
 
-class LocationConfig
+class Config
 {
     constructor()
     {
@@ -407,6 +407,6 @@ class LocationConfig
     }
 }
 
-module.exports.locationServer = new LocationServer();
-module.exports.locationCallbacks = new LocationCallbacks();
-module.exports.locationConfig = new LocationConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

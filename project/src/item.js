@@ -8,7 +8,7 @@
 
 "use strict";
 
-class ItemServer
+class Router
 {
     constructor()
     {
@@ -30,7 +30,7 @@ class ItemServer
 
         for (let body of info.data)
         {
-            let pmcData = profile_f.profileController.getPmcProfile(sessionID);
+            let pmcData = profile_f.controller.getPmcProfile(sessionID);
 
             if (body.Action in this.routes)
             {
@@ -67,7 +67,7 @@ class ItemServer
     }
 }
 
-class ItemCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -76,9 +76,9 @@ class ItemCallbacks
 
     handleRoutes(url, info, sessionID)
     {
-        return response_f.responseController.getBody(item_f.itemServer.handleRoutes(info, sessionID));
+        return response_f.controller.getBody(item_f.router.handleRoutes(info, sessionID));
     }
 }
 
-module.exports.itemServer = new ItemServer();
-module.exports.ItemCallbacks = new ItemCallbacks();
+module.exports.router = new Router();
+module.exports.callbacks = new Callbacks();

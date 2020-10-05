@@ -9,21 +9,21 @@
 
 "use strict";
 
-class KeepAliveController
+class Controller
 {
     execute(sessionID)
     {
-        if (!account_f.accountServer.isWiped(sessionID))
+        if (!account_f.server.isWiped(sessionID))
         {
-            trader_f.traderServer.updateTraders(sessionID);
-            hideout_f.hideoutController.updatePlayerHideout(sessionID);
+            trader_f.controller.updateTraders(sessionID);
+            hideout_f.controller.updatePlayerHideout(sessionID);
         }
 
         return {"msg": "OK"};
     }
 }
 
-class KeepAliveCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -32,9 +32,9 @@ class KeepAliveCallbacks
 
     execute(url, info, sessionID)
     {
-        return response_f.responseController.getBody(keepalive_f.keepAliveController.execute(sessionID));
+        return response_f.controller.getBody(keepalive_f.controller.execute(sessionID));
     }
 }
 
-module.exports.keepAliveController = new KeepAliveController();
-module.exports.keepAliveCallbacks = new KeepAliveCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

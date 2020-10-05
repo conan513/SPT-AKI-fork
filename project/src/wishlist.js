@@ -9,7 +9,7 @@
 
 "use strict";
 
-class WishlistController
+class Controller
 {
     /* Adding item to wishlist
     *  input: playerProfileData, Request body
@@ -22,13 +22,13 @@ class WishlistController
             // don't add the item
             if (pmcData.WishList[item] === body["templateId"])
             {
-                return item_f.itemServer.getOutput();
+                return item_f.router.getOutput();
             }
         }
 
         // add the item to the wishlist
         pmcData.WishList.push(body["templateId"]);
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     /* Removing item to wishlist
@@ -45,28 +45,28 @@ class WishlistController
             }
         }
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 }
 
-class WishlistCallbacks
+class Callbacks
 {
     constructor()
     {
-        item_f.itemServer.addRoute("AddToWishList", this.addToWishlist.bind());
-        item_f.itemServer.addRoute("RemoveFromWishList", this.removeFromWishlist.bind());
+        item_f.router.addRoute("AddToWishList", this.addToWishlist.bind());
+        item_f.router.addRoute("RemoveFromWishList", this.removeFromWishlist.bind());
     }
 
     addToWishlist(pmcData, body, sessionID)
     {
-        return wishList_f.wishlistController.addToWishList(pmcData, body, sessionID);
+        return wishList_f.controller.addToWishList(pmcData, body, sessionID);
     }
 
     removeFromWishlist(pmcData, body, sessionID)
     {
-        return wishList_f.wishlistController.removeFromWishList(pmcData, body, sessionID);
+        return wishList_f.controller.removeFromWishList(pmcData, body, sessionID);
     }
 }
 
-module.exports.wishlistController = new WishlistController();
-module.exports.wishlistCallbacks = new WishlistCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
