@@ -14,7 +14,7 @@ let mods = [];
 
 function getModFilepath(mod)
 {
-    return `user/mods/${mod.author}-${mod.name}/`;
+    return `mods/${mod.author}-${mod.name}/`;
 }
 
 function scanRecursiveMod(filepath, baseNode, modNode)
@@ -62,7 +62,7 @@ function loadMod(mod, filepath)
 
 function detectAllMods()
 {
-    let dir = "user/mods/";
+    let dir = "mods/";
 
     if (!fs.existsSync(dir))
     {
@@ -159,9 +159,9 @@ function routeAll()
 function all()
 {
     /* create mods folder if missing */
-    if (!fs.existsSync("user/mods/"))
+    if (!fs.existsSync("mods/"))
     {
-        fs.mkdirSync("user/mods/");
+        fs.mkdirSync("mods/");
     }
 
     routeAll();
