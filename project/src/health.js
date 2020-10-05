@@ -124,7 +124,7 @@ class Controller
 
         for (let bodyPart of Object.keys(BodyPartsList))
         {
-            if (BodyPartsList[bodyPart].Effects != undefined)
+            if (BodyPartsList[bodyPart].Effects)
             {
                 nodeEffects[bodyPart] = BodyPartsList[bodyPart].Effects;
             }

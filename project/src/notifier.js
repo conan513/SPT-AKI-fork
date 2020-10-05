@@ -101,7 +101,7 @@ class Controller
         }
 
         // If we timed out and don't have anything to send, just send a ping notification.
-        if (data.length == 0)
+        if (data.length === 0)
         {
             data.push("{\"type\": \"ping\", \"eventId\": \"ping\"}");
         }

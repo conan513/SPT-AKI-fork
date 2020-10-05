@@ -30,13 +30,13 @@ class Controller
             let suite = database_f.database.tables.templates.suits[body.suites[i]];
 
             // this parent reffers to Lower Node
-            if (suite._parent == "5cd944d01388ce000a659df9")
+            if (suite._parent === "5cd944d01388ce000a659df9")
             {
                 pmcData.Customization.Feet = suite._props.Feet;
             }
 
             // this parent reffers to Upper Node
-            if (suite._parent == "5cd944ca1388ce03a44dc2a4")
+            if (suite._parent === "5cd944ca1388ce03a44dc2a4")
             {
                 pmcData.Customization.Body = suite._props.Body;
                 pmcData.Customization.Hands = suite._props.Hands;

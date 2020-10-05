@@ -125,7 +125,7 @@ class Controller
 
             for (let offerFromTrader of ragfair_offers_traders.offers)
             {
-                if (offerFromTrader._id == offer.id)
+                if (offerFromTrader._id === offer.id)
                 {
                     body.tid = offerFromTrader.user.id;
                     break;

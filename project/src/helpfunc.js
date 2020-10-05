@@ -735,7 +735,7 @@ class HelpFunctions
 
         for (let itemFromAssort of assort)
         {
-            if (itemFromAssort.parentId == itemIdToFind)
+            if (itemFromAssort.parentId === itemIdToFind)
             {
                 list.push(itemFromAssort);
                 list = list.concat(this.findAndReturnChildrenByAssort(itemFromAssort._id, assort));

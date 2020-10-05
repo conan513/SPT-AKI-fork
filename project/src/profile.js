@@ -236,12 +236,12 @@ class Callbacks
     {
         const output = profile_f.controller.changeNickname(info, sessionID);
 
-        if (output == "taken")
+        if (output === "taken")
         {
             return response_f.controller.getBody(null, 255, "The nickname is already in use");
         }
 
-        if (output == "tooshort")
+        if (output === "tooshort")
         {
             return response_f.controller.getBody(null, 1, "The nickname is too short");
         }
@@ -253,12 +253,12 @@ class Callbacks
     {
         const output = profile_f.controller.validateNickname(info, sessionID);
 
-        if (output == "taken")
+        if (output === "taken")
         {
             return response_f.controller.getBody(null, 255, "The nickname is already in use");
         }
 
-        if (output == "tooshort")
+        if (output === "tooshort")
         {
             return response_f.controller.getBody(null, 256, "The nickname is too short");
         }

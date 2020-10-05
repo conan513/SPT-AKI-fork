@@ -76,7 +76,7 @@ class Controller
                 {
                     for (let insurance in pmcData.InsuredItems)
                     {
-                        if (pmcData.InsuredItems[insurance].itemId == ids_toremove[i])
+                        if (pmcData.InsuredItems[insurance].itemId === ids_toremove[i])
                         {
                             pmcData.InsuredItems.splice(insurance, 1);
                         }
@@ -126,7 +126,7 @@ class Controller
         save_f.server.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
         for (let insurance in pmcData.InsuredItems)
         {
-            if (pmcData.InsuredItems[insurance].itemId == insuredItem.itemId)
+            if (pmcData.InsuredItems[insurance].itemId === insuredItem.itemId)
             {
                 pmcData.InsuredItems.splice(insurance, 1);
             }

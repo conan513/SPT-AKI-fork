@@ -220,7 +220,7 @@ class Controller
                 break;
 
             case 5: // Price
-                if (request.offerOwnerType == 1)
+                if (request.offerOwnerType === 1)
                 {
                     offers.sort(this.sortOffersByPriceSummaryCost);
                 }
@@ -345,7 +345,7 @@ class Controller
                 jsonToReturn = this.fillCatagories(jsonToReturn, offersFilters);
             }
 
-            if (request.removeBartering == true)
+            if (request.removeBartering === true)
             {
                 jsonToReturn = this.removeBarterOffers(jsonToReturn);
                 jsonToReturn = this.fillCatagories(jsonToReturn, offersFilters);
@@ -373,7 +373,7 @@ class Controller
         {
             for (let tplTokeep of offersFilters)
             {
-                if (jsonToReturn.offers[offer].items[0]._tpl == tplTokeep)
+                if (jsonToReturn.offers[offer].items[0]._tpl === tplTokeep)
                 {
                     jsonToReturn.offers[offer].summaryCost = this.calculateCost(jsonToReturn.offers[offer].requirements);
 
@@ -381,14 +381,12 @@ class Controller
                     let tmpOffer = jsonToReturn.offers[offer];
                     let traderId = tmpOffer.user.id;
                     let items = trader_f.controller.getAssort(sessionID, traderId).items;
-                    let keepItem = false; // for testing
 
                     for (let item of items)
                     {
                         if (item._id === tmpOffer.root)
                         {
                             offersToKeep.push(jsonToReturn.offers[offer]);
-                            keepItem = true;
                             break;
                         }
                     }

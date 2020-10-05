@@ -195,7 +195,7 @@ class Controller
             //it's the item
             if (!(itemID in database_f.database.tables.globals.controller))
             {
-                base.items.push(assort.items[assort.items.findIndex(i => i._id == itemID)]);
+                base.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
                 base.barter_scheme[itemID] = assort.barter_scheme[itemID];
                 base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
                 continue;
@@ -221,7 +221,7 @@ class Controller
                         "StackObjectsCount": 999999999
                     };
                 }
-                else if (mod.parentId == ItemRootOldId)
+                else if (mod.parentId === ItemRootOldId)
                 {
                     mod.parentId = itemID;
                 }
@@ -345,7 +345,7 @@ function traderFilter(traderFilters, tplToCheck)
     {
         for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
         {
-            if (iaaaaa == tplToCheck)
+            if (iaaaaa === tplToCheck)
             {
                 return true;
             }
