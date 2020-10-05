@@ -48,41 +48,46 @@ class Controller
 
     getTraderSuits(traderID, sessionID)
     {
+        console.log(database_f.database.tables.traders[traderID].suits);
+        console.log(traderID);
+
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let suitTemplates = database_f.database.tables.templates.suits;
-        let suitArray = database_f.database.tables.traders[traderID].suits;
-        let suitList = [];
+        let templates = database_f.database.tables.templates.suits;
+        let suits = database_f.database.tables.traders[traderID].suits;
+        let result = [];
 
         // get only suites from the player's side (e.g. USEC)
-        for (let suit of suitArray)
+        for (const suit of suits)
         {
-            if (suit.suiteId in suitTemplates)
+            if (suit.suiteId in templates)
             {
-                for (let i = 0; i < suitTemplates[suit.suiteId]._props.Side.length; i++)
+                for (let i = 0; i < templates[suit.suiteId]._props.Side.length; i++)
                 {
-                    let side = suitTemplates[suit.suiteId]._props.Side[i];
-
-                    if (side === pmcData.Info.Side)
+                    if (templates[suit.suiteId]._props.Side[i] === pmcData.Info.Side)
                     {
-                        suitList.push(suit);
+                        result.push(suit);
                     }
                 }
             }
         }
 
-        return suitList;
+        return result;
     }
 
     getAllTraderSuits(sessionID)
     {
-        let output = [];
+        const traders = database_f.database.tables.traders;
+        let result = [];
 
-        for (let traderID in database_f.database.tables.traders)
+        for (let traderID in traders)
         {
-            output.push(this.getTraderSuits(traderID, sessionID));
+            if (traders[traderID].base.customization_seller === true)
+            {
+                result.push(this.getTraderSuits(traderID, sessionID));
+            }
         }
 
-        return output;
+        return result;
     }
 
     buyClothing(pmcData, body, sessionID)
