@@ -4,11 +4,8 @@ Server.exe
 Server-Intermediate.exe
 .zip
 ResourceHacker.ini
-project/user/logs
-project/user/events
-project/user/mods
-project/user/profiles/
-project/user/certs/
+project/mods
+project/user/
 
 ## visual studio
 .vs

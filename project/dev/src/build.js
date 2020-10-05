@@ -22,7 +22,7 @@ if (fs.existsSync("Server.exe"))
 }
 
 compile({
-    input: "core/main.js",
+    input: "app/main.js",
     output: "Server-Intermediate",
     build: false,
     ico: "dev/res/icon.ico"

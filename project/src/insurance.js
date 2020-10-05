@@ -14,7 +14,7 @@ class InsuranceServer
 {
     constructor()
     {
-        events.scheduledEventHandler.addEvent("insuranceReturn", this.processReturn.bind(this));
+        event_f.eventController.addEvent("insuranceReturn", this.processReturn.bind(this));
     }
 
     resetInsurance(sessionID)
@@ -37,19 +37,19 @@ class InsuranceServer
         return profile;
     }
 
-    checkExpiredInsurance()
+    checkExpiredInsurance(sessionID)
     {
-        let scheduledEvents = events.scheduledEventHandler.scheduledEvents;
+        let events = save_f.saveServer.profiles[sessionID].events;
         let now = Date.now();
 
-        for (let count = scheduledEvents.length - 1; count >= 0; count--)
+        for (let count = events.length - 1; count >= 0; count--)
         {
-            let event = scheduledEvents[count];
+            let event = events[count];
 
             if (event.type === "insuranceReturn" && event.scheduledTime <= now)
             {
-                events.scheduledEventHandler.processEvent(event);
-                scheduledEvents.splice(count, 1);
+                event_f.eventController.processEvent(event);
+                events.splice(count, 1);
             }
         }
     }
@@ -220,9 +220,8 @@ class InsuranceServer
                 }
             };
 
-            events.scheduledEventHandler.addToSchedule({
+            event_f.eventController.addToSchedule(sessionID, {
                 "type": "insuranceReturn",
-                "sessionId": sessionID,
                 "scheduledTime": Date.now() + utility.getRandomInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
                 "data": {
                     "traderId": traderId,
@@ -375,7 +374,7 @@ class InsuranceCallback
     {
         if (req.url === "/client/notifier/channel/create")
         {
-            insurance_f.insuranceServer.checkExpiredInsurance();
+            insurance_f.insuranceServer.checkExpiredInsurance(sessionID);
         }
     }
 

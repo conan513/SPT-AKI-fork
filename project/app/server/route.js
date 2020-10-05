@@ -14,30 +14,7 @@ let mods = [];
 
 function getModFilepath(mod)
 {
-    return `user/mods/${mod.author}-${mod.name}/`;
-}
-
-function scanRecursiveMod(filepath, baseNode, modNode)
-{
-    if (typeof modNode === "string")
-    {
-        baseNode = filepath + modNode;
-    }
-
-    if (typeof modNode === "object")
-    {
-        for (let node in modNode)
-        {
-            if (!(node in baseNode))
-            {
-                baseNode[node] = {};
-            }
-
-            baseNode[node] = scanRecursiveMod(filepath, baseNode[node], modNode[node]);
-        }
-    }
-
-    return baseNode;
+    return `mods/${mod.author}-${mod.name}/`;
 }
 
 function loadMod(mod, filepath)
@@ -46,23 +23,26 @@ function loadMod(mod, filepath)
 
     if ("db" in mod)
     {
-        db = scanRecursiveMod(filepath, db, mod.db);
+        db = scanRecursiveRoute(`${filepath}/db/`);
     }
 
     if ("res" in mod)
     {
-        res = scanRecursiveMod(filepath, res, mod.res);
+        res = scanRecursiveRoute(`${filepath}/res/`);
     }
 
     if ("src" in mod)
     {
-        src = scanRecursiveMod(filepath, src, mod.src);
+        for (const source in mod.src)
+        {
+            src[source] = mod.src[source];
+        }
     }
 }
 
 function detectAllMods()
 {
-    let dir = "user/mods/";
+    let dir = "mods/";
 
     if (!fs.existsSync(dir))
     {
@@ -144,24 +124,14 @@ function routeAll()
     db = scanRecursiveRoute("db/");
     res = scanRecursiveRoute("res/");
     src = json.parse(json.read("src/loadorder.json"));
-
-    /* add important server paths */
-    db.user = {
-        "configs": {
-            "server": "user/config/server.json"
-        },
-        "events": {
-            "schedule": "user/events/schedule.json"
-        }
-    };
 }
 
 function all()
 {
     /* create mods folder if missing */
-    if (!fs.existsSync("user/mods/"))
+    if (!fs.existsSync("mods/"))
     {
-        fs.mkdirSync("user/mods/");
+        fs.mkdirSync("mods/");
     }
 
     routeAll();

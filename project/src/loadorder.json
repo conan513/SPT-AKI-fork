@@ -2,6 +2,7 @@
     "response_f": "src/response.js",
     "database_f": "src/database.js",
     "save_f": "src/save.js",
+    "event_f": "src/event.js",
     "item_f": "src/item.js",
     "keepalive_f": "src/keepalive.js",
     "health_f": "src/health.js",

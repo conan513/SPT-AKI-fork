@@ -38,7 +38,6 @@ class Initializer
 
         /* core logic */
         global.router = (require("./server/router.js").router);
-        global.events = require("./server/events.js");
         global.server = (require("./server/server.js").server);
     }
 
@@ -47,7 +46,6 @@ class Initializer
     {
         process.on("uncaughtException", (error, promise) =>
         {
-            logger.logError("Server:" + server.getVersion());
             logger.logError("Trace:");
             logger.log(error);
         });
@@ -60,7 +58,7 @@ class Initializer
 
         for (let name in src)
         {
-            global[name] = require("../" + src[name]);
+            global[name] = require(`../${src[name]}`);
         }
 
         logger.logSuccess("Interpreter: loaded classes");
