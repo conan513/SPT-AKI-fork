@@ -28,6 +28,11 @@ class SaveServer
             utility.createDir(filepath);
         }
 
+        if (!("user" in db))
+        {
+            db.user = {};
+        }
+
         const files = utility.getFileList(filepath);
         let result = [];
 
@@ -59,9 +64,6 @@ class SaveServer
         {
             this.onSaveProfile(sessionID);
         }
-
-        // rebuild virual paths
-        this.createVPath();
     }
 
     onLoadProfile(sessionID)
@@ -123,8 +125,7 @@ class SaveController
     onSave()
     {
         save_f.saveServer.onSave();
-        events.scheduledEventHandler.saveToDisk();
-        //logger.logSuccess("Saved profiles");
+        logger.logSuccess("Saved profiles");
     }
 }
 

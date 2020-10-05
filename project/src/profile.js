@@ -67,7 +67,6 @@ class ProfileController
         if (sessionID in save_f.saveServer.profiles)
         {
             delete save_f.saveServer.profiles[sessionID];
-            events.scheduledEventHandler.wipeScheduleForSession(sessionID);
         }
 
         // pmc
@@ -86,7 +85,8 @@ class ProfileController
                 "pmc": pmcData,
                 "scav": {}
             },
-            "suits": storage
+            "suits": storage,
+            "events": []
         };
 
         // pmc profile needs to exist first

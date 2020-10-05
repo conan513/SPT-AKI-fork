@@ -17,46 +17,26 @@ function getModFilepath(mod)
     return `mods/${mod.author}-${mod.name}/`;
 }
 
-function scanRecursiveMod(filepath, baseNode, modNode)
-{
-    if (typeof modNode === "string")
-    {
-        baseNode = filepath + modNode;
-    }
-
-    if (typeof modNode === "object")
-    {
-        for (let node in modNode)
-        {
-            if (!(node in baseNode))
-            {
-                baseNode[node] = {};
-            }
-
-            baseNode[node] = scanRecursiveMod(filepath, baseNode[node], modNode[node]);
-        }
-    }
-
-    return baseNode;
-}
-
 function loadMod(mod, filepath)
 {
     logger.logInfo(`Loading mod ${mod.author}-${mod.name}`);
 
     if ("db" in mod)
     {
-        db = scanRecursiveMod(filepath, db, mod.db);
+        db = scanRecursiveRoute(`${filepath}/db/`);
     }
 
     if ("res" in mod)
     {
-        res = scanRecursiveMod(filepath, res, mod.res);
+        res = scanRecursiveRoute(`${filepath}/res/`);
     }
 
     if ("src" in mod)
     {
-        src = scanRecursiveMod(filepath, src, mod.src);
+        for (const source in mod.src)
+        {
+            src[source] = mod.src[source];
+        }
     }
 }
 
@@ -144,16 +124,6 @@ function routeAll()
     db = scanRecursiveRoute("db/");
     res = scanRecursiveRoute("res/");
     src = json.parse(json.read("src/loadorder.json"));
-
-    /* add important server paths */
-    db.user = {
-        "configs": {
-            "server": "user/config/server.json"
-        },
-        "events": {
-            "schedule": "user/events/schedule.json"
-        }
-    };
 }
 
 function all()
