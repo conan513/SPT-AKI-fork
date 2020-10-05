@@ -12,29 +12,28 @@ class Controller
 {
     generate()
     {
-        let output = utility.getRandomValue(weather);
-        let weather = database_f.database.tables.templates.weather;
+        let result = utility.getRandomValue(database_f.database.tables.templates.weather);
 
         // replace date and time
         if (weather_f.config.realtime)
         {
             // Apply acceleration to time computation.
             let computedDate = new Date();
-            let deltaSeconds = utility.getServerUptimeInSeconds() * output.acceleration;
+            let deltaSeconds = utility.getServerUptimeInSeconds() * result.acceleration;
             computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
 
             let time = utility.formatTime(computedDate).replace("-", ":").replace("-", ":");
             let date = utility.formatDate(computedDate);
-            let datetime = date + " " + time;
+            let datetime = `${date} ${time}`;
 
-            output.weather.timestamp = Math.floor(computedDate / 1000);
-            output.weather.date = date;
-            output.weather.time = datetime;
-            output.date = date;
-            output.time = time;
+            result.weather.timestamp = Math.floor(computedDate / 1000);
+            result.weather.date = date;
+            result.weather.time = datetime;
+            result.date = date;
+            result.time = time;
         }
 
-        return output;
+        return result;
     }
 }
 
