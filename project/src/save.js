@@ -158,7 +158,7 @@ class Config
     {
         this.saveOnReceive = false;
         this.saveOnExit = true;
-        this.saveIntervalSec = 3;
+        this.saveIntervalSec = 30;
     }
 }
 
