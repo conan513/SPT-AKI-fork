@@ -947,7 +947,7 @@ class BotCallbacks
     {
         let splittedUrl = url.split("/");
         let type = splittedUrl[splittedUrl.length - 1];
-        return response_f.responseController.noBody(modules_f.modulesController.getBotLimit(type));
+        return response_f.responseController.noBody(bots_f.botController.getBotLimit(type));
     }
 
     getBotDifficulty(url, info, sessionID)
@@ -955,7 +955,7 @@ class BotCallbacks
         let splittedUrl = url.split("/");
         let type = splittedUrl[splittedUrl.length - 2].toLowerCase();
         let difficulty = splittedUrl[splittedUrl.length - 1];
-        return response_f.responseController.noBody(modules_f.modulesController.getBotDifficulty(type, difficulty));
+        return response_f.responseController.noBody(bots_f.botController.getBotDifficulty(type, difficulty));
     }
 
     generateBots(url, info, sessionID)

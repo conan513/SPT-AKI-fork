@@ -7,6 +7,7 @@
  * - PoloYolo
  * - Emperor06
  * - Ereshkigal
+ * - Basuro
  */
 
 "use strict";
@@ -102,9 +103,15 @@ class InraidServer
 
         save_f.saveServer.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
 
-        // set pmc data
         if (!isPlayerScav)
         {
+            // remove old skill fatique
+            for (let skill in pmcData.Skills.Common)
+            {
+                pmcData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
+            }
+
+            // set pmc data
             pmcData.Info.Level = offraidData.profile.Info.Level;
             pmcData.Skills = offraidData.profile.Skills;
             pmcData.Stats = offraidData.profile.Stats;
@@ -125,7 +132,7 @@ class InraidServer
             inraid_f.inraidServer.removePlayer(sessionID);
         }
 
-        //Check for exit status
+        // Check for exit status
         if (offraidData.exit === "survived")
         {
             // mark found items and replace item ID's if the player survived
@@ -133,7 +140,7 @@ class InraidServer
         }
         else
         {
-            //Or remove the FIR status if the player havn't survived
+            // Or remove the FIR status if the player havn't survived
             offraidData.profile = this.removeFoundItems(offraidData.profile);
         }
 
@@ -154,7 +161,7 @@ class InraidServer
         }
 
         // remove inventory if player died and send insurance items
-        //TODO: dump of prapor/therapist dialogues that are sent when you die in lab with insurance.
+        // TODO: dump of prapor/therapist dialogues that are sent when you die in lab with insurance.
         if (insuranceEnabled)
         {
             insurance_f.insuranceServer.storeLostGear(pmcData, offraidData, preRaidGear, sessionID);

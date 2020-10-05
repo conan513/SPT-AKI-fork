@@ -29,5 +29,6 @@
     "location_f": "src/location.js",
     "bundles_f": "src/bundles.js",
     "image_f": "src/image.js",
-    "gamestartup_f": "src/gamestartup.js"
+    "gamestartup_f": "src/gamestartup.js",
+    "match_f": "src/match.js"
 }
