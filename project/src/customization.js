@@ -48,9 +48,6 @@ class Controller
 
     getTraderSuits(traderID, sessionID)
     {
-        console.log(database_f.database.tables.traders[traderID].suits);
-        console.log(traderID);
-
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let templates = database_f.database.tables.templates.suits;
         let suits = database_f.database.tables.traders[traderID].suits;
@@ -83,7 +80,7 @@ class Controller
         {
             if (traders[traderID].base.customization_seller === true)
             {
-                result.push(this.getTraderSuits(traderID, sessionID));
+                result = [...result, ...this.getTraderSuits(traderID, sessionID)];
             }
         }
 
@@ -93,62 +90,64 @@ class Controller
     buyClothing(pmcData, body, sessionID)
     {
         let output = item_f.router.getOutput();
-        let suits = save_f.server.profiles[sessionID].suits;
-        let offers = this.getAllTraderSuits(sessionID);
+
+        // find suit offer
+        const offers = this.getAllTraderSuits(sessionID);
+        let offer = offers.find((suit) =>
+        {
+            return body.offer === suit._id;
+        });
+
+        if (!offer)
+        {
+            logger.logError("OOPS");
+            return output;
+        }
 
         // check if outfit already exists
-        for (let suiteId of suits)
+        if (save_f.server.profiles[sessionID].suits.find((suit) =>
         {
-            if (suiteId === body.offer)
-            {
-                return output;
-            }
+            return suit === body.offer;
+        }))
+        {
+            return output;
         }
 
         // pay items
-        for (let sellItem in body.items)
+        for (let sellItem of body.items)
         {
-            for (let item in pmcData.Inventory.items)
+            for (let itemID in pmcData.Inventory.items)
             {
-                if (pmcData.Inventory.items[item]._id !== sellItem.id)
+                let item = pmcData.Inventory.items[itemID];
+
+                if (item._id !== sellItem.id)
                 {
                     continue;
                 }
 
-                if (pmcData.Inventory.items[item].upd.StackObjectsCount === sellItem.count && sellItem.del === true)
+                if (sellItem.del === true)
                 {
                     output.items.del.push({"_id": sellItem.id});
-                    pmcData.Inventory.items.splice(item, 1);
+                    pmcData.Inventory.items.splice(itemID, 1);
                 }
-                else if (pmcData.Inventory.items[item].upd.StackObjectsCount > sellItem.count)
+
+                if (item.upd.StackObjectsCount > sellItem.count)
                 {
-                    pmcData.Inventory.items[item].upd.StackObjectsCount -= sellItem.count;
-
+                    pmcData.Inventory.items[itemID].upd.StackObjectsCount -= sellItem.count;
                     output.items.change.push({
-                        "_id": pmcData.Inventory.items[item]._id,
-                        "_tpl": pmcData.Inventory.items[item]._tpl,
-                        "parentId": pmcData.Inventory.items[item].parentId,
-                        "slotId": pmcData.Inventory.items[item].slotId,
-                        "location": pmcData.Inventory.items[item].location,
-                        "upd": {"StackObjectsCount": pmcData.Inventory.items[item].upd.StackObjectsCount}
+                        "_id": item._id,
+                        "_tpl": item._tpl,
+                        "parentId": item.parentId,
+                        "slotId": item.slotId,
+                        "location": item.location,
+                        "upd": {"StackObjectsCount": item.upd.StackObjectsCount}
                     });
-
-                    break;
                 }
             }
         }
 
-        // add outfit to suits
-        for (let offer of offers)
-        {
-            if (body.offer === offer._id)
-            {
-                suits.push(offer.suiteId);
-                break;
-            }
-        }
-
-        save_f.server.profiles[sessionID].suits = suits;
+        // add suit
+        save_f.server.profiles[sessionID].suits.push(offer._id)
         return output;
     }
 }
