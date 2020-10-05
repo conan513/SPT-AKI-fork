@@ -156,9 +156,9 @@ class Config
 {
     constructor()
     {
-        this.saveOnReceive = true;
-        this.saveOnExit = false;
-        this.saveIntervalSec = 0;
+        this.saveOnReceive = false;
+        this.saveOnExit = true;
+        this.saveIntervalSec = 3;
     }
 }
 
