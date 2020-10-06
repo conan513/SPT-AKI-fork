@@ -12,14 +12,14 @@
 
 class Controller
 {
-    getQuests(sessionID)
+    getVisibleQuests(sessionID)
     {
         let quests = [];
-        let profileQuests = save_f.server.profiles[sessionID].Quests;
+        const profileQuests = save_f.server.profiles[sessionID].Quests;
 
-        for (let quest of database_f.database.tables.templates.quests)
+        for (const quest of database_f.database.tables.templates.quests)
         {
-            let prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+            const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
 
             // If the quest has no prerequisite quests then add to visible quest list
             if (prereqs.length === 0)
@@ -29,11 +29,11 @@ class Controller
             }
 
             let isVisible = true;
-            for (let pr of prereqs)
+            for (const pr of prereqs)
             {
                 // Check each prerequisite quest, if any are currently locked
                 // then this quest should not be visible
-                let preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
+                const preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
 
                 if (preQuest.status === "Locked")
                 {
@@ -49,6 +49,39 @@ class Controller
         }
 
         return quests;
+    }
+
+    getAllProfileQuests()
+    {
+        let profileQuests = [];
+
+        for (let quest of database_f.database.tables.templates.quests)
+        {
+            let state = "AvailableForStart";
+            for (let condition of quest.conditions.AvailableForStart)
+            {
+                if (condition._parent === "Level" && condition._props.value > 1)
+                {
+                    state = "Locked";
+                    break;
+                }
+                else if (condition._parent === "Quest")
+                {
+                    state = "Locked";
+                    break;
+                }
+            }
+
+            profileQuests.push({
+                "qid": quest._id,
+                "startTime": 0,
+                "completedConditions": [],
+                "statusTimers": {},
+                "status": state
+            });
+        }
+
+        return profileQuests;
     }
 
     getCachedQuest(qid)
