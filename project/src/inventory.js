@@ -814,7 +814,7 @@ class Controller
                     });
 
                     itemID = assort._tpl;
-                }                
+                }
             }
 
             // get hideout item
