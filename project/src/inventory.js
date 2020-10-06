@@ -637,7 +637,10 @@ class Controller
                     maxCount -= ammoStackMaxSize;
                 }
 
-                [output.items.new, pmcData.Inventory.items].forEach(x => x.push.apply(x, ammos));
+                for (const item of [output.items.new, pmcData.Inventory.items])
+                {
+                    item.push.apply(item, ammos);
+                }
             }
 
             while (toDo.length > 0)
