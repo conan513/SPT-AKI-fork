@@ -180,7 +180,7 @@ class Controller
         const pmcItemsHash = {};
 
         let gears = [];
-        let securedContainerItems = helpfunc_f.helpFunctions.getSecuredContainer(offraidData.profile.Inventory.items);
+        let securedContainerItems = helpfunc_f.helpFunctions.getSecureContainer(offraidData.profile.Inventory.items);
 
         for (const item of preRaidGear)
         {
