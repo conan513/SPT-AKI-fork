@@ -30,7 +30,6 @@ class Callbacks
         router.addStaticRoute("/client/items", this.getTemplateItems.bind());
         router.addStaticRoute("/client/handbook/templates", this.getTemplateHandbook.bind());
         router.addStaticRoute("/client/customization", this.getTemplateSuits.bind());
-        router.addStaticRoute("/client/quest/list", this.getTemplateQuests.bind());
 
         // hideout
         router.addStaticRoute("/client/hideout/production/recipes", this.gethideoutProduction.bind());
@@ -222,7 +221,7 @@ class Callbacks
 
     getTemplateQuests(url, info, sessionID)
     {
-        return response_f.controller.getBody(quest_f.controller.getVisibleQuests(sessionID));
+        return response_f.controller.getBody(database_f.database.tables.templates.quests);
     }
 
     getHideoutSettings(url, info, sessionID)

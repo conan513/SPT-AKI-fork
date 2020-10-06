@@ -12,7 +12,7 @@
 
 class Controller
 {
-    getVisibleQuests(sessionID)
+    getVisibleQuests(url, info, sessionID)
     {
         let quests = [];
         const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
@@ -469,6 +469,8 @@ class Callbacks
         item_f.router.addRoute("QuestAccept", this.acceptQuest.bind());
         item_f.router.addRoute("QuestComplete", this.completeQuest.bind());
         item_f.router.addRoute("QuestHandover", this.handoverQuest.bind());
+
+        router.addStaticRoute("/client/quest/list", this.listQuests.bind());
     }
 
     acceptQuest(pmcData, body, sessionID)
@@ -484,6 +486,11 @@ class Callbacks
     handoverQuest(pmcData, body, sessionID)
     {
         return quest_f.controller.handoverQuest(pmcData, body, sessionID);
+    }
+
+    listQuests(url, info, sessionID)
+    {
+        return response_f.controller.getBody(quest_f.controller.getVisibleQuests(url, info, sessionID));
     }
 }
 
