@@ -15,7 +15,7 @@ class Controller
     getVisibleQuests(sessionID)
     {
         let quests = [];
-        const profileQuests = save_f.server.profiles[sessionID].Quests;
+        const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
 
         for (const quest of database_f.database.tables.templates.quests)
         {
