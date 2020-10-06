@@ -222,7 +222,7 @@ class Callbacks
 
     getTemplateQuests(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.templates.quests);
+        return response_f.controller.getBody(quest_f.controller.getQuests(sessionID));
     }
 
     getHideoutSettings(url, info, sessionID)

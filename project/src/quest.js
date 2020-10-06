@@ -12,6 +12,45 @@
 
 class Controller
 {
+    getQuests(sessionID)
+    {
+        let quests = [];
+        let profileQuests = save_f.server.profiles[sessionID].Quests;
+
+        for (let quest of database_f.database.tables.templates.quests)
+        {
+            let prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+
+            // If the quest has no prerequisite quests then add to visible quest list
+            if (prereqs.length === 0)
+            {
+                quests.push(quest);
+                continue;
+            }
+
+            let isVisible = true;
+            for (let pr of prereqs)
+            {
+                // Check each prerequisite quest, if any are currently locked
+                // then this quest should not be visible
+                let preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
+
+                if (preQuest.status === "Locked")
+                {
+                    isVisible = false;
+                    break;
+                }
+            }
+
+            if (isVisible)
+            {
+                quests.push(quest);
+            }
+        }
+
+        return quests;
+    }
+
     getCachedQuest(qid)
     {
         for (let quest of database_f.database.tables.templates.quests)

@@ -86,7 +86,8 @@ class Controller
                 "scav": {}
             },
             "suits": storage,
-            "events": []
+            "events": [],
+            "Quests": []
         };
 
         // pmc profile needs to exist first
@@ -95,6 +96,34 @@ class Controller
         for (let traderID in database_f.database.tables.traders)
         {
             trader_f.controller.resetTrader(sessionID, traderID);
+        }
+
+        // load quests into profile
+        let pmcQuests = save_f.server.profiles[sessionID].Quests;
+        for (let quest of database_f.database.tables.templates.quests)
+        {
+            let state = "AvailableForStart";
+            for (let condition of quest.conditions.AvailableForStart)
+            {
+                if (condition._parent === "Level" && condition._props.value > 1)
+                {
+                    state = "Locked";
+                    break;
+                }
+                else if (condition._parent === "Quest")
+                {
+                    state = "Locked";
+                    break;
+                }
+            }
+
+            pmcQuests.push({
+                "qid": quest._id,
+                "startTime": 0,
+                "completedConditions": [],
+                "statusTimers": {},
+                "status": state
+            });
         }
 
         // don't wipe profile again
