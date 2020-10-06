@@ -15,7 +15,7 @@ class Controller
     {
         let profile = save_f.server.profiles[sessionID];
 
-        profile.vitality  = {
+        profile.vitality = {
             "health": {
                 "Hydration": 0,
                 "Energy": 0,
@@ -138,6 +138,8 @@ class Controller
                 nodeHealth[bodyPart] = -1;
             }
         }
+
+        console.log(sessionID);
 
         this.saveHealth(pmcData, sessionID);
         this.saveEffects(pmcData, sessionID);
@@ -266,6 +268,8 @@ class Controller
 
     saveHealth(pmcData, sessionID)
     {
+        console.log(sessionID);
+        
         if (!health_f.config.save.health)
         {
             return;
@@ -275,22 +279,34 @@ class Controller
 
         for (const item in nodeHealth)
         {
-            if (item !== "Hydration" && item !== "Energy")
+            let target = nodeHealth[item];
+
+            if (item === "Hydration" || item === "Energy")
             {
-                /* set body part health */
-                pmcData.Health.BodyParts[item].Health.Current = (nodeHealth[item] <= 0)
-                    ? Math.round(pmcData.Health.BodyParts[item].Health.Maximum)
-                    : nodeHealth[item];
+                // set resources
+                if (target > pmcData.Health[item].Maximum)
+                {
+                    target = pmcData.Health[item].Maximum;
+                }
+
+                pmcData.Health[item].Current = Math.round(target);
             }
             else
             {
-                /* set resources */
-                if (nodeHealth[item] > pmcData.Health[item].Maximum)
+                // set body part health
+                if (target < 0)
                 {
-                    nodeHealth[item] = pmcData.Health[item].Maximum;
+                    // heal to full health
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum);
                 }
 
-                pmcData.Health[item].Current = Math.round(nodeHealth[item]);
+                if (target === 0)
+                {
+                    // blacked body part
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * 0.1);
+                }
+
+                pmcData.Health.BodyParts[item].Health.Current = target;
             }
         }
     }
