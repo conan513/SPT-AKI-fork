@@ -12,6 +12,78 @@
 
 class Controller
 {
+    getVisibleQuests(url, info, sessionID)
+    {
+        let quests = [];
+        const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
+
+        for (const quest of database_f.database.tables.templates.quests)
+        {
+            const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+
+            // If the quest has no prerequisite quests then add to visible quest list
+            if (prereqs.length === 0)
+            {
+                quests.push(quest);
+                continue;
+            }
+
+            let isVisible = true;
+            for (const pr of prereqs)
+            {
+                // Check each prerequisite quest, if any are currently locked
+                // then this quest should not be visible
+                const preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
+
+                if (preQuest.status === "Locked")
+                {
+                    isVisible = false;
+                    break;
+                }
+            }
+
+            if (isVisible)
+            {
+                quests.push(quest);
+            }
+        }
+
+        return quests;
+    }
+
+    getAllProfileQuests()
+    {
+        let profileQuests = [];
+
+        for (let quest of database_f.database.tables.templates.quests)
+        {
+            let state = "AvailableForStart";
+            for (let condition of quest.conditions.AvailableForStart)
+            {
+                if (condition._parent === "Level" && condition._props.value > 1)
+                {
+                    state = "Locked";
+                    break;
+                }
+                else if (condition._parent === "Quest")
+                {
+                    state = "Locked";
+                    break;
+                }
+            }
+
+            profileQuests.push({
+                "qid": quest._id,
+                "startTime": 0,
+                "completedConditions": [],
+                "statusTimers": {},
+                "status": state
+            });
+        }
+
+        return profileQuests;
+    }
+
     getCachedQuest(qid)
     {
         for (let quest of database_f.database.tables.templates.quests)
@@ -397,6 +469,8 @@ class Callbacks
         item_f.router.addRoute("QuestAccept", this.acceptQuest.bind());
         item_f.router.addRoute("QuestComplete", this.completeQuest.bind());
         item_f.router.addRoute("QuestHandover", this.handoverQuest.bind());
+
+        router.addStaticRoute("/client/quest/list", this.listQuests.bind());
     }
 
     acceptQuest(pmcData, body, sessionID)
@@ -412,6 +486,11 @@ class Callbacks
     handoverQuest(pmcData, body, sessionID)
     {
         return quest_f.controller.handoverQuest(pmcData, body, sessionID);
+    }
+
+    listQuests(url, info, sessionID)
+    {
+        return response_f.controller.getBody(quest_f.controller.getVisibleQuests(url, info, sessionID));
     }
 }
 

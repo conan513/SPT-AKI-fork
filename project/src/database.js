@@ -30,7 +30,6 @@ class Callbacks
         router.addStaticRoute("/client/items", this.getTemplateItems.bind());
         router.addStaticRoute("/client/handbook/templates", this.getTemplateHandbook.bind());
         router.addStaticRoute("/client/customization", this.getTemplateSuits.bind());
-        router.addStaticRoute("/client/quest/list", this.getTemplateQuests.bind());
 
         // hideout
         router.addStaticRoute("/client/hideout/production/recipes", this.gethideoutProduction.bind());
