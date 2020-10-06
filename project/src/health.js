@@ -11,7 +11,7 @@
 /* controller class maintains list of health for each sessionID in memory. */
 class Controller
 {
-    resetHealth(sessionID)
+    resetVitality(sessionID)
     {
         let profile = save_f.server.profiles[sessionID];
 
@@ -113,7 +113,7 @@ class Controller
     }
 
     /* stores in-raid player health */
-    saveHealth(pmcData, info, sessionID)
+    saveVitality(pmcData, info, sessionID)
     {
         const BodyPartsList = info.Health;
         let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
@@ -139,7 +139,11 @@ class Controller
             }
         }
 
-        this.applyHealth(pmcData, sessionID);
+        this.saveHealth(pmcData, sessionID);
+        this.saveEffects(pmcData, sessionID);
+        this.resetVitality(sessionID);
+
+        pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
     }
 
     /* stores the player health changes */
@@ -208,7 +212,7 @@ class Controller
         healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
 
-        this.saveHealth(pmcData, healthInfo, sessionID);
+        this.saveVitality(pmcData, healthInfo, sessionID);
         return item_f.router.getOutput();
     }
 
@@ -260,10 +264,9 @@ class Controller
         }
     }
 
-    /* apply the health changes to the profile */
-    applyHealth(pmcData, sessionID)
+    saveHealth(pmcData, sessionID)
     {
-        if (!save_f.config.saveHealthEnabled)
+        if (!health_f.config.save.health)
         {
             return;
         }
@@ -290,6 +293,14 @@ class Controller
                 pmcData.Health[item].Current = Math.round(nodeHealth[item]);
             }
         }
+    }
+
+    saveEffects(pmcData, sessionID)
+    {
+        if (!health_f.config.save.effects)
+        {
+            return;
+        }
 
         const nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
 
@@ -309,9 +320,6 @@ class Controller
                 }
             }
         }
-
-        pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-        this.resetHealth(sessionID);
     }
 
     isEmpty(map)
@@ -343,13 +351,13 @@ class Callbacks
 
     onLoad(sessionID)
     {
-        return health_f.controller.resetHealth(sessionID);
+        return health_f.controller.resetVitality(sessionID);
     }
 
     syncHealth(url, info, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        health_f.controller.saveHealth(pmcData, info, sessionID);
+        health_f.controller.saveVitality(pmcData, info, sessionID);
         return response_f.controller.nullResponse();
     }
 
@@ -379,7 +387,10 @@ class Config
 {
     constructor()
     {
-        this.saveHealthEnabled = true;
+        this.save = {
+            "health": true,
+            "effects": true
+        }
     }
 }
 
