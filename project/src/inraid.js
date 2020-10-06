@@ -157,7 +157,7 @@ class Controller
         else
         {
             pmcData = this.setInventory(pmcData, offraidData.profile);
-            health_f.controller.saveHealth(pmcData, offraidData.health, sessionID);
+            health_f.controller.saveVitality(pmcData, offraidData.health, sessionID);
         }
 
         // remove inventory if player died and send insurance items

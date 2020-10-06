@@ -147,7 +147,7 @@ class Controller
         }
 
         // add suit
-        save_f.server.profiles[sessionID].suits.push(offer._id)
+        save_f.server.profiles[sessionID].suits.push(offer._id);
         return output;
     }
 }

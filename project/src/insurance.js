@@ -136,15 +136,21 @@ class Controller
     /* store lost pmc gear */
     storeLostGear(pmcData, offraidData, preRaidGear, sessionID)
     {
-        // Build a hash table to reduce loops
         const preRaidGearHash = {};
-        preRaidGear.forEach(i => preRaidGearHash[i._id] = i);
+        const offRaidGearHash = {};
+        let gears = [];
+
+        // Build a hash table to reduce loops
+        for (const item of preRaidGear)
+        {
+            preRaidGearHash[item._id] = item;
+        }
 
         // Build a hash of offRaidGear
-        const offRaidGearHash = {};
-        offraidData.profile.Inventory.items.forEach(i => offRaidGearHash[i._id] = i);
-
-        let gears = [];
+        for (const item of offraidData.profile.Inventory.items)
+        {
+            offRaidGearHash[item._id] = item;
+        }
 
         for (let insuredItem of pmcData.InsuredItems)
         {
@@ -169,17 +175,27 @@ class Controller
     /* store insured items on pmc death */
     storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
     {
-        let gears = [];
-        let securedContainerItems = helpfunc_f.helpFunctions.getSecuredContainer(offraidData.profile.Inventory.items);
-
         const preRaidGearHash = {};
-        preRaidGear.forEach(i => preRaidGearHash[i._id] = i);
-
         const securedContainerItemHash = {};
-        securedContainerItems.forEach(i => securedContainerItemHash[i._id] = i);
-
         const pmcItemsHash = {};
-        pmcData.Inventory.items.forEach(i => pmcItemsHash[i._id] = i);
+
+        let gears = [];
+        let securedContainerItems = helpfunc_f.helpFunctions.getSecureContainer(offraidData.profile.Inventory.items);
+
+        for (const item of preRaidGear)
+        {
+            preRaidGearHash[item._id] = item;
+        }
+
+        for (const item of securedContainerItems)
+        {
+            securedContainerItemHash[item._id] = item;
+        }
+
+        for (const item of pmcData.Inventory.items)
+        {
+            pmcItemsHash[item._id] = item;
+        }
 
         for (let insuredItem of pmcData.InsuredItems)
         {
@@ -252,7 +268,11 @@ class Controller
     {
         let itemsToPay = [];
         let inventoryItemsHash = {};
-        pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);
+
+        for (const item of pmcData.Inventory.items)
+        {
+            inventoryItemsHash[item._id] = item;
+        }
 
         // get the price of all items
         for (let key of body.items)
@@ -290,7 +310,11 @@ class Controller
         if (typeof (global.templatesById) === "undefined")
         {
             global.templatesById = {};
-            database_f.database.tables.templates.handbook.Items.forEach(i => templatesById[i.Id] = i);
+
+            for (const item of database_f.database.tables.templates.handbook.Items)
+            {
+                templatesById[item.Id] = item;
+            }
         }
 
         if (_tpl in templatesById)
@@ -321,7 +345,11 @@ class Controller
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
 
         let inventoryItemsHash = {};
-        pmcData.Inventory.items.forEach(i => inventoryItemsHash[i._id] = i);
+
+        for (const item of pmcData.Inventory.items)
+        {
+            inventoryItemsHash[item._id] = item;
+        }
 
         for (let trader of info.traders)
         {
