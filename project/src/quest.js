@@ -419,7 +419,7 @@ class Config
 {
     constructor()
     {
-        this.RedeemTime = 48;
+        this.redeemTime = 48;
     }
 }
 
