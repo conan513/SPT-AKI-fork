@@ -827,7 +827,6 @@ class Generator
         this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], grenadeCount);
     }
 
-    // TODO: Pull from loot pool with biased rng
     addLootFromPool(pool, equipmentSlots, count)
     {
         if (pool.length)
