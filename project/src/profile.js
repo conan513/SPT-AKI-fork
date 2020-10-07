@@ -37,7 +37,7 @@ class Controller
     resetProfileQuestCondition(sessionID, conditionId)
     {
         let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
-                
+
         for (let quest of startedQuests)
         {
             const index = quest.completedConditions.indexOf(conditionId);

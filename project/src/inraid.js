@@ -180,9 +180,9 @@ class Controller
             for (const questItem of carriedQuestItems)
             {
                 const conditionId = quest_f.controller.getFindItemIdForQuestItem(questItem);
-                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId)
-            }                
-            
+                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId);
+            }
+
             //Delete carried quests items
             carriedQuestItems = [];
         }

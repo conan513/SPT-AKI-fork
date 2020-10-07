@@ -94,7 +94,7 @@ class Controller
                 {
                     return condition._props.id;
                 }
-            }            
+            }
         }
     }
 
