@@ -42,6 +42,16 @@ function getRandomIntEx(max)
     return (max > 1) ? Math.floor(Math.random() * (max - 2) + 1) : 1;
 }
 
+function getRandomFloat(min, max)
+{
+    return Math.random() * (max - min) + min;
+}
+
+function getRandomBool()
+{
+    return Math.random() < 0.5;
+}
+
 function getRandomValue(node)
 {
     let keys = Object.keys(node);
@@ -191,6 +201,8 @@ module.exports.createDir = createDir;
 module.exports.clearString = clearString;
 module.exports.getRandomInt = getRandomInt;
 module.exports.getRandomIntEx = getRandomIntEx;
+module.exports.getRandomFloat = getRandomBool;
+module.exports.getRandomBool = getRandomFloat;
 module.exports.getRandomValue = getRandomValue;
 module.exports.getRandomArrayValue = getRandomArrayValue;
 module.exports.getFileList = getFileList;

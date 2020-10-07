@@ -77,7 +77,7 @@ class Controller
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = Math.floor(new Date() / 1000);
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-        pmcData.Quests = quest_f.controller.getAllProfileQuests() // preload all quests into profile
+        pmcData.Quests = quest_f.controller.getAllProfileQuests(); // preload all quests into profile
 
         // create profile
         save_f.server.profiles[sessionID] = {
