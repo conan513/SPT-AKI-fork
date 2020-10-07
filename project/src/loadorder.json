@@ -1,7 +1,7 @@
 {
     "router_f": "src/router.js",
-    "server_f": "src/server.js",
     "response_f": "src/response.js",
+    "server_f": "src/server.js",
     "database_f": "src/database.js",
     "save_f": "src/save.js",
     "event_f": "src/event.js",

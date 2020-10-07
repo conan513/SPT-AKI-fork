@@ -10,28 +10,9 @@
 "use strict";
 
 const fs = require("fs");
-const { resolve } = require("path");
 const zlib = require("zlib");
 const https = require("https");
 const selfsigned = require("selfsigned");
-
-function getCookies(req)
-{
-    let found = {};
-    let cookies = req.headers.cookie;
-
-    if (cookies)
-    {
-        for (let cookie of cookies.split(";"))
-        {
-            let parts = cookie.split("=");
-
-            found[parts.shift().trim()] = decodeURI(parts.join("="));
-        }
-    }
-
-    return found;
-}
 
 class Server
 {
@@ -53,6 +34,24 @@ class Server
         };
 
         this.addRespondCallback("DONE", this.killResponse.bind(this));
+    }
+
+    getCookies(req)
+    {
+        let found = {};
+        let cookies = req.headers.cookie;
+
+        if (cookies)
+        {
+            for (let cookie of cookies.split(";"))
+            {
+                let parts = cookie.split("=");
+
+                found[parts.shift().trim()] = decodeURI(parts.join("="));
+            }
+        }
+
+        return found;
     }
 
     resetBuffer(sessionID)
@@ -120,7 +119,6 @@ class Server
 
     generateCertificate()
     {
-
         const certDir = "user/certs/";
         const certFile = `${certDir}cert.pem`;
         const keyFile = `${certDir}key.pem`;
@@ -208,7 +206,7 @@ class Server
         }
 
         /* route doesn't exist or response is not properly set up */
-        if (output === "")
+        if (!output)
         {
             logger.logError(`[UNHANDLED][${req.url}]`);
             logger.log(body);
@@ -235,7 +233,7 @@ class Server
     handleRequest(req, resp)
     {
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
-        const sessionID = getCookies(req)["PHPSESSID"];
+        const sessionID = this.getCookies(req)["PHPSESSID"];
 
         logger.log(`[${sessionID}][${IP}] ${req.url}`);
 
@@ -248,19 +246,19 @@ class Server
         // request with data
         if (req.method === "POST")
         {
-            req.on("data", function (data)
+            req.on("data", (data) =>
             {
-                zlib.inflate(data, function (err, body)
+                zlib.inflate(data, (err, body) =>
                 {
-                    let jsonData = ((body !== typeof "undefined" && body !== null && body !== "") ? body.toString() : "{}");
-                    this.sendResponse(sessionID, req, resp, jsonData);
+                    const jsonData = (body) ? body.toString() : "{}";
+                    server_f.server.sendResponse(sessionID, req, resp, jsonData);
                 });
             });
         }
 
         if (req.method === "PUT")
         {
-            req.on("data", function(data)
+            req.on("data", (data) =>
             {
                 // receive data
                 if ("expect" in req.headers)
@@ -274,15 +272,15 @@ class Server
                 }
             });
 
-            req.on("end", function()
+            req.on("end", () =>
             {
-                let data = this.getFromBuffer(sessionID);
+                const data = this.getFromBuffer(sessionID);
                 this.resetBuffer(sessionID);
 
-                zlib.inflate(data, function (err, body)
+                zlib.inflate(data, (err, body) =>
                 {
-                    let jsonData = ((body !== typeof "undefined" && body !== null && body !== "") ? body.toString() : "{}");
-                    this.sendResponse(sessionID, req, resp, jsonData);
+                    const jsonData = (body) ? body.toString() : "{}";
+                    server_f.server.sendResponse(sessionID, req, resp, jsonData);
                 });
             });
         }
@@ -302,13 +300,13 @@ class Server
         let httpsServer = https.createServer(this.generateCertificate(), (req, res) =>
         {
             this.handleRequest(req, res);
-        }).listen(this.port, this.ip, function()
+        }).listen(this.port, this.ip, () =>
         {
             logger.logSuccess("Started server");
         });
 
         /* server is already running or program using privileged port without root */
-        httpsServer.on("error", function(e)
+        httpsServer.on("error", (e) =>
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
