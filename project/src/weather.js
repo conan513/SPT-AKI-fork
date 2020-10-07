@@ -15,8 +15,10 @@ class Controller
     {
         let result = { "weather": {} };
 
-        result = this.generateWeather(result);
         result = this.calculateTime(result);
+        result = this.generateWeather(result);
+
+        console.log(result);
 
         return result;
     }
@@ -28,7 +30,7 @@ class Controller
 
         data.weather.cloud = this.getRandomFloat("clouds");
         data.weather.wind_speed = this.getRandomFloat("windSpeed");
-        data.weather.wind_direction = this.getRandomFloat("windDirection");
+        data.weather.wind_direction = this.getRandomInt("windDirection");
         data.weather.wind_gustiness = this.getRandomFloat("windGustiness");
         data.weather.rain = (enableRain) ? this.getRandomFloat("rain") : 0;
         data.weather.rain_intensity = (enableRain) ? this.getRandomFloat("rainIntensity") : 0;
@@ -43,7 +45,9 @@ class Controller
     {
         // get time acceleration
         const deltaSeconds = utility.getServerUptimeInSeconds() * weather_f.config.acceleration;
-        const computedDate = new Date().setSeconds(computedDate.getSeconds() + deltaSeconds);
+        const computedDate = new Date();
+
+        computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
 
         // assign time
         const time = utility.formatTime(computedDate).replace("-", ":").replace("-", ":");
