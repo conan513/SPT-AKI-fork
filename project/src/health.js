@@ -11,11 +11,11 @@
 /* controller class maintains list of health for each sessionID in memory. */
 class Controller
 {
-    resetHealth(sessionID)
+    resetVitality(sessionID)
     {
         let profile = save_f.server.profiles[sessionID];
 
-        profile.vitality  = {
+        profile.vitality = {
             "health": {
                 "Hydration": 0,
                 "Energy": 0,
@@ -61,7 +61,7 @@ class Controller
                 }
                 else
                 {
-                    let maxhp = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
+                    const maxhp = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
                     item.upd.MedKit = {"HpResource": maxhp - body.count};
                 }
 
@@ -113,16 +113,16 @@ class Controller
     }
 
     /* stores in-raid player health */
-    saveHealth(pmcData, info, sessionID)
+    saveVitality(pmcData, info, sessionID)
     {
+        const BodyPartsList = info.Health;
         let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
         let nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
-        let BodyPartsList = info.Health;
 
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
 
-        for (let bodyPart of Object.keys(BodyPartsList))
+        for (const bodyPart in BodyPartsList)
         {
             if (BodyPartsList[bodyPart].Effects)
             {
@@ -139,7 +139,13 @@ class Controller
             }
         }
 
-        this.applyHealth(pmcData, sessionID);
+        console.log(sessionID);
+
+        this.saveHealth(pmcData, sessionID);
+        this.saveEffects(pmcData, sessionID);
+        this.resetVitality(sessionID);
+
+        pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
     }
 
     /* stores the player health changes */
@@ -181,7 +187,7 @@ class Controller
 
     healthTreatment(pmcData, info, sessionID)
     {
-        let body = {
+        const body = {
             "Action": "RestoreHealth",
             "tid": "54cb57776803fa99248b456e",
             "scheme_items": info.items
@@ -190,12 +196,12 @@ class Controller
         helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID);
 
         let BodyParts = info.difference.BodyParts;
-        let BodyPartKeys = Object.keys(BodyParts);
         let healthInfo = { "IsAlive": true, "Health": {} };
 
-        for (let key of BodyPartKeys)
+        for (const key in BodyParts)
         {
-            let bodyPart = info.difference.BodyParts[key];
+            const bodyPart = info.difference.BodyParts[key];
+
             healthInfo.Health[key] = {};
             healthInfo.Health[key].Current = Math.round(pmcData.Health.BodyParts[key].Health.Current + bodyPart.Health);
 
@@ -208,7 +214,7 @@ class Controller
         healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
 
-        this.saveHealth(pmcData, healthInfo, sessionID);
+        this.saveVitality(pmcData, healthInfo, sessionID);
         return item_f.router.getOutput();
     }
 
@@ -260,47 +266,67 @@ class Controller
         }
     }
 
-    /* apply the health changes to the profile */
-    applyHealth(pmcData, sessionID)
+    saveHealth(pmcData, sessionID)
     {
-        if (!save_f.config.saveHealthEnabled)
+        console.log(sessionID);
+        
+        if (!health_f.config.save.health)
         {
             return;
         }
 
         let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
-        let keys = Object.keys(nodeHealth);
 
-        for (let item of keys)
+        for (const item in nodeHealth)
         {
-            if (item !== "Hydration" && item !== "Energy")
+            let target = nodeHealth[item];
+
+            if (item === "Hydration" || item === "Energy")
             {
-                /* set body part health */
-                pmcData.Health.BodyParts[item].Health.Current = (nodeHealth[item] <= 0)
-                    ? Math.round((pmcData.Health.BodyParts[item].Health.Maximum * health_f.config.saveHealthMultiplier))
-                    : nodeHealth[item];
+                // set resources
+                if (target > pmcData.Health[item].Maximum)
+                {
+                    target = pmcData.Health[item].Maximum;
+                }
+
+                pmcData.Health[item].Current = Math.round(target);
             }
             else
             {
-                /* set resources */
-                pmcData.Health[item].Current = nodeHealth[item];
-
-                if (pmcData.Health[item].Current > pmcData.Health[item].Maximum)
+                // set body part health
+                if (target < 0)
                 {
-                    pmcData.Health[item].Current = pmcData.Health[item].Maximum;
+                    // heal to full health
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum);
                 }
+
+                if (target === 0)
+                {
+                    // blacked body part
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * 0.1);
+                }
+
+                pmcData.Health.BodyParts[item].Health.Current = target;
             }
         }
+    }
 
-        let nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
+    saveEffects(pmcData, sessionID)
+    {
+        if (!health_f.config.save.effects)
+        {
+            return;
+        }
 
-        Object.keys(nodeEffects).forEach(bodyPart =>
+        const nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
+
+        for (const bodyPart in nodeEffects)
         {
             // clear effects
             delete pmcData.Health.BodyParts[bodyPart].Effects;
 
             // add new
-            Object.keys(nodeEffects[bodyPart]).forEach(effect =>
+            for (const effect in nodeEffects[bodyPart])
             {
                 switch (effect)
                 {
@@ -308,11 +334,8 @@ class Controller
                         this.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "BreakPart"});
                         break;
                 }
-            });
-        });
-
-        pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-        this.resetHealth(sessionID);
+            }
+        }
     }
 
     isEmpty(map)
@@ -344,13 +367,13 @@ class Callbacks
 
     onLoad(sessionID)
     {
-        return health_f.controller.resetHealth(sessionID);
+        return health_f.controller.resetVitality(sessionID);
     }
 
     syncHealth(url, info, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        health_f.controller.saveHealth(pmcData, info, sessionID);
+        health_f.controller.saveVitality(pmcData, info, sessionID);
         return response_f.controller.nullResponse();
     }
 
@@ -380,8 +403,10 @@ class Config
 {
     constructor()
     {
-        this.saveHealthEnabled = true;
-        this.saveHealthMultiplier = 1;
+        this.save = {
+            "health": true,
+            "effects": true
+        }
     }
 }
 
