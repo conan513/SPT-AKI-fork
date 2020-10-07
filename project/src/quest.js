@@ -84,6 +84,20 @@ class Controller
         return profileQuests;
     }
 
+    getFindItemIdForQuestItem(itemTpl)
+    {
+        for (const quest of database_f.database.tables.templates.quests)
+        {
+            for (const condition of quest.conditions.AvailableForFinish)
+            {
+                if (condition._parent === "FindItem" && condition._props.target.includes(itemTpl))
+                {
+                    return condition._props.id;
+                }
+            }            
+        }
+    }
+
     getCachedQuest(qid)
     {
         for (let quest of database_f.database.tables.templates.quests)
