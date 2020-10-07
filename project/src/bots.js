@@ -834,7 +834,7 @@ class Generator
         {
             for (let i = 0; i < count; i++)
             {
-                const itemIndex = this.getBiasedRandomNumber(0, pool.length, pool.length, 3);
+                const itemIndex = this.getBiasedRandomNumber(0, pool.length - 1, pool.length - 1, 3);
                 const itemTemplate = pool[itemIndex];
                 const id = utility.generateNewItemId();
 
