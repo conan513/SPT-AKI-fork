@@ -139,8 +139,6 @@ class Controller
             }
         }
 
-        console.log(sessionID);
-
         this.saveHealth(pmcData, sessionID);
         this.saveEffects(pmcData, sessionID);
         this.resetVitality(sessionID);

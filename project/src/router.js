@@ -28,17 +28,10 @@ class Router
         this.dynamicRoutes[route] = callback;
     }
 
-    getResponse(req, body, sessionID)
+    getResponse(req, info, sessionID)
     {
         let output = "";
         let url = req.url;
-        let info = {};
-
-        /* parse body */
-        if (body !== "")
-        {
-            info = json.parse(body);
-        }
 
         /* remove retry from URL */
         if (url.includes("?retry="))

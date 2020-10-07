@@ -56,7 +56,7 @@ class Callbacks
         }
 
         // send image
-        server.sendFile(resp, baseNode[fileName]);
+        server_f.server.sendFile(resp, baseNode[fileName]);
     }
 }
 

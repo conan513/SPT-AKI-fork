@@ -106,7 +106,7 @@ class Controller
             data.push("{\"type\": \"ping\", \"eventId\": \"ping\"}");
         }
 
-        server.sendTextJson(resp, data.join("\n"));
+        server_f.server.sendTextJson(resp, data.join("\n"));
     }
 
     /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */

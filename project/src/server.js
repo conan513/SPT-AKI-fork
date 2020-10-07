@@ -193,36 +193,29 @@ class Server
 
     sendResponse(sessionID, req, resp, body)
     {
-        let output = "";
-
         // get response
-        if (req.method === "POST" || req.method === "PUT")
-        {
-            output = router_f.router.getResponse(req, body, sessionID);
-        }
-        else
-        {
-            output = router_f.router.getResponse(req, "", sessionID);
-        }
+        const text = (body) ? body.toString() : "{}";
+        const info = (text) ? json.parse(text) : {};
+        let output = router_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */
         if (!output)
         {
             logger.logError(`[UNHANDLED][${req.url}]`);
-            logger.log(body);
+            logger.log(info);
             output = response_f.controller.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
         // execute data received callback
         for (let type in this.receiveCallback)
         {
-            this.receiveCallback[type](sessionID, req, resp, body, output);
+            this.receiveCallback[type](sessionID, req, resp, info, output);
         }
 
         // send response
         if (output in this.respondCallback)
         {
-            this.respondCallback[output](sessionID, req, resp, body);
+            this.respondCallback[output](sessionID, req, resp, info);
         }
         else
         {
@@ -250,8 +243,7 @@ class Server
             {
                 zlib.inflate(data, (err, body) =>
                 {
-                    const jsonData = (body) ? body.toString() : "{}";
-                    server_f.server.sendResponse(sessionID, req, resp, jsonData);
+                    server_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
@@ -279,8 +271,7 @@ class Server
 
                 zlib.inflate(data, (err, body) =>
                 {
-                    const jsonData = (body) ? body.toString() : "{}";
-                    server_f.server.sendResponse(sessionID, req, resp, jsonData);
+                    server_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
