@@ -10,14 +10,14 @@
 
 "use strict";
 
-class InventoryController
+class Controller
 {
     /* Based on the item action, determine whose inventories we should be looking at for from and to. */
     getOwnerInventoryItems(body, sessionID)
     {
         let isSameInventory = false;
-        let pmcItems = profile_f.profileController.getPmcProfile(sessionID).Inventory.items;
-        let scavData = profile_f.profileController.getScavProfile(sessionID);
+        let pmcItems = profile_f.controller.getPmcProfile(sessionID).Inventory.items;
+        let scavData = profile_f.controller.getScavProfile(sessionID);
         let fromInventoryItems = pmcItems;
         let fromType = "pmc";
 
@@ -30,7 +30,7 @@ class InventoryController
             }
             else if (body.fromOwner.type === "Mail")
             {
-                fromInventoryItems = dialogue_f.dialogueServer.getMessageItemContents(body.fromOwner.id, sessionID);
+                fromInventoryItems = dialogue_f.controller.getMessageItemContents(body.fromOwner.id, sessionID);
                 fromType = "mail";
             }
         }
@@ -66,7 +66,7 @@ class InventoryController
     * */
     moveItem(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
         let items = this.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
@@ -223,8 +223,8 @@ class InventoryController
 
     discardItem(pmcData, body, sessionID)
     {
-        insurance_f.insuranceServer.remove(pmcData, body.item, sessionID);
-        return this.removeItem(pmcData, body.item, item_f.itemServer.getOutput(), sessionID);
+        insurance_f.controller.remove(pmcData, body.item, sessionID);
+        return this.removeItem(pmcData, body.item, item_f.router.getOutput(), sessionID);
     }
 
     /* Split Item
@@ -232,7 +232,7 @@ class InventoryController
     * */
     splitItem(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
         let location = body.container.location;
 
         let items = this.getOwnerInventoryItems(body, sessionID);
@@ -292,7 +292,7 @@ class InventoryController
     * */
     mergeItem(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
         let items = this.getOwnerInventoryItems(body, sessionID);
 
         for (let key in items.to)
@@ -347,7 +347,7 @@ class InventoryController
     * */
     transferItem(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
         let itemFrom = null;
         let itemTo = null;
 
@@ -413,7 +413,7 @@ class InventoryController
     * */
     swapItem(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
 
         for (let iterItem of pmcData.Inventory.items)
         {
@@ -468,7 +468,7 @@ class InventoryController
             else
             {
                 // Only grab the relevant trader items and add unique values
-                const traderItems = trader_f.traderServer.getAssort(sessionID, body.tid).items;
+                const traderItems = trader_f.controller.getAssort(sessionID, body.tid).items;
                 const relevantItems = helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
                 const toAdd = relevantItems.filter(traderItem => !itemLib.some(item => traderItem._id === item._id));
                 itemLib.push(...toAdd);
@@ -579,7 +579,7 @@ class InventoryController
             }
 
             // in case people want all items to be marked as found in raid
-            if (inventory_f.inventoryConfig.newItemsMarkedFound)
+            if (inventory_f.config.newItemsMarkedFound)
             {
                 foundInRaid = true;
             }
@@ -637,7 +637,10 @@ class InventoryController
                     maxCount -= ammoStackMaxSize;
                 }
 
-                [output.items.new, pmcData.Inventory.items].forEach(x => x.push.apply(x, ammos));
+                for (const item of [output.items.new, pmcData.Inventory.items])
+                {
+                    item.push.apply(item, ammos);
+                }
             }
 
             while (toDo.length > 0)
@@ -716,7 +719,7 @@ class InventoryController
             if (item._id && item._id === body.item)
             {
                 item.upd.Foldable = {"Folded": body.value};
-                return item_f.itemServer.getOutput();
+                return item_f.router.getOutput();
             }
         }
 
@@ -730,7 +733,7 @@ class InventoryController
             if (item._id && item._id === body.item)
             {
                 item.upd.Togglable = {"On": body.value};
-                return item_f.itemServer.getOutput();
+                return item_f.router.getOutput();
             }
         }
 
@@ -763,7 +766,7 @@ class InventoryController
                     Object.assign(item, myobject);
                 }
 
-                return item_f.itemServer.getOutput();
+                return item_f.router.getOutput();
             }
         }
 
@@ -781,29 +784,40 @@ class InventoryController
         }
 
         pmcData.Inventory.fastPanel[body.index] = body.item;
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     examineItem(pmcData, body, sessionID)
     {
         let itemID = "";
-        let items = pmcData.Inventory.items;
 
-        // outside player profile
         if ("fromOwner" in body)
         {
             // scan ragfair as a trader
             if (body.fromOwner.type === "RagFair")
             {
-                body.item = body.fromOwner.id;
                 body.fromOwner.type = "Trader";
-                body.fromOwner.id = "ragfair";
             }
 
             // get trader assort
             if (body.fromOwner.type === "Trader")
             {
-                items = trader_f.traderServer.getAssort(sessionID, body.fromOwner.id).items;
+                const traders = database_f.database.tables.traders;
+
+                for (const traderID in traders)
+                {
+                    if (!(body.item in traders[traderID].assort.loyal_level_items))
+                    {
+                        continue;
+                    }
+
+                    const assort = traders[traderID].assort.items.find((item) =>
+                    {
+                        return body.item === item._id;
+                    });
+
+                    itemID = assort._tpl;
+                }
             }
 
             // get hideout item
@@ -813,49 +827,45 @@ class InventoryController
             }
         }
 
-        if (preset_f.itemPresets.isPreset(itemID))
+        if (preset_f.controller.isPreset(itemID))
         {
-            itemID = preset_f.itemPresets.getBaseItemTpl(itemID);
+            // item preset
+            itemID = preset_f.controller.getBaseItemTpl(itemID);
         }
 
-        if (itemID === "")
+        if (!itemID)
         {
-            // player/trader inventory
-            for (let item of items)
+            // item template
+            if (body.item in database_f.database.tables.templates.items)
             {
-                if (item._id === body.item)
-                {
-                    itemID = item._tpl;
-                    break;
-                }
+                itemID = body.item;
             }
         }
 
-        if (itemID === "")
+        if (!itemID)
         {
-            // player/trader inventory
-            let result = helpfunc_f.helpFunctions.getItem(body.item);
-
-            if (result[0])
+            // player inventory
+            const target = pmcData.Inventory.items.find((item) =>
             {
-                itemID = result[1]._id;
+                return body.item === item._id;
+            });
+
+            if (target)
+            {
+                itemID = target._tpl;
             }
         }
 
-        // item not found
-        if (itemID === "")
+        if (itemID)
         {
-            logger.logError("Cannot find item to examine");
-            return "";
+            // item found
+            const item = database_f.database.tables.templates.items[itemID];
+
+            pmcData.Info.Experience += item._props.ExamineExperience;
+            pmcData.Encyclopedia[itemID] = true;
         }
 
-        // item found
-        let item = database_f.database.tables.templates.items[itemID];
-        pmcData.Info.Experience += item._props.ExamineExperience;
-        pmcData.Encyclopedia[itemID] = true;
-
-        logger.logSuccess("EXAMINED: " + itemID);
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     readEncyclopedia(pmcData, body, sessionID)
@@ -865,90 +875,90 @@ class InventoryController
             pmcData.Encyclopedia[id] = true;
         }
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 }
 
-class InventoryCallbacks
+class Callbacks
 {
     constructor()
     {
-        item_f.itemServer.addRoute("Move", this.moveItem.bind());
-        item_f.itemServer.addRoute("Remove", this.removeItem.bind());
-        item_f.itemServer.addRoute("Split", this.splitItem.bind());
-        item_f.itemServer.addRoute("Merge", this.mergeItem.bind());
-        item_f.itemServer.addRoute("Transfer", this.transferItem.bind());
-        item_f.itemServer.addRoute("Swap", this.swapItem.bind());
-        item_f.itemServer.addRoute("Fold", this.foldItem.bind());
-        item_f.itemServer.addRoute("Toggle", this.toggleItem.bind());
-        item_f.itemServer.addRoute("Tag", this.tagItem.bind());
-        item_f.itemServer.addRoute("Bind", this.bindItem.bind());
-        item_f.itemServer.addRoute("Examine", this.examineItem.bind());
-        item_f.itemServer.addRoute("ReadEncyclopedia", this.readEncyclopedia.bind());
+        item_f.router.addRoute("Move", this.moveItem.bind());
+        item_f.router.addRoute("Remove", this.removeItem.bind());
+        item_f.router.addRoute("Split", this.splitItem.bind());
+        item_f.router.addRoute("Merge", this.mergeItem.bind());
+        item_f.router.addRoute("Transfer", this.transferItem.bind());
+        item_f.router.addRoute("Swap", this.swapItem.bind());
+        item_f.router.addRoute("Fold", this.foldItem.bind());
+        item_f.router.addRoute("Toggle", this.toggleItem.bind());
+        item_f.router.addRoute("Tag", this.tagItem.bind());
+        item_f.router.addRoute("Bind", this.bindItem.bind());
+        item_f.router.addRoute("Examine", this.examineItem.bind());
+        item_f.router.addRoute("ReadEncyclopedia", this.readEncyclopedia.bind());
     }
 
     moveItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.moveItem(pmcData, body, sessionID);
+        return inventory_f.controller.moveItem(pmcData, body, sessionID);
     }
 
     removeItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.discardItem(pmcData, body, sessionID);
+        return inventory_f.controller.discardItem(pmcData, body, sessionID);
     }
 
     splitItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.splitItem(pmcData, body, sessionID);
+        return inventory_f.controller.splitItem(pmcData, body, sessionID);
     }
 
     mergeItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.mergeItem(pmcData, body, sessionID);
+        return inventory_f.controller.mergeItem(pmcData, body, sessionID);
     }
 
     transferItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.transferItem(pmcData, body, sessionID);
+        return inventory_f.controller.transferItem(pmcData, body, sessionID);
     }
 
     swapItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.swapItem(pmcData, body, sessionID);
+        return inventory_f.controller.swapItem(pmcData, body, sessionID);
     }
 
     foldItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.foldItem(pmcData, body, sessionID);
+        return inventory_f.controller.foldItem(pmcData, body, sessionID);
     }
 
     toggleItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.toggleItem(pmcData, body, sessionID);
+        return inventory_f.controller.toggleItem(pmcData, body, sessionID);
     }
 
     tagItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.tagItem(pmcData, body, sessionID);
+        return inventory_f.controller.tagItem(pmcData, body, sessionID);
     }
 
     bindItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.bindItem(pmcData, body, sessionID);
+        return inventory_f.controller.bindItem(pmcData, body, sessionID);
     }
 
     examineItem(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.examineItem(pmcData, body, sessionID);
+        return inventory_f.controller.examineItem(pmcData, body, sessionID);
     }
 
     readEncyclopedia(pmcData, body, sessionID)
     {
-        return inventory_f.inventoryController.readEncyclopedia(pmcData, body, sessionID);
+        return inventory_f.controller.readEncyclopedia(pmcData, body, sessionID);
     }
 }
 
-class InventoryConfig
+class Config
 {
     constructor()
     {
@@ -956,6 +966,6 @@ class InventoryConfig
     }
 }
 
-module.exports.inventoryController = new InventoryController();
-module.exports.inventoryCallbacks = new InventoryCallbacks();
-module.exports.inventoryConfig = new InventoryConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

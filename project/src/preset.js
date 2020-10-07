@@ -9,7 +9,7 @@
 
 "use strict";
 
-class ItemPresets
+class Controller
 {
     initialize()
     {
@@ -98,7 +98,7 @@ class ItemPresets
     }
 }
 
-class PresetCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -107,9 +107,9 @@ class PresetCallbacks
 
     load()
     {
-        preset_f.itemPresets.initialize();
+        preset_f.controller.initialize();
     }
 }
 
-module.exports.itemPresets = new ItemPresets();
-module.exports.presetCallback = new PresetCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

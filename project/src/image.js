@@ -8,7 +8,7 @@
 
 "use strict";
 
-class ImageCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -60,4 +60,4 @@ class ImageCallbacks
     }
 }
 
-module.exports.imageCallbacks = new ImageCallbacks();
+module.exports.callbacks = new Callbacks();

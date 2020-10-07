@@ -9,11 +9,11 @@
 
 "use strict";
 
-class CustomizationController
+class Controller
 {
     onLoad(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         if (!("suits" in profile))
         {
@@ -30,146 +30,150 @@ class CustomizationController
             let suite = database_f.database.tables.templates.suits[body.suites[i]];
 
             // this parent reffers to Lower Node
-            if (suite._parent == "5cd944d01388ce000a659df9")
+            if (suite._parent === "5cd944d01388ce000a659df9")
             {
                 pmcData.Customization.Feet = suite._props.Feet;
             }
 
             // this parent reffers to Upper Node
-            if (suite._parent == "5cd944ca1388ce03a44dc2a4")
+            if (suite._parent === "5cd944ca1388ce03a44dc2a4")
             {
                 pmcData.Customization.Body = suite._props.Body;
                 pmcData.Customization.Hands = suite._props.Hands;
             }
         }
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     getTraderSuits(traderID, sessionID)
     {
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
-        let suitTemplates = database_f.database.tables.templates.suits;
-        let suitArray = database_f.database.tables.traders[traderID].suits;
-        let suitList = [];
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let templates = database_f.database.tables.templates.suits;
+        let suits = database_f.database.tables.traders[traderID].suits;
+        let result = [];
 
         // get only suites from the player's side (e.g. USEC)
-        for (let suit of suitArray)
+        for (const suit of suits)
         {
-            if (suit.suiteId in suitTemplates)
+            if (suit.suiteId in templates)
             {
-                for (let i = 0; i < suitTemplates[suit.suiteId]._props.Side.length; i++)
+                for (let i = 0; i < templates[suit.suiteId]._props.Side.length; i++)
                 {
-                    let side = suitTemplates[suit.suiteId]._props.Side[i];
-
-                    if (side === pmcData.Info.Side)
+                    if (templates[suit.suiteId]._props.Side[i] === pmcData.Info.Side)
                     {
-                        suitList.push(suit);
+                        result.push(suit);
                     }
                 }
             }
         }
 
-        return suitList;
+        return result;
     }
 
     getAllTraderSuits(sessionID)
     {
-        let output = [];
+        const traders = database_f.database.tables.traders;
+        let result = [];
 
-        for (let traderID in database_f.database.tables.traders)
+        for (let traderID in traders)
         {
-            output.push(this.getTraderSuits(traderID, sessionID));
+            if (traders[traderID].base.customization_seller === true)
+            {
+                result = [...result, ...this.getTraderSuits(traderID, sessionID)];
+            }
         }
 
-        return output;
+        return result;
     }
 
     buyClothing(pmcData, body, sessionID)
     {
-        let output = item_f.itemServer.getOutput();
-        let suits = save_f.saveServer.profiles[sessionID].suits;
-        let offers = this.getAllTraderSuits(sessionID);
+        let output = item_f.router.getOutput();
+
+        // find suit offer
+        const offers = this.getAllTraderSuits(sessionID);
+        let offer = offers.find((suit) =>
+        {
+            return body.offer === suit._id;
+        });
+
+        if (!offer)
+        {
+            logger.logError("OOPS");
+            return output;
+        }
 
         // check if outfit already exists
-        for (let suiteId of suits)
+        if (save_f.server.profiles[sessionID].suits.find((suit) =>
         {
-            if (suiteId === body.offer)
-            {
-                return output;
-            }
+            return suit === body.offer;
+        }))
+        {
+            return output;
         }
 
         // pay items
-        for (let sellItem in body.items)
+        for (let sellItem of body.items)
         {
-            for (let item in pmcData.Inventory.items)
+            for (let itemID in pmcData.Inventory.items)
             {
-                if (pmcData.Inventory.items[item]._id !== sellItem.id)
+                let item = pmcData.Inventory.items[itemID];
+
+                if (item._id !== sellItem.id)
                 {
                     continue;
                 }
 
-                if (pmcData.Inventory.items[item].upd.StackObjectsCount === sellItem.count && sellItem.del === true)
+                if (sellItem.del === true)
                 {
                     output.items.del.push({"_id": sellItem.id});
-                    pmcData.Inventory.items.splice(item, 1);
+                    pmcData.Inventory.items.splice(itemID, 1);
                 }
-                else if (pmcData.Inventory.items[item].upd.StackObjectsCount > sellItem.count)
+
+                if (item.upd.StackObjectsCount > sellItem.count)
                 {
-                    pmcData.Inventory.items[item].upd.StackObjectsCount -= sellItem.count;
-
+                    pmcData.Inventory.items[itemID].upd.StackObjectsCount -= sellItem.count;
                     output.items.change.push({
-                        "_id": pmcData.Inventory.items[item]._id,
-                        "_tpl": pmcData.Inventory.items[item]._tpl,
-                        "parentId": pmcData.Inventory.items[item].parentId,
-                        "slotId": pmcData.Inventory.items[item].slotId,
-                        "location": pmcData.Inventory.items[item].location,
-                        "upd": {"StackObjectsCount": pmcData.Inventory.items[item].upd.StackObjectsCount}
+                        "_id": item._id,
+                        "_tpl": item._tpl,
+                        "parentId": item.parentId,
+                        "slotId": item.slotId,
+                        "location": item.location,
+                        "upd": {"StackObjectsCount": item.upd.StackObjectsCount}
                     });
-
-                    break;
                 }
             }
         }
 
-        // add outfit to suits
-        for (let offer of offers)
-        {
-            if (body.offer === offer._id)
-            {
-                suits.push(offer.suiteId);
-                break;
-            }
-        }
-
-        save_f.saveServer.profiles[sessionID].suits = suits;
+        // add suit
+        save_f.server.profiles[sessionID].suits.push(offer._id);
         return output;
     }
 }
 
-class CustomizationCallbacks
+class Callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["customization"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["customization"] = this.onLoad.bind();
 
         router.addDynamicRoute("/client/trading/customization/", this.getTraderSuits.bind());
         router.addStaticRoute("/client/trading/customization/storage", this.getSuits.bind());
-        item_f.itemServer.addRoute("CustomizationWear", this.wearClothing.bind());
-        item_f.itemServer.addRoute("CustomizationBuy", this.buyClothing.bind());
+        item_f.router.addRoute("CustomizationWear", this.wearClothing.bind());
+        item_f.router.addRoute("CustomizationBuy", this.buyClothing.bind());
     }
 
     onLoad(sessionID)
     {
-        return customization_f.customizationController.onLoad(sessionID);
+        return customization_f.controller.onLoad(sessionID);
     }
 
     getSuits(url, info, sessionID)
     {
-        return response_f.responseController.getBody({
+        return response_f.controller.getBody({
             "_id": `pmc${sessionID}`,
-            "suites": save_f.saveServer.profiles[sessionID].suits
+            "suites": save_f.server.profiles[sessionID].suits
         });
     }
 
@@ -178,19 +182,19 @@ class CustomizationCallbacks
         let splittedUrl = url.split("/");
         let traderID = splittedUrl[splittedUrl.length - 2];
 
-        return response_f.responseController.getBody(customization_f.customizationController.getTraderSuits(traderID, sessionID));
+        return response_f.controller.getBody(customization_f.controller.getTraderSuits(traderID, sessionID));
     }
 
     wearClothing(pmcData, body, sessionID)
     {
-        return customization_f.customizationController.wearClothing(pmcData, body, sessionID);
+        return customization_f.controller.wearClothing(pmcData, body, sessionID);
     }
 
     buyClothing(pmcData, body, sessionID)
     {
-        return customization_f.CustomizationController.buyClothing(pmcData, body, sessionID);
+        return customization_f.controller.buyClothing(pmcData, body, sessionID);
     }
 }
 
-module.exports.customizationController = new CustomizationController();
-module.exports.customizationCallbacks = new CustomizationCallbacks();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();

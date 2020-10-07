@@ -10,8 +10,94 @@
 
 "use strict";
 
-class QuestController
+class Controller
 {
+    getVisibleQuests(url, info, sessionID)
+    {
+        let quests = [];
+        const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
+
+        for (const quest of database_f.database.tables.templates.quests)
+        {
+            const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+
+            // If the quest has no prerequisite quests then add to visible quest list
+            if (prereqs.length === 0)
+            {
+                quests.push(quest);
+                continue;
+            }
+
+            let isVisible = true;
+            for (const pr of prereqs)
+            {
+                // Check each prerequisite quest, if any are currently locked
+                // then this quest should not be visible
+                const preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
+
+                if (preQuest.status === "Locked")
+                {
+                    isVisible = false;
+                    break;
+                }
+            }
+
+            if (isVisible)
+            {
+                quests.push(quest);
+            }
+        }
+
+        return quests;
+    }
+
+    getAllProfileQuests()
+    {
+        let profileQuests = [];
+
+        for (let quest of database_f.database.tables.templates.quests)
+        {
+            let state = "AvailableForStart";
+            for (let condition of quest.conditions.AvailableForStart)
+            {
+                if (condition._parent === "Level" && condition._props.value > 1)
+                {
+                    state = "Locked";
+                    break;
+                }
+                else if (condition._parent === "Quest")
+                {
+                    state = "Locked";
+                    break;
+                }
+            }
+
+            profileQuests.push({
+                "qid": quest._id,
+                "startTime": 0,
+                "completedConditions": [],
+                "statusTimers": {},
+                "status": state
+            });
+        }
+
+        return profileQuests;
+    }
+
+    getFindItemIdForQuestItem(itemTpl)
+    {
+        for (const quest of database_f.database.tables.templates.quests)
+        {
+            for (const condition of quest.conditions.AvailableForFinish)
+            {
+                if (condition._parent === "FindItem" && condition._props.target.includes(itemTpl))
+                {
+                    return condition._props.id;
+                }
+            }            
+        }
+    }
+
     getCachedQuest(qid)
     {
         for (let quest of database_f.database.tables.templates.quests)
@@ -114,8 +200,8 @@ class QuestController
         let questRewards = this.getQuestRewardItems(quest, state);
         let messageContent = {
             "templateId": questLocale.startedMessageText,
-            "type": dialogue_f.dialogueServer.getMessageTypeValue("questStart"),
-            "maxStorageTime": quest_f.questConfig.redeemTime * 3600
+            "type": dialogue_f.controller.getMessageTypeValue("questStart"),
+            "maxStorageTime": quest_f.config.redeemTime * 3600
 
         };
 
@@ -123,14 +209,14 @@ class QuestController
         {
             messageContent = {
                 "templateId": questLocale.description,
-                "type": dialogue_f.dialogueServer.getMessageTypeValue("questStart"),
-                "maxStorageTime": quest_f.questConfig.redeemTime * 3600
+                "type": dialogue_f.controller.getMessageTypeValue("questStart"),
+                "maxStorageTime": quest_f.config.redeemTime * 3600
             };
         }
 
-        dialogue_f.dialogueServer.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
+        dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        return item_f.itemServer.getOutput();
+        return item_f.router.getOutput();
     }
 
     completeQuest(pmcData, body, sessionID)
@@ -195,7 +281,7 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
-                    pmcData = profile_f.profileController.getPmcProfile(sessionID);
+                    pmcData = profile_f.controller.getPmcProfile(sessionID);
 
                     for (let skill of pmcData.Skills.Common)
                     {
@@ -208,12 +294,12 @@ class QuestController
                     break;
 
                 case "Experience":
-                    pmcData = profile_f.profileController.getPmcProfile(sessionID);
+                    pmcData = profile_f.controller.getPmcProfile(sessionID);
                     pmcData.Info.Experience += parseInt(reward.value);
                     break;
 
                 case "TraderStanding":
-                    pmcData = profile_f.profileController.getPmcProfile(sessionID);
+                    pmcData = profile_f.controller.getPmcProfile(sessionID);
                     pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
 
                     if (pmcData.TraderStandings[reward.target].currentStanding < 0)
@@ -221,11 +307,11 @@ class QuestController
                         pmcData.TraderStandings[reward.target].currentStanding = 0;
                     }
 
-                    trader_f.traderServer.lvlUp(reward.target, sessionID);
+                    trader_f.controller.lvlUp(reward.target, sessionID);
                     break;
 
                 case "TraderUnlock":
-                    trader_f.traderServer.changeTraderDisplay(reward.target, true, sessionID);
+                    trader_f.controller.changeTraderDisplay(reward.target, true, sessionID);
                     break;
             }
         }
@@ -235,18 +321,18 @@ class QuestController
         let questLocale = database_f.database.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.successMessageText,
-            "type": dialogue_f.dialogueServer.getMessageTypeValue("questSuccess"),
-            "maxStorageTime": quest_f.questConfig.redeemTime * 3600
+            "type": dialogue_f.controller.getMessageTypeValue("questSuccess"),
+            "maxStorageTime": quest_f.config.redeemTime * 3600
         };
 
-        dialogue_f.dialogueServer.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
-        return item_f.itemServer.getOutput();
+        dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
+        return item_f.router.getOutput();
     }
 
     handoverQuest(pmcData, body, sessionID)
     {
         const quest = this.getCachedQuest(body.qid);
-        let output = item_f.itemServer.getOutput();
+        let output = item_f.router.getOutput();
         let types = ["HandoverItem", "WeaponAssembly"];
         let handoverMode = true;
         let value = 0;
@@ -390,39 +476,46 @@ class QuestController
     }
 }
 
-class QuestCallbacks
+class Callbacks
 {
     constructor()
     {
-        item_f.itemServer.addRoute("QuestAccept", this.acceptQuest.bind());
-        item_f.itemServer.addRoute("QuestComplete", this.completeQuest.bind());
-        item_f.itemServer.addRoute("QuestHandover", this.handoverQuest.bind());
+        item_f.router.addRoute("QuestAccept", this.acceptQuest.bind());
+        item_f.router.addRoute("QuestComplete", this.completeQuest.bind());
+        item_f.router.addRoute("QuestHandover", this.handoverQuest.bind());
+
+        router.addStaticRoute("/client/quest/list", this.listQuests.bind());
     }
 
     acceptQuest(pmcData, body, sessionID)
     {
-        return quest_f.questController.acceptQuest(pmcData, body, sessionID);
+        return quest_f.controller.acceptQuest(pmcData, body, sessionID);
     }
 
     completeQuest(pmcData, body, sessionID)
     {
-        return quest_f.questController.completeQuest(pmcData, body, sessionID);
+        return quest_f.controller.completeQuest(pmcData, body, sessionID);
     }
 
     handoverQuest(pmcData, body, sessionID)
     {
-        return quest_f.questController.handoverQuest(pmcData, body, sessionID);
+        return quest_f.controller.handoverQuest(pmcData, body, sessionID);
+    }
+
+    listQuests(url, info, sessionID)
+    {
+        return response_f.controller.getBody(quest_f.controller.getVisibleQuests(url, info, sessionID));
     }
 }
 
-class QuestConfig
+class Config
 {
     constructor()
     {
-        this.RedeemTime = 48;
+        this.redeemTime = 48;
     }
 }
 
-module.exports.questController = new QuestController();
-module.exports.questCallbacks = new QuestCallbacks();
-module.exports.questConfig = new QuestConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

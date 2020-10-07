@@ -8,7 +8,7 @@
 
 "use strict";
 
-class MatchServer
+class Controller
 {
     constructor()
     {
@@ -36,19 +36,19 @@ class MatchServer
 
     getEnabled()
     {
-        return match_f.matchConfig.enabled;
+        return match_f.config.enabled;
     }
 
     getProfile(info)
     {
         if (info.profileId.includes("pmcAID"))
         {
-            return profile_f.profileController.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
+            return profile_f.controller.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
         }
 
         if (info.profileId.includes("scavAID"))
         {
-            return profile_f.profileController.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
+            return profile_f.controller.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
         }
 
         return null;
@@ -66,7 +66,7 @@ class MatchServer
 
         // --- LOOP (DO THIS FOR EVERY PLAYER IN GROUP)
         // get player profile
-        let account = account_f.accountServer.find(sessionID);
+        let account = account_f.server.find(sessionID);
         let profileID = "";
 
         if (info.savage === true)
@@ -114,7 +114,7 @@ class MatchServer
     }
 }
 
-class MatchCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -139,69 +139,69 @@ class MatchCallbacks
 
     updatePing(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     exitMatch(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     exitToMenu(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     startGroupSearch(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     stopGroupSearch(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     sendGroupInvite(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     acceptGroupInvite(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     cancelGroupInvite(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     putMetrics(url, info, sessionID)
     {
-        return response_f.responseController.nullResponse();
+        return response_f.controller.nullResponse();
     }
 
     getProfile(url, info, sessionID)
     {
-        return response_f.responseController.getBody(match_f.matchServer.getProfile(info));
+        return response_f.controller.getBody(match_f.controller.getProfile(info));
     }
 
     serverAvailable(url, info, sessionID)
     {
-        let output = match_f.matchServer.getEnabled();
+        let output = match_f.controller.getEnabled();
 
         if (output === false)
         {
-            return response_f.responseController.getBody(null, 420, "Please play as PMC and go through the offline settings screen before pressing ready.");
+            return response_f.controller.getBody(null, 420, "Please play as PMC and go through the offline settings screen before pressing ready.");
         }
 
-        return response_f.responseController.getBody(output);
+        return response_f.controller.getBody(output);
     }
 
     joinMatch(url, info, sessionID)
     {
-        return response_f.responseController.getBody(match_f.matchServer.joinMatch(info, sessionID));
+        return response_f.controller.getBody(match_f.controller.joinMatch(info, sessionID));
     }
 
     getMetrics(url, info, sessionID)
@@ -211,22 +211,22 @@ class MatchCallbacks
 
     getGroupStatus(url, info, sessionID)
     {
-        return response_f.responseController.getBody(match_f.matchServer.getGroupStatus(info));
+        return response_f.controller.getBody(match_f.controller.getGroupStatus(info));
     }
 
     createGroup(url, info, sessionID)
     {
-        return response_f.responseController.getBody(match_f.matchServer.createGroup(sessionID, info));
+        return response_f.controller.getBody(match_f.controller.createGroup(sessionID, info));
     }
 
     deleteGroup(url, info, sessionID)
     {
-        match_f.matchServer.deleteGroup(info);
-        return response_f.responseController.nullResponse();
+        match_f.controller.deleteGroup(info);
+        return response_f.controller.nullResponse();
     }
 }
 
-class MatchConfig
+class Config
 {
     constructor()
     {
@@ -234,6 +234,6 @@ class MatchConfig
     }
 }
 
-module.exports.matchServer = new MatchServer();
-module.exports.matchCallbacks = new MatchCallbacks();
-module.exports.matchConfig = new MatchConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

@@ -12,11 +12,11 @@
 
 "use strict";
 
-class InraidServer
+class Controller
 {
     onLoad(sessionID)
     {
-        let profile = save_f.saveServer.profiles[sessionID];
+        let profile = save_f.server.profiles[sessionID];
 
         if (!("inraid" in profile))
         {
@@ -31,17 +31,17 @@ class InraidServer
 
     addPlayer(sessionID, info)
     {
-        save_f.saveServer.profiles[sessionID].inraid.location = info.Location;
+        save_f.server.profiles[sessionID].inraid.location = info.Location;
     }
 
     removePlayer(sessionID)
     {
-        save_f.saveServer.profiles[sessionID].inraid.location = "none";
+        save_f.server.profiles[sessionID].inraid.location = "none";
     }
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        let locationName = save_f.saveServer.profiles[sessionID].inraid.location.toLowerCase();
+        let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
         let map = database_f.database.tables.locations[locationName].base;
         let mapKey = map.AccessKeys[0];
 
@@ -76,7 +76,7 @@ class InraidServer
 
                 if (item.upd.Key.NumberOfUsages >= helpfunc_f.helpFunctions.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
                 {
-                    inventory_f.inventoryController.removeItemFromProfile(offraidData.profile, item._id);
+                    inventory_f.controller.removeItemFromProfile(offraidData.profile, item._id);
                 }
 
                 break;
@@ -86,22 +86,22 @@ class InraidServer
 
     saveProgress(offraidData, sessionID)
     {
-        if (!inraid_f.inraidConfig.saveloot)
+        if (!inraid_f.config.save.loot)
         {
             return;
         }
 
-        let locationName = save_f.saveServer.profiles[sessionID].inraid.location.toLowerCase();
+        let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
 
         let map = database_f.database.tables.locations[locationName].base;
         let insuranceEnabled = map.Insurance;
-        let pmcData = profile_f.profileController.getPmcProfile(sessionID);
-        let scavData = profile_f.profileController.getScavProfile(sessionID);
+        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let scavData = profile_f.controller.getScavProfile(sessionID);
         const isPlayerScav = offraidData.isPlayerScav;
         const isDead = (offraidData.exit !== "survived" && offraidData.exit !== "runner");
         const preRaidGear = (isPlayerScav) ? [] : this.getPlayerGear(pmcData.Inventory.items);
 
-        save_f.saveServer.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
+        save_f.server.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
 
         if (!isPlayerScav)
         {
@@ -128,8 +128,8 @@ class InraidServer
             pmcData.Stats.TotalSessionExperience = 0;
 
             // Remove the Lab card
-            inraid_f.inraidServer.removeMapAccessKey(offraidData, sessionID);
-            inraid_f.inraidServer.removePlayer(sessionID);
+            inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
+            inraid_f.controller.removePlayer(sessionID);
         }
 
         // Check for exit status
@@ -150,37 +150,46 @@ class InraidServer
         if (isPlayerScav)
         {
             scavData = this.setInventory(scavData, offraidData.profile);
-            health_f.healthServer.resetHealth(sessionID);
-            profile_f.profileController.setScavProfile(sessionID, scavData);
+            health_f.controller.resetHealth(sessionID);
+            profile_f.controller.setScavProfile(sessionID, scavData);
             return;
         }
         else
         {
             pmcData = this.setInventory(pmcData, offraidData.profile);
-            health_f.healthServer.saveHealth(pmcData, offraidData.health, sessionID);
+            health_f.controller.saveVitality(pmcData, offraidData.health, sessionID);
         }
 
         // remove inventory if player died and send insurance items
         // TODO: dump of prapor/therapist dialogues that are sent when you die in lab with insurance.
         if (insuranceEnabled)
         {
-            insurance_f.insuranceServer.storeLostGear(pmcData, offraidData, preRaidGear, sessionID);
+            insurance_f.controller.storeLostGear(pmcData, offraidData, preRaidGear, sessionID);
         }
 
         if (isDead)
         {
             if (insuranceEnabled)
             {
-                insurance_f.insuranceServer.storeDeadGear(pmcData, offraidData, preRaidGear, sessionID);
+                insurance_f.controller.storeDeadGear(pmcData, offraidData, preRaidGear, sessionID);
             }
 
             pmcData = this.deleteInventory(pmcData, sessionID);
-            offraidData.profile.Stats.CarriedQuestItems = [];       //Delete carried quests items
+            let carriedQuestItems = offraidData.profile.Stats.CarriedQuestItems;
+
+            for (const questItem of carriedQuestItems)
+            {
+                const conditionId = quest_f.controller.getFindItemIdForQuestItem(questItem);
+                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId)
+            }                
+            
+            //Delete carried quests items
+            carriedQuestItems = [];
         }
 
         if (insuranceEnabled)
         {
-            insurance_f.insuranceServer.sendInsuredItems(pmcData, sessionID);
+            insurance_f.controller.sendInsuredItems(pmcData, sessionID);
         }
     }
 
@@ -249,9 +258,9 @@ class InraidServer
 
     setInventory(pmcData, profile)
     {
-        inventory_f.inventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
-        inventory_f.inventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
-        inventory_f.inventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
+        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
+        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
+        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
 
         for (let item of profile.Inventory.items)
         {
@@ -294,7 +303,7 @@ class InraidServer
         // delete items
         for (let item of toDelete)
         {
-            inventory_f.inventoryController.removeItemFromProfile(pmcData, item);
+            inventory_f.controller.removeItemFromProfile(pmcData, item);
         }
 
         pmcData.Inventory.fastPanel = {};
@@ -365,11 +374,11 @@ class InraidServer
     }
 }
 
-class InraidCallbacks
+class Callbacks
 {
     constructor()
     {
-        save_f.saveServer.onLoadCallback["inraid"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["inraid"] = this.onLoad.bind();
 
         router.addStaticRoute("/raid/map/name", this.registerPlayer.bind());
         router.addStaticRoute("/raid/profile/save", this.saveProgress.bind());
@@ -380,37 +389,37 @@ class InraidCallbacks
 
     onLoad(sessionID)
     {
-        return inraid_f.inraidServer.onLoad(sessionID);
+        return inraid_f.controller.onLoad(sessionID);
     }
 
     registerPlayer(url, info, sessionID)
     {
-        inraid_f.inraidServer.addPlayer(sessionID, info);
+        inraid_f.controller.addPlayer(sessionID, info);
     }
 
     saveProgress(url, info, sessionID)
     {
-        inraid_f.inraidServer.saveProgress(info, sessionID);
-        return response_f.responseController.nullResponse();
+        inraid_f.controller.saveProgress(info, sessionID);
+        return response_f.controller.nullResponse();
     }
 
     getRaidEndState()
     {
-        return response_f.responseController.noBody(inraid_f.inraidConfig.MIAOnRaidEnd);
+        return response_f.controller.noBody(inraid_f.config.MIAOnRaidEnd);
     }
 
     getRaidMenuSettings(url, info, sessionID)
     {
-        return response_f.responseController.noBody(inraid_f.inraidConfig.raidMenuSettings);
+        return response_f.controller.noBody(inraid_f.config.raidMenuSettings);
     }
 
     getWeaponDurability(url, info, sessionID)
     {
-        return response_f.responseController.noBody(inraid_f.inraidConfig.save.durability);
+        return response_f.controller.noBody(inraid_f.config.save.durability);
     }
 }
 
-class InraidConfig
+class Config
 {
     constructor()
     {
@@ -429,6 +438,6 @@ class InraidConfig
     }
 }
 
-module.exports.inraidServer = new InraidServer();
-module.exports.inraidCallbacks = new InraidCallbacks();
-module.exports.inraidConfig = new InraidConfig();
+module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
+module.exports.config = new Config();

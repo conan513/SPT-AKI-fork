@@ -10,13 +10,13 @@
 
 const fs = require("fs");
 
-class SaveServer
+class Server
 {
     constructor()
     {
         this.profiles = {};
         this.onLoadCallback = {};
-        this.onSaveCallback = {};
+        this.oncallbacks = {};
     }
 
     createVPath()
@@ -26,6 +26,11 @@ class SaveServer
         if (!fs.existsSync(filepath))
         {
             utility.createDir(filepath);
+        }
+
+        if (!("user" in db))
+        {
+            db.user = {};
         }
 
         const files = utility.getFileList(filepath);
@@ -59,9 +64,6 @@ class SaveServer
         {
             this.onSaveProfile(sessionID);
         }
-
-        // rebuild virual paths
-        this.createVPath();
     }
 
     onLoadProfile(sessionID)
@@ -82,9 +84,9 @@ class SaveServer
     onSaveProfile(sessionID)
     {
         // run callbacks
-        for (const callback in this.onSaveCallback)
+        for (const callback in this.oncallbacks)
         {
-            this.profiles[sessionID] = this.onSaveCallback[callback](sessionID);
+            this.profiles[sessionID] = this.oncallbacks[callback](sessionID);
         }
 
         // save profile
@@ -92,11 +94,11 @@ class SaveServer
     }
 }
 
-class SaveController
+class Controller
 {
     initialize()
     {
-        if (save_f.saveConfig.saveOnExit)
+        if (save_f.config.saveOnExit)
         {
             process.on("exit", (code) =>
             {
@@ -111,24 +113,23 @@ class SaveController
             });
         }
 
-        if (save_f.saveConfig.saveIntervalSec > 0)
+        if (save_f.config.saveIntervalSec > 0)
         {
             setInterval(() =>
             {
                 this.onSave();
-            }, save_f.saveConfig.saveIntervalSec * 1000);
+            }, save_f.config.saveIntervalSec * 1000);
         }
     }
 
     onSave()
     {
-        save_f.saveServer.onSave();
-        events.scheduledEventHandler.saveToDisk();
-        //logger.logSuccess("Saved profiles");
+        save_f.server.onSave();
+        logger.logSuccess("Saved profiles");
     }
 }
 
-class SaveCallback
+class Callbacks
 {
     constructor()
     {
@@ -138,30 +139,30 @@ class SaveCallback
 
     load()
     {
-        save_f.saveServer.onLoad();
-        save_f.saveController.initialize();
+        save_f.server.onLoad();
+        save_f.controller.initialize();
     }
 
     save(sessionID, req, resp, body, output)
     {
-        if (save_f.saveConfig.saveOnReceive)
+        if (save_f.config.saveOnReceive)
         {
-            save_f.saveController.onSave();
+            save_f.controller.onSave();
         }
     }
 }
 
-class SaveConfig
+class Config
 {
     constructor()
     {
-        this.saveOnReceive = true;
-        this.saveOnExit = false;
-        this.saveIntervalSec = 0;
+        this.saveOnReceive = false;
+        this.saveOnExit = true;
+        this.saveIntervalSec = 30;
     }
 }
 
-module.exports.saveServer = new SaveServer();
-module.exports.saveController = new SaveController();
-module.exports.saveCallbacks = new SaveCallback();
-module.exports.saveConfig = new SaveConfig();
+module.exports.server = new Server();
+module.exports.controller = new Controller();
+module.exports.callbackss = new Callbacks();
+module.exports.config = new Config();

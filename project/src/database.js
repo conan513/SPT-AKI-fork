@@ -8,7 +8,7 @@
 
 "use strict";
 
-class DatabaseServer
+class Server
 {
     constructor()
     {
@@ -16,7 +16,7 @@ class DatabaseServer
     }
 }
 
-class DatabaseCallbacks
+class Callbacks
 {
     constructor()
     {
@@ -30,7 +30,6 @@ class DatabaseCallbacks
         router.addStaticRoute("/client/items", this.getTemplateItems.bind());
         router.addStaticRoute("/client/handbook/templates", this.getTemplateHandbook.bind());
         router.addStaticRoute("/client/customization", this.getTemplateSuits.bind());
-        router.addStaticRoute("/client/quest/list", this.getTemplateQuests.bind());
 
         // hideout
         router.addStaticRoute("/client/hideout/production/recipes", this.gethideoutProduction.bind());
@@ -202,64 +201,64 @@ class DatabaseCallbacks
     getGlobals(url, info, sessionID)
     {
         database_f.database.tables.globals.time = Date.now() / 1000;
-        return response_f.responseController.getBody(database_f.database.tables.globals);
+        return response_f.controller.getBody(database_f.database.tables.globals);
     }
 
     getTemplateItems(url, info, sessionID)
     {
-        return response_f.responseController.getUnclearedBody(database_f.database.tables.templates.items);
+        return response_f.controller.getUnclearedBody(database_f.database.tables.templates.items);
     }
 
     getTemplateHandbook(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.templates.handbook);
+        return response_f.controller.getBody(database_f.database.tables.templates.handbook);
     }
 
     getTemplateSuits(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.templates.suits);
+        return response_f.controller.getBody(database_f.database.tables.templates.suits);
     }
 
     getTemplateQuests(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.templates.quests);
+        return response_f.controller.getBody(database_f.database.tables.templates.quests);
     }
 
     getHideoutSettings(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.hideout.settings);
+        return response_f.controller.getBody(database_f.database.tables.hideout.settings);
     }
 
     getHideoutAreas(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.hideout.areas);
+        return response_f.controller.getBody(database_f.database.tables.hideout.areas);
     }
 
     gethideoutProduction(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.hideout.production);
+        return response_f.controller.getBody(database_f.database.tables.hideout.production);
     }
 
     getHideoutScavcase(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.hideout.scavcase);
+        return response_f.controller.getBody(database_f.database.tables.hideout.scavcase);
     }
 
     getLocalesLanguages(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.locales.languages);
+        return response_f.controller.getBody(database_f.database.tables.locales.languages);
     }
 
     getLocalesMenu(url, info, sessionID)
     {
-        return response_f.responseController.getBody(database_f.database.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
+        return response_f.controller.getBody(database_f.database.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
     }
 
     getLocalesGlobal(url, info, sessionID)
     {
-        return response_f.responseController.getUnclearedBody(database_f.database.tables.locales.global[url.replace("/client/locale/", "")]);
+        return response_f.controller.getUnclearedBody(database_f.database.tables.locales.global[url.replace("/client/locale/", "")]);
     }
 }
 
-module.exports.database = new DatabaseServer();
-module.exports.databaseCallbacks = new DatabaseCallbacks();
+module.exports.database = new Server();
+module.exports.callbacks = new Callbacks();
