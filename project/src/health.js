@@ -269,7 +269,7 @@ class Controller
     saveHealth(pmcData, sessionID)
     {
         console.log(sessionID);
-        
+
         if (!health_f.config.save.health)
         {
             return;
@@ -406,7 +406,7 @@ class Config
         this.save = {
             "health": true,
             "effects": true
-        }
+        };
     }
 }
 
