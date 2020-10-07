@@ -113,8 +113,9 @@ class Controller
             trader_f.controller.resetTrader(sessionID, traderID);
         }
 
-        // don't wipe profile again
+        // set account info
         account_f.server.setWipe(sessionID, false);
+        account_f.server.setNickname(sessionID, pmcData.Info.LowerNickname);
 
         // store minimal profile and reload it
         save_f.server.onSaveProfile(sessionID);
@@ -175,7 +176,7 @@ class Controller
             return "tooshort";
         }
 
-        if (account_f.server.nicknameTaken(info))
+        if (account_f.server.isNicknameTaken(info))
         {
             return "taken";
         }
@@ -193,6 +194,7 @@ class Controller
 
             pmcData.Info.Nickname = info.nickname;
             pmcData.Info.LowerNickname = info.nickname.toLowerCase();
+            account_f.server.setNickname(sessionID, pmcData.Info.LowerNickname);
         }
 
         return output;
@@ -285,7 +287,7 @@ class Callbacks
 
     getReservedNickname(url, info, sessionID)
     {
-        return response_f.controller.getBody(account_f.server.getReservedNickname(sessionID));
+        return response_f.controller.getBody(account_f.server.getNickname(sessionID));
     }
 }
 

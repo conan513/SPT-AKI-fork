@@ -118,12 +118,17 @@ class Server
         return sessionID;
     }
 
-    getReservedNickname(sessionID)
+    getNickname(sessionID)
     {
         return save_f.server.profiles[sessionID].info.nickname;
     }
 
-    nicknameTaken(info)
+    setNickname(sessionID, name)
+    {
+        save_f.server.profiles[sessionID].info.nickname = name;
+    }
+
+    isNicknameTaken(info)
     {
         for (let sessionID in save_f.server.profiles)
         {
