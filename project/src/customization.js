@@ -158,8 +158,8 @@ class Callbacks
     {
         save_f.server.onLoadCallback["customization"] = this.onLoad.bind();
 
-        router.addDynamicRoute("/client/trading/customization/", this.getTraderSuits.bind());
-        router.addStaticRoute("/client/trading/customization/storage", this.getSuits.bind());
+        router_f.router.addDynamicRoute("/client/trading/customization/", this.getTraderSuits.bind());
+        router_f.router.addStaticRoute("/client/trading/customization/storage", this.getSuits.bind());
         item_f.router.addRoute("CustomizationWear", this.wearClothing.bind());
         item_f.router.addRoute("CustomizationBuy", this.buyClothing.bind());
     }

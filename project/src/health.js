@@ -358,8 +358,8 @@ class Callbacks
     {
         save_f.server.onLoadCallback["health"] = this.onLoad.bind();
 
-        router.addStaticRoute("/player/health/sync", this.syncHealth.bind());
-        router.addStaticRoute("/player/health/events", this.updateHealth.bind());
+        router_f.router.addStaticRoute("/player/health/sync", this.syncHealth.bind());
+        router_f.router.addStaticRoute("/player/health/events", this.updateHealth.bind());
         item_f.router.addRoute("Eat", this.offraidEat.bind());
         item_f.router.addRoute("Heal", this.offraidHeal.bind());
         item_f.router.addRoute("RestoreHealth", this.healthTreatment.bind());

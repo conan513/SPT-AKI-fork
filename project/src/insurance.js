@@ -383,8 +383,8 @@ class Callbacks
         save_f.server.onLoadCallback["insurance"] = this.onLoad.bind();
         save_f.server.oncallbacks["insurance"] = this.onSave.bind();
 
-        server.addReceiveCallback("INSURANCE", this.checkInsurance.bind());
-        router.addStaticRoute("/client/insurance/items/list/cost", this.getInsuranceCost.bind());
+        server_f.server.addReceiveCallback("INSURANCE", this.checkInsurance.bind());
+        router_f.router.addStaticRoute("/client/insurance/items/list/cost", this.getInsuranceCost.bind());
         item_f.router.addRoute("Insure", this.insure.bind());
     }
 

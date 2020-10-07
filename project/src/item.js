@@ -71,7 +71,7 @@ class Callbacks
 {
     constructor()
     {
-        router.addStaticRoute("/client/game/profile/items/moving", this.handleRoutes.bind());
+        router_f.router.addStaticRoute("/client/game/profile/items/moving", this.handleRoutes.bind());
     }
 
     handleRoutes(url, info, sessionID)

@@ -27,7 +27,7 @@ class Callbacks
 {
     constructor()
     {
-        router.addStaticRoute("/client/game/keepalive", this.execute.bind());
+        router_f.router.addStaticRoute("/client/game/keepalive", this.execute.bind());
     }
 
     execute(url, info, sessionID)

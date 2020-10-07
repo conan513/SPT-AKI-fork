@@ -120,12 +120,12 @@ class Callbacks
 {
     constructor()
     {
-        server.addRespondCallback("NOTIFY", this.sendNotification.bind());
-        router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
-        router.addDynamicRoute("/?last_id", this.notify.bind());
-        router.addDynamicRoute("/notifierServer", this.notify.bind());
-        router.addDynamicRoute("/notifierBase", this.getBaseNotifier.bind());
-        router.addDynamicRoute("/push/notifier/get/", this.getNotifier.bind());
+        server_f.server.addRespondCallback("NOTIFY", this.sendNotification.bind());
+        router_f.router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
+        router_f.router.addDynamicRoute("/?last_id", this.notify.bind());
+        router_f.router.addDynamicRoute("/notifierServer", this.notify.bind());
+        router_f.router.addDynamicRoute("/notifierBase", this.getBaseNotifier.bind());
+        router_f.router.addDynamicRoute("/push/notifier/get/", this.getNotifier.bind());
     }
 
     getBaseNotifier(url, info, sessionID)
@@ -153,10 +153,10 @@ class Callbacks
     createNotifierChannel(url, info, sessionID)
     {
         return response_f.controller.getBody({
-            "notifier": {"server": server.getBackendUrl() + "/",
+            "notifier": {"server": server_f.server.getBackendUrl() + "/",
                 "channel_id": "testChannel",
-                "url": server.getBackendUrl() + "/notifierServer/get/" + sessionID},
-            "notifierServer": server.getBackendUrl() + "/notifierServer/get/" + sessionID
+                "url": server_f.server.getBackendUrl() + "/notifierServer/get/" + sessionID},
+            "notifierServer": server_f.server.getBackendUrl() + "/notifierServer/get/" + sessionID
         });
     }
 

@@ -142,14 +142,14 @@ class Callbacks
     constructor()
     {
         // TODO: REFACTOR THIS
-        router.addStaticRoute("/launcher/server/connect",          this.connect.bind());
+        router_f.router.addStaticRoute("/launcher/server/connect",          this.connect.bind());
 
-        router.addStaticRoute("/launcher/profile/login",           this.login.bind());
-        router.addStaticRoute("/launcher/profile/register",        this.register.bind());
-        router.addStaticRoute("/launcher/profile/get",             this.get.bind());
-        router.addStaticRoute("/launcher/profile/change/email",    this.changeEmail.bind());
-        router.addStaticRoute("/launcher/profile/change/password", this.changePassword.bind());
-        router.addStaticRoute("/launcher/profile/change/wipe",     this.wipe.bind());
+        router_f.router.addStaticRoute("/launcher/profile/login",           this.login.bind());
+        router_f.router.addStaticRoute("/launcher/profile/register",        this.register.bind());
+        router_f.router.addStaticRoute("/launcher/profile/get",             this.get.bind());
+        router_f.router.addStaticRoute("/launcher/profile/change/email",    this.changeEmail.bind());
+        router_f.router.addStaticRoute("/launcher/profile/change/password", this.changePassword.bind());
+        router_f.router.addStaticRoute("/launcher/profile/change/wipe",     this.wipe.bind());
     }
 
     load()
@@ -161,8 +161,8 @@ class Callbacks
     connect()
     {
         return response_f.controller.noBody({
-            "backendUrl": server.getBackendUrl(),
-            "name": server.getName(),
+            "backendUrl": server_f.server.getBackendUrl(),
+            "name": server_f.server.getName(),
             "editions": Object.keys(db.profile)
         });
     }

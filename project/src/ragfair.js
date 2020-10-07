@@ -585,11 +585,11 @@ class Callbacks
 {
     constructor()
     {
-        server.addStartCallback("loadRagfair", this.load.bind());
-        router.addStaticRoute("/client/ragfair/search", this.search.bind());
-        router.addStaticRoute("/client/ragfair/find", this.search.bind());
-        router.addStaticRoute("/client/ragfair/itemMarketPrice", this.itemMarketPrice.bind());
-        router.addStaticRoute("/client/items/prices", this.getItemPrices.bind());
+        server_f.server.addStartCallback("loadRagfair", this.load.bind());
+        router_f.router.addStaticRoute("/client/ragfair/search", this.search.bind());
+        router_f.router.addStaticRoute("/client/ragfair/find", this.search.bind());
+        router_f.router.addStaticRoute("/client/ragfair/itemMarketPrice", this.itemMarketPrice.bind());
+        router_f.router.addStaticRoute("/client/items/prices", this.getItemPrices.bind());
         item_f.router.addRoute("RagFairAddOffer", this.addOffer.bind());
     }
 

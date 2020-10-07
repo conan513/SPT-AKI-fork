@@ -45,7 +45,6 @@ class Server
         this.ip = "127.0.0.1";
         this.port = 443;
         this.backendUrl = `https://${this.ip}:${this.port}`;
-        this.version = "SPT-AKI Alpha";
         this.mime = {
             txt: "text/plain",
             jpg: "image/jpeg",
@@ -119,17 +118,12 @@ class Server
         return this.backendUrl;
     }
 
-    getVersion()
-    {
-        return this.version;
-    }
-
     generateCertificate()
     {
 
-        const certDir = resolve(__dirname, "../../user/certs");
-        const certFile = resolve(certDir, "cert.pem");
-        const keyFile = resolve(certDir, "key.pem");
+        const certDir = "user/certs/";
+        const certFile = `${certDir}cert.pem`;
+        const keyFile = `${certDir}key.pem`;
         let cert;
         let key;
 
@@ -142,10 +136,9 @@ class Server
         {
             if (e.code === "ENOENT")
             {
-
                 if (!fs.existsSync(certDir))
                 {
-                    fs.mkdirSync(certDir);
+                    utility.createDir(certDir);
                 }
 
                 let fingerprint;
@@ -207,11 +200,11 @@ class Server
         // get response
         if (req.method === "POST" || req.method === "PUT")
         {
-            output = router.getResponse(req, body, sessionID);
+            output = router_f.router.getResponse(req, body, sessionID);
         }
         else
         {
-            output = router.getResponse(req, "", sessionID);
+            output = router_f.router.getResponse(req, "", sessionID);
         }
 
         /* route doesn't exist or response is not properly set up */
@@ -249,7 +242,7 @@ class Server
         // request without data
         if (req.method === "GET")
         {
-            server.sendResponse(sessionID, req, resp, "");
+            this.sendResponse(sessionID, req, resp, "");
         }
 
         // request with data
@@ -260,7 +253,7 @@ class Server
                 zlib.inflate(data, function (err, body)
                 {
                     let jsonData = ((body !== typeof "undefined" && body !== null && body !== "") ? body.toString() : "{}");
-                    server.sendResponse(sessionID, req, resp, jsonData);
+                    this.sendResponse(sessionID, req, resp, jsonData);
                 });
             });
         }
@@ -274,7 +267,7 @@ class Server
                 {
                     const requestLength = parseInt(req.headers["content-length"]);
 
-                    if (!server.putInBuffer(req.headers.sessionid, data, requestLength))
+                    if (!this.putInBuffer(req.headers.sessionid, data, requestLength))
                     {
                         resp.writeContinue();
                     }
@@ -283,13 +276,13 @@ class Server
 
             req.on("end", function()
             {
-                let data = server.getFromBuffer(sessionID);
-                server.resetBuffer(sessionID);
+                let data = this.getFromBuffer(sessionID);
+                this.resetBuffer(sessionID);
 
                 zlib.inflate(data, function (err, body)
                 {
                     let jsonData = ((body !== typeof "undefined" && body !== null && body !== "") ? body.toString() : "{}");
-                    server.sendResponse(sessionID, req, resp, jsonData);
+                    this.sendResponse(sessionID, req, resp, jsonData);
                 });
             });
         }

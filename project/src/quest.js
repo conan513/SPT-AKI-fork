@@ -484,7 +484,7 @@ class Callbacks
         item_f.router.addRoute("QuestComplete", this.completeQuest.bind());
         item_f.router.addRoute("QuestHandover", this.handoverQuest.bind());
 
-        router.addStaticRoute("/client/quest/list", this.listQuests.bind());
+        router_f.router.addStaticRoute("/client/quest/list", this.listQuests.bind());
     }
 
     acceptQuest(pmcData, body, sessionID)

@@ -81,7 +81,7 @@ class Callbacks
 {
     constructor()
     {
-        router.addStaticRoute("/client/weather", this.getWeather.bind());
+        router_f.router.addStaticRoute("/client/weather", this.getWeather.bind());
     }
 
     getWeather(url, info, sessionID)
