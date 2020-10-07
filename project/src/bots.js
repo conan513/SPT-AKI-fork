@@ -462,7 +462,7 @@ class Generator
         this.inventory.items.push(...weaponMods);
 
         // Generate extra magazines and attempt add them to TacticalVest or Pockets
-        const magCount = utility.getRandomInt(magCounts.min, magCounts.max);
+        const magCount = this.getBiasedRandomNumber(magCounts.min, magCounts.max, Math.round(magCounts.max * 0.75), 4);
         this.generateExtraMagazines(weaponMods, itemTemplate, magCount, ammoTpl);
     }
 
@@ -790,8 +790,6 @@ class Generator
 
     generateLoot(lootPool, itemCounts)
     {
-        // TODO: Implement a mechanism for item rarity (maybe by value or something)
-
         // Flatten all individual slot loot pools into one big pool, while filtering out potentially missing templates
         let lootTemplates = [];
         for (const [slot, pool] of Object.entries(lootPool))
@@ -803,6 +801,9 @@ class Generator
             const poolItems = pool.map(lootTpl => database_f.database.tables.templates.items[lootTpl]);
             lootTemplates.push(...poolItems.filter(x => !!x));
         }
+
+        // Sort all items by their worth to spawn chance ratio
+        lootTemplates.sort((a, b) => this.compareByValue(a, b));
 
         // Get all healing items
         const healingItems = lootTemplates.filter(template => "medUseTime" in template._props);
@@ -817,18 +818,23 @@ class Generator
             && !("medUseTime" in template._props)
             && !("ThrowType" in template._props));
 
-        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], itemCounts.healing.min, itemCounts.healing.max);
-        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], itemCounts.looseLoot.min, itemCounts.looseLoot.max);
-        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], itemCounts.grenades.min, itemCounts.grenades.max);
+        const healingItemCount = this.getBiasedRandomNumber(itemCounts.healing.min, itemCounts.healing.max, itemCounts.healing.max, 3);
+        const lootItemCount = this.getBiasedRandomNumber(itemCounts.looseLoot.min, itemCounts.looseLoot.max, itemCounts.looseLoot.max, 5);
+        const grenadeCount = this.getBiasedRandomNumber(itemCounts.grenades.min, itemCounts.grenades.max, itemCounts.grenades.max, 4);
+
+        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], healingItemCount);
+        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], lootItemCount);
+        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], grenadeCount);
     }
 
-    addLootFromPool(pool, equipmentSlots, min, max)
+    addLootFromPool(pool, equipmentSlots, count)
     {
         if (pool.length)
         {
-            for (let count = 0; count < utility.getRandomInt(min, max); count++)
+            for (let i = 0; i < count; i++)
             {
-                const itemTemplate = utility.getRandomArrayValue(pool);
+                const itemIndex = this.getBiasedRandomNumber(0, pool.length - 1, pool.length - 1, 3);
+                const itemTemplate = pool[itemIndex];
                 const id = utility.generateNewItemId();
 
                 this.addItemWithChildrenToEquipmentSlot(equipmentSlots, id, itemTemplate._id, [{
@@ -890,6 +896,112 @@ class Generator
         }
 
         return false;
+    }
+
+    getBiasedRandomNumber(min, max, shift, n)
+    {
+        /* To whoever tries to make sense of this, please forgive me - I tried my best at explaining what goes on here.
+         * This function generates a random number based on a gaussian distribution with an option to add a bias via shifting.
+         *
+         * Here's an example graph of how the probabilities can be distributed:
+         * https://www.boost.org/doc/libs/1_49_0/libs/math/doc/sf_and_dist/graphs/normal_pdf.png
+         * Our parameter 'n' is sort of like σ (sigma) in the example graph.
+         *
+         * An 'n' of 1 means all values are equally likely. Increasing 'n' causes numbers near the edge to become less likely.
+         * By setting 'shift' to whatever 'max' is, we can make values near 'min' very likely, while values near 'max' become extremely unlikely.
+         *
+         * Here's a place where you can play around with the 'n' and 'shift' values to see how the distribution changes:
+         * http://jsfiddle.net/e08cumyx/ */
+
+        if (max < min)
+        {
+            throw {
+                "name": "Invalid arguments",
+                "message": `Bounded random number generation max is smaller than min (${max} < ${min})`
+            };
+        }
+
+        if (n < 1)
+        {
+            throw {
+                "name": "Invalid argument",
+                "message": `'n' must be 1 or greater (received ${n})`
+            };
+        }
+
+        if (min === max)
+        {
+            return min;
+        }
+
+        if (shift > (max - min))
+        {
+            /* If a rolled number is out of bounds (due to bias being applied), we simply roll it again.
+             * As the shifting increases, the chance of rolling a number within bounds decreases.
+             * A shift that is equal to the available range only has a 50% chance of rolling correctly, theoretically halving performance.
+             * Shifting even further drops the success chance very rapidly - so we want to warn against that */
+            logger.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
+            logger.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
+        }
+
+        const gaussianRandom = (n) =>
+        {
+            let rand = 0;
+
+            for (let i = 0; i < n; i += 1)
+            {
+                rand += Math.random();
+            }
+
+            return (rand / n);
+        };
+
+        const boundedGaussian = (start, end, n) =>
+        {
+            return Math.round(start + gaussianRandom(n) * (end - start + 1));
+        };
+
+        const biasedMin = shift >= 0 ? min - shift : min;
+        const biasedMax = shift < 0 ? max + shift : max;
+
+        let num;
+        do
+        {
+            num = boundedGaussian(biasedMin, biasedMax, n);
+        }
+        while (num < min || num > max);
+
+        return num;
+    }
+
+    /** Compares two item templates by their price to spawn chance ratio */
+    compareByValue(a, b)
+    {
+        // If an item has no price or spawn chance, it should be moved to the back when sorting
+        if (!a._props.CreditsPrice || !a._props.SpawnChance)
+        {
+            return 1;
+        }
+
+        if (!b._props.CreditsPrice || !b._props.SpawnChance)
+        {
+            return -1;
+        }
+
+        const worthA = a._props.CreditsPrice / a._props.SpawnChance;
+        const worthB = b._props.CreditsPrice / b._props.SpawnChance;
+
+        if (worthA < worthB)
+        {
+            return -1;
+        }
+
+        if (worthA > worthB)
+        {
+            return 1;
+        }
+
+        return 0;
     }
 }
 

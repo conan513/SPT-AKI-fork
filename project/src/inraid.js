@@ -175,7 +175,16 @@ class Controller
             }
 
             pmcData = this.deleteInventory(pmcData, sessionID);
-            offraidData.profile.Stats.CarriedQuestItems = [];       //Delete carried quests items
+            let carriedQuestItems = offraidData.profile.Stats.CarriedQuestItems;
+
+            for (const questItem of carriedQuestItems)
+            {
+                const conditionId = quest_f.controller.getFindItemIdForQuestItem(questItem);
+                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId)
+            }                
+            
+            //Delete carried quests items
+            carriedQuestItems = [];
         }
 
         if (insuranceEnabled)
