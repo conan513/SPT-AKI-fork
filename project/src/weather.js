@@ -18,8 +18,6 @@ class Controller
         result = this.calculateTime(result);
         result = this.generateWeather(result);
 
-        console.log(result);
-
         return result;
     }
 
