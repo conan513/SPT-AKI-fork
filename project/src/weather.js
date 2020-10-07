@@ -66,8 +66,8 @@ class Controller
 
     getRandomFloat(node)
     {
-        return utility.getRandomFloat(weather_f.config.weather[node].min,
-            weather_f.config.weather[node].max).toPrecision(3);
+        return parseFloat(utility.getRandomFloat(weather_f.config.weather[node].min,
+            weather_f.config.weather[node].max).toPrecision(3));
     }
 
     getRandomInt(node)
