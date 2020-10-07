@@ -29,10 +29,10 @@ class Controller
         const enableFog = utility.getRandomBool();
 
         data.weather.cloud = this.getRandomFloat("clouds");
-        data.weather.wind_speed = this.getRandomFloat("windSpeed");
+        data.weather.wind_speed = this.getRandomInt("windSpeed");
         data.weather.wind_direction = this.getRandomInt("windDirection");
         data.weather.wind_gustiness = this.getRandomFloat("windGustiness");
-        data.weather.rain = (enableRain) ? this.getRandomFloat("rain") : 0;
+        data.weather.rain = (enableRain) ? this.getRandomInt("rain") : 0;
         data.weather.rain_intensity = (enableRain) ? this.getRandomFloat("rainIntensity") : 0;
         data.weather.fog = (enableFog) ? this.getRandomFloat("fog") : 0;
         data.weather.temp = this.getRandomInt("temp");
@@ -106,7 +106,7 @@ class Config
             },
             "windDirection": {
                 "min": 0,
-                "max": 359
+                "max": 3
             },
             "windGustiness": {
                 "min": 0,
@@ -114,23 +114,23 @@ class Config
             },
             "rain": {
                 "min": 1,
-                "max": 3
+                "max": 4
             },
             "rainIntensity": {
                 "min": 0.1,
                 "max": 1
             },
             "fog": {
-                "min": 0.1,
+                "min": 0.02,
                 "max": 0.15
             },
             "temp": {
-                "min": 10,
+                "min": 0,
                 "max": 20
             },
             "pressure": {
-                "min": 763,
-                "max": 763
+                "min": 760,
+                "max": 764
             }
         };
     }
