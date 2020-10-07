@@ -940,8 +940,9 @@ class Generator
              * As the shifting increases, the chance of rolling a number within bounds decreases.
              * A shift that is equal to the available range only has a 50% chance of rolling correctly, theoretically halving performance.
              * Shifting even further drops the success chance very rapidly - so we want to warn against that */
-            logger.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
-            logger.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
+            
+            //logger.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
+            //logger.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
         }
 
         const gaussianRandom = (n) =>
