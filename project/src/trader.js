@@ -91,7 +91,7 @@ class Controller
     {
         let account = account_f.server.find(sessionID);
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let traderWipe = json.parse(json.read(db.profile[account.edition]["trader_" + pmcData.Info.Side.toLowerCase()]));
+        let traderWipe = database_f.database.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
             "currentLevel": 1,

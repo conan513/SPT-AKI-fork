@@ -138,7 +138,7 @@ class Callbacks
         return response_f.controller.noBody({
             "backendUrl": server_f.server.backendUrl,
             "name": server_f.server.name,
-            "editions": Object.keys(db.profile)
+            "editions": Object.keys(database_f.database.tables.templates.profiles)
         });
     }
 
