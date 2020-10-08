@@ -37,7 +37,7 @@ class Controller
     resetProfileQuestCondition(sessionID, conditionId)
     {
         let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
-                
+
         for (let quest of startedQuests)
         {
             const index = quest.completedConditions.indexOf(conditionId);
@@ -113,12 +113,13 @@ class Controller
             trader_f.controller.resetTrader(sessionID, traderID);
         }
 
-        // don't wipe profile again
-        account_f.server.setWipe(sessionID, false);
-
         // store minimal profile and reload it
         save_f.server.onSaveProfile(sessionID);
         save_f.server.onLoadProfile(sessionID);
+
+        // completed account creation
+        save_f.server.profiles[sessionID].info.wipe = false;
+        save_f.server.onSaveProfile(sessionID);
     }
 
     generateScav(sessionID)
@@ -168,6 +169,26 @@ class Controller
         return profile;
     }
 
+    isNicknameTaken(info)
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            const profile = save_f.server.profiles[sessionID];
+
+            if (!("characters" in profile) || !("pmc" in profile.characters) || !("Info" in profile.characters.pmc))
+            {
+                continue;
+            }
+
+            if (profile.characters.pmc.Info.LowerNickname === info.nickname.toLowerCase())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     validateNickname(info, sessionID)
     {
         if (info.nickname.length < 3)
@@ -175,7 +196,7 @@ class Controller
             return "tooshort";
         }
 
-        if (account_f.server.nicknameTaken(info))
+        if (this.isNicknameTaken(info))
         {
             return "taken";
         }
@@ -211,13 +232,13 @@ class Callbacks
     {
         save_f.server.onLoadCallback["profile"] = this.onLoad.bind();
 
-        router.addStaticRoute("/client/game/profile/create", this.createProfile.bind());
-        router.addStaticRoute("/client/game/profile/list", this.getProfileData.bind());
-        router.addStaticRoute("/client/game/profile/savage/regenerate", this.regenerateScav.bind());
-        router.addStaticRoute("/client/game/profile/voice/change", this.changeVoice.bind());
-        router.addStaticRoute("/client/game/profile/nickname/change", this.changeNickname.bind());
-        router.addStaticRoute("/client/game/profile/nickname/validate", this.validateNickname.bind());
-        router.addStaticRoute("/client/game/profile/nickname/reserved", this.getReservedNickname.bind());
+        router_f.router.staticRoutes["/client/game/profile/create"] = this.createProfile.bind();
+        router_f.router.staticRoutes["/client/game/profile/list"] = this.getProfileData.bind();
+        router_f.router.staticRoutes["/client/game/profile/savage/regenerate"] = this.regenerateScav.bind();
+        router_f.router.staticRoutes["/client/game/profile/voice/change"] = this.changeVoice.bind();
+        router_f.router.staticRoutes["/client/game/profile/nickname/change"] = this.changeNickname.bind();
+        router_f.router.staticRoutes["/client/game/profile/nickname/validate"] = this.validateNickname.bind();
+        router_f.router.staticRoutes["/client/game/profile/nickname/reserved"] = this.getReservedNickname.bind();
     }
 
     onLoad(sessionID)
@@ -285,7 +306,7 @@ class Callbacks
 
     getReservedNickname(url, info, sessionID)
     {
-        return response_f.controller.getBody(account_f.server.getReservedNickname(sessionID));
+        return response_f.controller.getBody("SPTarkov");
     }
 }
 

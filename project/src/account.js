@@ -29,11 +29,6 @@ class Server
         return save_f.server.profiles[sessionID].info.wipe;
     }
 
-    setWipe(sessionID, state)
-    {
-        save_f.server.profiles[sessionID].info.wipe = state;
-    }
-
     login(info)
     {
         for (let sessionID in save_f.server.profiles)
@@ -69,7 +64,6 @@ class Server
         save_f.server.profiles[sessionID] = {
             "info": {
                 "id": sessionID,
-                "nickname": "",
                 "email": info.email,
                 "password": info.password,
                 "wipe": true,
@@ -112,28 +106,10 @@ class Server
         if (sessionID)
         {
             save_f.server.profiles[sessionID].info.edition = info.edition;
-            this.setWipe(sessionID, true);
+            save_f.server.profiles[sessionID].info.wipe = true;
         }
 
         return sessionID;
-    }
-
-    getReservedNickname(sessionID)
-    {
-        return save_f.server.profiles[sessionID].info.nickname;
-    }
-
-    nicknameTaken(info)
-    {
-        for (let sessionID in save_f.server.profiles)
-        {
-            if (info.nickname.toLowerCase() === save_f.server.profiles[sessionID].info.nickname.toLowerCase())
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
 
@@ -142,14 +118,13 @@ class Callbacks
     constructor()
     {
         // TODO: REFACTOR THIS
-        router.addStaticRoute("/launcher/server/connect",          this.connect.bind());
-
-        router.addStaticRoute("/launcher/profile/login",           this.login.bind());
-        router.addStaticRoute("/launcher/profile/register",        this.register.bind());
-        router.addStaticRoute("/launcher/profile/get",             this.get.bind());
-        router.addStaticRoute("/launcher/profile/change/email",    this.changeEmail.bind());
-        router.addStaticRoute("/launcher/profile/change/password", this.changePassword.bind());
-        router.addStaticRoute("/launcher/profile/change/wipe",     this.wipe.bind());
+        router_f.router.staticRoutes["/launcher/server/connect"] = this.connect.bind();
+        router_f.router.staticRoutes["/launcher/profile/login"] = this.login.bind();
+        router_f.router.staticRoutes["/launcher/profile/register"] = this.register.bind();
+        router_f.router.staticRoutes["/launcher/profile/get"] = this.get.bind();
+        router_f.router.staticRoutes["/launcher/profile/change/email"] = this.changeEmail.bind();
+        router_f.router.staticRoutes["/launcher/profile/change/password"] = this.changePassword.bind();
+        router_f.router.staticRoutes["/launcher/profile/change/wipe"] = this.wipe.bind();
     }
 
     load()
@@ -161,8 +136,8 @@ class Callbacks
     connect()
     {
         return response_f.controller.noBody({
-            "backendUrl": server.getBackendUrl(),
-            "name": server.getName(),
+            "backendUrl": server_f.server.backendUrl,
+            "name": server_f.server.name,
             "editions": Object.keys(db.profile)
         });
     }

@@ -102,7 +102,7 @@ class Callbacks
 {
     constructor()
     {
-        server.addStartCallback("loadPresets", this.load.bind());
+        server_f.server.startCallback["loadPresets"] = this.load.bind();
     }
 
     load()

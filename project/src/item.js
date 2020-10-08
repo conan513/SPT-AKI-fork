@@ -18,12 +18,6 @@ class Router
         this.resetOutput();
     }
 
-    /* adds route to check for */
-    addRoute(route, callback)
-    {
-        this.routes[route] = callback;
-    }
-
     handleRoutes(info, sessionID)
     {
         let result = "";
@@ -71,7 +65,7 @@ class Callbacks
 {
     constructor()
     {
-        router.addStaticRoute("/client/game/profile/items/moving", this.handleRoutes.bind());
+        router_f.router.staticRoutes["/client/game/profile/items/moving"] = this.handleRoutes.bind();
     }
 
     handleRoutes(url, info, sessionID)

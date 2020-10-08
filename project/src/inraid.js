@@ -180,9 +180,9 @@ class Controller
             for (const questItem of carriedQuestItems)
             {
                 const conditionId = quest_f.controller.getFindItemIdForQuestItem(questItem);
-                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId)
-            }                
-            
+                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId);
+            }
+
             //Delete carried quests items
             carriedQuestItems = [];
         }
@@ -379,12 +379,11 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoadCallback["inraid"] = this.onLoad.bind();
-
-        router.addStaticRoute("/raid/map/name", this.registerPlayer.bind());
-        router.addStaticRoute("/raid/profile/save", this.saveProgress.bind());
-        router.addStaticRoute("/singleplayer/settings/raid/endstate", this.getRaidEndState.bind());
-        router.addStaticRoute("/singleplayer/settings/weapon/durability", this.getWeaponDurability.bind());
-        router.addStaticRoute("/singleplayer/settings/raid/menu", this.getRaidMenuSettings.bind());
+        router_f.router.staticRoutes["/raid/map/name"] = this.registerPlayer.bind();
+        router_f.router.staticRoutes["/raid/profile/save"] = this.saveProgress.bind();
+        router_f.router.staticRoutes["/singleplayer/settings/raid/endstate"] = this.getRaidEndState.bind();
+        router_f.router.staticRoutes["/singleplayer/settings/weapon/durability"] = this.getWeaponDurability.bind();
+        router_f.router.staticRoutes["/singleplayer/settings/raid/menu"] = this.getRaidMenuSettings.bind();
     }
 
     onLoad(sessionID)
@@ -395,6 +394,7 @@ class Callbacks
     registerPlayer(url, info, sessionID)
     {
         inraid_f.controller.addPlayer(sessionID, info);
+        return response_f.controller.nullResponse();
     }
 
     saveProgress(url, info, sessionID)

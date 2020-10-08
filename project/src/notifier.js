@@ -76,12 +76,12 @@ class Controller
         await new Promise(resolve =>
         {
             // Timeout after 15 seconds even if no messages have been received to keep the poll requests going.
-            setTimeout(function()
+            setTimeout(() =>
             {
                 resolve();
             }, 15000);
 
-            setInterval(function()
+            setInterval(() =>
             {
                 if (notifier_f.controller.hasMessagesInQueue(sessionID))
                 {
@@ -106,7 +106,7 @@ class Controller
             data.push("{\"type\": \"ping\", \"eventId\": \"ping\"}");
         }
 
-        server.sendTextJson(resp, data.join("\n"));
+        server_f.server.sendTextJson(resp, data.join("\n"));
     }
 
     /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
@@ -120,12 +120,12 @@ class Callbacks
 {
     constructor()
     {
-        server.addRespondCallback("NOTIFY", this.sendNotification.bind());
-        router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
-        router.addDynamicRoute("/?last_id", this.notify.bind());
-        router.addDynamicRoute("/notifierServer", this.notify.bind());
-        router.addDynamicRoute("/notifierBase", this.getBaseNotifier.bind());
-        router.addDynamicRoute("/push/notifier/get/", this.getNotifier.bind());
+        server_f.server.respondCallback["NOTIFY"] = this.sendNotification.bind();
+        router_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind();
+        router_f.router.dynamicRoutes["/?last_id"] = this.notify.bind();
+        router_f.router.dynamicRoutes["/notifierServer"] = this.notify.bind();
+        router_f.router.dynamicRoutes["/notifierBase"] = this.getBaseNotifier.bind();
+        router_f.router.dynamicRoutes["/push/notifier/get/"] = this.getNotifier.bind();
     }
 
     getBaseNotifier(url, info, sessionID)
@@ -153,10 +153,10 @@ class Callbacks
     createNotifierChannel(url, info, sessionID)
     {
         return response_f.controller.getBody({
-            "notifier": {"server": server.getBackendUrl() + "/",
+            "notifier": {"server": server_f.server.backendUrl + "/",
                 "channel_id": "testChannel",
-                "url": server.getBackendUrl() + "/notifierServer/get/" + sessionID},
-            "notifierServer": server.getBackendUrl() + "/notifierServer/get/" + sessionID
+                "url": server_f.server.backendUrl + "/notifierServer/get/" + sessionID},
+            "notifierServer": server_f.server.backendUrl + "/notifierServer/get/" + sessionID
         });
     }
 

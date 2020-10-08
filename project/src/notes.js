@@ -42,9 +42,9 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.addRoute("AddNote", this.addNote.bind());
-        item_f.router.addRoute("EditNote", this.editNote.bind());
-        item_f.router.addRoute("DeleteNote", this.deleteNote.bind());
+        item_f.router.routes["AddNote"] = this.addNote.bind();
+        item_f.router.routes["EditNote"] = this.editNote.bind();
+        item_f.router.routes["DeleteNote"] = this.deleteNote.bind();
     }
 
     addNote(pmcData, body, sessionID)

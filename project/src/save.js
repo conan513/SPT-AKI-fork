@@ -133,8 +133,8 @@ class Callbacks
 {
     constructor()
     {
-        server.addStartCallback("loadSavehandler", this.load.bind());
-        server.addReceiveCallback("SAVE", this.save.bind());
+        server_f.server.startCallback["loadSavehandler"] = this.load.bind();
+        server_f.server.receiveCallback["SAVE"] = this.save.bind();
     }
 
     load()

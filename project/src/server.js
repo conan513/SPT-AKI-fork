@@ -10,28 +10,9 @@
 "use strict";
 
 const fs = require("fs");
-const { resolve } = require("path");
 const zlib = require("zlib");
 const https = require("https");
 const selfsigned = require("selfsigned");
-
-function getCookies(req)
-{
-    let found = {};
-    let cookies = req.headers.cookie;
-
-    if (cookies)
-    {
-        for (let cookie of cookies.split(";"))
-        {
-            let parts = cookie.split("=");
-
-            found[parts.shift().trim()] = decodeURI(parts.join("="));
-        }
-    }
-
-    return found;
-}
 
 class Server
 {
@@ -45,7 +26,6 @@ class Server
         this.ip = "127.0.0.1";
         this.port = 443;
         this.backendUrl = `https://${this.ip}:${this.port}`;
-        this.version = "SPT-AKI Alpha";
         this.mime = {
             txt: "text/plain",
             jpg: "image/jpeg",
@@ -53,7 +33,25 @@ class Server
             json: "application/json"
         };
 
-        this.addRespondCallback("DONE", this.killResponse.bind(this));
+        this.respondCallback["DONE"] = this.killResponse.bind(this);
+    }
+
+    getCookies(req)
+    {
+        let found = {};
+        let cookies = req.headers.cookie;
+
+        if (cookies)
+        {
+            for (let cookie of cookies.split(";"))
+            {
+                let parts = cookie.split("=");
+
+                found[parts.shift().trim()] = decodeURI(parts.join("="));
+            }
+        }
+
+        return found;
     }
 
     resetBuffer(sessionID)
@@ -84,52 +82,11 @@ class Server
         return this.buffers[sessionID].buffer;
     }
 
-    addStartCallback(type, worker)
-    {
-        this.startCallback[type] = worker;
-    }
-
-    addReceiveCallback(type, worker)
-    {
-        this.receiveCallback[type] = worker;
-    }
-
-    addRespondCallback(type, worker)
-    {
-        this.respondCallback[type] = worker;
-    }
-
-    getName()
-    {
-        return this.name;
-    }
-
-    getIp()
-    {
-        return this.ip;
-    }
-
-    getPort()
-    {
-        return this.port;
-    }
-
-    getBackendUrl()
-    {
-        return this.backendUrl;
-    }
-
-    getVersion()
-    {
-        return this.version;
-    }
-
     generateCertificate()
     {
-
-        const certDir = resolve(__dirname, "../../user/certs");
-        const certFile = resolve(certDir, "cert.pem");
-        const keyFile = resolve(certDir, "key.pem");
+        const certDir = "user/certs/";
+        const certFile = `${certDir}cert.pem`;
+        const keyFile = `${certDir}key.pem`;
         let cert;
         let key;
 
@@ -142,10 +99,9 @@ class Server
         {
             if (e.code === "ENOENT")
             {
-
                 if (!fs.existsSync(certDir))
                 {
-                    fs.mkdirSync(certDir);
+                    utility.createDir(certDir);
                 }
 
                 let fingerprint;
@@ -202,36 +158,29 @@ class Server
 
     sendResponse(sessionID, req, resp, body)
     {
-        let output = "";
-
         // get response
-        if (req.method === "POST" || req.method === "PUT")
-        {
-            output = router.getResponse(req, body, sessionID);
-        }
-        else
-        {
-            output = router.getResponse(req, "", sessionID);
-        }
+        const text = (body) ? body.toString() : "{}";
+        const info = (text) ? json.parse(text) : {};
+        let output = router_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */
-        if (output === "")
+        if (!output)
         {
             logger.logError(`[UNHANDLED][${req.url}]`);
-            logger.log(body);
+            logger.log(info);
             output = response_f.controller.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
         // execute data received callback
         for (let type in this.receiveCallback)
         {
-            this.receiveCallback[type](sessionID, req, resp, body, output);
+            this.receiveCallback[type](sessionID, req, resp, info, output);
         }
 
         // send response
         if (output in this.respondCallback)
         {
-            this.respondCallback[output](sessionID, req, resp, body);
+            this.respondCallback[output](sessionID, req, resp, info);
         }
         else
         {
@@ -242,54 +191,52 @@ class Server
     handleRequest(req, resp)
     {
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
-        const sessionID = getCookies(req)["PHPSESSID"];
+        const sessionID = this.getCookies(req)["PHPSESSID"];
 
         logger.log(`[${sessionID}][${IP}] ${req.url}`);
 
         // request without data
         if (req.method === "GET")
         {
-            server.sendResponse(sessionID, req, resp, "");
+            this.sendResponse(sessionID, req, resp, "");
         }
 
         // request with data
         if (req.method === "POST")
         {
-            req.on("data", function (data)
+            req.on("data", (data) =>
             {
-                zlib.inflate(data, function (err, body)
+                zlib.inflate(data, (err, body) =>
                 {
-                    let jsonData = ((body !== typeof "undefined" && body !== null && body !== "") ? body.toString() : "{}");
-                    server.sendResponse(sessionID, req, resp, jsonData);
+                    server_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
 
         if (req.method === "PUT")
         {
-            req.on("data", function(data)
+            req.on("data", (data) =>
             {
                 // receive data
                 if ("expect" in req.headers)
                 {
                     const requestLength = parseInt(req.headers["content-length"]);
 
-                    if (!server.putInBuffer(req.headers.sessionid, data, requestLength))
+                    if (!this.putInBuffer(req.headers.sessionid, data, requestLength))
                     {
                         resp.writeContinue();
                     }
                 }
             });
 
-            req.on("end", function()
+            req.on("end", () =>
             {
-                let data = server.getFromBuffer(sessionID);
-                server.resetBuffer(sessionID);
+                const data = this.getFromBuffer(sessionID);
+                this.resetBuffer(sessionID);
 
-                zlib.inflate(data, function (err, body)
+                zlib.inflate(data, (err, body) =>
                 {
-                    let jsonData = ((body !== typeof "undefined" && body !== null && body !== "") ? body.toString() : "{}");
-                    server.sendResponse(sessionID, req, resp, jsonData);
+                    server_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
@@ -309,13 +256,13 @@ class Server
         let httpsServer = https.createServer(this.generateCertificate(), (req, res) =>
         {
             this.handleRequest(req, res);
-        }).listen(this.port, this.ip, function()
+        }).listen(this.port, this.ip, () =>
         {
             logger.logSuccess("Started server");
         });
 
         /* server is already running or program using privileged port without root */
-        httpsServer.on("error", function(e)
+        httpsServer.on("error", (e) =>
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
