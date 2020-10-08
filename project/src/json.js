@@ -16,17 +16,17 @@ class JsonUtil
     {
         return JSON.stringify(data, null, "\t");
     }
-    
+
     parse(string)
     {
         return JSON.parse(string);
     }
-    
+
     read(file)
     {
         return fs.readFileSync(file, "utf8");
     }
-    
+
     write(file, data)
     {
         utility.createDir(file);
