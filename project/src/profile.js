@@ -113,12 +113,13 @@ class Controller
             trader_f.controller.resetTrader(sessionID, traderID);
         }
 
-        // don't wipe profile again
-        save_f.server.profiles[sessionID].info.wipe = true;
-
         // store minimal profile and reload it
         save_f.server.onSaveProfile(sessionID);
         save_f.server.onLoadProfile(sessionID);
+
+        // completed account creation
+        save_f.server.profiles[sessionID].info.wipe = false;
+        save_f.server.onSaveProfile(sessionID);
     }
 
     generateScav(sessionID)
