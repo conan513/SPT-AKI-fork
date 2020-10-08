@@ -380,11 +380,11 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["insurance"] = this.onLoad.bind();
-        save_f.server.oncallbacks["insurance"] = this.onSave.bind();
-        server_f.server.receiveCallback["INSURANCE"] = this.checkInsurance.bind();
-        router_f.router.staticRoutes["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind();
-        item_f.router.routes["Insure"] = this.insure.bind();
+        save_f.server.onLoadCallback["insurance"] = this.onLoad.bind(this);
+        save_f.server.oncallbacks["insurance"] = this.onSave.bind(this);
+        server_f.server.receiveCallback["INSURANCE"] = this.checkInsurance.bind(this);
+        router_f.router.staticRoutes["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
+        item_f.router.routes["Insure"] = this.insure.bind(this);
     }
 
     onLoad(sessionID)
