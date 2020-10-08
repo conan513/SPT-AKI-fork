@@ -1,4 +1,5 @@
 {
+    "utility": "src/utility.js",
     "json_f": "src/json.js",
     "logger_f": "src/logger.js",
     "router_f": "src/router.js",

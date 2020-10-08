@@ -53,7 +53,12 @@ class Packager
             return;
         }
 
-        for (const mod of utility.getDirList(this.baseDir))
+        const mods = fs.readdirSync(this.baseDir).filter((file) =>
+        {
+            return fs.statSync(`${this.baseDir}/${file}`).isDirectory();
+        });
+
+        for (const mod of mods)
         {
             // check if config exists
             if (!fs.existsSync(`${this.baseDir}${mod}/package.json`))
@@ -91,21 +96,19 @@ class Packager
 
     scanRecursiveRoute(filepath)
     {
-        const directories = utility.getDirList(filepath);
-        const files = fs.readdirSync(filepath);
         let baseNode = {};
 
-        // remove all directories from files
-        for (const directory of directories)
+        // get all files in directory
+        const files = fs.readdirSync(filepath).filter((file) =>
         {
-            for (const file in files)
-            {
-                if (files[file] === directory)
-                {
-                    files.splice(file, 1);
-                }
-            }
-        }
+            return fs.statSync(`${filepath}/${file}`).isFile();
+        });
+
+        // get all directories in directory
+        const directories = fs.readdirSync(filepath).filter((file) =>
+        {
+            return fs.statSync(`${filepath}/${file}`).isDirectory();
+        });
 
         // make sure to remove the file extention
         for (const node in files)

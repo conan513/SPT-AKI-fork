@@ -55,12 +55,12 @@ function getRandomBool()
 function getRandomValue(node)
 {
     let keys = Object.keys(node);
-    return node[keys[utility.getRandomInt(0, keys.length - 1)]];
+    return node[keys[getRandomInt(0, keys.length - 1)]];
 }
 
 function getRandomArrayValue(arr)
 {
-    return arr[utility.getRandomInt(0, arr.length - 1)];
+    return arr[getRandomInt(0, arr.length - 1)];
 }
 
 function getFileList(path)

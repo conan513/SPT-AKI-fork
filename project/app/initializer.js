@@ -23,13 +23,9 @@ class Initializer
     // load core functionality
     initializeCore()
     {
-        // setup core files
         global.db = {};
         global.res = {};
         global.src = {};
-
-        // setup utilites
-        global.utility = require("./utility.js");
 
         // get packages to load
         global["packager_f"] = require("./packager.js");
