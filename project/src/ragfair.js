@@ -590,7 +590,7 @@ class Callbacks
         router_f.router.staticRoutes["/client/ragfair/find"] = this.search.bind();
         router_f.router.staticRoutes["/client/ragfair/itemMarketPrice"] = this.itemMarketPrice.bind();
         router_f.router.staticRoutes["/client/items/prices"] = this.getItemPrices.bind();
-        item_f.router.addRoute("RagFairAddOffer", this.addOffer.bind());
+        item_f.router.routes["RagFairAddOffer"] = this.addOffer.bind();
     }
 
     load()

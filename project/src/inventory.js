@@ -883,18 +883,18 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.addRoute("Move", this.moveItem.bind());
-        item_f.router.addRoute("Remove", this.removeItem.bind());
-        item_f.router.addRoute("Split", this.splitItem.bind());
-        item_f.router.addRoute("Merge", this.mergeItem.bind());
-        item_f.router.addRoute("Transfer", this.transferItem.bind());
-        item_f.router.addRoute("Swap", this.swapItem.bind());
-        item_f.router.addRoute("Fold", this.foldItem.bind());
-        item_f.router.addRoute("Toggle", this.toggleItem.bind());
-        item_f.router.addRoute("Tag", this.tagItem.bind());
-        item_f.router.addRoute("Bind", this.bindItem.bind());
-        item_f.router.addRoute("Examine", this.examineItem.bind());
-        item_f.router.addRoute("ReadEncyclopedia", this.readEncyclopedia.bind());
+        item_f.router.routes["Move"] = this.moveItem.bind();
+        item_f.router.routes["Remove"] = this.removeItem.bind();
+        item_f.router.routes["Split"] = this.splitItem.bind();
+        item_f.router.routes["Merge"] = this.mergeItem.bind();
+        item_f.router.routes["Transfer"] = this.transferItem.bind();
+        item_f.router.routes["Swap"] = this.swapItem.bind();
+        item_f.router.routes["Fold"] = this.foldItem.bind();
+        item_f.router.routes["Toggle"] = this.toggleItem.bind();
+        item_f.router.routes["Tag"] = this.tagItem.bind();
+        item_f.router.routes["Bind"] = this.bindItem.bind();
+        item_f.router.routes["Examine"] = this.examineItem.bind();
+        item_f.router.routes["ReadEncyclopedia"] = this.readEncyclopedia.bind();
     }
 
     moveItem(pmcData, body, sessionID)

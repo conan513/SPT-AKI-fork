@@ -18,12 +18,6 @@ class Router
         this.resetOutput();
     }
 
-    /* adds route to check for */
-    addRoute(route, callback)
-    {
-        this.routes[route] = callback;
-    }
-
     handleRoutes(info, sessionID)
     {
         let result = "";

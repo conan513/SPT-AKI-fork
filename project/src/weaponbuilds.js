@@ -73,8 +73,8 @@ class callbacks
         save_f.server.onLoadCallback["weaponbuilds"] = this.onLoad.bind();
 
         router_f.router.staticRoutes["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind();
-        item_f.router.addRoute("SaveBuild", this.saveBuild.bind());
-        item_f.router.addRoute("RemoveBuild", this.removeBuild.bind());
+        item_f.router.routes["SaveBuild"] = this.saveBuild.bind();
+        item_f.router.routes["RemoveBuild"] = this.removeBuild.bind();
     }
 
     onLoad(sessionID)
