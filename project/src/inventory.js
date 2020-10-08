@@ -213,7 +213,7 @@ class Controller
         //Find the item and all of it's relates
         if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
         {
-            logger.logError("item id is not valid");
+            logger_f.instance.logError("item id is not valid");
             return "";
         }
 
@@ -537,7 +537,7 @@ class Controller
                 }
                 catch (err)
                 {
-                    logger.logError("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
+                    logger_f.instance.logError("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
                     return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
                 }
 

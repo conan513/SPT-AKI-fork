@@ -8,6 +8,8 @@
 
 "use strict";
 
+const watermark = require("./watermark.js");
+
 class Initializer
 {
     constructor()
@@ -15,6 +17,7 @@ class Initializer
         process.title = "SPT-AKI Server";
 
         this.initializeCore();
+        this.initializeWatermark();
     }
 
     // load core functionality
@@ -26,12 +29,18 @@ class Initializer
         global.src = {};
 
         // setup utilites
-        global.utility = require("./util/utility.js");
-        global.logger = (require("./util/logger.js").logger);
+        global.utility = require("./utility.js");
 
         // get packages to load
         global["packager_f"] = require("./packager.js");
         packager_f.instance.all();
+    }
+
+    initializeWatermark()
+    {
+        watermark.instance.setTitle();
+        watermark.instance.resetCursor();
+        watermark.instance.draw();
     }
 }
 

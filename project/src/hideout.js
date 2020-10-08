@@ -55,7 +55,7 @@ class Controller
         {
             if (!item.inventoryItem)
             {
-                logger.logError(`Failed to find item in inventory with id ${item.requestedItem.id}`);
+                logger_f.instance.logError(`Failed to find item in inventory with id ${item.requestedItem.id}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
             }
 
@@ -76,14 +76,14 @@ class Controller
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
         {
-            logger.logError(`Could not find area of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
         const hideoutData = database_f.database.tables.hideout.areas.find(area => area.type === body.areaType);
         if (!hideoutData)
         {
-            logger.logError(`Could not find area in database of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area in database of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
@@ -104,7 +104,7 @@ class Controller
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
         {
-            logger.logError(`Could not find area of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
@@ -116,7 +116,7 @@ class Controller
         const hideoutData = database_f.database.tables.hideout.areas.find(area => area.type === hideoutArea.type);
         if (!hideoutData)
         {
-            logger.logError(`Could not find area in database of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area in database of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
@@ -151,7 +151,7 @@ class Controller
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
         {
-            logger.logError(`Could not find area of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(output);
         }
 
@@ -159,7 +159,7 @@ class Controller
         {
             if (!item.inventoryItem)
             {
-                logger.logError(`Failed to find item in inventory with id ${item.requestedItem.id}`);
+                logger_f.instance.logError(`Failed to find item in inventory with id ${item.requestedItem.id}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(output);
             }
 
@@ -194,7 +194,7 @@ class Controller
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
         {
-            logger.logError(`Could not find area of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(output);
         }
 
@@ -227,7 +227,7 @@ class Controller
             }
             else
             {
-                logger.logError(`Could not find item in inventory with id ${output.items.new[0]._id}`);
+                logger_f.instance.logError(`Could not find item in inventory with id ${output.items.new[0]._id}`);
             }
 
             hideoutArea.slots[body.slots[0]] = {
@@ -238,7 +238,7 @@ class Controller
         {
             if (!hideoutArea.slots[0] || !hideoutArea.slots[0].item[0] || !hideoutArea.slots[0].item[0]._tpl)
             {
-                logger.logError(`Could not find item to take out of slot 0 for areaType ${hideoutArea.type}`);
+                logger_f.instance.logError(`Could not find item to take out of slot 0 for areaType ${hideoutArea.type}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(output);
             }
 
@@ -269,7 +269,7 @@ class Controller
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
         {
-            logger.logError(`Could not find area of type ${body.areaType}`);
+            logger_f.instance.logError(`Could not find area of type ${body.areaType}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
@@ -301,7 +301,7 @@ class Controller
             const inventoryItem = pmcData.Inventory.items.find(item => item._id === requestedItem.id);
             if (!inventoryItem)
             {
-                logger.logError(`Could not find item requested by ScavCase with id ${requestedItem.id}`);
+                logger_f.instance.logError(`Could not find item requested by ScavCase with id ${requestedItem.id}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(output);
             }
 
@@ -320,7 +320,7 @@ class Controller
         const recipe = database_f.database.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (!recipe)
         {
-            logger.logError(`Failed to find Scav Case recipe with id ${body.recipeId}`);
+            logger_f.instance.logError(`Failed to find Scav Case recipe with id ${body.recipeId}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(output);
         }
 
@@ -387,7 +387,7 @@ class Controller
         const bitCoinCount = pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products.length;
         if (!bitCoinCount)
         {
-            logger.logError("No bitcoins are ready for pickup!");
+            logger_f.instance.logError("No bitcoins are ready for pickup!");
             return helpfunc_f.helpFunctions.appendErrorToOutput(output);
         }
 
@@ -439,7 +439,7 @@ class Controller
             const kvp = Object.entries(pmcData.Hideout.Production).find(kvp => kvp[1].RecipeId === body.recipeId);
             if (!kvp || !kvp[0])
             {
-                logger.logError(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
+                logger_f.instance.logError(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(output);
             }
 
@@ -458,7 +458,7 @@ class Controller
             const kvp = Object.entries(pmcData.Hideout.Production).find(kvp => kvp[1].RecipeId === body.recipeId);
             if (!kvp || !kvp[0])
             {
-                logger.logError(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
+                logger_f.instance.logError(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(output);
             }
             const prod = kvp[0];
@@ -484,7 +484,7 @@ class Controller
             return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
-        logger.logError(`Failed to locate any recipe with id ${body.recipeId}`);
+        logger_f.instance.logError(`Failed to locate any recipe with id ${body.recipeId}`);
         return helpfunc_f.helpFunctions.appendErrorToOutput(output);
     }
 
@@ -493,7 +493,7 @@ class Controller
         const recipe = database_f.database.tables.hideout.production.find(p => p._id === body.recipeId);
         if (!recipe)
         {
-            logger.logError(`Failed to locate recipe with _id ${body.recipeId}`);
+            logger_f.instance.logError(`Failed to locate recipe with _id ${body.recipeId}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
@@ -642,7 +642,7 @@ class Controller
             const recipe = recipes.find(r => r._id === pmcData.Hideout.Production[prod].RecipeId);
             if (!recipe)
             {
-                logger.logError(`Could not find recipe ${pmcData.Hideout.Production[prod].RecipeId} for area type ${prod}`);
+                logger_f.instance.logError(`Could not find recipe ${pmcData.Hideout.Production[prod].RecipeId} for area type ${prod}`);
                 continue;
             }
 

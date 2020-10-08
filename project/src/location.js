@@ -86,7 +86,7 @@ class Controller
             output.Loot.push(data);
             count++;
         }
-        logger.logSuccess("A total of " + count + " containers generated");
+        logger_f.instance.logSuccess("A total of " + count + " containers generated");
 
         // dyanmic loot
         let max = location_f.config.limits[name];
@@ -183,8 +183,8 @@ class Controller
         }
 
         // done generating
-        logger.logSuccess("A total of " + count + " items spawned");
-        logger.logSuccess("Generated location " + name);
+        logger_f.instance.logSuccess("A total of " + count + " items spawned");
+        logger_f.instance.logSuccess("Generated location " + name);
         return output;
     }
 

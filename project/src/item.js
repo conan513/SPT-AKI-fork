@@ -32,7 +32,7 @@ class Router
             }
             else
             {
-                logger.logError("[UNHANDLED ACTION] " + body.Action);
+                logger_f.instance.logError("[UNHANDLED ACTION] " + body.Action);
             }
         }
 

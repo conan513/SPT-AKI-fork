@@ -346,7 +346,7 @@ class Generator
         const spawnChance = ["Pockets", "SecuredContainer"].includes(equipmentSlot) ? 100 : spawnChances.equipment[equipmentSlot];
         if (typeof spawnChance === "undefined")
         {
-            logger.logWarning(`No spawn chance was defined for ${equipmentSlot}`);
+            logger_f.instance.logWarning(`No spawn chance was defined for ${equipmentSlot}`);
             return;
         }
 
@@ -359,8 +359,8 @@ class Generator
 
             if (!itemTemplate)
             {
-                logger.logError(`Could not find item template with tpl ${tpl}`);
-                logger.logInfo(`EquipmentSlot -> ${equipmentSlot}`);
+                logger_f.instance.logError(`Could not find item template with tpl ${tpl}`);
+                logger_f.instance.logInfo(`EquipmentSlot -> ${equipmentSlot}`);
                 return;
             }
 
@@ -398,8 +398,8 @@ class Generator
 
         if (!itemTemplate)
         {
-            logger.logError(`Could not find item template with tpl ${tpl}`);
-            logger.logError(`WeaponSlot -> ${equipmentSlot}`);
+            logger_f.instance.logError(`Could not find item template with tpl ${tpl}`);
+            logger_f.instance.logError(`WeaponSlot -> ${equipmentSlot}`);
             return;
         }
 
@@ -419,7 +419,7 @@ class Generator
         if (!this.isWeaponValid(weaponMods))
         {
             // Invalid weapon generated, fallback to preset
-            logger.logWarning(`Weapon ${tpl} was generated incorrectly, see error above`);
+            logger_f.instance.logWarning(`Weapon ${tpl} was generated incorrectly, see error above`);
             weaponMods = [];
 
             // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
@@ -445,7 +445,7 @@ class Generator
             }
             else
             {
-                logger.logError(`Could not find preset for weapon with tpl ${tpl}`);
+                logger_f.instance.logError(`Could not find preset for weapon with tpl ${tpl}`);
                 return;
             }
         }
@@ -474,7 +474,7 @@ class Generator
             && !parentTemplate._props.Cartridges.length
             && !parentTemplate._props.Chambers.length)
         {
-            logger.logError(`Item ${parentTemplate._id} had mods defined, but no slots to support them`);
+            logger_f.instance.logError(`Item ${parentTemplate._id} had mods defined, but no slots to support them`);
             return items;
         }
 
@@ -496,7 +496,7 @@ class Generator
 
             if (!itemSlot)
             {
-                logger.logError(`Slot '${modSlot}' does not exist for item ${parentTemplate._id}`);
+                logger_f.instance.logError(`Slot '${modSlot}' does not exist for item ${parentTemplate._id}`);
                 continue;
             }
 
@@ -526,22 +526,22 @@ class Generator
             {
                 if (itemSlot._required)
                 {
-                    logger.logError(`Could not locate any compatible items to fill '${modSlot}' for ${parentTemplate._id}`);
+                    logger_f.instance.logError(`Could not locate any compatible items to fill '${modSlot}' for ${parentTemplate._id}`);
                 }
                 continue;
             }
 
             if (!itemSlot._props.filters[0].Filter.includes(modTpl))
             {
-                logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${parentTemplate._id}`);
+                logger_f.instance.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${parentTemplate._id}`);
                 continue;
             }
 
             const modTemplate = database_f.database.tables.templates.items[modTpl];
             if (!modTemplate)
             {
-                logger.logError(`Could not find mod item template with tpl ${modTpl}`);
-                logger.logInfo(`Item -> ${parentTemplate._id}; Slot -> ${modSlot}`);
+                logger_f.instance.logError(`Could not find mod item template with tpl ${modTpl}`);
+                logger_f.instance.logInfo(`Item -> ${parentTemplate._id}; Slot -> ${modSlot}`);
                 continue;
             }
 
@@ -631,7 +631,7 @@ class Generator
                 const slotItem = itemList.find(i => i.parentId === item._id && i.slotId === slot._name);
                 if (!slotItem)
                 {
-                    logger.logError(`Required slot '${slot._name}' on ${template._id} was empty`);
+                    logger_f.instance.logError(`Required slot '${slot._name}' on ${template._id} was empty`);
                     return false;
                 }
             }
@@ -648,7 +648,7 @@ class Generator
         let magazine = weaponMods.find(m => m.slotId === "mod_magazine");
         if (!magazine)
         {
-            logger.logWarning(`Generated weapon with tpl ${weaponTemplate._id} had no magazine`);
+            logger_f.instance.logWarning(`Generated weapon with tpl ${weaponTemplate._id} had no magazine`);
             magazineTpl = weaponTemplate._props.defMagType;
         }
         else
@@ -659,7 +659,7 @@ class Generator
         const magTemplate = database_f.database.tables.templates.items[magazineTpl];
         if (!magTemplate)
         {
-            logger.logError(`Could not find magazine template with tpl ${magazineTpl}`);
+            logger_f.instance.logError(`Could not find magazine template with tpl ${magazineTpl}`);
             return;
         }
 
@@ -706,7 +706,7 @@ class Generator
         const ammoTemplate = database_f.database.tables.templates.items[ammoTpl];
         if (!ammoTemplate)
         {
-            logger.logError(`Could not find ammo template with tpl ${ammoTpl}`);
+            logger_f.instance.logError(`Could not find ammo template with tpl ${ammoTpl}`);
             return;
         }
 
@@ -734,7 +734,7 @@ class Generator
             if (!ammoToUse)
             {
                 // Still could not locate ammo to use? Fallback to weapon default
-                logger.logWarning(`Could not locate ammo to use for ${weaponTemplate._id}, falling back to default -> ${weaponTemplate._props.defAmmo}`);
+                logger_f.instance.logWarning(`Could not locate ammo to use for ${weaponTemplate._id}, falling back to default -> ${weaponTemplate._props.defAmmo}`);
                 // Immediatelly returns, as default ammo is guaranteed to be compatible
                 return weaponTemplate._props.defAmmo;
             }
@@ -763,7 +763,7 @@ class Generator
         const modTemplate = database_f.database.tables.templates.items[magazine._tpl];
         if (!modTemplate)
         {
-            logger.logError(`Could not find magazine template with tpl ${magazine._tpl}`);
+            logger_f.instance.logError(`Could not find magazine template with tpl ${magazine._tpl}`);
             return;
         }
 
@@ -772,7 +772,7 @@ class Generator
 
         if (!cartridges)
         {
-            logger.logWarning(`Magazine with tpl ${magazine._tpl} had no ammo`);
+            logger_f.instance.logWarning(`Magazine with tpl ${magazine._tpl} had no ammo`);
             weaponMods.push({
                 "_id": utility.generateNewItemId(),
                 "_tpl": ammoTpl,
@@ -861,7 +861,7 @@ class Generator
             const containerTemplate = database_f.database.tables.templates.items[container._tpl];
             if (!containerTemplate)
             {
-                logger.logError(`Could not find container template with tpl ${container._tpl}`);
+                logger_f.instance.logError(`Could not find container template with tpl ${container._tpl}`);
                 continue;
             }
 
@@ -941,8 +941,8 @@ class Generator
              * A shift that is equal to the available range only has a 50% chance of rolling correctly, theoretically halving performance.
              * Shifting even further drops the success chance very rapidly - so we want to warn against that */
 
-            //logger.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
-            //logger.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
+            //logger_f.instance.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
+            //logger_f.instance.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
         }
 
         const gaussianRandom = (n) =>

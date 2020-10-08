@@ -22,11 +22,11 @@ class Controller
         {
             if (!helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID))
             {
-                logger.logError("no money found");
+                logger_f.instance.logError("no money found");
                 throw "Transaction failed";
             }
 
-            logger.logSuccess("Bought item: " + body.item_id);
+            logger_f.instance.logSuccess("Bought item: " + body.item_id);
         };
 
         const newReq = {
@@ -63,7 +63,7 @@ class Controller
                 // item found
                 if (item._id === checkID)
                 {
-                    logger.logInfo("Selling: " + checkID);
+                    logger_f.instance.logInfo("Selling: " + checkID);
 
                     // remove item
                     insurance_f.controller.remove(pmcData, checkID, sessionID);

@@ -138,7 +138,7 @@ class Controller
 
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            logger.logWarning("generating fence");
+            logger_f.instance.logWarning("generating fence");
             this.generateFenceAssort();
         }
 

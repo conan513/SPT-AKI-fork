@@ -108,7 +108,7 @@ class Server
 
                 ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: this.ip + "/" }], { days: 365 }));
 
-                logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
+                logger_f.instance.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
                 fs.writeFileSync(certFile, cert);
                 fs.writeFileSync(keyFile, key);
@@ -166,8 +166,8 @@ class Server
         /* route doesn't exist or response is not properly set up */
         if (!output)
         {
-            logger.logError(`[UNHANDLED][${req.url}]`);
-            logger.log(info);
+            logger_f.instance.logError(`[UNHANDLED][${req.url}]`);
+            logger_f.instance.log(info);
             output = response_f.controller.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
@@ -193,7 +193,7 @@ class Server
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
         const sessionID = this.getCookies(req)["PHPSESSID"];
 
-        logger.log(`[${sessionID}][${IP}] ${req.url}`);
+        logger_f.instance.log(`[${sessionID}][${IP}] ${req.url}`);
 
         // request without data
         if (req.method === "GET")
@@ -245,7 +245,7 @@ class Server
     start()
     {
         // execute start callback
-        logger.logWarning("Server: executing startup callbacks...");
+        logger_f.instance.logWarning("Server: executing startup callbacks...");
 
         for (let type in this.startCallback)
         {
@@ -258,7 +258,7 @@ class Server
             this.handleRequest(req, res);
         }).listen(this.port, this.ip, () =>
         {
-            logger.logSuccess("Started server");
+            logger_f.instance.logSuccess("Started server");
         });
 
         /* server is already running or program using privileged port without root */
@@ -266,11 +266,11 @@ class Server
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
-                logger.logError("» Non-root processes cannot bind to ports below 1024");
+                logger_f.instance.logError("» Non-root processes cannot bind to ports below 1024");
             }
             else
             {
-                logger.logError("» Port " + e.port + " is already in use, check if the server isn't already running");
+                logger_f.instance.logError("» Port " + e.port + " is already in use, check if the server isn't already running");
             }
         });
     }

@@ -125,7 +125,7 @@ class Controller
     onSave()
     {
         save_f.server.onSave();
-        logger.logSuccess("Saved profiles");
+        logger_f.instance.logSuccess("Saved profiles");
     }
 }
 

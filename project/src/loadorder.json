@@ -1,5 +1,6 @@
 {
     "json_f": "src/json.js",
+    "logger_f": "src/logger.js",
     "router_f": "src/router.js",
     "response_f": "src/response.js",
     "server_f": "src/server.js",

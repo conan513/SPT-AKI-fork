@@ -108,7 +108,7 @@ class Controller
         // Some slot filters reference bad items
         if (!(template in database_f.database.tables.templates.items))
         {
-            logger.logWarning("Item " + template + " does not exist");
+            logger_f.instance.logWarning("Item " + template + " does not exist");
             return [];
         }
 

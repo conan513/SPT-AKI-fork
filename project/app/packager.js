@@ -25,7 +25,7 @@ class Packager
 
     loadMod(mod, filepath)
     {
-        logger.logInfo(`Loading mod ${mod.author}-${mod.name}`);
+        logger_f.instance.logInfo(`Loading mod ${mod.author}-${mod.name}`);
 
         if ("db" in mod)
         {
@@ -58,8 +58,8 @@ class Packager
             // check if config exists
             if (!fs.existsSync(`${this.baseDir}${mod}/package.json`))
             {
-                logger.logError(`Mod ${mod} is missing package.json`);
-                logger.logError("Forcing server shutdown...");
+                logger_f.instance.logError(`Mod ${mod} is missing package.json`);
+                logger_f.instance.logError("Forcing server shutdown...");
                 process.exit(1);
             }
 
@@ -68,13 +68,13 @@ class Packager
             // check legacy mod
             if (!("experimental" in config) || !config.experimental)
             {
-                logger.logError("Legacy mod detected");
-                logger.logError("Forcing server shutdown...");
+                logger_f.instance.logError("Legacy mod detected");
+                logger_f.instance.logError("Forcing server shutdown...");
                 process.exit(1);
             }
 
             // add mod to the list
-            logger.logWarning(`Mod ${mod} not installed, adding it to the modlist`);
+            logger_f.instance.logWarning(`Mod ${mod} not installed, adding it to the modlist`);
             this.packages.push({"name": config.name, "author": config.author, "version": config.version});
         }
     }

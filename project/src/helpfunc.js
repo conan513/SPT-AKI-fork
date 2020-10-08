@@ -76,7 +76,7 @@ class HelpFunctions
         const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
         {
-            logger.logError("No stash found");
+            logger_f.instance.logError("No stash found");
             return "";
         }
 
@@ -400,7 +400,7 @@ class HelpFunctions
         output.currentSalesSums[body.tid] = saleSum;
 
         // save changes
-        logger.logSuccess("Items taken. Status OK.");
+        logger_f.instance.logSuccess("Items taken. Status OK.");
         item_f.router.setOutput(output);
         return true;
     }
@@ -1076,7 +1076,7 @@ class HelpFunctions
                 }
                 catch (e)
                 {
-                    logger.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
+                    logger_f.instance.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
                 }
             }
         }

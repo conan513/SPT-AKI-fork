@@ -62,7 +62,7 @@ class Controller
         //Find the item and all of it's relates
         if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
         {
-            logger.logError("item id is not valid");
+            logger_f.instance.logError("item id is not valid");
             return;
         }
 
@@ -286,7 +286,7 @@ class Controller
         // pay the item	to profile
         if (!helpfunc_f.helpFunctions.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
-            logger.logError("no money found");
+            logger_f.instance.logError("no money found");
             return "";
         }
 
@@ -363,9 +363,9 @@ class Controller
                 }
                 catch (e)
                 {
-                    logger.logError("Anomalies in the calculation of insurance prices");
-                    logger.logError("InventoryItemId:" + key);
-                    logger.logError("ItemId:" + inventoryItemsHash[key]._tpl);
+                    logger_f.instance.logError("Anomalies in the calculation of insurance prices");
+                    logger_f.instance.logError("InventoryItemId:" + key);
+                    logger_f.instance.logError("ItemId:" + inventoryItemsHash[key]._tpl);
                 }
             }
 
