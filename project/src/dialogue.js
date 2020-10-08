@@ -22,18 +22,6 @@ class Controller
         };
     }
 
-    onLoad(sessionID)
-    {
-        let profile = save_f.server.profiles[sessionID];
-
-        if (!("dialogues" in profile))
-        {
-            profile.dialogues = {};
-        }
-
-        return profile;
-    }
-
     /* Set the content of the dialogue on the list tab. */
     generateDialogueList(sessionID)
     {
@@ -276,8 +264,6 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["dialogues"] = this.onLoad.bind(this);
-
         router_f.router.staticRoutes["/client/friend/list"] = this.getFriendList.bind(this);
         router_f.router.staticRoutes["/client/chatServer/list"] = this.getChatServerList.bind(this);
         router_f.router.staticRoutes["/client/mail/dialog/list"] = this.getMailDialogList.bind(this);
@@ -290,11 +276,6 @@ class Callbacks
         router_f.router.staticRoutes["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind(this);
         router_f.router.staticRoutes["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
         router_f.router.staticRoutes["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
-    }
-
-    onLoad(sessionID)
-    {
-        return dialogue_f.controller.onLoad(sessionID);
     }
 
     getFriendList(url, info, sessionID)

@@ -11,18 +11,6 @@
 
 class Controller
 {
-    onLoad(sessionID)
-    {
-        let profile = save_f.server.profiles[sessionID];
-
-        if (!("suits" in profile))
-        {
-            profile.suits = [];
-        }
-
-        return profile;
-    }
-
     wearClothing(pmcData, body, sessionID)
     {
         for (let i = 0; i < body.suites.length; i++)
@@ -156,17 +144,10 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["customization"] = this.onLoad.bind(this);
-
         router_f.router.staticRoutes["/client/trading/customization/storage"] = this.getSuits.bind(this);
         router_f.router.dynamicRoutes["/client/trading/customization/"] = this.getTraderSuits.bind(this);
         item_f.router.routes["CustomizationWear"] = this.wearClothing.bind(this);
         item_f.router.routes["CustomizationBuy"] = this.buyClothing.bind(this);
-    }
-
-    onLoad(sessionID)
-    {
-        return customization_f.controller.onLoad(sessionID);
     }
 
     getSuits(url, info, sessionID)

@@ -11,18 +11,6 @@
 
 class Controller
 {
-    onLoad(sessionID)
-    {
-        let profile = save_f.server.profiles[sessionID];
-
-        if (!("weaponbuilds" in profile))
-        {
-            profile.weaponbuilds = {};
-        }
-
-        return profile;
-    }
-
     getUserBuilds(sessionID)
     {
         return Object.values(save_f.server.profiles[sessionID].weaponbuilds);
@@ -70,16 +58,9 @@ class callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["weaponbuilds"] = this.onLoad.bind(this);
-
         router_f.router.staticRoutes["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind(this);
         item_f.router.routes["SaveBuild"] = this.saveBuild.bind(this);
         item_f.router.routes["RemoveBuild"] = this.removeBuild.bind(this);
-    }
-
-    onLoad(sessionID)
-    {
-        return weaponbuilds_f.controller.onLoad(sessionID);
     }
 
     getHandbookUserlist(url, info, sessionID)
