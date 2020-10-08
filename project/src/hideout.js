@@ -800,15 +800,15 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.addRoute("HideoutUpgrade", this.upgrade.bind());
-        item_f.router.addRoute("HideoutUpgradeComplete", this.upgradeComplete.bind());
-        item_f.router.addRoute("HideoutPutItemsInAreaSlots", this.putItemsInAreaSlots.bind());
-        item_f.router.addRoute("HideoutTakeItemsFromAreaSlots", this.takeItemsFromAreaSlots.bind());
-        item_f.router.addRoute("HideoutToggleArea", this.toggleArea.bind());
-        item_f.router.addRoute("HideoutSingleProductionStart", this.singleProductionStart.bind());
-        item_f.router.addRoute("HideoutScavCaseProductionStart", this.scavCaseProductionStart.bind());
-        item_f.router.addRoute("HideoutContinuousProductionStart", this.continuousProductionStart.bind());
-        item_f.router.addRoute("HideoutTakeProduction", this.takeProduction.bind());
+        item_f.router.routes["HideoutUpgrade"] = this.upgrade.bind();
+        item_f.router.routes["HideoutUpgradeComplete"] = this.upgradeComplete.bind();
+        item_f.router.routes["HideoutPutItemsInAreaSlots"] = this.putItemsInAreaSlots.bind();
+        item_f.router.routes["HideoutTakeItemsFromAreaSlots"] = this.takeItemsFromAreaSlots.bind();
+        item_f.router.routes["HideoutToggleArea"] = this.toggleArea.bind();
+        item_f.router.routes["HideoutSingleProductionStart"] = this.singleProductionStart.bind();
+        item_f.router.routes["HideoutScavCaseProductionStart"] = this.scavCaseProductionStart.bind();
+        item_f.router.routes["HideoutContinuousProductionStart"] = this.continuousProductionStart.bind();
+        item_f.router.routes["HideoutTakeProduction"] = this.takeProduction.bind();
     }
 
     upgrade(pmcData, body, sessionID)

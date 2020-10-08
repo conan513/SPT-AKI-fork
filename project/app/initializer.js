@@ -35,10 +35,6 @@ class Initializer
         /* setup routes and cache */
         const route = require("./server/route.js");
         route.all();
-
-        /* core logic */
-        global.router = (require("./server/router.js").router);
-        global.server = (require("./server/server.js").server);
     }
 
     /* load exception handler */

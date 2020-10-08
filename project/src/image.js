@@ -12,9 +12,9 @@ class Callbacks
 {
     constructor()
     {
-        server.addRespondCallback("IMAGE", this.sendImage.bind());
-        router.addDynamicRoute(".jpg", this.getImage.bind());
-        router.addDynamicRoute(".png", this.getImage.bind());
+        server_f.server.respondCallback["IMAGE"] = this.sendImage.bind();
+        router_f.router.dynamicRoutes[".jpg"] = this.getImage.bind();
+        router_f.router.dynamicRoutes[".png"] = this.getImage.bind();
     }
 
     getImage(url, info, sessionID)
@@ -56,7 +56,7 @@ class Callbacks
         }
 
         // send image
-        server.sendFile(resp, baseNode[fileName]);
+        server_f.server.sendFile(resp, baseNode[fileName]);
     }
 }
 

@@ -65,7 +65,7 @@ function getRandomArrayValue(arr)
 
 function getFileList(path)
 {
-    return fs.readdirSync(path).filter(function(file)
+    return fs.readdirSync(path).filter((file) =>
     {
         return fs.statSync(path + "/" + file).isFile();
     });
@@ -73,7 +73,7 @@ function getFileList(path)
 
 function getDirList(path)
 {
-    return fs.readdirSync(path).filter(function(file)
+    return fs.readdirSync(path).filter((file) =>
     {
         return fs.statSync(path + "/" + file).isDirectory();
     });

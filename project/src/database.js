@@ -21,26 +21,26 @@ class Callbacks
     constructor()
     {
         // server start callback
-        server.addStartCallback("loadDatabase", this.load.bind());
+        server_f.server.startCallback["loadDatabase"] = this.load.bind();
 
         // global
-        router.addStaticRoute("/client/globals", this.getGlobals.bind());
+        router_f.router.staticRoutes["/client/globals"] = this.getGlobals.bind();
 
         // templates
-        router.addStaticRoute("/client/items", this.getTemplateItems.bind());
-        router.addStaticRoute("/client/handbook/templates", this.getTemplateHandbook.bind());
-        router.addStaticRoute("/client/customization", this.getTemplateSuits.bind());
+        router_f.router.staticRoutes["/client/items"] = this.getTemplateItems.bind();
+        router_f.router.staticRoutes["/client/handbook/templates"] = this.getTemplateHandbook.bind();
+        router_f.router.staticRoutes["/client/customization"] = this.getTemplateSuits.bind();
 
         // hideout
-        router.addStaticRoute("/client/hideout/production/recipes", this.gethideoutProduction.bind());
-        router.addStaticRoute("/client/hideout/settings", this.getHideoutSettings.bind());
-        router.addStaticRoute("/client/hideout/areas", this.getHideoutAreas.bind());
-        router.addStaticRoute("/client/hideout/production/scavcase/recipes", this.getHideoutScavcase.bind());
+        router_f.router.staticRoutes["/client/hideout/production/recipes"] = this.gethideoutProduction.bind();
+        router_f.router.staticRoutes["/client/hideout/settings"] = this.getHideoutSettings.bind();
+        router_f.router.staticRoutes["/client/hideout/areas"] = this.getHideoutAreas.bind();
+        router_f.router.staticRoutes["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind();
 
         // locales
-        router.addStaticRoute("/client/languages", this.getLocalesLanguages.bind());
-        router.addDynamicRoute("/client/menu/locale/", this.getLocalesMenu.bind());
-        router.addDynamicRoute("/client/locale/", this.getLocalesGlobal.bind());
+        router_f.router.staticRoutes["/client/languages"] = this.getLocalesLanguages.bind();
+        router_f.router.dynamicRoutes["/client/menu/locale/"] = this.getLocalesMenu.bind();
+        router_f.router.dynamicRoutes["/client/locale/"] = this.getLocalesGlobal.bind();
     }
 
     load()

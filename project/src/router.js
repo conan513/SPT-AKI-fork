@@ -1,4 +1,4 @@
-/* account.js
+/* router.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -16,29 +16,10 @@ class Router
         this.dynamicRoutes = {};
     }
 
-    /* sets static routes to check for */
-    addStaticRoute(route, callback)
-    {
-        this.staticRoutes[route] = callback;
-    }
-
-    /* sets dynamic routes to check for */
-    addDynamicRoute(route, callback)
-    {
-        this.dynamicRoutes[route] = callback;
-    }
-
-    getResponse(req, body, sessionID)
+    getResponse(req, info, sessionID)
     {
         let output = "";
         let url = req.url;
-        let info = {};
-
-        /* parse body */
-        if (body !== "")
-        {
-            info = json.parse(body);
-        }
 
         /* remove retry from URL */
         if (url.includes("?retry="))

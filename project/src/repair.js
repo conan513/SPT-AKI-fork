@@ -72,7 +72,7 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.addRoute("Repair", this.repair.bind());
+        item_f.router.routes["Repair"] = this.repair.bind();
     }
 
     repair(pmcData, body, sessionID)

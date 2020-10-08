@@ -18,8 +18,6 @@ class Controller
         result = this.calculateTime(result);
         result = this.generateWeather(result);
 
-        console.log(result);
-
         return result;
     }
 
@@ -81,7 +79,7 @@ class Callbacks
 {
     constructor()
     {
-        router.addStaticRoute("/client/weather", this.getWeather.bind());
+        router_f.router.staticRoutes["/client/weather"] = this.getWeather.bind();
     }
 
     getWeather(url, info, sessionID)

@@ -1,4 +1,4 @@
-/* account.js
+/* event.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub

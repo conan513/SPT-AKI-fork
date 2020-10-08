@@ -26,7 +26,7 @@ compile({
     output: "Server-Intermediate",
     build: false,
     ico: "dev/res/icon.ico"
-}).then(function(err)
+}).then((err) =>
 {
     console.log("Changing icon");
 
@@ -41,7 +41,7 @@ compile({
         "dev/res/icon.ico",
         "-mask",
         "ICONGROUP,MAINICON,"
-    ], function(err)
+    ], (err) =>
     {
         fs.unlinkSync("Server-Intermediate.exe");
     });
