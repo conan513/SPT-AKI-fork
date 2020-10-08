@@ -30,8 +30,7 @@ class Initializer
         // setup utilites
         global.utility = require("./util/utility.js");
         global.logger = (require("./util/logger.js").logger);
-        global.json = require("./util/json.js");
-
+        
         // get packages to load
         global["packager_f"] = require("./packager.js");
         packager_f.instance.all();

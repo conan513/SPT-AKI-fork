@@ -206,7 +206,7 @@ class Callbacks
 
     getMetrics(url, info, sessionID)
     {
-        return json.read(db.others.metrics);
+        return json_f.instance.read(db.others.metrics);
     }
 
     getGroupStatus(url, info, sessionID)

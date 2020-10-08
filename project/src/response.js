@@ -12,7 +12,7 @@ class Controller
 {
     noBody(data)
     {
-        return utility.clearString(json.stringify(data));
+        return utility.clearString(json_f.instance.stringify(data));
     }
 
     getBody(data, err = 0, errmsg = null)
@@ -22,7 +22,7 @@ class Controller
 
     getUnclearedBody(data, err = 0, errmsg = null)
     {
-        return json.stringify({"err": err, "errmsg": errmsg, "data": data});
+        return json_f.instance.stringify({"err": err, "errmsg": errmsg, "data": data});
     }
 
     nullResponse()
