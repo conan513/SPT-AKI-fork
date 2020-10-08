@@ -21,7 +21,7 @@ class Callbacks
     constructor()
     {
         // server start callback
-        server_f.server.addStartCallback("loadDatabase", this.load.bind());
+        server_f.server.startCallback["loadDatabase"] = this.load.bind();
 
         // global
         router_f.router.staticRoutes["/client/globals"] = this.getGlobals.bind();

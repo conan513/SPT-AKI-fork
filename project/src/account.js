@@ -141,8 +141,8 @@ class Callbacks
     connect()
     {
         return response_f.controller.noBody({
-            "backendUrl": server_f.server.getBackendUrl(),
-            "name": server_f.server.getName(),
+            "backendUrl": server_f.server.backendUrl,
+            "name": server_f.server.name,
             "editions": Object.keys(db.profile)
         });
     }

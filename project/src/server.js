@@ -33,7 +33,7 @@ class Server
             json: "application/json"
         };
 
-        this.addRespondCallback("DONE", this.killResponse.bind(this));
+        this.respondCallback["DONE"] = this.killResponse.bind(this);
     }
 
     getCookies(req)
@@ -80,41 +80,6 @@ class Server
     getFromBuffer(sessionID)
     {
         return this.buffers[sessionID].buffer;
-    }
-
-    addStartCallback(type, worker)
-    {
-        this.startCallback[type] = worker;
-    }
-
-    addReceiveCallback(type, worker)
-    {
-        this.receiveCallback[type] = worker;
-    }
-
-    addRespondCallback(type, worker)
-    {
-        this.respondCallback[type] = worker;
-    }
-
-    getName()
-    {
-        return this.name;
-    }
-
-    getIp()
-    {
-        return this.ip;
-    }
-
-    getPort()
-    {
-        return this.port;
-    }
-
-    getBackendUrl()
-    {
-        return this.backendUrl;
     }
 
     generateCertificate()

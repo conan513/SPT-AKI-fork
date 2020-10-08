@@ -120,7 +120,7 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.addRespondCallback("NOTIFY", this.sendNotification.bind());
+        server_f.server.respondCallback["NOTIFY"] = this.sendNotification.bind();
         router_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind();
         router_f.router.dynamicRoutes["/?last_id"] = this.notify.bind();
         router_f.router.dynamicRoutes["/notifierServer"] = this.notify.bind();
@@ -153,10 +153,10 @@ class Callbacks
     createNotifierChannel(url, info, sessionID)
     {
         return response_f.controller.getBody({
-            "notifier": {"server": server_f.server.getBackendUrl() + "/",
+            "notifier": {"server": server_f.server.backendUrl + "/",
                 "channel_id": "testChannel",
-                "url": server_f.server.getBackendUrl() + "/notifierServer/get/" + sessionID},
-            "notifierServer": server_f.server.getBackendUrl() + "/notifierServer/get/" + sessionID
+                "url": server_f.server.backendUrl + "/notifierServer/get/" + sessionID},
+            "notifierServer": server_f.server.backendUrl + "/notifierServer/get/" + sessionID
         });
     }
 

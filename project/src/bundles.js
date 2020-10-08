@@ -17,7 +17,7 @@ class Controller
     {
         this.bundles = [];
         this.bundleBykey = {};
-        this.backendUrl = server_f.server.getBackendUrl();
+        this.backendUrl = server_f.server.backendUrl;
     }
 
     initialize(sessionID)
@@ -106,8 +106,8 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.addStartCallback("loadBundles", this.load.bind());
-        server_f.server.addRespondCallback("BUNDLE", this.sendBundle.bind());
+        server_f.server.startCallback["loadBundles"] = this.load.bind();
+        server_f.server.respondCallback["BUNDLE"] = this.sendBundle.bind();
         router_f.router.staticRoutes["/singleplayer/bundles/"] = this.getBundles.bind();
         router_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind();
     }
@@ -131,7 +131,7 @@ class Callbacks
 
     getBundles(url, info, sessionID)
     {
-        const local = (server_f.server.getIp() === "127.0.0.1" || server_f.server.getIp() === "localhost");
+        const local = (server_f.server.ip === "127.0.0.1" || server_f.server.ip === "localhost");
         return response_f.controller.noBody(bundles_f.controller.getBundles(local));
     }
 

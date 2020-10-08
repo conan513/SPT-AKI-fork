@@ -12,7 +12,7 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.addRespondCallback("IMAGE", this.sendImage.bind());
+        server_f.server.respondCallback["IMAGE"] = this.sendImage.bind();
         router_f.router.dynamicRoutes[".jpg"] = this.getImage.bind();
         router_f.router.dynamicRoutes[".png"] = this.getImage.bind();
     }
