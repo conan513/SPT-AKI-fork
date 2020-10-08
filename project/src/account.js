@@ -69,7 +69,6 @@ class Server
         save_f.server.profiles[sessionID] = {
             "info": {
                 "id": sessionID,
-                "nickname": "",
                 "email": info.email,
                 "password": info.password,
                 "wipe": true,
@@ -116,29 +115,6 @@ class Server
         }
 
         return sessionID;
-    }
-
-    getNickname(sessionID)
-    {
-        return save_f.server.profiles[sessionID].info.nickname;
-    }
-
-    setNickname(sessionID, name)
-    {
-        save_f.server.profiles[sessionID].info.nickname = name;
-    }
-
-    isNicknameTaken(info)
-    {
-        for (let sessionID in save_f.server.profiles)
-        {
-            if (info.nickname.toLowerCase() === save_f.server.profiles[sessionID].info.nickname.toLowerCase())
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
 

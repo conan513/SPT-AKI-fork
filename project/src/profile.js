@@ -115,7 +115,6 @@ class Controller
 
         // set account info
         account_f.server.setWipe(sessionID, false);
-        account_f.server.setNickname(sessionID, pmcData.Info.LowerNickname);
 
         // store minimal profile and reload it
         save_f.server.onSaveProfile(sessionID);
@@ -169,6 +168,26 @@ class Controller
         return profile;
     }
 
+    isNicknameTaken(info)
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            const profile = save_f.server.profiles[sessionID];
+
+            if (!("characters" in profile) || !("pmc" in profile.characters) || !("Info" in profile.characters.pmc))
+            {
+                continue;
+            }
+
+            if (profile.characters.pmc.Info.LowerNickname === info.nickname.toLowerCase())
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     validateNickname(info, sessionID)
     {
         if (info.nickname.length < 3)
@@ -176,7 +195,7 @@ class Controller
             return "tooshort";
         }
 
-        if (account_f.server.isNicknameTaken(info))
+        if (this.isNicknameTaken(info))
         {
             return "taken";
         }
@@ -287,7 +306,7 @@ class Callbacks
 
     getReservedNickname(url, info, sessionID)
     {
-        return response_f.controller.getBody(account_f.server.getNickname(sessionID));
+        return response_f.controller.getBody("SPTarkov");
     }
 }
 
