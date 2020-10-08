@@ -17,7 +17,7 @@ class Callbacks
         router_f.router.staticRoutes["/client/profile/status"] = this.getProfileStatus.bind();
         router_f.router.staticRoutes["/client/server/list"] = this.getServer.bind();
         router_f.router.staticRoutes["/client/game/version/validate"] = this.versionValidate.bind();
-        router_f.router.staticRoutes["/client/game/start]"] = this.gameStart.bind();
+        router_f.router.staticRoutes["/client/game/start"] = this.gameStart.bind();
         router_f.router.staticRoutes["/client/game/logout"] = this.gameLogout.bind();
         router_f.router.staticRoutes["/client/checkVersion"] = this.validateGameVersion.bind();
     }

@@ -379,7 +379,6 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoadCallback["inraid"] = this.onLoad.bind();
-
         router_f.router.staticRoutes["/raid/map/name"] = this.registerPlayer.bind();
         router_f.router.staticRoutes["/raid/profile/save"] = this.saveProgress.bind();
         router_f.router.staticRoutes["/singleplayer/settings/raid/endstate"] = this.getRaidEndState.bind();
@@ -395,6 +394,7 @@ class Callbacks
     registerPlayer(url, info, sessionID)
     {
         inraid_f.controller.addPlayer(sessionID, info);
+        return response_f.controller.nullResponse();
     }
 
     saveProgress(url, info, sessionID)
