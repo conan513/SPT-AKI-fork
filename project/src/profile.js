@@ -113,8 +113,8 @@ class Controller
             trader_f.controller.resetTrader(sessionID, traderID);
         }
 
-        // set account info
-        account_f.server.setWipe(sessionID, false);
+        // don't wipe profile again
+        save_f.server.profiles[sessionID].info.wipe = true;
 
         // store minimal profile and reload it
         save_f.server.onSaveProfile(sessionID);
@@ -213,7 +213,6 @@ class Controller
 
             pmcData.Info.Nickname = info.nickname;
             pmcData.Info.LowerNickname = info.nickname.toLowerCase();
-            account_f.server.setNickname(sessionID, pmcData.Info.LowerNickname);
         }
 
         return output;

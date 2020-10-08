@@ -29,11 +29,6 @@ class Server
         return save_f.server.profiles[sessionID].info.wipe;
     }
 
-    setWipe(sessionID, state)
-    {
-        save_f.server.profiles[sessionID].info.wipe = state;
-    }
-
     login(info)
     {
         for (let sessionID in save_f.server.profiles)
@@ -111,7 +106,7 @@ class Server
         if (sessionID)
         {
             save_f.server.profiles[sessionID].info.edition = info.edition;
-            this.setWipe(sessionID, true);
+            save_f.server.profiles[sessionID].info.wipe = true;
         }
 
         return sessionID;
