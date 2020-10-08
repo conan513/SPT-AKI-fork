@@ -52,35 +52,35 @@ class Callbacks
         database_f.database.tables.hideout = {};
 
         // global
-        database_f.database.tables.globals = json.parse(json.read(db.others.globals));
+        database_f.database.tables.globals = json_f.instance.parse(json_f.instance.read(db.others.globals));
 
         // locations
         for (let file in db.locations)
         {
-            database_f.database.tables.locations[file] = json.parse(json.read(db.locations[file]));
+            database_f.database.tables.locations[file] = json_f.instance.parse(json_f.instance.read(db.locations[file]));
         }
 
         // loot
         for (let file in db.loot)
         {
-            database_f.database.tables.loot[file] = json.parse(json.read(db.loot.statics));
+            database_f.database.tables.loot[file] = json_f.instance.parse(json_f.instance.read(db.loot.statics));
         }
 
         // templates
         for (let file in db.templates)
         {
-            database_f.database.tables.templates[file] = json.parse(json.read(db.templates[file]));
+            database_f.database.tables.templates[file] = json_f.instance.parse(json_f.instance.read(db.templates[file]));
         }
 
         // hideout
         for (let file in db.hideout)
         {
-            database_f.database.tables.hideout[file] = json.parse(json.read(db.hideout[file]));
+            database_f.database.tables.hideout[file] = json_f.instance.parse(json_f.instance.read(db.hideout[file]));
         }
 
         // locales
         let locales = {
-            "languages": json.parse(json.read(db.locales.languages)),
+            "languages": json_f.instance.parse(json_f.instance.read(db.locales.languages)),
             "menu": {},
             "global": {}
         };
@@ -91,13 +91,13 @@ class Callbacks
             if (file.includes("menu_"))
             {
                 // startup locale
-                locales.menu[file.replace("menu_", "")] = json.parse(json.read(db.locales[file]));
+                locales.menu[file.replace("menu_", "")] = json_f.instance.parse(json_f.instance.read(db.locales[file]));
             }
 
             else if (file.includes("global_"))
             {
                 // game locale
-                locales.global[file.replace("global_", "")] = json.parse(json.read(db.locales[file]));
+                locales.global[file.replace("global_", "")] = json_f.instance.parse(json_f.instance.read(db.locales[file]));
             }
         }
 
@@ -120,7 +120,7 @@ class Callbacks
             // skip if there is no id
             if (file === "ragfair_offer")
             {
-                ragfair.baseOffer = json.parse(json.read(db.traders.ragfair_offer));
+                ragfair.baseOffer = json_f.instance.parse(json_f.instance.read(db.traders.ragfair_offer));
                 ragfair.baseOffer.startTime = Math.floor(new Date().getTime() / 1000);
                 ragfair.baseOffer.endTime = ragfair.baseOffer.startTime + 3153600000;   // 1 century
                 continue;
@@ -136,31 +136,31 @@ class Callbacks
             if (file.includes("base_"))
             {
                 // trader info
-                traders[traderID].base = json.parse(json.read(db.traders[file]));
+                traders[traderID].base = json_f.instance.parse(json_f.instance.read(db.traders[file]));
             }
 
             else if (file.includes("suits_"))
             {
                 // customization
-                traders[traderID].suits = json.parse(json.read(db.traders[file]));
+                traders[traderID].suits = json_f.instance.parse(json_f.instance.read(db.traders[file]));
             }
 
             else if (file.includes("questassort_"))
             {
                 // assortiment unlocked by quests
-                traders[traderID].questassort = json.parse(json.read(db.traders[file]));
+                traders[traderID].questassort = json_f.instance.parse(json_f.instance.read(db.traders[file]));
             }
 
             else if (file.includes("assort_"))
             {
                 // assortiment
-                traders[traderID].assort = json.parse(json.read(db.traders[file]));
+                traders[traderID].assort = json_f.instance.parse(json_f.instance.read(db.traders[file]));
             }
 
             else if (file.includes("dialogue_"))
             {
                 // dialogue
-                traders[traderID].dialogue = json.parse(json.read(db.traders[file]));
+                traders[traderID].dialogue = json_f.instance.parse(json_f.instance.read(db.traders[file]));
             }
         }
 
@@ -179,19 +179,19 @@ class Callbacks
             // skip bot base
             if (file.includes("bot_base"))
             {
-                bots.base = json.parse(json.read(db.bots[file]));
+                bots.base = json_f.instance.parse(json_f.instance.read(db.bots[file]));
             }
 
             // load global bots difficulty
             else if (file.includes("difficulty_global"))
             {
-                bots.globalDifficulty = json.parse(json.read(db.bots[file]));
+                bots.globalDifficulty = json_f.instance.parse(json_f.instance.read(db.bots[file]));
             }
 
             // load bot to the server
             else if (file.includes("bot_"))
             {
-                bots.type[file.replace("bot_", "")] = json.parse(json.read(db.bots[file]));
+                bots.type[file.replace("bot_", "")] = json_f.instance.parse(json_f.instance.read(db.bots[file]));
             }
         }
 
