@@ -76,12 +76,12 @@ class Controller
         await new Promise(resolve =>
         {
             // Timeout after 15 seconds even if no messages have been received to keep the poll requests going.
-            setTimeout(function()
+            setTimeout(() =>
             {
                 resolve();
             }, 15000);
 
-            setInterval(function()
+            setInterval(() =>
             {
                 if (notifier_f.controller.hasMessagesInQueue(sessionID))
                 {
