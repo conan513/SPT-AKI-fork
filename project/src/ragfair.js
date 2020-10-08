@@ -83,7 +83,7 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.database.tables.traders[traderID].base;
-        let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
+        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.ragfair.baseOffer));
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -112,7 +112,7 @@ class Controller
             return [];
         }
 
-        let offerBase = json.parse(json.stringify(database_f.database.tables.ragfair.baseOffer));
+        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.ragfair.baseOffer));
         let offers = [];
 
         // Preset

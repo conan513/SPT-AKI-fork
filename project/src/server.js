@@ -160,7 +160,7 @@ class Server
     {
         // get response
         const text = (body) ? body.toString() : "{}";
-        const info = (text) ? json.parse(text) : {};
+        const info = (text) ? json_f.instance.parse(text) : {};
         let output = router_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */

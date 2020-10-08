@@ -150,7 +150,7 @@ class Controller
         if (isPlayerScav)
         {
             scavData = this.setInventory(scavData, offraidData.profile);
-            health_f.controller.resetHealth(sessionID);
+            health_f.controller.resetVitality(sessionID);
             profile_f.controller.setScavProfile(sessionID, scavData);
             return;
         }

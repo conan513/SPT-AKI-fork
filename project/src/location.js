@@ -192,7 +192,7 @@ class Controller
     get(location)
     {
         let name = location.toLowerCase().replace(" ", "");
-        return json.stringify(this.generate(name));
+        return json_f.instance.stringify(this.generate(name));
     }
 
     /* get all locations without loot data */

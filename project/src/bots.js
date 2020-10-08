@@ -123,7 +123,7 @@ class Controller
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                let bot = json.parse(json.stringify(database_f.database.tables.bots.base));
+                let bot = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.bots.base));
                 let botId = utility.getRandomIntEx(99999999);
 
                 bot._id = "bot" + botId;

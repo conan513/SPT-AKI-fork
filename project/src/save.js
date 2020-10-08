@@ -71,7 +71,7 @@ class Server
         if (sessionID in db.user.profiles)
         {
             // load profile
-            this.profiles[sessionID] = json.parse(json.read(db.user.profiles[sessionID]));
+            this.profiles[sessionID] = json_f.instance.parse(json_f.instance.read(db.user.profiles[sessionID]));
         }
 
         // run callbacks
@@ -90,7 +90,7 @@ class Server
         }
 
         // save profile
-        json.write(`user/profiles/${sessionID}.json`, this.profiles[sessionID]);
+        json_f.instance.write(`user/profiles/${sessionID}.json`, this.profiles[sessionID]);
     }
 }
 

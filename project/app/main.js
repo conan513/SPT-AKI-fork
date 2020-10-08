@@ -13,7 +13,7 @@ process.stdout.setEncoding("utf8");
 
 /* load server components */
 require("./initializer.js");
-const watermark = require("./server/watermark.js");
+const watermark = require("./watermark.js");
 watermark.instance.setTitle();
 watermark.instance.resetCursor();
 watermark.instance.draw();
