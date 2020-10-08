@@ -74,9 +74,9 @@ class Controller
 
     createProfile(info, sessionID)
     {
-        let account = account_f.server.find(sessionID);
-        let pmcData = json.parse(json.read(db.profile[account.edition]["character_" + info.side.toLowerCase()]));
-        let storage = json.parse(json.read(db.profile[account.edition]["storage_" + info.side.toLowerCase()]));
+        const account = account_f.server.find(sessionID);
+        const profile = database_f.database.tables.templates.profiles[account.edition][info.side.toLowerCase()];
+        let pmcData = profile.character;
 
         // delete existing profile
         if (sessionID in save_f.server.profiles)
@@ -101,8 +101,10 @@ class Controller
                 "pmc": pmcData,
                 "scav": {}
             },
-            "suits": storage,
-            "events": []
+            "suits": profile.suits,
+            "weaponbuilds": profile.weaponbuilds,
+            "dialogues": profile.dialogues,
+            "events": profile.events
         };
 
         // pmc profile needs to exist first
