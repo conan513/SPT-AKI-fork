@@ -44,6 +44,11 @@ class Controller
 
         for (const sessionID in profiles)
         {
+            if (!("events") in profiles[sessionID])
+            {
+                continue;
+            }
+
             while (profiles[sessionID].events.length > 0)
             {
                 let event = profiles[sessionID].events.shift();
