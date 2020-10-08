@@ -19,25 +19,25 @@ class Initializer
         this.initializeClasses();
     }
 
-    /* load core functionality */
+    // load core functionality
     initializeCore()
     {
-        /* setup utilites */
-        global.utility = require("./util/utility.js");
-        global.logger = (require("./util/logger.js").logger);
-        global.json = require("./util/json.js");
-
-        /* setup core files */
+        // setup core files
         global.db = {};
         global.res = {};
         global.src = {};
 
-        /* setup routes and cache */
-        const route = require("./server/route.js");
-        route.all();
+        // setup utilites
+        global.utility = require("./util/utility.js");
+        global.logger = (require("./util/logger.js").logger);
+        global.json = require("./util/json.js");
+
+        // get packages to load
+        global["packager_f"] = require("./packager.js");
+        packager_f.instance.all();
     }
 
-    /* load exception handler */
+    // load exception handler
     initializeExceptions()
     {
         process.on("uncaughtException", (error, promise) =>
@@ -47,7 +47,7 @@ class Initializer
         });
     }
 
-    /* load classes */
+    // load classes
     initializeClasses()
     {
         logger.logWarning("Interpreter: loading classes...");
