@@ -370,10 +370,10 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/trading/api/getTradersList"] = this.getTraderList.bind();
-        router_f.router.dynamicRoutes["/client/trading/api/getUserAssortPrice/trader/"] = this.getProfilePurchases.bind();
-        router_f.router.dynamicRoutes["/client/trading/api/getTrader/"] = this.getTrader.bind();
-        router_f.router.dynamicRoutes["/client/trading/api/getTraderAssort/"] = this.getAssort.bind();
+        router_f.router.staticRoutes["/client/trading/api/getTradersList"] = this.getTraderList.bind(this);
+        router_f.router.dynamicRoutes["/client/trading/api/getUserAssortPrice/trader/"] = this.getProfilePurchases.bind(this);
+        router_f.router.dynamicRoutes["/client/trading/api/getTrader/"] = this.getTrader.bind(this);
+        router_f.router.dynamicRoutes["/client/trading/api/getTraderAssort/"] = this.getAssort.bind(this);
     }
 
     getTraderList(url, info, sessionID)

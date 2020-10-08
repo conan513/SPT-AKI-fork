@@ -53,8 +53,8 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.routes["AddToWishList"] = this.addToWishlist.bind();
-        item_f.router.routes["RemoveFromWishList"] = this.removeFromWishlist.bind();
+        item_f.router.routes["AddToWishList"] = this.addToWishlist.bind(this);
+        item_f.router.routes["RemoveFromWishList"] = this.removeFromWishlist.bind(this);
     }
 
     addToWishlist(pmcData, body, sessionID)

@@ -118,23 +118,23 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/raid/profile/list"] = this.getProfile.bind();
-        router_f.router.staticRoutes["/client/match/available"] = this.serverAvailable.bind();
-        router_f.router.staticRoutes["/client/match/updatePing"] = this.updatePing();
-        router_f.router.staticRoutes["/client/match/join"] = this.joinMatch.bind();
-        router_f.router.staticRoutes["/client/match/exit"] = this.exitMatch();
-        router_f.router.staticRoutes["/client/match/group/create"] = this.createGroup.bind();
-        router_f.router.staticRoutes["/client/match/group/delete"] = this.deleteGroup.bind();
-        router_f.router.staticRoutes["/client/match/group/status"] = this.getGroupStatus.bind();
-        router_f.router.staticRoutes["/client/match/group/start_game"] = this.joinMatch.bind();
-        router_f.router.staticRoutes["/client/match/group/exit_from_menu"] = this.exitToMenu.bind();
-        router_f.router.staticRoutes["/client/match/group/looking/start"] = this.startGroupSearch();
-        router_f.router.staticRoutes["/client/match/group/looking/stop"] = this.stopGroupSearch.bind();
-        router_f.router.staticRoutes["/client/match/group/invite/send"] = this.sendGroupInvite();
-        router_f.router.staticRoutes["/client/match/group/invite/accept"] = this.acceptGroupInvite();
-        router_f.router.staticRoutes["/client/match/group/invite/cancel"] = this.cancelGroupInvite();
-        router_f.router.staticRoutes["/client/putMetrics"] = this.putMetrics.bind();
-        router_f.router.staticRoutes["/client/getMetricsConfig"] = this.getMetrics.bind();
+        router_f.router.staticRoutes["/raid/profile/list"] = this.getProfile.bind(this);
+        router_f.router.staticRoutes["/client/match/available"] = this.serverAvailable.bind(this);
+        router_f.router.staticRoutes["/client/match/updatePing"] = this.updatePing.bind(this);
+        router_f.router.staticRoutes["/client/match/join"] = this.joinMatch.bind(this);
+        router_f.router.staticRoutes["/client/match/exit"] = this.exitMatch.bind(this);
+        router_f.router.staticRoutes["/client/match/group/create"] = this.createGroup.bind(this);
+        router_f.router.staticRoutes["/client/match/group/delete"] = this.deleteGroup.bind(this);
+        router_f.router.staticRoutes["/client/match/group/status"] = this.getGroupStatus.bind(this);
+        router_f.router.staticRoutes["/client/match/group/start_game"] = this.joinMatch.bind(this);
+        router_f.router.staticRoutes["/client/match/group/exit_from_menu"] = this.exitToMenu.bind(this);
+        router_f.router.staticRoutes["/client/match/group/looking/start"] = this.startGroupSearch.bind(this);
+        router_f.router.staticRoutes["/client/match/group/looking/stop"] = this.stopGroupSearch.bind(this);
+        router_f.router.staticRoutes["/client/match/group/invite/send"] = this.sendGroupInvite.bind(this);
+        router_f.router.staticRoutes["/client/match/group/invite/accept"] = this.acceptGroupInvite.bind(this);
+        router_f.router.staticRoutes["/client/match/group/invite/cancel"] = this.cancelGroupInvite.bind(this);
+        router_f.router.staticRoutes["/client/putMetrics"] = this.putMetrics.bind(this);
+        router_f.router.staticRoutes["/client/getMetricsConfig"] = this.getMetrics.bind(this);
     }
 
     updatePing(url, info, sessionID)

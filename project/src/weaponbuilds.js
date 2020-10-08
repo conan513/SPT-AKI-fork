@@ -70,11 +70,11 @@ class callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["weaponbuilds"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["weaponbuilds"] = this.onLoad.bind(this);
 
-        router_f.router.staticRoutes["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind();
-        item_f.router.routes["SaveBuild"] = this.saveBuild.bind();
-        item_f.router.routes["RemoveBuild"] = this.removeBuild.bind();
+        router_f.router.staticRoutes["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind(this);
+        item_f.router.routes["SaveBuild"] = this.saveBuild.bind(this);
+        item_f.router.routes["RemoveBuild"] = this.removeBuild.bind(this);
     }
 
     onLoad(sessionID)

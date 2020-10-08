@@ -156,12 +156,12 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["customization"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["customization"] = this.onLoad.bind(this);
 
-        router_f.router.staticRoutes["/client/trading/customization/storage"] = this.getSuits.bind();
-        router_f.router.dynamicRoutes["/client/trading/customization/"] = this.getTraderSuits.bind();
-        item_f.router.routes["CustomizationWear"] = this.wearClothing.bind();
-        item_f.router.routes["CustomizationBuy"] = this.buyClothing.bind();
+        router_f.router.staticRoutes["/client/trading/customization/storage"] = this.getSuits.bind(this);
+        router_f.router.dynamicRoutes["/client/trading/customization/"] = this.getTraderSuits.bind(this);
+        item_f.router.routes["CustomizationWear"] = this.wearClothing.bind(this);
+        item_f.router.routes["CustomizationBuy"] = this.buyClothing.bind(this);
     }
 
     onLoad(sessionID)

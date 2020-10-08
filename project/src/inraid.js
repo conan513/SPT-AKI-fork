@@ -378,12 +378,12 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["inraid"] = this.onLoad.bind();
-        router_f.router.staticRoutes["/raid/map/name"] = this.registerPlayer.bind();
-        router_f.router.staticRoutes["/raid/profile/save"] = this.saveProgress.bind();
-        router_f.router.staticRoutes["/singleplayer/settings/raid/endstate"] = this.getRaidEndState.bind();
-        router_f.router.staticRoutes["/singleplayer/settings/weapon/durability"] = this.getWeaponDurability.bind();
-        router_f.router.staticRoutes["/singleplayer/settings/raid/menu"] = this.getRaidMenuSettings.bind();
+        save_f.server.onLoadCallback["inraid"] = this.onLoad.bind(this);
+        router_f.router.staticRoutes["/raid/map/name"] = this.registerPlayer.bind(this);
+        router_f.router.staticRoutes["/raid/profile/save"] = this.saveProgress.bind(this);
+        router_f.router.staticRoutes["/singleplayer/settings/raid/endstate"] = this.getRaidEndState.bind(this);
+        router_f.router.staticRoutes["/singleplayer/settings/weapon/durability"] = this.getWeaponDurability.bind(this);
+        router_f.router.staticRoutes["/singleplayer/settings/raid/menu"] = this.getRaidMenuSettings.bind(this);
     }
 
     onLoad(sessionID)

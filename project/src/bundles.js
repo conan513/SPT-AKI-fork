@@ -106,10 +106,10 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.startCallback["loadBundles"] = this.load.bind();
-        server_f.server.respondCallback["BUNDLE"] = this.sendBundle.bind();
-        router_f.router.staticRoutes["/singleplayer/bundles/"] = this.getBundles.bind();
-        router_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind();
+        server_f.server.startCallback["loadBundles"] = this.load.bind(this);
+        server_f.server.respondCallback["BUNDLE"] = this.sendBundle.bind(this);
+        router_f.router.staticRoutes["/singleplayer/bundles/"] = this.getBundles.bind(this);
+        router_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind(this);
     }
 
     load()
