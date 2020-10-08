@@ -37,7 +37,17 @@ class Logger
             }
         };
 
+        this.setupExceptions();
         this.create("user/logs/");
+    }
+
+    setupExceptions()
+    {
+        process.on("uncaughtException", (error, promise) =>
+        {
+            this.logError("Trace:");
+            this.log(error);
+        });
     }
 
     create(path)

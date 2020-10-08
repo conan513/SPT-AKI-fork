@@ -130,6 +130,15 @@ class Packager
         src = JSON.parse(fs.readFileSync("src/loadorder.json"));
     }
 
+    // load classes
+    initializeClasses()
+    {
+        for (let name in src)
+        {
+            global[name] = require(`../${src[name]}`);
+        }
+    }
+
     all()
     {
         // create mods folder if missing
@@ -141,6 +150,7 @@ class Packager
         this.routeAll();
         this.detectAllMods();
         this.loadAllMods();
+        this.initializeClasses();
     }
 }
 
