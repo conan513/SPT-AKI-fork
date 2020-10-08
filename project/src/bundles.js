@@ -108,8 +108,8 @@ class Callbacks
     {
         server_f.server.addStartCallback("loadBundles", this.load.bind());
         server_f.server.addRespondCallback("BUNDLE", this.sendBundle.bind());
-        router_f.router.addStaticRoute("/singleplayer/bundles/", this.getBundles.bind());
-        router_f.router.addDynamicRoute(".bundle", this.getBundle.bind());
+        router_f.router.staticRoutes["/singleplayer/bundles/"] = this.getBundles.bind();
+        router_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind();
     }
 
     load()

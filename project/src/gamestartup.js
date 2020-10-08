@@ -12,14 +12,14 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.addStaticRoute("/client/game/config", this.getGameConfig.bind());
-        router_f.router.addStaticRoute("/client/game/profile/select", this.selectProfile.bind());
-        router_f.router.addStaticRoute("/client/profile/status", this.getProfileStatus.bind());
-        router_f.router.addStaticRoute("/client/server/list", this.getServer.bind());
-        router_f.router.addStaticRoute("/client/game/version/validate", this.versionValidate.bind());
-        router_f.router.addStaticRoute("/client/game/start", this.gameStart.bind());
-        router_f.router.addStaticRoute("/client/game/logout", this.gameLogout.bind());
-        router_f.router.addStaticRoute("/client/checkVersion", this.validateGameVersion.bind());
+        router_f.router.staticRoutes["/client/game/config"] = this.getGameConfig.bind();
+        router_f.router.staticRoutes["/client/game/profile/select"] = this.selectProfile.bind();
+        router_f.router.staticRoutes["/client/profile/status"] = this.getProfileStatus.bind();
+        router_f.router.staticRoutes["/client/server/list"] = this.getServer.bind();
+        router_f.router.staticRoutes["/client/game/version/validate"] = this.versionValidate.bind();
+        router_f.router.staticRoutes["/client/game/start]"] = this.gameStart.bind();
+        router_f.router.staticRoutes["/client/game/logout"] = this.gameLogout.bind();
+        router_f.router.staticRoutes["/client/checkVersion"] = this.validateGameVersion.bind();
     }
 
     versionValidate(url, info, sessionID)

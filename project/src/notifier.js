@@ -121,11 +121,11 @@ class Callbacks
     constructor()
     {
         server_f.server.addRespondCallback("NOTIFY", this.sendNotification.bind());
-        router_f.router.addStaticRoute("/client/notifier/channel/create", this.createNotifierChannel.bind());
-        router_f.router.addDynamicRoute("/?last_id", this.notify.bind());
-        router_f.router.addDynamicRoute("/notifierServer", this.notify.bind());
-        router_f.router.addDynamicRoute("/notifierBase", this.getBaseNotifier.bind());
-        router_f.router.addDynamicRoute("/push/notifier/get/", this.getNotifier.bind());
+        router_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind();
+        router_f.router.dynamicRoutes["/?last_id"] = this.notify.bind();
+        router_f.router.dynamicRoutes["/notifierServer"] = this.notify.bind();
+        router_f.router.dynamicRoutes["/notifierBase"] = this.getBaseNotifier.bind();
+        router_f.router.dynamicRoutes["/push/notifier/get/"] = this.getNotifier.bind();
     }
 
     getBaseNotifier(url, info, sessionID)

@@ -1,4 +1,4 @@
-/* account.js
+/* router.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -14,18 +14,6 @@ class Router
     {
         this.staticRoutes = {};
         this.dynamicRoutes = {};
-    }
-
-    /* sets static routes to check for */
-    addStaticRoute(route, callback)
-    {
-        this.staticRoutes[route] = callback;
-    }
-
-    /* sets dynamic routes to check for */
-    addDynamicRoute(route, callback)
-    {
-        this.dynamicRoutes[route] = callback;
     }
 
     getResponse(req, info, sessionID)

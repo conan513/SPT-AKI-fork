@@ -480,11 +480,10 @@ class Callbacks
 {
     constructor()
     {
+        router_f.router.staticRoutes["/client/quest/list"] = this.listQuests.bind();
         item_f.router.addRoute("QuestAccept", this.acceptQuest.bind());
         item_f.router.addRoute("QuestComplete", this.completeQuest.bind());
         item_f.router.addRoute("QuestHandover", this.handoverQuest.bind());
-
-        router_f.router.addStaticRoute("/client/quest/list", this.listQuests.bind());
     }
 
     acceptQuest(pmcData, body, sessionID)

@@ -13,8 +13,8 @@ class Callbacks
     constructor()
     {
         server_f.server.addRespondCallback("IMAGE", this.sendImage.bind());
-        router_f.router.addDynamicRoute(".jpg", this.getImage.bind());
-        router_f.router.addDynamicRoute(".png", this.getImage.bind());
+        router_f.router.dynamicRoutes[".jpg"] = this.getImage.bind();
+        router_f.router.dynamicRoutes[".png"] = this.getImage.bind();
     }
 
     getImage(url, info, sessionID)
