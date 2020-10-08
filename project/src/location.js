@@ -360,9 +360,9 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.startCallback["loadLocations"] = this.load.bind();
-        router_f.router.staticRoutes["/client/locations"] = this.getLocationData.bind();
-        router_f.router.dynamicRoutes["/api/location"] = this.getLocation.bind();
+        server_f.server.startCallback["loadLocations"] = this.load.bind(this);
+        router_f.router.staticRoutes["/client/locations"] = this.getLocationData.bind(this);
+        router_f.router.dynamicRoutes["/api/location"] = this.getLocation.bind(this);
     }
 
     load()

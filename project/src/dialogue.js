@@ -276,20 +276,20 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["dialogues"] = this.onLoad.bind();
+        save_f.server.onLoadCallback["dialogues"] = this.onLoad.bind(this);
 
-        router_f.router.staticRoutes["/client/friend/list"] = this.getFriendList.bind();
-        router_f.router.staticRoutes["/client/chatServer/list"] = this.getChatServerList.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/list"] = this.getMailDialogList.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/view"] = this.getMailDialogView.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/info"] = this.getMailDialogInfo.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/remove"] = this.removeDialog.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/pin"] = this.pinDialog.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/unpin"] = this.unpinDialog.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/read"] = this.setRead.bind();
-        router_f.router.staticRoutes["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind();
-        router_f.router.staticRoutes["/client/friend/request/list/outbox"] = this.listOutbox.bind();
-        router_f.router.staticRoutes["/client/friend/request/list/inbox"] = this.listInbox.bind();
+        router_f.router.staticRoutes["/client/friend/list"] = this.getFriendList.bind(this);
+        router_f.router.staticRoutes["/client/chatServer/list"] = this.getChatServerList.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/list"] = this.getMailDialogList.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/view"] = this.getMailDialogView.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/info"] = this.getMailDialogInfo.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/remove"] = this.removeDialog.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/pin"] = this.pinDialog.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/unpin"] = this.unpinDialog.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/read"] = this.setRead.bind(this);
+        router_f.router.staticRoutes["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind(this);
+        router_f.router.staticRoutes["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
+        router_f.router.staticRoutes["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
     }
 
     onLoad(sessionID)

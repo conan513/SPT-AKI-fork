@@ -143,8 +143,8 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.routes["TradingConfirm"] = this.processTrade.bind();
-        item_f.router.routes["RagFairBuyOffer"] = this.processRagfairTrade.bind();
+        item_f.router.routes["TradingConfirm"] = this.processTrade.bind(this);
+        item_f.router.routes["RagFairBuyOffer"] = this.processRagfairTrade.bind(this);
     }
 
     processTrade(pmcData, body, sessionID)
