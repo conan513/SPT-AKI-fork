@@ -34,7 +34,7 @@
     "preset_f": "packages/preset.js",
     "ragfair_f": "packages/ragfair.js",
     "weather_f": "packages/weather.js",
-    "location_f": "packages/location.js",
+    "location_f": "packages/eft-locations/package.js",
     "bundles_f": "packages/aki-bundles/package.js",
     "match_f": "packages/match.js"
 }

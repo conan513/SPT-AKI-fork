@@ -1,4 +1,4 @@
-/* location.js
+/* controller.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -10,7 +10,6 @@
 
 "use strict";
 
-/* controller class maintains list of locations in memory. */
 class Controller
 {
     constructor()
@@ -356,57 +355,4 @@ class Controller
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        server_f.server.startCallback["loadLocations"] = this.load.bind(this);
-        router_f.router.staticRoutes["/client/locations"] = this.getLocationData.bind(this);
-        router_f.router.dynamicRoutes["/api/location"] = this.getLocation.bind(this);
-    }
-
-    load()
-    {
-        location_f.controller.initialize();
-    }
-
-    getLocationData(url, info, sessionID)
-    {
-        return response_f.controller.getBody(location_f.controller.generateAll());
-    }
-
-    getLocation(url, info, sessionID)
-    {
-        return location_f.controller.get(url.replace("/api/location/", ""));
-    }
-}
-
-class Config
-{
-    constructor()
-    {
-        this.allowLootOverlay = false;
-        this.limits = {
-            "bigmap": 1000,
-            "develop": 30,
-            "factory4_day": 100,
-            "factory4_night": 100,
-            "interchange": 2000,
-            "laboratory": 1000,
-            "rezervbase": 3000,
-            "shoreline": 1000,
-            "woods": 200,
-            "hideout": 0,
-            "lighthouse": 0,
-            "privatearea": 0,
-            "suburbs": 0,
-            "tarkovstreets": 0,
-            "terminal": 0,
-            "town": 0
-        };
-    }
-}
-
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
+module.exports.Controller = Controller;

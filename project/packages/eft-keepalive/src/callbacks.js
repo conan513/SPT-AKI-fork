@@ -4,6 +4,7 @@
  * website: https://www.guilded.gg/senkospub
  * authors:
  * - Senko-san (Merijn Hendriks)
+ * - Terkoiz
  */
 
 "use strict";
