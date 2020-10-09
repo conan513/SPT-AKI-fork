@@ -44,7 +44,7 @@ class Config
             },
             "temp": {
                 "min": 0,
-                "max": 20
+                "max": 16
             },
             "pressure": {
                 "min": 760,
