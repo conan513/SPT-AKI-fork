@@ -32,6 +32,18 @@ class Controller
         },  this.scheduleIntervalMillis * 1000);
     }
 
+    onLoad(sessionID)
+    {
+        let profile = save_f.server.profiles[sessionID];
+
+        if (!("events" in profile))
+        {
+            profile.events = [];
+        }
+
+        return profile;
+    }
+
     addEvent(type, worker)
     {
         this.callbacks[type] = worker;
@@ -39,19 +51,15 @@ class Controller
 
     processSchedule()
     {
+        const now = Date.now();
         let profiles = save_f.server.profiles;
-        let now = Date.now();
 
         for (const sessionID in profiles)
         {
-            if (!("events") in profiles[sessionID])
-            {
-                continue;
-            }
 
             while (profiles[sessionID].events.length > 0)
             {
-                let event = profiles[sessionID].events.shift();
+                const event = profiles[sessionID].events.shift();
 
                 if (event.scheduledTime < now)
                 {
@@ -100,4 +108,18 @@ class Controller
     }
 }
 
+class Callbacks
+{
+    constructor()
+    {
+        save_f.server.onLoadCallback["events"] = this.onLoad.bind(this);
+    }
+
+    onLoad(sessionID)
+    {
+        return event_f.controller.onLoad(sessionID);
+    }
+}
+
 module.exports.controller = new Controller();
+module.exports.callbacks = new Callbacks();
