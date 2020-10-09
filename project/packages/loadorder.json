@@ -12,7 +12,7 @@
     "event_f": "packages/aki-events/package.js",
     "item_f": "packages/item.js",
     "keepalive_f": "packages/keepalive.js",
-    "health_f": "packages/health.js",
+    "health_f": "packages/eft-health/package.js",
     "inraid_f": "packages/inraid.js",
     "dialogue_f": "packages/eft-dialogue/package.js",
     "account_f": "packages/eft-accounts/package.js",
