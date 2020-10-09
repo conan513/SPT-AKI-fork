@@ -5,7 +5,7 @@
     "router_f": "packages/router.js",
     "response_f": "packages/response.js",
     "server_f": "packages/server.js",
-    "database_f": "packages/database.js",
+    "database_f": "packages/aki-database/package.js",
     "save_f": "packages/save.js",
     "event_f": "packages/event.js",
     "item_f": "packages/item.js",

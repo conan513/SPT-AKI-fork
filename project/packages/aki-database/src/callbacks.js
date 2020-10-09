@@ -1,20 +1,13 @@
-/* database.js
+/* callbacks.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
  * authors:
  * - Senko-san (Merijn Hendriks)
+ * - Ginja
  */
 
 "use strict";
-
-class Server
-{
-    constructor()
-    {
-        this.tables = {};
-    }
-}
 
 class Callbacks
 {
@@ -260,5 +253,4 @@ class Callbacks
     }
 }
 
-module.exports.database = new Server();
-module.exports.callbacks = new Callbacks();
+module.exports.Callbacks = Callbacks;
