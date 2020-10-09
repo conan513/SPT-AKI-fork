@@ -39,7 +39,7 @@ class Config
                 "max": 1
             },
             "fog": {
-                "min": 0.02,
+                "min": 0.002,
                 "max": 0.15
             },
             "temp": {
