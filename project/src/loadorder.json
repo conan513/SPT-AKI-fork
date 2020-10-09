@@ -33,7 +33,7 @@
     "ragfair_f": "src/ragfair.js",
     "weather_f": "src/weather.js",
     "location_f": "src/location.js",
-    "bundles_f": "src/bundles.js",
+    "bundles_f": "src/aki-bundles/package.js",
     "image_f": "src/image.js",
     "gamestartup_f": "src/gamestartup.js",
     "match_f": "src/match.js"
