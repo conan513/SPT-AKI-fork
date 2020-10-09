@@ -19,7 +19,7 @@
     "profile_f": "packages/profile.js",
     "notifier_f": "packages/notifier.js",
     "bots_f": "packages/eft-bots/package.js",
-    "helpfunc_f": "packages/helpfunc.js",
+    "helpfunc_f": "packages/eft-helpfunctions/package.js",
     "quest_f": "packages/quest.js",
     "note_f": "packages/notes.js",
     "inventory_f": "packages/inventory.js",

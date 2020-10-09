@@ -1,4 +1,4 @@
-/* helpfunc.js
+/* helpfunctions.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -1085,4 +1085,4 @@ class HelpFunctions
     }
 }
 
-module.exports.helpFunctions = new HelpFunctions();
+module.exports.HelpFunctions = HelpFunctions;
