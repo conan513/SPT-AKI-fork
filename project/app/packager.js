@@ -25,7 +25,7 @@ class Packager
 
     loadMod(mod, filepath)
     {
-        logger_f.instance.logInfo(`Loading mod ${mod.author}-${mod.name}`);
+        console.log(`Loading mod ${mod.author}-${mod.name}`);
 
         if ("db" in mod)
         {
@@ -63,8 +63,8 @@ class Packager
             // check if config exists
             if (!fs.existsSync(`${this.baseDir}${mod}/package.json`))
             {
-                logger_f.instance.logError(`Mod ${mod} is missing package.json`);
-                logger_f.instance.logError("Forcing server shutdown...");
+                console.log(`Mod ${mod} is missing package.json`);
+                console.log("Forcing server shutdown...");
                 process.exit(1);
             }
 
@@ -73,13 +73,13 @@ class Packager
             // check legacy mod
             if (!("experimental" in config) || !config.experimental)
             {
-                logger_f.instance.logError("Legacy mod detected");
-                logger_f.instance.logError("Forcing server shutdown...");
+                console.log("Legacy mod detected");
+                console.log("Forcing server shutdown...");
                 process.exit(1);
             }
 
             // add mod to the list
-            logger_f.instance.logWarning(`Mod ${mod} not installed, adding it to the modlist`);
+            console.log(`Mod ${mod} not installed, adding it to the modlist`);
             this.packages.push({"name": config.name, "author": config.author, "version": config.version});
         }
     }
@@ -130,7 +130,7 @@ class Packager
     {
         db = this.scanRecursiveRoute("db/");
         res = this.scanRecursiveRoute("res/");
-        src = JSON.parse(fs.readFileSync("src/loadorder.json"));
+        src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
     }
 
     // load classes
@@ -151,8 +151,8 @@ class Packager
         }
 
         this.routeAll();
-        this.detectAllMods();
-        this.loadAllMods();
+        //this.detectAllMods();
+        //this.loadAllMods();
         this.initializeClasses();
     }
 }
