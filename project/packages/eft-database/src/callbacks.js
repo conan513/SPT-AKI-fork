@@ -30,36 +30,36 @@ class Callbacks
     load()
     {
         // warmup
-        database_f.database.tables.locations = {};
-        database_f.database.tables.loot = {};
-        database_f.database.tables.templates = {};
-        database_f.database.tables.hideout = {};
+        database_f.server.tables.locations = {};
+        database_f.server.tables.loot = {};
+        database_f.server.tables.templates = {};
+        database_f.server.tables.hideout = {};
 
         // global
-        database_f.database.tables.globals = json_f.instance.parse(json_f.instance.read(db.others.globals));
+        database_f.server.tables.globals = json_f.instance.parse(json_f.instance.read(db.others.globals));
 
         // locations
         for (let file in db.locations)
         {
-            database_f.database.tables.locations[file] = json_f.instance.parse(json_f.instance.read(db.locations[file]));
+            database_f.server.tables.locations[file] = json_f.instance.parse(json_f.instance.read(db.locations[file]));
         }
 
         // loot
         for (let file in db.loot)
         {
-            database_f.database.tables.loot[file] = json_f.instance.parse(json_f.instance.read(db.loot.statics));
+            database_f.server.tables.loot[file] = json_f.instance.parse(json_f.instance.read(db.loot.statics));
         }
 
         // templates
         for (let file in db.templates)
         {
-            database_f.database.tables.templates[file] = json_f.instance.parse(json_f.instance.read(db.templates[file]));
+            database_f.server.tables.templates[file] = json_f.instance.parse(json_f.instance.read(db.templates[file]));
         }
 
         // hideout
         for (let file in db.hideout)
         {
-            database_f.database.tables.hideout[file] = json_f.instance.parse(json_f.instance.read(db.hideout[file]));
+            database_f.server.tables.hideout[file] = json_f.instance.parse(json_f.instance.read(db.hideout[file]));
         }
 
         // locales
@@ -85,7 +85,7 @@ class Callbacks
             }
         }
 
-        database_f.database.tables.locales = locales;
+        database_f.server.tables.locales = locales;
 
         // traders
         let traders = {};
@@ -148,8 +148,8 @@ class Callbacks
             }
         }
 
-        database_f.database.tables.traders = traders;
-        database_f.database.tables.ragfair = ragfair;
+        database_f.server.tables.traders = traders;
+        database_f.server.tables.ragfair = ragfair;
 
         // bots
         let bots = {
@@ -179,68 +179,68 @@ class Callbacks
             }
         }
 
-        database_f.database.tables.bots = bots;
+        database_f.server.tables.bots = bots;
     }
 
     getGlobals(url, info, sessionID)
     {
-        database_f.database.tables.globals.time = Date.now() / 1000;
-        return response_f.controller.getBody(database_f.database.tables.globals);
+        database_f.server.tables.globals.time = Date.now() / 1000;
+        return response_f.controller.getBody(database_f.server.tables.globals);
     }
 
     getTemplateItems(url, info, sessionID)
     {
-        return response_f.controller.getUnclearedBody(database_f.database.tables.templates.items);
+        return response_f.controller.getUnclearedBody(database_f.server.tables.templates.items);
     }
 
     getTemplateHandbook(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.templates.handbook);
+        return response_f.controller.getBody(database_f.server.tables.templates.handbook);
     }
 
     getTemplateSuits(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.templates.suits);
+        return response_f.controller.getBody(database_f.server.tables.templates.suits);
     }
 
     getTemplateQuests(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.templates.quests);
+        return response_f.controller.getBody(database_f.server.tables.templates.quests);
     }
 
     getHideoutSettings(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.hideout.settings);
+        return response_f.controller.getBody(database_f.server.tables.hideout.settings);
     }
 
     getHideoutAreas(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.hideout.areas);
+        return response_f.controller.getBody(database_f.server.tables.hideout.areas);
     }
 
     gethideoutProduction(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.hideout.production);
+        return response_f.controller.getBody(database_f.server.tables.hideout.production);
     }
 
     getHideoutScavcase(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.hideout.scavcase);
+        return response_f.controller.getBody(database_f.server.tables.hideout.scavcase);
     }
 
     getLocalesLanguages(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.locales.languages);
+        return response_f.controller.getBody(database_f.server.tables.locales.languages);
     }
 
     getLocalesMenu(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.database.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
+        return response_f.controller.getBody(database_f.server.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
     }
 
     getLocalesGlobal(url, info, sessionID)
     {
-        return response_f.controller.getUnclearedBody(database_f.database.tables.locales.global[url.replace("/client/locale/", "")]);
+        return response_f.controller.getUnclearedBody(database_f.server.tables.locales.global[url.replace("/client/locale/", "")]);
     }
 }
 

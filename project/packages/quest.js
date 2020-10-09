@@ -17,7 +17,7 @@ class Controller
         let quests = [];
         const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
 
-        for (const quest of database_f.database.tables.templates.quests)
+        for (const quest of database_f.server.tables.templates.quests)
         {
             const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
 
@@ -55,7 +55,7 @@ class Controller
     {
         let profileQuests = [];
 
-        for (let quest of database_f.database.tables.templates.quests)
+        for (let quest of database_f.server.tables.templates.quests)
         {
             let state = "AvailableForStart";
             for (let condition of quest.conditions.AvailableForStart)
@@ -86,7 +86,7 @@ class Controller
 
     getFindItemIdForQuestItem(itemTpl)
     {
-        for (const quest of database_f.database.tables.templates.quests)
+        for (const quest of database_f.server.tables.templates.quests)
         {
             for (const condition of quest.conditions.AvailableForFinish)
             {
@@ -100,7 +100,7 @@ class Controller
 
     getCachedQuest(qid)
     {
-        for (let quest of database_f.database.tables.templates.quests)
+        for (let quest of database_f.server.tables.templates.quests)
         {
             if (quest._id === qid)
             {
@@ -196,7 +196,7 @@ class Controller
         // Create a dialog message for starting the quest.
         // Note that for starting quests, the correct locale field is "description", not "startedMessageText".
         let quest = this.getCachedQuest(body.qid);
-        let questLocale = database_f.database.tables.locales.global["en"].quest[body.qid];
+        let questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
         let questRewards = this.getQuestRewardItems(quest, state);
         let messageContent = {
             "templateId": questLocale.startedMessageText,
@@ -318,7 +318,7 @@ class Controller
 
         // Create a dialog message for completing the quest.
         let questDb = this.getCachedQuest(body.qid);
-        let questLocale = database_f.database.tables.locales.global["en"].quest[body.qid];
+        let questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.successMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questSuccess"),

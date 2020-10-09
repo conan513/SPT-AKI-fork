@@ -217,7 +217,7 @@ class Controller
         for (let traderId in save_f.server.profiles[sessionID].insurance)
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
-            let dialogueTemplates = database_f.database.tables.traders[traderId].dialogue;
+            let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": dialogueTemplates.insuranceStart[utility.getRandomInt(0, dialogueTemplates.insuranceStart.length - 1)],
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
@@ -255,7 +255,7 @@ class Controller
         // Inject a little bit of a surprise by failing the insurance from time to time ;)
         if (utility.getRandomInt(0, 99) >= insurance_f.config.returnChance)
         {
-            const insuranceFailedTemplates = database_f.database.tables.traders[event.data.traderId].dialogue.insuranceFailed;
+            const insuranceFailedTemplates = database_f.server.tables.traders[event.data.traderId].dialogue.insuranceFailed;
             event.data.messageContent.templateId = insuranceFailedTemplates[utility.getRandomInt(0, insuranceFailedTemplates.length - 1)];
             event.data.items = [];
         }
@@ -311,7 +311,7 @@ class Controller
         {
             global.templatesById = {};
 
-            for (const item of database_f.database.tables.templates.handbook.Items)
+            for (const item of database_f.server.tables.templates.handbook.Items)
             {
                 templatesById[item.Id] = item;
             }
@@ -324,7 +324,7 @@ class Controller
         }
         else
         {
-            let item = database_f.database.tables.templates.items[_tpl];
+            let item = database_f.server.tables.templates.items[_tpl];
             price = item._props.CreditsPrice;
         }
 

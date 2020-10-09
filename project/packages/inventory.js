@@ -446,9 +446,9 @@ class Controller
 
         for (let baseItem of body.items)
         {
-            if (baseItem.item_id in database_f.database.tables.globals.ItemPresets)
+            if (baseItem.item_id in database_f.server.tables.globals.ItemPresets)
             {
-                const presetItems = helpfunc_f.helpFunctions.clone(database_f.database.tables.globals.ItemPresets[baseItem.item_id]._items);
+                const presetItems = helpfunc_f.helpFunctions.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
@@ -461,7 +461,7 @@ class Controller
             {
                 /* Note by reider123: Idk when it is used; even when I buy stuffs from fence, this is not called since body.tid is changed to "ragfair" in trade.js.
                 I think It can be just deleted. I just fixed it to make more sense, though. */
-                const fenceItem = database_f.database.tables.traders[fenceID].assort.items;
+                const fenceItem = database_f.server.tables.traders[fenceID].assort.items;
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
                 itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
             }
@@ -802,7 +802,7 @@ class Controller
             // get trader assort
             if (body.fromOwner.type === "Trader")
             {
-                const traders = database_f.database.tables.traders;
+                const traders = database_f.server.tables.traders;
 
                 for (const traderID in traders)
                 {
@@ -836,7 +836,7 @@ class Controller
         if (!itemID)
         {
             // item template
-            if (body.item in database_f.database.tables.templates.items)
+            if (body.item in database_f.server.tables.templates.items)
             {
                 itemID = body.item;
             }
@@ -859,7 +859,7 @@ class Controller
         if (itemID)
         {
             // item found
-            const item = database_f.database.tables.templates.items[itemID];
+            const item = database_f.server.tables.templates.items[itemID];
 
             pmcData.Info.Experience += item._props.ExamineExperience;
             pmcData.Encyclopedia[itemID] = true;

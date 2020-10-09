@@ -114,7 +114,7 @@ class Generator
         {
             const id = utility.generateNewItemId();
             const tpl = utility.getRandomArrayValue(equipmentPool);
-            const itemTemplate = database_f.database.tables.templates.items[tpl];
+            const itemTemplate = database_f.server.tables.templates.items[tpl];
 
             if (!itemTemplate)
             {
@@ -153,7 +153,7 @@ class Generator
     {
         const id = utility.generateNewItemId();
         const tpl = utility.getRandomArrayValue(weaponPool);
-        const itemTemplate = database_f.database.tables.templates.items[tpl];
+        const itemTemplate = database_f.server.tables.templates.items[tpl];
 
         if (!itemTemplate)
         {
@@ -183,7 +183,7 @@ class Generator
 
             // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
             let preset;
-            for (const [presetId, presetObj] of Object.entries(database_f.database.tables.globals.ItemPresets))
+            for (const [presetId, presetObj] of Object.entries(database_f.server.tables.globals.ItemPresets))
             {
                 if (presetObj._items[0]._tpl === tpl)
                 {
@@ -296,7 +296,7 @@ class Generator
                 continue;
             }
 
-            const modTemplate = database_f.database.tables.templates.items[modTpl];
+            const modTemplate = database_f.server.tables.templates.items[modTpl];
             if (!modTemplate)
             {
                 logger_f.instance.logError(`Could not find mod item template with tpl ${modTpl}`);
@@ -362,8 +362,8 @@ class Generator
     isItemIncompatibleWithCurrentItems(items, tplToCheck, equipmentSlot)
     {
         // TODO: Can probably be optimized to cache itemTemplates as items are added to inventory
-        const itemTemplates = items.map(i => database_f.database.tables.templates.items[i._tpl]);
-        const templateToCheck = database_f.database.tables.templates.items[tplToCheck];
+        const itemTemplates = items.map(i => database_f.server.tables.templates.items[i._tpl]);
+        const templateToCheck = database_f.server.tables.templates.items[tplToCheck];
 
         return (itemTemplates.some(item => item._props[`Blocks${equipmentSlot}`] || item._props.ConflictingItems.includes(tplToCheck)))
             || (items.some(item => templateToCheck._props[`Blocks${item.slotId}`] || templateToCheck._props.ConflictingItems.includes(item._tpl)));
@@ -374,7 +374,7 @@ class Generator
     {
         for (const item of itemList)
         {
-            const template = database_f.database.tables.templates.items[item._tpl];
+            const template = database_f.server.tables.templates.items[item._tpl];
             if (!template._props.Slots || !template._props.Slots.length)
             {
                 continue;
@@ -415,7 +415,7 @@ class Generator
             magazineTpl = magazine._tpl;
         }
 
-        const magTemplate = database_f.database.tables.templates.items[magazineTpl];
+        const magTemplate = database_f.server.tables.templates.items[magazineTpl];
         if (!magTemplate)
         {
             logger_f.instance.logError(`Could not find magazine template with tpl ${magazineTpl}`);
@@ -462,7 +462,7 @@ class Generator
             }
         }
 
-        const ammoTemplate = database_f.database.tables.templates.items[ammoTpl];
+        const ammoTemplate = database_f.server.tables.templates.items[ammoTpl];
         if (!ammoTemplate)
         {
             logger_f.instance.logError(`Could not find ammo template with tpl ${ammoTpl}`);
@@ -519,7 +519,7 @@ class Generator
     /** Fill existing magazines to full, while replacing their contents with specified ammo */
     fillExistingMagazines(weaponMods, magazine, ammoTpl)
     {
-        const modTemplate = database_f.database.tables.templates.items[magazine._tpl];
+        const modTemplate = database_f.server.tables.templates.items[magazine._tpl];
         if (!modTemplate)
         {
             logger_f.instance.logError(`Could not find magazine template with tpl ${magazine._tpl}`);
@@ -557,7 +557,7 @@ class Generator
             {
                 continue;
             }
-            const poolItems = pool.map(lootTpl => database_f.database.tables.templates.items[lootTpl]);
+            const poolItems = pool.map(lootTpl => database_f.server.tables.templates.items[lootTpl]);
             lootTemplates.push(...poolItems.filter(x => !!x));
         }
 
@@ -617,7 +617,7 @@ class Generator
                 continue;
             }
 
-            const containerTemplate = database_f.database.tables.templates.items[container._tpl];
+            const containerTemplate = database_f.server.tables.templates.items[container._tpl];
             if (!containerTemplate)
             {
                 logger_f.instance.logError(`Could not find container template with tpl ${container._tpl}`);

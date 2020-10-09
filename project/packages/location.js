@@ -21,13 +21,13 @@ class Controller
     /* Load all the locations into memory. */
     initialize()
     {
-        this.globalLootChanceModifier = database_f.database.tables.globals.config.GlobalLootChanceModifier;
+        this.globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
     }
 
     /* generates a random location preset to use for local session */
     generate(name)
     {
-        let location = database_f.database.tables.locations[name];
+        let location = database_f.server.tables.locations[name];
         const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
         let output = location.base;
         let ids = {};
@@ -168,7 +168,7 @@ class Controller
             }
 
             const num = utility.getRandomInt(0, 100);
-            const spawnChance = database_f.database.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
+            const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
             const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
             if (itemChance >= num)
             {
@@ -198,8 +198,8 @@ class Controller
     /* get all locations without loot data */
     generateAll()
     {
-        let locations = database_f.database.tables.locations;
-        let base = database_f.database.tables.locations.base;
+        let locations = database_f.server.tables.locations;
+        let base = database_f.server.tables.locations.base;
         let data = {};
 
         // use right id's and strip loot
@@ -222,7 +222,7 @@ class Controller
 
     generateContainerLoot(items)
     {
-        let container = database_f.database.tables.loot.statics[items[0]._tpl];
+        let container = database_f.server.tables.loot.statics[items[0]._tpl];
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;

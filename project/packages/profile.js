@@ -60,7 +60,7 @@ class Controller
     createProfile(info, sessionID)
     {
         const account = account_f.controller.find(sessionID);
-        const profile = database_f.database.tables.templates.profiles[account.edition][info.side.toLowerCase()];
+        const profile = database_f.server.tables.templates.profiles[account.edition][info.side.toLowerCase()];
         let pmcData = profile.character;
 
         // delete existing profile
@@ -95,7 +95,7 @@ class Controller
         // pmc profile needs to exist first
         save_f.server.profiles[sessionID].characters.scav = this.generateScav(sessionID);
 
-        for (let traderID in database_f.database.tables.traders)
+        for (let traderID in database_f.server.tables.traders)
         {
             this.resetTrader(sessionID, traderID);
         }
@@ -113,15 +113,15 @@ class Controller
     {
         const account = account_f.controller.find(sessionID);
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        const traderWipe = database_f.database.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
+        const traderWipe = database_f.server.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
             "currentLevel": 1,
             "currentSalesSum": traderWipe.initialSalesSum,
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
-            "loyaltyLevels": database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "display": database_f.database.tables.traders[traderID].base.display
+            "loyaltyLevels": database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels,
+            "display": database_f.server.tables.traders[traderID].base.display
         };
     }
 
@@ -151,7 +151,7 @@ class Controller
         // Set cooldown time.
         // Make sure to apply ScavCooldownTimer bonus from Hideout if the player has it.
         const currDt = Date.now() / 1000;
-        let scavLockDuration = database_f.database.tables.globals.config.SavagePlayCooldown;
+        let scavLockDuration = database_f.server.tables.globals.config.SavagePlayCooldown;
         let modifier = 1;
 
         for (const bonus of pmcData.Bonuses)

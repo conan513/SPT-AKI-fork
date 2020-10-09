@@ -42,7 +42,7 @@ class Controller
     removeMapAccessKey(offraidData, sessionID)
     {
         let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
-        let map = database_f.database.tables.locations[locationName].base;
+        let map = database_f.server.tables.locations[locationName].base;
         let mapKey = map.AccessKeys[0];
 
         if (!mapKey)
@@ -93,7 +93,7 @@ class Controller
 
         let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
 
-        let map = database_f.database.tables.locations[locationName].base;
+        let map = database_f.server.tables.locations[locationName].base;
         let insuranceEnabled = map.Insurance;
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let scavData = profile_f.controller.getScavProfile(sessionID);

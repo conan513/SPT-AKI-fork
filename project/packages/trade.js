@@ -106,7 +106,7 @@ class Controller
     // Ragfair trading
     confirmRagfairTrading(pmcData, body, sessionID)
     {
-        let ragfair_offers_traders = database_f.database.tables.ragfair.offers;
+        let ragfair_offers_traders = database_f.server.tables.ragfair.offers;
         let offers = body.offers;
         let output = item_f.router.getOutput();
 

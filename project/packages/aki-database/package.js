@@ -8,4 +8,4 @@
 
 const { Server } = require("./src/server.js");
 
-module.exports.database = new Server();
+module.exports.server = new Server();

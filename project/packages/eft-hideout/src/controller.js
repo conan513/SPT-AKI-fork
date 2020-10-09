@@ -80,7 +80,7 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.router.getOutput());
         }
 
-        const hideoutData = database_f.database.tables.hideout.areas.find(area => area.type === body.areaType);
+        const hideoutData = database_f.server.tables.hideout.areas.find(area => area.type === body.areaType);
         if (!hideoutData)
         {
             logger_f.instance.logError(`Could not find area in database of type ${body.areaType}`);
@@ -113,7 +113,7 @@ class Controller
         hideoutArea.completeTime = 0;
         hideoutArea.constructing = false;
 
-        const hideoutData = database_f.database.tables.hideout.areas.find(area => area.type === hideoutArea.type);
+        const hideoutData = database_f.server.tables.hideout.areas.find(area => area.type === hideoutArea.type);
         if (!hideoutData)
         {
             logger_f.instance.logError(`Could not find area in database of type ${body.areaType}`);
@@ -317,7 +317,7 @@ class Controller
             }
         }
 
-        const recipe = database_f.database.tables.hideout.scavcase.find(r => r._id === body.recipeId);
+        const recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (!recipe)
         {
             logger_f.instance.logError(`Failed to find Scav Case recipe with id ${body.recipeId}`);
@@ -342,9 +342,9 @@ class Controller
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = utility.getRandomIntEx(Object.keys(database_f.database.tables.templates.items).length);
-                let randomKey = Object.keys(database_f.database.tables.templates.items)[random];
-                let tempItem = database_f.database.tables.templates.items[randomKey];
+                let random = utility.getRandomIntEx(Object.keys(database_f.server.tables.templates.items).length);
+                let randomKey = Object.keys(database_f.server.tables.templates.items)[random];
+                let tempItem = database_f.server.tables.templates.items[randomKey];
 
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
@@ -416,7 +416,7 @@ class Controller
             return this.getBTC(pmcData, body, sessionID);
         }
 
-        let recipe = database_f.database.tables.hideout.production.find(r => r._id === body.recipeId);
+        let recipe = database_f.server.tables.hideout.production.find(r => r._id === body.recipeId);
         if (recipe)
         {
             // create item and throw it into profile
@@ -452,7 +452,7 @@ class Controller
             return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
-        recipe = database_f.database.tables.hideout.scavcase.find(r => r._id === body.recipeId);
+        recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (recipe)
         {
             const kvp = Object.entries(pmcData.Hideout.Production).find(kvp => kvp[1].RecipeId === body.recipeId);
@@ -490,7 +490,7 @@ class Controller
 
     registerProduction(pmcData, body, sessionID)
     {
-        const recipe = database_f.database.tables.hideout.production.find(p => p._id === body.recipeId);
+        const recipe = database_f.server.tables.hideout.production.find(p => p._id === body.recipeId);
         if (!recipe)
         {
             logger_f.instance.logError(`Failed to locate recipe with _id ${body.recipeId}`);
@@ -579,7 +579,7 @@ class Controller
 
     updatePlayerHideout(sessionID)
     {
-        const recipes = database_f.database.tables.hideout.production;
+        const recipes = database_f.server.tables.hideout.production;
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;

@@ -15,9 +15,9 @@ class Controller
 {
     initialize()
     {
-        database_f.database.tables.ragfair.offers = {"categories": {}, "offers": [], "offersCount": 100, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
+        database_f.server.tables.ragfair.offers = {"categories": {}, "offers": [], "offersCount": 100, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
 
-        for (let traderID in database_f.database.tables.traders)
+        for (let traderID in database_f.server.tables.traders)
         {
             this.addTraderAssort(traderID);
         }
@@ -25,7 +25,7 @@ class Controller
 
     addTraderAssort(traderID)
     {
-        let base = database_f.database.tables.ragfair.offers;
+        let base = database_f.server.tables.ragfair.offers;
 
         // skip ragfair and fence trader
         if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
@@ -33,7 +33,7 @@ class Controller
             return;
         }
 
-        const assort = database_f.database.tables.traders[traderID].assort;
+        const assort = database_f.server.tables.traders[traderID].assort;
 
         for (const item of assort.items)
         {
@@ -77,13 +77,13 @@ class Controller
             base.offers = base.offers.concat(this.createTraderOffer(items, barter_scheme, loyal_level, traderID));
         }
 
-        database_f.database.tables.ragfair.offers = base;
+        database_f.server.tables.ragfair.offers = base;
     }
 
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
-        const trader = database_f.database.tables.traders[traderID].base;
-        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.ragfair.baseOffer));
+        const trader = database_f.server.tables.traders[traderID].base;
+        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.baseOffer));
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -106,13 +106,13 @@ class Controller
     createOffer(template, onlyFunc, usePresets = true)
     {
         // Some slot filters reference bad items
-        if (!(template in database_f.database.tables.templates.items))
+        if (!(template in database_f.server.tables.templates.items))
         {
             logger_f.instance.logWarning("Item " + template + " does not exist");
             return [];
         }
 
-        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.ragfair.baseOffer));
+        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.baseOffer));
         let offers = [];
 
         // Preset
@@ -315,7 +315,7 @@ class Controller
 
     getOffersFromTraders(sessionID, request)
     {
-        let jsonToReturn = database_f.database.tables.ragfair.offers;
+        let jsonToReturn = database_f.server.tables.ragfair.offers;
         let offersFilters = []; //this is an array of item tpl who filter only items to show
 
         jsonToReturn.categories = {};
@@ -481,7 +481,7 @@ class Controller
     {
         let result = [];
 
-        for (let item of Object.values(database_f.database.tables.templates.items))
+        for (let item of Object.values(database_f.server.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
             || this.isInFilter(neededSearchId, item, "Chambers")
@@ -496,7 +496,7 @@ class Controller
 
     getLinkedSearchList(linkedSearchId)
     {
-        let item = database_f.database.tables.templates.items[linkedSearchId];
+        let item = database_f.server.tables.templates.items[linkedSearchId];
 
         // merging all possible filters without duplicates
         let result = new Set([

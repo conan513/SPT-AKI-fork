@@ -22,7 +22,7 @@ class Controller
         {
             // requested difficulty shared among bots
             case "core":
-                return database_f.database.tables.bots.globalDifficulty;
+                return database_f.server.tables.bots.globalDifficulty;
 
             // cursedassault use assault AI
             case "cursedassault":
@@ -43,7 +43,7 @@ class Controller
                 break;
         }
 
-        return database_f.database.tables.bots.type[type].difficulty[difficulty];
+        return database_f.server.tables.bots.type[type].difficulty[difficulty];
     }
 
     generateBot(bot, role, sessionID)
@@ -79,7 +79,7 @@ class Controller
         }
 
         // generate bot
-        const node = database_f.database.tables.bots.type[type.toLowerCase()];
+        const node = database_f.server.tables.bots.type[type.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Settings.Role = role;
@@ -116,7 +116,7 @@ class Controller
             for (const i = 0; i < condition.Limit; i++)
             {
                 const botId = utility.generateNewBotId();
-                let bot = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.bots.base));
+                let bot = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.bots.base));
 
                 bot._id = botId;
                 bot.aid = botId;
@@ -131,7 +131,7 @@ class Controller
 
     generateRandomLevel(min = 1, max = 50)
     { 
-        const expTable = database_f.database.tables.globals.config.exp.level.exp_table;
+        const expTable = database_f.server.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
 
         // Get random level based on the exp table.

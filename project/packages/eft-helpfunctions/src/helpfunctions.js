@@ -87,7 +87,7 @@ class HelpFunctions
     {
         let exp = 0;
 
-        for (let level in database_f.database.tables.globals.config.exp.level.exp_table)
+        for (let level in database_f.server.tables.globals.config.exp.level.exp_table)
         {
             if (pmcData.Info.Experience < exp)
             {
@@ -95,7 +95,7 @@ class HelpFunctions
             }
 
             pmcData.Info.Level = parseInt(level);
-            exp += database_f.database.tables.globals.config.exp.level.exp_table[level].exp;
+            exp += database_f.server.tables.globals.config.exp.level.exp_table[level].exp;
         }
 
         return pmcData.Info.Level;
@@ -104,7 +104,7 @@ class HelpFunctions
     getRandomExperience()
     {
         let exp = 0;
-        let expTable = database_f.database.tables.globals.config.exp.level.exp_table;
+        let expTable = database_f.server.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
         let randomLevel = utility.getRandomInt(0, expTable.length - 1) + 1;
@@ -214,14 +214,14 @@ class HelpFunctions
                 }
             };
 
-            for (let x of database_f.database.tables.templates.handbook.Items)
+            for (let x of database_f.server.tables.templates.handbook.Items)
             {
                 lookup.items.byId[x.Id] = x.Price;
                 lookup.items.byParent[x.ParentId] || (lookup.items.byParent[x.ParentId] = []);
                 lookup.items.byParent[x.ParentId].push(x.Id);
             }
 
-            for (let x of database_f.database.tables.templates.handbook.Categories)
+            for (let x of database_f.server.tables.templates.handbook.Categories)
             {
                 lookup.categories.byId[x.Id] = x.ParentId ? x.ParentId : null;
                 if (x.ParentId)
@@ -462,7 +462,7 @@ class HelpFunctions
         let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let currency = this.getCurrency(trader.currency);
         let calcAmount = this.fromRUB(this.inRUB(amount, currency), currency);
-        let maxStackSize = database_f.database.tables.templates.items[currency]._props.StackMaxSize;
+        let maxStackSize = database_f.server.tables.templates.items[currency]._props.StackMaxSize;
         let skip = false;
 
         for (let item of pmcData.Inventory.items)
@@ -534,8 +534,8 @@ class HelpFunctions
     getPlayerStashSize(sessionID)
     { //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
         let stashTPL = this.getStashType(sessionID);
-        let stashX = (database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0) ? database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
-        let stashY = (database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0) ? database_f.database.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
+        let stashX = (database_f.server.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0) ? database_f.server.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
+        let stashY = (database_f.server.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0) ? database_f.server.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
         return [stashX, stashY];
     }
 
@@ -546,9 +546,9 @@ class HelpFunctions
     getItem(template)
     {
         // -> Gets item from <input: _tpl>
-        if (template in database_f.database.tables.templates.items)
+        if (template in database_f.server.tables.templates.items)
         {
-            return [true, database_f.database.tables.templates.items[template]];
+            return [true, database_f.server.tables.templates.items[template]];
         }
 
         return [false, {}];
@@ -902,7 +902,7 @@ class HelpFunctions
             return [item];
         }
 
-        let maxStack = database_f.database.tables.templates.items[item._tpl]._props.StackMaxSize;
+        let maxStack = database_f.server.tables.templates.items[item._tpl]._props.StackMaxSize;
         let count = item.upd.StackObjectsCount;
         let stacks = [];
 

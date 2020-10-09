@@ -14,13 +14,13 @@ class Controller
 {
     constructor()
     {
-        database_f.database.tables.traders = {};
+        database_f.server.tables.traders = {};
     }
 
     getTrader(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let trader = database_f.database.tables.traders[traderID].base;
+        let trader = database_f.server.tables.traders[traderID].base;
 
         if (!(traderID in pmcData.TraderStandings))
         {
@@ -47,7 +47,7 @@ class Controller
 
         let traders = [];
 
-        for (let traderID in database_f.database.tables.traders)
+        for (let traderID in database_f.server.tables.traders)
         {
             if (traderID === "ragfair")
             {
@@ -63,7 +63,7 @@ class Controller
     lvlUp(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let loyaltyLevels = database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels;
+        let loyaltyLevels = database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
         pmcData.Info.Level = helpfunc_f.helpFunctions.calculateLevel(pmcData);
@@ -85,7 +85,7 @@ class Controller
 
         // set level
         pmcData.TraderStandings[traderID].currentLevel = targetLevel;
-        database_f.database.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
+        database_f.server.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
     updateTraders(sessionID)
@@ -126,14 +126,14 @@ class Controller
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let assorts = JSON.parse(JSON.stringify(database_f.database.tables.traders[traderID].assort));
+        let assorts = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID].assort));
 
         // strip quest assorts
         if (traderID !== "ragfair")
         {
             // 1 is min level, 4 is max level
             let level = pmcData.TraderStandings[traderID].currentLevel;
-            let questassort = database_f.database.tables.traders[traderID].questassort;
+            let questassort = database_f.server.tables.traders[traderID].questassort;
 
             for (let key in assorts.loyal_level_items)
             {
@@ -162,7 +162,7 @@ class Controller
     generateFenceAssort()
     {
         const fenceID = "579dc571d53a0658a154fbec";
-        const assort = database_f.database.tables.traders[fenceID].assort;
+        const assort = database_f.server.tables.traders[fenceID].assort;
         const names = Object.keys(assort.loyal_level_items);
         let base = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
         let added = [];
@@ -176,7 +176,7 @@ class Controller
             }
             added.push(itemID);
             //it's the item
-            if (!(itemID in database_f.database.tables.globals.ItemPresets))
+            if (!(itemID in database_f.server.tables.globals.ItemPresets))
             {
                 base.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
                 base.barter_scheme[itemID] = assort.barter_scheme[itemID];
@@ -186,8 +186,8 @@ class Controller
 
             //it's itemPreset
             let rub = 0;
-            let items = JSON.parse(JSON.stringify(database_f.database.tables.globals.ItemPresets[itemID]._items));
-            let ItemRootOldId = database_f.database.tables.globals.ItemPresets[itemID]._parent;
+            let items = JSON.parse(JSON.stringify(database_f.server.tables.globals.ItemPresets[itemID]._items));
+            let ItemRootOldId = database_f.server.tables.globals.ItemPresets[itemID]._parent;
 
             for (let i = 0; i < items.length; i++)
             {
@@ -223,7 +223,7 @@ class Controller
             base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
         }
 
-        database_f.database.tables.traders[fenceID].assort = base;
+        database_f.server.tables.traders[fenceID].assort = base;
     }
 
     // delete assort keys
@@ -251,7 +251,7 @@ class Controller
     getPurchasesData(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let trader = database_f.database.tables.traders[traderID].base;
+        let trader = database_f.server.tables.traders[traderID].base;
         let currency = helpfunc_f.helpFunctions.getCurrency(trader.currency);
         let output = {};
 
@@ -273,7 +273,7 @@ class Controller
             // find all child of the item (including itself) and sum the price
             for (let childItem of helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
-                let tempPrice = (database_f.database.tables.templates.items[childItem._tpl]._props.CreditsPrice >= 1) ? database_f.database.tables.templates.items[childItem._tpl]._props.CreditsPrice : 1;
+                let tempPrice = (database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice >= 1) ? database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice : 1;
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
                 price = price + (tempPrice * count);
             }

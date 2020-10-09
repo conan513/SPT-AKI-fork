@@ -15,7 +15,7 @@ class Controller
     {
         for (let i = 0; i < body.suites.length; i++)
         {
-            let suite = database_f.database.tables.templates.suits[body.suites[i]];
+            let suite = database_f.server.tables.templates.suits[body.suites[i]];
 
             // this parent reffers to Lower Node
             if (suite._parent === "5cd944d01388ce000a659df9")
@@ -37,8 +37,8 @@ class Controller
     getTraderSuits(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let templates = database_f.database.tables.templates.suits;
-        let suits = database_f.database.tables.traders[traderID].suits;
+        let templates = database_f.server.tables.templates.suits;
+        let suits = database_f.server.tables.traders[traderID].suits;
         let result = [];
 
         // get only suites from the player's side (e.g. USEC)
@@ -61,7 +61,7 @@ class Controller
 
     getAllTraderSuits(sessionID)
     {
-        const traders = database_f.database.tables.traders;
+        const traders = database_f.server.tables.traders;
         let result = [];
 
         for (let traderID in traders)
