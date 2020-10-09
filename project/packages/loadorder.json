@@ -23,7 +23,7 @@
     "quest_f": "packages/quest.js",
     "note_f": "packages/eft-notes/package.js",
     "inventory_f": "packages/eft-inventory/package.js",
-    "wishList_f": "packages/wishlist.js",
+    "wishList_f": "packages/eft-wishlist/package.js",
     "trade_f": "packages/trade.js",
     "customization_f": "packages/eft-customization/package.js",
     "hideout_f": "packages/eft-hideout/package.js",
