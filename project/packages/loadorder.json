@@ -21,7 +21,7 @@
     "bots_f": "packages/eft-bots/package.js",
     "helpfunc_f": "packages/eft-helpfunctions/package.js",
     "quest_f": "packages/quest.js",
-    "note_f": "packages/notes.js",
+    "note_f": "packages/eft-notes/package.js",
     "inventory_f": "packages/eft-inventory/package.js",
     "wishList_f": "packages/wishlist.js",
     "trade_f": "packages/trade.js",
