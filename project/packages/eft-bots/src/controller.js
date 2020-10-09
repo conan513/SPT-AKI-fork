@@ -11,42 +11,34 @@
 
 class Controller
 {
-    constructor()
-    {
-        this.limitSettings = {};
-        this.pmcSettings = {};
-    }
-
     getBotLimit(type)
     {
-        if (type === "cursedAssault" || type === "assaultGroup")
-        {
-            type = "assault";
-        }
-
-        return bots_f.config.limits[type];
+        return bots_f.config.limits[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
     }
 
     getBotDifficulty(type, difficulty)
     {
         switch (type)
         {
+            // requested difficulty shared among bots
             case "core":
                 return database_f.database.tables.bots.globalDifficulty;
 
+            // cursedassault use assault AI
             case "cursedassault":
                 type = "assault";
                 break;
 
+            // unused bots by BSG, might have use
             case "test":
             case "assaultgroup":
             case "followergluharsnipe":
             case "bosstest":
             case "followertest":
-                /* unused bots by BSG, might have use */
                 type = "pmcbot";
                 break;
 
+            // don't replace type
             default:
                 break;
         }
@@ -121,12 +113,12 @@ class Controller
 
         for (const condition of info.conditions)
         {
-            for (let i = 0; i < condition.Limit; i++)
+            for (const i = 0; i < condition.Limit; i++)
             {
+                const botId = utility.generateNewBotId();
                 let bot = json_f.instance.parse(json_f.instance.stringify(database_f.database.tables.bots.base));
-                let botId = utility.getRandomIntEx(99999999);
 
-                bot._id = "bot" + botId;
+                bot._id = botId;
                 bot.aid = botId;
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot = this.generateBot(bot, condition.Role, sessionID);
@@ -137,17 +129,16 @@ class Controller
         return generatedBots;
     }
 
-    generateRandomLevel(min = 1, max = 70)
-    {
-        let exp = 0;
-        let expTable = database_f.database.tables.globals.config.exp.level.exp_table;
-
+    generateRandomLevel(min = 1, max = 50)
+    { 
+        const expTable = database_f.database.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
 
         // Get random level based on the exp table.
+        let exp = 0;
         let level = utility.getRandomInt(min, maxLevel);
 
-        for (let i = 0; i < level; i++)
+        for (const i = 0; i < level; i++)
         {
             exp += expTable[i].exp;
         }
@@ -222,7 +213,7 @@ class Controller
 
     generateDogtag(bot)
     {
-        const dogtagItem = {
+        bot.Inventory.items.push({
             _id: utility.generateNewItemId(),
             _tpl: ((bot.Info.Side === "Usec") ? "59f32c3b86f77472a31742f0" : "59f32bb586f774757e1e8442"),
             parentId: bot.Inventory.equipment,
@@ -242,9 +233,8 @@ class Controller
                     "WeaponName": "Unknown"
                 }
             }
-        };
+        });
 
-        bot.Inventory.items.push(dogtagItem);
         return bot;
     }
 }

@@ -103,7 +103,10 @@ class Controller
         // If we timed out and don't have anything to send, just send a ping notification.
         if (data.length === 0)
         {
-            data.push("{\"type\": \"ping\", \"eventId\": \"ping\"}");
+            data.push(JSON.stringify({
+                "type": "ping",
+                "eventId": "ping"
+            }));
         }
 
         server_f.server.sendTextJson(resp, data.join("\n"));
@@ -112,7 +115,14 @@ class Controller
     /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
     createNewMessageNotification(dialogueMessage)
     {
-        return {type: "new_message", eventId: dialogueMessage._id, data : {"dialogId": dialogueMessage.uid, "message": dialogueMessage}};
+        return {
+            "type": "new_message",
+            "eventId": dialogueMessage._id,
+            "data" : {
+                "dialogId": dialogueMessage.uid,
+                "message": dialogueMessage
+            }
+        };
     }
 }
 
@@ -122,6 +132,7 @@ class Callbacks
     {
         server_f.server.respondCallback["NOTIFY"] = this.sendNotification.bind(this);
         router_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind(this);
+        router_f.router.staticRoutes["/client/game/profile/select"] = this.selectProfile.bind(this);
         router_f.router.dynamicRoutes["/?last_id"] = this.notify.bind(this);
         router_f.router.dynamicRoutes["/notifierServer"] = this.notify.bind(this);
         router_f.router.dynamicRoutes["/notifierBase"] = this.getBaseNotifier.bind(this);
@@ -144,7 +155,7 @@ class Callbacks
     // and the client would abort the connection due to spam.
     sendNotification(sessionID, req, resp, data)
     {
-        let splittedUrl = req.url.split("/");
+        const splittedUrl = req.url.split("/");
 
         sessionID = splittedUrl[splittedUrl.length - 1].split("?last_id")[0];
         notifier_f.controller.notificationWaitAsync(resp, sessionID);
@@ -153,16 +164,29 @@ class Callbacks
     createNotifierChannel(url, info, sessionID)
     {
         return response_f.controller.getBody({
-            "notifier": {"server": server_f.server.backendUrl + "/",
+            "notifier": {
+                "server": `${server_f.server.backendUrl}/`,
                 "channel_id": "testChannel",
-                "url": server_f.server.backendUrl + "/notifierServer/get/" + sessionID},
-            "notifierServer": server_f.server.backendUrl + "/notifierServer/get/" + sessionID
+                "url": `${server_f.server.backendUrl}/notifierServer/get/${sessionID}`
+            },
+            "notifierServer": `${server_f.server.backendUrl}/notifierServer/get/${sessionID}`
         });
     }
 
     notify(url, info, sessionID)
     {
         return "NOTIFY";
+    }
+
+    selectProfile(url, info, sessionID)
+    {
+        return response_f.controller.getBody({
+            "status": "ok",
+            "notifier": {
+                "server": `${server_f.server.backendUrl}/`,
+                "channel_id": "testChannel"
+            }
+        });
     }
 }
 

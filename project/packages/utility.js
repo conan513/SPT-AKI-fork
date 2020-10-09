@@ -163,6 +163,11 @@ function generateNewDialogueId()
     return generateNewId("D");
 }
 
+function generateNewBotId()
+{
+    return generateNewId("B");
+}
+
 function generateNewId(prefix)
 {
     let getTime = new Date();
@@ -218,4 +223,5 @@ module.exports.makeSign = makeSign;
 module.exports.generateNewAccountId = generateNewAccountId;
 module.exports.generateNewItemId = generateNewItemId;
 module.exports.generateNewDialogueId = generateNewDialogueId;
+module.exports.generateNewBotId = generateNewBotId;
 module.exports.secondsToTime = secondsToTime;
