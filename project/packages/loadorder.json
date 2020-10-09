@@ -27,7 +27,7 @@
     "trade_f": "packages/trade.js",
     "customization_f": "packages/eft-customization/package.js",
     "hideout_f": "packages/eft-hideout/package.js",
-    "weaponbuilds_f": "packages/weaponbuilds.js",
+    "weaponbuilds_f": "packages/eft-weaponbuilds/package.js",
     "repair_f": "packages/repair.js",
     "insurance_f": "packages/eft-insurance/package.js",
     "trader_f": "packages/trader.js",
