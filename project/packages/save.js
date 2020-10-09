@@ -16,7 +16,7 @@ class Server
     {
         this.profiles = {};
         this.onLoadCallback = {};
-        this.oncallbacks = {};
+        this.onSaveCallbacks = {};
     }
 
     createVPath()
@@ -84,9 +84,9 @@ class Server
     onSaveProfile(sessionID)
     {
         // run callbacks
-        for (const callback in this.oncallbacks)
+        for (const callback in this.onSaveCallbacks)
         {
-            this.profiles[sessionID] = this.oncallbacks[callback](sessionID);
+            this.profiles[sessionID] = this.onSaveCallbacks[callback](sessionID);
         }
 
         // save profile

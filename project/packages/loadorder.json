@@ -29,7 +29,7 @@
     "hideout_f": "packages/eft-hideout/package.js",
     "weaponbuilds_f": "packages/weaponbuilds.js",
     "repair_f": "packages/repair.js",
-    "insurance_f": "packages/insurance.js",
+    "insurance_f": "packages/eft-insurance/package.js",
     "trader_f": "packages/trader.js",
     "preset_f": "packages/preset.js",
     "ragfair_f": "packages/ragfair.js",
