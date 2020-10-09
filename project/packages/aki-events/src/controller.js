@@ -1,4 +1,4 @@
-/* event.js
+/* controller.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,8 +8,6 @@
  */
 
 "use strict";
-
-const fs = require("fs");
 
 /*
 * An event is an object as follows:
@@ -108,18 +106,4 @@ class Controller
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        save_f.server.onLoadCallback["events"] = this.onLoad.bind(this);
-    }
-
-    onLoad(sessionID)
-    {
-        return event_f.controller.onLoad(sessionID);
-    }
-}
-
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
+module.exports.Controller = Controller;

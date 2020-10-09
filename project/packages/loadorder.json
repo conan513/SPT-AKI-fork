@@ -7,7 +7,7 @@
     "server_f": "packages/server.js",
     "database_f": "packages/aki-database/package.js",
     "save_f": "packages/save.js",
-    "event_f": "packages/event.js",
+    "event_f": "packages/aki-events/package.js",
     "item_f": "packages/item.js",
     "keepalive_f": "packages/keepalive.js",
     "health_f": "packages/health.js",
