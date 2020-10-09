@@ -23,7 +23,7 @@
     "inventory_f": "src/inventory.js",
     "wishList_f": "src/wishlist.js",
     "trade_f": "src/trade.js",
-    "customization_f": "src/customization.js",
+    "customization_f": "src/aki-customization/package.js",
     "hideout_f": "src/hideout.js",
     "weaponbuilds_f": "src/weaponbuilds.js",
     "repair_f": "src/repair.js",
