@@ -36,6 +36,5 @@
     "weather_f": "packages/weather.js",
     "location_f": "packages/location.js",
     "bundles_f": "packages/aki-bundles/package.js",
-    "image_f": "packages/eft-images/package.js",
     "match_f": "packages/match.js"
 }
