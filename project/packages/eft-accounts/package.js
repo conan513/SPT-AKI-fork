@@ -8,8 +8,8 @@
 
 "use strict";
 
-const { Server } = require("./src/server.js");
+const { Controller } = require("./src/controller.js");
 const { Callbacks } = require("./src/callbacks.js");
 
-module.exports.server = new Server();
+module.exports.controller = new Controller();
 module.exports.callbacks = new Callbacks();

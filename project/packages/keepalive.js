@@ -13,7 +13,7 @@ class Controller
 {
     execute(sessionID)
     {
-        if (!account_f.server.isWiped(sessionID))
+        if (!account_f.controller.isWiped(sessionID))
         {
             trader_f.controller.updateTraders(sessionID);
             hideout_f.controller.updatePlayerHideout(sessionID);

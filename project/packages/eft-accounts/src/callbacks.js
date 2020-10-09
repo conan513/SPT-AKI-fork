@@ -24,7 +24,7 @@ class Callbacks
 
     load()
     {
-        account_f.server.initialize();
+        account_f.controller.initialize();
     }
 
     // TODO: REFACTOR THIS
@@ -39,37 +39,37 @@ class Callbacks
 
     login(url, info, sessionID)
     {
-        const output = account_f.server.login(info);
+        const output = account_f.controller.login(info);
         return (!output) ? "FAILED" : output;
     }
 
     register(url, info, sessionID)
     {
-        const output = account_f.server.register(info);
+        const output = account_f.controller.register(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     get(url, info, sessionID)
     {
-        const output = account_f.server.find(account_f.server.login(info));
+        const output = account_f.controller.find(account_f.controller.login(info));
         return response_f.controller.noBody(output);
     }
 
     changeEmail(url, info, sessionID)
     {
-        const output = account_f.server.changeEmail(info);
+        const output = account_f.controller.changeEmail(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     changePassword(url, info, sessionID)
     {
-        const output = account_f.server.changePassword(info);
+        const output = account_f.controller.changePassword(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     wipe(url, info, sessionID)
     {
-        const output = account_f.server.wipe(info);
+        const output = account_f.controller.wipe(info);
         return (!output) ? "FAILED" : "OK";
     }
 }

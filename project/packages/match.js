@@ -66,7 +66,7 @@ class Controller
 
         // --- LOOP (DO THIS FOR EVERY PLAYER IN GROUP)
         // get player profile
-        let account = account_f.server.find(sessionID);
+        let account = account_f.controller.find(sessionID);
         let profileID = "";
 
         if (info.savage === true)

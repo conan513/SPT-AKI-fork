@@ -48,7 +48,7 @@ class Controller
     {
         let output = [];
 
-        if (!account_f.server.isWiped(sessionID))
+        if (!account_f.controller.isWiped(sessionID))
         {
             output.push(this.getPmcProfile(sessionID));
             output.push(this.getScavProfile(sessionID));
@@ -59,7 +59,7 @@ class Controller
 
     createProfile(info, sessionID)
     {
-        const account = account_f.server.find(sessionID);
+        const account = account_f.controller.find(sessionID);
         const profile = database_f.database.tables.templates.profiles[account.edition][info.side.toLowerCase()];
         let pmcData = profile.character;
 
@@ -111,7 +111,7 @@ class Controller
 
     resetTrader(sessionID, traderID)
     {
-        const account = account_f.server.find(sessionID);
+        const account = account_f.controller.find(sessionID);
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
         const traderWipe = database_f.database.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 

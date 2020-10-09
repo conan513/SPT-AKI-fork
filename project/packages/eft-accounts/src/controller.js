@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Server
+class Controller
 {
     find(sessionID)
     {
@@ -68,6 +68,7 @@ class Server
         };
 
         save_f.server.onLoadProfile(sessionID);
+        save_f.server.onSaveProfile(sessionID);
         return sessionID;
     }
 
@@ -109,4 +110,4 @@ class Server
     }
 }
 
-module.exports.Server = Server;
+module.exports.Controller = Controller;
