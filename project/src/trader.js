@@ -24,7 +24,8 @@ class Controller
 
         if (!(traderID in pmcData.TraderStandings))
         {
-            this.resetTrader(sessionID, traderID);
+            profile_f.controller.resetTrader(sessionID, traderID);
+            this.lvlUp(traderID, sessionID);
         }
 
         trader.display = pmcData.TraderStandings[traderID].display;
@@ -85,24 +86,6 @@ class Controller
         // set level
         pmcData.TraderStandings[traderID].currentLevel = targetLevel;
         database_f.database.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
-    }
-
-    resetTrader(sessionID, traderID)
-    {
-        let account = account_f.server.find(sessionID);
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let traderWipe = database_f.database.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
-
-        pmcData.TraderStandings[traderID] = {
-            "currentLevel": 1,
-            "currentSalesSum": traderWipe.initialSalesSum,
-            "currentStanding": traderWipe.initialStanding,
-            "NextLoyalty": null,
-            "loyaltyLevels": database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "display": database_f.database.tables.traders[traderID].base.display
-        };
-
-        this.lvlUp(traderID, sessionID);
     }
 
     updateTraders(sessionID)

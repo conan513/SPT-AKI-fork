@@ -34,21 +34,6 @@ class Controller
         return save_f.server.profiles[sessionID].characters.pmc;
     }
 
-    resetProfileQuestCondition(sessionID, conditionId)
-    {
-        let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
-
-        for (let quest of startedQuests)
-        {
-            const index = quest.completedConditions.indexOf(conditionId);
-
-            if (index > -1)
-            {
-                quest.completedConditions.splice(index, 1);
-            }
-        }
-    }
-
     getScavProfile(sessionID)
     {
         return save_f.server.profiles[sessionID].characters.scav;
@@ -92,7 +77,7 @@ class Controller
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = Math.floor(new Date() / 1000);
         pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
-        pmcData.Quests = quest_f.controller.getAllProfileQuests(); // preload all quests into profile
+        pmcData.Quests = quest_f.controller.getAllProfileQuests();
 
         // create profile
         save_f.server.profiles[sessionID] = {
@@ -112,7 +97,7 @@ class Controller
 
         for (let traderID in database_f.database.tables.traders)
         {
-            trader_f.controller.resetTrader(sessionID, traderID);
+            this.resetTrader(sessionID, traderID);
         }
 
         // store minimal profile and reload it
@@ -124,13 +109,26 @@ class Controller
         save_f.server.onSaveProfile(sessionID);
     }
 
+    resetTrader(sessionID, traderID)
+    {
+        const account = account_f.server.find(sessionID);
+        const pmcData = profile_f.controller.getPmcProfile(sessionID);
+        const traderWipe = database_f.database.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
+
+        pmcData.TraderStandings[traderID] = {
+            "currentLevel": 1,
+            "currentSalesSum": traderWipe.initialSalesSum,
+            "currentStanding": traderWipe.initialStanding,
+            "NextLoyalty": null,
+            "loyaltyLevels": database_f.database.tables.traders[traderID].base.loyalty.loyaltyLevels,
+            "display": database_f.database.tables.traders[traderID].base.display
+        };
+    }
+
     generateScav(sessionID)
     {
         const pmcData = this.getPmcProfile(sessionID);
-
-        // get scav profile
-        let scavProfiles = bots_f.controller.generate({ "conditions": [{ "Role": "playerScav", "Limit": 1, "Difficulty": "normal" }] });
-        let scavData = scavProfiles[0];
+        let scavData = bots_f.controller.generate({ "conditions": [{ "Role": "playerScav", "Limit": 1, "Difficulty": "normal" }] })[0];
 
         // add proper metadata
         scavData._id = pmcData.savage;
@@ -225,6 +223,21 @@ class Controller
     {
         let pmcData = this.getPmcProfile(sessionID);
         pmcData.Info.Voice = info.voice;
+    }
+
+    resetProfileQuestCondition(sessionID, conditionId)
+    {
+        let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
+
+        for (let quest of startedQuests)
+        {
+            const index = quest.completedConditions.indexOf(conditionId);
+
+            if (index > -1)
+            {
+                quest.completedConditions.splice(index, 1);
+            }
+        }
     }
 }
 
