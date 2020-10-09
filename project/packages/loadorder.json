@@ -31,7 +31,7 @@
     "repair_f": "packages/repair.js",
     "insurance_f": "packages/eft-insurance/package.js",
     "trader_f": "packages/trader.js",
-    "preset_f": "packages/preset.js",
+    "preset_f": "packages/eft-presets/package.js",
     "ragfair_f": "packages/ragfair.js",
     "weather_f": "packages/weather.js",
     "location_f": "packages/eft-locations/package.js",

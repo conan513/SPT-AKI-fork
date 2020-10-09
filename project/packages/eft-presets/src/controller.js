@@ -1,4 +1,4 @@
-/* preset.js
+/* controller.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -98,18 +98,4 @@ class Controller
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        server_f.server.startCallback["loadPresets"] = this.load.bind(this);
-    }
-
-    load()
-    {
-        preset_f.controller.initialize();
-    }
-}
-
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
+module.exports.Controller = Controller;
