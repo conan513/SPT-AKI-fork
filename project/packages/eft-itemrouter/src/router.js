@@ -1,12 +1,10 @@
-/* item.js
+/* router.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
  * authors:
  * - Senko-san (Merijn Hendriks)
  */
-
-"use strict";
 
 class Router
 {
@@ -61,18 +59,4 @@ class Router
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        router_f.router.staticRoutes["/client/game/profile/items/moving"] = this.handleRoutes.bind(this);
-    }
-
-    handleRoutes(url, info, sessionID)
-    {
-        return response_f.controller.getBody(item_f.router.handleRoutes(info, sessionID));
-    }
-}
-
-module.exports.router = new Router();
-module.exports.callbacks = new Callbacks();
+module.exports.Router = Router;

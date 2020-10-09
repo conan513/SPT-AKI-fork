@@ -10,7 +10,7 @@
     "eft_startup_f": "packages/eft-startup/package.js",
     "save_f": "packages/save.js",
     "event_f": "packages/aki-events/package.js",
-    "item_f": "packages/item.js",
+    "item_f": "packages/eft-itemrouter/package.js",
     "keepalive_f": "packages/keepalive.js",
     "health_f": "packages/eft-health/package.js",
     "inraid_f": "packages/eft-inraid/package.js",
