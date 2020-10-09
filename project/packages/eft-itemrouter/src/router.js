@@ -22,7 +22,7 @@ class Router
 
         for (let body of info.data)
         {
-            let pmcData = profile_f.controller.getPmcProfile(sessionID);
+            const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
             if (body.Action in this.routes)
             {
@@ -30,7 +30,7 @@ class Router
             }
             else
             {
-                logger_f.instance.logError("[UNHANDLED ACTION] " + body.Action);
+                logger_f.instance.logError(`[UNHANDLED ACTION] ${body.Action}`);
             }
         }
 
@@ -40,7 +40,7 @@ class Router
 
     getOutput()
     {
-        if (this.output === "")
+        if (!this.output)
         {
             this.resetOutput();
         }
@@ -55,7 +55,18 @@ class Router
 
     resetOutput()
     {
-        this.output = {"items": {"new": [], "change": [], "del": []}, "badRequest": [], "quests": [], "ragFairOffers": [], "builds": [], "currentSalesSums": {}};
+        this.output = {
+            "items": {
+                "new": [],
+                "change": [],
+                "del": []
+            },
+            "badRequest": [],
+            "quests": [],
+            "ragFairOffers": [],
+            "builds": [],
+            "currentSalesSums": {}
+        };
     }
 }
 
