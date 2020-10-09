@@ -12,7 +12,7 @@
     "keepalive_f": "packages/keepalive.js",
     "health_f": "packages/health.js",
     "inraid_f": "packages/inraid.js",
-    "dialogue_f": "packages/dialogue.js",
+    "dialogue_f": "packages/aki-dialogue/package.js",
     "account_f": "packages/aki-accounts/package.js",
     "profile_f": "packages/profile.js",
     "notifier_f": "packages/notifier.js",
