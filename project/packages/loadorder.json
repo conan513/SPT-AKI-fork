@@ -33,7 +33,7 @@
     "trader_f": "packages/trader.js",
     "preset_f": "packages/eft-presets/package.js",
     "ragfair_f": "packages/ragfair.js",
-    "weather_f": "packages/weather.js",
+    "weather_f": "packages/eft-weather/package.js",
     "location_f": "packages/eft-locations/package.js",
     "bundles_f": "packages/aki-bundles/package.js",
     "match_f": "packages/eft-match/package.js"

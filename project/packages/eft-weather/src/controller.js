@@ -1,4 +1,4 @@
-/* weather.js
+/* controller.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -75,65 +75,4 @@ class Controller
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        router_f.router.staticRoutes["/client/weather"] = this.getWeather.bind(this);
-    }
-
-    getWeather(url, info, sessionID)
-    {
-        return response_f.controller.getBody(weather_f.controller.generate());
-    }
-}
-
-class Config
-{
-    constructor()
-    {
-        this.acceleration = 7;
-        this.weather = {
-            "clouds": {
-                "min": -1.5,
-                "max": 1.5
-            },
-            "windSpeed": {
-                "min": 0,
-                "max": 3
-            },
-            "windDirection": {
-                "min": 0,
-                "max": 3
-            },
-            "windGustiness": {
-                "min": 0,
-                "max": 1
-            },
-            "rain": {
-                "min": 1,
-                "max": 4
-            },
-            "rainIntensity": {
-                "min": 0.1,
-                "max": 1
-            },
-            "fog": {
-                "min": 0.02,
-                "max": 0.15
-            },
-            "temp": {
-                "min": 0,
-                "max": 20
-            },
-            "pressure": {
-                "min": 760,
-                "max": 764
-            }
-        };
-    }
-}
-
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
+module.exports.Controller = Controller;
