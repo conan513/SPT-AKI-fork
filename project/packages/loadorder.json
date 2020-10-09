@@ -26,7 +26,7 @@
     "wishList_f": "packages/wishlist.js",
     "trade_f": "packages/trade.js",
     "customization_f": "packages/eft-customization/package.js",
-    "hideout_f": "packages/hideout.js",
+    "hideout_f": "packages/eft-hideout/package.js",
     "weaponbuilds_f": "packages/weaponbuilds.js",
     "repair_f": "packages/repair.js",
     "insurance_f": "packages/insurance.js",
