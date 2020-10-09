@@ -1,4 +1,4 @@
-/* account.js
+/* server.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,10 +8,6 @@
 
 "use strict";
 
-/**
-* server class maintains list of accounts in memory. All account information should be
-* loaded during server init.
-*/
 class Server
 {
     find(sessionID)
@@ -113,71 +109,4 @@ class Server
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        // TODO: REFACTOR THIS
-        router_f.router.staticRoutes["/launcher/server/connect"] = this.connect.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/login"] = this.login.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/register"] = this.register.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/get"] = this.get.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/change/email"] = this.changeEmail.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/change/password"] = this.changePassword.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/change/wipe"] = this.wipe.bind(this);
-    }
-
-    load()
-    {
-        account_f.server.initialize();
-    }
-
-    // TODO: REFACTOR THIS
-    connect()
-    {
-        return response_f.controller.noBody({
-            "backendUrl": server_f.server.backendUrl,
-            "name": server_f.server.name,
-            "editions": Object.keys(database_f.database.tables.templates.profiles)
-        });
-    }
-
-    login(url, info, sessionID)
-    {
-        const output = account_f.server.login(info);
-        return (!output) ? "FAILED" : output;
-    }
-
-    register(url, info, sessionID)
-    {
-        const output = account_f.server.register(info);
-        return (!output) ? "FAILED" : "OK";
-    }
-
-    get(url, info, sessionID)
-    {
-        const output = account_f.server.find(account_f.server.login(info));
-        return response_f.controller.noBody(output);
-    }
-
-    changeEmail(url, info, sessionID)
-    {
-        const output = account_f.server.changeEmail(info);
-        return (!output) ? "FAILED" : "OK";
-    }
-
-    changePassword(url, info, sessionID)
-    {
-        const output = account_f.server.changePassword(info);
-        return (!output) ? "FAILED" : "OK";
-    }
-
-    wipe(url, info, sessionID)
-    {
-        const output = account_f.server.wipe(info);
-        return (!output) ? "FAILED" : "OK";
-    }
-}
-
-module.exports.server = new Server();
-module.exports.callbacks = new Callbacks();
+module.exports.Server = Server;
