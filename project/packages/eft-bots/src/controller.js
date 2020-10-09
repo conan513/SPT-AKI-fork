@@ -113,7 +113,7 @@ class Controller
 
         for (const condition of info.conditions)
         {
-            for (const i = 0; i < condition.Limit; i++)
+            for (let i = 0; i < condition.Limit; i++)
             {
                 const botId = utility.generateNewBotId();
                 let bot = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.bots.base));
@@ -138,7 +138,7 @@ class Controller
         let exp = 0;
         let level = utility.getRandomInt(min, maxLevel);
 
-        for (const i = 0; i < level; i++)
+        for (let i = 0; i < level; i++)
         {
             exp += expTable[i].exp;
         }

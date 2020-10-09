@@ -129,7 +129,6 @@ class Packager
     routeAll()
     {
         db = this.scanRecursiveRoute("db/");
-        res = this.scanRecursiveRoute("res/");
         src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
     }
 
