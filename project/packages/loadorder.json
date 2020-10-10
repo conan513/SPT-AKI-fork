@@ -20,7 +20,7 @@
     "notifier_f": "packages/eft-notifier/package.js",
     "bots_f": "packages/eft-bots/package.js",
     "helpfunc_f": "packages/eft-helpfunctions/package.js",
-    "quest_f": "packages/quest.js",
+    "quest_f": "packages/eft-quest/package.js",
     "note_f": "packages/eft-notes/package.js",
     "inventory_f": "packages/eft-inventory/package.js",
     "wishList_f": "packages/eft-wishlist/package.js",
