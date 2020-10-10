@@ -16,7 +16,7 @@
     "inraid_f": "packages/eft-inraid/package.js",
     "dialogue_f": "packages/eft-dialogue/package.js",
     "account_f": "packages/eft-accounts/package.js",
-    "profile_f": "packages/profile.js",
+    "profile_f": "packages/eft-profile/package.js",
     "notifier_f": "packages/eft-notifier/package.js",
     "bots_f": "packages/eft-bots/package.js",
     "helpfunc_f": "packages/eft-helpfunctions/package.js",
