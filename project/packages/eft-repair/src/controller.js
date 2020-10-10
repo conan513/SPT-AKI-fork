@@ -1,4 +1,4 @@
-/* repair.js
+/* controller.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -68,27 +68,4 @@ class Controller
     }
 }
 
-class Callbacks
-{
-    constructor()
-    {
-        item_f.router.routes["Repair"] = this.repair.bind(this);
-    }
-
-    repair(pmcData, body, sessionID)
-    {
-        return repair_f.controller.repair(pmcData, body, sessionID);
-    }
-}
-
-class Config
-{
-    constructor()
-    {
-        this.priceMultiplier = 1;
-    }
-}
-
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
+module.exports.Controller = Controller;
