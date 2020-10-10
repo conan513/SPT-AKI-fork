@@ -1,9 +1,9 @@
-/* save.js
+/* generator.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
  * authors:
- * - Senko-san (Merijn Hendriks)
+ * - Terkoiz
  */
 
 "use strict";
@@ -94,75 +94,4 @@ class Server
     }
 }
 
-class Controller
-{
-    initialize()
-    {
-        if (save_f.config.saveOnExit)
-        {
-            process.on("exit", (code) =>
-            {
-                this.onSave();
-            });
-
-            process.on("SIGINT", (code) =>
-            {
-                // linux ctrl-c
-                this.onSave();
-                process.exit(1);
-            });
-        }
-
-        if (save_f.config.saveIntervalSec > 0)
-        {
-            setInterval(() =>
-            {
-                this.onSave();
-            }, save_f.config.saveIntervalSec * 1000);
-        }
-    }
-
-    onSave()
-    {
-        save_f.server.onSave();
-        logger_f.instance.logSuccess("Saved profiles");
-    }
-}
-
-class Callbacks
-{
-    constructor()
-    {
-        server_f.server.startCallback["loadSavehandler"] = this.load.bind(this);
-        server_f.server.receiveCallback["SAVE"] = this.save.bind(this);
-    }
-
-    load()
-    {
-        save_f.server.onLoad();
-        save_f.controller.initialize();
-    }
-
-    save(sessionID, req, resp, body, output)
-    {
-        if (save_f.config.saveOnReceive)
-        {
-            save_f.controller.onSave();
-        }
-    }
-}
-
-class Config
-{
-    constructor()
-    {
-        this.saveOnReceive = false;
-        this.saveOnExit = true;
-        this.saveIntervalSec = 30;
-    }
-}
-
-module.exports.server = new Server();
-module.exports.controller = new Controller();
-module.exports.callbackss = new Callbacks();
-module.exports.config = new Config();
+module.exports.Server = Server;

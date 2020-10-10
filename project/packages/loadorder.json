@@ -8,7 +8,7 @@
     "database_f": "packages/aki-database/package.js",
     "eft_database_f": "packages/eft-database/package.js",
     "eft_startup_f": "packages/eft-startup/package.js",
-    "save_f": "packages/save.js",
+    "save_f": "packages/aki-save/package.js",
     "event_f": "packages/aki-events/package.js",
     "item_f": "packages/eft-itemrouter/package.js",
     "keepalive_f": "packages/eft-keepalive/package.js",
