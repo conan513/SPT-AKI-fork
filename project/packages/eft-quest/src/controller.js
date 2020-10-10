@@ -91,9 +91,10 @@ class Controller
         const pmcLevel = profile_f.controller.getPmcProfile(sessionID).Info.Level;
 
         // Find quests that have been unlocked by the completetion of a quest
-        const unlockedQuests = database_f.database.tables.templates.quests.filter((q) => {
+        const unlockedQuests = database_f.server.tables.templates.quests.filter((q) =>
+        {
             const questCond = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === completedQuestId);
-            
+
             if (questCond.length !== 0)
             {
                 const levelCon = q.conditions.AvailableForStart.filter(c => c._parent === "Level" && c._props.value <= pmcLevel);
@@ -107,12 +108,13 @@ class Controller
             return false;
         });
 
-        let newVisibleQuests = []
+        let newVisibleQuests = [];
         // Find locked quests that are now visible due to unlocking quests
         for (const unlocked of unlockedQuests)
         {
-            const quests = database_f.database.tables.templates.quests.filter((q) => {
-                const matches = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === unlocked._id)
+            const quests = database_f.server.tables.templates.quests.filter((q) =>
+            {
+                const matches = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === unlocked._id);
                 return matches.length !== 0;
             });
 
@@ -255,10 +257,7 @@ class Controller
             };
         }
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
-
-        let completeQuestResponse = item_f.router.getOutput();
-        completeQuestResponse.quests = this.nextQuests(body.qid, sessionID);
-        return completeQuestResponse;
+        return item_f.router.getOutput();
     }
 
     completeQuest(pmcData, body, sessionID)
@@ -368,7 +367,9 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
-        return item_f.router.getOutput();
+        let completeQuestResponse = item_f.router.getOutput();
+        completeQuestResponse.quests = this.nextQuests(body.qid, sessionID);
+        return completeQuestResponse;
     }
 
     handoverQuest(pmcData, body, sessionID)
