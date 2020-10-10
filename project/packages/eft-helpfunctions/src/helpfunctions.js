@@ -906,6 +906,14 @@ class HelpFunctions
         let count = item.upd.StackObjectsCount;
         let stacks = [];
 
+        // If the current count is already equal or less than the max
+        // then just return the item as is.
+        if (count <= maxStack)
+        {
+            stacks.push(this.clone(item));
+            return stacks;
+        }
+
         while (count)
         {
             let amount = Math.min(count, maxStack);
