@@ -86,6 +86,45 @@ class Controller
         return profileQuests;
     }
 
+    nextQuests(completedQuestId, sessionID)
+    {
+        const pmcLevel = profile_f.controller.getPmcProfile(sessionID).Info.Level;
+
+        // Find quests that have been unlocked by the completetion of a quest
+        const unlockedQuests = database_f.database.tables.templates.quests.filter((q) => {
+            const questCond = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === completedQuestId);
+            
+            if (questCond.length !== 0)
+            {
+                const levelCon = q.conditions.AvailableForStart.filter(c => c._parent === "Level" && c._props.value <= pmcLevel);
+
+                if (levelCon.length !== 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+
+        let newVisibleQuests = []
+        // Find locked quests that are now visible due to unlocking quests
+        for (const unlocked of unlockedQuests)
+        {
+            const quests = database_f.database.tables.templates.quests.filter((q) => {
+                const matches = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === unlocked._id)
+                return matches.length !== 0;
+            });
+
+            if (quests.length !== 0)
+            {
+                newVisibleQuests = newVisibleQuests.concat(quests);
+            }
+        }
+
+        return newVisibleQuests;
+    }
+
     getFindItemIdForQuestItem(itemTpl)
     {
         for (const quest of database_f.server.tables.templates.quests)
@@ -215,10 +254,11 @@ class Controller
                 "maxStorageTime": quest_f.config.redeemTime * 3600
             };
         }
-
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        return item_f.router.getOutput();
+        let completeQuestResponse = item_f.router.getOutput();
+        completeQuestResponse.quests = this.nextQuests(body.qid, sessionID);
+        return completeQuestResponse;
     }
 
     completeQuest(pmcData, body, sessionID)
