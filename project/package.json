@@ -5,9 +5,17 @@
     "author": "SPT-AKI",
     "contributors": [
         "Merijn Hendriks (Senko-san, InNoHurryToCode)",
-        "Ginja"
+        "Ginja",
+        "Terkoiz",
+        "Reider123",
+        "Erehkigal",
+        "PoloYolo",
+        "Craink",
+        "Emperor06"
     ],
-    "license": "NCSA Open Source",
+    "license": "NCSA",
+    "repository": "https://dev.offline-tarkov.com/SPT-AKI/Server",
+    "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "build": "node dev/src/build.js",
         "start": "node dev/src/start.js",

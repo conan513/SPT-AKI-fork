@@ -25,7 +25,7 @@ class Packager
 
     loadMod(mod, filepath)
     {
-        logger.logInfo(`Loading mod ${mod.author}-${mod.name}`);
+        console.log(`Loading mod ${mod.author}-${mod.name}`);
 
         if ("db" in mod)
         {
@@ -53,13 +53,18 @@ class Packager
             return;
         }
 
-        for (const mod of utility.getDirList(this.baseDir))
+        const mods = fs.readdirSync(this.baseDir).filter((file) =>
+        {
+            return fs.statSync(`${this.baseDir}/${file}`).isDirectory();
+        });
+
+        for (const mod of mods)
         {
             // check if config exists
             if (!fs.existsSync(`${this.baseDir}${mod}/package.json`))
             {
-                logger.logError(`Mod ${mod} is missing package.json`);
-                logger.logError("Forcing server shutdown...");
+                console.log(`Mod ${mod} is missing package.json`);
+                console.log("Forcing server shutdown...");
                 process.exit(1);
             }
 
@@ -68,13 +73,13 @@ class Packager
             // check legacy mod
             if (!("experimental" in config) || !config.experimental)
             {
-                logger.logError("Legacy mod detected");
-                logger.logError("Forcing server shutdown...");
+                console.log("Legacy mod detected");
+                console.log("Forcing server shutdown...");
                 process.exit(1);
             }
 
             // add mod to the list
-            logger.logWarning(`Mod ${mod} not installed, adding it to the modlist`);
+            console.log(`Mod ${mod} not installed, adding it to the modlist`);
             this.packages.push({"name": config.name, "author": config.author, "version": config.version});
         }
     }
@@ -91,21 +96,19 @@ class Packager
 
     scanRecursiveRoute(filepath)
     {
-        const directories = utility.getDirList(filepath);
-        const files = fs.readdirSync(filepath);
         let baseNode = {};
 
-        // remove all directories from files
-        for (const directory of directories)
+        // get all files in directory
+        const files = fs.readdirSync(filepath).filter((file) =>
         {
-            for (const file in files)
-            {
-                if (files[file] === directory)
-                {
-                    files.splice(file, 1);
-                }
-            }
-        }
+            return fs.statSync(`${filepath}/${file}`).isFile();
+        });
+
+        // get all directories in directory
+        const directories = fs.readdirSync(filepath).filter((file) =>
+        {
+            return fs.statSync(`${filepath}/${file}`).isDirectory();
+        });
 
         // make sure to remove the file extention
         for (const node in files)
@@ -126,8 +129,7 @@ class Packager
     routeAll()
     {
         db = this.scanRecursiveRoute("db/");
-        res = this.scanRecursiveRoute("res/");
-        src = JSON.parse(fs.readFileSync("src/loadorder.json"));
+        src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
     }
 
     // load classes
@@ -148,8 +150,8 @@ class Packager
         }
 
         this.routeAll();
-        this.detectAllMods();
-        this.loadAllMods();
+        //this.detectAllMods();
+        //this.loadAllMods();
         this.initializeClasses();
     }
 }
