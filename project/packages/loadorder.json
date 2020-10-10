@@ -32,7 +32,7 @@
     "insurance_f": "packages/eft-insurance/package.js",
     "trader_f": "packages/eft-traders/package.js",
     "preset_f": "packages/eft-presets/package.js",
-    "ragfair_f": "packages/ragfair.js",
+    "ragfair_f": "packages/eft-ragfair/package.js",
     "weather_f": "packages/eft-weather/package.js",
     "location_f": "packages/eft-locations/package.js",
     "bundles_f": "packages/aki-bundles/package.js",
