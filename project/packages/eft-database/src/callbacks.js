@@ -61,7 +61,7 @@ class Callbacks
 
         return result;
     }
-    
+
     load()
     {
         database_f.server.tables = this.loadRecursive("packages/eft-database/db/");

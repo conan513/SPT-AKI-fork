@@ -133,7 +133,7 @@ class Controller
             ],
             "customDataCenter": []
         };
-        
+
         return this.locations[info.location].groups[groupID];
     }
 

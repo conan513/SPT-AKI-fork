@@ -126,24 +126,27 @@ class Controller
         if ("questassort" in traderData)
         {
             // 1 is min level, 4 is max level
-            let level = pmcData.TraderStandings[traderID].currentLevel;
-            let questassort = database_f.server.tables.traders[traderID].questassort;
+            const level = pmcData.TraderStandings[traderID].currentLevel;
+            const questassort = database_f.server.tables.traders[traderID].questassort;
 
-            for (let key in result.loyal_level_items)
+            for (const key in result.loyal_level_items)
             {
                 if (result.loyal_level_items[key] > level)
                 {
                     result = this.removeItemFromAssort(result, key);
                 }
-                else if (key in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
+
+                if (key in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
                 {
                     result = this.removeItemFromAssort(result, key);
                 }
-                else if (key in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
+
+                if (key in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
                 {
                     result = this.removeItemFromAssort(result, key);
                 }
-                else if (key in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
+
+                if (key in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
                 {
                     result = this.removeItemFromAssort(result, key);
                 }
@@ -159,7 +162,11 @@ class Controller
         const assort = database_f.server.tables.traders[fenceID].assort;
         const names = Object.keys(assort.loyal_level_items);
         let added = [];
-        let result = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
+        let result = {
+            "items": [],
+            "barter_scheme": {},
+            "loyal_level_items": {}
+        };
 
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
@@ -172,7 +179,7 @@ class Controller
             }
 
             added.push(itemID);
-            
+
             //it's the item
             if (!(itemID in database_f.server.tables.globals.ItemPresets))
             {

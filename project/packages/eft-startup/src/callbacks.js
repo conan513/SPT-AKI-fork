@@ -45,7 +45,7 @@ class Callbacks
             "lang": "en",
             "aid": sessionID,
             "token": `token_${sessionID}`,
-            "taxonomy": "341", 
+            "taxonomy": "341",
             "activeProfileId": `pmc${sessionID}`,
             "nickname": "user",
             "backend": {

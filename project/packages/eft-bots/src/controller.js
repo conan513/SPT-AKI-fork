@@ -130,7 +130,7 @@ class Controller
     }
 
     generateRandomLevel(min = 1, max = 50)
-    { 
+    {
         const expTable = database_f.server.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
 

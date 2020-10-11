@@ -127,7 +127,7 @@ class Controller
         const pmcData = this.getPmcProfile(sessionID);
         let scavData = bots_f.controller.generate({
             "conditions": [
-                { 
+                {
                     "Role": "playerScav",
                     "Limit": 1,
                     "Difficulty": "normal"
