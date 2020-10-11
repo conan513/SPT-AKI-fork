@@ -132,7 +132,7 @@ function getTimestamp()
 function generateID()
 {
     const shasum = crypto.createHash("sha1");
-    const time = Math.random() * Math.floor(new Date() / 1000);
+    const time = Math.random() * getTimestamp();
 
     shasum.update(time.toString());
     return shasum.digest("hex").substring(0, 24);
