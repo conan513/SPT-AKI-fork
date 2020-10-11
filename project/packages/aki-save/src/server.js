@@ -33,7 +33,6 @@ class Server
     {
         // genrate virual paths
         const files = this.getFiles();
-        console.log(files)
 
         // load profiles
         for (let file of files)
