@@ -27,9 +27,9 @@ class Controller
 
     login(info)
     {
-        for (let sessionID in save_f.server.profiles)
+        for (const sessionID in save_f.server.profiles)
         {
-            let account = save_f.server.profiles[sessionID].info;
+            const account = save_f.server.profiles[sessionID].info;
 
             if (info.email === account.email && info.password === account.password)
             {
