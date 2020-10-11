@@ -217,7 +217,7 @@ class Controller
                 }
             }
 
-            result.items.push.apply(base.items, items);
+            result.items.push.apply(result.items, items);
 
             //calculate preset price
             for (let it of items)
