@@ -122,33 +122,35 @@ class Controller
         const traderData = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID]));
         let result = traderData.assort;
 
+        // strip items (1 is min level, 4 is max level)
+        for (const itemID in result.loyal_level_items)
+        {
+            if (result.loyal_level_items[itemID] > pmcData.TraderStandings[traderID].currentLevel)
+            {
+                result = this.removeItemFromAssort(result, itemID);
+            }
+        }
+
         // strip quest result
         if ("questassort" in traderData)
         {
-            // 1 is min level, 4 is max level
-            const level = pmcData.TraderStandings[traderID].currentLevel;
             const questassort = database_f.server.tables.traders[traderID].questassort;
 
-            for (const key in result.loyal_level_items)
+            for (const itemID in result.loyal_level_items)
             {
-                if (result.loyal_level_items[key] > level)
+                if (itemID in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[itemID]) !== "Started")
                 {
-                    result = this.removeItemFromAssort(result, key);
+                    result = this.removeItemFromAssort(result, itemID);
                 }
 
-                if (key in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
+                if (itemID in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[itemID]) !== "Success")
                 {
-                    result = this.removeItemFromAssort(result, key);
+                    result = this.removeItemFromAssort(result, itemID);
                 }
 
-                if (key in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
+                if (itemID in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[itemID]) !== "Fail")
                 {
-                    result = this.removeItemFromAssort(result, key);
-                }
-
-                if (key in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
-                {
-                    result = this.removeItemFromAssort(result, key);
+                    result = this.removeItemFromAssort(result, itemID);
                 }
             }
         }
