@@ -103,28 +103,12 @@ function getServerUptimeInSeconds()
     return Math.floor(process.uptime());
 }
 
-function getTimestamp()
-{
-    let time = new Date();
-    return Math.floor(time.getTime() / 1000);
-}
-
-function getTime()
-{
-    return formatTime(new Date());
-}
-
 function formatTime(date)
 {
     let hours = ("0" + date.getHours()).substr(-2);
     let minutes = ("0" + date.getMinutes()).substr(-2);
     let seconds = ("0" + date.getSeconds()).substr(-2);
     return hours + "-" + minutes + "-" + seconds;
-}
-
-function getDate()
-{
-    return formatDate(new Date());
 }
 
 function formatDate(date)
@@ -134,15 +118,30 @@ function formatDate(date)
     return date.getFullYear() + "-" + month + "-" + day;
 }
 
-function makeSign(length)
+function getDate()
 {
-    let result = "";
-    let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let charactersLength = characters.length;
+    return formatDate(new Date());
+}
+
+function getTime()
+{
+    return formatTime(new Date());
+}
+
+function getTimestamp()
+{
+    return Math.floor(new Date() / 1000);
+}
+
+function generateNewId(prefix)
+{
+    let result = prefix;
+    const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    const length = 24 - prefix.length;
 
     for (let i = 0; i < length; i++)
     {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
     return result;
@@ -168,20 +167,6 @@ function generateNewBotId()
     return generateNewId("B");
 }
 
-function generateNewId(prefix)
-{
-    let getTime = new Date();
-    let month = getTime.getMonth().toString();
-    let date = getTime.getDate().toString();
-    let hour = getTime.getHours().toString();
-    let minute = getTime.getMinutes().toString();
-    let second = getTime.getSeconds().toString();
-    let random = getRandomInt(1000000000, 9999999999).toString();
-    let retVal = prefix + (month + date + hour + minute + second + random).toString();
-    let sign = makeSign(24 - retVal.length).toString();
-    return retVal + sign;
-}
-
 module.exports.createDir = createDir;
 module.exports.clearString = clearString;
 module.exports.getRandomInt = getRandomInt;
@@ -199,7 +184,6 @@ module.exports.getTime = getTime;
 module.exports.formatTime = formatTime;
 module.exports.getDate = getDate;
 module.exports.formatDate = formatDate;
-module.exports.makeSign = makeSign;
 module.exports.generateNewAccountId = generateNewAccountId;
 module.exports.generateNewItemId = generateNewItemId;
 module.exports.generateNewDialogueId = generateNewDialogueId;
