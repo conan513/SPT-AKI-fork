@@ -87,75 +87,70 @@ class Controller
         database_f.server.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
-    updateTraders(sessionID)
+    updateTraders()
     {
-        // update each hour
-        const update_per = 3600;
-        const timeNow = Math.floor(Date.now() / 1000);
-        let tradersToUpdateList = trader_f.controller.getAllTraders(sessionID);
+        const time = Math.floor(Date.now() / 1000);
+        const update = trader_f.config.updateTime;
 
-        dialogue_f.controller.removeExpiredItems(sessionID);
-
-        for (let i = 0; i < tradersToUpdateList.length; i++)
+        for (const traderID in database_f.server.tables.traders)
         {
-            if ((tradersToUpdateList[i].supply_next_time + update_per) > timeNow)
+            const trader = database_f.server.tables.traders[traderID].base;
+
+            if (trader.supply_next_time > time)
             {
                 continue;
             }
 
-            // update restock timer
-            const substracted_time = timeNow - tradersToUpdateList[i].supply_next_time;
-            const days_passed = Math.floor((substracted_time) / 86400);
-            const time_co_compensate = days_passed * 86400;
-            let newTraderTime = tradersToUpdateList[i].supply_next_time + time_co_compensate;
-            const compensateUpdate_per = (Math.floor((timeNow - newTraderTime) / update_per)) * update_per;
+            // get resupply time
+            const overdue = (time - trader.supply_next_time);
+            const refresh = Math.floor(overdue / update) + 1;
 
-            newTraderTime = newTraderTime + compensateUpdate_per + update_per;
-            tradersToUpdateList[i].supply_next_time = newTraderTime;
+            trader.supply_next_time = trader.supply_next_time + (refresh) * update;
+            database_f.server.tables.traders[traderID].base = trader;
         }
     }
 
     getAssort(sessionID, traderID)
     {
-
         if (traderID === "579dc571d53a0658a154fbec")
         {
             logger_f.instance.logWarning("generating fence");
-            this.generateFenceAssort();
+            return this.generateFenceAssort();
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let assorts = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID].assort));
+        const traderData = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID]));
+        let result = traderData.assort;
 
-        // strip quest assorts
-        if (traderID !== "ragfair")
+        // strip quest result
+        if ("questassort" in traderData)
         {
             // 1 is min level, 4 is max level
             let level = pmcData.TraderStandings[traderID].currentLevel;
             let questassort = database_f.server.tables.traders[traderID].questassort;
 
-            for (let key in assorts.loyal_level_items)
+            for (let key in result.loyal_level_items)
             {
-                if (assorts.loyal_level_items[key] > level)
+                if (result.loyal_level_items[key] > level)
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, key);
                 }
                 else if (key in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, key);
                 }
                 else if (key in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, key);
                 }
                 else if (key in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, key);
                 }
             }
         }
 
-        return assorts;
+        return result;
     }
 
     generateFenceAssort()
@@ -168,12 +163,15 @@ class Controller
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
             let itemID = names[utility.getRandomInt(0, names.length - 1)];
+
             if (added.includes(itemID))
             {
                 i--;
                 continue;
             }
+
             added.push(itemID);
+            
             //it's the item
             if (!(itemID in database_f.server.tables.globals.ItemPresets))
             {
@@ -222,7 +220,7 @@ class Controller
             base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
         }
 
-        database_f.server.tables.traders[fenceID].assort = base;
+        return assort;
     }
 
     // delete assort keys

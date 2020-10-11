@@ -22,6 +22,7 @@ class Callbacks
         {
             trader_f.controller.updateTraders(sessionID);
             hideout_f.controller.updatePlayerHideout(sessionID);
+            dialogue_f.controller.removeExpiredItems(sessionID);
         }
 
         return response_f.controller.getBody({"msg": "OK"});

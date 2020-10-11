@@ -12,6 +12,7 @@ class Config
 {
     constructor()
     {
+        this.updateTime = 3600;
         this.fenceAssortSize = 60;
     }
 }

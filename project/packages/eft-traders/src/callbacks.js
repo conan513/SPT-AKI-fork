@@ -25,17 +25,22 @@ class Callbacks
 
     getProfilePurchases(url, info, sessionID)
     {
-        return response_f.controller.getBody(trader_f.controller.getPurchasesData(url.substr(url.lastIndexOf("/") + 1), sessionID));
+        const traderID = url.substr(url.lastIndexOf("/") + 1);
+        return response_f.controller.getBody(trader_f.controller.getPurchasesData(traderID, sessionID));
     }
 
     getTrader(url, info, sessionID)
     {
-        return response_f.controller.getBody(trader_f.controller.getTrader(url.replace("/client/trading/api/getTrader/", ""), sessionID));
+        const traderID = url.replace("/client/trading/api/getTrader/", "");
+        trader_f.controller.updateTraders();
+        return response_f.controller.getBody(trader_f.controller.getTrader(traderID, sessionID));
     }
 
     getAssort(url, info, sessionID)
     {
-        return response_f.controller.getBody(trader_f.controller.getAssort(sessionID, url.replace("/client/trading/api/getTraderAssort/", "")));
+        const traderID = url.replace("/client/trading/api/getTraderAssort/", "");
+        trader_f.controller.updateTraders();
+        return response_f.controller.getBody(trader_f.controller.getAssort(sessionID, traderID));
     }
 }
 
