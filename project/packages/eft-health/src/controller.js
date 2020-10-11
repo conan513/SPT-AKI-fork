@@ -267,8 +267,6 @@ class Controller
 
     saveHealth(pmcData, sessionID)
     {
-        console.log(sessionID);
-
         if (!health_f.config.save.health)
         {
             return;
