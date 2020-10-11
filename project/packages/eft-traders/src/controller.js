@@ -158,8 +158,9 @@ class Controller
         const fenceID = "579dc571d53a0658a154fbec";
         const assort = database_f.server.tables.traders[fenceID].assort;
         const names = Object.keys(assort.loyal_level_items);
-        let base = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
         let added = [];
+        let result = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
+
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
             let itemID = names[utility.getRandomInt(0, names.length - 1)];
@@ -175,9 +176,9 @@ class Controller
             //it's the item
             if (!(itemID in database_f.server.tables.globals.ItemPresets))
             {
-                base.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
-                base.barter_scheme[itemID] = assort.barter_scheme[itemID];
-                base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
+                result.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
+                result.barter_scheme[itemID] = assort.barter_scheme[itemID];
+                result.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
                 continue;
             }
 
@@ -207,7 +208,7 @@ class Controller
                 }
             }
 
-            base.items.push.apply(base.items, items);
+            result.items.push.apply(base.items, items);
 
             //calculate preset price
             for (let it of items)
@@ -215,12 +216,12 @@ class Controller
                 rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
             }
 
-            base.barter_scheme[itemID] = assort.barter_scheme[itemID];
-            base.barter_scheme[itemID][0][0].count = rub;
-            base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
+            result.barter_scheme[itemID] = assort.barter_scheme[itemID];
+            result.barter_scheme[itemID][0][0].count = rub;
+            result.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
         }
 
-        return assort;
+        return result;
     }
 
     // delete assort keys
