@@ -182,26 +182,6 @@ function generateNewId(prefix)
     return retVal + sign;
 }
 
-function secondsToTime(timestamp)
-{
-    timestamp = Math.round(timestamp);
-    let hours = Math.floor(timestamp / 60 / 60);
-    let minutes = Math.floor(timestamp / 60) - (hours * 60);
-    let seconds = timestamp % 60;
-
-    if (minutes < 10)
-    {
-        minutes = "0" + minutes;
-    }
-
-    if (seconds < 10)
-    {
-        seconds = "0" + seconds;
-    }
-
-    return hours + "h" + minutes + ":" + seconds;
-}
-
 module.exports.createDir = createDir;
 module.exports.clearString = clearString;
 module.exports.getRandomInt = getRandomInt;
@@ -224,4 +204,3 @@ module.exports.generateNewAccountId = generateNewAccountId;
 module.exports.generateNewItemId = generateNewItemId;
 module.exports.generateNewDialogueId = generateNewDialogueId;
 module.exports.generateNewBotId = generateNewBotId;
-module.exports.secondsToTime = secondsToTime;
