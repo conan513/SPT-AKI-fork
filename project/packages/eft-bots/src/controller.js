@@ -22,7 +22,7 @@ class Controller
         {
             // requested difficulty shared among bots
             case "core":
-                return database_f.server.tables.bots.globalDifficulty;
+                return database_f.server.tables.bots.core;
 
             // cursedassault use assault AI
             case "cursedassault":
@@ -43,7 +43,7 @@ class Controller
                 break;
         }
 
-        return database_f.server.tables.bots.type[type].difficulty[difficulty];
+        return database_f.server.tables.bots.types[type].difficulty[difficulty];
     }
 
     generateBot(bot, role, sessionID)
@@ -79,7 +79,7 @@ class Controller
         }
 
         // generate bot
-        const node = database_f.server.tables.bots.type[type.toLowerCase()];
+        const node = database_f.server.tables.bots.types[type.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Settings.Role = role;

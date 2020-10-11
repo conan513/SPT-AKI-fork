@@ -67,7 +67,7 @@ function getFileList(path)
 {
     return fs.readdirSync(path).filter((file) =>
     {
-        return fs.statSync(path + "/" + file).isFile();
+        return fs.statSync(`${path}/${file}`).isFile();
     });
 }
 
@@ -75,7 +75,7 @@ function getDirList(path)
 {
     return fs.readdirSync(path).filter((file) =>
     {
-        return fs.statSync(path + "/" + file).isDirectory();
+        return fs.statSync(`${path}/${file}`).isDirectory();
     });
 }
 

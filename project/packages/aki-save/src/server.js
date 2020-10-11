@@ -19,40 +19,26 @@ class Server
         this.onSaveCallbacks = {};
     }
 
-    createVPath()
+    getFiles()
     {
-        const filepath = "user/profiles/";
-
-        if (!fs.existsSync(filepath))
+        if (!fs.existsSync(save_f.config.filepath))
         {
-            utility.createDir(filepath);
+            utility.createDir(save_f.config.filepath);
         }
 
-        if (!("user" in db))
-        {
-            db.user = {};
-        }
-
-        const files = utility.getFileList(filepath);
-        let result = [];
-
-        for (let file of files)
-        {
-            file = file.split(".").slice(0, -1).join(".");
-            result[file] = `${filepath}${file}.json`;
-        }
-
-        db.user.profiles = result;
+        return utility.getFileList(save_f.config.filepath);
     }
 
     onLoad()
     {
         // genrate virual paths
-        this.createVPath();
+        const files = this.getFiles();
+        console.log(files)
 
         // load profiles
-        for (const file in db.user.profiles)
+        for (let file of files)
         {
+            file = file.split(".").slice(0, -1).join(".");
             this.onLoadProfile(file);
         }
     }
@@ -68,10 +54,10 @@ class Server
 
     onLoadProfile(sessionID)
     {
-        if (sessionID in db.user.profiles)
+        if (fs.existsSync(`${save_f.config.filepath}${sessionID}.json`))
         {
             // load profile
-            this.profiles[sessionID] = json_f.instance.parse(json_f.instance.read(db.user.profiles[sessionID]));
+            this.profiles[sessionID] = json_f.instance.parse(json_f.instance.read(`${save_f.config.filepath}${sessionID}.json`));
         }
 
         // run callbacks
@@ -90,7 +76,7 @@ class Server
         }
 
         // save profile
-        json_f.instance.write(`user/profiles/${sessionID}.json`, this.profiles[sessionID]);
+        json_f.instance.write(`${save_f.config.filepath}${sessionID}.json`, this.profiles[sessionID]);
     }
 }
 

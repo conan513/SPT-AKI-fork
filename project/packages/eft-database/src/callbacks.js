@@ -9,6 +9,8 @@
 
 "use strict";
 
+const fs = require("fs");
+
 class Callbacks
 {
     constructor()
@@ -30,159 +32,39 @@ class Callbacks
         router_f.router.dynamicRoutes[".png"] = this.getImage.bind(this);
     }
 
+    loadRecursive(filepath)
+    {
+        let result = {};
+
+        // add file content to result
+        const files = fs.readdirSync(filepath).filter((file) =>
+        {
+            return fs.statSync(`${filepath}/${file}`).isFile();
+        });
+
+        for (const node in files)
+        {
+            const fileName = files[node].split(".").slice(0, -1).join(".");
+            result[fileName] = json_f.instance.parse(json_f.instance.read(`${filepath}${files[node]}`));
+        }
+
+        // deep tree search
+        const directories = fs.readdirSync(filepath).filter((file) =>
+        {
+            return fs.statSync(`${filepath}/${file}`).isDirectory();
+        });
+
+        for (const node of directories)
+        {
+            result[node] = this.loadRecursive(`${filepath}${node}/`);
+        }
+
+        return result;
+    }
+    
     load()
     {
-        // warmup
-        database_f.server.tables.locations = {};
-        database_f.server.tables.loot = {};
-        database_f.server.tables.templates = {};
-        database_f.server.tables.hideout = {};
-
-        // global
-        database_f.server.tables.globals = json_f.instance.parse(json_f.instance.read(db.others.globals));
-
-        // locations
-        for (let file in db.locations)
-        {
-            database_f.server.tables.locations[file] = json_f.instance.parse(json_f.instance.read(db.locations[file]));
-        }
-
-        // loot
-        for (let file in db.loot)
-        {
-            database_f.server.tables.loot[file] = json_f.instance.parse(json_f.instance.read(db.loot.statics));
-        }
-
-        // templates
-        for (let file in db.templates)
-        {
-            database_f.server.tables.templates[file] = json_f.instance.parse(json_f.instance.read(db.templates[file]));
-        }
-
-        // hideout
-        for (let file in db.hideout)
-        {
-            database_f.server.tables.hideout[file] = json_f.instance.parse(json_f.instance.read(db.hideout[file]));
-        }
-
-        // locales
-        let locales = {
-            "languages": json_f.instance.parse(json_f.instance.read(db.locales.languages)),
-            "menu": {},
-            "global": {}
-        };
-
-        for (let file in db.locales)
-        {
-            // add file to the database
-            if (file.includes("menu_"))
-            {
-                // startup locale
-                locales.menu[file.replace("menu_", "")] = json_f.instance.parse(json_f.instance.read(db.locales[file]));
-            }
-
-            else if (file.includes("global_"))
-            {
-                // game locale
-                locales.global[file.replace("global_", "")] = json_f.instance.parse(json_f.instance.read(db.locales[file]));
-            }
-        }
-
-        database_f.server.tables.locales = locales;
-
-        // traders
-        let traders = {};
-        let ragfair = {
-            "offers": {}
-        };
-
-        for (const file in db.traders)
-        {
-            let traderID = file.replace("base_", "")
-                .replace("suits_", "")
-                .replace("questassort_", "")
-                .replace("assort_", "")
-                .replace("dialogue_", "");
-
-            // skip if there is no id
-            if (file === "ragfair_offer")
-            {
-                ragfair.baseOffer = json_f.instance.parse(json_f.instance.read(db.traders.ragfair_offer));
-                ragfair.baseOffer.startTime = Math.floor(new Date().getTime() / 1000);
-                ragfair.baseOffer.endTime = ragfair.baseOffer.startTime + 3153600000;   // 1 century
-                continue;
-            }
-
-            // add trader if it doesn't exist
-            if (!(traderID in traders))
-            {
-                traders[traderID] = {};
-            }
-
-            // add file to the database
-            if (file.includes("base_"))
-            {
-                // trader info
-                traders[traderID].base = json_f.instance.parse(json_f.instance.read(db.traders[file]));
-            }
-
-            else if (file.includes("suits_"))
-            {
-                // customization
-                traders[traderID].suits = json_f.instance.parse(json_f.instance.read(db.traders[file]));
-            }
-
-            else if (file.includes("questassort_"))
-            {
-                // assortiment unlocked by quests
-                traders[traderID].questassort = json_f.instance.parse(json_f.instance.read(db.traders[file]));
-            }
-
-            else if (file.includes("assort_"))
-            {
-                // assortiment
-                traders[traderID].assort = json_f.instance.parse(json_f.instance.read(db.traders[file]));
-            }
-
-            else if (file.includes("dialogue_"))
-            {
-                // dialogue
-                traders[traderID].dialogue = json_f.instance.parse(json_f.instance.read(db.traders[file]));
-            }
-        }
-
-        database_f.server.tables.traders = traders;
-        database_f.server.tables.ragfair = ragfair;
-
-        // bots
-        let bots = {
-            "base": {},
-            "type": {},
-            "globalDifficulty": {}
-        };
-
-        for (let file in db.bots)
-        {
-            // skip bot base
-            if (file.includes("bot_base"))
-            {
-                bots.base = json_f.instance.parse(json_f.instance.read(db.bots[file]));
-            }
-
-            // load global bots difficulty
-            else if (file.includes("difficulty_global"))
-            {
-                bots.globalDifficulty = json_f.instance.parse(json_f.instance.read(db.bots[file]));
-            }
-
-            // load bot to the server
-            else if (file.includes("bot_"))
-            {
-                bots.type[file.replace("bot_", "")] = json_f.instance.parse(json_f.instance.read(db.bots[file]));
-            }
-        }
-
-        database_f.server.tables.bots = bots;
+        database_f.server.tables = this.loadRecursive("packages/eft-database/db/");
     }
 
     getImage(url, info, sessionID)

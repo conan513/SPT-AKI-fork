@@ -14,9 +14,21 @@ class Controller
 {
     initialize()
     {
-        database_f.server.tables.ragfair.offers = {"categories": {}, "offers": [], "offersCount": 100, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
+        // initialize base offer expire date (1 week after server start)
+        const time = Math.floor(new Date().getTime() / 1000);
 
-        for (let traderID in database_f.server.tables.traders)
+        database_f.server.tables.ragfair.offer.startTime = time;
+        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
+
+        // get all trader offers
+        database_f.server.tables.ragfair.offers = {
+            "categories": {},
+            "offers": [],
+            "offersCount": 100,
+            "selectedCategory": "5b5f78dc86f77409407a7f8e"
+        };
+
+        for (const traderID in database_f.server.tables.traders)
         {
             this.addTraderAssort(traderID);
         }
@@ -82,7 +94,7 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.baseOffer));
+        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.offer));
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -111,7 +123,7 @@ class Controller
             return [];
         }
 
-        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.baseOffer));
+        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.offer));
         let offers = [];
 
         // Preset

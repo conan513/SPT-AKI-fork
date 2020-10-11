@@ -27,16 +27,6 @@ class Packager
     {
         console.log(`Loading mod ${mod.author}-${mod.name}`);
 
-        if ("db" in mod)
-        {
-            db = this.scanRecursiveRoute(`${filepath}/db/`);
-        }
-
-        if ("res" in mod)
-        {
-            res = this.scanRecursiveRoute(`${filepath}/res/`);
-        }
-
         if ("src" in mod)
         {
             for (const source in mod.src)
@@ -94,41 +84,8 @@ class Packager
         }
     }
 
-    scanRecursiveRoute(filepath)
-    {
-        let baseNode = {};
-
-        // get all files in directory
-        const files = fs.readdirSync(filepath).filter((file) =>
-        {
-            return fs.statSync(`${filepath}/${file}`).isFile();
-        });
-
-        // get all directories in directory
-        const directories = fs.readdirSync(filepath).filter((file) =>
-        {
-            return fs.statSync(`${filepath}/${file}`).isDirectory();
-        });
-
-        // make sure to remove the file extention
-        for (const node in files)
-        {
-            const fileName = files[node].split(".").slice(0, -1).join(".");
-            baseNode[fileName] = filepath + files[node];
-        }
-
-        // deep tree search
-        for (const node of directories)
-        {
-            baseNode[node] = this.scanRecursiveRoute(`${filepath}${node}/`);
-        }
-
-        return baseNode;
-    }
-
     routeAll()
     {
-        db = this.scanRecursiveRoute("db/");
         src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
     }
 
