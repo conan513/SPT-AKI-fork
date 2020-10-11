@@ -9,6 +9,7 @@
 "use strict";
 
 const fs = require("fs");
+const crypto = require("crypto");
 
 function createDir(file)
 {
@@ -130,16 +131,11 @@ function getTimestamp()
 
 function generateID()
 {
-    let result = "";
-    const length = 24;
-    const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+    const shasum = crypto.createHash("sha1");
+    const time = Math.random() * Math.floor(new Date() / 1000);
 
-    for (let i = 0; i < length; i++)
-    {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-
-    return result;
+    shasum.update(time.toString());
+    return shasum.digest("hex").substring(0, 24);
 }
 
 module.exports.createDir = createDir;
