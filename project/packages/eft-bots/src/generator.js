@@ -221,8 +221,7 @@ class Generator
         this.inventory.items.push(...weaponMods);
 
         // Generate extra magazines and attempt add them to TacticalVest or Pockets
-        const magCount = this.getBiasedRandomNumber(magCounts.min, magCounts.max, Math.round(magCounts.max * 0.75), 4);
-        this.generateExtraMagazines(weaponMods, itemTemplate, magCount, ammoTpl);
+        this.generateExtraMagazines(weaponMods, itemTemplate, magCounts, ammoTpl);
     }
 
     generateModsForItem(items, modPool, parentId, parentTemplate, modSpawnChances)
@@ -401,10 +400,10 @@ class Generator
 
     /** Generates extra magazines or bullets (if magazine is internal) and adds them to TacticalVest and Pockets.
      * Additionally, adds extra bullets to SecuredContainer */
-    generateExtraMagazines(weaponMods, weaponTemplate, count, ammoTpl)
+    generateExtraMagazines(weaponMods, weaponTemplate, magCounts, ammoTpl)
     {
         let magazineTpl = "";
-        let magazine = weaponMods.find(m => m.slotId === "mod_magazine");
+        const magazine = weaponMods.find(m => m.slotId === "mod_magazine");
         if (!magazine)
         {
             logger_f.instance.logWarning(`Generated weapon with tpl ${weaponTemplate._id} had no magazine`);
@@ -415,12 +414,15 @@ class Generator
             magazineTpl = magazine._tpl;
         }
 
-        const magTemplate = database_f.server.tables.templates.items[magazineTpl];
+        let magTemplate = database_f.server.tables.templates.items[magazineTpl];
         if (!magTemplate)
         {
             logger_f.instance.logError(`Could not find magazine template with tpl ${magazineTpl}`);
             return;
         }
+
+        const range = magCounts.max - magCounts.min;
+        const count = this.getBiasedRandomNumber(magCounts.min, magCounts.max, Math.round(range * 0.75), 4);
 
         if (magTemplate._props.ReloadMagType === "InternalMagazine")
         {
@@ -458,7 +460,35 @@ class Generator
                     }
                 ];
 
-                this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], magId, magazineTpl, magWithAmmo);
+                const success = this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], magId, magazineTpl, magWithAmmo);
+
+                if (!success && i < magCounts.min)
+                {
+                    /* We were unable to fit at least the minimum amount of magazines,
+                     * so we fallback to default magazine and try again.
+                     * Temporary workaround to Killa spawning with no extras if he spawns with a drum mag */
+
+                    if (magazineTpl === weaponTemplate._props.defMagType)
+                    {
+                        // We were already on default - stop here to prevent infinite looping
+                        break;
+                    }
+
+                    magazineTpl = weaponTemplate._props.defMagType;
+                    magTemplate = database_f.server.tables.templates.items[magazineTpl];
+                    if (!magTemplate)
+                    {
+                        logger_f.instance.logError(`Could not find magazine template with tpl ${magazineTpl}`);
+                        break;
+                    }
+
+                    if (magTemplate._props.ReloadMagType === "InternalMagazine")
+                    {
+                        break;
+                    }
+
+                    i--;
+                }
             }
         }
 
@@ -577,9 +607,14 @@ class Generator
             && !("medUseTime" in template._props)
             && !("ThrowType" in template._props));
 
-        const healingItemCount = this.getBiasedRandomNumber(itemCounts.healing.min, itemCounts.healing.max, itemCounts.healing.max, 3);
-        const lootItemCount = this.getBiasedRandomNumber(itemCounts.looseLoot.min, itemCounts.looseLoot.max, itemCounts.looseLoot.max, 5);
-        const grenadeCount = this.getBiasedRandomNumber(itemCounts.grenades.min, itemCounts.grenades.max, itemCounts.grenades.max, 4);
+        let range = itemCounts.healing.max - itemCounts.healing.min;
+        const healingItemCount = this.getBiasedRandomNumber(itemCounts.healing.min, itemCounts.healing.max, range, 3);
+
+        range = itemCounts.looseLoot.max - itemCounts.looseLoot.min;
+        const lootItemCount = this.getBiasedRandomNumber(itemCounts.looseLoot.min, itemCounts.looseLoot.max, range, 5);
+
+        range = itemCounts.grenades.max - itemCounts.grenades.min;
+        const grenadeCount = this.getBiasedRandomNumber(itemCounts.grenades.min, itemCounts.grenades.max, range, 4);
 
         this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], healingItemCount);
         this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], lootItemCount);
