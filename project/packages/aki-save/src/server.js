@@ -1,9 +1,9 @@
-/* generator.js
+/* server.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
  * authors:
- * - Terkoiz
+ * - Senko-san
  */
 
 "use strict";
