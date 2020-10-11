@@ -8,6 +8,23 @@
 
 "use strict";
 
+const EquipmentSlots = {
+    Headwear: "Headwear",
+    Earpiece: "Earpiece",
+    FaceCover: "FaceCover",
+    ArmorVest: "ArmorVest",
+    Eyewear: "Eyewear",
+    ArmBand: "ArmBand",
+    TacticalVest: "TacticalVest",
+    Pockets: "Pockets",
+    Backpack: "Backpack",
+    SecuredContainer: "SecuredContainer",
+    FirstPrimaryWeapon: "FirstPrimaryWeapon",
+    SecondPrimaryWeapon: "SecondPrimaryWeapon",
+    Holster: "Holster",
+    Scabbard: "Scabbard"
+};
+
 class Generator
 {
     constructor()
@@ -21,10 +38,17 @@ class Generator
         this.inventory = this.generateInventoryBase();
 
         // Go over all defined equipment slots and generate an item for each of them
+        const excludedSlots = [
+            EquipmentSlots.FirstPrimaryWeapon,
+            EquipmentSlots.SecondPrimaryWeapon,
+            EquipmentSlots.Holster,
+            EquipmentSlots.ArmorVest
+        ];
+
         for (const equipmentSlot in templateInventory.equipment)
         {
             // Weapons have special generation and will be generated seperately; ArmorVest should be generated after TactivalVest
-            if (["FirstPrimaryWeapon", "SecondPrimaryWeapon", "Holster", "ArmorVest"].includes(equipmentSlot))
+            if (excludedSlots.includes(equipmentSlot))
             {
                 continue;
             }
@@ -32,25 +56,35 @@ class Generator
         }
 
         // ArmorVest is generated afterwards to ensure that TacticalVest is always first, in case it is incompatible
-        this.generateEquipment("ArmorVest", templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
+        this.generateEquipment(EquipmentSlots.ArmorVest, templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
         const shouldSpawnPrimary = utility.getRandomIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
-        const shouldWeaponSpawn = {
-            "FirstPrimaryWeapon": shouldSpawnPrimary,
-
-            // Only roll for a chance at secondary if primary roll was successful
-            "SecondPrimaryWeapon": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false,
-
-            // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
-            "Holster": shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.Holster : true
-        };
-
-        for (const weaponType in shouldWeaponSpawn)
-        {
-            if (shouldWeaponSpawn[weaponType] && templateInventory.equipment[weaponType].length)
+        const weaponSpawns = [
             {
-                this.generateWeapon(weaponType, templateInventory.equipment[weaponType], templateInventory.mods, equipmentChances.mods, generation.items.magazines);
+                slot: EquipmentSlots.FirstPrimaryWeapon,
+                shouldSpawn: shouldSpawnPrimary
+            },
+            { // Only roll for a chance at secondary if primary roll was successful
+                slot: EquipmentSlots.SecondPrimaryWeapon,
+                shouldSpawn: shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
+            },
+            { // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
+                slot: EquipmentSlots.Holster,
+                shouldSpawn: shouldSpawnPrimary ? utility.getRandomIntEx(100) <= equipmentChances.equipment.Holster : true
+            }
+        ];
+
+        for (const weaponSpawn of weaponSpawns)
+        {
+            if (weaponSpawn.shouldSpawn && templateInventory.equipment[weaponSpawn.slot].length)
+            {
+                this.generateWeapon(
+                    weaponSpawn.slot,
+                    templateInventory.equipment[weaponSpawn.slot],
+                    templateInventory.mods,
+                    equipmentChances.mods,
+                    generation.items.magazines);
             }
         }
 
@@ -102,7 +136,9 @@ class Generator
 
     generateEquipment(equipmentSlot, equipmentPool, modPool, spawnChances)
     {
-        const spawnChance = ["Pockets", "SecuredContainer"].includes(equipmentSlot) ? 100 : spawnChances.equipment[equipmentSlot];
+        const spawnChance = [EquipmentSlots.Pockets, EquipmentSlots.SecuredContainer].includes(equipmentSlot)
+            ? 100
+            : spawnChances.equipment[equipmentSlot];
         if (typeof spawnChance === "undefined")
         {
             logger_f.instance.logWarning(`No spawn chance was defined for ${equipmentSlot}`);
@@ -364,8 +400,12 @@ class Generator
         const itemTemplates = items.map(i => database_f.server.tables.templates.items[i._tpl]);
         const templateToCheck = database_f.server.tables.templates.items[tplToCheck];
 
-        return (itemTemplates.some(item => item._props[`Blocks${equipmentSlot}`] || item._props.ConflictingItems.includes(tplToCheck)))
-            || (items.some(item => templateToCheck._props[`Blocks${item.slotId}`] || templateToCheck._props.ConflictingItems.includes(item._tpl)));
+        // Check if any of the current inventory templates have the incoming item defined as incompatible
+        const currentInventoryCheck = itemTemplates.some(item => item._props[`Blocks${equipmentSlot}`] || item._props.ConflictingItems.includes(tplToCheck));
+        // Check if the incoming item has any inventory items defined as incompatible
+        const itemCheck = items.some(item => templateToCheck._props[`Blocks${item.slotId}`] || templateToCheck._props.ConflictingItems.includes(item._tpl));
+
+        return currentInventoryCheck || itemCheck;
     }
 
     /** Checks if all required slots are occupied on a weapon and all it's mods */
@@ -438,7 +478,11 @@ class Generator
 
             for (const ammoItem of ammoItems)
             {
-                this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], ammoItem._id, ammoItem._tpl, [ammoItem]);
+                this.addItemWithChildrenToEquipmentSlot(
+                    [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
+                    ammoItem._id,
+                    ammoItem._tpl,
+                    [ammoItem]);
             }
         }
         else
@@ -460,7 +504,11 @@ class Generator
                     }
                 ];
 
-                const success = this.addItemWithChildrenToEquipmentSlot(["TacticalVest", "Pockets"], magId, magazineTpl, magWithAmmo);
+                const success = this.addItemWithChildrenToEquipmentSlot(
+                    [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
+                    magId,
+                    magazineTpl,
+                    magWithAmmo);
 
                 if (!success && i < magCounts.min)
                 {
@@ -503,7 +551,7 @@ class Generator
         for (let i = 0; i < 4; i++)
         {
             const id = utility.generateNewItemId();
-            this.addItemWithChildrenToEquipmentSlot(["SecuredContainer"], id, ammoTpl, [{
+            this.addItemWithChildrenToEquipmentSlot([EquipmentSlots.SecuredContainer], id, ammoTpl, [{
                 "_id": id,
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": ammoTemplate._props.StackMaxSize}
@@ -616,9 +664,9 @@ class Generator
         range = itemCounts.grenades.max - itemCounts.grenades.min;
         const grenadeCount = this.getBiasedRandomNumber(itemCounts.grenades.min, itemCounts.grenades.max, range, 4);
 
-        this.addLootFromPool(healingItems, ["TacticalVest", "Pockets"], healingItemCount);
-        this.addLootFromPool(lootItems, ["Backpack", "Pockets", "TacticalVest"], lootItemCount);
-        this.addLootFromPool(grenadeItems, ["TacticalVest", "Pockets"], grenadeCount);
+        this.addLootFromPool(healingItems, [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets], healingItemCount);
+        this.addLootFromPool(lootItems, [EquipmentSlots.Backpack, EquipmentSlots.Pockets, EquipmentSlots.TacticalVest], lootItemCount);
+        this.addLootFromPool(grenadeItems, [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets], grenadeCount);
     }
 
     addLootFromPool(pool, equipmentSlots, count)
@@ -631,11 +679,25 @@ class Generator
                 const itemTemplate = pool[itemIndex];
                 const id = utility.generateNewItemId();
 
-                this.addItemWithChildrenToEquipmentSlot(equipmentSlots, id, itemTemplate._id, [{
+                const itemsToAdd = [{
                     "_id": id,
                     "_tpl": itemTemplate._id,
                     ...this.generateExtraPropertiesForItem(itemTemplate)
-                }]);
+                }];
+
+                // Fill ammo box
+                if (itemTemplate._props.StackSlots && itemTemplate._props.StackSlots.length)
+                {
+                    itemsToAdd.push({
+                        "_id": utility.generateNewItemId(),
+                        "_tpl": itemTemplate._props.StackSlots[0]._props.filters[0].Filter[0],
+                        "parentId": id,
+                        "slotId": "cartridges",
+                        "upd": { "StackObjectsCount": itemTemplate._props.StackMaxRandom }
+                    });
+                }
+
+                this.addItemWithChildrenToEquipmentSlot(equipmentSlots, id, itemTemplate._id, itemsToAdd);
             }
         }
     }
@@ -735,8 +797,8 @@ class Generator
              * A shift that is equal to the available range only has a 50% chance of rolling correctly, theoretically halving performance.
              * Shifting even further drops the success chance very rapidly - so we want to warn against that */
 
-            //logger_f.instance.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
-            //logger_f.instance.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
+            logger_f.instance.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
+            logger_f.instance.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
         }
 
         const gaussianRandom = (n) =>
