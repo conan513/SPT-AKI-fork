@@ -55,7 +55,7 @@ class Controller
 
     createAccount(info)
     {
-        const sessionID = utility.generateNewAccountId();
+        const sessionID = utility.generateID();
 
         save_f.server.profiles[sessionID] = {
             "info": {

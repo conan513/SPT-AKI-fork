@@ -126,8 +126,8 @@ class Controller
             }
 
             //random loot Id
-            //TODO: To implement a new random function, use "generateNewItemId" instead for now.
-            data.Id = utility.generateNewItemId();
+            //TODO: To implement a new random function, use "generateID" instead for now.
+            data.Id = utility.generateID();
 
             //create lootItem list
             let lootItemsHash = {};
@@ -151,7 +151,7 @@ class Controller
             //reset itemId and childrenItemId
             for (const itemId of Object.keys(lootItemsHash))
             {
-                let newId = utility.generateNewItemId();
+                let newId = utility.generateID();
                 lootItemsHash[itemId]._id = newId;
 
                 if (itemId === data.Root)

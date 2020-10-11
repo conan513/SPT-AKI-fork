@@ -110,7 +110,7 @@ class Controller
 
         if (rewards.length > 0)
         {
-            const stashId = utility.generateNewItemId();
+            const stashId = utility.generateID();
 
             items.stash = stashId;
             items.data = [];
@@ -131,7 +131,7 @@ class Controller
         }
 
         let message = {
-            "_id": utility.generateNewDialogueId(),
+            "_id": utility.generateID(),
             "uid": dialogueID,
             "type": messageContent.type,
             "dt": Date.now() / 1000,

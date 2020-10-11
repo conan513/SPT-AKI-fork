@@ -66,7 +66,7 @@ class Callbacks
             return response_f.controller.getBody(null, 1, "The nickname is too short");
         }
 
-        return response_f.controller.getBody({"status": 0, "nicknamechangedate": Math.floor(new Date() / 1000)});
+        return response_f.controller.getBody({"status": 0, "nicknamechangedate": utility.getTimestamp()});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     validateNickname(url, info, sessionID)

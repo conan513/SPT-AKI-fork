@@ -349,7 +349,7 @@ class Controller
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
                     products.push({
-                        "_id": utility.generateNewItemId(),
+                        "_id": utility.generateID(),
                         "_tpl": tempItem._id
                     });
 
@@ -777,7 +777,7 @@ class Controller
             if (btcProd.Products.length < 3)
             {
                 btcProd.Products.push({
-                    "_id": utility.generateNewItemId(),
+                    "_id": utility.generateID(),
                     "_tpl": "59faff1d86f7746c51718c9c",
                     "upd": {
                         "StackObjectsCount": 1

@@ -115,7 +115,7 @@ class Controller
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                const botId = utility.generateNewBotId();
+                const botId = utility.generateID();
                 let bot = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.bots.base));
 
                 bot._id = botId;
@@ -214,7 +214,7 @@ class Controller
     generateDogtag(bot)
     {
         bot.Inventory.items.push({
-            _id: utility.generateNewItemId(),
+            _id: utility.generateID(),
             _tpl: ((bot.Info.Side === "Usec") ? "59f32c3b86f77472a31742f0" : "59f32bb586f774757e1e8442"),
             parentId: bot.Inventory.equipment,
             slotId: "Dogtag",

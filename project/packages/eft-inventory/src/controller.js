@@ -260,7 +260,7 @@ class Controller
             {
                 item.upd.StackObjectsCount -= body.count;
 
-                let newItem = utility.generateNewItemId();
+                let newItem = utility.generateID();
 
                 output.items.new.push({
                     "_id": newItem,
@@ -565,7 +565,7 @@ class Controller
 
         for (let itemToAdd of itemsToAdd)
         {
-            let newItem = utility.generateNewItemId();
+            let newItem = utility.generateID();
             let toDo = [[itemToAdd.itemRef._id, newItem]];
             let upd = {"StackObjectsCount": itemToAdd.count};
 
@@ -625,7 +625,7 @@ class Controller
                 {
                     let ammoStackSize = maxCount <= ammoStackMaxSize ? maxCount : ammoStackMaxSize;
                     ammos.push({
-                        "_id": utility.generateNewItemId(),
+                        "_id": utility.generateID(),
                         "_tpl": ammoTmplId,
                         "parentId": toDo[0][1],
                         "slotId": "cartridges",
@@ -649,7 +649,7 @@ class Controller
                 {
                     if (itemLib[tmpKey].parentId && itemLib[tmpKey].parentId === toDo[0][0])
                     {
-                        newItem = utility.generateNewItemId();
+                        newItem = utility.generateID();
 
                         let SlotID = itemLib[tmpKey].slotId;
 

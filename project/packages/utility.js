@@ -54,7 +54,7 @@ function getRandomBool()
 
 function getRandomValue(node)
 {
-    let keys = Object.keys(node);
+    const keys = Object.keys(node);
     return node[keys[getRandomInt(0, keys.length - 1)]];
 }
 
@@ -81,9 +81,9 @@ function getDirList(path)
 
 function removeDir(dir)
 {
-    for (file of fs.readdirSync(dir))
+    for (const file of fs.readdirSync(dir))
     {
-        let curPath = path.join(dir, file);
+        const curPath = path.join(dir, file);
 
         if (fs.lstatSync(curPath).isDirectory())
         {
@@ -98,24 +98,19 @@ function removeDir(dir)
     fs.rmdirSync(dir);
 }
 
-function getServerUptimeInSeconds()
-{
-    return Math.floor(process.uptime());
-}
-
 function formatTime(date)
 {
-    let hours = ("0" + date.getHours()).substr(-2);
-    let minutes = ("0" + date.getMinutes()).substr(-2);
-    let seconds = ("0" + date.getSeconds()).substr(-2);
-    return hours + "-" + minutes + "-" + seconds;
+    const hours = `0${date.getHours()}`.substr(-2);
+    const minutes = `0${date.getMinutes()}`.substr(-2);
+    const seconds = `0${date.getSeconds()}`.substr(-2);
+    return `${hours}-${minutes}-${seconds}`;
 }
 
 function formatDate(date)
 {
-    let day = ("0" + date.getDate()).substr(-2);
-    let month = ("0" + (date.getMonth() + 1)).substr(-2);
-    return date.getFullYear() + "-" + month + "-" + day;
+    const day = `0${date.getDate()}`.substr(-2);
+    const month = `0${date.getMonth() + 1}`.substr(-2);
+    return `${date.getFullYear()}-${month}-${day}`;
 }
 
 function getDate()
@@ -133,11 +128,11 @@ function getTimestamp()
     return Math.floor(new Date() / 1000);
 }
 
-function generateNewId(prefix)
+function generateID()
 {
-    let result = prefix;
+    let result = "";
+    const length = 24;
     const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
-    const length = 24 - prefix.length;
 
     for (let i = 0; i < length; i++)
     {
@@ -145,26 +140,6 @@ function generateNewId(prefix)
     }
 
     return result;
-}
-
-function generateNewAccountId()
-{
-    return generateNewId("AID");
-}
-
-function generateNewItemId()
-{
-    return generateNewId("I");
-}
-
-function generateNewDialogueId()
-{
-    return generateNewId("D");
-}
-
-function generateNewBotId()
-{
-    return generateNewId("B");
 }
 
 module.exports.createDir = createDir;
@@ -178,13 +153,9 @@ module.exports.getRandomArrayValue = getRandomArrayValue;
 module.exports.getFileList = getFileList;
 module.exports.getDirList = getDirList;
 module.exports.removeDir = removeDir;
-module.exports.getServerUptimeInSeconds = getServerUptimeInSeconds;
 module.exports.getTimestamp = getTimestamp;
 module.exports.getTime = getTime;
 module.exports.formatTime = formatTime;
 module.exports.getDate = getDate;
 module.exports.formatDate = formatDate;
-module.exports.generateNewAccountId = generateNewAccountId;
-module.exports.generateNewItemId = generateNewItemId;
-module.exports.generateNewDialogueId = generateNewDialogueId;
-module.exports.generateNewBotId = generateNewBotId;
+module.exports.generateID = generateID;

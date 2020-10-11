@@ -95,16 +95,16 @@ class Generator
 
     generateInventoryBase()
     {
-        const equipmentId = utility.generateNewItemId();
+        const equipmentId = utility.generateID();
         const equipmentTpl = "55d7217a4bdc2d86028b456d";
 
-        const stashId = utility.generateNewItemId();
+        const stashId = utility.generateID();
         const stashTpl = "566abbc34bdc2d92178b4576";
 
-        const questRaidItemsId = utility.generateNewItemId();
+        const questRaidItemsId = utility.generateID();
         const questRaidItemsTpl = "5963866286f7747bf429b572";
 
-        const questStashItemsId = utility.generateNewItemId();
+        const questStashItemsId = utility.generateID();
         const questStashItemsTpl = "5963866b86f7747bfa1c4462";
 
         return {
@@ -148,7 +148,7 @@ class Generator
         const shouldSpawn = utility.getRandomIntEx(100) <= spawnChance;
         if (equipmentPool.length && shouldSpawn)
         {
-            const id = utility.generateNewItemId();
+            const id = utility.generateID();
             const tpl = utility.getRandomArrayValue(equipmentPool);
             const itemTemplate = database_f.server.tables.templates.items[tpl];
 
@@ -187,7 +187,7 @@ class Generator
 
     generateWeapon(equipmentSlot, weaponPool, modPool, modChances, magCounts)
     {
-        const id = utility.generateNewItemId();
+        const id = utility.generateID();
         const tpl = utility.getRandomArrayValue(weaponPool);
         const itemTemplate = database_f.server.tables.templates.items[tpl];
 
@@ -339,7 +339,7 @@ class Generator
                 continue;
             }
 
-            const modId = utility.generateNewItemId();
+            const modId = utility.generateID();
             items.push({
                 "_id": modId,
                 "_tpl": modTpl,
@@ -471,7 +471,7 @@ class Generator
             const bulletCount = magTemplate._props.Cartridges[0]._max_count * count;
 
             const ammoItems = helpfunc_f.helpFunctions.splitStack({
-                "_id": utility.generateNewItemId(),
+                "_id": utility.generateID(),
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": bulletCount}
             });
@@ -489,14 +489,14 @@ class Generator
         {
             for (let i = 0; i < count; i++)
             {
-                const magId = utility.generateNewItemId();
+                const magId = utility.generateID();
                 const magWithAmmo = [
                     {
                         "_id": magId,
                         "_tpl": magazineTpl
                     },
                     {
-                        "_id": utility.generateNewItemId(),
+                        "_id": utility.generateID(),
                         "_tpl": ammoTpl,
                         "parentId": magId,
                         "slotId": "cartridges",
@@ -550,7 +550,7 @@ class Generator
         // Add 4 stacks of bullets to SecuredContainer
         for (let i = 0; i < 4; i++)
         {
-            const id = utility.generateNewItemId();
+            const id = utility.generateID();
             this.addItemWithChildrenToEquipmentSlot([EquipmentSlots.SecuredContainer], id, ammoTpl, [{
                 "_id": id,
                 "_tpl": ammoTpl,
@@ -611,7 +611,7 @@ class Generator
         {
             logger_f.instance.logWarning(`Magazine with tpl ${magazine._tpl} had no ammo`);
             weaponMods.push({
-                "_id": utility.generateNewItemId(),
+                "_id": utility.generateID(),
                 "_tpl": ammoTpl,
                 "parentId": magazine._id,
                 "slotId": "cartridges",
@@ -677,7 +677,7 @@ class Generator
             {
                 const itemIndex = this.getBiasedRandomNumber(0, pool.length - 1, pool.length - 1, 3);
                 const itemTemplate = pool[itemIndex];
-                const id = utility.generateNewItemId();
+                const id = utility.generateID();
 
                 const itemsToAdd = [{
                     "_id": id,
@@ -689,7 +689,7 @@ class Generator
                 if (itemTemplate._props.StackSlots && itemTemplate._props.StackSlots.length)
                 {
                     itemsToAdd.push({
-                        "_id": utility.generateNewItemId(),
+                        "_id": utility.generateID(),
                         "_tpl": itemTemplate._props.StackSlots[0]._props.filters[0].Filter[0],
                         "parentId": id,
                         "slotId": "cartridges",

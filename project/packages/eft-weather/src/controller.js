@@ -42,7 +42,7 @@ class Controller
     calculateTime(data)
     {
         // get time acceleration
-        const deltaSeconds = utility.getServerUptimeInSeconds() * weather_f.config.acceleration;
+        const deltaSeconds = Math.floor(process.uptime()) * weather_f.config.acceleration;
         const computedDate = new Date();
 
         computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
