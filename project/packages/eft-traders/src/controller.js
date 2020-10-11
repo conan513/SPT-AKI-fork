@@ -162,6 +162,7 @@ class Controller
     {
         const fenceID = "579dc571d53a0658a154fbec";
         const assort = database_f.server.tables.traders[fenceID].assort;
+        const itemPresets = database_f.server.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
         let added = [];
         let result = {
@@ -183,7 +184,7 @@ class Controller
             added.push(itemID);
 
             //it's the item
-            if (!(itemID in database_f.server.tables.globals.ItemPresets))
+            if (!(itemID in itemPresets))
             {
                 result.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
                 result.barter_scheme[itemID] = assort.barter_scheme[itemID];
@@ -193,8 +194,8 @@ class Controller
 
             //it's itemPreset
             let rub = 0;
-            let items = JSON.parse(JSON.stringify(database_f.server.tables.globals.ItemPresets[itemID]._items));
-            let ItemRootOldId = database_f.server.tables.globals.ItemPresets[itemID]._parent;
+            let items = JSON.parse(JSON.stringify(itemPresets[itemID]._items));
+            let ItemRootOldId = itemPresets[itemID]._parent;
 
             for (let i = 0; i < items.length; i++)
             {
