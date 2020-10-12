@@ -161,7 +161,12 @@ class Controller
                 if (!offRaidGearHash[insuredItem.itemId])
                 {
                     // We didn't bring this item out! We must've lost it.
-                    gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": preRaidGearHash[insuredItem.itemId], "sessionID": sessionID });
+                    gears.push({
+                        "pmcData": pmcData,
+                        "insuredItem": insuredItem,
+                        "item": preRaidGearHash[insuredItem.itemId],
+                        "sessionID": sessionID
+                    });
                 }
             }
         }
@@ -199,7 +204,10 @@ class Controller
 
         for (let insuredItem of pmcData.InsuredItems)
         {
-            if (preRaidGearHash[insuredItem.itemId] && !(securedContainerItemHash[insuredItem.itemId]) && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined") && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
+            if (preRaidGearHash[insuredItem.itemId]
+            && !(securedContainerItemHash[insuredItem.itemId])
+            && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined")
+            && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
             {
                 gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsHash[insuredItem.itemId], "sessionID": sessionID });
             }
@@ -219,14 +227,14 @@ class Controller
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
-                "templateId": dialogueTemplates.insuranceStart[common_f.random.getInt(0, dialogueTemplates.insuranceStart.length - 1)],
+                "templateId": common_f.random.getArrayValue(dialogueTemplates.insuranceStart),
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
             };
 
             dialogue_f.controller.addDialogueMessage(traderId, messageContent, sessionID);
 
             messageContent = {
-                "templateId": dialogueTemplates.insuranceFound[common_f.random.getInt(0, dialogueTemplates.insuranceFound.length - 1)],
+                "templateId": common_f.random.getArrayValue(dialogueTemplates.insuranceFound),
                 "type": dialogue_f.controller.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
@@ -256,7 +264,7 @@ class Controller
         if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
         {
             const insuranceFailedTemplates = database_f.server.tables.traders[event.data.traderId].dialogue.insuranceFailed;
-            event.data.messageContent.templateId = insuranceFailedTemplates[common_f.random.getInt(0, insuranceFailedTemplates.length - 1)];
+            event.data.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
             event.data.items = [];
         }
 
@@ -333,7 +341,7 @@ class Controller
 
     getPremium(pmcData, inventoryItem, traderId)
     {
-        let premium = this.getItemPrice(inventoryItem._tpl) * (insurance_f.config.priceMultiplier * 3);
+        let premium = this.getItemPrice(inventoryItem._tpl) * insurance_f.config.priceMultiplier;
         premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
         return Math.round(premium);
     }
@@ -343,7 +351,6 @@ class Controller
     {
         let output = {};
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-
         let inventoryItemsHash = {};
 
         for (const item of pmcData.Inventory.items)
@@ -357,16 +364,7 @@ class Controller
 
             for (let key of info.items)
             {
-                try
-                {
-                    items[inventoryItemsHash[key]._tpl] = Math.round(this.getPremium(pmcData, inventoryItemsHash[key], trader));
-                }
-                catch (e)
-                {
-                    common_f.logger.logError("Anomalies in the calculation of insurance prices");
-                    common_f.logger.logError("InventoryItemId:" + key);
-                    common_f.logger.logError("ItemId:" + inventoryItemsHash[key]._tpl);
-                }
+                items[inventoryItemsHash[key]._tpl] = Math.round(this.getPremium(pmcData, inventoryItemsHash[key], trader));
             }
 
             output[trader] = items;
