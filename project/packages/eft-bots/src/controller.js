@@ -116,7 +116,7 @@ class Controller
             for (let i = 0; i < condition.Limit; i++)
             {
                 const botId = common_f.utility.generateID();
-                let bot = common_f.json.parse(common_f.json.stringify(database_f.server.tables.bots.base));
+                let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
 
                 bot._id = botId;
                 bot.aid = botId;
