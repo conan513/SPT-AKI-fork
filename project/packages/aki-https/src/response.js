@@ -22,7 +22,11 @@ class Response
 
     getUnclearedBody(data, err = 0, errmsg = null)
     {
-        return common_f.json.stringify({"err": err, "errmsg": errmsg, "data": data});
+        return common_f.json.stringify({
+            "err": err,
+            "errmsg": errmsg,
+            "data": data
+        });
     }
 
     nullResponse()

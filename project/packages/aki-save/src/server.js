@@ -56,7 +56,7 @@ class Server
         if (fs.existsSync(`${save_f.config.filepath}${sessionID}.json`))
         {
             // load profile
-            this.profiles[sessionID] = common_f.json.parse(common_f.json.read(`${save_f.config.filepath}${sessionID}.json`));
+            this.profiles[sessionID] = common_f.json.parse(fs.readFileSync(`${save_f.config.filepath}${sessionID}.json`));
         }
 
         // run callbacks
@@ -75,7 +75,10 @@ class Server
         }
 
         // save profile
-        common_f.json.write(`${save_f.config.filepath}${sessionID}.json`, this.profiles[sessionID]);
+        const file = `${save_f.config.filepath}${sessionID}.json`;
+        
+        common_f.utility.createDir(file);
+        fs.writeFileSync(file, common_f.json.stringify(this.profiles[sessionID]), "utf8");
     }
 }
 

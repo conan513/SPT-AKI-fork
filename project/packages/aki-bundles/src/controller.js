@@ -9,6 +9,7 @@
 
 "use strict";
 
+const fs = require("fs");
 const path = require("path");
 
 class Controller
@@ -30,7 +31,7 @@ class Controller
             }
 
             let manifestPath = res.bundles[i].manifest;
-            let manifest = common_f.json.parse(common_f.json.read(manifestPath)).manifest;
+            let manifest = common_f.json.parse(fs.readFileSync(manifestPath)).manifest;
             let modName = res.bundles[i].manifest.split("/")[2];
             let bundleDir = "";
             let manifestPathSplit = manifestPath.split("/");
