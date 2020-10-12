@@ -5,6 +5,7 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - PoloYolo
+ * - Ereshkigal
  */
 
 "use strict";
@@ -118,7 +119,7 @@ class Controller
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
             "loyaltyLevels": database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "display": database_f.server.tables.traders[traderID].base.display
+            "working": database_f.server.tables.traders[traderID].base.working
         };
     }
 
