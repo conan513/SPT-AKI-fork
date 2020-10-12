@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/game/keepalive"] = this.execute.bind(this);
+        https_f.router.staticRoutes["/client/game/keepalive"] = this.execute.bind(this);
     }
 
     execute(url, info, sessionID)
@@ -22,9 +22,10 @@ class Callbacks
         {
             trader_f.controller.updateTraders(sessionID);
             hideout_f.controller.updatePlayerHideout(sessionID);
+            dialogue_f.controller.removeExpiredItems(sessionID);
         }
 
-        return response_f.controller.getBody({"msg": "OK"});
+        return https_f.response.getBody({"msg": "OK"});
     }
 }
 

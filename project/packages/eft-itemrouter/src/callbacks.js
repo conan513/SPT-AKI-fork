@@ -12,12 +12,12 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/game/profile/items/moving"] = this.handleRoutes.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/items/moving"] = this.handleRoutes.bind(this);
     }
 
     handleRoutes(url, info, sessionID)
     {
-        return response_f.controller.getBody(item_f.router.handleRoutes(info, sessionID));
+        return https_f.response.getBody(item_f.router.handleRoutes(info, sessionID));
     }
 }
 

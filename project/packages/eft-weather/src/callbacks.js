@@ -12,12 +12,12 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/weather"] = this.getWeather.bind(this);
+        https_f.router.staticRoutes["/client/weather"] = this.getWeather.bind(this);
     }
 
     getWeather(url, info, sessionID)
     {
-        return response_f.controller.getBody(weather_f.controller.generate());
+        return https_f.response.getBody(weather_f.controller.generate());
     }
 }
 

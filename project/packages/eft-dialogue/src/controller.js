@@ -32,7 +32,7 @@ class Controller
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
 
-        return response_f.controller.getBody(data);
+        return https_f.response.getBody(data);
     }
 
     /* Get the content of a dialogue. */
@@ -73,7 +73,7 @@ class Controller
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return response_f.controller.getBody({"messages": save_f.server.profiles[sessionID].dialogues[dialogueId].messages});
+        return https_f.response.getBody({"messages": save_f.server.profiles[sessionID].dialogues[dialogueId].messages});
     }
 
     /*
@@ -110,7 +110,7 @@ class Controller
 
         if (rewards.length > 0)
         {
-            const stashId = utility.generateNewItemId();
+            const stashId = common_f.utility.generateID();
 
             items.stash = stashId;
             items.data = [];
@@ -131,7 +131,7 @@ class Controller
         }
 
         let message = {
-            "_id": utility.generateNewDialogueId(),
+            "_id": common_f.utility.generateID(),
             "uid": dialogueID,
             "type": messageContent.type,
             "dt": Date.now() / 1000,

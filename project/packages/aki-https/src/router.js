@@ -47,4 +47,4 @@ class Router
     }
 }
 
-module.exports.router = new Router();
+module.exports.Router = Router;

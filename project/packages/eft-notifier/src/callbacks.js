@@ -13,23 +13,23 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.respondCallback["NOTIFY"] = this.sendNotification.bind(this);
-        router_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/select"] = this.selectProfile.bind(this);
-        router_f.router.dynamicRoutes["/?last_id"] = this.notify.bind(this);
-        router_f.router.dynamicRoutes["/notifierServer"] = this.notify.bind(this);
-        router_f.router.dynamicRoutes["/notifierBase"] = this.getBaseNotifier.bind(this);
-        router_f.router.dynamicRoutes["/push/notifier/get/"] = this.getNotifier.bind(this);
+        https_f.server.respondCallback["NOTIFY"] = this.sendNotification.bind(this);
+        https_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/select"] = this.selectProfile.bind(this);
+        https_f.router.dynamicRoutes["/?last_id"] = this.notify.bind(this);
+        https_f.router.dynamicRoutes["/notifierServer"] = this.notify.bind(this);
+        https_f.router.dynamicRoutes["/notifierBase"] = this.getBaseNotifier.bind(this);
+        https_f.router.dynamicRoutes["/push/notifier/get/"] = this.getNotifier.bind(this);
     }
 
     getBaseNotifier(url, info, sessionID)
     {
-        return response_f.controller.emptyArrayResponse();
+        return https_f.response.emptyArrayResponse();
     }
 
     getNotifier(url, info, sessionID)
     {
-        return response_f.controller.emptyArrayResponse();
+        return https_f.response.emptyArrayResponse();
     }
 
     // If we don't have anything to send, it's ok to not send anything back
@@ -46,13 +46,13 @@ class Callbacks
 
     createNotifierChannel(url, info, sessionID)
     {
-        return response_f.controller.getBody({
+        return https_f.response.getBody({
             "notifier": {
-                "server": `${server_f.server.backendUrl}/`,
+                "server": `${https_f.server.backendUrl}/`,
                 "channel_id": "testChannel",
-                "url": `${server_f.server.backendUrl}/notifierServer/get/${sessionID}`
+                "url": `${https_f.server.backendUrl}/notifierServer/get/${sessionID}`
             },
-            "notifierServer": `${server_f.server.backendUrl}/notifierServer/get/${sessionID}`
+            "notifierServer": `${https_f.server.backendUrl}/notifierServer/get/${sessionID}`
         });
     }
 
@@ -63,10 +63,10 @@ class Callbacks
 
     selectProfile(url, info, sessionID)
     {
-        return response_f.controller.getBody({
+        return https_f.response.getBody({
             "status": "ok",
             "notifier": {
-                "server": `${server_f.server.backendUrl}/`,
+                "server": `${https_f.server.backendUrl}/`,
                 "channel_id": "testChannel"
             }
         });

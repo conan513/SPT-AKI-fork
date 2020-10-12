@@ -13,14 +13,14 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind(this);
+        https_f.router.staticRoutes["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind(this);
         item_f.router.routes["SaveBuild"] = this.saveBuild.bind(this);
         item_f.router.routes["RemoveBuild"] = this.removeBuild.bind(this);
     }
 
     getHandbookUserlist(url, info, sessionID)
     {
-        return response_f.controller.getBody(weaponbuilds_f.controller.getUserBuilds(sessionID));
+        return https_f.response.getBody(weaponbuilds_f.controller.getUserBuilds(sessionID));
     }
 
     saveBuild(pmcData, body, sessionID)

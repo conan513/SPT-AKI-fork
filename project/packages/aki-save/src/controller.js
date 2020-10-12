@@ -40,7 +40,7 @@ class Controller
     onSave()
     {
         save_f.server.onSave();
-        logger_f.instance.logSuccess("Saved profiles");
+        common_f.logger.logSuccess("Saved profiles");
     }
 }
 

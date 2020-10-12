@@ -12,9 +12,9 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.startCallback["loadLocations"] = this.load.bind(this);
-        router_f.router.staticRoutes["/client/locations"] = this.getLocationData.bind(this);
-        router_f.router.dynamicRoutes["/api/location"] = this.getLocation.bind(this);
+        https_f.server.startCallback["loadLocations"] = this.load.bind(this);
+        https_f.router.staticRoutes["/client/locations"] = this.getLocationData.bind(this);
+        https_f.router.dynamicRoutes["/api/location"] = this.getLocation.bind(this);
     }
 
     load()
@@ -24,7 +24,7 @@ class Callbacks
 
     getLocationData(url, info, sessionID)
     {
-        return response_f.controller.getBody(location_f.controller.generateAll());
+        return https_f.response.getBody(location_f.controller.generateAll());
     }
 
     getLocation(url, info, sessionID)

@@ -109,7 +109,7 @@ class Controller
             }));
         }
 
-        server_f.server.sendTextJson(resp, data.join("\n"));
+        https_f.server.sendTextJson(resp, data.join("\n"));
     }
 
     /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */

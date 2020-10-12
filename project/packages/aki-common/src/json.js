@@ -29,9 +29,9 @@ class JsonUtil
 
     write(file, data)
     {
-        utility.createDir(file);
+        common_f.utility.createDir(file);
         fs.writeFileSync(file, this.stringify(data), "utf8");
     }
 }
 
-module.exports.instance = new JsonUtil();
+module.exports.JsonUtil = JsonUtil;
