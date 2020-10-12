@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/quest/list"] = this.listQuests.bind(this);
+        https_f.router.staticRoutes["/client/quest/list"] = this.listQuests.bind(this);
         item_f.router.routes["QuestAccept"] = this.acceptQuest.bind(this);
         item_f.router.routes["QuestComplete"] = this.completeQuest.bind(this);
         item_f.router.routes["QuestHandover"] = this.handoverQuest.bind(this);
@@ -36,7 +36,7 @@ class Callbacks
 
     listQuests(url, info, sessionID)
     {
-        return response_f.controller.getBody(quest_f.controller.getVisibleQuests(url, info, sessionID));
+        return https_f.response.getBody(quest_f.controller.getVisibleQuests(url, info, sessionID));
     }
 }
 

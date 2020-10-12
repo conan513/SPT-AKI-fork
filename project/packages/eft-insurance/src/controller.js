@@ -62,7 +62,7 @@ class Controller
         //Find the item and all of it's relates
         if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
         {
-            logger_f.instance.logError("item id is not valid");
+            common_f.logger.logError("item id is not valid");
             return;
         }
 
@@ -219,26 +219,26 @@ class Controller
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
-                "templateId": dialogueTemplates.insuranceStart[utility.getRandomInt(0, dialogueTemplates.insuranceStart.length - 1)],
+                "templateId": dialogueTemplates.insuranceStart[common_f.utility.getRandomInt(0, dialogueTemplates.insuranceStart.length - 1)],
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
             };
 
             dialogue_f.controller.addDialogueMessage(traderId, messageContent, sessionID);
 
             messageContent = {
-                "templateId": dialogueTemplates.insuranceFound[utility.getRandomInt(0, dialogueTemplates.insuranceFound.length - 1)],
+                "templateId": dialogueTemplates.insuranceFound[common_f.utility.getRandomInt(0, dialogueTemplates.insuranceFound.length - 1)],
                 "type": dialogue_f.controller.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
-                    "date": utility.getDate(),
-                    "time": utility.getTime(),
+                    "date": common_f.utility.getDate(),
+                    "time": common_f.utility.getTime(),
                     "location": pmcData.Info.EntryPoint
                 }
             };
 
             event_f.controller.addToSchedule(sessionID, {
                 "type": "insuranceReturn",
-                "scheduledTime": Date.now() + utility.getRandomInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
+                "scheduledTime": Date.now() + common_f.utility.getRandomInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
                 "data": {
                     "traderId": traderId,
                     "messageContent": messageContent,
@@ -253,10 +253,10 @@ class Controller
     processReturn(event)
     {
         // Inject a little bit of a surprise by failing the insurance from time to time ;)
-        if (utility.getRandomInt(0, 99) >= insurance_f.config.returnChance)
+        if (common_f.utility.getRandomInt(0, 99) >= insurance_f.config.returnChance)
         {
             const insuranceFailedTemplates = database_f.server.tables.traders[event.data.traderId].dialogue.insuranceFailed;
-            event.data.messageContent.templateId = insuranceFailedTemplates[utility.getRandomInt(0, insuranceFailedTemplates.length - 1)];
+            event.data.messageContent.templateId = insuranceFailedTemplates[common_f.utility.getRandomInt(0, insuranceFailedTemplates.length - 1)];
             event.data.items = [];
         }
 
@@ -286,7 +286,7 @@ class Controller
         // pay the item	to profile
         if (!helpfunc_f.helpFunctions.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
-            logger_f.instance.logError("no money found");
+            common_f.logger.logError("no money found");
             return "";
         }
 
@@ -363,9 +363,9 @@ class Controller
                 }
                 catch (e)
                 {
-                    logger_f.instance.logError("Anomalies in the calculation of insurance prices");
-                    logger_f.instance.logError("InventoryItemId:" + key);
-                    logger_f.instance.logError("ItemId:" + inventoryItemsHash[key]._tpl);
+                    common_f.logger.logError("Anomalies in the calculation of insurance prices");
+                    common_f.logger.logError("InventoryItemId:" + key);
+                    common_f.logger.logError("ItemId:" + inventoryItemsHash[key]._tpl);
                 }
             }
 

@@ -15,6 +15,7 @@ class Config
         this.saveOnReceive = false;
         this.saveOnExit = true;
         this.saveIntervalSec = 30;
+        this.filepath = "user/profiles/";
     }
 }
 

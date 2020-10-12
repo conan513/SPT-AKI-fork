@@ -87,106 +87,115 @@ class Controller
         database_f.server.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
-    updateTraders(sessionID)
+    updateTraders()
     {
-        // update each hour
-        const update_per = 3600;
-        const timeNow = Math.floor(Date.now() / 1000);
-        let tradersToUpdateList = trader_f.controller.getAllTraders(sessionID);
+        const time = Math.floor(Date.now() / 1000);
+        const update = trader_f.config.updateTime;
 
-        dialogue_f.controller.removeExpiredItems(sessionID);
-
-        for (let i = 0; i < tradersToUpdateList.length; i++)
+        for (const traderID in database_f.server.tables.traders)
         {
-            if ((tradersToUpdateList[i].supply_next_time + update_per) > timeNow)
+            const trader = database_f.server.tables.traders[traderID].base;
+
+            if (trader.supply_next_time > time)
             {
                 continue;
             }
 
-            // update restock timer
-            const substracted_time = timeNow - tradersToUpdateList[i].supply_next_time;
-            const days_passed = Math.floor((substracted_time) / 86400);
-            const time_co_compensate = days_passed * 86400;
-            let newTraderTime = tradersToUpdateList[i].supply_next_time + time_co_compensate;
-            const compensateUpdate_per = (Math.floor((timeNow - newTraderTime) / update_per)) * update_per;
+            // get resupply time
+            const overdue = (time - trader.supply_next_time);
+            const refresh = Math.floor(overdue / update) + 1;
 
-            newTraderTime = newTraderTime + compensateUpdate_per + update_per;
-            tradersToUpdateList[i].supply_next_time = newTraderTime;
+            trader.supply_next_time = trader.supply_next_time + (refresh) * update;
+            database_f.server.tables.traders[traderID].base = trader;
         }
     }
 
     getAssort(sessionID, traderID)
     {
-
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            logger_f.instance.logWarning("generating fence");
-            this.generateFenceAssort();
+            common_f.logger.logWarning("generating fence");
+            return this.generateFenceAssort();
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let assorts = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID].assort));
+        const traderData = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID]));
+        let result = traderData.assort;
 
-        // strip quest assorts
-        if (traderID !== "ragfair")
+        // strip items (1 is min level, 4 is max level)
+        for (const itemID in result.loyal_level_items)
         {
-            // 1 is min level, 4 is max level
-            let level = pmcData.TraderStandings[traderID].currentLevel;
-            let questassort = database_f.server.tables.traders[traderID].questassort;
-
-            for (let key in assorts.loyal_level_items)
+            if (result.loyal_level_items[itemID] > pmcData.TraderStandings[traderID].currentLevel)
             {
-                if (assorts.loyal_level_items[key] > level)
+                result = this.removeItemFromAssort(result, itemID);
+            }
+        }
+
+        // strip quest result
+        if ("questassort" in traderData)
+        {
+            const questassort = database_f.server.tables.traders[traderID].questassort;
+
+            for (const itemID in result.loyal_level_items)
+            {
+                if (itemID in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[itemID]) !== "Started")
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, itemID);
                 }
-                else if (key in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[key]) !== "Started")
+
+                if (itemID in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[itemID]) !== "Success")
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, itemID);
                 }
-                else if (key in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[key]) !== "Success")
+
+                if (itemID in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[itemID]) !== "Fail")
                 {
-                    assorts = this.removeItemFromAssort(assorts, key);
-                }
-                else if (key in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[key]) !== "Fail")
-                {
-                    assorts = this.removeItemFromAssort(assorts, key);
+                    result = this.removeItemFromAssort(result, itemID);
                 }
             }
         }
 
-        return assorts;
+        return result;
     }
 
     generateFenceAssort()
     {
         const fenceID = "579dc571d53a0658a154fbec";
         const assort = database_f.server.tables.traders[fenceID].assort;
+        const itemPresets = database_f.server.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
-        let base = {"items": [], "barter_scheme": {}, "loyal_level_items": {}};
         let added = [];
+        let result = {
+            "items": [],
+            "barter_scheme": {},
+            "loyal_level_items": {}
+        };
+
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
-            let itemID = names[utility.getRandomInt(0, names.length - 1)];
+            let itemID = names[common_f.utility.getRandomInt(0, names.length - 1)];
+
             if (added.includes(itemID))
             {
                 i--;
                 continue;
             }
+
             added.push(itemID);
+
             //it's the item
-            if (!(itemID in database_f.server.tables.globals.ItemPresets))
+            if (!(itemID in itemPresets))
             {
-                base.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
-                base.barter_scheme[itemID] = assort.barter_scheme[itemID];
-                base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
+                result.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
+                result.barter_scheme[itemID] = assort.barter_scheme[itemID];
+                result.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
                 continue;
             }
 
             //it's itemPreset
             let rub = 0;
-            let items = JSON.parse(JSON.stringify(database_f.server.tables.globals.ItemPresets[itemID]._items));
-            let ItemRootOldId = database_f.server.tables.globals.ItemPresets[itemID]._parent;
+            let items = JSON.parse(JSON.stringify(itemPresets[itemID]._items));
+            let ItemRootOldId = itemPresets[itemID]._parent;
 
             for (let i = 0; i < items.length; i++)
             {
@@ -209,7 +218,7 @@ class Controller
                 }
             }
 
-            base.items.push.apply(base.items, items);
+            result.items.push.apply(result.items, items);
 
             //calculate preset price
             for (let it of items)
@@ -217,12 +226,12 @@ class Controller
                 rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
             }
 
-            base.barter_scheme[itemID] = assort.barter_scheme[itemID];
-            base.barter_scheme[itemID][0][0].count = rub;
-            base.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
+            result.barter_scheme[itemID] = assort.barter_scheme[itemID];
+            result.barter_scheme[itemID][0][0].count = rub;
+            result.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
         }
 
-        database_f.server.tables.traders[fenceID].assort = base;
+        return result;
     }
 
     // delete assort keys
@@ -264,7 +273,7 @@ class Controller
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
             || helpfunc_f.helpFunctions.isNotSellable(item._tpl)
-            || traderFilter(trader.sell_category, item._tpl) === false)
+            || this.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
@@ -313,39 +322,39 @@ class Controller
 
         return output;
     }
-}
 
-/*
-check if an item is allowed to be sold to a trader
-input : array of allowed categories, itemTpl of inventory
-output : boolean
-*/
-function traderFilter(traderFilters, tplToCheck)
-{
-
-    for (let filter of traderFilters)
+    /*
+        check if an item is allowed to be sold to a trader
+        input : array of allowed categories, itemTpl of inventory
+        output : boolean
+    */
+    traderFilter(traderFilters, tplToCheck)
     {
-        for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
-        {
-            if (iaaaaa === tplToCheck)
-            {
-                return true;
-            }
-        }
 
-        for (let subcateg of helpfunc_f.helpFunctions.childrenCategories(filter))
+        for (let filter of traderFilters)
         {
-            for (let itemFromSubcateg of helpfunc_f.helpFunctions.templatesWithParent(subcateg))
+            for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
             {
-                if (itemFromSubcateg === tplToCheck)
+                if (iaaaaa === tplToCheck)
                 {
                     return true;
                 }
             }
-        }
-    }
 
-    return false;
+            for (let subcateg of helpfunc_f.helpFunctions.childrenCategories(filter))
+            {
+                for (let itemFromSubcateg of helpfunc_f.helpFunctions.templatesWithParent(subcateg))
+                {
+                    if (itemFromSubcateg === tplToCheck)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 }
 
 module.exports.Controller = Controller;

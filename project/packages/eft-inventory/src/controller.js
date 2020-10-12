@@ -213,7 +213,7 @@ class Controller
         //Find the item and all of it's relates
         if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
         {
-            logger_f.instance.logError("item id is not valid");
+            common_f.logger.logError("item id is not valid");
             return "";
         }
 
@@ -260,7 +260,7 @@ class Controller
             {
                 item.upd.StackObjectsCount -= body.count;
 
-                let newItem = utility.generateNewItemId();
+                let newItem = common_f.utility.generateID();
 
                 output.items.new.push({
                     "_id": newItem,
@@ -537,7 +537,7 @@ class Controller
                 }
                 catch (err)
                 {
-                    logger_f.instance.logError("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
+                    common_f.logger.logError("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
                     return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
                 }
 
@@ -565,7 +565,7 @@ class Controller
 
         for (let itemToAdd of itemsToAdd)
         {
-            let newItem = utility.generateNewItemId();
+            let newItem = common_f.utility.generateID();
             let toDo = [[itemToAdd.itemRef._id, newItem]];
             let upd = {"StackObjectsCount": itemToAdd.count};
 
@@ -625,7 +625,7 @@ class Controller
                 {
                     let ammoStackSize = maxCount <= ammoStackMaxSize ? maxCount : ammoStackMaxSize;
                     ammos.push({
-                        "_id": utility.generateNewItemId(),
+                        "_id": common_f.utility.generateID(),
                         "_tpl": ammoTmplId,
                         "parentId": toDo[0][1],
                         "slotId": "cartridges",
@@ -649,7 +649,7 @@ class Controller
                 {
                     if (itemLib[tmpKey].parentId && itemLib[tmpKey].parentId === toDo[0][0])
                     {
-                        newItem = utility.generateNewItemId();
+                        newItem = common_f.utility.generateID();
 
                         let SlotID = itemLib[tmpKey].slotId;
 

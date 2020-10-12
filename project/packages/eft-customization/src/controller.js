@@ -88,7 +88,7 @@ class Controller
 
         if (!offer)
         {
-            logger_f.instance.logError("OOPS");
+            common_f.logger.logError("OOPS");
             return output;
         }
 

@@ -23,8 +23,8 @@ class Controller
 
     generateWeather(data)
     {
-        const enableRain = utility.getRandomBool();
-        const enableFog = utility.getRandomBool();
+        const enableRain = common_f.utility.getRandomBool();
+        const enableFog = common_f.utility.getRandomBool();
 
         data.weather.cloud = this.getRandomFloat("clouds");
         data.weather.wind_speed = this.getRandomInt("windSpeed");
@@ -42,14 +42,14 @@ class Controller
     calculateTime(data)
     {
         // get time acceleration
-        const deltaSeconds = utility.getServerUptimeInSeconds() * weather_f.config.acceleration;
+        const deltaSeconds = Math.floor(process.uptime()) * weather_f.config.acceleration;
         const computedDate = new Date();
 
         computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
 
         // assign time
-        const time = utility.formatTime(computedDate).replace("-", ":").replace("-", ":");
-        const date = utility.formatDate(computedDate);
+        const time = common_f.utility.formatTime(computedDate).replace("-", ":").replace("-", ":");
+        const date = common_f.utility.formatDate(computedDate);
         const datetime = `${date} ${time}`;
 
         data.weather.timestamp = Math.floor(computedDate / 1000);
@@ -64,13 +64,13 @@ class Controller
 
     getRandomFloat(node)
     {
-        return parseFloat(utility.getRandomFloat(weather_f.config.weather[node].min,
+        return parseFloat(common_f.utility.getRandomFloat(weather_f.config.weather[node].min,
             weather_f.config.weather[node].max).toPrecision(3));
     }
 
     getRandomInt(node)
     {
-        return utility.getRandomInt(weather_f.config.weather[node].min,
+        return common_f.utility.getRandomInt(weather_f.config.weather[node].min,
             weather_f.config.weather[node].max);
     }
 }

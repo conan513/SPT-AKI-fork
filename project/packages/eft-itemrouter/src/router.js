@@ -30,7 +30,7 @@ class Router
             }
             else
             {
-                logger_f.instance.logError(`[UNHANDLED ACTION] ${body.Action}`);
+                common_f.logger.logError(`[UNHANDLED ACTION] ${body.Action}`);
             }
         }
 

@@ -14,9 +14,21 @@ class Controller
 {
     initialize()
     {
-        database_f.server.tables.ragfair.offers = {"categories": {}, "offers": [], "offersCount": 100, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
+        // initialize base offer expire date (1 week after server start)
+        const time = common_f.utility.getTimestamp();
 
-        for (let traderID in database_f.server.tables.traders)
+        database_f.server.tables.ragfair.offer.startTime = time;
+        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
+
+        // get all trader offers
+        database_f.server.tables.ragfair.offers = {
+            "categories": {},
+            "offers": [],
+            "offersCount": 100,
+            "selectedCategory": "5b5f78dc86f77409407a7f8e"
+        };
+
+        for (const traderID in database_f.server.tables.traders)
         {
             this.addTraderAssort(traderID);
         }
@@ -82,7 +94,7 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.baseOffer));
+        let offerBase = common_f.json.parse(common_f.json.stringify(database_f.server.tables.ragfair.offer));
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -107,11 +119,11 @@ class Controller
         // Some slot filters reference bad items
         if (!(template in database_f.server.tables.templates.items))
         {
-            logger_f.instance.logWarning("Item " + template + " does not exist");
+            common_f.logger.logWarning("Item " + template + " does not exist");
             return [];
         }
 
-        let offerBase = json_f.instance.parse(json_f.instance.stringify(database_f.server.tables.ragfair.baseOffer));
+        let offerBase = common_f.json.parse(common_f.json.stringify(database_f.server.tables.ragfair.offer));
         let offers = [];
 
         // Preset

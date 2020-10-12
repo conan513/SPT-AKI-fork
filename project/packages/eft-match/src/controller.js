@@ -121,7 +121,7 @@ class Controller
             "status": "wait",
             "isSavage": false,
             "timeShift": "CURR",
-            "dt": utility.getTimestamp(),
+            "dt": common_f.utility.getTimestamp(),
             "players": [
                 {
                     "_id": `pmc${sessionID}`,
@@ -133,7 +133,7 @@ class Controller
             ],
             "customDataCenter": []
         };
-        
+
         return this.locations[info.location].groups[groupID];
     }
 

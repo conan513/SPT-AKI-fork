@@ -17,7 +17,7 @@ class Controller
     {
         this.bundles = [];
         this.bundleBykey = {};
-        this.backendUrl = server_f.server.backendUrl;
+        this.backendUrl = https_f.server.backendUrl;
     }
 
     initialize(sessionID)
@@ -30,7 +30,7 @@ class Controller
             }
 
             let manifestPath = res.bundles[i].manifest;
-            let manifest = json_f.instance.parse(json_f.instance.read(manifestPath)).manifest;
+            let manifest = common_f.json.parse(common_f.json.read(manifestPath)).manifest;
             let modName = res.bundles[i].manifest.split("/")[2];
             let bundleDir = "";
             let manifestPathSplit = manifestPath.split("/");

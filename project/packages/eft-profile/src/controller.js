@@ -72,8 +72,8 @@ class Controller
         pmcData.savage = "scav" + sessionID;
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
-        pmcData.Info.RegistrationDate = Math.floor(new Date() / 1000);
-        pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
+        pmcData.Info.RegistrationDate = common_f.utility.getTimestamp();
+        pmcData.Health.UpdateTime = common_f.utility.getTimestamp();
         pmcData.Quests = quest_f.controller.getAllProfileQuests();
 
         // create profile
@@ -127,7 +127,7 @@ class Controller
         const pmcData = this.getPmcProfile(sessionID);
         let scavData = bots_f.controller.generate({
             "conditions": [
-                { 
+                {
                     "Role": "playerScav",
                     "Limit": 1,
                     "Difficulty": "normal"
