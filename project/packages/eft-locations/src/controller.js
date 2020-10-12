@@ -191,7 +191,7 @@ class Controller
     get(location)
     {
         let name = location.toLowerCase().replace(" ", "");
-        return common_f.json.serialize(this.generate(name));
+        return this.generate(name);
     }
 
     /* get all locations without loot data */
