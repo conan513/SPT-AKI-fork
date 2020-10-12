@@ -43,12 +43,11 @@ class Controller
 
     getAllTraders(sessionID)
     {
-
         let traders = [];
 
         for (let traderID in database_f.server.tables.traders)
         {
-            if (traderID === "ragfair")
+            if (!database_f.server.tables.traders[traderID].base.working)
             {
                 continue;
             }
