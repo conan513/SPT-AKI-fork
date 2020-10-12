@@ -8,6 +8,9 @@
 
 "use strict";
 
+// force packing of selfsigned
+require("selfsigned");
+
 process.stdout.setEncoding("utf8");
 
 require("./initializer.js");
