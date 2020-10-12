@@ -12,7 +12,7 @@ class Response
 {
     noBody(data)
     {
-        return common_f.utility.clearString(common_f.json.stringify(data));
+        return common_f.utility.clearString(common_f.json.serialize(data));
     }
 
     getBody(data, err = 0, errmsg = null)
@@ -22,7 +22,7 @@ class Response
 
     getUnclearedBody(data, err = 0, errmsg = null)
     {
-        return common_f.json.stringify({
+        return common_f.json.serialize({
             "err": err,
             "errmsg": errmsg,
             "data": data

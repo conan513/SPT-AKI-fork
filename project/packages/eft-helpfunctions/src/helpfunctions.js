@@ -782,7 +782,7 @@ class HelpFunctions
     replaceIDs(pmcData, items, fastPanel = null)
     {
         // replace bsg shit long ID with proper one
-        let string_inventory = common_f.json.stringify(items);
+        let string_inventory = common_f.json.serialize(items);
 
         for (let item of items)
         {
@@ -828,7 +828,7 @@ class HelpFunctions
             }
         }
 
-        items = JSON.parse(string_inventory);
+        items = json.deserialize(string_inventory);
 
         // fix duplicate id's
         let dupes = {};
@@ -930,7 +930,7 @@ class HelpFunctions
 
     clone(x)
     {
-        return common_f.json.parse(common_f.json.stringify(x));
+        return common_f.json.deserialize(common_f.json.serialize(x));
     }
 
     arrayIntersect(a, b)

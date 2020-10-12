@@ -45,7 +45,7 @@ class Callbacks
         for (const node in files)
         {
             const fileName = files[node].split(".").slice(0, -1).join(".");
-            result[fileName] = common_f.json.parse(fs.readFileSync(`${filepath}${files[node]}`));
+            result[fileName] = common_f.json.deserialize(fs.readFileSync(`${filepath}${files[node]}`));
         }
 
         // deep tree search

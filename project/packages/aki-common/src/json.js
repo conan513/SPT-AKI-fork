@@ -8,11 +8,9 @@
 
 "use strict";
 
-const fs = require("fs");
-
 class JsonUtil
 {
-    stringify(data, prettify = false)
+    serialize(data, prettify = false)
     {
         if (prettify)
         {
@@ -22,10 +20,9 @@ class JsonUtil
         {
             return JSON.stringify(data);
         }
-        
     }
 
-    parse(string)
+    deserialize(string)
     {
         return JSON.parse(string);
     }

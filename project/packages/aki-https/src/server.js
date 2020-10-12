@@ -160,7 +160,7 @@ class Server
     {
         // get response
         const text = (body) ? body.toString() : "{}";
-        const info = (text) ? common_f.json.parse(text) : {};
+        const info = (text) ? common_f.json.deserialize(text) : {};
         let output = https_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */

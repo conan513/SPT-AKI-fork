@@ -98,13 +98,13 @@ class Controller
 
             // Purposefully using default JSON stringify function here to avoid newline insertion
             // since the client expects different messages to be split by the newline character.
-            data.push(common_f.json.stringify(message));
+            data.push(common_f.json.serialize(message));
         }
 
         // If we timed out and don't have anything to send, just send a ping notification.
         if (data.length === 0)
         {
-            data.push(common_f.json.stringify({
+            data.push(common_f.json.serialize({
                 "type": "ping",
                 "eventId": "ping"
             }));
