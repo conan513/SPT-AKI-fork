@@ -13,8 +13,8 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoadCallback["health"] = this.onLoad.bind(this);
-        router_f.router.staticRoutes["/player/health/sync"] = this.syncHealth.bind(this);
-        router_f.router.staticRoutes["/player/health/events"] = this.updateHealth.bind(this);
+        https_f.router.staticRoutes["/player/health/sync"] = this.syncHealth.bind(this);
+        https_f.router.staticRoutes["/player/health/events"] = this.updateHealth.bind(this);
         item_f.router.routes["Eat"] = this.offraidEat.bind(this);
         item_f.router.routes["Heal"] = this.offraidHeal.bind(this);
         item_f.router.routes["RestoreHealth"] = this.healthTreatment.bind(this);
@@ -29,13 +29,13 @@ class Callbacks
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         health_f.controller.saveVitality(pmcData, info, sessionID);
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     updateHealth(url, info, sessionID)
     {
         health_f.controller.updateHealth(info, sessionID);
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     offraidEat(pmcData, body, sessionID)

@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Controller
+class Response
 {
     noBody(data)
     {
@@ -36,4 +36,4 @@ class Controller
     }
 }
 
-module.exports.controller = new Controller();
+module.exports.Response = Response;

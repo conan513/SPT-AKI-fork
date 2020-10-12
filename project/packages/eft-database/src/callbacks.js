@@ -15,21 +15,21 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.startCallback["loadDatabase"] = this.load.bind(this);
-        server_f.server.respondCallback["IMAGE"] = this.sendImage.bind(this);
-        router_f.router.staticRoutes["/client/globals"] = this.getGlobals.bind(this);
-        router_f.router.staticRoutes["/client/items"] = this.getTemplateItems.bind(this);
-        router_f.router.staticRoutes["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
-        router_f.router.staticRoutes["/client/customization"] = this.getTemplateSuits.bind(this);
-        router_f.router.staticRoutes["/client/hideout/production/recipes"] = this.gethideoutProduction.bind(this);
-        router_f.router.staticRoutes["/client/hideout/settings"] = this.getHideoutSettings.bind(this);
-        router_f.router.staticRoutes["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
-        router_f.router.staticRoutes["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind(this);
-        router_f.router.staticRoutes["/client/languages"] = this.getLocalesLanguages.bind(this);
-        router_f.router.dynamicRoutes["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
-        router_f.router.dynamicRoutes["/client/locale/"] = this.getLocalesGlobal.bind(this);
-        router_f.router.dynamicRoutes[".jpg"] = this.getImage.bind(this);
-        router_f.router.dynamicRoutes[".png"] = this.getImage.bind(this);
+        https_f.server.startCallback["loadDatabase"] = this.load.bind(this);
+        https_f.server.respondCallback["IMAGE"] = this.sendImage.bind(this);
+        https_f.router.staticRoutes["/client/globals"] = this.getGlobals.bind(this);
+        https_f.router.staticRoutes["/client/items"] = this.getTemplateItems.bind(this);
+        https_f.router.staticRoutes["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
+        https_f.router.staticRoutes["/client/customization"] = this.getTemplateSuits.bind(this);
+        https_f.router.staticRoutes["/client/hideout/production/recipes"] = this.gethideoutProduction.bind(this);
+        https_f.router.staticRoutes["/client/hideout/settings"] = this.getHideoutSettings.bind(this);
+        https_f.router.staticRoutes["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
+        https_f.router.staticRoutes["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind(this);
+        https_f.router.staticRoutes["/client/languages"] = this.getLocalesLanguages.bind(this);
+        https_f.router.dynamicRoutes["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
+        https_f.router.dynamicRoutes["/client/locale/"] = this.getLocalesGlobal.bind(this);
+        https_f.router.dynamicRoutes[".jpg"] = this.getImage.bind(this);
+        https_f.router.dynamicRoutes[".png"] = this.getImage.bind(this);
     }
 
     loadRecursive(filepath)
@@ -75,62 +75,62 @@ class Callbacks
     getGlobals(url, info, sessionID)
     {
         database_f.server.tables.globals.time = Date.now() / 1000;
-        return response_f.controller.getBody(database_f.server.tables.globals);
+        return https_f.response.getBody(database_f.server.tables.globals);
     }
 
     getTemplateItems(url, info, sessionID)
     {
-        return response_f.controller.getUnclearedBody(database_f.server.tables.templates.items);
+        return https_f.response.getUnclearedBody(database_f.server.tables.templates.items);
     }
 
     getTemplateHandbook(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.templates.handbook);
+        return https_f.response.getBody(database_f.server.tables.templates.handbook);
     }
 
     getTemplateSuits(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.templates.suits);
+        return https_f.response.getBody(database_f.server.tables.templates.suits);
     }
 
     getTemplateQuests(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.templates.quests);
+        return https_f.response.getBody(database_f.server.tables.templates.quests);
     }
 
     getHideoutSettings(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.hideout.settings);
+        return https_f.response.getBody(database_f.server.tables.hideout.settings);
     }
 
     getHideoutAreas(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.hideout.areas);
+        return https_f.response.getBody(database_f.server.tables.hideout.areas);
     }
 
     gethideoutProduction(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.hideout.production);
+        return https_f.response.getBody(database_f.server.tables.hideout.production);
     }
 
     getHideoutScavcase(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.hideout.scavcase);
+        return https_f.response.getBody(database_f.server.tables.hideout.scavcase);
     }
 
     getLocalesLanguages(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.locales.languages);
+        return https_f.response.getBody(database_f.server.tables.locales.languages);
     }
 
     getLocalesMenu(url, info, sessionID)
     {
-        return response_f.controller.getBody(database_f.server.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
+        return https_f.response.getBody(database_f.server.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
     }
 
     getLocalesGlobal(url, info, sessionID)
     {
-        return response_f.controller.getUnclearedBody(database_f.server.tables.locales.global[url.replace("/client/locale/", "")]);
+        return https_f.response.getUnclearedBody(database_f.server.tables.locales.global[url.replace("/client/locale/", "")]);
     }
 
     sendImage(sessionID, req, resp, body)
@@ -167,7 +167,7 @@ class Callbacks
         }
 
         // send image
-        server_f.server.sendFile(resp, `${filepath}/${filename}.png`);
+        https_f.server.sendFile(resp, `${filepath}/${filename}.png`);
     }
 }
 

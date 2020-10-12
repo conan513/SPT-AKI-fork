@@ -161,14 +161,14 @@ class Server
         // get response
         const text = (body) ? body.toString() : "{}";
         const info = (text) ? json_f.instance.parse(text) : {};
-        let output = router_f.router.getResponse(req, info, sessionID);
+        let output = https_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */
         if (!output)
         {
             logger_f.instance.logError(`[UNHANDLED][${req.url}]`);
             logger_f.instance.log(info);
-            output = response_f.controller.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
+            output = https_f.response.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
         // execute data received callback
@@ -208,7 +208,7 @@ class Server
             {
                 zlib.inflate(data, (err, body) =>
                 {
-                    server_f.server.sendResponse(sessionID, req, resp, body);
+                    https_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
@@ -236,7 +236,7 @@ class Server
 
                 zlib.inflate(data, (err, body) =>
                 {
-                    server_f.server.sendResponse(sessionID, req, resp, body);
+                    https_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
@@ -266,14 +266,14 @@ class Server
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
-                logger_f.instance.logError("» Non-root processes cannot bind to ports below 1024");
+                logger_f.instance.logError("Non-root processes cannot bind to ports below 1024");
             }
             else
             {
-                logger_f.instance.logError("» Port " + e.port + " is already in use, check if the server isn't already running");
+                logger_f.instance.logError(`Port ${e.port} is already in use, check if the server isn't already running`);
             }
         });
     }
 }
 
-module.exports.server = new Server();
+module.exports.Server = Server;

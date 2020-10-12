@@ -15,13 +15,13 @@ class Callbacks
     {
         save_f.server.onLoadCallback["profile"] = this.onLoad.bind(this);
 
-        router_f.router.staticRoutes["/client/game/profile/create"] = this.createProfile.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/list"] = this.getProfileData.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/savage/regenerate"] = this.regenerateScav.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/voice/change"] = this.changeVoice.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/nickname/change"] = this.changeNickname.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/nickname/validate"] = this.validateNickname.bind(this);
-        router_f.router.staticRoutes["/client/game/profile/nickname/reserved"] = this.getReservedNickname.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/create"] = this.createProfile.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/list"] = this.getProfileData.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/savage/regenerate"] = this.regenerateScav.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/voice/change"] = this.changeVoice.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/nickname/change"] = this.changeNickname.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/nickname/validate"] = this.validateNickname.bind(this);
+        https_f.router.staticRoutes["/client/game/profile/nickname/reserved"] = this.getReservedNickname.bind(this);
     }
 
     onLoad(sessionID)
@@ -32,23 +32,23 @@ class Callbacks
     createProfile(url, info, sessionID)
     {
         profile_f.controller.createProfile(info, sessionID);
-        return response_f.controller.getBody({"uid": "pmc" + sessionID});
+        return https_f.response.getBody({"uid": "pmc" + sessionID});
     }
 
     getProfileData(url, info, sessionID)
     {
-        return response_f.controller.getBody(profile_f.controller.getCompleteProfile(sessionID));
+        return https_f.response.getBody(profile_f.controller.getCompleteProfile(sessionID));
     }
 
     regenerateScav(url, info, sessionID)
     {
-        return response_f.controller.getBody([profile_f.controller.generateScav(sessionID)]);
+        return https_f.response.getBody([profile_f.controller.generateScav(sessionID)]);
     }
 
     changeVoice(url, info, sessionID)
     {
         profile_f.controller.changeVoice(info, sessionID);
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     /// --- TODO: USE LOCALIZED STRINGS --- ///
@@ -58,15 +58,15 @@ class Callbacks
 
         if (output === "taken")
         {
-            return response_f.controller.getBody(null, 255, "The nickname is already in use");
+            return https_f.response.getBody(null, 255, "The nickname is already in use");
         }
 
         if (output === "tooshort")
         {
-            return response_f.controller.getBody(null, 1, "The nickname is too short");
+            return https_f.response.getBody(null, 1, "The nickname is too short");
         }
 
-        return response_f.controller.getBody({"status": 0, "nicknamechangedate": utility.getTimestamp()});
+        return https_f.response.getBody({"status": 0, "nicknamechangedate": utility.getTimestamp()});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     validateNickname(url, info, sessionID)
@@ -75,21 +75,21 @@ class Callbacks
 
         if (output === "taken")
         {
-            return response_f.controller.getBody(null, 255, "The nickname is already in use");
+            return https_f.response.getBody(null, 255, "The nickname is already in use");
         }
 
         if (output === "tooshort")
         {
-            return response_f.controller.getBody(null, 256, "The nickname is too short");
+            return https_f.response.getBody(null, 256, "The nickname is too short");
         }
 
-        return response_f.controller.getBody({"status": "ok"});
+        return https_f.response.getBody({"status": "ok"});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
 
     getReservedNickname(url, info, sessionID)
     {
-        return response_f.controller.getBody("SPTarkov");
+        return https_f.response.getBody("SPTarkov");
     }
 }
 

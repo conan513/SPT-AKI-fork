@@ -13,13 +13,13 @@ class Callbacks
     constructor()
     {
         // TODO: REFACTOR THIS
-        router_f.router.staticRoutes["/launcher/server/connect"] = this.connect.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/login"] = this.login.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/register"] = this.register.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/get"] = this.get.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/change/email"] = this.changeEmail.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/change/password"] = this.changePassword.bind(this);
-        router_f.router.staticRoutes["/launcher/profile/change/wipe"] = this.wipe.bind(this);
+        https_f.router.staticRoutes["/launcher/server/connect"] = this.connect.bind(this);
+        https_f.router.staticRoutes["/launcher/profile/login"] = this.login.bind(this);
+        https_f.router.staticRoutes["/launcher/profile/register"] = this.register.bind(this);
+        https_f.router.staticRoutes["/launcher/profile/get"] = this.get.bind(this);
+        https_f.router.staticRoutes["/launcher/profile/change/email"] = this.changeEmail.bind(this);
+        https_f.router.staticRoutes["/launcher/profile/change/password"] = this.changePassword.bind(this);
+        https_f.router.staticRoutes["/launcher/profile/change/wipe"] = this.wipe.bind(this);
     }
 
     load()
@@ -30,9 +30,9 @@ class Callbacks
     // TODO: REFACTOR THIS
     connect()
     {
-        return response_f.controller.noBody({
-            "backendUrl": server_f.server.backendUrl,
-            "name": server_f.server.name,
+        return https_f.response.noBody({
+            "backendUrl": https_f.server.backendUrl,
+            "name": https_f.server.name,
             "editions": Object.keys(database_f.server.tables.templates.profiles)
         });
     }
@@ -52,7 +52,7 @@ class Callbacks
     get(url, info, sessionID)
     {
         const output = account_f.controller.find(account_f.controller.login(info));
-        return response_f.controller.noBody(output);
+        return https_f.response.noBody(output);
     }
 
     changeEmail(url, info, sessionID)

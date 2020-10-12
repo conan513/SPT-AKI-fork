@@ -12,33 +12,33 @@ class Callbacks
 {
     constructor()
     {
-        router_f.router.staticRoutes["/client/game/config"] = this.getGameConfig.bind(this);
-        router_f.router.staticRoutes["/client/profile/status"] = this.getProfileStatus.bind(this);
-        router_f.router.staticRoutes["/client/server/list"] = this.getServer.bind(this);
-        router_f.router.staticRoutes["/client/game/version/validate"] = this.versionValidate.bind(this);
-        router_f.router.staticRoutes["/client/game/start"] = this.gameStart.bind(this);
-        router_f.router.staticRoutes["/client/game/logout"] = this.gameLogout.bind(this);
-        router_f.router.staticRoutes["/client/checkVersion"] = this.validateGameVersion.bind(this);
+        https_f.router.staticRoutes["/client/game/config"] = this.getGameConfig.bind(this);
+        https_f.router.staticRoutes["/client/profile/status"] = this.getProfileStatus.bind(this);
+        https_f.router.staticRoutes["/client/server/list"] = this.getServer.bind(this);
+        https_f.router.staticRoutes["/client/game/version/validate"] = this.versionValidate.bind(this);
+        https_f.router.staticRoutes["/client/game/start"] = this.gameStart.bind(this);
+        https_f.router.staticRoutes["/client/game/logout"] = this.gameLogout.bind(this);
+        https_f.router.staticRoutes["/client/checkVersion"] = this.validateGameVersion.bind(this);
     }
 
     versionValidate(url, info, sessionID)
     {
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     gameStart(url, info, sessionID)
     {
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     gameLogout(url, info, sessionID)
     {
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     getGameConfig(url, info, sessionID)
     {
-        return response_f.controller.getBody({
+        return https_f.response.getBody({
             "queued": false,
             "banTime": 0,
             "hash": "BAN0",
@@ -49,10 +49,10 @@ class Callbacks
             "activeProfileId": `pmc${sessionID}`,
             "nickname": "user",
             "backend": {
-                "Trading": server_f.server.backendUrl,
-                "Messaging": server_f.server.backendUrl,
-                "Main": server_f.server.backendUrl,
-                "RagFair": server_f.server.backendUrl
+                "Trading": https_f.server.backendUrl,
+                "Messaging": https_f.server.backendUrl,
+                "Main": https_f.server.backendUrl,
+                "RagFair": https_f.server.backendUrl
             },
             "totalInGame": 1
         });
@@ -60,7 +60,7 @@ class Callbacks
 
     getProfileStatus(url, info, sessionID)
     {
-        return response_f.controller.getBody([
+        return https_f.response.getBody([
             {
                 "profileid": `scav${sessionID}`,
                 "status": "Free",
@@ -80,17 +80,17 @@ class Callbacks
 
     getServer(url, info, sessionID)
     {
-        return response_f.controller.getBody([
+        return https_f.response.getBody([
             {
-                "ip": server_f.server.ip,
-                "port": server_f.server.port
+                "ip": https_f.server.ip,
+                "port": https_f.server.port
             }
         ]);
     }
 
     validateGameVersion(url, info, sessionID)
     {
-        return response_f.controller.getBody({
+        return https_f.response.getBody({
             "isvalid": true,
             "latestVersion": ""
         });

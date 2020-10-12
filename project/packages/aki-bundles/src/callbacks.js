@@ -13,10 +13,10 @@ class Callbacks
 {
     constructor()
     {
-        server_f.server.startCallback["loadBundles"] = this.load.bind(this);
-        server_f.server.respondCallback["BUNDLE"] = this.sendBundle.bind(this);
-        router_f.router.staticRoutes["/singleplayer/bundles"] = this.getBundles.bind(this);
-        router_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind(this);
+        https_f.server.startCallback["loadBundles"] = this.load.bind(this);
+        https_f.server.respondCallback["BUNDLE"] = this.sendBundle.bind(this);
+        https_f.router.staticRoutes["/singleplayer/bundles"] = this.getBundles.bind(this);
+        https_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind(this);
     }
 
     load()
@@ -33,13 +33,13 @@ class Callbacks
         let path = bundle.path;
 
         // send bundle
-        server_f.server.sendFile(resp, path);
+        https_f.server.sendFile(resp, path);
     }
 
     getBundles(url, info, sessionID)
     {
-        const local = (server_f.server.ip === "127.0.0.1" || server_f.server.ip === "localhost");
-        return response_f.controller.noBody(bundles_f.controller.getBundles(local));
+        const local = (https_f.server.ip === "127.0.0.1" || https_f.server.ip === "localhost");
+        return https_f.response.noBody(bundles_f.controller.getBundles(local));
     }
 
     getBundle(url, info, sessionID)

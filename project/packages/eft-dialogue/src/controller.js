@@ -32,7 +32,7 @@ class Controller
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
 
-        return response_f.controller.getBody(data);
+        return https_f.response.getBody(data);
     }
 
     /* Get the content of a dialogue. */
@@ -73,7 +73,7 @@ class Controller
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return response_f.controller.getBody({"messages": save_f.server.profiles[sessionID].dialogues[dialogueId].messages});
+        return https_f.response.getBody({"messages": save_f.server.profiles[sessionID].dialogues[dialogueId].messages});
     }
 
     /*

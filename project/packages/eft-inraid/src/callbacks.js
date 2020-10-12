@@ -13,11 +13,11 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoadCallback["inraid"] = this.onLoad.bind(this);
-        router_f.router.staticRoutes["/raid/map/name"] = this.registerPlayer.bind(this);
-        router_f.router.staticRoutes["/raid/profile/save"] = this.saveProgress.bind(this);
-        router_f.router.staticRoutes["/singleplayer/settings/raid/endstate"] = this.getRaidEndState.bind(this);
-        router_f.router.staticRoutes["/singleplayer/settings/weapon/durability"] = this.getWeaponDurability.bind(this);
-        router_f.router.staticRoutes["/singleplayer/settings/raid/menu"] = this.getRaidMenuSettings.bind(this);
+        https_f.router.staticRoutes["/raid/map/name"] = this.registerPlayer.bind(this);
+        https_f.router.staticRoutes["/raid/profile/save"] = this.saveProgress.bind(this);
+        https_f.router.staticRoutes["/singleplayer/settings/raid/endstate"] = this.getRaidEndState.bind(this);
+        https_f.router.staticRoutes["/singleplayer/settings/weapon/durability"] = this.getWeaponDurability.bind(this);
+        https_f.router.staticRoutes["/singleplayer/settings/raid/menu"] = this.getRaidMenuSettings.bind(this);
     }
 
     onLoad(sessionID)
@@ -28,28 +28,28 @@ class Callbacks
     registerPlayer(url, info, sessionID)
     {
         inraid_f.controller.addPlayer(sessionID, info);
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     saveProgress(url, info, sessionID)
     {
         inraid_f.controller.saveProgress(info, sessionID);
-        return response_f.controller.nullResponse();
+        return https_f.response.nullResponse();
     }
 
     getRaidEndState()
     {
-        return response_f.controller.noBody(inraid_f.config.MIAOnRaidEnd);
+        return https_f.response.noBody(inraid_f.config.MIAOnRaidEnd);
     }
 
     getRaidMenuSettings(url, info, sessionID)
     {
-        return response_f.controller.noBody(inraid_f.config.raidMenuSettings);
+        return https_f.response.noBody(inraid_f.config.raidMenuSettings);
     }
 
     getWeaponDurability(url, info, sessionID)
     {
-        return response_f.controller.noBody(inraid_f.config.save.durability);
+        return https_f.response.noBody(inraid_f.config.save.durability);
     }
 }
 
