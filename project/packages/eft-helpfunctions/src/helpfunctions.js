@@ -154,7 +154,7 @@ class HelpFunctions
         }
 
         // update inventoryId
-        const newInventoryId = common_f.utility.generateID();
+        const newInventoryId = common_f.hash.generate();
         inventoryItemHash[inventoryId]._id = newInventoryId;
         profile.Inventory.equipment = newInventoryId;
 
@@ -812,7 +812,7 @@ class HelpFunctions
 
             // replace id
             let old_id = item._id;
-            let new_id = common_f.utility.generateID();
+            let new_id = common_f.hash.generate();
 
             string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
             // Also replace in quick slot if the old ID exists.
@@ -850,7 +850,7 @@ class HelpFunctions
             // register the parents
             if (dupes[item._id] > 1)
             {
-                let newId = common_f.utility.generateID();
+                let newId = common_f.hash.generate();
 
                 newParents[item.parentId] = newParents[item.parentId] || [];
                 newParents[item.parentId].push(item);
@@ -919,7 +919,7 @@ class HelpFunctions
             let amount = Math.min(count, maxStack);
             let newStack = this.clone(item);
 
-            newStack._id = common_f.utility.generateID();
+            newStack._id = common_f.hash.generate();
             newStack.upd.StackObjectsCount = amount;
             count -= amount;
             stacks.push(newStack);

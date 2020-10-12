@@ -115,7 +115,7 @@ class Controller
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                const botId = common_f.utility.generateID();
+                const botId = common_f.hash.generate();
                 let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
 
                 bot._id = botId;
@@ -214,7 +214,7 @@ class Controller
     generateDogtag(bot)
     {
         bot.Inventory.items.push({
-            _id: common_f.utility.generateID(),
+            _id: common_f.hash.generate(),
             _tpl: ((bot.Info.Side === "Usec") ? "59f32c3b86f77472a31742f0" : "59f32bb586f774757e1e8442"),
             parentId: bot.Inventory.equipment,
             slotId: "Dogtag",

@@ -127,7 +127,7 @@ class Controller
 
             //random loot Id
             //TODO: To implement a new random function, use "generateID" instead for now.
-            data.Id = common_f.utility.generateID();
+            data.Id = common_f.hash.generate();
 
             //create lootItem list
             let lootItemsHash = {};
@@ -151,7 +151,7 @@ class Controller
             //reset itemId and childrenItemId
             for (const itemId of Object.keys(lootItemsHash))
             {
-                let newId = common_f.utility.generateID();
+                let newId = common_f.hash.generate();
                 lootItemsHash[itemId]._id = newId;
 
                 if (itemId === data.Root)

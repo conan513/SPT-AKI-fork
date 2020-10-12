@@ -1,4 +1,4 @@
-/* common_f.utility.js
+/* common_f.hash.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -12,19 +12,9 @@
 
 const crypto = require("crypto");
 
-class Utility
+class HashUtil
 {
-    clearString(s)
-    {
-        return s.replace(/[\b]/g, "")
-            .replace(/[\f]/g, "")
-            .replace(/[\n]/g, "")
-            .replace(/[\r]/g, "")
-            .replace(/[\t]/g, "")
-            .replace(/[\\]/g, "");
-    }
-
-    generateID()
+    generate()
     {
         const shasum = crypto.createHash("sha1");
         const time = Math.random() * this.getTimestamp();
@@ -34,4 +24,4 @@ class Utility
     }
 }
 
-module.exports.Utility = Utility;
+module.exports.HashUtil = HashUtil;

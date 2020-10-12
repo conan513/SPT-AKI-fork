@@ -110,7 +110,7 @@ class Controller
 
         if (rewards.length > 0)
         {
-            const stashId = common_f.utility.generateID();
+            const stashId = common_f.hash.generate();
 
             items.stash = stashId;
             items.data = [];
@@ -131,7 +131,7 @@ class Controller
         }
 
         let message = {
-            "_id": common_f.utility.generateID(),
+            "_id": common_f.hash.generate(),
             "uid": dialogueID,
             "type": messageContent.type,
             "dt": Date.now() / 1000,

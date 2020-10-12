@@ -55,7 +55,7 @@ class Controller
 
     createAccount(info)
     {
-        const sessionID = common_f.utility.generateID();
+        const sessionID = common_f.hash.generate();
 
         save_f.server.profiles[sessionID] = {
             "info": {

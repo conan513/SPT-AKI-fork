@@ -10,14 +10,24 @@
 
 class Response
 {
+    clearString(s)
+    {
+        return s.replace(/[\b]/g, "")
+            .replace(/[\f]/g, "")
+            .replace(/[\n]/g, "")
+            .replace(/[\r]/g, "")
+            .replace(/[\t]/g, "")
+            .replace(/[\\]/g, "");
+    }
+
     noBody(data)
     {
-        return common_f.utility.clearString(common_f.json.serialize(data));
+        return this.clearString(common_f.json.serialize(data));
     }
 
     getBody(data, err = 0, errmsg = null)
     {
-        return common_f.utility.clearString(this.getUnclearedBody(data, err, errmsg));
+        return this.clearString(this.getUnclearedBody(data, err, errmsg));
     }
 
     getUnclearedBody(data, err = 0, errmsg = null)
