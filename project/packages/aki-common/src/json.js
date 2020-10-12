@@ -14,7 +14,7 @@ class JsonUtil
     {
         if (prettify)
         {
-            JSON.stringify(data, null, "\t");
+            return JSON.stringify(data, null, "\t");
         }
         else
         {

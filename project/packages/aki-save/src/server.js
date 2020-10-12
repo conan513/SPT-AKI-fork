@@ -46,10 +46,12 @@ class Server
 
     onLoadProfile(sessionID)
     {
-        if (common_f.vfs.exists(`${save_f.config.filepath}${sessionID}.json`))
+        const file = `${save_f.config.filepath}${sessionID}.json`;
+
+        if (common_f.vfs.exists(file))
         {
             // load profile
-            this.profiles[sessionID] = common_f.json.deserialize(common_f.vfs.readFile(`${save_f.config.filepath}${sessionID}.json`));
+            this.profiles[sessionID] = common_f.json.deserialize(common_f.vfs.readFile(file));
         }
 
         // run callbacks
@@ -61,6 +63,8 @@ class Server
 
     onSaveProfile(sessionID)
     {
+        const file = `${save_f.config.filepath}${sessionID}.json`;
+
         // run callbacks
         for (const callback in this.onSaveCallbacks)
         {
@@ -68,7 +72,6 @@ class Server
         }
 
         // save profile
-        const file = `${save_f.config.filepath}${sessionID}.json`;
         common_f.vfs.writeFile(file, common_f.json.serialize(this.profiles[sessionID], true), "utf8");
     }
 }
