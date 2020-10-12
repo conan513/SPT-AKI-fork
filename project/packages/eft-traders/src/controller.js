@@ -105,7 +105,7 @@ class Controller
             const overdue = (time - trader.supply_next_time);
             const refresh = Math.floor(overdue / update) + 1;
 
-            trader.supply_next_time = trader.supply_next_time + (refresh) * update;
+            trader.supply_next_time = trader.supply_next_time + refresh * update;
             database_f.server.tables.traders[traderID].base = trader;
         }
     }
