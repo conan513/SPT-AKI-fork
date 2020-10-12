@@ -19,7 +19,7 @@ class Controller
         let quests = [];
         const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
 
-        for (const quest of database_f.server.tables.templates.quests)
+        for (let quest of database_f.server.tables.templates.quests)
         {
             const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
 
@@ -46,6 +46,13 @@ class Controller
 
             if (isVisible)
             {
+                const profileQuest = profileQuests.find(pq => pq.qid === quest._id);
+                if (profileQuest.status === "Success")
+                {
+                    quest.conditions.AvailableForStart = [];
+                    quest.conditions.AvailableForFinish = [];
+                }
+
                 quests.push(quest);
             }
         }
@@ -245,7 +252,6 @@ class Controller
             "templateId": questLocale.startedMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questStart"),
             "maxStorageTime": quest_f.config.redeemTime * 3600
-
         };
 
         if (questLocale.startedMessageText === "")
