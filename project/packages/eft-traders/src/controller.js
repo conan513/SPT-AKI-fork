@@ -5,6 +5,7 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - BALIST0N
+ * - Ereshkigal
  */
 
 "use strict";
@@ -27,10 +28,10 @@ class Controller
             this.lvlUp(traderID, sessionID);
         }
 
-        trader.display = pmcData.TraderStandings[traderID].display;
         trader.loyalty.currentLevel = pmcData.TraderStandings[traderID].currentLevel;
         trader.loyalty.currentStanding = pmcData.TraderStandings[traderID].currentStanding;
         trader.loyalty.currentSalesSum = pmcData.TraderStandings[traderID].currentSalesSum;
+        trader.working = pmcData.TraderStandings[traderID].working;
 
         return trader;
     }
@@ -38,17 +39,16 @@ class Controller
     changeTraderDisplay(traderID, status, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        pmcData.TraderStandings[traderID].display = status;
+        pmcData.TraderStandings[traderID].working = status;
     }
 
     getAllTraders(sessionID)
     {
-
         let traders = [];
 
         for (let traderID in database_f.server.tables.traders)
         {
-            if (traderID === "ragfair")
+            if (!database_f.server.tables.traders[traderID].base.working)
             {
                 continue;
             }
