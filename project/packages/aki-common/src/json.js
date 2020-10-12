@@ -12,7 +12,7 @@ const fs = require("fs");
 
 class JsonUtil
 {
-    stringify(data, prettify)
+    stringify(data, prettify = false)
     {
         if (prettify)
         {

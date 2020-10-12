@@ -78,7 +78,7 @@ class Server
         const file = `${save_f.config.filepath}${sessionID}.json`;
         
         common_f.utility.createDir(file);
-        fs.writeFileSync(file, common_f.json.stringify(this.profiles[sessionID]), "utf8");
+        fs.writeFileSync(file, common_f.json.stringify(this.profiles[sessionID], true), "utf8");
     }
 }
 
