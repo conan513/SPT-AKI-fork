@@ -26,7 +26,7 @@ class Callbacks
 
     sendBundle(sessionID, req, resp, body)
     {
-        logger_f.instance.logInfo("[BUNDLE]:" + req.url);
+        common_f.logger.logInfo("[BUNDLE]:" + req.url);
 
         let bundleKey = req.url.split("/bundle/")[1];
         let bundle = bundles_f.controller.getBundleByKey(bundleKey, true);

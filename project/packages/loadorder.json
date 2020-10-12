@@ -1,7 +1,5 @@
 {
-    "utility": "packages/utility.js",
-    "json_f": "packages/json.js",
-    "logger_f": "packages/logger.js",
+    "common_f": "packages/aki-common/package.js",
     "https_f": "packages/aki-https/package.js",
     "database_f": "packages/aki-database/package.js",
     "eft_database_f": "packages/eft-database/package.js",

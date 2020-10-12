@@ -219,7 +219,7 @@ class Controller
         {
             if (quest.qid === body.qid)
             {
-                quest.startTime = utility.getTimestamp();
+                quest.startTime = common_f.utility.getTimestamp();
                 quest.status = state;
                 found = true;
                 break;
@@ -231,7 +231,7 @@ class Controller
         {
             pmcData.Quests.push({
                 "qid": body.qid,
-                "startTime": utility.getTimestamp(),
+                "startTime": common_f.utility.getTimestamp(),
                 "status": state
             });
         }
@@ -394,7 +394,7 @@ class Controller
 
         if (handoverMode && value === 0)
         {
-            logger_f.instance.logError("Quest handover error: condition not found or incorrect value. qid=" + body.qid + ", condition=" + body.conditionId);
+            common_f.logger.logError("Quest handover error: condition not found or incorrect value. qid=" + body.qid + ", condition=" + body.conditionId);
             return output;
         }
 

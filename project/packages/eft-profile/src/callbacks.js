@@ -66,7 +66,7 @@ class Callbacks
             return https_f.response.getBody(null, 1, "The nickname is too short");
         }
 
-        return https_f.response.getBody({"status": 0, "nicknamechangedate": utility.getTimestamp()});
+        return https_f.response.getBody({"status": 0, "nicknamechangedate": common_f.utility.getTimestamp()});
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     validateNickname(url, info, sessionID)

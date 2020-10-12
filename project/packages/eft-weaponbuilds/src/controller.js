@@ -19,7 +19,7 @@ class Controller
     saveBuild(pmcData, body, sessionID)
     {
         delete body.Action;
-        body.id = utility.generateID();
+        body.id = common_f.utility.generateID();
 
         let output = item_f.router.getOutput();
         let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;

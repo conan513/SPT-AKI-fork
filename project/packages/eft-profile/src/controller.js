@@ -72,8 +72,8 @@ class Controller
         pmcData.savage = "scav" + sessionID;
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
-        pmcData.Info.RegistrationDate = utility.getTimestamp();
-        pmcData.Health.UpdateTime = utility.getTimestamp();
+        pmcData.Info.RegistrationDate = common_f.utility.getTimestamp();
+        pmcData.Health.UpdateTime = common_f.utility.getTimestamp();
         pmcData.Quests = quest_f.controller.getAllProfileQuests();
 
         // create profile

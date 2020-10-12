@@ -114,7 +114,7 @@ class Controller
     {
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            logger_f.instance.logWarning("generating fence");
+            common_f.logger.logWarning("generating fence");
             return this.generateFenceAssort();
         }
 
@@ -173,7 +173,7 @@ class Controller
 
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
-            let itemID = names[utility.getRandomInt(0, names.length - 1)];
+            let itemID = names[common_f.utility.getRandomInt(0, names.length - 1)];
 
             if (added.includes(itemID))
             {
@@ -273,7 +273,7 @@ class Controller
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
             || helpfunc_f.helpFunctions.isNotSellable(item._tpl)
-            || traderFilter(trader.sell_category, item._tpl) === false)
+            || this.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
@@ -322,39 +322,39 @@ class Controller
 
         return output;
     }
-}
 
-/*
-check if an item is allowed to be sold to a trader
-input : array of allowed categories, itemTpl of inventory
-output : boolean
-*/
-function traderFilter(traderFilters, tplToCheck)
-{
-
-    for (let filter of traderFilters)
+    /*
+        check if an item is allowed to be sold to a trader
+        input : array of allowed categories, itemTpl of inventory
+        output : boolean
+    */
+    traderFilter(traderFilters, tplToCheck)
     {
-        for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
-        {
-            if (iaaaaa === tplToCheck)
-            {
-                return true;
-            }
-        }
 
-        for (let subcateg of helpfunc_f.helpFunctions.childrenCategories(filter))
+        for (let filter of traderFilters)
         {
-            for (let itemFromSubcateg of helpfunc_f.helpFunctions.templatesWithParent(subcateg))
+            for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
             {
-                if (itemFromSubcateg === tplToCheck)
+                if (iaaaaa === tplToCheck)
                 {
                     return true;
                 }
             }
-        }
-    }
 
-    return false;
+            for (let subcateg of helpfunc_f.helpFunctions.childrenCategories(filter))
+            {
+                for (let itemFromSubcateg of helpfunc_f.helpFunctions.templatesWithParent(subcateg))
+                {
+                    if (itemFromSubcateg === tplToCheck)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 }
 
 module.exports.Controller = Controller;

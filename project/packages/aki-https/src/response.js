@@ -12,17 +12,17 @@ class Response
 {
     noBody(data)
     {
-        return utility.clearString(json_f.instance.stringify(data));
+        return common_f.utility.clearString(common_f.json.stringify(data));
     }
 
     getBody(data, err = 0, errmsg = null)
     {
-        return utility.clearString(this.getUnclearedBody(data, err, errmsg));
+        return common_f.utility.clearString(this.getUnclearedBody(data, err, errmsg));
     }
 
     getUnclearedBody(data, err = 0, errmsg = null)
     {
-        return json_f.instance.stringify({"err": err, "errmsg": errmsg, "data": data});
+        return common_f.json.stringify({"err": err, "errmsg": errmsg, "data": data});
     }
 
     nullResponse()

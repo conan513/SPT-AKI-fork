@@ -101,14 +101,14 @@ class Server
             {
                 if (!fs.existsSync(certDir))
                 {
-                    utility.createDir(certDir);
+                    common_f.utility.createDir(certDir);
                 }
 
                 let fingerprint;
 
                 ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: this.ip + "/" }], { days: 365 }));
 
-                logger_f.instance.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
+                common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
                 fs.writeFileSync(certFile, cert);
                 fs.writeFileSync(keyFile, key);
@@ -160,14 +160,14 @@ class Server
     {
         // get response
         const text = (body) ? body.toString() : "{}";
-        const info = (text) ? json_f.instance.parse(text) : {};
+        const info = (text) ? common_f.json.parse(text) : {};
         let output = https_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */
         if (!output)
         {
-            logger_f.instance.logError(`[UNHANDLED][${req.url}]`);
-            logger_f.instance.log(info);
+            common_f.logger.logError(`[UNHANDLED][${req.url}]`);
+            common_f.logger.log(info);
             output = https_f.response.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
@@ -193,7 +193,7 @@ class Server
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
         const sessionID = this.getCookies(req)["PHPSESSID"];
 
-        logger_f.instance.log(`[${sessionID}][${IP}] ${req.url}`);
+        common_f.logger.log(`[${sessionID}][${IP}] ${req.url}`);
 
         // request without data
         if (req.method === "GET")
@@ -245,7 +245,7 @@ class Server
     start()
     {
         // execute start callback
-        logger_f.instance.logWarning("Server: executing startup callbacks...");
+        common_f.logger.logWarning("Server: executing startup callbacks...");
 
         for (let type in this.startCallback)
         {
@@ -258,7 +258,7 @@ class Server
             this.handleRequest(req, res);
         }).listen(this.port, this.ip, () =>
         {
-            logger_f.instance.logSuccess("Started server");
+            common_f.logger.logSuccess("Started server");
         });
 
         /* server is already running or program using privileged port without root */
@@ -266,11 +266,11 @@ class Server
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
-                logger_f.instance.logError("Non-root processes cannot bind to ports below 1024");
+                common_f.logger.logError("Non-root processes cannot bind to ports below 1024");
             }
             else
             {
-                logger_f.instance.logError(`Port ${e.port} is already in use, check if the server isn't already running`);
+                common_f.logger.logError(`Port ${e.port} is already in use, check if the server isn't already running`);
             }
         });
     }

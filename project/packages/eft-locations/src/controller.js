@@ -85,7 +85,7 @@ class Controller
             output.Loot.push(data);
             count++;
         }
-        logger_f.instance.logSuccess("A total of " + count + " containers generated");
+        common_f.logger.logSuccess("A total of " + count + " containers generated");
 
         // dyanmic loot
         let max = location_f.config.limits[name];
@@ -98,7 +98,7 @@ class Controller
         while (maxCount < max && dynamic.length > 0)
         {
             maxCount += 1;
-            let rndLootIndex = utility.getRandomInt(0, dynamic.length - 1);
+            let rndLootIndex = common_f.utility.getRandomInt(0, dynamic.length - 1);
             let rndLoot = dynamic[rndLootIndex];
 
             if (!rndLoot.data)
@@ -107,7 +107,7 @@ class Controller
                 continue;
             }
 
-            let rndLootTypeIndex = utility.getRandomInt(0, rndLoot.data.length - 1);
+            let rndLootTypeIndex = common_f.utility.getRandomInt(0, rndLoot.data.length - 1);
             let data = rndLoot.data[rndLootTypeIndex];
 
             //Check if LootItem is overlapping
@@ -127,7 +127,7 @@ class Controller
 
             //random loot Id
             //TODO: To implement a new random function, use "generateID" instead for now.
-            data.Id = utility.generateID();
+            data.Id = common_f.utility.generateID();
 
             //create lootItem list
             let lootItemsHash = {};
@@ -151,7 +151,7 @@ class Controller
             //reset itemId and childrenItemId
             for (const itemId of Object.keys(lootItemsHash))
             {
-                let newId = utility.generateID();
+                let newId = common_f.utility.generateID();
                 lootItemsHash[itemId]._id = newId;
 
                 if (itemId === data.Root)
@@ -166,7 +166,7 @@ class Controller
                 }
             }
 
-            const num = utility.getRandomInt(0, 100);
+            const num = common_f.utility.getRandomInt(0, 100);
             const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
             const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
             if (itemChance >= num)
@@ -182,8 +182,8 @@ class Controller
         }
 
         // done generating
-        logger_f.instance.logSuccess("A total of " + count + " items spawned");
-        logger_f.instance.logSuccess("Generated location " + name);
+        common_f.logger.logSuccess("A total of " + count + " items spawned");
+        common_f.logger.logSuccess("Generated location " + name);
         return output;
     }
 
@@ -191,7 +191,7 @@ class Controller
     get(location)
     {
         let name = location.toLowerCase().replace(" ", "");
-        return json_f.instance.stringify(this.generate(name));
+        return common_f.json.stringify(this.generate(name));
     }
 
     /* get all locations without loot data */
@@ -231,7 +231,7 @@ class Controller
 
         for (let i = minCount; i < container.maxCount; i++)
         {
-            let roll = utility.getRandomInt(0, 100);
+            let roll = common_f.utility.getRandomInt(0, 100);
 
             if (roll < container.chance)
             {
@@ -248,7 +248,7 @@ class Controller
 
             while (!result.success && maxAttempts)
             {
-                let roll = utility.getRandomInt(0, maxProbability);
+                let roll = common_f.utility.getRandomInt(0, maxProbability);
                 let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
 
                 item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
@@ -316,7 +316,7 @@ class Controller
             if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
                 // Money or Ammo stack
-                let stackCount = utility.getRandomInt(item._props.StackMinRandom, item._props.StackMaxRandom);
+                let stackCount = common_f.utility.getRandomInt(item._props.StackMinRandom, item._props.StackMaxRandom);
                 containerItem.upd = { "StackObjectsCount": stackCount };
             }
             else if (item._parent === "543be5cb4bdc2deb348b4568")

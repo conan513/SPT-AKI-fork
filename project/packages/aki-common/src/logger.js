@@ -1,4 +1,4 @@
-/* logger_f.instance.js
+/* common_f.logger.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -38,7 +38,6 @@ class Logger
         };
 
         this.setupExceptions();
-        this.create("user/logs/");
     }
 
     setupExceptions()
@@ -53,13 +52,13 @@ class Logger
     create(path)
     {
         // get file name and path
-        const file = `${utility.getDate()}_${utility.getTime()}.log`;
+        const file = `${common_f.utility.getDate()}_${common_f.utility.getTime()}.log`;
         const filepath = `${path}/${file}`;
 
         // create log file
         if (!fs.existsSync(filepath))
         {
-            utility.createDir(path);
+            common_f.utility.createDir(path);
             fs.writeFileSync(filepath, "");
         }
 
@@ -83,6 +82,7 @@ class Logger
         }
 
         // save logged message
+        this.create("user/logs/");
         fs.writeFileSync(this.filepath, `${util.format(data)}\n`, { "flag": "a" });
     }
 
@@ -107,4 +107,4 @@ class Logger
     }
 }
 
-module.exports.instance = new Logger();
+module.exports.Logger = Logger;

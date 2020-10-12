@@ -45,7 +45,7 @@ class Callbacks
         for (const node in files)
         {
             const fileName = files[node].split(".").slice(0, -1).join(".");
-            result[fileName] = json_f.instance.parse(json_f.instance.read(`${filepath}${files[node]}`));
+            result[fileName] = common_f.json.parse(common_f.json.read(`${filepath}${files[node]}`));
         }
 
         // deep tree search
@@ -142,27 +142,27 @@ class Callbacks
         // get images to look through
         if (req.url.includes("/quest"))
         {
-            logger_f.instance.logInfo("[IMG.quests]:" + req.url);
+            common_f.logger.logInfo("[IMG.quests]:" + req.url);
             filepath += "quests";
         }
         else if (req.url.includes("/handbook"))
         {
-            logger_f.instance.logInfo("[IMG.handbook]:" + req.url);
+            common_f.logger.logInfo("[IMG.handbook]:" + req.url);
             filepath += "handbook";
         }
         else if (req.url.includes("/avatar"))
         {
-            logger_f.instance.logInfo("[IMG.trader]:" + req.url);
+            common_f.logger.logInfo("[IMG.trader]:" + req.url);
             filepath += "traders";
         }
         else if (req.url.includes("banners"))
         {
-            logger_f.instance.logInfo("[IMG.banners]:" + req.url);
+            common_f.logger.logInfo("[IMG.banners]:" + req.url);
             filepath += "banners";
         }
         else
         {
-            logger_f.instance.logInfo("[IMG.hideout]:" + req.url);
+            common_f.logger.logInfo("[IMG.hideout]:" + req.url);
             filepath += "hideout";
         }
 

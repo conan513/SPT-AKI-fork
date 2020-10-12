@@ -76,7 +76,7 @@ class HelpFunctions
         const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
         {
-            logger_f.instance.logError("No stash found");
+            common_f.logger.logError("No stash found");
             return "";
         }
 
@@ -107,7 +107,7 @@ class HelpFunctions
         let expTable = database_f.server.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
-        let randomLevel = utility.getRandomInt(0, expTable.length - 1) + 1;
+        let randomLevel = common_f.utility.getRandomInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
         {
@@ -117,7 +117,7 @@ class HelpFunctions
         // Sprinkle in some random exp within the level, unless we are at max level.
         if (randomLevel < expTable.length - 1)
         {
-            exp += utility.getRandomInt(0, expTable[randomLevel].exp - 1);
+            exp += common_f.utility.getRandomInt(0, expTable[randomLevel].exp - 1);
         }
 
         return exp;
@@ -154,7 +154,7 @@ class HelpFunctions
         }
 
         // update inventoryId
-        const newInventoryId = utility.generateID();
+        const newInventoryId = common_f.utility.generateID();
         inventoryItemHash[inventoryId]._id = newInventoryId;
         profile.Inventory.equipment = newInventoryId;
 
@@ -400,7 +400,7 @@ class HelpFunctions
         output.currentSalesSums[body.tid] = saleSum;
 
         // save changes
-        logger_f.instance.logSuccess("Items taken. Status OK.");
+        common_f.logger.logSuccess("Items taken. Status OK.");
         item_f.router.setOutput(output);
         return true;
     }
@@ -782,7 +782,7 @@ class HelpFunctions
     replaceIDs(pmcData, items, fastPanel = null)
     {
         // replace bsg shit long ID with proper one
-        let string_inventory = json_f.instance.stringify(items);
+        let string_inventory = common_f.json.stringify(items);
 
         for (let item of items)
         {
@@ -812,7 +812,7 @@ class HelpFunctions
 
             // replace id
             let old_id = item._id;
-            let new_id = utility.generateID();
+            let new_id = common_f.utility.generateID();
 
             string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
             // Also replace in quick slot if the old ID exists.
@@ -850,7 +850,7 @@ class HelpFunctions
             // register the parents
             if (dupes[item._id] > 1)
             {
-                let newId = utility.generateID();
+                let newId = common_f.utility.generateID();
 
                 newParents[item.parentId] = newParents[item.parentId] || [];
                 newParents[item.parentId].push(item);
@@ -919,7 +919,7 @@ class HelpFunctions
             let amount = Math.min(count, maxStack);
             let newStack = this.clone(item);
 
-            newStack._id = utility.generateID();
+            newStack._id = common_f.utility.generateID();
             newStack.upd.StackObjectsCount = amount;
             count -= amount;
             stacks.push(newStack);
@@ -930,7 +930,7 @@ class HelpFunctions
 
     clone(x)
     {
-        return json_f.instance.parse(json_f.instance.stringify(x));
+        return common_f.json.parse(common_f.json.stringify(x));
     }
 
     arrayIntersect(a, b)
@@ -1084,7 +1084,7 @@ class HelpFunctions
                 }
                 catch (e)
                 {
-                    logger_f.instance.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
+                    common_f.logger.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
                 }
             }
         }

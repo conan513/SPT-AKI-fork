@@ -23,10 +23,10 @@ class Server
     {
         if (!fs.existsSync(save_f.config.filepath))
         {
-            utility.createDir(save_f.config.filepath);
+            common_f.utility.createDir(save_f.config.filepath);
         }
 
-        return utility.getFileList(save_f.config.filepath);
+        return common_f.utility.getFileList(save_f.config.filepath);
     }
 
     onLoad()
@@ -56,7 +56,7 @@ class Server
         if (fs.existsSync(`${save_f.config.filepath}${sessionID}.json`))
         {
             // load profile
-            this.profiles[sessionID] = json_f.instance.parse(json_f.instance.read(`${save_f.config.filepath}${sessionID}.json`));
+            this.profiles[sessionID] = common_f.json.parse(common_f.json.read(`${save_f.config.filepath}${sessionID}.json`));
         }
 
         // run callbacks
@@ -75,7 +75,7 @@ class Server
         }
 
         // save profile
-        json_f.instance.write(`${save_f.config.filepath}${sessionID}.json`, this.profiles[sessionID]);
+        common_f.json.write(`${save_f.config.filepath}${sessionID}.json`, this.profiles[sessionID]);
     }
 }
 
