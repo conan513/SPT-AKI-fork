@@ -10,21 +10,10 @@
 
 "use strict";
 
-const fs = require("fs");
 const crypto = require("crypto");
 
 class Utility
 {
-    createDir(file)
-    {
-        let filePath = file.substr(0, file.lastIndexOf("/"));
-
-        if (!fs.existsSync(filePath))
-        {
-            fs.mkdirSync(filePath, { recursive: true });
-        }
-    }
-
     clearString(s)
     {
         return s.replace(/[\b]/g, "")
@@ -66,41 +55,6 @@ class Utility
     getRandomArrayValue(arr)
     {
         return arr[this.getRandomInt(0, arr.length - 1)];
-    }
-
-    getFileList(path)
-    {
-        return fs.readdirSync(path).filter((file) =>
-        {
-            return fs.statSync(`${path}/${file}`).isFile();
-        });
-    }
-
-    getDirList(path)
-    {
-        return fs.readdirSync(path).filter((file) =>
-        {
-            return fs.statSync(`${path}/${file}`).isDirectory();
-        });
-    }
-
-    removeDir(dir)
-    {
-        for (const file of fs.readdirSync(dir))
-        {
-            const curPath = path.join(dir, file);
-
-            if (fs.lstatSync(curPath).isDirectory())
-            {
-                this.removeDir(curPath);
-            }
-            else
-            {
-                fs.unlinkSync(curPath);
-            }
-        }
-
-        fs.rmdirSync(dir);
     }
 
     formatTime(date)

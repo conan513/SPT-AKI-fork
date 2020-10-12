@@ -92,16 +92,16 @@ class Server
 
         try
         {
-            cert = fs.readFileSync(certFile);
-            key = fs.readFileSync(keyFile);
+            cert = common_f.vfs.readFile(certFile);
+            key = common_f.vfs.readFile(keyFile);
         }
         catch (e)
         {
             if (e.code === "ENOENT")
             {
-                if (!fs.existsSync(certDir))
+                if (!common_f.vfs.exists(certDir))
                 {
-                    common_f.utility.createDir(certDir);
+                    common_f.vfs.createDir(certDir);
                 }
 
                 let fingerprint;
@@ -110,8 +110,8 @@ class Server
 
                 common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
-                fs.writeFileSync(certFile, cert);
-                fs.writeFileSync(keyFile, key);
+                common_f.vfs.writeFile(certFile, cert);
+                common_f.vfs.writeFile(keyFile, key);
             }
             else
             {
