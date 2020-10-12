@@ -59,7 +59,7 @@ class Generator
         this.generateEquipment(EquipmentSlots.ArmorVest, templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
-        const shouldSpawnPrimary = common_f.utility.getRandomIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
+        const shouldSpawnPrimary = common_f.random.getIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
         const weaponSpawns = [
             {
                 slot: EquipmentSlots.FirstPrimaryWeapon,
@@ -67,11 +67,11 @@ class Generator
             },
             { // Only roll for a chance at secondary if primary roll was successful
                 slot: EquipmentSlots.SecondPrimaryWeapon,
-                shouldSpawn: shouldSpawnPrimary ? common_f.utility.getRandomIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
+                shouldSpawn: shouldSpawnPrimary ? common_f.random.getIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
             },
             { // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
                 slot: EquipmentSlots.Holster,
-                shouldSpawn: shouldSpawnPrimary ? common_f.utility.getRandomIntEx(100) <= equipmentChances.equipment.Holster : true
+                shouldSpawn: shouldSpawnPrimary ? common_f.random.getIntEx(100) <= equipmentChances.equipment.Holster : true
             }
         ];
 
@@ -95,16 +95,16 @@ class Generator
 
     generateInventoryBase()
     {
-        const equipmentId = common_f.utility.generateID();
+        const equipmentId = common_f.hash.generate();
         const equipmentTpl = "55d7217a4bdc2d86028b456d";
 
-        const stashId = common_f.utility.generateID();
+        const stashId = common_f.hash.generate();
         const stashTpl = "566abbc34bdc2d92178b4576";
 
-        const questRaidItemsId = common_f.utility.generateID();
+        const questRaidItemsId = common_f.hash.generate();
         const questRaidItemsTpl = "5963866286f7747bf429b572";
 
-        const questStashItemsId = common_f.utility.generateID();
+        const questStashItemsId = common_f.hash.generate();
         const questStashItemsTpl = "5963866b86f7747bfa1c4462";
 
         return {
@@ -145,11 +145,11 @@ class Generator
             return;
         }
 
-        const shouldSpawn = common_f.utility.getRandomIntEx(100) <= spawnChance;
+        const shouldSpawn = common_f.random.getIntEx(100) <= spawnChance;
         if (equipmentPool.length && shouldSpawn)
         {
-            const id = common_f.utility.generateID();
-            const tpl = common_f.utility.getRandomArrayValue(equipmentPool);
+            const id = common_f.hash.generate();
+            const tpl = common_f.random.getArrayValue(equipmentPool);
             const itemTemplate = database_f.server.tables.templates.items[tpl];
 
             if (!itemTemplate)
@@ -187,8 +187,8 @@ class Generator
 
     generateWeapon(equipmentSlot, weaponPool, modPool, modChances, magCounts)
     {
-        const id = common_f.utility.generateID();
-        const tpl = common_f.utility.getRandomArrayValue(weaponPool);
+        const id = common_f.hash.generate();
+        const tpl = common_f.random.getArrayValue(weaponPool);
         const itemTemplate = database_f.server.tables.templates.items[tpl];
 
         if (!itemTemplate)
@@ -297,7 +297,7 @@ class Generator
             const modSpawnChance = itemSlot._required || ["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot)
                 ? 100
                 : modSpawnChances[modSlot];
-            if (common_f.utility.getRandomIntEx(100) > modSpawnChance)
+            if (common_f.random.getIntEx(100) > modSpawnChance)
             {
                 continue;
             }
@@ -339,7 +339,7 @@ class Generator
                 continue;
             }
 
-            const modId = common_f.utility.generateID();
+            const modId = common_f.hash.generate();
             items.push({
                 "_id": modId,
                 "_tpl": modTpl,
@@ -471,7 +471,7 @@ class Generator
             const bulletCount = magTemplate._props.Cartridges[0]._max_count * count;
 
             const ammoItems = helpfunc_f.helpFunctions.splitStack({
-                "_id": common_f.utility.generateID(),
+                "_id": common_f.hash.generate(),
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": bulletCount}
             });
@@ -489,14 +489,14 @@ class Generator
         {
             for (let i = 0; i < count; i++)
             {
-                const magId = common_f.utility.generateID();
+                const magId = common_f.hash.generate();
                 const magWithAmmo = [
                     {
                         "_id": magId,
                         "_tpl": magazineTpl
                     },
                     {
-                        "_id": common_f.utility.generateID(),
+                        "_id": common_f.hash.generate(),
                         "_tpl": ammoTpl,
                         "parentId": magId,
                         "slotId": "cartridges",
@@ -550,7 +550,7 @@ class Generator
         // Add 4 stacks of bullets to SecuredContainer
         for (let i = 0; i < 4; i++)
         {
-            const id = common_f.utility.generateID();
+            const id = common_f.hash.generate();
             this.addItemWithChildrenToEquipmentSlot([EquipmentSlots.SecuredContainer], id, ammoTpl, [{
                 "_id": id,
                 "_tpl": ammoTpl,
@@ -611,7 +611,7 @@ class Generator
         {
             common_f.logger.logWarning(`Magazine with tpl ${magazine._tpl} had no ammo`);
             weaponMods.push({
-                "_id": common_f.utility.generateID(),
+                "_id": common_f.hash.generate(),
                 "_tpl": ammoTpl,
                 "parentId": magazine._id,
                 "slotId": "cartridges",
@@ -677,7 +677,7 @@ class Generator
             {
                 const itemIndex = this.getBiasedRandomNumber(0, pool.length - 1, pool.length - 1, 3);
                 const itemTemplate = pool[itemIndex];
-                const id = common_f.utility.generateID();
+                const id = common_f.hash.generate();
 
                 const itemsToAdd = [{
                     "_id": id,
@@ -689,7 +689,7 @@ class Generator
                 if (itemTemplate._props.StackSlots && itemTemplate._props.StackSlots.length)
                 {
                     itemsToAdd.push({
-                        "_id": common_f.utility.generateID(),
+                        "_id": common_f.hash.generate(),
                         "_tpl": itemTemplate._props.StackSlots[0]._props.filters[0].Filter[0],
                         "parentId": id,
                         "slotId": "cartridges",
@@ -876,7 +876,7 @@ class ExhaustableArray
             return null;
         }
 
-        const index = common_f.utility.getRandomInt(0, this.pool.length - 1);
+        const index = common_f.random.getInt(0, this.pool.length - 1);
         const toReturn = helpfunc_f.helpFunctions.clone(this.pool[index]);
         this.pool.splice(index, 1);
         return toReturn;

@@ -6,7 +6,6 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const fs = require("fs");
 const util = require("util");
 
 class Logger
@@ -49,23 +48,6 @@ class Logger
         });
     }
 
-    create(path)
-    {
-        // get file name and path
-        const file = `${common_f.utility.getDate()}_${common_f.utility.getTime()}.log`;
-        const filepath = `${path}/${file}`;
-
-        // create log file
-        if (!fs.existsSync(filepath))
-        {
-            common_f.utility.createDir(path);
-            fs.writeFileSync(filepath, "");
-        }
-
-        // set target logfile
-        this.filepath = filepath;
-    }
-
     log(data, front = "", back = "")
     {
         // set colors
@@ -82,8 +64,7 @@ class Logger
         }
 
         // save logged message
-        this.create("user/logs/");
-        fs.writeFileSync(this.filepath, `${util.format(data)}\n`, { "flag": "a" });
+        common_f.vfs.writeFile(this.filepath, `${util.format(data)}\n`, true);
     }
 
     logError(data)

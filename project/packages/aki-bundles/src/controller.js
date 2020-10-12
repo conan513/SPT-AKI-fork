@@ -30,7 +30,7 @@ class Controller
             }
 
             let manifestPath = res.bundles[i].manifest;
-            let manifest = common_f.json.parse(common_f.json.read(manifestPath)).manifest;
+            let manifest = common_f.json.deserialize(common_f.vfs.readFile(manifestPath)).manifest;
             let modName = res.bundles[i].manifest.split("/")[2];
             let bundleDir = "";
             let manifestPathSplit = manifestPath.split("/");

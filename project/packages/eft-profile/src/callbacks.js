@@ -14,7 +14,6 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoadCallback["profile"] = this.onLoad.bind(this);
-
         https_f.router.staticRoutes["/client/game/profile/create"] = this.createProfile.bind(this);
         https_f.router.staticRoutes["/client/game/profile/list"] = this.getProfileData.bind(this);
         https_f.router.staticRoutes["/client/game/profile/savage/regenerate"] = this.regenerateScav.bind(this);
@@ -32,7 +31,7 @@ class Callbacks
     createProfile(url, info, sessionID)
     {
         profile_f.controller.createProfile(info, sessionID);
-        return https_f.response.getBody({"uid": "pmc" + sessionID});
+        return https_f.response.getBody({"uid": `pmc${sessionID}`});
     }
 
     getProfileData(url, info, sessionID)
@@ -66,7 +65,10 @@ class Callbacks
             return https_f.response.getBody(null, 1, "The nickname is too short");
         }
 
-        return https_f.response.getBody({"status": 0, "nicknamechangedate": common_f.utility.getTimestamp()});
+        return https_f.response.getBody({
+            "status": 0,
+            "nicknamechangedate": common_f.time.getTimestamp()
+        });
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///
     validateNickname(url, info, sessionID)

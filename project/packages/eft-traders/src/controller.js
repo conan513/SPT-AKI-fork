@@ -119,7 +119,7 @@ class Controller
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        const traderData = JSON.parse(JSON.stringify(database_f.server.tables.traders[traderID]));
+        const traderData = helpfunc_f.helpFunctions.clone(database_f.server.tables.traders[traderID]);
         let result = traderData.assort;
 
         // strip items (1 is min level, 4 is max level)
@@ -173,7 +173,7 @@ class Controller
 
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
-            let itemID = names[common_f.utility.getRandomInt(0, names.length - 1)];
+            let itemID = names[common_f.random.getInt(0, names.length - 1)];
 
             if (added.includes(itemID))
             {
@@ -194,7 +194,7 @@ class Controller
 
             //it's itemPreset
             let rub = 0;
-            let items = JSON.parse(JSON.stringify(itemPresets[itemID]._items));
+            let items = helpfunc_f.helpFunctions.clone(itemPresets[itemID]._items);
             let ItemRootOldId = itemPresets[itemID]._parent;
 
             for (let i = 0; i < items.length; i++)

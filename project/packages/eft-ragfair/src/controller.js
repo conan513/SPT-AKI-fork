@@ -15,7 +15,7 @@ class Controller
     initialize()
     {
         // initialize base offer expire date (1 week after server start)
-        const time = common_f.utility.getTimestamp();
+        const time = common_f.time.getTimestamp();
 
         database_f.server.tables.ragfair.offer.startTime = time;
         database_f.server.tables.ragfair.offer.endTime = time + 604800000;
@@ -94,7 +94,7 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        let offerBase = common_f.json.parse(common_f.json.stringify(database_f.server.tables.ragfair.offer));
+        let offerBase = helpfunc_f.helpFunctions.clone(database_f.server.tables.ragfair.offer);
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -123,7 +123,7 @@ class Controller
             return [];
         }
 
-        let offerBase = common_f.json.parse(common_f.json.stringify(database_f.server.tables.ragfair.offer));
+        let offerBase = helpfunc_f.helpFunctions.clone(database_f.server.tables.ragfair.offer);
         let offers = [];
 
         // Preset

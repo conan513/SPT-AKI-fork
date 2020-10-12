@@ -107,7 +107,7 @@ class HelpFunctions
         let expTable = database_f.server.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
-        let randomLevel = common_f.utility.getRandomInt(0, expTable.length - 1) + 1;
+        let randomLevel = common_f.random.getInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
         {
@@ -117,7 +117,7 @@ class HelpFunctions
         // Sprinkle in some random exp within the level, unless we are at max level.
         if (randomLevel < expTable.length - 1)
         {
-            exp += common_f.utility.getRandomInt(0, expTable[randomLevel].exp - 1);
+            exp += common_f.random.getInt(0, expTable[randomLevel].exp - 1);
         }
 
         return exp;
@@ -154,7 +154,7 @@ class HelpFunctions
         }
 
         // update inventoryId
-        const newInventoryId = common_f.utility.generateID();
+        const newInventoryId = common_f.hash.generate();
         inventoryItemHash[inventoryId]._id = newInventoryId;
         profile.Inventory.equipment = newInventoryId;
 
@@ -782,7 +782,7 @@ class HelpFunctions
     replaceIDs(pmcData, items, fastPanel = null)
     {
         // replace bsg shit long ID with proper one
-        let string_inventory = common_f.json.stringify(items);
+        let string_inventory = common_f.json.serialize(items);
 
         for (let item of items)
         {
@@ -812,7 +812,7 @@ class HelpFunctions
 
             // replace id
             let old_id = item._id;
-            let new_id = common_f.utility.generateID();
+            let new_id = common_f.hash.generate();
 
             string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
             // Also replace in quick slot if the old ID exists.
@@ -828,7 +828,7 @@ class HelpFunctions
             }
         }
 
-        items = JSON.parse(string_inventory);
+        items = common_f.json.deserialize(string_inventory);
 
         // fix duplicate id's
         let dupes = {};
@@ -850,7 +850,7 @@ class HelpFunctions
             // register the parents
             if (dupes[item._id] > 1)
             {
-                let newId = common_f.utility.generateID();
+                let newId = common_f.hash.generate();
 
                 newParents[item.parentId] = newParents[item.parentId] || [];
                 newParents[item.parentId].push(item);
@@ -919,7 +919,7 @@ class HelpFunctions
             let amount = Math.min(count, maxStack);
             let newStack = this.clone(item);
 
-            newStack._id = common_f.utility.generateID();
+            newStack._id = common_f.hash.generate();
             newStack.upd.StackObjectsCount = amount;
             count -= amount;
             stacks.push(newStack);
@@ -930,7 +930,7 @@ class HelpFunctions
 
     clone(x)
     {
-        return common_f.json.parse(common_f.json.stringify(x));
+        return common_f.json.deserialize(common_f.json.serialize(x));
     }
 
     arrayIntersect(a, b)

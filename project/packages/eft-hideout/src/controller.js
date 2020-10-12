@@ -342,14 +342,14 @@ class Controller
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = common_f.utility.getRandomIntEx(Object.keys(database_f.server.tables.templates.items).length);
+                let random = common_f.random.getIntEx(Object.keys(database_f.server.tables.templates.items).length);
                 let randomKey = Object.keys(database_f.server.tables.templates.items)[random];
                 let tempItem = database_f.server.tables.templates.items[randomKey];
 
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
                     products.push({
-                        "_id": common_f.utility.generateID(),
+                        "_id": common_f.hash.generate(),
                         "_tpl": tempItem._id
                     });
 
@@ -777,7 +777,7 @@ class Controller
             if (btcProd.Products.length < 3)
             {
                 btcProd.Products.push({
-                    "_id": common_f.utility.generateID(),
+                    "_id": common_f.hash.generate(),
                     "_tpl": "59faff1d86f7746c51718c9c",
                     "upd": {
                         "StackObjectsCount": 1

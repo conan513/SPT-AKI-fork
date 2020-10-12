@@ -8,29 +8,23 @@
 
 "use strict";
 
-const fs = require("fs");
-
 class JsonUtil
 {
-    stringify(data)
+    serialize(data, prettify = false)
     {
-        return JSON.stringify(data, null, "\t");
+        if (prettify)
+        {
+            return JSON.stringify(data, null, "\t");
+        }
+        else
+        {
+            return JSON.stringify(data);
+        }
     }
 
-    parse(string)
+    deserialize(string)
     {
         return JSON.parse(string);
-    }
-
-    read(file)
-    {
-        return fs.readFileSync(file, "utf8");
-    }
-
-    write(file, data)
-    {
-        common_f.utility.createDir(file);
-        fs.writeFileSync(file, this.stringify(data), "utf8");
     }
 }
 

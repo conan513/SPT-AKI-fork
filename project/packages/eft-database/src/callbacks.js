@@ -9,8 +9,6 @@
 
 "use strict";
 
-const fs = require("fs");
-
 class Callbacks
 {
     constructor()
@@ -36,27 +34,21 @@ class Callbacks
     {
         let result = {};
 
-        // add file content to result
-        const files = fs.readdirSync(filepath).filter((file) =>
-        {
-            return fs.statSync(`${filepath}/${file}`).isFile();
-        });
+        // get all filepaths
+        const files = common_f.vfs.getFiles(filepath);
+        const directories = common_f.vfs.getDirs(filepath);
 
-        for (const node in files)
+        // add file content to result
+        for (const file of files)
         {
-            const fileName = files[node].split(".").slice(0, -1).join(".");
-            result[fileName] = common_f.json.parse(common_f.json.read(`${filepath}${files[node]}`));
+            const filename = file.split(".").slice(0, -1).join(".");
+            result[filename] = common_f.json.deserialize(common_f.vfs.readFile(`${filepath}${file}`));
         }
 
         // deep tree search
-        const directories = fs.readdirSync(filepath).filter((file) =>
+        for (const dir of directories)
         {
-            return fs.statSync(`${filepath}/${file}`).isDirectory();
-        });
-
-        for (const node of directories)
-        {
-            result[node] = this.loadRecursive(`${filepath}${node}/`);
+            result[dir] = this.loadRecursive(`${filepath}${dir}/`);
         }
 
         return result;
