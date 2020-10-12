@@ -48,8 +48,8 @@ class Controller
         computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
 
         // assign time
-        const time = common_f.utility.formatTime(computedDate).replace("-", ":").replace("-", ":");
-        const date = common_f.utility.formatDate(computedDate);
+        const time = common_f.time.formatTime(computedDate).replace("-", ":").replace("-", ":");
+        const date = common_f.time.formatDate(computedDate);
         const datetime = `${date} ${time}`;
 
         data.weather.timestamp = Math.floor(computedDate / 1000);

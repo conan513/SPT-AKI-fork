@@ -37,7 +37,7 @@ class Callbacks
             {
                 "_id": "5ae20a0dcb1c13123084756f",
                 "RegistrationId": 20,
-                "DateTime": common_f.utility.getTimestamp(),
+                "DateTime": common_f.time.getTimestamp(),
                 "IsDeveloper": true,
                 "Regions": ["EUR"],
                 "VersionId": "bgkidft87ddd",

@@ -230,8 +230,8 @@ class Controller
                 "type": dialogue_f.controller.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
-                    "date": common_f.utility.getDate(),
-                    "time": common_f.utility.getTime(),
+                    "date": common_f.time.getDate(),
+                    "time": common_f.time.getTime(),
                     "location": pmcData.Info.EntryPoint
                 }
             };

@@ -219,7 +219,7 @@ class Controller
         {
             if (quest.qid === body.qid)
             {
-                quest.startTime = common_f.utility.getTimestamp();
+                quest.startTime = common_f.time.getTimestamp();
                 quest.status = state;
                 found = true;
                 break;
@@ -231,7 +231,7 @@ class Controller
         {
             pmcData.Quests.push({
                 "qid": body.qid,
-                "startTime": common_f.utility.getTimestamp(),
+                "startTime": common_f.time.getTimestamp(),
                 "status": state
             });
         }

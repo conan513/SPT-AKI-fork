@@ -121,7 +121,7 @@ class Controller
             "status": "wait",
             "isSavage": false,
             "timeShift": "CURR",
-            "dt": common_f.utility.getTimestamp(),
+            "dt": common_f.time.getTimestamp(),
             "players": [
                 {
                     "_id": `pmc${sessionID}`,
