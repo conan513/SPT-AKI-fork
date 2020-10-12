@@ -173,7 +173,7 @@ class Controller
 
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
-            let itemID = names[common_f.utility.getRandomInt(0, names.length - 1)];
+            let itemID = names[common_f.random.getInt(0, names.length - 1)];
 
             if (added.includes(itemID))
             {

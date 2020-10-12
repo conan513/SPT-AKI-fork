@@ -24,39 +24,6 @@ class Utility
             .replace(/[\\]/g, "");
     }
 
-    getRandomInt(min = 0, max = 100)
-    {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return (max > min) ? Math.floor(Math.random() * (max - min + 1) + min) : min;
-    }
-
-    getRandomIntEx(max)
-    {
-        return (max > 1) ? Math.floor(Math.random() * (max - 2) + 1) : 1;
-    }
-
-    getRandomFloat(min, max)
-    {
-        return Math.random() * (max - min) + min;
-    }
-
-    getRandomBool()
-    {
-        return Math.random() < 0.5;
-    }
-
-    getRandomValue(node)
-    {
-        const keys = Object.keys(node);
-        return node[keys[this.getRandomInt(0, keys.length - 1)]];
-    }
-
-    getRandomArrayValue(arr)
-    {
-        return arr[this.getRandomInt(0, arr.length - 1)];
-    }
-
     formatTime(date)
     {
         const hours = `0${date.getHours()}`.substr(-2);

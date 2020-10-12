@@ -59,7 +59,7 @@ class Generator
         this.generateEquipment(EquipmentSlots.ArmorVest, templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
-        const shouldSpawnPrimary = common_f.utility.getRandomIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
+        const shouldSpawnPrimary = common_f.random.getIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
         const weaponSpawns = [
             {
                 slot: EquipmentSlots.FirstPrimaryWeapon,
@@ -67,11 +67,11 @@ class Generator
             },
             { // Only roll for a chance at secondary if primary roll was successful
                 slot: EquipmentSlots.SecondPrimaryWeapon,
-                shouldSpawn: shouldSpawnPrimary ? common_f.utility.getRandomIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
+                shouldSpawn: shouldSpawnPrimary ? common_f.random.getIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
             },
             { // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
                 slot: EquipmentSlots.Holster,
-                shouldSpawn: shouldSpawnPrimary ? common_f.utility.getRandomIntEx(100) <= equipmentChances.equipment.Holster : true
+                shouldSpawn: shouldSpawnPrimary ? common_f.random.getIntEx(100) <= equipmentChances.equipment.Holster : true
             }
         ];
 
@@ -145,11 +145,11 @@ class Generator
             return;
         }
 
-        const shouldSpawn = common_f.utility.getRandomIntEx(100) <= spawnChance;
+        const shouldSpawn = common_f.random.getIntEx(100) <= spawnChance;
         if (equipmentPool.length && shouldSpawn)
         {
             const id = common_f.utility.generateID();
-            const tpl = common_f.utility.getRandomArrayValue(equipmentPool);
+            const tpl = common_f.random.getArrayValue(equipmentPool);
             const itemTemplate = database_f.server.tables.templates.items[tpl];
 
             if (!itemTemplate)
@@ -188,7 +188,7 @@ class Generator
     generateWeapon(equipmentSlot, weaponPool, modPool, modChances, magCounts)
     {
         const id = common_f.utility.generateID();
-        const tpl = common_f.utility.getRandomArrayValue(weaponPool);
+        const tpl = common_f.random.getArrayValue(weaponPool);
         const itemTemplate = database_f.server.tables.templates.items[tpl];
 
         if (!itemTemplate)
@@ -297,7 +297,7 @@ class Generator
             const modSpawnChance = itemSlot._required || ["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot)
                 ? 100
                 : modSpawnChances[modSlot];
-            if (common_f.utility.getRandomIntEx(100) > modSpawnChance)
+            if (common_f.random.getIntEx(100) > modSpawnChance)
             {
                 continue;
             }
@@ -876,7 +876,7 @@ class ExhaustableArray
             return null;
         }
 
-        const index = common_f.utility.getRandomInt(0, this.pool.length - 1);
+        const index = common_f.random.getInt(0, this.pool.length - 1);
         const toReturn = helpfunc_f.helpFunctions.clone(this.pool[index]);
         this.pool.splice(index, 1);
         return toReturn;

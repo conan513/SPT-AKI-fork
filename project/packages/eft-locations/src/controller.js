@@ -98,7 +98,7 @@ class Controller
         while (maxCount < max && dynamic.length > 0)
         {
             maxCount += 1;
-            let rndLootIndex = common_f.utility.getRandomInt(0, dynamic.length - 1);
+            let rndLootIndex = common_f.random.getInt(0, dynamic.length - 1);
             let rndLoot = dynamic[rndLootIndex];
 
             if (!rndLoot.data)
@@ -107,7 +107,7 @@ class Controller
                 continue;
             }
 
-            let rndLootTypeIndex = common_f.utility.getRandomInt(0, rndLoot.data.length - 1);
+            let rndLootTypeIndex = common_f.random.getInt(0, rndLoot.data.length - 1);
             let data = rndLoot.data[rndLootTypeIndex];
 
             //Check if LootItem is overlapping
@@ -166,7 +166,7 @@ class Controller
                 }
             }
 
-            const num = common_f.utility.getRandomInt(0, 100);
+            const num = common_f.random.getInt(0, 100);
             const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
             const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
             if (itemChance >= num)
@@ -231,7 +231,7 @@ class Controller
 
         for (let i = minCount; i < container.maxCount; i++)
         {
-            let roll = common_f.utility.getRandomInt(0, 100);
+            let roll = common_f.random.getInt(0, 100);
 
             if (roll < container.chance)
             {
@@ -248,7 +248,7 @@ class Controller
 
             while (!result.success && maxAttempts)
             {
-                let roll = common_f.utility.getRandomInt(0, maxProbability);
+                let roll = common_f.random.getInt(0, maxProbability);
                 let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
 
                 item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
@@ -316,7 +316,7 @@ class Controller
             if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
                 // Money or Ammo stack
-                let stackCount = common_f.utility.getRandomInt(item._props.StackMinRandom, item._props.StackMaxRandom);
+                let stackCount = common_f.random.getInt(item._props.StackMinRandom, item._props.StackMaxRandom);
                 containerItem.upd = { "StackObjectsCount": stackCount };
             }
             else if (item._parent === "543be5cb4bdc2deb348b4568")

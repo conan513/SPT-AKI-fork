@@ -342,7 +342,7 @@ class Controller
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = common_f.utility.getRandomIntEx(Object.keys(database_f.server.tables.templates.items).length);
+                let random = common_f.random.getIntEx(Object.keys(database_f.server.tables.templates.items).length);
                 let randomKey = Object.keys(database_f.server.tables.templates.items)[random];
                 let tempItem = database_f.server.tables.templates.items[randomKey];
 

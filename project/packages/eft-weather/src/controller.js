@@ -23,8 +23,8 @@ class Controller
 
     generateWeather(data)
     {
-        const enableRain = common_f.utility.getRandomBool();
-        const enableFog = common_f.utility.getRandomBool();
+        const enableRain = common_f.random.getBool();
+        const enableFog = common_f.random.getBool();
 
         data.weather.cloud = this.getRandomFloat("clouds");
         data.weather.wind_speed = this.getRandomInt("windSpeed");
@@ -64,13 +64,13 @@ class Controller
 
     getRandomFloat(node)
     {
-        return parseFloat(common_f.utility.getRandomFloat(weather_f.config.weather[node].min,
+        return parseFloat(common_f.random.getFloat(weather_f.config.weather[node].min,
             weather_f.config.weather[node].max).toPrecision(3));
     }
 
     getRandomInt(node)
     {
-        return common_f.utility.getRandomInt(weather_f.config.weather[node].min,
+        return common_f.random.getInt(weather_f.config.weather[node].min,
             weather_f.config.weather[node].max);
     }
 }

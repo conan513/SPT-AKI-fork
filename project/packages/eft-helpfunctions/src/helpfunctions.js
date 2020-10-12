@@ -107,7 +107,7 @@ class HelpFunctions
         let expTable = database_f.server.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
-        let randomLevel = common_f.utility.getRandomInt(0, expTable.length - 1) + 1;
+        let randomLevel = common_f.random.getInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
         {
@@ -117,7 +117,7 @@ class HelpFunctions
         // Sprinkle in some random exp within the level, unless we are at max level.
         if (randomLevel < expTable.length - 1)
         {
-            exp += common_f.utility.getRandomInt(0, expTable[randomLevel].exp - 1);
+            exp += common_f.random.getInt(0, expTable[randomLevel].exp - 1);
         }
 
         return exp;

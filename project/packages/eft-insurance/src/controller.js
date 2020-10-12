@@ -219,14 +219,14 @@ class Controller
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
-                "templateId": dialogueTemplates.insuranceStart[common_f.utility.getRandomInt(0, dialogueTemplates.insuranceStart.length - 1)],
+                "templateId": dialogueTemplates.insuranceStart[common_f.random.getInt(0, dialogueTemplates.insuranceStart.length - 1)],
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
             };
 
             dialogue_f.controller.addDialogueMessage(traderId, messageContent, sessionID);
 
             messageContent = {
-                "templateId": dialogueTemplates.insuranceFound[common_f.utility.getRandomInt(0, dialogueTemplates.insuranceFound.length - 1)],
+                "templateId": dialogueTemplates.insuranceFound[common_f.random.getInt(0, dialogueTemplates.insuranceFound.length - 1)],
                 "type": dialogue_f.controller.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
@@ -238,7 +238,7 @@ class Controller
 
             event_f.controller.addToSchedule(sessionID, {
                 "type": "insuranceReturn",
-                "scheduledTime": Date.now() + common_f.utility.getRandomInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
+                "scheduledTime": Date.now() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
                 "data": {
                     "traderId": traderId,
                     "messageContent": messageContent,
@@ -253,10 +253,10 @@ class Controller
     processReturn(event)
     {
         // Inject a little bit of a surprise by failing the insurance from time to time ;)
-        if (common_f.utility.getRandomInt(0, 99) >= insurance_f.config.returnChance)
+        if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
         {
             const insuranceFailedTemplates = database_f.server.tables.traders[event.data.traderId].dialogue.insuranceFailed;
-            event.data.messageContent.templateId = insuranceFailedTemplates[common_f.utility.getRandomInt(0, insuranceFailedTemplates.length - 1)];
+            event.data.messageContent.templateId = insuranceFailedTemplates[common_f.random.getInt(0, insuranceFailedTemplates.length - 1)];
             event.data.items = [];
         }
 

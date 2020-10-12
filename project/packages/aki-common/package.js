@@ -8,10 +8,12 @@
 
 const { VFS } = require("./src/vfs.js");
 const { JsonUtil } = require("./src/json.js");
+const { RandomUtil } = require("./src/random.js");
 const { Utility } = require("./src/utility.js");
 const { Logger } = require("./src/logger.js");
 
 module.exports.vfs = new VFS();
 module.exports.json = new JsonUtil();
+module.exports.random = new RandomUtil();
 module.exports.utility = new Utility();
 module.exports.logger = new Logger();
