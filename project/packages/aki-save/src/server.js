@@ -72,7 +72,7 @@ class Server
         }
 
         // save profile
-        common_f.vfs.writeFile(file, common_f.json.serialize(this.profiles[sessionID], true), "utf8");
+        common_f.vfs.writeFile(file, common_f.json.serialize(this.profiles[sessionID], true));
     }
 }
 

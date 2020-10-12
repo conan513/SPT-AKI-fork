@@ -37,11 +37,11 @@ class VFS
 
         if (append)
         {
-            fs.writeFileSync(filepath, data, { "flag": "a" });
+            fs.writeFileSync(filepath, data, "utf8", { "flag": "a" });
         }
         else
         {
-            fs.writeFileSync(filepath, data);
+            fs.writeFileSync(filepath, data, "utf8");
         }
     }
 
