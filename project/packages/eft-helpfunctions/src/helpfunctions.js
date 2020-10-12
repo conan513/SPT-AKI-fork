@@ -828,7 +828,7 @@ class HelpFunctions
             }
         }
 
-        items = json.deserialize(string_inventory);
+        items = common_f.json.deserialize(string_inventory);
 
         // fix duplicate id's
         let dupes = {};
