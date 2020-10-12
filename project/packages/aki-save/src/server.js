@@ -8,8 +8,6 @@
 
 "use strict";
 
-const fs = require("fs");
-
 class Server
 {
     constructor()
@@ -19,20 +17,15 @@ class Server
         this.onSaveCallbacks = {};
     }
 
-    getFiles()
-    {
-        if (!fs.existsSync(save_f.config.filepath))
-        {
-            common_f.utility.createDir(save_f.config.filepath);
-        }
-
-        return common_f.utility.getFileList(save_f.config.filepath);
-    }
-
     onLoad()
     {
-        // genrate virual paths
-        const files = this.getFiles();
+        // get files to load
+        if (!common_f.vfs.exists(save_f.config.filepath))
+        {
+            common_f.vfs.createDir(save_f.config.filepath);
+        }
+
+        const files = common_f.vfs.getFiles(save_f.config.filepath);
 
         // load profiles
         for (let file of files)
@@ -53,10 +46,12 @@ class Server
 
     onLoadProfile(sessionID)
     {
-        if (fs.existsSync(`${save_f.config.filepath}${sessionID}.json`))
+        const file = `${save_f.config.filepath}${sessionID}.json`;
+
+        if (common_f.vfs.exists(file))
         {
             // load profile
-            this.profiles[sessionID] = common_f.json.parse(common_f.json.read(`${save_f.config.filepath}${sessionID}.json`));
+            this.profiles[sessionID] = common_f.json.deserialize(common_f.vfs.readFile(file));
         }
 
         // run callbacks
@@ -68,6 +63,8 @@ class Server
 
     onSaveProfile(sessionID)
     {
+        const file = `${save_f.config.filepath}${sessionID}.json`;
+
         // run callbacks
         for (const callback in this.onSaveCallbacks)
         {
@@ -75,7 +72,7 @@ class Server
         }
 
         // save profile
-        common_f.json.write(`${save_f.config.filepath}${sessionID}.json`, this.profiles[sessionID]);
+        common_f.vfs.writeFile(file, common_f.json.serialize(this.profiles[sessionID], true));
     }
 }
 

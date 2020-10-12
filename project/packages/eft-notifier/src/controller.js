@@ -20,6 +20,12 @@ class Controller
         this.messageQueue = {};
     }
 
+    /* Checks whether we already have a message queue created for a particular sessionID. */
+    hasMessageQueue(sessionID)
+    {
+        return sessionID in this.messageQueue;
+    }
+
     /* Get messageQueue for a particular sessionID. */
     getMessageQueue(sessionID)
     {
@@ -52,12 +58,6 @@ class Controller
         }
 
         this.messageQueue[sessionID].push(notificationMessage);
-    }
-
-    /* Checks whether we already have a message queue created for a particular sessionID. */
-    hasMessageQueue(sessionID)
-    {
-        return sessionID in this.messageQueue;
     }
 
     /* Checks whether a particular sessionID has notifications waiting to be processed. */
@@ -95,15 +95,16 @@ class Controller
         while (this.hasMessagesInQueue(sessionID))
         {
             let message = this.popMessageFromQueue(sessionID);
+
             // Purposefully using default JSON stringify function here to avoid newline insertion
             // since the client expects different messages to be split by the newline character.
-            data.push(JSON.stringify(message));
+            data.push(common_f.json.serialize(message));
         }
 
         // If we timed out and don't have anything to send, just send a ping notification.
         if (data.length === 0)
         {
-            data.push(JSON.stringify({
+            data.push(common_f.json.serialize({
                 "type": "ping",
                 "eventId": "ping"
             }));
