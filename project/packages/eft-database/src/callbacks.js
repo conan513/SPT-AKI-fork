@@ -14,7 +14,7 @@ class Callbacks
     constructor()
     {
         https_f.server.onStart["loadDatabase"] = this.load.bind(this);
-        https_f.server.respondCallback["IMAGE"] = this.sendImage.bind(this);
+        https_f.server.onRespond["IMAGE"] = this.sendImage.bind(this);
         https_f.router.staticRoutes["/client/globals"] = this.getGlobals.bind(this);
         https_f.router.staticRoutes["/client/items"] = this.getTemplateItems.bind(this);
         https_f.router.staticRoutes["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);

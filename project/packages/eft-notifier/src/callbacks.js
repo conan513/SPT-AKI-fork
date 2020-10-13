@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.respondCallback["NOTIFY"] = this.sendNotification.bind(this);
+        https_f.server.onRespond["NOTIFY"] = this.sendNotification.bind(this);
         https_f.router.staticRoutes["/client/notifier/channel/create"] = this.createNotifierChannel.bind(this);
         https_f.router.staticRoutes["/client/game/profile/select"] = this.selectProfile.bind(this);
         https_f.router.dynamicRoutes["/?last_id"] = this.notify.bind(this);
