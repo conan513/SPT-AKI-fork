@@ -68,7 +68,7 @@ class Controller
             }
             else
             {
-                item_f.controller.removeItem(pmcData, item.inventoryItem._id, item_f.router.getOutput(), sessionID);
+                inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, item_f.router.getOutput(), sessionID);
             }
         }
 
@@ -181,7 +181,7 @@ class Controller
                 hideoutArea.slots.splice(slot_position, 1, slot_to_add);
             }
 
-            output = item_f.controller.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
+            output = inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
         }
 
         return output;
@@ -209,7 +209,7 @@ class Controller
                 "tid": "ragfair"
             };
 
-            output = item_f.controller.addItem(pmcData, newReq, output, sessionID, null);
+            output = inventory_f.controller.addItem(pmcData, newReq, output, sessionID, null);
 
             // If addItem returned with errors, don't continue any further
             if (output.badRequest && output.badRequest.length > 0)
@@ -250,7 +250,7 @@ class Controller
                 "tid": "ragfair"
             };
 
-            output = item_f.controller.addItem(pmcData, newReq, output, sessionID, null);
+            output = inventory_f.controller.addItem(pmcData, newReq, output, sessionID, null);
 
             // If addItem returned with errors, don't continue any further
             if (output.badRequest && output.badRequest.length > 0)
@@ -286,7 +286,7 @@ class Controller
 
         for (let itemToDelete of body.items)
         {
-            output = item_f.controller.removeItem(pmcData, itemToDelete.id, output, sessionID);
+            output = inventory_f.controller.removeItem(pmcData, itemToDelete.id, output, sessionID);
         }
 
         return output;
@@ -313,7 +313,7 @@ class Controller
             }
             else
             {
-                output = item_f.controller.removeItem(pmcData, requestedItem.id, output, sessionID);
+                output = inventory_f.controller.removeItem(pmcData, requestedItem.id, output, sessionID);
             }
         }
 
@@ -404,7 +404,7 @@ class Controller
             pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products = [];
         };
 
-        return item_f.controller.addItem(pmcData, newBTC, output, sessionID, callback, true);
+        return inventory_f.controller.addItem(pmcData, newBTC, output, sessionID, callback, true);
     }
 
     takeProduction(pmcData, body, sessionID)
@@ -449,7 +449,7 @@ class Controller
                 delete pmcData.Hideout.Production[kvp[0]];
             };
 
-            return item_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
@@ -481,7 +481,7 @@ class Controller
                 delete pmcData.Hideout.Production[areaTypes.SCAV_CASE_ITEMS];
             };
 
-            return item_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         common_f.logger.logError(`Failed to locate any recipe with id ${body.recipeId}`);

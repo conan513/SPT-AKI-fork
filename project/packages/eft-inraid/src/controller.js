@@ -76,7 +76,7 @@ class Controller
 
                 if (item.upd.Key.NumberOfUsages >= helpfunc_f.helpFunctions.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
                 {
-                    item_f.controller.removeItemFromProfile(offraidData.profile, item._id);
+                    inventory_f.controller.removeItemFromProfile(offraidData.profile, item._id);
                 }
 
                 break;
@@ -258,9 +258,9 @@ class Controller
 
     setInventory(pmcData, profile)
     {
-        item_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
-        item_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
-        item_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
+        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
+        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
+        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
 
         for (let item of profile.Inventory.items)
         {
@@ -303,7 +303,7 @@ class Controller
         // delete items
         for (let item of toDelete)
         {
-            item_f.controller.removeItemFromProfile(pmcData, item);
+            inventory_f.controller.removeItemFromProfile(pmcData, item);
         }
 
         pmcData.Inventory.fastPanel = {};

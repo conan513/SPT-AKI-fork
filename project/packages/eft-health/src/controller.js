@@ -68,7 +68,7 @@ class Controller
 
                 if (item.upd.MedKit.HpResource === 0)
                 {
-                    item_f.controller.removeItem(pmcData, body.item, output, sessionID);
+                    inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
                 }
             }
         }
@@ -107,7 +107,7 @@ class Controller
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = item_f.controller.removeItem(pmcData, body.item, output, sessionID);
+            output = inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
         }
 
         return output;
