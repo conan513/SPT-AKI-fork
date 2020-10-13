@@ -17,27 +17,27 @@ class Controller
     getVisibleQuests(url, info, sessionID)
     {
         let quests = [];
-        const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
+        const profile = profile_f.controller.getPmcProfile(sessionID);
 
         for (let quest of database_f.server.tables.templates.quests)
         {
-            const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+            const questConditions = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
 
-            // If the quest has no prerequisite quests then add to visible quest list
-            if (prereqs.length === 0)
+            // If the quest has no quest conditions then add to visible quest list
+            if (questConditions.length === 0)
             {
                 quests.push(quest);
                 continue;
             }
 
             let isVisible = true;
-            for (const pr of prereqs)
+            for (const condition of questConditions)
             {
-                // Check each prerequisite quest, if any are currently locked
+                // Check each quest condition, if any are not completed
                 // then this quest should not be visible
-                const preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
+                const previousQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
 
-                if (preQuest.status === "Locked")
+                if (!previousQuest || previousQuest.status !== "Success")
                 {
                     isVisible = false;
                     break;
@@ -46,13 +46,8 @@ class Controller
 
             if (isVisible)
             {
-                const profileQuest = profileQuests.find(pq => pq.qid === quest._id);
-                if (profileQuest.status === "Success")
-                {
-                    quest.conditions.AvailableForStart = [];
-                    quest.conditions.AvailableForFinish = [];
-                }
-
+                quest = helpfunc_f.helpFunctions.clone(quest);
+                quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
                 quests.push(quest);
             }
         }
@@ -60,78 +55,41 @@ class Controller
         return quests;
     }
 
-    getAllProfileQuests()
+    getNextQuests(completedQuestId, sessionID)
     {
-        let profileQuests = [];
+        const profile = profile_f.controller.getPmcProfile(sessionID);
 
-        for (let quest of database_f.server.tables.templates.quests)
+        let quests = database_f.server.tables.templates.quests.filter((q) =>
         {
-            let state = "AvailableForStart";
-            for (let condition of quest.conditions.AvailableForStart)
+            const completedQuestCondition = q.conditions.AvailableForStart.find(c => c._parent === "Quest" && c._props.target === completedQuestId);
+
+            if (completedQuestCondition)
             {
-                if (condition._parent === "Level" && condition._props.value > 1)
+                const otherQuestConditions = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target !== completedQuestId);
+
+                for (const condition of otherQuestConditions)
                 {
-                    state = "Locked";
-                    break;
+                    const profileQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
+
+                    if (!profileQuest || profileQuest.status !== "Success")
+                    {
+                        return false;
+                    }
                 }
-                else if (condition._parent === "Quest")
-                {
-                    state = "Locked";
-                    break;
-                }
-            }
 
-            profileQuests.push({
-                "qid": quest._id,
-                "startTime": 0,
-                "completedConditions": [],
-                "statusTimers": {},
-                "status": state
-            });
-        }
-
-        return profileQuests;
-    }
-
-    nextQuests(completedQuestId, sessionID)
-    {
-        const pmcLevel = profile_f.controller.getPmcProfile(sessionID).Info.Level;
-
-        // Find quests that have been unlocked by the completetion of a quest
-        const unlockedQuests = database_f.server.tables.templates.quests.filter((q) =>
-        {
-            const questCond = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === completedQuestId);
-
-            if (questCond.length !== 0)
-            {
-                const levelCon = q.conditions.AvailableForStart.filter(c => c._parent === "Level" && c._props.value <= pmcLevel);
-
-                if (levelCon.length !== 0)
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;
         });
 
-        let newVisibleQuests = [];
-        // Find locked quests that are now visible due to unlocking quests
-        for (const unlocked of unlockedQuests)
+        quests = helpfunc_f.helpFunctions.clone(quests);
+        for (let quest of quests)
         {
-            const quests = database_f.server.tables.templates.quests.filter((q) =>
-            {
-                const matches = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === unlocked._id);
-                return matches.length !== 0;
-            });
-
-            if (quests.length !== 0)
-            {
-                newVisibleQuests = newVisibleQuests.concat(quests);
-            }
+            quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
         }
 
-        return newVisibleQuests;
+        return quests;
     }
 
     getFindItemIdForQuestItem(itemTpl)
@@ -374,7 +332,7 @@ class Controller
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
         let completeQuestResponse = item_f.router.getOutput();
-        completeQuestResponse.quests = this.nextQuests(body.qid, sessionID);
+        completeQuestResponse.quests = this.getNextQuests(body.qid, sessionID);
         return completeQuestResponse;
     }
 
