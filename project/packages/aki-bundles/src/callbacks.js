@@ -16,7 +16,7 @@ class Callbacks
         https_f.server.onStart["loadBundles"] = this.load.bind(this);
         https_f.server.onRespond["BUNDLE"] = this.sendBundle.bind(this);
         https_f.router.onStaticRoute["/singleplayer/bundles"] = this.getBundles.bind(this);
-        https_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind(this);
+        https_f.router.onDynamicRoute[".bundle"] = this.getBundle.bind(this);
     }
 
     load()

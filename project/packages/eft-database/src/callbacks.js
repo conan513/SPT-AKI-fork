@@ -24,10 +24,10 @@ class Callbacks
         https_f.router.onStaticRoute["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
         https_f.router.onStaticRoute["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind(this);
         https_f.router.onStaticRoute["/client/languages"] = this.getLocalesLanguages.bind(this);
-        https_f.router.dynamicRoutes["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
-        https_f.router.dynamicRoutes["/client/locale/"] = this.getLocalesGlobal.bind(this);
-        https_f.router.dynamicRoutes[".jpg"] = this.getImage.bind(this);
-        https_f.router.dynamicRoutes[".png"] = this.getImage.bind(this);
+        https_f.router.onDynamicRoute["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
+        https_f.router.onDynamicRoute["/client/locale/"] = this.getLocalesGlobal.bind(this);
+        https_f.router.onDynamicRoute[".jpg"] = this.getImage.bind(this);
+        https_f.router.onDynamicRoute[".png"] = this.getImage.bind(this);
     }
 
     loadRecursive(filepath)
