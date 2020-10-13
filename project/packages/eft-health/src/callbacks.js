@@ -12,7 +12,7 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["health"] = this.onLoad.bind(this);
+        save_f.server.onLoad["health"] = this.onLoad.bind(this);
         https_f.router.onStaticRoute["/player/health/sync"] = this.syncHealth.bind(this);
         https_f.router.onStaticRoute["/player/health/events"] = this.updateHealth.bind(this);
         item_f.eventHandler.onEvent["Eat"] = this.offraidEat.bind(this);

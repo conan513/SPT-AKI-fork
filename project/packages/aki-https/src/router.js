@@ -12,8 +12,8 @@ class Router
 {
     constructor()
     {
-        this.staticRoutes = {};
-        this.dynamicRoutes = {};
+        this.onStaticRoute = {};
+        this.onDynamicRoute = {};
     }
 
     getResponse(req, info, sessionID)
@@ -28,17 +28,17 @@ class Router
         }
 
         /* route request */
-        if (url in this.staticRoutes)
+        if (url in this.onStaticRoute)
         {
-            output = this.staticRoutes[url](url, info, sessionID);
+            output = this.onStaticRoute[url](url, info, sessionID);
         }
         else
         {
-            for (let key in this.dynamicRoutes)
+            for (let key in this.onDynamicRoute)
             {
                 if (url.includes(key))
                 {
-                    output = this.dynamicRoutes[key](url, info, sessionID);
+                    output = this.onDynamicRoute[key](url, info, sessionID);
                 }
             }
         }

@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["profile"] = this.onLoad.bind(this);
+        save_f.server.onLoad["profile"] = this.onLoad.bind(this);
         https_f.router.onStaticRoute["/client/game/profile/create"] = this.createProfile.bind(this);
         https_f.router.onStaticRoute["/client/game/profile/list"] = this.getProfileData.bind(this);
         https_f.router.onStaticRoute["/client/game/profile/savage/regenerate"] = this.regenerateScav.bind(this);

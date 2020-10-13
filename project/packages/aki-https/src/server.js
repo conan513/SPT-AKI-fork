@@ -20,8 +20,8 @@ class Server
     {
         this.buffers = {};
         this.onStart = {};
-        this.receiveCallback = {};
-        this.respondCallback = {};
+        this.onReceive = {};
+        this.onRespond = {};
         this.name = "Local SPT-AKI Server";
         this.ip = "127.0.0.1";
         this.port = 443;
@@ -33,7 +33,7 @@ class Server
             json: "application/json"
         };
 
-        this.respondCallback["DONE"] = this.killResponse.bind(this);
+        this.onRespond["DONE"] = this.killResponse.bind(this);
     }
 
     getCookies(req)
@@ -172,15 +172,15 @@ class Server
         }
 
         // execute data received callback
-        for (let type in this.receiveCallback)
+        for (let type in this.onReceive)
         {
-            this.receiveCallback[type](sessionID, req, resp, info, output);
+            this.onReceive[type](sessionID, req, resp, info, output);
         }
 
         // send response
-        if (output in this.respondCallback)
+        if (output in this.onRespond)
         {
-            this.respondCallback[output](sessionID, req, resp, info);
+            this.onRespond[output](sessionID, req, resp, info);
         }
         else
         {

@@ -12,8 +12,8 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["eft-insurance"] = this.onLoad.bind(this);
-        save_f.server.onSaveCallbacks["eft-insurance"] = this.onSave.bind(this);
+        save_f.server.onLoad["eft-insurance"] = this.onLoad.bind(this);
+        save_f.server.onSave["eft-insurance"] = this.onSave.bind(this);
         https_f.server.onReceive["eft-insurance"] = this.checkInsurance.bind(this);
         https_f.router.onStaticRoute["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
         item_f.eventHandler.onEvent["Insure"] = this.insure.bind(this);
