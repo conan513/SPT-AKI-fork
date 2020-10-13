@@ -14,8 +14,8 @@ class Callbacks
     constructor()
     {
         https_f.router.onStaticRoute["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind(this);
-        item_f.router.routes["SaveBuild"] = this.saveBuild.bind(this);
-        item_f.router.routes["RemoveBuild"] = this.removeBuild.bind(this);
+        item_f.eventHandler.onEvent["SaveBuild"] = this.saveBuild.bind(this);
+        item_f.eventHandler.onEvent["RemoveBuild"] = this.removeBuild.bind(this);
     }
 
     getHandbookUserlist(url, info, sessionID)

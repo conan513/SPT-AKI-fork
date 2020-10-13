@@ -18,7 +18,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/ragfair/find"] = this.search.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/itemMarketPrice"] = this.itemMarketPrice.bind(this);
         https_f.router.onStaticRoute["/client/items/prices"] = this.getItemPrices.bind(this);
-        item_f.router.routes["RagFairAddOffer"] = this.addOffer.bind(this);
+        item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
     }
 
     load()

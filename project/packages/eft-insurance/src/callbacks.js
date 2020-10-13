@@ -16,7 +16,7 @@ class Callbacks
         save_f.server.onSaveCallbacks["eft-insurance"] = this.onSave.bind(this);
         https_f.server.onReceive["eft-insurance"] = this.checkInsurance.bind(this);
         https_f.router.onStaticRoute["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
-        item_f.router.routes["Insure"] = this.insure.bind(this);
+        item_f.eventHandler.onEvent["Insure"] = this.insure.bind(this);
     }
 
     onLoad(sessionID)

@@ -1,4 +1,4 @@
-/* router.js
+/* events.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -6,7 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-class Router
+class EventHandler
 {
     constructor()
     {
@@ -16,7 +16,7 @@ class Router
         this.resetOutput();
     }
 
-    handleRoutes(info, sessionID)
+    handleEvents(info, sessionID)
     {
         let result = "";
 
@@ -30,7 +30,7 @@ class Router
             }
             else
             {
-                common_f.logger.logError(`[UNHANDLED ACTION] ${body.Action}`);
+                common_f.logger.logError(`[UNHANDLED EVENT] ${body.Action}`);
             }
         }
 
@@ -70,4 +70,4 @@ class Router
     }
 }
 
-module.exports.Router = Router;
+module.exports.EventHandler = EventHandler;
