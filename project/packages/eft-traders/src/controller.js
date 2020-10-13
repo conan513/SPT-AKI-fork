@@ -31,7 +31,7 @@ class Controller
         trader.loyalty.currentLevel = pmcData.TraderStandings[traderID].currentLevel;
         trader.loyalty.currentStanding = pmcData.TraderStandings[traderID].currentStanding.toFixed(3);
         trader.loyalty.currentSalesSum = pmcData.TraderStandings[traderID].currentSalesSum;
-        trader.working = pmcData.TraderStandings[traderID].working;
+        trader.display = pmcData.TraderStandings[traderID].display;
 
         return trader;
     }
@@ -39,7 +39,7 @@ class Controller
     changeTraderDisplay(traderID, status, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        pmcData.TraderStandings[traderID].working = status;
+        pmcData.TraderStandings[traderID].display = status;
     }
 
     getAllTraders(sessionID)

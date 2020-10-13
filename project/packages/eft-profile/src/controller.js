@@ -119,7 +119,7 @@ class Controller
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
             "loyaltyLevels": database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "working": database_f.server.tables.traders[traderID].base.working
+            "display": database_f.server.tables.traders[traderID].base.display
         };
     }
 
