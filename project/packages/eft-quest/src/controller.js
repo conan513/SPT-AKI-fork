@@ -246,9 +246,8 @@ class Controller
         return acceptQuestResponse;
     }
 
-    completeQuest(pmcData, body, sessionID)
+    applyQuestReward(pmcData, body, state, sessionID)
     {
-        let state = "Success";
         let intelCenterBonus = 0;//percentage of money reward
 
         //find if player has money reward boost
@@ -276,6 +275,62 @@ class Controller
                 break;
             }
         }
+
+        // give reward
+        let quest = this.getCachedQuest(body.qid);
+
+        if (intelCenterBonus > 0)
+        {
+            quest = this.applyMoneyBoost(quest, intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
+        }
+
+        let questRewards = this.getQuestRewardItems(quest, state);
+
+        for (let reward of quest.rewards[state])
+        {
+            switch (reward.type)
+            {
+                case "Skill":
+                    pmcData = profile_f.controller.getPmcProfile(sessionID);
+
+                    for (let skill of pmcData.Skills.Common)
+                    {
+                        if (skill.Id === reward.target)
+                        {
+                            skill.Progress += parseInt(reward.value);
+                            break;
+                        }
+                    }
+                    break;
+
+                case "Experience":
+                    pmcData = profile_f.controller.getPmcProfile(sessionID);
+                    pmcData.Info.Experience += parseInt(reward.value);
+                    break;
+
+                case "TraderStanding":
+                    pmcData = profile_f.controller.getPmcProfile(sessionID);
+                    pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
+
+                    if (pmcData.TraderStandings[reward.target].currentStanding < 0)
+                    {
+                        pmcData.TraderStandings[reward.target].currentStanding = 0;
+                    }
+
+                    trader_f.controller.lvlUp(reward.target, sessionID);
+                    break;
+
+                case "TraderUnlock":
+                    trader_f.controller.changeTraderDisplay(reward.target, true, sessionID);
+                    break;
+            }
+        }
+        return questRewards;
+    }
+
+    completeQuest(pmcData, body, sessionID)
+    {
+        let state = "Success";
 
         //Check if any of linked quest is failed, and that is unrestartable.
         let checkQuest = database_f.server.tables.templates.quests.filter(q => q.conditions.Fail.length > 0 && q.conditions.Fail[0]._props.target === body.qid);
@@ -304,56 +359,7 @@ class Controller
             }
         }
 
-
-        // give reward
-        let quest = this.getCachedQuest(body.qid);
-
-        if (intelCenterBonus > 0)
-        {
-            quest = this.applyMoneyBoost(quest, intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
-        }
-
-        let questRewards = this.getQuestRewardItems(quest, state);
-
-        for (let reward of quest.rewards.Success)
-        {
-            switch (reward.type)
-            {
-                case "Skill":
-                    pmcData = profile_f.controller.getPmcProfile(sessionID);
-
-                    for (let skill of pmcData.Skills.Common)
-                    {
-                        if (skill.Id === reward.target)
-                        {
-                            skill.Progress += parseInt(reward.value);
-                            break;
-                        }
-                    }
-                    break;
-
-                case "Experience":
-                    pmcData = profile_f.controller.getPmcProfile(sessionID);
-                    pmcData.Info.Experience += parseInt(reward.value);
-                    break;
-
-                case "TraderStanding":
-                    pmcData = profile_f.controller.getPmcProfile(sessionID);
-                    pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
-
-                    if (pmcData.TraderStandings[reward.target].currentStanding < 0)
-                    {
-                        pmcData.TraderStandings[reward.target].currentStanding = 0;
-                    }
-
-                    trader_f.controller.lvlUp(reward.target, sessionID);
-                    break;
-
-                case "TraderUnlock":
-                    trader_f.controller.changeTraderDisplay(reward.target, true, sessionID);
-                    break;
-            }
-        }
+        let questRewards = this.applyQuestReward(pmcData, body, state, sessionID);
 
         // Create a dialog message for completing the quest.
         let questDb = this.getCachedQuest(body.qid);
@@ -373,83 +379,7 @@ class Controller
     failQuest(pmcData, body, sessionID)
     {
         let state = "Fail";
-        let intelCenterBonus = 0;//percentage of money reward
-
-        //find if player has money reward boost
-        for (let area of pmcData.Hideout.Areas)
-        {
-            if (area.type === 11)
-            {
-                if (area.level === 1)
-                {
-                    intelCenterBonus = 5;
-                }
-
-                if (area.level > 1)
-                {
-                    intelCenterBonus = 15;
-                }
-            }
-        }
-
-        for (let quest in pmcData.Quests)
-        {
-            if (pmcData.Quests[quest].qid === body.qid)
-            {
-                pmcData.Quests[quest].status = state;
-                break;
-            }
-        }
-
-        // give reward
-        let quest = this.getCachedQuest(body.qid);
-
-        if (intelCenterBonus > 0)
-        {
-            quest = this.applyMoneyBoost(quest, intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
-        }
-
-        let questRewards = this.getQuestRewardItems(quest, state);
-
-        for (let reward of quest.rewards.Fail)
-        {
-            switch (reward.type)
-            {
-                case "Skill":
-                    pmcData = profile_f.controller.getPmcProfile(sessionID);
-
-                    for (let skill of pmcData.Skills.Common)
-                    {
-                        if (skill.Id === reward.target)
-                        {
-                            skill.Progress += parseInt(reward.value);
-                            break;
-                        }
-                    }
-                    break;
-
-                case "Experience":
-                    pmcData = profile_f.controller.getPmcProfile(sessionID);
-                    pmcData.Info.Experience += parseInt(reward.value);
-                    break;
-
-                case "TraderStanding":
-                    pmcData = profile_f.controller.getPmcProfile(sessionID);
-                    pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
-
-                    if (pmcData.TraderStandings[reward.target].currentStanding < 0)
-                    {
-                        pmcData.TraderStandings[reward.target].currentStanding = 0;
-                    }
-
-                    trader_f.controller.lvlUp(reward.target, sessionID);
-                    break;
-
-                case "TraderUnlock":
-                    trader_f.controller.changeTraderDisplay(reward.target, true, sessionID);
-                    break;
-            }
-        }
+        let questRewards = this.applyQuestReward(pmcData, body, state, sessionID);
 
         // Create a dialog message for completing the quest.
         let questDb = this.getCachedQuest(body.qid);
