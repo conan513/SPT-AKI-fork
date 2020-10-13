@@ -77,6 +77,7 @@ class Controller
 
     addToSchedule(sessionID, event)
     {
+        event.sessionId = sessionID;
         save_f.server.profiles[sessionID].events.push(event);
         save_f.server.profiles[sessionID].events.sort(this.compareEvent);
     }
