@@ -35,14 +35,11 @@ class VFS
             this.createDir(filepath);
         }
 
-        if (append)
-        {
-            fs.writeFileSync(filepath, data, "utf8", { "flag": "a" });
-        }
-        else
-        {
-            fs.writeFileSync(filepath, data, "utf8");
-        }
+        const options = (append) ? { "flags": "a" } : { "flags": "w" };
+        const stream = fs.createWriteStream(filepath, options);
+
+        stream.write(data);
+        stream.close();
     }
 
     removeFile(filepath)
