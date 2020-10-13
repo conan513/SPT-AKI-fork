@@ -48,11 +48,11 @@ class Callbacks
     {
         return https_f.response.getBody({
             "notifier": {
-                "server": `${https_f.server.backendUrl}/`,
+                "server": `${https_f.config.backendUrl}/`,
                 "channel_id": "testChannel",
-                "url": `${https_f.server.backendUrl}/notifierServer/get/${sessionID}`
+                "url": `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`
             },
-            "notifierServer": `${https_f.server.backendUrl}/notifierServer/get/${sessionID}`
+            "notifierServer": `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`
         });
     }
 
@@ -66,7 +66,7 @@ class Callbacks
         return https_f.response.getBody({
             "status": "ok",
             "notifier": {
-                "server": `${https_f.server.backendUrl}/`,
+                "server": `${https_f.config.backendUrl}/`,
                 "channel_id": "testChannel"
             }
         });

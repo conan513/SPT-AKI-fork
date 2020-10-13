@@ -21,10 +21,6 @@ class Server
         this.buffers = {};
         this.onReceive = {};
         this.onRespond = {};
-        this.name = "Local SPT-AKI Server";
-        this.ip = "127.0.0.1";
-        this.port = 443;
-        this.backendUrl = `https://${this.ip}:${this.port}`;
         this.mime = {
             txt: "text/plain",
             jpg: "image/jpeg",
@@ -103,7 +99,7 @@ class Server
 
                 let fingerprint;
 
-                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: this.ip + "/" }], { days: 365 }));
+                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: https_f.config.ip + "/" }], { days: 365 }));
 
                 common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
@@ -237,16 +233,16 @@ class Server
     load()
     {
         /* create server */
-        let httpsServer = https.createServer(this.generateCertificate(), (req, res) =>
+        let instance = https.createServer(this.generateCertificate(), (req, res) =>
         {
             this.handleRequest(req, res);
-        }).listen(this.port, this.ip, () =>
+        }).listen(https_f.config.port, https_f.config.ip, () =>
         {
             common_f.logger.logSuccess("Started server");
         });
 
         /* server is already running or program using privileged port without root */
-        httpsServer.on("error", (e) =>
+        instance.on("error", (e) =>
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {

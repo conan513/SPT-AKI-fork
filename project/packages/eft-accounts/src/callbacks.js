@@ -31,7 +31,7 @@ class Callbacks
     connect()
     {
         return https_f.response.noBody({
-            "backendUrl": https_f.server.backendUrl,
+            "backendUrl": https_f.config.backendUrl,
             "name": https_f.server.name,
             "editions": Object.keys(database_f.server.tables.templates.profiles)
         });

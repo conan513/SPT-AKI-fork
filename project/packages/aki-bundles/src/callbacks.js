@@ -38,7 +38,7 @@ class Callbacks
 
     getBundles(url, info, sessionID)
     {
-        const local = (https_f.server.ip === "127.0.0.1" || https_f.server.ip === "localhost");
+        const local = (https_f.config.ip === "127.0.0.1" || https_f.config.ip === "localhost");
         return https_f.response.noBody(bundles_f.controller.getBundles(local));
     }
 

@@ -49,10 +49,10 @@ class Callbacks
             "activeProfileId": `pmc${sessionID}`,
             "nickname": "user",
             "backend": {
-                "Trading": https_f.server.backendUrl,
-                "Messaging": https_f.server.backendUrl,
-                "Main": https_f.server.backendUrl,
-                "RagFair": https_f.server.backendUrl
+                "Trading": https_f.config.backendUrl,
+                "Messaging": https_f.config.backendUrl,
+                "Main": https_f.config.backendUrl,
+                "RagFair": https_f.config.backendUrl
             },
             "totalInGame": 1
         });
@@ -82,8 +82,8 @@ class Callbacks
     {
         return https_f.response.getBody([
             {
-                "ip": https_f.server.ip,
-                "port": https_f.server.port
+                "ip": https_f.config.ip,
+                "port": https_f.config.port
             }
         ]);
     }
