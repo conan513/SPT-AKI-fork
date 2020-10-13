@@ -75,7 +75,7 @@ class Controller
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = common_f.time.getTimestamp();
         pmcData.Health.UpdateTime = common_f.time.getTimestamp();
-        pmcData.Quests = quest_f.controller.getAllProfileQuests();
+        pmcData.Quests = [];
 
         // create profile
         save_f.server.profiles[sessionID] = {
