@@ -12,7 +12,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/game/bot/generate"] = this.generateBots.bind(this);
+        https_f.router.onStaticRoute["/client/game/bot/generate"] = this.generateBots.bind(this);
         https_f.router.dynamicRoutes["/singleplayer/settings/bot/limit/"] = this.getBotLimit.bind(this);
         https_f.router.dynamicRoutes["/singleplayer/settings/bot/difficulty/"] = this.getBotDifficulty.bind(this);
     }

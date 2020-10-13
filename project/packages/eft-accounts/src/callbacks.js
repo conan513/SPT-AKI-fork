@@ -13,13 +13,13 @@ class Callbacks
     constructor()
     {
         // TODO: REFACTOR THIS
-        https_f.router.staticRoutes["/launcher/server/connect"] = this.connect.bind(this);
-        https_f.router.staticRoutes["/launcher/profile/login"] = this.login.bind(this);
-        https_f.router.staticRoutes["/launcher/profile/register"] = this.register.bind(this);
-        https_f.router.staticRoutes["/launcher/profile/get"] = this.get.bind(this);
-        https_f.router.staticRoutes["/launcher/profile/change/email"] = this.changeEmail.bind(this);
-        https_f.router.staticRoutes["/launcher/profile/change/password"] = this.changePassword.bind(this);
-        https_f.router.staticRoutes["/launcher/profile/change/wipe"] = this.wipe.bind(this);
+        https_f.router.onStaticRoute["/launcher/server/connect"] = this.connect.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/login"] = this.login.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/register"] = this.register.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/get"] = this.get.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/change/email"] = this.changeEmail.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/change/password"] = this.changePassword.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/change/wipe"] = this.wipe.bind(this);
     }
 
     load()

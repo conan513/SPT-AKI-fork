@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/game/keepalive"] = this.execute.bind(this);
+        https_f.router.onStaticRoute["/client/game/keepalive"] = this.execute.bind(this);
     }
 
     execute(url, info, sessionID)
