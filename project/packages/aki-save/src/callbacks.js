@@ -13,7 +13,7 @@ class Callbacks
     constructor()
     {
         https_f.server.onStart["loadSavehandler"] = this.load.bind(this);
-        https_f.server.receiveCallback["SAVE"] = this.save.bind(this);
+        https_f.server.onReceive["SAVE"] = this.save.bind(this);
     }
 
     load()
