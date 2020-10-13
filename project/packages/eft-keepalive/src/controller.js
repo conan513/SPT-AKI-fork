@@ -12,16 +12,16 @@ class Controller
 {
     constructor()
     {
-        this.onExec = {};
+        this.onExecute = {};
     }
 
     execute(sessionID)
     {
         if (!account_f.controller.isWiped(sessionID))
         {
-            for (const callback in this.onExec)
+            for (const callback in this.onExecute)
             {
-                this.onExec[callback](sessionID);
+                this.onExecute[callback](sessionID);
             }
         }
     }
