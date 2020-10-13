@@ -73,34 +73,36 @@ class Controller
         {
             const completedQuestCondition = q.conditions.AvailableForStart.find(c => c._parent === "Quest" && c._props.target === completedQuestId);
 
-            if (completedQuestCondition && completedQuestCondition._props.status[0] === 4)
+            if (!completedQuestCondition)
             {
-                const otherQuestConditions = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4);
+                return false;
+            }
+            switch (completedQuestCondition._props.status[0])
+            {
+                case 2:
+                    const profileQuest = profile.Quests.find(pq => pq.qid === completedQuestId);
 
-                for (const condition of otherQuestConditions)
-                {
-                    const profileQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
-
-                    if (!profileQuest || profileQuest.status !== "Success")
+                    if (!profileQuest || !(profileQuest.status === "Started" || profileQuest.status === "AvailableForFinish"))
                     {
                         return false;
                     }
-                }
+                    return true;
+                case 4:
+                    const otherQuestConditions = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4);
 
-                return true;
-            }
-            else if (completedQuestCondition && completedQuestCondition._props.status[0] === 2)
-            {
-                const profileQuest = profile.Quests.find(pq => pq.qid === completedQuestId);
+                    for (const condition of otherQuestConditions)
+                    {
+                        const profileQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
 
-                if (!profileQuest || !(profileQuest.status === "Started" || profileQuest.status === "AvailableForFinish"))
-                {
+                        if (!profileQuest || profileQuest.status !== "Success")
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                default:
                     return false;
-                }
-                return true;
             }
-
-            return false;
         });
 
         quests = helpfunc_f.helpFunctions.clone(quests);
