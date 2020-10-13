@@ -32,7 +32,6 @@ class Controller
         trader.loyalty.currentStanding = pmcData.TraderStandings[traderID].currentStanding.toFixed(3);
         trader.loyalty.currentSalesSum = pmcData.TraderStandings[traderID].currentSalesSum;
         trader.working = pmcData.TraderStandings[traderID].working;
-        trader.display = pmcData.TraderStandings[traderID].display;
 
         return trader;
     }
