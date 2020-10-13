@@ -37,6 +37,12 @@ class Controller
                 // then this quest should not be visible
                 const previousQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
 
+                if (previousQuest && condition._props.status[0] === 2 && previousQuest.status === "Success")
+                {
+                    isVisible = false;
+                    break;
+                }
+
                 if (!previousQuest || previousQuest.status !== "Success")
                 {
                     isVisible = false;
