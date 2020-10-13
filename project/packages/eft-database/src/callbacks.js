@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.onStart["loadDatabase"] = this.load.bind(this);
+        core_f.packager.onLoad["loadDatabase"] = this.load.bind(this);
         https_f.server.onRespond["IMAGE"] = this.sendImage.bind(this);
         https_f.router.onStaticRoute["/client/globals"] = this.getGlobals.bind(this);
         https_f.router.onStaticRoute["/client/items"] = this.getTemplateItems.bind(this);

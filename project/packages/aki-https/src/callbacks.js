@@ -4,7 +4,6 @@
  * website: https://www.guilded.gg/senkospub
  * authors:
  * - Senko-san (Merijn Hendriks)
- * - PoloYolo
  */
 
 "use strict";
@@ -13,12 +12,12 @@ class Callbacks
 {
     constructor()
     {
-        core_f.packager.onLoad["loadPresets"] = this.load.bind(this);
+        core_f.packager.onLoad["aki-https"] = this.load.bind(this);
     }
 
     load()
     {
-        preset_f.controller.initialize();
+        https_f.server.load();
     }
 }
 

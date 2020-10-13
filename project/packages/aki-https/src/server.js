@@ -19,7 +19,6 @@ class Server
     constructor()
     {
         this.buffers = {};
-        this.onStart = {};
         this.onReceive = {};
         this.onRespond = {};
         this.name = "Local SPT-AKI Server";
@@ -32,8 +31,6 @@ class Server
             png: "image/png",
             json: "application/json"
         };
-
-        this.onRespond["DONE"] = this.killResponse.bind(this);
     }
 
     getCookies(req)
@@ -151,11 +148,6 @@ class Server
         });
     }
 
-    killResponse()
-    {
-        return;
-    }
-
     sendResponse(sessionID, req, resp, body)
     {
         // get response
@@ -242,16 +234,8 @@ class Server
         }
     }
 
-    start()
+    load()
     {
-        // execute start callback
-        common_f.logger.logWarning("Server: executing startup callbacks...");
-
-        for (let type in this.onStart)
-        {
-            this.onStart[type]();
-        }
-
         /* create server */
         let httpsServer = https.createServer(this.generateCertificate(), (req, res) =>
         {
