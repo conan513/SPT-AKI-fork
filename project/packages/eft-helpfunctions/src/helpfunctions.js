@@ -330,7 +330,7 @@ class HelpFunctions
                 {
                     if (!this.isMoneyTpl(item._tpl))
                     {
-                        output = inventory_f.controller.removeItem(pmcData, item._id, output, sessionID);
+                        output = item_f.controller.removeItem(pmcData, item._id, output, sessionID);
                         body.scheme_items[index].count = 0;
                     }
                     else
@@ -376,7 +376,7 @@ class HelpFunctions
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = inventory_f.controller.removeItem(pmcData, moneyItem._id, output, sessionID);
+                output = item_f.controller.removeItem(pmcData, moneyItem._id, output, sessionID);
             }
             else
             {
@@ -514,7 +514,7 @@ class HelpFunctions
                 "tid": body.tid
             };
 
-            output = inventory_f.controller.addItem(pmcData, request, output, sessionID, null, false);
+            output = item_f.controller.addItem(pmcData, request, output, sessionID, null, false);
         }
 
         // set current sale sum

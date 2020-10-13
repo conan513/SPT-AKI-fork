@@ -18,7 +18,6 @@
     "helpfunc_f": "packages/eft-helpfunctions/package.js",
     "quest_f": "packages/eft-quest/package.js",
     "note_f": "packages/eft-notes/package.js",
-    "inventory_f": "packages/eft-inventory/package.js",
     "wishList_f": "packages/eft-wishlist/package.js",
     "trade_f": "packages/eft-trade/package.js",
     "customization_f": "packages/eft-customization/package.js",

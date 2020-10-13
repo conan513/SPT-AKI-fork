@@ -579,7 +579,7 @@ class Controller
             }
 
             // in case people want all items to be marked as found in raid
-            if (inventory_f.config.newItemsMarkedFound)
+            if (item_f.config.newItemsMarkedFound)
             {
                 foundInRaid = true;
             }
