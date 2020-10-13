@@ -24,6 +24,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind(this);
         https_f.router.onStaticRoute["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
         https_f.router.onStaticRoute["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
+        keepalive_f.controller.onExecute["dialogue"] = this.onUpdate.bind(this);
     }
 
     getFriendList(url, info, sessionID)
@@ -105,6 +106,11 @@ class Callbacks
     listInbox(url, info, sessionID)
     {
         return https_f.response.emptyArrayResponse();
+    }
+
+    onUpdate(sessionID)
+    {
+        dialogue_f.controller.removeExpiredItems(sessionID);
     }
 }
 

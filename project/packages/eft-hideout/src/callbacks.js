@@ -21,6 +21,7 @@ class Callbacks
         item_f.eventHandler.onEvent["HideoutScavCaseProductionStart"] = this.scavCaseProductionStart.bind(this);
         item_f.eventHandler.onEvent["HideoutContinuousProductionStart"] = this.continuousProductionStart.bind(this);
         item_f.eventHandler.onEvent["HideoutTakeProduction"] = this.takeProduction.bind(this);
+        keepalive_f.controller.onExecute["hideout"] = this.onUpdate.bind(this);
     }
 
     upgrade(pmcData, body, sessionID)
@@ -66,6 +67,11 @@ class Callbacks
     takeProduction(pmcData, body, sessionID)
     {
         return hideout_f.controller.takeProduction(pmcData, body, sessionID);
+    }
+
+    onUpdate(sessionID)
+    {
+        hideout_f.controller.updatePlayerHideout(sessionID);
     }
 }
 

@@ -160,9 +160,9 @@ class Server
         }
 
         // execute data received callback
-        for (let type in this.onReceive)
+        for (const callback in this.onReceive)
         {
-            this.onReceive[type](sessionID, req, resp, info, output);
+            this.onReceive[callback](sessionID, req, resp, info, output);
         }
 
         // send response

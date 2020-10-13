@@ -87,7 +87,7 @@ class Controller
         database_f.server.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
-    updateTraders()
+    updateTraders(sessionID)
     {
         const time = Math.floor(Date.now() / 1000);
         const update = trader_f.config.updateTime;
