@@ -11,7 +11,7 @@ class EventHandler
     constructor()
     {
         this.output = "";
-        this.routes = {};
+        this.onEvent = {};
 
         this.resetOutput();
     }
@@ -24,9 +24,9 @@ class EventHandler
         {
             const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
-            if (body.Action in this.routes)
+            if (body.Action in this.onEvent)
             {
-                result = this.routes[body.Action](pmcData, body, sessionID);
+                result = this.onEvent[body.Action](pmcData, body, sessionID);
             }
             else
             {
