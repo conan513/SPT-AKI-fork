@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.startCallback["loadRagfair"] = this.load.bind(this);
+        https_f.server.onStart["loadRagfair"] = this.load.bind(this);
         https_f.router.staticRoutes["/client/ragfair/search"] = this.search.bind(this);
         https_f.router.staticRoutes["/client/ragfair/find"] = this.search.bind(this);
         https_f.router.staticRoutes["/client/ragfair/itemMarketPrice"] = this.itemMarketPrice.bind(this);

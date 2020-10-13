@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.startCallback["loadBundles"] = this.load.bind(this);
+        https_f.server.onStart["loadBundles"] = this.load.bind(this);
         https_f.server.respondCallback["BUNDLE"] = this.sendBundle.bind(this);
         https_f.router.staticRoutes["/singleplayer/bundles"] = this.getBundles.bind(this);
         https_f.router.dynamicRoutes[".bundle"] = this.getBundle.bind(this);

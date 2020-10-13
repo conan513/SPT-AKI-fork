@@ -12,7 +12,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.startCallback["loadLocations"] = this.load.bind(this);
+        https_f.server.onStart["loadLocations"] = this.load.bind(this);
         https_f.router.staticRoutes["/client/locations"] = this.getLocationData.bind(this);
         https_f.router.dynamicRoutes["/api/location"] = this.getLocation.bind(this);
     }

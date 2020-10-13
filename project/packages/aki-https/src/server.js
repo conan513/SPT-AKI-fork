@@ -19,7 +19,7 @@ class Server
     constructor()
     {
         this.buffers = {};
-        this.startCallback = {};
+        this.onStart = {};
         this.receiveCallback = {};
         this.respondCallback = {};
         this.name = "Local SPT-AKI Server";
@@ -247,9 +247,9 @@ class Server
         // execute start callback
         common_f.logger.logWarning("Server: executing startup callbacks...");
 
-        for (let type in this.startCallback)
+        for (let type in this.onStart)
         {
-            this.startCallback[type]();
+            this.onStart[type]();
         }
 
         /* create server */
