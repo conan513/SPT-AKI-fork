@@ -80,7 +80,7 @@ class Packager
         if (!fs.existsSync(this.modpath))
         {
             // no mods folder found
-            fs.mkdirSync(this.modpath);
+            fs.mkdirSync(this.modpath, { "recursive": true });
             return true;
         }
 
