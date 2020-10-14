@@ -14,29 +14,34 @@ class Packager
 {
     constructor()
     {
-        this.modpath = "mods/";
+        this.modpath = "user/mods/";
         this.mods = [];
         this.onLoad = {};
     }
 
+    getModPath(mod)
+    {
+        return `${this.modpath}${mod}/`;
+    }
+
     loadMod(mod)
     {
-        const config = JSON.parse(fs.readFileSync(`${this.modpath}${mod}/package.json`));
+        const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
         this.mods[mod] = config;
-        this.src[mod] = `${this.modpath}${mod}/${config.main}`;
+        this.src[mod] = `${this.getModPath(mod)}/${config.main}`;
     }
 
     validMod(mod)
     {
         // check if config exists
-        if (!fs.existsSync(`${this.modpath}${mod}/package.json`))
+        if (!fs.existsSync(`${this.getModPath(mod)}/package.json`))
         {
             console.log(`Mod ${mod} is missing package.json`);
             return false;
         }
 
         // validate mod
-        const config = JSON.parse(fs.readFileSync(`${this.modpath}${mod}/package.json`));
+        const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
         const checks = ["name", "author", "version", "license", "main"];
         let issue = false;
 
@@ -49,7 +54,7 @@ class Packager
             }
         }
 
-        if (!fs.existsSync(`${this.modpath}${mod}/${config.main}`))
+        if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
         {
             console.log(`Mod ${mod} package.json main points to non-existing file`);
             issue = true;
@@ -80,9 +85,9 @@ class Packager
         }
 
         // get mods
-        const mods = fs.readdirSync(this.modpath).filter((file) =>
+        const mods = fs.readdirSync(this.modpath).filter((mod) =>
         {
-            return fs.statSync(`${this.modpath}/${file}`).isDirectory();
+            return fs.statSync(`${this.getModPath(mod)}`).isDirectory();
         });
 
         // add mods to load
