@@ -144,7 +144,7 @@ class Controller
         this.saveEffects(pmcData, sessionID);
         this.resetVitality(sessionID);
 
-        pmcData.Health.UpdateTime = Math.round(Date.now() / 1000);
+        pmcData.Health.UpdateTime = common_f.time.getTimestamp();
     }
 
     /* stores the player health changes */
