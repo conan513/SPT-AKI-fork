@@ -90,7 +90,7 @@ class Controller
         let ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
         if (ctime > 0)
         {
-            let timestamp = Math.floor(Date.now() / 1000);
+            let timestamp = common_f.time.getTimestamp();
 
             hideoutArea.completeTime = timestamp + ctime;
             hideoutArea.constructing = true;
@@ -368,7 +368,7 @@ class Controller
             "RecipeId": body.recipeId,
             "Products": [],
             "SkipTime": 0,
-            "StartTime": Math.floor(Date.now() / 1000)
+            "StartTime": common_f.time.getTimestamp()
         };
 
         return output;
@@ -503,7 +503,7 @@ class Controller
             "RecipeId": body.recipeId,
             "Products": [],
             "SkipTime": 0,
-            "StartTime": Math.floor(Date.now() / 1000)
+            "StartTime": common_f.time.getTimestamp()
         };
     }
 
@@ -628,7 +628,7 @@ class Controller
 
             if (prod == areaTypes.SCAV_CASE)
             {
-                const time_elapsed = (Math.floor(Date.now() / 1000) - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                const time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
                 pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 continue;
             }
@@ -646,7 +646,7 @@ class Controller
                 continue;
             }
 
-            let time_elapsed = (Math.floor(Date.now() / 1000) - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+            let time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
             if (recipe.continuous && !isGeneratorOn)
             {
                 time_elapsed = time_elapsed * 0.2;
@@ -762,7 +762,7 @@ class Controller
 
     updateBitcoinFarm(btcProd, btcFarmCGs, isGeneratorOn)
     {
-        const time_elapsed = (Math.floor(Date.now() / 1000)) - btcProd.StartTime;
+        const time_elapsed = common_f.time.getTimestamp() - btcProd.StartTime;
 
         if (isGeneratorOn)
         {
@@ -791,7 +791,7 @@ class Controller
             }
         }
 
-        btcProd.StartTime = (Math.floor(Date.now() / 1000));
+        btcProd.StartTime = common_f.time.getTimestamp();
         return btcProd;
     }
 }

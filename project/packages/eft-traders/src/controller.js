@@ -89,7 +89,7 @@ class Controller
 
     updateTraders(sessionID)
     {
-        const time = Math.floor(Date.now() / 1000);
+        const time = common_f.time.getTimestamp();
         const update = trader_f.config.updateTime;
 
         for (const traderID in database_f.server.tables.traders)
