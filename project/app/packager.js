@@ -66,7 +66,7 @@ class Packager
             issue = true;
         }
 
-        if (config.main.split('.').pop() !== "js")
+        if (config.main.split(".").pop() !== "js")
         {
             console.log(`Mod ${mod} package.json main must be a .js file`);
             issue = true;
@@ -101,11 +101,8 @@ class Packager
     // load classes
     loadCode()
     {
-        console.log(this.src);
-
         for (let name in this.src)
         {
-            console.log(`../${this.src[name]}`);
             global[name] = require(`../${this.src[name]}`);
         }
     }

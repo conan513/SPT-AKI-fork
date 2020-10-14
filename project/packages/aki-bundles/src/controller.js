@@ -63,7 +63,7 @@ class Controller
 
         for (const bundle in this.bundles)
         {
-            result.push(getBundle(bundle, local))
+            result.push(getBundle(bundle, local));
         }
 
         return result;
