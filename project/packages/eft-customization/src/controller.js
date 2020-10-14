@@ -31,7 +31,7 @@ class Controller
             }
         }
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     getTraderSuits(traderID, sessionID)
@@ -77,7 +77,7 @@ class Controller
 
     buyClothing(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
 
         // find suit offer
         const offers = this.getAllTraderSuits(sessionID);

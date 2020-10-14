@@ -282,7 +282,7 @@ class Controller
             };
         }
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
-        let acceptQuestResponse = item_f.router.getOutput();
+        let acceptQuestResponse = item_f.eventHandler.getOutput();
         acceptQuestResponse.quests = this.getNextQuests(body.qid, sessionID);
         return acceptQuestResponse;
     }
@@ -420,7 +420,7 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
-        let completeQuestResponse = item_f.router.getOutput();
+        let completeQuestResponse = item_f.eventHandler.getOutput();
         completeQuestResponse.quests = this.getNextQuests(body.qid, sessionID);
         return completeQuestResponse;
     }
@@ -440,13 +440,13 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     handoverQuest(pmcData, body, sessionID)
     {
         const quest = this.getCachedQuest(body.qid);
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let types = ["HandoverItem", "WeaponAssembly"];
         let handoverMode = true;
         let value = 0;

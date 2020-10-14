@@ -66,7 +66,7 @@ class Controller
     * */
     moveItem(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let items = this.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
@@ -224,7 +224,7 @@ class Controller
     discardItem(pmcData, body, sessionID)
     {
         insurance_f.controller.remove(pmcData, body.item, sessionID);
-        return this.removeItem(pmcData, body.item, item_f.router.getOutput(), sessionID);
+        return this.removeItem(pmcData, body.item, item_f.eventHandler.getOutput(), sessionID);
     }
 
     /* Split Item
@@ -232,7 +232,7 @@ class Controller
     * */
     splitItem(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let location = body.container.location;
 
         let items = this.getOwnerInventoryItems(body, sessionID);
@@ -292,7 +292,7 @@ class Controller
     * */
     mergeItem(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let items = this.getOwnerInventoryItems(body, sessionID);
 
         for (let key in items.to)
@@ -347,7 +347,7 @@ class Controller
     * */
     transferItem(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let itemFrom = null;
         let itemTo = null;
 
@@ -413,7 +413,7 @@ class Controller
     * */
     swapItem(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
 
         for (let iterItem of pmcData.Inventory.items)
         {
@@ -719,7 +719,7 @@ class Controller
             if (item._id && item._id === body.item)
             {
                 item.upd.Foldable = {"Folded": body.value};
-                return item_f.router.getOutput();
+                return item_f.eventHandler.getOutput();
             }
         }
 
@@ -733,7 +733,7 @@ class Controller
             if (item._id && item._id === body.item)
             {
                 item.upd.Togglable = {"On": body.value};
-                return item_f.router.getOutput();
+                return item_f.eventHandler.getOutput();
             }
         }
 
@@ -766,7 +766,7 @@ class Controller
                     Object.assign(item, myobject);
                 }
 
-                return item_f.router.getOutput();
+                return item_f.eventHandler.getOutput();
             }
         }
 
@@ -784,7 +784,7 @@ class Controller
         }
 
         pmcData.Inventory.fastPanel[body.index] = body.item;
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     examineItem(pmcData, body, sessionID)
@@ -865,7 +865,7 @@ class Controller
             pmcData.Encyclopedia[itemID] = true;
         }
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     readEncyclopedia(pmcData, body, sessionID)
@@ -875,7 +875,7 @@ class Controller
             pmcData.Encyclopedia[id] = true;
         }
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 }
 

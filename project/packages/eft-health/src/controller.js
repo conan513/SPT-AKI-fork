@@ -44,7 +44,7 @@ class Controller
 
     offraidHeal(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
 
         // update medkit used (hpresource)
         for (let item of pmcData.Inventory.items)
@@ -78,7 +78,7 @@ class Controller
 
     offraidEat(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let resourceLeft;
         let maxResource = {};
 
@@ -214,7 +214,7 @@ class Controller
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
 
         this.saveVitality(pmcData, healthInfo, sessionID);
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     addEffect(pmcData, sessionID, info)

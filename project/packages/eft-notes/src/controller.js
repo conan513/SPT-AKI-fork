@@ -18,7 +18,7 @@ class Controller
             "Text": body.note.Text
         });
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     editNote(pmcData, body, sessionID)
@@ -28,13 +28,13 @@ class Controller
             "Text": body.note.Text
         };
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     deleteNote(pmcData, body, sessionID)
     {
         pmcData.Notes.Notes.splice(body.index, 1);
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 }
 

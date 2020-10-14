@@ -315,7 +315,7 @@ class HelpFunctions
     * */
     payMoney(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let currencyTpl = this.getCurrency(trader.currency);
 
