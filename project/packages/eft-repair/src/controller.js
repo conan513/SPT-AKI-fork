@@ -12,7 +12,7 @@ class Controller
 {
     repair(pmcData, body, sessionID)
     {
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 

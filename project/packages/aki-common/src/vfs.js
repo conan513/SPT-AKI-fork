@@ -35,11 +35,8 @@ class VFS
             this.createDir(filepath);
         }
 
-        const options = (append) ? { "flags": "a" } : { "flags": "w" };
-        const stream = fs.createWriteStream(filepath, options);
-
-        stream.write(data);
-        stream.close();
+        const options = (append) ? { "flag": "a" } : { "flag": "w" };
+        fs.writeFileSync(filepath, data, options);
     }
 
     removeFile(filepath)
