@@ -12,23 +12,23 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/raid/profile/list"] = this.getProfile.bind(this);
-        https_f.router.staticRoutes["/client/match/available"] = this.serverAvailable.bind(this);
-        https_f.router.staticRoutes["/client/match/updatePing"] = this.updatePing.bind(this);
-        https_f.router.staticRoutes["/client/match/join"] = this.joinMatch.bind(this);
-        https_f.router.staticRoutes["/client/match/exit"] = this.exitMatch.bind(this);
-        https_f.router.staticRoutes["/client/match/group/create"] = this.createGroup.bind(this);
-        https_f.router.staticRoutes["/client/match/group/delete"] = this.deleteGroup.bind(this);
-        https_f.router.staticRoutes["/client/match/group/status"] = this.getGroupStatus.bind(this);
-        https_f.router.staticRoutes["/client/match/group/start_game"] = this.joinMatch.bind(this);
-        https_f.router.staticRoutes["/client/match/group/exit_from_menu"] = this.exitToMenu.bind(this);
-        https_f.router.staticRoutes["/client/match/group/looking/start"] = this.startGroupSearch.bind(this);
-        https_f.router.staticRoutes["/client/match/group/looking/stop"] = this.stopGroupSearch.bind(this);
-        https_f.router.staticRoutes["/client/match/group/invite/send"] = this.sendGroupInvite.bind(this);
-        https_f.router.staticRoutes["/client/match/group/invite/accept"] = this.acceptGroupInvite.bind(this);
-        https_f.router.staticRoutes["/client/match/group/invite/cancel"] = this.cancelGroupInvite.bind(this);
-        https_f.router.staticRoutes["/client/putMetrics"] = this.putMetrics.bind(this);
-        https_f.router.staticRoutes["/client/getMetricsConfig"] = this.getMetrics.bind(this);
+        https_f.router.onStaticRoute["/raid/profile/list"] = this.getProfile.bind(this);
+        https_f.router.onStaticRoute["/client/match/available"] = this.serverAvailable.bind(this);
+        https_f.router.onStaticRoute["/client/match/updatePing"] = this.updatePing.bind(this);
+        https_f.router.onStaticRoute["/client/match/join"] = this.joinMatch.bind(this);
+        https_f.router.onStaticRoute["/client/match/exit"] = this.exitMatch.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/create"] = this.createGroup.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/delete"] = this.deleteGroup.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/status"] = this.getGroupStatus.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/start_game"] = this.joinMatch.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/exit_from_menu"] = this.exitToMenu.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/looking/start"] = this.startGroupSearch.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/looking/stop"] = this.stopGroupSearch.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/invite/send"] = this.sendGroupInvite.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/invite/accept"] = this.acceptGroupInvite.bind(this);
+        https_f.router.onStaticRoute["/client/match/group/invite/cancel"] = this.cancelGroupInvite.bind(this);
+        https_f.router.onStaticRoute["/client/putMetrics"] = this.putMetrics.bind(this);
+        https_f.router.onStaticRoute["/client/getMetricsConfig"] = this.getMetrics.bind(this);
     }
 
     updatePing(url, info, sessionID)

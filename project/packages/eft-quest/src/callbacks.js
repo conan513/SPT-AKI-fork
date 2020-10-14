@@ -13,10 +13,10 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/quest/list"] = this.listQuests.bind(this);
-        item_f.router.routes["QuestAccept"] = this.acceptQuest.bind(this);
-        item_f.router.routes["QuestComplete"] = this.completeQuest.bind(this);
-        item_f.router.routes["QuestHandover"] = this.handoverQuest.bind(this);
+        https_f.router.onStaticRoute["/client/quest/list"] = this.listQuests.bind(this);
+        item_f.eventHandler.onEvent["QuestAccept"] = this.acceptQuest.bind(this);
+        item_f.eventHandler.onEvent["QuestComplete"] = this.completeQuest.bind(this);
+        item_f.eventHandler.onEvent["QuestHandover"] = this.handoverQuest.bind(this);
     }
 
     acceptQuest(pmcData, body, sessionID)

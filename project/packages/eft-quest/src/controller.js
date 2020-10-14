@@ -21,7 +21,10 @@ class Controller
 
         for (let quest of database_f.server.tables.templates.quests)
         {
-            const questConditions = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+            const questConditions = quest.conditions.AvailableForStart.filter((q) =>
+            {
+                return q._parent === "Quest";
+            });
 
             // If the quest has no quest conditions then add to visible quest list
             if (questConditions.length === 0)
@@ -31,33 +34,44 @@ class Controller
             }
 
             let isVisible = true;
+
             for (const condition of questConditions)
             {
                 // Check each quest condition, if any are not completed
                 // then this quest should not be visible
-                const previousQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
-                const currentQuest = profile.Quests.find(pq => pq.qid === quest._id);
+                const previousQuest = profile.Quests.find((pq) =>
+                {
+                    return pq.qid === condition._props.target;
+                });
+                const currentQuest = profile.Quests.find((pq) =>
+                {
+                    return pq.qid === quest._id;
+                });
 
                 if (!currentQuest)
                 {
-                if (previousQuest && condition._props.status[0] === 2 && previousQuest.status !== "Started")
-                {
-                    isVisible = false;
-                    break;
-                }
+                    if (previousQuest && condition._props.status[0] === 2 && previousQuest.status !== "Started")
+                    {
+                        isVisible = false;
+                        break;
+                    }
 
-                if (!previousQuest || (condition._props.status[0] === 4 && previousQuest.status !== "Success"))
-                {
-                    isVisible = false;
-                    break;
-                }
+                    if (!previousQuest || (condition._props.status[0] === 4 && previousQuest.status !== "Success"))
+                    {
+                        isVisible = false;
+                        break;
+                    }
                 }
             }
 
             if (isVisible)
             {
                 quest = helpfunc_f.helpFunctions.clone(quest);
-                quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
+                quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter((q) =>
+                {
+                    return q._parent === "Level";
+                });
+
                 quests.push(quest);
             }
         }
@@ -71,44 +85,69 @@ class Controller
 
         let quests = database_f.server.tables.templates.quests.filter((q) =>
         {
-            const completedQuestCondition = q.conditions.AvailableForStart.find(c => c._parent === "Quest" && c._props.target === completedQuestId);
+            const completedQuestCondition = q.conditions.AvailableForStart.find((c) =>
+            {
+                return c._parent === "Quest" && c._props.target === completedQuestId;
+            });
 
             if (!completedQuestCondition)
             {
                 return false;
             }
+
             switch (completedQuestCondition._props.status[0])
             {
                 case 2:
-                    const profileQuest = profile.Quests.find(pq => pq.qid === completedQuestId);
+                {
+                    const profileQuest = profile.Quests.find((pq) =>
+                    {
+                        pq.qid === completedQuestId;
+                    });
 
                     if (!profileQuest || !(profileQuest.status === "Started" || profileQuest.status === "AvailableForFinish"))
                     {
                         return false;
                     }
+
                     return true;
+                }
+
                 case 4:
-                    const otherQuestConditions = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4);
+                {
+                    const otherQuestConditions = q.conditions.AvailableForStart.filter((c) =>
+                    {
+                        return c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4;
+                    });
 
                     for (const condition of otherQuestConditions)
                     {
-                        const profileQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
+                        const profileQuest = profile.Quests.find((pq) =>
+                        {
+                            return pq.qid === condition._props.target;
+                        });
 
                         if (!profileQuest || profileQuest.status !== "Success")
                         {
                             return false;
                         }
                     }
+
                     return true;
+                }
+
                 default:
                     return false;
             }
         });
 
         quests = helpfunc_f.helpFunctions.clone(quests);
+
         for (let quest of quests)
         {
-            quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
+            quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter((q) =>
+            {
+                return q._parent === "Level";
+            });
         }
 
         return quests;
@@ -335,17 +374,25 @@ class Controller
         let state = "Success";
 
         //Check if any of linked quest is failed, and that is unrestartable.
-        let checkQuest = database_f.server.tables.templates.quests.filter(q => q.conditions.Fail.length > 0 && q.conditions.Fail[0]._props.target === body.qid);
+        let checkQuest = database_f.server.tables.templates.quests.filter((q) =>
+        {
+            return q.conditions.Fail.length > 0 && q.conditions.Fail[0]._props.target === body.qid;
+        });
+
         if (checkQuest.length > 0)
         {
             for (let checkFail of checkQuest)
             {
                 if (checkFail.conditions.Fail[0]._props.status[0] === 4)
                 {
-                    const checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
+                    const checkQuestId = pmcData.Quests.find((qq) =>
+                    {
+                        return qq.qid === checkFail._id;
+                    });
+
                     if (checkQuestId)
                     {
-                        let failBody = {"Action":"QuestComplete","qid":checkFail._id,"removeExcessItems":true};
+                        let failBody = {"Action":"QuestComplete", "qid":checkFail._id, "removeExcessItems":true};
                         this.failQuest(pmcData, failBody, sessionID);
                     }
                     else

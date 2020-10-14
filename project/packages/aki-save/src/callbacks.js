@@ -12,21 +12,21 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.startCallback["loadSavehandler"] = this.load.bind(this);
-        https_f.server.receiveCallback["SAVE"] = this.save.bind(this);
+        core_f.packager.onLoad["loadSavehandler"] = this.load.bind(this);
+        https_f.server.onReceive["SAVE"] = this.save.bind(this);
     }
 
     load()
     {
-        save_f.server.onLoad();
-        save_f.controller.initialize();
+        save_f.server.load();
+        save_f.controller.load();
     }
 
     save(sessionID, req, resp, body, output)
     {
         if (save_f.config.saveOnReceive)
         {
-            save_f.controller.onSave();
+            save_f.controller.save();
         }
     }
 }

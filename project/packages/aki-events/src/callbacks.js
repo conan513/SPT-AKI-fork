@@ -12,7 +12,7 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["events"] = this.onLoad.bind(this);
+        save_f.server.onLoad["events"] = this.onLoad.bind(this);
     }
 
     onLoad(sessionID)

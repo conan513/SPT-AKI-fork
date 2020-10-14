@@ -12,12 +12,12 @@ class Callbacks
 {
     constructor()
     {
-        save_f.server.onLoadCallback["health"] = this.onLoad.bind(this);
-        https_f.router.staticRoutes["/player/health/sync"] = this.syncHealth.bind(this);
-        https_f.router.staticRoutes["/player/health/events"] = this.updateHealth.bind(this);
-        item_f.router.routes["Eat"] = this.offraidEat.bind(this);
-        item_f.router.routes["Heal"] = this.offraidHeal.bind(this);
-        item_f.router.routes["RestoreHealth"] = this.healthTreatment.bind(this);
+        save_f.server.onLoad["health"] = this.onLoad.bind(this);
+        https_f.router.onStaticRoute["/player/health/sync"] = this.syncHealth.bind(this);
+        https_f.router.onStaticRoute["/player/health/events"] = this.updateHealth.bind(this);
+        item_f.eventHandler.onEvent["Eat"] = this.offraidEat.bind(this);
+        item_f.eventHandler.onEvent["Heal"] = this.offraidHeal.bind(this);
+        item_f.eventHandler.onEvent["RestoreHealth"] = this.healthTreatment.bind(this);
     }
 
     onLoad(sessionID)

@@ -11,7 +11,7 @@
 
 class Controller
 {
-    initialize()
+    load()
     {
         if (save_f.config.saveOnExit)
         {
@@ -39,7 +39,7 @@ class Controller
 
     onSave()
     {
-        save_f.server.onSave();
+        save_f.server.save();
         common_f.logger.logSuccess("Saved profiles");
     }
 }

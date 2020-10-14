@@ -1,4 +1,4 @@
-/* router.js
+/* events.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -6,17 +6,17 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-class Router
+class EventHandler
 {
     constructor()
     {
         this.output = "";
-        this.routes = {};
+        this.onEvent = {};
 
         this.resetOutput();
     }
 
-    handleRoutes(info, sessionID)
+    handleEvents(info, sessionID)
     {
         let result = "";
 
@@ -24,13 +24,13 @@ class Router
         {
             const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
-            if (body.Action in this.routes)
+            if (body.Action in this.onEvent)
             {
-                result = this.routes[body.Action](pmcData, body, sessionID);
+                result = this.onEvent[body.Action](pmcData, body, sessionID);
             }
             else
             {
-                common_f.logger.logError(`[UNHANDLED ACTION] ${body.Action}`);
+                common_f.logger.logError(`[UNHANDLED EVENT] ${body.Action}`);
             }
         }
 
@@ -70,4 +70,4 @@ class Router
     }
 }
 
-module.exports.Router = Router;
+module.exports.EventHandler = EventHandler;

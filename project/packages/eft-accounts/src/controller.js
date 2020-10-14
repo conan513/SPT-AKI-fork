@@ -67,8 +67,8 @@ class Controller
             }
         };
 
-        save_f.server.onLoadProfile(sessionID);
-        save_f.server.onSaveProfile(sessionID);
+        save_f.server.loadProfile(sessionID);
+        save_f.server.saveProfile(sessionID);
         return sessionID;
     }
 
