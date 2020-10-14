@@ -12,10 +12,10 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/trading/customization/storage"] = this.getSuits.bind(this);
-        https_f.router.dynamicRoutes["/client/trading/customization/"] = this.getTraderSuits.bind(this);
-        item_f.router.routes["CustomizationWear"] = this.wearClothing.bind(this);
-        item_f.router.routes["CustomizationBuy"] = this.buyClothing.bind(this);
+        https_f.router.onStaticRoute["/client/trading/customization/storage"] = this.getSuits.bind(this);
+        https_f.router.onDynamicRoute["/client/trading/customization/"] = this.getTraderSuits.bind(this);
+        item_f.eventHandler.onEvent["CustomizationWear"] = this.wearClothing.bind(this);
+        item_f.eventHandler.onEvent["CustomizationBuy"] = this.buyClothing.bind(this);
     }
 
     getSuits(url, info, sessionID)

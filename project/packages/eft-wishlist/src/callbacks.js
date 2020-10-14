@@ -13,8 +13,8 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.routes["AddToWishList"] = this.addToWishlist.bind(this);
-        item_f.router.routes["RemoveFromWishList"] = this.removeFromWishlist.bind(this);
+        item_f.eventHandler.onEvent["AddToWishList"] = this.addToWishlist.bind(this);
+        item_f.eventHandler.onEvent["RemoveFromWishList"] = this.removeFromWishlist.bind(this);
     }
 
     addToWishlist(pmcData, body, sessionID)

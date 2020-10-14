@@ -17,7 +17,7 @@ class Controller
     {
         this.bundles = [];
         this.bundleBykey = {};
-        this.backendUrl = https_f.server.backendUrl;
+        this.backendUrl = https_f.config.backendUrl;
     }
 
     initialize(sessionID)

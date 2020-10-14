@@ -13,11 +13,11 @@ class Server
     constructor()
     {
         this.profiles = {};
-        this.onLoadCallback = {};
-        this.onSaveCallbacks = {};
+        this.onLoad = {};
+        this.onSave = {};
     }
 
-    onLoad()
+    load()
     {
         // get files to load
         if (!common_f.vfs.exists(save_f.config.filepath))
@@ -31,20 +31,20 @@ class Server
         for (let file of files)
         {
             file = file.split(".").slice(0, -1).join(".");
-            this.onLoadProfile(file);
+            this.loadProfile(file);
         }
     }
 
-    onSave()
+    save()
     {
         // load profiles
         for (const sessionID in this.profiles)
         {
-            this.onSaveProfile(sessionID);
+            this.saveProfile(sessionID);
         }
     }
 
-    onLoadProfile(sessionID)
+    loadProfile(sessionID)
     {
         const file = `${save_f.config.filepath}${sessionID}.json`;
 
@@ -55,20 +55,20 @@ class Server
         }
 
         // run callbacks
-        for (const callback in this.onLoadCallback)
+        for (const callback in this.onLoad)
         {
-            this.profiles[sessionID] = this.onLoadCallback[callback](sessionID);
+            this.profiles[sessionID] = this.onLoad[callback](sessionID);
         }
     }
 
-    onSaveProfile(sessionID)
+    saveProfile(sessionID)
     {
         const file = `${save_f.config.filepath}${sessionID}.json`;
 
         // run callbacks
-        for (const callback in this.onSaveCallbacks)
+        for (const callback in this.onSave)
         {
-            this.profiles[sessionID] = this.onSaveCallbacks[callback](sessionID);
+            this.profiles[sessionID] = this.onSave[callback](sessionID);
         }
 
         // save profile

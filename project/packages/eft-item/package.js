@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Router } = require("./src/router.js");
+const { EventHandler } = require("./src/events.js");
 const { Callbacks } = require("./src/callbacks.js");
 
-module.exports.router = new Router();
+module.exports.eventHandler = new EventHandler();
 module.exports.callbacks = new Callbacks();

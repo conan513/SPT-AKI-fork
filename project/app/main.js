@@ -14,4 +14,3 @@ require("selfsigned");
 process.stdout.setEncoding("utf8");
 
 require("./initializer.js");
-https_f.server.start();

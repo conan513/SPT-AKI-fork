@@ -13,21 +13,21 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.startCallback["loadDatabase"] = this.load.bind(this);
-        https_f.server.respondCallback["IMAGE"] = this.sendImage.bind(this);
-        https_f.router.staticRoutes["/client/globals"] = this.getGlobals.bind(this);
-        https_f.router.staticRoutes["/client/items"] = this.getTemplateItems.bind(this);
-        https_f.router.staticRoutes["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
-        https_f.router.staticRoutes["/client/customization"] = this.getTemplateSuits.bind(this);
-        https_f.router.staticRoutes["/client/hideout/production/recipes"] = this.gethideoutProduction.bind(this);
-        https_f.router.staticRoutes["/client/hideout/settings"] = this.getHideoutSettings.bind(this);
-        https_f.router.staticRoutes["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
-        https_f.router.staticRoutes["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind(this);
-        https_f.router.staticRoutes["/client/languages"] = this.getLocalesLanguages.bind(this);
-        https_f.router.dynamicRoutes["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
-        https_f.router.dynamicRoutes["/client/locale/"] = this.getLocalesGlobal.bind(this);
-        https_f.router.dynamicRoutes[".jpg"] = this.getImage.bind(this);
-        https_f.router.dynamicRoutes[".png"] = this.getImage.bind(this);
+        core_f.packager.onLoad["loadDatabase"] = this.load.bind(this);
+        https_f.server.onRespond["IMAGE"] = this.sendImage.bind(this);
+        https_f.router.onStaticRoute["/client/globals"] = this.getGlobals.bind(this);
+        https_f.router.onStaticRoute["/client/items"] = this.getTemplateItems.bind(this);
+        https_f.router.onStaticRoute["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
+        https_f.router.onStaticRoute["/client/customization"] = this.getTemplateSuits.bind(this);
+        https_f.router.onStaticRoute["/client/hideout/production/recipes"] = this.gethideoutProduction.bind(this);
+        https_f.router.onStaticRoute["/client/hideout/settings"] = this.getHideoutSettings.bind(this);
+        https_f.router.onStaticRoute["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
+        https_f.router.onStaticRoute["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind(this);
+        https_f.router.onStaticRoute["/client/languages"] = this.getLocalesLanguages.bind(this);
+        https_f.router.onDynamicRoute["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
+        https_f.router.onDynamicRoute["/client/locale/"] = this.getLocalesGlobal.bind(this);
+        https_f.router.onDynamicRoute[".jpg"] = this.getImage.bind(this);
+        https_f.router.onDynamicRoute[".png"] = this.getImage.bind(this);
     }
 
     loadRecursive(filepath)

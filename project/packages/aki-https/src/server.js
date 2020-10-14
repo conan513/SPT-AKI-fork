@@ -19,21 +19,14 @@ class Server
     constructor()
     {
         this.buffers = {};
-        this.startCallback = {};
-        this.receiveCallback = {};
-        this.respondCallback = {};
-        this.name = "Local SPT-AKI Server";
-        this.ip = "127.0.0.1";
-        this.port = 443;
-        this.backendUrl = `https://${this.ip}:${this.port}`;
+        this.onReceive = {};
+        this.onRespond = {};
         this.mime = {
             txt: "text/plain",
             jpg: "image/jpeg",
             png: "image/png",
             json: "application/json"
         };
-
-        this.respondCallback["DONE"] = this.killResponse.bind(this);
     }
 
     getCookies(req)
@@ -106,7 +99,7 @@ class Server
 
                 let fingerprint;
 
-                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: this.ip + "/" }], { days: 365 }));
+                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: https_f.config.ip + "/" }], { days: 365 }));
 
                 common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
@@ -151,11 +144,6 @@ class Server
         });
     }
 
-    killResponse()
-    {
-        return;
-    }
-
     sendResponse(sessionID, req, resp, body)
     {
         // get response
@@ -172,15 +160,15 @@ class Server
         }
 
         // execute data received callback
-        for (let type in this.receiveCallback)
+        for (const callback in this.onReceive)
         {
-            this.receiveCallback[type](sessionID, req, resp, info, output);
+            this.onReceive[callback](sessionID, req, resp, info, output);
         }
 
         // send response
-        if (output in this.respondCallback)
+        if (output in this.onRespond)
         {
-            this.respondCallback[output](sessionID, req, resp, info);
+            this.onRespond[output](sessionID, req, resp, info);
         }
         else
         {
@@ -242,27 +230,19 @@ class Server
         }
     }
 
-    start()
+    load()
     {
-        // execute start callback
-        common_f.logger.logWarning("Server: executing startup callbacks...");
-
-        for (let type in this.startCallback)
-        {
-            this.startCallback[type]();
-        }
-
         /* create server */
-        let httpsServer = https.createServer(this.generateCertificate(), (req, res) =>
+        let instance = https.createServer(this.generateCertificate(), (req, res) =>
         {
             this.handleRequest(req, res);
-        }).listen(this.port, this.ip, () =>
+        }).listen(https_f.config.port, https_f.config.ip, () =>
         {
             common_f.logger.logSuccess("Started server");
         });
 
         /* server is already running or program using privileged port without root */
-        httpsServer.on("error", (e) =>
+        instance.on("error", (e) =>
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {

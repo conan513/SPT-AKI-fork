@@ -12,12 +12,12 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/game/profile/items/moving"] = this.handleRoutes.bind(this);
+        core_f.packager.onLoad["aki-https"] = this.load.bind(this);
     }
 
-    handleRoutes(url, info, sessionID)
+    load()
     {
-        return https_f.response.getBody(item_f.router.handleRoutes(info, sessionID));
+        https_f.server.load();
     }
 }
 
