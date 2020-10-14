@@ -32,15 +32,14 @@ class RandomUtil
         return Math.random() < 0.5;
     }
 
-    getKeyValue(node)
-    {
-        const keys = Object.keys(node);
-        return node[keys[this.getInt(0, keys.length - 1)]];
-    }
-
     getArrayValue(arr)
     {
         return arr[this.getInt(0, arr.length - 1)];
+    }
+
+    getKeyValue(node)
+    {
+        return node[this.getArrayValue(Object.keys(node))];
     }
 }
 
