@@ -49,20 +49,20 @@ class Packager
         {
             if (!(check in config))
             {
-                console.log(`Mod ${mod} package.json requires ${check} propery`);
+                console.log(`Mod ${mod} package.json requires ${check} property`);
                 issue = true;
             }
         }
 
         if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
         {
-            console.log(`Mod ${mod} package.json main points to non-existing file`);
+            console.log(`Mod ${mod} package.json main property points to non-existing file`);
             issue = true;
         }
 
         if (config.main.split(".").pop() !== "js")
         {
-            console.log(`Mod ${mod} package.json main must be a .js file`);
+            console.log(`Mod ${mod} package.json main property must be a .js file`);
             issue = true;
         }
 
