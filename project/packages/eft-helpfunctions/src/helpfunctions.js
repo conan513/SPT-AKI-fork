@@ -401,7 +401,7 @@ class HelpFunctions
 
         // save changes
         common_f.logger.logSuccess("Items taken. Status OK.");
-        item_f.router.setOutput(output);
+        item_f.eventHandler.setOutput(output);
         return true;
     }
 
