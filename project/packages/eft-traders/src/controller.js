@@ -138,17 +138,17 @@ class Controller
 
             for (const itemID in result.loyal_level_items)
             {
-                if (itemID in questassort.started && quest_f.controller.getQuestStatus(pmcData, questassort.started[itemID]) !== "Started")
+                if (itemID in questassort.started && quest_f.controller.questStatus(pmcData, questassort.started[itemID]) !== "Started")
                 {
                     result = this.removeItemFromAssort(result, itemID);
                 }
 
-                if (itemID in questassort.success && quest_f.controller.getQuestStatus(pmcData, questassort.success[itemID]) !== "Success")
+                if (itemID in questassort.success && quest_f.controller.questStatus(pmcData, questassort.success[itemID]) !== "Success")
                 {
                     result = this.removeItemFromAssort(result, itemID);
                 }
 
-                if (itemID in questassort.fail && quest_f.controller.getQuestStatus(pmcData, questassort.fail[itemID]) !== "Fail")
+                if (itemID in questassort.fail && quest_f.controller.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
                 {
                     result = this.removeItemFromAssort(result, itemID);
                 }
