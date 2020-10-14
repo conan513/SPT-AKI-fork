@@ -28,8 +28,8 @@ class Initializer
         global.src = {};
 
         // get packages to load
-        global["packager_f"] = require("./packager.js");
-        packager_f.instance.all();
+        global["core_f"] = require("./packager.js");
+        core_f.packager.all();
     }
 
     initializeWatermark()

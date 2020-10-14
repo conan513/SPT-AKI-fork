@@ -13,7 +13,7 @@ class Callbacks
 {
     constructor()
     {
-        https_f.server.startCallback["loadPresets"] = this.load.bind(this);
+        core_f.packager.onLoad["loadPresets"] = this.load.bind(this);
     }
 
     load()

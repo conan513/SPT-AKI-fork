@@ -12,15 +12,16 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.routes["HideoutUpgrade"] = this.upgrade.bind(this);
-        item_f.router.routes["HideoutUpgradeComplete"] = this.upgradeComplete.bind(this);
-        item_f.router.routes["HideoutPutItemsInAreaSlots"] = this.putItemsInAreaSlots.bind(this);
-        item_f.router.routes["HideoutTakeItemsFromAreaSlots"] = this.takeItemsFromAreaSlots.bind(this);
-        item_f.router.routes["HideoutToggleArea"] = this.toggleArea.bind(this);
-        item_f.router.routes["HideoutSingleProductionStart"] = this.singleProductionStart.bind(this);
-        item_f.router.routes["HideoutScavCaseProductionStart"] = this.scavCaseProductionStart.bind(this);
-        item_f.router.routes["HideoutContinuousProductionStart"] = this.continuousProductionStart.bind(this);
-        item_f.router.routes["HideoutTakeProduction"] = this.takeProduction.bind(this);
+        item_f.eventHandler.onEvent["HideoutUpgrade"] = this.upgrade.bind(this);
+        item_f.eventHandler.onEvent["HideoutUpgradeComplete"] = this.upgradeComplete.bind(this);
+        item_f.eventHandler.onEvent["HideoutPutItemsInAreaSlots"] = this.putItemsInAreaSlots.bind(this);
+        item_f.eventHandler.onEvent["HideoutTakeItemsFromAreaSlots"] = this.takeItemsFromAreaSlots.bind(this);
+        item_f.eventHandler.onEvent["HideoutToggleArea"] = this.toggleArea.bind(this);
+        item_f.eventHandler.onEvent["HideoutSingleProductionStart"] = this.singleProductionStart.bind(this);
+        item_f.eventHandler.onEvent["HideoutScavCaseProductionStart"] = this.scavCaseProductionStart.bind(this);
+        item_f.eventHandler.onEvent["HideoutContinuousProductionStart"] = this.continuousProductionStart.bind(this);
+        item_f.eventHandler.onEvent["HideoutTakeProduction"] = this.takeProduction.bind(this);
+        keepalive_f.controller.onExecute["hideout"] = this.onUpdate.bind(this);
     }
 
     upgrade(pmcData, body, sessionID)
@@ -66,6 +67,11 @@ class Callbacks
     takeProduction(pmcData, body, sessionID)
     {
         return hideout_f.controller.takeProduction(pmcData, body, sessionID);
+    }
+
+    onUpdate(sessionID)
+    {
+        hideout_f.controller.updatePlayerHideout(sessionID);
     }
 }
 

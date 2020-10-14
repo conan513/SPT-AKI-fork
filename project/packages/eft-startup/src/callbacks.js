@@ -12,13 +12,13 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/game/config"] = this.getGameConfig.bind(this);
-        https_f.router.staticRoutes["/client/profile/status"] = this.getProfileStatus.bind(this);
-        https_f.router.staticRoutes["/client/server/list"] = this.getServer.bind(this);
-        https_f.router.staticRoutes["/client/game/version/validate"] = this.versionValidate.bind(this);
-        https_f.router.staticRoutes["/client/game/start"] = this.gameStart.bind(this);
-        https_f.router.staticRoutes["/client/game/logout"] = this.gameLogout.bind(this);
-        https_f.router.staticRoutes["/client/checkVersion"] = this.validateGameVersion.bind(this);
+        https_f.router.onStaticRoute["/client/game/config"] = this.getGameConfig.bind(this);
+        https_f.router.onStaticRoute["/client/profile/status"] = this.getProfileStatus.bind(this);
+        https_f.router.onStaticRoute["/client/server/list"] = this.getServer.bind(this);
+        https_f.router.onStaticRoute["/client/game/version/validate"] = this.versionValidate.bind(this);
+        https_f.router.onStaticRoute["/client/game/start"] = this.gameStart.bind(this);
+        https_f.router.onStaticRoute["/client/game/logout"] = this.gameLogout.bind(this);
+        https_f.router.onStaticRoute["/client/checkVersion"] = this.validateGameVersion.bind(this);
     }
 
     versionValidate(url, info, sessionID)
@@ -49,10 +49,10 @@ class Callbacks
             "activeProfileId": `pmc${sessionID}`,
             "nickname": "user",
             "backend": {
-                "Trading": https_f.server.backendUrl,
-                "Messaging": https_f.server.backendUrl,
-                "Main": https_f.server.backendUrl,
-                "RagFair": https_f.server.backendUrl
+                "Trading": https_f.config.backendUrl,
+                "Messaging": https_f.config.backendUrl,
+                "Main": https_f.config.backendUrl,
+                "RagFair": https_f.config.backendUrl
             },
             "totalInGame": 1
         });
@@ -82,8 +82,8 @@ class Callbacks
     {
         return https_f.response.getBody([
             {
-                "ip": https_f.server.ip,
-                "port": https_f.server.port
+                "ip": https_f.config.ip,
+                "port": https_f.config.port
             }
         ]);
     }

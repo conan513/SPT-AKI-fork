@@ -12,18 +12,19 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.staticRoutes["/client/friend/list"] = this.getFriendList.bind(this);
-        https_f.router.staticRoutes["/client/chatServer/list"] = this.getChatServerList.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/list"] = this.getMailDialogList.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/view"] = this.getMailDialogView.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/info"] = this.getMailDialogInfo.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/remove"] = this.removeDialog.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/pin"] = this.pinDialog.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/unpin"] = this.unpinDialog.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/read"] = this.setRead.bind(this);
-        https_f.router.staticRoutes["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind(this);
-        https_f.router.staticRoutes["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
-        https_f.router.staticRoutes["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
+        https_f.router.onStaticRoute["/client/friend/list"] = this.getFriendList.bind(this);
+        https_f.router.onStaticRoute["/client/chatServer/list"] = this.getChatServerList.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/list"] = this.getMailDialogList.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/view"] = this.getMailDialogView.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/info"] = this.getMailDialogInfo.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/remove"] = this.removeDialog.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/pin"] = this.pinDialog.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/unpin"] = this.unpinDialog.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/read"] = this.setRead.bind(this);
+        https_f.router.onStaticRoute["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind(this);
+        https_f.router.onStaticRoute["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
+        https_f.router.onStaticRoute["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
+        keepalive_f.controller.onExecute["dialogue"] = this.onUpdate.bind(this);
     }
 
     getFriendList(url, info, sessionID)
@@ -105,6 +106,11 @@ class Callbacks
     listInbox(url, info, sessionID)
     {
         return https_f.response.emptyArrayResponse();
+    }
+
+    onUpdate(sessionID)
+    {
+        dialogue_f.controller.removeExpiredItems(sessionID);
     }
 }
 

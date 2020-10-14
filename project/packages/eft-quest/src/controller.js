@@ -17,41 +17,60 @@ class Controller
     getVisibleQuests(url, info, sessionID)
     {
         let quests = [];
-        const profileQuests = profile_f.controller.getPmcProfile(sessionID).Quests;
+        const profile = profile_f.controller.getPmcProfile(sessionID);
 
         for (let quest of database_f.server.tables.templates.quests)
         {
-            const prereqs = quest.conditions.AvailableForStart.filter(q => q._parent === "Quest");
+            const questConditions = quest.conditions.AvailableForStart.filter((q) =>
+            {
+                return q._parent === "Quest";
+            });
 
-            // If the quest has no prerequisite quests then add to visible quest list
-            if (prereqs.length === 0)
+            // If the quest has no quest conditions then add to visible quest list
+            if (questConditions.length === 0)
             {
                 quests.push(quest);
                 continue;
             }
 
             let isVisible = true;
-            for (const pr of prereqs)
-            {
-                // Check each prerequisite quest, if any are currently locked
-                // then this quest should not be visible
-                const preQuest = profileQuests.find(pq => pq.qid === pr._props.target);
 
-                if (preQuest.status === "Locked")
+            for (const condition of questConditions)
+            {
+                // Check each quest condition, if any are not completed
+                // then this quest should not be visible
+                const previousQuest = profile.Quests.find((pq) =>
                 {
-                    isVisible = false;
-                    break;
+                    return pq.qid === condition._props.target;
+                });
+                const currentQuest = profile.Quests.find((pq) =>
+                {
+                    return pq.qid === quest._id;
+                });
+
+                if (!currentQuest)
+                {
+                    if (previousQuest && condition._props.status[0] === 2 && previousQuest.status !== "Started")
+                    {
+                        isVisible = false;
+                        break;
+                    }
+
+                    if (!previousQuest || (condition._props.status[0] === 4 && previousQuest.status !== "Success"))
+                    {
+                        isVisible = false;
+                        break;
+                    }
                 }
             }
 
             if (isVisible)
             {
-                const profileQuest = profileQuests.find(pq => pq.qid === quest._id);
-                if (profileQuest.status === "Success")
+                quest = helpfunc_f.helpFunctions.clone(quest);
+                quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter((q) =>
                 {
-                    quest.conditions.AvailableForStart = [];
-                    quest.conditions.AvailableForFinish = [];
-                }
+                    return q._parent === "Level";
+                });
 
                 quests.push(quest);
             }
@@ -60,78 +79,78 @@ class Controller
         return quests;
     }
 
-    getAllProfileQuests()
+    getNextQuests(completedQuestId, sessionID)
     {
-        let profileQuests = [];
+        const profile = profile_f.controller.getPmcProfile(sessionID);
 
-        for (let quest of database_f.server.tables.templates.quests)
+        let quests = database_f.server.tables.templates.quests.filter((q) =>
         {
-            let state = "AvailableForStart";
-            for (let condition of quest.conditions.AvailableForStart)
+            const completedQuestCondition = q.conditions.AvailableForStart.find((c) =>
             {
-                if (condition._parent === "Level" && condition._props.value > 1)
-                {
-                    state = "Locked";
-                    break;
-                }
-                else if (condition._parent === "Quest")
-                {
-                    state = "Locked";
-                    break;
-                }
+                return c._parent === "Quest" && c._props.target === completedQuestId;
+            });
+
+            if (!completedQuestCondition)
+            {
+                return false;
             }
 
-            profileQuests.push({
-                "qid": quest._id,
-                "startTime": 0,
-                "completedConditions": [],
-                "statusTimers": {},
-                "status": state
-            });
-        }
-
-        return profileQuests;
-    }
-
-    nextQuests(completedQuestId, sessionID)
-    {
-        const pmcLevel = profile_f.controller.getPmcProfile(sessionID).Info.Level;
-
-        // Find quests that have been unlocked by the completetion of a quest
-        const unlockedQuests = database_f.server.tables.templates.quests.filter((q) =>
-        {
-            const questCond = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === completedQuestId);
-
-            if (questCond.length !== 0)
+            switch (completedQuestCondition._props.status[0])
             {
-                const levelCon = q.conditions.AvailableForStart.filter(c => c._parent === "Level" && c._props.value <= pmcLevel);
-
-                if (levelCon.length !== 0)
+                case 2:
                 {
+                    const profileQuest = profile.Quests.find((pq) =>
+                    {
+                        pq.qid === completedQuestId;
+                    });
+
+                    if (!profileQuest || !(profileQuest.status === "Started" || profileQuest.status === "AvailableForFinish"))
+                    {
+                        return false;
+                    }
+
                     return true;
                 }
-            }
 
-            return false;
+                case 4:
+                {
+                    const otherQuestConditions = q.conditions.AvailableForStart.filter((c) =>
+                    {
+                        return c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4;
+                    });
+
+                    for (const condition of otherQuestConditions)
+                    {
+                        const profileQuest = profile.Quests.find((pq) =>
+                        {
+                            return pq.qid === condition._props.target;
+                        });
+
+                        if (!profileQuest || profileQuest.status !== "Success")
+                        {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+
+                default:
+                    return false;
+            }
         });
 
-        let newVisibleQuests = [];
-        // Find locked quests that are now visible due to unlocking quests
-        for (const unlocked of unlockedQuests)
-        {
-            const quests = database_f.server.tables.templates.quests.filter((q) =>
-            {
-                const matches = q.conditions.AvailableForStart.filter(c => c._parent === "Quest" && c._props.target === unlocked._id);
-                return matches.length !== 0;
-            });
+        quests = helpfunc_f.helpFunctions.clone(quests);
 
-            if (quests.length !== 0)
+        for (let quest of quests)
+        {
+            quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter((q) =>
             {
-                newVisibleQuests = newVisibleQuests.concat(quests);
-            }
+                return q._parent === "Level";
+            });
         }
 
-        return newVisibleQuests;
+        return quests;
     }
 
     getFindItemIdForQuestItem(itemTpl)
@@ -263,12 +282,13 @@ class Controller
             };
         }
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
-        return item_f.router.getOutput();
+        let acceptQuestResponse = item_f.router.getOutput();
+        acceptQuestResponse.quests = this.getNextQuests(body.qid, sessionID);
+        return acceptQuestResponse;
     }
 
-    completeQuest(pmcData, body, sessionID)
+    applyQuestReward(pmcData, body, state, sessionID)
     {
-        let state = "Success";
         let intelCenterBonus = 0;//percentage of money reward
 
         //find if player has money reward boost
@@ -297,22 +317,6 @@ class Controller
             }
         }
 
-        //Check if any of linked quest is failed, and that is unrestartable.
-        for (const quest of pmcData.Quests)
-        {
-            if (!(quest.status === "Locked" || quest.status === "AvailableForStart" || quest.status === "Success" || quest.status === "Fail"))
-            {
-                let checkFail = this.getCachedQuest(quest.qid);
-                for (let failCondition of checkFail.conditions.Fail)
-                {
-                    if (checkFail.restartable === false && failCondition._parent === "Quest" && failCondition._props.target === body.qid)
-                    {
-                        quest.status = "Fail";
-                    }
-                }
-            }
-        }
-
         // give reward
         let quest = this.getCachedQuest(body.qid);
 
@@ -323,7 +327,7 @@ class Controller
 
         let questRewards = this.getQuestRewardItems(quest, state);
 
-        for (let reward of quest.rewards.Success)
+        for (let reward of quest.rewards[state])
         {
             switch (reward.type)
             {
@@ -362,6 +366,49 @@ class Controller
                     break;
             }
         }
+        return questRewards;
+    }
+
+    completeQuest(pmcData, body, sessionID)
+    {
+        let state = "Success";
+
+        //Check if any of linked quest is failed, and that is unrestartable.
+        let checkQuest = database_f.server.tables.templates.quests.filter((q) =>
+        {
+            return q.conditions.Fail.length > 0 && q.conditions.Fail[0]._props.target === body.qid;
+        });
+
+        if (checkQuest.length > 0)
+        {
+            for (let checkFail of checkQuest)
+            {
+                if (checkFail.conditions.Fail[0]._props.status[0] === 4)
+                {
+                    const checkQuestId = pmcData.Quests.find((qq) =>
+                    {
+                        return qq.qid === checkFail._id;
+                    });
+
+                    if (checkQuestId)
+                    {
+                        let failBody = {"Action":"QuestComplete", "qid":checkFail._id, "removeExcessItems":true};
+                        this.failQuest(pmcData, failBody, sessionID);
+                    }
+                    else
+                    {
+                        let questData = {
+                            "qid": checkFail._id,
+                            "startTime": common_f.time.getTimestamp(),
+                            "status": "MarkedAsFailed"
+                        };
+                        pmcData.Quests.push(questData);
+                    }
+                }
+            }
+        }
+
+        let questRewards = this.applyQuestReward(pmcData, body, state, sessionID);
 
         // Create a dialog message for completing the quest.
         let questDb = this.getCachedQuest(body.qid);
@@ -374,8 +421,26 @@ class Controller
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
         let completeQuestResponse = item_f.router.getOutput();
-        completeQuestResponse.quests = this.nextQuests(body.qid, sessionID);
+        completeQuestResponse.quests = this.getNextQuests(body.qid, sessionID);
         return completeQuestResponse;
+    }
+
+    failQuest(pmcData, body, sessionID)
+    {
+        let state = "Fail";
+        let questRewards = this.applyQuestReward(pmcData, body, state, sessionID);
+
+        // Create a dialog message for completing the quest.
+        let questDb = this.getCachedQuest(body.qid);
+        let questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        let messageContent = {
+            "templateId": questLocale.failMessageText,
+            "type": dialogue_f.controller.getMessageTypeValue("questFail"),
+            "maxStorageTime": quest_f.config.redeemTime * 3600
+        };
+
+        dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
+        return item_f.router.getOutput();
     }
 
     handoverQuest(pmcData, body, sessionID)

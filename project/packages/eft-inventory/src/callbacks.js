@@ -12,18 +12,18 @@ class Callbacks
 {
     constructor()
     {
-        item_f.router.routes["Move"] = this.moveItem.bind(this);
-        item_f.router.routes["Remove"] = this.removeItem.bind(this);
-        item_f.router.routes["Split"] = this.splitItem.bind(this);
-        item_f.router.routes["Merge"] = this.mergeItem.bind(this);
-        item_f.router.routes["Transfer"] = this.transferItem.bind(this);
-        item_f.router.routes["Swap"] = this.swapItem.bind(this);
-        item_f.router.routes["Fold"] = this.foldItem.bind(this);
-        item_f.router.routes["Toggle"] = this.toggleItem.bind(this);
-        item_f.router.routes["Tag"] = this.tagItem.bind(this);
-        item_f.router.routes["Bind"] = this.bindItem.bind(this);
-        item_f.router.routes["Examine"] = this.examineItem.bind(this);
-        item_f.router.routes["ReadEncyclopedia"] = this.readEncyclopedia.bind(this);
+        item_f.eventHandler.onEvent["Move"] = this.moveItem.bind(this);
+        item_f.eventHandler.onEvent["Remove"] = this.removeItem.bind(this);
+        item_f.eventHandler.onEvent["Split"] = this.splitItem.bind(this);
+        item_f.eventHandler.onEvent["Merge"] = this.mergeItem.bind(this);
+        item_f.eventHandler.onEvent["Transfer"] = this.transferItem.bind(this);
+        item_f.eventHandler.onEvent["Swap"] = this.swapItem.bind(this);
+        item_f.eventHandler.onEvent["Fold"] = this.foldItem.bind(this);
+        item_f.eventHandler.onEvent["Toggle"] = this.toggleItem.bind(this);
+        item_f.eventHandler.onEvent["Tag"] = this.tagItem.bind(this);
+        item_f.eventHandler.onEvent["Bind"] = this.bindItem.bind(this);
+        item_f.eventHandler.onEvent["Examine"] = this.examineItem.bind(this);
+        item_f.eventHandler.onEvent["ReadEncyclopedia"] = this.readEncyclopedia.bind(this);
     }
 
     moveItem(pmcData, body, sessionID)

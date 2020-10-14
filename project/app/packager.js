@@ -15,6 +15,7 @@ class Packager
     constructor()
     {
         this.baseDir = "packages/";
+        this.onLoad = {};
         this.packages = [];
     }
 
@@ -98,6 +99,17 @@ class Packager
         }
     }
 
+    loadClasses()
+    {
+        // execute start callback
+        common_f.logger.logWarning("Server: executing startup callbacks...");
+
+        for (let type in this.onLoad)
+        {
+            this.onLoad[type]();
+        }
+    }
+
     all()
     {
         // create mods folder if missing
@@ -107,10 +119,13 @@ class Packager
         }
 
         this.routeAll();
+
         //this.detectAllMods();
         //this.loadAllMods();
+
         this.initializeClasses();
+        this.loadClasses();
     }
 }
 
-module.exports.instance = new Packager();
+module.exports.packager = new Packager();

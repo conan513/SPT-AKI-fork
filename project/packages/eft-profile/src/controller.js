@@ -75,7 +75,7 @@ class Controller
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = common_f.time.getTimestamp();
         pmcData.Health.UpdateTime = common_f.time.getTimestamp();
-        pmcData.Quests = quest_f.controller.getAllProfileQuests();
+        pmcData.Quests = [];
 
         // create profile
         save_f.server.profiles[sessionID] = {
@@ -99,12 +99,12 @@ class Controller
         }
 
         // store minimal profile and reload it
-        save_f.server.onSaveProfile(sessionID);
-        save_f.server.onLoadProfile(sessionID);
+        save_f.server.saveProfile(sessionID);
+        save_f.server.loadProfile(sessionID);
 
         // completed account creation
         save_f.server.profiles[sessionID].info.wipe = false;
-        save_f.server.onSaveProfile(sessionID);
+        save_f.server.saveProfile(sessionID);
     }
 
     resetTrader(sessionID, traderID)
@@ -119,7 +119,7 @@ class Controller
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
             "loyaltyLevels": database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "working": database_f.server.tables.traders[traderID].base.working
+            "display": database_f.server.tables.traders[traderID].base.display
         };
     }
 
