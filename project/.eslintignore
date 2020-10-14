@@ -1,9 +1,5 @@
 # Exclude these folders from linting
-.vscode
-db
 node_modules
-res
-user
 
 # Exclude these filetypes from linting
 *.json

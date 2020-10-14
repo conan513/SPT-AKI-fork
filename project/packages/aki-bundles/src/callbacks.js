@@ -21,19 +21,18 @@ class Callbacks
 
     load()
     {
-        bundles_f.controller.initialize();
+        bundles_f.controller.load();
     }
 
     sendBundle(sessionID, req, resp, body)
     {
-        common_f.logger.logInfo("[BUNDLE]:" + req.url);
+        common_f.logger.logInfo(`[BUNDLE]: ${req.url}`);
 
-        let bundleKey = req.url.split("/bundle/")[1];
-        let bundle = bundles_f.controller.getBundleByKey(bundleKey, true);
-        let path = bundle.path;
+        const key = req.url.split("/bundle/")[1];
+        const bundle = bundles_f.controller.getBundle(key, true);
 
         // send bundle
-        https_f.server.sendFile(resp, path);
+        https_f.server.sendFile(resp, bundle.path);
     }
 
     getBundles(url, info, sessionID)

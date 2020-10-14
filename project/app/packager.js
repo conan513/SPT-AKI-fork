@@ -14,88 +14,99 @@ class Packager
 {
     constructor()
     {
-        this.baseDir = "packages/";
+        this.filepath = "mods/";
+        this.mods = [];
         this.onLoad = {};
-        this.packages = [];
     }
 
-    getModFilepath(mod)
+    exitApp()
     {
-        return `${this.baseDir}/${mod.author}-${mod.name}/`;
-    }
+        console.log("Press any key to continue");
 
-    loadMod(mod, filepath)
-    {
-        console.log(`Loading mod ${mod.author}-${mod.name}`);
-
-        if ("src" in mod)
+        process.stdin.setRawMode(true);
+        process.stdin.once("data", (data) =>
         {
-            for (const source in mod.src)
+            process.exit(1);
+        });
+    }
+
+    loadMod(mod)
+    {
+        const config = JSON.parse(fs.readFileSync(`${this.filepath}${mod}/package.json`));
+        this.mods[mod] = config;
+        this.src[mod] = `mods/${mod}/${config.main}`;
+    }
+
+    validateMod(mod)
+    {
+        // check if config exists
+        if (!fs.existsSync(`${this.filepath}${mod}/package.json`))
+        {
+            console.log(`Mod ${mod} is missing package.json`);
+            this.exitApp();
+        }
+
+        // validate mod
+        const config = JSON.parse(fs.readFileSync(`${this.filepath}${mod}/package.json`));
+        const checks = ["name", "author", "version", "license", "main"];
+        let issue = false;
+
+        for (const check of checks)
+        {
+            if (!(check in config))
             {
-                src[source] = mod.src[source];
+                console.log(`Mod ${mod} package.json requires ${check} propery`);
+                issue = true;
             }
+        }
+
+        if (!fs.existsSync(`${this.filepath}${mod}/${config.main}`))
+        {
+            console.log(`Mod ${mod} package.json main points to non-existing file`);
+            issue = true;
+        }
+
+        if (config.main.split('.').pop() !== "js")
+        {
+            console.log(`Mod ${mod} package.json main must be a .js file`);
+            issue = true;
+        }
+
+        // issues found
+        if (issue)
+        {
+            this.exitApp();
         }
     }
 
-    detectAllMods()
+    loadMods()
     {
-        if (!fs.existsSync(this.baseDir))
+        if (!fs.existsSync(this.filepath))
         {
             return;
         }
 
-        const mods = fs.readdirSync(this.baseDir).filter((file) =>
+        const mods = fs.readdirSync(this.filepath).filter((file) =>
         {
-            return fs.statSync(`${this.baseDir}/${file}`).isDirectory();
+            return fs.statSync(`${this.filepath}/${file}`).isDirectory();
         });
 
         for (const mod of mods)
         {
-            // check if config exists
-            if (!fs.existsSync(`${this.baseDir}${mod}/package.json`))
-            {
-                console.log(`Mod ${mod} is missing package.json`);
-                console.log("Forcing server shutdown...");
-                process.exit(1);
-            }
-
-            const config = JSON.parse(fs.readFileSync(`${this.baseDir}${mod}/package.json`));
-
-            // check legacy mod
-            if (!("experimental" in config) || !config.experimental)
-            {
-                console.log("Legacy mod detected");
-                console.log("Forcing server shutdown...");
-                process.exit(1);
-            }
-
-            // add mod to the list
-            console.log(`Mod ${mod} not installed, adding it to the modlist`);
-            this.packages.push({"name": config.name, "author": config.author, "version": config.version});
+            this.validateMod(mod);
+            this.loadMod(mod);
         }
-    }
-
-    loadAllMods()
-    {
-        for (const element of this.packages)
-        {
-            const filepath = this.getModFilepath(element);
-            const mod = JSON.parse(fs.readFileSync(`${filepath}package.json`));
-            this.loadMod(mod, filepath);
-        }
-    }
-
-    routeAll()
-    {
-        src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
     }
 
     // load classes
-    initializeClasses()
+    loadCode()
     {
-        for (let name in src)
+        console.log(this.src);
+
+        for (let name in this.src)
         {
-            global[name] = require(`../${src[name]}`);
+            console.log(`../${this.src[name]}`);
+            global[name] = require(`../${this.src[name]}`);
         }
     }
 
@@ -104,26 +115,24 @@ class Packager
         // execute start callback
         common_f.logger.logWarning("Server: executing startup callbacks...");
 
-        for (let type in this.onLoad)
+        for (const callback in this.onLoad)
         {
-            this.onLoad[type]();
+            this.onLoad[callback]();
         }
     }
 
-    all()
+    load()
     {
         // create mods folder if missing
-        if (!fs.existsSync(this.baseDir))
+        if (!fs.existsSync(this.filepath))
         {
-            fs.mkdirSync(this.baseDir);
+            fs.mkdirSync(this.filepath);
         }
 
-        this.routeAll();
+        this.src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
 
-        //this.detectAllMods();
-        //this.loadAllMods();
-
-        this.initializeClasses();
+        this.loadMods();
+        this.loadCode();
         this.loadClasses();
     }
 }

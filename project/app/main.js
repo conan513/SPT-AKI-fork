@@ -8,9 +8,21 @@
 
 "use strict";
 
-// force packing of selfsigned
+const process = require("process");
+const watermark = require("./watermark.js");
+
+// force packing of npm packages
 require("selfsigned");
 
+// set window properties
 process.stdout.setEncoding("utf8");
+process.title = "SPT-AKI Server";
 
-require("./initializer.js");
+// load and execute all packages
+global["core_f"] = require("./packager.js");
+core_f.packager.load();
+
+// show watermark
+watermark.instance.setTitle();
+watermark.instance.resetCursor();
+watermark.instance.draw();
