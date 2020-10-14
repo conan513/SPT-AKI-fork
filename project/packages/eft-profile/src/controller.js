@@ -99,12 +99,12 @@ class Controller
         }
 
         // store minimal profile and reload it
-        save_f.server.onSaveProfile(sessionID);
-        save_f.server.onLoadProfile(sessionID);
+        save_f.server.saveProfile(sessionID);
+        save_f.server.loadProfile(sessionID);
 
         // completed account creation
         save_f.server.profiles[sessionID].info.wipe = false;
-        save_f.server.onSaveProfile(sessionID);
+        save_f.server.saveProfile(sessionID);
     }
 
     resetTrader(sessionID, traderID)
