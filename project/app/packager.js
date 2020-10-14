@@ -14,88 +14,102 @@ class Packager
 {
     constructor()
     {
-        this.baseDir = "packages/";
+        this.modpath = "user/mods/";
+        this.mods = [];
         this.onLoad = {};
-        this.packages = [];
     }
 
-    getModFilepath(mod)
+    getModPath(mod)
     {
-        return `${this.baseDir}/${mod.author}-${mod.name}/`;
+        return `${this.modpath}${mod}/`;
     }
 
-    loadMod(mod, filepath)
+    loadMod(mod)
     {
-        console.log(`Loading mod ${mod.author}-${mod.name}`);
+        const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
+        this.mods[mod] = config;
+        this.src[mod] = `${this.getModPath(mod)}/${config.main}`;
+    }
 
-        if ("src" in mod)
+    validMod(mod)
+    {
+        // check if config exists
+        if (!fs.existsSync(`${this.getModPath(mod)}/package.json`))
         {
-            for (const source in mod.src)
+            console.log(`Mod ${mod} is missing package.json`);
+            return false;
+        }
+
+        // validate mod
+        const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
+        const checks = ["name", "author", "version", "license", "main"];
+        let issue = false;
+
+        for (const check of checks)
+        {
+            if (!(check in config))
             {
-                src[source] = mod.src[source];
+                console.log(`Mod ${mod} package.json requires ${check} property`);
+                issue = true;
             }
         }
-    }
 
-    detectAllMods()
-    {
-        if (!fs.existsSync(this.baseDir))
+        if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
         {
-            return;
+            console.log(`Mod ${mod} package.json main property points to non-existing file`);
+            issue = true;
         }
 
-        const mods = fs.readdirSync(this.baseDir).filter((file) =>
+        if (config.main.split(".").pop() !== "js")
         {
-            return fs.statSync(`${this.baseDir}/${file}`).isDirectory();
+            console.log(`Mod ${mod} package.json main property must be a .js file`);
+            issue = true;
+        }
+
+        // issues found
+        if (issue)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    prepareLoad()
+    {
+        if (!fs.existsSync(this.modpath))
+        {
+            // no mods folder found
+            fs.mkdirSync(this.modpath); 
+            return true;
+        }
+
+        // get mods
+        const mods = fs.readdirSync(this.modpath).filter((mod) =>
+        {
+            return fs.statSync(`${this.getModPath(mod)}`).isDirectory();
         });
 
+        // add mods to load
         for (const mod of mods)
         {
-            // check if config exists
-            if (!fs.existsSync(`${this.baseDir}${mod}/package.json`))
+            if (!this.validMod(mod))
             {
-                console.log(`Mod ${mod} is missing package.json`);
-                console.log("Forcing server shutdown...");
-                process.exit(1);
+                return false;
             }
-
-            const config = JSON.parse(fs.readFileSync(`${this.baseDir}${mod}/package.json`));
-
-            // check legacy mod
-            if (!("experimental" in config) || !config.experimental)
-            {
-                console.log("Legacy mod detected");
-                console.log("Forcing server shutdown...");
-                process.exit(1);
-            }
-
-            // add mod to the list
-            console.log(`Mod ${mod} not installed, adding it to the modlist`);
-            this.packages.push({"name": config.name, "author": config.author, "version": config.version});
+            
+            this.loadMod(mod);
         }
-    }
 
-    loadAllMods()
-    {
-        for (const element of this.packages)
-        {
-            const filepath = this.getModFilepath(element);
-            const mod = JSON.parse(fs.readFileSync(`${filepath}package.json`));
-            this.loadMod(mod, filepath);
-        }
-    }
-
-    routeAll()
-    {
-        src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
+        return true;
     }
 
     // load classes
-    initializeClasses()
+    loadCode()
     {
-        for (let name in src)
+        for (let name in this.src)
         {
-            global[name] = require(`../${src[name]}`);
+            global[name] = require(`../${this.src[name]}`);
         }
     }
 
@@ -104,27 +118,36 @@ class Packager
         // execute start callback
         common_f.logger.logWarning("Server: executing startup callbacks...");
 
-        for (let type in this.onLoad)
+        for (const callback in this.onLoad)
         {
-            this.onLoad[type]();
+            this.onLoad[callback]();
         }
     }
 
-    all()
+    exitApp()
     {
-        // create mods folder if missing
-        if (!fs.existsSync(this.baseDir))
+        console.log("Press any key to continue");
+
+        process.stdin.setRawMode(true);
+        process.stdin.once("data", (data) =>
         {
-            fs.mkdirSync(this.baseDir);
+            process.exit(1);
+        });
+    }
+
+    load()
+    {
+        this.src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
+
+        if (this.prepareLoad())
+        {
+            this.loadCode();
+            this.loadClasses();
         }
-
-        this.routeAll();
-
-        //this.detectAllMods();
-        //this.loadAllMods();
-
-        this.initializeClasses();
-        this.loadClasses();
+        else
+        {
+            this.exitApp();
+        }
     }
 }
 
