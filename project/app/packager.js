@@ -14,40 +14,29 @@ class Packager
 {
     constructor()
     {
-        this.filepath = "mods/";
+        this.modpath = "mods/";
         this.mods = [];
         this.onLoad = {};
     }
 
-    exitApp()
-    {
-        console.log("Press any key to continue");
-
-        process.stdin.setRawMode(true);
-        process.stdin.once("data", (data) =>
-        {
-            process.exit(1);
-        });
-    }
-
     loadMod(mod)
     {
-        const config = JSON.parse(fs.readFileSync(`${this.filepath}${mod}/package.json`));
+        const config = JSON.parse(fs.readFileSync(`${this.modpath}${mod}/package.json`));
         this.mods[mod] = config;
-        this.src[mod] = `mods/${mod}/${config.main}`;
+        this.src[mod] = `${this.modpath}${mod}/${config.main}`;
     }
 
-    validateMod(mod)
+    validMod(mod)
     {
         // check if config exists
-        if (!fs.existsSync(`${this.filepath}${mod}/package.json`))
+        if (!fs.existsSync(`${this.modpath}${mod}/package.json`))
         {
             console.log(`Mod ${mod} is missing package.json`);
-            this.exitApp();
+            return false;
         }
 
         // validate mod
-        const config = JSON.parse(fs.readFileSync(`${this.filepath}${mod}/package.json`));
+        const config = JSON.parse(fs.readFileSync(`${this.modpath}${mod}/package.json`));
         const checks = ["name", "author", "version", "license", "main"];
         let issue = false;
 
@@ -60,7 +49,7 @@ class Packager
             }
         }
 
-        if (!fs.existsSync(`${this.filepath}${mod}/${config.main}`))
+        if (!fs.existsSync(`${this.modpath}${mod}/${config.main}`))
         {
             console.log(`Mod ${mod} package.json main points to non-existing file`);
             issue = true;
@@ -75,27 +64,39 @@ class Packager
         // issues found
         if (issue)
         {
-            this.exitApp();
+            return false;
         }
+
+        return true;
     }
 
-    loadMods()
+    prepareLoad()
     {
-        if (!fs.existsSync(this.filepath))
+        if (!fs.existsSync(this.modpath))
         {
-            return;
+            // no mods folder found
+            fs.mkdirSync(this.modpath); 
+            return true;
         }
 
-        const mods = fs.readdirSync(this.filepath).filter((file) =>
+        // get mods
+        const mods = fs.readdirSync(this.modpath).filter((file) =>
         {
-            return fs.statSync(`${this.filepath}/${file}`).isDirectory();
+            return fs.statSync(`${this.modpath}/${file}`).isDirectory();
         });
 
+        // add mods to load
         for (const mod of mods)
         {
-            this.validateMod(mod);
+            if (!this.validMod(mod))
+            {
+                return false;
+            }
+            
             this.loadMod(mod);
         }
+
+        return true;
     }
 
     // load classes
@@ -118,19 +119,30 @@ class Packager
         }
     }
 
+    exitApp()
+    {
+        console.log("Press any key to continue");
+
+        process.stdin.setRawMode(true);
+        process.stdin.once("data", (data) =>
+        {
+            process.exit(1);
+        });
+    }
+
     load()
     {
-        // create mods folder if missing
-        if (!fs.existsSync(this.filepath))
-        {
-            fs.mkdirSync(this.filepath);
-        }
-
         this.src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
 
-        this.loadMods();
-        this.loadCode();
-        this.loadClasses();
+        if (this.prepareLoad())
+        {
+            this.loadCode();
+            this.loadClasses();
+        }
+        else
+        {
+            this.exitApp();
+        }
     }
 }
 

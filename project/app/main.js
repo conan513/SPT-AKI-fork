@@ -18,11 +18,11 @@ require("selfsigned");
 process.stdout.setEncoding("utf8");
 process.title = "SPT-AKI Server";
 
-// load and execute all packages
-global["core_f"] = require("./packager.js");
-core_f.packager.load();
-
 // show watermark
 watermark.instance.setTitle();
 watermark.instance.resetCursor();
 watermark.instance.draw();
+
+// load and execute all packages
+global["core_f"] = require("./packager.js");
+core_f.packager.load();
