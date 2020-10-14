@@ -37,7 +37,7 @@ class Controller
             "tid": body.tid
         };
 
-        return inventory_f.controller.addItem(pmcData, newReq, item_f.router.getOutput(), sessionID, callback);
+        return inventory_f.controller.addItem(pmcData, newReq, item_f.eventHandler.getOutput(), sessionID, callback);
     }
 
     // Selling item to trader
@@ -45,7 +45,7 @@ class Controller
     {
         let money = 0;
         let prices = trader_f.controller.getPurchasesData(body.tid, sessionID);
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
 
         for (let sellItem of body.items)
         {
@@ -108,7 +108,7 @@ class Controller
     {
         let ragfair_offers_traders = database_f.server.tables.ragfair.offers;
         let offers = body.offers;
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
 
         for (let offer of offers)
         {

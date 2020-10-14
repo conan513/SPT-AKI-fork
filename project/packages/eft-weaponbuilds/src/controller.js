@@ -21,7 +21,7 @@ class Controller
         delete body.Action;
         body.id = common_f.hash.generate();
 
-        let output = item_f.router.getOutput();
+        let output = item_f.eventHandler.getOutput();
         let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
@@ -50,7 +50,7 @@ class Controller
             }
         }
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 }
 

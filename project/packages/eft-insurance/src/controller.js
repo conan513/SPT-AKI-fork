@@ -307,7 +307,7 @@ class Controller
             });
         }
 
-        return item_f.router.getOutput();
+        return item_f.eventHandler.getOutput();
     }
 
     // TODO: Move to helper functions
