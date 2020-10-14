@@ -15,12 +15,12 @@ class Controller
 {
     constructor()
     {
-        this.bundles = [];
-        this.bundleBykey = {};
+        this.bundles = {};
         this.backendUrl = https_f.config.backendUrl;
     }
 
-    initialize(sessionID)
+    // TODO: remove res global from use
+    load()
     {
         for (const i in res.bundles)
         {
@@ -29,11 +29,11 @@ class Controller
                 continue;
             }
 
-            let manifestPath = res.bundles[i].manifest;
-            let manifest = common_f.json.deserialize(common_f.vfs.readFile(manifestPath)).manifest;
-            let modName = res.bundles[i].manifest.split("/")[2];
+            const manifestPath = res.bundles[i].manifest;
+            const manifest = common_f.json.deserialize(common_f.vfs.readFile(manifestPath)).manifest;
+            const  modName = res.bundles[i].manifest.split("/")[2];
+            const manifestPathSplit = manifestPath.split("/");
             let bundleDir = "";
-            let manifestPathSplit = manifestPath.split("/");
 
             if (manifestPathSplit[3] === "res"
             && manifestPathSplit[4] === "bundles"
@@ -44,61 +44,42 @@ class Controller
 
             for (const j in manifest)
             {
-                let info = manifest[j];
-                let dependencyKeys = ("dependencyKeys" in info) ? info.dependencyKeys : [];
-                let httpPath = this.getHttpPath(info.key);
-                let filePath = ("path" in info) ? info.path : this.getFilePath(bundleDir, info.key);
-                let bundle = {
+                const info = manifest[j];
+                const bundle = {
                     "key": info.key,
-                    "path": httpPath,
-                    "filePath" : filePath,
-                    "dependencyKeys": dependencyKeys
+                    "path": `${this.backendUrl}/files/bundle/${info.key}`,
+                    "filepath" : ("path" in info) ? info.path : `mods/${bundleDir}StreamingAssets/Windows/${info.key}`.replace(/\\/g, "/"),
+                    "dependencyKeys": ("dependencyKeys" in info) ? info.dependencyKeys : []
                 };
 
-                this.bundles.push(bundle);
-                this.bundleBykey[info.key] = bundle;
+                this.bundles[info.key] = bundle;
             }
         }
     }
 
     getBundles(local)
     {
-        let bundles = helpfunc_f.helpFunctions.clone(this.bundles);
+        let result = [];
 
-        for (const bundle of bundles)
+        for (const bundle in this.bundles)
         {
-            if (local)
-            {
-                bundle.path = bundle.filePath;
-            }
-
-            delete bundle.filePath;
+            result.push(getBundle(bundle, local));
         }
 
-        return bundles;
+        return result;
     }
 
-    getBundleByKey(key, local)
+    getBundle(key, local)
     {
-        let bundle = helpfunc_f.helpFunctions.clone(this.bundleBykey[key]);
+        let bundle = helpfunc_f.helpFunctions.clone(this.bundles[key]);
 
         if (local)
         {
-            bundle.path = bundle.filePath;
+            bundle.path = bundle.filepath;
         }
 
-        delete bundle.filePath;
+        delete bundle.filepath;
         return bundle;
-    }
-
-    getFilePath(bundleDir, key)
-    {
-        return `${path.join(__dirname).split("src")[0]}user/mods/${bundleDir}StreamingAssets/Windows/${key}`.replace(/\\/g, "/");
-    }
-
-    getHttpPath(key)
-    {
-        return `${this.backendUrl}/files/bundle/${key}`;
     }
 }
 

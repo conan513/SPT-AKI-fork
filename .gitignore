@@ -4,7 +4,7 @@ Server.exe
 Server-Intermediate.exe
 .zip
 ResourceHacker.ini
-project/mods
+project/mods/
 project/user/
 
 ## visual studio
