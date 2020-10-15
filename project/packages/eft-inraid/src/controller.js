@@ -105,12 +105,6 @@ class Controller
 
         if (!isPlayerScav)
         {
-            // remove old skill fatique
-            for (let skill in pmcData.Skills.Common)
-            {
-                pmcData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
-            }
-
             // set pmc data
             pmcData.Info.Level = offraidData.profile.Info.Level;
             pmcData.Skills = offraidData.profile.Skills;
@@ -118,6 +112,12 @@ class Controller
             pmcData.Encyclopedia = offraidData.profile.Encyclopedia;
             pmcData.ConditionCounters = offraidData.profile.ConditionCounters;
             pmcData.Quests = offraidData.profile.Quests;
+
+            // remove old skill fatigue
+            for (let skill in pmcData.Skills.Common)
+            {
+                pmcData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
+            }
 
             // For some reason, offraidData seems to drop the latest insured items.
             // It makes more sense to use pmcData's insured items as the source of truth.
