@@ -14,7 +14,7 @@ class Packager
 {
     constructor()
     {
-        this.modpath = "user/mods/";
+        this.modpath = "mods/";
         this.mods = [];
         this.onLoad = {};
     }
