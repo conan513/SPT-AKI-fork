@@ -290,11 +290,11 @@ class Controller
             }
             else
             {
-                // set body part health
+                // death in raid
                 if (target < 0)
                 {
-                    // heal to full health
-                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum);
+                    // set health to 30%
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * 0.3);
                 }
 
                 if (target === 0)
