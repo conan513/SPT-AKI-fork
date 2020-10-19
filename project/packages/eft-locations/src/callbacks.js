@@ -29,7 +29,7 @@ class Callbacks
 
     getLocation(url, info, sessionID)
     {
-        return common_f.json.serialize(location_f.controller.get(url.replace("/api/location/", "")));
+        return https_f.response.getBody(location_f.controller.get(url.replace("/api/location/", "")));
     }
 }
 
