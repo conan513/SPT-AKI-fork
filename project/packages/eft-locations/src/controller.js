@@ -215,8 +215,8 @@ class Controller
             data[map._Id] = map;
         }
 
-        base.data.locations = data;
-        return base.data;
+        base.locations = data;
+        return base;
     }
 
     generateContainerLoot(items)
