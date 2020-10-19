@@ -22,7 +22,7 @@ class Controller
         for (let quest of this.questValues())
         {
             const conditions = quest.conditions.AvailableForStart.filter(
-                c => 
+                c =>
                 {
                     return c._parent === "Quest";
                 });
@@ -74,7 +74,7 @@ class Controller
         for (const quest of this.questValues())
         {
             const conditions = quest.conditions.AvailableForStart.filter(
-                c => 
+                c =>
                 {
                     return c._parent === "FindItem";
                 });
@@ -227,7 +227,10 @@ class Controller
 
     acceptQuest(pmcData, body, sessionID)
     {
-        let quest = pmcData.Quests.find((q) => { return q.qid === body.qid; });
+        let quest = pmcData.Quests.find((q) =>
+        {
+            return q.qid === body.qid;
+        });
         const time = common_f.time.getTimestamp();
         const state = "Started";
 
@@ -278,7 +281,8 @@ class Controller
         let questRewards = this.applyQuestReward(pmcData, body, "Success", sessionID);
 
         //Check if any of linked quest is failed, and that is unrestartable.
-        const checkQuest = this.questValues().filter((q) => { 
+        const checkQuest = this.questValues().filter((q) =>
+        {
             return q.conditions.Fail.length > 0 && q.conditions.Fail[0]._props.target === body.qid;
         });
 
@@ -438,7 +442,7 @@ class Controller
         {
             const completedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
-                { 
+                {
                     return c._parent === "Quest" && c._props.target === completedQuestId && c._props.status[0] === 4;
                 });
 
@@ -449,7 +453,7 @@ class Controller
 
             const otherQuestConditions = q.conditions.AvailableForStart.filter(
                 c =>
-                { 
+                {
                     return c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4;
                 });
 
