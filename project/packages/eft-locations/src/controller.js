@@ -27,7 +27,7 @@ class Controller
     generate(name)
     {
         let location = database_f.server.tables.locations[name];
-        const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
+        const locationLootChanceModifier = location.GlobalLootChanceModifier;
         let output = location.base;
         let ids = {};
 
@@ -209,7 +209,7 @@ class Controller
                 continue;
             }
 
-            let map = locations[name].base;
+            let map = locations[name];
 
             map.Loot = [];
             data[map._Id] = map;
