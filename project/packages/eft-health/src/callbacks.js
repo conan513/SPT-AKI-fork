@@ -14,7 +14,6 @@ class Callbacks
     {
         save_f.server.onLoad["health"] = this.onLoad.bind(this);
         https_f.router.onStaticRoute["/player/health/sync"] = this.syncHealth.bind(this);
-        https_f.router.onStaticRoute["/player/health/events"] = this.updateHealth.bind(this);
         item_f.eventHandler.onEvent["Eat"] = this.offraidEat.bind(this);
         item_f.eventHandler.onEvent["Heal"] = this.offraidHeal.bind(this);
         item_f.eventHandler.onEvent["RestoreHealth"] = this.healthTreatment.bind(this);
@@ -29,13 +28,7 @@ class Callbacks
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         health_f.controller.saveVitality(pmcData, info, sessionID);
-        return https_f.response.nullResponse();
-    }
-
-    updateHealth(url, info, sessionID)
-    {
-        health_f.controller.updateHealth(info, sessionID);
-        return https_f.response.nullResponse();
+        return https_f.response.emptyResponse();
     }
 
     offraidEat(pmcData, body, sessionID)
