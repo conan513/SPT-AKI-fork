@@ -882,16 +882,33 @@ class Controller
     {
         let items = pmcData.Inventory.items;
         
-        for (const target of body.changedItems)
+        // handle changed items
+        if (body.changedItems)
         {
-            // remove unsorted items
-            items = items.filter((item) =>
+            for (const target of body.changedItems)
             {
-                return item._id !== target._id;
-            });
+                // remove unsorted items
+                items = items.filter((item) =>
+                {
+                    return item._id !== target._id;
+                });
 
-            // add sorted items
-            items.push(target);
+                // add sorted items
+                items.push(target);
+            }
+        }
+
+        // handle deleted items
+        if (body.deletedItems)
+        {
+            for (const target of body.deletedItems)
+            {
+                // remove items
+                items = items.filter((item) =>
+                {
+                    return item._id !== target._id;
+                });
+            }
         }
 
         pmcData.Inventory.items = items;
