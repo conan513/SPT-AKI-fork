@@ -877,6 +877,26 @@ class Controller
 
         return item_f.eventHandler.getOutput();
     }
+
+    sortInventory(pmcData, body, sessionID)
+    {
+        let items = pmcData.Inventory.items;
+        
+        for (const target of body.changedItems)
+        {
+            // remove unsorted items
+            items = items.filter((item) =>
+            {
+                return item._id !== target._id;
+            });
+
+            // add sorted items
+            items.push(target);
+        }
+
+        pmcData.Inventory.items = items;
+        return item_f.eventHandler.getOutput();
+    }    
 }
 
 module.exports.Controller = Controller;

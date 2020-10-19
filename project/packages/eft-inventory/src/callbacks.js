@@ -24,6 +24,7 @@ class Callbacks
         item_f.eventHandler.onEvent["Bind"] = this.bindItem.bind(this);
         item_f.eventHandler.onEvent["Examine"] = this.examineItem.bind(this);
         item_f.eventHandler.onEvent["ReadEncyclopedia"] = this.readEncyclopedia.bind(this);
+        item_f.eventHandler.onEvent["ApplyInventoryChanges"]  = this.sortInventory.bind(this);
     }
 
     moveItem(pmcData, body, sessionID)
@@ -84,6 +85,11 @@ class Callbacks
     readEncyclopedia(pmcData, body, sessionID)
     {
         return inventory_f.controller.readEncyclopedia(pmcData, body, sessionID);
+    }
+
+    sortInventory(pmcData, body, sessionID)
+    {
+        return inventory_f.controller.sortInventory(pmcData, body, sessionID);
     }
 }
 
