@@ -66,7 +66,7 @@ class Controller
                     item.upd.MedKit = {"HpResource": maxhp - body.count};
                 }
 
-                if (item.upd.MedKit.HpResource === 0)
+                if (item.upd.MedKit.HpResource <= 0)
                 {
                     inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
                 }
@@ -136,7 +136,7 @@ class Controller
             }
             else
             {
-                nodeHealth[bodyPart] = -1;
+                nodeHealth[bodyPart] = pmcData.Health[bodyPart].Maximum * health_f.config.healthMultipliers.death;
             }
         }
 
@@ -145,43 +145,6 @@ class Controller
         this.resetVitality(sessionID);
 
         pmcData.Health.UpdateTime = common_f.time.getTimestamp();
-    }
-
-    /* stores the player health changes */
-    updateHealth(info, sessionID)
-    {
-        let node = save_f.server.profiles[sessionID].vitality.health;
-
-        switch (info.type)
-        {
-            /* store difference from infill */
-            case "HydrationChanged":
-            case "EnergyChanged":
-                node[(info.type).replace("Changed", "")] += parseInt(info.diff);
-                break;
-
-            /* difference is already applies */
-            case "HealthChanged":
-                node[info.bodyPart] = info.value;
-                break;
-
-            /* store state and make server aware to kill all body parts */
-            case "Died":
-                node = {
-                    "Hydration": save_f.server.profiles[sessionID].vitality.health.Hydration,
-                    "Energy": save_f.server.profiles[sessionID].vitality.health.Energy,
-                    "Head": -1,
-                    "Chest": -1,
-                    "Stomach": -1,
-                    "LeftArm": -1,
-                    "RightArm": -1,
-                    "LeftLeg": -1,
-                    "RightLeg": -1
-                };
-                break;
-        }
-
-        save_f.server.profiles[sessionID].vitality.health = node;
     }
 
     healthTreatment(pmcData, info, sessionID)
@@ -240,31 +203,6 @@ class Controller
         }
     }
 
-    removeEffect(pmcData, sessionID, info)
-    {
-        let bodyPart = pmcData.Health.BodyParts[info.bodyPart];
-
-        if (!("Effects" in bodyPart))
-        {
-            return;
-        }
-
-        switch (info.effectType)
-        {
-            case "BreakPart":
-                if ("BreakPart" in bodyPart.Effects)
-                {
-                    delete bodyPart.Effects.BreakPart;
-                }
-        }
-
-        // delete empty property to prevent client bugs
-        if (this.isEmpty(bodyPart.Effects))
-        {
-            delete bodyPart.Effects;
-        }
-    }
-
     saveHealth(pmcData, sessionID)
     {
         if (!health_f.config.save.health)
@@ -290,17 +228,10 @@ class Controller
             }
             else
             {
-                // death in raid
-                if (target < 0)
-                {
-                    // set health to 30%
-                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * 0.3);
-                }
-
                 if (target === 0)
                 {
                     // blacked body part
-                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * 0.1);
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * health_f.config.healthMultipliers.blacked);
                 }
 
                 pmcData.Health.BodyParts[item].Health.Current = target;

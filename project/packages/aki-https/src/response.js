@@ -39,6 +39,13 @@ class Response
         });
     }
 
+    emptyResponse()
+    {
+        const data = "";
+        const errmsg = "";
+        return this.getBody(data, 0, errmsg);
+    }
+
     nullResponse()
     {
         return this.getBody(null);
