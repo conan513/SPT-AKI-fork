@@ -881,7 +881,7 @@ class Controller
     sortInventory(pmcData, body, sessionID)
     {
         let items = pmcData.Inventory.items;
-        
+
         // handle changed items
         if (body.changedItems)
         {
@@ -913,7 +913,7 @@ class Controller
 
         pmcData.Inventory.items = items;
         return item_f.eventHandler.getOutput();
-    }    
+    }
 }
 
 module.exports.Controller = Controller;
