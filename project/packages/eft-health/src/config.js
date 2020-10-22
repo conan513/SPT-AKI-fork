@@ -12,6 +12,10 @@ class Config
 {
     constructor()
     {
+        this.healthMultipliers = {
+            "death": 0.3,
+            "blacked": 0.1
+        };
         this.save = {
             "health": true,
             "effects": true

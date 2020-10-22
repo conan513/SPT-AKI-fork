@@ -27,7 +27,6 @@ class Controller
     generate(name)
     {
         let location = database_f.server.tables.locations[name];
-        const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
         let output = location.base;
         let ids = {};
 
@@ -168,7 +167,7 @@ class Controller
 
             const num = common_f.random.getInt(0, 100);
             const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
-            const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
+            const itemChance = (spawnChance * this.globalLootChanceModifier * location.base.GlobalLootChanceModifier).toFixed(0);
             if (itemChance >= num)
             {
                 count += 1;
@@ -215,8 +214,8 @@ class Controller
             data[map._Id] = map;
         }
 
-        base.data.locations = data;
-        return base.data;
+        base.locations = data;
+        return base;
     }
 
     generateContainerLoot(items)
