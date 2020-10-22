@@ -46,6 +46,15 @@ class Controller
         return database_f.server.tables.bots.types[type].difficulty[difficulty];
     }
 
+    generateId(bot)
+    {
+        const botId = common_f.hash.generate();
+        
+        bot._id = botId;
+        bot.aid = botId;
+        return bot;
+    }
+
     generateBot(bot, role, sessionID)
     {
         const pmcSettings = bots_f.config.pmcSpawn;
@@ -101,6 +110,9 @@ class Controller
             bot = this.generateDogtag(bot);
         }
 
+        // generate new bot ID
+        bot = this.generateId(bot);
+
         // generate new inventory ID
         bot = helpfunc_f.helpFunctions.generateInventoryID(bot);
 
@@ -115,11 +127,9 @@ class Controller
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                const botId = common_f.hash.generate();
+                
                 let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
 
-                bot._id = botId;
-                bot.aid = botId;
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot = this.generateBot(bot, condition.Role, sessionID);
                 generatedBots.unshift(bot);
