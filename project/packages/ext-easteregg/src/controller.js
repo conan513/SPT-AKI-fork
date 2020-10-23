@@ -42,6 +42,7 @@ class Controller
     {
         let bot = helpfunc_f.helpFunctions.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
         
+        bot.Info.Settings.BotDifficulty = condition.Difficulty;
         bot = bots_f.controller.generateDogtag(bot);
         bot = bots_f.controller.generateId(bot);
         bot = helpfunc_f.helpFunctions.generateInventoryID(bot);
