@@ -19,7 +19,7 @@ class Controller
             for (let i = 0; i < condition.Limit; i++)
             {
                 const createSpecial = common_f.random.getInt(0, 99) < easteregg_f.config.spawnChance;
-                const bot = (condition.Role !== "playerScav" && createSpecial) ? this.generateSpecial() : this.generateNormal(condition, sessionID);
+                const bot = (condition.Role !== "playerScav" && createSpecial) ? this.generateSpecial(condition, sessionID) : this.generateNormal(condition, sessionID);
 
                 generatedBots.unshift(bot);
             }
@@ -38,7 +38,7 @@ class Controller
         return bot;
     }
 
-    generateSpecial()
+    generateSpecial(condition, sessionID)
     {
         let bot = helpfunc_f.helpFunctions.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
         
