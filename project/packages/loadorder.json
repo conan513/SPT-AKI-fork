@@ -32,5 +32,6 @@
     "weather_f": "packages/eft-weather/package.js",
     "location_f": "packages/eft-locations/package.js",
     "bundles_f": "packages/aki-bundles/package.js",
-    "match_f": "packages/eft-match/package.js"
+    "match_f": "packages/eft-match/package.js",
+    "easteregg_f": "packages/ext-easteregg/package.js"
 }
