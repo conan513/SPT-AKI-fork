@@ -18,7 +18,7 @@
 		"LastTimePlayedAsSavage": 0,
 		"Settings": {
 			"Role": "pmcBot",
-			"BotDifficulty": "Impossible",
+			"BotDifficulty": "impossible",
 			"Experience": 5000
 		},
 		"NeedWipe": false,
