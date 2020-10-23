@@ -261,7 +261,7 @@ class Controller
             "maxStorageTime": quest_f.config.redeemTime * 3600
         };
 
-        if (questLocale.startedMessageText === "")
+        if (questLocale.startedMessageText === "" || questLocale.startedMessageText.length == 24)
         {
             messageContent = {
                 "templateId": questLocale.description,
