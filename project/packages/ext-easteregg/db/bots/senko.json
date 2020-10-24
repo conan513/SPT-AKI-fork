@@ -296,7 +296,7 @@
 				"_id": "ae568a6d7c89cadbe56f2f17",
 				"_tpl": "5cc82d76e24e8d00134b4b83",
 				"parentId": "5df7b9abef12bf7a252437a1",
-				"slotId": "SecondPrimaryWeapon",
+				"slotId": "FirstPrimaryWeapon",
 				"upd": {
 					"FireMode": {
 						"FireMode": "fullauto"
@@ -1263,7 +1263,7 @@
 				"_id": "ee75bb2e61ade854ced6801b",
 				"_tpl": "5e81ebcd8e146c7080625e15",
 				"parentId": "5df7b9abef12bf7a252437a1",
-				"slotId": "FirstPrimaryWeapon",
+				"slotId": "SecondPrimaryWeapon",
 				"upd": {
 					"FireMode": {
 						"FireMode": "single"
