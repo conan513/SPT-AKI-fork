@@ -136,7 +136,7 @@ class Controller
             }
             else
             {
-                nodeHealth[bodyPart] = pmcData.Health[bodyPart].Maximum * health_f.config.healthMultipliers.death;
+                nodeHealth[bodyPart] = pmcData.Health.BodyParts[bodyPart].Health.Maximum * health_f.config.healthMultipliers.death;
             }
         }
 
@@ -191,8 +191,8 @@ class Controller
 
         switch (info.effectType)
         {
-            case "BreakPart":
-                bodyPart.Effects.BreakPart = { "Time": -1 };
+            case "Fracture":
+                bodyPart.Effects.Fracture = { "Time": -1 };
                 break;
         }
 
@@ -258,8 +258,8 @@ class Controller
             {
                 switch (effect)
                 {
-                    case "BreakPart":
-                        this.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "BreakPart"});
+                    case "Fracture":
+                        this.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "Fracture"});
                         break;
                 }
             }
