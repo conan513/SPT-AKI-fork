@@ -19,7 +19,7 @@
         "Settings": {
             "Role": "pmcBot",
             "BotDifficulty": "easy",
-            "Experience": -1
+            "Experience": 5000
         },
         "NeedWipe": false,
         "GlobalWipe": false,
@@ -43,44 +43,44 @@
 		"BodyParts": {
 			"Head": {
 				"Health": {
-					"Current": 35,
-					"Maximum": 35
-				}
-			},
-			"Chest": {
-				"Health": {
-					"Current": 85,
-					"Maximum": 85
-				}
-			},
-			"Stomach": {
-				"Health": {
 					"Current": 70,
 					"Maximum": 70
 				}
 			},
+			"Chest": {
+				"Health": {
+					"Current": 360,
+					"Maximum": 360
+				}
+			},
+			"Stomach": {
+				"Health": {
+					"Current": 150,
+					"Maximum": 150
+				}
+			},
 			"LeftArm": {
 				"Health": {
-					"Current": 60,
-					"Maximum": 60
+					"Current": 150,
+					"Maximum": 150
 				}
 			},
 			"RightArm": {
 				"Health": {
-					"Current": 60,
-					"Maximum": 60
+					"Current": 150,
+					"Maximum": 150
 				}
 			},
 			"LeftLeg": {
 				"Health": {
-					"Current": 65,
-					"Maximum": 65
+					"Current": 360,
+					"Maximum": 360
 				}
 			},
 			"RightLeg": {
 				"Health": {
-					"Current": 65,
-					"Maximum": 65
+					"Current": 360,
+					"Maximum": 360
 				}
 			}
 		}
