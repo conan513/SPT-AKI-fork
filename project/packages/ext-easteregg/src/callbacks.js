@@ -19,7 +19,8 @@ class Callbacks
     load()
     {
         database_f.server.tables.bots.special = {
-            "senko": common_f.json.deserialize(common_f.vfs.readFile("packages/ext-easteregg/db/bots/senko.json"))
+            "senko": common_f.json.deserialize(common_f.vfs.readFile("packages/ext-easteregg/db/bots/senko.json")),
+            "waffle": common_f.json.deserialize(common_f.vfs.readFile("packages/ext-easteregg/db/bots/waffle.json"))
         };
     }
 
