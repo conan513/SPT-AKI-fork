@@ -33,8 +33,7 @@ const areaTypes = {
     SOLAR_POWER: 18,
     BOOZE_GENERATOR: 19,
     BITCOIN_FARM: 20,
-    CHRISTMAS_TREE: 21,
-    SCAV_CASE_ITEMS: 141
+    CHRISTMAS_TREE: 21
 };
 
 class Controller
@@ -358,11 +357,11 @@ class Controller
             }
         }
 
-        pmcData.Hideout.Production[areaTypes.SCAV_CASE_ITEMS] = {
+        pmcData.Hideout.Production.ScavCase = {
             "Products": products
         };
 
-        pmcData.Hideout.Production[areaTypes.SCAV_CASE] = {
+        pmcData.Hideout.Production[body.recipeId] = {
             "Progress": 0,
             "inProgress": true,
             "RecipeId": body.recipeId,
@@ -384,7 +383,7 @@ class Controller
     {
         let output = item_f.eventHandler.getOutput();
 
-        const bitCoinCount = pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products.length;
+        const bitCoinCount = pmcData.Hideout.Production["5d5c205bd582a50d042a3c0e"].Products.length;
         if (!bitCoinCount)
         {
             common_f.logger.logError("No bitcoins are ready for pickup!");
@@ -394,14 +393,14 @@ class Controller
         let newBTC = {
             "items": [{
                 "item_id": "59faff1d86f7746c51718c9c",
-                "count": pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products.length,
+                "count": pmcData.Hideout.Production["5d5c205bd582a50d042a3c0e"].Products.length,
             }],
             "tid": "ragfair"
         };
 
         let callback = () =>
         {
-            pmcData.Hideout.Production[areaTypes.BITCOIN_FARM].Products = [];
+            pmcData.Hideout.Production["5d5c205bd582a50d042a3c0e"].Products = [];
         };
 
         return inventory_f.controller.addItem(pmcData, newBTC, output, sessionID, callback, true);
@@ -463,7 +462,7 @@ class Controller
             }
             const prod = kvp[0];
 
-            pmcData.Hideout.Production[prod].Products = pmcData.Hideout.Production[areaTypes.SCAV_CASE_ITEMS].Products;
+            pmcData.Hideout.Production[prod].Products = pmcData.Hideout.Production.ScavCase.Products;
 
             const itemsToAdd = pmcData.Hideout.Production[prod].Products.map(x =>
             {
@@ -478,7 +477,7 @@ class Controller
             const callback = () =>
             {
                 delete pmcData.Hideout.Production[prod];
-                delete pmcData.Hideout.Production[areaTypes.SCAV_CASE_ITEMS];
+                delete pmcData.Hideout.Production.ScavCase;
             };
 
             return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
@@ -497,7 +496,7 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput());
         }
 
-        pmcData.Hideout.Production[recipe.areaType] = {
+        pmcData.Hideout.Production[body.recipeId] = {
             "Progress": 0,
             "inProgress": true,
             "RecipeId": body.recipeId,
@@ -621,28 +620,29 @@ class Controller
         // update production time
         for (let prod in pmcData.Hideout.Production)
         {
+            const scavCaseRecipe = database_f.server.tables.hideout.scavcase.find(r => r._id === prod);
             if (!pmcData.Hideout.Production[prod].inProgress)
             {
                 continue;
             }
 
-            if (prod == areaTypes.SCAV_CASE)
+            if (scavCaseRecipe)
             {
                 const time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
                 pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 continue;
             }
 
-            if (prod == areaTypes.BITCOIN_FARM)
+            if (prod == "5d5c205bd582a50d042a3c0e")
             {
                 pmcData.Hideout.Production[prod] = this.updateBitcoinFarm(pmcData.Hideout.Production[prod], btcFarmCGs, isGeneratorOn);
                 continue;
             }
 
-            const recipe = recipes.find(r => r._id === pmcData.Hideout.Production[prod].RecipeId);
+            const recipe = recipes.find(r => r._id === prod);
             if (!recipe)
             {
-                common_f.logger.logError(`Could not find recipe ${pmcData.Hideout.Production[prod].RecipeId} for area type ${prod}`);
+                common_f.logger.logError(`Could not find recipe ${prod} for area type ${recipes.areaType}`);
                 continue;
             }
 
