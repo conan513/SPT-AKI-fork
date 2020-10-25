@@ -1,0 +1,8 @@
+version: "2.4"
+services:
+  spt-aki-server:
+    build:
+      context: .
+    container_name: spt-aki-server
+    ports:
+      - "443:443"
