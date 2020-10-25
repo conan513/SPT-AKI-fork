@@ -21,13 +21,13 @@ class Controller
         for (const name of names)
         {
             // bot
-            database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/bots/${name}.json`));
+            //database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/bots/${name}.json`));
 
             // dogtag item
             let dogtagItem = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.items["59f32c3b86f77472a31742f0"]);
 
             dogtagItem._id = `${name}dogtag`;
-            dogtagItem._props.Prefab.path = "assets/content/items/barter/dog_tags/item_dogtags_t2.bundle";
+            dogtagItem._props.Prefab.path = "assets/content/items/barter/dog_tags/item_dogtag_t2.bundle";
             database_f.server.tables.templates.items[`${name}dogtag`] = dogtagItem;
 
             this.addDogtag(dogtagItem._id);
@@ -83,7 +83,7 @@ class Controller
         let bot = helpfunc_f.helpFunctions.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
         
         bot.Info.Settings.BotDifficulty = condition.Difficulty;
-        //bot = this.generateDogtag(bot);
+        bot = this.generateDogtag(bot);
         bot = bots_f.controller.generateId(bot);
         bot = helpfunc_f.helpFunctions.generateInventoryID(bot);
 
