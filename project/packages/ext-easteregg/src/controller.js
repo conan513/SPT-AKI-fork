@@ -76,7 +76,7 @@ class Controller
         {
             if (inventory._props.Slots[slot]._name === "Dogtag")
             {
-                inventory._props.Slots[slot]._props.filters[0].Filter.push(itemID);
+                inventory._props.Slots[slot]._props.filters[0].Filter.push(dogtagName);
                 break;
             }
         }
