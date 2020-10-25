@@ -30,6 +30,7 @@
     "preset_f": "packages/eft-presets/package.js",
     "ragfair_f": "packages/eft-ragfair/package.js",
     "weather_f": "packages/eft-weather/package.js",
+    "loot_f": "packages/eft-loot/package.js",
     "location_f": "packages/eft-locations/package.js",
     "bundles_f": "packages/aki-bundles/package.js",
     "match_f": "packages/eft-match/package.js",
