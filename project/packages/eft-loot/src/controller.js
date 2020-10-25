@@ -10,20 +10,25 @@
 
 "use strict";
 
-class Controller {
-    constructor() {
+class Controller
+{
+    constructor()
+    {
         this.globalLootChanceModifier = 0;
     }
 
-    initialize() {
+    initialize()
+    {
         this.globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
     }
 
-    generateDynamicLoot(dynamic, lootPositions, locationLootChanceModifier) {
+    generateDynamicLoot(dynamic, lootPositions, locationLootChanceModifier)
+    {
         let rndLootIndex = common_f.random.getInt(0, dynamic.length - 1);
         let rndLoot = dynamic[rndLootIndex];
 
-        if (!rndLoot.data) {
+        if (!rndLoot.data)
+        {
             delete dynamic.splice(rndLootIndex, 1);
             return { "result": "error" };
         }
@@ -33,11 +38,13 @@ class Controller {
 
         //Check if LootItem is overlapping
         let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
-        if (!location_f.config.allowLootOverlay && lootPositions.includes(position)) {
+        if (!location_f.config.allowLootOverlay && lootPositions.includes(position))
+        {
             //Clear selected loot
             dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
 
-            if (dynamic[rndLootIndex].data.length === 0) {
+            if (dynamic[rndLootIndex].data.length === 0)
+            {
                 delete dynamic.splice(rndLootIndex, 1);
             }
 
@@ -52,7 +59,8 @@ class Controller {
         let lootItemsHash = {};
         let lootItemsByParentId = {};
 
-        for (const i in data.Items) {
+        for (const i in data.Items)
+        {
 
             let loot = data.Items[i];
             // Check for the item spawnchance
@@ -67,7 +75,8 @@ class Controller {
         }
 
         //reset itemId and childrenItemId
-        for (const itemId of Object.keys(lootItemsHash)) {
+        for (const itemId of Object.keys(lootItemsHash))
+        {
             let newId = common_f.hash.generate();
             lootItemsHash[itemId]._id = newId;
 
@@ -77,7 +86,8 @@ class Controller {
             if (lootItemsByParentId[itemId] === undefined)
                 continue;
 
-            for (const childrenItem of lootItemsByParentId[itemId]) {
+            for (const childrenItem of lootItemsByParentId[itemId])
+            {
                 childrenItem.parentId = newId;
             }
         }
@@ -86,16 +96,19 @@ class Controller {
         const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
         const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
 
-        if (itemChance >= num) {
+        if (itemChance >= num)
+        {
             return { "status": "success", "data": data, "position": position };
         }
-        else {
+        else
+        {
             return { "status": "fail" };
         }
     }
 
-    generateContainerLoot(items) {
-        let container = database_f.server.tables.loot.statics[items[0]._tpl];
+    generateContainerLoot(items)
+    {
+        let container = helpfunc_f.helpFunctions.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
@@ -105,7 +118,7 @@ class Controller {
 
 
         // Spawn any forced items first
-        for(let i = 1; i < items.length; i++)
+        for (let i = 1; i < items.length; i++)
         {
             const item = helpfunc_f.helpFunctions.getItem(items[i]._tpl)[1];
 
@@ -113,27 +126,32 @@ class Controller {
                 container2D, items[i].location.x, items[i].location.y, item._props.Width, item._props.Height, items[i].location.r);
         }
 
-        for (let i = minCount; i < container.maxCount; i++) {
+        for (let i = minCount; i < container.maxCount; i++)
+        {
             let roll = common_f.random.getInt(0, 100);
 
-            if (roll < container.chance) {
+            if (roll < container.chance)
+            {
                 minCount++;
             }
         }
 
-        for (let i = 0; i < minCount; i++) {
+        for (let i = 0; i < minCount; i++)
+        {
             let item = {};
             let containerItem = {};
             let result = { success: false };
             let maxAttempts = 20;
 
-            while (!result.success && maxAttempts) {
+            while (!result.success && maxAttempts)
+            {
                 let roll = common_f.random.getInt(0, maxProbability);
                 let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
 
                 item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
 
-                if (rolled.preset) {
+                if (rolled.preset)
+                {
                     // Guns will need to load a preset of items
                     item._props.presetId = rolled.preset.id;
                     item._props.Width = rolled.preset.w;
@@ -152,17 +170,20 @@ class Controller {
                 container2D, result.x, result.y, item._props.Width, item._props.Height, result.rotation);
             let rot = result.rotation ? 1 : 0;
 
-            if (item._props.presetId) {
+            if (item._props.presetId)
+            {
                 // Process gun preset into container items
                 let preset = helpfunc_f.helpFunctions.clone(preset_f.controller.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };
 
-                for (var p in preset._items) {
+                for (var p in preset._items)
+                {
                     items.push(preset._items[p]);
 
-                    if (preset._items[p].slotId === "mod_magazine") {
+                    if (preset._items[p].slotId === "mod_magazine")
+                    {
                         let mag = helpfunc_f.helpFunctions.getItem(preset._items[p]._tpl)[1];
                         let cartridges = {
                             "_id": idPrefix + idSuffix.toString(16),
@@ -177,6 +198,8 @@ class Controller {
                     }
                 }
 
+                // Don't spawn the same weapon more than once
+                container.items = container.items.filter(itm => itm.id !== item._id);
                 continue;
             }
 
@@ -188,13 +211,22 @@ class Controller {
                 "location": { "x": result.x, "y": result.y, "r": rot }
             };
 
+
+            if (item._parent !== "543be5dd4bdc2deb348b4569")
+            {
+                // Don't spawn the same item more than once (apart from money stacks)
+                container.items = container.items.filter(itm => itm.id !== item._id);
+            }
+
             let cartridges;
-            if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567") {
+            if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
+            {
                 // Money or Ammo stack
                 let stackCount = common_f.random.getInt(item._props.StackMinRandom, item._props.StackMaxRandom);
                 containerItem.upd = { "StackObjectsCount": stackCount };
             }
-            else if (item._parent === "543be5cb4bdc2deb348b4568") {
+            else if (item._parent === "543be5cb4bdc2deb348b4568")
+            {
                 // Ammo container
                 idSuffix++;
 
@@ -206,7 +238,8 @@ class Controller {
                     "upd": { "StackObjectsCount": item._props.StackMaxRandom }
                 };
             }
-            else if (item._parent === "5448bc234bdc2d3c308b4569") {
+            else if (item._parent === "5448bc234bdc2d3c308b4569")
+            {
                 // Magazine
                 idSuffix++;
                 cartridges = {
@@ -219,7 +252,8 @@ class Controller {
             }
 
             items.push(containerItem);
-            if (cartridges) {
+            if (cartridges)
+            {
                 items.push(cartridges);
             }
             idSuffix++;
