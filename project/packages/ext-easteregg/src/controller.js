@@ -12,7 +12,7 @@ class Controller
 {
     load()
     {
-        const names = ["senko", "ginja", "ereshkigal", "wafflelord", "digitalbarrito"];
+        const names = ["senko", "ginja", "ereshkigal", "wafflelord", "digitalbarrito", "reider123"];
 
         // setup special bots
         database_f.server.tables.bots.special = {};
@@ -57,10 +57,9 @@ class Controller
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                const createSpecial = ((condition.Role === "assault" || condition.Role === "pmcBot") && (common_f.random.getInt(0, 99) < easteregg_f.config.spawnChance));
+                const eligable = (condition.Role === "assault" || condition.Role === "cursedAssault" || condition.Role === "pmcBot");
+                const createSpecial = (eligable && common_f.random.getInt(0, 99) < easteregg_f.config.spawnChance);
                 const bot = (createSpecial) ? this.generateSpecial(condition, sessionID) : this.generateNormal(condition, sessionID);
-
-                console.log(createSpecial);
 
                 generatedBots.unshift(bot);
             }
