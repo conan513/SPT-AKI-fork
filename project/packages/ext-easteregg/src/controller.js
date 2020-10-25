@@ -33,10 +33,13 @@ class Controller
             this.addDogtag(dogtagItem._id);
 
             // dogtag handbook
-            let dogtagHandbook = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.handbook.Items["59f32c3b86f77472a31742f0"]);
+            let dogtagHandbook = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.handbook.Items.find((item) =>
+            {
+                return item.Id === "59f32c3b86f77472a31742f0";
+            }));
 
             dogtagHandbook.Id = dogtagItem._id;
-            database_f.server.tables.templates.handbook.Items[dogtagItem._id] = dogtagHandbook;
+            database_f.server.tables.templates.handbook.Items.push(dogtagHandbook);
 
             // dogtag locale
             for (const localeID in database_f.server.tables.locales.globals)
