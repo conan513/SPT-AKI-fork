@@ -36,6 +36,8 @@ const areaTypes = {
     CHRISTMAS_TREE: 21
 };
 
+const BITCOIN_FARM = "5d5c205bd582a50d042a3c0e";
+
 class Controller
 {
     upgrade(pmcData, body, sessionID)
@@ -383,7 +385,7 @@ class Controller
     {
         let output = item_f.eventHandler.getOutput();
 
-        const bitCoinCount = pmcData.Hideout.Production["5d5c205bd582a50d042a3c0e"].Products.length;
+        const bitCoinCount = pmcData.Hideout.Production[BITCOIN_FARM].Products.length;
         if (!bitCoinCount)
         {
             common_f.logger.logError("No bitcoins are ready for pickup!");
@@ -393,14 +395,14 @@ class Controller
         let newBTC = {
             "items": [{
                 "item_id": "59faff1d86f7746c51718c9c",
-                "count": pmcData.Hideout.Production["5d5c205bd582a50d042a3c0e"].Products.length,
+                "count": pmcData.Hideout.Production[BITCOIN_FARM].Products.length,
             }],
             "tid": "ragfair"
         };
 
         let callback = () =>
         {
-            pmcData.Hideout.Production["5d5c205bd582a50d042a3c0e"].Products = [];
+            pmcData.Hideout.Production[BITCOIN_FARM].Products = [];
         };
 
         return inventory_f.controller.addItem(pmcData, newBTC, output, sessionID, callback, true);
@@ -410,7 +412,7 @@ class Controller
     {
         let output = item_f.eventHandler.getOutput();
 
-        if (body.recipeId === "5d5c205bd582a50d042a3c0e")
+        if (body.recipeId === BITCOIN_FARM)
         {
             return this.getBTC(pmcData, body, sessionID);
         }
@@ -633,7 +635,7 @@ class Controller
                 continue;
             }
 
-            if (prod == "5d5c205bd582a50d042a3c0e")
+            if (prod == BITCOIN_FARM)
             {
                 pmcData.Hideout.Production[prod] = this.updateBitcoinFarm(pmcData.Hideout.Production[prod], btcFarmCGs, isGeneratorOn);
                 continue;
