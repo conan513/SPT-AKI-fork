@@ -102,51 +102,6 @@
 				"_tpl": "5811ce772459770e9e5f9532"
 			},
 			{
-				"_id": "5df7b9abef12bf7a252437c2",
-				"_tpl": "5449016a4bdc2d6f028b456f",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 7,
-					"y": 0,
-					"r": "Horizontal",
-					"isSearched": true
-				},
-				"upd": {
-					"StackObjectsCount": 944408196
-				}
-			},
-			{
-				"_id": "5df7b9abef12bf7a252437ec",
-				"_tpl": "5696686a4bdc2da3298b456a",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 8,
-					"y": 0,
-					"r": "Horizontal",
-					"isSearched": true
-				},
-				"upd": {
-					"StackObjectsCount": 999999999
-				}
-			},
-			{
-				"_id": "5df7b9abef12bf7a252437fc",
-				"_tpl": "569668774bdc2da2298b4568",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 9,
-					"y": 0,
-					"r": "Horizontal",
-					"isSearched": true
-				},
-				"upd": {
-					"StackObjectsCount": 999999999
-				}
-			},
-			{
 				"_id": "5df7b9abef12bf7a25243861",
 				"_tpl": "5963866b86f7747bfa1c4462"
 			},
@@ -1179,15 +1134,6 @@
 				}
 			},
 			{
-				"_id": "3500612e63ce0d06e4f0210f",
-				"_tpl": "5bffdd7e0db834001b734a1a",
-				"parentId": "5df7b9abef12bf7a252437a1",
-				"slotId": "Scabbard",
-				"upd": {
-					"StackObjectsCount": 1
-				}
-			},
-			{
 				"_id": "c89155f0da738a9dbb2c2863",
 				"_tpl": "5c12613b86f7743bbe2c3f76",
 				"parentId": "0de141ef143e37013668ff6f",
@@ -1324,51 +1270,6 @@
 						"Color": 0,
 						"Name": "Cheezy Stuff"
 					}
-				}
-			},
-			{
-				"_id": "98c309ba685a526b2364903f",
-				"_tpl": "5449016a4bdc2d6f028b456f",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 9,
-					"y": 1,
-					"r": "Horizontal",
-					"isSearched": true
-				},
-				"upd": {
-					"StackObjectsCount": 500000
-				}
-			},
-			{
-				"_id": "d458f7e46e57c8a7fe81de90",
-				"_tpl": "5449016a4bdc2d6f028b456f",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 7,
-					"y": 1,
-					"r": "Horizontal",
-					"isSearched": true
-				},
-				"upd": {
-					"StackObjectsCount": 500000
-				}
-			},
-			{
-				"_id": "7ecebae804aec2d271ad615b",
-				"_tpl": "5449016a4bdc2d6f028b456f",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 8,
-					"y": 1,
-					"r": "Horizontal",
-					"isSearched": true
-				},
-				"upd": {
-					"StackObjectsCount": 500000
 				}
 			},
 			{
@@ -1567,15 +1468,6 @@
 				}
 			},
 			{
-				"_id": "2a48d77830edb758866bc0f0",
-				"_tpl": "5f4f9eb969cdc30ff33f09db",
-				"parentId": "5df7b9abef12bf7a252437a1",
-				"slotId": "Compass",
-				"upd": {
-					"StackObjectsCount": 1
-				}
-			},
-			{
 				"_id": "1cabfd45af0fd62dfc2864e2",
 				"_tpl": "590c5f0d86f77413997acfab",
 				"parentId": "0de141ef143e37013668ff6f",
@@ -1603,34 +1495,6 @@
 				},
 				"upd": {
 					"StackObjectsCount": 1
-				}
-			},
-			{
-				"_id": "555264d6b3dc88e037b36b0c",
-				"_tpl": "5449016a4bdc2d6f028b456f",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 0,
-					"y": 0,
-					"r": 0
-				},
-				"upd": {
-					"StackObjectsCount": 500000
-				}
-			},
-			{
-				"_id": "25b99585dfea852d9f2a2b7a",
-				"_tpl": "5449016a4bdc2d6f028b456f",
-				"parentId": "5df7b9abef12bf7a2524385f",
-				"slotId": "hideout",
-				"location": {
-					"x": 1,
-					"y": 0,
-					"r": 0
-				},
-				"upd": {
-					"StackObjectsCount": 406575
 				}
 			}
 		],

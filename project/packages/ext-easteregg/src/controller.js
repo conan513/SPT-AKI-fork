@@ -21,7 +21,7 @@ class Controller
             "digitalbarrito",
             "reider123",
             "terkoiz",
-            "elitecheeze"
+            "elitecheez"
         ];
 
         // setup special bots
@@ -51,6 +51,7 @@ class Controller
         let dogtagItem = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.items[dogtagBase]);
 
         dogtagItem._id = dogtagName;
+        dogtagItem._name = dogtagName;
         dogtagItem._props.Prefab.path = "assets/content/items/barter/dog_tags/item_dogtag_t2.bundle";
         database_f.server.tables.templates.items[dogtagName] = dogtagItem;
 
