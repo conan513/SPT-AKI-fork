@@ -113,7 +113,6 @@ class Controller
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
         let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0));
-        let maxProbability = container.maxProbability;
         let minCount = container.minCount;
 
 
@@ -140,14 +139,16 @@ class Controller
         {
             let item = {};
             let containerItem = {};
+            let rolledIndex = 0;
             let result = { success: false };
             let maxAttempts = 20;
+            let maxProbability = container.items[container.items.length - 1].cumulativeChance;
 
             while (!result.success && maxAttempts)
             {
                 let roll = common_f.random.getInt(0, maxProbability);
-                let rolled = container.items.find(itm => itm.cumulativeChance >= roll);
-
+                rolledIndex = container.items.findIndex(itm => itm.cumulativeChance >= roll);
+                const rolled = container.items[rolledIndex];
                 item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
 
                 if (rolled.preset)
@@ -199,7 +200,7 @@ class Controller
                 }
 
                 // Don't spawn the same weapon more than once
-                container.items = container.items.filter(itm => itm.id !== item._id);
+                container.items.splice(rolledIndex, 1);
                 continue;
             }
 
@@ -215,7 +216,7 @@ class Controller
             if (item._parent !== "543be5dd4bdc2deb348b4569")
             {
                 // Don't spawn the same item more than once (apart from money stacks)
-                container.items = container.items.filter(itm => itm.id !== item._id);
+                container.items.splice(rolledIndex, 1);
             }
 
             let cartridges;
