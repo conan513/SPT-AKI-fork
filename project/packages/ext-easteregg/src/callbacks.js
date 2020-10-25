@@ -18,21 +18,12 @@ class Callbacks
 
     load()
     {
-        database_f.server.tables.bots.special = {
-            "senko": common_f.json.deserialize(common_f.vfs.readFile("packages/ext-easteregg/db/bots/senko.json"))
-        };
+        easteregg_f.controller.load();
     }
 
     generateBots(url, info, sessionID)
     {
-        if (easteregg_f.config.enabled)
-        {
-            return https_f.response.getBody(easteregg_f.controller.generate(info, sessionID));
-        }
-        else
-        {
-            return https_f.response.getBody(bots_f.controller.generate(info, sessionID));
-        }
+        return https_f.response.getBody(easteregg_f.controller.generate(info, sessionID));
     }
 }
 

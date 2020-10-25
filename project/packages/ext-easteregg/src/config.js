@@ -12,8 +12,7 @@ class Config
 {
     constructor()
     {
-        this.enabled = true;
-        this.spawnChance = 1;
+        this.spawnChance = 100;
     }
 }
 
