@@ -49,7 +49,7 @@ class Controller
     generateId(bot)
     {
         const botId = common_f.hash.generate();
-        
+
         bot._id = botId;
         bot.aid = botId;
         return bot;
@@ -127,7 +127,7 @@ class Controller
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                
+
                 let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;

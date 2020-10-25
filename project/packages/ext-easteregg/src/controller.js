@@ -104,7 +104,7 @@ class Controller
     generateNormal(condition, sessionID)
     {
         let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
-        
+
         bot.Info.Settings.BotDifficulty = condition.Difficulty;
         bot = bots_f.controller.generateBot(bot, condition.Role, sessionID);
 
@@ -114,7 +114,7 @@ class Controller
     generateSpecial(condition, sessionID)
     {
         let bot = helpfunc_f.helpFunctions.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
-        
+
         bot.Info.Settings.BotDifficulty = condition.Difficulty;
         bot = this.generateDogtag(bot);
         bot = bots_f.controller.generateId(bot);
