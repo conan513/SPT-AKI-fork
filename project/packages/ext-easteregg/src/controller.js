@@ -21,7 +21,7 @@ class Controller
         for (const name of names)
         {
             // bot
-            //database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/bots/${name}.json`));
+            database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/bots/${name}.json`));
 
             // dogtag item
             let dogtagItem = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.items["59f32c3b86f77472a31742f0"]);
@@ -42,9 +42,9 @@ class Controller
             database_f.server.tables.templates.handbook.Items.push(dogtagHandbook);
 
             // dogtag locale
-            for (const localeID in database_f.server.tables.locales.globals)
+            for (const localeID in database_f.server.tables.locales.global)
             {
-                database_f.server.tables.locales.globals[localeID].templates[`${name}dogtag`] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/locales/${name}.json`));
+                database_f.server.tables.locales.global[localeID].templates[`${name}dogtag`] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/locales/${name}.json`));
             }
         }
     }
