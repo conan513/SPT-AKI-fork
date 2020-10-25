@@ -60,6 +60,8 @@ class Controller
                 const createSpecial = ((condition.Role === "assault" || condition.Role === "pmcBot") && (common_f.random.getInt(0, 99) < easteregg_f.config.spawnChance));
                 const bot = (createSpecial) ? this.generateSpecial(condition, sessionID) : this.generateNormal(condition, sessionID);
 
+                console.log(createSpecial);
+
                 generatedBots.unshift(bot);
             }
         }

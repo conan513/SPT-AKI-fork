@@ -23,14 +23,7 @@ class Callbacks
 
     generateBots(url, info, sessionID)
     {
-        if (easteregg_f.config.enabled)
-        {
-            return https_f.response.getBody(easteregg_f.controller.generate(info, sessionID));
-        }
-        else
-        {
-            return https_f.response.getBody(bots_f.controller.generate(info, sessionID));
-        }
+        return https_f.response.getBody(easteregg_f.controller.generate(info, sessionID));
     }
 }
 
