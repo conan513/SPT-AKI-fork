@@ -12,7 +12,17 @@ class Controller
 {
     load()
     {
-        const names = ["senko", "ginja", "ereshkigal", "wafflelord", "digitalbarrito", "reider123"];
+        const filepath = "packages/ext-easteregg/";
+        const names = [
+            "senko",
+            "ginja",
+            "ereshkigal",
+            "wafflelord",
+            "digitalbarrito",
+            "reider123",
+            "terkoiz",
+            "elitecheeze"
+        ];
 
         // setup special bots
         database_f.server.tables.bots.special = {};
@@ -20,31 +30,54 @@ class Controller
         // for each contributor
         for (const name of names)
         {
-            // bot
-            database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/bots/${name}.json`));
+            this.loadBot(name, filepath);
+            this.loadDogtag(name, filepath);
+        }
+    }
 
-            // dogtag item
-            let dogtagItem = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.items["59f32c3b86f77472a31742f0"]);
+    loadBot(name, filepath)
+    {
+        database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`${filepath}db/bots/${name}.json`));
+    }
 
-            dogtagItem._id = `${name}dogtag`;
-            dogtagItem._props.Prefab.path = "assets/content/items/barter/dog_tags/item_dogtag_t2.bundle";
-            database_f.server.tables.templates.items[`${name}dogtag`] = dogtagItem;
+    loadDogtag(name, filepath)
+    {
+        // constants
+        const dogtagBase = "59f32c3b86f77472a31742f0";
+        const inventoryBase = "55d7217a4bdc2d86028b456d";
+        const dogtagName = `${name}dogtag`;
 
-            this.addDogtag(dogtagItem._id);
+        // item
+        let dogtagItem = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.items[dogtagBase]);
 
-            // dogtag handbook
-            let dogtagHandbook = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.handbook.Items.find((item) =>
+        dogtagItem._id = dogtagName;
+        dogtagItem._props.Prefab.path = "assets/content/items/barter/dog_tags/item_dogtag_t2.bundle";
+        database_f.server.tables.templates.items[dogtagName] = dogtagItem;
+
+        // handbook
+        let dogtagHandbook = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.handbook.Items.find((item) =>
+        {
+            return item.Id === dogtagBase;
+        }));
+
+        dogtagHandbook.Id = dogtagItem._id;
+        database_f.server.tables.templates.handbook.Items.push(dogtagHandbook);
+
+        // locale
+        for (const localeID in database_f.server.tables.locales.global)
+        {
+            database_f.server.tables.locales.global[localeID].templates[dogtagName] = common_f.json.deserialize(common_f.vfs.readFile(`${filepath}db/locales/templates/${name}.json`));
+        }
+
+        // modify inventory to support custom dogtag
+        let inventory = database_f.server.tables.templates.items[inventoryBase];
+
+        for (const slot in inventory._props.Slots)
+        {
+            if (inventory._props.Slots[slot]._name === "Dogtag")
             {
-                return item.Id === "59f32c3b86f77472a31742f0";
-            }));
-
-            dogtagHandbook.Id = dogtagItem._id;
-            database_f.server.tables.templates.handbook.Items.push(dogtagHandbook);
-
-            // dogtag locale
-            for (const localeID in database_f.server.tables.locales.global)
-            {
-                database_f.server.tables.locales.global[localeID].templates[`${name}dogtag`] = common_f.json.deserialize(common_f.vfs.readFile(`packages/ext-easteregg/db/locales/${name}.json`));
+                inventory._props.Slots[slot]._props.filters[0].Filter.push(itemID);
+                break;
             }
         }
     }
@@ -115,21 +148,6 @@ class Controller
         });
 
         return bot;
-    }
-
-    addDogtag(itemID)
-    {
-        // allow custom dogtag
-        let inventory = database_f.server.tables.templates.items["55d7217a4bdc2d86028b456d"];
-
-        for (const slot in inventory._props.Slots)
-        {
-            if (inventory._props.Slots[slot]._name === "Dogtag")
-            {
-                inventory._props.Slots[slot]._props.filters[0].Filter.push(itemID);
-                break;
-            }
-        }
     }
 }
 

@@ -3305,8 +3305,430 @@
         "fastPanel": {}
     },
     "Skills": {
-		"Common": null,
-		"Mastering": [],
+		"Common": [
+			{
+				"Id": "BotReload",
+				"Progress": 5100
+			},
+			{
+				"Id": "Endurance",
+				"Progress": 5100
+			},
+			{
+				"Id": "Strength",
+				"Progress": 5100
+			},
+			{
+				"Id": "Vitality",
+				"Progress": 5100
+			},
+			{
+				"Id": "Health",
+				"Progress": 5100
+			},
+			{
+				"Id": "StressResistance",
+				"Progress": 5100
+			},
+			{
+				"Id": "Metabolism",
+				"Progress": 5100
+			},
+			{
+				"Id": "Immunity",
+				"Progress": 5100
+			},
+			{
+				"Id": "Perception",
+				"Progress": 5100
+			},
+			{
+				"Id": "Intellect",
+				"Progress": 5100
+			},
+			{
+				"Id": "Attention",
+				"Progress": 5100
+			},
+			{
+				"Id": "Charisma",
+				"Progress": 5100
+			},
+			{
+				"Id": "Memory",
+				"Progress": 5100
+			},
+			{
+				"Id": "Pistol",
+				"Progress": 5100
+			},
+			{
+				"Id": "Revolver",
+				"Progress": 5100
+			},
+			{
+				"Id": "SMG",
+				"Progress": 5100
+			},
+			{
+				"Id": "Assault",
+				"Progress": 5100
+			},
+			{
+				"Id": "Shotgun",
+				"Progress": 5100
+			},
+			{
+				"Id": "Sniper",
+				"Progress": 5100
+			},
+			{
+				"Id": "LMG",
+				"Progress": 5100
+			},
+			{
+				"Id": "HMG",
+				"Progress": 5100
+			},
+			{
+				"Id": "Launcher",
+				"Progress": 5100
+			},
+			{
+				"Id": "AttachedLauncher",
+				"Progress": 5100
+			},
+			{
+				"Id": "Throwing",
+				"Progress": 5100
+			},
+			{
+				"Id": "Melee",
+				"Progress": 5100
+			},
+			{
+				"Id": "DMR",
+				"Progress": 5100
+			},
+			{
+				"Id": "RecoilControl",
+				"Progress": 5100
+			},
+			{
+				"Id": "CovertMovement",
+				"Progress": 5100
+			},
+			{
+				"Id": "FieldMedicine",
+				"Progress": 5100
+			},
+			{
+				"Id": "Search",
+				"Progress": 5100
+			},
+			{
+				"Id": "MagDrills",
+				"Progress": 5100
+			},
+			{
+				"Id": "Sniping",
+				"Progress": 5100
+			},
+			{
+				"Id": "ProneMovement",
+				"Progress": 5100
+			},
+			{
+				"Id": "FirstAid",
+				"Progress": 5100
+			},
+			{
+				"Id": "LightVests",
+				"Progress": 5100
+			},
+			{
+				"Id": "HeavyVests",
+				"Progress": 5100
+			},
+			{
+				"Id": "WeaponModding",
+				"Progress": 5100
+			},
+			{
+				"Id": "AdvancedModding",
+				"Progress": 5100
+			},
+			{
+				"Id": "NightOps",
+				"Progress": 5100
+			},
+			{
+				"Id": "SilentOps",
+				"Progress": 5100
+			},
+			{
+				"Id": "Lockpicking",
+				"Progress": 5100
+			},
+			{
+				"Id": "WeaponTreatment",
+				"Progress": 5100
+			},
+			{
+				"Id": "Freetrading",
+				"Progress": 5100
+			},
+			{
+				"Id": "Auctions",
+				"Progress": 5100
+			},
+			{
+				"Id": "Cleanoperations",
+				"Progress": 5100
+			},
+			{
+				"Id": "Barter",
+				"Progress": 5100
+			},
+			{
+				"Id": "Shadowconnections",
+				"Progress": 5100
+			},
+			{
+				"Id": "Taskperformance",
+				"Progress": 5100
+			},
+			{
+				"Id": "Surgery",
+				"Progress": 5100
+			},
+			{
+				"Id": "AimDrills",
+				"Progress": 5100
+			},
+			{
+				"Id": "RecoilControl",
+				"Progress": 5100
+			},
+			{
+				"Id": "AimDrills",
+				"Progress": 5100
+			},
+			{
+				"Id": "Surgery",
+				"Progress": 5100
+			},
+			{
+				"Id": "CovertMovement",
+				"Progress": 5100
+			},
+			{
+				"Id": "Crafting",
+				"Progress": 5100
+			},
+			{
+				"Id": "HideoutManagement",
+				"Progress": 5100
+			}
+		],
+		"Mastering": [
+			{
+				"Id": "MP5",
+				"Progress": 5100
+			},
+			{
+				"Id": "AKSU",
+				"Progress": 5100
+			},
+			{
+				"Id": "MPX",
+				"Progress": 5100
+			},
+			{
+				"Id": "PB",
+				"Progress": 5100
+			},
+			{
+				"Id": "PM",
+				"Progress": 5100
+			},
+			{
+				"Id": "TT",
+				"Progress": 5100
+			},
+			{
+				"Id": "P226",
+				"Progress": 5100
+			},
+			{
+				"Id": "VSS",
+				"Progress": 5100
+			},
+			{
+				"Id": "AKM",
+				"Progress": 5100
+			},
+			{
+				"Id": "AK74",
+				"Progress": 5100
+			},
+			{
+				"Id": "M4",
+				"Progress": 5100
+			},
+			{
+				"Id": "MDR",
+				"Progress": 5100
+			},
+			{
+				"Id": "ASH12",
+				"Progress": 5100
+			},
+			{
+				"Id": "SA-58",
+				"Progress": 5100
+			},
+			{
+				"Id": "SKS",
+				"Progress": 5100
+			},
+			{
+				"Id": "PP-91",
+				"Progress": 5100
+			},
+			{
+				"Id": "VPO101",
+				"Progress": 5100
+			},
+			{
+				"Id": "P90",
+				"Progress": 5100
+			},
+			{
+				"Id": "mp7",
+				"Progress": 5100
+			},
+			{
+				"Id": "PP19",
+				"Progress": 5100
+			},
+			{
+				"Id": "PP-9",
+				"Progress": 5100
+			},
+			{
+				"Id": "SAIGA",
+				"Progress": 5100
+			},
+			{
+				"Id": "R11SRASS",
+				"Progress": 5100
+			},
+			{
+				"Id": "mosin",
+				"Progress": 5100
+			},
+			{
+				"Id": "M1A",
+				"Progress": 5100
+			},
+			{
+				"Id": "SVD",
+				"Progress": 5100
+			},
+			{
+				"Id": "APS",
+				"Progress": 5100
+			},
+			{
+				"Id": "sr1mp",
+				"Progress": 5100
+			},
+			{
+				"Id": "m9",
+				"Progress": 5100
+			},
+			{
+				"Id": "57",
+				"Progress": 5100
+			},
+			{
+				"Id": "MP443",
+				"Progress": 5100
+			},
+			{
+				"Id": "GLOCK17",
+				"Progress": 5100
+			},
+			{
+				"Id": "SV98",
+				"Progress": 5100
+			},
+			{
+				"Id": "r700",
+				"Progress": 5100
+			},
+			{
+				"Id": "DVL",
+				"Progress": 5100
+			},
+			{
+				"Id": "TOZ106",
+				"Progress": 5100
+			},
+			{
+				"Id": "MP133",
+				"Progress": 5100
+			},
+			{
+				"Id": "M870",
+				"Progress": 5100
+			},
+			{
+				"Id": "MP153",
+				"Progress": 5100
+			},
+			{
+				"Id": "MP9",
+				"Progress": 5100
+			},
+			{
+				"Id": "VPO_215",
+				"Progress": 5100
+			},
+			{
+				"Id": "T5000",
+				"Progress": 5100
+			},
+			{
+				"Id": "SR25",
+				"Progress": 5100
+			},
+			{
+				"Id": "m1911",
+				"Progress": 5100
+			},
+			{
+				"Id": "PPSH",
+				"Progress": 5100
+			},
+			{
+				"Id": "590A1",
+				"Progress": 5100
+			},
+			{
+				"Id": "GL40",
+				"Progress": 5100
+			},
+			{
+				"Id": "RFB",
+				"Progress": 5100
+			},
+			{
+				"Id": "KS23",
+				"Progress": 5100
+			}
+		],
 		"Points": 0
 	},
 	"Stats": {
