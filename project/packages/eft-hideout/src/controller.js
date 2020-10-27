@@ -776,7 +776,7 @@ class Controller
 
         while (btcProd.Progress > final_prodtime)
         {
-            if (btcProd.Products.length < 3)
+            if (btcProd.Products.length < 5)
             {
                 btcProd.Products.push({
                     "_id": common_f.hash.generate(),
