@@ -131,6 +131,30 @@ class Controller
             inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
             inraid_f.controller.removePlayer(sessionID);
         }
+        else
+        {
+            // set scav data
+            scavData.Info.Level = offraidData.profile.Info.Level;
+            scavData.Skills = offraidData.profile.Skills;
+            scavData.Stats = offraidData.profile.Stats;
+            scavData.Encyclopedia = offraidData.profile.Encyclopedia;
+            scavData.ConditionCounters = offraidData.profile.ConditionCounters;
+            scavData.Quests = offraidData.profile.Quests;
+
+            // remove old skill fatigue
+            for (let skill in scavData.Skills.Common)
+            {
+                scavData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
+            }
+
+            // add experience points
+            scavData.Info.Experience += scavData.Stats.TotalSessionExperience;
+            scavData.Stats.TotalSessionExperience = 0;
+
+            // Remove the Lab card
+            inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
+            inraid_f.controller.removePlayer(sessionID);
+        }
 
         // Check for exit status
         if (offraidData.exit === "survived")
