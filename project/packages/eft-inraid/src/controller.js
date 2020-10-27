@@ -105,55 +105,11 @@ class Controller
 
         if (!isPlayerScav)
         {
-            // set pmc data
-            pmcData.Info.Level = offraidData.profile.Info.Level;
-            pmcData.Skills = offraidData.profile.Skills;
-            pmcData.Stats = offraidData.profile.Stats;
-            pmcData.Encyclopedia = offraidData.profile.Encyclopedia;
-            pmcData.ConditionCounters = offraidData.profile.ConditionCounters;
-            pmcData.Quests = offraidData.profile.Quests;
-
-            // remove old skill fatigue
-            for (let skill in pmcData.Skills.Common)
-            {
-                pmcData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
-            }
-
-            // For some reason, offraidData seems to drop the latest insured items.
-            // It makes more sense to use pmcData's insured items as the source of truth.
-            offraidData.profile.InsuredItems = pmcData.InsuredItems;
-
-            // add experience points
-            pmcData.Info.Experience += pmcData.Stats.TotalSessionExperience;
-            pmcData.Stats.TotalSessionExperience = 0;
-
-            // Remove the Lab card
-            inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
-            inraid_f.controller.removePlayer(sessionID);
+            pmcData = this.setBaseStats(pmcData, offraidData, sessionID);
         }
         else
         {
-            // set scav data
-            scavData.Info.Level = offraidData.profile.Info.Level;
-            scavData.Skills = offraidData.profile.Skills;
-            scavData.Stats = offraidData.profile.Stats;
-            scavData.Encyclopedia = offraidData.profile.Encyclopedia;
-            scavData.ConditionCounters = offraidData.profile.ConditionCounters;
-            scavData.Quests = offraidData.profile.Quests;
-
-            // remove old skill fatigue
-            for (let skill in scavData.Skills.Common)
-            {
-                scavData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
-            }
-
-            // add experience points
-            scavData.Info.Experience += scavData.Stats.TotalSessionExperience;
-            scavData.Stats.TotalSessionExperience = 0;
-
-            // Remove the Lab card
-            inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
-            inraid_f.controller.removePlayer(sessionID);
+            scavData = this.setBaseStats(scavData, offraidData, sessionID);
         }
 
         // Check for exit status
@@ -215,6 +171,35 @@ class Controller
         {
             insurance_f.controller.sendInsuredItems(pmcData, sessionID);
         }
+    }
+
+    setBaseStats(profileData, offraidData, sessionID)
+    {
+        // set profile data
+        profileData.Info.Level = offraidData.profile.Info.Level;
+        profileData.Skills = offraidData.profile.Skills;
+        profileData.Stats = offraidData.profile.Stats;
+        profileData.Encyclopedia = offraidData.profile.Encyclopedia;
+        profileData.ConditionCounters = offraidData.profile.ConditionCounters;
+        profileData.Quests = offraidData.profile.Quests;
+
+        // remove old skill fatigue
+        for (let skill in profileData.Skills.Common)
+        {
+            profileData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
+        }
+
+        // For some reason, offraidData seems to drop the latest insured items.
+        // It makes more sense to use profileData's insured items as the source of truth.
+        offraidData.profile.InsuredItems = profileData.InsuredItems;
+
+        // add experience points
+        profileData.Info.Experience += profileData.Stats.TotalSessionExperience;
+        profileData.Stats.TotalSessionExperience = 0;
+
+        // Remove the Lab card
+        inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
+        inraid_f.controller.removePlayer(sessionID);
     }
 
     /* adds SpawnedInSession property to items found in a raid */
