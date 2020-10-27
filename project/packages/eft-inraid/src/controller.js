@@ -106,6 +106,10 @@ class Controller
         if (!isPlayerScav)
         {
             pmcData = this.setBaseStats(pmcData, offraidData, sessionID);
+
+           // For some reason, offraidData seems to drop the latest insured items.
+           // It makes more sense to use profileData's insured items as the source of truth.
+           offraidData.profile.InsuredItems = pmcData.InsuredItems;
         }
         else
         {
@@ -189,10 +193,6 @@ class Controller
             profileData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
         }
 
-        // For some reason, offraidData seems to drop the latest insured items.
-        // It makes more sense to use profileData's insured items as the source of truth.
-        offraidData.profile.InsuredItems = profileData.InsuredItems;
-
         // add experience points
         profileData.Info.Experience += profileData.Stats.TotalSessionExperience;
         profileData.Stats.TotalSessionExperience = 0;
@@ -200,6 +200,8 @@ class Controller
         // Remove the Lab card
         inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
         inraid_f.controller.removePlayer(sessionID);
+
+        return profileData;
     }
 
     /* adds SpawnedInSession property to items found in a raid */
