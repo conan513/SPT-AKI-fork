@@ -764,7 +764,7 @@ class Controller
 
     updateBitcoinFarm(btcProd, btcFarmCGs, isGeneratorOn)
     {
-        const time_elapsed = common_f.time.getTimestamp() - btcProd.StartTime;
+        const time_elapsed = 4 * (common_f.time.getTimestamp() - btcProd.StartTime);
 
         if (isGeneratorOn)
         {
@@ -772,7 +772,7 @@ class Controller
         }
 
         const t2 = Math.pow((0.05 + (btcFarmCGs - 1) / 49 * 0.15), -1); // Function to reduce production time based on amount of GPU's
-        const final_prodtime = Math.floor(t2 * 3600);
+        const final_prodtime = Math.floor(t2 * 14400);
 
         while (btcProd.Progress > final_prodtime)
         {
