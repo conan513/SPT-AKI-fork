@@ -28,16 +28,7 @@ class Controller
             case "cursedassault":
                 type = "assault";
                 break;
-
-            // unused bots by BSG, might have use
-            case "test":
-            case "assaultgroup":
-            case "followergluharsnipe":
-            case "bosstest":
-            case "followertest":
-                type = "pmcbot";
-                break;
-
+            
             // don't replace type
             default:
                 break;
