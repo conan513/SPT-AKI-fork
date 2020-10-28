@@ -73,7 +73,7 @@ class Controller
     {
         for (const quest of this.questValues())
         {
-            const conditions = quest.conditions.AvailableForStart.filter(
+            const conditions = quest.conditions.AvailableForFinish.filter(
                 c =>
                 {
                     return c._parent === "FindItem";
