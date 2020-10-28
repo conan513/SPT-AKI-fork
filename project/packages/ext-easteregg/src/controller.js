@@ -21,7 +21,8 @@ class Controller
             "digitalbarrito",
             "reider123",
             "terkoiz",
-            "elitecheez"
+            "elitecheez",
+            "cheekiestbreeki"
         ];
 
         // setup special bots
