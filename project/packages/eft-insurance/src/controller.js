@@ -14,27 +14,13 @@ class Controller
 {
     constructor()
     {
+        this.insured = {};
         event_f.controller.addEvent("insuranceReturn", this.processReturn.bind(this));
     }
 
     resetInsurance(sessionID)
     {
-        let profile = save_f.server.profiles[sessionID];
-
-        profile.insurance = {};
-        return profile;
-    }
-
-    onSave(sessionID)
-    {
-        let profile = save_f.server.profiles[sessionID];
-
-        if ("insurance" in profile)
-        {
-            delete profile.insurance;
-        }
-
-        return profile;
+        this.insured[sessionID] = {};
     }
 
     checkExpiredInsurance(sessionID)
@@ -89,8 +75,6 @@ class Controller
     /* adds gear to store */
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
-        save_f.server.profiles[sessionID].insurance = save_f.server.profiles[sessionID].insurance || {};
-        
         // Don't process insurance for melee weapon or secure container.
         if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer")
         {
@@ -123,8 +107,9 @@ class Controller
             actualItem.slotId = "hideout";
         }
 
-        save_f.server.profiles[sessionID].insurance[insuredItem.tid] = save_f.server.profiles[sessionID].insurance[insuredItem.tid] || [];
-        save_f.server.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
+        this.insured[sessionID] = this.insured[sessionID] || {};
+        this.insured[sessionID][insuredItem.tid] = this.insured[sessionID][insuredItem.tid] || [];
+        this.insured[sessionID][insuredItem.tid].push(actualItem);
 
         pmcData.InsuredItems = pmcData.InsuredItems.filter((item) =>
         {
@@ -221,7 +206,7 @@ class Controller
     /* sends stored insured items as message */
     sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in save_f.server.profiles[sessionID].insurance)
+        for (let traderId in this.insured[sessionID])
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
@@ -249,7 +234,7 @@ class Controller
                 "data": {
                     "traderId": traderId,
                     "messageContent": messageContent,
-                    "items": save_f.server.profiles[sessionID].insurance[traderId]
+                    "items": this.insured[sessionID][traderId]
                 }
             });
         }
