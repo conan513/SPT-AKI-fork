@@ -15,7 +15,9 @@ class Packager
     constructor()
     {
         this.modpath = "mods/";
-        this.mods = [];
+        this.src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
+        this.mods = {};
+        this.loadorder = [];
         this.onLoad = {};
     }
 
@@ -75,6 +77,15 @@ class Packager
         return true;
     }
 
+    getLoadOrderRecursive(mods)
+    {
+    }
+
+    getLoadOrder(mods)
+    {
+        //
+    }
+
     prepareLoad()
     {
         if (!fs.existsSync(this.modpath))
@@ -90,14 +101,21 @@ class Packager
             return fs.statSync(`${this.getModPath(mod)}`).isDirectory();
         });
 
-        // add mods to load
+        // validate mods
         for (const mod of mods)
         {
             if (!this.validMod(mod))
             {
                 return false;
             }
+        }
 
+        // sort mods load order
+
+
+        // add mods to load
+        for (const mod of mods)
+        {
             this.loadMod(mod);
         }
 
@@ -137,8 +155,6 @@ class Packager
 
     load()
     {
-        this.src = JSON.parse(fs.readFileSync("packages/loadorder.json"));
-
         if (this.prepareLoad())
         {
             this.loadCode();
