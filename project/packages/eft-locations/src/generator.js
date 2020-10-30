@@ -1,4 +1,4 @@
-/* controller.js
+/* generator.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -10,18 +10,8 @@
 
 "use strict";
 
-class Controller
+class Generator
 {
-    constructor()
-    {
-        this.globalLootChanceModifier = 0;
-    }
-
-    initialize()
-    {
-        this.globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
-    }
-
     generateDynamicLoot(dynamic, lootPositions, locationLootChanceModifier)
     {
         let rndLootIndex = common_f.random.getInt(0, dynamic.length - 1);
@@ -92,9 +82,11 @@ class Controller
             }
         }
 
+        const globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
+        const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
         const num = common_f.random.getInt(0, 100);
         const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
-        const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
+        const itemChance = (spawnChance * globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
 
         if (itemChance >= num)
         {
@@ -262,4 +254,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.Generator = Generator;
