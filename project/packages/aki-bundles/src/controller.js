@@ -10,6 +10,8 @@
 
 "use strict";
 
+const process = require("process");
+
 class Controller
 {
     constructor()
