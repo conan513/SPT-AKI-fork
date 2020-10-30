@@ -86,8 +86,7 @@ class Controller
             },
             "suits": profile.suits,
             "weaponbuilds": profile.weaponbuilds,
-            "dialogues": profile.dialogues,
-            "events": profile.events
+            "dialogues": profile.dialogues
         };
 
         // pmc profile needs to exist first
