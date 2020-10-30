@@ -15,7 +15,18 @@ class Controller
     constructor()
     {
         this.insured = {};
-        event_f.controller.addEvent("insuranceReturn", this.processReturn.bind(this));
+    }
+
+    onLoad(sessionID)
+    {
+        let profile = save_f.server.profiles[sessionID];
+
+        if (!("insurance" in profile))
+        {
+            profile.insurance = [];
+        }
+
+        return profile;
     }
 
     resetInsurance(sessionID)
@@ -52,12 +63,15 @@ class Controller
             return;
         }
 
-        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, toDo[0]); // get all ids related to this item, +including this item itself
+        // get all ids related to this item, +including this item itself
+        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, toDo[0]);
 
         for (let i in ids_toremove)
-        { // remove one by one all related items and itself
+        {
+            // remove one by one all related items and itself
             for (let a in pmcData.Inventory.items)
-            {	// find correct item by id and delete it
+            {
+                // find correct item by id and delete it
                 if (pmcData.Inventory.items[a]._id === ids_toremove[i])
                 {
                     for (let insurance in pmcData.InsuredItems)
@@ -208,6 +222,7 @@ class Controller
     {
         for (let traderId in this.insured[sessionID])
         {
+            let time = common_f.time.getTimestamp() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000;
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
@@ -228,31 +243,45 @@ class Controller
                 }
             };
 
-            event_f.controller.addToSchedule(sessionID, {
-                "type": "insuranceReturn",
-                "scheduledTime": Date.now() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
-                "data": {
-                    "traderId": traderId,
-                    "messageContent": messageContent,
-                    "items": this.insured[sessionID][traderId]
-                }
+            save_f.server.profiles[sessionID].insurance.push({
+                "scheduledTime": time,
+                "traderId": traderId,
+                "messageContent": messageContent,
+                "items": this.insured[sessionID][traderId]
             });
         }
 
         this.resetInsurance(sessionID);
     }
 
-    processReturn(event)
+    processReturn(sessionID)
     {
-        // Inject a little bit of a surprise by failing the insurance from time to time ;)
-        if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
+        let insurance = save_f.profiles[sessionID].insurance;
+        let i = insurance.length;
+        let time = common_f.time.getTimestamp();
+
+        while (i-- > 0)
         {
-            const insuranceFailedTemplates = database_f.server.tables.traders[event.data.traderId].dialogue.insuranceFailed;
-            event.data.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
-            event.data.items = [];
+            let insured = insurance[i];
+
+            if (time > insured.scheduledTime)
+            {
+                continue;
+            }
+
+            // Inject a little bit of a surprise by failing the insurance from time to time ;)
+            if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
+            {
+                const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
+                insured.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
+                insured.items = [];
+            }
+
+            dialogue_f.controller.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
+            insurance.splice(1, i);
         }
 
-        dialogue_f.controller.addDialogueMessage(event.data.traderId, event.data.messageContent, event.sessionId, event.data.items);
+        save_f.profiles[sessionID].insurance = insurance;
     }
 
     /* add insurance to an item */
