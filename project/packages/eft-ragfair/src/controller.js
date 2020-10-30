@@ -94,7 +94,7 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        let offerBase = helpfunc_f.helpFunctions.clone(database_f.server.tables.ragfair.offer);
+        let offerBase = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -123,17 +123,17 @@ class Controller
             return [];
         }
 
-        let offerBase = helpfunc_f.helpFunctions.clone(database_f.server.tables.ragfair.offer);
+        let offerBase = common_f.json.clone(database_f.server.tables.ragfair.offer);
         let offers = [];
 
         // Preset
         if (usePresets && preset_f.controller.hasPreset(template))
         {
-            let presets = helpfunc_f.helpFunctions.clone(preset_f.controller.getPresets(template));
+            let presets = common_f.json.clone(preset_f.controller.getPresets(template));
 
             for (let p of presets)
             {
-                let offer = helpfunc_f.helpFunctions.clone(offerBase);
+                let offer = common_f.json.clone(offerBase);
                 let mods = p._items;
                 let rub = 0;
 

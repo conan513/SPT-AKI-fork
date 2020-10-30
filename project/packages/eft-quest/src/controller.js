@@ -115,7 +115,7 @@ class Controller
 
             for (const mod of mods)
             {
-                items.push(helpfunc_f.helpFunctions.clone(mod));
+                items.push(common_f.json.clone(mod));
             }
 
             rewardItems = rewardItems.concat(helpfunc_f.helpFunctions.replaceIDs(null, items));
@@ -564,7 +564,7 @@ class Controller
 
     cleanQuestConditions(quest)
     {
-        quest = helpfunc_f.helpFunctions.clone(quest);
+        quest = common_f.json.clone(quest);
         quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
         return quest;
     }

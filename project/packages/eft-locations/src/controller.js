@@ -35,8 +35,8 @@ class Controller
 
         let forced = location.loot.forced;
         let mounted = location.loot.mounted;
-        let statics = helpfunc_f.helpFunctions.clone(location.loot.static);
-        let dynamic = helpfunc_f.helpFunctions.clone(location.loot.dynamic);
+        let statics = common_f.json.clone(location.loot.static);
+        let dynamic = common_f.json.clone(location.loot.dynamic);
         output.Loot = [];
 
         // mounted weapons

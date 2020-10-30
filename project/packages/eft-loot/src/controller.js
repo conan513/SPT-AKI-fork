@@ -108,7 +108,7 @@ class Controller
 
     generateContainerLoot(items)
     {
-        let container = helpfunc_f.helpFunctions.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
+        let container = common_f.json.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
@@ -149,7 +149,7 @@ class Controller
                 let roll = common_f.random.getInt(0, maxProbability);
                 rolledIndex = container.items.findIndex(itm => itm.cumulativeChance >= roll);
                 const rolled = container.items[rolledIndex];
-                item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
+                item = common_f.json.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
 
                 if (rolled.preset)
                 {
@@ -174,7 +174,7 @@ class Controller
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = helpfunc_f.helpFunctions.clone(preset_f.controller.getStandardPreset(item._id));
+                let preset = common_f.json.clone(preset_f.controller.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };

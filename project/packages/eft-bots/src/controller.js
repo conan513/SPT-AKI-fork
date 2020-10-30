@@ -119,7 +119,7 @@ class Controller
             for (let i = 0; i < condition.Limit; i++)
             {
 
-                let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
+                let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot = this.generateBot(bot, condition.Role, sessionID);
