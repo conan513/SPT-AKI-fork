@@ -90,6 +90,7 @@ class Controller
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
         save_f.server.profiles[sessionID].insurance = save_f.server.profiles[sessionID].insurance || {};
+        
         // Don't process insurance for melee weapon or secure container.
         if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer")
         {
@@ -124,13 +125,11 @@ class Controller
 
         save_f.server.profiles[sessionID].insurance[insuredItem.tid] = save_f.server.profiles[sessionID].insurance[insuredItem.tid] || [];
         save_f.server.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
-        for (let insurance in pmcData.InsuredItems)
+
+        pmcData.InsuredItems = pmcData.InsuredItems.filter((item) =>
         {
-            if (pmcData.InsuredItems[insurance].itemId === insuredItem.itemId)
-            {
-                pmcData.InsuredItems.splice(insurance, 1);
-            }
-        }
+            return item.itemId !== insuredItem.itemId;
+        });
     }
 
     /* store lost pmc gear */
