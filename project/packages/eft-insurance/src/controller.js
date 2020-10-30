@@ -256,7 +256,7 @@ class Controller
 
     processReturn(sessionID)
     {
-        let insurance = save_f.profiles[sessionID].insurance;
+        let insurance = save_f.server.profiles[sessionID].insurance;
         let i = insurance.length;
         let time = common_f.time.getTimestamp();
 
