@@ -1,4 +1,4 @@
-/* route.js
+/* packager.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -26,11 +26,14 @@ class Packager
         return `${this.modpath}${mod}/`;
     }
 
-    loadMod(mod)
+    addMod(mod)
     {
-        const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
-        this.mods[mod] = config;
-        this.src[mod] = `${this.getModPath(mod)}/${config.main}`;
+        this.mods[mod] = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
+    }
+
+    addSource(mod)
+    {
+        this.src[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
     }
 
     validMod(mod)
@@ -77,13 +80,63 @@ class Packager
         return true;
     }
 
-    getLoadOrderRecursive(mods)
+    getLoadOrderRecursive(mod, result, visited)
     {
+        // validate package
+        if (mod in result)
+        {
+            return;
+        }
+
+        if (mod in visited)
+        {
+            // front: white, back: red
+            console.log("\x1b[37m\x1b[41mcyclic dependency detected\x1b[0m");
+
+            // additional info
+            console.log(`checking: ${mod}`);
+            console.log("checked:");
+            console.log(result);
+            console.log("visited:");
+            console.log(visited);
+
+            // wait for input
+            this.exitApp();
+        }
+
+        // check dependencies
+        const config = this.mods[mod];
+        const dependencies = ("dependencies" in config) ? config.dependencies : [];
+
+        visited[mod] = config.version;
+
+        for (const dependency in dependencies)
+        {
+            this.getLoadOrderRecursive(dependency, result, visited);
+        }
+
+        delete visited[mod];
+
+        // fully checked package
+        result[mod] = config.version;
     }
 
     getLoadOrder(mods)
     {
-        //
+        let result = {};
+        let visited = {};
+
+        for (const mod of mods)
+        {
+            if (mod in result)
+            {
+                continue;
+            }
+
+            this.getLoadOrderRecursive(mod, result, visited);
+        }
+
+        return result;
     }
 
     prepareLoad()
@@ -110,13 +163,19 @@ class Packager
             }
         }
 
-        // sort mods load order
-
-
         // add mods to load
         for (const mod of mods)
         {
-            this.loadMod(mod);
+            this.addMod(mod);
+        }
+
+        // sort mods load order
+        const loadorder = Object.keys(this.getLoadOrder(mods));
+
+        // add mods source
+        for (const mod of loadorder)
+        {
+            this.addSource(mod);
         }
 
         return true;
@@ -134,7 +193,7 @@ class Packager
     loadClasses()
     {
         // execute start callback
-        common_f.logger.logWarning("Server: executing startup callbacks...");
+        console.log("Server: executing startup callbacks...");
 
         for (const callback in this.onLoad)
         {
