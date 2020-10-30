@@ -101,7 +101,7 @@ class Packager
             console.log(visited);
 
             // wait for input
-            this.exitApp();
+            process.exit(1);
         }
 
         // check dependencies
