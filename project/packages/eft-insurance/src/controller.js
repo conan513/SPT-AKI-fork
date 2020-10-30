@@ -281,7 +281,7 @@ class Controller
             insurance.splice(1, i);
         }
 
-        save_f.profiles[sessionID].insurance = insurance;
+        save_f.server.profiles[sessionID].insurance = insurance;
     }
 
     /* add insurance to an item */
