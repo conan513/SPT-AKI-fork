@@ -12,7 +12,7 @@
 
 class Generator
 {
-    generateDynamicLoot(dynamic, lootPositions, locationLootChanceModifier)
+    generateDynamicLoot(dynamic, lootPositions, location)
     {
         let rndLootIndex = common_f.random.getInt(0, dynamic.length - 1);
         let rndLoot = dynamic[rndLootIndex];
