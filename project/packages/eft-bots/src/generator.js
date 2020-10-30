@@ -90,7 +90,7 @@ class Generator
 
         this.generateLoot(templateInventory.items, generation.items);
 
-        return helpfunc_f.helpFunctions.clone(this.inventory);
+        return common_f.json.clone(this.inventory);
     }
 
     generateInventoryBase()
@@ -866,7 +866,7 @@ class ExhaustableArray
 {
     constructor(itemPool)
     {
-        this.pool = helpfunc_f.helpFunctions.clone(itemPool);
+        this.pool = common_f.json.clone(itemPool);
     }
 
     getRandomValue()
@@ -877,7 +877,7 @@ class ExhaustableArray
         }
 
         const index = common_f.random.getInt(0, this.pool.length - 1);
-        const toReturn = helpfunc_f.helpFunctions.clone(this.pool[index]);
+        const toReturn = common_f.json.clone(this.pool[index]);
         this.pool.splice(index, 1);
         return toReturn;
     }

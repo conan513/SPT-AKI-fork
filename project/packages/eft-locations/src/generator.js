@@ -1,4 +1,4 @@
-/* controller.js
+/* generator.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -10,19 +10,9 @@
 
 "use strict";
 
-class Controller
+class Generator
 {
-    constructor()
-    {
-        this.globalLootChanceModifier = 0;
-    }
-
-    initialize()
-    {
-        this.globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
-    }
-
-    generateDynamicLoot(dynamic, lootPositions, locationLootChanceModifier)
+    generateDynamicLoot(dynamic, lootPositions, location)
     {
         let rndLootIndex = common_f.random.getInt(0, dynamic.length - 1);
         let rndLoot = dynamic[rndLootIndex];
@@ -52,7 +42,6 @@ class Controller
         }
 
         //random loot Id
-        //TODO: To implement a new random function, use "generateID" instead for now.
         data.Id = common_f.hash.generate();
 
         //create lootItem list
@@ -61,9 +50,8 @@ class Controller
 
         for (const i in data.Items)
         {
-
-            let loot = data.Items[i];
             // Check for the item spawnchance
+            let loot = data.Items[i];
             lootItemsHash[loot._id] = loot;
 
             if (!("parentId" in loot))
@@ -92,23 +80,23 @@ class Controller
             }
         }
 
+        const globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
+        const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
         const num = common_f.random.getInt(0, 100);
         const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
-        const itemChance = (spawnChance * this.globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
+        const itemChance = (spawnChance * globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
 
         if (itemChance >= num)
         {
             return { "status": "success", "data": data, "position": position };
         }
-        else
-        {
-            return { "status": "fail" };
-        }
+        
+        return { "status": "fail" };
     }
 
     generateContainerLoot(items)
     {
-        let container = helpfunc_f.helpFunctions.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
+        let container = common_f.json.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
@@ -149,7 +137,7 @@ class Controller
                 let roll = common_f.random.getInt(0, maxProbability);
                 rolledIndex = container.items.findIndex(itm => itm.cumulativeChance >= roll);
                 const rolled = container.items[rolledIndex];
-                item = helpfunc_f.helpFunctions.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
+                item = common_f.json.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
 
                 if (rolled.preset)
                 {
@@ -174,7 +162,7 @@ class Controller
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = helpfunc_f.helpFunctions.clone(preset_f.controller.getStandardPreset(item._id));
+                let preset = common_f.json.clone(preset_f.controller.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };
@@ -262,4 +250,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.Generator = Generator;

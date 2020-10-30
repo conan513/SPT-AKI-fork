@@ -49,7 +49,7 @@ class Controller
         const dogtagName = `${name}dogtag`;
 
         // item
-        let dogtagItem = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.items[dogtagBase]);
+        let dogtagItem = common_f.json.clone(database_f.server.tables.templates.items[dogtagBase]);
 
         dogtagItem._id = dogtagName;
         dogtagItem._name = dogtagName;
@@ -57,7 +57,7 @@ class Controller
         database_f.server.tables.templates.items[dogtagName] = dogtagItem;
 
         // handbook
-        let dogtagHandbook = helpfunc_f.helpFunctions.clone(database_f.server.tables.templates.handbook.Items.find((item) =>
+        let dogtagHandbook = common_f.json.clone(database_f.server.tables.templates.handbook.Items.find((item) =>
         {
             return item.Id === dogtagBase;
         }));
@@ -105,7 +105,7 @@ class Controller
 
     generateNormal(condition, sessionID)
     {
-        let bot = helpfunc_f.helpFunctions.clone(database_f.server.tables.bots.base);
+        let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
         bot.Info.Settings.BotDifficulty = condition.Difficulty;
         bot = bots_f.controller.generateBot(bot, condition.Role, sessionID);
@@ -115,7 +115,7 @@ class Controller
 
     generateSpecial(condition, sessionID)
     {
-        let bot = helpfunc_f.helpFunctions.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
+        let bot = common_f.json.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
 
         bot.Info.Settings.BotDifficulty = condition.Difficulty;
         bot = this.generateDogtag(bot);

@@ -10,6 +10,8 @@
 
 "use strict";
 
+const process = require("process");
+
 class Controller
 {
     constructor()
@@ -59,7 +61,7 @@ class Controller
 
     getBundle(key, local)
     {
-        const bundle = helpfunc_f.helpFunctions.clone(this.bundles[key]);
+        const bundle = common_f.json.clone(this.bundles[key]);
 
         if (local)
         {
