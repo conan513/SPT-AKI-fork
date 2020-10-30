@@ -42,7 +42,6 @@ class Generator
         }
 
         //random loot Id
-        //TODO: To implement a new random function, use "generateID" instead for now.
         data.Id = common_f.hash.generate();
 
         //create lootItem list
@@ -51,9 +50,8 @@ class Generator
 
         for (const i in data.Items)
         {
-
-            let loot = data.Items[i];
             // Check for the item spawnchance
+            let loot = data.Items[i];
             lootItemsHash[loot._id] = loot;
 
             if (!("parentId" in loot))
@@ -92,10 +90,8 @@ class Generator
         {
             return { "status": "success", "data": data, "position": position };
         }
-        else
-        {
-            return { "status": "fail" };
-        }
+        
+        return { "status": "fail" };
     }
 
     generateContainerLoot(items)
