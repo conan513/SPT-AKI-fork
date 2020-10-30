@@ -13,7 +13,6 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoad["eft-insurance"] = this.onLoad.bind(this);
-        https_f.server.onReceive["eft-insurance"] = this.checkInsurance.bind(this);
         https_f.router.onStaticRoute["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
         item_f.eventHandler.onEvent["Insure"] = this.insure.bind(this);
         keepalive_f.controller.onExecute["eft-insurance"] = this.onUpdate.bind(this);
@@ -22,14 +21,6 @@ class Callbacks
     onLoad(sessionID)
     {
         return insurance_f.controller.onLoad(sessionID);
-    }
-
-    checkInsurance(sessionID, req, resp, body, output)
-    {
-        if (req.url === "/client/notifier/channel/create")
-        {
-            insurance_f.controller.checkExpiredInsurance(sessionID);
-        }
     }
 
     getInsuranceCost(url, info, sessionID)
