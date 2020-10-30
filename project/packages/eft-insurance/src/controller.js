@@ -223,7 +223,7 @@ class Controller
         for (let traderId in this.insured[sessionID])
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
-            let time = common_f.time.getTimestamp() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000;
+            let time = common_f.time.getTimestamp();
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": common_f.random.getArrayValue(dialogueTemplates.insuranceStart),
@@ -264,7 +264,7 @@ class Controller
         {
             let insured = insurance[i];
 
-            if (time > insured.scheduledTime)
+            if (time < insured.scheduledTime)
             {
                 continue;
             }
