@@ -19,6 +19,8 @@ class Controller
         let output = location.base;
         let ids = {};
 
+        output.UnixDateTime = common_f.time.getTimestamp();
+
         // don't generate loot on hideout
         if (name === "hideout")
         {
