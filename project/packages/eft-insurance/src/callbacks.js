@@ -24,13 +24,7 @@ class Callbacks
         return insurance_f.controller.onLoad(sessionID);
     }
 
-    checkInsurance(sessionID, req, resp, body, output)
-    {
-        if (req.url === "/client/notifier/channel/create")
-        {
-            insurance_f.controller.checkExpiredInsurance(sessionID);
-        }
-    }
+    checkInsurance(sessionID, req, resp, body, output) { }
 
     getInsuranceCost(url, info, sessionID)
     {
