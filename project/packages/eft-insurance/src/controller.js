@@ -34,22 +34,6 @@ class Controller
         this.insured[sessionID] = {};
     }
 
-    checkExpiredInsurance(sessionID)
-    {
-        let insurances = save_f.server.profiles[sessionID].insurance;
-        let now = Date.now();
-
-        for (let count = insurances.length - 1; count >= 0; count--)
-        {
-            let insurance = insurances[count];
-
-            if (insurance.scheduledTime <= now)
-            {
-                this.processReturn(sessionID);
-            }
-        }
-    }
-
     /* remove insurance from an item */
     remove(pmcData, body)
     {
