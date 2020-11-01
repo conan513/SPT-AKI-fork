@@ -36,17 +36,16 @@ class Controller
 
     checkExpiredInsurance(sessionID)
     {
-        let events = save_f.server.profiles[sessionID].events;
+        let insurances = save_f.server.profiles[sessionID].insurance;
         let now = Date.now();
 
-        for (let count = events.length - 1; count >= 0; count--)
+        for (let count = insurances.length - 1; count >= 0; count--)
         {
-            let event = events[count];
+            let insurance = insurances[count];
 
-            if (event.type === "insuranceReturn" && event.scheduledTime <= now)
+            if (insurance.scheduledTime <= now)
             {
-                event_f.controller.processEvent(event);
-                events.splice(count, 1);
+                this.processReturn(sessionID);
             }
         }
     }
