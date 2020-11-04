@@ -596,7 +596,7 @@ class HelpFunctions
         let toDo = [itemID];
         let tmpItem = this.getItem(itemtpl)[1];
         let rootItem = inventoryItemHash.byItemId[itemID];
-        let FoldableWeapon = tmpItem._props.Foldable;
+        let FoldableWeapon = tmpItem._props.Foldable || false;
         let FoldedSlot = tmpItem._props.FoldedSlot;
 
         let SizeUp = 0;
