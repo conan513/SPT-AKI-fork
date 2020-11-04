@@ -51,7 +51,8 @@ class Controller
 
                 // If previous is in user profile, check condition requirement and current status
                 if ((condition._props.status[0] === 4 && previousQuest.status === "Success")
-                    || (condition._props.status[0] === 2 && previousQuest.status === "Started"))
+                    || (condition._props.status[0] === 2 && previousQuest.status === "Started")
+                    || (condition._props.status[0] === 5 && previousQuest.status === "Fail"))
                 {
                     continue;
                 }
@@ -301,7 +302,7 @@ class Controller
                     const questData = {
                         "qid": checkFail._id,
                         "startTime": common_f.time.getTimestamp(),
-                        "status": "MarkedAsFailed"
+                        "status": "Fail"
                     };
                     pmcData.Quests.push(questData);
                 }
@@ -337,6 +338,8 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
+        let failedQuestResponse = item_f.eventHandler.getOutput();
+        failedQuestResponse.quests = this.failedUnlocked(body.qid, sessionID);
         return item_f.eventHandler.getOutput();
     }
 
@@ -468,6 +471,29 @@ class Controller
             }
 
             return true;
+        });
+
+        return this.cleanQuestList(quests);
+    }
+
+    failedUnlocked(failedQuestId, sessionID)
+    {
+        const profile = profile_f.controller.getPmcProfile(sessionID);
+        let quests = this.questValues().filter((q) =>
+        {
+            const acceptedQuestCondition = q.conditions.AvailableForStart.find(
+                c =>
+                {
+                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === 5;
+                });
+
+            if (!acceptedQuestCondition)
+            {
+                return false;
+            }
+
+            const profileQuest = profile.Quests.find(pq => pq.qid === failedQuestId);
+            return profileQuest && (profileQuest.status === "Fail");
         });
 
         return this.cleanQuestList(quests);
