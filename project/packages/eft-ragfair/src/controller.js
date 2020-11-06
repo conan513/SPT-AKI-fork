@@ -326,7 +326,7 @@ class Controller
 
     getOffersFromTraders(sessionID, request)
     {
-        let jsonToReturn = database_f.server.tables.ragfair.offers;
+        let jsonToReturn = common_f.json.clone(database_f.server.tables.ragfair.offers);
         let offersFilters = []; //this is an array of item tpl who filter only items to show
 
         jsonToReturn.categories = {};
