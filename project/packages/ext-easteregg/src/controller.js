@@ -17,7 +17,7 @@ class Controller
         database_f.server.tables.bots.special = {};
 
         // foreach special bot
-        for (const name of names)
+        for (const name of Object.keys(easteregg_f.config.spawnableBots))
         {
             this.loadBot(name, `${filepath}db/bots/${name}.json`);
             this.loadDogtag(name, `${filepath}db/locales/templates/${name}.json`);
