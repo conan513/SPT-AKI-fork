@@ -112,7 +112,7 @@ class Controller
         {
             name = common_f.random.getKeyValue(database_f.server.tables.bots.special);
         }
-        while (!easteregg_f.config.allowedBots[name])
+        while (!easteregg_f.config.spawnableBots[name])
 
         // create bot
         let bot = common_f.json.clone(database_f.server.tables.bots.special[name]);
