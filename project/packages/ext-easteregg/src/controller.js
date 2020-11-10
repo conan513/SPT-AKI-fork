@@ -13,22 +13,20 @@ class Controller
     load()
     {
         const filepath = "packages/ext-easteregg/";
-        const names = [];
-
         // setup special bots
         database_f.server.tables.bots.special = {};
 
-        // for each contributor
+        // foreach special bot
         for (const name of names)
         {
-            this.loadBot(name, filepath);
-            this.loadDogtag(name, filepath);
+            this.loadBot(name, `${filepath}db/bots/${name}.json`);
+            this.loadDogtag(name, `${filepath}db/locales/templates/${name}.json`);
         }
     }
 
     loadBot(name, filepath)
     {
-        database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(`${filepath}db/bots/${name}.json`));
+        database_f.server.tables.bots.special[name] = common_f.json.deserialize(common_f.vfs.readFile(filepath));
     }
 
     loadDogtag(name, filepath)
@@ -58,7 +56,7 @@ class Controller
         // locale
         for (const localeID in database_f.server.tables.locales.global)
         {
-            database_f.server.tables.locales.global[localeID].templates[dogtagName] = common_f.json.deserialize(common_f.vfs.readFile(`${filepath}db/locales/templates/${name}.json`));
+            database_f.server.tables.locales.global[localeID].templates[dogtagName] = common_f.json.deserialize(common_f.vfs.readFile(filepath));
         }
 
         // modify inventory to support custom dogtag
