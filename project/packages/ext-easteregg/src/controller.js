@@ -13,17 +13,7 @@ class Controller
     load()
     {
         const filepath = "packages/ext-easteregg/";
-        const names = [
-            "senko",
-            "ginja",
-            "ereshkigal",
-            "wafflelord",
-            "digitalbarrito",
-            "reider123",
-            "terkoiz",
-            "elitecheez",
-            "cheekiestbreeki"
-        ];
+        const names = [];
 
         // setup special bots
         database_f.server.tables.bots.special = {};
@@ -115,7 +105,17 @@ class Controller
 
     generateSpecial(condition, sessionID)
     {
-        let bot = common_f.json.clone(common_f.random.getKeyValue(database_f.server.tables.bots.special));
+        // get special bot we can spawn
+        let name = "";
+
+        do
+        {
+            name = common_f.random.getKeyValue(database_f.server.tables.bots.special);
+        }
+        while (!easteregg_f.config.allowedBots[name])
+
+        // create bot
+        let bot = common_f.json.clone(database_f.server.tables.bots.special[name]);
 
         bot.Info.Settings.BotDifficulty = condition.Difficulty;
         bot = this.generateDogtag(bot);
