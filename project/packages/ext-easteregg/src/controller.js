@@ -17,7 +17,6 @@ class Controller
             "senko",
             "ginja",
             "wafflelord",
-            "digitalbarrito",
             "reider123",
             "terkoiz",
             "elitecheez",
