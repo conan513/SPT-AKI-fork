@@ -18,6 +18,7 @@ class Controller
             "ginja",
             "ereshkigal",
             "wafflelord",
+            "digitalbarrito",
             "reider123",
             "terkoiz",
             "elitecheez",
