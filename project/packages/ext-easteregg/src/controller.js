@@ -16,7 +16,6 @@ class Controller
         const names = [
             "senko",
             "ginja",
-            "ereshkigal",
             "wafflelord",
             "digitalbarrito",
             "reider123",
