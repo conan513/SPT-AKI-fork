@@ -46,12 +46,19 @@ class Callbacks
 
     addOffer(pmcData, request, sessionID)
     {
+        common_f.logger.logInfo(common_f.json.serialize(request)); // TODO: Remove this once finished
         return ragfair_f.controller.addOffer(pmcData, request, sessionID);
     }
 
     removeOffer(pmcData, request, sessionID)
     {
         return ragfair_f.controller.removeOffer(request.offerId, sessionID);
+    }
+
+    extendOffer(pmcData, request, sessionID)
+    {
+        common_f.logger.logInfo(common_f.json.serialize(request)); // TODO: Remove this once finished
+        return ragfair_f.controller.extendOffer(request.offerId, sessionID);
     }
 
     processOffers(sessionID)

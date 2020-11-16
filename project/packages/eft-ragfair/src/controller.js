@@ -607,23 +607,42 @@ class Controller
         return result;
     }
 
-    getItemPrice(request)
+    processOffers(sessionID)
     {
-        const response = { avg: 0, min: 0, max: 0 };
-        try
+        const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        if (!profileOffers || !profileOffers.length)
         {
-            const ragfairScheme = database_f.server.tables.traders["ragfair"].assort.barter_scheme[request.templateId];
-            // TODO: Add support for non-ruble item prices, with conversion (in-case barter scheme ever gets EUR or USD added for some reason)
-            if (ragfairScheme && ragfairScheme[0] && ragfairScheme[0][0] && ragfairScheme[0][0]._tpl === helpfunc_f.helpFunctions.getCurrency("RUB"))
+            return;
+        }
+
+        for (const offer of profileOffers)
+        {
+            if (offer.sellTime < common_f.time.getTimestamp())
             {
-                response.avg = ragfairScheme[0][0].count;
+                this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items);
+                profileOffers.splice(profileOffers.findIndex(x => x._id === offer.id), 1);
+            }
+
+            if (offer.endTime < common_f.time.getTimestamp())
+            {
+                this.removeOffer(offer._id, sessionID);
             }
         }
-        catch (err)
+
+        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
+    }
+
+    getItemPrice(request)
+    {
+        const price = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(request.templateId) * ragfair_f.config.priceMultiplier);
+
+        // 1 is returned by helper method if price lookup failed
+        if (!price || price === 1)
         {
-            common_f.logger.logError(`Could not fetch ragfair price for ${request.templateId}`);
+            common_f.logger.logError(`Could not fetch price for ${request.templateId}`);
         }
-        return response;
+
+        return { avg: price, min: 0, max: 0 };
     }
 
     addOffer(pmcData, request, sessionID)
@@ -691,19 +710,26 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
-        // Skip offer generation and insta-sell offer if setting is enabled
-        // TODO: Do the same if requested price is undercutting the average
-        if (ragfair_f.config.instantOfferSelling)
+        let basePrice = 0;
+        for (const item of invItems)
+        {
+            const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
+            basePrice += Math.round(helpfunc_f.helpFunctions.getTemplatePrice(item._tpl) * ragfair_f.config.priceMultiplier) * mult;
+        }
+
+        const basePricePercentage = (moneyAmount / basePrice) * 100;
+
+        // Skip offer generation and insta-sell offer if price is being undercut by amount defined in settingsca
+        if (basePricePercentage <= ragfair_f.config.instantSellThreshold)
         {
             this.completeOffer(sessionID, request.requirements[0]._tpl, moneyAmount, invItems);
             return response;
         }
 
         // Validation and preparations are done, create the offer
-        const offer = this.generateOffer(save_f.server.profiles[sessionID], request.requirements, invItems, request.sellInOnePiece, moneyAmount);
+        // TODO: Random generate sale time based on offer pricing
+        const offer = this.generateOffer(save_f.server.profiles[sessionID], request.requirements, invItems, request.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
         save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
-        // TODO: Add ablitity to queue offers for sale? Only need to set SaleTime, probably?
-        //global["Terkoiz-FleaMarketImprovements"].config.queueOfferForSale(offer._id, common_f.time.getTimestamp() + 60); // TODO: Random generate sale time based on offer pricing
         response.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
@@ -719,9 +745,6 @@ class Controller
     removeOffer(offerId, sessionID)
     {
         // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
-        // TODO: Remove offer from queue, if we implement one
-        //global["Terkoiz-FleaMarketImprovements"].config.removeOfferFromQueue(offerId);
-
         const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
 
         const index = offers.findIndex(offer => offer._id === offerId);
@@ -736,6 +759,12 @@ class Controller
 
         offers.splice(index, 1);
 
+        return item_f.eventHandler.getOutput();
+    }
+
+    extendOffer(offerId, sessionID)
+    {
+        // TODO: Subtract money and change offer endTime
         return item_f.eventHandler.getOutput();
     }
 
@@ -820,7 +849,7 @@ class Controller
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
     }
 
-    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend)
+    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend, sellTime)
     {
         return {
             "_id": common_f.hash.generate(),
@@ -830,11 +859,11 @@ class Controller
             "requirements": requirements,
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + 8640000, // TODO: Try to match this to the actual in-game time shown
+            "endTime": common_f.time.getTimestamp() + (12 * 60 * 60),
+            "sellTime": sellTime, // Custom field, not used in-game. Only saved server-side
             "summaryCost": amountToSend,
-            "buyRestrictionMax": 0,
-            "buyRestrictionCurrent": 0,
-            "availableTimePassed": 0
+            "requirementsCost": amountToSend,
+            "loyaltyLevel": 1
         };
     }
 
@@ -852,18 +881,12 @@ class Controller
     formatRequirementsForOffer(requirements)
     {
         const toReturn = [];
-
         for (const item in requirements)
         {
             toReturn.push({
-                "templateId": item._tpl,
+                "_tpl": item._tpl,
                 "count": item.count,
-                "onlyFunctional": item.onlyFunctional,
-                "item": {
-                    "_id": common_f.hash.generate(),
-                    "_tpl": requirements._tpl,
-                    "upd": { "StackObjectsCount": item.count }
-                }
+                "onlyFunctional": item.onlyFunctional
             });
         }
     }
