@@ -5,6 +5,7 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - PoloYolo
+ * - Terkoiz
  */
 
 "use strict";
@@ -113,11 +114,17 @@ class Controller
         https_f.server.sendTextJson(resp, data.join("\n"));
     }
 
-    /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
+    /** Creates a new notification with the specified dialogueMessage object (default type is "new_message"). */
     createNewMessageNotification(dialogueMessage)
     {
+        let type = "new_message";
+        if (dialogueMessage.type === 4)
+        {
+            type = "RagfairOfferSold";
+        }
+
         return {
-            "type": "new_message",
+            "type": type,
             "eventId": dialogueMessage._id,
             "data" : {
                 "dialogId": dialogueMessage.uid,

@@ -6,6 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  * - BALIST0N
  * - Emperor06
+ * - Terkoiz
  */
 
 "use strict";
@@ -262,6 +263,21 @@ class Controller
         if (request.offerOwnerType ===  1)
         {
             return this.getOffersFromTraders(sessionID, request);
+        }
+
+        // Player's own offers
+        if (request.offerOwnerType === 2)
+        {
+            const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            const categories = {};
+            for (let offer of offers)
+            {
+                categories[offer.items[0]._tpl] = 1;
+            }
+            return https_f.response.getBody({
+                "offers": offers,
+                "categories": categories
+            });
         }
 
         let response = {"categories": {}, "offers": [], "offersCount": 10, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
@@ -589,6 +605,282 @@ class Controller
         }
 
         return result;
+    }
+
+    getItemPrice(request)
+    {
+        const response = { avg: 0, min: 0, max: 0 };
+        try
+        {
+            const ragfairScheme = database_f.server.tables.traders["ragfair"].assort.barter_scheme[request.templateId];
+            // TODO: Add support for non-ruble item prices, with conversion (in-case barter scheme ever gets EUR or USD added for some reason)
+            if (ragfairScheme && ragfairScheme[0] && ragfairScheme[0][0] && ragfairScheme[0][0]._tpl === helpfunc_f.helpFunctions.getCurrency("RUB"))
+            {
+                response.avg = ragfairScheme[0][0].count;
+            }
+        }
+        catch (err)
+        {
+            common_f.logger.logError(`Could not fetch ragfair price for ${request.templateId}`);
+        }
+        return response;
+    }
+
+    addOffer(pmcData, request, sessionID)
+    {
+        const response = item_f.eventHandler.getOutput();
+
+        if (!request || !request.items || request.items.length === 0)
+        {
+            common_f.logger.logError("Invalid addOffer request");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
+        if (!request.requirements || request.requirements.length !== 1)
+        {
+            // TODO: rework code to support multiple requirements
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only have one requirement");
+        }
+
+        const requestedItemTpl = request.requirements[0]._tpl;
+        if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+        {
+            // TODO: rework code to support barter offers
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only request money");
+        }
+
+        // Count how many items are being sold and multiply the requested amount accordingly
+        let moneyAmount = 0;
+        let itemStackCount = 0;
+        if (request.sellInOnePiece)
+        {
+            moneyAmount = request.requirements[0].count;
+        }
+        else
+        {
+            for (const itemId of request.items)
+            {
+                const item = pmcData.Inventory.items.find(i => i._id === itemId);
+                if (!item)
+                {
+                    common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
+                    return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+                }
+
+                if (!("upd" in item) || !("StackObjectsCount" in item.upd))
+                {
+                    itemStackCount += 1;
+                }
+                else
+                {
+                    itemStackCount += item.upd.StackObjectsCount;
+                }
+            }
+            moneyAmount = request.requirements[0].count * itemStackCount;
+        }
+
+        let invItems = [];
+        for (const item in request.items)
+        {
+            invItems = [invItems, ...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, item)];
+        }
+
+        if (!invItems || !invItems.length)
+        {
+            common_f.logger.logError("Could not find any requested items in the inventory");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
+        // Skip offer generation and insta-sell offer if setting is enabled
+        // TODO: Do the same if requested price is undercutting the average
+        if (ragfair_f.config.instantOfferSelling)
+        {
+            this.completeOffer(sessionID, request.requirements[0]._tpl, moneyAmount, invItems);
+            return response;
+        }
+
+        // Validation and preparations are done, create the offer
+        const offer = this.generateOffer(save_f.server.profiles[sessionID], request.requirements, invItems, request.sellInOnePiece, moneyAmount);
+        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        // TODO: Add ablitity to queue offers for sale? Only need to set SaleTime, probably?
+        //global["Terkoiz-FleaMarketImprovements"].config.queueOfferForSale(offer._id, common_f.time.getTimestamp() + 60); // TODO: Random generate sale time based on offer pricing
+        response.ragFairOffers.push(offer);
+
+        // Remove items from inventory after creating offer
+        for (const itemToRemove of request.items)
+        {
+            // TODO: Reenable this once testing is done
+            //inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
+        }
+
+        return response;
+    }
+
+    removeOffer(offerId, sessionID)
+    {
+        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
+        // TODO: Remove offer from queue, if we implement one
+        //global["Terkoiz-FleaMarketImprovements"].config.removeOfferFromQueue(offerId);
+
+        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+
+        const index = offers.findIndex(offer => offer._id === offerId);
+        if (index === -1)
+        {
+            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            return item_f.eventHandler.getOutput();
+        }
+
+        const itemsToReturn = common_f.json.clone(offers[index].items);
+        this.returnItems(sessionID, itemsToReturn);
+
+        offers.splice(index, 1);
+
+        return item_f.eventHandler.getOutput();
+    }
+
+    completeOffer(sessionID, currencyTpl, moneyAmount, items)
+    {
+        const formatCurrency = (moneyAmount) => moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
+        const getCurrencySymbol = (currencyTpl) =>
+        {
+            switch (currencyTpl)
+            {
+                case "569668774bdc2da2298b4568":
+                    return "€";
+                case "5696686a4bdc2da3298b456a":
+                    return "$";
+                case "5449016a4bdc2d6f028b456f":
+                default:
+                    return "₽";
+            }
+        };
+
+        const itemTpl = items[0]._tpl;
+
+        let itemCount = 0;
+        for (const item of items)
+        {
+            if (!("upd" in item) || !("StackObjectsCount" in item.upd))
+            {
+                itemCount += 1;
+            }
+            else
+            {
+                itemCount += item.upd.StackObjectsCount;
+            }
+        }
+
+        // Create an item of the specified currency
+        const moneyItem = {
+            "_id": common_f.hash.generate(),
+            "_tpl": currencyTpl,
+            "upd": { "StackObjectsCount": moneyAmount }
+        };
+
+        // Split the money stacks in case more than the stack limit is requested
+        const itemsToSend = helpfunc_f.helpFunctions.splitStack(moneyItem);
+
+        // Generate a message to inform that item was sold
+        const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
+        let messageText = "Your offer was sold";
+        if (findItemResult[0])
+        {
+            try
+            {
+                const itemLocale = database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id];
+                if (itemLocale && itemLocale.Name)
+                {
+                    messageText = `Your ${itemLocale.Name} (x${itemCount}) was bought by ${this.fetchRandomPmcName()} for ${getCurrencySymbol(currencyTpl)}${formatCurrency(moneyAmount)}`;
+                }
+            }
+            catch (err)
+            {
+                common_f.logger.logError(`Could not get locale data for item with _id -> ${findItemResult[1]._id}`);
+            }
+        }
+
+        const messageContent = {
+            "text": messageText.replace(/"/g, ""),
+            "type": 4, // EMessageType.FleamarketMessage
+            "maxStorageTime": quest_f.config.redeemTime * 3600
+        };
+
+        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+    }
+
+    returnItems(sessionID, items)
+    {
+        const messageContent = {
+            "text": "Your offer was cancelled",
+            "type": 13,
+            "maxStorageTime": quest_f.config.redeemTime * 3600
+        };
+
+        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
+    }
+
+    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend)
+    {
+        return {
+            "_id": common_f.hash.generate(),
+            "user": this.generateOfferOwner(profile),
+            "items": items.forEach(item => delete item.location),
+            "root": items[0]._id,
+            "requirements": requirements,
+            "sellInOnePiece": sellInOnePiece,
+            "startTime": common_f.time.getTimestamp(),
+            "endTime": common_f.time.getTimestamp() + 8640000, // TODO: Try to match this to the actual in-game time shown
+            "summaryCost": amountToSend,
+            "buyRestrictionMax": 0,
+            "buyRestrictionCurrent": 0,
+            "availableTimePassed": 0
+        };
+    }
+
+    generateOfferOwner(profile)
+    {
+        return {
+            "id": profile.characters.pmc._id,
+            "nickname": profile.characters.pmc.Info.Nickname,
+            "rating": profile.characters.pmc.RagfairInfo.rating,
+            "memberType": profile.characters.pmc.Info.AccountType,
+            "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
+        };
+    }
+
+    formatRequirementsForOffer(requirements)
+    {
+        const toReturn = [];
+
+        for (const item in requirements)
+        {
+            toReturn.push({
+                "templateId": item._tpl,
+                "count": item.count,
+                "onlyFunctional": item.onlyFunctional,
+                "item": {
+                    "_id": common_f.hash.generate(),
+                    "_tpl": requirements._tpl,
+                    "upd": { "StackObjectsCount": item.count }
+                }
+            });
+        }
+    }
+
+    fetchRandomPmcName()
+    {
+        const type = common_f.random.getInt(0, 1) === 0 ? "usec" : "bear";
+        try
+        {
+            return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
+        }
+        catch (err)
+        {
+            common_f.logger.logError(`Failed to fetch a random PMC name for type -> ${type}`);
+            common_f.logger.logInfo(common_f.json.serialize(err));
+            return "Anonymous";
+        }
     }
 }
 

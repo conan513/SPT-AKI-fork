@@ -5,6 +5,7 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - Ginja
+ * - Terkoiz
  */
 
 "use strict";
@@ -19,6 +20,8 @@ class Callbacks
         https_f.router.onStaticRoute["/client/ragfair/itemMarketPrice"] = this.itemMarketPrice.bind(this);
         https_f.router.onStaticRoute["/client/items/prices"] = this.getItemPrices.bind(this);
         item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
+        item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
+        keepalive_f.controller.onExecute["ragfair-process-offers"] = this.processOffers.bind(this);
     }
 
     load()
@@ -33,7 +36,7 @@ class Callbacks
 
     itemMarketPrice(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return https_f.response.getBody(ragfair_f.controller.getItemPrice(info));
     }
 
     getItemPrices(url, info, sessionID)
@@ -41,9 +44,19 @@ class Callbacks
         return https_f.response.nullResponse();
     }
 
-    addOffer()
+    addOffer(pmcData, request, sessionID)
     {
-        return null;
+        return ragfair_f.controller.addOffer(pmcData, request, sessionID);
+    }
+
+    removeOffer(pmcData, request, sessionID)
+    {
+        return ragfair_f.controller.removeOffer(request.offerId, sessionID);
+    }
+
+    processOffers(sessionID)
+    {
+        ragfair_f.controller.processOffers(sessionID);
     }
 }
 
