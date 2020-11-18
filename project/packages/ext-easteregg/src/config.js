@@ -15,10 +15,13 @@ class Config
         // generation chance for the special bots
         // set to 0 to not allow generation of special bots
         // set to 100 to make only special bots spawn
-        this.spawnChance = 1;
+        this.chance = 1;
+
+        // amount of attempts to make to spawn a bot before stopping
+        this.attempts = 10;
         
         // set to false to remove the special bot from the generation pool
-        this.spawnableBots = {
+        this.bots = {
             "senko": true,
             "ginja": true,
             "ereshkigal": true,
