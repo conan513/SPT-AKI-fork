@@ -108,9 +108,11 @@ class Controller
 
         for (let i = 0; i < easteregg_f.config.attempts; i++)
         {
+            name = common_f.random.getKey(database_f.server.tables.bots.special);
+
             if (easteregg_f.config.bots[name])
             {
-                name = common_f.random.getKey(database_f.server.tables.bots.special);
+                break;
             }
         }
 
