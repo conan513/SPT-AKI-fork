@@ -17,7 +17,7 @@ class Controller
         database_f.server.tables.bots.special = {};
 
         // foreach special bot
-        for (const name of Object.keys(easteregg_f.config.spawnableBots))
+        for (const name of Object.keys(easteregg_f.config.bots))
         {
             this.loadBot(name, `${filepath}db/bots/${name}.json`);
             this.loadDogtag(name, `${filepath}db/locales/templates/${name}.json`);
@@ -81,7 +81,7 @@ class Controller
             for (let i = 0; i < condition.Limit; i++)
             {
                 const eligable = (condition.Role === "assault" || condition.Role === "cursedAssault" || condition.Role === "pmcBot");
-                const createSpecial = (eligable && common_f.random.getInt(0, 99) < easteregg_f.config.spawnChance);
+                const createSpecial = (eligable && common_f.random.getInt(0, 99) < easteregg_f.config.cance);
                 const bot = (createSpecial) ? this.generateSpecial(condition, sessionID) : this.generateNormal(condition, sessionID);
 
                 generatedBots.unshift(bot);
@@ -106,11 +106,19 @@ class Controller
         // get special bot we can spawn
         let name = "";
 
-        do
+        for (let i = 0; i < easteregg_f.config.attempts; i++)
         {
-            name = common_f.random.getKeyValue(database_f.server.tables.bots.special);
+            if (easteregg_f.config.bots[name])
+            {
+                name = common_f.random.getKey(database_f.server.tables.bots.special);
+            }
         }
-        while (!easteregg_f.config.spawnableBots[name])
+
+        if (!name)
+        {
+            // out of tries, generate normal bot
+            return this.generateNormal(condition, sessionID);
+        }
 
         // create bot
         let bot = common_f.json.clone(database_f.server.tables.bots.special[name]);
