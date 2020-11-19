@@ -37,6 +37,11 @@ class RandomUtil
         return arr[this.getInt(0, arr.length - 1)];
     }
 
+    getKey(node)
+    {
+        return this.getArrayValue(Object.keys(node));
+    }
+
     getKeyValue(node)
     {
         return node[this.getArrayValue(Object.keys(node))];
