@@ -470,20 +470,13 @@ class Generator
              * and multiply by how many magazines were supposed to be created */
             const bulletCount = magTemplate._props.Cartridges[0]._max_count * count;
 
-            const ammoItems = helpfunc_f.helpFunctions.splitStack({
-                "_id": common_f.hash.generate(),
-                "_tpl": ammoTpl,
-                "upd": {"StackObjectsCount": bulletCount}
-            });
+            this.addBullets(ammoTpl, bulletCount);
+        }
+        else if (weaponTemplate._props.ReloadMode === "OnlyBarrel")
+        {
+            const bulletCount = count;
 
-            for (const ammoItem of ammoItems)
-            {
-                this.addItemWithChildrenToEquipmentSlot(
-                    [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
-                    ammoItem._id,
-                    ammoItem._tpl,
-                    [ammoItem]);
-            }
+            this.addBullets(ammoTpl, bulletCount);
         }
         else
         {
@@ -556,6 +549,24 @@ class Generator
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": ammoTemplate._props.StackMaxSize}
             }]);
+        }
+    }
+
+    addBullets(ammoTpl, bulletCount)
+    {
+        const ammoItems = helpfunc_f.helpFunctions.splitStack({
+            "_id": common_f.hash.generate(),
+            "_tpl": ammoTpl,
+            "upd": {"StackObjectsCount": bulletCount}
+        });
+
+        for (const ammoItem of ammoItems)
+        {
+            this.addItemWithChildrenToEquipmentSlot(
+                [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
+                ammoItem._id,
+                ammoItem._tpl,
+                [ammoItem]);
         }
     }
 
