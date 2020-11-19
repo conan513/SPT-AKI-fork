@@ -28,7 +28,7 @@ class Controller
             case "cursedassault":
                 type = "assault";
                 break;
-            
+
             // don't replace type
             default:
                 break;

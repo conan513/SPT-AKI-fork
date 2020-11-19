@@ -19,7 +19,7 @@ class Config
 
         // amount of attempts to make to spawn a bot before stopping
         this.attempts = 10;
-        
+
         // set to false to remove the special bot from the generation pool
         this.bots = {
             "senko": true,
