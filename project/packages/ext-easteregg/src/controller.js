@@ -81,7 +81,7 @@ class Controller
             for (let i = 0; i < condition.Limit; i++)
             {
                 const eligable = (condition.Role === "assault" || condition.Role === "cursedAssault" || condition.Role === "pmcBot");
-                const createSpecial = (eligable && common_f.random.getInt(0, 99) < easteregg_f.config.cance);
+                const createSpecial = (eligable && common_f.random.getInt(0, 99) < easteregg_f.config.chance);
                 const bot = (createSpecial) ? this.generateSpecial(condition, sessionID) : this.generateNormal(condition, sessionID);
 
                 generatedBots.unshift(bot);
