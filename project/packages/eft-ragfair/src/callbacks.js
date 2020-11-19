@@ -44,7 +44,7 @@ class Callbacks
         return https_f.response.getBody(ragfair_f.controller.getItemPrices());
     }
 
-    addOffer()
+    addOffer(pmcData, info, sessionID)
     {
         return ragfair_f.controller.addOffer(pmcData, info, sessionID);
     }

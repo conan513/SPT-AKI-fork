@@ -609,8 +609,8 @@ class Controller
 
         return {
             "avg": price,
-            "min": 0,
-            "max": 0
+            "min": price,
+            "max": price,
         };
     }
 
@@ -618,9 +618,9 @@ class Controller
     {
         let result = {};
 
-        for (let itemID in database_f.server.tables.templates.items)
+        for (const itemID in database_f.server.tables.templates.items)
         {
-            if (database_f.server.tables.templates.items[itemID]._type === "Item")
+            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
             {
                 result[itemID] = this.fetchItemFleaPrice(itemID);
             }
