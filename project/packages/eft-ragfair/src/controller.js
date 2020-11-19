@@ -6,6 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  * - BALIST0N
  * - Emperor06
+ * - Terkoiz
  */
 
 "use strict";
@@ -589,6 +590,58 @@ class Controller
         }
 
         return result;
+    }
+
+    fetchItemFleaPrice(tpl)
+    {
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
+    }
+
+    getMarketPrice(info)
+    {
+        const price = this.fetchItemFleaPrice(info.templateId);
+
+        // 1 is returned by helper method if price lookup failed
+        if (!price || price === 1)
+        {
+            common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
+        }
+
+        return {
+            "avg": price,
+            "min": 0,
+            "max": 0
+        };
+    }
+
+    getItemPrice()
+    {
+        let result = {};
+
+        for (let itemID in database_f.server.tables.templates.items)
+        {
+            if (database_f.server.tables.templates.items[itemID]._type === "Item")
+            {
+                result[itemID] = this.fetchItemFleaPrice(itemID);
+            }
+        }
+
+        return result;
+    }
+
+    addOffer(pmcData, info, sessionID)
+    {
+        return item_f.eventHandler.getOutput();
+    }
+
+    removeOffer(pmcData, info, sessionID)
+    {
+        return item_f.eventHandler.getOutput();
+    }
+
+    extendOffer(pmcData, info, sessionID)
+    {
+        return item_f.eventHandler.getOutput();
     }
 }
 
