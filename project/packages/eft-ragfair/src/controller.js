@@ -614,7 +614,7 @@ class Controller
         };
     }
 
-    getItemPrice()
+    getItemPrices()
     {
         let result = {};
 

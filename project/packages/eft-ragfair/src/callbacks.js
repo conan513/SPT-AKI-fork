@@ -41,7 +41,7 @@ class Callbacks
 
     getItemPrices(url, info, sessionID)
     {
-        return https_f.response.getBody(ragfair_f.controller.getItemPrice());
+        return https_f.response.getBody(ragfair_f.controller.getItemPrices());
     }
 
     addOffer()
