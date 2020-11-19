@@ -275,7 +275,7 @@ class Controller
 
         let acceptQuestResponse = item_f.eventHandler.getOutput();
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
-        
+
         return acceptQuestResponse;
     }
 
@@ -345,7 +345,7 @@ class Controller
 
         let failedQuestResponse = item_f.eventHandler.getOutput();
         failedQuestResponse.quests = this.failedUnlocked(body.qid, sessionID);
-        
+
         return failedQuestResponse;
     }
 

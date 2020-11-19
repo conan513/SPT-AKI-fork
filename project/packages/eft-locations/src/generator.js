@@ -90,7 +90,7 @@ class Generator
         {
             return { "status": "success", "data": data, "position": position };
         }
-        
+
         return { "status": "fail" };
     }
 

@@ -107,9 +107,9 @@ class Controller
         {
             pmcData = this.setBaseStats(pmcData, offraidData, sessionID);
 
-           // For some reason, offraidData seems to drop the latest insured items.
-           // It makes more sense to use profileData's insured items as the source of truth.
-           offraidData.profile.InsuredItems = pmcData.InsuredItems;
+            // For some reason, offraidData seems to drop the latest insured items.
+            // It makes more sense to use profileData's insured items as the source of truth.
+            offraidData.profile.InsuredItems = pmcData.InsuredItems;
         }
         else
         {
