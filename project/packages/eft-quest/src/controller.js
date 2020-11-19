@@ -272,8 +272,10 @@ class Controller
         }
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
+
         let acceptQuestResponse = item_f.eventHandler.getOutput();
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
+        
         return acceptQuestResponse;
     }
 
@@ -319,8 +321,10 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
+
         let completeQuestResponse = item_f.eventHandler.getOutput();
         completeQuestResponse.quests = this.completedUnlocked(body.qid, sessionID);
+
         return completeQuestResponse;
     }
 
@@ -338,9 +342,11 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
+
         let failedQuestResponse = item_f.eventHandler.getOutput();
         failedQuestResponse.quests = this.failedUnlocked(body.qid, sessionID);
-        return item_f.eventHandler.getOutput();
+        
+        return failedQuestResponse;
     }
 
     handoverQuest(pmcData, body, sessionID)
