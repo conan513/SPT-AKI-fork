@@ -104,6 +104,11 @@ class Controller
             actualItem.slotId = "hideout";
         }
 
+        if (actualItem.upd.SpawnedInSession)
+        {
+            actualItem.upd.SpawnedInSession = false;
+        }
+
         this.insured[sessionID] = this.insured[sessionID] || {};
         this.insured[sessionID][insuredItem.tid] = this.insured[sessionID][insuredItem.tid] || [];
         this.insured[sessionID][insuredItem.tid].push(actualItem);
@@ -225,6 +230,16 @@ class Controller
                     "location": pmcData.Info.EntryPoint
                 }
             };
+
+            for (let insuredItem of this.insured[sessionID][traderId])
+            {
+                const isParentHere = this.insured[sessionID][traderId].find(isParent => isParent._id === insuredItem.parentId);
+                if (!isParentHere)
+                {
+                    insuredItem.slotId = "hideout";
+                    delete insuredItem.location;
+                }
+            }
 
             save_f.server.profiles[sessionID].insurance.push({
                 "scheduledTime": time,
