@@ -157,7 +157,7 @@ class Controller
         // Single item
         if (!preset_f.controller.hasPreset(template) || !onlyFunc)
         {
-            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * ragfair_f.config.priceMultiplier);
+            let rubPrice = this.fetchItemFleaPrice(template);
             offerBase._id = template;
             offerBase.items[0]._tpl = template;
             offerBase.requirements[0].count = rubPrice;
@@ -615,12 +615,28 @@ class Controller
             return;
         }
 
-        for (const offer of profileOffers)
+        for (const [index, offer] of profileOffers.entries())
         {
-            if (offer.sellTime < common_f.time.getTimestamp())
+            if (!this.validateOffer(offer))
             {
-                this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items);
-                profileOffers.splice(profileOffers.findIndex(x => x._id === offer.id), 1);
+                common_f.logger.logWarning("An existing offer is invalid, attempting cleanup...");
+                if (!offer.items || !offer.items.length)
+                {
+                    common_f.logger.logWarning("There were no items to return");
+                }
+                else
+                {
+                    this.returnItems(sessionID, common_f.json.clone(offer.items));
+                }
+                profileOffers.splice(index, 1);
+                continue;
+            }
+
+            if (offer.sellTime < common_f.time.getTimestamp() && offer.sellTime < offer.endTime)
+            {
+                this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items, offer._id);
+                profileOffers.splice(index, 1);
+                continue;
             }
 
             if (offer.endTime < common_f.time.getTimestamp())
@@ -634,7 +650,7 @@ class Controller
 
     getItemPrice(request)
     {
-        const price = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(request.templateId) * ragfair_f.config.priceMultiplier);
+        const price = this.fetchItemFleaPrice(request.templateId);
 
         // 1 is returned by helper method if price lookup failed
         if (!price || price === 1)
@@ -699,9 +715,9 @@ class Controller
         }
 
         let invItems = [];
-        for (const item in request.items)
+        for (const itemId of request.items)
         {
-            invItems = [invItems, ...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, item)];
+            invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
         }
 
         if (!invItems || !invItems.length)
@@ -714,21 +730,35 @@ class Controller
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
-            basePrice += Math.round(helpfunc_f.helpFunctions.getTemplatePrice(item._tpl) * ragfair_f.config.priceMultiplier) * mult;
+            basePrice += this.fetchItemFleaPrice(item._tpl) * mult;
+        }
+
+        if (!basePrice)
+        {
+            // Don't want to accidentally divide by 0
+            common_f.logger.logError("Failed to count base price for offer");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
         const basePricePercentage = (moneyAmount / basePrice) * 100;
 
-        // Skip offer generation and insta-sell offer if price is being undercut by amount defined in settingsca
+        // Skip offer generation and insta-sell offer if price is being undercut by amount defined in config
         if (basePricePercentage <= ragfair_f.config.instantSellThreshold)
         {
-            this.completeOffer(sessionID, request.requirements[0]._tpl, moneyAmount, invItems);
+            this.completeOffer(sessionID, request.requirements[0]._tpl, moneyAmount, invItems, null);
             return response;
         }
 
-        // Validation and preparations are done, create the offer
+        // Preparations are done, create the offer
         // TODO: Random generate sale time based on offer pricing
         const offer = this.generateOffer(save_f.server.profiles[sessionID], request.requirements, invItems, request.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
+
+        if (!this.validateOffer(offer))
+        {
+            common_f.logger.logWarning("An invalid offer was generated, please check the error(s) above.");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
         save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         response.ragFairOffers.push(offer);
 
@@ -738,6 +768,8 @@ class Controller
             // TODO: Reenable this once testing is done
             //inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
         }
+
+        // TODO: Subtract flea market fee from stash
 
         return response;
     }
@@ -751,7 +783,7 @@ class Controller
         if (index === -1)
         {
             common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return item_f.eventHandler.getOutput();
+            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         const itemsToReturn = common_f.json.clone(offers[index].items);
@@ -768,7 +800,7 @@ class Controller
         return item_f.eventHandler.getOutput();
     }
 
-    completeOffer(sessionID, currencyTpl, moneyAmount, items)
+    completeOffer(sessionID, currencyTpl, moneyAmount, items, offerId)
     {
         const formatCurrency = (moneyAmount) => moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
         const getCurrencySymbol = (currencyTpl) =>
@@ -832,7 +864,12 @@ class Controller
         const messageContent = {
             "text": messageText.replace(/"/g, ""),
             "type": 4, // EMessageType.FleamarketMessage
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "ragfair": {
+                "offerId": offerId,
+                "count": itemCount,
+                "handbookId": itemTpl
+            }
         };
 
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
@@ -851,44 +888,49 @@ class Controller
 
     generateOffer(profile, requirements, items, sellInOnePiece, amountToSend, sellTime)
     {
+        const formattedItems = items.map(item =>
+        {
+            return {
+                "_id": item._id,
+                "_tpl": item._tpl,
+                "upd": item.upd
+            };
+        });
+
+        const formattedRequirements = requirements.map(item =>
+        {
+            return {
+                "_tpl": item._tpl,
+                "count": item.count,
+                "onlyFunctional": item.onlyFunctional
+            };
+        });
+
         return {
             "_id": common_f.hash.generate(),
-            "user": this.generateOfferOwner(profile),
-            "items": items.forEach(item => delete item.location),
+            "items": formattedItems,
             "root": items[0]._id,
-            "requirements": requirements,
+            "requirements": formattedRequirements,
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
             "endTime": common_f.time.getTimestamp() + (12 * 60 * 60),
             "sellTime": sellTime, // Custom field, not used in-game. Only saved server-side
             "summaryCost": amountToSend,
             "requirementsCost": amountToSend,
-            "loyaltyLevel": 1
+            "loyaltyLevel": 1,
+            "user": {
+                "id": profile.characters.pmc._id,
+                "nickname": profile.characters.pmc.Info.Nickname,
+                "rating": profile.characters.pmc.RagfairInfo.rating,
+                "memberType": profile.characters.pmc.Info.AccountType,
+                "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
+            },
         };
     }
 
-    generateOfferOwner(profile)
+    fetchItemFleaPrice(tpl)
     {
-        return {
-            "id": profile.characters.pmc._id,
-            "nickname": profile.characters.pmc.Info.Nickname,
-            "rating": profile.characters.pmc.RagfairInfo.rating,
-            "memberType": profile.characters.pmc.Info.AccountType,
-            "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
-        };
-    }
-
-    formatRequirementsForOffer(requirements)
-    {
-        const toReturn = [];
-        for (const item in requirements)
-        {
-            toReturn.push({
-                "_tpl": item._tpl,
-                "count": item.count,
-                "onlyFunctional": item.onlyFunctional
-            });
-        }
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
     }
 
     fetchRandomPmcName()
@@ -904,6 +946,32 @@ class Controller
             common_f.logger.logInfo(common_f.json.serialize(err));
             return "Anonymous";
         }
+    }
+
+    /** Validate an offer, to assert that all essential fields are present */
+    validateOffer(offer)
+    {
+        const isNullOrUndefined = (value) => typeof value === "undefined" || value === null;
+
+        const requiredFields = ["user", "items", "root", "requirements", "endTime", "sellTime", "summaryCost"];
+
+        // Different error message for _id validation
+        if (isNullOrUndefined(offer._id))
+        {
+            common_f.logger.logError("Offer was missing the \"_id\" field");
+            return false;
+        }
+
+        for (const field of requiredFields)
+        {
+            if (isNullOrUndefined(offer[field]))
+            {
+                common_f.logger.logError(`Offer ${offer._id} was missing the "${field}" field`);
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 

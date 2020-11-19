@@ -144,9 +144,15 @@ class Controller
             "systemData": messageContent.systemData
         };
 
+        let extraData = {};
+        if (messageContent.type === 4 && messageContent.ragfair)
+        {
+            extraData = messageContent.ragfair;
+        }
+
         dialogue.messages.push(message);
 
-        let notificationMessage = notifier_f.controller.createNewMessageNotification(message);
+        let notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
         notifier_f.controller.addToMessageQueue(notificationMessage, sessionID);
     }
 

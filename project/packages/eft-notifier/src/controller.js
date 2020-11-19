@@ -115,7 +115,7 @@ class Controller
     }
 
     /** Creates a new notification with the specified dialogueMessage object (default type is "new_message"). */
-    createNewMessageNotification(dialogueMessage)
+    createNewMessageNotification(dialogueMessage, extraData = {})
     {
         let type = "new_message";
         if (dialogueMessage.type === 4)
@@ -128,7 +128,8 @@ class Controller
             "eventId": dialogueMessage._id,
             "data" : {
                 "dialogId": dialogueMessage.uid,
-                "message": dialogueMessage
+                "message": dialogueMessage,
+                ...extraData
             }
         };
     }
