@@ -19,6 +19,7 @@ class Config
         };
         this.limits = {
             "assault": 30,
+            "cursedAssault": 30,
             "marksman": 30,
             "pmcBot": 30,
             "bossBully": 30,
@@ -35,7 +36,9 @@ class Config
             "followerSanitar": 30,
             "test": 30,
             "followerTest": 30,
-            "bossTest": 30
+            "bossTest": 30,
+            "assaultGroup": 30,
+            "playerScav": 30
         };
     }
 }
