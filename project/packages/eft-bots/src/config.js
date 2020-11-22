@@ -12,11 +12,6 @@ class Config
 {
     constructor()
     {
-        this.pmcSpawn = {
-            "enabled": true,
-            "spawnChance": 35,
-            "usecChance": 50
-        };
         this.limits = {
             "assault": 30,
             "cursedAssault": 30,
@@ -39,6 +34,69 @@ class Config
             "bossTest": 30,
             "assaultGroup": 30,
             "playerScav": 30
+        };
+        this.pmcSpawn = {
+            "enabled": true,
+            "spawnChance": 35,
+            "usecChance": 50,
+            "locations": {
+                "bigmap": [
+                    "ZoneBrige",
+                    "ZoneCrossRoad",
+                    "ZoneFactorySide",
+                    "ZoneOldAZS",
+                    "ZoneBlock",
+                    "Post",
+                    "ZoneTankSquare",
+                    "ZoneCustoms"
+                ],
+                "factory4_day": [
+                    "BotZone"
+                ],
+                "factory4_night": [
+                    "BotZone"
+                ],
+                "interchange": [
+                    "ZoneIDEA",
+                    "ZoneRoad",
+                    "ZoneCenter",
+                    "ZoneCenterBot",
+                    "ZoneOLI",
+                    "ZoneOLIPark",
+                    "ZoneGoshan",
+                    "ZonePowerStation",
+                    "ZoneTrucks",
+                    "ZoneIDEAPark"
+                ],
+                "laboratory": [
+                    "BotZoneMain"
+                ],
+                "rezervbase": [
+                    "ZoneRailStrorage",
+                    "ZonePTOR1",
+                    "ZonePTOR2",
+                    "ZoneBarrack",
+                    "ZoneBunkerStorage",
+                    "ZoneSubStorage"
+                ],
+                "shoreline": [
+                    "ZoneSanatorium",
+                    "ZonePassFar",
+                    "ZonePassClose",
+                    "ZoneTunnel",
+                    "ZoneStartVillage",
+                    "ZoneBunker"
+                ],
+                "woods": [
+                    "ZoneRedHouse",
+                    "ZoneHighRocks",
+                    "ZoneWoodCutter",
+                    "ZoneHouse",
+                    "ZoneBigRocks",
+                    "ZoneRoad",
+                    "ZoneMiniHouse"
+                ]
+            }
         };
     }
 }
