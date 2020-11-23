@@ -30,8 +30,8 @@ class Config
             "followerKojaniy": 30,
             "followerSanitar": 30,
             "test": 30,
-            "followerTest": 30,
-            "bossTest": 30,
+            "followerTest": 3,
+            "bossTest": 1,
             "assaultGroup": 30,
             "playerScav": 30
         };
@@ -40,62 +40,14 @@ class Config
             "spawnChance": 35,
             "usecChance": 50,
             "locations": {
-                "bigmap": [
-                    "ZoneBrige",
-                    "ZoneCrossRoad",
-                    "ZoneFactorySide",
-                    "ZoneOldAZS",
-                    "ZoneBlock",
-                    "Post",
-                    "ZoneTankSquare",
-                    "ZoneCustoms"
-                ],
-                "factory4_day": [
-                    "BotZone"
-                ],
-                "factory4_night": [
-                    "BotZone"
-                ],
-                "interchange": [
-                    "ZoneIDEA",
-                    "ZoneRoad",
-                    "ZoneCenter",
-                    "ZoneCenterBot",
-                    "ZoneOLI",
-                    "ZoneOLIPark",
-                    "ZoneGoshan",
-                    "ZonePowerStation",
-                    "ZoneTrucks",
-                    "ZoneIDEAPark"
-                ],
-                "laboratory": [
-                    "BotZoneMain"
-                ],
-                "rezervbase": [
-                    "ZoneRailStrorage",
-                    "ZonePTOR1",
-                    "ZonePTOR2",
-                    "ZoneBarrack",
-                    "ZoneBunkerStorage",
-                    "ZoneSubStorage"
-                ],
-                "shoreline": [
-                    "ZoneSanatorium",
-                    "ZonePassFar",
-                    "ZonePassClose",
-                    "ZoneTunnel",
-                    "ZoneStartVillage",
-                    "ZoneBunker"
-                ],
-                "woods": [
-                    "ZoneRedHouse",
-                    "ZoneHighRocks",
-                    "ZoneWoodCutter",
-                    "ZoneHouse",
-                    "ZoneBigRocks",
-                    "ZoneRoad",
-                    "ZoneMiniHouse"
-                ]
+                "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlock,Post,ZoneTankSquare,ZoneCustoms",
+                "factory4_day": "BotZone",
+                "factory4_night": "BotZone",
+                "interchange": "ZoneIDEA,ZoneRoad,ZoneCenter,ZoneCenterBot,ZoneOLI,ZoneOLIPark,ZoneGoshan,ZonePowerStation,ZoneTrucks,ZoneIDEAPark",
+                "laboratory": "BotZoneMain",
+                "rezervbase": "ZoneRailStrorage,ZonePTOR1,ZonePTOR2,ZoneBarrack,ZoneBunkerStorage,ZoneSubStorage",
+                "shoreline": "ZoneSanatorium,ZonePassFar,ZonePassClose,ZoneTunnel,ZoneStartVillage,ZoneBunker",
+                "woods": "ZoneRedHouse,ZoneHighRocks,ZoneWoodCutter,ZoneHouse,ZoneBigRocks,ZoneRoad,ZoneMiniHouse"
             }
         };
     }

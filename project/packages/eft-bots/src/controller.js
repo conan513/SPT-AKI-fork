@@ -41,34 +41,12 @@ class Controller
         return bot;
     }
 
-    generateBot(bot, role, sessionID)
+    generateBot(bot, role, side)
     {
-        // chance to spawn simulated PMC AIs
-        // TODO: rework to allow pmc groups
-        const pmcSettings = bots_f.config.pmcSpawn;
-
-        if ((role === "assault" || role === "pmcBot") && pmcSettings.enabled)
-        {
-            if (common_f.random.getInt(0, 99) < pmcSettings.spawnChance)
-            {
-                if (common_f.random.getInt(0, 99) < pmcSettings.usecChance)
-                {
-                    bot.Info.Side = "Usec";
-                    role = "usec";
-                }
-                else
-                {
-                    bot.Info.Side = "Bear";
-                    role = "bear";
-                }
-            }
-        }
-
         // generate bot
         const node = database_f.server.tables.bots.types[role.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
-
-        bot.Info.Settings.Role = role;
+        
         bot.Info.Nickname = common_f.random.getArrayValue(node.names);
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
@@ -96,19 +74,22 @@ class Controller
         return bot;
     }
 
-    generate(info, sessionID)
+    generate(info)
     {
+        const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmcSpawn.usecChance) ? "Usec" : "Bear";
         let generatedBots = [];
 
         for (const condition of info.conditions)
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-
+                const role = condition.Role;
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
-                bot = this.generateBot(bot, condition.Role, sessionID);
+                bot.Info.Settings.Role = role;
+                bot = this.generateBot(bot, (role === "bossTest" || role === "followerTest") ? pmcSide : role);
+
                 generatedBots.unshift(bot);
             }
         }

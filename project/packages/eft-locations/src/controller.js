@@ -27,6 +27,43 @@ class Controller
             return output;
         }
 
+        // generate pmc's
+        const pmcSettings = bots_f.config.pmcSpawn;
+        const locationName = output.Id.toLowerCase();
+
+        if (pmcSettings.enabled && (locationName in pmcSettings.locations))
+        {
+            const bufferTime = 5;
+            const maxSize = 4;
+            const count = Math.round(output.MaxPlayers / maxSize);
+            const time = Math.round(output.escape_time_limit - bufferTime / count);
+
+            for (let i = 0; i < count; i++)
+            {
+                let data = {
+                    "BossName": "bossTest",
+                    "BossChance": pmcSettings.spawnChance,
+                    "BossZone": pmcSettings.locations[locationName],
+                    "BossPlayer": false,
+                    "BossDifficult": "hard",
+                    "BossEscortType": "followerTest",
+                    "BossEscortDifficult": "hard",
+                    "BossEscortAmount": `${maxSize - 1}`,
+                    "Time": time * i
+                }
+
+                if (locationName === "laboratory")
+                {
+                    data.TriggerId = "";
+                    data.TriggerName = "none";
+                    data.Delay = 0;
+                }
+
+                output.BossLocationSpawn.push(data);
+            }
+        }
+
+        // generate loot
         let forced = location.loot.forced;
         let mounted = location.loot.mounted;
         let statics = common_f.json.clone(location.loot.static);
