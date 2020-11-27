@@ -20,7 +20,7 @@ class Config
         };
         this.pmcGroup = {
             "size": 4,
-            "chance": 100,
+            "chance": 35,
             "locations": {
                 "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlock,Post,ZoneTankSquare,ZoneCustoms",
                 "factory4_day": "BotZone",

@@ -40,8 +40,8 @@ class Config
             "types": {
                 "followerTest": 100,
                 "bossTest": 100,
-                "assault": 35,
-                "pmcBot": 35
+                "assault": 10,
+                "pmcBot": 10
             }
         };
     }

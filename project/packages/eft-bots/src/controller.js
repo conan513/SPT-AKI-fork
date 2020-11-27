@@ -87,8 +87,6 @@ class Controller
                 const isPmc = (role in bots_f.config.pmc.types && common_f.random.getInt(0, 99) < bots_f.config.pmc.types[role]);
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
-                console.log(isPmc);
-
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = role;
                 bot = this.generateBot(bot, (isPmc) ? pmcSide : role.toLowerCase());
