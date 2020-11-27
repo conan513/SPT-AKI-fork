@@ -17,7 +17,7 @@ class Config
             "tweakedLootChance": true,
             "fenceSuits": true,
             "pmcGroup": true
-        }
+        };
         this.pmcGroup = {
             "size": 4,
             "chance": 100,

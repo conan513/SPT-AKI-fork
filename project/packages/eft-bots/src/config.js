@@ -43,7 +43,7 @@ class Config
                 "assault": 35,
                 "pmcBot": 35
             }
-        }
+        };
     }
 }
 

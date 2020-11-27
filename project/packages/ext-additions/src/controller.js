@@ -83,7 +83,7 @@ class Controller
                     "BossEscortDifficult": "hard",
                     "BossEscortAmount": bots_f.config.limits.followerTest,
                     "Time": initialDelay + Math.round(maxTime / count) * i
-                }
+                };
 
                 if (locationName === "laboratory")
                 {

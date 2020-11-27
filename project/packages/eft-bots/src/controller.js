@@ -46,7 +46,7 @@ class Controller
         // generate bot
         const node = database_f.server.tables.bots.types[role.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
-        
+
         bot.Info.Nickname = common_f.random.getArrayValue(node.names);
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
@@ -96,7 +96,7 @@ class Controller
                 output.unshift(bot);
             }
         }
-        
+
         return output;
     }
 
