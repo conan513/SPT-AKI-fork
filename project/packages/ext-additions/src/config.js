@@ -12,8 +12,10 @@ class Config
 {
     constructor()
     {
-        this.pmcSpawn = {
+        this.pmcGroup = {
             "enabled": true,
+            "size": 4,
+            "chance": 100,
             "locations": {
                 "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlock,Post,ZoneTankSquare,ZoneCustoms",
                 "factory4_day": "BotZone",

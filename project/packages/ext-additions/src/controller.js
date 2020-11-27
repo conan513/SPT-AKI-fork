@@ -38,13 +38,17 @@ class Controller
 
     addPmcSpawns()
     {
-        const pmcSettings = additions_f.config.pmcSpawn;
+        const pmcSettings = additions_f.config.pmcGroup;
 
         if (!pmcSettings.enabled)
         {
             return;
         }
 
+        // set generator limits
+        bots_f.config.limits.followerTest = pmcSettings.size - 1;
+
+        // add group spawns to locations
         for (const locationName in database_f.server.tables.locations)
         {
             if (!pmcSettings.locations[locationName])
@@ -53,31 +57,38 @@ class Controller
             }
 
             let location = database_f.server.tables.locations[locationName].base;
-    
-            const maxSize = 4;                              // boss + followers
-            const initialDelay = 5;                         // seconds
-            const maxTime = location.escape_time_limit - 5; // minutes
-            const count = Math.round(location.MaxPlayers / maxSize);
+            const initialDelay = 5;                             // seconds
+            const maxTime = location.escape_time_limit - 5;     // minutes
+            const count = Math.round(location.MaxPlayers / pmcSettings.size);
 
             for (let i = 0; i < count; i++)
             {
-                location.BossLocationSpawn.push({
+                let output = {
                     "BossName": "bossTest",
-                    "BossChance": pmcSettings.spawnChance,
+                    "BossChance": pmcSettings.chance,
                     "BossZone": pmcSettings.locations[locationName],
                     "BossPlayer": false,
-                    "BossDifficult": "hard",
+                    "BossDifficult": "normal",
                     "BossEscortType": "followerTest",
-                    "BossEscortDifficult": "hard",
-                    "BossEscortAmount": `${maxSize - 1}`,
-                    "Time": initialDelay + Math.round(maxTime / count) * i,
-                    "TriggerId": "",
-                    "TriggerName": "none",
-                    "Delay": 0
-                });
+                    "BossEscortDifficult": "normal",
+                    "BossEscortAmount": bots_f.config.limits.followerTest,
+                    "Time": initialDelay + Math.round(maxTime / count) * i
+                }
+
+                if (locationName === "laboratory")
+                {
+                    output = Object.assign(output, {
+                        "TriggerId": "",
+                        "TriggerName": "none",
+                        "Delay": 0
+                    });
+                }
+
+                location.BossLocationSpawn.push(output);
             }
 
             database_f.server.tables.locations[locationName].base = location;
+            common_f.vfs.writeFile(`./${locationName}.json`, common_f.json.serialize(location));
         }
     }
 }
