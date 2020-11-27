@@ -149,7 +149,7 @@ class Controller
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
         const notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
-        notifier_f.controller.addToMessageQueue(notificationMessage, sessionID);
+        notifier_f.controller.add(notificationMessage, sessionID);
     }
 
     /*
