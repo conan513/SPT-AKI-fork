@@ -35,21 +35,13 @@ class Config
             "assaultGroup": 30,
             "playerScav": 30
         };
-        this.pmcSpawn = {
-            "enabled": true,
-            "spawnChance": 35,
-            "usecChance": 50,
-            "locations": {
-                "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlock,Post,ZoneTankSquare,ZoneCustoms",
-                "factory4_day": "BotZone",
-                "factory4_night": "BotZone",
-                "interchange": "ZoneIDEA,ZoneRoad,ZoneCenter,ZoneCenterBot,ZoneOLI,ZoneOLIPark,ZoneGoshan,ZonePowerStation,ZoneTrucks,ZoneIDEAPark",
-                "laboratory": "BotZoneMain",
-                "rezervbase": "ZoneRailStrorage,ZonePTOR1,ZonePTOR2,ZoneBarrack,ZoneBunkerStorage,ZoneSubStorage",
-                "shoreline": "ZoneSanatorium,ZonePassFar,ZonePassClose,ZoneTunnel,ZoneStartVillage,ZoneBunker",
-                "woods": "ZoneRedHouse,ZoneHighRocks,ZoneWoodCutter,ZoneHouse,ZoneBigRocks,ZoneRoad,ZoneMiniHouse"
+        this.pmc = {
+            "isUsec": 50,
+            "roles": {
+                "followerTest": true,
+                "bossTest": true,
             }
-        };
+        }
     }
 }
 

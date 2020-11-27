@@ -76,7 +76,7 @@ class Controller
 
     generate(info)
     {
-        const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmcSpawn.usecChance) ? "usec" : "bear";
+        const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "usec" : "bear";
         let output = [];
 
         for (const condition of info.conditions)
@@ -88,7 +88,7 @@ class Controller
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = role;
-                bot = this.generateBot(bot, (role === "bossTest" || role === "followerTest") ? pmcSide : role.toLowerCase());
+                bot = this.generateBot(bot, (bots_f.config.pmc.roles[role]) ? pmcSide : role.toLowerCase());
 
                 output.unshift(bot);
             }
