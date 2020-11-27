@@ -27,6 +27,7 @@ class Controller
             return output;
         }
 
+        // generate loot
         let forced = location.loot.forced;
         let mounted = location.loot.mounted;
         let statics = common_f.json.clone(location.loot.static);

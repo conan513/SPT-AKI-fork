@@ -24,11 +24,6 @@ class Controller
             case "core":
                 return database_f.server.tables.bots.core;
 
-            // cursedassault use assault AI
-            case "cursedassault":
-                type = "assault";
-                break;
-
             // don't replace type
             default:
                 break;
@@ -46,43 +41,12 @@ class Controller
         return bot;
     }
 
-    generateBot(bot, role, sessionID)
+    generateBot(bot, role)
     {
-        const pmcSettings = bots_f.config.pmcSpawn;
-        let type = (role === "cursedAssault") ? "assault" : role;
-
-        // chance to spawn simulated PMC AIs
-        if ((type === "assault" || type === "pmcBot") && pmcSettings.enabled)
-        {
-            const spawnChance = common_f.random.getInt(0, 99);
-            const sideChance = common_f.random.getInt(0, 99);
-
-            if (spawnChance < pmcSettings.spawnChance)
-            {
-                if (sideChance < pmcSettings.usecChance)
-                {
-                    bot.Info.Side = "Usec";
-                    type = "usec";
-                }
-                else
-                {
-                    bot.Info.Side = "Bear";
-                    type = "bear";
-                }
-            }
-        }
-
-        // we don't want player scav to be generated as PMC
-        if (role === "playerScav")
-        {
-            type = "assault";
-        }
-
         // generate bot
-        const node = database_f.server.tables.bots.types[type.toLowerCase()];
+        const node = database_f.server.tables.bots.types[role.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
-        bot.Info.Settings.Role = role;
         bot.Info.Nickname = common_f.random.getArrayValue(node.names);
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
@@ -96,7 +60,7 @@ class Controller
         bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
-        if (type === "usec" || type === "bear")
+        if (role === "usec" || role === "bear")
         {
             bot = this.generateDogtag(bot);
         }
@@ -110,24 +74,28 @@ class Controller
         return bot;
     }
 
-    generate(info, sessionID)
+    generate(info)
     {
-        let generatedBots = [];
+        const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "usec" : "bear";
+        let output = [];
 
         for (const condition of info.conditions)
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-
+                const role = condition.Role;
+                const isPmc = (role in bots_f.config.pmc.types && common_f.random.getInt(0, 99) < bots_f.config.pmc.types[role]);
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
-                bot = this.generateBot(bot, condition.Role, sessionID);
-                generatedBots.unshift(bot);
+                bot.Info.Settings.Role = role;
+                bot = this.generateBot(bot, (isPmc) ? pmcSide : role.toLowerCase());
+
+                output.unshift(bot);
             }
         }
 
-        return generatedBots;
+        return output;
     }
 
     generateRandomLevel(min = 1, max = 50)

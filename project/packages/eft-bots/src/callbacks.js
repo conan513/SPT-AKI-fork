@@ -19,22 +19,22 @@ class Callbacks
 
     getBotLimit(url, info, sessionID)
     {
-        let splittedUrl = url.split("/");
-        let type = splittedUrl[splittedUrl.length - 1];
+        const splittedUrl = url.split("/");
+        const type = splittedUrl[splittedUrl.length - 1];
         return https_f.response.noBody(bots_f.controller.getBotLimit(type));
     }
 
     getBotDifficulty(url, info, sessionID)
     {
-        let splittedUrl = url.split("/");
-        let type = splittedUrl[splittedUrl.length - 2].toLowerCase();
-        let difficulty = splittedUrl[splittedUrl.length - 1];
+        const splittedUrl = url.split("/");
+        const type = splittedUrl[splittedUrl.length - 2].toLowerCase();
+        const difficulty = splittedUrl[splittedUrl.length - 1];
         return https_f.response.noBody(bots_f.controller.getBotDifficulty(type, difficulty));
     }
 
     generateBots(url, info, sessionID)
     {
-        return https_f.response.getBody(bots_f.controller.generate(info, sessionID));
+        return https_f.response.getBody(bots_f.controller.generate(info));
     }
 }
 
