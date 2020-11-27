@@ -21,9 +21,7 @@ class Controller
     constructor()
     {
         this.messageQueue = {};
-
         this.pollInterval = 300;
-
         this.timeout = 15000;
 
         /**
@@ -113,7 +111,6 @@ class Controller
 
                     // update our timeout counter
                     counter += this.pollInterval;
-
                     return;
                 }
 
@@ -123,7 +120,6 @@ class Controller
                 const messages = this.get(sessionID);
 
                 this.messageQueue[sessionID] = [];
-
                 resolve(messages);
             };
 
