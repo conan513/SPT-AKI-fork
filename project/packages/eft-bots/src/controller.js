@@ -41,7 +41,7 @@ class Controller
         return bot;
     }
 
-    generateBot(bot, role, side)
+    generateBot(bot, role)
     {
         // generate bot
         const node = database_f.server.tables.bots.types[role.toLowerCase()];
@@ -84,11 +84,14 @@ class Controller
             for (let i = 0; i < condition.Limit; i++)
             {
                 const role = condition.Role;
+                const isPmc = (role in bots_f.config.pmc.types && common_f.random.getInt(0, 99) < bots_f.config.pmc.types[role]);
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
+
+                console.log(isPmc);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = role;
-                bot = this.generateBot(bot, (bots_f.config.pmc.roles[role]) ? pmcSide : role.toLowerCase());
+                bot = this.generateBot(bot, (isPmc) ? pmcSide : role.toLowerCase());
 
                 output.unshift(bot);
             }

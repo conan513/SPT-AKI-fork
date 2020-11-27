@@ -37,9 +37,11 @@ class Config
         };
         this.pmc = {
             "isUsec": 50,
-            "roles": {
-                "followerTest": true,
-                "bossTest": true,
+            "types": {
+                "followerTest": 100,
+                "bossTest": 100,
+                "assault": 35,
+                "pmcBot": 35
             }
         }
     }

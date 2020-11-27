@@ -20,27 +20,37 @@ class Controller
 
     setChristmasEvent()
     {
-        database_f.server.tables.globals.config.EventType = [
-            "Christmas"
-        ];
+        if (additions_f.config.components.christmas)
+        {
+            database_f.server.tables.globals.config.EventType = [
+                "Christmas"
+            ];
+        }
     }
 
     addScavSuitsToFence()
     {
-        const json = common_f.vfs.readFile("packages/ext-additions/db/traders/579dc571d53a0658a154fbec/suits.json");
-        database_f.server.tables.traders["579dc571d53a0658a154fbec"].suits = common_f.json.deserialize(json);
+        if (additions_f.config.components.fenceSuits)
+        {
+            const json = common_f.vfs.readFile("packages/ext-additions/db/traders/579dc571d53a0658a154fbec/suits.json");
+            database_f.server.tables.traders["579dc571d53a0658a154fbec"].suits = common_f.json.deserialize(json);
+            database_f.server.tables.traders["579dc571d53a0658a154fbec"].base.customization_seller = true;
+        }
     }
 
     addMoreLootChance()
     {
-        database_f.server.tables.globals.config.GlobalLootChanceModifier = 5;
+        if (additions_f.config.components.tweakedLootChance)
+        {
+            database_f.server.tables.globals.config.GlobalLootChanceModifier = 5;
+        }
     }
 
     addPmcSpawns()
     {
         const pmcSettings = additions_f.config.pmcGroup;
 
-        if (!pmcSettings.enabled)
+        if (!additions_f.config.components.pmcGroup)
         {
             return;
         }
@@ -68,9 +78,9 @@ class Controller
                     "BossChance": pmcSettings.chance,
                     "BossZone": pmcSettings.locations[locationName],
                     "BossPlayer": false,
-                    "BossDifficult": "normal",
+                    "BossDifficult": "hard",
                     "BossEscortType": "followerTest",
-                    "BossEscortDifficult": "normal",
+                    "BossEscortDifficult": "hard",
                     "BossEscortAmount": bots_f.config.limits.followerTest,
                     "Time": initialDelay + Math.round(maxTime / count) * i
                 }
@@ -88,7 +98,6 @@ class Controller
             }
 
             database_f.server.tables.locations[locationName].base = location;
-            common_f.vfs.writeFile(`./${locationName}.json`, common_f.json.serialize(location));
         }
     }
 }

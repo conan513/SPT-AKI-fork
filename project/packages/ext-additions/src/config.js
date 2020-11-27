@@ -12,8 +12,13 @@ class Config
 {
     constructor()
     {
+        this.components = {
+            "christmas": true,
+            "tweakedLootChance": true,
+            "fenceSuits": true,
+            "pmcGroup": true
+        }
         this.pmcGroup = {
-            "enabled": true,
             "size": 4,
             "chance": 100,
             "locations": {
