@@ -104,7 +104,7 @@ class Controller
             actualItem.slotId = "hideout";
         }
 
-        if (actualItem.upd.SpawnedInSession)
+        if ("upd" in actualItem && "SpawnedInSession" in actualItem.upd)
         {
             actualItem.upd.SpawnedInSession = false;
         }
