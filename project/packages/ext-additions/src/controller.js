@@ -48,41 +48,40 @@ class Controller
 
     addPmcSpawns()
     {
-        const pmcSettings = additions_f.config.pmcGroup;
+        const config = additions_f.config.pmcGroup;
 
         if (!additions_f.config.components.pmcGroup)
         {
             return;
         }
 
-        // set generator limits
-        bots_f.config.limits.followerTest = pmcSettings.size - 1;
-
         // add group spawns to locations
         for (const locationName in database_f.server.tables.locations)
         {
-            if (!pmcSettings.locations[locationName])
+            if (!config.locations[locationName])
             {
                 continue;
             }
 
             let location = database_f.server.tables.locations[locationName].base;
-            const initialDelay = 5;                             // seconds
-            const maxTime = location.escape_time_limit - 5;     // minutes
-            const count = Math.round(location.MaxPlayers / pmcSettings.size);
+            const maxTime = location.escape_time_limit - Math.round(config.time.exit + config.time.init / 60);
+            const count = Math.round(location.MaxPlayers / config.size);
 
             for (let i = 0; i < count; i++)
             {
+                const followers = common_f.random.getInt(config.size.min, config.size.max) - 1;
+                const time = config.time.init + Math.round(maxTime * 60 / count) * i;
+
                 let output = {
-                    "BossName": "bossTest",
-                    "BossChance": pmcSettings.chance,
-                    "BossZone": pmcSettings.locations[locationName],
+                    "BossName": config.type.boss,
+                    "BossChance": config.chance,
+                    "BossZone": config.locations[locationName],
                     "BossPlayer": false,
-                    "BossDifficult": "hard",
-                    "BossEscortType": "followerTest",
-                    "BossEscortDifficult": "hard",
-                    "BossEscortAmount": bots_f.config.limits.followerTest,
-                    "Time": initialDelay + Math.round(maxTime / count) * i
+                    "BossDifficult": config.difficulty.boss,
+                    "BossEscortType": config.type.follower,
+                    "BossEscortDifficult": config.difficulty.follower,
+                    "BossEscortAmount": followers.toString(),
+                    "Time": time
                 };
 
                 if (locationName === "laboratory")

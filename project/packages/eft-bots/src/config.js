@@ -30,8 +30,8 @@ class Config
             "followerKojaniy": 30,
             "followerSanitar": 30,
             "test": 30,
-            "followerTest": 3,
-            "bossTest": 1,
+            "followerTest": 30,
+            "bossTest": 30,
             "assaultGroup": 30,
             "playerScav": 30
         };

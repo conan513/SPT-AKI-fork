@@ -10,7 +10,7 @@
 
 class RandomUtil
 {
-    getInt(min = 0, max = 100)
+    getInt(min, max)
     {
         min = Math.ceil(min);
         max = Math.floor(max);
