@@ -6,6 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  * - BALIST0N
  * - Emperor06
+ * - Terkoiz
  */
 
 "use strict";
@@ -94,7 +95,7 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        let offerBase = helpfunc_f.helpFunctions.clone(database_f.server.tables.ragfair.offer);
+        let offerBase = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
         offerBase._id = itemsToSell[0]._id;
         offerBase.intId = counter;
@@ -123,17 +124,17 @@ class Controller
             return [];
         }
 
-        let offerBase = helpfunc_f.helpFunctions.clone(database_f.server.tables.ragfair.offer);
+        let offerBase = common_f.json.clone(database_f.server.tables.ragfair.offer);
         let offers = [];
 
         // Preset
         if (usePresets && preset_f.controller.hasPreset(template))
         {
-            let presets = helpfunc_f.helpFunctions.clone(preset_f.controller.getPresets(template));
+            let presets = common_f.json.clone(preset_f.controller.getPresets(template));
 
             for (let p of presets)
             {
-                let offer = helpfunc_f.helpFunctions.clone(offerBase);
+                let offer = common_f.json.clone(offerBase);
                 let mods = p._items;
                 let rub = 0;
 
@@ -326,7 +327,7 @@ class Controller
 
     getOffersFromTraders(sessionID, request)
     {
-        let jsonToReturn = database_f.server.tables.ragfair.offers;
+        let jsonToReturn = common_f.json.clone(database_f.server.tables.ragfair.offers);
         let offersFilters = []; //this is an array of item tpl who filter only items to show
 
         jsonToReturn.categories = {};
@@ -589,6 +590,58 @@ class Controller
         }
 
         return result;
+    }
+
+    fetchItemFleaPrice(tpl)
+    {
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
+    }
+
+    getMarketPrice(info)
+    {
+        const price = this.fetchItemFleaPrice(info.templateId);
+
+        // 1 is returned by helper method if price lookup failed
+        if (!price || price === 1)
+        {
+            common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
+        }
+
+        return {
+            "avg": price,
+            "min": price,
+            "max": price,
+        };
+    }
+
+    getItemPrices()
+    {
+        let result = {};
+
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
+            {
+                result[itemID] = this.fetchItemFleaPrice(itemID);
+            }
+        }
+
+        return result;
+    }
+
+    addOffer(pmcData, info, sessionID)
+    {
+        return item_f.eventHandler.getOutput();
+    }
+
+    removeOffer(pmcData, info, sessionID)
+    {
+        return item_f.eventHandler.getOutput();
+    }
+
+    extendOffer(pmcData, info, sessionID)
+    {
+        return item_f.eventHandler.getOutput();
     }
 }
 

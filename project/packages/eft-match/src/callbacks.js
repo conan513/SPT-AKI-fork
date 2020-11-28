@@ -12,6 +12,7 @@ class Callbacks
 {
     constructor()
     {
+        https_f.router.onStaticRoute["/client/friend/request/send"] = this.friendRequest.bind(this);
         https_f.router.onStaticRoute["/raid/profile/list"] = this.getProfile.bind(this);
         https_f.router.onStaticRoute["/client/match/available"] = this.serverAvailable.bind(this);
         https_f.router.onStaticRoute["/client/match/updatePing"] = this.updatePing.bind(this);
@@ -29,6 +30,11 @@ class Callbacks
         https_f.router.onStaticRoute["/client/match/group/invite/cancel"] = this.cancelGroupInvite.bind(this);
         https_f.router.onStaticRoute["/client/putMetrics"] = this.putMetrics.bind(this);
         https_f.router.onStaticRoute["/client/getMetricsConfig"] = this.getMetrics.bind(this);
+    }
+
+    friendRequest(url, request, sessionID)
+    {
+        return https_f.response.nullResponse();
     }
 
     updatePing(url, info, sessionID)

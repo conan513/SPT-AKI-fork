@@ -5,123 +5,139 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - PoloYolo
+ * - Terkoiz
  */
 
 "use strict";
 
-/*
-* controller class maintains a queue of notifications which will be pushed upon notification
-* request from client per session.
-*/
+/**
+ * EFT-Notifier-Controller
+ *
+ * Maintains a queue of notification messages which will be pushed upon request
+ *  from client session.
+ */
 class Controller
 {
     constructor()
     {
         this.messageQueue = {};
+        this.pollInterval = 300;
+        this.timeout = 15000;
+
+        /**
+         * The default notification sent when waiting times out.
+         */
+        this.defaultMessage = {
+            type: "ping",
+            eventId: "ping"
+        };
     }
 
-    /* Checks whether we already have a message queue created for a particular sessionID. */
-    hasMessageQueue(sessionID)
+    /**
+     * Get message queue for session
+     *
+     * @param sessionID
+     */
+    get(sessionID)
     {
-        return sessionID in this.messageQueue;
-    }
-
-    /* Get messageQueue for a particular sessionID. */
-    getMessageQueue(sessionID)
-    {
-        if (!this.hasMessageQueue(sessionID))
+        if (!sessionID)
         {
-            return [];
+            throw new Error("sessionID missing");
+        }
+
+        if (!this.messageQueue[sessionID])
+        {
+            this.messageQueue[sessionID] = [];
         }
 
         return this.messageQueue[sessionID];
     }
 
-    /* Pop first message from the queue for a particular sessionID and return the message. */
-    popMessageFromQueue(sessionID)
+    /**
+     * Add message to queue
+     */
+    add(message, sessionID)
     {
-        if (!this.hasMessageQueue(sessionID))
-        {
-            return null;
-        }
-
-        return this.messageQueue[sessionID].splice(0, 1)[0];
+        this.get(sessionID).push(message);
     }
 
-    /* Add notificationMessage to the messageQueue for a particular sessionID. */
-    addToMessageQueue(notificationMessage, sessionID)
+    has(sessionID)
     {
-        if (!this.hasMessageQueue(sessionID))
-        {
-            this.messageQueue[sessionID] = [notificationMessage];
-            return;
-        }
-
-        this.messageQueue[sessionID].push(notificationMessage);
+        return this.get(sessionID).length > 0;
     }
 
-    /* Checks whether a particular sessionID has notifications waiting to be processed. */
-    hasMessagesInQueue(sessionID)
+    /**
+     * Pop first message from queue.
+     */
+    pop(sessionID)
     {
-        if (!this.hasMessageQueue(sessionID))
-        {
-            return false;
-        }
-
-        return this.messageQueue[sessionID].length > 0;
+        return this.get(sessionID).shift();
     }
 
-    async notificationWaitAsync(resp, sessionID)
+    /**
+     * Resolve an array of session notifications.
+     *
+     * If no notifications are currently queued then intermittently check for new notifications until either
+     *  one or more appear or when a timeout expires.
+     *
+     * If no notifications are available after the timeout, use a default message.
+     */
+    notifyAsync(sessionID)
     {
-        await new Promise(resolve =>
+        return new Promise((resolve) =>
         {
-            // Timeout after 15 seconds even if no messages have been received to keep the poll requests going.
-            setTimeout(() =>
+            let counter = 0; // keep track of our timeout
+
+            /**
+             * Check for notifications, resolve if any, otherwise poll
+             *  intermittently for a period of time.
+             */
+            const checkNotifications = () =>
             {
-                resolve();
-            }, 15000);
-
-            setInterval(() =>
-            {
-                if (notifier_f.controller.hasMessagesInQueue(sessionID))
+                /**
+                 * If there are no pending messages we should either check again later
+                 *  or timeout now with a default response.
+                 */
+                if (!this.has(sessionID))
                 {
-                    resolve();
+                    // have we exceeded timeout? if so reply with default ping message
+                    if (counter > this.timeout)
+                    {
+                        return resolve([this.defaultMessage]);
+                    }
+
+                    // check again
+                    setTimeout(checkNotifications, this.pollInterval);
+
+                    // update our timeout counter
+                    counter += this.pollInterval;
+                    return;
                 }
-            }, 300);
+
+                /**
+                 * Maintaining array reference is not necessary, so we can just copy and reinitialize
+                 */
+                const messages = this.get(sessionID);
+
+                this.messageQueue[sessionID] = [];
+                resolve(messages);
+            };
+
+            // immediately check
+            checkNotifications();
         });
-
-        let data = [];
-
-        while (this.hasMessagesInQueue(sessionID))
-        {
-            let message = this.popMessageFromQueue(sessionID);
-
-            // Purposefully using default JSON stringify function here to avoid newline insertion
-            // since the client expects different messages to be split by the newline character.
-            data.push(common_f.json.serialize(message));
-        }
-
-        // If we timed out and don't have anything to send, just send a ping notification.
-        if (data.length === 0)
-        {
-            data.push(common_f.json.serialize({
-                "type": "ping",
-                "eventId": "ping"
-            }));
-        }
-
-        https_f.server.sendTextJson(resp, data.join("\n"));
     }
 
-    /* Creates a new notification of type "new_message" with the specified dialogueMessage object. */
-    createNewMessageNotification(dialogueMessage)
+    /** Creates a new notification with the specified dialogueMessage object (default type is "new_message"). */
+    createNewMessageNotification(dialogueMessage, extraData = {})
     {
         return {
-            "type": "new_message",
+            "type": (dialogueMessage.type === 4) ? "RagfairOfferSold" : "new_message",
             "eventId": dialogueMessage._id,
             "data" : {
                 "dialogId": dialogueMessage.uid,
-                "message": dialogueMessage
+                "message": dialogueMessage,
+                ...extraData
             }
         };
     }

@@ -86,8 +86,7 @@ class Controller
             },
             "suits": profile.suits,
             "weaponbuilds": profile.weaponbuilds,
-            "dialogues": profile.dialogues,
-            "events": profile.events
+            "dialogues": profile.dialogues
         };
 
         // pmc profile needs to exist first
@@ -175,18 +174,18 @@ class Controller
         return profile;
     }
 
-    isNicknameTaken(info)
+    isNicknameTaken(info, sessionID)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const id in save_f.server.profiles)
         {
-            const profile = save_f.server.profiles[sessionID];
+            const profile = save_f.server.profiles[id];
 
             if (!("characters" in profile) || !("pmc" in profile.characters) || !("Info" in profile.characters.pmc))
             {
                 continue;
             }
 
-            if (profile.characters.pmc.Info.LowerNickname === info.nickname.toLowerCase())
+            if (profile.info.id !== sessionID && profile.characters.pmc.Info.LowerNickname === info.nickname.toLowerCase())
             {
                 return true;
             }
@@ -202,7 +201,7 @@ class Controller
             return "tooshort";
         }
 
-        if (this.isNicknameTaken(info))
+        if (this.isNicknameTaken(info, sessionID))
         {
             return "taken";
         }

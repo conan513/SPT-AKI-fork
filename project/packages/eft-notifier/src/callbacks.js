@@ -41,7 +41,14 @@ class Callbacks
         const splittedUrl = req.url.split("/");
 
         sessionID = splittedUrl[splittedUrl.length - 1].split("?last_id")[0];
-        notifier_f.controller.notificationWaitAsync(resp, sessionID);
+
+        notifier_f.controller.notifyAsync(sessionID)
+            /**
+             * Take our array of JSON message objects and cast them to JSON strings, so that they can then
+             *  be sent to client as NEWLINE separated strings... yup.
+             */
+            .then((messages) => messages.map(message => JSON.stringify(message)).join("\n"))
+            .then((text) => https_f.server.sendTextJson(resp, text));
     }
 
     createNotifierChannel(url, info, sessionID)

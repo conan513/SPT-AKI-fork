@@ -12,13 +12,9 @@ class Config
 {
     constructor()
     {
-        this.pmcSpawn = {
-            "enabled": true,
-            "spawnChance": 35,
-            "usecChance": 50
-        };
         this.limits = {
             "assault": 30,
+            "cursedAssault": 30,
             "marksman": 30,
             "pmcBot": 30,
             "bossBully": 30,
@@ -35,7 +31,18 @@ class Config
             "followerSanitar": 30,
             "test": 30,
             "followerTest": 30,
-            "bossTest": 30
+            "bossTest": 30,
+            "assaultGroup": 30,
+            "playerScav": 30
+        };
+        this.pmc = {
+            "isUsec": 50,
+            "types": {
+                "followerTest": 100,
+                "bossTest": 100,
+                "assault": 10,
+                "pmcBot": 10
+            }
         };
     }
 }

@@ -448,7 +448,7 @@ class Controller
         {
             if (baseItem.item_id in database_f.server.tables.globals.ItemPresets)
             {
-                const presetItems = helpfunc_f.helpFunctions.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
+                const presetItems = common_f.json.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
@@ -494,7 +494,7 @@ class Controller
                         {
                             if (count > 0)
                             {
-                                let newItemToAdd = helpfunc_f.helpFunctions.clone(itemToAdd);
+                                let newItemToAdd = common_f.json.clone(itemToAdd);
                                 if (count > tmpItem._props.StackMaxSize)
                                 {
                                     count = count - tmpItem._props.StackMaxSize;
@@ -794,9 +794,11 @@ class Controller
         if ("fromOwner" in body)
         {
             // scan ragfair as a trader
+            // for some reason ragfair's itemID is in body.fromOwner
             if (body.fromOwner.type === "RagFair")
             {
                 body.fromOwner.type = "Trader";
+                body.item = body.fromOwner.id;
             }
 
             // get trader assort

@@ -90,7 +90,7 @@ class Generator
 
         this.generateLoot(templateInventory.items, generation.items);
 
-        return helpfunc_f.helpFunctions.clone(this.inventory);
+        return common_f.json.clone(this.inventory);
     }
 
     generateInventoryBase()
@@ -470,20 +470,13 @@ class Generator
              * and multiply by how many magazines were supposed to be created */
             const bulletCount = magTemplate._props.Cartridges[0]._max_count * count;
 
-            const ammoItems = helpfunc_f.helpFunctions.splitStack({
-                "_id": common_f.hash.generate(),
-                "_tpl": ammoTpl,
-                "upd": {"StackObjectsCount": bulletCount}
-            });
+            this.addBullets(ammoTpl, bulletCount);
+        }
+        else if (weaponTemplate._props.ReloadMode === "OnlyBarrel")
+        {
+            const bulletCount = count;
 
-            for (const ammoItem of ammoItems)
-            {
-                this.addItemWithChildrenToEquipmentSlot(
-                    [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
-                    ammoItem._id,
-                    ammoItem._tpl,
-                    [ammoItem]);
-            }
+            this.addBullets(ammoTpl, bulletCount);
         }
         else
         {
@@ -556,6 +549,24 @@ class Generator
                 "_tpl": ammoTpl,
                 "upd": {"StackObjectsCount": ammoTemplate._props.StackMaxSize}
             }]);
+        }
+    }
+
+    addBullets(ammoTpl, bulletCount)
+    {
+        const ammoItems = helpfunc_f.helpFunctions.splitStack({
+            "_id": common_f.hash.generate(),
+            "_tpl": ammoTpl,
+            "upd": {"StackObjectsCount": bulletCount}
+        });
+
+        for (const ammoItem of ammoItems)
+        {
+            this.addItemWithChildrenToEquipmentSlot(
+                [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets],
+                ammoItem._id,
+                ammoItem._tpl,
+                [ammoItem]);
         }
     }
 
@@ -866,7 +877,7 @@ class ExhaustableArray
 {
     constructor(itemPool)
     {
-        this.pool = helpfunc_f.helpFunctions.clone(itemPool);
+        this.pool = common_f.json.clone(itemPool);
     }
 
     getRandomValue()
@@ -877,7 +888,7 @@ class ExhaustableArray
         }
 
         const index = common_f.random.getInt(0, this.pool.length - 1);
-        const toReturn = helpfunc_f.helpFunctions.clone(this.pool[index]);
+        const toReturn = common_f.json.clone(this.pool[index]);
         this.pool.splice(index, 1);
         return toReturn;
     }

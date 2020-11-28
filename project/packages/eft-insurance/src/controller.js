@@ -14,44 +14,24 @@ class Controller
 {
     constructor()
     {
-        event_f.controller.addEvent("insuranceReturn", this.processReturn.bind(this));
+        this.insured = {};
+    }
+
+    onLoad(sessionID)
+    {
+        let profile = save_f.server.profiles[sessionID];
+
+        if (!("insurance" in profile))
+        {
+            profile.insurance = [];
+        }
+
+        return profile;
     }
 
     resetInsurance(sessionID)
     {
-        let profile = save_f.server.profiles[sessionID];
-
-        profile.insurance = {};
-        return profile;
-    }
-
-    onSave(sessionID)
-    {
-        let profile = save_f.server.profiles[sessionID];
-
-        if ("insurance" in profile)
-        {
-            delete profile.insurance;
-        }
-
-        return profile;
-    }
-
-    checkExpiredInsurance(sessionID)
-    {
-        let events = save_f.server.profiles[sessionID].events;
-        let now = Date.now();
-
-        for (let count = events.length - 1; count >= 0; count--)
-        {
-            let event = events[count];
-
-            if (event.type === "insuranceReturn" && event.scheduledTime <= now)
-            {
-                event_f.controller.processEvent(event);
-                events.splice(count, 1);
-            }
-        }
+        this.insured[sessionID] = {};
     }
 
     /* remove insurance from an item */
@@ -66,12 +46,15 @@ class Controller
             return;
         }
 
-        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, toDo[0]); // get all ids related to this item, +including this item itself
+        // get all ids related to this item, +including this item itself
+        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, toDo[0]);
 
         for (let i in ids_toremove)
-        { // remove one by one all related items and itself
+        {
+            // remove one by one all related items and itself
             for (let a in pmcData.Inventory.items)
-            {	// find correct item by id and delete it
+            {
+                // find correct item by id and delete it
                 if (pmcData.Inventory.items[a]._id === ids_toremove[i])
                 {
                     for (let insurance in pmcData.InsuredItems)
@@ -89,7 +72,6 @@ class Controller
     /* adds gear to store */
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
-        save_f.server.profiles[sessionID].insurance = save_f.server.profiles[sessionID].insurance || {};
         // Don't process insurance for melee weapon or secure container.
         if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer")
         {
@@ -122,15 +104,19 @@ class Controller
             actualItem.slotId = "hideout";
         }
 
-        save_f.server.profiles[sessionID].insurance[insuredItem.tid] = save_f.server.profiles[sessionID].insurance[insuredItem.tid] || [];
-        save_f.server.profiles[sessionID].insurance[insuredItem.tid].push(actualItem);
-        for (let insurance in pmcData.InsuredItems)
+        if ("upd" in actualItem && "SpawnedInSession" in actualItem.upd)
         {
-            if (pmcData.InsuredItems[insurance].itemId === insuredItem.itemId)
-            {
-                pmcData.InsuredItems.splice(insurance, 1);
-            }
+            actualItem.upd.SpawnedInSession = false;
         }
+
+        this.insured[sessionID] = this.insured[sessionID] || {};
+        this.insured[sessionID][insuredItem.tid] = this.insured[sessionID][insuredItem.tid] || [];
+        this.insured[sessionID][insuredItem.tid].push(actualItem);
+
+        pmcData.InsuredItems = pmcData.InsuredItems.filter((item) =>
+        {
+            return item.itemId !== insuredItem.itemId;
+        });
     }
 
     /* store lost pmc gear */
@@ -222,9 +208,10 @@ class Controller
     /* sends stored insured items as message */
     sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in save_f.server.profiles[sessionID].insurance)
+        for (let traderId in this.insured[sessionID])
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
+            let time = common_f.time.getTimestamp() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": common_f.random.getArrayValue(dialogueTemplates.insuranceStart),
@@ -244,31 +231,55 @@ class Controller
                 }
             };
 
-            event_f.controller.addToSchedule(sessionID, {
-                "type": "insuranceReturn",
-                "scheduledTime": Date.now() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600) * 1000,
-                "data": {
-                    "traderId": traderId,
-                    "messageContent": messageContent,
-                    "items": save_f.server.profiles[sessionID].insurance[traderId]
+            for (let insuredItem of this.insured[sessionID][traderId])
+            {
+                const isParentHere = this.insured[sessionID][traderId].find(isParent => isParent._id === insuredItem.parentId);
+                if (!isParentHere)
+                {
+                    insuredItem.slotId = "hideout";
+                    delete insuredItem.location;
                 }
+            }
+
+            save_f.server.profiles[sessionID].insurance.push({
+                "scheduledTime": time,
+                "traderId": traderId,
+                "messageContent": messageContent,
+                "items": this.insured[sessionID][traderId]
             });
         }
 
         this.resetInsurance(sessionID);
     }
 
-    processReturn(event)
+    processReturn(sessionID)
     {
-        // Inject a little bit of a surprise by failing the insurance from time to time ;)
-        if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
+        let insurance = save_f.server.profiles[sessionID].insurance;
+        let i = insurance.length;
+        let time = common_f.time.getTimestamp();
+
+        while (i-- > 0)
         {
-            const insuranceFailedTemplates = database_f.server.tables.traders[event.data.traderId].dialogue.insuranceFailed;
-            event.data.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
-            event.data.items = [];
+            let insured = insurance[i];
+
+            if (time < insured.scheduledTime)
+            {
+                continue;
+            }
+
+            // Inject a little bit of a surprise by failing the insurance from time to time ;)
+            if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
+            {
+                const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
+                insured.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
+                insured.items = [];
+            }
+
+            dialogue_f.controller.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
+            insurance.splice(i, 1);
         }
 
-        dialogue_f.controller.addDialogueMessage(event.data.traderId, event.data.messageContent, event.sessionId, event.data.items);
+        save_f.server.profiles[sessionID].insurance = insurance;
     }
 
     /* add insurance to an item */

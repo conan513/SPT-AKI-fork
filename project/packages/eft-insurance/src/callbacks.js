@@ -13,28 +13,14 @@ class Callbacks
     constructor()
     {
         save_f.server.onLoad["eft-insurance"] = this.onLoad.bind(this);
-        save_f.server.onSave["eft-insurance"] = this.onSave.bind(this);
-        https_f.server.onReceive["eft-insurance"] = this.checkInsurance.bind(this);
         https_f.router.onStaticRoute["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
         item_f.eventHandler.onEvent["Insure"] = this.insure.bind(this);
+        keepalive_f.controller.onExecute["eft-insurance"] = this.onUpdate.bind(this);
     }
 
     onLoad(sessionID)
     {
-        return insurance_f.controller.resetInsurance(sessionID);
-    }
-
-    onSave(sessionID)
-    {
-        return insurance_f.controller.onSave(sessionID);
-    }
-
-    checkInsurance(sessionID, req, resp, body, output)
-    {
-        if (req.url === "/client/notifier/channel/create")
-        {
-            insurance_f.controller.checkExpiredInsurance(sessionID);
-        }
+        return insurance_f.controller.onLoad(sessionID);
     }
 
     getInsuranceCost(url, info, sessionID)
@@ -45,6 +31,11 @@ class Callbacks
     insure(pmcData, body, sessionID)
     {
         return insurance_f.controller.insure(pmcData, body, sessionID);
+    }
+
+    onUpdate(sessionID)
+    {
+        insurance_f.controller.processReturn(sessionID);
     }
 }
 

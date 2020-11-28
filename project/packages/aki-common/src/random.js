@@ -10,7 +10,7 @@
 
 class RandomUtil
 {
-    getInt(min = 0, max = 100)
+    getInt(min, max)
     {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -35,6 +35,11 @@ class RandomUtil
     getArrayValue(arr)
     {
         return arr[this.getInt(0, arr.length - 1)];
+    }
+
+    getKey(node)
+    {
+        return this.getArrayValue(Object.keys(node));
     }
 
     getKeyValue(node)

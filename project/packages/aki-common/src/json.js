@@ -26,6 +26,11 @@ class JsonUtil
     {
         return JSON.parse(string);
     }
+
+    clone(data)
+    {
+        return JSON.parse(JSON.stringify(data));
+    }
 }
 
 module.exports.JsonUtil = JsonUtil;

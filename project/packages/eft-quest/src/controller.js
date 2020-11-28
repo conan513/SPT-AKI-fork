@@ -51,7 +51,8 @@ class Controller
 
                 // If previous is in user profile, check condition requirement and current status
                 if ((condition._props.status[0] === 4 && previousQuest.status === "Success")
-                    || (condition._props.status[0] === 2 && previousQuest.status === "Started"))
+                    || (condition._props.status[0] === 2 && previousQuest.status === "Started")
+                    || (condition._props.status[0] === 5 && previousQuest.status === "Fail"))
                 {
                     continue;
                 }
@@ -73,7 +74,7 @@ class Controller
     {
         for (const quest of this.questValues())
         {
-            const conditions = quest.conditions.AvailableForStart.filter(
+            const conditions = quest.conditions.AvailableForFinish.filter(
                 c =>
                 {
                     return c._parent === "FindItem";
@@ -115,7 +116,7 @@ class Controller
 
             for (const mod of mods)
             {
-                items.push(helpfunc_f.helpFunctions.clone(mod));
+                items.push(common_f.json.clone(mod));
             }
 
             rewardItems = rewardItems.concat(helpfunc_f.helpFunctions.replaceIDs(null, items));
@@ -271,8 +272,10 @@ class Controller
         }
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
+
         let acceptQuestResponse = item_f.eventHandler.getOutput();
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
+
         return acceptQuestResponse;
     }
 
@@ -301,7 +304,7 @@ class Controller
                     const questData = {
                         "qid": checkFail._id,
                         "startTime": common_f.time.getTimestamp(),
-                        "status": "MarkedAsFailed"
+                        "status": "Fail"
                     };
                     pmcData.Quests.push(questData);
                 }
@@ -318,8 +321,10 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
+
         let completeQuestResponse = item_f.eventHandler.getOutput();
         completeQuestResponse.quests = this.completedUnlocked(body.qid, sessionID);
+
         return completeQuestResponse;
     }
 
@@ -337,7 +342,11 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
-        return item_f.eventHandler.getOutput();
+
+        let failedQuestResponse = item_f.eventHandler.getOutput();
+        failedQuestResponse.quests = this.failedUnlocked(body.qid, sessionID);
+
+        return failedQuestResponse;
     }
 
     handoverQuest(pmcData, body, sessionID)
@@ -473,6 +482,29 @@ class Controller
         return this.cleanQuestList(quests);
     }
 
+    failedUnlocked(failedQuestId, sessionID)
+    {
+        const profile = profile_f.controller.getPmcProfile(sessionID);
+        let quests = this.questValues().filter((q) =>
+        {
+            const acceptedQuestCondition = q.conditions.AvailableForStart.find(
+                c =>
+                {
+                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === 5;
+                });
+
+            if (!acceptedQuestCondition)
+            {
+                return false;
+            }
+
+            const profileQuest = profile.Quests.find(pq => pq.qid === failedQuestId);
+            return profileQuest && (profileQuest.status === "Fail");
+        });
+
+        return this.cleanQuestList(quests);
+    }
+
     applyMoneyBoost(quest, moneyBoost)
     {
         for (let reward of quest.rewards.Success)
@@ -564,7 +596,7 @@ class Controller
 
     cleanQuestConditions(quest)
     {
-        quest = helpfunc_f.helpFunctions.clone(quest);
+        quest = common_f.json.clone(quest);
         quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
         return quest;
     }

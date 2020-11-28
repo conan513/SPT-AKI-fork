@@ -12,14 +12,6 @@
 
 class Controller
 {
-    constructor()
-    {
-    }
-
-    initialize()
-    {
-    }
-
     /* generates a random location preset to use for local session */
     generate(name)
     {
@@ -27,16 +19,19 @@ class Controller
         let output = location.base;
         let ids = {};
 
+        output.UnixDateTime = common_f.time.getTimestamp();
+
         // don't generate loot on hideout
         if (name === "hideout")
         {
             return output;
         }
 
+        // generate loot
         let forced = location.loot.forced;
         let mounted = location.loot.mounted;
-        let statics = helpfunc_f.helpFunctions.clone(location.loot.static);
-        let dynamic = helpfunc_f.helpFunctions.clone(location.loot.dynamic);
+        let statics = common_f.json.clone(location.loot.static);
+        let dynamic = common_f.json.clone(location.loot.dynamic);
         output.Loot = [];
 
         // mounted weapons
@@ -74,7 +69,7 @@ class Controller
 
             ids[data.Id] = true;
 
-            loot_f.controller.generateContainerLoot(data.Items);
+            location_f.generator.generateContainerLoot(data.Items);
             output.Loot.push(data);
             count++;
         }
@@ -87,10 +82,10 @@ class Controller
         // Loot position list for filtering the lootItem in the same position.
         let lootPositions = [];
         let maxCount = 0;
-        const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
+
         while (maxCount < max && dynamic.length > 0)
         {
-            const result = loot_f.controller.generateDynamicLoot(dynamic, lootPositions, locationLootChanceModifier);
+            const result = location_f.generator.generateDynamicLoot(dynamic, lootPositions, location);
 
             if (result.status === "success")
             {
