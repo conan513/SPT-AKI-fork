@@ -55,9 +55,6 @@ class Controller
             return;
         }
 
-        // set generator limits
-        bots_f.config.limits.followerTest = pmcSettings.size - 1;
-
         // add group spawns to locations
         for (const locationName in database_f.server.tables.locations)
         {

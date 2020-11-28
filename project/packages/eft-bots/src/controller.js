@@ -76,20 +76,20 @@ class Controller
 
     generate(info)
     {
-        const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "usec" : "bear";
         let output = [];
 
         for (const condition of info.conditions)
         {
             for (let i = 0; i < condition.Limit; i++)
             {
+                const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "Usec" : "Bear";
                 const role = condition.Role;
                 const isPmc = (role in bots_f.config.pmc.types && common_f.random.getInt(0, 99) < bots_f.config.pmc.types[role]);
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
-                bot.Info.Settings.Role = role;
-                bot = this.generateBot(bot, (isPmc) ? pmcSide : role.toLowerCase());
+                bot.Info.Settings.Role = (isPmc) ? pmcSide : role;
+                bot = this.generateBot(bot, (isPmc) ? pmcSide.toLocaleLowerCase() : role.toLowerCase());
 
                 output.unshift(bot);
             }
