@@ -19,8 +19,23 @@ class Config
             "pmcGroup": true
         };
         this.pmcGroup = {
-            "size": 4,
             "chance": 35,
+            "time": {
+                "init": 5,
+                "exit": 300
+            },
+            "size": {
+                "min": 1,
+                "max": 4
+            },
+            "difficulty": {
+                "boss": "hard",
+                "follower": "hard"
+            },
+            "type": {
+                "boss": "bossTest",
+                "follower": "followerTest"
+            },
             "locations": {
                 "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlock,Post,ZoneTankSquare,ZoneCustoms",
                 "factory4_day": "BotZone",

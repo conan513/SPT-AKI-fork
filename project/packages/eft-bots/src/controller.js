@@ -89,7 +89,7 @@ class Controller
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = (isPmc) ? pmcSide : role;
-                bot = this.generateBot(bot, (isPmc) ? pmcSide.toLocaleLowerCase() : role.toLowerCase());
+                bot = this.generateBot(bot, (isPmc) ? pmcSide.toLowerCase() : role.toLowerCase());
 
                 output.unshift(bot);
             }
