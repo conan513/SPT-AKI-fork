@@ -64,13 +64,13 @@ class Controller
             }
 
             let location = database_f.server.tables.locations[locationName].base;
-            const maxTime = location.escape_time_limit - Math.round(config.time.exit + config.time.init / 60);
+            const maxTime = location.escape_time_limit - Math.round(config.time.exit + (config.time.init / 60));
             const count = Math.round(location.MaxPlayers / config.size);
 
             for (let i = 0; i < count; i++)
             {
                 const followers = common_f.random.getInt(config.size.min, config.size.max) - 1;
-                const time = config.time.init + Math.round(maxTime * 60 / count) * i;
+                const time = config.time.init + (Math.round(maxTime * 60 / count) * i);
 
                 let output = {
                     "BossName": config.type.boss,
