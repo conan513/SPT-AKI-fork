@@ -99,7 +99,7 @@ class Controller
         return output;
     }
 
-    generateRandomLevel(min = 1, max = 50)
+    generateRandomLevel(min, max)
     {
         const expTable = database_f.server.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
