@@ -59,6 +59,15 @@ class Controller
         bot.Customization.Hands = common_f.random.getArrayValue(node.appearance.hands);
         bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
 
+        if (role === "usec")
+        {
+            bot.Info.Side = "Usec";
+        }
+        else if (role === "bear")
+        {
+            bot.Info.Side = "Bear";
+        }
+
         // add dogtag to PMC's
         if (role === "usec" || role === "bear")
         {
