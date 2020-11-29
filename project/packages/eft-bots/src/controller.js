@@ -59,15 +59,6 @@ class Controller
         bot.Customization.Hands = common_f.random.getArrayValue(node.appearance.hands);
         bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
 
-        if (role === "usec")
-        {
-            bot.Info.Side = "Usec";
-        }
-        else if (role === "bear")
-        {
-            bot.Info.Side = "Bear";
-        }
-
         // add dogtag to PMC's
         if (role === "usec" || role === "bear")
         {
@@ -97,7 +88,8 @@ class Controller
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
-                bot.Info.Settings.Role = (isPmc) ? pmcSide : role;
+                bot.Info.Settings.Role = role;
+                bot.Info.Side = (isPmc) ? pmcSide : "Scav";
                 bot = this.generateBot(bot, (isPmc) ? pmcSide.toLowerCase() : role.toLowerCase());
 
                 output.unshift(bot);
