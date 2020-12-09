@@ -88,7 +88,8 @@ class Controller
                 let bot = common_f.json.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
-                bot.Info.Settings.Role = (isPmc) ? pmcSide : role;
+                bot.Info.Settings.Role = role;
+                bot.Info.Side = (isPmc) ? pmcSide : "Savage";
                 bot = this.generateBot(bot, (isPmc) ? pmcSide.toLowerCase() : role.toLowerCase());
 
                 output.unshift(bot);
@@ -98,7 +99,7 @@ class Controller
         return output;
     }
 
-    generateRandomLevel(min = 1, max = 50)
+    generateRandomLevel(min, max)
     {
         const expTable = database_f.server.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
