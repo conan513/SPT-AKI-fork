@@ -35369,7 +35369,7 @@
                                         "value": "1",
                                         "savageRole": [
                                             "bossGluhar"
-                                        ],
+                                        ],    
                                         "id": "5d667d2486f7744a2e70f046"
                                     }
                                 }
@@ -37060,7 +37060,7 @@
                                         "savageRole": [
                                             "bossSanitar"
                                         ],
-                                        "id": "5d667d2486f7744a2e70f046"
+                                        "id": "UniqueKillID"
                                     }
                                 }
                             ]
