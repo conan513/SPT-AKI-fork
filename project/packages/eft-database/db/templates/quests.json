@@ -5117,7 +5117,7 @@
                         "value": "1",
                         "type": "Completion",
                         "counter": {
-                            "id": "5ee0e5a8c321a77fc55084d1",
+                            "id": "EscapeFromShorelineBro",
                             "conditions": [
                                 {
                                     "_parent": "ExitStatus",
@@ -9472,7 +9472,7 @@
                         "value": "1",
                         "type": "Elimination",
                         "counter": {
-                            "id": "5d27369586f774457411b263",
+                            "id": "LetsNotKillSanitarBoys",
                             "conditions": [
                                 {
                                     "_parent": "Kills",
@@ -37049,7 +37049,7 @@
                         "value": "1",
                         "type": "Elimination",
                         "counter": {
-                            "id": "5d27369586f774457411b263",
+                            "id": "UniqueCounterID",
                             "conditions": [
                                 {
                                     "_parent": "Kills",
