@@ -18532,7 +18532,53 @@
         "secretQuest": false,
         "rewards": {
             "Started": [],
-            "Success": [],
+            "Success": [
+                {
+                    "value": "2000",
+                    "id": "5c950b2886f7743285178ad8",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "54cb50c76803fa8b248b4571",
+                    "value": "0.04",
+                    "id": "5bcf1d0c86f7746a464c566d",
+                    "type": "TraderStanding",
+                    "index": 1
+                },
+                {
+                    "target": "5d34df2788a4504526796bee",
+                    "value": "22000",
+                    "id": "5a28244986f7741d5b719649",
+                    "type": "Item",
+                    "index": 2,
+                    "items": [
+                        {
+                            "_id": "5d34df2788a4504526796bee",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 22000
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "CompassDrop",
+                    "value": "1",
+                    "id": "GiveMeThatCompassBitch",
+                    "type": "Item",
+                    "index": 2,
+                    "items": [
+                        {
+                            "_id": "CompassDrop",
+                            "_tpl": "5f4f9eb969cdc30ff33f09db",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                }
+            ],
             "Fail": []
         },
         "conditions": {
@@ -18541,10 +18587,22 @@
                     "_parent": "Level",
                     "_props": {
                         "compareMethod": ">=",
-                        "value": "1",
+                        "value": "3",
                         "index": 0,
                         "parentId": "",
                         "id": "5a3a72d786f7745a9e0647ef"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5936d90786f7742b1420ba5b",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
                     }
                 }
             ],
