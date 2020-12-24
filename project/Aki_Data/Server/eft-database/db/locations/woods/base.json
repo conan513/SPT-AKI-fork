@@ -437,6 +437,20 @@
 			"RequirementTip": "EXFIL_Item"
 		},
 		{
+			"Name": "Alpinist",
+			"EntryPoints": "House,Old Station",
+			"Chance": 100,
+			"MinTime": 0,
+			"MaxTime": 0,
+			"PlayersCount": 0,
+			"ExfiltrationTime": 8,
+			"PassageRequirement": "Reference",
+			"ExfiltrationType": "Individual",
+			"Id": "Alpinist",
+			"Count": 0,
+			"RequirementTip": ""
+		},
+		{
 			"Name": "Factory Gate",
 			"EntryPoints": "House,Old Station",
 			"Chance": 100,
@@ -449,20 +463,6 @@
 			"Id": "",
 			"Count": 0,
 			"RequirementTip": "EXFIL_Cooperate"
-		},
-		{
-			"Name": "un-sec",
-			"EntryPoints": "House",
-			"Chance": 100,
-			"MinTime": 0,
-			"MaxTime": 0,
-			"PlayersCount": 0,
-			"ExfiltrationTime": 8,
-			"PassageRequirement": "None",
-			"ExfiltrationType": "Individual",
-			"Id": "",
-			"Count": 0,
-			"RequirementTip": ""
 		}
 	],
 	"DisabledForScav": false,
