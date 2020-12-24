@@ -24,7 +24,7 @@ class Packager
     addInitialSource()
     {
         let source = JSON.parse(fs.readFileSync("Aki_Data/Server/loadorder.json"));
-        
+
         for (const pkg in source)
         {
             source[pkg] = "Aki_Data/Server/" + source[pkg];
