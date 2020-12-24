@@ -19,6 +19,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/items"] = this.getTemplateItems.bind(this);
         https_f.router.onStaticRoute["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
         https_f.router.onStaticRoute["/client/customization"] = this.getTemplateSuits.bind(this);
+        https_f.router.onStaticRoute["/client/account/customization"] = this.getTemplateCharacter.bind(this);
         https_f.router.onStaticRoute["/client/hideout/production/recipes"] = this.gethideoutProduction.bind(this);
         https_f.router.onStaticRoute["/client/hideout/settings"] = this.getHideoutSettings.bind(this);
         https_f.router.onStaticRoute["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
@@ -83,6 +84,11 @@ class Callbacks
     getTemplateSuits(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.templates.suits);
+    }
+
+    getTemplateCharacter(url, info, sessionID)
+    {
+        return https_f.response.getBody(database_f.server.tables.templates.character);
     }
 
     getTemplateQuests(url, info, sessionID)
