@@ -136,7 +136,7 @@
     {
         "_id": "Pants_BOSS_Sanitar",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5e99762586f77466320ff9a9",
+        "suiteId": "SanitarFeet",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -155,7 +155,7 @@
     {
         "_id": "Pants_BOSS_Shturman_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7f3c86f7742797262063",
+        "suiteId": "ShturmanPants",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -176,7 +176,7 @@
     {
         "_id": "Pants_security_Flora_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7f8986f7742798716582",
+        "suiteId": "Pants_FloraSecurity",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -197,7 +197,7 @@
     {
         "_id": "Pants_security_Gorka4_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7f4986f7746956659f8a",
+        "suiteId": "SecurityGorka4_Pants",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -293,7 +293,7 @@
     {
         "_id": "TopSecurity_gorka4_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7e8386f774393602d6fa",
+        "suiteId": "SecurityGorka4_Top",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -314,7 +314,7 @@
     {
         "_id": "Top_BOSS_Sanitar",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5e9975c486f774382b6320cb",
+        "suiteId": "SanitarTop",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -333,7 +333,7 @@
     {
         "_id": "Top_security_Husky_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7e7586f77427997cfb7f",
+        "suiteId": "TopSecurity_Husky",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -354,7 +354,7 @@
     {
         "_id": "Tshirt_security_TshirtTatu_01_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7e4a86f774279a21cc0d",
+        "suiteId": "TshitTatu_01_Suit",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -373,7 +373,7 @@
     {
         "_id": "Tshirt_security_TshirtTatu_02_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7e5d86f774279b4f4b01",
+        "suiteId": "Tshirt_Tatu02",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -420,7 +420,7 @@
     {
         "_id": "wild_body_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5cc2e59214c02e000f16684e",
+        "suiteId": "5cdea23c7d6c8b04723cf47b",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -455,7 +455,7 @@
     {
         "_id": "Wild_Dealmaker_body_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28adcb86f77429242fc893",
+        "suiteId": "ReshalaBody",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -476,7 +476,7 @@
     {
         "_id": "Wild_Dealmaker_feet_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28b3a186f7747f7e69ab8c",
+        "suiteId": "ReshalaFeet",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -497,7 +497,7 @@
     {
         "_id": "wild_feet_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5cc2e5d014c02e15d53d9c03",
+        "suiteId": "5cdea20c7d6c8b0474535dab",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -518,7 +518,7 @@
     {
         "_id": "wild_feet_sklon",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5df8a15186f77412640e2e6a",
+        "suiteId": "5df8e79286f7744a122d6836",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -532,7 +532,7 @@
     {
         "_id": "wild_pmcBot_body_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28ae4986f7742926686187",
+        "suiteId": "RaidersBody",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -551,7 +551,7 @@
     {
         "_id": "wild_pmcBot_feet_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28af7886f77429275dba25",
+        "suiteId": "RaidersFeet",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -570,7 +570,7 @@
     {
         "_id": "wild_security_body_1_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28adfd86f774292364a6e5",
+        "suiteId": "SecurityBody1",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -589,7 +589,7 @@
     {
         "_id": "wild_security_body_2_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28ae2986f7742926686185",
+        "suiteId": "SecurityBody2",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -608,7 +608,7 @@
     {
         "_id": "wild_security_feet_1_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d28af3486f774292364a6e7",
+        "suiteId": "SecurityFeet1",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -627,7 +627,7 @@
     {
         "_id": "wild_Shturman_body_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5d5e7c9186f774393602d6f9",
+        "suiteId": "ShturmanBody",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -645,60 +645,60 @@
             ]
         }
     },
-	{
-		"_id": "cultist_top1",
-		"tid": "579dc571d53a0658a154fbec",
-		"suiteId": "5fb53cc97b5d1342ee24bd63",
-		"isActive": true,
-		"requirements": {
-			"loyaltyLevel": 0,
-			"profileLevel": 0,
-			"standing": 0,
-			"skillRequirements": [],
-			"questRequirements": [],
-			"itemRequirements": []
-		}
-	},
-	{
-		"_id": "cultist_top2",
-		"tid": "579dc571d53a0658a154fbec",
-		"suiteId": "5fb53d0b7b5d1342ee24bd64",
-		"isActive": true,
-		"requirements": {
-			"loyaltyLevel": 0,
-			"profileLevel": 0,
-			"standing": 0,
-			"skillRequirements": [],
-			"questRequirements": [],
-			"itemRequirements": []
-		}
-	},
-	{
-		"_id": "cultist_pants1",
-		"tid": "579dc571d53a0658a154fbec",
-		"suiteId": "5fb535bd1c69e5198e234125",
-		"isActive": true,
-		"requirements": {
-			"loyaltyLevel": 0,
-			"profileLevel": 0,
-			"standing": 0,
-			"skillRequirements": [],
-			"questRequirements": [],
-			"itemRequirements": []
-		}
-	},
-	{
-		"_id": "cultist_pants2",
-		"tid": "579dc571d53a0658a154fbec",
-		"suiteId": "5fb535cf1c69e5198e234126",
-		"isActive": true,
-		"requirements": {
-			"loyaltyLevel": 0,
-			"profileLevel": 0,
-			"standing": 0,
-			"skillRequirements": [],
-			"questRequirements": [],
-			"itemRequirements": []
-		}
-	}
+    {
+        "_id": "cultist_top1",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "CultistBodySuit1",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+    {
+        "_id": "cultist_top2",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "CultistBodySuit2",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+    {
+        "_id": "cultist_pants1",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "CultistPantsSuit1",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+    {
+        "_id": "cultist_pants2",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "CultistPantsSuit2",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    }
 ]
