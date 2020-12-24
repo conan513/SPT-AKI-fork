@@ -20,12 +20,7 @@ class Controller
 
     setChristmasEvent()
     {
-        if (additions_f.config.components.christmas)
-        {
-            database_f.server.tables.globals.config.EventType = [
-                "Christmas"
-            ];
-        }
+        database_f.server.tables.globals.config.EventType = (additions_f.config.components.christmas) ? ["Christmas"] : ["None"];
     }
 
     addScavSuitsToFence()
