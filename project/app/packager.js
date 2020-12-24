@@ -15,10 +15,22 @@ class Packager
     constructor()
     {
         this.modpath = "mods/";
-        this.source = JSON.parse(fs.readFileSync("packages/loadorder.json"));
+        this.source = this.addInitialSource();
         this.mods = {};
         this.loadorder = [];
         this.onLoad = {};
+    }
+
+    addInitialSource()
+    {
+        let source = JSON.parse(fs.readFileSync("Aki_Data/Server/loadorder.json"));
+        
+        for (const pkg in source)
+        {
+            source[pkg] = "Aki_Data/Server/" + source[pkg];
+        }
+
+        return source;
     }
 
     getModPath(mod)
@@ -184,7 +196,7 @@ class Packager
     // load classes
     loadCode()
     {
-        for (let name in this.source)
+        for (const name in this.source)
         {
             global[name] = require(`../${this.source[name]}`);
         }

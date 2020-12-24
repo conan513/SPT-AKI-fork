@@ -27,7 +27,7 @@ class Controller
     {
         if (additions_f.config.components.fenceSuits)
         {
-            const json = common_f.vfs.readFile("packages/ext-additions/db/traders/579dc571d53a0658a154fbec/suits.json");
+            const json = common_f.vfs.readFile("Aki_Data/Server/ext-additions/db/traders/579dc571d53a0658a154fbec/suits.json");
             database_f.server.tables.traders["579dc571d53a0658a154fbec"].suits = common_f.json.deserialize(json);
             database_f.server.tables.traders["579dc571d53a0658a154fbec"].base.customization_seller = true;
         }

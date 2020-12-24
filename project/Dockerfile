@@ -10,7 +10,7 @@ RUN npm install
 RUN npm ci --only=production
 
 COPY app/ ./app
-COPY packages/ ./packages
+COPY Aki_Data/ ./Aki_Data
 
 EXPOSE 443
 

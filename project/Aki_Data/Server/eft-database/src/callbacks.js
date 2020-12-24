@@ -57,7 +57,7 @@ class Callbacks
 
     load()
     {
-        database_f.server.tables = this.loadRecursive("packages/eft-database/db/");
+        database_f.server.tables = this.loadRecursive("Aki_Data/Server/eft-database/db/");
     }
 
     getImage(url, info, sessionID)
@@ -135,7 +135,7 @@ class Callbacks
     {
         let splittedUrl = req.url.split("/");
         let filename = splittedUrl[splittedUrl.length - 1].split(".").slice(0, -1).join(".");
-        let filepath = "packages/eft-database/res/";
+        let filepath = "Aki_Data/Server/eft-database/res/";
 
         // get images to look through
         if (req.url.includes("/quest"))
