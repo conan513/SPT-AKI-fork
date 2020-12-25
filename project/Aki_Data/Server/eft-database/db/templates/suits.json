@@ -6628,7 +6628,7 @@
 	"TshitTatu_01_Suit": {
 		"_id": "TshitTatu_01_Suit",
 		"_name": "TshitTatu_01_Suit",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "TshitTatu_01_Suit",
@@ -6646,7 +6646,7 @@
 	"SecurityBody1": {
 		"_id": "SecurityBody1",
 		"_name": "SecurityBody1",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "SecurityBody1",
@@ -6664,7 +6664,7 @@
 	"ShturmanBody": {
 		"_id": "ShturmanBody",
 		"_name": "ShturmanBody",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "Shturman Body",
@@ -6699,7 +6699,7 @@
 	"SecurityBody2": {
 		"_id": "SecurityBody2",
 		"_name": "SecurityBody2",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "SecurityBody2",
@@ -6734,7 +6734,7 @@
 	"RaidersBody": {
 		"_id": "RaidersBody",
 		"_name": "RaidersBody",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "RaidersBody",
@@ -6769,7 +6769,7 @@
 	"ReshalaBody": {
 		"_id": "ReshalaBody",
 		"_name": "ReshalaBody",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "ReshalaBody",
@@ -6787,7 +6787,7 @@
 	"Tshirt_Tatu02": {
 		"_id": "Tshirt_Tatu02",
 		"_name": "Tshirt_Tatu02",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "Tshirt_Tatu02",
@@ -6805,7 +6805,7 @@
 	"TopSecurity_Husky": {
 		"_id": "TopSecurity_Husky",
 		"_name": "TopSecurity_Husky",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "TopSecurity_Husky",
@@ -6823,7 +6823,7 @@
 	"SanitarTop": {
 		"_id": "SanitarTop",
 		"_name": "SanitarTop",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "SanitarTop",
@@ -6858,7 +6858,7 @@
 	"SecurityGorka4_Top": {
 		"_id": "SecurityGorka4_Top",
 		"_name": "SecurityGorka4_Top",
-		"_parent": "5cd944d01388ce000a659df9",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
 		"_type": "Item",
 		"_props": {
 			"Name": "SecurityGorka4_Top",

@@ -700,5 +700,33 @@
             "questRequirements": [],
             "itemRequirements": []
         }
+    },
+    {
+        "_id": "RainParka_offer",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "5fd7910ae3bfcf6cab4c9f55",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+    {
+        "_id": "UnderArmour_offer",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "5fd791b71189a17bcc172f16",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
     }
 ]
