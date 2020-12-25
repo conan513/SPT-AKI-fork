@@ -26,8 +26,7 @@ class Callbacks
 
     syncHealth(url, info, sessionID)
     {
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        health_f.controller.saveVitality(pmcData, info, sessionID);
+        health_f.controller.saveVitality(profile_f.controller.getPmcProfile(sessionID), info, sessionID);
         return https_f.response.emptyResponse();
     }
 

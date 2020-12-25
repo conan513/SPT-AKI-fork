@@ -123,6 +123,7 @@ class Controller
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
         nodeHealth.Temperature = info.Temperature;
+        console.log(info.Temperature)
 
         for (const bodyPart in BodyPartsList)
         {
@@ -176,6 +177,7 @@ class Controller
         
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
         healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
+        healthInfo.Temperature = pmcData.Health.Temperature.Current;
 
         this.saveVitality(pmcData, healthInfo, sessionID);
         return item_f.eventHandler.getOutput();
