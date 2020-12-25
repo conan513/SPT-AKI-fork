@@ -14,7 +14,7 @@ class Packager
 {
     constructor()
     {
-        this.modpath = "mods/";
+        this.modpath = "user/mods/";
         this.source = this.addInitialSource();
         this.mods = {};
         this.loadorder = [];
