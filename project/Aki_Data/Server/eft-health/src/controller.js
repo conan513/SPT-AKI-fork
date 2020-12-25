@@ -122,6 +122,7 @@ class Controller
 
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
+        nodeHealth.Temperature = info.Temperature;
 
         for (const bodyPart in BodyPartsList)
         {
@@ -173,8 +174,9 @@ class Controller
             }
         }
 
-        healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
+        console.log(info.difference);
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
+        healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
 
         this.saveVitality(pmcData, healthInfo, sessionID);
         return item_f.eventHandler.getOutput();
@@ -216,7 +218,7 @@ class Controller
         {
             let target = nodeHealth[item];
 
-            if (item === "Hydration" || item === "Energy")
+            if (item === "Hydration" || item === "Energy" || item === "Temperature")
             {
                 // set resources
                 if (target > pmcData.Health[item].Maximum)

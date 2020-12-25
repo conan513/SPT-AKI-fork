@@ -259,9 +259,7 @@ class Controller
 
     getOffers(sessionID, request)
     {
-        common_f.logger.log(common_f.json.serialize(request, true));
-
-        // force player-only in build items
+        // force player-only in weapon preset build purchase
         // 0.12.9.10423 has a bug where trader items are always forced
         if (request.buildCount)
         {
