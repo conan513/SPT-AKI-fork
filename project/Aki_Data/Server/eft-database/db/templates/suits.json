@@ -6110,6 +6110,8 @@
 			"ShortName": "SavageUpperSuite1",
 			"Description": "SavageUpperSuite1",
 			"Side": [
+				"Bear",
+				"Usec",
 				"Savage"
 			],
 			"AvailableAsDefault": false,
@@ -6128,6 +6130,8 @@
 			"ShortName": "SavageUpperSuite1",
 			"Description": "SavageUpperSuite1",
 			"Side": [
+				"Bear",
+				"Usec",
 				"Savage"
 			],
 			"AvailableAsDefault": false,
@@ -6679,9 +6683,9 @@
 			"Hands": "5cdea3947d6c8b04737c2d16"
 		}
 	},
-	"SecurityFeet1": {
-		"_id": "SecurityFeet1",
-		"_name": "SecurityFeet1",
+	"WildFeet2": {
+		"_id": "WildFeet2",
+		"_name": "WildFeet2",
 		"_parent": "5cd944d01388ce000a659df9",
 		"_type": "Item",
 		"_props": {
@@ -6922,6 +6926,42 @@
 			],
 			"AvailableAsDefault": false,
 			"Feet": "5d5e7f3c86f7742797262063"
+		}
+	},
+	"WildBody2": {
+		"_id": "WildBody2_Top",
+		"_name": "WildBody2_Top",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
+		"_type": "Item",
+		"_props": {
+			"Name": "WildBody2_Top",
+			"ShortName": "WildBody2_Top",
+			"Description": "WildBody2_Top",
+			"Side": [
+				"Usec",
+				"Bear"
+			],
+			"AvailableAsDefault": false,
+			"Body": "5d28ad6986f77429275dba22",
+			"Hands": "5cde9fff7d6c8b647a3769b1"
+		}
+	},
+	"WildBody3": {
+		"_id": "WildBody3_Top",
+		"_name": "WildBody3_Top",
+		"_parent": "5cd944ca1388ce03a44dc2a4",
+		"_type": "Item",
+		"_props": {
+			"Name": "WildBody3_Top",
+			"ShortName": "WildBody3_Top",
+			"Description": "WildBody3_Top",
+			"Side": [
+				"Usec",
+				"Bear"
+			],
+			"AvailableAsDefault": false,
+			"Body": "5d28ad7286f7742926686182",
+			"Hands": "5cdea3947d6c8b04737c2d16"
 		}
 	}
 }
