@@ -33,7 +33,9 @@ class Config
             "followerTest": 30,
             "bossTest": 30,
             "assaultGroup": 30,
-            "playerScav": 30
+            "playerScav": 30,
+            "sectantWarrior": 30,
+            "sectantPriest": 30
         };
         this.pmc = {
             "isUsec": 50,
