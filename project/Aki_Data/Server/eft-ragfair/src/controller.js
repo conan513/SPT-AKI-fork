@@ -259,8 +259,17 @@ class Controller
 
     getOffers(sessionID, request)
     {
+        common_f.logger.log(common_f.json.serialize(request, true));
+
+        // force player-only in build items
+        // 0.12.9.10423 has a bug where trader items are always forced
+        if (request.buildCount)
+        {
+            request.offerOwnerType = 2;
+        }
+
         //if its traders items, just a placeholder it will be handled differently later
-        if (request.offerOwnerType ===  1)
+        if (request.offerOwnerType === 1)
         {
             return this.getOffersFromTraders(sessionID, request);
         }
