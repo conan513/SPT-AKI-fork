@@ -606,9 +606,9 @@
         }
     },
     {
-        "_id": "wild_security_feet_1_offer",
+        "_id": "WildFeet2_offer",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "SecurityFeet1",
+        "suiteId": "WildFeet2",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -701,10 +701,10 @@
             "itemRequirements": []
         }
     },
-    {
-        "_id": "RainParka_offer",
+	{
+        "_id": "cultist_pants2",
         "tid": "579dc571d53a0658a154fbec",
-        "suiteId": "5fd7910ae3bfcf6cab4c9f55",
+        "suiteId": "CultistPantsSuit2",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
@@ -715,10 +715,52 @@
             "itemRequirements": []
         }
     },
-    {
-        "_id": "UnderArmour_offer",
+	{
+        "_id": "WildBody2_offer",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "WildBody2",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+	{
+        "_id": "WildBody3_offer",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "WildBody3",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+	{
+        "_id": "SavageUnderArmor_offer",
         "tid": "579dc571d53a0658a154fbec",
         "suiteId": "5fd791b71189a17bcc172f16",
+        "isActive": true,
+        "requirements": {
+            "loyaltyLevel": 0,
+            "profileLevel": 0,
+            "standing": 0,
+            "skillRequirements": [],
+            "questRequirements": [],
+            "itemRequirements": []
+        }
+    },
+	{
+        "_id": "SavageRainParka_offer",
+        "tid": "579dc571d53a0658a154fbec",
+        "suiteId": "5fd7910ae3bfcf6cab4c9f55",
         "isActive": true,
         "requirements": {
             "loyaltyLevel": 0,
