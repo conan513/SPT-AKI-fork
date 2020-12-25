@@ -123,7 +123,6 @@ class Controller
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
         nodeHealth.Temperature = info.Temperature;
-        console.log(info.Temperature)
 
         for (const bodyPart in BodyPartsList)
         {
