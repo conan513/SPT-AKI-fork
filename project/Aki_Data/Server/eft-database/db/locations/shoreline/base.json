@@ -474,6 +474,17 @@
 	"DisabledForScav": false,
 	"BossLocationSpawn": [
 		{
+			"BossName": "sectantPriest",
+			"BossChance": 28,
+			"BossZone": "ZoneForestGasStation",
+			"BossPlayer": false,
+			"BossDifficult": "normal",
+			"BossEscortType": "sectantWarrior",
+			"BossEscortDifficult": "normal",
+			"BossEscortAmount": "5",
+			"Time": 1
+		},
+		{
 			"BossName": "bossSanitar",
 			"BossChance": 35,
 			"BossZone": "ZonePort,ZoneGreenHouses,ZoneSanatorium1,ZoneGreenHouses,ZoneGreenHouses",
