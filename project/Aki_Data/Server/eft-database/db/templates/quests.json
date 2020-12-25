@@ -18520,9 +18520,9 @@
     },
     "5fd9fad9c1ce6b1a3b486d00": {
         "_id": "5fd9fad9c1ce6b1a3b486d00",
-        "traderId": "5c0647fdd443bc2504c2d371",
+        "traderId": "54cb50c76803fa8b248b4571",
         "location": "5704e3c2d2720bac5b8b4567",
-        "image": "/files/quest/icon/5fd9fad9c1ce6b1a3b486d00.jpg",
+        "image": "/files/quest/icon/5fd9fad9c1ce6b1a3b486d00.png",
         "type": "Exploration",
         "isKey": false,
         "restartable": false,
@@ -18531,54 +18531,52 @@
         "instantComplete": false,
         "secretQuest": false,
         "rewards": {
-            "Started": [
-                {
-                    "value": "2000",
-                    "id": "5c950b2886f7743285178ad8",
-                    "type": "Experience",
-                    "index": 0
-                },
-                {
-                    "target": "54cb50c76803fa8b248b4571",
-                    "value": "0.04",
-                    "id": "5bcf1d0c86f7746a464c566d",
-                    "type": "TraderStanding",
-                    "index": 1
-                },
-                {
-                    "target": "5d34df2788a4504526796bee",
-                    "value": "22000",
-                    "id": "5a28244986f7741d5b719649",
-                    "type": "Item",
-                    "index": 2,
-                    "items": [
-                        {
-                            "_id": "5d34df2788a4504526796bee",
-                            "_tpl": "5696686a4bdc2da3298b456a",
-                            "upd": {
-                                "StackObjectsCount": 22000
-                            }
+            "Started": [],
+            "Success": [{
+                "value": "2000",
+                "id": "5c950b2886f7743285178ad8",
+                "type": "Experience",
+                "index": 0
+            },
+            {
+                "target": "54cb50c76803fa8b248b4571",
+                "value": "0.04",
+                "id": "5bcf1d0c86f7746a464c566d",
+                "type": "TraderStanding",
+                "index": 1
+            },
+            {
+                "target": "5d34df2788a4504526796bee",
+                "value": "22000",
+                "id": "5a28244986f7741d5b719649",
+                "type": "Item",
+                "index": 2,
+                "items": [
+                    {
+                        "_id": "5d34df2788a4504526796bee",
+                        "_tpl": "5696686a4bdc2da3298b456a",
+                        "upd": {
+                            "StackObjectsCount": 22000
                         }
-                    ]
-                },
-                {
-                    "target": "BestCompassOfTheWorld",
-                    "value": "1",
-                    "id": "BestRewardFuckYouBSG",
-                    "type": "Item",
-                    "index": 3,
-                    "items": [
-                        {
-                            "_id": "BestCompassOfTheWorld",
-                            "_tpl": "5f4f9eb969cdc30ff33f09db",
-                            "upd": {
-                                "StackObjectsCount": 1
-                            }
+                    }
+                ]
+            },
+            {
+                "target": "BestCompassOfTheWorld",
+                "value": "1",
+                "id": "BestRewardFuckYouBSG",
+                "type": "Item",
+                "index": 3,
+                "items": [
+                    {
+                        "_id": "BestCompassOfTheWorld",
+                        "_tpl": "5f4f9eb969cdc30ff33f09db",
+                        "upd": {
+                            "StackObjectsCount": 1
                         }
-                    ]
-                }
-            ],
-            "Success": [],
+                    }
+                ]
+            }],
             "Fail": []
         },
         "conditions": {
