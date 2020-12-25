@@ -173,8 +173,7 @@ class Controller
                 healthInfo.Health[key].Effects = bodyPart.Effects;
             }
         }
-
-        console.log(info.difference);
+        
         healthInfo.Hydration = pmcData.Health.Hydration.Current + info.difference.Hydration;
         healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
 
