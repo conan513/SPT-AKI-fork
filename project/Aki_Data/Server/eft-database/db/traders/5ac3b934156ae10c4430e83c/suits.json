@@ -826,5 +826,75 @@
 				}
 			]
 		}
+	},
+	{
+		"_id": "Borey_upper_offer",
+		"tid": "5ac3b934156ae10c4430e83c",
+		"suiteId": "5fd3e7e2dd870108a754b230",
+		"isActive": true,
+		"requirements": {
+			"loyaltyLevel": 0,
+			"profileLevel": 0,
+			"standing": 0,
+			"skillRequirements": [],
+			"questRequirements": [],
+			"itemRequirements": []
+		}
+	},
+	{
+		"_id": "top_usec_nightpatrol",
+		"tid": "5ac3b934156ae10c4430e83c",
+		"suiteId": "5fcf9477fe40296c1d5fd7c8",
+		"isActive": true,
+		"requirements": {
+			"loyaltyLevel": 0,
+			"profileLevel": 0,
+			"standing": 0,
+			"skillRequirements": [],
+			"questRequirements": [],
+			"itemRequirements": []
+		}
+	},
+	{
+		"_id": "bear_termo_offer",
+		"tid": "5ac3b934156ae10c4430e83c",
+		"suiteId": "5fd3e8e5bdd50d684f73a51d",
+		"isActive": true,
+		"requirements": {
+			"loyaltyLevel": 0,
+			"profileLevel": 0,
+			"standing": 0,
+			"skillRequirements": [],
+			"questRequirements": [],
+			"itemRequirements": []
+		}
+	},
+	{
+		"_id": "usec_kit_upper_acu",
+		"tid": "5ac3b934156ae10c4430e83c",
+		"suiteId": "5fd3e978e504291efd0040b3",
+		"isActive": true,
+		"requirements": {
+			"loyaltyLevel": 0,
+			"profileLevel": 0,
+			"standing": 0,
+			"skillRequirements": [],
+			"questRequirements": [],
+			"itemRequirements": []
+		}
+	},
+	{
+		"_id": "usec_kit_upper_tier3",
+		"tid": "5ac3b934156ae10c4430e83c",
+		"suiteId": "5fd3e77be504291efd0040ad",
+		"isActive": true,
+		"requirements": {
+			"loyaltyLevel": 0,
+			"profileLevel": 0,
+			"standing": 0,
+			"skillRequirements": [],
+			"questRequirements": [],
+			"itemRequirements": []
+		}
 	}
 ]
