@@ -157,7 +157,7 @@ class Controller
         // Single item
         if (!preset_f.controller.hasPreset(template) || !onlyFunc)
         {
-            let rubPrice = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(template) * ragfair_f.config.priceMultiplier);
+            let rubPrice = this.fetchItemFleaPrice(template);
             offerBase._id = template;
             offerBase.items[0]._tpl = template;
             offerBase.requirements[0].count = rubPrice;
@@ -263,6 +263,21 @@ class Controller
         if (request.offerOwnerType ===  1)
         {
             return this.getOffersFromTraders(sessionID, request);
+        }
+
+        // Player's own offers
+        if (request.offerOwnerType === 2)
+        {
+            const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            const categories = {};
+            for (let offer of offers)
+            {
+                categories[offer.items[0]._tpl] = 1;
+            }
+            return https_f.response.getBody({
+                "offers": offers,
+                "categories": categories
+            });
         }
 
         let response = {"categories": {}, "offers": [], "offersCount": 10, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
@@ -592,28 +607,64 @@ class Controller
         return result;
     }
 
-    fetchItemFleaPrice(tpl)
+    processOffers(sessionID)
     {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
+        const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        if (!profileOffers || !profileOffers.length)
+        {
+            return;
+        }
+
+        for (const [index, offer] of profileOffers.entries())
+        {
+            if (!this.validateOffer(offer))
+            {
+                common_f.logger.logWarning("An existing offer is invalid, attempting cleanup...");
+                if (!offer.items || !offer.items.length)
+                {
+                    common_f.logger.logWarning("There were no items to return");
+                }
+                else
+                {
+                    this.returnItems(sessionID, common_f.json.clone(offer.items));
+                }
+                profileOffers.splice(index, 1);
+                continue;
+            }
+
+            if (offer.sellTime < common_f.time.getTimestamp() && offer.sellTime < offer.endTime)
+            {
+                this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items, offer._id);
+                profileOffers.splice(index, 1);
+                continue;
+            }
+
+            if (offer.endTime < common_f.time.getTimestamp())
+            {
+                this.removeOffer(offer._id, sessionID);
+            }
+        }
+
+        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
     }
 
-    getMarketPrice(info)
+    getItemPrice(request)
     {
-        const price = this.fetchItemFleaPrice(info.templateId);
+        const price = this.fetchItemFleaPrice(request.templateId);
 
         // 1 is returned by helper method if price lookup failed
         if (!price || price === 1)
         {
-            common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
+            common_f.logger.logError(`Could not fetch price for ${request.templateId}`);
         }
 
-        return {
-            "avg": price,
-            "min": price,
-            "max": price,
+        return { 
+            avg: price, 
+            min: price, 
+            max: price 
         };
     }
-
+    
     getItemPrices()
     {
         let result = {};
@@ -629,19 +680,317 @@ class Controller
         return result;
     }
 
-    addOffer(pmcData, info, sessionID)
+    addOffer(pmcData, request, sessionID)
     {
+        const response = item_f.eventHandler.getOutput();
+
+        if (!request || !request.items || request.items.length === 0)
+        {
+            common_f.logger.logError("Invalid addOffer request");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
+        if (!request.requirements || request.requirements.length !== 1)
+        {
+            // TODO: rework code to support multiple requirements
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only have one requirement");
+        }
+
+        const requestedItemTpl = request.requirements[0]._tpl;
+        if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+        {
+            // TODO: rework code to support barter offers
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only request money");
+        }
+
+        // Count how many items are being sold and multiply the requested amount accordingly
+        let moneyAmount = 0;
+        let itemStackCount = 0;
+        if (request.sellInOnePiece)
+        {
+            moneyAmount = request.requirements[0].count;
+        }
+        else
+        {
+            for (const itemId of request.items)
+            {
+                const item = pmcData.Inventory.items.find(i => i._id === itemId);
+                if (!item)
+                {
+                    common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
+                    return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+                }
+
+                if (!("upd" in item) || !("StackObjectsCount" in item.upd))
+                {
+                    itemStackCount += 1;
+                }
+                else
+                {
+                    itemStackCount += item.upd.StackObjectsCount;
+                }
+            }
+            moneyAmount = request.requirements[0].count * itemStackCount;
+        }
+
+        let invItems = [];
+        for (const itemId of request.items)
+        {
+            invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
+        }
+
+        if (!invItems || !invItems.length)
+        {
+            common_f.logger.logError("Could not find any requested items in the inventory");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
+        let basePrice = 0;
+        for (const item of invItems)
+        {
+            const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
+            basePrice += this.fetchItemFleaPrice(item._tpl) * mult;
+        }
+
+        if (!basePrice)
+        {
+            // Don't want to accidentally divide by 0
+            common_f.logger.logError("Failed to count base price for offer");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
+        const basePricePercentage = (moneyAmount / basePrice) * 100;
+
+        // Skip offer generation and insta-sell offer if price is being undercut by amount defined in config
+        if (basePricePercentage <= ragfair_f.config.instantSellThreshold)
+        {
+            this.completeOffer(sessionID, request.requirements[0]._tpl, moneyAmount, invItems, null);
+            return response;
+        }
+
+        // Preparations are done, create the offer
+        // TODO: Random generate sale time based on offer pricing
+        const offer = this.generateOffer(save_f.server.profiles[sessionID], request.requirements, invItems, request.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
+
+        if (!this.validateOffer(offer))
+        {
+            common_f.logger.logWarning("An invalid offer was generated, please check the error(s) above.");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
+        }
+
+        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        response.ragFairOffers.push(offer);
+
+        // Remove items from inventory after creating offer
+        for (const itemToRemove of request.items)
+        {
+            // TODO: Reenable this once testing is done
+            //inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
+        }
+
+        // TODO: Subtract flea market fee from stash
+
+        return response;
+    }
+
+    removeOffer(offerId, sessionID)
+    {
+        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
+        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+
+        const index = offers.findIndex(offer => offer._id === offerId);
+        if (index === -1)
+        {
+            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+        }
+
+        const itemsToReturn = common_f.json.clone(offers[index].items);
+        this.returnItems(sessionID, itemsToReturn);
+
+        offers.splice(index, 1);
+
         return item_f.eventHandler.getOutput();
     }
 
-    removeOffer(pmcData, info, sessionID)
+    extendOffer(offerId, sessionID)
     {
+        // TODO: Subtract money and change offer endTime
         return item_f.eventHandler.getOutput();
     }
 
-    extendOffer(pmcData, info, sessionID)
+    completeOffer(sessionID, currencyTpl, moneyAmount, items, offerId)
     {
-        return item_f.eventHandler.getOutput();
+        const formatCurrency = (moneyAmount) => moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
+        const getCurrencySymbol = (currencyTpl) =>
+        {
+            switch (currencyTpl)
+            {
+                case "569668774bdc2da2298b4568":
+                    return "€";
+                case "5696686a4bdc2da3298b456a":
+                    return "$";
+                case "5449016a4bdc2d6f028b456f":
+                default:
+                    return "₽";
+            }
+        };
+
+        const itemTpl = items[0]._tpl;
+
+        let itemCount = 0;
+        for (const item of items)
+        {
+            if (!("upd" in item) || !("StackObjectsCount" in item.upd))
+            {
+                itemCount += 1;
+            }
+            else
+            {
+                itemCount += item.upd.StackObjectsCount;
+            }
+        }
+
+        // Create an item of the specified currency
+        const moneyItem = {
+            "_id": common_f.hash.generate(),
+            "_tpl": currencyTpl,
+            "upd": { "StackObjectsCount": moneyAmount }
+        };
+
+        // Split the money stacks in case more than the stack limit is requested
+        const itemsToSend = helpfunc_f.helpFunctions.splitStack(moneyItem);
+
+        // Generate a message to inform that item was sold
+        const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
+        let messageText = "Your offer was sold";
+        if (findItemResult[0])
+        {
+            try
+            {
+                const itemLocale = database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id];
+                if (itemLocale && itemLocale.Name)
+                {
+                    messageText = `Your ${itemLocale.Name} (x${itemCount}) was bought by ${this.fetchRandomPmcName()} for ${getCurrencySymbol(currencyTpl)}${formatCurrency(moneyAmount)}`;
+                }
+            }
+            catch (err)
+            {
+                common_f.logger.logError(`Could not get locale data for item with _id -> ${findItemResult[1]._id}`);
+            }
+        }
+
+        const messageContent = {
+            "text": messageText.replace(/"/g, ""),
+            "type": 4, // EMessageType.FleamarketMessage
+            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "ragfair": {
+                "offerId": offerId,
+                "count": itemCount,
+                "handbookId": itemTpl
+            }
+        };
+
+        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+    }
+
+    returnItems(sessionID, items)
+    {
+        const messageContent = {
+            "text": "Your offer was cancelled",
+            "type": 13,
+            "maxStorageTime": quest_f.config.redeemTime * 3600
+        };
+
+        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
+    }
+
+    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend, sellTime)
+    {
+        const formattedItems = items.map(item =>
+        {
+            return {
+                "_id": item._id,
+                "_tpl": item._tpl,
+                "upd": item.upd
+            };
+        });
+
+        const formattedRequirements = requirements.map(item =>
+        {
+            return {
+                "_tpl": item._tpl,
+                "count": item.count,
+                "onlyFunctional": item.onlyFunctional
+            };
+        });
+
+        return {
+            "_id": common_f.hash.generate(),
+            "items": formattedItems,
+            "root": items[0]._id,
+            "requirements": formattedRequirements,
+            "sellInOnePiece": sellInOnePiece,
+            "startTime": common_f.time.getTimestamp(),
+            "endTime": common_f.time.getTimestamp() + (12 * 60 * 60),
+            "sellTime": sellTime, // Custom field, not used in-game. Only saved server-side
+            "summaryCost": amountToSend,
+            "requirementsCost": amountToSend,
+            "loyaltyLevel": 1,
+            "user": {
+                "id": profile.characters.pmc._id,
+                "nickname": profile.characters.pmc.Info.Nickname,
+                "rating": profile.characters.pmc.RagfairInfo.rating,
+                "memberType": profile.characters.pmc.Info.AccountType,
+                "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
+            },
+        };
+    }
+
+    fetchItemFleaPrice(tpl)
+    {
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
+    }
+
+    fetchRandomPmcName()
+    {
+        const type = common_f.random.getInt(0, 1) === 0 ? "usec" : "bear";
+        try
+        {
+            return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
+        }
+        catch (err)
+        {
+            common_f.logger.logError(`Failed to fetch a random PMC name for type -> ${type}`);
+            common_f.logger.logInfo(common_f.json.serialize(err));
+            return "Anonymous";
+        }
+    }
+
+    /** Validate an offer, to assert that all essential fields are present */
+    validateOffer(offer)
+    {
+        const isNullOrUndefined = (value) => typeof value === "undefined" || value === null;
+
+        const requiredFields = ["user", "items", "root", "requirements", "endTime", "sellTime", "summaryCost"];
+
+        // Different error message for _id validation
+        if (isNullOrUndefined(offer._id))
+        {
+            common_f.logger.logError("Offer was missing the \"_id\" field");
+            return false;
+        }
+
+        for (const field of requiredFields)
+        {
+            if (isNullOrUndefined(offer[field]))
+            {
+                common_f.logger.logError(`Offer ${offer._id} was missing the "${field}" field`);
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 
