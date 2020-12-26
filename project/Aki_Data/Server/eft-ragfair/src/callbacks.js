@@ -52,13 +52,13 @@ class Callbacks
 
     removeOffer(pmcData, info, sessionID)
     {
-        return ragfair_f.controller.removeOffer(pmcData, info, sessionID);
+        return ragfair_f.controller.removeOffer(info, sessionID);
     }
 
     extendOffer(pmcData, info, sessionID)
     {  
         common_f.logger.logInfo(common_f.json.serialize(info)); // TODO: Remove this once finished
-        return ragfair_f.controller.extendOffer(pmcData, info, sessionID);
+        return ragfair_f.controller.extendOffer(info, sessionID);
     } 
     
     processOffers(sessionID)
