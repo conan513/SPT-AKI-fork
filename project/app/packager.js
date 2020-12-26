@@ -45,7 +45,10 @@ class Packager
 
     addSource(mod)
     {
-        this.source[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
+        if ("main" in this.mods[mod])
+        {
+            this.source[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
+        }
     }
 
     validMod(mod)
@@ -59,7 +62,7 @@ class Packager
 
         // validate mod
         const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
-        const checks = ["name", "author", "version", "license", "main"];
+        const checks = ["name", "author", "version", "license"];
         let issue = false;
 
         for (const check of checks)
@@ -71,16 +74,19 @@ class Packager
             }
         }
 
-        if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
+        if ("main" in config)
         {
-            console.log(`Mod ${mod} package.json main property points to non-existing file`);
-            issue = true;
-        }
+            if (config.main.split(".").pop() !== "js")
+            {
+                console.log(`Mod ${mod} package.json main property must be a .js file`);
+                issue = true;
+            }
 
-        if (config.main.split(".").pop() !== "js")
-        {
-            console.log(`Mod ${mod} package.json main property must be a .js file`);
-            issue = true;
+            if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
+            {
+                console.log(`Mod ${mod} package.json main property points to non-existing file`);
+                issue = true;
+            }
         }
 
         // issues found
