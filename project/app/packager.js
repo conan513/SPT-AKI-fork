@@ -45,7 +45,10 @@ class Packager
 
     addSource(mod)
     {
-        this.source[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
+        if ("main" in this.mods[mod])
+        {
+            this.source[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
+        }
     }
 
     validMod(mod)
