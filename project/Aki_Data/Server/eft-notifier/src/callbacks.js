@@ -5,6 +5,7 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - PoloYolo
+ * - Sock
  */
 
 "use strict";
@@ -53,13 +54,14 @@ class Callbacks
 
     createNotifierChannel(url, info, sessionID)
     {
+        const notifierServer = `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`;
+
         return https_f.response.getBody({
-            "notifier": {
-                "server": `${https_f.config.backendUrl}/`,
-                "channel_id": "testChannel",
-                "url": `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`
-            },
-            "notifierServer": `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`
+            server: https_f.config.ip,
+            channel_id: sessionID,
+            url: notifierServer,
+            notifierServer: notifierServer,
+            ws: `wss://${https_f.config.ip}:${https_f.config.port}/websocketnyi`,
         });
     }
 
