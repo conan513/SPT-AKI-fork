@@ -16,6 +16,7 @@ class Config
             "christmas": true,
             "tweakedLootChance": true,
             "fenceSuits": true,
+            "GL40Mastery": true,
             "pmcGroup": true
         };
         this.pmcGroup = {
