@@ -134,6 +134,10 @@ class Controller
                 "Current": common_f.random.getInt(healthObj.Energy.min, healthObj.Energy.max),
                 "Maximum": healthObj.Energy.max
             },
+            "Temperature": {
+                "Current": common_f.random.getInt(healthObj.Temperature.min, healthObj.Temperature.max),
+                "Maximum": healthObj.Temperature.max
+            },
             "BodyParts": {
                 "Head": {
                     "Health": {
