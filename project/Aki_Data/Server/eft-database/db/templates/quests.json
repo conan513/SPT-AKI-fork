@@ -5303,7 +5303,7 @@
                     "_parent": "Level",
                     "_props": {
                         "compareMethod": ">=",
-                        "value": "10",
+                        "value": "9",
                         "index": 0,
                         "parentId": "",
                         "id": "5ede5528bc2ff1141a199367"
@@ -6152,7 +6152,7 @@
             "Started": [],
             "Success": [
                 {
-                    "value": "3400",
+                    "value": "6900",
                     "id": "5c9505dd86f77455192fa430",
                     "type": "Experience",
                     "index": 0
@@ -21519,7 +21519,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 150,
+                            "value": 250,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -21657,7 +21657,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 350,
+                            "value": 400,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -21963,7 +21963,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 250,
+                            "value": 300,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -24219,7 +24219,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 450,
+                            "value": 550,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -24375,7 +24375,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 300,
+                            "value": 350,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -24641,7 +24641,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 450,
+                            "value": 500,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -24863,7 +24863,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 450,
+                            "value": 550,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -25000,7 +25000,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 200,
+                            "value": 250,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -25231,7 +25231,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 450,
+                            "value": 500,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -25400,7 +25400,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 200,
+                            "value": 250,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -25569,7 +25569,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 300,
+                            "value": 350,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -25771,7 +25771,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 350,
+                            "value": 400,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -26037,7 +26037,7 @@
                             "compareMethod": ">="
                         },
                         "recoil": {
-                            "value": 180,
+                            "value": 250,
                             "compareMethod": "<="
                         },
                         "muzzleVelocity": {
@@ -26250,7 +26250,7 @@
                 {
                     "_parent": "Quest",
                     "_props": {
-                        "target": "5c1128e386f7746565181106",
+                        "target": "5ac3462b86f7741d6118b983",
                         "status": [
                             4
                         ],
