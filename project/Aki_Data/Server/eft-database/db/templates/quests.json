@@ -18592,6 +18592,18 @@
 						"parentId": "",
 						"id": "5a3a72d786f7745a9e0647ef"
 					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5936d90786f7742b1420ba5b",
+						"status": [
+							4
+						],
+						"index": 1,
+						"parentId": "",
+						"id": ""
+					}
 				}
 			],
 			"AvailableForFinish": [
