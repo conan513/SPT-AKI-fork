@@ -14,11 +14,23 @@ class Packager
 {
     constructor()
     {
-        this.modpath = "mods/";
-        this.source = JSON.parse(fs.readFileSync("packages/loadorder.json"));
+        this.modpath = "user/mods/";
+        this.source = this.addInitialSource();
         this.mods = {};
         this.loadorder = [];
         this.onLoad = {};
+    }
+
+    addInitialSource()
+    {
+        let source = JSON.parse(fs.readFileSync("Aki_Data/Server/loadorder.json"));
+
+        for (const pkg in source)
+        {
+            source[pkg] = "Aki_Data/Server/" + source[pkg];
+        }
+
+        return source;
     }
 
     getModPath(mod)
@@ -33,7 +45,10 @@ class Packager
 
     addSource(mod)
     {
-        this.source[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
+        if ("main" in this.mods[mod])
+        {
+            this.source[mod] = `${this.getModPath(mod)}/${this.mods[mod].main}`;
+        }
     }
 
     validMod(mod)
@@ -47,7 +62,7 @@ class Packager
 
         // validate mod
         const config = JSON.parse(fs.readFileSync(`${this.getModPath(mod)}/package.json`));
-        const checks = ["name", "author", "version", "license", "main"];
+        const checks = ["name", "author", "version", "license"];
         let issue = false;
 
         for (const check of checks)
@@ -59,16 +74,19 @@ class Packager
             }
         }
 
-        if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
+        if ("main" in config)
         {
-            console.log(`Mod ${mod} package.json main property points to non-existing file`);
-            issue = true;
-        }
+            if (config.main.split(".").pop() !== "js")
+            {
+                console.log(`Mod ${mod} package.json main property must be a .js file`);
+                issue = true;
+            }
 
-        if (config.main.split(".").pop() !== "js")
-        {
-            console.log(`Mod ${mod} package.json main property must be a .js file`);
-            issue = true;
+            if (!fs.existsSync(`${this.getModPath(mod)}/${config.main}`))
+            {
+                console.log(`Mod ${mod} package.json main property points to non-existing file`);
+                issue = true;
+            }
         }
 
         // issues found
@@ -184,7 +202,7 @@ class Packager
     // load classes
     loadCode()
     {
-        for (let name in this.source)
+        for (const name in this.source)
         {
             global[name] = require(`../${this.source[name]}`);
         }
