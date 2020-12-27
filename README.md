@@ -1,24 +1,20 @@
-# SPTarkov-Server
+# Server
 
 Modding framework for Escape From Tarkov
 
 ## Requirements
 
-- VSCodium (or optionally Docker)
+- VSCodium
 - NodeJS 12.18.2
-- Escape From Tarkov 0.12.8
+- Escape From Tarkov 0.12.9
 
 ## Setup
 
-VSCodium -> menu bar -> tasks -> run task... -> NPM -> install
-
-OR
-
-Run: `docker-compose up -d` to setup, build and run w/ Docker
+VSCodium > tasks > run task... > NPM > install
 
 ## Build
 
-VSCodium -> menu bar -> tasks -> run build task
+VSCodium > tasks > run build task
 
 ## Authors
 
