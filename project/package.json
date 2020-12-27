@@ -22,10 +22,10 @@
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {
-        "selfsigned": "^1.10.8"
+        "selfsigned": "1.10.8"
     },
     "devDependencies": {
-        "nexe": "^3.3.7",
-        "eslint": "^7.11.0"
+        "nexe": "3.3.7",
+        "eslint": "^7.16.0"
     }
 }
