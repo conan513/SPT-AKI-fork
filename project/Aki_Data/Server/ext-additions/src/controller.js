@@ -78,7 +78,7 @@ class Controller
 
             let location = database_f.server.tables.locations[locationName].base;
             const maxTime = location.escape_time_limit - Math.round(config.time.exit + (config.time.init / 60));
-            const count = Math.round(location.MaxPlayers / config.size);
+            const count = Math.round(location.MaxPlayers / config.size.min);
 
             for (let i = 0; i < count; i++)
             {
