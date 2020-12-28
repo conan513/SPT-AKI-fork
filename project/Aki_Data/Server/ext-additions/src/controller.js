@@ -15,6 +15,7 @@ class Controller
         this.setChristmasEvent();
         this.addScavSuitsToFence();
         this.addMoreLootChance();
+        this.addGL40Mastery();
         this.addPmcSpawns();
     }
 
@@ -41,6 +42,23 @@ class Controller
         }
     }
 
+    addGL40Mastery()
+    {
+        if (additions_f.config.components.GL40Mastery)
+        {
+            database_f.server.tables.globals.config.Mastering.push(
+                {
+                    "Name": "GL40",
+                    "Templates": [
+                        "5e81ebcd8e146c7080625e15"
+                    ],
+                    "Level2": 1000,
+                    "Level3": 3000
+                }
+            )
+        }
+    }
+
     addPmcSpawns()
     {
         const config = additions_f.config.pmcGroup;
@@ -60,7 +78,7 @@ class Controller
 
             let location = database_f.server.tables.locations[locationName].base;
             const maxTime = location.escape_time_limit - Math.round(config.time.exit + (config.time.init / 60));
-            const count = Math.round(location.MaxPlayers / config.size);
+            const count = Math.round(location.MaxPlayers / config.size.min);
 
             for (let i = 0; i < count; i++)
             {

@@ -1108,18 +1108,89 @@
 					"id": "5bcf0ff686f77423c25c50a3"
 				},
 				{
-					"target": "5e0ac74b9d594972a112a838",
-					"value": "3",
+					"target": "5c0d1ec986f77439512a1a80",
+					"value": "1",
 					"type": "Item",
 					"index": 2,
 					"id": "5a2e86e986f7741b57301c49",
 					"items": [
 						{
-							"_id": "5e0ac74b9d594972a112a838",
-							"_tpl": "55d482194bdc2d1d4e8b456b",
+							"_id": "5c0d1ec986f77439512a1a80",
+							"_tpl": "5beed0f50db834001c062b12",
 							"upd": {
-								"StackObjectsCount": 3
+								"Foldable": {
+									"Folded": false
+								},
+								"FireMode": {
+									"FireMode": "single"
+								}
 							}
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a81",
+							"_tpl": "5beec8ea0db834001a6f9dbf",
+							"parentId": "5c0d1ec986f77439512a1a80",
+							"slotId": "mod_pistol_grip"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a82",
+							"_tpl": "5beec91a0db834001961942d",
+							"parentId": "5c0d1ec986f77439512a1a80",
+							"slotId": "mod_reciever"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a83",
+							"_tpl": "5beec9450db83400970084fd",
+							"parentId": "5c0d1ec986f77439512a1a82",
+							"slotId": "mod_sight_rear"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a84",
+							"_tpl": "5bf3f59f0db834001a6fa060",
+							"parentId": "5c0d1ec986f77439512a1a83",
+							"slotId": "mod_sight_rear"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a85",
+							"_tpl": "5beec8b20db834001961942a",
+							"parentId": "5c0d1ec986f77439512a1a80",
+							"slotId": "mod_stock_001"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a86",
+							"_tpl": "5beec8c20db834001d2c465c",
+							"parentId": "5c0d1ec986f77439512a1a85",
+							"slotId": "mod_stock"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a87",
+							"_tpl": "5beec3e30db8340019619424",
+							"parentId": "5c0d1ec986f77439512a1a80",
+							"slotId": "mod_handguard"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a88",
+							"_tpl": "5beecbb80db834001d2c465e",
+							"parentId": "5c0d1ec986f77439512a1a87",
+							"slotId": "mod_mount_000"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a89",
+							"_tpl": "5beecbb80db834001d2c465e",
+							"parentId": "5c0d1ec986f77439512a1a87",
+							"slotId": "mod_mount_001"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a8a",
+							"_tpl": "5beec1bd0db834001e6006f3",
+							"parentId": "5c0d1ec986f77439512a1a80",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "5c0d1ec986f77439512a1a8b",
+							"_tpl": "5beec3420db834001b095429",
+							"parentId": "5c0d1ec986f77439512a1a8a",
+							"slotId": "mod_muzzle"
 						}
 					]
 				},
@@ -1141,7 +1212,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a83a",
-					"value": "100",
+					"value": "200",
 					"id": "5a2e871f86f7741a9612d1f7",
 					"type": "Item",
 					"index": 4,
@@ -1150,7 +1221,7 @@
 							"_id": "5e0ac74b9d594972a112a83a",
 							"_tpl": "56dfef82d2720bbd668b4567",
 							"upd": {
-								"StackObjectsCount": 100
+								"StackObjectsCount": 200
 							}
 						}
 					]
@@ -18592,6 +18663,18 @@
 						"parentId": "",
 						"id": "5a3a72d786f7745a9e0647ef"
 					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5936d90786f7742b1420ba5b",
+						"status": [
+							4
+						],
+						"index": 1,
+						"parentId": "",
+						"id": ""
+					}
 				}
 			],
 			"AvailableForFinish": [
@@ -25402,7 +25485,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 250,
+							"value": 200,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -25571,7 +25654,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 350,
+							"value": 300,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -25773,7 +25856,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 400,
+							"value": 350,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -26039,7 +26122,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 250,
+							"value": 180,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
