@@ -34,8 +34,8 @@ class Config
                 "follower": "hard"
             },
             "type": {
-                "boss": "pmcBot",
-                "follower": "pmcBot"
+                "boss": "bossTest",
+                "follower": "followerTest"
             },
             "locations": {
                 "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlockPost,ZoneTankSquare,ZoneCustoms,ZoneDormitory,ZoneGasStation,ZoneFactoryCenter,ZoneWade,ZoneScavBase",
