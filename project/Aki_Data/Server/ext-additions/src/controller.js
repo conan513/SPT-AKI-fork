@@ -42,7 +42,7 @@ class Controller
         }
     }
 
-    addGL40mastery()
+    addGL40Mastery()
     {
         if (additions_f.config.components.GL40Mastery)
         {
