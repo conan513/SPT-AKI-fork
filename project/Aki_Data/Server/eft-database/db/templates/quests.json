@@ -21175,7 +21175,7 @@
 							"compareMethod": ">="
 						},
 						"magazineCapacity": {
-							"value": 5,
+							"value": 6,
 							"compareMethod": ">="
 						},
 						"width": {
@@ -21596,7 +21596,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 62,
+							"value": 53,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -21604,7 +21604,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 250,
+							"value": 200,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -21895,7 +21895,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 250,
+							"value": 350,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -25332,7 +25332,7 @@
 							"compareMethod": ">="
 						},
 						"width": {
-							"value": 8,
+							"value": 4,
 							"compareMethod": "<="
 						},
 						"height": {
@@ -25485,7 +25485,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 200,
+							"value": 250,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -25654,7 +25654,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 300,
+							"value": 350,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -25856,7 +25856,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 350,
+							"value": 400,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -26122,7 +26122,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 180,
+							"value": 180250,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
