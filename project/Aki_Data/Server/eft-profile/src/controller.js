@@ -226,12 +226,6 @@ class Controller
         return output;
     }
 
-    changeVoice(info, sessionID)
-    {
-        let pmcData = this.getPmcProfile(sessionID);
-        pmcData.Info.Voice = info.voice;
-    }
-
     resetProfileQuestCondition(sessionID, conditionId)
     {
         let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
