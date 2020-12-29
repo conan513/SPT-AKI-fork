@@ -8722,7 +8722,7 @@
 					"_parent": "Level",
 					"_props": {
 						"compareMethod": ">=",
-						"value": "30",
+						"value": "35",
 						"index": 0,
 						"parentId": "",
 						"id": "5c1fd1b586f7742b3a651f74"
@@ -22930,7 +22930,7 @@
 				{
 					"_parent": "Quest",
 					"_props": {
-						"target": "5ac2426c86f774138762edfe",
+						"target": "5ac23c6186f7741247042bad",
 						"status": [
 							4
 						],
@@ -36928,6 +36928,41 @@
 						"index": 0,
 						"parentId": "",
 						"id": "5d66920c86f774368d281afe"
+					}
+				},
+				{
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "Hello_dear",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bossKojaniy"
+										],
+										"weapon": [
+											"5bfea6e90db834001b7347f3"
+										],
+										"weaponModsInclusive": [
+											[
+												"57c5ac0824597754771e88a9"
+											]
+										],
+										"id": "BruhWtf"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "5fd8aa3206fb3a6b8154a2c3"
 					}
 				}
 			],
