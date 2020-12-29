@@ -16,6 +16,7 @@ class Config
             "christmas": true,
             "tweakedLootChance": true,
             "fenceSuits": true,
+            "GL40Mastery": true,
             "pmcGroup": true
         };
         this.pmcGroup = {
@@ -33,8 +34,8 @@ class Config
                 "follower": "hard"
             },
             "type": {
-                "boss": "bossTest",
-                "follower": "followerTest"
+                "boss": "assaultGroup",
+                "follower": "assaultGroup"
             },
             "locations": {
                 "bigmap": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlockPost,ZoneTankSquare,ZoneCustoms,ZoneDormitory,ZoneGasStation,ZoneFactoryCenter,ZoneWade,ZoneScavBase",
@@ -44,7 +45,7 @@ class Config
                 "laboratory": "BotZoneMain",
                 "rezervbase": "ZoneRailStrorage,ZonePTOR1,ZonePTOR2,ZoneBarrack,ZoneBunkerStorage,ZoneSubStorage,ZoneSubCommand",
                 "shoreline": "ZoneSanatorium,ZonePassFar,ZonePassClose,ZoneTunnel,ZoneStartVillage,ZoneBunker,ZoneGreenHouses,ZoneIsland,ZoneGasStation,ZoneMeteoStation,ZonePowerStation,ZoneBusStation,ZoneRailWays,ZonePort,ZoneForestTruck,ZoneForestSpawn",
-                "woods": "ZoneRedHouse,ZoneWoodCutter,ZoneHouse,ZoneBigRocks,ZoneRoad,ZoneMiniHouse"
+                "woods": "ZoneRedHouse,ZoneWoodCutter,ZoneHouse,ZoneBigRocks,ZoneRoad,ZoneMiniHouse,ZoneScavBase2,ZoneBrokenVill,ZoneClearVill"
             }
         };
     }
