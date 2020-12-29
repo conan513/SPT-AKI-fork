@@ -19,13 +19,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/game/profile/select"] = this.selectProfile.bind(this);
         https_f.router.onDynamicRoute["/?last_id"] = this.notify.bind(this);
         https_f.router.onDynamicRoute["/notifierServer"] = this.notify.bind(this);
-        https_f.router.onDynamicRoute["/notifierBase"] = this.getBaseNotifier.bind(this);
         https_f.router.onDynamicRoute["/push/notifier/get/"] = this.getNotifier.bind(this);
-    }
-
-    getBaseNotifier(url, info, sessionID)
-    {
-        return https_f.response.emptyArrayResponse();
     }
 
     getNotifier(url, info, sessionID)
