@@ -20,7 +20,7 @@ class Config
             "pmcGroup": true
         };
         this.pmcGroup = {
-            "chance": 35,
+            "chance": 75,
             "time": {
                 "init": 5,
                 "exit": 300
