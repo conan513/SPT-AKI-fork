@@ -12,7 +12,7 @@ class Config
 {
     constructor()
     {
-        this.priceMultiplier = 1;
+        this.priceMultiplier = 0.3;
         this.returnChance = 75;
     }
 }
