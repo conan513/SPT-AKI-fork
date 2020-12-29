@@ -655,20 +655,20 @@ class Controller
         // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
     }
 
-    getItemPrice(request)
+    getItemPrice(info)
     {
-        const price = this.fetchItemFleaPrice(request.templateId);
+        const price = this.fetchItemFleaPrice(info.templateId);
 
         // 1 is returned by helper method if price lookup failed
         if (!price || price === 1)
         {
-            common_f.logger.logError(`Could not fetch price for ${request.templateId}`);
+            common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
         }
 
         return { 
-            avg: price, 
-            min: price, 
-            max: price 
+            "avg": price,
+            "min": price,
+            "max": price
         };
     }
     
@@ -687,23 +687,23 @@ class Controller
         return result;
     }
 
-    addOffer(pmcData, request, sessionID)
+    addOffer(pmcData, info, sessionID)
     {
         const response = item_f.eventHandler.getOutput();
 
-        if (!request || !request.items || request.items.length === 0)
+        if (!info || !info.items || info.items.length === 0)
         {
             common_f.logger.logError("Invalid addOffer request");
             return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
-        if (!request.requirements || request.requirements.length !== 1)
+        if (!info.requirements || info.requirements.length !== 1)
         {
             // TODO: rework code to support multiple requirements
             return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only have one requirement");
         }
 
-        const requestedItemTpl = request.requirements[0]._tpl;
+        const requestedItemTpl = info.requirements[0]._tpl;
         if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
         {
             // TODO: rework code to support barter offers
@@ -713,13 +713,13 @@ class Controller
         // Count how many items are being sold and multiply the requested amount accordingly
         let moneyAmount = 0;
         let itemStackCount = 0;
-        if (request.sellInOnePiece)
+        if (info.sellInOnePiece)
         {
-            moneyAmount = request.requirements[0].count;
+            moneyAmount = info.requirements[0].count;
         }
         else
         {
-            for (const itemId of request.items)
+            for (const itemId of info.items)
             {
                 const item = pmcData.Inventory.items.find(i => i._id === itemId);
                 if (!item)
@@ -737,11 +737,11 @@ class Controller
                     itemStackCount += item.upd.StackObjectsCount;
                 }
             }
-            moneyAmount = request.requirements[0].count * itemStackCount;
+            moneyAmount = info.requirements[0].count * itemStackCount;
         }
 
         let invItems = [];
-        for (const itemId of request.items)
+        for (const itemId of info.items)
         {
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
         }
@@ -771,13 +771,13 @@ class Controller
         // Skip offer generation and insta-sell offer if price is being undercut by amount defined in config
         if (basePricePercentage <= ragfair_f.config.instantSellThreshold)
         {
-            this.completeOffer(sessionID, request.requirements[0]._tpl, moneyAmount, invItems, null);
+            this.completeOffer(sessionID, info.requirements[0]._tpl, moneyAmount, invItems, null);
             return response;
         }
 
         // Preparations are done, create the offer
         // TODO: Random generate sale time based on offer pricing
-        const offer = this.generateOffer(save_f.server.profiles[sessionID], request.requirements, invItems, request.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
+        const offer = this.generateOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
 
         if (!this.validateOffer(offer))
         {
@@ -789,7 +789,7 @@ class Controller
         response.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
-        for (const itemToRemove of request.items)
+        for (const itemToRemove of info.items)
         {
             // TODO: Reenable this once testing is done
             //inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
