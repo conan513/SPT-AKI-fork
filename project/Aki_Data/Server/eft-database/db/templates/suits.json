@@ -6928,7 +6928,7 @@
 			"Feet": "5d5e7f3c86f7742797262063"
 		}
 	},
-	"WildBody2": {
+	"WildBody2_top": {
 		"_id": "WildBody2_Top",
 		"_name": "WildBody2_Top",
 		"_parent": "5cd944ca1388ce03a44dc2a4",
@@ -6946,7 +6946,7 @@
 			"Hands": "5cde9fff7d6c8b647a3769b1"
 		}
 	},
-	"WildBody3": {
+	"WildBody3_top": {
 		"_id": "WildBody3_Top",
 		"_name": "WildBody3_Top",
 		"_parent": "5cd944ca1388ce03a44dc2a4",
