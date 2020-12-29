@@ -527,6 +527,17 @@
 	"DisabledForScav": false,
 	"BossLocationSpawn": [
 		{
+			"BossName": "sectantPriest",
+			"BossChance": 20,
+			"BossZone": "ZoneScavBase",
+			"BossPlayer": false,
+			"BossDifficult": "normal",
+			"BossEscortType": "sectantWarrior",
+			"BossEscortDifficult": "normal",
+			"BossEscortAmount": "3",
+			"Time": 1
+		},
+		{
 			"BossName": "bossBully",
 			"BossChance": 38,
 			"BossZone": "ZoneDormitory,ZoneGasStation,ZoneScavBase",
