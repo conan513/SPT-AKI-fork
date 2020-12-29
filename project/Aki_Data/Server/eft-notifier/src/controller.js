@@ -141,6 +141,22 @@ class Controller
             }
         };
     }
+
+    getServer(sessionID)
+    {
+        return `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`;
+    }
+
+    getChannel(sessionID)
+    {
+        return {
+            "server": https_f.config.ip,
+            "channel_id": sessionID,
+            "url": this.getServer(sessionID),
+            "notifierServer": this.getServer(sessionID),
+            "ws": `wss://${https_f.config.ip}:${https_f.config.port}/websocketnyi`,
+        }
+    }
 }
 
 module.exports.Controller = Controller;
