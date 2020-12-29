@@ -617,6 +617,8 @@ class Controller
     processOffers(sessionID)
     {
         const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const timestamp = common_f.time.getTimestamp();
+
         if (!profileOffers || !profileOffers.length)
         {
             return;
@@ -624,35 +626,20 @@ class Controller
 
         for (const [index, offer] of profileOffers.entries())
         {
-            if (!this.validateOffer(offer))
+            if (offer.endTime >= timestamp)
             {
-                common_f.logger.logWarning("An existing offer is invalid, attempting cleanup...");
-                if (!offer.items || !offer.items.length)
-                {
-                    common_f.logger.logWarning("There were no items to return");
-                }
-                else
-                {
-                    this.returnItems(sessionID, common_f.json.clone(offer.items));
-                }
-                profileOffers.splice(index, 1);
-                continue;
+                // item expired
+                this.removeOffer(offer._id, sessionID);
             }
 
-            if (offer.sellTime < common_f.time.getTimestamp() && offer.sellTime < offer.endTime)
+            if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
             {
+                // item sold
                 this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items, offer._id);
                 profileOffers.splice(index, 1);
                 continue;
             }
-
-            if (offer.endTime < common_f.time.getTimestamp())
-            {
-                this.removeOffer(offer._id, sessionID);
-            }
         }
-
-        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
     }
 
     getItemPrice(info)
@@ -704,6 +691,7 @@ class Controller
         }
 
         const requestedItemTpl = info.requirements[0]._tpl;
+
         if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
         {
             // TODO: rework code to support barter offers
@@ -713,6 +701,7 @@ class Controller
         // Count how many items are being sold and multiply the requested amount accordingly
         let moneyAmount = 0;
         let itemStackCount = 0;
+
         if (info.sellInOnePiece)
         {
             moneyAmount = info.requirements[0].count;
@@ -722,6 +711,7 @@ class Controller
             for (const itemId of info.items)
             {
                 const item = pmcData.Inventory.items.find(i => i._id === itemId);
+
                 if (!item)
                 {
                     common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
@@ -737,10 +727,12 @@ class Controller
                     itemStackCount += item.upd.StackObjectsCount;
                 }
             }
+
             moneyAmount = info.requirements[0].count * itemStackCount;
         }
 
         let invItems = [];
+
         for (const itemId of info.items)
         {
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
@@ -753,6 +745,7 @@ class Controller
         }
 
         let basePrice = 0;
+
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
@@ -766,33 +759,16 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
-        const basePricePercentage = (moneyAmount / basePrice) * 100;
-
-        // Skip offer generation and insta-sell offer if price is being undercut by amount defined in config
-        if (basePricePercentage <= ragfair_f.config.instantSellThreshold)
-        {
-            this.completeOffer(sessionID, info.requirements[0]._tpl, moneyAmount, invItems, null);
-            return response;
-        }
-
         // Preparations are done, create the offer
         // TODO: Random generate sale time based on offer pricing
-        const offer = this.generateOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
-
-        if (!this.validateOffer(offer))
-        {
-            common_f.logger.logWarning("An invalid offer was generated, please check the error(s) above.");
-            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
-        }
-
+        const offer = this.generateOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, moneyAmount);
         save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         response.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
-            // TODO: Reenable this once testing is done
-            //inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
+            inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
         }
 
         // TODO: Subtract flea market fee from stash
@@ -804,8 +780,8 @@ class Controller
     {
         // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
         const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-
         const index = offers.findIndex(offer => offer._id === offerId);
+
         if (index === -1)
         {
             common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
@@ -813,8 +789,8 @@ class Controller
         }
 
         const itemsToReturn = common_f.json.clone(offers[index].items);
-        this.returnItems(sessionID, itemsToReturn);
 
+        this.returnItems(sessionID, itemsToReturn);
         offers.splice(index, 1);
 
         return item_f.eventHandler.getOutput();
@@ -826,26 +802,32 @@ class Controller
         return item_f.eventHandler.getOutput();
     }
 
+    getCurrencySymbol()
+    {
+        switch (currencyTpl)
+        {
+            case "569668774bdc2da2298b4568":
+                return "€";
+
+            case "5696686a4bdc2da3298b456a":
+                return "$";
+
+            case "5449016a4bdc2d6f028b456f":
+            default:
+                return "₽";
+        }
+    }
+
+    formatCurrency()
+    {
+        return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
+    }
+
     completeOffer(sessionID, currencyTpl, moneyAmount, items, offerId)
     {
-        const formatCurrency = (moneyAmount) => moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
-        const getCurrencySymbol = (currencyTpl) =>
-        {
-            switch (currencyTpl)
-            {
-                case "569668774bdc2da2298b4568":
-                    return "€";
-                case "5696686a4bdc2da3298b456a":
-                    return "$";
-                case "5449016a4bdc2d6f028b456f":
-                default:
-                    return "₽";
-            }
-        };
-
         const itemTpl = items[0]._tpl;
-
         let itemCount = 0;
+
         for (const item of items)
         {
             if (!("upd" in item) || !("StackObjectsCount" in item.upd))
@@ -871,14 +853,16 @@ class Controller
         // Generate a message to inform that item was sold
         const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
         let messageText = "Your offer was sold";
+
         if (findItemResult[0])
         {
             try
             {
                 const itemLocale = database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id];
+
                 if (itemLocale && itemLocale.Name)
                 {
-                    messageText = `Your ${itemLocale.Name} (x${itemCount}) was bought by ${this.fetchRandomPmcName()} for ${getCurrencySymbol(currencyTpl)}${formatCurrency(moneyAmount)}`;
+                    messageText = `Your ${itemLocale.Name} (x${itemCount}) was bought by ${this.fetchRandomPmcName()} for ${this.getCurrencySymbol(currencyTpl)}${formatCurrency(moneyAmount)}`;
                 }
             }
             catch (err)
@@ -899,6 +883,8 @@ class Controller
         };
 
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+
+        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
     }
 
     returnItems(sessionID, items)
@@ -912,7 +898,7 @@ class Controller
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
     }
 
-    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend, sellTime)
+    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend)
     {
         const formattedItems = items.map(item =>
         {
@@ -940,7 +926,6 @@ class Controller
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
             "endTime": common_f.time.getTimestamp() + (12 * 60 * 60),
-            "sellTime": sellTime, // Custom field, not used in-game. Only saved server-side
             "summaryCost": amountToSend,
             "requirementsCost": amountToSend,
             "loyaltyLevel": 1,
@@ -962,6 +947,7 @@ class Controller
     fetchRandomPmcName()
     {
         const type = common_f.random.getInt(0, 1) === 0 ? "usec" : "bear";
+
         try
         {
             return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
@@ -970,34 +956,8 @@ class Controller
         {
             common_f.logger.logError(`Failed to fetch a random PMC name for type -> ${type}`);
             common_f.logger.logInfo(common_f.json.serialize(err));
-            return "Anonymous";
+            return "Unknown";
         }
-    }
-
-    /** Validate an offer, to assert that all essential fields are present */
-    validateOffer(offer)
-    {
-        const isNullOrUndefined = (value) => typeof value === "undefined" || value === null;
-
-        const requiredFields = ["user", "items", "root", "requirements", "endTime", "sellTime", "summaryCost"];
-
-        // Different error message for _id validation
-        if (isNullOrUndefined(offer._id))
-        {
-            common_f.logger.logError("Offer was missing the \"_id\" field");
-            return false;
-        }
-
-        for (const field of requiredFields)
-        {
-            if (isNullOrUndefined(offer[field]))
-            {
-                common_f.logger.logError(`Offer ${offer._id} was missing the "${field}" field`);
-                return false;
-            }
-        }
-
-        return true;
     }
 }
 

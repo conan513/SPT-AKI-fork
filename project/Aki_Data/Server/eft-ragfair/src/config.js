@@ -14,7 +14,7 @@ class Config
     constructor()
     {
         this.priceMultiplier = 1;
-        this.instantSellThreshold = 95; // Percentage of item price at which the offer instantly sells
+        this.sellChance = 25;
     }
 }
 
