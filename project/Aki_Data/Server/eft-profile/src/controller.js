@@ -157,7 +157,6 @@ class Controller
     {
         // Set cooldown time.
         // Make sure to apply ScavCooldownTimer bonus from Hideout if the player has it.
-        const currDt = Date.now() / 1000;
         let scavLockDuration = database_f.server.tables.globals.config.SavagePlayCooldown;
         let modifier = 1;
 
@@ -172,7 +171,7 @@ class Controller
         }
 
         scavLockDuration *= modifier;
-        profile.Info.SavageLockTime = currDt + scavLockDuration;
+        profile.Info.SavageLockTime = (Date.now() / 1000) + scavLockDuration;
         return profile;
     }
 
@@ -224,12 +223,6 @@ class Controller
         }
 
         return output;
-    }
-
-    changeVoice(info, sessionID)
-    {
-        let pmcData = this.getPmcProfile(sessionID);
-        pmcData.Info.Voice = info.voice;
     }
 
     resetProfileQuestCondition(sessionID, conditionId)

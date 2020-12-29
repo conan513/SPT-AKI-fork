@@ -4,6 +4,7 @@
  * website: https://www.guilded.gg/senkospub
  * authors:
  * - Senko-san (Merijn Hendriks)
+ * - Terkoiz
  */
 
 "use strict";
@@ -12,7 +13,8 @@ class Config
 {
     constructor()
     {
-        this.priceMultiplier = 3.5;
+        this.priceMultiplier = 1;
+        this.instantSellThreshold = 95; // Percentage of item price at which the offer instantly sells
     }
 }
 

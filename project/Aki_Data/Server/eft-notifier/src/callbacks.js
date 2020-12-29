@@ -19,13 +19,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/game/profile/select"] = this.selectProfile.bind(this);
         https_f.router.onDynamicRoute["/?last_id"] = this.notify.bind(this);
         https_f.router.onDynamicRoute["/notifierServer"] = this.notify.bind(this);
-        https_f.router.onDynamicRoute["/notifierBase"] = this.getBaseNotifier.bind(this);
         https_f.router.onDynamicRoute["/push/notifier/get/"] = this.getNotifier.bind(this);
-    }
-
-    getBaseNotifier(url, info, sessionID)
-    {
-        return https_f.response.emptyArrayResponse();
     }
 
     getNotifier(url, info, sessionID)
@@ -54,15 +48,7 @@ class Callbacks
 
     createNotifierChannel(url, info, sessionID)
     {
-        const notifierServer = `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`;
-
-        return https_f.response.getBody({
-            server: https_f.config.ip,
-            channel_id: sessionID,
-            url: notifierServer,
-            notifierServer: notifierServer,
-            ws: `wss://${https_f.config.ip}:${https_f.config.port}/websocketnyi`,
-        });
+        return https_f.response.getBody(notifier_f.controller.getChannel(sessionID));
     }
 
     notify(url, info, sessionID)
@@ -74,10 +60,8 @@ class Callbacks
     {
         return https_f.response.getBody({
             "status": "ok",
-            "notifier": {
-                "server": `${https_f.config.backendUrl}/`,
-                "channel_id": "testChannel"
-            }
+            "notifier": notifier_f.controller.getChannel(sessionID),
+            "notifierServer": notifier_f.controller.getServer(sessionID)
         });
     }
 }
