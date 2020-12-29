@@ -22,6 +22,7 @@ class Callbacks
         item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairExtendOffer"] = this.extendOffer.bind(this);
+        keepalive_f.controller.onExecute["ragfair-process-offers"] = this.processOffers.bind(this);
     }
 
     load()
@@ -36,7 +37,7 @@ class Callbacks
 
     getMarketPrice(url, info, sessionID)
     {
-        return https_f.response.getBody(ragfair_f.controller.getMarketPrice(info));
+        return https_f.response.getBody(ragfair_f.controller.getItemPrice(info));
     }
 
     getItemPrices(url, info, sessionID)
@@ -51,12 +52,18 @@ class Callbacks
 
     removeOffer(pmcData, info, sessionID)
     {
-        return ragfair_f.controller.removeOffer(pmcData, info, sessionID);
+        return ragfair_f.controller.removeOffer(info, sessionID);
     }
 
     extendOffer(pmcData, info, sessionID)
+    {  
+        common_f.logger.logInfo(common_f.json.serialize(info)); // TODO: Remove this once finished
+        return ragfair_f.controller.extendOffer(info, sessionID);
+    } 
+    
+    processOffers(sessionID)
     {
-        return ragfair_f.controller.extendOffer(pmcData, info, sessionID);
+        ragfair_f.controller.processOffers(sessionID);
     }
 }
 
