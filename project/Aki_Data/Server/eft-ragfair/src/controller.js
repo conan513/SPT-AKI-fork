@@ -273,19 +273,23 @@ class Controller
         }
 
         // Player's own offers
+        /*
         if (request.offerOwnerType === 2)
         {
             const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-            const categories = {};
-            for (let offer of offers)
+            let categories = {};
+            
+            for (const offer of offers)
             {
                 categories[offer.items[0]._tpl] = 1;
             }
-            return https_f.response.getBody({
+            
+            return {
                 "offers": offers,
                 "categories": categories
-            });
+            };
         }
+        */
 
         let response = {"categories": {}, "offers": [], "offersCount": 10, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
         let itemsToAdd = [];
