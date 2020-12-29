@@ -26122,7 +26122,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 180250,
+							"value": 250,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
