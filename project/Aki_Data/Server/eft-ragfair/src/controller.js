@@ -53,7 +53,7 @@ class Controller
             if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
             {
                 // skip ragfair and fence trader
-                return;
+                continue;
             }
 
             const assort = database_f.server.tables.traders[traderID].assort;
@@ -294,10 +294,10 @@ class Controller
             }
         }
 
+        // sort offers
         result.offers = this.sortOffers(info, result.offers);
         this.countCategories(result);
 
-        console.log(result);
         return result;
     }
 
@@ -358,14 +358,14 @@ class Controller
             return false;
         }
 
-        /*
-        if (info.onlyFunctional && !preset_f.controller.hasPreset(offer.items[0]))
+        if (info.onlyFunctional && preset_f.controller.hasPreset(offer.items[0]._tpl) && !preset_f.controller.isPreset(offer._id))
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildItems !== 0 && preset_f.controller.hasPreset(offer.items[0]))
+        /*
+        if (info.buildItems !== 0 && preset_f.controller.hasPreset(offer.items[0]._tpl))
         {
             // don't include preset items
             return false;
