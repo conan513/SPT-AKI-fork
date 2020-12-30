@@ -346,8 +346,6 @@ class Controller
             // skip items we shouldn't include
             return false;
         }
-
-        /*
         if (info.offerOwnerType === 1 && offer.user.memberType !== 4)
         {
             // don't include player offers
@@ -360,6 +358,7 @@ class Controller
             return false;
         }
 
+        /*
         if (info.onlyFunctional && !preset_f.controller.hasPreset(offer.items[0]))
         {
             // don't include non-functional items
@@ -371,6 +370,7 @@ class Controller
             // don't include preset items
             return false;
         }
+        */
 
         if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
         {
@@ -392,7 +392,6 @@ class Controller
                 return false;
             }
         }
-        */
 
         return true;
     }
