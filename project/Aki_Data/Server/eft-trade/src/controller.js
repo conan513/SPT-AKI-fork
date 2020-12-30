@@ -106,11 +106,10 @@ class Controller
     // Ragfair trading
     confirmRagfairTrading(pmcData, body, sessionID)
     {
-        let ragfair_offers_traders = database_f.server.tables.ragfair.offers;
-        let offers = body.offers;
+        let offers = database_f.server.tables.ragfair.offers;
         let output = item_f.eventHandler.getOutput();
 
-        for (let offer of offers)
+        for (let offer of body.offers)
         {
             pmcData = profile_f.controller.getPmcProfile(sessionID);
             body = {
@@ -123,13 +122,15 @@ class Controller
                 "scheme_items": offer.items
             };
 
-            for (let offerFromTrader of ragfair_offers_traders.offers)
+            const data = offers.find((item) =>
             {
-                if (offerFromTrader._id === offer.id)
-                {
-                    body.tid = offerFromTrader.user.id;
-                    break;
-                }
+                return item._id === offer.id;
+            });
+
+            if (data && data.user.memberType === 4)
+            {
+                // item is bought from a trader
+                body.tid = data.user.id;
             }
 
             output = this.confirmTrading(pmcData, body, sessionID);
