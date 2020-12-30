@@ -1,6 +1,16 @@
 {
 	"items": [
 		{
+			"_id": "308TacX",
+			"_tpl": "5fc382b6d6fa9c00c571bbc3",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": true,
+				"StackObjectsCount": 999999999
+			}
+		},
+		{
 			"_id": "5eeca63bbfed7142cb30fa37",
 			"_tpl": "5a9ea27ca2750c00137fa672",
 			"parentId": "hideout",
@@ -6187,6 +6197,14 @@
 		}
 	],
 	"barter_scheme": {
+		"308TacX": [
+			[
+				{
+					"count": 289,
+					"_tpl": "5449016a4bdc2d6f028b456f"
+				}
+			]
+		],
 		"5eeca63bbfed7142cb30fa37": [
 			[
 				{
@@ -9955,6 +9973,7 @@
 		"5eeca63ebfed7142cb30feb5": 2,
 		"5eeca63ebfed7142cb30febf": 3,
 		"5eeca63ebfed7142cb30fec1": 2,
-		"5ef52a1f7e0a17415066ec67": 2
+		"5ef52a1f7e0a17415066ec67": 2,
+		"308TacX": 4
 	}
 }
