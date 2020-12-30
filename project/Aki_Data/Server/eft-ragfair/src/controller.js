@@ -267,10 +267,13 @@ class Controller
         let result = {"categories": {}, "offers": [], "offersCount": 10, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
         let offers = [];
 
+        // get offer categories
+        let itemsToAdd = this.filterCategories(sessionID, info);
+
         // player offers
         if (info.offerOwnerType === 0 || info.offerOwnerType === 2)
         {
-            const playerOffers = this.getPlayerOffers(sessionID, info);
+            const playerOffers = this.getPlayerOffers(sessionID, info, offers, itemsToAdd);
             offers = [...offers, ...playerOffers];
         }
 
@@ -281,16 +284,15 @@ class Controller
             offers = [...offers, ...traderOffers];
         }
 
-        result.offers = this.sortOffers(info, offers);
+        result.offers = this.sortOffers(info, offers, offers, itemsToAdd);
         this.countCategories(result);
 
         return result;
     }
 
-    getPlayerOffers(sessionID, info)
+    filterCategories(sessionID, info)
     {
-        let result = []
-        let itemsToAdd = [];
+        let result = [];
 
         if (!info.linkedSearchId && !info.neededSearchId)
         {
@@ -300,18 +302,18 @@ class Controller
         if (info.buildCount)
         {
             // Case: weapon builds
-            itemsToAdd = itemsToAdd.concat(Object.keys(info.buildItems));
+            result = result.concat(Object.keys(info.buildItems));
         }
         else
         {
             // Case: search
             if (info.linkedSearchId)
             {
-                itemsToAdd = this.getLinkedSearchList(info.linkedSearchId);
+                result = this.getLinkedSearchList(info.linkedSearchId);
             }
             else if (info.neededSearchId)
             {
-                itemsToAdd = this.getNeededSearchList(info.neededSearchId);
+                result = this.getNeededSearchList(info.neededSearchId);
             }
 
             // Case: category
@@ -319,16 +321,23 @@ class Controller
             {
                 let handbook = this.getCategoryList(info.handbookId);
 
-                if (itemsToAdd.length)
+                if (result.length)
                 {
-                    itemsToAdd = helpfunc_f.helpFunctions.arrayIntersect(itemsToAdd, handbook);
+                    result = helpfunc_f.helpFunctions.arrayIntersect(result, handbook);
                 }
                 else
                 {
-                    itemsToAdd = handbook;
+                    result = handbook;
                 }
             }
         }
+
+        return result;
+    }
+
+    getPlayerOffers(sessionID, info, offers, itemsToAdd)
+    {
+        let result = [];
 
         for (let item of itemsToAdd)
         {
@@ -338,65 +347,20 @@ class Controller
         return result;
     }
 
-    getTraderOffers(sessionID, info)
+    getTraderOffers(sessionID, info, offers, itemsToAdd)
     {
-        let jsonToReturn = common_f.json.clone(database_f.server.tables.ragfair.offers);
-        let offersFilters = []; //this is an array of item tpl who filter only items to show
+        let result = [];
 
-        if (info.buildCount)
+        for (let offer of offers)
         {
-            // Case: weapon builds
-            offersFilters = Object.keys(info.buildItems) ;
-            jsonToReturn = this.fillCatagories(jsonToReturn, offersFilters);
-        }
-        else
-        {
-            // Case: search
-            if (info.linkedSearchId)
+            for (let tplTokeep of itemsToAdd)
             {
-                offersFilters = [...offersFilters, ...this.getLinkedSearchList(info.linkedSearchId) ];
-                jsonToReturn = this.fillCatagories(jsonToReturn, offersFilters);
-            }
-            else if (info.neededSearchId)
-            {
-                offersFilters = [...offersFilters, ...this.getNeededSearchList(info.neededSearchId) ];
-                jsonToReturn = this.fillCatagories(jsonToReturn, offersFilters);
-            }
-
-            if (info.removeBartering === true)
-            {
-                jsonToReturn = this.removeBarterOffers(jsonToReturn);
-                jsonToReturn = this.fillCatagories(jsonToReturn, offersFilters);
-            }
-
-            // Case: category
-            if (info.handbookId)
-            {
-                let handbookList = this.getCategoryList(info.handbookId);
-
-                if (offersFilters.length)
+                if (offer.items[0]._tpl === tplTokeep)
                 {
-                    offersFilters = helpfunc_f.helpFunctions.arrayIntersect(offersFilters, handbookList);
-                }
-                else
-                {
-                    offersFilters = handbookList;
-                }
-            }
-        }
-
-        let offersToKeep = [];
-
-        for (let offer in jsonToReturn.offers)
-        {
-            for (let tplTokeep of offersFilters)
-            {
-                if (jsonToReturn.offers[offer].items[0]._tpl === tplTokeep)
-                {
-                    jsonToReturn.offers[offer].summaryCost = this.calculateCost(jsonToReturn.offers[offer].requirements);
+                    offer.summaryCost = this.calculateCost(offer.requirements);
 
                     // check if offer is really available, removes any quest locked items not in current assort of a trader
-                    let tmpOffer = jsonToReturn.offers[offer];
+                    let tmpOffer = offer;
                     let traderId = tmpOffer.user.id;
                     let items = trader_f.controller.getAssort(sessionID, traderId).items;
 
@@ -404,7 +368,7 @@ class Controller
                     {
                         if (item._id === tmpOffer.root)
                         {
-                            offersToKeep.push(jsonToReturn.offers[offer]);
+                            result.push(offer);
                             break;
                         }
                     }
@@ -412,10 +376,7 @@ class Controller
             }
         }
 
-        jsonToReturn.offers = offersToKeep;
-        jsonToReturn.offers = this.sortOffers(info, jsonToReturn.offers);
-
-        return jsonToReturn;
+        return result;
     }
 
     calculateCost(barter_scheme)//theorical , not tested not implemented
@@ -677,11 +638,13 @@ class Controller
         for (const item of info.requirements)
         {
             let requestedItemTpl = item._tpl;
+
             if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
             {
                 // TODO: rework code to support barter offers
                 return helpfunc_f.helpFunctions.appendErrorToOutput(result, "You can only request money");
             }
+
             requirementsPriceInRub += helpfunc_f.helpFunctions.inRUB(item.count, requestedItemTpl);
             requirementsPrice += item.count;
         }
