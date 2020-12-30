@@ -16,38 +16,35 @@ class Controller
 
     initialize()
     {
-        // initialize base offer expire date (1 week after server start)
-        const time = common_f.time.getTimestamp();
         this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
         this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";
 
-        database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
-
-        // get all trader offers
         database_f.server.tables.ragfair.offers = [];
+
+        // initialize base offer expire date (1 week after server start)
+        const time = common_f.time.getTimestamp();
+        database_f.server.tables.ragfair.offer.startTime = time;
+        database_f.server.tables.ragfair.offer.endTime = time + 604800000;    
+
+        // add offers to the database
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            this.createItemOffer(itemID);
+        }
+
+        for (const presetID in database_f.server.tables.globals.ItemPresets)
+        {
+            this.createPresetOffer(presetID);
+        }
 
         for (const traderID in database_f.server.tables.traders)
         {
             this.addTraderOffers(traderID);
         }
-
-        // get all generated offers
-        for (const itemID in database_f.server.tables.templates.items)
-        {
-            this.createOffer(itemID);
-        }
-
-        for (const presetID in database_f.server.tables.globals.ItemPresets)
-        {
-            this.createOffer(presetID);
-        }
     }
 
     addTraderOffers(traderID)
     {
-        let result = database_f.server.tables.ragfair.offers;
-
         // skip ragfair and fence trader
         if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
         {
@@ -95,10 +92,57 @@ class Controller
             }
 
             // add the offer
-            result = result.concat(this.createTraderOffer(items, barter_scheme, loyal_level, traderID));
+            this.createTraderOffer(items, barter_scheme, loyal_level, traderID);
+        }
+    }
+
+    createItemOffer(itemID)
+    {
+        // Some slot filters reference bad items
+        if (!(itemID in database_f.server.tables.templates.items))
+        {
+            return;
         }
 
-        database_f.server.tables.ragfair.offers = result;
+        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
+        let rubPrice = this.fetchItemFleaPrice(itemID);
+
+        offer._id = itemID;
+        offer.items[0]._tpl = itemID;
+        offer.requirements[0].count = rubPrice;
+        offer.itemsCost = rubPrice;
+        offer.requirementsCost = rubPrice;
+        offer.summaryCost = rubPrice;
+
+        database_f.server.tables.ragfair.offers.push(offer);
+    }
+
+    createPresetOffer(presetID)
+    {
+        if (!preset_f.controller.isPreset(presetID))
+        {
+            return;
+        }
+
+        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
+        let preset = preset_f.controller.getPreset(presetID);
+        let mods = preset._items;
+        let rub = 0;
+
+        for (let it of mods)
+        {
+            rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
+        }
+
+        mods[0].upd = mods[0].upd || {}; // append the stack count
+        mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
+
+        offer._id = preset._id;          // The offer's id is now the preset's id
+        offer.root = mods[0]._id;        // Sets the main part of the weapon
+        offer.items = mods;
+        offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
+
+        database_f.server.tables.ragfair.offers.push(offer);
     }
 
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
@@ -121,63 +165,7 @@ class Controller
         offer.requirements = barter_scheme;
         offer.loyaltyLevel = loyal_level;
 
-        return [offer];
-    }
-
-    createOffer(template)
-    {
-        // Some slot filters reference bad items
-        if (!(template in database_f.server.tables.templates.items))
-        {
-            common_f.logger.logWarning("Item " + template + " does not exist");
-            return [];
-        }
-
-        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-        let offers = [];
-        
-        if (preset_f.controller.hasPreset(template))
-        {
-            // Preset
-            let presets = common_f.json.clone(preset_f.controller.getPresets(template));
-
-            for (let p of presets)
-            {
-                let offer = common_f.json.clone(offer);
-                let mods = p._items;
-                let rub = 0;
-
-                for (let it of mods)
-                {
-                    rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
-                }
-
-                mods[0].upd = mods[0].upd || {}; // append the stack count
-                mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
-
-                offer._id = p._id;               // The offer's id is now the preset's id
-                offer.root = mods[0]._id;        // Sets the main part of the weapon
-                offer.items = mods;
-                offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
-                offers.push(offer);
-            }
-        }
-        else
-        {
-            // Single item
-            let rubPrice = this.fetchItemFleaPrice(template);
-
-            offer._id = template;
-            offer.items[0]._tpl = template;
-            offer.requirements[0].count = rubPrice;
-            offer.itemsCost = rubPrice;
-            offer.requirementsCost = rubPrice;
-            offer.summaryCost = rubPrice;
-            
-            offers.push(offer);
-        }
-
-        return offers;
+        database_f.server.tables.ragfair.offers.push(offer);
     }
 
     sortOffersByID(a, b)
