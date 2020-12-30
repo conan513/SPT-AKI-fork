@@ -92,7 +92,8 @@
 			],
 			"FirstPrimaryWeapon": [
 				"5ac66d015acfc400180ae6e4",
-				"5ac66cb05acfc40198510a10"
+				"5ac66cb05acfc40198510a10",
+				"5926bb2186f7744b1c6c6e60"
 			],
 			"SecondPrimaryWeapon": [],
 			"Holster": [
@@ -103,7 +104,8 @@
 		"mods": {
 			"5ac66c5d5acfc4001718d314": {
 				"cartridges": [
-					"59e6906286f7746c9f75e847"
+					"59e6906286f7746c9f75e847",
+					"59e690b686f7746c9f75e848"
 				]
 			},
 			"5ac66d015acfc400180ae6e4": {
@@ -197,6 +199,51 @@
 				"mod_handguard": [
 					"57cffd8224597763b03fc609"
 				]
+			},
+			"5926c0df86f77462f647f764": {
+				"mod_handguard": [
+					"5d010d1cd7ad1a59283b1ce7"
+				],
+				"mod_stock": [
+					"5926d3c686f77410de68ebc8"
+				],
+				"mod_muzzle": [
+					"5c0000c00db834001a6697fc"
+				],
+				"mod_sight_rear": [
+					"5926d2be86f774134d668e4e"
+				]
+			},
+			"5c0000c00db834001a6697fc": {
+				"mod_muzzle": [
+					"5a9fb739a2750c003215717f"
+				]
+			},
+			"5926bb2186f7744b1c6c6e60": {
+				"mod_reciever": [
+					"5926c0df86f77462f647f764"
+				],
+				"mod_charge": [
+					"5926c32286f774616e42de99"
+				],
+				"mod_magazine": [
+					"5926c3b286f774640d189b6b"
+				],
+				"patron_in_weapon": [
+					"5c925fa22e221601da359b7b",
+					"5efb0da7a29a85116f6ea05f"
+				]
+			},
+			"5926c3b286f774640d189b6b": {
+				"cartridges": [
+					"5c925fa22e221601da359b7b",
+					"5efb0da7a29a85116f6ea05f"
+				]
+			},
+			"5d010d1cd7ad1a59283b1ce7": {
+				"mod_foregrip": [
+					"5c791e872e2216001219c40a"
+				]
 			}
 		},
 		"items": {
@@ -208,14 +255,23 @@
 				"5c94bbff86f7747ee735c08f",
 				"5710c24ad2720bc3458b45a3",
 				"571a29dc2459771fb2755a6a",
-				"59faff1d86f7746c51718c9c"
+				"59faff1d86f7746c51718c9c",
+				"59e6906286f7746c9f75e847",
+				"5736026a245977644601dc61",
+				"5c925fa22e221601da359b7b",
+				"5926c3b286f774640d189b6b",
+				"5efb0da7a29a85116f6ea05f",
+				"59e690b686f7746c9f75e848"
 			],
 			"Backpack": [],
 			"SecuredContainer": [
 				"5e831507ea0a7c419c2f9bd9",
 				"5e8488fa988a8701445df1e4",
 				"59e6906286f7746c9f75e847",
-				"5736026a245977644601dc61"
+				"5736026a245977644601dc61",
+				"5c925fa22e221601da359b7b",
+				"5efb0da7a29a85116f6ea05f",
+				"59e690b686f7746c9f75e848"
 			]
 		}
 	},

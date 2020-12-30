@@ -96,7 +96,9 @@
 				"5926bb2186f7744b1c6c6e60"
 			],
 			"SecondPrimaryWeapon": [],
-			"Holster": [],
+			"Holster": [
+				"59f98b4986f7746f546d2cef"
+			],
 			"Scabbard": [
 				"5fc64ea372b0dd78d51159dc"
 			]
@@ -217,7 +219,8 @@
 			},
 			"5926bb2186f7744b1c6c6e60": {
 				"mod_magazine": [
-					"5926c3b286f774640d189b6b"
+					"5926c3b286f774640d189b6b",
+					"5a351711c4a282000b1521a4"
 				],
 				"mod_reciever": [
 					"5926c0df86f77462f647f764"
@@ -254,6 +257,34 @@
 				"mod_muzzle": [
 					"5c6165902e22160010261b28"
 				]
+			},
+			"5a27b3d0c4a282000d721ec1": {
+				"mod_muzzle": [
+					"5a27b6bec4a282000e496f78"
+				]
+			},
+			"5a27bad7c4a282000b15184b": {
+				"mod_mount": [
+					"5a27b3d0c4a282000d721ec1"
+				]
+			},
+			"59f98b4986f7746f546d2cef": {
+				"mod_mount": [
+					"5a27bad7c4a282000b15184b"
+				],
+				"mod_magazine": [
+					"59f99a7d86f7745b134aa97b"
+				]
+			},
+			"59f99a7d86f7745b134aa97b": {
+				"cartridges": [
+					"5a26ac0ec4a28200741e1e18"
+				]
+			},
+			"5a351711c4a282000b1521a4": {
+				"cartridges": [
+					"5efb0da7a29a85116f6ea05f"
+				]
 			}
 		},
 		"items": {
@@ -273,14 +304,50 @@
 				"5c1d0dc586f7744baf2e7b79",
 				"5c1d0efb86f7744baf2e7b7b",
 				"5c1e495a86f7743109743dfb",
-				"5c1d0f4986f7744bb01837fa"
+				"5c1d0f4986f7744bb01837fa",
+				"5efb0e16aeb21837e749c7ff",
+				"5894a05586f774094708ef75",
+				"591383f186f7744a4c5edcf3",
+				"591ae8f986f77406f854be45",
+				"5938144586f77473c2087145",
+				"5c0e533786f7747fa23f4d47",
+				"5a26ac0ec4a28200741e1e18",
+				"59f99a7d86f7745b134aa97b",
+				"590c645c86f77412b01304d9",
+				"5913877a86f774432f15d444",
+				"5c0d5e4486f77478390952fe",
+				"55d480c04bdc2d1d4e8b456a",
+				"5913611c86f77479e0084092",
+				"590c651286f7741e566b6461",
+				"5efb0da7a29a85116f6ea05f",
+				"5a351711c4a282000b1521a4",
+				"5780cf942459777df90dcb72",
+				"5938504186f7740991483f30",
+				"5780cda02459777b272ede61",
+				"5737218f245977612125ba51",
+				"57d1519e24597714373db79d",
+				"5672c92d4bdc2d180f8b4567",
+				"5a0dc45586f7742f6b0b73e3",
+				"5ed515c8d380ab312177c0fa",
+				"593aa4be86f77457f56379f8",
+				"5c0e530286f7747fa1419862",
+				"59136a4486f774447a1ed172",
+				"5a0ec70e86f7742c0b518fba",
+				"5d80c62a86f7744036212b3f",
+				"5c925fa22e221601da359b7b",
+				"5926c3b286f774640d189b6b",
+				"59136e1e86f774432f15d133",
+				"5938603e86f77435642354f4",
+				"5a0ee72c86f77436955d3435"
 			],
 			"Backpack": [],
 			"SecuredContainer": [
 				"5737218f245977612125ba51",
 				"5efb0e16aeb21837e749c7ff",
 				"5c0d5e4486f77478390952fe",
-				"5c925fa22e221601da359b7b"
+				"5c925fa22e221601da359b7b",
+				"5a26ac0ec4a28200741e1e18",
+				"5efb0da7a29a85116f6ea05f"
 			]
 		}
 	},
@@ -2215,7 +2282,7 @@
 	},
 	"chances": {
 		"equipment": {
-			"Headwear": 38,
+			"Headwear": 35,
 			"Earpiece": 0,
 			"FaceCover": 0,
 			"ArmorVest": 0,
@@ -2223,9 +2290,9 @@
 			"ArmBand": 0,
 			"TacticalVest": 0,
 			"Backpack": 0,
-			"FirstPrimaryWeapon": 100,
+			"FirstPrimaryWeapon": 84,
 			"SecondPrimaryWeapon": 0,
-			"Holster": 0,
+			"Holster": 16,
 			"Scabbard": 100
 		},
 		"mods": {
