@@ -335,7 +335,8 @@
 				"59387a4986f77401cc236e62",
 				"5913915886f774123603c392",
 				"5eff09cd30a7dc22fd1ddfed",
-				"59136e1e86f774432f15d133"
+				"59136e1e86f774432f15d133",
+				"5736026a245977644601dc61"
 			],
 			"Backpack": [],
 			"SecuredContainer": [
@@ -2216,8 +2217,8 @@
 			"Backpack": 0,
 			"FirstPrimaryWeapon": 100,
 			"SecondPrimaryWeapon": 0,
-			"Holster": 3,
-			"Scabbard": 22
+			"Holster": 33,
+			"Scabbard": 67
 		},
 		"mods": {
 			"mod_pistol_grip": 100,

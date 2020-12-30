@@ -99,7 +99,8 @@
 				"5aa7cfc0e5b5b00015693143",
 				"5aa7e4a4e5b5b000137b76f2",
 				"5f60e6403b85f6263c14558c",
-				"5f60e7788adaa7100c3adb49"
+				"5f60e7788adaa7100c3adb49",
+				"5aa7e276e5b5b000171d0647"
 			],
 			"Earpiece": [],
 			"FaceCover": [
@@ -116,7 +117,8 @@
 				"5ab8e79e86f7742d8b372e78",
 				"545cdb794bdc2d3a198b456a",
 				"5b44d0de86f774503d30cba8",
-				"5ca2151486f774244a3b8d30"
+				"5ca2151486f774244a3b8d30",
+				"5ca21c6986f77479963115a7"
 			],
 			"Eyewear": [
 				"5b432be65acfc433000ed01f",
@@ -634,6 +636,11 @@
 				"mod_nvg": [
 					"5a16b8a9fcdbcb00165aa6ca"
 				]
+			},
+			"5aa7e276e5b5b000171d0647": {
+				"mod_equipment": [
+					"5aa7e373e5b5b000137b76f0"
+				]
 			}
 		},
 		"items": {
@@ -669,7 +676,8 @@
 				"573476d324597737da2adc13",
 				"5bc9be8fd4351e00334cae6e",
 				"573476f124597737e04bf328",
-				"5734770f24597738025ee254"
+				"5734770f24597738025ee254",
+				"5af0484c86f7740f02001f7f"
 			],
 			"Backpack": [],
 			"SecuredContainer": [
