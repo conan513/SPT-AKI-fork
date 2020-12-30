@@ -31,6 +31,17 @@ class Controller
         {
             this.addTraderOffers(traderID);
         }
+
+        // get all generated offers
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            this.createOffer(itemID);
+        }
+
+        for (const presetID in database_f.server.tables.globals.ItemPresets)
+        {
+            this.createOffer(presetID);
+        }
     }
 
     addTraderOffers(traderID)
@@ -113,7 +124,7 @@ class Controller
         return [offer];
     }
 
-    createOffer(template, onlyFunc, usePresets = true)
+    createOffer(template)
     {
         // Some slot filters reference bad items
         if (!(template in database_f.server.tables.templates.items))
@@ -124,10 +135,10 @@ class Controller
 
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
         let offers = [];
-
-        // Preset
-        if (usePresets && preset_f.controller.hasPreset(template))
+        
+        if (preset_f.controller.hasPreset(template))
         {
+            // Preset
             let presets = common_f.json.clone(preset_f.controller.getPresets(template));
 
             for (let p of presets)
@@ -151,10 +162,9 @@ class Controller
                 offers.push(offer);
             }
         }
-
-        // Single item
-        if (!preset_f.controller.hasPreset(template) || !onlyFunc)
+        else
         {
+            // Single item
             let rubPrice = this.fetchItemFleaPrice(template);
 
             offer._id = template;
@@ -287,20 +297,8 @@ class Controller
             info.offerOwnerType = 2;
         }
 
-        // player offers
-        if (info.offerOwnerType === 0 || info.offerOwnerType === 2)
-        {
-            offers = [...offers, ...this.getPlayerOffers(sessionID, info, itemsToAdd)];
-        }
-
-        // trader offers
-        if (info.offerOwnerType === 0 || info.offerOwnerType === 1)
-        {
-            offers = [...offers, ...this.getTraderOffers(sessionID, info, itemsToAdd)];
-        }
-
-        // TODO: filter barter offers
-
+        // get offers
+        offers = this.getOffers(sessionID, info, itemsToAdd);
         result.offers = this.sortOffers(info, offers);
         this.countCategories(result);
 
@@ -347,25 +345,64 @@ class Controller
         return result;
     }
 
-    getPlayerOffers(sessionID, info, itemsToAdd)
+    isLookupOffer(sessionID, info, itemsToAdd)
     {
-        let result = [];
-
-        for (let item of itemsToAdd)
+        // validation
+        if (!itemsToAdd.includes(offer.items[0]._tpl))
         {
-            result = result.concat(this.createOffer(item, info.onlyFunctional, info.buildCount === 0));
+            // skip items we shouldn't include
+            return false;
         }
 
-        return result;
+        if (info.offerOwnerType === 1 && offer.user.memberType !== 4)
+        {
+            // don't include player offers
+            return false;
+        }
+
+        if (info.offerOwnerType === 2 && offer.user.memberType === 4)
+        {
+            // don't include trader offers
+            return false;
+        }
+
+        if (info.onlyFunctional && !preset_f.controller.hasPreset(offer.items[0]))
+        {
+            // don't include non-functional items
+            return false;
+        }
+
+        if (info.buildItems !== 0 && preset_f.controller.hasPreset(offer.items[0]))
+        {
+            // don't include preset items
+            return false;
+        }
+
+        // TODO: filter barter offers
+
+        // handle trader items
+        if (offer.user.memberType === 4)
+        {
+            const flag = assorts[offer.user.id].items.find((item) =>
+            {
+                return item._id === offer.root;
+            });
+
+            if (!flag)
+            {
+                // skip (quest) locked items
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    getTraderOffers(sessionID, info, itemsToAdd)
+    getOffers(sessionID, info, itemsToAdd)
     {
-        let result = [];
-        let assorts = {};
-        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers);
-
         // get assorts to compare against
+        let assorts = {};
+
         for (const traderID in database_f.server.tables.traders)
         {
             if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
@@ -377,39 +414,24 @@ class Controller
         }
 
         // get offers to send
+        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers).filter((offer) =>
+        {
+            return !this.isLookupOffer(info, itemsToAdd, assorts);
+        });
+
         for (let offer of offers)
         {
-            if (offer.user.memberType !== 4)
+            if (offer.user.memberType === 4)
             {
-                // don't include player offers
-                continue;
+                // trader assort item
+                offer.summaryCost = this.calculateCost(offer.requirements);
             }
-
-            if (!itemsToAdd.includes(offer.items[0]._tpl))
-            {
-                // skip items we shouldn't include
-                continue;
-            }
-
-            const flag = assorts[offer.user.id].items.find((item) =>
-            {
-                return item._id === offer.root;
-            });
-
-            if (!flag)
-            {
-                // skip (quest) locked items
-                continue;
-            }
-
-            offer.summaryCost = this.calculateCost(offer.requirements);
-            result.push(offer);
         }
 
-        return result;
+        return offers;
     }
 
-    calculateCost(barter_scheme)//theorical , not tested not implemented
+    calculateCost(barter_scheme)
     {
         let summaryCost = 0;
 
