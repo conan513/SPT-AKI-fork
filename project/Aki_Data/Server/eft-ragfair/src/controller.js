@@ -455,6 +455,20 @@ class Controller
         return result;
     }
 
+    getLinkedSearchList(linkedSearchId)
+    {
+        const item = database_f.server.tables.templates.items[linkedSearchId];
+
+        // merging all possible filters without duplicates
+        const result = new Set([
+            ...this.getFilters(item, "Slots"),
+            ...this.getFilters(item, "Chambers"),
+            ...this.getFilters(item, "Cartridges")
+        ]);
+
+        return Array.from(result);
+    }
+
     getNeededSearchList(neededSearchId)
     {
         let result = [];
@@ -470,20 +484,6 @@ class Controller
         }
 
         return result;
-    }
-
-    getLinkedSearchList(linkedSearchId)
-    {
-        const item = database_f.server.tables.templates.items[linkedSearchId];
-
-        // merging all possible filters without duplicates
-        const result = new Set([
-            ...this.getFilters(item, "Slots"),
-            ...this.getFilters(item, "Chambers"),
-            ...this.getFilters(item, "Cartridges")
-        ]);
-
-        return Array.from(result);
     }
 
     /* Because of presets, categories are not always 1 */
@@ -548,19 +548,25 @@ class Controller
     {
         let result = new Set();
 
-        if (slot in item._props && item._props[slot].length)
+        if (!(slot in item._props && item._props[slot].length))
         {
-            for (let sub of item._props[slot])
+            // item slot doesnt exist
+            return result;
+        }
+
+        for (const sub of item._props[slot])
+        {
+            if (!("_props" in sub && "filters" in sub._props))
             {
-                if ("_props" in sub && "filters" in sub._props)
+                // not a filter
+                continue;
+            }
+
+            for (const filter of sub._props.filters)
+            {
+                for (const f of filter.Filter)
                 {
-                    for (let filter of sub._props.filters)
-                    {
-                        for (let f of filter.Filter)
-                        {
-                            result.add(f);
-                        }
-                    }
+                    result.add(f);
                 }
             }
         }
