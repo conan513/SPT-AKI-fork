@@ -51,48 +51,20 @@ class Controller
             return;
         }
 
-        const assort = database_f.server.tables.traders[traderID].assort;
+        const assort = database_f.server.tables.traders[traderID].assort.filter((item) =>
+        {
+            // only use base items
+            return item.slotId !== "hideout";
+        });
 
         for (const item of assort.items)
         {
-            if (item.slotId !== "hideout")
-            {
-                // only use base items
-                continue;
-            }
-
-            // items
-            let items = [];
-
-            items.push(item);
-            items = [...items, ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-
-            // barter scheme
-            let barter_scheme = null;
-
-            for (const barter in assort.barter_scheme)
-            {
-                if (item._id === barter)
-                {
-                    barter_scheme = assort.barter_scheme[barter][0];
-                    break;
-                }
-            }
-
-            // loyal level
-            let loyal_level = 0;
-
-            for (const loyalLevel in assort.loyal_level_items)
-            {
-                if (item._id === loyalLevel)
-                {
-                    loyal_level = assort.loyal_level_items[loyalLevel];
-                    break;
-                }
-            }
+            let items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            let barterScheme = assort.barterScheme[item._id][0];
+            let loyalLevel = assort.loyalLevel_items[item._id];
 
             // add the offer
-            this.createTraderOffer(items, barter_scheme, loyal_level, traderID);
+            this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
         }
     }
 
@@ -145,13 +117,13 @@ class Controller
         database_f.server.tables.ragfair.offers.push(offer);
     }
 
-    createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
+    createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
-        offer._id = itemsToSell[0]._id;
-        offer.intId = counter;
+        offer._id = items[0]._id;
+        offer.intId = 911;
         offer.user = {
             "id": trader._id,
             "memberType": 4,
@@ -160,10 +132,11 @@ class Controller
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
-        offer.root = itemsToSell[0]._id;
-        offer.items = itemsToSell;
-        offer.requirements = barter_scheme;
-        offer.loyaltyLevel = loyal_level;
+        offer.root = items[0]._id;
+        offer.items = items;
+        offer.requirements = barterScheme;
+        offer.loyaltyLevel = loyalLevel;
+        offer.summaryCost = this.calculateCost(barterScheme);
 
         database_f.server.tables.ragfair.offers.push(offer);
     }
@@ -257,13 +230,23 @@ class Controller
 
     getOffers(sessionID, info)
     {
-        let offers = [];
+        console.log(info);
+
+        const itemsToAdd = this.filterCategories(sessionID, info);
+        let assorts = {};
         let result = {
             "categories": {},
             "offers": [],
             "offersCount": info.limit,
             "selectedCategory": "5b5f78dc86f77409407a7f8e"
         };
+
+        // force player-only in weapon preset build purchase
+        // TODO: write cheapes price detection mechanism, prevent trader-player Eitem duplicates
+        if (info.buildCount)
+        {
+            info.offerOwnerType = 2;
+        }
 
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
@@ -272,24 +255,29 @@ class Controller
             {
                 result.categories[offer.items[0]._tpl] = 1;
             }
-        }
+        }        
 
-        // filter categories
-        let itemsToAdd = this.filterCategories(sessionID, info);
-
-        // force player-only in weapon preset build purchase
-        // TODO: write cheapes price detection mechanism
-        // TODO: prevent trader-player item duplicates
-        if (info.buildCount)
+        // get assorts to compare against
+        for (const traderID in database_f.server.tables.traders)
         {
-            info.offerOwnerType = 2;
+            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+            {
+                continue;
+            }
+
+            assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 
-        // get offers
-        offers = this.getOffers(sessionID, info, itemsToAdd);
+        // get offers to send
+        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers).filter((offer) =>
+        {
+            return !this.isLookupOffer(info, itemsToAdd, assorts, offer);
+        });
+
         result.offers = this.sortOffers(info, offers);
         this.countCategories(result);
 
+        console.log(result);
         return result;
     }
 
@@ -333,7 +321,7 @@ class Controller
         return result;
     }
 
-    isLookupOffer(sessionID, info, itemsToAdd)
+    isLookupOffer(info, itemsToAdd, assorts, offer)
     {
         // validation
         if (!itemsToAdd.includes(offer.items[0]._tpl))
@@ -367,6 +355,10 @@ class Controller
         }
 
         // TODO: filter barter offers
+        if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === false)
+        {
+            // return false;
+        }
 
         // handle trader items
         if (offer.user.memberType === 4)
@@ -386,44 +378,11 @@ class Controller
         return true;
     }
 
-    getOffers(sessionID, info, itemsToAdd)
-    {
-        // get assorts to compare against
-        let assorts = {};
-
-        for (const traderID in database_f.server.tables.traders)
-        {
-            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
-            {
-                continue;
-            }
-
-            assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
-        }
-
-        // get offers to send
-        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers).filter((offer) =>
-        {
-            return !this.isLookupOffer(info, itemsToAdd, assorts);
-        });
-
-        for (let offer of offers)
-        {
-            if (offer.user.memberType === 4)
-            {
-                // trader assort item
-                offer.summaryCost = this.calculateCost(offer.requirements);
-            }
-        }
-
-        return offers;
-    }
-
-    calculateCost(barter_scheme)
+    calculateCost(barterScheme)
     {
         let summaryCost = 0;
 
-        for (let barter of barter_scheme)
+        for (let barter of barterScheme)
         {
             summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
         }
@@ -478,22 +437,6 @@ class Controller
         }
 
         return result;
-    }
-
-    removeBarterOffers(info)
-    {
-        let override = [];
-
-        for (const offer of info)
-        {
-            if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === true)
-            {
-                override.push(offer);
-            }
-        }
-
-        info = override;
-        return info;
     }
 
     getNeededSearchList(neededSearchId)
