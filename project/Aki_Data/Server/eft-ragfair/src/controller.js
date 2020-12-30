@@ -30,7 +30,7 @@ class Controller
         // initialize base offer expire date (1 week after server start)
         const time = common_f.time.getTimestamp();
         database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + 604800000;   
+        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
     }
 
     generateOffers()
@@ -271,7 +271,7 @@ class Controller
             {
                 result.categories[offer.items[0]._tpl] = 1;
             }
-        }        
+        }
 
         // get assorts to compare against
         for (const traderID in database_f.server.tables.traders)
@@ -311,7 +311,7 @@ class Controller
         {
             return Object.keys(info.buildItems);
         }
-        
+
         // Case: search
         if (info.linkedSearchId)
         {

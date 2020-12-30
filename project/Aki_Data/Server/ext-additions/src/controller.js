@@ -55,7 +55,7 @@ class Controller
                     "Level2": 1000,
                     "Level3": 3000
                 }
-            )
+            );
         }
     }
 

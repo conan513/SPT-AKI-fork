@@ -155,7 +155,7 @@ class Controller
             "url": this.getServer(sessionID),
             "notifierServer": this.getServer(sessionID),
             "ws": `wss://${https_f.config.ip}:${https_f.config.port}/websocketnyi`,
-        }
+        };
     }
 }
 
