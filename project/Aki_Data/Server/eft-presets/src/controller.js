@@ -41,6 +41,11 @@ class Controller
         return templateId in this.lookup;
     }
 
+    getPreset(id)
+    {
+        return database_f.server.tables.globals.ItemPresets[id];
+    }
+
     getPresets(templateId)
     {
         if (!this.hasPreset(templateId))

@@ -47,7 +47,7 @@ class Callbacks
 
     addOffer(pmcData, info, sessionID)
     {
-        return ragfair_f.controller.addOffer(pmcData, info, sessionID);
+        return ragfair_f.controller.addPlayerOffer(pmcData, info, sessionID);
     }
 
     removeOffer(pmcData, info, sessionID)

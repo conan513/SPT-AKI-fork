@@ -16,87 +16,131 @@ class Controller
 
     initialize()
     {
-        // initialize base offer expire date (1 week after server start)
-        const time = common_f.time.getTimestamp();
+        database_f.server.tables.ragfair.offers = [];
+
         this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
         this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";
 
+        this.initializeOfferBase();
+        this.generateOffers();
+    }
+
+    initializeOfferBase()
+    {
+        // initialize base offer expire date (1 week after server start)
+        const time = common_f.time.getTimestamp();
         database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
+        database_f.server.tables.ragfair.offer.endTime = time + 604800000;   
+    }
 
-        // get all trader offers
-        database_f.server.tables.ragfair.offers = [];
+    generateOffers()
+    {
+        // single items
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            this.createItemOffer(itemID);
+        }
 
+        // item presets
+        for (const presetID in database_f.server.tables.globals.ItemPresets)
+        {
+            this.createPresetOffer(presetID);
+        }
+
+        // traders
         for (const traderID in database_f.server.tables.traders)
         {
-            this.addTraderOffers(traderID);
+            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+            {
+                // skip ragfair and fence trader
+                return;
+            }
+
+            const assort = database_f.server.tables.traders[traderID].assort;
+
+            for (const item of assort.items)
+            {
+                if (item.slotId !== "hideout")
+                {
+                    // use only base items
+                    continue;
+                }
+
+                const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+                const barterScheme = assort.barter_scheme[item._id][0];
+                const loyalLevel = assort.loyal_level_items[item._id];
+
+                // add the offer
+                this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
+            }
         }
     }
 
-    addTraderOffers(traderID)
+    createItemOffer(itemID)
     {
-        let result = database_f.server.tables.ragfair.offers;
+        const item = database_f.server.tables.templates.items[itemID];
 
-        // skip ragfair and fence trader
-        if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+        if (!item || item._type === "Node")
+        {
+            // don't add nodes
+            return;
+        }
+
+        const price = this.fetchItemFleaPrice(itemID);
+
+        if (price === 0 || price === 1)
+        {
+            // don't add quest items
+            return;
+        }
+
+        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
+
+        offer._id = itemID;
+        offer.items[0]._tpl = itemID;
+        offer.requirements[0].count = price;
+        offer.itemsCost = price;
+        offer.requirementsCost = price;
+        offer.summaryCost = price;
+
+        database_f.server.tables.ragfair.offers.push(offer);
+    }
+
+    createPresetOffer(presetID)
+    {
+        if (!preset_f.controller.isPreset(presetID))
         {
             return;
         }
 
-        const assort = database_f.server.tables.traders[traderID].assort;
+        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
+        let preset = preset_f.controller.getPreset(presetID);
+        let mods = preset._items;
+        let rub = 0;
 
-        for (const item of assort.items)
+        for (let it of mods)
         {
-            if (item.slotId !== "hideout")
-            {
-                // only use base items
-                continue;
-            }
-
-            // items
-            let items = [];
-
-            items.push(item);
-            items = [...items, ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-
-            // barter scheme
-            let barter_scheme = null;
-
-            for (const barter in assort.barter_scheme)
-            {
-                if (item._id === barter)
-                {
-                    barter_scheme = assort.barter_scheme[barter][0];
-                    break;
-                }
-            }
-
-            // loyal level
-            let loyal_level = 0;
-
-            for (const loyalLevel in assort.loyal_level_items)
-            {
-                if (item._id === loyalLevel)
-                {
-                    loyal_level = assort.loyal_level_items[loyalLevel];
-                    break;
-                }
-            }
-
-            // add the offer
-            result = result.concat(this.createTraderOffer(items, barter_scheme, loyal_level, traderID));
+            rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
         }
 
-        database_f.server.tables.ragfair.offers = result;
+        mods[0].upd = mods[0].upd || {}; // append the stack count
+        mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
+
+        offer._id = preset._id;          // The offer's id is now the preset's id
+        offer.root = mods[0]._id;        // Sets the main part of the weapon
+        offer.items = mods;
+        offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
+
+        database_f.server.tables.ragfair.offers.push(offer);
     }
 
-    createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
+    createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
-        offer._id = itemsToSell[0]._id;
-        offer.intId = counter;
+        offer._id = items[0]._id;
+        offer.intId = 911;
         offer.user = {
             "id": trader._id,
             "memberType": 4,
@@ -105,69 +149,13 @@ class Controller
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
-        offer.root = itemsToSell[0]._id;
-        offer.items = itemsToSell;
-        offer.requirements = barter_scheme;
-        offer.loyaltyLevel = loyal_level;
+        offer.root = items[0]._id;
+        offer.items = items;
+        offer.requirements = barterScheme;
+        offer.loyaltyLevel = loyalLevel;
+        offer.summaryCost = this.calculateCost(barterScheme);
 
-        return [offer];
-    }
-
-    createOffer(template, onlyFunc, usePresets = true)
-    {
-        // Some slot filters reference bad items
-        if (!(template in database_f.server.tables.templates.items))
-        {
-            common_f.logger.logWarning("Item " + template + " does not exist");
-            return [];
-        }
-
-        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-        let offers = [];
-
-        // Preset
-        if (usePresets && preset_f.controller.hasPreset(template))
-        {
-            let presets = common_f.json.clone(preset_f.controller.getPresets(template));
-
-            for (let p of presets)
-            {
-                let offer = common_f.json.clone(offer);
-                let mods = p._items;
-                let rub = 0;
-
-                for (let it of mods)
-                {
-                    rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
-                }
-
-                mods[0].upd = mods[0].upd || {}; // append the stack count
-                mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
-
-                offer._id = p._id;               // The offer's id is now the preset's id
-                offer.root = mods[0]._id;        // Sets the main part of the weapon
-                offer.items = mods;
-                offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
-                offers.push(offer);
-            }
-        }
-
-        // Single item
-        if (!preset_f.controller.hasPreset(template) || !onlyFunc)
-        {
-            let rubPrice = this.fetchItemFleaPrice(template);
-
-            offer._id = template;
-            offer.items[0]._tpl = template;
-            offer.requirements[0].count = rubPrice;
-            offer.itemsCost = rubPrice;
-            offer.requirementsCost = rubPrice;
-            offer.summaryCost = rubPrice;
-            
-            offers.push(offer);
-        }
-
-        return offers;
+        database_f.server.tables.ragfair.offers.push(offer);
     }
 
     sortOffersByID(a, b)
@@ -182,7 +170,7 @@ class Controller
 
     sortOffersByName(a, b)
     {
-        // @TODO: Get localized item names
+        // TODO: Get localized item names
         try
         {
             let aa = helpfunc_f.helpFunctions.getItem(a._id)[1]._name;
@@ -259,13 +247,21 @@ class Controller
 
     getOffers(sessionID, info)
     {
-        let offers = [];
+        const itemsToAdd = this.filterCategories(sessionID, info);
+        let assorts = {};
         let result = {
             "categories": {},
             "offers": [],
             "offersCount": info.limit,
             "selectedCategory": "5b5f78dc86f77409407a7f8e"
         };
+
+        // force player-only in weapon preset build purchase
+        // TODO: write cheapes price detection mechanism, prevent trader-player Eitem duplicates
+        if (info.buildCount)
+        {
+            info.offerOwnerType = 2;
+        }
 
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
@@ -274,96 +270,7 @@ class Controller
             {
                 result.categories[offer.items[0]._tpl] = 1;
             }
-        }
-
-        // filter categories
-        let itemsToAdd = this.filterCategories(sessionID, info);
-
-        // force player-only in weapon preset build purchase
-        // TODO: write cheapes price detection mechanism
-        // TODO: prevent trader-player item duplicates
-        if (info.buildCount)
-        {
-            info.offerOwnerType = 2;
-        }
-
-        // player offers
-        if (info.offerOwnerType === 0 || info.offerOwnerType === 2)
-        {
-            offers = [...offers, ...this.getPlayerOffers(sessionID, info, itemsToAdd)];
-        }
-
-        // trader offers
-        if (info.offerOwnerType === 0 || info.offerOwnerType === 1)
-        {
-            offers = [...offers, ...this.getTraderOffers(sessionID, info, itemsToAdd)];
-        }
-
-        // TODO: filter barter offers
-
-        result.offers = this.sortOffers(info, offers);
-        this.countCategories(result);
-
-        return result;
-    }
-
-    filterCategories(sessionID, info)
-    {
-        let result = [];
-
-        if (info.buildCount)
-        {
-            // Case: weapon builds
-            result = result.concat(Object.keys(info.buildItems));
-        }
-        else
-        {
-            // Case: search
-            if (info.linkedSearchId)
-            {
-                result = this.getLinkedSearchList(info.linkedSearchId);
-            }
-            else if (info.neededSearchId)
-            {
-                result = this.getNeededSearchList(info.neededSearchId);
-            }
-
-            // Case: category
-            if (info.handbookId)
-            {
-                let handbook = this.getCategoryList(info.handbookId);
-
-                if (result.length)
-                {
-                    result = helpfunc_f.helpFunctions.arrayIntersect(result, handbook);
-                }
-                else
-                {
-                    result = handbook;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    getPlayerOffers(sessionID, info, itemsToAdd)
-    {
-        let result = [];
-
-        for (let item of itemsToAdd)
-        {
-            result = result.concat(this.createOffer(item, info.onlyFunctional, info.buildCount === 0));
-        }
-
-        return result;
-    }
-
-    getTraderOffers(sessionID, info, itemsToAdd)
-    {
-        let result = [];
-        let assorts = {};
-        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers);
+        }        
 
         // get assorts to compare against
         for (const traderID in database_f.server.tables.traders)
@@ -377,20 +284,103 @@ class Controller
         }
 
         // get offers to send
-        for (let offer of offers)
+        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers);
+
+        for (const offer of offers)
         {
-            if (offer.user.memberType !== 4)
+            if (this.isLookupOffer(info, itemsToAdd, assorts, offer))
             {
-                // don't include player offers
-                continue;
+                result.offers.push(offer);
             }
+        }
 
-            if (!itemsToAdd.includes(offer.items[0]._tpl))
+        result.offers = this.sortOffers(info, result.offers);
+        this.countCategories(result);
+
+        console.log(result);
+        return result;
+    }
+
+    filterCategories(sessionID, info)
+    {
+        let result = [];
+
+        // Case: weapon builds
+        if (info.buildCount)
+        {
+            result = Object.keys(info.buildItems);
+        }
+        
+        // Case: search
+        if (info.linkedSearchId)
+        {
+            result = this.getLinkedSearchList(info.linkedSearchId);
+        }
+        else if (info.neededSearchId)
+        {
+            result = this.getNeededSearchList(info.neededSearchId);
+        }
+
+        // Case: category
+        if (info.handbookId)
+        {
+            let handbook = this.getCategoryList(info.handbookId);
+
+            if (result.length)
             {
-                // skip items we shouldn't include
-                continue;
+                result = helpfunc_f.helpFunctions.arrayIntersect(result, handbook);
             }
+            else
+            {
+                result = handbook;
+            }
+        }
 
+        return result;
+    }
+
+    isLookupOffer(info, itemsToAdd, assorts, offer)
+    {
+        if (!itemsToAdd.includes(offer.items[0]._tpl))
+        {
+            // skip items we shouldn't include
+            return false;
+        }
+        if (info.offerOwnerType === 1 && offer.user.memberType !== 4)
+        {
+            // don't include player offers
+            return false;
+        }
+
+        if (info.offerOwnerType === 2 && offer.user.memberType === 4)
+        {
+            // don't include trader offers
+            return false;
+        }
+
+        /*
+        if (info.onlyFunctional && !preset_f.controller.hasPreset(offer.items[0]))
+        {
+            // don't include non-functional items
+            return false;
+        }
+
+        if (info.buildItems !== 0 && preset_f.controller.hasPreset(offer.items[0]))
+        {
+            // don't include preset items
+            return false;
+        }
+        */
+
+        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
+        {
+            // don't include barter offers
+            return false;
+        }
+
+        // handle trader items
+        if (offer.user.memberType === 4)
+        {
             const flag = assorts[offer.user.id].items.find((item) =>
             {
                 return item._id === offer.root;
@@ -399,21 +389,18 @@ class Controller
             if (!flag)
             {
                 // skip (quest) locked items
-                continue;
+                return false;
             }
-
-            offer.summaryCost = this.calculateCost(offer.requirements);
-            result.push(offer);
         }
 
-        return result;
+        return true;
     }
 
-    calculateCost(barter_scheme)//theorical , not tested not implemented
+    calculateCost(barterScheme)
     {
         let summaryCost = 0;
 
-        for (let barter of barter_scheme)
+        for (let barter of barterScheme)
         {
             summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
         }
@@ -468,22 +455,6 @@ class Controller
         }
 
         return result;
-    }
-
-    removeBarterOffers(info)
-    {
-        let override = [];
-
-        for (const offer of info)
-        {
-            if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === true)
-            {
-                override.push(offer);
-            }
-        }
-
-        info = override;
-        return info;
     }
 
     getNeededSearchList(neededSearchId)
@@ -647,7 +618,7 @@ class Controller
         return result;
     }
 
-    addOffer(pmcData, info, sessionID)
+    addPlayerOffer(pmcData, info, sessionID)
     {
         const result = item_f.eventHandler.getOutput();
 
