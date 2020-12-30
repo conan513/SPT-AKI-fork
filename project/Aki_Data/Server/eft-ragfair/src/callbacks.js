@@ -56,11 +56,11 @@ class Callbacks
     }
 
     extendOffer(pmcData, info, sessionID)
-    {  
+    {
         common_f.logger.logInfo(common_f.json.serialize(info)); // TODO: Remove this once finished
         return ragfair_f.controller.extendOffer(info, sessionID);
-    } 
-    
+    }
+
     processOffers(sessionID)
     {
         ragfair_f.controller.processOffers(sessionID);
