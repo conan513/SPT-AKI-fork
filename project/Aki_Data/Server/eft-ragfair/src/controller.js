@@ -51,17 +51,19 @@ class Controller
             return;
         }
 
-        const assort = database_f.server.tables.traders[traderID].assort.filter((item) =>
-        {
-            // only use base items
-            return item.slotId !== "hideout";
-        });
+        let assort = common_f.json.clone(database_f.server.tables.traders[traderID].assort);
 
         for (const item of assort.items)
         {
-            let items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-            let barterScheme = assort.barterScheme[item._id][0];
-            let loyalLevel = assort.loyalLevel_items[item._id];
+            if (item.slotId !== "hideout")
+            {
+                // use only base items
+                continue;
+            }
+
+            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const barterScheme = assort.barter_scheme[item._id][0];
+            const loyalLevel = assort.loyal_level_items[item._id];
 
             // add the offer
             this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
