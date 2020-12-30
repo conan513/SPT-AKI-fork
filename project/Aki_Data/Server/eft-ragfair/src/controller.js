@@ -284,12 +284,17 @@ class Controller
         }
 
         // get offers to send
-        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers).filter((offer) =>
-        {
-            return !this.isLookupOffer(info, itemsToAdd, assorts, offer);
-        });
+        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers);
 
-        result.offers = this.sortOffers(info, offers);
+        for (const offer of offers)
+        {
+            if (this.isLookupOffer(info, itemsToAdd, assorts, offer))
+            {
+                result.offers.push(offer);
+            }
+        }
+
+        result.offers = this.sortOffers(info, result.offers);
         this.countCategories(result);
 
         console.log(result);
@@ -336,13 +341,13 @@ class Controller
 
     isLookupOffer(info, itemsToAdd, assorts, offer)
     {
-        // validation
         if (!itemsToAdd.includes(offer.items[0]._tpl))
         {
             // skip items we shouldn't include
             return false;
         }
 
+        /*
         if (info.offerOwnerType === 1 && offer.user.memberType !== 4)
         {
             // don't include player offers
@@ -387,6 +392,7 @@ class Controller
                 return false;
             }
         }
+        */
 
         return true;
     }
