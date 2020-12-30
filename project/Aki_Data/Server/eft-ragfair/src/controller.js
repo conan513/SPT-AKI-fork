@@ -16,77 +16,92 @@ class Controller
 
     initialize()
     {
+        database_f.server.tables.ragfair.offers = [];
+
         this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
         this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";
 
-        database_f.server.tables.ragfair.offers = [];
+        this.initializeOfferBase();
+        this.generateOffers();
+    }
 
+    initializeOfferBase()
+    {
         // initialize base offer expire date (1 week after server start)
         const time = common_f.time.getTimestamp();
         database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + 604800000;    
+        database_f.server.tables.ragfair.offer.endTime = time + 604800000;   
+    }
 
-        // add offers to the database
+    generateOffers()
+    {
+        // single items
         for (const itemID in database_f.server.tables.templates.items)
         {
             this.createItemOffer(itemID);
         }
 
+        // item presets
         for (const presetID in database_f.server.tables.globals.ItemPresets)
         {
             this.createPresetOffer(presetID);
         }
 
+        // traders
         for (const traderID in database_f.server.tables.traders)
         {
-            this.addTraderOffers(traderID);
-        }
-    }
-
-    addTraderOffers(traderID)
-    {
-        // skip ragfair and fence trader
-        if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
-        {
-            return;
-        }
-
-        let assort = common_f.json.clone(database_f.server.tables.traders[traderID].assort);
-
-        for (const item of assort.items)
-        {
-            if (item.slotId !== "hideout")
+            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
             {
-                // use only base items
-                continue;
+                // skip ragfair and fence trader
+                return;
             }
 
-            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-            const barterScheme = assort.barter_scheme[item._id][0];
-            const loyalLevel = assort.loyal_level_items[item._id];
+            const assort = database_f.server.tables.traders[traderID].assort;
 
-            // add the offer
-            this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
+            for (const item of assort.items)
+            {
+                if (item.slotId !== "hideout")
+                {
+                    // use only base items
+                    continue;
+                }
+
+                const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+                const barterScheme = assort.barter_scheme[item._id][0];
+                const loyalLevel = assort.loyal_level_items[item._id];
+
+                // add the offer
+                this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
+            }
         }
     }
 
     createItemOffer(itemID)
     {
-        // Some slot filters reference bad items
-        if (!(itemID in database_f.server.tables.templates.items))
+        const item = database_f.server.tables.templates.items[itemID];
+
+        if (!item || item._type === "Node")
         {
+            // don't add nodes
+            return;
+        }
+
+        const price = this.fetchItemFleaPrice(itemID);
+
+        if (price === 0 || price === 1)
+        {
+            // don't add quest items
             return;
         }
 
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-        let rubPrice = this.fetchItemFleaPrice(itemID);
 
         offer._id = itemID;
         offer.items[0]._tpl = itemID;
-        offer.requirements[0].count = rubPrice;
-        offer.itemsCost = rubPrice;
-        offer.requirementsCost = rubPrice;
-        offer.summaryCost = rubPrice;
+        offer.requirements[0].count = price;
+        offer.itemsCost = price;
+        offer.requirementsCost = price;
+        offer.summaryCost = price;
 
         database_f.server.tables.ragfair.offers.push(offer);
     }
@@ -287,36 +302,34 @@ class Controller
     {
         let result = [];
 
+        // Case: weapon builds
         if (info.buildCount)
         {
-            // Case: weapon builds
-            result = result.concat(Object.keys(info.buildItems));
+            result = Object.keys(info.buildItems);
         }
-        else
+        
+        // Case: search
+        if (info.linkedSearchId)
         {
-            // Case: search
-            if (info.linkedSearchId)
-            {
-                result = this.getLinkedSearchList(info.linkedSearchId);
-            }
-            else if (info.neededSearchId)
-            {
-                result = this.getNeededSearchList(info.neededSearchId);
-            }
+            result = this.getLinkedSearchList(info.linkedSearchId);
+        }
+        else if (info.neededSearchId)
+        {
+            result = this.getNeededSearchList(info.neededSearchId);
+        }
 
-            // Case: category
-            if (info.handbookId)
-            {
-                let handbook = this.getCategoryList(info.handbookId);
+        // Case: category
+        if (info.handbookId)
+        {
+            let handbook = this.getCategoryList(info.handbookId);
 
-                if (result.length)
-                {
-                    result = helpfunc_f.helpFunctions.arrayIntersect(result, handbook);
-                }
-                else
-                {
-                    result = handbook;
-                }
+            if (result.length)
+            {
+                result = helpfunc_f.helpFunctions.arrayIntersect(result, handbook);
+            }
+            else
+            {
+                result = handbook;
             }
         }
 
@@ -602,7 +615,7 @@ class Controller
         return result;
     }
 
-    addOffer(pmcData, info, sessionID)
+    addPlayerOffer(pmcData, info, sessionID)
     {
         const result = item_f.eventHandler.getOutput();
 
