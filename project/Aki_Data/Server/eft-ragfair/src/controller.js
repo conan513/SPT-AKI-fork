@@ -53,7 +53,7 @@ class Controller
             if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
             {
                 // skip ragfair and fence trader
-                return;
+                continue;
             }
 
             const assort = database_f.server.tables.traders[traderID].assort;
@@ -257,10 +257,11 @@ class Controller
         };
 
         // force player-only in weapon preset build purchase
-        // TODO: write cheapes price detection mechanism, prevent trader-player Eitem duplicates
+        // TODO: write cheapes price detection mechanism, prevent trader-player item duplicates
         if (info.buildCount)
         {
             info.offerOwnerType = 2;
+            info.onlyFunctional = false;
         }
 
         // get offer categories
@@ -294,10 +295,10 @@ class Controller
             }
         }
 
+        // sort offers
         result.offers = this.sortOffers(info, result.offers);
         this.countCategories(result);
 
-        console.log(result);
         return result;
     }
 
@@ -308,7 +309,7 @@ class Controller
         // Case: weapon builds
         if (info.buildCount)
         {
-            result = Object.keys(info.buildItems);
+            return Object.keys(info.buildItems);
         }
         
         // Case: search
@@ -346,6 +347,7 @@ class Controller
             // skip items we shouldn't include
             return false;
         }
+
         if (info.offerOwnerType === 1 && offer.user.memberType !== 4)
         {
             // don't include player offers
@@ -358,19 +360,17 @@ class Controller
             return false;
         }
 
-        /*
-        if (info.onlyFunctional && !preset_f.controller.hasPreset(offer.items[0]))
+        if (info.onlyFunctional && preset_f.controller.hasPreset(offer.items[0]._tpl) && !preset_f.controller.isPreset(offer._id))
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildItems !== 0 && preset_f.controller.hasPreset(offer.items[0]))
+        if (info.buildCount && preset_f.controller.hasPreset(offer.items[0]._tpl) && preset_f.controller.isPreset(offer._id))
         {
             // don't include preset items
             return false;
         }
-        */
 
         if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
         {
