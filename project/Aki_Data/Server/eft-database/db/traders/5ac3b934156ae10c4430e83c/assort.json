@@ -1,6 +1,16 @@
 {
 	"items": [
 		{
+			"_id": "HexGridArmor",
+			"_tpl": "5fd4c474dd870108a754b241",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": false,
+				"StackObjectsCount": 2000
+			}
+		},
+		{
 			"_id": "RysTFaceShield",
 			"_tpl": "5f60c85b58eff926626a60f7",
 			"parentId": "hideout",
@@ -1442,6 +1452,22 @@
 		}
 	],
 	"barter_scheme": {
+		"HexGridArmor": [
+			[
+				{
+					"count": 5,
+					"_tpl": "5ab8f20c86f7745cdb629fb2"
+				},
+				{
+					"count": 5,
+					"_tpl": "59e7708286f7742cbd762753"
+				},
+				{
+					"count": 5,
+					"_tpl": "5aa2b923e5b5b000137b7589"
+				}
+			]
+		],
 		"RysTFaceShield": [
 			[
 				{
@@ -2898,6 +2924,7 @@
 		"5ece83c201e14e770d582a04": 4,
 		"5ece83c201e14e770d582a06": 3,
 		"RysTHelmet": 4,
-		"RysTFaceShield": 4
+		"RysTFaceShield": 4,
+		"HexGridArmor":3
 	}
 }

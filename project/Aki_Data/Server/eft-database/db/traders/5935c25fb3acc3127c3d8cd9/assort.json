@@ -1,6 +1,72 @@
 {
 	"items": [
 		{
+			"_id": "308FMJ",
+			"_tpl": "5fc275cf85fd526b824a571a",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": true,
+				"StackObjectsCount": 999999999
+			}
+		},
+		{
+			"_id": "300BlackoutAP",
+			"_tpl": "5fd20ff893a8961fc660a954",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": true,
+				"StackObjectsCount": 999999999
+			}
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a47c",
+			"_tpl": "5fc3e272f8b6a877a729eac5",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": false,
+				"StackObjectsCount": 200000
+			}
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a47d",
+			"_tpl": "5fc3e466187fea44d52eda90",
+			"parentId": "5fd2517dbdd50d684f73a47c",
+			"slotId": "mod_magazine"
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a47e",
+			"_tpl": "5fc3e4ee7283c4046c5814af",
+			"parentId": "5fd2517dbdd50d684f73a47c",
+			"slotId": "mod_stock"
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a47f",
+			"_tpl": "5fc3e4a27283c4046c5814ab",
+			"parentId": "5fd2517dbdd50d684f73a47c",
+			"slotId": "mod_barrel"
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a480",
+			"_tpl": "5fc53954f8b6a877a729eaeb",
+			"parentId": "5fd2517dbdd50d684f73a47c",
+			"slotId": "mod_mount_000"
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a481",
+			"_tpl": "5fc5396e900b1d5091531e72",
+			"parentId": "5fd2517dbdd50d684f73a47c",
+			"slotId": "mod_mount_001"
+		},
+		{
+			"_id": "5fd2517dbdd50d684f73a482",
+			"_tpl": "5fc5396e900b1d5091531e72",
+			"parentId": "5fd2517dbdd50d684f73a47c",
+			"slotId": "mod_mount_002"
+		},
+		{
 			"_id": "40x46M381",
 			"_tpl": "5ede474b0c226a66f5402622",
 			"parentId": "hideout",
@@ -26,8 +92,8 @@
 			"parentId": "hideout",
 			"slotId": "hideout",
 			"upd": {
-				"UnlimitedCount": true,
-				"StackObjectsCount": 999999999
+				"UnlimitedCount": false,
+				"StackObjectsCount": 200000
 			}
 		},
 		{
@@ -5165,6 +5231,30 @@
 		}
 	],
 	"barter_scheme": {
+		"308FMJ": [
+			[
+				{
+					"count": 24,
+					"_tpl": "5696686a4bdc2da3298b456a"
+				}
+			]
+		],
+		"300BlackoutBPZ": [
+			[
+				{
+					"count": 3,
+					"_tpl": "5696686a4bdc2da3298b456a"
+				}
+			]
+		],
+		"5fd2517dbdd50d684f73a47c": [
+			[
+				{
+					"count": 400,
+					"_tpl": "5696686a4bdc2da3298b456a"
+				}
+			]
+		],
 		"40x46M381": [
 			[
 				{
@@ -7867,6 +7957,7 @@
 		]
 	},
 	"loyal_level_items": {
+		"300BlackoutAP":3,
 		"40x46M381": 3,
 		"40x46M386": 4,
 		"EGLMMainWeapon": 4,
@@ -8205,6 +8296,8 @@
 		"5f004c1f1b27f811e5317dde": 4,
 		"5f004c1f1b27f811e5317de0": 4,
 		"5f004c1f1b27f811e5317dea": 2,
-		"5f00a92a15da9722ed0fc2f7": 2
+		"5f00a92a15da9722ed0fc2f7": 2,
+		"5fd2517dbdd50d684f73a47c": 2,
+		"308FMJ": 4
 	}
 }
