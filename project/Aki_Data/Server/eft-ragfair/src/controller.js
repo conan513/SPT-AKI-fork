@@ -257,18 +257,35 @@ class Controller
 
     getOffers(sessionID, info)
     {
+        console.log(info);
+
+        let offers = [];
+        let result = {
+            "categories": {},
+            "offers": [],
+            "offersCount": info.limit,
+            "selectedCategory": "5b5f78dc86f77409407a7f8e"
+        };
+
+        // get offer categories
+        if (!info.linkedSearchId && !info.neededSearchId)
+        {
+            for (let offerC of database_f.server.tables.ragfair.offers)
+            {
+                result.categories[offerC.items[0]._tpl] = 1;
+            }
+        }
+
+        // filter categories
+        let itemsToAdd = this.filterCategories(sessionID, info);
+
         // force player-only in weapon preset build purchase
-        // 0.12.9.10423 has a bug where trader items are always forced
+        // TODO: write cheapes price detection mechanism
+        // TODO: prevent trader-player item duplicates
         if (info.buildCount)
         {
             info.offerOwnerType = 2;
         }
-
-        let result = {"categories": {}, "offers": [], "offersCount": 10, "selectedCategory": "5b5f78dc86f77409407a7f8e"};
-        let offers = [];
-
-        // get offer categories
-        let itemsToAdd = this.filterCategories(sessionID, info);
 
         // player offers
         if (info.offerOwnerType === 0 || info.offerOwnerType === 2)
@@ -293,11 +310,6 @@ class Controller
     filterCategories(sessionID, info)
     {
         let result = [];
-
-        if (!info.linkedSearchId && !info.neededSearchId)
-        {
-            info.categories = (trader_f.controller.getAssort(sessionID, "ragfair")).loyal_level_items;
-        }
 
         if (info.buildCount)
         {
@@ -350,6 +362,7 @@ class Controller
     getTraderOffers(sessionID, info, offers, itemsToAdd)
     {
         let result = [];
+        console.log(offers);
 
         for (let offer of offers)
         {
