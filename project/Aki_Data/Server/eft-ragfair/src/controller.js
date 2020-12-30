@@ -170,7 +170,7 @@ class Controller
 
     sortOffersByName(a, b)
     {
-        // @TODO: Get localized item names
+        // TODO: Get localized item names
         try
         {
             let aa = helpfunc_f.helpFunctions.getItem(a._id)[1]._name;
@@ -247,8 +247,6 @@ class Controller
 
     getOffers(sessionID, info)
     {
-        console.log(info);
-
         const itemsToAdd = this.filterCategories(sessionID, info);
         let assorts = {};
         let result = {
@@ -369,10 +367,10 @@ class Controller
             return false;
         }
 
-        // TODO: filter barter offers
-        if (helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl) === false)
+        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
         {
-            // return false;
+            // don't include barter offers
+            return false;
         }
 
         // handle trader items
