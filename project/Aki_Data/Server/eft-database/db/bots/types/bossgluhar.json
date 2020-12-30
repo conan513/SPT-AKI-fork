@@ -75,7 +75,8 @@
 			"Headwear": [
 				"5c066ef40db834001966a595",
 				"5b432d215acfc4771e1c6624",
-				"5a16bb52fcdbcb001a3b00dc"
+				"5a16bb52fcdbcb001a3b00dc",
+				"5ea17ca01412a1425304d1c0"
 			],
 			"Earpiece": [
 				"5b432b965acfc47a8774094e"
@@ -97,7 +98,8 @@
 				"5c0e722886f7740458316a57",
 				"5c0e746986f7741453628fe5",
 				"544a5caa4bdc2d1a388b4568",
-				"5d5d85c586f774279a21cbdb"
+				"5d5d85c586f774279a21cbdb",
+				"5f5f41f56760b4138443b352"
 			],
 			"Pockets": [
 				"5af99e9186f7747c447120b8"
@@ -115,7 +117,8 @@
 			],
 			"Holster": [
 				"5a17f98cfcdbcb0980087290",
-				"5abccb7dd8ce87001773e277"
+				"5abccb7dd8ce87001773e277",
+				"5e81c3cbac2bb513793cdc75"
 			],
 			"Scabbard": []
 		},
@@ -232,7 +235,8 @@
 			"5aafa857e5b5b00018480968": {
 				"patron_in_weapon": [
 					"5a6086ea4f39f99cd479502f",
-					"58dd3ad986f77403051cba8f"
+					"58dd3ad986f77403051cba8f",
+					"5efb0c1bd79ff02a1f5e68d9"
 				],
 				"mod_magazine": [
 					"5aaf8a0be5b5b00015693243"
@@ -247,7 +251,8 @@
 			"5aaf8a0be5b5b00015693243": {
 				"cartridges": [
 					"5a6086ea4f39f99cd479502f",
-					"58dd3ad986f77403051cba8f"
+					"58dd3ad986f77403051cba8f",
+					"5efb0c1bd79ff02a1f5e68d9"
 				]
 			},
 			"5c7954d52e221600106f4cc7": {
@@ -338,6 +343,42 @@
 				"mod_stock": [
 					"5a17fb9dfcdbcbcae6687291"
 				]
+			},
+			"5e81c3cbac2bb513793cdc75": {
+				"mod_barrel": [
+					"5e81c519cb2b95385c177551"
+				],
+				"mod_pistol_grip": [
+					"5e81c6bf763d9f754677beff"
+				],
+				"mod_reciever": [
+					"5e81edc13397a21db957f6a1"
+				],
+				"mod_trigger": [
+					"5e81c6a2ac2bb513793cdc7f"
+				],
+				"mod_hammer": [
+					"5e81c550763d9f754677befd"
+				],
+				"mod_catch": [
+					"5e81c539cb2b95385c177553"
+				],
+				"mod_magazine": [
+					"5e81c4ca763d9f754677befa"
+				]
+			},
+			"5e81edc13397a21db957f6a1": {
+				"mod_sight_rear": [
+					"5e81ee4dcb2b95385c177582"
+				],
+				"mod_sight_front": [
+					"5e81ee213397a21db957f6a6"
+				]
+			},
+			"5e81c4ca763d9f754677befa": {
+				"cartridges": [
+					"5e81f423763d9f754677bf2e"
+				]
 			}
 		},
 		"items": {
@@ -349,7 +390,13 @@
 				"5710c24ad2720bc3458b45a3",
 				"5448be9a4bdc2dfd2f8b456a",
 				"58d3db5386f77426186285a0",
-				"5aaf8a0be5b5b00015693243"
+				"5aaf8a0be5b5b00015693243",
+				"5cadf6ddae9215051e1c23b2",
+				"5cadf6eeae921500134b2799",
+				"5a3c16fe86f77452b62de32a",
+				"5a6086ea4f39f99cd479502f",
+				"5efb0c1bd79ff02a1f5e68d9",
+				"58dd3ad986f77403051cba8f"
 			],
 			"Pockets": [
 				"5e831507ea0a7c419c2f9bd9",
@@ -359,7 +406,13 @@
 				"5710c24ad2720bc3458b45a3",
 				"5d235b4d86f7742e017bc88a",
 				"5c0e531d86f7747fa23f4d42",
-				"5c0e530286f7747fa1419862"
+				"5c0e530286f7747fa1419862",
+				"573719762459775a626ccbc1",
+				"5913877a86f774432f15d444",
+				"5e81f423763d9f754677bf2e",
+				"5e81c4ca763d9f754677befa",
+				"59136e1e86f774432f15d133",
+				"5780d07a2459777de4559324"
 			],
 			"Backpack": [],
 			"SecuredContainer": [
@@ -370,7 +423,8 @@
 				"573719762459775a626ccbc1",
 				"5a6086ea4f39f99cd479502f",
 				"5cadf6eeae921500134b2799",
-				"58dd3ad986f77403051cba8f"
+				"58dd3ad986f77403051cba8f",
+				"5efb0c1bd79ff02a1f5e68d9"
 			]
 		}
 	},

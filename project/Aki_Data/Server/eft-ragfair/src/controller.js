@@ -13,10 +13,13 @@
 
 class Controller
 {
+
     initialize()
     {
         // initialize base offer expire date (1 week after server start)
         const time = common_f.time.getTimestamp();
+        this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
+        this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";
 
         database_f.server.tables.ragfair.offer.startTime = time;
         database_f.server.tables.ragfair.offer.endTime = time + 604800000;
@@ -621,6 +624,8 @@ class Controller
     processOffers(sessionID)
     {
         const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const timestamp = common_f.time.getTimestamp();
+
         if (!profileOffers || !profileOffers.length)
         {
             return;
@@ -628,35 +633,18 @@ class Controller
 
         for (const [index, offer] of profileOffers.entries())
         {
-            if (!this.validateOffer(offer))
+            if (offer.endTime <= timestamp)
             {
-                common_f.logger.logWarning("An existing offer is invalid, attempting cleanup...");
-                if (!offer.items || !offer.items.length)
-                {
-                    common_f.logger.logWarning("There were no items to return");
-                }
-                else
-                {
-                    this.returnItems(sessionID, common_f.json.clone(offer.items));
-                }
-                profileOffers.splice(index, 1);
-                continue;
-            }
-
-            if (offer.sellTime < common_f.time.getTimestamp() && offer.sellTime < offer.endTime)
-            {
-                this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items, offer._id);
-                profileOffers.splice(index, 1);
-                continue;
-            }
-
-            if (offer.endTime < common_f.time.getTimestamp())
-            {
+                // item expired
                 this.removeOffer(offer._id, sessionID);
             }
+            else if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
+            {
+                // item sold
+                this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
+                //  profileOffers.splice(index, 1);
+            }
         }
-
-        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
     }
 
     getItemPrice(info)
@@ -669,13 +657,13 @@ class Controller
             common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
         }
 
-        return { 
+        return {
             "avg": price,
             "min": price,
             "max": price
         };
     }
-    
+
     getItemPrices()
     {
         let result = {};
@@ -701,31 +689,40 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
-        if (!info.requirements || info.requirements.length !== 1)
+        if (!info.requirements)
         {
-            // TODO: rework code to support multiple requirements
-            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only have one requirement");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "How did you place the offer with no requirements?");
         }
 
-        const requestedItemTpl = info.requirements[0]._tpl;
-        if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+        let requirementsPriceInRub = 0,
+            requirementsPrice = 0;
+
+        for (const item of info.requirements)
         {
-            // TODO: rework code to support barter offers
-            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only request money");
+            let requestedItemTpl = item._tpl;
+            if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+            {
+                // TODO: rework code to support barter offers
+                return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only request money");
+            }
+            requirementsPriceInRub += helpfunc_f.helpFunctions.inRUB(item.count, requestedItemTpl);
+            requirementsPrice += item.count;
         }
 
         // Count how many items are being sold and multiply the requested amount accordingly
         let moneyAmount = 0;
         let itemStackCount = 0;
+
         if (info.sellInOnePiece)
         {
-            moneyAmount = info.requirements[0].count;
+            itemStackCount = 1;
         }
         else
         {
             for (const itemId of info.items)
             {
                 const item = pmcData.Inventory.items.find(i => i._id === itemId);
+
                 if (!item)
                 {
                     common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
@@ -741,10 +738,12 @@ class Controller
                     itemStackCount += item.upd.StackObjectsCount;
                 }
             }
-            moneyAmount = info.requirements[0].count * itemStackCount;
         }
 
+        moneyAmount = requirementsPrice * itemStackCount;
+
         let invItems = [];
+
         for (const itemId of info.items)
         {
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
@@ -757,6 +756,7 @@ class Controller
         }
 
         let basePrice = 0;
+
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
@@ -770,33 +770,16 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
-        const basePricePercentage = (moneyAmount / basePrice) * 100;
-
-        // Skip offer generation and insta-sell offer if price is being undercut by amount defined in config
-        if (basePricePercentage <= ragfair_f.config.instantSellThreshold)
-        {
-            this.completeOffer(sessionID, info.requirements[0]._tpl, moneyAmount, invItems, null);
-            return response;
-        }
-
         // Preparations are done, create the offer
         // TODO: Random generate sale time based on offer pricing
-        const offer = this.generateOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, moneyAmount, common_f.time.getTimestamp() + 60);
-
-        if (!this.validateOffer(offer))
-        {
-            common_f.logger.logWarning("An invalid offer was generated, please check the error(s) above.");
-            return helpfunc_f.helpFunctions.appendErrorToOutput(response);
-        }
-
+        const offer = this.generateOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, moneyAmount);
         save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         response.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
-            // TODO: Reenable this once testing is done
-            //inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
+            inventory_f.controller.removeItem(pmcData, itemToRemove, response, sessionID);
         }
 
         // TODO: Subtract flea market fee from stash
@@ -808,8 +791,8 @@ class Controller
     {
         // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
         const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-
         const index = offers.findIndex(offer => offer._id === offerId);
+
         if (index === -1)
         {
             common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
@@ -817,8 +800,8 @@ class Controller
         }
 
         const itemsToReturn = common_f.json.clone(offers[index].items);
-        this.returnItems(sessionID, itemsToReturn);
 
+        this.returnItems(sessionID, itemsToReturn);
         offers.splice(index, 1);
 
         return item_f.eventHandler.getOutput();
@@ -830,26 +813,32 @@ class Controller
         return item_f.eventHandler.getOutput();
     }
 
-    completeOffer(sessionID, currencyTpl, moneyAmount, items, offerId)
+    getCurrencySymbol(currencyTpl)
     {
-        const formatCurrency = (moneyAmount) => moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
-        const getCurrencySymbol = (currencyTpl) =>
+        switch (currencyTpl)
         {
-            switch (currencyTpl)
-            {
-                case "569668774bdc2da2298b4568":
-                    return "€";
-                case "5696686a4bdc2da3298b456a":
-                    return "$";
-                case "5449016a4bdc2d6f028b456f":
-                default:
-                    return "₽";
-            }
-        };
+            case "569668774bdc2da2298b4568":
+                return "€";
 
+            case "5696686a4bdc2da3298b456a":
+                return "$";
+
+            case "5449016a4bdc2d6f028b456f":
+            default:
+                return "₽";
+        }
+    }
+
+    formatCurrency(moneyAmount)
+    {
+        return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
+    }
+
+    completeOffer(sessionID, requirements, moneyAmount, items, offerId)
+    {
         const itemTpl = items[0]._tpl;
-
         let itemCount = 0;
+
         for (const item of items)
         {
             if (!("upd" in item) || !("StackObjectsCount" in item.upd))
@@ -861,54 +850,73 @@ class Controller
                 itemCount += item.upd.StackObjectsCount;
             }
         }
+        let itemsToSend = [];
+        for (const item of requirements)
+        {
+            // Create an item of the specified currency
+            const moneyItem = {
+                "_id": common_f.hash.generate(),
+                "_tpl": item._tpl,
+                "upd": { "StackObjectsCount": item.count }
+            };
 
-        // Create an item of the specified currency
-        const moneyItem = {
-            "_id": common_f.hash.generate(),
-            "_tpl": currencyTpl,
-            "upd": { "StackObjectsCount": moneyAmount }
-        };
-
-        // Split the money stacks in case more than the stack limit is requested
-        const itemsToSend = helpfunc_f.helpFunctions.splitStack(moneyItem);
+            // Split the money stacks in case more than the stack limit is requested
+            let stacks = helpfunc_f.helpFunctions.splitStack(moneyItem);
+            itemsToSend.push(...stacks);
+        }
 
         // Generate a message to inform that item was sold
         const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
-        let messageText = "Your offer was sold";
+        let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
+
         if (findItemResult[0])
         {
+            let tplVars = {
+                soldItem: findItemResult[1]._id,
+                buyerNickname: this.fetchRandomPmcName(),
+                itemCount: itemCount
+            };
+
             try
             {
                 const itemLocale = database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id];
                 if (itemLocale && itemLocale.Name)
                 {
-                    messageText = `Your ${itemLocale.Name} (x${itemCount}) was bought by ${this.fetchRandomPmcName()} for ${getCurrencySymbol(currencyTpl)}${formatCurrency(moneyAmount)}`;
+                    tplVars.soldItem = itemLocale.Name;
                 }
             }
             catch (err)
             {
                 common_f.logger.logError(`Could not get locale data for item with _id -> ${findItemResult[1]._id}`);
             }
+
+            let messageText = messageTpl.replace(/{\w+}/g, function(matched)
+            {
+                return tplVars[matched.replace(/{|}/g, "")];
+            });
+
+            const messageContent = {
+                "text": messageText.replace(/"/g, ""),
+                "type": 4, // EMessageType.FleamarketMessage
+                "maxStorageTime": quest_f.config.redeemTime * 3600,
+                "ragfair": {
+                    "offerId": offerId,
+                    "count": itemCount,
+                    "handbookId": itemTpl
+                }
+            };
+
+            dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+
+            // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
         }
-
-        const messageContent = {
-            "text": messageText.replace(/"/g, ""),
-            "type": 4, // EMessageType.FleamarketMessage
-            "maxStorageTime": quest_f.config.redeemTime * 3600,
-            "ragfair": {
-                "offerId": offerId,
-                "count": itemCount,
-                "handbookId": itemTpl
-            }
-        };
-
-        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+        return item_f.eventHandler.getOutput();
     }
 
     returnItems(sessionID, items)
     {
         const messageContent = {
-            "text": "Your offer was cancelled",
+            "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
             "maxStorageTime": quest_f.config.redeemTime * 3600
         };
@@ -916,7 +924,7 @@ class Controller
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
     }
 
-    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend, sellTime)
+    generateOffer(profile, requirements, items, sellInOnePiece, amountToSend)
     {
         const formattedItems = items.map(item =>
         {
@@ -943,8 +951,7 @@ class Controller
             "requirements": formattedRequirements,
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + (12 * 60 * 60),
-            "sellTime": sellTime, // Custom field, not used in-game. Only saved server-side
+            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.sellTimeHrs * 60 * 60),
             "summaryCost": amountToSend,
             "requirementsCost": amountToSend,
             "loyaltyLevel": 1,
@@ -966,6 +973,7 @@ class Controller
     fetchRandomPmcName()
     {
         const type = common_f.random.getInt(0, 1) === 0 ? "usec" : "bear";
+
         try
         {
             return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
@@ -974,34 +982,8 @@ class Controller
         {
             common_f.logger.logError(`Failed to fetch a random PMC name for type -> ${type}`);
             common_f.logger.logInfo(common_f.json.serialize(err));
-            return "Anonymous";
+            return "Unknown";
         }
-    }
-
-    /** Validate an offer, to assert that all essential fields are present */
-    validateOffer(offer)
-    {
-        const isNullOrUndefined = (value) => typeof value === "undefined" || value === null;
-
-        const requiredFields = ["user", "items", "root", "requirements", "endTime", "sellTime", "summaryCost"];
-
-        // Different error message for _id validation
-        if (isNullOrUndefined(offer._id))
-        {
-            common_f.logger.logError("Offer was missing the \"_id\" field");
-            return false;
-        }
-
-        for (const field of requiredFields)
-        {
-            if (isNullOrUndefined(offer[field]))
-            {
-                common_f.logger.logError(`Offer ${offer._id} was missing the "${field}" field`);
-                return false;
-            }
-        }
-
-        return true;
     }
 }
 
