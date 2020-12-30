@@ -285,11 +285,9 @@ class Controller
         }
 
         // get offers to send
-        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers);
-
-        for (const offer of offers)
+        for (const offer of database_f.server.tables.ragfair.offers)
         {
-            if (this.isLookupOffer(info, itemsToAdd, assorts, offer))
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
             {
                 result.offers.push(offer);
             }
@@ -340,7 +338,7 @@ class Controller
         return result;
     }
 
-    isLookupOffer(info, itemsToAdd, assorts, offer)
+    isDisplayableOffer(info, itemsToAdd, assorts, offer)
     {
         if (!itemsToAdd.includes(offer.items[0]._tpl))
         {
