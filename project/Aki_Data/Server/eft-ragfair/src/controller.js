@@ -257,8 +257,6 @@ class Controller
 
     getOffers(sessionID, info)
     {
-        console.log(info);
-
         let offers = [];
         let result = {
             "categories": {},
@@ -270,9 +268,9 @@ class Controller
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
         {
-            for (let offerC of database_f.server.tables.ragfair.offers)
+            for (let offer of database_f.server.tables.ragfair.offers)
             {
-                result.categories[offerC.items[0]._tpl] = 1;
+                result.categories[offer.items[0]._tpl] = 1;
             }
         }
 
@@ -290,18 +288,18 @@ class Controller
         // player offers
         if (info.offerOwnerType === 0 || info.offerOwnerType === 2)
         {
-            const playerOffers = this.getPlayerOffers(sessionID, info, offers, itemsToAdd);
-            offers = [...offers, ...playerOffers];
+            offers = [...offers, ...this.getPlayerOffers(sessionID, info, itemsToAdd)];
         }
 
         // trader offers
         if (info.offerOwnerType === 0 || info.offerOwnerType === 1)
         {
-            const traderOffers = this.getTraderOffers(sessionID, info);
-            offers = [...offers, ...traderOffers];
+            offers = [...offers, ...this.getTraderOffers(sessionID, info, itemsToAdd)];
         }
 
-        result.offers = this.sortOffers(info, offers, offers, itemsToAdd);
+        // TODO: filter barter offers
+
+        result.offers = this.sortOffers(info, offers);
         this.countCategories(result);
 
         return result;
@@ -347,7 +345,7 @@ class Controller
         return result;
     }
 
-    getPlayerOffers(sessionID, info, offers, itemsToAdd)
+    getPlayerOffers(sessionID, info, itemsToAdd)
     {
         let result = [];
 
@@ -359,34 +357,51 @@ class Controller
         return result;
     }
 
-    getTraderOffers(sessionID, info, offers, itemsToAdd)
+    getTraderOffers(sessionID, info, itemsToAdd)
     {
         let result = [];
-        console.log(offers);
+        let assorts = {};
+        let offers = common_f.json.clone(database_f.server.tables.ragfair.offers);
 
+        // get assorts to compare against
+        for (const traderID in database_f.server.tables.traders)
+        {
+            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+            {
+                continue;
+            }
+
+            assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
+        }
+
+        // get offers to send
         for (let offer of offers)
         {
-            for (let tplTokeep of itemsToAdd)
+            if (offer.user.memberType !== 4)
             {
-                if (offer.items[0]._tpl === tplTokeep)
-                {
-                    offer.summaryCost = this.calculateCost(offer.requirements);
-
-                    // check if offer is really available, removes any quest locked items not in current assort of a trader
-                    let tmpOffer = offer;
-                    let traderId = tmpOffer.user.id;
-                    let items = trader_f.controller.getAssort(sessionID, traderId).items;
-
-                    for (let item of items)
-                    {
-                        if (item._id === tmpOffer.root)
-                        {
-                            result.push(offer);
-                            break;
-                        }
-                    }
-                }
+                // don't include player offers
+                continue;
             }
+
+            if (!itemsToAdd.includes(offer.items[0]._tpl))
+            {
+                // skip items we shouldn't include
+                continue;
+            }
+
+            const flag = assorts[offer.user.id].items.find((item) =>
+            {
+                return item._id === offer.root;
+            });
+
+            if (!flag)
+            {
+                // skip (quest) locked items
+                continue;
+            }
+
+            offer.summaryCost = this.calculateCost(offer.requirements);
+            result.push(offer);
         }
 
         return result;
