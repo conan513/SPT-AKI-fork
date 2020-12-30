@@ -126,7 +126,8 @@
 				"5ac4cd105acfc40016339859",
 				"5ab8e9fcd8ce870019439434",
 				"5ac66d2e5acfc43b321d4b53",
-				"5c07c60e0db834002330051f"
+				"5c07c60e0db834002330051f",
+				"59e6687d86f77411d949b251"
 			],
 			"SecondPrimaryWeapon": [],
 			"Holster": [],
@@ -249,7 +250,8 @@
 			},
 			"5a0060fc86f7745793204432": {
 				"cartridges": [
-					"59e4cf5286f7741778269d8a"
+					"59e4cf5286f7741778269d8a",
+					"59e0d99486f7744a32234762"
 				]
 			},
 			"5ac66d2e5acfc43b321d4b53": {
@@ -323,7 +325,8 @@
 				],
 				"patron_in_weapon": [
 					"5c0d5ae286f7741e46554302",
-					"59e6906286f7746c9f75e847"
+					"59e6906286f7746c9f75e847",
+					"54527a984bdc2d4e668b4567"
 				]
 			},
 			"5c0e2f94d174af029f650d56": {
@@ -358,7 +361,44 @@
 			"55d4887d4bdc2d962f8b4570": {
 				"cartridges": [
 					"5c0d5ae286f7741e46554302",
-					"59e6906286f7746c9f75e847"
+					"59e6906286f7746c9f75e847",
+					"54527a984bdc2d4e668b4567"
+				]
+			},
+			"5cf656f2d7f00c06585fb6eb": {
+				"mod_scope": [
+					"5c0505e00db834001b735073"
+				]
+			},
+			"59e6687d86f77411d949b251": {
+				"mod_gas_block": [
+					"5cf656f2d7f00c06585fb6eb"
+				],
+				"mod_pistol_grip": [
+					"5947fa2486f77425b47c1a9b"
+				],
+				"mod_muzzle": [
+					"5a9fbb74a2750c0032157181"
+				],
+				"mod_reciever": [
+					"59e6449086f7746c9f75e822"
+				],
+				"mod_sight_rear": [
+					"59e8977386f77415a553c453"
+				],
+				"mod_stock": [
+					"5cbdb1b0ae9215000d50e105"
+				],
+				"mod_magazine": [
+					"5a01c29586f77474660c694c"
+				],
+				"patron_in_weapon": [
+					"5f0596629e22f464da6bbdd9"
+				]
+			},
+			"5a01c29586f77474660c694c": {
+				"cartridges": [
+					"5f0596629e22f464da6bbdd9"
 				]
 			}
 		},
@@ -376,7 +416,11 @@
 				"56dff061d2720bb5668b4567",
 				"5c0d5ae286f7741e46554302",
 				"55d4887d4bdc2d962f8b4570",
-				"59e6906286f7746c9f75e847"
+				"59e6906286f7746c9f75e847",
+				"54527a984bdc2d4e668b4567",
+				"5f0596629e22f464da6bbdd9",
+				"5a01c29586f77474660c694c",
+				"59e0d99486f7744a32234762"
 			],
 			"Pockets": [
 				"5e831507ea0a7c419c2f9bd9",
@@ -393,7 +437,8 @@
 				"573478bc24597738002c6175",
 				"573474f924597738002c6174",
 				"5bc9bdb8d4351e003562b8a1",
-				"5448ba0b4bdc2d02308b456c"
+				"5448ba0b4bdc2d02308b456c",
+				"59e3658a86f7741776641ac4"
 			],
 			"SecuredContainer": [
 				"5e831507ea0a7c419c2f9bd9",
@@ -402,7 +447,10 @@
 				"59e4cf5286f7741778269d8a",
 				"5c0d5e4486f77478390952fe",
 				"5c0d5ae286f7741e46554302",
-				"59e6906286f7746c9f75e847"
+				"59e6906286f7746c9f75e847",
+				"54527a984bdc2d4e668b4567",
+				"5f0596629e22f464da6bbdd9",
+				"59e0d99486f7744a32234762"
 			]
 		}
 	},
@@ -2280,52 +2328,52 @@
 	},
 	"chances": {
 		"equipment": {
-			"Headwear": 96,
+			"Headwear": 88,
 			"Earpiece": 0,
-			"FaceCover": 14,
-			"ArmorVest": 53,
-			"Eyewear": 61,
+			"FaceCover": 13,
+			"ArmorVest": 79,
+			"Eyewear": 62,
 			"ArmBand": 0,
 			"TacticalVest": 100,
-			"Backpack": 20,
+			"Backpack": 15,
 			"FirstPrimaryWeapon": 100,
 			"SecondPrimaryWeapon": 0,
 			"Holster": 0,
-			"Scabbard": 3
+			"Scabbard": 4
 		},
 		"mods": {
 			"mod_pistol_grip": 100,
 			"mod_magazine": 100,
 			"mod_reciever": 100,
 			"mod_stock": 100,
-			"mod_charge": 83,
-			"mod_barrel": 0,
+			"mod_charge": 75,
+			"mod_barrel": 100,
 			"mod_handguard": 100,
-			"mod_mount_001": 51,
-			"mod_mount_000": 0,
-			"mod_scope": 100,
-			"mod_sight_rear": 100,
-			"mod_tactical": 100,
-			"mod_muzzle": 100,
+			"mod_mount_001": 47,
+			"mod_mount_000": 15,
+			"mod_scope": 50,
+			"mod_sight_rear": 60,
+			"mod_tactical": 63,
+			"mod_muzzle": 90,
 			"mod_bipod": 0,
 			"mod_gas_block": 100,
 			"mod_mount": 0,
 			"mod_tactical_2": 0,
-			"mod_foregrip": 28,
+			"mod_foregrip": 50,
 			"mod_tactical_003": 0,
 			"mod_tactical_000": 0,
-			"mod_tactical_001": 29,
-			"mod_tactical_002": 43,
+			"mod_tactical_001": 16,
+			"mod_tactical_002": 44,
 			"mod_tactical001": 0,
 			"mod_tactical002": 0,
 			"mod_sight_front": 0,
 			"mod_launcher": 0,
-			"mod_equipment": 81,
+			"mod_equipment": 54,
 			"mod_stock_000": 100,
 			"mod_mount_004": 0,
 			"mod_mount_003": 0,
 			"mod_flashlight": 0,
-			"mod_mount_002": 49,
+			"mod_mount_002": 32,
 			"mod_pistol_grip_akms": 0,
 			"mod_stock_akms": 0,
 			"mod_equipment_000": 0,
