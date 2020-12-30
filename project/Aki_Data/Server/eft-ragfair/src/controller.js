@@ -13,10 +13,13 @@
 
 class Controller
 {
+
     initialize()
     {
         // initialize base offer expire date (1 week after server start)
         const time = common_f.time.getTimestamp();
+        this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
+        this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";
 
         database_f.server.tables.ragfair.offer.startTime = time;
         database_f.server.tables.ragfair.offer.endTime = time + 604800000;
@@ -626,18 +629,16 @@ class Controller
 
         for (const [index, offer] of profileOffers.entries())
         {
-            if (offer.endTime >= timestamp)
+            if (offer.endTime <= timestamp)
             {
                 // item expired
                 this.removeOffer(offer._id, sessionID);
             }
-
-            if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
+            else if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
             {
                 // item sold
-                this.completeOffer(sessionID, offer.requirements[0]._tpl, offer.summaryCost, offer.items, offer._id);
-                profileOffers.splice(index, 1);
-                continue;
+                this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
+                //  profileOffers.splice(index, 1);
             }
         }
     }
@@ -652,13 +653,13 @@ class Controller
             common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
         }
 
-        return { 
+        return {
             "avg": price,
             "min": price,
             "max": price
         };
     }
-    
+
     getItemPrices()
     {
         let result = {};
@@ -684,18 +685,24 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(response);
         }
 
-        if (!info.requirements || info.requirements.length !== 1)
+        if (!info.requirements)
         {
-            // TODO: rework code to support multiple requirements
-            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only have one requirement");
+            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "How did you place the offer with no requirements?");
         }
 
-        const requestedItemTpl = info.requirements[0]._tpl;
+        let requirementsPriceInRub = 0,
+            requirementsPrice = 0;
 
-        if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+        for (const item of info.requirements)
         {
-            // TODO: rework code to support barter offers
-            return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only request money");
+            let requestedItemTpl = item._tpl;
+            if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+            {
+                // TODO: rework code to support barter offers
+                return helpfunc_f.helpFunctions.appendErrorToOutput(response, "You can only request money");
+            }
+            requirementsPriceInRub += helpfunc_f.helpFunctions.inRUB(item.count, requestedItemTpl);
+            requirementsPrice += item.count;
         }
 
         // Count how many items are being sold and multiply the requested amount accordingly
@@ -704,7 +711,7 @@ class Controller
 
         if (info.sellInOnePiece)
         {
-            moneyAmount = info.requirements[0].count;
+            itemStackCount = 1;
         }
         else
         {
@@ -727,9 +734,9 @@ class Controller
                     itemStackCount += item.upd.StackObjectsCount;
                 }
             }
-
-            moneyAmount = info.requirements[0].count * itemStackCount;
         }
+
+        moneyAmount = requirementsPrice * itemStackCount;
 
         let invItems = [];
 
@@ -802,7 +809,7 @@ class Controller
         return item_f.eventHandler.getOutput();
     }
 
-    getCurrencySymbol()
+    getCurrencySymbol(currencyTpl)
     {
         switch (currencyTpl)
         {
@@ -818,12 +825,12 @@ class Controller
         }
     }
 
-    formatCurrency()
+    formatCurrency(moneyAmount)
     {
         return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
     }
 
-    completeOffer(sessionID, currencyTpl, moneyAmount, items, offerId)
+    completeOffer(sessionID, requirements, moneyAmount, items, offerId)
     {
         const itemTpl = items[0]._tpl;
         let itemCount = 0;
@@ -839,58 +846,73 @@ class Controller
                 itemCount += item.upd.StackObjectsCount;
             }
         }
+        let itemsToSend = [];
+        for (const item of requirements)
+        {
+            // Create an item of the specified currency
+            const moneyItem = {
+                "_id": common_f.hash.generate(),
+                "_tpl": item._tpl,
+                "upd": { "StackObjectsCount": item.count }
+            };
 
-        // Create an item of the specified currency
-        const moneyItem = {
-            "_id": common_f.hash.generate(),
-            "_tpl": currencyTpl,
-            "upd": { "StackObjectsCount": moneyAmount }
-        };
-
-        // Split the money stacks in case more than the stack limit is requested
-        const itemsToSend = helpfunc_f.helpFunctions.splitStack(moneyItem);
+            // Split the money stacks in case more than the stack limit is requested
+            let stacks = helpfunc_f.helpFunctions.splitStack(moneyItem);
+            itemsToSend.push(...stacks);
+        }
 
         // Generate a message to inform that item was sold
         const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
-        let messageText = "Your offer was sold";
+        let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
 
         if (findItemResult[0])
         {
+            let tplVars = {
+                soldItem: findItemResult[1]._id,
+                buyerNickname: this.fetchRandomPmcName(),
+                itemCount: itemCount
+            };
+
             try
             {
                 const itemLocale = database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id];
-
                 if (itemLocale && itemLocale.Name)
                 {
-                    messageText = `Your ${itemLocale.Name} (x${itemCount}) was bought by ${this.fetchRandomPmcName()} for ${this.getCurrencySymbol(currencyTpl)}${formatCurrency(moneyAmount)}`;
+                    tplVars.soldItem = itemLocale.Name;
                 }
             }
             catch (err)
             {
                 common_f.logger.logError(`Could not get locale data for item with _id -> ${findItemResult[1]._id}`);
             }
+
+            let messageText = messageTpl.replace(/{\w+}/g, function(matched)
+            {
+                return tplVars[matched.replace(/{|}/g, "")];
+            });
+
+            const messageContent = {
+                "text": messageText.replace(/"/g, ""),
+                "type": 4, // EMessageType.FleamarketMessage
+                "maxStorageTime": quest_f.config.redeemTime * 3600,
+                "ragfair": {
+                    "offerId": offerId,
+                    "count": itemCount,
+                    "handbookId": itemTpl
+                }
+            };
+
+            dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+
+            // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
         }
-
-        const messageContent = {
-            "text": messageText.replace(/"/g, ""),
-            "type": 4, // EMessageType.FleamarketMessage
-            "maxStorageTime": quest_f.config.redeemTime * 3600,
-            "ragfair": {
-                "offerId": offerId,
-                "count": itemCount,
-                "handbookId": itemTpl
-            }
-        };
-
-        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
-
-        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
+        return item_f.eventHandler.getOutput();
     }
 
     returnItems(sessionID, items)
     {
         const messageContent = {
-            "text": "Your offer was cancelled",
+            "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
             "maxStorageTime": quest_f.config.redeemTime * 3600
         };
@@ -925,7 +947,7 @@ class Controller
             "requirements": formattedRequirements,
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + (12 * 60 * 60),
+            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.sellTimeHrs * 60 * 60),
             "summaryCost": amountToSend,
             "requirementsCost": amountToSend,
             "loyaltyLevel": 1,
