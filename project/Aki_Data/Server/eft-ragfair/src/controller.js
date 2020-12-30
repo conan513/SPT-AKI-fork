@@ -364,14 +364,6 @@ class Controller
             return false;
         }
 
-        /*
-        if (info.buildItems !== 0 && preset_f.controller.hasPreset(offer.items[0]._tpl))
-        {
-            // don't include preset items
-            return false;
-        }
-        */
-
         if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
         {
             // don't include barter offers
