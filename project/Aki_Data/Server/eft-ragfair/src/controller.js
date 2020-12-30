@@ -113,12 +113,12 @@ class Controller
             return;
         }
 
+        const preset = preset_f.controller.getPreset(presetID);
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-        let preset = preset_f.controller.getPreset(presetID);
         let mods = preset._items;
         let rub = 0;
 
-        for (let it of mods)
+        for (const it of mods)
         {
             rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
         }
@@ -267,7 +267,7 @@ class Controller
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
         {
-            for (let offer of database_f.server.tables.ragfair.offers)
+            for (const offer of database_f.server.tables.ragfair.offers)
             {
                 result.categories[offer.items[0]._tpl] = 1;
             }
@@ -323,7 +323,7 @@ class Controller
         // Case: category
         if (info.handbookId)
         {
-            let handbook = this.getCategoryList(info.handbookId);
+            const handbook = this.getCategoryList(info.handbookId);
 
             if (result.length)
             {
@@ -398,7 +398,7 @@ class Controller
     {
         let summaryCost = 0;
 
-        for (let barter of barterScheme)
+        for (const barter of barterScheme)
         {
             summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
         }
@@ -410,7 +410,7 @@ class Controller
     {
         result.categories = {};
 
-        for (let filter of filters)
+        for (const filter of filters)
         {
             result.categories[filter] = 1;
         }
@@ -425,33 +425,33 @@ class Controller
         // if its "mods" great-parent category, do double recursive loop
         if (handbookId === "5b5f71a686f77447ed5636ab")
         {
-            for (let categ2 of helpfunc_f.helpFunctions.childrenCategories(handbookId))
+            for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
-                for (let categ3 of helpfunc_f.helpFunctions.childrenCategories(categ2))
+                for (const subcateg of helpfunc_f.helpFunctions.childrenCategories(categ))
                 {
-                    result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(categ3));
+                    result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(subcateg)];
                 }
             }
+
+            return result;
         }
-        else
+        
+        // item is in any other category
+        if (helpfunc_f.helpFunctions.isCategory(handbookId))
         {
-            if (helpfunc_f.helpFunctions.isCategory(handbookId))
-            {
-                // list all item of the category
-                result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(handbookId));
+            // list all item of the category
+            result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(handbookId)];
 
-                for (let categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
-                {
-                    result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(categ));
-                }
-            }
-            else
+            for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
-                // its a specific item searched then
-                result.push(handbookId);
+                result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(categ)];
             }
+
+            return result;
         }
-
+        
+        // its a specific item searched
+        result.push(handbookId);
         return result;
     }
 
@@ -459,7 +459,7 @@ class Controller
     {
         let result = [];
 
-        for (let item of Object.values(database_f.server.tables.templates.items))
+        for (const item of Object.values(database_f.server.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
             || this.isInFilter(neededSearchId, item, "Chambers")
@@ -474,10 +474,10 @@ class Controller
 
     getLinkedSearchList(linkedSearchId)
     {
-        let item = database_f.server.tables.templates.items[linkedSearchId];
+        const item = database_f.server.tables.templates.items[linkedSearchId];
 
         // merging all possible filters without duplicates
-        let result = new Set([
+        const result = new Set([
             ...this.getFilters(item, "Slots"),
             ...this.getFilters(item, "Chambers"),
             ...this.getFilters(item, "Cartridges")
@@ -489,44 +489,53 @@ class Controller
     /* Because of presets, categories are not always 1 */
     countCategories(result)
     {
-        let categ = {};
+        let category = {};
 
-        for (let offer of result.offers)
+        for (const offer of result.offers)
         {
-            let item = offer.items[0]; // only the first item can have presets
+            // only the first item can have presets
+            const item = offer.items[0];
 
-            categ[item._tpl] = categ[item._tpl] || 0;
-            categ[item._tpl]++;
+            category[item._tpl] = category[item._tpl] || 0;
+            category[item._tpl]++;
         }
 
         // not in search mode, add back non-weapon items
-        for (let c in result.categories)
+        for (const c in result.categories)
         {
-            if (!categ[c])
+            if (!category[c])
             {
-                categ[c] = 1;
+                category[c] = 1;
             }
         }
 
-        result.categories = categ;
+        result.categories = category;
     }
 
     /* Like getFilters but breaks early and return true if id is found in filters */
     isInFilter(id, item, slot)
     {
-        if (slot in item._props && item._props[slot].length)
+        if (!(slot in item._props && item._props[slot].length))
         {
-            for (let sub of item._props[slot])
+            // item slot doesnt exist
+            return false;
+        }
+
+        // get slot
+        for (const sub of item._props[slot])
+        {
+            if (!("_props" in sub && "filters" in sub._props))
             {
-                if ("_props" in sub && "filters" in sub._props)
+                // not a filter
+                continue;
+            }
+
+            // find item in filter
+            for (const filter of sub._props.filters)
+            {
+                if (filter.Filter.includes(id))
                 {
-                    for (let filter of sub._props.filters)
-                    {
-                        if (filter.Filter.includes(id))
-                        {
-                            return true;
-                        }
-                    }
+                    return true;
                 }
             }
         }
@@ -538,6 +547,7 @@ class Controller
     getFilters(item, slot)
     {
         let result = new Set();
+
         if (slot in item._props && item._props[slot].length)
         {
             for (let sub of item._props[slot])
