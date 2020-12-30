@@ -93,11 +93,11 @@ class Controller
     createTraderOffer(itemsToSell, barter_scheme, loyal_level, traderID, counter = 911)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        let offerBase = common_f.json.clone(database_f.server.tables.ragfair.offer);
+        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
-        offerBase._id = itemsToSell[0]._id;
-        offerBase.intId = counter;
-        offerBase.user = {
+        offer._id = itemsToSell[0]._id;
+        offer.intId = counter;
+        offer.user = {
             "id": trader._id,
             "memberType": 4,
             "nickname": trader.surname,
@@ -105,12 +105,12 @@ class Controller
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
-        offerBase.root = itemsToSell[0]._id;
-        offerBase.items = itemsToSell;
-        offerBase.requirements = barter_scheme;
-        offerBase.loyaltyLevel = loyal_level;
+        offer.root = itemsToSell[0]._id;
+        offer.items = itemsToSell;
+        offer.requirements = barter_scheme;
+        offer.loyaltyLevel = loyal_level;
 
-        return [offerBase];
+        return [offer];
     }
 
     createOffer(template, onlyFunc, usePresets = true)
@@ -122,7 +122,7 @@ class Controller
             return [];
         }
 
-        let offerBase = common_f.json.clone(database_f.server.tables.ragfair.offer);
+        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
         let offers = [];
 
         // Preset
@@ -132,7 +132,7 @@ class Controller
 
             for (let p of presets)
             {
-                let offer = common_f.json.clone(offerBase);
+                let offer = common_f.json.clone(offer);
                 let mods = p._items;
                 let rub = 0;
 
@@ -142,7 +142,7 @@ class Controller
                 }
 
                 mods[0].upd = mods[0].upd || {}; // append the stack count
-                mods[0].upd.StackObjectsCount = offerBase.items[0].upd.StackObjectsCount;
+                mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
 
                 offer._id = p._id;               // The offer's id is now the preset's id
                 offer.root = mods[0]._id;        // Sets the main part of the weapon
@@ -156,13 +156,15 @@ class Controller
         if (!preset_f.controller.hasPreset(template) || !onlyFunc)
         {
             let rubPrice = this.fetchItemFleaPrice(template);
-            offerBase._id = template;
-            offerBase.items[0]._tpl = template;
-            offerBase.requirements[0].count = rubPrice;
-            offerBase.itemsCost = rubPrice;
-            offerBase.requirementsCost = rubPrice;
-            offerBase.summaryCost = rubPrice;
-            offers.push(offerBase);
+
+            offer._id = template;
+            offer.items[0]._tpl = template;
+            offer.requirements[0].count = rubPrice;
+            offer.itemsCost = rubPrice;
+            offer.requirementsCost = rubPrice;
+            offer.summaryCost = rubPrice;
+            
+            offers.push(offer);
         }
 
         return offers;
