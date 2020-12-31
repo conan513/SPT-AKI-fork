@@ -579,7 +579,7 @@ class Controller
             {
                 // item sold
                 this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
-                //  profileOffers.splice(index, 1);
+                profileOffers.splice(index, 1);
             }
         }
     }
