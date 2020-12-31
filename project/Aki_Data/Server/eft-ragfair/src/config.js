@@ -15,6 +15,7 @@ class Config
     {
         this.sellChance = 25;
         this.sellTimeHrs = 12;
+        this.enableFees = false;
     }
 }
 

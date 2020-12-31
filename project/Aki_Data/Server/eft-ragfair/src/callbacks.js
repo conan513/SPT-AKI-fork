@@ -21,7 +21,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/items/prices"] = this.getItemPrices.bind(this);
         item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
-        item_f.eventHandler.onEvent["RagFairExtendOffer"] = this.extendOffer.bind(this);
+        item_f.eventHandler.onEvent["RagFairRenewOffer"] = this.extendOffer.bind(this);
         keepalive_f.controller.onExecute["ragfair-process-offers"] = this.processOffers.bind(this);
     }
 
@@ -52,7 +52,7 @@ class Callbacks
 
     removeOffer(pmcData, info, sessionID)
     {
-        return ragfair_f.controller.removeOffer(info, sessionID);
+        return ragfair_f.controller.removeOffer(info.offerId, sessionID);
     }
 
     extendOffer(pmcData, info, sessionID)

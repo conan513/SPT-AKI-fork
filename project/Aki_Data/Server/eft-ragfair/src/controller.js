@@ -542,8 +542,8 @@ class Controller
         for (const item of Object.values(database_f.server.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
-            || this.isInFilter(neededSearchId, item, "Chambers")
-            || this.isInFilter(neededSearchId, item, "Cartridges"))
+                || this.isInFilter(neededSearchId, item, "Chambers")
+                || this.isInFilter(neededSearchId, item, "Cartridges"))
             {
                 result.push(item._id);
             }
@@ -661,7 +661,7 @@ class Controller
             {
                 // item sold
                 this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
-                //  profileOffers.splice(index, 1);
+                profileOffers.splice(index, 1);
             }
         }
     }
@@ -714,69 +714,62 @@ class Controller
         }
 
         let requirementsPriceInRub = 0,
-            requirementsPrice = 0;
+            offerPrice = 0;
 
         for (const item of info.requirements)
         {
             let requestedItemTpl = item._tpl;
 
-            if (!helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+            if (helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
             {
-                // TODO: rework code to support barter offers
-                return helpfunc_f.helpFunctions.appendErrorToOutput(result, "You can only request money");
+                requirementsPriceInRub += helpfunc_f.helpFunctions.inRUB(item.count, requestedItemTpl);
             }
-
-            requirementsPriceInRub += helpfunc_f.helpFunctions.inRUB(item.count, requestedItemTpl);
-            requirementsPrice += item.count;
+            else
+            {
+                requirementsPriceInRub += this.fetchItemFleaPrice(requestedItemTpl) * item.count;
+            }
         }
 
         // Count how many items are being sold and multiply the requested amount accordingly
-        let moneyAmount = 0;
-        let itemStackCount = 0;
+        let itemStackCount = 0,
+            invItems = [], basePrice = 0;
+
+        for (const itemId of info.items)
+        {
+            const item = pmcData.Inventory.items.find(i => i._id === itemId);
+
+            if (!item)
+            {
+                common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
+                return helpfunc_f.helpFunctions.appendErrorToOutput(result);
+            }
+
+
+
+            if (!("upd" in item) || !("StackObjectsCount" in item.upd))
+            {
+                itemStackCount += 1;
+            }
+            else
+            {
+                itemStackCount += item.upd.StackObjectsCount;
+            }
+            invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
+            offerPrice += this.fetchItemFleaPrice(item._tpl) * itemStackCount;
+        }
 
         if (info.sellInOnePiece)
         {
             itemStackCount = 1;
         }
-        else
-        {
-            for (const itemId of info.items)
-            {
-                const item = pmcData.Inventory.items.find(i => i._id === itemId);
 
-                if (!item)
-                {
-                    common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
-                    return helpfunc_f.helpFunctions.appendErrorToOutput(result);
-                }
-
-                if (!("upd" in item) || !("StackObjectsCount" in item.upd))
-                {
-                    itemStackCount += 1;
-                }
-                else
-                {
-                    itemStackCount += item.upd.StackObjectsCount;
-                }
-            }
-        }
-
-        moneyAmount = requirementsPrice * itemStackCount;
-
-        let invItems = [];
-
-        for (const itemId of info.items)
-        {
-            invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-        }
+        // offerPrice = offerPrice * itemStackCount;
 
         if (!invItems || !invItems.length)
         {
             common_f.logger.logError("Could not find any requested items in the inventory");
             return helpfunc_f.helpFunctions.appendErrorToOutput(result);
         }
-
-        let basePrice = 0;
 
         for (const item of invItems)
         {
@@ -792,7 +785,7 @@ class Controller
         }
 
         // Preparations are done, create the offer
-        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, moneyAmount);
+        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, invItems, info.sellInOnePiece, offerPrice);
         save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         result.ragFairOffers.push(offer);
 
@@ -803,8 +796,61 @@ class Controller
         }
 
         // TODO: Subtract flea market fee from stash
+        if (ragfair_f.config.enableFees)
+        {
+            let tax = this.calculateTax(info, offerPrice, requirementsPriceInRub);
+            common_f.logger.logInfo(`Tax Calculated to be: ${tax}`);
+        }
 
         return result;
+    }
+
+    /*
+    * from: https://escapefromtarkov.gamepedia.com/Trading#Tax
+    *  The fee you'll have to pay to post an offer on Flea Market is calculated using the following formula:
+    *     VO × Ti × 4PO × Q + VR × Tr × 4PR × Q
+    *  Where:
+    *    VO is the total value of the offer, calculated by multiplying the base price of the item times the amount (base price × total item count / Q). The Base Price is a predetermined value for each item.
+    *    VR is the total value of the requirements, calculated by adding the product of each requirement base price by their amount.
+    *    PO is a modifier calculated as log10(VO / VR).
+    *    If VR is less than VO then PO is also raised to the power of 1.08.
+    *    PR is a modifier calculated as log10(VR / VO).
+    *    If VR is greater or equal to VO then PR is also raised to the power of 1.08.
+    *    Q is the "quantity" factor which is either 1 when "Require for all items in offer" is checked or the amount of items being offered otherwise.
+    *    Ti and Tr are tax constants currently set to 0.05.
+    *    30% of this commission will be deducted if the player has constructed the level 3 Intelligence Center.
+    *
+    *  After this round the number, if it ends with a decimal point.
+    */
+    calculateTax(info, offerValue, requirementsValue)
+    {
+        let Ti = 0.05,
+            Tr = 0.05,
+            VO = offerValue,
+            VR = requirementsValue,
+            PO, PR,
+            Q = info.sellInOnePiece ? 1 : 0;
+        try
+        {
+            PO = Math.log10(VO / VR);
+            if (VR < VO)
+            {
+                PO = Math.pow(PO, 1.08);
+            }
+            PR = Math.log10(VR / VO);
+            if (VR >= VO)
+            {
+                PR = Math.pow(PR, 1.08);
+            }
+            let fee = VO * Ti * Math.pow(4, PO) * Q + VR * Tr * Math.pow(4, PR) * Q;
+            return Math.round(fee);
+        }
+        catch (err)
+        {
+            common_f.logger.logError(`Tax Calc Error message: ${err}`);
+            return 0;
+        }
+
     }
 
     removeOffer(offerId, sessionID)
@@ -827,9 +873,23 @@ class Controller
         return item_f.eventHandler.getOutput();
     }
 
-    extendOffer(offerId, sessionID)
+    extendOffer(info, sessionID)
     {
+        let offerId = info.offerId,
+            secondsToAdd = info.renewalTime * 60 * 60,
+            feeToPay = 0;
+
         // TODO: Subtract money and change offer endTime
+        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const index = offers.findIndex(offer => offer._id === offerId);
+
+        if (index === -1)
+        {
+            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+        }
+        offers[index].endTime += secondsToAdd;
+
         return item_f.eventHandler.getOutput();
     }
 
@@ -874,14 +934,14 @@ class Controller
         for (const item of requirements)
         {
             // Create an item of the specified currency
-            const moneyItem = {
+            const requestedItem = {
                 "_id": common_f.hash.generate(),
                 "_tpl": item._tpl,
                 "upd": { "StackObjectsCount": item.count }
             };
 
             // Split the money stacks in case more than the stack limit is requested
-            let stacks = helpfunc_f.helpFunctions.splitStack(moneyItem);
+            let stacks = helpfunc_f.helpFunctions.splitStack(requestedItem);
             itemsToSend.push(...stacks);
         }
 
@@ -910,7 +970,7 @@ class Controller
                 common_f.logger.logError(`Could not get locale data for item with _id -> ${findItemResult[1]._id}`);
             }
 
-            let messageText = messageTpl.replace(/{\w+}/g, function(matched)
+            let messageText = messageTpl.replace(/{\w+}/g, function (matched)
             {
                 return tplVars[matched.replace(/{|}/g, "")];
             });
