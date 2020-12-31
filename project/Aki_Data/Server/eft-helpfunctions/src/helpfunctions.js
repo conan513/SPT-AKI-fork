@@ -547,6 +547,28 @@ class HelpFunctions
         return output;
     }
 
+    getItemQualityPrice(item)
+    {
+        const hpresource = (item.upd && item.upd.MedKit) ? item.upd.MedKit.HpResource : 0;
+        const repairable = (item.upd && item.upd.Repairable) ? item.upd.Repairable : 0;
+        let result = 0;
+
+        if (hpresource > 0)
+        {
+            // meds
+            const maxHp = this.getItem(item._tpl)[1]._props.MaxHpResource;
+            result = hpresource / maxHp;
+        }
+
+        if (repairable > 0)
+        {
+            // weapons and armor
+            result = repairable.Durability / repairable.MaxDurability;
+        }
+
+        return result;
+    }
+
     /* Get Player Stash Proper Size
     * input: null
     * output: [stashSizeWidth, stashSizeHeight]

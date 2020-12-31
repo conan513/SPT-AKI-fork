@@ -384,13 +384,15 @@ class Controller
             return false;
         }
 
-        /*
-        if (info.conditionFrom > 0 || info.conditionTo < 100)
+        if (info.conditionFrom > 0 || info.conditionTo < 100 && (item.upd && (item.upd.MedKit || item.upd.Repairable)))
         {
-            // check durability, item usage, etc
-            return false;
+            const percentage = 100 * helpfunc_f.helpFunctions.getItemQualityPrice(item);
+            
+            if (info.conditionFrom > percentage || info.conditionTo < percentage)
+            {
+                return false;
+            }
         }
-        */
 
         if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(money))
         {

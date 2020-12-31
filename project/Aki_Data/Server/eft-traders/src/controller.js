@@ -292,22 +292,8 @@ class Controller
                 price *= item.upd.Dogtag.Level;
             }
 
-            // meds calculation
-            let hpresource = ("upd" in item && "MedKit" in item.upd) ? item.upd.MedKit.HpResource : 0;
-
-            if (hpresource > 0)
-            {
-                let maxHp = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
-                price *= (hpresource / maxHp);
-            }
-
-            // weapons and armor calculation
-            let repairable = ("upd" in item && "Repairable" in item.upd) ? item.upd.Repairable : 1;
-
-            if (repairable !== 1)
-            {
-                price *= (repairable.Durability / repairable.MaxDurability);
-            }
+            // meds & repairable calculation
+            price *= helpfunc_f.helpFunctions.getItemQualityPrice(item);
 
             // get real price
             if (trader.discount > 0)
