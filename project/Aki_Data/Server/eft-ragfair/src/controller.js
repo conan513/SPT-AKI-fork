@@ -390,6 +390,7 @@ class Controller
             
             if (info.conditionFrom > percentage || info.conditionTo < percentage)
             {
+                // item condition is not desired
                 return false;
             }
         }

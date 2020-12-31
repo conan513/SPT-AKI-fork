@@ -547,6 +547,7 @@ class HelpFunctions
         return output;
     }
 
+    // TODO: key usage
     getItemQualityPrice(item)
     {
         const hpresource = (item.upd && item.upd.MedKit) ? item.upd.MedKit.HpResource : 0;
