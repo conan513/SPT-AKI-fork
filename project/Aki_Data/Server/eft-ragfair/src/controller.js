@@ -345,10 +345,10 @@ class Controller
 
     isDisplayableOffer(info, itemsToAdd, assorts, offer)
     {
-        const item = offer.items[0]._tpl;
+        const item = offer.items[0];
         const money = offer.requirements[0]._tpl;
 
-        if (!itemsToAdd.includes(item))
+        if (!itemsToAdd.includes(item._tpl))
         {
             // skip items we shouldn't include
             return false;
@@ -372,25 +372,43 @@ class Controller
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(item) && !preset_f.controller.isPreset(offer._id))
+        if (info.quantityFrom > 0 && info.quantityFrom > item.upd.StackObjectsCount)
+        {
+            // too little items to offer
+            return false;
+        }
+
+        if (info.quantityTo > 0 && info.quantityTo < item.upd.StackObjectsCount)
+        {
+            // too many items to offer
+            return false;
+        }
+
+        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && !preset_f.controller.isPreset(offer._id))
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(item) && preset_f.controller.isPreset(offer._id))
+        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && preset_f.controller.isPreset(offer._id))
         {
             // don't include preset items
             return false;
         }
 
-        if (info.conditionFrom > 0 || info.conditionTo < 100 && (item.upd && (item.upd.MedKit || item.upd.Repairable)))
+        if (item.upd.MedKit || item.upd.Repairable || item.upd.Key)
         {
             const percentage = 100 * helpfunc_f.helpFunctions.getItemQualityPrice(item);
-            
-            if (info.conditionFrom > percentage || info.conditionTo < percentage)
+
+            if (info.conditionFrom > 0 && info.conditionFrom > percentage)
             {
-                // item condition is not desired
+                // item condition is not sought for
+                return false;
+            }
+
+            if (info.conditionTo > 0 && info.conditionTo < percentage)
+            {
+                // item condition is not sought for
                 return false;
             }
         }
@@ -414,13 +432,13 @@ class Controller
 
         if (info.priceFrom > 0 && info.priceFrom > offer.requirementsCost)
         {
-            // price is not sought for
+            // price is too low
             return false;
         }
 
         if (info.priceTo > 0 && info.priceTo < offer.requirementsCost)
         {
-            // price is not sought for
+            // price is too high
             return false;
         }
 
