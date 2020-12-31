@@ -30,7 +30,7 @@ class Controller
         // initialize base offer expire date (1 week after server start)
         const time = common_f.time.getTimestamp();
         database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
+        database_f.server.tables.ragfair.offer.endTime = time + (7 * 24 * 60 * 60);
     }
 
     generateOffers()
@@ -113,14 +113,14 @@ class Controller
             return;
         }
 
+        const preset = preset_f.controller.getPreset(presetID);
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-        let preset = preset_f.controller.getPreset(presetID);
         let mods = preset._items;
-        let rub = 0;
+        let price = 0;
 
-        for (let it of mods)
+        for (const it of mods)
         {
-            rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
+            price += Math.round(helpfunc_f.helpFunctions.getTemplatePrice(it._tpl));
         }
 
         mods[0].upd = mods[0].upd || {}; // append the stack count
@@ -129,7 +129,10 @@ class Controller
         offer._id = preset._id;          // The offer's id is now the preset's id
         offer.root = mods[0]._id;        // Sets the main part of the weapon
         offer.items = mods;
-        offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
+        offer.requirements[0].count = price;
+        offer.itemsCost = price;
+        offer.requirementsCost = price;
+        offer.summaryCost = price;
 
         database_f.server.tables.ragfair.offers.push(offer);
     }
@@ -137,6 +140,7 @@ class Controller
     createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
+        const price = this.calculateCost(barterScheme);
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
         offer._id = items[0]._id;
@@ -153,7 +157,8 @@ class Controller
         offer.items = items;
         offer.requirements = barterScheme;
         offer.loyaltyLevel = loyalLevel;
-        offer.summaryCost = this.calculateCost(barterScheme);
+        offer.requirementsCost = price;
+        offer.summaryCost = price;
 
         database_f.server.tables.ragfair.offers.push(offer);
     }
@@ -189,7 +194,7 @@ class Controller
 
     sortOffersByPrice(a, b)
     {
-        return a.requirements[0].count - b.requirements[0].count;
+        return a.requirementsCost - b.requirementsCost;
     }
 
     sortOffersByPriceSummaryCost(a, b)
@@ -267,7 +272,7 @@ class Controller
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
         {
-            for (let offer of database_f.server.tables.ragfair.offers)
+            for (const offer of database_f.server.tables.ragfair.offers)
             {
                 result.categories[offer.items[0]._tpl] = 1;
             }
@@ -323,7 +328,7 @@ class Controller
         // Case: category
         if (info.handbookId)
         {
-            let handbook = this.getCategoryList(info.handbookId);
+            const handbook = this.getCategoryList(info.handbookId);
 
             if (result.length)
             {
@@ -340,7 +345,10 @@ class Controller
 
     isDisplayableOffer(info, itemsToAdd, assorts, offer)
     {
-        if (!itemsToAdd.includes(offer.items[0]._tpl))
+        const item = offer.items[0];
+        const money = offer.requirements[0]._tpl;
+
+        if (!itemsToAdd.includes(item._tpl))
         {
             // skip items we shouldn't include
             return false;
@@ -358,21 +366,79 @@ class Controller
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(offer.items[0]._tpl) && !preset_f.controller.isPreset(offer._id))
+        if (info.oneHourExpiration && offer.endTime - common_f.time.getTimestamp() > 3600)
+        {
+            // offer doesnt expire within an hour
+            return false;
+        }
+
+        if (info.quantityFrom > 0 && info.quantityFrom > item.upd.StackObjectsCount)
+        {
+            // too little items to offer
+            return false;
+        }
+
+        if (info.quantityTo > 0 && info.quantityTo < item.upd.StackObjectsCount)
+        {
+            // too many items to offer
+            return false;
+        }
+
+        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && !preset_f.controller.isPreset(offer._id))
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(offer.items[0]._tpl) && preset_f.controller.isPreset(offer._id))
+        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && preset_f.controller.isPreset(offer._id))
         {
             // don't include preset items
             return false;
         }
 
-        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
+        if (item.upd.MedKit || item.upd.Repairable || item.upd.Key)
+        {
+            const percentage = 100 * helpfunc_f.helpFunctions.getItemQualityPrice(item);
+
+            if (info.conditionFrom > 0 && info.conditionFrom > percentage)
+            {
+                // item condition is not sought for
+                return false;
+            }
+
+            if (info.conditionTo > 0 && info.conditionTo < percentage)
+            {
+                // item condition is not sought for
+                return false;
+            }
+        }
+
+        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(money))
         {
             // don't include barter offers
+            return false;
+        }
+
+        if (info.currency > 0 && helpfunc_f.helpFunctions.isMoneyTpl(money))
+        {
+            const currencies = ["all", "RUB", "USD", "EUR"];
+            
+            if (helpfunc_f.helpFunctions.getCurrencyTag(money) !== currencies[info.currency])
+            {
+                // don't include item paid in wrong currency
+                return false;
+            }
+        }
+
+        if (info.priceFrom > 0 && info.priceFrom > offer.requirementsCost)
+        {
+            // price is too low
+            return false;
+        }
+
+        if (info.priceTo > 0 && info.priceTo < offer.requirementsCost)
+        {
+            // price is too high
             return false;
         }
 
@@ -398,7 +464,7 @@ class Controller
     {
         let summaryCost = 0;
 
-        for (let barter of barterScheme)
+        for (const barter of barterScheme)
         {
             summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
         }
@@ -410,7 +476,7 @@ class Controller
     {
         result.categories = {};
 
-        for (let filter of filters)
+        for (const filter of filters)
         {
             result.categories[filter] = 1;
         }
@@ -425,41 +491,55 @@ class Controller
         // if its "mods" great-parent category, do double recursive loop
         if (handbookId === "5b5f71a686f77447ed5636ab")
         {
-            for (let categ2 of helpfunc_f.helpFunctions.childrenCategories(handbookId))
+            for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
-                for (let categ3 of helpfunc_f.helpFunctions.childrenCategories(categ2))
+                for (const subcateg of helpfunc_f.helpFunctions.childrenCategories(categ))
                 {
-                    result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(categ3));
+                    result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(subcateg)];
                 }
             }
+
+            return result;
         }
-        else
+        
+        // item is in any other category
+        if (helpfunc_f.helpFunctions.isCategory(handbookId))
         {
-            if (helpfunc_f.helpFunctions.isCategory(handbookId))
-            {
-                // list all item of the category
-                result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(handbookId));
+            // list all item of the category
+            result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(handbookId)];
 
-                for (let categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
-                {
-                    result = result.concat(helpfunc_f.helpFunctions.templatesWithParent(categ));
-                }
-            }
-            else
+            for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
-                // its a specific item searched then
-                result.push(handbookId);
+                result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(categ)];
             }
+
+            return result;
         }
-
+        
+        // its a specific item searched
+        result.push(handbookId);
         return result;
+    }
+
+    getLinkedSearchList(linkedSearchId)
+    {
+        const item = database_f.server.tables.templates.items[linkedSearchId];
+
+        // merging all possible filters without duplicates
+        const result = new Set([
+            ...this.getFilters(item, "Slots"),
+            ...this.getFilters(item, "Chambers"),
+            ...this.getFilters(item, "Cartridges")
+        ]);
+
+        return Array.from(result);
     }
 
     getNeededSearchList(neededSearchId)
     {
         let result = [];
 
-        for (let item of Object.values(database_f.server.tables.templates.items))
+        for (const item of Object.values(database_f.server.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
             || this.isInFilter(neededSearchId, item, "Chambers")
@@ -472,61 +552,56 @@ class Controller
         return result;
     }
 
-    getLinkedSearchList(linkedSearchId)
-    {
-        let item = database_f.server.tables.templates.items[linkedSearchId];
-
-        // merging all possible filters without duplicates
-        let result = new Set([
-            ...this.getFilters(item, "Slots"),
-            ...this.getFilters(item, "Chambers"),
-            ...this.getFilters(item, "Cartridges")
-        ]);
-
-        return Array.from(result);
-    }
-
     /* Because of presets, categories are not always 1 */
     countCategories(result)
     {
-        let categ = {};
+        let category = {};
 
-        for (let offer of result.offers)
+        for (const offer of result.offers)
         {
-            let item = offer.items[0]; // only the first item can have presets
+            // only the first item can have presets
+            const item = offer.items[0];
 
-            categ[item._tpl] = categ[item._tpl] || 0;
-            categ[item._tpl]++;
+            category[item._tpl] = category[item._tpl] || 0;
+            category[item._tpl]++;
         }
 
         // not in search mode, add back non-weapon items
-        for (let c in result.categories)
+        for (const c in result.categories)
         {
-            if (!categ[c])
+            if (!category[c])
             {
-                categ[c] = 1;
+                category[c] = 1;
             }
         }
 
-        result.categories = categ;
+        result.categories = category;
     }
 
     /* Like getFilters but breaks early and return true if id is found in filters */
     isInFilter(id, item, slot)
     {
-        if (slot in item._props && item._props[slot].length)
+        if (!(slot in item._props && item._props[slot].length))
         {
-            for (let sub of item._props[slot])
+            // item slot doesnt exist
+            return false;
+        }
+
+        // get slot
+        for (const sub of item._props[slot])
+        {
+            if (!("_props" in sub && "filters" in sub._props))
             {
-                if ("_props" in sub && "filters" in sub._props)
+                // not a filter
+                continue;
+            }
+
+            // find item in filter
+            for (const filter of sub._props.filters)
+            {
+                if (filter.Filter.includes(id))
                 {
-                    for (let filter of sub._props.filters)
-                    {
-                        if (filter.Filter.includes(id))
-                        {
-                            return true;
-                        }
-                    }
+                    return true;
                 }
             }
         }
@@ -538,19 +613,26 @@ class Controller
     getFilters(item, slot)
     {
         let result = new Set();
-        if (slot in item._props && item._props[slot].length)
+
+        if (!(slot in item._props && item._props[slot].length))
         {
-            for (let sub of item._props[slot])
+            // item slot doesnt exist
+            return result;
+        }
+
+        for (const sub of item._props[slot])
+        {
+            if (!("_props" in sub && "filters" in sub._props))
             {
-                if ("_props" in sub && "filters" in sub._props)
+                // not a filter
+                continue;
+            }
+
+            for (const filter of sub._props.filters)
+            {
+                for (const f of filter.Filter)
                 {
-                    for (let filter of sub._props.filters)
-                    {
-                        for (let f of filter.Filter)
-                        {
-                            result.add(f);
-                        }
-                    }
+                    result.add(f);
                 }
             }
         }
@@ -905,7 +987,7 @@ class Controller
 
     fetchItemFleaPrice(tpl)
     {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl));
     }
 
     fetchRandomPmcName()
