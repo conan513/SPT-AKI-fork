@@ -373,7 +373,7 @@ class Controller
             return false;
         }
 
-        if (info.oneHourExpiration && common_f.time.getTimestamp() - item.endTime > 3600)
+        if (info.oneHourExpiration && offer.endTime - common_f.time.getTimestamp() > 3600)
         {
             // offer doesnt expire within an hour
             return false;
