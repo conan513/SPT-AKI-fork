@@ -409,7 +409,7 @@ class Controller
             }
         }
 
-        if (info.priceFrom > offer.requirementsCost || info.priceTo < info.requirementsCost)
+        if (info.priceFrom > offer.requirementsCost || info.priceTo < offer.requirementsCost)
         {
             // price is not sought for
             return false;
