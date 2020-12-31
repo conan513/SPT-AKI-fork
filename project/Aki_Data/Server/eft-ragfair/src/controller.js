@@ -966,7 +966,7 @@ class Controller
 
     fetchItemFleaPrice(tpl)
     {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl) * ragfair_f.config.priceMultiplier);
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl));
     }
 
     fetchRandomPmcName()
