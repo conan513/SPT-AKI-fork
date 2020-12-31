@@ -581,7 +581,7 @@ class HelpFunctions
             result = (maxUsage - usage) / maxUsage;
         }
 
-        if (Math.round(result) === 0)
+        if (result === 0)
         {
             // make item cheap
             result = 0.01;

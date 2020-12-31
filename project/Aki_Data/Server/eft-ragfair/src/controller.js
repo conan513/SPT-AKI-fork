@@ -402,13 +402,13 @@ class Controller
 
             if (info.conditionFrom > 0 && info.conditionFrom > percentage)
             {
-                // item condition is not sought for
+                // item condition is too low
                 return false;
             }
 
             if (info.conditionTo > 0 && info.conditionTo < percentage)
             {
-                // item condition is not sought for
+                // item condition is too high
                 return false;
             }
         }
