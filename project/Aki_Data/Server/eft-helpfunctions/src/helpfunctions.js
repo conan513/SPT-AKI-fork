@@ -547,10 +547,10 @@ class HelpFunctions
         return output;
     }
 
-    // TODO: key usage
+    // get normalized value (0-1) based on item condition
     getItemQualityPrice(item)
     {
-        let result = 0;
+        let result = 1;
 
         if (!item.upd)
         {
@@ -576,9 +576,15 @@ class HelpFunctions
 
         if (usage > 0)
         {
-            // key
+            // key, 100% is 0 and 0% is maxUsage
             const maxUsage = this.getItem(item._tpl)[1]._props.MaximumNumberOfUsage;
             result = (maxUsage - usage) / maxUsage;
+        }
+
+        if (Math.round(result) === 0)
+        {
+            // make item cheap
+            result = 0.01;
         }
 
         return result;
