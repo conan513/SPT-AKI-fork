@@ -270,8 +270,7 @@ class HelpFunctions
 
     isMoneyTpl(tpl)
     {
-        const moneyTplArray = ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"];
-        return moneyTplArray.includes(tpl);
+        return ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"].includes(tpl);
     }
 
     /* Gets currency TPL from TAG
@@ -286,10 +285,31 @@ class HelpFunctions
                 return "569668774bdc2da2298b4568";
             case "USD":
                 return "5696686a4bdc2da3298b456a";
+            case "RUB":
+                return "5449016a4bdc2d6f028b456f";
             default:
-                return "5449016a4bdc2d6f028b456f"; // RUB set by default
+                return "";
         }
     }
+
+    /* Gets currency TAG from TPL
+    * input: currency(tag)
+    * output: template ID
+    * */
+   getCurrencyTag(currency)
+   {
+       switch (currency)
+       {
+           case "569668774bdc2da2298b4568":
+               return "EUR";
+           case "5696686a4bdc2da3298b456a":
+               return "USD";
+           case "5449016a4bdc2d6f028b456f":
+               return "RUB";
+           default:
+               return "";
+       }
+   }
 
     /* Gets Currency to Ruble conversion Value
     * input:  value, currency tpl

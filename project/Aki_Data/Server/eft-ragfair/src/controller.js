@@ -340,7 +340,10 @@ class Controller
 
     isDisplayableOffer(info, itemsToAdd, assorts, offer)
     {
-        if (!itemsToAdd.includes(offer.items[0]._tpl))
+        const item = offer.items[0]._tpl;
+        const money = offer.requirements[0]._tpl;
+
+        if (!itemsToAdd.includes(item))
         {
             // skip items we shouldn't include
             return false;
@@ -358,22 +361,39 @@ class Controller
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(offer.items[0]._tpl) && !preset_f.controller.isPreset(offer._id))
+        if (info.onlyFunctional && preset_f.controller.hasPreset(item) && !preset_f.controller.isPreset(offer._id))
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(offer.items[0]._tpl) && preset_f.controller.isPreset(offer._id))
+        if (info.buildCount && preset_f.controller.hasPreset(item) && preset_f.controller.isPreset(offer._id))
         {
             // don't include preset items
             return false;
         }
 
-        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(offer.requirements[0]._tpl))
+        if (info.oneHourExpiration && common_f.time.getTimestamp() - item.endTime > 3600)
+        {
+            // offer doesnt expire within an hour
+            return false;
+        }
+
+        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(money))
         {
             // don't include barter offers
             return false;
+        }
+
+        if (info.currency > 0 && helpfunc_f.helpFunctions.isMoneyTpl(money))
+        {
+            const currencies = ["all", "RUB", "USD", "EUR"];
+            
+            if (helpfunc_f.helpFunctions.getCurrencyTag(money) !== currencies[info.currency])
+            {
+                // don't include item paid in wrong currency
+                return false;
+            }
         }
 
         // handle trader items
