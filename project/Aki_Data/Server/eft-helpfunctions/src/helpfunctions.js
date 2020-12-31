@@ -270,8 +270,7 @@ class HelpFunctions
 
     isMoneyTpl(tpl)
     {
-        const moneyTplArray = ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"];
-        return moneyTplArray.includes(tpl);
+        return ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"].includes(tpl);
     }
 
     /* Gets currency TPL from TAG
@@ -286,10 +285,31 @@ class HelpFunctions
                 return "569668774bdc2da2298b4568";
             case "USD":
                 return "5696686a4bdc2da3298b456a";
+            case "RUB":
+                return "5449016a4bdc2d6f028b456f";
             default:
-                return "5449016a4bdc2d6f028b456f"; // RUB set by default
+                return "";
         }
     }
+
+    /* Gets currency TAG from TPL
+    * input: currency(tag)
+    * output: template ID
+    * */
+   getCurrencyTag(currency)
+   {
+       switch (currency)
+       {
+           case "569668774bdc2da2298b4568":
+               return "EUR";
+           case "5696686a4bdc2da3298b456a":
+               return "USD";
+           case "5449016a4bdc2d6f028b456f":
+               return "RUB";
+           default:
+               return "";
+       }
+   }
 
     /* Gets Currency to Ruble conversion Value
     * input:  value, currency tpl
@@ -525,6 +545,49 @@ class HelpFunctions
         output.currentSalesSums[body.tid] = saleSum;
 
         return output;
+    }
+
+    // get normalized value (0-1) based on item condition
+    getItemQualityPrice(item)
+    {
+        let result = 1;
+
+        if (!item.upd)
+        {
+            return result;
+        }
+
+        const hpresource = (item.upd.MedKit) ? item.upd.MedKit.HpResource : 0;
+        const repairable = (item.upd.Repairable) ? item.upd.Repairable : 0;
+        const usage = (item.upd.Key) ? item.upd.Key.NumberOfUsages : 0;
+
+        if (hpresource > 0)
+        {
+            // meds
+            const maxHp = this.getItem(item._tpl)[1]._props.MaxHpResource;
+            result = hpresource / maxHp;
+        }
+
+        if (repairable > 0)
+        {
+            // weapons and armor
+            result = repairable.Durability / repairable.MaxDurability;
+        }
+
+        if (usage > 0)
+        {
+            // key, 100% is 0 and 0% is maxUsage
+            const maxUsage = this.getItem(item._tpl)[1]._props.MaximumNumberOfUsage;
+            result = (maxUsage - usage) / maxUsage;
+        }
+
+        if (result === 0)
+        {
+            // make item cheap
+            result = 0.01;
+        }
+
+        return result;
     }
 
     /* Get Player Stash Proper Size

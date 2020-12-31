@@ -13,7 +13,6 @@ class Config
 {
     constructor()
     {
-        this.priceMultiplier = 1;
         this.sellChance = 25;
         this.sellTimeHrs = 12;
         this.enableFees = false;
