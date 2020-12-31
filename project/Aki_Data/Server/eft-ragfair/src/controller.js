@@ -30,7 +30,7 @@ class Controller
         // initialize base offer expire date (1 week after server start)
         const time = common_f.time.getTimestamp();
         database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + 604800000;
+        database_f.server.tables.ragfair.offer.endTime = time + (7 * 24 * 60 * 60);
     }
 
     generateOffers()
