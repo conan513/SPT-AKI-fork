@@ -116,11 +116,11 @@ class Controller
         const preset = preset_f.controller.getPreset(presetID);
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
         let mods = preset._items;
-        let rub = 0;
+        let price = 0;
 
         for (const it of mods)
         {
-            rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
+            price += Math.round(helpfunc_f.helpFunctions.getTemplatePrice(it._tpl));
         }
 
         mods[0].upd = mods[0].upd || {}; // append the stack count
@@ -129,7 +129,10 @@ class Controller
         offer._id = preset._id;          // The offer's id is now the preset's id
         offer.root = mods[0]._id;        // Sets the main part of the weapon
         offer.items = mods;
-        offer.requirements[0].count = Math.round(rub * ragfair_f.config.priceMultiplier);
+        offer.requirements[0].count = price;
+        offer.itemsCost = price;
+        offer.requirementsCost = price;
+        offer.summaryCost = price;
 
         database_f.server.tables.ragfair.offers.push(offer);
     }
@@ -137,6 +140,7 @@ class Controller
     createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
+        const price = this.calculateCost(barterScheme);
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
         offer._id = items[0]._id;
@@ -153,7 +157,8 @@ class Controller
         offer.items = items;
         offer.requirements = barterScheme;
         offer.loyaltyLevel = loyalLevel;
-        offer.summaryCost = this.calculateCost(barterScheme);
+        offer.requirementsCost = price;
+        offer.summaryCost = price;
 
         database_f.server.tables.ragfair.offers.push(offer);
     }
@@ -361,6 +366,12 @@ class Controller
             return false;
         }
 
+        if (info.oneHourExpiration && offer.endTime - common_f.time.getTimestamp() > 3600)
+        {
+            // offer doesnt expire within an hour
+            return false;
+        }
+
         if (info.onlyFunctional && preset_f.controller.hasPreset(item) && !preset_f.controller.isPreset(offer._id))
         {
             // don't include non-functional items
@@ -373,11 +384,13 @@ class Controller
             return false;
         }
 
-        if (info.oneHourExpiration && offer.endTime - common_f.time.getTimestamp() > 3600)
+        /*
+        if (info.conditionFrom > 0 || info.conditionTo < 100)
         {
-            // offer doesnt expire within an hour
+            // check durability, item usage, etc
             return false;
         }
+        */
 
         if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(money))
         {
@@ -394,6 +407,12 @@ class Controller
                 // don't include item paid in wrong currency
                 return false;
             }
+        }
+
+        if (info.priceFrom > offer.requirementsCost || info.priceTo < info.requirementsCost)
+        {
+            // price is not sought for
+            return false;
         }
 
         // handle trader items
