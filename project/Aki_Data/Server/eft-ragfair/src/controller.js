@@ -194,7 +194,7 @@ class Controller
 
     sortOffersByPrice(a, b)
     {
-        return a.requirements[0].count - b.requirements[0].count;
+        return a.requirementsCost - b.requirementsCost;
     }
 
     sortOffersByPriceSummaryCost(a, b)
