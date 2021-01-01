@@ -268,6 +268,7 @@ class Server
         offer.loyaltyLevel = loyalLevel;
         offer.requirementsCost = price;
         offer.summaryCost = price;
+        offer.endTime = ragfair_f.config.static.timeMax * 60;
 
         this.offers.push(offer);
     }
@@ -276,10 +277,10 @@ class Server
     {
         if (ragfair_f.config.dynamic.enabled)
         {
-            return timestamp + common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax);
+            return timestamp + common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
         }
         
-        return timestamp + ragfair_f.config.static.timeMax;
+        return timestamp + ragfair_f.config.static.timeMax * 60;
     }
 
     getOfferPriceMultiplier()
