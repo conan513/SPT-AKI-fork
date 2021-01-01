@@ -1,6 +1,16 @@
 {
 	"items": [
 		{
+			"_id": "VectorG30",
+			"_tpl": "5fb651dc85f90547f674b6f4",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": true,
+				"StackObjectsCount": 999999999
+			}
+		},
+		{
 			"_id": "308TacX",
 			"_tpl": "5fc382b6d6fa9c00c571bbc3",
 			"parentId": "hideout",
@@ -6197,6 +6207,14 @@
 		}
 	],
 	"barter_scheme": {
+		"VectorG30": [
+			[
+				{
+					"count": 7699,
+					"_tpl": "5449016a4bdc2d6f028b456f"
+				}
+			]
+		],
 		"308TacX": [
 			[
 				{
@@ -9974,6 +9992,7 @@
 		"5eeca63ebfed7142cb30febf": 3,
 		"5eeca63ebfed7142cb30fec1": 2,
 		"5ef52a1f7e0a17415066ec67": 2,
-		"308TacX": 4
+		"308TacX": 4,
+		"VectorG30": 3
 	}
 }
