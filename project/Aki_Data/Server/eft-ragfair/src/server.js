@@ -214,9 +214,9 @@ class Server
         this.offers.push(offer);
     }
 
-    getItemPrice(tpl)
+    getItemPrice(itemID)
     {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl));
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
     }
 
     getTraderPrice(barterScheme)
