@@ -31,9 +31,9 @@ class Config
             "stackMax": 1000
         }
         this.static = {
-            "timeMax": 0,
-            "pricePerc": 1,
-            "stackSize": 999999999
+            "price": 1,
+            "time": 3600,
+            "stack": 999999999
         }
     }
 }

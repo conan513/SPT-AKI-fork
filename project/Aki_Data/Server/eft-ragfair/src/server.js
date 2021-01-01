@@ -36,33 +36,36 @@ class Server
 
         // get available categories
         this.generateCategories();
+
+        common_f.vfs.writeFile("dump/prices_new.json", common_f.json.serialize(this.prices, true));
+        common_f.vfs.writeFile("dump/offers_new.json", common_f.json.serialize(this.offers, true));
+        common_f.vfs.writeFile("dump/categories_new.json", common_f.json.serialize(this.categories, true));
     }
 
     update()
     {
-        if (!ragfair_f.config.dynamic.enabled)
+        if (ragfair_f.config.dynamic.enabled)
         {
-            // offers are static
-            return;
-        }
+            // remove expired offers
+            const time = common_f.time.getTimestamp();
 
-        // remove expired offers
-        const time = common_f.time.getTimestamp();
-
-        for (const offer in this.offers)
-        {
-            if (this.offers[offer].endTime < time)
+            for (const offer in this.offers)
             {
-                this.offers.splice(offer, 1);
+                if (this.offers[offer].endTime < time)
+                {
+                    this.offers.splice(offer, 1);
+                }
+            }
+
+            // generate new offers
+            if (this.offers.length < ragfair_f.config.dynamic.threshold)
+            {
+                this.generateDynamicOffers();
+                this.generateCategories();
             }
         }
 
-        // generate new offers
-        if (this.offers.length < ragfair_f.config.dynamic.threshold)
-        {
-            this.generateDynamicOffers();
-            this.generateCategories();
-        }
+        // todo: move player offer code here
     }
 
     generateTraderOffers()
@@ -247,6 +250,7 @@ class Server
         this.offers.push(offer);
     }
 
+    // note: trader offer is static, so override time to use static time
     createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
@@ -268,39 +272,57 @@ class Server
         offer.loyaltyLevel = loyalLevel;
         offer.requirementsCost = price;
         offer.summaryCost = price;
-        offer.endTime = ragfair_f.config.static.timeMax * 60;
+        offer.endTime = Math.round(ragfair_f.config.static.time * 60);
 
         this.offers.push(offer);
     }
 
     getOfferEndTime(timestamp)
     {
+        let result = timestamp;
+
         if (ragfair_f.config.dynamic.enabled)
         {
-            return timestamp + common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
+            result =+ common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
         }
-        
-        return timestamp + ragfair_f.config.static.timeMax * 60;
+        else
+        {
+            result += ragfair_f.config.static.time * 60;
+        }
+
+        return Math.round(result);
     }
 
     getOfferPriceMultiplier()
     {
+        let result = 1;
+
         if (ragfair_f.config.dynamic.enabled)
         {
-            return common_f.random.getFloat(ragfair_f.config.dynamic.priceMin, ragfair_f.config.dynamic.priceMax);
+            result = common_f.random.getFloat(ragfair_f.config.dynamic.priceMin, ragfair_f.config.dynamic.priceMax);
+        }
+        else
+        {
+            result = ragfair_f.config.static.price;
         }
         
-        return ragfair_f.config.static.pricePerc;
+        return Math.round(result);
     }
 
     getOfferStackSize()
     {
+        let result = 1;
+
         if (ragfair_f.config.dynamic.enabled)
         {
-            return common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);   
+            result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);   
+        }
+        else
+        {
+            result = ragfair_f.config.static.stack;
         }
 
-        return ragfair_f.config.static.stackSize;
+        return Math.round(result);
     }
 
     getTraderItemPrice(barterScheme)
