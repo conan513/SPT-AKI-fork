@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "RFB_TS",
+            "_tpl": "5f2aa43ba9b91d26f20ae6d2",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 99999999
+            }
+        },
+        {
             "_id": "SRD",
             "_tpl": "5fbe7618d6fa9c00c571bb6c",
             "parentId": "hideout",
@@ -5409,6 +5419,16 @@
         }
     ],
     "barter_scheme": {
+        "RFB_TS":[
+            [
+                [
+                    {
+                        "count": 22,
+                        "_tpl": "5696686a4bdc2da3298b456a"
+                    }
+                ]
+            ]
+        ],
         "SRD": [
             [
                 [
@@ -8605,6 +8625,7 @@
         "5d34df2788a4504526796d5f": 4,
         "5d34df2788a4504526796d60": 2,
         "ds150Stock": 2,
-        "SRD": 3
+        "SRD": 3,
+        "RFB_TS": 1
     }
 }

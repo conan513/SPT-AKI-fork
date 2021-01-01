@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "5eeca63dbfed7142cb30fd0d",
+            "_tpl": "5a7ad2e851dfba0016153692",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "9mm_rip_box",
             "_tpl": "5c1127bdd174af44217ab8b9",
             "parentId": "hideout",
@@ -2598,6 +2608,14 @@
         }
     ],
     "barter_scheme": {
+        "5eeca63dbfed7142cb30fd0d": [
+            [
+                {
+                    "count": 3400,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "9mm_rip_box": [
             [
                 [
@@ -4274,6 +4292,7 @@
         "300BlackoutBPZ": 3,
         "m2_sword": 4,
         "rotor43": 3,
-        "9mm_rip_box": 4
+        "9mm_rip_box": 4,
+        "5eeca63dbfed7142cb30fd0d": 2
     }
 }
