@@ -133,7 +133,20 @@ class Controller
                 body.tid = data.user.id;
             }
 
-            output = this.confirmTrading(pmcData, body, sessionID);
+            if (preset_f.controller.isPreset(offer._id))
+            {
+                // constructed weapons need to be sold one by one
+                for (let i = 0; i < offer.count; i++)
+                {
+                    body.count = 1;
+                    output = this.confirmTrading(pmcData, body, sessionID);
+                }
+            }
+            else
+            {
+                // single items
+                output = this.confirmTrading(pmcData, body, sessionID);
+            }
         }
 
         return output;
