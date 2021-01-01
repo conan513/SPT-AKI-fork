@@ -14,13 +14,30 @@ class Server
 {
     constructor()
     {
+        this.prices = {};
         this.offers = [];
         this.categories = {};
     }
 
     load()
     {
+        this.getItemPrices();
         this.generateOffers();
+    }
+
+    getItemPrices()
+    {
+        let prices = {};
+
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
+            {
+                prices[itemID] = this.getItemPrice(itemID);
+            }
+        }
+
+        this.prices = prices;
     }
 
     generateOffers()
@@ -120,13 +137,13 @@ class Server
     {
         const item = database_f.server.tables.templates.items[itemID];
 
-        if (!item || item._type === "Node")
+        if (item._type === "Node")
         {
             // don't add nodes
             return;
         }
 
-        const price = ragfair_f.controller.fetchItemFleaPrice(itemID);
+        const price = this.getItemPrice(itemID);
 
         if (price === 0 || price === 1)
         {
@@ -148,11 +165,6 @@ class Server
 
     createPresetOffer(presetID)
     {
-        if (!preset_f.controller.isPreset(presetID))
-        {
-            return;
-        }
-
         const preset = preset_f.controller.getPreset(presetID);
         let offer = this.getOfferTemplate();
         let mods = preset._items;
@@ -160,7 +172,7 @@ class Server
 
         for (const it of mods)
         {
-            price += Math.round(helpfunc_f.helpFunctions.getTemplatePrice(it._tpl));
+            price += this.getItemPrice(it._tpl);
         }
 
         mods[0].upd = mods[0].upd || {}; // append the stack count
@@ -180,7 +192,7 @@ class Server
     createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        const price = ragfair_f.controller.calculateCost(barterScheme);
+        const price = this.getTraderPrice(barterScheme);
         let offer = this.getOfferTemplate();
 
         offer._id = items[0]._id;
@@ -200,6 +212,23 @@ class Server
         offer.summaryCost = price;
 
         this.offers.push(offer);
+    }
+
+    getItemPrice(tpl)
+    {
+        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl));
+    }
+
+    getTraderPrice(barterScheme)
+    {
+        let summaryCost = 0;
+
+        for (const barter of barterScheme)
+        {
+            summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
+        }
+
+        return Math.round(summaryCost);
     }
 }
 

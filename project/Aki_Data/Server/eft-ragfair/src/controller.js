@@ -13,7 +13,6 @@
 
 class Controller
 {
-
     initialize()
     {
         this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
@@ -324,18 +323,6 @@ class Controller
         return true;
     }
 
-    calculateCost(barterScheme)
-    {
-        let summaryCost = 0;
-
-        for (const barter of barterScheme)
-        {
-            summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
-        }
-
-        return Math.round(summaryCost);
-    }
-
     fillCatagories(result, filters)
     {
         result.categories = {};
@@ -532,7 +519,7 @@ class Controller
 
     getItemPrice(info)
     {
-        const price = this.fetchItemFleaPrice(info.templateId);
+        const price = ragfair_f.server.prices[info.templateId];
 
         // 1 is returned by helper method if price lookup failed
         if (!price || price === 1)
@@ -547,24 +534,14 @@ class Controller
         };
     }
 
-    getItemPrices()
-    {
-        let result = {};
-
-        for (const itemID in database_f.server.tables.templates.items)
-        {
-            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
-            {
-                result[itemID] = this.fetchItemFleaPrice(itemID);
-            }
-        }
-
-        return result;
-    }
-
     addPlayerOffer(pmcData, info, sessionID)
     {
         const result = item_f.eventHandler.getOutput();
+        let requirementsPriceInRub = 0;
+        let offerPrice = 0;
+        let itemStackCount = 0
+        let invItems = [];
+        let basePrice = 0;
 
         if (!info || !info.items || info.items.length === 0)
         {
@@ -577,9 +554,6 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
-        let requirementsPriceInRub = 0,
-            offerPrice = 0;
-
         for (const item of info.requirements)
         {
             let requestedItemTpl = item._tpl;
@@ -590,14 +564,11 @@ class Controller
             }
             else
             {
-                requirementsPriceInRub += this.fetchItemFleaPrice(requestedItemTpl) * item.count;
+                requirementsPriceInRub += ragfair_f.server.prices[requestedItemTpl] * item.count;
             }
         }
 
         // Count how many items are being sold and multiply the requested amount accordingly
-        let itemStackCount = 0,
-            invItems = [], basePrice = 0;
-
         for (const itemId of info.items)
         {
             const item = pmcData.Inventory.items.find(i => i._id === itemId);
@@ -608,8 +579,6 @@ class Controller
                 return helpfunc_f.helpFunctions.appendErrorToOutput(result);
             }
 
-
-
             if (!("upd" in item) || !("StackObjectsCount" in item.upd))
             {
                 itemStackCount += 1;
@@ -618,8 +587,9 @@ class Controller
             {
                 itemStackCount += item.upd.StackObjectsCount;
             }
+
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-            offerPrice += this.fetchItemFleaPrice(item._tpl) * itemStackCount;
+            offerPrice += ragfair_f.server.prices[item._tpl] * itemStackCount;
         }
 
         if (info.sellInOnePiece)
@@ -638,7 +608,7 @@ class Controller
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
-            basePrice += this.fetchItemFleaPrice(item._tpl) * mult;
+            basePrice += ragfair_f.server.prices[item._tpl] * mult;
         }
 
         if (!basePrice)
@@ -907,11 +877,6 @@ class Controller
                 "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
             },
         };
-    }
-
-    fetchItemFleaPrice(tpl)
-    {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl));
     }
 
     fetchRandomPmcName()
