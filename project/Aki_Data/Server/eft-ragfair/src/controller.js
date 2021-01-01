@@ -144,7 +144,6 @@ class Controller
         let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
 
         offer._id = items[0]._id;
-        offer.intId = 911;
         offer.user = {
             "id": trader._id,
             "memberType": 4,
@@ -300,6 +299,16 @@ class Controller
 
         // sort offers
         result.offers = this.sortOffers(info, result.offers);
+        
+        // set offer indexes
+        let counter = 0;
+
+        for (let offer of result.offers)
+        {
+            offer.intId = ++counter;
+        }
+        
+        // set categories count
         this.countCategories(result);
 
         return result;
