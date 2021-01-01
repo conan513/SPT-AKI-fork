@@ -36,10 +36,6 @@ class Server
 
         // get available categories
         this.generateCategories();
-
-        common_f.vfs.writeFile("dump/prices_new.json", common_f.json.serialize(this.prices, true));
-        common_f.vfs.writeFile("dump/offers_new.json", common_f.json.serialize(this.offers, true));
-        common_f.vfs.writeFile("dump/categories_new.json", common_f.json.serialize(this.categories, true));
     }
 
     update()
@@ -283,7 +279,7 @@ class Server
 
         if (ragfair_f.config.dynamic.enabled)
         {
-            result =+ common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
+            result += common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
         }
         else
         {
