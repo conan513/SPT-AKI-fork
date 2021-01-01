@@ -1,11 +1,9 @@
-/* callbacks.js
+/* server.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
  * authors:
  * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Terkoiz
  */
 
 "use strict";
@@ -21,40 +19,54 @@ class Server
 
     load()
     {
+        // get item prices
         this.getItemPrices();
-        this.generateOffers();
+
+        // get generated offers
+        this.generateTraderOffers();
+        
+        if (ragfair_f.config.dynamic.enabled)
+        {
+            this.generateDynamicOffers();
+        }
+        else
+        {
+            this.generateStaticOffers();
+        }
+
+        // get available categories
+        this.generateCategories();
     }
 
-    getItemPrices()
+    update()
     {
-        let prices = {};
-
-        for (const itemID in database_f.server.tables.templates.items)
+        if (!ragfair_f.config.dynamic.enabled)
         {
-            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
+            // offers are static
+            return;
+        }
+
+        // remove expired offers
+        const time = common_f.time.getTimestamp();
+
+        for (const offer in this.offers)
+        {
+            if (this.offers[offer].endTime < time)
             {
-                prices[itemID] = this.getItemPrice(itemID);
+                this.offers.splice(offer, 1);
             }
         }
 
-        this.prices = prices;
+        // generate new offers
+        if (this.offers.count < ragfair_f.config.dynamic.threshold)
+        {
+            this.generateDynamicOffers();
+            this.generateCategories();
+        }
     }
 
-    generateOffers()
+    generateTraderOffers()
     {
-        // single items
-        for (const itemID in database_f.server.tables.templates.items)
-        {
-            this.createItemOffer(itemID);
-        }
-
-        // item presets
-        for (const presetID in database_f.server.tables.globals.ItemPresets)
-        {
-            this.createPresetOffer(presetID);
-        }
-
-        // traders
         for (const traderID in database_f.server.tables.traders)
         {
             if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
@@ -81,8 +93,50 @@ class Server
                 this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
             }
         }
+    }
 
-        // categories
+    generateDynamicOffers()
+    {
+        const count = ragfair_f.config.dynamic.threshold + ragfair_f.config.dynamic.batchSize;
+        const presets = Object.values(database_f.server.tables.globals.ItemPresets);
+        const items = Object.values(database_f.server.tables.templates.items).filter((item) => {
+            return item._type !== "Node";
+        });
+
+        while (this.offers.count < count)
+        {
+            const generatePreset = common_f.random.getInt(0, 99) < ragfair_f.config.dynamic.presetChance;
+
+            if (generatePreset)
+            {
+                // generate preset offer
+                this.createPresetOffer(common_f.random.getArrayValue(presets));
+            }
+            else
+            {
+                // generate item offer
+                this.createItemOffer(common_f.random.getArrayValue(items));
+            }
+        }
+    }
+
+    generateStaticOffers()
+    {
+        // single items
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            this.createItemOffer(itemID);
+        }
+
+        // item presets
+        for (const presetID in database_f.server.tables.globals.ItemPresets)
+        {
+            this.createPresetOffer(presetID);
+        }
+    }
+
+    generateCategories()
+    {
         for (const offer of this.offers)
         {
             this.categories[offer.items[0]._tpl] = 1;
@@ -91,7 +145,7 @@ class Server
 
     getOfferTemplate()
     {
-        const time = common_f.time.getTimestamp();
+        const startTime = common_f.time.getTimestamp();
         const offer = {
             "_id": "hash",
             "intId": 0,
@@ -110,7 +164,7 @@ class Server
                     "_tpl": "54009119af1c881c07000029",
                     "upd": {
                         "UnlimitedCount": true,
-                        "StackObjectsCount": 999999999
+                        "StackObjectsCount": 1
                     }
                 }
             ],
@@ -123,8 +177,8 @@ class Server
             "requirementsCost": 0,
             "itemsCost": 0,
             "summaryCost": 0,
-            "startTime": time,
-            "endTime": time + (7 * 24 * 60 * 60),
+            "startTime": startTime,
+            "endTime": this.getOfferEndTime(startTime),
             "loyaltyLevel": 1,
             "sellInOnePiece": false,
             "priority": false
@@ -143,7 +197,7 @@ class Server
             return;
         }
 
-        const price = this.getItemPrice(itemID);
+        let price = this.prices[itemID];
 
         if (price === 0 || price === 1)
         {
@@ -153,8 +207,10 @@ class Server
 
         let offer = this.getOfferTemplate();
 
+        price *= this.getOfferPriceMultiplier();
         offer._id = itemID;
         offer.items[0]._tpl = itemID;
+        offer.items[0].upd.StackObjectsCount = this.getOfferStackSize();
         offer.requirements[0].count = price;
         offer.itemsCost = price;
         offer.requirementsCost = price;
@@ -172,11 +228,13 @@ class Server
 
         for (const it of mods)
         {
-            price += this.getItemPrice(it._tpl);
+            price += this.prices[it._tpl];
         }
 
+        price *= this.getOfferPriceMultiplier();
+
         mods[0].upd = mods[0].upd || {}; // append the stack count
-        mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
+        mods[0].upd.StackObjectsCount = 1;
 
         offer._id = preset._id;          // The offer's id is now the preset's id
         offer.root = mods[0]._id;        // Sets the main part of the weapon
@@ -192,7 +250,7 @@ class Server
     createTraderOffer(traderID, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
-        const price = this.getTraderPrice(barterScheme);
+        const price = this.getTraderItemPrice(barterScheme);
         let offer = this.getOfferTemplate();
 
         offer._id = items[0]._id;
@@ -214,21 +272,61 @@ class Server
         this.offers.push(offer);
     }
 
-    getItemPrice(itemID)
+    getOfferEndTime(timestamp)
     {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
+        if (ragfair_f.config.dynamic.enabled)
+        {
+            return timestamp + common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax);
+        }
+        
+        return timestamp + ragfair_f.config.static.timeMax;
     }
 
-    getTraderPrice(barterScheme)
+    getOfferPriceMultiplier()
     {
-        let summaryCost = 0;
+        if (ragfair_f.config.dynamic.enabled)
+        {
+            return common_f.random.getFloat(ragfair_f.config.dynamic.priceMin, ragfair_f.config.dynamic.priceMax);
+        }
+        
+        return ragfair_f.config.static.pricePerc;
+    }
+
+    getOfferStackSize()
+    {
+        if (ragfair_f.config.dynamic.enabled)
+        {
+            return common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);   
+        }
+
+        return ragfair_f.config.static.stackSize;
+    }
+
+    getTraderItemPrice(barterScheme)
+    {
+        let price = 0;
 
         for (const barter of barterScheme)
         {
-            summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
+            price += this.prices[barter._tpl] * barter.count;
         }
 
-        return Math.round(summaryCost);
+        return Math.round(price);
+    }
+
+    getItemPrices()
+    {
+        let prices = {};
+
+        for (const itemID in database_f.server.tables.templates.items)
+        {
+            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
+            {
+                prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
+            }
+        }
+
+        this.prices = prices;
     }
 }
 

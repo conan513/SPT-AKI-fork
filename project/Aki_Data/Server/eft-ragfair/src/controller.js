@@ -508,7 +508,8 @@ class Controller
                 // item expired
                 this.removeOffer(offer._id, sessionID);
             }
-            else if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
+            
+            if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
             {
                 // item sold
                 this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
