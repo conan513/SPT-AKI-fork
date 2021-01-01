@@ -13,7 +13,7 @@ class Watermark
     constructor()
     {
         this.name = "SPT-AKI";
-        this.version = "R7";
+        this.version = "R8";
         this.url = "https://www.guilded.gg/senkospub";
         this.colors = {
             "front": "\x1b[33m",    // gold
