@@ -18393,6 +18393,9 @@
 											],
 											[
 												"5cff9e84d7ad1a049e54ed55"
+											],
+											[
+												"5ea17bbc09aa976f2e7a51cd"
 											]
 										],
 										"id": "5a281d9686f7743fe44eac8b"
@@ -27009,7 +27012,7 @@
 					"_parent": "Level",
 					"_props": {
 						"compareMethod": ">=",
-						"value": "5",
+						"value": "2",
 						"index": 0,
 						"parentId": "",
 						"id": ""
@@ -31704,7 +31707,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"distance": {
 											"compareMethod": ">=",
@@ -31851,7 +31855,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"distance": {
 											"compareMethod": ">=",
@@ -32057,7 +32062,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"distance": {
 											"compareMethod": "<=",
@@ -32326,7 +32332,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"daytime": {
 											"from": 21,
@@ -32468,7 +32475,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"savageRole": [
 											"marksman"
@@ -32600,7 +32608,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"distance": {
 											"compareMethod": ">=",
@@ -32801,7 +32810,8 @@
 											"55801eed4bdc2d89578b4588",
 											"588892092459774ac91d4b11",
 											"5df24cf80dee1b22f862e9bc",
-											"5bfea6e90db834001b7347f3"
+											"5bfea6e90db834001b7347f3",
+											"5de652c31b7e3716273428be"
 										],
 										"resetOnSessionEnd": true,
 										"id": "5bc84a7b86f77466d6051e37"
@@ -36870,66 +36880,6 @@
 				}
 			],
 			"AvailableForFinish": [
-				{
-					"_parent": "WeaponAssembly",
-					"_props": {
-						"target": [
-							"5bfea6e90db834001b7347f3"
-						],
-						"value": "2",
-						"durability": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"ergonomics": {
-							"value": 50,
-							"compareMethod": ">="
-						},
-						"baseAccuracy": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"recoil": {
-							"value": 600,
-							"compareMethod": "<="
-						},
-						"muzzleVelocity": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"weight": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"magazineCapacity": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"width": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"height": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"effectiveDistance": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"emptyTacticalSlot": {
-							"value": 0,
-							"compareMethod": ">="
-						},
-						"hasItemFromCategory": [],
-						"containsItems": [
-							"57c5ac0824597754771e88a9"
-						],
-						"index": 0,
-						"parentId": "",
-						"id": "5d66920c86f774368d281afe"
-					}
-				},
 				{
 					"_parent": "CounterCreator",
 					"_props": {
