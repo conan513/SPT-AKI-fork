@@ -27,6 +27,7 @@ class Callbacks
 
     load()
     {
+        ragfair_f.server.load();
         ragfair_f.controller.initialize();
     }
 
