@@ -58,7 +58,7 @@ class Server
         }
 
         // generate new offers
-        if (this.offers.count < ragfair_f.config.dynamic.threshold)
+        if (this.offers.length < ragfair_f.config.dynamic.threshold)
         {
             this.generateDynamicOffers();
             this.generateCategories();
@@ -98,12 +98,12 @@ class Server
     generateDynamicOffers()
     {
         const count = ragfair_f.config.dynamic.threshold + ragfair_f.config.dynamic.batchSize;
-        const presets = Object.values(database_f.server.tables.globals.ItemPresets);
-        const items = Object.values(database_f.server.tables.templates.items).filter((item) => {
+        const presets = Object.keys(database_f.server.tables.globals.ItemPresets);
+        const items = Object.keys(database_f.server.tables.templates.items).filter((item) => {
             return item._type !== "Node";
         });
 
-        while (this.offers.count < count)
+        while (this.offers.length < count)
         {
             const generatePreset = common_f.random.getInt(0, 99) < ragfair_f.config.dynamic.presetChance;
 
