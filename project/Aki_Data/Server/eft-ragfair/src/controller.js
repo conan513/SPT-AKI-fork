@@ -13,154 +13,10 @@
 
 class Controller
 {
-
     initialize()
     {
-        database_f.server.tables.ragfair.offers = [];
-
         this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
         this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";
-
-        this.initializeOfferBase();
-        this.generateOffers();
-    }
-
-    initializeOfferBase()
-    {
-        // initialize base offer expire date (1 week after server start)
-        const time = common_f.time.getTimestamp();
-        database_f.server.tables.ragfair.offer.startTime = time;
-        database_f.server.tables.ragfair.offer.endTime = time + (7 * 24 * 60 * 60);
-    }
-
-    generateOffers()
-    {
-        // single items
-        for (const itemID in database_f.server.tables.templates.items)
-        {
-            this.createItemOffer(itemID);
-        }
-
-        // item presets
-        for (const presetID in database_f.server.tables.globals.ItemPresets)
-        {
-            this.createPresetOffer(presetID);
-        }
-
-        // traders
-        for (const traderID in database_f.server.tables.traders)
-        {
-            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
-            {
-                // skip ragfair and fence trader
-                continue;
-            }
-
-            const assort = database_f.server.tables.traders[traderID].assort;
-
-            for (const item of assort.items)
-            {
-                if (item.slotId !== "hideout")
-                {
-                    // use only base items
-                    continue;
-                }
-
-                const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-                const barterScheme = assort.barter_scheme[item._id][0];
-                const loyalLevel = assort.loyal_level_items[item._id];
-
-                // add the offer
-                this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
-            }
-        }
-    }
-
-    createItemOffer(itemID)
-    {
-        const item = database_f.server.tables.templates.items[itemID];
-
-        if (!item || item._type === "Node")
-        {
-            // don't add nodes
-            return;
-        }
-
-        const price = this.fetchItemFleaPrice(itemID);
-
-        if (price === 0 || price === 1)
-        {
-            // don't add quest items
-            return;
-        }
-
-        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-
-        offer._id = itemID;
-        offer.items[0]._tpl = itemID;
-        offer.requirements[0].count = price;
-        offer.itemsCost = price;
-        offer.requirementsCost = price;
-        offer.summaryCost = price;
-
-        database_f.server.tables.ragfair.offers.push(offer);
-    }
-
-    createPresetOffer(presetID)
-    {
-        if (!preset_f.controller.isPreset(presetID))
-        {
-            return;
-        }
-
-        const preset = preset_f.controller.getPreset(presetID);
-        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-        let mods = preset._items;
-        let price = 0;
-
-        for (const it of mods)
-        {
-            price += Math.round(helpfunc_f.helpFunctions.getTemplatePrice(it._tpl));
-        }
-
-        mods[0].upd = mods[0].upd || {}; // append the stack count
-        mods[0].upd.StackObjectsCount = offer.items[0].upd.StackObjectsCount;
-
-        offer._id = preset._id;          // The offer's id is now the preset's id
-        offer.root = mods[0]._id;        // Sets the main part of the weapon
-        offer.items = mods;
-        offer.requirements[0].count = price;
-        offer.itemsCost = price;
-        offer.requirementsCost = price;
-        offer.summaryCost = price;
-
-        database_f.server.tables.ragfair.offers.push(offer);
-    }
-
-    createTraderOffer(traderID, items, barterScheme, loyalLevel)
-    {
-        const trader = database_f.server.tables.traders[traderID].base;
-        const price = this.calculateCost(barterScheme);
-        let offer = common_f.json.clone(database_f.server.tables.ragfair.offer);
-
-        offer._id = items[0]._id;
-        offer.intId = 911;
-        offer.user = {
-            "id": trader._id,
-            "memberType": 4,
-            "nickname": trader.surname,
-            "rating": 1,
-            "isRatingGrowing": true,
-            "avatar": trader.avatar
-        };
-        offer.root = items[0]._id;
-        offer.items = items;
-        offer.requirements = barterScheme;
-        offer.loyaltyLevel = loyalLevel;
-        offer.requirementsCost = price;
-        offer.summaryCost = price;
-
-        database_f.server.tables.ragfair.offers.push(offer);
     }
 
     sortOffersByID(a, b)
@@ -272,10 +128,7 @@ class Controller
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
         {
-            for (const offer of database_f.server.tables.ragfair.offers)
-            {
-                result.categories[offer.items[0]._tpl] = 1;
-            }
+            result.categories = ragfair_f.server.categories;
         }
 
         // get assorts to compare against
@@ -290,7 +143,7 @@ class Controller
         }
 
         // get offers to send
-        for (const offer of database_f.server.tables.ragfair.offers)
+        for (const offer of ragfair_f.server.offers)
         {
             if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
             {
@@ -300,6 +153,16 @@ class Controller
 
         // sort offers
         result.offers = this.sortOffers(info, result.offers);
+        
+        // set offer indexes
+        let counter = 0;
+
+        for (let offer of result.offers)
+        {
+            offer.intId = ++counter;
+        }
+        
+        // set categories count
         this.countCategories(result);
 
         return result;
@@ -458,18 +321,6 @@ class Controller
         }
 
         return true;
-    }
-
-    calculateCost(barterScheme)
-    {
-        let summaryCost = 0;
-
-        for (const barter of barterScheme)
-        {
-            summaryCost += helpfunc_f.helpFunctions.getTemplatePrice(barter._tpl) * barter.count;
-        }
-
-        return Math.round(summaryCost);
     }
 
     fillCatagories(result, filters)
@@ -668,7 +519,7 @@ class Controller
 
     getItemPrice(info)
     {
-        const price = this.fetchItemFleaPrice(info.templateId);
+        const price = ragfair_f.server.prices[info.templateId];
 
         // 1 is returned by helper method if price lookup failed
         if (!price || price === 1)
@@ -683,24 +534,14 @@ class Controller
         };
     }
 
-    getItemPrices()
-    {
-        let result = {};
-
-        for (const itemID in database_f.server.tables.templates.items)
-        {
-            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
-            {
-                result[itemID] = this.fetchItemFleaPrice(itemID);
-            }
-        }
-
-        return result;
-    }
-
     addPlayerOffer(pmcData, info, sessionID)
     {
         const result = item_f.eventHandler.getOutput();
+        let requirementsPriceInRub = 0;
+        let offerPrice = 0;
+        let itemStackCount = 0
+        let invItems = [];
+        let basePrice = 0;
 
         if (!info || !info.items || info.items.length === 0)
         {
@@ -713,9 +554,6 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
-        let requirementsPriceInRub = 0,
-            offerPrice = 0;
-
         for (const item of info.requirements)
         {
             let requestedItemTpl = item._tpl;
@@ -726,14 +564,11 @@ class Controller
             }
             else
             {
-                requirementsPriceInRub += this.fetchItemFleaPrice(requestedItemTpl) * item.count;
+                requirementsPriceInRub += ragfair_f.server.prices[requestedItemTpl] * item.count;
             }
         }
 
         // Count how many items are being sold and multiply the requested amount accordingly
-        let itemStackCount = 0,
-            invItems = [], basePrice = 0;
-
         for (const itemId of info.items)
         {
             const item = pmcData.Inventory.items.find(i => i._id === itemId);
@@ -744,8 +579,6 @@ class Controller
                 return helpfunc_f.helpFunctions.appendErrorToOutput(result);
             }
 
-
-
             if (!("upd" in item) || !("StackObjectsCount" in item.upd))
             {
                 itemStackCount += 1;
@@ -754,8 +587,9 @@ class Controller
             {
                 itemStackCount += item.upd.StackObjectsCount;
             }
+
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-            offerPrice += this.fetchItemFleaPrice(item._tpl) * itemStackCount;
+            offerPrice += ragfair_f.server.prices[item._tpl] * itemStackCount;
         }
 
         if (info.sellInOnePiece)
@@ -774,7 +608,7 @@ class Controller
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
-            basePrice += this.fetchItemFleaPrice(item._tpl) * mult;
+            basePrice += ragfair_f.server.prices[item._tpl] * mult;
         }
 
         if (!basePrice)
@@ -1043,11 +877,6 @@ class Controller
                 "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
             },
         };
-    }
-
-    fetchItemFleaPrice(tpl)
-    {
-        return Math.round(helpfunc_f.helpFunctions.getTemplatePrice(tpl));
     }
 
     fetchRandomPmcName()
