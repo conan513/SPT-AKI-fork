@@ -394,6 +394,12 @@ class Server
 
     removeOfferStack(offerID, amount)
     {
+        if (!ragfair_f.config.dynamic.enabled)
+        {
+            return;
+        }
+
+        // remove stack from offer
         for (const offer in this.offers)
         {
             if (this.offers[offer]._id ==- offerID)
