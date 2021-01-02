@@ -34,7 +34,7 @@ class Server
 
         this.offers = this.offers.filter((offer) =>
         {
-            return offer.endTime < time || offer.items[0].upd.StackObjectsCount < 1;
+            return offer.endTime < time;
         });
 
         // generate new offers
@@ -408,9 +408,17 @@ class Server
         // remove stack from offer
         for (const offer in this.offers)
         {
-            if (this.offers[offer]._id ==- offerID)
+            if (this.offers[offer]._id === offerID)
             {
+                // found offer
                 this.offers[offer].items[0].upd.StackObjectsCount -= amount;
+
+                // remove offer
+                if (this.offers[offer].items[0].upd.StackObjectsCount < 0)
+                {
+                    this.offers.splice(offer, 1);
+                }
+
                 break;
             }
         }
