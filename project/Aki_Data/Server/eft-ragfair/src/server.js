@@ -217,7 +217,7 @@ class Server
     createPresetOffer(presetID)
     {
         const currency = this.getOfferCurrency();
-        const preset = preset_f.controller.getPreset(presetID);
+        const preset = common_f.json.clone(preset_f.controller.getPreset(presetID));
         let offer = this.getOfferTemplate();
         let mods = preset._items;
         let price = 0;
