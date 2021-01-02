@@ -22,72 +22,76 @@ class Server
         // get item prices
         this.getItemPrices();
 
-        // get generated offers
-        this.generateTraderOffers();
-        
-        if (ragfair_f.config.dynamic.enabled)
-        {
-            this.generateDynamicOffers();
-        }
-        else
-        {
-            this.generateStaticOffers();
-        }
-
-        // get available categories
-        this.generateCategories();
+        // load offers
+        this.update();
     }
 
+    // todo: move player offer code here
     update()
     {
+        // remove expired offers
+        const time = common_f.time.getTimestamp();
+
+        this.offers = this.offers.filter((offer) =>
+        {
+            return offer.endTime < time || offer.items[0].upd.StackObjectsCount < 1;
+        });
+
+        // generate new offers
         if (ragfair_f.config.dynamic.enabled)
         {
-            // remove expired offers
-            const time = common_f.time.getTimestamp();
-
-            this.offers = this.offers.filter((offer) =>
-            {
-                return offer.endTime < time || offer.items[0].upd.StackObjectsCount < 1;
-            });
-
-            // generate new offers
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
             {
                 this.generateDynamicOffers();
-                this.generateCategories();
+            }
+        }
+        else
+        {
+            if (!this.offers.find((offer) => { return offer.user.memberType !== 4}))
+            {
+                this.generateStaticOffers();
             }
         }
 
-        // todo: move player offer code here
-    }
-
-    generateTraderOffers()
-    {
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+            if (!this.offers.find((offer) => { return offer.user.memberType === 4 && offer.user.id === traderID}))
             {
-                // skip ragfair and fence trader
+                this.generateTraderOffers(traderID);
+            }
+        }
+        
+        // set available categories
+        for (const offer of this.offers)
+        {
+            this.categories[offer.items[0]._tpl] = 1;
+        }
+    }
+
+    generateTraderOffers(traderID)
+    {
+        if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+        {
+            // skip ragfair and fence trader
+            return;
+        }
+
+        const assort = database_f.server.tables.traders[traderID].assort;
+
+        for (const item of assort.items)
+        {
+            if (item.slotId !== "hideout")
+            {
+                // use only base items
                 continue;
             }
 
-            const assort = database_f.server.tables.traders[traderID].assort;
+            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const barterScheme = assort.barter_scheme[item._id][0];
+            const loyalLevel = assort.loyal_level_items[item._id];
 
-            for (const item of assort.items)
-            {
-                if (item.slotId !== "hideout")
-                {
-                    // use only base items
-                    continue;
-                }
-
-                const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-                const barterScheme = assort.barter_scheme[item._id][0];
-                const loyalLevel = assort.loyal_level_items[item._id];
-
-                // add the offer
-                this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
-            }
+            // add the offer
+            this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
         }
     }
 
@@ -128,14 +132,6 @@ class Server
         for (const presetID in database_f.server.tables.globals.ItemPresets)
         {
             this.createPresetOffer(presetID);
-        }
-    }
-
-    generateCategories()
-    {
-        for (const offer of this.offers)
-        {
-            this.categories[offer.items[0]._tpl] = 1;
         }
     }
 
