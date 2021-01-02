@@ -31,7 +31,7 @@ class Server
     {
         // remove expired offers
         const time = common_f.time.getTimestamp();
-        const update = {};
+        let toUpdate = {};
 
         for (const i in this.offers)
         {
@@ -40,7 +40,7 @@ class Server
                 // update trader if offers expired
                 if (this.offers[i].user.memberType === 4)
                 {
-                    update[this.offers[i].user.id] = 1;
+                    toUpdate[this.offers[i].user.id] = 1;
                 }
 
                 // remove offer
@@ -51,9 +51,9 @@ class Server
         // generate new offers
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID in update)
+            if (traderID in toUpdate || !this.offers.find((offer) => { return offer.user.id === traderID; }))
             {
-                // trader offers expired
+                // trader offers expired or no offers found
                 this.generateTraderOffers(traderID);
             }
         }
@@ -88,7 +88,7 @@ class Server
         // ensure old offers don't exist
         this.offers = this.offers.filter((offer) =>
         {
-            return offer.user.id === traderID;
+            return offer.user.id !== traderID;
         });
 
         // add trader offers

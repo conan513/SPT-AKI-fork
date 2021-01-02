@@ -134,7 +134,7 @@ class Controller
         // get assorts to compare against
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+            if (traderID === "579dc571d53a0658a154fbec")
             {
                 continue;
             }
