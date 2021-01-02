@@ -46,7 +46,7 @@ class Server
             if (!this.offers.find((offer) => { return offer.user.id === traderID; }))
             {
                 // trader offers expired
-                this.generateTraderOffers(traderID, time);
+                this.generateTraderOffers(traderID);
             }
         }
 
@@ -55,7 +55,7 @@ class Server
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
             {
                 // offer count below threshold
-                this.generateDynamicOffers(time);
+                this.generateDynamicOffers();
             }
         }
         else
@@ -63,7 +63,7 @@ class Server
             if (!this.offers.find((offer) => { return offer.user.memberType !== 4; }))
             {
                 // static offers expired
-                this.generateStaticOffers(time);
+                this.generateStaticOffers();
             }
         }
 
@@ -74,7 +74,7 @@ class Server
         }
     }
 
-    generateTraderOffers(traderID, time)
+    generateTraderOffers(traderID)
     {
         if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
         {
@@ -82,6 +82,7 @@ class Server
             return;
         }
 
+        const time = common_f.time.getTimestamp()
         const assort = database_f.server.tables.traders[traderID].assort;
 
         // add trader offers
@@ -117,18 +118,20 @@ class Server
             if (generatePreset)
             {
                 // generate preset offer
-                this.createPresetOffer(common_f.random.getArrayValue(presets, time));
+                this.createPresetOffer(common_f.random.getArrayValue(presets));
             }
             else
             {
                 // generate item offer
-                this.createItemOffer(common_f.random.getArrayValue(items, time));
+                this.createItemOffer(common_f.random.getArrayValue(items));
             }
         }
     }
 
-    generateStaticOffers(time)
+    generateStaticOffers()
     {
+        const time = common_f.time.getTimestamp();
+
         // single items
         for (const itemID in database_f.server.tables.templates.items)
         {
@@ -182,7 +185,7 @@ class Server
         };
     }
 
-    createItemOffer(itemID, time)
+    createItemOffer(itemID, time = 0)
     {
         const currency = this.getOfferCurrency();
         let offer = this.getOfferTemplate();
@@ -211,12 +214,12 @@ class Server
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
         offer.startTime = this.getOfferStartTime(time);
-        offer.endTime = this.getOfferEndTime(time);
+        offer.endTime = this.getOfferEndTime(offer.startTime);
 
         this.offers.push(offer);
     }
 
-    createPresetOffer(presetID, time)
+    createPresetOffer(presetID, time = 0)
     {
         const currency = this.getOfferCurrency();
         const preset = common_f.json.clone(preset_f.controller.getPreset(presetID));
@@ -259,7 +262,7 @@ class Server
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
         offer.startTime = this.getOfferStartTime(time);
-        offer.endTime = this.getOfferEndTime(time);
+        offer.endTime = this.getOfferEndTime(offer.startTime);
 
         this.offers.push(offer);
     }
@@ -296,7 +299,7 @@ class Server
 
     getOfferStartTime(timestamp)
     {
-        let result = timestamp;
+        let result = timestamp || common_f.time.getTimestamp();
 
         // get time in minutes
         if (ragfair_f.config.dynamic.enabled)
@@ -309,7 +312,7 @@ class Server
 
     getOfferEndTime(timestamp)
     {
-        let result = timestamp;
+        let result = timestamp || common_f.time.getTimestamp();
 
         // get time in minutes
         if (ragfair_f.config.dynamic.enabled)
