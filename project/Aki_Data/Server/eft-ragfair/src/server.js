@@ -51,15 +51,15 @@ class Server
         // generate trader offers
         for (const traderID in database_f.server.tables.traders)
         {
-            if (!ragfair_f.config.traders.enabled)
+            if (traderID !== "ragfair" && !ragfair_f.config.static.traders)
             {
-                // traders disabled
-                break;
+                // skip all traders except ragfair when traders are disabled
+                continue;
             }
 
-            if (traderID === "579dc571d53a0658a154fbec" || (traderID === "ragfair" && ragfair_f.config.dynamic.enabled))
+            if ((traderID === "ragfair" && ragfair_f.config.static.unknown))
             {
-                // skip traders
+                // skip ragfair when unknown is disabled
                 continue;
             }
 

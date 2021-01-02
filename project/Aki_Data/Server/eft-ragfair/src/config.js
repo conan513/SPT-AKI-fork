@@ -18,8 +18,9 @@ class Config
             "sellTimeHrs": 12,
             "enableFees": false
         };
-        this.traders = {
-            "enabled": true
+        this.static = {
+            "unknown": true,
+            "traders": true
         };
         this.dynamic = {
             "enabled": true,
