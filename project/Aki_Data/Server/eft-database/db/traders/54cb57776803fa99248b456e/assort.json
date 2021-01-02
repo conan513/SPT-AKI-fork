@@ -634,12 +634,10 @@
     "barter_scheme": {
         "adrenaline": [
             [
-                [
-                    {
-                        "count": 30057,
-                        "_tpl": "5449016a4bdc2d6f028b456f"
-                    }
-                ]
+                {
+                    "count": 30057,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
             ]
         ],
         "HemostaticTrade": [
