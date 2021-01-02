@@ -186,7 +186,7 @@ class Server
     {
         const currency = this.getOfferCurrency();
         let offer = this.getOfferTemplate();
-        let price = helpfunc_f.helpFunctions.inRUB(this.prices[itemID], currency);
+        let price = helpfunc_f.helpFunctions.fromRUB(this.prices[itemID], currency);
 
         if (this.prices[itemID] === 0 || this.prices[itemID] === 1)
         {
@@ -234,7 +234,7 @@ class Server
             }
 
             // add mod to price
-            price += helpfunc_f.helpFunctions.inRUB(this.prices[it._tpl], currency);
+            price += helpfunc_f.helpFunctions.fromRUB(this.prices[it._tpl], currency);
         }
 
         // set stack size
