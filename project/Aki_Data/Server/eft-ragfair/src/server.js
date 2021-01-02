@@ -42,6 +42,7 @@ class Server
         {
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
             {
+                // offer count below threshold
                 this.generateDynamicOffers();
             }
         }
@@ -49,6 +50,7 @@ class Server
         {
             if (!this.offers.find((offer) => { return offer.user.memberType !== 4}))
             {
+                // static offers expired
                 this.generateStaticOffers();
             }
         }
@@ -57,6 +59,7 @@ class Server
         {
             if (!this.offers.find((offer) => { return offer.user.memberType === 4 && offer.user.id === traderID}))
             {
+                // trader offers expired
                 this.generateTraderOffers(traderID);
             }
         }
@@ -78,6 +81,7 @@ class Server
 
         const assort = database_f.server.tables.traders[traderID].assort;
 
+        // add trader offers
         for (const item of assort.items)
         {
             if (item.slotId !== "hideout")
@@ -89,8 +93,7 @@ class Server
             const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
-
-            // add the offer
+            
             this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
         }
     }
