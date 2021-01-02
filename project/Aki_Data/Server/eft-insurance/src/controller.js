@@ -73,7 +73,7 @@ class Controller
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
         // Don't process insurance for melee weapon or secure container.
-        if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer")
+        if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer" || actualItem.slotId === "Compass")
         {
             return;
         }
@@ -89,13 +89,6 @@ class Controller
         if (!("slotId" in actualItem) || pocketSlots.includes(actualItem.slotId) || !isNaN(actualItem.slotId))
         {
             actualItem.slotId = "hideout";
-
-        }
-
-        // Clear the location attribute of the item in the container.
-        if (actualItem.slotId === "hideout" && "location" in actualItem)
-        {
-            delete actualItem.location;
         }
 
         // Mark root-level items for later.
@@ -104,11 +97,19 @@ class Controller
             actualItem.slotId = "hideout";
         }
 
+        // Clear the location attribute of the item in the container.
+        if (actualItem.slotId === "hideout" && "location" in actualItem)
+        {
+            delete actualItem.location;
+        }
+
+        // Remove found in raid
         if ("upd" in actualItem && "SpawnedInSession" in actualItem.upd)
         {
             actualItem.upd.SpawnedInSession = false;
         }
 
+        // Mark to add to insurance
         this.insured[sessionID] = this.insured[sessionID] || {};
         this.insured[sessionID][insuredItem.tid] = this.insured[sessionID][insuredItem.tid] || [];
         this.insured[sessionID][insuredItem.tid].push(actualItem);
