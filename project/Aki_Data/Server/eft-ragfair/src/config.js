@@ -24,7 +24,7 @@ class Config
             "batchSize": 100,
             "presetChance": 10,
             "priceMin": 0.95,
-            "priceMax": 1.5,
+            "priceMax": 1.2,
             "timeMin": 15,
             "timeMax": 120,
             "stackMin": 1,
