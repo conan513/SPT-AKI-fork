@@ -330,6 +330,7 @@ class Controller
             "SecondPrimaryWeapon",
             "Holster",
             "Scabbard",
+            "Compass",
             "Headwear",
             "Earpiece",
             "Eyewear",
