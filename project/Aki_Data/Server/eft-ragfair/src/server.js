@@ -369,7 +369,7 @@ class Server
 
         for (const barter of barterScheme)
         {
-            price += this.prices[barter._tpl] * barter.count;
+            price += (this.prices[barter._tpl] * barter.count);
         }
 
         return Math.round(price);
@@ -382,10 +382,7 @@ class Server
 
         for (const itemID in items)
         {
-            if (items[itemID]._type !== "Node")
-            {
-                prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
-            }
+            prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
         }
 
         this.prices = prices;
