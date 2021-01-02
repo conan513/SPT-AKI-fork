@@ -26,7 +26,7 @@ class Config
             "priceMin": 0.95,
             "priceMax": 1.2,
             "timeEndMin": 15,
-            "timeEnMax": 120,
+            "timeEndMax": 120,
             "stackMin": 1,
             "stackMax": 100,
             "currencies": {
