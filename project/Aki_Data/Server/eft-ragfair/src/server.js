@@ -43,13 +43,10 @@ class Server
         // generate new offers
         for (const traderID in database_f.server.tables.traders)
         {
-            if (!this.offers.find((offer) =>
-            {
-                return offer.user.id === traderID;
-            }))
+            if (!this.offers.find((offer) => { return offer.user.id === traderID; }))
             {
                 // trader offers expired
-                this.generateTraderOffers(traderID);
+                this.generateTraderOffers(traderID, time);
             }
         }
 
@@ -58,18 +55,15 @@ class Server
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
             {
                 // offer count below threshold
-                this.generateDynamicOffers();
+                this.generateDynamicOffers(time);
             }
         }
         else
         {
-            if (!this.offers.find((offer) =>
-            {
-                return offer.user.memberType !== 4;
-            }))
+            if (!this.offers.find((offer) => { return offer.user.memberType !== 4; }))
             {
                 // static offers expired
-                this.generateStaticOffers();
+                this.generateStaticOffers(time);
             }
         }
 
@@ -80,7 +74,7 @@ class Server
         }
     }
 
-    generateTraderOffers(traderID)
+    generateTraderOffers(traderID, time)
     {
         if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
         {
@@ -103,11 +97,11 @@ class Server
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
 
-            this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
+            this.createTraderOffer(traderID, time, items, barterScheme, loyalLevel);
         }
     }
 
-    generateDynamicOffers()
+    generateDynamicOffers(time)
     {
         const count = ragfair_f.config.dynamic.threshold + ragfair_f.config.dynamic.batchSize;
         const presets = Object.keys(database_f.server.tables.globals.ItemPresets);
@@ -123,35 +117,34 @@ class Server
             if (generatePreset)
             {
                 // generate preset offer
-                this.createPresetOffer(common_f.random.getArrayValue(presets));
+                this.createPresetOffer(common_f.random.getArrayValue(presets, time));
             }
             else
             {
                 // generate item offer
-                this.createItemOffer(common_f.random.getArrayValue(items));
+                this.createItemOffer(common_f.random.getArrayValue(items, time));
             }
         }
     }
 
-    generateStaticOffers()
+    generateStaticOffers(time)
     {
         // single items
         for (const itemID in database_f.server.tables.templates.items)
         {
-            this.createItemOffer(itemID);
+            this.createItemOffer(itemID, time);
         }
 
         // item presets
         for (const presetID in database_f.server.tables.globals.ItemPresets)
         {
-            this.createPresetOffer(presetID);
+            this.createPresetOffer(presetID, time);
         }
     }
 
     getOfferTemplate()
     {
-        const startTime = common_f.time.getTimestamp();
-        const offer = {
+        return {
             "_id": "hash",
             "intId": 0,
             "user": {
@@ -181,17 +174,15 @@ class Server
             "requirementsCost": 0,
             "itemsCost": 0,
             "summaryCost": 0,
-            "startTime": startTime,
-            "endTime": this.getOfferEndTime(startTime),
+            "startTime": 0,
+            "endTime": 0,
             "loyaltyLevel": 1,
             "sellInOnePiece": false,
             "priority": false
         };
-
-        return offer;
     }
 
-    createItemOffer(itemID)
+    createItemOffer(itemID, time)
     {
         const currency = this.getOfferCurrency();
         let offer = this.getOfferTemplate();
@@ -219,11 +210,13 @@ class Server
         offer.itemsCost = price;
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
+        offer.startTime = this.getOfferStartTime(time);
+        offer.endTime = this.getOfferEndTime(time);
 
         this.offers.push(offer);
     }
 
-    createPresetOffer(presetID)
+    createPresetOffer(presetID, time)
     {
         const currency = this.getOfferCurrency();
         const preset = common_f.json.clone(preset_f.controller.getPreset(presetID));
@@ -265,12 +258,14 @@ class Server
         offer.itemsCost = price;
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
+        offer.startTime = this.getOfferStartTime(time);
+        offer.endTime = this.getOfferEndTime(time);
 
         this.offers.push(offer);
     }
 
     // note: trader offer is static, so override time to use static time
-    createTraderOffer(traderID, items, barterScheme, loyalLevel)
+    createTraderOffer(traderID, time, items, barterScheme, loyalLevel)
     {
         const trader = database_f.server.tables.traders[traderID].base;
         const price = this.getTraderItemPrice(barterScheme);
@@ -285,9 +280,6 @@ class Server
             "avatar": trader.avatar
         };
 
-        // use restock time
-        offer.endTime = trader.supply_next_time;
-
         // common properties
         offer._id = items[0]._id;
         offer.root = items[0]._id;
@@ -296,8 +288,23 @@ class Server
         offer.loyaltyLevel = loyalLevel;
         offer.requirementsCost = price;
         offer.summaryCost = price;
+        offer.startTime = time;
+        offer.endTime = trader.supply_next_time;
 
         this.offers.push(offer);
+    }
+
+    getOfferStartTime(timestamp)
+    {
+        let result = timestamp;
+
+        // get time in minutes
+        if (ragfair_f.config.dynamic.enabled)
+        {
+            result += common_f.random.getInt(ragfair_f.config.dynamic.timeStartMin, ragfair_f.config.dynamic.timeStartMax) * 60;
+        }
+
+        return Math.round(result);
     }
 
     getOfferEndTime(timestamp)
@@ -307,7 +314,7 @@ class Server
         // get time in minutes
         if (ragfair_f.config.dynamic.enabled)
         {
-            result += common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
+            result += common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60;
         }
         else
         {

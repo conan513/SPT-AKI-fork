@@ -25,14 +25,16 @@ class Config
             "presetChance": 10,
             "priceMin": 0.95,
             "priceMax": 1.2,
-            "timeMin": 15,
-            "timeMax": 120,
+            "timeStartMin": 0,
+            "timeStartMax": 1,
+            "timeEndMin": 15,
+            "timeEnMax": 120,
             "stackMin": 1,
             "stackMax": 100,
             "currencies": {
                 "5449016a4bdc2d6f028b456f": 75,
-                "5696686a4bdc2da3298b456a": 20,
-                "569668774bdc2da2298b4568": 5
+                "5696686a4bdc2da3298b456a": 23,
+                "569668774bdc2da2298b4568": 2
             }
         };
         this.static = {
