@@ -240,6 +240,9 @@ class Server
         mods[0].upd = mods[0].upd || {};
         mods[0].upd.StackObjectsCount = 1;
 
+        // preset offer
+        offer.sellInOnePiece = true;
+
         // common properties
         price = Math.round(price * this.getOfferPriceMultiplier());
         offer._id = common_f.hash.generate();
