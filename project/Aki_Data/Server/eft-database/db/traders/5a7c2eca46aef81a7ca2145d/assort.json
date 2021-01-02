@@ -6229,32 +6229,26 @@
     "barter_scheme": {
         "zevTech": [
             [
-                [
-                    {
-                        "count": 100,
-                        "_tpl": "5449016a4bdc2d6f028b456f"
-                    }
-                ]
+                {
+                    "count": 100,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
             ]
         ],
         "45ACP_Silencer": [
             [
-                [
-                    {
-                        "count": 37742,
-                        "_tpl": "5449016a4bdc2d6f028b456f"
-                    }
-                ]
+                {
+                    "count": 37742,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
             ]
         ],
         "5e0ac74b9d594972a112a9ed": [
             [
-                [
-                    {
-                        "count": 251450,
-                        "_tpl": "5449016a4bdc2d6f028b456f"
-                    }
-                ]
+                {
+                    "count": 251450,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
             ]
         ],
         "VectorG30": [
@@ -8197,7 +8191,6 @@
                 }
             ]
         ],
-        
         "5eeca63dbfed7142cb30fd0f": [
             [
                 {
@@ -9408,20 +9401,18 @@
         ],
         "5eeca63ebfed7142cb30fe8b": [
             [
-                [
-                    {
-                        "count": 2,
-                        "_tpl": "5d0377ce86f774186372f689"
-                    },
-                    {
-                        "count": 2,
-                        "_tpl": "5d03784a86f774203e7e0c4d"
-                    },
-                    {
-                        "count": 5,
-                        "_tpl": "5d0376a486f7747d8050965c"
-                    }
-                ]
+                {
+                    "count": 2,
+                    "_tpl": "5d0377ce86f774186372f689"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5d03784a86f774203e7e0c4d"
+                },
+                {
+                    "count": 5,
+                    "_tpl": "5d0376a486f7747d8050965c"
+                }
             ]
         ],
         "5eeca63ebfed7142cb30fe8d": [
