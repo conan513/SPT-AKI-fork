@@ -213,7 +213,7 @@ class Server
         offer.itemsCost = price;
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
-        offer.startTime = common_f.time.getTimestamp();
+        offer.startTime = time || common_f.time.getTimestamp();
         offer.endTime = this.getOfferEndTime(offer.startTime);
 
         this.offers.push(offer);
@@ -261,7 +261,7 @@ class Server
         offer.itemsCost = price;
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
-        offer.startTime = common_f.time.getTimestamp();
+        offer.startTime = time || common_f.time.getTimestamp();
         offer.endTime = this.getOfferEndTime(offer.startTime);
 
         this.offers.push(offer);
