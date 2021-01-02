@@ -31,11 +31,19 @@ class Server
     {
         // remove expired offers
         const time = common_f.time.getTimestamp();
+        const update = {};
 
         for (const i in this.offers)
         {
             if (this.isExpired(this.offers[i], time))
             {
+                // update trader if offers expired
+                if (this.offers[i].user.memberType === 4)
+                {
+                    update[this.offers[i].user.id] = 1;
+                }
+
+                // remove offer
                 this.offers.splice(i, 1);
             }
         }
@@ -43,28 +51,17 @@ class Server
         // generate new offers
         for (const traderID in database_f.server.tables.traders)
         {
-            if (!this.offers.find((offer) => { return offer.user.id === traderID; }))
+            if (traderID in update)
             {
                 // trader offers expired
                 this.generateTraderOffers(traderID);
             }
         }
 
-        if (ragfair_f.config.dynamic.enabled)
+        if (ragfair_f.config.dynamic.enabled && this.offers.length < ragfair_f.config.dynamic.threshold)
         {
-            if (this.offers.length < ragfair_f.config.dynamic.threshold)
-            {
-                // offer count below threshold
-                this.generateDynamicOffers();
-            }
-        }
-        else
-        {
-            if (!this.offers.find((offer) => { return offer.user.memberType !== 4; }))
-            {
-                // static offers expired
-                this.generateStaticOffers();
-            }
+            // offer count below threshold
+            this.generateDynamicOffers();
         }
 
         // set available categories
@@ -76,16 +73,28 @@ class Server
 
     generateTraderOffers(traderID)
     {
-        if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
+        if (traderID === "579dc571d53a0658a154fbec")
         {
-            // skip ragfair and fence trader
+            // skip fence
             return;
         }
 
-        const time = common_f.time.getTimestamp()
-        const assort = database_f.server.tables.traders[traderID].assort;
+        if (traderID === "ragfair" && ragfair_f.config.dynamic.enabled)
+        {
+            // skip ragfair on dynamic mode
+            return;
+        }
+
+        // ensure old offers don't exist
+        this.offers = this.offers.filter((offer) =>
+        {
+            return offer.user.id === traderID;
+        });
 
         // add trader offers
+        const time = common_f.time.getTimestamp()
+        const assort = database_f.server.tables.traders[traderID].assort;
+        
         for (const item of assort.items)
         {
             if (item.slotId !== "hideout")
@@ -125,23 +134,6 @@ class Server
                 // generate item offer
                 this.createItemOffer(common_f.random.getArrayValue(items));
             }
-        }
-    }
-
-    generateStaticOffers()
-    {
-        const time = common_f.time.getTimestamp();
-
-        // single items
-        for (const itemID in database_f.server.tables.templates.items)
-        {
-            this.createItemOffer(itemID, time);
-        }
-
-        // item presets
-        for (const presetID in database_f.server.tables.globals.ItemPresets)
-        {
-            this.createPresetOffer(presetID, time);
         }
     }
 
@@ -278,7 +270,7 @@ class Server
         offer.user = {
             "id": trader._id,
             "memberType": 4,
-            "nickname": trader.surname,
+            "nickname": (trader.surname === "ragfair") ? "Unknown" : trader.surname,
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };

@@ -19,7 +19,7 @@ class Config
             "enableFees": false
         };
         this.dynamic = {
-            "enabled": true,
+            "enabled": false,
             "threshold": 4000,
             "batchSize": 100,
             "presetChance": 10,
