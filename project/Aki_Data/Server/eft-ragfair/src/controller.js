@@ -247,13 +247,13 @@ class Controller
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && !preset_f.controller.isPreset(offer._id))
+        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && offer.items.length === 1)
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && preset_f.controller.isPreset(offer._id))
+        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && offer.items.length > 1)
         {
             // don't include preset items
             return false;
@@ -357,7 +357,7 @@ class Controller
         if (helpfunc_f.helpFunctions.isCategory(handbookId))
         {
             // list all item of the category
-            result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(handbookId)];
+            result = helpfunc_f.helpFunctions.templatesWithParent(handbookId);
 
             for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
@@ -406,27 +406,26 @@ class Controller
     /* Because of presets, categories are not always 1 */
     countCategories(result)
     {
-        let category = {};
+        let categories = {};
 
         for (const offer of result.offers)
         {
             // only the first item can have presets
             const item = offer.items[0];
-
-            category[item._tpl] = category[item._tpl] || 0;
-            category[item._tpl]++;
+            categories[item._tpl] = categories[item._tpl] || 0;
+            categories[item._tpl]++;
         }
 
         // not in search mode, add back non-weapon items
-        for (const c in result.categories)
+        for (const category in result.categories)
         {
-            if (!category[c])
+            if (!categories[category])
             {
-                category[c] = 1;
+                categories[category] = 1;
             }
         }
 
-        result.categories = category;
+        result.categories = categories;
     }
 
     /* Like getFilters but breaks early and return true if id is found in filters */
@@ -508,7 +507,8 @@ class Controller
                 // item expired
                 this.removeOffer(offer._id, sessionID);
             }
-            else if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
+            
+            if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
             {
                 // item sold
                 this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);

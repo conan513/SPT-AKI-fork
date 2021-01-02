@@ -106,47 +106,30 @@ class Controller
     // Ragfair trading
     confirmRagfairTrading(pmcData, body, sessionID)
     {
-        let offers = ragfair_f.server.offers;
         let output = item_f.eventHandler.getOutput();
 
         for (let offer of body.offers)
         {
+            let data = ragfair_f.server.getOffer(offer.id);
+
             pmcData = profile_f.controller.getPmcProfile(sessionID);
             body = {
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",
-                "tid": "ragfair",
-                "item_id": offer.id,
+                "tid": (data.user.memberType !== 4) ? "ragfair" : data.user.id,
+                "item_id": (data.user.memberType !== 4) ? data.items[0]._id : offer.id,
                 "count": offer.count,
                 "scheme_id": 0,
                 "scheme_items": offer.items
             };
-
-            const data = offers.find((item) =>
+            
+            if (data.user.memberType !== 4) 
             {
-                return item._id === offer.id;
-            });
-
-            if (data && data.user.memberType === 4)
-            {
-                // item is bought from a trader
-                body.tid = data.user.id;
+                // remove player item offer stack
+                ragfair_f.server.removeOfferStack(data._id, offer.count);
             }
 
-            if (preset_f.controller.isPreset(offer._id))
-            {
-                // constructed weapons need to be sold one by one
-                for (let i = 0; i < offer.count; i++)
-                {
-                    body.count = 1;
-                    output = this.confirmTrading(pmcData, body, sessionID);
-                }
-            }
-            else
-            {
-                // single items
-                output = this.confirmTrading(pmcData, body, sessionID);
-            }
+            output = this.confirmTrading(pmcData, body, sessionID);
         }
 
         return output;

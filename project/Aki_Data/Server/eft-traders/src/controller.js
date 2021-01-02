@@ -17,6 +17,11 @@ class Controller
         database_f.server.tables.traders = {};
     }
 
+    load()
+    {
+        this.updateTraders();
+    }
+
     getTrader(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
@@ -87,7 +92,7 @@ class Controller
         database_f.server.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
-    updateTraders(sessionID)
+    updateTraders()
     {
         const time = common_f.time.getTimestamp();
         const update = trader_f.config.updateTime;

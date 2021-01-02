@@ -12,11 +12,17 @@ class Callbacks
 {
     constructor()
     {
+        core_f.packager.onLoad["loadTraders"] = this.load.bind(this);
         https_f.router.onStaticRoute["/client/trading/api/getTradersList"] = this.getTraderList.bind(this);
         https_f.router.onDynamicRoute["/client/trading/api/getUserAssortPrice/trader/"] = this.getProfilePurchases.bind(this);
         https_f.router.onDynamicRoute["/client/trading/api/getTrader/"] = this.getTrader.bind(this);
         https_f.router.onDynamicRoute["/client/trading/api/getTraderAssort/"] = this.getAssort.bind(this);
         keepalive_f.controller.onExecute["traders"] = this.onUpdate.bind(this);
+    }
+
+    load()
+    {
+        trader_f.controller.load();
     }
 
     getTraderList(url, info, sessionID)
