@@ -36,7 +36,6 @@ class Server
         {
             if (this.isExpired(this.offers[i], time))
             {
-                console.log("1:"+this.offers[i].user.id);
                 this.offers.splice(i, 1);
             }
         }
@@ -44,14 +43,16 @@ class Server
         // generate new offers
         for (const traderID in database_f.server.tables.traders)
         {
-            if (!this.offers.find((offer) => { return offer.user.id === traderID}))
+            if (!this.offers.find((offer) =>
+            {
+                return offer.user.id === traderID;
+            }))
             {
                 // trader offers expired
-                console.log("2:"+traderID);
                 this.generateTraderOffers(traderID);
             }
         }
-        
+
         if (ragfair_f.config.dynamic.enabled)
         {
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
@@ -62,13 +63,16 @@ class Server
         }
         else
         {
-            if (!this.offers.find((offer) => { return offer.user.memberType !== 4}))
+            if (!this.offers.find((offer) =>
+            {
+                return offer.user.memberType !== 4;
+            }))
             {
                 // static offers expired
                 this.generateStaticOffers();
             }
         }
-        
+
         // set available categories
         for (const offer of this.offers)
         {
@@ -98,7 +102,7 @@ class Server
             const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
-            
+
             this.createTraderOffer(traderID, items, barterScheme, loyalLevel);
         }
     }
@@ -107,7 +111,8 @@ class Server
     {
         const count = ragfair_f.config.dynamic.threshold + ragfair_f.config.dynamic.batchSize;
         const presets = Object.keys(database_f.server.tables.globals.ItemPresets);
-        const items = Object.keys(database_f.server.tables.templates.items).filter((item) => {
+        const items = Object.keys(database_f.server.tables.templates.items).filter((item) =>
+        {
             return item._type !== "Node";
         });
 
@@ -181,7 +186,7 @@ class Server
             "loyaltyLevel": 1,
             "sellInOnePiece": false,
             "priority": false
-        }
+        };
 
         return offer;
     }
@@ -325,7 +330,7 @@ class Server
         {
             result = ragfair_f.config.static.price;
         }
-        
+
         return result;
     }
 
@@ -336,7 +341,7 @@ class Server
         // get stack size
         if (ragfair_f.config.dynamic.enabled)
         {
-            result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);   
+            result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);
         }
         else
         {

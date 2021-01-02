@@ -153,7 +153,7 @@ class Controller
 
         // sort offers
         result.offers = this.sortOffers(info, result.offers);
-        
+
         // set offer indexes
         let counter = 0;
 
@@ -161,7 +161,7 @@ class Controller
         {
             offer.intId = ++counter;
         }
-        
+
         // set categories count
         this.countCategories(result);
 
@@ -285,7 +285,7 @@ class Controller
         if (info.currency > 0 && helpfunc_f.helpFunctions.isMoneyTpl(money))
         {
             const currencies = ["all", "RUB", "USD", "EUR"];
-            
+
             if (helpfunc_f.helpFunctions.getCurrencyTag(money) !== currencies[info.currency])
             {
                 // don't include item paid in wrong currency
@@ -352,7 +352,7 @@ class Controller
 
             return result;
         }
-        
+
         // item is in any other category
         if (helpfunc_f.helpFunctions.isCategory(handbookId))
         {
@@ -366,7 +366,7 @@ class Controller
 
             return result;
         }
-        
+
         // its a specific item searched
         result.push(handbookId);
         return result;
@@ -507,7 +507,7 @@ class Controller
                 // item expired
                 this.removeOffer(offer._id, sessionID);
             }
-            
+
             if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
             {
                 // item sold
@@ -539,7 +539,7 @@ class Controller
         const result = item_f.eventHandler.getOutput();
         let requirementsPriceInRub = 0;
         let offerPrice = 0;
-        let itemStackCount = 0
+        let itemStackCount = 0;
         let invItems = [];
         let basePrice = 0;
 
@@ -677,7 +677,6 @@ class Controller
         }
 
         const fee = VO * Ti * Math.pow(4, PO) * Q + VR * Tr * Math.pow(4, PR) * Q;
-        
         return Math.round(fee);
     }
 

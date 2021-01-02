@@ -14,7 +14,7 @@ class Callbacks
     constructor()
     {
         core_f.packager.onLoad["loadDatabase"] = this.load.bind(this);
-        
+
         https_f.router.onStaticRoute["/client/globals"] = this.getGlobals.bind(this);
         https_f.router.onStaticRoute["/client/items"] = this.getTemplateItems.bind(this);
         https_f.router.onStaticRoute["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);

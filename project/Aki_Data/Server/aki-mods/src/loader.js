@@ -109,7 +109,7 @@ class Loader
                 issue = true;
             }
 
-            
+
             if (!common_f.vfs.exists(`${this.getModPath(mod)}/${config.main}`))
             {
                 console.log(`Mod ${mod} package.json main property points to non-existing file`);

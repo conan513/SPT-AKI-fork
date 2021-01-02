@@ -111,6 +111,7 @@ class Controller
         for (let offer of body.offers)
         {
             let data = ragfair_f.server.getOffer(offer.id);
+            console.log(offer);
 
             pmcData = profile_f.controller.getPmcProfile(sessionID);
             body = {
@@ -122,8 +123,8 @@ class Controller
                 "scheme_id": 0,
                 "scheme_items": offer.items
             };
-            
-            if (data.user.memberType !== 4) 
+
+            if (data.user.memberType !== 4)
             {
                 // remove player item offer stack
                 ragfair_f.server.removeOfferStack(data._id, offer.count);
