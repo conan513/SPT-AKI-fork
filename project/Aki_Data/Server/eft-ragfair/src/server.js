@@ -269,7 +269,6 @@ class Server
             "id": trader._id,
             "memberType": 4,
             "nickname": trader.surname,
-            "rating": 1,
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
