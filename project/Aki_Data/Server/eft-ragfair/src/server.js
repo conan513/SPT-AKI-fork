@@ -36,6 +36,7 @@ class Server
         {
             if (this.isExpired(this.offers[i], time))
             {
+                console.log("1:"+this.offers[i].user.id);
                 this.offers.splice(i, 1);
             }
         }
@@ -43,9 +44,10 @@ class Server
         // generate new offers
         for (const traderID in database_f.server.tables.traders)
         {
-            if (!this.offers.find((offer) => { return offer.user.memberType === 4 && offer.user.id === traderID}))
+            if (!this.offers.find((offer) => { return offer.user.id === traderID}))
             {
                 // trader offers expired
+                console.log("2:"+traderID);
                 this.generateTraderOffers(traderID);
             }
         }
@@ -210,7 +212,7 @@ class Server
             "_tpl": currency
         };
         offer.itemsCost = price;
-        offer.requirementsCost = price;
+        offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
 
         this.offers.push(offer);
@@ -256,7 +258,7 @@ class Server
             "_tpl": currency
         };
         offer.itemsCost = price;
-        offer.requirementsCost = price;
+        offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
 
         this.offers.push(offer);
