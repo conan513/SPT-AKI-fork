@@ -184,10 +184,11 @@ class Server
 
     createItemOffer(itemID)
     {
+        const currency = this.getOfferCurrency();
         let offer = this.getOfferTemplate();
-        let price = this.prices[itemID];
+        let price = helpfunc_f.helpFunctions.inRUB(this.prices[itemID], currency);
 
-        if (price === 0 || price === 1)
+        if (this.prices[itemID] === 0 || this.prices[itemID] === 1)
         {
             // don't add quest and unusual items
             return;
@@ -196,13 +197,16 @@ class Server
         // todo: assign random item condition
 
         // common properties
-        price *= this.getOfferPriceMultiplier();
+        price = Math.round(price * this.getOfferPriceMultiplier());
         offer._id = common_f.hash.generate();
         offer.root = itemID;
         offer.items[0]._id = itemID;
         offer.items[0]._tpl = itemID;
         offer.items[0].upd.StackObjectsCount = this.getOfferStackSize();
-        offer.requirements[0].count = price;
+        offer.requirements[0] = {
+            "count": price,
+            "_tpl": currency
+        };
         offer.itemsCost = price;
         offer.requirementsCost = price;
         offer.summaryCost = price;
@@ -212,6 +216,7 @@ class Server
 
     createPresetOffer(presetID)
     {
+        const currency = this.getOfferCurrency();
         const preset = preset_f.controller.getPreset(presetID);
         let offer = this.getOfferTemplate();
         let mods = preset._items;
@@ -229,7 +234,7 @@ class Server
             }
 
             // add mod to price
-            price += this.prices[it._tpl];
+            price += helpfunc_f.helpFunctions.inRUB(this.prices[it._tpl], currency);
         }
 
         // set stack size
@@ -237,11 +242,14 @@ class Server
         mods[0].upd.StackObjectsCount = 1;
 
         // common properties
-        price *= this.getOfferPriceMultiplier();
+        price = Math.round(price * this.getOfferPriceMultiplier());
         offer._id = common_f.hash.generate();
         offer.root = preset._id;
         offer.items = mods;
-        offer.requirements[0].count = price;
+        offer.requirements[0] = {
+            "count": price,
+            "_tpl": currency
+        };
         offer.itemsCost = price;
         offer.requirementsCost = price;
         offer.summaryCost = price;
@@ -312,7 +320,7 @@ class Server
             result = ragfair_f.config.static.price;
         }
         
-        return Math.round(result);
+        return result;
     }
 
     getOfferStackSize()
@@ -330,6 +338,30 @@ class Server
         }
 
         return Math.round(result);
+    }
+
+    getOfferCurrency()
+    {
+        if (ragfair_f.config.dynamic.enabled)
+        {
+            const currencies = ragfair_f.config.dynamic.currencies;
+            let result = [];
+
+            // weighten result
+            for (let item in currencies)
+            {
+                for (let i = 0; i < currencies[item]; i++)
+                {
+                    result.push(item);
+                }
+            }
+
+            return result[Math.floor(Math.random() * result.length)];
+        }
+        else
+        {
+            return ragfair_f.config.static.currency;
+        }
     }
 
     getTraderItemPrice(barterScheme)

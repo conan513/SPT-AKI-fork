@@ -28,12 +28,18 @@ class Config
             "timeMin": 15,
             "timeMax": 120,
             "stackMin": 1,
-            "stackMax": 1000
+            "stackMax": 100,
+            "currencies": {
+                "5449016a4bdc2d6f028b456f": 75,
+                "5696686a4bdc2da3298b456a": 20,
+                "569668774bdc2da2298b4568": 5
+            }
         }
         this.static = {
             "price": 1,
             "time": 3600,
-            "stack": 999999999
+            "stack": 999999999,
+            "currency": "5449016a4bdc2d6f028b456f"
         }
     }
 }
