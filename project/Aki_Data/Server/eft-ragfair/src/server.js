@@ -47,7 +47,7 @@ class Server
 
             this.offers = this.offers.filter((offer) =>
             {
-                return offer.endTime < time || offer.items[0].upd.StackObjectsCount === 0;
+                return offer.endTime < time || offer.items[0].upd.StackObjectsCount < 1;
             });
 
             // generate new offers
@@ -146,7 +146,7 @@ class Server
             "_id": "hash",
             "intId": 0,
             "user": {
-                "id": "0",
+                "id": 0,
                 "memberType": 0,
                 "nickname": "Unknown",
                 "rating": 100,
@@ -274,8 +274,8 @@ class Server
             "avatar": trader.avatar
         };
 
-        // force static time
-        offer.endTime = Math.round(ragfair_f.config.static.time * 60);
+        // use restock time
+        offer.endTime = trader.supply_next_time;
 
         // common properties
         offer._id = items[0]._id;
