@@ -247,13 +247,13 @@ class Controller
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && !preset_f.controller.isPreset(item._id))
+        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && offer.items.length === 1)
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && preset_f.controller.isPreset(item._id))
+        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && offer.items.length > 1)
         {
             // don't include preset items
             return false;
@@ -357,7 +357,7 @@ class Controller
         if (helpfunc_f.helpFunctions.isCategory(handbookId))
         {
             // list all item of the category
-            result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(handbookId)];
+            result = helpfunc_f.helpFunctions.templatesWithParent(handbookId);
 
             for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
             {
