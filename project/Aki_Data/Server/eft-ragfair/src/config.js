@@ -25,8 +25,6 @@ class Config
             "presetChance": 10,
             "priceMin": 0.95,
             "priceMax": 1.2,
-            "timeStartMin": 1,
-            "timeStartMax": 2,
             "timeEndMin": 15,
             "timeEnMax": 120,
             "stackMin": 1,

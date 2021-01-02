@@ -213,7 +213,7 @@ class Server
         offer.itemsCost = price;
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
-        offer.startTime = this.getOfferStartTime(time);
+        offer.startTime = common_f.time.getTimestamp();
         offer.endTime = this.getOfferEndTime(offer.startTime);
 
         this.offers.push(offer);
@@ -261,7 +261,7 @@ class Server
         offer.itemsCost = price;
         offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
         offer.summaryCost = price;
-        offer.startTime = this.getOfferStartTime(time);
+        offer.startTime = common_f.time.getTimestamp();
         offer.endTime = this.getOfferEndTime(offer.startTime);
 
         this.offers.push(offer);
@@ -295,19 +295,6 @@ class Server
         offer.endTime = trader.supply_next_time;
 
         this.offers.push(offer);
-    }
-
-    getOfferStartTime(timestamp)
-    {
-        let result = timestamp || common_f.time.getTimestamp();
-
-        // get time in minutes
-        if (ragfair_f.config.dynamic.enabled)
-        {
-            result += common_f.random.getInt(ragfair_f.config.dynamic.timeStartMin, ragfair_f.config.dynamic.timeStartMax) * 60;
-        }
-
-        return Math.round(result);
     }
 
     getOfferEndTime(timestamp)
