@@ -32,7 +32,7 @@ class Config
             }
         };
         this.dynamic = {
-            "enabled": false,
+            "enabled": true,
             "threshold": 4000,
             "batchSize": 100,
             "presetChance": 10,
