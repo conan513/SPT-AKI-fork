@@ -184,7 +184,6 @@ class Server
 
     createItemOffer(itemID)
     {
-        const item = database_f.server.tables.templates.items[itemID];
         let offer = this.getOfferTemplate();
         let price = this.prices[itemID];
 
@@ -199,6 +198,8 @@ class Server
         // common properties
         price *= this.getOfferPriceMultiplier();
         offer._id = common_f.hash.generate();
+        offer.root = itemID;
+        offer.items[0]._id = itemID;
         offer.items[0]._tpl = itemID;
         offer.items[0].upd.StackObjectsCount = this.getOfferStackSize();
         offer.requirements[0].count = price;
