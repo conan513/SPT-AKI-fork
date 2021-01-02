@@ -30,7 +30,7 @@ class Loader
             return;
         }
 
-        common_f.logger.log("ModLoader: loading mods");
+        common_f.logger.log("ModLoader: loading mods...");
         const mods = common_f.vfs.getDirs(this.basepath);
 
         // validate mods
