@@ -19,7 +19,7 @@ class Config
             "enableFees": false
         }
         this.dynamic = {
-            "enabled": true,
+            "enabled": false,
             "threshold": 4000,
             "batchSize": 100,
             "presetChance": 10,
@@ -37,7 +37,7 @@ class Config
         }
         this.static = {
             "price": 1,
-            "time": 3600,
+            "time": 1440,
             "stack": 999999999,
             "currency": "5449016a4bdc2d6f028b456f"
         }
