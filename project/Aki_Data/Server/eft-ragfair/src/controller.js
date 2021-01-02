@@ -134,11 +134,6 @@ class Controller
         // get assorts to compare against
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID === "579dc571d53a0658a154fbec")
-            {
-                continue;
-            }
-
             assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 

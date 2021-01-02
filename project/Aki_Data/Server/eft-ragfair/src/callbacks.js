@@ -33,6 +33,7 @@ class Callbacks
 
     search(url, info, sessionID)
     {
+        ragfair_f.server.update();
         return https_f.response.getBody(ragfair_f.controller.getOffers(sessionID, info));
     }
 
@@ -64,7 +65,6 @@ class Callbacks
 
     onUpdate(sessionID)
     {
-        ragfair_f.server.update();
         ragfair_f.controller.processOffers(sessionID);
     }
 }
