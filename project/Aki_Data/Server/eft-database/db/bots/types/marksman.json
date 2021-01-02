@@ -142,7 +142,8 @@
 				"5644bd2b4bdc2d3b4c8b4572",
 				"55801eed4bdc2d89578b4588",
 				"57838ad32459774a17445cd2",
-				"5bfea6e90db834001b7347f3"
+				"5bfea6e90db834001b7347f3",
+				"57dc2fa62459775949412633"
 			],
 			"SecondPrimaryWeapon": [],
 			"Holster": [],
@@ -218,7 +219,8 @@
 			},
 			"59d36a0086f7747e673f3946": {
 				"mod_handguard": [
-					"57dc32dc245977596d4ef3d3"
+					"57dc32dc245977596d4ef3d3",
+					"5a957c3fa2750c00137fa5f7"
 				]
 			},
 			"5ae0973a5acfc4001562206c": {
@@ -369,7 +371,8 @@
 					"5bc5a35cd4351e450201232f"
 				],
 				"mod_sight_rear": [
-					"5bc5a372d4351e44f824d17f"
+					"5bc5a372d4351e44f824d17f",
+					"5ae099925acfc4001a5fc7b3"
 				],
 				"mod_sight_front": [
 					"5ae099875acfc4001714e593"
@@ -480,6 +483,28 @@
 			"5bfebc5e0db834001a6694e5": {
 				"mod_scope": [
 					"5b2388675acfc4771e1be0be"
+				]
+			},
+			"57dc2fa62459775949412633": {
+				"mod_pistol_grip": [
+					"57e3dba62459770f0c32322b"
+				],
+				"mod_gas_block": [
+					"59d36a0086f7747e673f3946"
+				],
+				"mod_stock": [
+					"57dc347d245977596754e7a1"
+				],
+				"mod_magazine": [
+					"55d480c04bdc2d1d4e8b456a"
+				],
+				"patron_in_weapon": [
+					"56dff3afd2720bba668b4567"
+				]
+			},
+			"5a957c3fa2750c00137fa5f7": {
+				"mod_scope": [
+					"57ac965c24597706be5f975c"
 				]
 			}
 		},
