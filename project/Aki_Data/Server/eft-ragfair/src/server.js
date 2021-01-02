@@ -32,12 +32,24 @@ class Server
         // remove expired offers
         const time = common_f.time.getTimestamp();
 
-        this.offers = this.offers.filter((offer) =>
+        for (const i in this.offers)
         {
-            return offer.endTime < time;
-        });
+            if (this.isExpired(this.offers[i], time))
+            {
+                this.offers.splice(i, 1);
+            }
+        }
 
         // generate new offers
+        for (const traderID in database_f.server.tables.traders)
+        {
+            if (!this.offers.find((offer) => { return offer.user.memberType === 4 && offer.user.id === traderID}))
+            {
+                // trader offers expired
+                this.generateTraderOffers(traderID);
+            }
+        }
+        
         if (ragfair_f.config.dynamic.enabled)
         {
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
@@ -52,15 +64,6 @@ class Server
             {
                 // static offers expired
                 this.generateStaticOffers();
-            }
-        }
-
-        for (const traderID in database_f.server.tables.traders)
-        {
-            if (!this.offers.find((offer) => { return offer.user.memberType === 4 && offer.user.id === traderID}))
-            {
-                // trader offers expired
-                this.generateTraderOffers(traderID);
             }
         }
         
@@ -412,16 +415,14 @@ class Server
             {
                 // found offer
                 this.offers[offer].items[0].upd.StackObjectsCount -= amount;
-
-                // remove offer
-                if (this.offers[offer].items[0].upd.StackObjectsCount < 0)
-                {
-                    this.offers.splice(offer, 1);
-                }
-
                 break;
             }
         }
+    }
+
+    isExpired(offer, time)
+    {
+        return offer.endTime < time || offer.items[0].upd.StackObjectsCount < 1;
     }
 }
 
