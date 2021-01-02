@@ -247,13 +247,13 @@ class Controller
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && !preset_f.controller.isPreset(offer._id))
+        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && !preset_f.controller.isPreset(item._id))
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && preset_f.controller.isPreset(offer._id))
+        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && preset_f.controller.isPreset(item._id))
         {
             // don't include preset items
             return false;

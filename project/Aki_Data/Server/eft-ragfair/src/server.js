@@ -45,13 +45,10 @@ class Server
             // remove expired offers
             const time = common_f.time.getTimestamp();
 
-            for (const offer in this.offers)
+            this.offers = this.offers.filter((offer) =>
             {
-                if (this.offers[offer].endTime < time)
-                {
-                    this.offers.splice(offer, 1);
-                }
-            }
+                return offer.endTime < time || offer.items[0].upd.StackObjectsCount === 0;
+            });
 
             // generate new offers
             if (this.offers.length < ragfair_f.config.dynamic.threshold)
@@ -162,7 +159,6 @@ class Server
                     "_id": "5cf5e9f402153a196f20e270",
                     "_tpl": "54009119af1c881c07000029",
                     "upd": {
-                        "UnlimitedCount": true,
                         "StackObjectsCount": 1
                     }
                 }
@@ -189,25 +185,20 @@ class Server
     createItemOffer(itemID)
     {
         const item = database_f.server.tables.templates.items[itemID];
-
-        if (item._type === "Node")
-        {
-            // don't add nodes
-            return;
-        }
-
+        let offer = this.getOfferTemplate();
         let price = this.prices[itemID];
 
         if (price === 0 || price === 1)
         {
-            // don't add quest items
+            // don't add quest and unusual items
             return;
         }
 
-        let offer = this.getOfferTemplate();
+        // todo: assign random item condition
 
+        // common properties
         price *= this.getOfferPriceMultiplier();
-        offer._id = itemID;
+        offer._id = common_f.hash.generate();
         offer.items[0]._tpl = itemID;
         offer.items[0].upd.StackObjectsCount = this.getOfferStackSize();
         offer.requirements[0].count = price;
@@ -225,18 +216,29 @@ class Server
         let mods = preset._items;
         let price = 0;
 
+        // set root item id to preset
+        mods[0]._id = preset._id;
+
         for (const it of mods)
         {
+            // replace mod root parent with preset's id
+            if (it.parentId && it.parentId === preset._parent)
+            {
+                it.parentId = preset._id;
+            }
+
+            // add mod to price
             price += this.prices[it._tpl];
         }
 
-        price *= this.getOfferPriceMultiplier();
-
-        mods[0].upd = mods[0].upd || {}; // append the stack count
+        // set stack size
+        mods[0].upd = mods[0].upd || {};
         mods[0].upd.StackObjectsCount = 1;
 
-        offer._id = preset._id;          // The offer's id is now the preset's id
-        offer.root = mods[0]._id;        // Sets the main part of the weapon
+        // common properties
+        price *= this.getOfferPriceMultiplier();
+        offer._id = common_f.hash.generate();
+        offer.root = preset._id;
         offer.items = mods;
         offer.requirements[0].count = price;
         offer.itemsCost = price;
@@ -253,7 +255,7 @@ class Server
         const price = this.getTraderItemPrice(barterScheme);
         let offer = this.getOfferTemplate();
 
-        offer._id = items[0]._id;
+        // set trader user
         offer.user = {
             "id": trader._id,
             "memberType": 4,
@@ -262,13 +264,18 @@ class Server
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
+
+        // force static time
+        offer.endTime = Math.round(ragfair_f.config.static.time * 60);
+
+        // common properties
+        offer._id = items[0]._id;
         offer.root = items[0]._id;
         offer.items = items;
         offer.requirements = barterScheme;
         offer.loyaltyLevel = loyalLevel;
         offer.requirementsCost = price;
         offer.summaryCost = price;
-        offer.endTime = Math.round(ragfair_f.config.static.time * 60);
 
         this.offers.push(offer);
     }
@@ -277,6 +284,7 @@ class Server
     {
         let result = timestamp;
 
+        // get time in minutes
         if (ragfair_f.config.dynamic.enabled)
         {
             result += common_f.random.getInt(ragfair_f.config.dynamic.timeMin, ragfair_f.config.dynamic.timeMax) * 60;
@@ -293,6 +301,7 @@ class Server
     {
         let result = 1;
 
+        // get normalized value
         if (ragfair_f.config.dynamic.enabled)
         {
             result = common_f.random.getFloat(ragfair_f.config.dynamic.priceMin, ragfair_f.config.dynamic.priceMax);
@@ -309,6 +318,7 @@ class Server
     {
         let result = 1;
 
+        // get stack size
         if (ragfair_f.config.dynamic.enabled)
         {
             result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);   
@@ -335,17 +345,38 @@ class Server
 
     getItemPrices()
     {
+        const items = database_f.server.tables.templates.items;
         let prices = {};
 
-        for (const itemID in database_f.server.tables.templates.items)
+        for (const itemID in items)
         {
-            if (database_f.server.tables.templates.items[itemID]._type !== "Node")
+            if (items[itemID]._type !== "Node")
             {
                 prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
             }
         }
 
         this.prices = prices;
+    }
+
+    getOffer(offerID)
+    {
+        return this.offers.find((item) =>
+        {
+            return item._id === offerID;
+        });
+    }
+
+    removeOfferStack(offerID, amount)
+    {
+        for (const offer in this.offers)
+        {
+            if (this.offers[offer]._id ==- offerID)
+            {
+                this.offers[offer].items[0].upd.StackObjectsCount -= amount;
+                break;
+            }
+        }
     }
 }
 
