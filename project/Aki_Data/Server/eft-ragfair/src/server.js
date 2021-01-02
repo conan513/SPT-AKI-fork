@@ -69,6 +69,8 @@ class Server
         {
             this.categories[offer.items[0]._tpl] = 1;
         }
+
+        common_f.vfs.writeFile("dump/offers.json", common_f.json.serialize(this.offers, true));
     }
 
     generateTraderOffers(traderID)
@@ -270,7 +272,7 @@ class Server
         offer.user = {
             "id": trader._id,
             "memberType": 4,
-            "nickname": (trader.surname === "ragfair") ? "Unknown" : trader.surname,
+            "nickname": (trader._id === "ragfair") ? "Unknown" : trader.surname,
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
