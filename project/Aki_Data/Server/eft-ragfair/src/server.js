@@ -48,9 +48,21 @@ class Server
             }
         }
 
-        // generate new offers
+        // generate trader offers
         for (const traderID in database_f.server.tables.traders)
         {
+            if (!ragfair_f.config.traders.enabled)
+            {
+                // traders disabled
+                break;
+            }
+
+            if (traderID === "579dc571d53a0658a154fbec" || (traderID === "ragfair" && ragfair_f.config.dynamic.enabled))
+            {
+                // skip traders
+                continue;
+            }
+
             if (traderID in toUpdate || !this.offers.find((offer) => { return offer.user.id === traderID; }))
             {
                 // trader offers expired or no offers found
@@ -58,6 +70,7 @@ class Server
             }
         }
 
+        // generate dynamic offers
         if (ragfair_f.config.dynamic.enabled && this.offers.length < ragfair_f.config.dynamic.threshold)
         {
             // offer count below threshold
@@ -69,24 +82,10 @@ class Server
         {
             this.categories[offer.items[0]._tpl] = 1;
         }
-
-        common_f.vfs.writeFile("dump/offers.json", common_f.json.serialize(this.offers, true));
     }
 
     generateTraderOffers(traderID)
     {
-        if (traderID === "579dc571d53a0658a154fbec")
-        {
-            // skip fence
-            return;
-        }
-
-        if (traderID === "ragfair" && ragfair_f.config.dynamic.enabled)
-        {
-            // skip ragfair on dynamic mode
-            return;
-        }
-
         // ensure old offers don't exist
         this.offers = this.offers.filter((offer) =>
         {
@@ -273,6 +272,7 @@ class Server
             "id": trader._id,
             "memberType": 4,
             "nickname": (trader._id === "ragfair") ? "Unknown" : trader.surname,
+            "rating": 100,
             "isRatingGrowing": true,
             "avatar": trader.avatar
         };
@@ -296,15 +296,7 @@ class Server
         let result = timestamp || common_f.time.getTimestamp();
 
         // get time in minutes
-        if (ragfair_f.config.dynamic.enabled)
-        {
-            result += common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60;
-        }
-        else
-        {
-            result += ragfair_f.config.static.time * 60;
-        }
-
+        result += common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60;
         return Math.round(result);
     }
 
@@ -317,10 +309,6 @@ class Server
         {
             result = common_f.random.getFloat(ragfair_f.config.dynamic.priceMin, ragfair_f.config.dynamic.priceMax);
         }
-        else
-        {
-            result = ragfair_f.config.static.price;
-        }
 
         return result;
     }
@@ -330,40 +318,25 @@ class Server
         let result = 1;
 
         // get stack size
-        if (ragfair_f.config.dynamic.enabled)
-        {
-            result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);
-        }
-        else
-        {
-            result = ragfair_f.config.static.stack;
-        }
-
+        result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);
         return Math.round(result);
     }
 
     getOfferCurrency()
     {
-        if (ragfair_f.config.dynamic.enabled)
-        {
-            const currencies = ragfair_f.config.dynamic.currencies;
-            let result = [];
+        const currencies = ragfair_f.config.dynamic.currencies;
+        let result = [];
 
-            // weighten result
-            for (let item in currencies)
+        // weighten result
+        for (let item in currencies)
+        {
+            for (let i = 0; i < currencies[item]; i++)
             {
-                for (let i = 0; i < currencies[item]; i++)
-                {
-                    result.push(item);
-                }
+                result.push(item);
             }
+        }
 
-            return result[Math.floor(Math.random() * result.length)];
-        }
-        else
-        {
-            return ragfair_f.config.static.currency;
-        }
+        return result[Math.floor(Math.random() * result.length)];
     }
 
     getTraderItemPrice(barterScheme)

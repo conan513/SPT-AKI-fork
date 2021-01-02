@@ -18,8 +18,11 @@ class Config
             "sellTimeHrs": 12,
             "enableFees": false
         };
+        this.traders = {
+            "enabled": true
+        };
         this.dynamic = {
-            "enabled": false,
+            "enabled": true,
             "threshold": 4000,
             "batchSize": 100,
             "presetChance": 10,
@@ -34,12 +37,6 @@ class Config
                 "5696686a4bdc2da3298b456a": 23,
                 "569668774bdc2da2298b4568": 2
             }
-        };
-        this.static = {
-            "price": 1,
-            "time": 1440,
-            "stack": 999999999,
-            "currency": "5449016a4bdc2d6f028b456f"
         };
     }
 }
