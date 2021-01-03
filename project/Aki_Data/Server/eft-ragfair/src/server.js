@@ -29,6 +29,8 @@ class Server
     {
         for (const traderID in database_f.server.tables.traders)
         {
+            this.toUpdate[traderID] = true;
+
             if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
             {
                 // skip trader except ragfair when trader is disabled
@@ -40,9 +42,6 @@ class Server
                 // skip ragfair when unknown is disabled
                 this.toUpdate[traderID] = false;
             }
-
-            // add to update list
-            this.toUpdate[traderID] = true;
         }
     }
 
