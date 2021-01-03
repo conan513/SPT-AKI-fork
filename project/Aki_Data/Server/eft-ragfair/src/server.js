@@ -158,9 +158,10 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-
-        // todo: assign random item condition
         const price = this.getOfferPrice(barterScheme);
+
+        items = this.getItemCondition(items);
+
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
             "intId": 0,
@@ -257,6 +258,26 @@ class Server
         }
 
         return result[Math.floor(Math.random() * result.length)];
+    }
+
+    getItemCondition(userID, items)
+    {
+        if (this.isPlayer(userID))
+        {
+            // player offer
+            return items;
+        }
+
+        if (this.isTrader(userID))
+        {
+            // trader offer
+            // todo: add condition
+            return items;
+        }
+
+        // generated offer
+        // todo: add random condition
+        return items;
     }
 
     getOfferPrice(barterScheme)
