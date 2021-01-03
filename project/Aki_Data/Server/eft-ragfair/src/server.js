@@ -100,7 +100,7 @@ class Server
         {
             if (item.slotId !== "hideout")
             {
-                // use only base items
+                // skip mod items
                 continue;
             }
 
@@ -108,33 +108,42 @@ class Server
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
 
-            this.createTraderOffer(traderID, time, items, barterScheme, loyalLevel);
+            // create offer
+            this.createOffer(traderID, time, items, barterScheme, loyalLevel);
         }
     }
 
-    generateDynamicOffers(time)
+    generateDynamicOffers()
     {
         const count = ragfair_f.config.dynamic.threshold + ragfair_f.config.dynamic.batchSize;
-        const presets = Object.keys(database_f.server.tables.globals.ItemPresets);
-        const items = Object.keys(database_f.server.tables.templates.items).filter((item) =>
+        const assort = common_f.json.clone(database_f.server.tables.traders["ragfair"].assort);
+        const assortItems = assort.items.filter((item) =>
         {
-            return item._type !== "Node";
+            return item.slotId === "hideout";
         });
 
         while (this.offers.length < count)
         {
-            const generatePreset = common_f.random.getInt(0, 99) < ragfair_f.config.dynamic.presetChance;
+            const userID = common_f.hash.generate();
+            const time = common_f.time.getTimestamp();
+            const item = common_f.random.getArrayValue(assortItems);
+            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const loyalLevel = assort.loyal_level_items[item._id];
+            let barterScheme = [
+                {
+                    "count": 0,
+                    "_tpl": this.getOfferCurrency()
+                }
+            ];
 
-            if (generatePreset)
+            // get price
+            for (const it of items)
             {
-                // generate preset offer
-                this.createPresetOffer(common_f.random.getArrayValue(presets));
+                barterScheme[0].count += helpfunc_f.helpFunctions.fromRUB(this.prices[it._tpl], barterScheme[0]._tpl);
             }
-            else
-            {
-                // generate item offer
-                this.createItemOffer(common_f.random.getArrayValue(items));
-            }
+
+            // create offer
+            this.createOffer(userID, time, items, barterScheme, loyalLevel);
         }
     }
 
@@ -176,40 +185,6 @@ class Server
             "sellInOnePiece": false,
             "priority": false
         };
-    }
-
-    createItemOffer(itemID, time = 0)
-    {
-        const currency = this.getOfferCurrency();
-        let offer = this.getOfferTemplate();
-        let price = helpfunc_f.helpFunctions.fromRUB(this.prices[itemID], currency);
-
-        if (this.prices[itemID] === 0 || this.prices[itemID] === 1)
-        {
-            // don't add quest and unusual items
-            return;
-        }
-
-        // todo: assign random item condition
-
-        // common properties
-        price = Math.round(price * this.getOfferPriceMultiplier());
-        offer._id = common_f.hash.generate();
-        offer.root = itemID;
-        offer.items[0]._id = itemID;
-        offer.items[0]._tpl = itemID;
-        offer.items[0].upd.StackObjectsCount = this.getOfferStackSize();
-        offer.requirements[0] = {
-            "count": price,
-            "_tpl": currency
-        };
-        offer.itemsCost = price;
-        offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
-        offer.summaryCost = price;
-        offer.startTime = time || common_f.time.getTimestamp();
-        offer.endTime = this.getOfferEndTime(offer.startTime);
-
-        this.offers.push(offer);
     }
 
     createPresetOffer(presetID, time = 0)
@@ -261,16 +236,21 @@ class Server
     }
 
     // note: trader offer is static, so override time to use static time
-    createTraderOffer(traderID, time, items, barterScheme, loyalLevel)
+    createOffer(userID, time, items, barterScheme, loyalLevel)
     {
+        const traderID = (userID !== "ragfair" && userID in database_f.server.tables.traders) ? userID : "ragfair";
         const trader = database_f.server.tables.traders[traderID].base;
         const price = this.getTraderItemPrice(barterScheme);
+        const memberType = this.getMemberType(userID);
+
         let offer = this.getOfferTemplate();
+
+        // todo: assign random item condition
 
         // set trader user
         offer.user = {
-            "id": trader._id,
-            "memberType": (trader._id !== "ragfair") ? 4 : 0,
+            "id": userID,
+            "memberType": memberType,
             "nickname": trader.nickname,
             "rating": 100,
             "isRatingGrowing": true,
@@ -286,13 +266,36 @@ class Server
         offer.requirementsCost = price;
         offer.summaryCost = price;
         offer.startTime = time;
-        offer.endTime = trader.supply_next_time;
+        offer.endTime = (traderID !== "ragfair") ? trader.supply_next_time : this.getOfferEndTime(offer.startTime);
 
+        // temp fix
         if (!preset_f.controller.isPreset(offer._id))
         {
             // todo: fix presets
             this.offers.push(offer);
         }
+        else
+        {
+            this.createPresetOffer(offer._id);
+        }
+    }
+
+    getMemberType(userID)
+    {
+        if (userID in save_f.server.profiles)
+        {
+            // player offer
+            return save_f.server.profiles.characters.pmc.Info.AccountType;
+        }
+        
+        if (userID !== "ragfair" && userID in database_f.server.tables.traders)
+        {
+            // trader offer
+            return 4;
+        }
+        
+        // generated offer
+        return 0;
     }
 
     getOfferEndTime(timestamp)
