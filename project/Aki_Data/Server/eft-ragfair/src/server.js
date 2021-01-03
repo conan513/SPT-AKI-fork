@@ -15,15 +15,35 @@ class Server
         this.prices = {};
         this.offers = [];
         this.categories = {};
+        this.toUpdate = {};
     }
 
     load()
     {
-        // get item prices
         this.getItemPrices();
-
-        // load offers
+        this.addTraders();
         this.update();
+    }
+
+    addTraders()
+    {
+        for (const traderID in database_f.server.tables.traders)
+        {
+            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
+            {
+                // skip trader except ragfair when trader is disabled
+                this.toUpdate[traderID] = false;
+            }
+
+            if (traderID === "ragfair" && !ragfair_f.config.static.unknown)
+            {
+                // skip ragfair when unknown is disabled
+                this.toUpdate[traderID] = false;
+            }
+
+            // add to update list
+            this.toUpdate[traderID] = true;
+        }
     }
 
     // todo: move player offer code here
@@ -31,7 +51,6 @@ class Server
     {
         // remove expired offers
         const time = common_f.time.getTimestamp();
-        let toUpdate = {};
 
         for (const i in this.offers)
         {
@@ -42,7 +61,7 @@ class Server
                 // update trader if offers expired
                 if (this.isTrader(offer.user.id))
                 {
-                    toUpdate[offer.user.id] = 1;
+                    this.toUpdate[offer.user.id] = true;
                 }
 
                 // remove offer
@@ -51,24 +70,13 @@ class Server
         }
 
         // generate trader offers
-        for (const traderID in database_f.server.tables.traders)
+        for (const traderID in this.toUpdate)
         {
-            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
-            {
-                // skip trader except ragfair when trader is disabled
-                continue;
-            }
-
-            if (traderID === "ragfair" && !ragfair_f.config.static.unknown)
-            {
-                // skip ragfair when unknown is disabled
-                continue;
-            }
-
-            if (traderID in toUpdate || !this.offers.find((offer) => { return offer.user.id === traderID; }))
+            if (this.toUpdate[traderID])
             {
                 // trader offers expired or no offers found
                 this.generateTraderOffers(traderID);
+                this.toUpdate[traderID] = false;
             }
         }
 
