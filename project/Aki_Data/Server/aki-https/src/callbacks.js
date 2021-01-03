@@ -17,7 +17,23 @@ class Callbacks
 
     load()
     {
+        // load server
         https_f.server.load();
+
+        // add server and router callbacks
+        https_f.server.onRespond["IMAGE"] = this.sendImage.bind(this);
+        https_f.router.onDynamicRoute[".jpg"] = this.getImage.bind(this);
+        https_f.router.onDynamicRoute[".png"] = this.getImage.bind(this);
+    }
+
+    sendImage(sessionID, req, resp, body)
+    {
+        https_f.image.sendImage(sessionID, req, resp, body);
+    }
+
+    getImage()
+    {
+        return https_f.image.getImage();
     }
 }
 

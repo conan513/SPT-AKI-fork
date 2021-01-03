@@ -111,19 +111,20 @@ class Controller
         for (let offer of body.offers)
         {
             let data = ragfair_f.server.getOffer(offer.id);
+            console.log(offer);
 
             pmcData = profile_f.controller.getPmcProfile(sessionID);
             body = {
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",
                 "tid": (data.user.memberType !== 4) ? "ragfair" : data.user.id,
-                "item_id": (data.user.memberType !== 4) ? data.items[0]._id : offer.id,
+                "item_id": data.root,
                 "count": offer.count,
                 "scheme_id": 0,
                 "scheme_items": offer.items
             };
-            
-            if (data.user.memberType !== 4) 
+
+            if (data.user.memberType !== 4)
             {
                 // remove player item offer stack
                 ragfair_f.server.removeOfferStack(data._id, offer.count);

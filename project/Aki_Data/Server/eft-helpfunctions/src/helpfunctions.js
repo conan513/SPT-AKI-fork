@@ -296,20 +296,20 @@ class HelpFunctions
     * input: currency(tag)
     * output: template ID
     * */
-   getCurrencyTag(currency)
-   {
-       switch (currency)
-       {
-           case "569668774bdc2da2298b4568":
-               return "EUR";
-           case "5696686a4bdc2da3298b456a":
-               return "USD";
-           case "5449016a4bdc2d6f028b456f":
-               return "RUB";
-           default:
-               return "";
-       }
-   }
+    getCurrencyTag(currency)
+    {
+        switch (currency)
+        {
+            case "569668774bdc2da2298b4568":
+                return "EUR";
+            case "5696686a4bdc2da3298b456a":
+                return "USD";
+            case "5449016a4bdc2d6f028b456f":
+                return "RUB";
+            default:
+                return "";
+        }
+    }
 
     /* Gets Currency to Ruble conversion Value
     * input:  value, currency tpl
@@ -782,7 +782,7 @@ class HelpFunctions
                 continue;
             }
 
-            if (childitem.parentId === itemID)
+            if (childitem.parentId === itemID && !list.find((item) => { return items._id == item._id }))
             {
                 list.push.apply(list, this.findAndReturnChildrenAsItems(items, childitem._id));
             }
@@ -798,7 +798,7 @@ class HelpFunctions
 
         for (let itemFromAssort of assort)
         {
-            if (itemFromAssort.parentId === itemIdToFind)
+            if (itemFromAssort.parentId === itemIdToFind && !list.find((item) => { return itemFromAssort._id == item._id }))
             {
                 list.push(itemFromAssort);
                 list = list.concat(this.findAndReturnChildrenByAssort(itemFromAssort._id, assort));

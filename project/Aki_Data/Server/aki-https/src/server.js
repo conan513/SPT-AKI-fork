@@ -23,7 +23,6 @@ class Server
         this.onRespond = {};
         this.mime = {
             txt: "text/plain",
-            jpg: "image/jpeg",
             png: "image/png",
             json: "application/json"
         };

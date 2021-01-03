@@ -17,30 +17,36 @@ class Config
             "sellChance": 25,
             "sellTimeHrs": 12,
             "enableFees": false
-        }
+        };
+        this.static = {
+            "unknown": false,
+            "traders": {
+                "54cb50c76803fa8b248b4571": true,
+                "54cb57776803fa99248b456e": true,
+                "579dc571d53a0658a154fbec": true,
+                "58330581ace78e27b8b10cee": true,
+                "5935c25fb3acc3127c3d8cd9": true,
+                "5a7c2eca46aef81a7ca2145d": true,
+                "5ac3b934156ae10c4430e83c": true,
+                "5c0647fdd443bc2504c2d371": true
+            }
+        };
         this.dynamic = {
-            "enabled": false,
+            "enabled": true,
             "threshold": 4000,
             "batchSize": 100,
-            "presetChance": 10,
             "priceMin": 0.95,
             "priceMax": 1.2,
-            "timeMin": 15,
-            "timeMax": 120,
+            "timeEndMin": 15,
+            "timeEndMax": 120,
             "stackMin": 1,
             "stackMax": 100,
             "currencies": {
                 "5449016a4bdc2d6f028b456f": 75,
-                "5696686a4bdc2da3298b456a": 20,
-                "569668774bdc2da2298b4568": 5
+                "5696686a4bdc2da3298b456a": 23,
+                "569668774bdc2da2298b4568": 2
             }
-        }
-        this.static = {
-            "price": 1,
-            "time": 1440,
-            "stack": 999999999,
-            "currency": "5449016a4bdc2d6f028b456f"
-        }
+        };
     }
 }
 

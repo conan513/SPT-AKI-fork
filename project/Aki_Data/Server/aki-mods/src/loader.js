@@ -30,7 +30,7 @@ class Loader
             return;
         }
 
-        common_f.logger.log("ModLoader: loading mods");
+        common_f.logger.log("ModLoader: loading mods...");
         const mods = common_f.vfs.getDirs(this.basepath);
 
         // validate mods
@@ -109,7 +109,7 @@ class Loader
                 issue = true;
             }
 
-            
+
             if (!common_f.vfs.exists(`${this.getModPath(mod)}/${config.main}`))
             {
                 console.log(`Mod ${mod} package.json main property points to non-existing file`);

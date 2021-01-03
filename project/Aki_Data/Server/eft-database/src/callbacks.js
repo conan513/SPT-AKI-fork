@@ -14,7 +14,7 @@ class Callbacks
     constructor()
     {
         core_f.packager.onLoad["loadDatabase"] = this.load.bind(this);
-        https_f.server.onRespond["IMAGE"] = this.sendImage.bind(this);
+
         https_f.router.onStaticRoute["/client/globals"] = this.getGlobals.bind(this);
         https_f.router.onStaticRoute["/client/items"] = this.getTemplateItems.bind(this);
         https_f.router.onStaticRoute["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
@@ -27,8 +27,12 @@ class Callbacks
         https_f.router.onStaticRoute["/client/languages"] = this.getLocalesLanguages.bind(this);
         https_f.router.onDynamicRoute["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
         https_f.router.onDynamicRoute["/client/locale/"] = this.getLocalesGlobal.bind(this);
-        https_f.router.onDynamicRoute[".jpg"] = this.getImage.bind(this);
-        https_f.router.onDynamicRoute[".png"] = this.getImage.bind(this);
+    }
+
+    load()
+    {
+        database_f.server.tables = this.loadRecursive(`${core_f.packager.basepath}eft-database/db/`);
+        this.loadImages();
     }
 
     loadRecursive(filepath)
@@ -55,14 +59,28 @@ class Callbacks
         return result;
     }
 
-    load()
+    loadImages()
     {
-        database_f.server.tables = this.loadRecursive("Aki_Data/Server/eft-database/db/");
-    }
+        const basepath = `${core_f.packager.basepath}eft-database/res/`;
+        const res = common_f.vfs.getDirs(basepath);
+        const routes = [
+            "/files/CONTENT/banners/",
+            "/files/handbook/",
+            "/files/Hideout/",
+            "/files/quest/icon/",
+            "/files/trader/avatar/",
+        ];
 
-    getImage(url, info, sessionID)
-    {
-        return "IMAGE";
+        for (const i in res)
+        {
+            const files = common_f.vfs.getFiles(`${basepath}${res[i]}/`);
+
+            for (const file of files)
+            {
+                const filename = file.split(".").slice(0, -1).join(".");
+                https_f.image.onRoute[`${routes[i]}${filename}`] = `${basepath}${res[i]}/${file}`;
+            }
+        }
     }
 
     getGlobals(url, info, sessionID)
@@ -129,43 +147,6 @@ class Callbacks
     getLocalesGlobal(url, info, sessionID)
     {
         return https_f.response.getUnclearedBody(database_f.server.tables.locales.global[url.replace("/client/locale/", "")]);
-    }
-
-    sendImage(sessionID, req, resp, body)
-    {
-        let splittedUrl = req.url.split("/");
-        let filename = splittedUrl[splittedUrl.length - 1].split(".").slice(0, -1).join(".");
-        let filepath = "Aki_Data/Server/eft-database/res/";
-
-        // get images to look through
-        if (req.url.includes("/quest"))
-        {
-            common_f.logger.logInfo("[IMG.quests]:" + req.url);
-            filepath += "quests";
-        }
-        else if (req.url.includes("/handbook"))
-        {
-            common_f.logger.logInfo("[IMG.handbook]:" + req.url);
-            filepath += "handbook";
-        }
-        else if (req.url.includes("/avatar"))
-        {
-            common_f.logger.logInfo("[IMG.trader]:" + req.url);
-            filepath += "traders";
-        }
-        else if (req.url.includes("banners"))
-        {
-            common_f.logger.logInfo("[IMG.banners]:" + req.url);
-            filepath += "banners";
-        }
-        else
-        {
-            common_f.logger.logInfo("[IMG.hideout]:" + req.url);
-            filepath += "hideout";
-        }
-
-        // send image
-        https_f.server.sendFile(resp, `${filepath}/${filename}.png`);
     }
 }
 

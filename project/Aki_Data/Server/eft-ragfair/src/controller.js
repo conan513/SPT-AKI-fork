@@ -134,11 +134,6 @@ class Controller
         // get assorts to compare against
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID === "ragfair" || traderID === "579dc571d53a0658a154fbec")
-            {
-                continue;
-            }
-
             assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 
@@ -153,7 +148,7 @@ class Controller
 
         // sort offers
         result.offers = this.sortOffers(info, result.offers);
-        
+
         // set offer indexes
         let counter = 0;
 
@@ -161,7 +156,7 @@ class Controller
         {
             offer.intId = ++counter;
         }
-        
+
         // set categories count
         this.countCategories(result);
 
@@ -285,7 +280,7 @@ class Controller
         if (info.currency > 0 && helpfunc_f.helpFunctions.isMoneyTpl(money))
         {
             const currencies = ["all", "RUB", "USD", "EUR"];
-            
+
             if (helpfunc_f.helpFunctions.getCurrencyTag(money) !== currencies[info.currency])
             {
                 // don't include item paid in wrong currency
@@ -352,7 +347,7 @@ class Controller
 
             return result;
         }
-        
+
         // item is in any other category
         if (helpfunc_f.helpFunctions.isCategory(handbookId))
         {
@@ -366,7 +361,7 @@ class Controller
 
             return result;
         }
-        
+
         // its a specific item searched
         result.push(handbookId);
         return result;
@@ -507,7 +502,7 @@ class Controller
                 // item expired
                 this.removeOffer(offer._id, sessionID);
             }
-            
+
             if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
             {
                 // item sold
@@ -539,7 +534,7 @@ class Controller
         const result = item_f.eventHandler.getOutput();
         let requirementsPriceInRub = 0;
         let offerPrice = 0;
-        let itemStackCount = 0
+        let itemStackCount = 0;
         let invItems = [];
         let basePrice = 0;
 
@@ -658,33 +653,26 @@ class Controller
     */
     calculateTax(info, offerValue, requirementsValue)
     {
-        let Ti = 0.05,
-            Tr = 0.05,
-            VO = offerValue,
-            VR = requirementsValue,
-            PO, PR,
-            Q = info.sellInOnePiece ? 1 : 0;
-        try
+        let Ti = 0.05;
+        let Tr = 0.05;
+        let VO = offerValue;
+        let VR = requirementsValue;
+        let PO = Math.log10(VO / VR);
+        let PR = Math.log10(VR / VO);
+        let Q = info.sellInOnePiece ? 1 : 0;
+
+        if (VR < VO)
         {
-            PO = Math.log10(VO / VR);
-            if (VR < VO)
-            {
-                PO = Math.pow(PO, 1.08);
-            }
-            PR = Math.log10(VR / VO);
-            if (VR >= VO)
-            {
-                PR = Math.pow(PR, 1.08);
-            }
-            let fee = VO * Ti * Math.pow(4, PO) * Q + VR * Tr * Math.pow(4, PR) * Q;
-            return Math.round(fee);
-        }
-        catch (err)
-        {
-            common_f.logger.logError(`Tax Calc Error message: ${err}`);
-            return 0;
+            PO = Math.pow(PO, 1.08);
         }
 
+        if (VR >= VO)
+        {
+            PR = Math.pow(PR, 1.08);
+        }
+
+        const fee = VO * Ti * Math.pow(4, PO) * Q + VR * Tr * Math.pow(4, PR) * Q;
+        return Math.round(fee);
     }
 
     removeOffer(offerId, sessionID)
@@ -700,7 +688,6 @@ class Controller
         }
 
         const itemsToReturn = common_f.json.clone(offers[index].items);
-
         this.returnItems(sessionID, itemsToReturn);
         offers.splice(index, 1);
 
@@ -709,9 +696,8 @@ class Controller
 
     extendOffer(info, sessionID)
     {
-        let offerId = info.offerId,
-            secondsToAdd = info.renewalTime * 60 * 60,
-            feeToPay = 0;
+        let offerId = info.offerId;
+        let secondsToAdd = info.renewalTime * 60 * 60;
 
         // TODO: Subtract money and change offer endTime
         const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
@@ -722,8 +708,8 @@ class Controller
             common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
-        offers[index].endTime += secondsToAdd;
 
+        offers[index].endTime += secondsToAdd;
         return item_f.eventHandler.getOutput();
     }
 
@@ -752,6 +738,7 @@ class Controller
     {
         const itemTpl = items[0]._tpl;
         let itemCount = 0;
+        let itemsToSend = [];
 
         for (const item of items)
         {
@@ -764,7 +751,7 @@ class Controller
                 itemCount += item.upd.StackObjectsCount;
             }
         }
-        let itemsToSend = [];
+
         for (const item of requirements)
         {
             // Create an item of the specified currency
@@ -786,23 +773,10 @@ class Controller
         if (findItemResult[0])
         {
             let tplVars = {
-                soldItem: findItemResult[1]._id,
-                buyerNickname: this.fetchRandomPmcName(),
-                itemCount: itemCount
+                "soldItem": database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id] || findItemResult[1]._id,
+                "buyerNickname": this.fetchRandomPmcName(),
+                "itemCount": itemCount
             };
-
-            try
-            {
-                const itemLocale = database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id];
-                if (itemLocale && itemLocale.Name)
-                {
-                    tplVars.soldItem = itemLocale.Name;
-                }
-            }
-            catch (err)
-            {
-                common_f.logger.logError(`Could not get locale data for item with _id -> ${findItemResult[1]._id}`);
-            }
 
             let messageText = messageTpl.replace(/{\w+}/g, function (matched)
             {
@@ -824,6 +798,7 @@ class Controller
 
             // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
         }
+
         return item_f.eventHandler.getOutput();
     }
 
@@ -865,7 +840,7 @@ class Controller
             "requirements": formattedRequirements,
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.player.sellTimeHrs * 60 * 60),
+            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.player.sellTimeHrs * 3600),
             "summaryCost": amountToSend,
             "requirementsCost": amountToSend,
             "loyaltyLevel": 1,
@@ -882,17 +857,7 @@ class Controller
     fetchRandomPmcName()
     {
         const type = common_f.random.getInt(0, 1) === 0 ? "usec" : "bear";
-
-        try
-        {
-            return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
-        }
-        catch (err)
-        {
-            common_f.logger.logError(`Failed to fetch a random PMC name for type -> ${type}`);
-            common_f.logger.logInfo(common_f.json.serialize(err));
-            return "Unknown";
-        }
+        return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
     }
 }
 
