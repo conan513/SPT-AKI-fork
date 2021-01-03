@@ -54,7 +54,7 @@ class Server
 
         for (const i in this.offers)
         {
-            const offer = this.offers[i].user.id;
+            const offer = this.offers[i];
 
             if (this.isExpired(offer, time))
             {
@@ -168,7 +168,8 @@ class Server
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
         const price = this.getOfferPrice(barterScheme);
 
-        items = this.getItemCondition(items);
+        items = this.getItemCondition(userID, items);
+        delete items[0].upd.UnlimitedCount;
 
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
