@@ -117,7 +117,8 @@ class Server
 
     generateDynamicOffers()
     {
-        const count = ragfair_f.config.dynamic.threshold + ragfair_f.config.dynamic.batchSize;
+        const config = ragfair_f.config.dynamic;
+        const count = config.threshold + config.batchSize;
         const assort = common_f.json.clone(database_f.server.tables.traders["ragfair"].assort);
         const assortItems = assort.items.filter((item) =>
         {
@@ -129,8 +130,8 @@ class Server
             const userID = common_f.hash.generate();
             const time = common_f.time.getTimestamp();
             const item = common_f.random.getArrayValue(assortItems);
-            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
             const loyalLevel = assort.loyal_level_items[item._id];
+            let items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
             let barterScheme = [
                 {
                     "count": 0,
@@ -144,6 +145,10 @@ class Server
                 barterScheme[0].count += helpfunc_f.helpFunctions.fromRUB(this.prices[it._tpl], barterScheme[0]._tpl);
             }
 
+            // randomize values
+            items[0].upd.StackObjectsCount = Math.round(common_f.random.getInt(config.stackMin, config.stackMax));
+            barterScheme[0].count *= common_f.random.getFloat(config.priceMin, config.priceMax);
+
             // create offer
             this.createOffer(userID, time, items, barterScheme, loyalLevel);
         }
@@ -153,9 +158,9 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        const price = this.getTraderItemPrice(barterScheme);
 
         // todo: assign random item condition
+        const price = this.getOfferPrice(barterScheme);
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
             "intId": 0,
@@ -174,7 +179,7 @@ class Server
             "itemsCost": price,
             "summaryCost": price,
             "startTime": time,
-            "endTime": (isTrader) ? trader.supply_next_time : this.getOfferEndTime(time),
+            "endTime": this.getOfferEndTime(userID, time),
             "loyaltyLevel": loyalLevel,
             "sellInOnePiece": preset_f.controller.isPreset(items[0]._id),
             "priority": false
@@ -219,35 +224,22 @@ class Server
         return "Unknown";
     }
 
-    getOfferEndTime(timestamp)
+    getOfferEndTime(userID, time)
     {
-        let result = timestamp || common_f.time.getTimestamp();
-
-        // get time in minutes
-        result += common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60;
-        return Math.round(result);
-    }
-
-    getOfferPriceMultiplier()
-    {
-        let result = 1;
-
-        // get normalized value
-        if (ragfair_f.config.dynamic.enabled)
+        if (this.isPlayer(userID))
         {
-            result = common_f.random.getFloat(ragfair_f.config.dynamic.priceMin, ragfair_f.config.dynamic.priceMax);
+            // player offer
+            return save_f.server.profiles.characters.pmc.Info.Nickname;
         }
-
-        return result;
-    }
-
-    getOfferStackSize()
-    {
-        let result = 1;
-
-        // get stack size
-        result = common_f.random.getInt(ragfair_f.config.dynamic.stackMin, ragfair_f.config.dynamic.stackMax);
-        return Math.round(result);
+        
+        if (this.isTrader(userID))
+        {
+            // trader offer
+            return database_f.server.tables.traders[userID].base.supply_next_time;
+        }
+        
+        // generated offer
+        return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60);
     }
 
     getOfferCurrency()
@@ -267,7 +259,7 @@ class Server
         return result[Math.floor(Math.random() * result.length)];
     }
 
-    getTraderItemPrice(barterScheme)
+    getOfferPrice(barterScheme)
     {
         let price = 0;
 
@@ -282,14 +274,11 @@ class Server
     getItemPrices()
     {
         const items = database_f.server.tables.templates.items;
-        let prices = {};
 
         for (const itemID in items)
         {
-            prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
+            this.prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
         }
-
-        this.prices = prices;
     }
 
     getOffer(offerID)
