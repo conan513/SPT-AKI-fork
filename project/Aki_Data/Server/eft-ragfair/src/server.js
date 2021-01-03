@@ -92,6 +92,8 @@ class Server
         {
             this.categories[offer.items[0]._tpl] = 1;
         }
+
+        common_f.vfs.writeFile("dumps/offers_new.json", common_f.json.serialize(this.offers, true));
     }
 
     generateTraderOffers(traderID)
@@ -157,6 +159,11 @@ class Server
             items[0].upd.StackObjectsCount = Math.round(common_f.random.getInt(config.stackMin, config.stackMax));
             barterScheme[0].count *= common_f.random.getFloat(config.priceMin, config.priceMax);
 
+            // remove properties
+            delete items[0].parentId;
+            delete items[0].slotId;
+            delete items[0].upd.UnlimitedCount;
+
             // create offer
             this.createOffer(userID, time, items, barterScheme, loyalLevel);
         }
@@ -169,7 +176,6 @@ class Server
         const price = this.getOfferPrice(barterScheme);
 
         items = this.getItemCondition(userID, items);
-        delete items[0].upd.UnlimitedCount;
 
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),

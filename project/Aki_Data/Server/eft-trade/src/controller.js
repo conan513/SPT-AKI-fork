@@ -118,7 +118,7 @@ class Controller
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",
                 "tid": (data.user.memberType !== 4) ? "ragfair" : data.user.id,
-                "item_id": (data.user.memberType !== 4) ? data.items[0]._id : offer.id,
+                "item_id": data.root,
                 "count": offer.count,
                 "scheme_id": 0,
                 "scheme_items": offer.items
