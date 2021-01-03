@@ -53,7 +53,7 @@ class Server
         {
             if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
             {
-                // skip all traders except ragfair when traders are disabled
+                // skip trader except ragfair when trader is disabled
                 continue;
             }
 
@@ -147,137 +147,38 @@ class Server
         }
     }
 
-    getOfferTemplate()
-    {
-        return {
-            "_id": "hash",
-            "intId": 0,
-            "user": {
-                "id": 0,
-                "memberType": 0,
-                "nickname": "Unknown",
-                "rating": 100,
-                "isRatingGrowing": true,
-                "avatar": "/files/trader/avatar/unknown.jpg"
-            },
-            "root": "5cf5e9f402153a196f20e270",
-            "items": [
-                {
-                    "_id": "5cf5e9f402153a196f20e270",
-                    "_tpl": "54009119af1c881c07000029",
-                    "upd": {
-                        "StackObjectsCount": 1
-                    }
-                }
-            ],
-            "requirements": [
-                {
-                    "count": 1,
-                    "_tpl": "5449016a4bdc2d6f028b456f"
-                }
-            ],
-            "requirementsCost": 0,
-            "itemsCost": 0,
-            "summaryCost": 0,
-            "startTime": 0,
-            "endTime": 0,
-            "loyaltyLevel": 1,
-            "sellInOnePiece": false,
-            "priority": false
-        };
-    }
-
-    createPresetOffer(presetID, time = 0)
-    {
-        const currency = this.getOfferCurrency();
-        const preset = common_f.json.clone(preset_f.controller.getPreset(presetID));
-        let offer = this.getOfferTemplate();
-        let mods = preset._items;
-        let price = 0;
-
-        // set root item id to preset
-        mods[0]._id = preset._id;
-
-        for (const it of mods)
-        {
-            // replace mod root parent with preset's id
-            if (it.parentId && it.parentId === preset._parent)
-            {
-                it.parentId = preset._id;
-            }
-
-            // add mod to price
-            price += helpfunc_f.helpFunctions.fromRUB(this.prices[it._tpl], currency);
-        }
-
-        // set stack size
-        mods[0].upd = mods[0].upd || {};
-        mods[0].upd.StackObjectsCount = 1;
-
-        // preset offer
-        offer.sellInOnePiece = true;
-
-        // common properties
-        price = Math.round(price * this.getOfferPriceMultiplier());
-        offer._id = common_f.hash.generate();
-        offer.root = preset._id;
-        offer.items = mods;
-        offer.requirements[0] = {
-            "count": price,
-            "_tpl": currency
-        };
-        offer.itemsCost = price;
-        offer.requirementsCost = helpfunc_f.helpFunctions.inRUB(price, currency);
-        offer.summaryCost = price;
-        offer.startTime = time || common_f.time.getTimestamp();
-        offer.endTime = this.getOfferEndTime(offer.startTime);
-
-        this.offers.push(offer);
-    }
-
-    // note: trader offer is static, so override time to use static time
     createOffer(userID, time, items, barterScheme, loyalLevel)
     {
-        const traderID = (userID !== "ragfair" && userID in database_f.server.tables.traders) ? userID : "ragfair";
-        const trader = database_f.server.tables.traders[traderID].base;
+        const isTrader = userID in database_f.server.tables.traders;
+        const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
         const price = this.getTraderItemPrice(barterScheme);
-        const memberType = this.getMemberType(userID);
-
-        let offer = this.getOfferTemplate();
 
         // todo: assign random item condition
-
-        // set trader user
-        offer.user = {
-            "id": userID,
-            "memberType": memberType,
-            "nickname": trader.nickname,
-            "rating": 100,
-            "isRatingGrowing": true,
-            "avatar": trader.avatar
+        let offer = {
+            "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
+            "intId": 0,
+            "user": {
+                "id": userID,
+                "memberType": this.getMemberType(userID),
+                "nickname": this.getNickname(userID),
+                "rating": 100,
+                "isRatingGrowing": true,
+                "avatar": trader.avatar
+            },
+            "root": items[0]._id,
+            "items": items,
+            "requirements": barterScheme,
+            "requirementsCost": price,
+            "itemsCost": price,
+            "summaryCost": price,
+            "startTime": time,
+            "endTime": (isTrader) ? trader.supply_next_time : this.getOfferEndTime(time),
+            "loyaltyLevel": loyalLevel,
+            "sellInOnePiece": preset_f.controller.isPreset(items[0]._id),
+            "priority": false
         };
 
-        // common properties
-        offer._id = items[0]._id;
-        offer.root = items[0]._id;
-        offer.items = items;
-        offer.requirements = barterScheme;
-        offer.loyaltyLevel = loyalLevel;
-        offer.requirementsCost = price;
-        offer.summaryCost = price;
-        offer.startTime = time;
-        offer.endTime = (traderID !== "ragfair") ? trader.supply_next_time : this.getOfferEndTime(offer.startTime);
-
-        // temp fix
-        if (!preset_f.controller.isPreset(offer._id))
-        {
-            // todo: fix presets
-            this.offers.push(offer);
-        }
-        else
-        {
-            this.createPresetOffer(offer._id);
-        }
+        this.offers.push(offer);
     }
 
     getMemberType(userID)
@@ -288,7 +189,7 @@ class Server
             return save_f.server.profiles.characters.pmc.Info.AccountType;
         }
         
-        if (userID !== "ragfair" && userID in database_f.server.tables.traders)
+        if (userID in database_f.server.tables.traders)
         {
             // trader offer
             return 4;
@@ -296,6 +197,24 @@ class Server
         
         // generated offer
         return 0;
+    }
+
+    getNickname(userID)
+    {
+        if (userID in save_f.server.profiles)
+        {
+            // player offer
+            return save_f.server.profiles.characters.pmc.Info.Nickname;
+        }
+        
+        if (userID in database_f.server.tables.traders)
+        {
+            // trader offer
+            return database_f.server.tables.traders[userID].base.nickname;
+        }
+        
+        // generated offer
+        return "Unknown";
     }
 
     getOfferEndTime(timestamp)
