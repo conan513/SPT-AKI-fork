@@ -37322,6 +37322,30 @@
 						"parentId": "",
 						"id": ""
 					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5edaba7c0c502106f869bc02",
+						"status": [
+							4
+						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5f04886a3937dc337a6b8238",
+						"status": [
+							4
+						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
 				}
 			],
 			"AvailableForFinish": [
