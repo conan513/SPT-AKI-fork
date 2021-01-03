@@ -13,7 +13,7 @@
 	"display": false,
 	"discount": 0,
 	"discount_end": 0,
-	"buyer_up": true,
+	"buyer_up": false,
 	"currency": "RUB",
 	"supply_next_time": 1576762923,
 	"repair": {

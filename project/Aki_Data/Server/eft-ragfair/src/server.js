@@ -270,7 +270,7 @@ class Server
         // set trader user
         offer.user = {
             "id": trader._id,
-            "memberType": 4,
+            "memberType": (trader._id !== "ragfair") ? 4 : 0,
             "nickname": trader.nickname,
             "rating": 100,
             "isRatingGrowing": true,
@@ -290,6 +290,7 @@ class Server
 
         if (!preset_f.controller.isPreset(offer._id))
         {
+            // todo: fix presets
             this.offers.push(offer);
         }
     }
