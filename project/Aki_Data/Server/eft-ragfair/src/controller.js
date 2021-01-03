@@ -508,7 +508,7 @@ class Controller
                 this.removeOffer(offer._id, sessionID);
             }
             
-            if (common_f.random.getInt(0, 99) < ragfair_f.config.sellChance)
+            if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
             {
                 // item sold
                 this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
@@ -630,7 +630,7 @@ class Controller
         }
 
         // TODO: Subtract flea market fee from stash
-        if (ragfair_f.config.enableFees)
+        if (ragfair_f.config.player.enableFees)
         {
             let tax = this.calculateTax(info, offerPrice, requirementsPriceInRub);
             common_f.logger.logInfo(`Tax Calculated to be: ${tax}`);
@@ -865,7 +865,7 @@ class Controller
             "requirements": formattedRequirements,
             "sellInOnePiece": sellInOnePiece,
             "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.sellTimeHrs * 60 * 60),
+            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.player.sellTimeHrs * 60 * 60),
             "summaryCost": amountToSend,
             "requirementsCost": amountToSend,
             "loyaltyLevel": 1,
