@@ -179,7 +179,7 @@ class Server
             "intId": 0,
             "user": {
                 "id": userID,
-                "memberType": this.getMemberType(userID),
+                "memberType": (userID !== "ragfair") ? this.getMemberType(userID) : 0,
                 "nickname": this.getNickname(userID),
                 "rating": 100,
                 "isRatingGrowing": true,
@@ -194,7 +194,7 @@ class Server
             "startTime": time,
             "endTime": this.getOfferEndTime(userID, time),
             "loyaltyLevel": loyalLevel,
-            "sellInOnePiece": preset_f.controller.isPreset(items[0]._id),
+            "sellInOnePiece": false,
             "priority": false
         };
 
