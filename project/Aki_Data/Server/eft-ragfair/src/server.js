@@ -91,8 +91,6 @@ class Server
         {
             this.categories[offer.items[0]._tpl] = 1;
         }
-
-        common_f.vfs.writeFile("dumps/offers_new.json", common_f.json.serialize(this.offers, true));
     }
 
     generateTraderOffers(traderID)

@@ -782,7 +782,7 @@ class HelpFunctions
                 continue;
             }
 
-            if (childitem.parentId === itemID)
+            if (childitem.parentId === itemID && !list.find((item) => { return items._id == item._id }))
             {
                 list.push.apply(list, this.findAndReturnChildrenAsItems(items, childitem._id));
             }
@@ -798,7 +798,7 @@ class HelpFunctions
 
         for (let itemFromAssort of assort)
         {
-            if (itemFromAssort.parentId === itemIdToFind)
+            if (itemFromAssort.parentId === itemIdToFind && !list.find((item) => { return itemFromAssort._id == item._id }))
             {
                 list.push(itemFromAssort);
                 list = list.concat(this.findAndReturnChildrenByAssort(itemFromAssort._id, assort));
