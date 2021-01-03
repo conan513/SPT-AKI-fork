@@ -271,7 +271,7 @@ class Server
         offer.user = {
             "id": trader._id,
             "memberType": 4,
-            "nickname": (trader._id === "ragfair") ? "Unknown" : trader.surname,
+            "nickname": trader.nickname,
             "rating": 100,
             "isRatingGrowing": true,
             "avatar": trader.avatar
@@ -288,7 +288,10 @@ class Server
         offer.startTime = time;
         offer.endTime = trader.supply_next_time;
 
-        this.offers.push(offer);
+        if (!preset_f.controller.isPreset(offer._id))
+        {
+            this.offers.push(offer);
+        }
     }
 
     getOfferEndTime(timestamp)
