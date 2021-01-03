@@ -102,9 +102,9 @@ class Server
         });
 
         // add trader offers
-        const time = common_f.time.getTimestamp()
+        const time = common_f.time.getTimestamp();
         const assort = database_f.server.tables.traders[traderID].assort;
-        
+
         for (const item of assort.items)
         {
             if (item.slotId !== "hideout")
@@ -208,13 +208,13 @@ class Server
             // player offer
             return save_f.server.profiles.characters.pmc.Info.AccountType;
         }
-        
+
         if (this.isTrader(userID))
         {
             // trader offer
             return 4;
         }
-        
+
         // generated offer
         return 0;
     }
@@ -226,13 +226,13 @@ class Server
             // player offer
             return save_f.server.profiles.characters.pmc.Info.Nickname;
         }
-        
+
         if (this.isTrader(userID))
         {
             // trader offer
             return database_f.server.tables.traders[userID].base.nickname;
         }
-        
+
         // generated offer
         return "Unknown";
     }
@@ -244,13 +244,13 @@ class Server
             // player offer
             return save_f.server.profiles.characters.pmc.Info.Nickname;
         }
-        
+
         if (this.isTrader(userID))
         {
             // trader offer
             return database_f.server.tables.traders[userID].base.supply_next_time;
         }
-        
+
         // generated offer
         return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60);
     }
