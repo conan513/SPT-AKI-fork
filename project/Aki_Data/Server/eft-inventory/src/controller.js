@@ -794,11 +794,9 @@ class Controller
         if ("fromOwner" in body)
         {
             // scan ragfair as a trader
-            // for some reason ragfair's itemID is in body.fromOwner
             if (body.fromOwner.type === "RagFair")
             {
                 body.fromOwner.type = "Trader";
-                body.item = body.fromOwner.id;
             }
 
             // get trader assort
