@@ -26,7 +26,7 @@ class Callbacks
     {
         if (save_f.config.saveOnReceive)
         {
-            save_f.controller.save();
+            save_f.controller.onSave();
         }
     }
 }
