@@ -35,12 +35,14 @@ class Server
 
         for (const i in this.offers)
         {
-            if (this.isExpired(this.offers[i], time))
+            const offer = this.offers[i].user.id;
+
+            if (this.isExpired(offer, time))
             {
                 // update trader if offers expired
-                if (this.offers[i].user.memberType === 4)
+                if (this.isTrader(offer.user.id))
                 {
-                    toUpdate[this.offers[i].user.id] = 1;
+                    toUpdate[offer.user.id] = 1;
                 }
 
                 // remove offer
@@ -149,7 +151,7 @@ class Server
 
     createOffer(userID, time, items, barterScheme, loyalLevel)
     {
-        const isTrader = userID in database_f.server.tables.traders;
+        const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
         const price = this.getTraderItemPrice(barterScheme);
 
@@ -183,13 +185,13 @@ class Server
 
     getMemberType(userID)
     {
-        if (userID in save_f.server.profiles)
+        if (this.isPlayer(userID))
         {
             // player offer
             return save_f.server.profiles.characters.pmc.Info.AccountType;
         }
         
-        if (userID in database_f.server.tables.traders)
+        if (this.isTrader(userID))
         {
             // trader offer
             return 4;
@@ -201,13 +203,13 @@ class Server
 
     getNickname(userID)
     {
-        if (userID in save_f.server.profiles)
+        if (this.isPlayer(userID))
         {
             // player offer
             return save_f.server.profiles.characters.pmc.Info.Nickname;
         }
         
-        if (userID in database_f.server.tables.traders)
+        if (this.isTrader(userID))
         {
             // trader offer
             return database_f.server.tables.traders[userID].base.nickname;
@@ -320,6 +322,16 @@ class Server
     isExpired(offer, time)
     {
         return offer.endTime < time || offer.items[0].upd.StackObjectsCount < 1;
+    }
+
+    isTrader(userID)
+    {
+        return userID in database_f.server.tables.traders;
+    }
+
+    isPlayer(userID)
+    {
+        return userID in save_f.server.profiles;
     }
 }
 
