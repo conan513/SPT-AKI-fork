@@ -893,10 +893,14 @@ class Controller
                     return item._id !== target._id;
                 });
 
-                // fix StackObjectCount becoming null
-                if ("upd" in target && "StackObjectsCount" in target.upd && !target.upd.StackObjectsCount)
+                // fix currency StackObjectsCount when single stack
+                if (helpfunc_f.helpFunctions.isMoneyTpl(target._tpl))
                 {
-                    target.upd.StackObjectsCount = 1;
+                    target.upd = (target.upd || {});
+                    if (!target.upd.StackObjectsCount)
+                    {
+                        target.upd.StackObjectsCount = 1;
+                    }
                 }
 
                 // add sorted items
