@@ -893,6 +893,12 @@ class Controller
                     return item._id !== target._id;
                 });
 
+                // fix StackObjectCount becoming null
+                if ("upd" in target && "StackObjectsCount" in target.upd && !target.upd.StackObjectsCount)
+                {
+                    item.upd.StackObjectsCount = 1;
+                }
+
                 // add sorted items
                 items.push(target);
             }

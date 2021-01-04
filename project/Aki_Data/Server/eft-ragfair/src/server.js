@@ -170,9 +170,10 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        const price = this.getOfferPrice(barterScheme);
+        let price = this.getOfferPrice(barterScheme);
 
         items = this.getItemCondition(userID, items);
+        price = Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
 
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
@@ -274,22 +275,51 @@ class Server
 
     getItemCondition(userID, items)
     {
-        if (this.isPlayer(userID))
+        let item = this.addMissingCondition(items[0]);
+        
+        if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
-            // player offer
-            return items;
-        }
+            const multiplier = common_f.random.getFloat(ragfair_f.config.dynamic.conditionMin, ragfair_f.config.dynamic.conditionMax);
 
-        if (this.isTrader(userID))
-        {
-            // trader offer
-            // todo: add condition
-            return items;
-        }
+            if ("Repairable" in item.upd)
+            {
+                // randomize durability
+                item.upd.Repairable.Durability = Math.round(item.upd.Repairable.Durability * multiplier) || 1;
+            }
 
-        // generated offer
-        // todo: add random condition
+            if ("MedKit" in item.upd)
+            {
+                // randomize health
+                item.upd.MedKit.HpResource = Math.round(item.upd.MedKit.HpResource * multiplier) || 1;
+            }
+        }
+        
+        items[0] = item;
         return items;
+    }
+
+    addMissingCondition(item)
+    {
+        const props = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props;
+        const isRepairable = ("Durability" in props);
+        const isMedkit = ("MaxHpResource" in props);
+
+        if (isRepairable && props.Durability > 0)
+        {
+            item.upd.Repairable = {
+                "Durability": props.Durability,
+                "MaxDurability": props.Durability
+            };
+        }
+
+        if (isMedkit && props.MaxHpResource > 0)
+        {
+            item.upd.MedKit = {
+                "HpResource": props.MaxHpResource,
+            };
+        }
+
+        return item;
     }
 
     getOfferPrice(barterScheme)
