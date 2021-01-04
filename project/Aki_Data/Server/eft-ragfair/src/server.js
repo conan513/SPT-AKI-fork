@@ -278,17 +278,17 @@ class Server
         
         if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
-            if (item.upd.Repairable)
+            if ("Repairable" in item.upd)
             {
                 // randomize durability
                 item.upd.Repairable.Durability = common_f.random.getIntEx(item.upd.Repairable.MaxDurability);
             }
 
-            if (item.upd.MedKit)
+            if ("MedKit" in item.upd)
             {
-                // randomize healh
-                const maxResource = this.getItem(item._tpl)[1]._props.MaxHpResource;
-                item.upd.Repairable.Durability = common_f.random.getIntEx(maxResource);
+                // randomize health
+                const maxResource = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
+                item.upd.MedKit = common_f.random.getIntEx(maxResource);
             }
         }
         
@@ -298,7 +298,7 @@ class Server
 
     addMissingCondition(item)
     {
-        const props = this.getItem(item._tpl)[1]._props;
+        const props = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props;
         const isRepairable = ("Durability" in props);
         const isMedkit = ("MaxHpResource" in props);
 
