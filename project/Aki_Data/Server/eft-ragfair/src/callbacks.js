@@ -44,7 +44,7 @@ class Callbacks
 
     getItemPrices(url, info, sessionID)
     {
-        return https_f.response.getBody(ragfair_f.server.prices);
+        return https_f.response.getBody(ragfair_f.server.prices.dynamic);
     }
 
     addOffer(pmcData, info, sessionID)

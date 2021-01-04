@@ -12,7 +12,10 @@ class Server
 {
     constructor()
     {
-        this.prices = {};
+        this.prices = {
+            "trader": {},
+            "dynamic": {}
+        };
         this.offers = [];
         this.categories = {};
         this.toUpdate = {};
@@ -138,12 +141,12 @@ class Server
             // get price
             for (const it of items)
             {
-                barterScheme[0].count += helpfunc_f.helpFunctions.fromRUB(this.prices[it._tpl], barterScheme[0]._tpl);
+                barterScheme[0].count += helpfunc_f.helpFunctions.fromRUB(this.prices.dynamic[it._tpl], barterScheme[0]._tpl);
             }
 
             // randomize values
-            items[0].upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stackMin, config.stackMax));
-            barterScheme[0].count *= common_f.random.getFloat(config.priceMin, config.priceMax);
+            items[0].upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
+            barterScheme[0].count *= common_f.random.getFloat(config.price.min, config.price.max);
 
             // remove properties
             delete items[0].parentId;
@@ -159,7 +162,7 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        let price = this.getOfferPrice(barterScheme);
+        let price = this.getBarterPrice(barterScheme);
 
         items = this.getItemCondition(userID, items);
         price = (this.isPlayer(userID)) ? price : Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
@@ -251,7 +254,7 @@ class Server
         }
 
         // generated offer
-        return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.timeEnd.min, ragfair_f.config.dynamic.timeEnd.max) * 60);
+        return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.endTime.min, ragfair_f.config.dynamic.endTime.max) * 60);
     }
 
     getRating(userID)
@@ -356,13 +359,13 @@ class Server
         return item;
     }
 
-    getOfferPrice(barterScheme)
+    getBarterPrice(barterScheme)
     {
         let price = 0;
 
         for (const barter of barterScheme)
         {
-            price += (this.prices[barter._tpl] * barter.count);
+            price += (this.prices.trader[barter._tpl] * barter.count);
         }
 
         return Math.round(price);
@@ -371,10 +374,19 @@ class Server
     getItemPrices()
     {
         const items = database_f.server.tables.templates.items;
+        const prices = database_f.server.tables.templates.prices;
 
+        // trader offers
         for (const itemID in items)
         {
-            this.prices[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
+            this.prices.trader[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
+        }
+
+        // dynamic offers
+        for (const itemID in prices)
+        {
+            const price = (ragfair_f.config.dynamic.liveprices) ? prices[itemID] || this.prices.trader[itemID] : this.prices.trader[itemID];
+            this.prices.dynamic[itemID] = price;
         }
     }
 

@@ -561,7 +561,7 @@ class Controller
             }
             else
             {
-                requirementsPriceInRub += ragfair_f.server.prices[requestedItemTpl] * item.count;
+                requirementsPriceInRub += ragfair_f.server.prices.dynamic[requestedItemTpl] * item.count;
             }
         }
 
@@ -586,7 +586,7 @@ class Controller
             }
 
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-            offerPrice += ragfair_f.server.prices[item._tpl] * itemStackCount;
+            offerPrice += ragfair_f.server.prices.dynamic[item._tpl] * itemStackCount;
         }
 
         if (info.sellInOnePiece)
@@ -605,7 +605,7 @@ class Controller
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
-            basePrice += ragfair_f.server.prices[item._tpl] * mult;
+            basePrice += ragfair_f.server.prices.dynamic[item._tpl] * mult;
         }
 
         if (!basePrice)

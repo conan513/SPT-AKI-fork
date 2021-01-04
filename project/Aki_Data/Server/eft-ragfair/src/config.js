@@ -19,7 +19,7 @@ class Config
             "enableFees": false
         };
         this.static = {
-            "items": false,
+            "items": true,
             "traders": {
                 "54cb50c76803fa8b248b4571": true,
                 "54cb57776803fa99248b456e": true,
@@ -33,13 +33,14 @@ class Config
         };
         this.dynamic = {
             "enabled": true,
+            "liveprices": false,
             "threshold": 8000,
             "batchSize": 1000,
             "price": {
                 "min": 0.95,
                 "max": 1.2
             },
-            "timeEnd": {
+            "endTime": {
                 "min": 15,
                 "max": 120
             },
