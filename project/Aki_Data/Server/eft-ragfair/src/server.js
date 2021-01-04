@@ -274,22 +274,48 @@ class Server
 
     getItemCondition(userID, items)
     {
-        if (this.isPlayer(userID))
+        let item = this.addMissingCondition(items[0]);
+        
+        if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
-            // player offer
-            return items;
-        }
+            if (item.upd.Repairable)
+            {
+                // randomize durability
+                item.upd.Repairable.Durability = common_f.random.getIntEx(item.upd.Repairable.MaxDurability);
+            }
 
-        if (this.isTrader(userID))
-        {
-            // trader offer
-            // todo: add condition
-            return items;
+            if (item.upd.MedKit)
+            {
+                // randomize healh
+                const maxResource = this.getItem(item._tpl)[1]._props.MaxHpResource;
+                item.upd.Repairable.Durability = common_f.random.getIntEx(maxResource);
+            }
         }
-
-        // generated offer
-        // todo: add random condition
+        
+        items[0] = item;
         return items;
+    }
+
+    addMissingCondition(item)
+    {
+        const props = this.getItem(item._tpl)[1]._props;
+        const isRepairable = ("Durability" in props);
+        const isMedkit = ("MaxHpResource" in props);
+
+        if (isRepairable)
+        {
+            item.upd.Repairable = {
+                "Durability": props.Durability,
+                "MaxDurability": props.Durability
+            }
+        }
+
+        if (isMedkit)
+        {
+            item.upd.MedKit = props.MaxHpResource;
+        }
+
+        return item;
     }
 
     getOfferPrice(barterScheme)

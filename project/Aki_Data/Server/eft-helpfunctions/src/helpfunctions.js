@@ -559,7 +559,6 @@ class HelpFunctions
 
         const hpresource = (item.upd.MedKit) ? item.upd.MedKit.HpResource : 0;
         const repairable = (item.upd.Repairable) ? item.upd.Repairable : 0;
-        const usage = (item.upd.Key) ? item.upd.Key.NumberOfUsages : 0;
 
         if (hpresource > 0)
         {
@@ -572,13 +571,6 @@ class HelpFunctions
         {
             // weapons and armor
             result = repairable.Durability / repairable.MaxDurability;
-        }
-
-        if (usage > 0)
-        {
-            // key, 100% is 0 and 0% is maxUsage
-            const maxUsage = this.getItem(item._tpl)[1]._props.MaximumNumberOfUsage;
-            result = (maxUsage - usage) / maxUsage;
         }
 
         if (result === 0)
