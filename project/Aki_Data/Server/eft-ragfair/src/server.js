@@ -173,7 +173,7 @@ class Server
         let price = this.getOfferPrice(barterScheme);
 
         items = this.getItemCondition(userID, items);
-        price *= helpfunc_f.helpFunctions.getItemQualityPrice(items[0]);
+        price = Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
 
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
@@ -287,13 +287,11 @@ class Server
                 item.upd.Repairable.Durability = Math.round(item.upd.Repairable.Durability * multiplier) || 1;
             }
 
-            /*
             if ("MedKit" in item.upd)
             {
                 // randomize health
                 item.upd.MedKit.HpResource = Math.round(item.upd.MedKit.HpResource * multiplier) || 1;
             }
-            */
         }
         
         items[0] = item;
@@ -314,14 +312,12 @@ class Server
             };
         }
 
-        /*
         if (isMedkit && props.MaxHpResource > 0)
         {
             item.upd.MedKit = {
                 "HpResource": props.MaxHpResource,
             };
         }
-        */
 
         return item;
     }

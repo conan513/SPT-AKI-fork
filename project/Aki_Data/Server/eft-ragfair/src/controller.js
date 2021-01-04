@@ -257,8 +257,6 @@ class Controller
         if (item.upd.MedKit || item.upd.Repairable)
         {
             const percentage = 100 * helpfunc_f.helpFunctions.getItemQualityPrice(item);
-            console.log(percentage);
-            console.log(info.conditionTo);
 
             if (info.conditionFrom > 0 && info.conditionFrom >= percentage)
             {
