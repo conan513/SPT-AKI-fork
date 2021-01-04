@@ -19,15 +19,11 @@ class Callbacks
     load()
     {
         save_f.server.load();
-        save_f.controller.load();
     }
 
     save(sessionID, req, resp, body, output)
     {
-        if (save_f.config.saveOnReceive)
-        {
-            save_f.controller.onSave();
-        }
+        save_f.server.save();
     }
 }
 

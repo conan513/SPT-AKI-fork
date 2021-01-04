@@ -12,6 +12,7 @@ class Server
 {
     constructor()
     {
+        this.filepath = "user/profiles/";
         this.profiles = {};
         this.onLoad = {};
         this.onSave = {};
@@ -20,12 +21,12 @@ class Server
     load()
     {
         // get files to load
-        if (!common_f.vfs.exists(save_f.config.filepath))
+        if (!common_f.vfs.exists(this.filepath))
         {
-            common_f.vfs.createDir(save_f.config.filepath);
+            common_f.vfs.createDir(this.filepath);
         }
 
-        const files = common_f.vfs.getFiles(save_f.config.filepath);
+        const files = common_f.vfs.getFiles(this.filepath);
 
         // load profiles
         for (let file of files)
@@ -46,7 +47,7 @@ class Server
 
     loadProfile(sessionID)
     {
-        const file = `${save_f.config.filepath}${sessionID}.json`;
+        const file = `${this.filepath}${sessionID}.json`;
 
         if (common_f.vfs.exists(file))
         {
@@ -63,7 +64,7 @@ class Server
 
     saveProfile(sessionID)
     {
-        const file = `${save_f.config.filepath}${sessionID}.json`;
+        const file = `${this.filepath}${sessionID}.json`;
 
         // run callbacks
         for (const callback in this.onSave)
