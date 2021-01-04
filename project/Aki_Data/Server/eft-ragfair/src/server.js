@@ -224,7 +224,15 @@ class Server
 
         // generated offer
         const type = (common_f.random.getInt(0, 1) === 0) ? "usec" : "bear";
-        return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
+        const name = common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
+
+        if (name.length > 15)
+        {
+            // name is longer than max characters allowed (15 characters)
+            return this.getNickname(userID);
+        }
+
+        return name;
     }
 
     getOfferEndTime(userID, time)
