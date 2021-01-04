@@ -31,21 +31,12 @@ class Controller
 
     sortOffersByName(a, b)
     {
-        // TODO: Get localized item names
-        try
-        {
-            let aa = helpfunc_f.helpFunctions.getItem(a._id)[1]._name;
-            let bb = helpfunc_f.helpFunctions.getItem(b._id)[1]._name;
+        const ia = a.items[0]._tpl;
+        const ib = b.items[0]._tpl;
+        const aa = database_f.server.tables.locales.global["en"].templates[ia].Name || ia;
+        const bb = database_f.server.tables.locales.global["en"].templates[ib].Name || ib;
 
-            aa = aa.substring(aa.indexOf("_") + 1);
-            bb = bb.substring(bb.indexOf("_") + 1);
-
-            return aa.localeCompare(bb);
-        }
-        catch (e)
-        {
-            return 0;
-        }
+        return  (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
     }
 
     sortOffersByPrice(a, b)
@@ -783,37 +774,30 @@ class Controller
         }
 
         // Generate a message to inform that item was sold
-        const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
         let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
-
-        if (findItemResult[0])
+        let tplVars = {
+            "soldItem": database_f.server.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
+            "buyerNickname": this.fetchRandomPmcName(),
+            "itemCount": itemCount
+        };
+        let messageText = messageTpl.replace(/{\w+}/g, (matched) =>
         {
-            let tplVars = {
-                "soldItem": database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id] || findItemResult[1]._id,
-                "buyerNickname": this.fetchRandomPmcName(),
-                "itemCount": itemCount
-            };
+            return tplVars[matched.replace(/{|}/g, "")];
+        });
+        const messageContent = {
+            "text": messageText.replace(/"/g, ""),
+            "type": 4, // EMessageType.FleamarketMessage
+            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "ragfair": {
+                "offerId": offerId,
+                "count": itemCount,
+                "handbookId": itemTpl
+            }
+        };
 
-            let messageText = messageTpl.replace(/{\w+}/g, function (matched)
-            {
-                return tplVars[matched.replace(/{|}/g, "")];
-            });
+        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
 
-            const messageContent = {
-                "text": messageText.replace(/"/g, ""),
-                "type": 4, // EMessageType.FleamarketMessage
-                "maxStorageTime": quest_f.config.redeemTime * 3600,
-                "ragfair": {
-                    "offerId": offerId,
-                    "count": itemCount,
-                    "handbookId": itemTpl
-                }
-            };
-
-            dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
-
-            // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
-        }
+        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
 
         return item_f.eventHandler.getOutput();
     }
