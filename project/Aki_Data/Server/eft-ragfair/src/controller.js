@@ -230,13 +230,13 @@ class Controller
             return false;
         }
 
-        if (info.quantityFrom > 0 && info.quantityFrom > item.upd.StackObjectsCount)
+        if (info.quantityFrom > 0 && info.quantityFrom >= item.upd.StackObjectsCount)
         {
             // too little items to offer
             return false;
         }
 
-        if (info.quantityTo > 0 && info.quantityTo < item.upd.StackObjectsCount)
+        if (info.quantityTo > 0 && info.quantityTo <= item.upd.StackObjectsCount)
         {
             // too many items to offer
             return false;
@@ -254,17 +254,19 @@ class Controller
             return false;
         }
 
-        if (item.upd.MedKit || item.upd.Repairable || item.upd.Key)
+        if (item.upd.MedKit || item.upd.Repairable)
         {
             const percentage = 100 * helpfunc_f.helpFunctions.getItemQualityPrice(item);
+            console.log(percentage);
+            console.log(info.conditionTo);
 
-            if (info.conditionFrom > 0 && info.conditionFrom > percentage)
+            if (info.conditionFrom > 0 && info.conditionFrom >= percentage)
             {
                 // item condition is too low
                 return false;
             }
 
-            if (info.conditionTo > 0 && info.conditionTo < percentage)
+            if (info.conditionTo < 100 && info.conditionTo <= percentage)
             {
                 // item condition is too high
                 return false;
@@ -288,13 +290,13 @@ class Controller
             }
         }
 
-        if (info.priceFrom > 0 && info.priceFrom > offer.requirementsCost)
+        if (info.priceFrom > 0 && info.priceFrom >= offer.requirementsCost)
         {
             // price is too low
             return false;
         }
 
-        if (info.priceTo > 0 && info.priceTo < offer.requirementsCost)
+        if (info.priceTo > 0 && info.priceTo <= offer.requirementsCost)
         {
             // price is too high
             return false;

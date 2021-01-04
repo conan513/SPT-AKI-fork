@@ -552,31 +552,28 @@ class HelpFunctions
     {
         let result = 1;
 
-        if (!item.upd)
+        if (item.upd)
         {
-            return result;
-        }
+            const medkit = (item.upd.MedKit) ? item.upd.MedKit : null;
+            const repairable = (item.upd.Repairable) ? item.upd.Repairable : null;
 
-        const hpresource = (item.upd.MedKit) ? item.upd.MedKit.HpResource : 0;
-        const repairable = (item.upd.Repairable) ? item.upd.Repairable : 0;
+            if (medkit)
+            {
+                // meds
+                result = medkit.HpResource / this.getItem(item._tpl)[1]._props.MaxHpResource
+            }
 
-        if (hpresource > 0)
-        {
-            // meds
-            const maxHp = this.getItem(item._tpl)[1]._props.MaxHpResource;
-            result = hpresource / maxHp;
-        }
+            if (repairable)
+            {
+                // weapons and armor
+                result = repairable.Durability / repairable.MaxDurability;
+            }
 
-        if (repairable > 0)
-        {
-            // weapons and armor
-            result = repairable.Durability / repairable.MaxDurability;
-        }
-
-        if (result === 0)
-        {
-            // make item cheap
-            result = 0.01;
+            if (result === 0)
+            {
+                // make item cheap
+                result = 0.01;
+            }
         }
 
         return result;

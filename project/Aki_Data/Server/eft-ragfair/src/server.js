@@ -170,9 +170,10 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        const price = this.getOfferPrice(barterScheme);
+        let price = this.getOfferPrice(barterScheme);
 
         items = this.getItemCondition(userID, items);
+        price *= helpfunc_f.helpFunctions.getItemQualityPrice(items[0]);
 
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
@@ -283,14 +284,16 @@ class Server
             if ("Repairable" in item.upd)
             {
                 // randomize durability
-                item.upd.Repairable.Durability *= multiplier;
+                item.upd.Repairable.Durability = Math.round(item.upd.Repairable.Durability * multiplier) || 1;
             }
 
+            /*
             if ("MedKit" in item.upd)
             {
                 // randomize health
-                item.upd.MedKit *= multiplier;
+                item.upd.MedKit.HpResource = Math.round(item.upd.MedKit.HpResource * multiplier) || 1;
             }
+            */
         }
         
         items[0] = item;
@@ -303,18 +306,22 @@ class Server
         const isRepairable = ("Durability" in props);
         const isMedkit = ("MaxHpResource" in props);
 
-        if (isRepairable)
+        if (isRepairable && props.Durability > 0)
         {
             item.upd.Repairable = {
                 "Durability": props.Durability,
                 "MaxDurability": props.Durability
-            }
+            };
         }
 
-        if (isMedkit)
+        /*
+        if (isMedkit && props.MaxHpResource > 0)
         {
-            item.upd.MedKit = props.MaxHpResource;
+            item.upd.MedKit = {
+                "HpResource": props.MaxHpResource,
+            };
         }
+        */
 
         return item;
     }
