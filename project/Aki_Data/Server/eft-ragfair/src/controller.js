@@ -179,11 +179,20 @@ class Controller
 
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID !== "ragfair" && ragfair_f.config.static.traders[traderID])
+            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
             {
-                // add assort to display
-                result[traderID] = trader_f.controller.getAssort(sessionID, traderID);
+                // skip trader except ragfair when trader is disabled
+                continue;
             }
+
+            if (traderID === "ragfair" && !ragfair_f.config.static.unknown)
+            {
+                // skip ragfair when unknown is disabled
+                continue;
+            }
+
+            // add assort to display
+            result[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 
         return result;
@@ -289,7 +298,7 @@ class Controller
         }
 
         // handle trader items
-        if (offer.user.memberType === 4)
+        if (offer.user.id in database_f.server.tables.traders)
         {
             if (!(offer.user.id in assorts))
             {
@@ -302,12 +311,6 @@ class Controller
                 // skip (quest) locked items
                 return false;
             }
-        }
-
-        if (offer.user.memberType === 0 && offer.user.id === "ragfair" && !ragfair_f.config.static.unknown)
-        {
-            // skip ragfair when unknown is disabled
-            return false;
         }
 
         return true;
