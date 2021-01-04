@@ -325,7 +325,7 @@ class Controller
             if (!(offer.user.id in assorts))
             {
                 // trader not visible on flea market
-                continue;
+                return false;
             }
 
             const flag = assorts[offer.user.id].items.find((item) =>
