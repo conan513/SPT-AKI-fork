@@ -278,17 +278,18 @@ class Server
         
         if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
+            const multiplier = common_f.random.getFloat(ragfair_f.config.dynamic.conditionMin, ragfair_f.config.dynamic.conditionMax);
+
             if ("Repairable" in item.upd)
             {
                 // randomize durability
-                item.upd.Repairable.Durability = common_f.random.getIntEx(item.upd.Repairable.MaxDurability);
+                item.upd.Repairable.Durability *= multiplier;
             }
 
             if ("MedKit" in item.upd)
             {
                 // randomize health
-                const maxResource = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props.MaxHpResource;
-                item.upd.MedKit = common_f.random.getIntEx(maxResource);
+                item.upd.MedKit *= multiplier;
             }
         }
         
