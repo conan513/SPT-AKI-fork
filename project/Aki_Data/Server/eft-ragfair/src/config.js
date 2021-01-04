@@ -41,6 +41,8 @@ class Config
             "timeEndMax": 120,
             "conditionMin": 0.1,
             "conditionMax": 0.95,
+            "ratingMin": 0.1,
+            "ratingMax": 0.95,
             "stackMin": 1,
             "stackMax": 100,
             "currencies": {

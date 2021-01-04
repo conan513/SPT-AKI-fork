@@ -166,7 +166,7 @@ class Server
         }
     }
 
-    createOffer(userID, time, items, barterScheme, loyalLevel)
+    createOffer(userID, time, items, barterScheme, loyalLevel, sellInOnePiece = false)
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
@@ -182,8 +182,8 @@ class Server
                 "id": userID,
                 "memberType": (userID !== "ragfair") ? this.getMemberType(userID) : 0,
                 "nickname": this.getNickname(userID),
-                "rating": 100,
-                "isRatingGrowing": true,
+                "rating": this.getRating(userID),
+                "isRatingGrowing": this.getRatingGrowing(userID),
                 "avatar": trader.avatar
             },
             "root": items[0]._id,
@@ -195,7 +195,7 @@ class Server
             "startTime": time,
             "endTime": this.getOfferEndTime(userID, time),
             "loyaltyLevel": loyalLevel,
-            "sellInOnePiece": false,
+            "sellInOnePiece": sellInOnePiece,
             "priority": false
         };
 
@@ -244,7 +244,7 @@ class Server
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles.characters.pmc.Info.Nickname;
+            return Math.round(ragfair_f.config.player.sellTimeHrs * 3600);
         }
 
         if (this.isTrader(userID))
@@ -255,6 +255,42 @@ class Server
 
         // generated offer
         return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60);
+    }
+
+    getRating(userID)
+    {
+        if (this.isPlayer(userID))
+        {
+            // player offer
+            return profile.characters.pmc.RagfairInfo.rating;
+        }
+
+        if (this.isTrader(userID))
+        {
+            // trader offer
+            return 1;
+        }
+
+        // generated offer
+        return common_f.random.getFloat(ragfair_f.config.dynamic.ratingMin, ragfair_f.config.dynamic.ratingMax);
+    }
+
+    getRatingGrowing(userID)
+    {
+        if (this.isPlayer(userID))
+        {
+            // player offer
+            return profile.characters.pmc.RagfairInfo.isRatingGrowing;
+        }
+
+        if (this.isTrader(userID))
+        {
+            // trader offer
+            return true;
+        }
+
+        // generated offer
+        return common_f.random.getBool();
     }
 
     getOfferCurrency()
