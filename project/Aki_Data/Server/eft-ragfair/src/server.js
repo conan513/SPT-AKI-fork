@@ -30,18 +30,6 @@ class Server
         for (const traderID in database_f.server.tables.traders)
         {
             this.toUpdate[traderID] = true;
-
-            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
-            {
-                // skip trader except ragfair when trader is disabled
-                this.toUpdate[traderID] = false;
-            }
-
-            if (traderID === "ragfair" && !ragfair_f.config.static.unknown)
-            {
-                // skip ragfair when unknown is disabled
-                this.toUpdate[traderID] = false;
-            }
         }
     }
 

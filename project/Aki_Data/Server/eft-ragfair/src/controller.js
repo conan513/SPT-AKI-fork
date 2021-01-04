@@ -109,7 +109,7 @@ class Controller
     getOffers(sessionID, info)
     {
         const itemsToAdd = this.filterCategories(sessionID, info);
-        let assorts = {};
+        const assorts = this.getDisplayableAssorts(sessionID);
         let result = {
             "categories": {},
             "offers": [],
@@ -129,12 +129,6 @@ class Controller
         if (!info.linkedSearchId && !info.neededSearchId)
         {
             result.categories = ragfair_f.server.categories;
-        }
-
-        // get assorts to compare against
-        for (const traderID in database_f.server.tables.traders)
-        {
-            assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 
         // get offers to send
@@ -196,6 +190,31 @@ class Controller
             {
                 result = handbook;
             }
+        }
+
+        return result;
+    }
+
+    getDisplayableAssorts(sessionID)
+    {
+        let result = {};
+
+        for (const traderID in database_f.server.tables.traders)
+        {
+            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
+            {
+                // skip trader except ragfair when trader is disabled
+                continue;
+            }
+
+            if (traderID === "ragfair" && !ragfair_f.config.static.unknown)
+            {
+                // skip ragfair when unknown is disabled
+                continue;
+            }
+
+            // add assort to display
+            result[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 
         return result;
@@ -303,6 +322,12 @@ class Controller
         // handle trader items
         if (offer.user.memberType === 4)
         {
+            if (!(offer.user.id in assorts))
+            {
+                // trader not visible on flea market
+                continue;
+            }
+
             const flag = assorts[offer.user.id].items.find((item) =>
             {
                 return item._id === offer.root;

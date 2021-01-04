@@ -33,8 +33,8 @@ class Config
         };
         this.dynamic = {
             "enabled": true,
-            "threshold": 4000,
-            "batchSize": 100,
+            "threshold": 8000,
+            "batchSize": 1000,
             "priceMin": 0.95,
             "priceMax": 1.2,
             "timeEndMin": 15,
