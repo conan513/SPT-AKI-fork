@@ -126,6 +126,7 @@ class Server
             const time = common_f.time.getTimestamp();
             const item = common_f.random.getArrayValue(assortItems);
             const loyalLevel = assort.loyal_level_items[item._id];
+            const isPreset = preset_f.controller.isPreset(item._id);
             let items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
             let barterScheme = [
                 {
@@ -141,7 +142,7 @@ class Server
             }
 
             // randomize values
-            items[0].upd.StackObjectsCount = Math.round(common_f.random.getInt(config.stackMin, config.stackMax));
+            items[0].upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stackMin, config.stackMax));
             barterScheme[0].count *= common_f.random.getFloat(config.priceMin, config.priceMax);
 
             // remove properties
@@ -150,7 +151,7 @@ class Server
             delete items[0].upd.UnlimitedCount;
 
             // create offer
-            this.createOffer(userID, time, items, barterScheme, loyalLevel);
+            this.createOffer(userID, time, items, barterScheme, loyalLevel, isPreset);
         }
     }
 
