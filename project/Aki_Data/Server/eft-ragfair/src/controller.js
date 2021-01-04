@@ -53,20 +53,15 @@ class Controller
         return a.requirementsCost - b.requirementsCost;
     }
 
-    sortOffersByPriceSummaryCost(a, b)
-    {
-        return a.summaryCost - b.summaryCost;
-    }
-
     sortOffersByExpiry(a, b)
     {
         return a.endTime - b.endTime;
     }
 
-    sortOffers(info, offers)
+    sortOffers(offers, type, direction = 0)
     {
         // Sort results
-        switch (info.sortType)
+        switch (type)
         {
             case 0: // ID
                 offers.sort(this.sortOffersByID);
@@ -81,15 +76,7 @@ class Controller
                 break;
 
             case 5: // Price
-                if (info.offerOwnerType === 1)
-                {
-                    offers.sort(this.sortOffersByPriceSummaryCost);
-                }
-                else
-                {
-                    offers.sort(this.sortOffersByPrice);
-                }
-
+                offers.sort(this.sortOffersByPrice);
                 break;
 
             case 6: // Expires in
@@ -98,7 +85,7 @@ class Controller
         }
 
         // 0=ASC 1=DESC
-        if (info.sortDirection === 1)
+        if (direction === 1)
         {
             offers.reverse();
         }
@@ -149,7 +136,7 @@ class Controller
         }
 
         // sort offers
-        result.offers = this.sortOffers(info, result.offers);
+        result.offers = this.sortOffers(result.offers, info.sortType, info.sortDirection);
 
         // set categories count
         this.countCategories(result);
@@ -539,18 +526,29 @@ class Controller
 
     getItemPrice(info)
     {
-        const price = ragfair_f.server.prices[info.templateId];
-
-        // 1 is returned by helper method if price lookup failed
-        if (!price || price === 1)
+        // get all items of tpl (dont include presets)
+        let offers = ragfair_f.server.offers.filter((offer) =>
         {
-            common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
+            return offer.items[0]._tpl !== info.templateId
+                && (preset_f.controller.hasPreset(offer.items[0]._id) && offer.user.memberType === 4)
+                && !preset_f.controller.isPreset(offer.items[0]._id);
+        });
+
+        // sort for price
+        offers = this.sortOffers(offers, 5);
+
+        // get average
+        let avg = 0;
+
+        for (const offer of offers)
+        {
+            avg += offer.itemsCost;
         }
 
         return {
-            "avg": price,
-            "min": price,
-            "max": price
+            "avg": avg / offers.length,
+            "min": offers[0].itemsCost,
+            "max": offers[offers.length - 1].itemsCost
         };
     }
 
