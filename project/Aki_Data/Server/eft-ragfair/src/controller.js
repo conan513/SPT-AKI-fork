@@ -526,18 +526,11 @@ class Controller
 
     getItemPrice(info)
     {
-        // get all items of tpl (dont include presets)
-        let offers = ragfair_f.server.offers.filter((offer) =>
-        {
-            return offer.items[0]._tpl !== info.templateId
-                && (preset_f.controller.hasPreset(offer.items[0]._id) && offer.user.memberType === 4)
-                && !preset_f.controller.isPreset(offer.items[0]._id);
-        });
-
-        // sort for price
+        // get all items of tpl (sort by price)
+        let offers = ragfair_f.server.offers.filter((offer) => { return offer.items[0]._tpl === info.templateId });
         offers = this.sortOffers(offers, 5);
-
-        // get average
+        
+        // average
         let avg = 0;
 
         for (const offer of offers)
