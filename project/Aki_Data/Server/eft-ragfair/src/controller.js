@@ -185,7 +185,7 @@ class Controller
                 continue;
             }
 
-            if (traderID === "ragfair" && !ragfair_f.config.static.unknown)
+            if (traderID === "ragfair" && !ragfair_f.config.static.items)
             {
                 // skip ragfair when unknown is disabled
                 continue;

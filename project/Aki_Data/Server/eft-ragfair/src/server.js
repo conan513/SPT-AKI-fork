@@ -250,7 +250,7 @@ class Server
         }
 
         // generated offer
-        return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.timeEndMin, ragfair_f.config.dynamic.timeEndMax) * 60);
+        return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.timeEnd.min, ragfair_f.config.dynamic.timeEnd.max) * 60);
     }
 
     getRating(userID)
@@ -268,7 +268,7 @@ class Server
         }
 
         // generated offer
-        return common_f.random.getFloat(ragfair_f.config.dynamic.ratingMin, ragfair_f.config.dynamic.ratingMax);
+        return common_f.random.getFloat(ragfair_f.config.dynamic.rating.min, ragfair_f.config.dynamic.rating.max);
     }
 
     getRatingGrowing(userID)
@@ -312,7 +312,7 @@ class Server
         
         if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
-            const multiplier = common_f.random.getFloat(ragfair_f.config.dynamic.conditionMin, ragfair_f.config.dynamic.conditionMax);
+            const multiplier = common_f.random.getFloat(ragfair_f.config.dynamic.condition.min, ragfair_f.config.dynamic.condition.max);
 
             if ("Repairable" in item.upd)
             {
