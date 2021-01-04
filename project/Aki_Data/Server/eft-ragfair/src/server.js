@@ -235,7 +235,8 @@ class Server
         }
 
         // generated offer
-        return "Unknown";
+        const type = (common_f.random.getInt(0, 1) === 0) ? "usec" : "bear";
+        return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
     }
 
     getOfferEndTime(userID, time)
