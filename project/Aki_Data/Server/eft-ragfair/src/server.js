@@ -227,16 +227,10 @@ class Server
         }
 
         // generated offer
+        // recurse if name is longer than max characters allowed (15 characters)
         const type = (common_f.random.getInt(0, 1) === 0) ? "usec" : "bear";
         const name = common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
-
-        if (name.length > 15)
-        {
-            // name is longer than max characters allowed (15 characters)
-            return this.getNickname(userID);
-        }
-
-        return name;
+        return (name.length > 15) ? this.getNickname(userID) : name;
     }
 
     getOfferEndTime(userID, time)
