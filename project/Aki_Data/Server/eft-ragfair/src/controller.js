@@ -140,9 +140,6 @@ class Controller
             }
         }
 
-        // sort offers
-        result.offers = this.sortOffers(info, result.offers);
-
         // set offer indexes
         let counter = 0;
 
@@ -150,6 +147,9 @@ class Controller
         {
             offer.intId = ++counter;
         }
+
+        // sort offers
+        result.offers = this.sortOffers(info, result.offers);
 
         // set categories count
         this.countCategories(result);
