@@ -37,7 +37,7 @@ class Config
             "threshold": 8000,
             "batchSize": 1000,
             "price": {
-                "min": 0.95,
+                "min": 0.8,
                 "max": 1.2
             },
             "endTime": {
