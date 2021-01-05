@@ -138,20 +138,16 @@ class Server
                 }
             ];
 
-            // get price
+            // get stack
+            items[0].upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
+
+            // get price            
             for (const it of items)
             {
                 barterScheme[0].count += helpfunc_f.helpFunctions.fromRUB(this.prices.dynamic[it._tpl], barterScheme[0]._tpl);
             }
 
-            // randomize values
-            items[0].upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
-            barterScheme[0].count *= common_f.random.getFloat(config.price.min, config.price.max);
-
-            // remove properties
-            delete items[0].parentId;
-            delete items[0].slotId;
-            delete items[0].upd.UnlimitedCount;
+            barterScheme[0].count = Math.round(barterScheme[0].count * common_f.random.getFloat(config.price.min, config.price.max));
 
             // create offer
             this.createOffer(userID, time, items, barterScheme, loyalLevel, isPreset);
@@ -162,8 +158,12 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        let price = this.getBarterPrice(barterScheme);
+        let price = this.getBarterPrice(userID, barterScheme);
 
+        // remove properties
+        delete items[0].upd.UnlimitedCount;
+
+        // get properties
         items = this.getItemCondition(userID, items);
         price = (this.isPlayer(userID)) ? price : Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
 
@@ -353,13 +353,13 @@ class Server
         return item;
     }
 
-    getBarterPrice(barterScheme)
+    getBarterPrice(userID, barterScheme)
     {
         let price = 0;
 
-        for (const barter of barterScheme)
+        for (const item of barterScheme)
         {
-            price += (this.prices.trader[barter._tpl] * barter.count);
+            price += (this.isTrader(userID)) ? (this.prices.trader[item._tpl] * item.count) : (this.prices.dynamic[item._tpl] * item.count);
         }
 
         return Math.round(price);
@@ -377,11 +377,7 @@ class Server
         }
 
         // dynamic offers
-        for (const itemID in prices)
-        {
-            const price = (ragfair_f.config.dynamic.liveprices) ? prices[itemID] || this.prices.trader[itemID] : this.prices.trader[itemID];
-            this.prices.dynamic[itemID] = price;
-        }
+        this.prices.dynamic = (ragfair_f.config.dynamic.liveprices) ? {...this.prices.trader, ...prices} : this.prices.trader;
     }
 
     getOffer(offerID)
