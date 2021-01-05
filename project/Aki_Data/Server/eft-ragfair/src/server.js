@@ -132,13 +132,14 @@ class Server
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
 
             // create offer
-            const userID = common_f.hash.generate();
-            const time = common_f.time.getTimestamp();
             const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
-            const barterScheme = this.getOfferRequirements(items);
-            const loyalLevel = assort.loyal_level_items[item._id];
-
-            this.createOffer(userID, time, items, barterScheme, loyalLevel, isPreset);
+            this.createOffer(
+                common_f.hash.generate(),           // userID
+                common_f.time.getTimestamp(),       // time
+                items,                              // items
+                this.getOfferRequirements(items),   // barter scheme
+                assort.loyal_level_items[item._id], // loyal level
+                isPreset);                          // sellAsOnePiece
         }
     }
 
