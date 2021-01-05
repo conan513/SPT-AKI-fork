@@ -21,16 +21,18 @@ class Controller
 
     load()
     {
-        for (const mod in core_f.packager.mods)
+        for (const mod in mods_f.loader.imported)
         {
-            const modPath = core_f.packager.getModPath(mod);
+            const modPath = mods_f.loader.getModPath(mod);
             const manifestPath = `${modPath}bundles.json`;
+
             if (!common_f.vfs.exists(manifestPath))
             {
                 continue;
             }
 
             const manifest = common_f.json.deserialize(common_f.vfs.readFile(manifestPath)).manifest;
+            
             for (const bundleInfo of manifest)
             {
                 const bundle = {
