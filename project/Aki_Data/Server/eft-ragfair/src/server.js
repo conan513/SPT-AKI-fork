@@ -12,13 +12,13 @@ class Server
 {
     constructor()
     {
+        this.toUpdate = {};
+        this.offers = [];
+        this.categories = {};
         this.prices = {
             "trader": {},
             "dynamic": {}
         };
-        this.offers = [];
-        this.categories = {};
-        this.toUpdate = {};
     }
 
     load()
