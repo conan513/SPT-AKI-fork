@@ -19,7 +19,7 @@ class Config
             "enableFees": false
         };
         this.static = {
-            "unknown": false,
+            "items": false,
             "traders": {
                 "54cb50c76803fa8b248b4571": true,
                 "54cb57776803fa99248b456e": true,
@@ -33,16 +33,29 @@ class Config
         };
         this.dynamic = {
             "enabled": true,
-            "threshold": 4000,
-            "batchSize": 100,
-            "priceMin": 0.95,
-            "priceMax": 1.2,
-            "timeEndMin": 15,
-            "timeEndMax": 120,
-            "conditionMin": 0.1,
-            "conditionMax": 0.95,
-            "stackMin": 1,
-            "stackMax": 100,
+            "liveprices": true,
+            "threshold": 8000,
+            "batchSize": 1000,
+            "price": {
+                "min": 0.8,
+                "max": 1.2
+            },
+            "endTime": {
+                "min": 15,
+                "max": 120
+            },
+            "condition": {
+                "min": 0.1,
+                "max": 1
+            },
+            "stack": {
+                "min": 1,
+                "max": 2000
+            },
+            "rating": {
+                "min": 0.1,
+                "max": 0.95
+            },
             "currencies": {
                 "5449016a4bdc2d6f028b456f": 75,
                 "5696686a4bdc2da3298b456a": 23,

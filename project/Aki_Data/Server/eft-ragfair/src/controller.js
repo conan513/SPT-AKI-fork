@@ -31,21 +31,12 @@ class Controller
 
     sortOffersByName(a, b)
     {
-        // TODO: Get localized item names
-        try
-        {
-            let aa = helpfunc_f.helpFunctions.getItem(a._id)[1]._name;
-            let bb = helpfunc_f.helpFunctions.getItem(b._id)[1]._name;
+        const ia = a.items[0]._tpl;
+        const ib = b.items[0]._tpl;
+        const aa = database_f.server.tables.locales.global["en"].templates[ia].Name || ia;
+        const bb = database_f.server.tables.locales.global["en"].templates[ib].Name || ib;
 
-            aa = aa.substring(aa.indexOf("_") + 1);
-            bb = bb.substring(bb.indexOf("_") + 1);
-
-            return aa.localeCompare(bb);
-        }
-        catch (e)
-        {
-            return 0;
-        }
+        return  (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
     }
 
     sortOffersByPrice(a, b)
@@ -53,20 +44,15 @@ class Controller
         return a.requirementsCost - b.requirementsCost;
     }
 
-    sortOffersByPriceSummaryCost(a, b)
-    {
-        return a.summaryCost - b.summaryCost;
-    }
-
     sortOffersByExpiry(a, b)
     {
         return a.endTime - b.endTime;
     }
 
-    sortOffers(info, offers)
+    sortOffers(offers, type, direction = 0)
     {
         // Sort results
-        switch (info.sortType)
+        switch (type)
         {
             case 0: // ID
                 offers.sort(this.sortOffersByID);
@@ -81,15 +67,7 @@ class Controller
                 break;
 
             case 5: // Price
-                if (info.offerOwnerType === 1)
-                {
-                    offers.sort(this.sortOffersByPriceSummaryCost);
-                }
-                else
-                {
-                    offers.sort(this.sortOffersByPrice);
-                }
-
+                offers.sort(this.sortOffersByPrice);
                 break;
 
             case 6: // Expires in
@@ -98,7 +76,7 @@ class Controller
         }
 
         // 0=ASC 1=DESC
-        if (info.sortDirection === 1)
+        if (direction === 1)
         {
             offers.reverse();
         }
@@ -109,7 +87,7 @@ class Controller
     getOffers(sessionID, info)
     {
         const itemsToAdd = this.filterCategories(sessionID, info);
-        let assorts = {};
+        const assorts = this.getDisplayableAssorts(sessionID);
         let result = {
             "categories": {},
             "offers": [],
@@ -131,12 +109,6 @@ class Controller
             result.categories = ragfair_f.server.categories;
         }
 
-        // get assorts to compare against
-        for (const traderID in database_f.server.tables.traders)
-        {
-            assorts[traderID] = trader_f.controller.getAssort(sessionID, traderID);
-        }
-
         // get offers to send
         for (const offer of ragfair_f.server.offers)
         {
@@ -146,9 +118,6 @@ class Controller
             }
         }
 
-        // sort offers
-        result.offers = this.sortOffers(info, result.offers);
-
         // set offer indexes
         let counter = 0;
 
@@ -156,6 +125,9 @@ class Controller
         {
             offer.intId = ++counter;
         }
+
+        // sort offers
+        result.offers = this.sortOffers(result.offers, info.sortType, info.sortDirection);
 
         // set categories count
         this.countCategories(result);
@@ -196,6 +168,31 @@ class Controller
             {
                 result = handbook;
             }
+        }
+
+        return result;
+    }
+
+    getDisplayableAssorts(sessionID)
+    {
+        let result = {};
+
+        for (const traderID in database_f.server.tables.traders)
+        {
+            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
+            {
+                // skip trader except ragfair when trader is disabled
+                continue;
+            }
+
+            if (traderID === "ragfair" && !ragfair_f.config.static.items)
+            {
+                // skip ragfair when unknown is disabled
+                continue;
+            }
+
+            // add assort to display
+            result[traderID] = trader_f.controller.getAssort(sessionID, traderID);
         }
 
         return result;
@@ -301,14 +298,15 @@ class Controller
         }
 
         // handle trader items
-        if (offer.user.memberType === 4)
+        if (offer.user.id in database_f.server.tables.traders)
         {
-            const flag = assorts[offer.user.id].items.find((item) =>
+            if (!(offer.user.id in assorts))
             {
-                return item._id === offer.root;
-            });
+                // trader not visible on flea market
+                return false;
+            }
 
-            if (!flag)
+            if (!assorts[offer.user.id].items.find((item) => { return item._id === offer.root; }))
             {
                 // skip (quest) locked items
                 return false;
@@ -514,18 +512,22 @@ class Controller
 
     getItemPrice(info)
     {
-        const price = ragfair_f.server.prices[info.templateId];
+        // get all items of tpl (sort by price)
+        let offers = ragfair_f.server.offers.filter((offer) => { return offer.items[0]._tpl === info.templateId });
+        offers = this.sortOffers(offers, 5);
+        
+        // average
+        let avg = 0;
 
-        // 1 is returned by helper method if price lookup failed
-        if (!price || price === 1)
+        for (const offer of offers)
         {
-            common_f.logger.logError(`Could not fetch price for ${info.templateId}`);
+            avg += offer.itemsCost;
         }
 
         return {
-            "avg": price,
-            "min": price,
-            "max": price
+            "avg": avg / offers.length,
+            "min": offers[0].itemsCost,
+            "max": offers[offers.length - 1].itemsCost
         };
     }
 
@@ -559,7 +561,7 @@ class Controller
             }
             else
             {
-                requirementsPriceInRub += ragfair_f.server.prices[requestedItemTpl] * item.count;
+                requirementsPriceInRub += ragfair_f.server.prices.dynamic[requestedItemTpl] * item.count;
             }
         }
 
@@ -584,7 +586,7 @@ class Controller
             }
 
             invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-            offerPrice += ragfair_f.server.prices[item._tpl] * itemStackCount;
+            offerPrice += ragfair_f.server.prices.dynamic[item._tpl] * itemStackCount;
         }
 
         if (info.sellInOnePiece)
@@ -603,7 +605,7 @@ class Controller
         for (const item of invItems)
         {
             const mult = ("upd" in item) && ("StackObjectsCount" in item.upd) ? item.upd.StackObjectsCount : 1;
-            basePrice += ragfair_f.server.prices[item._tpl] * mult;
+            basePrice += ragfair_f.server.prices.dynamic[item._tpl] * mult;
         }
 
         if (!basePrice)
@@ -767,37 +769,30 @@ class Controller
         }
 
         // Generate a message to inform that item was sold
-        const findItemResult = helpfunc_f.helpFunctions.getItem(itemTpl);
         let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
-
-        if (findItemResult[0])
+        let tplVars = {
+            "soldItem": database_f.server.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
+            "buyerNickname": this.fetchRandomPmcName(),
+            "itemCount": itemCount
+        };
+        let messageText = messageTpl.replace(/{\w+}/g, (matched) =>
         {
-            let tplVars = {
-                "soldItem": database_f.server.tables.locales.global["en"].templates[findItemResult[1]._id] || findItemResult[1]._id,
-                "buyerNickname": this.fetchRandomPmcName(),
-                "itemCount": itemCount
-            };
+            return tplVars[matched.replace(/{|}/g, "")];
+        });
+        const messageContent = {
+            "text": messageText.replace(/"/g, ""),
+            "type": 4, // EMessageType.FleamarketMessage
+            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "ragfair": {
+                "offerId": offerId,
+                "count": itemCount,
+                "handbookId": itemTpl
+            }
+        };
 
-            let messageText = messageTpl.replace(/{\w+}/g, function (matched)
-            {
-                return tplVars[matched.replace(/{|}/g, "")];
-            });
+        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
 
-            const messageContent = {
-                "text": messageText.replace(/"/g, ""),
-                "type": 4, // EMessageType.FleamarketMessage
-                "maxStorageTime": quest_f.config.redeemTime * 3600,
-                "ragfair": {
-                    "offerId": offerId,
-                    "count": itemCount,
-                    "handbookId": itemTpl
-                }
-            };
-
-            dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
-
-            // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
-        }
+        // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
 
         return item_f.eventHandler.getOutput();
     }
