@@ -154,7 +154,7 @@ class Server
 
         // get properties
         items = this.getItemCondition(userID, items);
-        price = (this.isPlayer(userID)) ? price : Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
+        price = (this.isPlayer(userID) || this.isTrader(userID)) ? price : Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
 
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
