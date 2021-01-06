@@ -17,7 +17,7 @@ class Callbacks
         https_f.router.onStaticRoute["/launcher/profile/login"] = this.login.bind(this);
         https_f.router.onStaticRoute["/launcher/profile/register"] = this.register.bind(this);
         https_f.router.onStaticRoute["/launcher/profile/get"] = this.get.bind(this);
-        https_f.router.onStaticRoute["/launcher/profile/change/email"] = this.changeEmail.bind(this);
+        https_f.router.onStaticRoute["/launcher/profile/change/username"] = this.changeUsername.bind(this);
         https_f.router.onStaticRoute["/launcher/profile/change/password"] = this.changePassword.bind(this);
         https_f.router.onStaticRoute["/launcher/profile/change/wipe"] = this.wipe.bind(this);
     }
@@ -55,9 +55,9 @@ class Callbacks
         return https_f.response.noBody(output);
     }
 
-    changeEmail(url, info, sessionID)
+    changeUsername(url, info, sessionID)
     {
-        const output = account_f.controller.changeEmail(info);
+        const output = account_f.controller.changeUsername(info);
         return (!output) ? "FAILED" : "OK";
     }
 
