@@ -116,6 +116,7 @@
 				"5aa2b9ede5b5b000137b758b",
 				"5aa2b87de5b5b00016327c25",
 				"5a7c4850e899ef00150be885",
+				"5aa2a7e8e5b5b00016327c16",
 				"5c08f87c0db8340019124324",
 				"5ab8f20c86f7745cdb629fb2",
 				"5aa7cfc0e5b5b00015693143",
@@ -1889,7 +1890,8 @@
 				"5e023e6e34d52a55c3304f71",
 				"5c0d5ae286f7741e46554302",
 				"5d6e68b3a4b9361bca7e50b5"
-			]
+			],
+			"SpecialLoot": []
 		}
 	},
 	"names": [
@@ -3971,6 +3973,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 0
+			},
 			"healing": {
 				"min": 0,
 				"max": 3

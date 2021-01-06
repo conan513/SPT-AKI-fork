@@ -351,11 +351,12 @@
 				"5d6e68a8a4b9360b6c0d54e2",
 				"5c0d668f86f7747ccb7f13b2",
 				"57a0dfb82459774d3078b56c"
-			]
+			],
+			"SpecialLoot": []
 		}
 	},
 	"names": [
-		"Sanitar"
+		"Cанитар"
 	],
 	"difficulty": {
 		"easy": {
@@ -2279,6 +2280,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 0
+			},
 			"healing": {
 				"min": 28,
 				"max": 88

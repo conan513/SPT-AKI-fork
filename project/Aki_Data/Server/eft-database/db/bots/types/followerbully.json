@@ -451,7 +451,8 @@
 				"54527a984bdc2d4e668b4567",
 				"5f0596629e22f464da6bbdd9",
 				"59e0d99486f7744a32234762"
-			]
+			],
+			"SpecialLoot": []
 		}
 	},
 	"names": [
@@ -2398,6 +2399,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 0
+			},
 			"healing": {
 				"min": 0,
 				"max": 3
