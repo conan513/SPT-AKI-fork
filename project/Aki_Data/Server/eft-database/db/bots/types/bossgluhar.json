@@ -441,7 +441,6 @@
 				"5e831507ea0a7c419c2f9bd9",
 				"5a17fb03fcdbcbcae668728f",
 				"590c678286f77426c9660122",
-				"5c94bbff86f7747ee735c08f",
 				"5710c24ad2720bc3458b45a3",
 				"5d235b4d86f7742e017bc88a",
 				"5c0e531d86f7747fa23f4d42",
@@ -470,6 +469,14 @@
 				"5cadf6eeae921500134b2799",
 				"58dd3ad986f77403051cba8f",
 				"5efb0c1bd79ff02a1f5e68d9"
+			],
+			"SpecialLoot": [
+				"5c94bbff86f7747ee735c08f",
+				"5c1d0dc586f7744baf2e7b79",
+				"5c1e495a86f7743109743dfb",
+				"5c1d0efb86f7744baf2e7b7b",
+				"5c1d0c5f86f7744bb2683cf0",
+				"5c1d0f4986f7744bb01837fa"
 			]
 		}
 	},
@@ -2643,7 +2650,7 @@
 			"mod_handguard": 100,
 			"mod_mount_001": 0,
 			"mod_mount_000": 0,
-			"mod_scope": 89,
+			"mod_scope": 99,
 			"mod_sight_rear": 100,
 			"mod_tactical": 0,
 			"mod_muzzle": 90,
@@ -2690,6 +2697,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 1
+			},
 			"healing": {
 				"min": 1,
 				"max": 2

@@ -354,7 +354,6 @@
 				"5e831507ea0a7c419c2f9bd9",
 				"5ac66c5d5acfc4001718d314",
 				"590c678286f77426c9660122",
-				"5c94bbff86f7747ee735c08f",
 				"5710c24ad2720bc3458b45a3",
 				"571a29dc2459771fb2755a6a",
 				"59faff1d86f7746c51718c9c",
@@ -394,6 +393,9 @@
 				"5a608bf24f39f98ffc77720e",
 				"58864a4f2459770fcc257101",
 				"5c0d5ae286f7741e46554302"
+			],
+			"SpecialLoot": [
+				"5c94bbff86f7747ee735c08f"
 			]
 		}
 	},
@@ -2287,7 +2289,7 @@
 			"mod_handguard": 100,
 			"mod_mount_001": 0,
 			"mod_mount_000": 0,
-			"mod_scope": 53,
+			"mod_scope": 99,
 			"mod_sight_rear": 100,
 			"mod_tactical": 0,
 			"mod_muzzle": 65,
@@ -2334,6 +2336,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 1
+			},
 			"healing": {
 				"min": 1,
 				"max": 1
@@ -2344,7 +2350,7 @@
 			},
 			"magazines": {
 				"min": 2,
-				"max": 3
+				"max": 2
 			},
 			"grenades": {
 				"min": 0,

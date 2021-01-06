@@ -214,11 +214,11 @@
 				"5c88f24b2e22160bc12c69a6",
 				"55d480c04bdc2d1d4e8b456a",
 				"590c678286f77426c9660122",
-				"5d08d21286f774736e7c94c3",
 				"59e77a2386f7742ee578960a",
 				"5c0d5e4486f77478390952fe",
 				"56dff3afd2720bba668b4567",
-				"560d61e84bdc2da74d8b4571"
+				"560d61e84bdc2da74d8b4571",
+				"5c94bbff86f7747ee735c08f"
 			],
 			"Backpack": [
 				"5e831507ea0a7c419c2f9bd9",
@@ -270,6 +270,11 @@
 				"5c0d5e4486f77478390952fe",
 				"560d61e84bdc2da74d8b4571",
 				"56dff3afd2720bba668b4567"
+			],
+			"SpecialLoot": [
+				"5d08d21286f774736e7c94c3",
+				"5e42c83786f7742a021fdf3c",
+				"5c1d0efb86f7744baf2e7b7b"
 			]
 		}
 	},
@@ -2246,6 +2251,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 1
+			},
 			"healing": {
 				"min": 1,
 				"max": 1
