@@ -14537,7 +14537,7 @@
 					"_props": {
 						"target": "StressResistance",
 						"compareMethod": ">=",
-						"value": "13",
+						"value": "6",
 						"index": 0,
 						"parentId": "",
 						"id": "5c0bdbb586f774166e38eed5"
