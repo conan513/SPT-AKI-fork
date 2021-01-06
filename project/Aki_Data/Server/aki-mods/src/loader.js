@@ -14,13 +14,17 @@ class Loader
     {
         this.basepath = "user/mods/";
         this.imported = {};
-        this.loadorder = [];
+        this.bundles = {};
         this.onLoad = {};
-
-        core_f.packager.onLoad["modloader"] = this.load.bind(this);
     }
 
     load()
+    {
+        this.importMods();
+        this.executeMods();
+    }
+
+    importMods()
     {
         // get mods
         if (!common_f.vfs.exists(this.basepath))
@@ -48,9 +52,12 @@ class Loader
         {
             this.addMod(mod);
         }
+    }
 
+    executeMods()
+    {
         // sort mods load order
-        const source = Object.keys(this.getLoadOrder(mods));
+        const source = Object.keys(this.getLoadOrder(this.imported));
 
         // import mod classes
         for (const mod of source)
@@ -73,9 +80,62 @@ class Loader
         return `${this.basepath}${mod}/`;
     }
 
+    getBundles(local)
+    {
+        const result = [];
+
+        for (const bundle in this.bundles)
+        {
+            result.push(this.getBundle(bundle, local));
+        }
+
+        return result;
+    }
+
+    getBundle(key, local)
+    {
+        const bundle = common_f.json.clone(this.bundles[key]);
+
+        if (local)
+        {
+            bundle.path = bundle.filepath;
+        }
+
+        delete bundle.filepath;
+        return bundle;
+    }
+
+    addBundles(modpath)
+    {
+        const manifest = common_f.json.deserialize(common_f.vfs.readFile(`${modpath}bundles.json`)).manifest;
+        
+        for (const bundleInfo of manifest)
+        {
+            const bundle = {
+                "key": bundleInfo.key,
+                "path": `${https_f.config.backendUrl}/files/bundle/${bundleInfo.key}`,
+                "filepath" : ("path" in bundleInfo)
+                    ? bundleInfo.path
+                    : `${process.cwd()}/${modpath}bundles/${bundleInfo.key}`.replace(/\\/g, "/"),
+                "dependencyKeys": ("dependencyKeys" in bundleInfo) ? bundleInfo.dependencyKeys : []
+            };
+
+            this.bundles[bundleInfo.key] = bundle;
+        }
+    }
+
     addMod(mod)
     {
-        this.imported[mod] = common_f.json.deserialize(common_f.vfs.readFile(`${this.getModPath(mod)}/package.json`));
+        const modpath = this.getModPath(mod);
+
+        // add mod to imported list
+        this.imported[mod] = common_f.json.deserialize(common_f.vfs.readFile(`${modpath}/package.json`));
+
+        // add mod bundles
+        if (common_f.vfs.exists(`${modpath}bundles.json`))
+        {
+            this.addBundles(modpath);
+        }
     }
 
     validMod(mod)
@@ -166,9 +226,9 @@ class Loader
         let result = {};
         let visited = {};
 
-        for (const mod of mods)
+        for (const mod in mods)
         {
-            if (mod in result)
+            if (mods[mod] in result)
             {
                 continue;
             }
