@@ -25,7 +25,24 @@ class Server
     {
         this.getItemPrices();
         this.addTraders();
+        this.addPlayerOffers();
         this.update();
+    }
+
+    addPlayerOffers()
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            if (profileOffers && profileOffers.length)
+            {
+                for (const [index, offer] of profileOffers.entries())
+                {
+                    this.offers.push(offer);
+                }
+            }
+
+        }
     }
 
     addTraders()
@@ -52,6 +69,11 @@ class Server
                 if (this.isTrader(offer.user.id))
                 {
                     this.toUpdate[offer.user.id] = true;
+                }
+
+                if (this.isPlayer(offer.user.id))
+                {
+                    this.returnPlayerOffer(offer._id, sessionID);
                 }
 
                 // remove offer
@@ -412,6 +434,25 @@ class Server
         {
             return item._id === offerID;
         });
+    }
+
+    returnPlayerOffer(offerId, sessionID)
+    {
+        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
+        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const index = offers.findIndex(offer => offer._id === offerId);
+
+        if (index === -1)
+        {
+            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+        }
+
+        const itemsToReturn = common_f.json.clone(offers[index].items);
+        ragfair_f.controller.returnItems(sessionID, itemsToReturn);
+        offers.splice(index, 1);
+
+        return item_f.eventHandler.getOutput();
     }
 
     removeOfferStack(offerID, amount)
