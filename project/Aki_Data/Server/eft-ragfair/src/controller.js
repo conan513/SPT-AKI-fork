@@ -306,7 +306,10 @@ class Controller
                 return false;
             }
 
-            if (!assorts[offer.user.id].items.find((item) => { return item._id === offer.root; }))
+            if (!assorts[offer.user.id].items.find((item) =>
+            {
+                return item._id === offer.root;
+            }))
             {
                 // skip (quest) locked items
                 return false;
@@ -513,9 +516,12 @@ class Controller
     getItemPrice(info)
     {
         // get all items of tpl (sort by price)
-        let offers = ragfair_f.server.offers.filter((offer) => { return offer.items[0]._tpl === info.templateId });
+        let offers = ragfair_f.server.offers.filter((offer) =>
+        {
+            return offer.items[0]._tpl === info.templateId;
+        });
         offers = this.sortOffers(offers, 5);
-        
+
         // average
         let avg = 0;
 
@@ -810,6 +816,7 @@ class Controller
 
     createPlayerOffer(profile, requirements, items, sellInOnePiece, amountToSend)
     {
+        let loyalLevel = 1;
         const formattedItems = items.map(item =>
         {
             return {
@@ -828,25 +835,15 @@ class Controller
             };
         });
 
-        return {
-            "_id": common_f.hash.generate(),
-            "items": formattedItems,
-            "root": items[0]._id,
-            "requirements": formattedRequirements,
-            "sellInOnePiece": sellInOnePiece,
-            "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.player.sellTimeHrs * 3600),
-            "summaryCost": amountToSend,
-            "requirementsCost": amountToSend,
-            "loyaltyLevel": 1,
-            "user": {
-                "id": profile.characters.pmc._id,
-                "nickname": profile.characters.pmc.Info.Nickname,
-                "rating": profile.characters.pmc.RagfairInfo.rating,
-                "memberType": profile.characters.pmc.Info.AccountType,
-                "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
-            },
-        };
+        return ragfair_f.server.createOffer(
+            profile.characters.pmc.aid,
+            common_f.time.getTimestamp(),
+            formattedItems,
+            formattedRequirements,
+            loyalLevel,
+            sellInOnePiece,
+            amountToSend
+        );
     }
 
     fetchRandomPmcName()
