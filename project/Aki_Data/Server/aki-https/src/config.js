@@ -16,6 +16,7 @@ class Config
         this.ip = "127.0.0.1";
         this.port = 443;
         this.backendUrl = `https://${this.ip}:${this.port}`;
+        this.websocketUrl = `wss://${this.ip}:${this.port}`;
     }
 }
 

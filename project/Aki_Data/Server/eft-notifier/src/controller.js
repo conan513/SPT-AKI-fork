@@ -147,6 +147,11 @@ class Controller
         return `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`;
     }
 
+    getWebSocketServer(sessionID)
+    {
+        return `${https_f.config.websocketUrl}/notifierServer/getwebsocket/${sessionID}`;
+    }
+
     getChannel(sessionID)
     {
         return {
@@ -154,7 +159,7 @@ class Controller
             "channel_id": sessionID,
             "url": this.getServer(sessionID),
             "notifierServer": this.getServer(sessionID),
-            "ws": `wss://${https_f.config.ip}:${https_f.config.port}/websocketnyi`,
+            "ws": this.getWebSocketServer(sessionID)
         };
     }
 }
