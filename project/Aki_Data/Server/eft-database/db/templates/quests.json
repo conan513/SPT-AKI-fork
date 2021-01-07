@@ -5196,7 +5196,7 @@
 						"value": "1",
 						"type": "Completion",
 						"counter": {
-							"id": "5ee0e5a8c321a77fc55084d1",
+							"id": "AnUniqueIDByThere",
 							"conditions": [
 								{
 									"_parent": "ExitStatus",
@@ -5205,7 +5205,7 @@
 											"Survived",
 											"Runner"
 										],
-										"id": "5ee0e5c39f0b3d34a90f8009"
+										"id": "AnotherUniqueIDHere"
 									}
 								},
 								{
@@ -5214,7 +5214,7 @@
 										"target": [
 											"Shoreline"
 										],
-										"id": "5ee0e5d21623e85a510839ce"
+										"id": "ThatsARealUniqueIDhuehue"
 									}
 								}
 							]
@@ -9024,7 +9024,7 @@
 									"_props": {
 										"equipmentInclusive": [
 											[
-												"59e7635f86f7742cbf2c1095",
+												"5b432c305acfc40019478128",
 												"59e7715586f7742ee5789605"
 											]
 										],
@@ -9372,6 +9372,22 @@
 						}
 					]
 				}
+				{
+					"target": "RewardLabViolet",
+					"value": "1",
+					"id": "5ee7577ac226ea55a345b55d",
+					"type": "Item",
+					"index": 8,
+					"items": [
+						{
+							"_id": "RewardLabViolet",
+							"_tpl": "5c1e495a86f7743109743dfb",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
 			],
 			"Fail": []
 		},
