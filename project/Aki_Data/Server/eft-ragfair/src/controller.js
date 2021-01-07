@@ -501,7 +501,7 @@ class Controller
             if (offer.endTime <= timestamp)
             {
                 // item expired
-                this.removeOffer(offer._id, sessionID);
+                this.returnOffer(offer._id, sessionID);
             }
 
             if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
@@ -683,7 +683,29 @@ class Controller
         return Math.round(fee);
     }
 
+    /*
+     *  User requested removal of the offer, actually reduces the time to 1 minute,
+     *  allowing for the possibility of extending the auction before it's end time
+     */
     removeOffer(offerId, sessionID)
+    {
+        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const index = offers.findIndex(offer => offer._id === offerId);
+
+        if (index === -1)
+        {
+            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+        }
+
+        offers[index].endTime -= offers[index].endTime + 60;
+        return item_f.eventHandler.getOutput();
+    }
+
+    /*
+     * Offer expires, return the items
+     */
+    returnOffer(offerId, sessionID)
     {
         // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
         const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
