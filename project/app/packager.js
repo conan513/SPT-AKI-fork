@@ -17,6 +17,7 @@ class Packager
         this.basepath = "Aki_Data/Server/";
         this.source = {};
         this.onLoad = {};
+        this.onUpdate = {};
     }
 
     importClass(name, filepath)
@@ -41,6 +42,16 @@ class Packager
         for (const callback in this.onLoad)
         {
             this.onLoad[callback]();
+        }
+
+        setInterval(this.update.bind(this), 1000);
+    }
+
+    update()
+    {
+        for (const callback in this.onUpdate)
+        {
+            this.onUpdate[callback]();
         }
     }
 }

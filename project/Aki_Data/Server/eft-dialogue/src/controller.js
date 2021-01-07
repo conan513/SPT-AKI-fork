@@ -236,9 +236,15 @@ class Controller
         return {"messages": output};
     }
 
+    update()
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            this.removeExpiredItems(sessionID);
+        }
+    }
 
     // deletion of items that has been expired. triggers when updating traders.
-
     removeExpiredItems(sessionID)
     {
         for (let dialogueId in save_f.server.profiles[sessionID].dialogues)
