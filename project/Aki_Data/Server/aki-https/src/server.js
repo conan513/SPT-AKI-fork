@@ -266,11 +266,9 @@ class Server
         });
 
         this.wss.addListener("connection", (ws) => {
-            common_f.logger.logInfo("Websocket connection opened");
             this.websocket = ws;
             setInterval(() => {
                 if (ws.readyState === WebSocket.OPEN) {
-                    common_f.logger.logInfo("Websocket connection ping");
                     ws.send(JSON.stringify(notifier_f.controller.defaultMessage));
                 };
             }, 90000);
