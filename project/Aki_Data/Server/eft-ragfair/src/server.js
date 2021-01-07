@@ -143,12 +143,14 @@ class Server
         }
     }
 
-    createOffer(userID, time, items, barterScheme, loyalLevel, sellInOnePiece = false)
+    createOffer(userID, time, items, barterScheme, loyalLevel, sellInOnePiece = false, price = null)
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        let price = this.getBarterPrice(userID, barterScheme);
-
+        if (price === null)
+        {
+            price = this.getBarterPrice(userID, barterScheme);
+        }
         // remove properties
         delete items[0].upd.UnlimitedCount;
 
@@ -156,11 +158,12 @@ class Server
         items = this.getItemCondition(userID, items);
         price = (this.isPlayer(userID) || this.isTrader(userID)) ? price : Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
 
+        // user.id = profile.characters.pmc._id??
         let offer = {
             "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
             "intId": 0,
             "user": {
-                "id": userID,
+                "id": this.getTraderId(userID),
                 "memberType": (userID !== "ragfair") ? this.getMemberType(userID) : 0,
                 "nickname": this.getNickname(userID),
                 "rating": this.getRating(userID),
@@ -181,6 +184,16 @@ class Server
         };
 
         this.offers.push(offer);
+        return offer;
+    }
+
+    getTraderId(userID)
+    {
+        if (this.isPlayer(userID))
+        {
+            return save_f.server.profiles[userID].characters.pmc._id;
+        }
+        return userID;
     }
 
     getMemberType(userID)
@@ -188,7 +201,7 @@ class Server
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles.characters.pmc.Info.AccountType;
+            return save_f.server.profiles[userID].characters.pmc.Info.AccountType;
         }
 
         if (this.isTrader(userID))
@@ -206,7 +219,7 @@ class Server
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles.characters.pmc.Info.Nickname;
+            return save_f.server.profiles[userID].characters.pmc.Info.Nickname;
         }
 
         if (this.isTrader(userID))
@@ -227,7 +240,7 @@ class Server
         if (this.isPlayer(userID))
         {
             // player offer
-            return Math.round(ragfair_f.config.player.sellTimeHrs * 3600);
+            return common_f.time.getTimestamp() + Math.round(ragfair_f.config.player.sellTimeHrs * 3600);
         }
 
         if (this.isTrader(userID))
@@ -245,7 +258,7 @@ class Server
         if (this.isPlayer(userID))
         {
             // player offer
-            return profile.characters.pmc.RagfairInfo.rating;
+            return save_f.server.profiles[userID].characters.pmc.RagfairInfo.rating;
         }
 
         if (this.isTrader(userID))
@@ -263,7 +276,7 @@ class Server
         if (this.isPlayer(userID))
         {
             // player offer
-            return profile.characters.pmc.RagfairInfo.isRatingGrowing;
+            return save_f.server.profiles[userID].characters.pmc.RagfairInfo.isRatingGrowing;
         }
 
         if (this.isTrader(userID))
@@ -279,7 +292,7 @@ class Server
     getItemCondition(userID, items)
     {
         let item = this.addMissingCondition(items[0]);
-        
+
         if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
             const multiplier = common_f.random.getFloat(ragfair_f.config.dynamic.condition.min, ragfair_f.config.dynamic.condition.max);
@@ -296,7 +309,7 @@ class Server
                 item.upd.MedKit.HpResource = Math.round(item.upd.MedKit.HpResource * multiplier) || 1;
             }
         }
-        
+
         items[0] = item;
         return items;
     }
