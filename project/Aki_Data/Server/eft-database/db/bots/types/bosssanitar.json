@@ -298,7 +298,6 @@
 				"5ed5166ad380ab312177c100",
 				"544fb3364bdc2d34748b456a",
 				"544fb45d4bdc2dee738b4568",
-				"5efde6b4f5448336730dbd61",
 				"5ed515c8d380ab312177c0fa",
 				"5c0e534186f7747fa1419867",
 				"5ed5160a87bb8443d10680b5",
@@ -310,7 +309,6 @@
 				"544fb37f4bdc2dee738b4567",
 				"5c0e531d86f7747fa23f4d42",
 				"5ed515ece452db0eb56fc028",
-				"5eff09cd30a7dc22fd1ddfed",
 				"5c0e533786f7747fa23f4d47",
 				"5c10c8fd86f7743d7d706df3",
 				"5c0e531286f7747fa54205c2",
@@ -359,6 +357,10 @@
 				"5d6e68a8a4b9360b6c0d54e2",
 				"5c0d668f86f7747ccb7f13b2",
 				"57a0dfb82459774d3078b56c"
+			],
+			"SpecialLoot": [
+				"5efde6b4f5448336730dbd61",
+				"5eff09cd30a7dc22fd1ddfed"
 			]
 		}
 	},
@@ -2379,6 +2381,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 1
+			},
 			"healing": {
 				"min": 28,
 				"max": 88

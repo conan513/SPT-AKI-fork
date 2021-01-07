@@ -7,5 +7,7 @@
  */
 
 const { Loader } = require("./src/loader.js");
+const { Callbacks } = require("./src/callbacks.js");
 
 module.exports.loader = new Loader();
+module.exports.callbacks = new Callbacks();

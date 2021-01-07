@@ -119,9 +119,17 @@
 					"56dff026d2720bb8668b4567"
 				]
 			},
+			"55d482194bdc2d1d4e8b456b": {
+				"cartridges": [
+					"5c0d5e4486f77478390952fe",
+					"56dff061d2720bb5668b4567",
+					"56dff026d2720bb8668b4567"
+				]
+			},
 			"5beed0f50db834001c062b12": {
 				"mod_magazine": [
-					"5bed625c0db834001c062946"
+					"5bed625c0db834001c062946",
+					"55d482194bdc2d1d4e8b456b"
 				],
 				"mod_reciever": [
 					"5beec91a0db834001961942d"
@@ -330,7 +338,6 @@
 				"5a0c27731526d80618476ac4",
 				"544fb3f34bdc2d03748b456a",
 				"5448be9a4bdc2dfd2f8b456a",
-				"5c94bbff86f7747ee735c08f",
 				"5755383e24597772cb798966",
 				"571a29dc2459771fb2755a6a",
 				"57514643245977207f2c2d09",
@@ -356,6 +363,14 @@
 				"5736026a245977644601dc61",
 				"56dff061d2720bb5668b4567",
 				"56dff026d2720bb8668b4567"
+			],
+			"SpecialLoot": [
+				"5c94bbff86f7747ee735c08f",
+				"5c1d0d6d86f7744bb2683e1f",
+				"5c1d0dc586f7744baf2e7b79",
+				"5c1e495a86f7743109743dfb",
+				"5c1d0efb86f7744baf2e7b7b",
+				"5e42c83786f7742a021fdf3c"
 			]
 		}
 	},
@@ -2284,6 +2299,10 @@
 	},
 	"generation": {
 		"items": {
+			"specialItems": {
+				"min": 0,
+				"max": 1
+			},
 			"healing": {
 				"min": 1,
 				"max": 4

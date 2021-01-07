@@ -31,7 +31,7 @@ class Controller
         {
             const account = save_f.server.profiles[sessionID].info;
 
-            if (info.email === account.email && info.password === account.password)
+            if (info.username === account.username && info.password === account.password)
             {
                 return sessionID;
             }
@@ -44,7 +44,7 @@ class Controller
     {
         for (const sessionID in save_f.server.profiles)
         {
-            if (info.email === save_f.server.profiles[sessionID].info.email)
+            if (info.username === save_f.server.profiles[sessionID].info.username)
             {
                 return "";
             }
@@ -60,7 +60,7 @@ class Controller
         save_f.server.profiles[sessionID] = {
             "info": {
                 "id": sessionID,
-                "email": info.email,
+                "username": info.username,
                 "password": info.password,
                 "wipe": true,
                 "edition": info.edition
@@ -72,13 +72,13 @@ class Controller
         return sessionID;
     }
 
-    changeEmail(info)
+    changeUsername(info)
     {
         const sessionID = this.login(info);
 
         if (sessionID)
         {
-            save_f.server.profiles[sessionID].info.email = info.change;
+            save_f.server.profiles[sessionID].info.username = info.change;
         }
 
         return sessionID;
