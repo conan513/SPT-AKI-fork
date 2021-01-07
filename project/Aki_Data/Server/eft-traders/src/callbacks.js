@@ -13,11 +13,11 @@ class Callbacks
     constructor()
     {
         core_f.packager.onLoad["loadTraders"] = this.load.bind(this);
+        core_f.packager.onUpdate["traders"] = this.update.bind(this);
         https_f.router.onStaticRoute["/client/trading/api/getTradersList"] = this.getTraderList.bind(this);
         https_f.router.onDynamicRoute["/client/trading/api/getUserAssortPrice/trader/"] = this.getProfilePurchases.bind(this);
         https_f.router.onDynamicRoute["/client/trading/api/getTrader/"] = this.getTrader.bind(this);
         https_f.router.onDynamicRoute["/client/trading/api/getTraderAssort/"] = this.getAssort.bind(this);
-        keepalive_f.controller.onExecute["traders"] = this.onUpdate.bind(this);
     }
 
     load()
@@ -50,9 +50,9 @@ class Callbacks
         return https_f.response.getBody(trader_f.controller.getAssort(sessionID, traderID));
     }
 
-    onUpdate(sessionID)
+    update()
     {
-        trader_f.controller.updateTraders(sessionID);
+        trader_f.controller.updateTraders();
     }
 }
 

@@ -15,6 +15,7 @@ class Callbacks
     constructor()
     {
         core_f.packager.onLoad["loadRagfair"] = this.load.bind(this);
+        core_f.packager.onUpdate["ragfair-process-offers"] = this.update.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/search"] = this.search.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/find"] = this.search.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/itemMarketPrice"] = this.getMarketPrice.bind(this);
@@ -22,7 +23,6 @@ class Callbacks
         item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairRenewOffer"] = this.extendOffer.bind(this);
-        keepalive_f.controller.onExecute["ragfair-process-offers"] = this.onUpdate.bind(this);
     }
 
     load()
@@ -33,7 +33,6 @@ class Callbacks
 
     search(url, info, sessionID)
     {
-        ragfair_f.server.update();
         return https_f.response.getBody(ragfair_f.controller.getOffers(sessionID, info));
     }
 
@@ -63,9 +62,10 @@ class Callbacks
         return ragfair_f.controller.extendOffer(info, sessionID);
     }
 
-    onUpdate(sessionID)
+    update(sessionID)
     {
-        ragfair_f.controller.processOffers(sessionID);
+        ragfair_f.server.update();
+        ragfair_f.controller.update();
     }
 }
 
