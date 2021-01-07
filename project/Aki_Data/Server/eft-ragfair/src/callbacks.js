@@ -22,7 +22,7 @@ class Callbacks
         item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
         item_f.eventHandler.onEvent["RagFairRenewOffer"] = this.extendOffer.bind(this);
-        keepalive_f.controller.onExecute["ragfair-process-offers"] = this.onUpdate.bind(this);
+        cron_f.callbacks.add("ragfair-process-offers", this.onUpdate.bind(this));
     }
 
     load()
@@ -33,7 +33,6 @@ class Callbacks
 
     search(url, info, sessionID)
     {
-        ragfair_f.server.update();
         return https_f.response.getBody(ragfair_f.controller.getOffers(sessionID, info));
     }
 
@@ -63,9 +62,11 @@ class Callbacks
         return ragfair_f.controller.extendOffer(info, sessionID);
     }
 
-    onUpdate(sessionID)
+    onUpdate(lastrantime)
     {
-        ragfair_f.controller.processOffers(sessionID);
+        const timestamp = common_f.time.getTimestamp();
+        ragfair_f.server.update();
+        return ragfair_f.controller.processOffers(lastrantime);
     }
 }
 

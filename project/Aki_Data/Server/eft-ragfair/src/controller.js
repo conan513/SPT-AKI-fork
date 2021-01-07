@@ -486,31 +486,29 @@ class Controller
         return result;
     }
 
-    processOffers(sessionID)
+    processOffers()
     {
-        const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-        const timestamp = common_f.time.getTimestamp();
-
-        if (!profileOffers || !profileOffers.length)
+        for (const sessionID in save_f.server.profiles)
         {
-            return;
-        }
+            const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            const timestamp = common_f.time.getTimestamp();
 
-        for (const [index, offer] of profileOffers.entries())
-        {
-            if (offer.endTime <= timestamp)
+            if (!profileOffers || !profileOffers.length)
             {
-                // item expired
-                this.returnOffer(offer._id, sessionID);
+                continue;
             }
 
-            if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
+            for (const [index, offer] of profileOffers.entries())
             {
-                // item sold
-                this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
-                profileOffers.splice(index, 1);
+                if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
+                {
+                    // item sold
+                    this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
+                    profileOffers.splice(index, 1);
+                }
             }
         }
+        return true;
     }
 
     getItemPrice(info)
@@ -699,28 +697,6 @@ class Controller
         }
 
         offers[index].endTime -= offers[index].endTime + 60;
-        return item_f.eventHandler.getOutput();
-    }
-
-    /*
-     * Offer expires, return the items
-     */
-    returnOffer(offerId, sessionID)
-    {
-        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-        const index = offers.findIndex(offer => offer._id === offerId);
-
-        if (index === -1)
-        {
-            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
-        }
-
-        const itemsToReturn = common_f.json.clone(offers[index].items);
-        this.returnItems(sessionID, itemsToReturn);
-        offers.splice(index, 1);
-
         return item_f.eventHandler.getOutput();
     }
 
