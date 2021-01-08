@@ -18,7 +18,6 @@ class Callbacks
 
     execute(url, info, sessionID)
     {
-        keepalive_f.controller.execute(sessionID);
         return https_f.response.getBody({"msg": "OK"});
     }
 }

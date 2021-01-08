@@ -10,6 +10,8 @@
 
 "use strict";
 
+const WebSocket = require("ws");
+
 class Controller
 {
     constructor()
@@ -149,7 +151,14 @@ class Controller
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
         const notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
-        notifier_f.controller.add(notificationMessage, sessionID);
+        if (https_f.server.websocket.readyState === WebSocket.OPEN) 
+        {
+            https_f.server.sendMessage(notificationMessage);            
+        }
+        else
+        {
+            notifier_f.controller.add(notificationMessage, sessionID);
+        }
     }
 
     /*
@@ -236,9 +245,15 @@ class Controller
         return {"messages": output};
     }
 
+    update()
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            this.removeExpiredItems(sessionID);
+        }
+    }
 
     // deletion of items that has been expired. triggers when updating traders.
-
     removeExpiredItems(sessionID)
     {
         for (let dialogueId in save_f.server.profiles[sessionID].dialogues)

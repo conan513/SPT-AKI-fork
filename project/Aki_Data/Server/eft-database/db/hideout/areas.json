@@ -590,7 +590,7 @@
 					},
 					{
 						"templateId": "569668774bdc2da2298b4568",
-						"count": 15000,
+						"count": 25000,
 						"isFunctional": false,
 						"type": "Item"
 					},
@@ -601,19 +601,19 @@
 					},
 					{
 						"templateId": "5d0375ff86f774186372f685",
-						"count": 4,
+						"count": 8,
 						"isFunctional": false,
 						"type": "Item"
 					},
 					{
 						"templateId": "5d03775b86f774203e7e0c4b",
-						"count": 2,
+						"count": 4,
 						"isFunctional": false,
 						"type": "Item"
 					},
 					{
 						"templateId": "5d0378d486f77420421a5ff4",
-						"count": 4,
+						"count": 8,
 						"isFunctional": false,
 						"type": "Item"
 					}

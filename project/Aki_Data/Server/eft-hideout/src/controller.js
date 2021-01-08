@@ -578,6 +578,17 @@ class Controller
         pmcData.Bonuses.push(bonus);
     }
 
+    update()
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            if ("Hideout" in save_f.server.profiles[sessionID].characters.pmc)
+            {
+                this.updatePlayerHideout(sessionID);
+            }
+        }
+    }
+
     updatePlayerHideout(sessionID)
     {
         const recipes = database_f.server.tables.hideout.production;

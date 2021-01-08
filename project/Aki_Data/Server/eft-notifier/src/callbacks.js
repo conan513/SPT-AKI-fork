@@ -20,6 +20,7 @@ class Callbacks
         https_f.router.onDynamicRoute["/?last_id"] = this.notify.bind(this);
         https_f.router.onDynamicRoute["/notifierServer"] = this.notify.bind(this);
         https_f.router.onDynamicRoute["/push/notifier/get/"] = this.getNotifier.bind(this);
+        https_f.router.onDynamicRoute["/push/notifier/getwebsocket/"] = this.getNotifier.bind(this);
     }
 
     getNotifier(url, info, sessionID)
@@ -28,7 +29,7 @@ class Callbacks
     }
 
     // If we don't have anything to send, it's ok to not send anything back
-    // because notification requests are long-polling. In fact, we SHOULD wait
+    // because notification requests can be long-polling. In fact, we SHOULD wait
     // until we actually have something to send because otherwise we'd spam the client
     // and the client would abort the connection due to spam.
     sendNotification(sessionID, req, resp, data)

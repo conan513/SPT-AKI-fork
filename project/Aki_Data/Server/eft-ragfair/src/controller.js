@@ -486,7 +486,18 @@ class Controller
         return result;
     }
 
-    processOffers()
+    update()
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            if ("RagfairInfo" in save_f.server.profiles[sessionID].characters.pmc)
+            {
+                this.processOffers(sessionID);
+            }
+        }
+    }
+
+    processOffers(sessionID)
     {
         for (const sessionID in save_f.server.profiles)
         {
