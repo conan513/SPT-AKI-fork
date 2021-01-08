@@ -1,6 +1,5 @@
 {
     "common_f": "aki-common/package.js",
-    "cron_f": "aki-cron/package.js",
     "https_f": "aki-https/package.js",
     "database_f": "aki-database/package.js",
     "keepalive_f": "eft-keepalive/package.js",
