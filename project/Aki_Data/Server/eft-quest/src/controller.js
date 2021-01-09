@@ -96,11 +96,17 @@ class Controller
         let targets;
         let mods = [];
 
+        let itemCount = 1;
+
         // separate base item and mods, fix stacks
         for (let item of reward.items)
         {
             if (item._id === reward.target)
             {
+                if(("parentId" in item) && (item.parentId === "hideout") && ("upd" in item) && ("StackObjectsCount" in item.upd) && (item.upd.StackObjectsCount > 1)) {
+                    itemCount = item.upd.StackObjectsCount;
+                    item.upd.StackObjectsCount = 1;
+                }
                 targets = helpfunc_f.helpFunctions.splitStack(item);
             }
             else
@@ -119,7 +125,8 @@ class Controller
                 items.push(common_f.json.clone(mod));
             }
 
-            rewardItems = rewardItems.concat(helpfunc_f.helpFunctions.replaceIDs(null, items));
+            for(let i = 0; i < itemCount; i++)
+                rewardItems = rewardItems.concat(helpfunc_f.helpFunctions.replaceIDs(null, items));
         }
 
         return rewardItems;
