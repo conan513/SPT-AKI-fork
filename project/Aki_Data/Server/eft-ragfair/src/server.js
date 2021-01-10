@@ -34,6 +34,7 @@ class Server
         for (const sessionID in save_f.server.profiles)
         {
             const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+
             if (profileOffers && profileOffers.length)
             {
                 for (const [index, offer] of profileOffers.entries())
@@ -71,6 +72,7 @@ class Server
                     this.toUpdate[offer.user.id] = true;
                 }
 
+                // Players need their items returning, and maybe their XP adjusting
                 if (this.isPlayer(offer.user.id))
                 {
                     this.returnPlayerOffer(offer._id, sessionID);
