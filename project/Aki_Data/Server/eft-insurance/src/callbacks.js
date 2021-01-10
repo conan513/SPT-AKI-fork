@@ -33,9 +33,14 @@ class Callbacks
         return insurance_f.controller.insure(pmcData, body, sessionID);
     }
 
-    update()
+    update(timeSinceLastRun)
     {
-        insurance_f.controller.processReturn();
+        if (timeSinceLastRun > insurance_f.config.runInterval)
+        {
+            insurance_f.controller.processReturn();
+            return true;
+        }
+        return false;
     }
 }
 

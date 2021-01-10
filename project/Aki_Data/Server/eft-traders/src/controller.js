@@ -113,6 +113,7 @@ class Controller
             trader.supply_next_time = trader.supply_next_time + refresh * update;
             database_f.server.tables.traders[traderID].base = trader;
         }
+        return true;
     }
 
     getAssort(sessionID, traderID)
