@@ -639,35 +639,38 @@ class Generator
     generateLoot(lootPool, itemCounts)
     {
         // Flatten all individual slot loot pools into one big pool, while filtering out potentially missing templates
-		let lootTemplates = [];
-		let specialLootTemplates = [];
-        
-		for (const [slot, pool] of Object.entries(lootPool))
+        let lootTemplates = [];
+        let specialLootTemplates = [];
+
+        for (const [slot, pool] of Object.entries(lootPool))
         {
             if (!pool || !pool.length)
             {
                 continue;
             }
+
             if (slot === "SpecialLoot")
-			{
-				const poolSpecialItems = pool.map(lootTpl => database_f.server.tables.templates.items[lootTpl]);
-				specialLootTemplates.push(...poolSpecialItems.filter(x => !!x));
-			} else {
-				const poolItems = pool.map(lootTpl => database_f.server.tables.templates.items[lootTpl]);
-				lootTemplates.push(...poolItems.filter(x => !!x));
-			}
+            {
+                const poolSpecialItems = pool.map(lootTpl => database_f.server.tables.templates.items[lootTpl]);
+                specialLootTemplates.push(...poolSpecialItems.filter(x => !!x));
+            }
+            else
+            {
+                const poolItems = pool.map(lootTpl => database_f.server.tables.templates.items[lootTpl]);
+                lootTemplates.push(...poolItems.filter(x => !!x));
+            }
         }
-		
+
         // Sort all items by their worth to spawn chance ratio
         lootTemplates.sort((a, b) => this.compareByValue(a, b));
-		specialLootTemplates.sort((a, b) => this.compareByValue(a, b));
+        specialLootTemplates.sort((a, b) => this.compareByValue(a, b));
 
         //// Get all special items
         const specialLootItems = specialLootTemplates.filter(template =>
             !("ammoType" in template._props)
             && !("ReloadMagType" in template._props));
-		
-		// Get all healing items
+
+        // Get all healing items
         const healingItems = lootTemplates.filter(template => "medUseTime" in template._props);
 
         // Get all grenades
@@ -685,16 +688,16 @@ class Generator
 
         range = itemCounts.looseLoot.max - itemCounts.looseLoot.min;
         const lootItemCount = this.getBiasedRandomNumber(itemCounts.looseLoot.min, itemCounts.looseLoot.max, range, 5);
-		
-		range = itemCounts.specialItems.max - itemCounts.specialItems.min;
+
+        range = itemCounts.specialItems.max - itemCounts.specialItems.min;
         const specialLootItemCount = this.getBiasedRandomNumber(itemCounts.specialItems.min, itemCounts.specialItems.max, range, 6);
 
         range = itemCounts.grenades.max - itemCounts.grenades.min;
         const grenadeCount = this.getBiasedRandomNumber(itemCounts.grenades.min, itemCounts.grenades.max, range, 4);
 
-		this.addLootFromPool(specialLootItems, [EquipmentSlots.Pockets, EquipmentSlots.Backpack, EquipmentSlots.TacticalVest], specialLootItemCount);
-		this.addLootFromPool(lootItems, [EquipmentSlots.Backpack, EquipmentSlots.Pockets, EquipmentSlots.TacticalVest], lootItemCount);
-		this.addLootFromPool(healingItems, [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets, EquipmentSlots.Backpack, EquipmentSlots.SecuredContainer], healingItemCount);
+        this.addLootFromPool(specialLootItems, [EquipmentSlots.Pockets, EquipmentSlots.Backpack, EquipmentSlots.TacticalVest], specialLootItemCount);
+        this.addLootFromPool(lootItems, [EquipmentSlots.Backpack, EquipmentSlots.Pockets, EquipmentSlots.TacticalVest], lootItemCount);
+        this.addLootFromPool(healingItems, [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets, EquipmentSlots.Backpack, EquipmentSlots.SecuredContainer], healingItemCount);
         this.addLootFromPool(grenadeItems, [EquipmentSlots.TacticalVest, EquipmentSlots.Pockets], grenadeCount);
     }
 

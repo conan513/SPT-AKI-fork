@@ -14,8 +14,11 @@ class Callbacks
 {
     constructor()
     {
+        /* should be a config var, but might not be around for long */
+        this.runInterval = 1 * 60;
         core_f.packager.onLoad["loadRagfair"] = this.load.bind(this);
-        core_f.packager.onUpdate["ragfair-process-offers"] = this.update.bind(this);
+        core_f.packager.onUpdate["ragfair-update-offers"] = this.update.bind(this);
+        core_f.packager.onUpdate["ragfair-process-playeroffers"] = this.updatePlayer.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/search"] = this.search.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/find"] = this.search.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/itemMarketPrice"] = this.getMarketPrice.bind(this);
@@ -62,10 +65,20 @@ class Callbacks
         return ragfair_f.controller.extendOffer(info, sessionID);
     }
 
-    update(sessionID)
+    update(timeSinceLastRun)
     {
         ragfair_f.server.update();
-        ragfair_f.controller.update();
+        return true;
+    }
+
+    /* todo: merge remains with main update function above */
+    updatePlayer(timeSinceLastRun)
+    {
+        if (timeSinceLastRun > this.runInterval)
+        {
+            ragfair_f.controller.update();
+            return true;
+        }
     }
 }
 

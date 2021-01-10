@@ -108,7 +108,7 @@ class Loader
     addBundles(modpath)
     {
         const manifest = common_f.json.deserialize(common_f.vfs.readFile(`${modpath}bundles.json`)).manifest;
-        
+
         for (const bundleInfo of manifest)
         {
             const bundle = {

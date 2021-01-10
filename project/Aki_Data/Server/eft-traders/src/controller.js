@@ -113,6 +113,7 @@ class Controller
             trader.supply_next_time = trader.supply_next_time + refresh * update;
             database_f.server.tables.traders[traderID].base = trader;
         }
+        return true;
     }
 
     getAssort(sessionID, traderID)
@@ -169,7 +170,6 @@ class Controller
         const assort = database_f.server.tables.traders[fenceID].assort;
         const itemPresets = database_f.server.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
-        let added = [];
         let result = {
             "items": [],
             "barter_scheme": {},
@@ -179,16 +179,16 @@ class Controller
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
             let itemID = names[common_f.random.getInt(0, names.length - 1)];
+            let price = helpfunc_f.helpFunctions.getTemplatePrice(itemID);
 
-            if (added.includes(itemID))
+            if (price === 0 || price === 1 || price === 100)
             {
+                // don't allow "special" items
                 i--;
                 continue;
             }
 
-            added.push(itemID);
-
-            //it's the item
+            // it's the item
             if (!(itemID in itemPresets))
             {
                 result.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
@@ -197,7 +197,7 @@ class Controller
                 continue;
             }
 
-            //it's itemPreset
+            // it's itemPreset
             let rub = 0;
             let items = common_f.json.clone(itemPresets[itemID]._items);
             let ItemRootOldId = itemPresets[itemID]._parent;
@@ -225,7 +225,7 @@ class Controller
 
             result.items.push.apply(result.items, items);
 
-            //calculate preset price
+            // calculate preset price
             for (let it of items)
             {
                 rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);

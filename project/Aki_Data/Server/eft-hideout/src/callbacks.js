@@ -69,10 +69,16 @@ class Callbacks
         return hideout_f.controller.takeProduction(pmcData, body, sessionID);
     }
 
-    update()
+    update(timeSinceLastRun)
     {
-        hideout_f.controller.update();
+        if (timeSinceLastRun > hideout_f.config.runInterval)
+        {
+            hideout_f.controller.update();
+            return true;
+        }
+        return false;
     }
+
 }
 
 module.exports.Callbacks = Callbacks;
