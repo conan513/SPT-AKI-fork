@@ -103,7 +103,8 @@ class Controller
         {
             if (item._id === reward.target)
             {
-                if(("parentId" in item) && (item.parentId === "hideout") && ("upd" in item) && ("StackObjectsCount" in item.upd) && (item.upd.StackObjectsCount > 1)) {
+                if (("parentId" in item) && (item.parentId === "hideout") && ("upd" in item) && ("StackObjectsCount" in item.upd) && (item.upd.StackObjectsCount > 1))
+                {
                     itemCount = item.upd.StackObjectsCount;
                     item.upd.StackObjectsCount = 1;
                 }
@@ -125,7 +126,7 @@ class Controller
                 items.push(common_f.json.clone(mod));
             }
 
-            for(let i = 0; i < itemCount; i++)
+            for (let i = 0; i < itemCount; i++)
                 rewardItems = rewardItems.concat(helpfunc_f.helpFunctions.replaceIDs(null, items));
         }
 
