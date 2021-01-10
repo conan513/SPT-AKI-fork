@@ -106,20 +106,28 @@ class Server
 
                 common_f.vfs.writeFile(certFile, cert);
                 common_f.vfs.writeFile(keyFile, key);
-                
-                // Use CERTMGR.MSC to remove this Trust Store Certificate manually
-                sudo.exec("certutil.exe -f -addstore Root user/certs/cert.pem",  {
-                    name: 'Server'
-                  }, (error, stdout, stderr) => {
-                    if (error) throw error;
-                });
+                if (process.platform === "linux")
+                {
+                    common_f.logger.logInfo("You are running on linux, you will have to install the cert manually.");
+                    common_f.logger.logInfo(`copy ${certFile} to your windows PC and run \n  certutil.exe -f -addstore Root <path to cert.pem>`);
+                }
+                else
+                {
+
+                    // Use CERTMGR.MSC to remove this Trust Store Certificate manually
+                    sudo.exec("certutil.exe -f -addstore Root user/certs/cert.pem",  {
+                        name: "Server"
+                    }, (error, stdout, stderr) =>
+                    {
+                        if (error) throw error;
+                    });
+                }
             }
             else
             {
                 throw e;
             }
         }
-        
         return { cert: cert, key: key };
     }
 
@@ -141,7 +149,14 @@ class Server
 
     sendMessage(output)
     {
-        this.websocket.send(JSON.stringify(output));
+        try
+        {
+            this.websocket.send(JSON.stringify(output));
+        }
+        catch (err)
+        {
+            common_f.logger.logError(`sendMessage failed, with error: ${err}`);
+        }
     }
 
     sendFile(resp, file)
@@ -256,24 +271,28 @@ class Server
         this.instance = instance;
 
         // Setting up websocket
-        const wss = new WebSocket.Server({ 
+        const wss = new WebSocket.Server({
             server: this.instance
         });
         this.wss = wss;
 
-        this.wss.addListener("listening", () => {
+        this.wss.addListener("listening", () =>
+        {
             common_f.logger.logSuccess("Started websocket");
         });
 
-        this.wss.addListener("connection", (ws) => {
+        this.wss.addListener("connection", (ws) =>
+        {
             this.websocket = ws;
-            setInterval(() => {
-                if (ws.readyState === WebSocket.OPEN) {
+            setInterval(() =>
+            {
+                if (ws.readyState === WebSocket.OPEN)
+                {
                     ws.send(JSON.stringify(notifier_f.controller.defaultMessage));
-                };
+                }
             }, 90000);
         });
-        
+
         /* server is already running or program using privileged port without root */
         this.instance.on("error", (e) =>
         {
