@@ -12,7 +12,7 @@ class Config
 {
     constructor()
     {
-        this.runInterval = 10 * 60;
+        this.runInterval = 15 * 60;
     }
 }
 
