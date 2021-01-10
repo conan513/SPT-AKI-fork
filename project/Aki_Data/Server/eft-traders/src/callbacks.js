@@ -52,7 +52,7 @@ class Callbacks
 
     update()
     {
-       return trader_f.controller.updateTraders();
+        return trader_f.controller.updateTraders();
     }
 }
 

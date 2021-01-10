@@ -170,7 +170,6 @@ class Controller
         const assort = database_f.server.tables.traders[fenceID].assort;
         const itemPresets = database_f.server.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
-        let added = [];
         let result = {
             "items": [],
             "barter_scheme": {},
@@ -188,8 +187,6 @@ class Controller
                 i--;
                 continue;
             }
-
-            added.push(itemID);
 
             // it's the item
             if (!(itemID in itemPresets))

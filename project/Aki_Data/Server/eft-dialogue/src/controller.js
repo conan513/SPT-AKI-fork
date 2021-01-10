@@ -149,7 +149,7 @@ class Controller
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
         const notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
-        https_f.server.sendMessage(notificationMessage);            
+        https_f.server.sendMessage(notificationMessage);
     }
 
     /*
