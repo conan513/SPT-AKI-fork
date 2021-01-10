@@ -75,11 +75,11 @@ class Packager
             if (success)
             {
                 this.onUpdateLastRun[taskId] = common_f.time.getTimestamp();
-                console.log(taskId);
             }
             else
             {
-                const warnTime = 1 * 60;
+                /* temporary for debug */
+                const warnTime = 20 * 60;
                 if (success === void 0 && !(timeSinceLastRun % warnTime))
                 {
                     common_f.logger.logInfo(`onUpdate: ${taskId} doesn't report success or fail`);
