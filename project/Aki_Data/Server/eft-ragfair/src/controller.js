@@ -306,7 +306,10 @@ class Controller
                 return false;
             }
 
-            if (!assorts[offer.user.id].items.find((item) => { return item._id === offer.root; }))
+            if (!assorts[offer.user.id].items.find((item) =>
+            {
+                return item._id === offer.root;
+            }))
             {
                 // skip (quest) locked items
                 return false;
@@ -491,42 +494,43 @@ class Controller
             {
                 this.processOffers(sessionID);
             }
-        }   
+        }
     }
 
     processOffers(sessionID)
     {
-        const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-        const timestamp = common_f.time.getTimestamp();
-
-        if (!profileOffers || !profileOffers.length)
+        for (const sessionID in save_f.server.profiles)
         {
-            return;
-        }
+            const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            const timestamp = common_f.time.getTimestamp();
 
-        for (const [index, offer] of profileOffers.entries())
-        {
-            if (offer.endTime <= timestamp)
+            if (!profileOffers || !profileOffers.length)
             {
-                // item expired
-                this.removeOffer(offer._id, sessionID);
+                continue;
             }
 
-            if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
+            for (const [index, offer] of profileOffers.entries())
             {
-                // item sold
-                this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
-                profileOffers.splice(index, 1);
+                if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
+                {
+                    // item sold
+                    this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
+                    profileOffers.splice(index, 1);
+                }
             }
         }
+        return true;
     }
 
     getItemPrice(info)
     {
         // get all items of tpl (sort by price)
-        let offers = ragfair_f.server.offers.filter((offer) => { return offer.items[0]._tpl === info.templateId });
+        let offers = ragfair_f.server.offers.filter((offer) =>
+        {
+            return offer.items[0]._tpl === info.templateId;
+        });
         offers = this.sortOffers(offers, 5);
-        
+
         // average
         let avg = 0;
 
@@ -688,9 +692,12 @@ class Controller
         return Math.round(fee);
     }
 
+    /*
+     *  User requested removal of the offer, actually reduces the time to 1 minute,
+     *  allowing for the possibility of extending the auction before it's end time
+     */
     removeOffer(offerId, sessionID)
     {
-        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
         const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
@@ -700,10 +707,7 @@ class Controller
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
-        const itemsToReturn = common_f.json.clone(offers[index].items);
-        this.returnItems(sessionID, itemsToReturn);
-        offers.splice(index, 1);
-
+        offers[index].endTime -= offers[index].endTime + 60;
         return item_f.eventHandler.getOutput();
     }
 
@@ -821,6 +825,7 @@ class Controller
 
     createPlayerOffer(profile, requirements, items, sellInOnePiece, amountToSend)
     {
+        let loyalLevel = 1;
         const formattedItems = items.map(item =>
         {
             return {
@@ -839,25 +844,15 @@ class Controller
             };
         });
 
-        return {
-            "_id": common_f.hash.generate(),
-            "items": formattedItems,
-            "root": items[0]._id,
-            "requirements": formattedRequirements,
-            "sellInOnePiece": sellInOnePiece,
-            "startTime": common_f.time.getTimestamp(),
-            "endTime": common_f.time.getTimestamp() + (ragfair_f.config.player.sellTimeHrs * 3600),
-            "summaryCost": amountToSend,
-            "requirementsCost": amountToSend,
-            "loyaltyLevel": 1,
-            "user": {
-                "id": profile.characters.pmc._id,
-                "nickname": profile.characters.pmc.Info.Nickname,
-                "rating": profile.characters.pmc.RagfairInfo.rating,
-                "memberType": profile.characters.pmc.Info.AccountType,
-                "isRatingGrowing": profile.characters.pmc.RagfairInfo.isRatingGrowing
-            },
-        };
+        return ragfair_f.server.createOffer(
+            profile.characters.pmc.aid,
+            common_f.time.getTimestamp(),
+            formattedItems,
+            formattedRequirements,
+            loyalLevel,
+            sellInOnePiece,
+            amountToSend
+        );
     }
 
     fetchRandomPmcName()

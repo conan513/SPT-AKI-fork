@@ -64,6 +64,7 @@ class Callbacks
 
     update(sessionID)
     {
+        const timestamp = common_f.time.getTimestamp();
         ragfair_f.server.update();
         ragfair_f.controller.update();
     }
