@@ -847,7 +847,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "4200",
+					"value": "4800",
 					"id": "5c94f0b286f77455185027e6",
 					"type": "Experience",
 					"index": 0
@@ -861,7 +861,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a832",
-					"value": "16000",
+					"value": "35000",
 					"type": "Item",
 					"index": 2,
 					"id": "5a2e846486f7741a9865a988",
@@ -870,7 +870,7 @@
 							"_id": "5e0ac74b9d594972a112a832",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 16000
+								"StackObjectsCount": 35000
 							}
 						}
 					]
@@ -1535,7 +1535,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a840",
-					"value": "22000",
+					"value": "52000",
 					"type": "Item",
 					"index": 2,
 					"id": "5a3fa63c86f7747150762486",
@@ -1544,7 +1544,7 @@
 							"_id": "5e0ac74b9d594972a112a840",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 22000
+								"StackObjectsCount": 52000
 							}
 						}
 					]
@@ -2042,7 +2042,7 @@
 			],
 			"Success": [
 				{
-					"value": "2900",
+					"value": "3800",
 					"id": "5c94f00286f77455192fa423",
 					"type": "Experience",
 					"index": 0
@@ -2072,7 +2072,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a8a0",
-					"value": "8000",
+					"value": "30000",
 					"id": "5a2e81c486f7741a972d4ee7",
 					"type": "Item",
 					"index": 3,
@@ -2081,7 +2081,7 @@
 							"_id": "5e0ac74b9d594972a112a8a0",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 8000
+								"StackObjectsCount": 30000
 							}
 						}
 					]
@@ -2497,22 +2497,6 @@
 							"slotId": "mod_sight_front"
 						}
 					]
-				},
-				{
-					"target": "MilitaryCable",
-					"value": "2",
-					"id": "Reward",
-					"type": "Item",
-					"index": 3,
-					"items": [
-						{
-							"_id": "MilitaryCable",
-							"_tpl": "5d0375ff86f774186372f685",
-							"upd": {
-								"StackObjectsCount": 2
-							}
-						}
-					]
 				}
 			],
 			"Success": [
@@ -2544,7 +2528,23 @@
 							}
 						}
 					]
-                }
+				},
+				{
+					"target": "MilitaryCable",
+					"value": "2",
+					"id": "Reward",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "MilitaryCable",
+							"_tpl": "5d0375ff86f774186372f685",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				}
 			],
 			"Fail": []
 		},
@@ -3900,7 +3900,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "18500",
+					"value": "18900",
 					"id": "5c94f34186f77455185027e9",
 					"type": "Experience",
 					"index": 0
@@ -4924,7 +4924,7 @@
 				},
 				{
 					"target": "5efdf349de1a6d39c53579bf",
-					"value": "45000",
+					"value": "50000",
 					"id": "5ee7577ac226ea55a345b55d",
 					"type": "Item",
 					"index": 4,
@@ -4933,7 +4933,7 @@
 							"_id": "5efdf349de1a6d39c53579bf",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 45000
+								"StackObjectsCount": 50000
 							}
 						}
 					]
