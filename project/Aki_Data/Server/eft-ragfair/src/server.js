@@ -33,16 +33,26 @@ class Server
     {
         for (const sessionID in save_f.server.profiles)
         {
-            const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            const pmcData = save_f.server.profiles[sessionID].characters.pmc;
+
+            if (!("RagfairInfo" in pmcData))
+            {
+                // profile is wiped
+                continue;
+            }
+
+            const profileOffers = pmcData.RagfairInfo.offers;
 
             if (profileOffers && profileOffers.length)
             {
-                for (const [index, offer] of profileOffers.entries())
-                {
-                    this.offers.push(offer);
-                }
+                // no offers
+                continue;
             }
 
+            for (const offer of profileOffers)
+            {
+                this.offers.push(offer);
+            }
         }
     }
 
@@ -171,10 +181,12 @@ class Server
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
+        
         if (price === null)
         {
             price = this.getBarterPrice(userID, barterScheme);
         }
+
         // remove properties
         delete items[0].upd.UnlimitedCount;
 
@@ -432,10 +444,10 @@ class Server
 
     getOffer(offerID)
     {
-        return this.offers.find((item) =>
+        return common_f.json.clone(this.offers.find((item) =>
         {
             return item._id === offerID;
-        });
+        }));
     }
 
     returnPlayerOffer(offerId, sessionID)
