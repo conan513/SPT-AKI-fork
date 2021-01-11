@@ -6059,7 +6059,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "3400",
+					"value": "2200",
 					"id": "5c9505bd86f7743285178ad1",
 					"type": "Experience",
 					"index": 0
@@ -6067,13 +6067,6 @@
 				{
 					"target": "54cb57776803fa99248b456e",
 					"value": "0.09",
-					"type": "TraderStanding",
-					"index": 1,
-					"id": "5bcf12ae86f77423c25c50ac"
-				},
-				{
-					"target": "58330581ace78e27b8b10cee",
-					"value": "-0.08",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf12ae86f77423c25c50ac"
@@ -6230,7 +6223,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6900",
+					"value": "3400",
 					"id": "5c9505dd86f77455192fa430",
 					"type": "Experience",
 					"index": 0
@@ -7035,7 +7028,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "5000",
+					"value": "6500",
 					"id": "5c95063986f77455185027f4",
 					"type": "Experience",
 					"index": 0
@@ -7089,6 +7082,22 @@
 						{
 							"_id": "5e0ac74b9d594972a112a858",
 							"_tpl": "590c5d4b86f774784e1b9c45",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "5e0ac74b9d594972a112a859",
+					"value": "2",
+					"id": "5a2fbaa686f77476953ee33d",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a859",
+							"_tpl": "5af0484c86f7740f02001f7f",
 							"upd": {
 								"StackObjectsCount": 2
 							}
@@ -7314,6 +7323,22 @@
 							"_tpl": "590c657e86f77412b013051d",
 							"upd": {
 								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "5e0ac74b9d594972a112a83g",
+					"value": "1",
+					"type": "Item",
+					"index": 4,
+					"id": "597afde186f7741ce2755ecd",
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a83g",
+							"_tpl": "5c0e534186f7747fa1419867",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
@@ -8772,7 +8797,7 @@
 						"target": [
 							"5c0530ee86f774697952d952"
 						],
-						"value": "2",
+						"value": "1",
 						"minDurability": 0,
 						"maxDurability": 0,
 						"dogtagLevel": 0,
