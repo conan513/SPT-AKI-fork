@@ -149,7 +149,7 @@ class Controller
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
         const notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
-        notifier_f.controller.add(notificationMessage, sessionID);
+        https_f.server.sendMessage(notificationMessage);
     }
 
     /*
@@ -236,9 +236,15 @@ class Controller
         return {"messages": output};
     }
 
+    update()
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            this.removeExpiredItems(sessionID);
+        }
+    }
 
     // deletion of items that has been expired. triggers when updating traders.
-
     removeExpiredItems(sessionID)
     {
         for (let dialogueId in save_f.server.profiles[sessionID].dialogues)

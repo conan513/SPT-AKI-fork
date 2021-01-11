@@ -21717,7 +21717,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 200,
+							"value": 250,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -22000,7 +22000,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 28,
+							"value": 21,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -25053,7 +25053,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 54,
+							"value": 50,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -25421,7 +25421,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 53,
+							"value": 50,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -25598,7 +25598,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 250,
+							"value": 300,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
@@ -25759,7 +25759,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 50,
+							"value": 47,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {

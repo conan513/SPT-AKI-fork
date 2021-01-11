@@ -12,6 +12,7 @@ class Callbacks
 {
     constructor()
     {
+        core_f.packager.onUpdate["dialogue"] = this.update.bind(this);
         https_f.router.onStaticRoute["/client/friend/list"] = this.getFriendList.bind(this);
         https_f.router.onStaticRoute["/client/chatServer/list"] = this.getChatServerList.bind(this);
         https_f.router.onStaticRoute["/client/mail/dialog/list"] = this.getMailDialogList.bind(this);
@@ -25,7 +26,6 @@ class Callbacks
         https_f.router.onStaticRoute["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
         https_f.router.onStaticRoute["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
         https_f.router.onStaticRoute["/client/friend/request/send"] = this.friendRequest.bind(this);
-        keepalive_f.controller.onExecute["dialogue"] = this.onUpdate.bind(this);
     }
 
     getFriendList(url, info, sessionID)
@@ -109,14 +109,14 @@ class Callbacks
         return https_f.response.emptyArrayResponse();
     }
 
-    onUpdate(sessionID)
-    {
-        dialogue_f.controller.removeExpiredItems(sessionID);
-    }
-
     friendRequest(url, request, sessionID)
     {
         return https_f.response.nullResponse();
+    }
+
+    update()
+    {
+        dialogue_f.controller.update();
     }
 }
 

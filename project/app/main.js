@@ -13,6 +13,8 @@ const watermark = require("./watermark.js");
 
 // force packing of npm packages
 require("selfsigned");
+require("sudo-prompt");
+require("ws");
 
 // set window properties
 process.stdout.setEncoding("utf8");

@@ -253,34 +253,38 @@ class Controller
         this.resetInsurance(sessionID);
     }
 
-    processReturn(sessionID)
+    processReturn()
     {
-        let insurance = save_f.server.profiles[sessionID].insurance;
-        let i = insurance.length;
-        let time = common_f.time.getTimestamp();
+        const time = common_f.time.getTimestamp();
 
-        while (i-- > 0)
+        for (const sessionID in save_f.server.profiles)
         {
-            let insured = insurance[i];
+            let insurance = save_f.server.profiles[sessionID].insurance;
+            let i = insurance.length;
 
-            if (time < insured.scheduledTime)
+            while (i-- > 0)
             {
-                continue;
+                let insured = insurance[i];
+
+                if (time < insured.scheduledTime)
+                {
+                    continue;
+                }
+
+                // Inject a little bit of a surprise by failing the insurance from time to time ;)
+                if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
+                {
+                    const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
+                    insured.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
+                    insured.items = [];
+                }
+
+                dialogue_f.controller.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
+                insurance.splice(i, 1);
             }
 
-            // Inject a little bit of a surprise by failing the insurance from time to time ;)
-            if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
-            {
-                const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
-                insured.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
-                insured.items = [];
-            }
-
-            dialogue_f.controller.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
-            insurance.splice(i, 1);
+            save_f.server.profiles[sessionID].insurance = insurance;
         }
-
-        save_f.server.profiles[sessionID].insurance = insurance;
     }
 
     /* add insurance to an item */

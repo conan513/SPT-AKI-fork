@@ -12,7 +12,9 @@
 const fs = require("fs");
 const zlib = require("zlib");
 const https = require("https");
+const WebSocket = require("ws");
 const selfsigned = require("selfsigned");
+const sudo = require("sudo-prompt");
 
 class Server
 {
@@ -98,20 +100,35 @@ class Server
 
                 let fingerprint;
 
-                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: https_f.config.ip + "/" }], { days: 365 }));
+                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: https_f.config.ip }], { days: 365 }));
 
                 common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
                 common_f.vfs.writeFile(certFile, cert);
                 common_f.vfs.writeFile(keyFile, key);
+                if (process.platform === "linux")
+                {
+                    common_f.logger.logInfo("You are running on linux, you will have to install the cert manually.");
+                    common_f.logger.logInfo(`copy ${certFile} to your windows PC and run \n  certutil.exe -f -addstore Root <path to cert.pem>`);
+                }
+                else
+                {
+
+                    // Use CERTMGR.MSC to remove this Trust Store Certificate manually
+                    sudo.exec("certutil.exe -f -addstore Root user/certs/cert.pem",  {
+                        name: "Server"
+                    }, (error, stdout, stderr) =>
+                    {
+                        if (error) throw error;
+                    });
+                }
             }
             else
             {
                 throw e;
             }
         }
-
-        return { cert, key };
+        return { cert: cert, key: key };
     }
 
     sendZlibJson(resp, output, sessionID)
@@ -128,6 +145,18 @@ class Server
     {
         resp.writeHead(200, "OK", {"Content-Type": this.mime["json"]});
         resp.end(output);
+    }
+
+    sendMessage(output)
+    {
+        try
+        {
+            this.websocket.send(JSON.stringify(output));
+        }
+        catch (err)
+        {
+            common_f.logger.logError(`sendMessage failed, with error: ${err}`);
+        }
     }
 
     sendFile(resp, file)
@@ -232,16 +261,40 @@ class Server
     load()
     {
         /* create server */
-        let instance = https.createServer(this.generateCertificate(), (req, res) =>
+        const instance = https.createServer(this.generateCertificate(), (req, res) =>
         {
             this.handleRequest(req, res);
         }).listen(https_f.config.port, https_f.config.ip, () =>
         {
             common_f.logger.logSuccess("Started server");
         });
+        this.instance = instance;
+
+        // Setting up websocket
+        const wss = new WebSocket.Server({
+            server: this.instance
+        });
+        this.wss = wss;
+
+        this.wss.addListener("listening", () =>
+        {
+            common_f.logger.logSuccess("Started websocket");
+        });
+
+        this.wss.addListener("connection", (ws) =>
+        {
+            this.websocket = ws;
+            setInterval(() =>
+            {
+                if (ws.readyState === WebSocket.OPEN)
+                {
+                    ws.send(JSON.stringify(notifier_f.controller.defaultMessage));
+                }
+            }, 90000);
+        });
 
         /* server is already running or program using privileged port without root */
-        instance.on("error", (e) =>
+        this.instance.on("error", (e) =>
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
