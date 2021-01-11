@@ -12,9 +12,7 @@ class Config
 {
     constructor()
     {
-        this.priceMultiplier = 0.3;
-        this.returnChance = 75;
-        this.runInterval = 10 * 60;
+        this.runInterval = 15 * 60;
     }
 }
 

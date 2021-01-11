@@ -12,10 +12,10 @@ class Callbacks
 {
     constructor()
     {
+        core_f.packager.onUpdate["eft-insurance"] = this.update.bind(this);
         save_f.server.onLoad["eft-insurance"] = this.onLoad.bind(this);
         https_f.router.onStaticRoute["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
         item_f.eventHandler.onEvent["Insure"] = this.insure.bind(this);
-        keepalive_f.controller.onExecute["eft-insurance"] = this.onUpdate.bind(this);
     }
 
     onLoad(sessionID)
@@ -33,9 +33,14 @@ class Callbacks
         return insurance_f.controller.insure(pmcData, body, sessionID);
     }
 
-    onUpdate(sessionID)
+    update(timeSinceLastRun)
     {
-        insurance_f.controller.processReturn(sessionID);
+        if (timeSinceLastRun > insurance_f.config.runInterval)
+        {
+            insurance_f.controller.processReturn();
+            return true;
+        }
+        return false;
     }
 }
 
