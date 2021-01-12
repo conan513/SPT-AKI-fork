@@ -29943,7 +29943,7 @@
 				},
 				{
 					"target": "5d34df2788a4504526796cfa",
-					"value": "235000",
+					"value": "250000",
 					"id": "5ae9e5ed86f7742cfd3cb562",
 					"type": "Item",
 					"index": 1,
@@ -29952,7 +29952,7 @@
 							"_id": "5d34df2788a4504526796cfa",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 235000
+								"StackObjectsCount": 250000
 							}
 						}
 					]
@@ -30522,7 +30522,7 @@
 							"5645bcc04bdc2d363b8b4572"
 						],
 						"zoneId": "place_merch_020_1",
-						"value": "1",
+						"value": "2",
 						"minDurability": 0,
 						"maxDurability": 0,
 						"dogtagLevel": 0,
@@ -30539,7 +30539,7 @@
 							"5a7c4850e899ef00150be885"
 						],
 						"zoneId": "place_merch_020_1",
-						"value": "1",
+						"value": "2",
 						"minDurability": 0,
 						"maxDurability": 0,
 						"dogtagLevel": 0,
@@ -30556,7 +30556,7 @@
 							"5ab8e79e86f7742d8b372e78"
 						],
 						"zoneId": "place_merch_020_2",
-						"value": "1",
+						"value": "2",
 						"minDurability": 0,
 						"maxDurability": 0,
 						"dogtagLevel": 0,
