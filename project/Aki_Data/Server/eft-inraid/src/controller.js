@@ -294,6 +294,7 @@ class Controller
             && item.slotId !== "Scabbard"
             && item.slotId !== "Pockets"
             && item.slotId !== "Compass"
+            && item.slotId !== "ArmBand"
             || item.parentId === pmcData.Inventory.questRaidItems)
             {
                 toDelete.push(item._id);
@@ -336,7 +337,6 @@ class Controller
             "Eyewear",
             "FaceCover",
             "ArmBand",
-            "Compass",
             "ArmorVest",
             "TacticalVest",
             "Backpack",
