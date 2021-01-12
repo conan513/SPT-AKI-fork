@@ -32594,7 +32594,7 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.05",
+					"value": "0.04",
 					"id": "5bcf23c086f7746a49593449",
 					"type": "TraderStanding",
 					"index": 1
@@ -32870,7 +32870,7 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.05",
+					"value": "0.04",
 					"id": "5bcf25cc86f7746a45695b06",
 					"type": "TraderStanding",
 					"index": 1
@@ -33312,7 +33312,7 @@
 			"Success": [
 				{
 					"target": "5e0ac74b9d594972a112a9f9",
-					"value": "22000",
+					"value": "45000",
 					"id": "5d65679c86f77479fe4dc982",
 					"type": "Item",
 					"index": 0,
@@ -33321,7 +33321,7 @@
 							"_id": "5e0ac74b9d594972a112a9f9",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 22000
+								"StackObjectsCount": 45000
 							}
 						}
 					]
@@ -33586,7 +33586,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112aa04",
-					"value": "22000",
+					"value": "20000",
 					"id": "5d656dba86f774766e559dcc",
 					"type": "Item",
 					"index": 1,
@@ -33595,7 +33595,7 @@
 							"_id": "5e0ac74b9d594972a112aa04",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 22000
+								"StackObjectsCount": 20000
 							}
 						}
 					]
@@ -34326,151 +34326,6 @@
 			"Fail": []
 		}
 	},
-	"5d25dae186f77443e55d2f78": {
-		"_id": "5d25dae186f77443e55d2f78",
-		"traderId": "5c0647fdd443bc2504c2d371",
-		"location": "any",
-		"image": "/files/quest/icon/5d67b66186f774266f0867b5.jpg",
-		"type": "Completion",
-		"isKey": false,
-		"restartable": false,
-		"min_level": 0,
-		"canShowNotificationsInGame": true,
-		"instantComplete": false,
-		"secretQuest": false,
-		"rewards": {
-			"Started": [],
-			"Success": [
-				{
-					"value": "12000",
-					"id": "5d66724a86f774368e1b7862",
-					"type": "Experience",
-					"index": 0
-				},
-				{
-					"target": "5e02be602a251a095227110b",
-					"value": "30000",
-					"id": "5d66727886f774131e206b37",
-					"type": "Item",
-					"index": 1,
-					"items": [
-						{
-							"_id": "5e02be602a251a095227110b",
-							"_tpl": "5449016a4bdc2d6f028b456f",
-							"upd": {
-								"StackObjectsCount": 30000
-							}
-						}
-					]
-				},
-				{
-					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.03",
-					"id": "5d77cf9186f7745041358b52",
-					"type": "TraderStanding",
-					"index": 2
-				},
-				{
-					"target": "5e02be602a251a095227110c",
-					"value": "30",
-					"id": "5db2e34086f7742c9714d6f7",
-					"type": "Item",
-					"index": 3,
-					"items": [
-						{
-							"_id": "5e02be602a251a095227110c",
-							"_tpl": "5c0d591486f7744c505b416f",
-							"upd": {
-								"StackObjectsCount": 30
-							}
-						}
-					]
-				},
-				{
-					"target": "5e02be602a251a095227110d",
-					"value": "80",
-					"id": "5db2fd7c86f7743a177e96c3",
-					"type": "Item",
-					"index": 4,
-					"items": [
-						{
-							"_id": "5e02be602a251a095227110d",
-							"_tpl": "5c0d5ae286f7741e46554302",
-							"upd": {
-								"StackObjectsCount": 80
-							}
-						}
-					]
-				}
-			],
-			"Fail": []
-		},
-		"conditions": {
-			"AvailableForStart": [
-				{
-					"_parent": "Quest",
-					"_props": {
-						"target": "5d25d2c186f77443e35162e5",
-						"status": [
-							4
-						],
-						"index": 0,
-						"parentId": "",
-						"id": ""
-					}
-				}
-			],
-			"AvailableForFinish": [
-				{
-					"_parent": "CounterCreator",
-					"_props": {
-						"value": "2",
-						"type": "Elimination",
-						"counter": {
-							"id": "5d25dc2286f77443e7549027",
-							"conditions": [
-								{
-									"_parent": "Kills",
-									"_props": {
-										"target": "AnyPmc",
-										"compareMethod": ">=",
-										"value": "1",
-										"id": "5d25dc3486f77408251c4bf8"
-									}
-								},
-								{
-									"_parent": "HealthEffect",
-									"_props": {
-										"bodyPartsWithEffects": [
-											{
-												"bodyParts": [
-													"Head",
-													"Chest",
-													"Stomach",
-													"LeftArm",
-													"RightArm",
-													"LeftLeg",
-													"RightLeg"
-												],
-												"effects": [
-													"Stun"
-												]
-											}
-										],
-										"id": "5d25dfb686f77444001e2e47"
-									}
-								}
-							]
-						},
-						"index": 0,
-						"parentId": "",
-						"id": "5d25dc2286f77443e7549028"
-					}
-				}
-			],
-			"Fail": []
-		}
-	},
 	"5d25e29d86f7740a22516326": {
 		"_id": "5d25e29d86f7740a22516326",
 		"traderId": "5c0647fdd443bc2504c2d371",
@@ -34805,7 +34660,7 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.04",
+					"value": "0.03",
 					"id": "5d763bc886f774454c5360cd",
 					"type": "TraderStanding",
 					"index": 6
@@ -36231,12 +36086,28 @@
 					"id": "5d8cbc2a86f77444521784d3",
 					"type": "AssortmentUnlock",
 					"index": 4,
-					"loyaltyLevel": 3,
+					"loyaltyLevel": 4,
 					"traderId": "5c0647fdd443bc2504c2d371",
 					"items": [
 						{
 							"_id": "5e02be602a251a0952271115",
 							"_tpl": "5d02797c86f774203f38e30a"
+						}
+					]
+				},
+				{
+					"target": "5e02be602a251a0952272224",
+					"value": "3",
+					"id": "5d84db5486f77430da397b76",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "5e02be602a251a0952272224",
+							"_tpl": "590c657e86f77412b013051d",
+							"upd": {
+								"StackObjectsCount": 3
+							}
 						}
 					]
 				}
@@ -36795,6 +36666,85 @@
 					"id": "5d778edb86f77461b27a235e",
 					"type": "TraderStanding",
 					"index": 2
+				},
+				{
+					"target": "5e17b808ca08cb0fac2cd375",
+					"value": "1",
+					"id": "5d66824786f774369002018d",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "5e17b808ca08cb0fac2cd375",
+							"_tpl": "5c0e655586f774045612eeb2",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "5e12b4878441bd0e2c0fa95g",
+					"value": "1",
+					"id": "5d66799c86f77436900206gf",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "5e12b4878441bd0e2c0fa95g",
+							"_tpl": "5bfea6e90db834001b7347f3",
+							"upd": {
+								"FireMode": {
+									"FireMode": "single"
+								},
+								"StackObjectsCount": 1
+							},
+							"parentId": "hideout",
+							"slotId": "hideout"
+						},
+						{
+							"_id": "5e12b4878441bd0e2c0fa958",
+							"_tpl": "5bfea7ad0db834001c38f1ee",
+							"parentId": "5e12b4878441bd0e2c0fa95g",
+							"slotId": "mod_magazine"
+						},
+						{
+							"_id": "5e12b4878441bd0e2c0fa959",
+							"_tpl": "5bfeb32b0db834001a6694d9",
+							"parentId": "5e12b4878441bd0e2c0fa95g",
+							"slotId": "mod_stock"
+						},
+						{
+							"_id": "5e12b4878441bd0e2c0fa87a",
+							"_tpl": "5bfebc320db8340019668d79",
+							"parentId": "5e12b4878441bd0e2c0fa95g",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "534904df8e0a0145060c83dd",
+							"_tpl": "5bfebc5e0db834001a6694e5",
+							"parentId": "5e12b4878441bd0e2c0fa95g",
+							"slotId": "mod_mount"
+						},
+						{
+							"_id": "25caf6c1f60d00bf97b94cfc",
+							"_tpl": "5a34fd2bc4a282329a73b4c5",
+							"parentId": "5e12b4878441bd0e2c0fa87a",
+							"slotId": "mod_muzzle"
+						},
+						{
+							"_id": "5c24cd49f5efcc9ac05b6d3b",
+							"_tpl": "5a37cb10c4a282329a73b4e7",
+							"parentId": "534904df8e0a0145060c83dd",
+							"slotId": "mod_scope"
+						},
+						{
+							"_id": "6fe8cffe770d8778ae546652",
+							"_tpl": "5a34fe59c4a282000b1521a2",
+							"parentId": "25caf6c1f60d00bf97b94cfc",
+							"slotId": "mod_muzzle"
+						}
+					]
 				}
 			],
 			"Fail": []
