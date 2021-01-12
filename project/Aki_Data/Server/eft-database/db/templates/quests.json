@@ -23985,7 +23985,7 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a947",
-							"_tpl": "5a17f98cfcdbcb0980087290",
+							"_tpl": "5b1fa9b25acfc40018633c01",
 							"parentId": "hideout",
 							"slotId": "hideout",
 							"upd": {
@@ -23994,27 +23994,49 @@
 						},
 						{
 							"_id": "5e0ac74b9d594972a112a948",
-							"_tpl": "5a17fb03fcdbcbcae668728f",
+							"_tpl": "5a718b548dc32e000d46d262",
 							"parentId": "5e0ac74b9d594972a112a947",
 							"slotId": "mod_magazine"
 						},
 						{
 							"_id": "5e0ac74b9d594972a112a949",
-							"_tpl": "5a17fc70fcdbcb0176308b3d",
+							"_tpl": "5b1fa9ea5acfc40018633c0a",
 							"parentId": "5e0ac74b9d594972a112a947",
-							"slotId": "mod_pistol_grip"
+							"slotId": "mod_barrel"
 						},
 						{
 							"_id": "5e0ac74b9d594972a112a94a",
-							"_tpl": "5aba62f8d8ce87001943946b",
-							"parentId": "5e0ac74b9d594972a112a947",
+							"_tpl": "5a6f58f68dc32e000a311390",
+							"parentId": "5e0ac74b9d594972a112a950",
 							"slotId": "mod_sight_front"
 						},
 						{
 							"_id": "5e0ac74b9d594972a112a94b",
-							"_tpl": "5aba637ad8ce87001773e17f",
-							"parentId": "5e0ac74b9d594972a112a947",
+							"_tpl": "5a6f5d528dc32e00094b97d9",
+							"parentId": "5e0ac74b9d594972a112a950",
 							"slotId": "mod_sight_rear"
+						},
+						{
+							"_id": "5e0ac74b9d594972a112a950",
+							"_tpl": "5b1faa0f5acfc40dc528aeb5",
+							"parentId": "5e0ac74b9d594972a112a947",
+							"slotId": "mod_reciever"
+						}
+					]
+				},
+				{
+					"target": "5e0ac74b9d594972a112a948",
+					"value": "300",
+					"id": "5acb7b7a86f7747a5a561a4f",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a948",
+							"_tpl": "5c3df7d588a4501f290594e5",
+							"upd": {
+								"StackObjectsCount": 300
+							}
 						}
 					]
 				}
@@ -25756,7 +25778,7 @@
 					"id": "5b48e6b086f774517c2e6442",
 					"type": "AssortmentUnlock",
 					"index": 4,
-					"loyaltyLevel": 4,
+					"loyaltyLevel": 3,
 					"traderId": "5a7c2eca46aef81a7ca2145d",
 					"items": [
 						{
@@ -26655,6 +26677,13 @@
 							"_tpl": "5c127c4486f7745625356c13"
 						}
 					]
+				},
+				{
+					"target": "Sniper",
+					"value": "100",
+					"id": "5c18c28486f77467bf065210",
+					"type": "Skill",
+					"index": 7
 				}
 			],
 			"Fail": []
@@ -26878,31 +26907,24 @@
 				},
 				{
 					"target": "Intellect",
-					"value": "1",
+					"value": "200",
 					"id": "5c18c27786f77467c00e134d",
 					"type": "Skill",
 					"index": 2
 				},
 				{
-					"target": "Sniper",
-					"value": "1",
-					"id": "5c18c28486f77467bf065210",
+					"target": "StressResistance",
+					"value": "100",
+					"id": "5c18c29386f77467c1502ac0",
 					"type": "Skill",
 					"index": 3
 				},
 				{
-					"target": "StressResistance",
-					"value": "1",
-					"id": "5c18c29386f77467c1502ac0",
-					"type": "Skill",
-					"index": 4
-				},
-				{
 					"target": "Perception",
-					"value": "1",
+					"value": "100",
 					"id": "5c18c2ab86f774186730fed1",
 					"type": "Skill",
-					"index": 5
+					"index": 4
 				}
 			],
 			"Fail": []
@@ -27177,6 +27199,22 @@
 					"id": "5d6e72c186f77410d56f1ef2",
 					"type": "TraderStanding",
 					"index": 5
+				},
+				{
+					"target": "5e0ac74b9d594972a112a9f7",
+					"value": "1",
+					"id": "5c18c21786f77467c1502adb",
+					"type": "Item",
+					"index": 6,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a9f7",
+							"_tpl": "57347ca924597744596b4e71",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -27416,7 +27454,7 @@
 				},
 				{
 					"target": "5efdf349de1a6d39c53579bf",
-					"value": "1150",
+					"value": "1000",
 					"id": "5ee7577ac226ea55a345b55d",
 					"type": "Item",
 					"index": 1,
@@ -27425,7 +27463,7 @@
 							"_id": "5efdf349de1a6d39c53579bf",
 							"_tpl": "569668774bdc2da2298b4568",
 							"upd": {
-								"StackObjectsCount": 1150
+								"StackObjectsCount": 1000
 							}
 						}
 					]
