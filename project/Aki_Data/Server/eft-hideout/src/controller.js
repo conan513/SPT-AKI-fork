@@ -611,6 +611,13 @@ class Controller
                     }
                     break;
 
+                case areaTypes.WATER_COLLECTOR:
+                    if (isGeneratorOn)
+                    {
+                        area = this.updateWaterFilters(area);
+                    }
+                    break;
+
                 case areaTypes.AIR_FILTERING:
                     if (isGeneratorOn)
                     {
@@ -725,6 +732,52 @@ class Controller
         }
 
         return generatorArea;
+    }
+
+    updateWaterFilters(waterFilterArea)
+    {
+        const filterDrainRate = 0.00417;
+
+        for (let i = 0; i < waterFilterArea.slots.length; i++)
+        {
+            if (!waterFilterArea.slots[i].item)
+            {
+                continue;
+            }
+            else
+            {
+                let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
+                    ? waterFilterArea.slots[i].item[0].upd.Resource.Value
+                    : null;
+                if (!resourceValue)
+                {
+                    resourceValue = 100 - filterDrainRate;
+                }
+                else
+                {
+                    resourceValue -= filterDrainRate;
+                }
+                resourceValue = Math.round(resourceValue * 10000) / 10000;
+
+                if (resourceValue > 0)
+                {
+                    waterFilterArea.slots[i].item[0].upd = {
+                        "StackObjectsCount": 1,
+                        "Resource": {
+                            "Value": resourceValue
+                        }
+                    };
+                    console.log(`Water filter: ${resourceValue} filter left on slot ${i + 1}`);
+                }
+                else
+                {
+                    waterFilterArea.slots[i].item[0] = null;
+                }
+                break;
+            }
+        }
+
+        return waterFilterArea;
     }
 
     updateAirFilters(airFilterArea)
