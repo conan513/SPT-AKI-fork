@@ -11844,6 +11844,22 @@
 					"id": "5d6e71a086f7743d5c7de897",
 					"type": "TraderStanding",
 					"index": 5
+				},
+				{
+					"target": "5e0ac74b9d594972a112a883",
+					"value": "1",
+					"id": "5a2e5fa786f77452ef4a625e",
+					"type": "Item",
+					"index": 6,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a883",
+							"_tpl": "5e208b9842457a4a7a33d074",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -12684,7 +12700,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a899",
-					"value": "36500",
+					"value": "35000",
 					"type": "Item",
 					"index": 2,
 					"id": "5a2e7a4886f7741b57301c44",
@@ -12693,7 +12709,7 @@
 							"_id": "5e0ac74b9d594972a112a899",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 36500
+								"StackObjectsCount": 35000
 							}
 						}
 					]
@@ -12718,6 +12734,22 @@
 					"id": "5d6e71ff86f7743b5f001114",
 					"type": "TraderStanding",
 					"index": 4
+				},
+				{
+					"target": "5e0ac74b9d594972a112a900",
+					"value": "1",
+					"type": "Item",
+					"index": 5,
+					"id": "5a2e7a4886f7741b57301c4a",
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a900",
+							"_tpl": "5e2af55f86f7746d4159f07c",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
 				}
 			],
 			"Fail": [
@@ -13067,6 +13099,22 @@
 							"_tpl": "55d44fd14bdc2d962f8b456e",
 							"parentId": "5e0ac74b9d594972a112a8eb",
 							"slotId": "mod_charge"
+						}
+					]
+				},
+				{
+					"target": "5e0ac74b9d594972a112a8e8",
+					"value": "1",
+					"id": "5a27d14286f7747e2b71be5a",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a8e8",
+							"_tpl": "5bc9bc53d4351e00367fbcee",
+							"upd": {
+								"StackObjectsCount": 1
+							}
 						}
 					]
 				}
@@ -14804,7 +14852,7 @@
 				},
 				{
 					"target": "5d34df2788a4504526795d81",
-					"value": "1",
+					"value": "2",
 					"id": "5c17cf0086f77430a323d853",
 					"type": "Item",
 					"index": 3,
