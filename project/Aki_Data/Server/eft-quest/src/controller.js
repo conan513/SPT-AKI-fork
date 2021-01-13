@@ -367,7 +367,7 @@ class Controller
         completeQuestResponse.quests = this.completedUnlocked(body.qid, sessionID);
         for (const quest of completeQuestResponse.quests)
         {
-            common_f.logger.logDebug(`[QUESTS]: return: ${quest._id} (${this.getQuestLocale(quest._id).name}) : ${quest.conditions.AvailableForStart.length}`);
+            //            common_f.logger.logDebug(`[QUESTS]: return: ${quest._id} (${this.getQuestLocale(quest._id).name}) : ${quest.conditions.AvailableForStart.length}`);
         }
         return completeQuestResponse;
     }
