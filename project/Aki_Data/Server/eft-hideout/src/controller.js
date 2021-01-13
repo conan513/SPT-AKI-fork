@@ -677,7 +677,7 @@ class Controller
 
     updateFuel(generatorArea, solarPower)
     {
-        const fuelDrainRate = solarPower == 1 ? 0.0332 : 0.0665;
+        const fuelDrainRate = solarPower == 1 ? (0.00115 * hideout_f.config.runInterval) / 2 : 0.00115 * hideout_f.config.runInterval;
         let hasAnyFuelRemaining = false;
 
         for (let i = 0; i < generatorArea.slots.length; i++)
@@ -736,7 +736,7 @@ class Controller
 
     updateWaterFilters(waterFilterArea)
     {
-        const filterDrainRate = 0.00417;
+        const filterDrainRate = 0.00333 * hideout_f.config.runInterval;
 
         for (let i = 0; i < waterFilterArea.slots.length; i++)
         {
@@ -782,7 +782,7 @@ class Controller
 
     updateAirFilters(airFilterArea)
     {
-        const filterDrainRate = 0.00417;
+        const filterDrainRate = 0.00416 * hideout_f.config.runInterval;
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {
@@ -835,7 +835,7 @@ class Controller
             btcProd.Progress += time_elapsed;
         }
 
-        const t2 = Math.pow((0.05 + (btcFarmCGs - 1) / 49 * 0.15), -1); // Function to reduce production time based on amount of GPU's
+        const t2 = Math.pow((0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397), -1); // Function to reduce production time based on amount of GPU's
         const final_prodtime = Math.floor(t2 * 14400);
 
         while (btcProd.Progress > final_prodtime)
