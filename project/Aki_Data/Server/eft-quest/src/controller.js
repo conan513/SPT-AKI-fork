@@ -14,6 +14,19 @@
 
 class Controller
 {
+    constructor()
+    {
+        this.status = {
+            Locked: 0,
+            AvailableForStart: 1,
+            Started: 2,
+            AvailableForFinish: 3,
+            Success: 4,
+            Fail: 5,
+            FailRestartable: 6,
+            MarkedAsFailed: 7
+        };
+    }
     getClientQuests(url, info, sessionID)
     {
         let quests = [];
@@ -26,6 +39,7 @@ class Controller
                 {
                     return c._parent === "Quest";
                 });
+
 
             // If the quest has no quest conditions then add to visible quest list
             // If a quest is already in the profile we don't need to check it again
@@ -50,13 +64,26 @@ class Controller
                 }
 
                 // If previous is in user profile, check condition requirement and current status
-                if ((condition._props.status[0] === 4 && previousQuest.status === "Success")
+                if ((condition._props.status[0] === this.status.Success && previousQuest.status === "Success")
                     || (condition._props.status[0] === 2 && previousQuest.status === "Started")
                     || (condition._props.status[0] === 5 && previousQuest.status === "Fail"))
                 {
                     continue;
                 }
 
+                // Chemical fix
+                if ((condition._props.status[0] === this.status.Started)
+                )
+                {
+                    common_f.logger.logDebug(`[QUESTS]: polikhim bug criteria hit: ${quest._id} (${this.getQuestLocale(quest._id).name})`);
+                    if (quest._id !== "5979f8bb86f7743ec214c7a6")
+                    {
+                        common_f.logger.logDebug("[QUESTS]: Not polikhim. Please report");
+                        console.log(quest);
+                    }
+
+                    continue;
+                }
                 canSend = false;
                 break;
             }
@@ -270,7 +297,7 @@ class Controller
             "maxStorageTime": quest_f.config.redeemTime * 3600
         };
 
-        if (questLocale.startedMessageText === "" || questLocale.startedMessageText.length == 24)
+        if (questLocale.startedMessageText === "" || questLocale.startedMessageText.length === 24)
         {
             messageContent = {
                 "templateId": questLocale.description,
@@ -287,6 +314,12 @@ class Controller
         return acceptQuestResponse;
     }
 
+    getQuestLocale(questId)
+    {
+        const questLocale = database_f.server.tables.locales.global["en"].quest[questId];
+        return questLocale;
+    }
+
     completeQuest(pmcData, body, sessionID)
     {
         let questRewards = this.applyQuestReward(pmcData, body, "Success", sessionID);
@@ -299,7 +332,7 @@ class Controller
 
         for (const checkFail of checkQuest)
         {
-            if (checkFail.conditions.Fail[0]._props.status[0] === 4)
+            if (checkFail.conditions.Fail[0]._props.status[0] === this.status.Success)
             {
                 const checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
                 if (checkQuestId)
@@ -332,7 +365,10 @@ class Controller
 
         let completeQuestResponse = item_f.eventHandler.getOutput();
         completeQuestResponse.quests = this.completedUnlocked(body.qid, sessionID);
-
+        for (const quest of completeQuestResponse.quests)
+        {
+            common_f.logger.logDebug(`[QUESTS]: return: ${quest._id} (${this.getQuestLocale(quest._id).name}) : ${quest.conditions.AvailableForStart.length}`);
+        }
         return completeQuestResponse;
     }
 
@@ -452,16 +488,34 @@ class Controller
         return this.cleanQuestList(quests);
     }
 
+    filterQuestsConditions(q, furtherFilter = null)
+    {
+
+        const filteredQuests = q.filter(
+            c =>
+            {
+                if (c._parent === "Quest" && c._props.status[0] === this.status.Success)
+                {
+                    if (furtherFilter)
+                    {
+                        return furtherFilter(c);
+                    }
+                    return true;
+                }
+                return false;
+            });
+        return filteredQuests;
+    }
+
     completedUnlocked(completedQuestId, sessionID)
     {
         const profile = profile_f.controller.getPmcProfile(sessionID);
         let quests = this.questValues().filter((q) =>
         {
-            const completedQuestCondition = q.conditions.AvailableForStart.find(
-                c =>
-                {
-                    return c._parent === "Quest" && c._props.target === completedQuestId && c._props.status[0] === 4;
-                });
+            const completedQuestCondition = this.filterQuestsConditions(q.conditions.AvailableForStart, (c) =>
+            {
+                return c._props.target === completedQuestId;
+            });
 
             if (!completedQuestCondition)
             {
@@ -471,7 +525,7 @@ class Controller
             const otherQuestConditions = q.conditions.AvailableForStart.filter(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === 4;
+                    return c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === this.status.Success;
                 });
 
             for (const condition of otherQuestConditions)
@@ -498,7 +552,7 @@ class Controller
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === 5;
+                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === this.status.Fail;
                 });
 
             if (!acceptedQuestCondition)
