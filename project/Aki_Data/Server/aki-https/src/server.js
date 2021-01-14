@@ -24,9 +24,15 @@ class Server
         this.onReceive = {};
         this.onRespond = {};
         this.mime = {
-            txt: "text/plain",
+            css:"text/css",
+            bin: "application/octet-stream",
+            html: "text/html",
+            jpg: "image/jpeg",
+            js: "text/javascript",
+            json: "application/json",
             png: "image/png",
-            json: "application/json"
+            svg: "image/svg+xml",
+            txt: "text/plain",
         };
     }
 
