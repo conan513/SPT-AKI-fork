@@ -677,6 +677,7 @@ class Controller
 
     updateFuel(generatorArea, solarPower)
     {
+        // 1 resource last 14 min 27 sec, 1/14.45/60 = 0.00115
         let fuelDrainRate = 0.00115 * hideout_f.config.runInterval;
         fuelDrainRate = solarPower == 1 ? fuelDrainRate / 2 : fuelDrainRate;
         let hasAnyFuelRemaining = false;
@@ -740,6 +741,7 @@ class Controller
 
     updateWaterFilters(waterFilterArea)
     {
+        // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
         const filterDrainRate = 0.00333 * hideout_f.config.runInterval;
 
         for (let i = 0; i < waterFilterArea.slots.length; i++)
@@ -786,6 +788,7 @@ class Controller
 
     updateAirFilters(airFilterArea)
     {
+        // 300 resources last 20 hrs, 300/20/60/60 = 0.00416
         const filterDrainRate = 0.00416 * hideout_f.config.runInterval;
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
@@ -840,6 +843,7 @@ class Controller
         }
         
         // Function to reduce production time based on amount of GPU's
+        // Formula is based on the info that is available on the offical tarkov wiki
         const btcFormula = 0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397;
         const t2 = Math.pow(btcFormula, -1);
         const final_prodtime = Math.floor(t2 * 14400);
