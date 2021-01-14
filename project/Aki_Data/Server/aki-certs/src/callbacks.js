@@ -14,21 +14,32 @@ class Callbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/certs/get"] = this.getCertBinary.bind(this);
-        https_f.server.onRespond["BIN"] = this.sendBinary.bind(this);
+        this.endPoint = "/certs/get";
+        this.certFilename = "cerm.pem";
+        this.isAttachment = true;
+        core_f.packager.onLoad["aki-certs"] = this.load.bind(this);
+
     }
 
-    getCertBinary(url, info, sessionID)
+    load()
     {
-        return "BIN";
+        https_f.router.onStaticRoute[this.endPoint] = this.registerBinary.bind(this);
+        https_f.server.onRespond["CERT_BIN"] = this.sendBinary.bind(this);
+        certs_f.controller.load();
+    }
+
+    registerBinary(url, info, sessionID)
+    {
+        return "CERT_BIN";
     }
 
     sendBinary(sessionID, req, resp, body)
     {
-        const certs = https_f.server.generateCertificate();
+        const certs = certs_f.controller.getCerts();
+        let sendType = this.isAttachment ? "attachment" : "inline";
         resp.writeHead(200, "OK",         {
             "Content-Type": https_f.server.mime["bin"],
-            "Content-Disposition": "attachment; filename=\"cert.pem\""
+            "Content-Disposition": `${sendType}; filename="${this.certFilename}"`
         });
         resp.end(certs.cert);
     }
