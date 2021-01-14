@@ -11,14 +11,24 @@
 
 class Controller
 {
-    buyItem(pmcData, body, sessionID)
+    buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
         if (body.tid === "579dc571d53a0658a154fbec")
         {
             body.tid = "ragfair";
         }
 
-        let callback = () =>
+        const output = item_f.eventHandler.getOutput();
+        const newReq = {
+            "items": [
+                {
+                    "item_id": body.item_id,
+                    "count": body.count,
+                }
+            ],
+            "tid": body.tid
+        };
+        const callback = () =>
         {
             if (!helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID))
             {
@@ -29,15 +39,7 @@ class Controller
             common_f.logger.logSuccess("Bought item: " + body.item_id);
         };
 
-        const newReq = {
-            "items": [{
-                "item_id": body.item_id,
-                "count": body.count,
-            }],
-            "tid": body.tid
-        };
-
-        return inventory_f.controller.addItem(pmcData, newReq, item_f.eventHandler.getOutput(), sessionID, callback);
+        return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
     }
 
     // Selling item to trader
@@ -86,12 +88,12 @@ class Controller
     }
 
     // separate is that selling or buying
-    confirmTrading(pmcData, body, sessionID)
+    confirmTrading(pmcData, body, sessionID, foundInRaid = false, upd = null)
     {
         // buying
         if (body.type === "buy_from_trader")
         {
-            return this.buyItem(pmcData, body, sessionID);
+            return this.buyItem(pmcData, body, sessionID, foundInRaid, upd);
         }
 
         // selling
@@ -130,7 +132,7 @@ class Controller
                 ragfair_f.server.removeOfferStack(data._id, offer.count);
             }
 
-            output = this.confirmTrading(pmcData, body, sessionID);
+            output = this.confirmTrading(pmcData, body, sessionID, false, data.items[0].upd);
         }
 
         return output;

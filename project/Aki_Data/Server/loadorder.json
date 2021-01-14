@@ -1,5 +1,6 @@
 {
     "common_f": "aki-common/package.js",
+    "certs_f": "aki-certs/package",
     "https_f": "aki-https/package.js",
     "database_f": "aki-database/package.js",
     "keepalive_f": "eft-keepalive/package.js",
@@ -33,4 +34,5 @@
     "match_f": "eft-match/package.js",
     "additions_f": "ext-additions/package.js",
     "mods_f": "aki-mods/package.js"
+
 }
