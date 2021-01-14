@@ -677,7 +677,8 @@ class Controller
 
     updateFuel(generatorArea, solarPower)
     {
-        const fuelDrainRate = solarPower == 1 ? (0.00115 * hideout_f.config.runInterval) / 2 : 0.00115 * hideout_f.config.runInterval;
+        let fuelDrainRate = 0.00115 * hideout_f.config.runInterval;
+        fuelDrainRate = solarPower == 1 ? fuelDrainRate / 2 : fuelDrainRate;
         let hasAnyFuelRemaining = false;
 
         for (let i = 0; i < generatorArea.slots.length; i++)
@@ -693,14 +694,10 @@ class Controller
                     : null;
                 if (!resourceValue)
                 {
-                    if (generatorArea.slots[i].item[0]._tpl === "5d1b371186f774253763a656")
-                    {
-                        resourceValue = 60 - fuelDrainRate;
-                    }
-                    else
-                    {
-                        resourceValue = 100 - fuelDrainRate;
-                    }
+                    const fuelItem = "5d1b371186f774253763a656"; // Expeditionary fuel tank
+                    resourceValue = generatorArea.slots[i].item[0]._tpl === fuelItem
+                                    ? resourceValue = 60 - fuelDrainRate
+                                    : resourceValue = 100 - fuelDrainRate;
                 }
                 else
                 {
@@ -841,8 +838,10 @@ class Controller
         {
             btcProd.Progress += time_elapsed;
         }
-
-        const t2 = Math.pow((0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397), -1); // Function to reduce production time based on amount of GPU's
+        
+        // Function to reduce production time based on amount of GPU's
+        const btcFormula = 0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397;
+        const t2 = Math.pow(btcFormula, -1);
         const final_prodtime = Math.floor(t2 * 14400);
 
         while (btcProd.Progress > final_prodtime)
