@@ -16,34 +16,36 @@ class Controller
 {
     constructor()
     {
-        this.status = {
-            Locked: 0,
-            AvailableForStart: 1,
-            Started: 2,
-            AvailableForFinish: 3,
-            Success: 4,
-            Fail: 5,
-            FailRestartable: 6,
-            MarkedAsFailed: 7
-        };
+
     }
-    getClientQuests(url, info, sessionID)
+
+    getClientQuests(sessionID)
     {
-        let quests = [];
+        let quests = [],
+            allQuests = this.questValues();
         const profile = profile_f.controller.getPmcProfile(sessionID);
 
-        for (let quest of this.questValues())
+        for (let quest of allQuests)
         {
-            const conditions = quest.conditions.AvailableForStart.filter(
-                c =>
+            // If a quest is already in the profile we need to just add it
+            if (profile.Quests.includes(pq => pq.qid === quest._id))
+            {
+                quests.push(quest);
+                continue;
+            }
+
+            // Don't add quests that have a level higher than the user's
+            const levels = quest_f.helpers.getLevelConditions(quest.conditions.AvailableForStart);
+            if (levels.length)
+            {
+                if (!quest_f.helpers.evaluateLevel(profile, levels[0]))
                 {
-                    return c._parent === "Quest";
-                });
-
-
+                    continue;
+                }
+            }
+            const conditions = quest_f.helpers.getQuestConditions(quest.conditions.AvailableForStart);
             // If the quest has no quest conditions then add to visible quest list
-            // If a quest is already in the profile we don't need to check it again
-            if (conditions.length === 0 || profile.Quests.includes(pq => pq.qid === quest._id))
+            if (conditions.length === 0)
             {
                 quests.push(quest);
                 continue;
@@ -64,24 +66,19 @@ class Controller
                 }
 
                 // If previous is in user profile, check condition requirement and current status
-                if ((condition._props.status[0] === this.status.Success && previousQuest.status === "Success")
-                    || (condition._props.status[0] === 2 && previousQuest.status === "Started")
-                    || (condition._props.status[0] === 5 && previousQuest.status === "Fail"))
+                if (previousQuest.status === Object.keys(quest_f.config.status)[condition._props.status[0]])
                 {
                     continue;
                 }
 
-                // Chemical fix
-                if ((condition._props.status[0] === this.status.Started)
+                // Chemical fix: "Started" Status is catered for above. This will include it just if it's started.
+                if ((condition._props.status[0] === quest_f.config.status.Started)
+                // but maybe this is better:
+                // && (previousQuest.status === "AvailableForFinish" || previousQuest.status ===  "Success")
                 )
                 {
-                    common_f.logger.logDebug(`[QUESTS]: polikhim bug criteria hit: ${quest._id} (${this.getQuestLocale(quest._id).name})`);
-                    if (quest._id !== "5979f8bb86f7743ec214c7a6")
-                    {
-                        common_f.logger.logDebug("[QUESTS]: Not polikhim. Please report");
-                        console.log(quest);
-                    }
-
+                    let statusName = Object.keys(quest_f.config.status)[condition._props.status[0]];
+                    common_f.logger.logDebug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${quest_f.helpers.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
                     continue;
                 }
                 canSend = false;
@@ -93,7 +90,7 @@ class Controller
                 quests.push(this.cleanQuestConditions(quest));
             }
         }
-
+        quest_f.helpers.dumpQuests(quests);
         return quests;
     }
 
@@ -314,12 +311,6 @@ class Controller
         return acceptQuestResponse;
     }
 
-    getQuestLocale(questId)
-    {
-        const questLocale = database_f.server.tables.locales.global["en"].quest[questId];
-        return questLocale;
-    }
-
     completeQuest(pmcData, body, sessionID)
     {
         let questRewards = this.applyQuestReward(pmcData, body, "Success", sessionID);
@@ -332,7 +323,7 @@ class Controller
 
         for (const checkFail of checkQuest)
         {
-            if (checkFail.conditions.Fail[0]._props.status[0] === this.status.Success)
+            if (checkFail.conditions.Fail[0]._props.status[0] === quest_f.config.status.Success)
             {
                 const checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
                 if (checkQuestId)
@@ -364,11 +355,7 @@ class Controller
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
         let completeQuestResponse = item_f.eventHandler.getOutput();
-        completeQuestResponse.quests = this.completedUnlocked(body.qid, sessionID);
-        for (const quest of completeQuestResponse.quests)
-        {
-            //            common_f.logger.logDebug(`[QUESTS]: return: ${quest._id} (${this.getQuestLocale(quest._id).name}) : ${quest.conditions.AvailableForStart.length}`);
-        }
+        completeQuestResponse.quests = this.getClientQuests(sessionID);
         return completeQuestResponse;
     }
 
@@ -473,7 +460,7 @@ class Controller
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === acceptedQuestId && c._props.status[0] === 2;
+                    return c._parent === "Quest" && c._props.target === acceptedQuestId && c._props.status[0] === quest_f.config.status.Started;
                 });
 
             if (!acceptedQuestCondition)
@@ -488,61 +475,7 @@ class Controller
         return this.cleanQuestList(quests);
     }
 
-    filterQuestsConditions(q, furtherFilter = null)
-    {
 
-        const filteredQuests = q.filter(
-            c =>
-            {
-                if (c._parent === "Quest" && c._props.status[0] === this.status.Success)
-                {
-                    if (furtherFilter)
-                    {
-                        return furtherFilter(c);
-                    }
-                    return true;
-                }
-                return false;
-            });
-        return filteredQuests;
-    }
-
-    completedUnlocked(completedQuestId, sessionID)
-    {
-        const profile = profile_f.controller.getPmcProfile(sessionID);
-        let quests = this.questValues().filter((q) =>
-        {
-            const completedQuestCondition = this.filterQuestsConditions(q.conditions.AvailableForStart, (c) =>
-            {
-                return c._props.target === completedQuestId;
-            });
-
-            if (!completedQuestCondition)
-            {
-                return false;
-            }
-
-            const otherQuestConditions = q.conditions.AvailableForStart.filter(
-                c =>
-                {
-                    return c._parent === "Quest" && c._props.target !== completedQuestId && c._props.status[0] === this.status.Success;
-                });
-
-            for (const condition of otherQuestConditions)
-            {
-                const profileQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
-
-                if (!profileQuest || profileQuest.status !== "Success")
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        });
-
-        return this.cleanQuestList(quests);
-    }
 
     failedUnlocked(failedQuestId, sessionID)
     {
@@ -552,7 +485,7 @@ class Controller
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === this.status.Fail;
+                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === quest_f.config.status.Fail;
                 });
 
             if (!acceptedQuestCondition)
