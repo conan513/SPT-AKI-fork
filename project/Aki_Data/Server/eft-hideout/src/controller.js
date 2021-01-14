@@ -611,6 +611,13 @@ class Controller
                     }
                     break;
 
+                case areaTypes.WATER_COLLECTOR:
+                    if (isGeneratorOn)
+                    {
+                        area = this.updateWaterFilters(area);
+                    }
+                    break;
+
                 case areaTypes.AIR_FILTERING:
                     if (isGeneratorOn)
                     {
@@ -670,7 +677,7 @@ class Controller
 
     updateFuel(generatorArea, solarPower)
     {
-        const fuelDrainRate = solarPower == 1 ? 0.0332 : 0.0665;
+        const fuelDrainRate = solarPower == 1 ? (0.00115 * hideout_f.config.runInterval) / 2 : 0.00115 * hideout_f.config.runInterval;
         let hasAnyFuelRemaining = false;
 
         for (let i = 0; i < generatorArea.slots.length; i++)
@@ -686,7 +693,14 @@ class Controller
                     : null;
                 if (!resourceValue)
                 {
-                    resourceValue = 100 - fuelDrainRate;
+                    if (generatorArea.slots[i].item[0]._tpl === "5d1b371186f774253763a656")
+                    {
+                        resourceValue = 60 - fuelDrainRate;
+                    }
+                    else
+                    {
+                        resourceValue = 100 - fuelDrainRate;
+                    }
                 }
                 else
                 {
@@ -727,9 +741,55 @@ class Controller
         return generatorArea;
     }
 
+    updateWaterFilters(waterFilterArea)
+    {
+        const filterDrainRate = 0.00333 * hideout_f.config.runInterval;
+
+        for (let i = 0; i < waterFilterArea.slots.length; i++)
+        {
+            if (!waterFilterArea.slots[i].item)
+            {
+                continue;
+            }
+            else
+            {
+                let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
+                    ? waterFilterArea.slots[i].item[0].upd.Resource.Value
+                    : null;
+                if (!resourceValue)
+                {
+                    resourceValue = 100 - filterDrainRate;
+                }
+                else
+                {
+                    resourceValue -= filterDrainRate;
+                }
+                resourceValue = Math.round(resourceValue * 10000) / 10000;
+
+                if (resourceValue > 0)
+                {
+                    waterFilterArea.slots[i].item[0].upd = {
+                        "StackObjectsCount": 1,
+                        "Resource": {
+                            "Value": resourceValue
+                        }
+                    };
+                    console.log(`Water filter: ${resourceValue} filter left on slot ${i + 1}`);
+                }
+                else
+                {
+                    waterFilterArea.slots[i].item[0] = null;
+                }
+                break;
+            }
+        }
+
+        return waterFilterArea;
+    }
+
     updateAirFilters(airFilterArea)
     {
-        const filterDrainRate = 0.00417;
+        const filterDrainRate = 0.00416 * hideout_f.config.runInterval;
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {
@@ -782,7 +842,7 @@ class Controller
             btcProd.Progress += time_elapsed;
         }
 
-        const t2 = Math.pow((0.05 + (btcFarmCGs - 1) / 49 * 0.15), -1); // Function to reduce production time based on amount of GPU's
+        const t2 = Math.pow((0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397), -1); // Function to reduce production time based on amount of GPU's
         const final_prodtime = Math.floor(t2 * 14400);
 
         while (btcProd.Progress > final_prodtime)

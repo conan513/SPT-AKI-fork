@@ -13,8 +13,7 @@ const fs = require("fs");
 const zlib = require("zlib");
 const https = require("https");
 const WebSocket = require("ws");
-const selfsigned = require("selfsigned");
-const sudo = require("sudo-prompt");
+
 
 class Server
 {
@@ -24,9 +23,15 @@ class Server
         this.onReceive = {};
         this.onRespond = {};
         this.mime = {
-            txt: "text/plain",
+            css:"text/css",
+            bin: "application/octet-stream",
+            html: "text/html",
+            jpg: "image/jpeg",
+            js: "text/javascript",
+            json: "application/json",
             png: "image/png",
-            json: "application/json"
+            svg: "image/svg+xml",
+            txt: "text/plain",
         };
     }
 
@@ -76,60 +81,7 @@ class Server
         return this.buffers[sessionID].buffer;
     }
 
-    generateCertificate()
-    {
-        const certDir = "user/certs/";
-        const certFile = `${certDir}cert.pem`;
-        const keyFile = `${certDir}key.pem`;
-        let cert;
-        let key;
 
-        try
-        {
-            cert = common_f.vfs.readFile(certFile);
-            key = common_f.vfs.readFile(keyFile);
-        }
-        catch (e)
-        {
-            if (e.code === "ENOENT")
-            {
-                if (!common_f.vfs.exists(certDir))
-                {
-                    common_f.vfs.createDir(certDir);
-                }
-
-                let fingerprint;
-
-                ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: https_f.config.ip }], { days: 365 }));
-
-                common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
-
-                common_f.vfs.writeFile(certFile, cert);
-                common_f.vfs.writeFile(keyFile, key);
-                if (process.platform === "linux")
-                {
-                    common_f.logger.logInfo("You are running on linux, you will have to install the cert manually.");
-                    common_f.logger.logInfo(`copy ${certFile} to your windows PC and run \n  certutil.exe -f -addstore Root <path to cert.pem>`);
-                }
-                else
-                {
-
-                    // Use CERTMGR.MSC to remove this Trust Store Certificate manually
-                    sudo.exec("certutil.exe -f -addstore Root user/certs/cert.pem",  {
-                        name: "Server"
-                    }, (error, stdout, stderr) =>
-                    {
-                        if (error) throw error;
-                    });
-                }
-            }
-            else
-            {
-                throw e;
-            }
-        }
-        return { cert: cert, key: key };
-    }
 
     sendZlibJson(resp, output, sessionID)
     {
@@ -261,7 +213,7 @@ class Server
     load()
     {
         /* create server */
-        const instance = https.createServer(this.generateCertificate(), (req, res) =>
+        const instance = https.createServer(certs_f.controller.getCerts(), (req, res) =>
         {
             this.handleRequest(req, res);
         }).listen(https_f.config.port, https_f.config.ip, () =>

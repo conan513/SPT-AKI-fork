@@ -72,8 +72,8 @@ class Controller
     /* adds gear to store */
     addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
-        // Don't process insurance for melee weapon or secure container.
-        if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer" || actualItem.slotId === "Compass")
+        // Don't process insurance for melee weapon, secure container, compass or armband.
+        if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer" || actualItem.slotId === "Compass" || actualItem.slotId === "ArmBand")
         {
             return;
         }
