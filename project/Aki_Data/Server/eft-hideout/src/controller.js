@@ -693,7 +693,14 @@ class Controller
                     : null;
                 if (!resourceValue)
                 {
-                    resourceValue = 100 - fuelDrainRate;
+                    if (generatorArea.slots[i].item[0]._tpl === "5d1b371186f774253763a656")
+                    {
+                        resourceValue = 60 - fuelDrainRate;
+                    }
+                    else
+                    {
+                        resourceValue = 100 - fuelDrainRate;
+                    }
                 }
                 else
                 {
