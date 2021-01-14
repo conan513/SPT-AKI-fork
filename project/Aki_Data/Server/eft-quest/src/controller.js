@@ -66,18 +66,18 @@ class Controller
                 }
 
                 // If previous is in user profile, check condition requirement and current status
-                if (previousQuest.status === Object.keys(quest_f.config.status)[condition._props.status[0]])
+                if (previousQuest.status === Object.keys(quest_f.helpers.status)[condition._props.status[0]])
                 {
                     continue;
                 }
 
                 // Chemical fix: "Started" Status is catered for above. This will include it just if it's started.
-                if ((condition._props.status[0] === quest_f.config.status.Started)
+                if ((condition._props.status[0] === quest_f.helpers.status.Started)
                 // but maybe this is better:
                 // && (previousQuest.status === "AvailableForFinish" || previousQuest.status ===  "Success")
                 )
                 {
-                    let statusName = Object.keys(quest_f.config.status)[condition._props.status[0]];
+                    let statusName = Object.keys(quest_f.helpers.status)[condition._props.status[0]];
                     common_f.logger.logDebug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${quest_f.helpers.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
                     continue;
                 }
@@ -323,7 +323,7 @@ class Controller
 
         for (const checkFail of checkQuest)
         {
-            if (checkFail.conditions.Fail[0]._props.status[0] === quest_f.config.status.Success)
+            if (checkFail.conditions.Fail[0]._props.status[0] === quest_f.helpers.status.Success)
             {
                 const checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
                 if (checkQuestId)
@@ -460,7 +460,7 @@ class Controller
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === acceptedQuestId && c._props.status[0] === quest_f.config.status.Started;
+                    return c._parent === "Quest" && c._props.target === acceptedQuestId && c._props.status[0] === quest_f.helpers.status.Started;
                 });
 
             if (!acceptedQuestCondition)
@@ -485,7 +485,7 @@ class Controller
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === quest_f.config.status.Fail;
+                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === quest_f.helpers.status.Fail;
                 });
 
             if (!acceptedQuestCondition)
