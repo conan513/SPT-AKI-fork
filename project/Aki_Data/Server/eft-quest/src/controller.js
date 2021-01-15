@@ -313,6 +313,7 @@ class Controller
 
     completeQuest(pmcData, body, sessionID)
     {
+        const beforeQuests = this.getClientQuests(sessionID);
         let questRewards = this.applyQuestReward(pmcData, body, "Success", sessionID);
 
         //Check if any of linked quest is failed, and that is unrestartable.
@@ -355,7 +356,7 @@ class Controller
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
         let completeQuestResponse = item_f.eventHandler.getOutput();
-        completeQuestResponse.quests = this.getClientQuests(sessionID);
+        completeQuestResponse.quests = quest_f.helpers.getDeltaQuests(beforeQuests, this.getClientQuests(sessionID));
         return completeQuestResponse;
     }
 
