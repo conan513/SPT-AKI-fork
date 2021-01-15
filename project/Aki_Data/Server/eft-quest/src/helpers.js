@@ -82,11 +82,29 @@ class Helpers
         return questLocale;
     }
 
+    getDeltaQuests(before, after)
+    {
+        let knownQuestsIds = [];
+        before.forEach((q) =>
+        {
+            knownQuestsIds.push(q._id);
+        });
+        if (knownQuestsIds.length)
+        {
+            return after.filter((q) =>
+            {
+                return knownQuestsIds.indexOf(q._id) === -1;
+            });
+        }
+        return after;
+    }
+
     dumpQuests(quests, label = null)
     {
         for (const quest of quests)
         {
-            common_f.logger.logDebug(`${this.getQuestLocale(quest._id).name} (${quest._id})`);
+            const currentQuestLocale = this.getQuestLocale(quest._id);
+            common_f.logger.logDebug(`${currentQuestLocale.name} (${quest._id})`);
             for (const cond of quest.conditions.AvailableForStart)
             {
                 let output = `- ${cond._parent} `;
@@ -110,6 +128,41 @@ class Helpers
                 }
                 common_f.logger.logDebug(output);
             }
+            common_f.logger.logDebug("AvailableForFinish info:");
+            for (const cond of quest.conditions.AvailableForFinish)
+            {
+                let output = `- ${cond._parent} `;
+                switch (cond._parent)
+                {
+                    case "FindItem":
+                    case "CounterCreator":
+                        if (cond._props.target !== void 0)
+                        {
+                            const taskDescription = currentQuestLocale.conditions[cond._props.id];
+                            if (taskDescription)
+                            {
+                                output += `: ${taskDescription} `;
+                            }
+                            else
+                            {
+                                output += `Description not found: ${cond._props.id}`;
+                            }
+                            output += `(${cond._props.target}) with status: `;
+                        }
+                        break;
+
+                    case "HandoverItem":
+                    case "PlaceBeacon":
+                        break;
+                    default:
+                        output += `${cond._props.compareMethod} ${cond._props.value}`;
+                        console.log(cond);
+                        break;
+                }
+
+                common_f.logger.logDebug(output);
+            }
+            common_f.logger.logDebug("-- end\n");
         }
     }
 }
