@@ -22,12 +22,13 @@
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {
+        "lodash": "^4.17.20",
         "selfsigned": "1.10.8",
         "sudo-prompt": "9.2.1",
         "ws": "7.4.2"
     },
     "devDependencies": {
-        "nexe": "3.3.7",
-        "eslint": "7.16.0"
+        "eslint": "7.16.0",
+        "nexe": "3.3.7"
     }
 }
