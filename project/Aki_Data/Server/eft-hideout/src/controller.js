@@ -780,7 +780,7 @@ class Controller
                 }
                 else
                 {
-                    waterFilterArea.slots[i].item[0] = null;
+                    waterFilterArea.slots[i].item = [];
                 }
                 break;
             }
@@ -827,7 +827,7 @@ class Controller
                 }
                 else
                 {
-                    airFilterArea.slots[i].item[0] = null;
+                    airFilterArea.slots[i].item = [];
                 }
                 break;
             }
