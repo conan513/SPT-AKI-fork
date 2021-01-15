@@ -12,8 +12,6 @@
 
 "use strict";
 
-const _ = require("lodash");
-
 class Helpers
 {
     constructor()
@@ -86,11 +84,19 @@ class Helpers
 
     getDeltaQuests(before, after)
     {
-        return after.filter((q) =>
+        let knownQuestsIds = [];
+        before.forEach((q) =>
         {
-            let oldQuest = _.find(before, { "_id": q._id });
-            return !_.isEqual(q, oldQuest);
+            knownQuestsIds.push(q._id);
         });
+        if (knownQuestsIds.length)
+        {
+            return after.filter((q) =>
+            {
+                return knownQuestsIds.indexOf(q._id) === -1;
+            });
+        }
+        return after;
     }
 
     dumpQuests(quests, label = null)

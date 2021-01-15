@@ -90,7 +90,6 @@ class Controller
                 quests.push(this.cleanQuestConditions(quest));
             }
         }
-        quest_f.helpers.dumpQuests(quests);
         return quests;
     }
 
@@ -357,6 +356,7 @@ class Controller
 
         let completeQuestResponse = item_f.eventHandler.getOutput();
         completeQuestResponse.quests = quest_f.helpers.getDeltaQuests(beforeQuests, this.getClientQuests(sessionID));
+        quest_f.helpers.dumpQuests(completeQuestResponse.quests);
         return completeQuestResponse;
     }
 
