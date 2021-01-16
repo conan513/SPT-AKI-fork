@@ -611,6 +611,13 @@ class Controller
                     }
                     break;
 
+                case areaTypes.WATER_COLLECTOR:
+                    if (isGeneratorOn)
+                    {
+                        area = this.updateWaterFilters(area);
+                    }
+                    break;
+
                 case areaTypes.AIR_FILTERING:
                     if (isGeneratorOn)
                     {
@@ -670,12 +677,14 @@ class Controller
 
     updateFuel(generatorArea, solarPower)
     {
-        const fuelDrainRate = solarPower == 1 ? 0.0332 : 0.0665;
+        // 1 resource last 14 min 27 sec, 1/14.45/60 = 0.00115
+        let fuelDrainRate = 0.00115 * hideout_f.config.runInterval;
+        fuelDrainRate = solarPower == 1 ? fuelDrainRate / 2 : fuelDrainRate;
         let hasAnyFuelRemaining = false;
 
         for (let i = 0; i < generatorArea.slots.length; i++)
         {
-            if (!generatorArea.slots[i].item)
+            if (!generatorArea.slots[i].item || !generatorArea.slots[i].item[0])
             {
                 continue;
             }
@@ -684,9 +693,16 @@ class Controller
                 let resourceValue = (generatorArea.slots[i].item[0].upd && generatorArea.slots[i].item[0].upd.Resource)
                     ? generatorArea.slots[i].item[0].upd.Resource.Value
                     : null;
-                if (!resourceValue)
+                if (resourceValue === 0)
                 {
-                    resourceValue = 100 - fuelDrainRate;
+                    continue;
+                }
+                else if (!resourceValue)
+                {
+                    const fuelItem = "5d1b371186f774253763a656"; // Expeditionary fuel tank
+                    resourceValue = generatorArea.slots[i].item[0]._tpl === fuelItem
+                                    ? resourceValue = 60 - fuelDrainRate
+                                    : resourceValue = 100 - fuelDrainRate;
                 }
                 else
                 {
@@ -715,7 +731,6 @@ class Controller
                         }
                     };
                 }
-
             }
         }
 
@@ -727,13 +742,61 @@ class Controller
         return generatorArea;
     }
 
+    updateWaterFilters(waterFilterArea)
+    {
+        // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
+        const filterDrainRate = 0.00333 * hideout_f.config.runInterval;
+
+        for (let i = 0; i < waterFilterArea.slots.length; i++)
+        {
+            if (!waterFilterArea.slots[i].item || !waterFilterArea.slots[i].item[0])
+            {
+                continue;
+            }
+            else
+            {
+                let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
+                    ? waterFilterArea.slots[i].item[0].upd.Resource.Value
+                    : null;
+                if (!resourceValue)
+                {
+                    resourceValue = 100 - filterDrainRate;
+                }
+                else
+                {
+                    resourceValue -= filterDrainRate;
+                }
+                resourceValue = Math.round(resourceValue * 10000) / 10000;
+
+                if (resourceValue > 0)
+                {
+                    waterFilterArea.slots[i].item[0].upd = {
+                        "StackObjectsCount": 1,
+                        "Resource": {
+                            "Value": resourceValue
+                        }
+                    };
+                    console.log(`Water filter: ${resourceValue} filter left on slot ${i + 1}`);
+                }
+                else
+                {
+                    waterFilterArea.slots[i].item = [];
+                }
+                break;
+            }
+        }
+
+        return waterFilterArea;
+    }
+
     updateAirFilters(airFilterArea)
     {
-        const filterDrainRate = 0.00417;
+        // 300 resources last 20 hrs, 300/20/60/60 = 0.00416
+        const filterDrainRate = 0.00416 * hideout_f.config.runInterval;
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {
-            if (!airFilterArea.slots[i].item)
+            if (!airFilterArea.slots[i].item || !airFilterArea.slots[i].item[0])
             {
                 continue;
             }
@@ -764,7 +827,7 @@ class Controller
                 }
                 else
                 {
-                    airFilterArea.slots[i].item[0] = null;
+                    airFilterArea.slots[i].item = [];
                 }
                 break;
             }
@@ -781,8 +844,11 @@ class Controller
         {
             btcProd.Progress += time_elapsed;
         }
-
-        const t2 = Math.pow((0.05 + (btcFarmCGs - 1) / 49 * 0.15), -1); // Function to reduce production time based on amount of GPU's
+        
+        // Function to reduce production time based on amount of GPU's
+        // Formula is based on the info that is available on the offical tarkov wiki
+        const btcFormula = 0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397;
+        const t2 = Math.pow(btcFormula, -1);
         const final_prodtime = Math.floor(t2 * 14400);
 
         while (btcProd.Progress > final_prodtime)

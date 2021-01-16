@@ -35,6 +35,7 @@ class Logger
                 "white": "\x1b[47m"
             }
         };
+        this.showDebug = 1;
 
         this.setupExceptions();
     }
@@ -86,6 +87,15 @@ class Logger
     {
         this.log(`[INFO] ${data}`, "cyan", "black");
     }
+
+    logDebug(data, isError = false)
+    {
+        if (this.showDebug)
+        {
+            this.log(`[DEBUG] ${data}`, (isError) ? "red" : "green", "black");
+        }
+    }
+
 }
 
 module.exports.Logger = Logger;

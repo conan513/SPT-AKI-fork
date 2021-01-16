@@ -438,7 +438,7 @@ class Controller
     /* Give Item
     * its used for "add" item like gifts etc.
     * */
-    addItem(pmcData, body, output, sessionID, callback, foundInRaid = false)
+    addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
     {
         const fenceID = "579dc571d53a0658a154fbec";
         let itemLib = [];
@@ -578,14 +578,15 @@ class Controller
                 }
             }
 
-            // in case people want all items to be marked as found in raid
-            if (inventory_f.config.newItemsMarkedFound)
+            // add ragfair upd properties
+            if (addUpd)
             {
-                foundInRaid = true;
+                upd = {...addUpd, ...upd};
             }
 
             // hideout items need to be marked as found in raid
-            if (foundInRaid)
+            // or in case people want all items to be marked as found in raid
+            if (foundInRaid || inventory_f.config.newItemsMarkedFound)
             {
                 upd["SpawnedInSession"] = true;
             }
