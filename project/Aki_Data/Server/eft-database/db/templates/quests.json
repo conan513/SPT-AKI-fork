@@ -168,7 +168,7 @@
 				{
 					"_parent": "CounterCreator",
 					"_props": {
-						"value": "30",
+						"value": "25",
 						"type": "Elimination",
 						"counter": {
 							"id": "Randommmization",
