@@ -684,7 +684,7 @@ class Controller
 
         for (let i = 0; i < generatorArea.slots.length; i++)
         {
-            if (!generatorArea.slots[i].item)
+            if (!generatorArea.slots[i].item || !generatorArea.slots[i].item[0])
             {
                 continue;
             }
@@ -693,7 +693,11 @@ class Controller
                 let resourceValue = (generatorArea.slots[i].item[0].upd && generatorArea.slots[i].item[0].upd.Resource)
                     ? generatorArea.slots[i].item[0].upd.Resource.Value
                     : null;
-                if (!resourceValue)
+                if (resourceValue === 0)
+                {
+                    continue;
+                }
+                else if (!resourceValue)
                 {
                     const fuelItem = "5d1b371186f774253763a656"; // Expeditionary fuel tank
                     resourceValue = generatorArea.slots[i].item[0]._tpl === fuelItem
@@ -727,7 +731,6 @@ class Controller
                         }
                     };
                 }
-
             }
         }
 
@@ -746,7 +749,7 @@ class Controller
 
         for (let i = 0; i < waterFilterArea.slots.length; i++)
         {
-            if (!waterFilterArea.slots[i].item)
+            if (!waterFilterArea.slots[i].item || !waterFilterArea.slots[i].item[0])
             {
                 continue;
             }
@@ -777,7 +780,7 @@ class Controller
                 }
                 else
                 {
-                    waterFilterArea.slots[i].item[0] = null;
+                    waterFilterArea.slots[i].item = [];
                 }
                 break;
             }
@@ -793,7 +796,7 @@ class Controller
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {
-            if (!airFilterArea.slots[i].item)
+            if (!airFilterArea.slots[i].item || !airFilterArea.slots[i].item[0])
             {
                 continue;
             }
@@ -824,7 +827,7 @@ class Controller
                 }
                 else
                 {
-                    airFilterArea.slots[i].item[0] = null;
+                    airFilterArea.slots[i].item = [];
                 }
                 break;
             }
