@@ -148,7 +148,7 @@ class Controller
         {
             if (item._id === reward.target)
             {
-                if ((item.parentId !== void 0) && (item.parentId === "hideout") && (item.upd !== void 0) && (item.upd.StackObjectsCount !== void 0) && (item.upd.StackObjectsCount > 1))
+                if ((item.parentId !== undefined) && (item.parentId === "hideout") && (item.upd !== undefined) && (item.upd.StackObjectsCount !== undefined) && (item.upd.StackObjectsCount > 1))
                 {
                     itemCount = item.upd.StackObjectsCount;
                     item.upd.StackObjectsCount = 1;

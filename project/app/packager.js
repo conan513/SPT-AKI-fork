@@ -27,9 +27,14 @@ class Packager
         global[name] = require(`../${filepath}`);
     }
 
+    loadPackageList()
+    {
+        return JSON.parse(fs.readFileSync(`${this.basepath}loadorder.json`));
+    }
+
     load()
     {
-        const source = JSON.parse(fs.readFileSync(`${this.basepath}loadorder.json`));
+        const source = this.loadPackageList();
 
         // import classes
         for (const pkg in source)

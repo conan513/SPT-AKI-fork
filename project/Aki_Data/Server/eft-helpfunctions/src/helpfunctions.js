@@ -537,7 +537,7 @@ class HelpFunctions
      * @param {UserPMCProfile} pmcData
      * @param {number} amount numberToReturn
      * @param {{ tid: string | number; }} body request.body
-     * @param {string | apiEventResponse} output
+     * @param {apiEventResponse} output
      * @param {any} sessionID
      * @returns none (output is sended to item.js, and profile is saved to file)
      */
@@ -866,6 +866,7 @@ class HelpFunctions
             }
         }
 
+        
         return list;
     }
 
