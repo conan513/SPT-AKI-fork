@@ -12,7 +12,7 @@ declare var health_f: akiPackage;
 declare var inraid_f: akiPackage;
 declare var dialogue_f: akiPackage;
 declare var account_f: akiPackage;
-declare var profile_f: package;
+declare var profile_f: akiPackage;
 declare var notifier_f: akiPackage;
 declare var bots_f: akiPackage;
 declare var helpfunc_f: akiPackage;
