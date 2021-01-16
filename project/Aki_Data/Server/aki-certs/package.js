@@ -7,11 +7,7 @@
  */
 
 const { Controller } = require("./src/controller.js");
-const { Callbacks } = require("./src/callbacks.js");
-const { Helpers } = require("./src/helpers.js");
-const { Config } = require("./src/config.js");
+const { Callbacks } = require("./src/callbacks");
 
 module.exports.controller = new Controller();
 module.exports.callbacks = new Callbacks();
-module.exports.helpers = new Helpers();
-module.exports.config = new Config();
