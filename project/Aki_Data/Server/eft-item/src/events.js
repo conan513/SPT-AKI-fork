@@ -10,12 +10,17 @@ class EventHandler
 {
     constructor()
     {
-        this.output = "";
+        /** @type {apiEventResponse} */
+        this.output;
         this.onEvent = {};
 
         this.resetOutput();
     }
 
+    /**
+     * @param {{ data: any; }} info
+     * @param {string} sessionID
+     */
     handleEvents(info, sessionID)
     {
         let result = "";
@@ -48,13 +53,22 @@ class EventHandler
         return this.output;
     }
 
+    /**
+     * @param {apiEventResponse} data
+     */
     setOutput(data)
     {
         this.output = data;
     }
+    /**
+     *
+     *
+     * @memberof EventHandler
 
+     */
     resetOutput()
     {
+
         this.output = {
             "items": {
                 "new": [],

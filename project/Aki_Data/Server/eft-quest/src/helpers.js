@@ -1,3 +1,4 @@
+//@ts-check
 /* controller.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -28,6 +29,11 @@ class Helpers
             MarkedAsFailed: 7
         };
     }
+    /**
+     * @param {QuestSuccessCriteria[]} q
+     * @param {string} questType
+     * @return {QuestSuccessCriteria[]}
+     */
     filterConditions(q, questType, furtherFilter = null)
     {
 
@@ -47,17 +53,30 @@ class Helpers
         return filteredQuests;
     }
 
+    /**
+     * @param {QuestSuccessCriteria[]} q
+     */
     getQuestConditions(q, furtherFilter = null)
     {
         return this.filterConditions(q, "Quest", furtherFilter);
     }
 
+    /**
+     * @param {QuestSuccessCriteria[]} q
+     */
     getLevelConditions(q, furtherFilter = null)
     {
         return this.filterConditions(q, "Level", furtherFilter);
     }
 
-    // returns true is the condition is satisfied
+    /**
+     * returns true is the condition is satisfied
+     *
+     * @param {*} pmcProfile
+     * @param {QuestSuccessCriteria} cond
+     * @return {*}
+     * @memberof Helpers
+     */
     evaluateLevel(pmcProfile, cond)
     {
         let level = pmcProfile.Info.Level;
@@ -76,14 +95,23 @@ class Helpers
 
     /* debug functions */
 
+    /**
+     * @param {string} questId
+     */
     getQuestLocale(questId)
     {
         const questLocale = database_f.server.tables.locales.global["en"].quest[questId];
         return questLocale;
     }
 
+    /**
+     * @param {QuestList} before
+     * @param {QuestList} after
+     * @return {QuestList}
+     */
     getDeltaQuests(before, after)
     {
+        /** @type {string[]} */
         let knownQuestsIds = [];
         before.forEach((q) =>
         {
@@ -99,8 +127,17 @@ class Helpers
         return after;
     }
 
+    /**
+     * Debug Routine for showing some information on the
+     * quest list in question.
+     *
+     * @param {QuestList} quests
+     * @param {*} [label=null]
+     * @memberof Helpers
+     */
     dumpQuests(quests, label = null)
     {
+
         for (const quest of quests)
         {
             const currentQuestLocale = this.getQuestLocale(quest._id);

@@ -1,3 +1,4 @@
+//@ts-check
 /* server.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -13,6 +14,7 @@ class Server
     constructor()
     {
         this.filepath = "user/profiles/";
+        /** @type {UserProfile[]} */
         this.profiles = {};
         this.onLoad = {};
         this.onSave = {};
@@ -45,6 +47,9 @@ class Server
         }
     }
 
+    /**
+     * @param {string} sessionID
+     */
     loadProfile(sessionID)
     {
         const file = `${this.filepath}${sessionID}.json`;
@@ -62,6 +67,10 @@ class Server
         }
     }
 
+    /**
+     * Save Useer's Profile
+     * @param {string} sessionID
+     */
     saveProfile(sessionID)
     {
         const file = `${this.filepath}${sessionID}.json`;

@@ -1,3 +1,4 @@
+//@ts-check
 /* helpfunctions.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -20,13 +21,16 @@
 
 class HelpFunctions
 {
+    /**
+     * @param {itemTemplate[]} items
+     */
     getSecureContainer(items)
     {
         // Player Slots we care about
         const inventorySlots = [
             "SecuredContainer",
         ];
-
+        /** @type {itemTemplate[]} */
         let inventoryItems = [];
 
         // Get an array of root player items
@@ -69,8 +73,12 @@ class HelpFunctions
         return inventoryItems;
     }
 
+    /**
+     * @param {hash} sessionID
+     */
     getStashType(sessionID)
     {
+        /** @type {UserPMCProfile} */
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
         const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
@@ -83,6 +91,9 @@ class HelpFunctions
         return stashObj._tpl;
     }
 
+    /**
+     * @param {UserPMCProfile} pmcData
+     */
     calculateLevel(pmcData)
     {
         let exp = 0;
@@ -104,9 +115,11 @@ class HelpFunctions
     getRandomExperience()
     {
         let exp = 0;
+        /** @type {array} */
         let expTable = database_f.server.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
+        /** @type {number} */
         let randomLevel = common_f.random.getInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
@@ -123,6 +136,9 @@ class HelpFunctions
         return exp;
     }
 
+    /**
+     * @param {UserPMCProfile} profile
+     */
     generateInventoryID(profile)
     {
         let itemsByParentHash = {};
@@ -198,7 +214,12 @@ class HelpFunctions
         return profile;
     }
 
-    /* A reverse lookup for templates */
+    /**
+     * A reverse lookup for templates
+     *
+     * @return {TemplateLookup}
+     * @memberof HelpFunctions
+     */
     tplLookup()
     {
         if (this.tplLookup.lookup === undefined)
@@ -230,13 +251,16 @@ class HelpFunctions
                     lookup.categories.byParent[x.ParentId].push(x.Id);
                 }
             }
-
+            /** @type {TemplateLookup} */
             this.tplLookup.lookup = lookup;
         }
 
         return this.tplLookup.lookup;
     }
 
+    /**
+     * @param {Currency} x
+     */
     getTemplatePrice(x)
     {
         return (x in this.tplLookup().items.byId) ? this.tplLookup().items.byId[x] : 1;
@@ -262,12 +286,21 @@ class HelpFunctions
     * input: PlayerData
     * output: table[y][x]
     * */
+    /**
+     * @param {UserPMCProfile} pmcData
+     * @param {string} sessionID
+     */
     getPlayerStashSlotMap(pmcData, sessionID)
     {
         const PlayerStashSize = this.getPlayerStashSize(sessionID);
         return this.getContainerMap(PlayerStashSize[0], PlayerStashSize[1], pmcData.Inventory.items, pmcData.Inventory.stash);
     }
 
+    /**
+     * Check whether tpl is Money
+     * @param {string} tpl
+     * @returns {boolean}
+     */
     isMoneyTpl(tpl)
     {
         return ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"].includes(tpl);
@@ -277,6 +310,9 @@ class HelpFunctions
     * input: currency(tag)
     * output: template ID
     * */
+    /**
+     * @param {string} currency
+     */
     getCurrency(currency)
     {
         switch (currency)
@@ -296,6 +332,9 @@ class HelpFunctions
     * input: currency(tag)
     * output: template ID
     * */
+    /**
+     * @param {string} currency
+     */
     getCurrencyTag(currency)
     {
         switch (currency)
@@ -315,24 +354,33 @@ class HelpFunctions
     * input:  value, currency tpl
     * output: value after conversion
     */
+    /**
+     * @param {number} value
+     * @param {string} currency
+     */
     inRUB(value, currency)
     {
         return Math.round(value * this.getTemplatePrice(currency));
     }
 
-    /* Gets Ruble to Currency conversion Value
-    * input: value, currency tpl
-    * output: value after conversion
-    * */
+    /**
+     * Gets Ruble to Currency conversion Value
+     * @param {number} value
+     * @param {Currency} currency
+     * @return {number} value after conversion
+     */
     fromRUB(value, currency)
     {
         return Math.round(value / this.getTemplatePrice(currency));
     }
 
-    /* take money and insert items into return to server request
-    * input:
-    * output: boolean
-    * */
+    /**
+     * take money and insert items into return to server request
+     * @param {UserPMCProfile} pmcData
+     * @param {{ Action?: any; tid: any; scheme_items: any; }} body
+     * @param {string} sessionID
+     * @returns {boolean}
+     */
     payMoney(pmcData, body, sessionID)
     {
         let output = item_f.eventHandler.getOutput();
@@ -425,13 +473,17 @@ class HelpFunctions
         return true;
     }
 
-    /* Find Barter items in the inventory
-    * input: object of player data, string BarteredItem ID
-    * output: array of Item from inventory
-    * */
+    /**
+     * Find Barter items in the inventory
+     * @param {"tpl"} by
+     * @param {UserPMCProfile} pmcData
+     * @param {string} barter_itemID
+     * @returns {itemTemplate[]}
+     */
     findBarterItems(by, pmcData, barter_itemID)
     { // find required items to take after buying (handles multiple items)
         const barterIDs = typeof barter_itemID === "string" ? [barter_itemID] : barter_itemID;
+        /** @type {itemTemplate[]} */
         let itemsArray = [];
 
         for (const barterID of barterIDs)
@@ -447,10 +499,14 @@ class HelpFunctions
         return itemsArray;
     }
 
-    /* Recursively checks if the given item is
-    * inside the stash, that is it has the stash as
-    * ancestor with slotId=hideout
-    */
+    /**
+     * Recursively checks if the given item is
+     * inside the stash, that is it has the stash as
+     * ancestor with slotId=hideout
+     *
+     * @param {UserPMCProfile} pmcData
+     * @param {itemTemplate} item
+     */
     isItemInStash(pmcData, item)
     {
         let container = item;
@@ -473,10 +529,18 @@ class HelpFunctions
         return false;
     }
 
-    /* receive money back after selling
-    * input: pmcData, numberToReturn, request.body,
-    * output: none (output is sended to item.js, and profile is saved to file)
-    * */
+
+
+
+    /**
+     * receive money back after selling
+     * @param {UserPMCProfile} pmcData
+     * @param {number} amount numberToReturn
+     * @param {{ tid: string | number; }} body request.body
+     * @param {string | apiEventResponse} output
+     * @param {any} sessionID
+     * @returns none (output is sended to item.js, and profile is saved to file)
+     */
     getMoney(pmcData, amount, body, output, sessionID)
     {
         let trader = trader_f.controller.getTrader(body.tid, sessionID);
@@ -606,6 +670,9 @@ class HelpFunctions
         return [false, {}];
     }
 
+    /**
+     * @param {itemTemplate[]} InventoryItem
+     */
     getInventoryItemHash(InventoryItem)
     {
         let inventoryItemHash = {
@@ -636,6 +703,11 @@ class HelpFunctions
     * inputs Item template ID, Item Id, InventoryItem (item from inventory having _id and _tpl)
     * outputs [width, height]
     * */
+    /**
+     * @param {itemTemplate} itemtpl
+     * @param {string} itemID
+     * @param {itemTemplate[]} InventoryItem
+     */
     getItemSize(itemtpl, itemID, InventoryItem)
     { // -> Prepares item Width and height returns [sizeX, sizeY]
         return this.getSizeByInventoryItemHash(itemtpl, itemID, this.getInventoryItemHash(InventoryItem));
@@ -643,6 +715,11 @@ class HelpFunctions
 
     // note from 2027: there IS a thing i didn't explore and that is Merges With Children
     // -> Prepares item Width and height returns [sizeX, sizeY]
+    /**
+     * @param {itemTemplate} itemtpl
+     * @param {string} itemID
+     * @param {{ byItemId: any; byParentId: any; }} inventoryItemHash
+     */
     getSizeByInventoryItemHash(itemtpl, itemID, inventoryItemHash)
     {
         let toDo = [itemID];
@@ -732,13 +809,22 @@ class HelpFunctions
     * List is backward first item is the furthest child and last item is main item
     * returns all child items ids in array, includes itself and children
     * */
+    /**
+     * @param {UserPMCProfile} pmcData
+     * @param {string} itemID
+     */
     findAndReturnChildren(pmcData, itemID)
     {
         return this.findAndReturnChildrenByItems(pmcData.Inventory.items, itemID);
     }
 
+    /**
+     * @param {itemTemplate[]} items
+     * @param {string} itemID
+     */
     findAndReturnChildrenByItems(items, itemID)
     {
+        /** @type {string[]} */
         let list = [];
 
         for (let childitem of items)
@@ -753,11 +839,11 @@ class HelpFunctions
         return list;
     }
 
-    /*
-    * A variant of findAndReturnChildren where the output is list of item objects instead of their ids.
-    * Input: Array of item objects, root item ID.
-    * Output: Array of item objects containing root item and its children.
-    */
+    /**
+     * A variant of findAndReturnChildren where the output is list of item objects instead of their ids.
+     * @param {itemTemplate[]} items Array of item objects, root item ID.
+     * @param {string} itemID Array of item objects containing root item and its children.
+     */
     findAndReturnChildrenAsItems(items, itemID)
     {
         let list = [];
@@ -783,16 +869,21 @@ class HelpFunctions
         return list;
     }
 
-    //find childs of the item in a given assort (weapons pars for example, need recursive loop function)
+    /**
+     * find childs of the item in a given assort (weapons pars for example, need recursive loop function)
+     * @param {string} itemIdToFind
+     * @param {itemTemplate[]} assort
+     */
     findAndReturnChildrenByAssort(itemIdToFind, assort)
     {
+        /** @type {itemTemplate[]} */
         let list = [];
 
         for (let itemFromAssort of assort)
         {
             if (itemFromAssort.parentId === itemIdToFind && !list.find((item) =>
             {
-                return itemFromAssort._id == item._id;
+                return itemFromAssort._id === item._id;
             }))
             {
                 list.push(itemFromAssort);
@@ -803,12 +894,12 @@ class HelpFunctions
         return list;
     }
 
-    /* Is Dogtag
-    * input: itemId
-    * output: bool
-    * Checks if an item is a dogtag. Used under profile_f.js to modify preparePrice based
-    * on the level of the dogtag
-    */
+    /**
+     * Is Dogtag
+     * Checks if an item is a dogtag. Used under profile_f.js to modify preparePrice based
+     * on the level of the dogtag
+     * @param {string} itemId
+     */
     isDogtag(itemId)
     {
         return itemId === "59f32bb586f774757e1e8442" || itemId === "59f32c3b86f77472a31742f0";
@@ -949,10 +1040,12 @@ class HelpFunctions
         return items;
     }
 
-    /* split item stack if it exceeds StackMaxSize
-    *  input: an item
-    *  output: an array of these items with StackObjectsCount <= StackMaxSize
-    */
+
+    /**
+     * split item stack if it exceeds StackMaxSize
+     * @param {itemTemplate} item
+     * @returns {itemTemplate[]} array of these items with StackObjectsCount <= StackMaxSize
+     */
     splitStack(item)
     {
         if (!("upd" in item) || !("StackObjectsCount" in item.upd))
@@ -962,6 +1055,7 @@ class HelpFunctions
 
         let maxStack = database_f.server.tables.templates.items[item._tpl]._props.StackMaxSize;
         let count = item.upd.StackObjectsCount;
+        /** @type {itemTemplate[]} */
         let stacks = [];
 
         // If the current count is already equal or less than the max
@@ -996,6 +1090,9 @@ class HelpFunctions
         return a.filter(x => b.includes(x));
     }
 
+    /**
+     * @param {apiEventResponse} output
+     */
     appendErrorToOutput(output, message = "An unknown error occurred", title = "Error")
     {
         output.badRequest = [{
