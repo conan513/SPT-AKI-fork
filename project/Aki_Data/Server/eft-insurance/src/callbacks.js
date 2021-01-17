@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Callbacks
+class InsuranceCallbacks
 {
     constructor()
     {
@@ -44,4 +44,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.InsuranceCallbacks = InsuranceCallbacks;

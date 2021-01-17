@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class InsuranceConfig
 {
     constructor()
     {
@@ -18,4 +18,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.InsuranceConfig = InsuranceConfig;
