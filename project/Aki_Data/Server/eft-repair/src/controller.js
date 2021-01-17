@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Controller
+class RepairController
 {
     repair(pmcData, body, sessionID)
     {
@@ -68,4 +68,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.RepairController = RepairController;
