@@ -1,4 +1,4 @@
-/* controller.js
+/* BotController.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class BotController
 {
     getBotLimit(type)
     {
@@ -213,4 +213,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.BotController = BotController;
