@@ -15,7 +15,7 @@ class Controller
     constructor()
     {
         database_f.server.tables.traders = {};
-        this.fenceAssort = {};
+        this.fenceAssort = undefined;
     }
 
     load()
