@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Controller
+class AdditionsController
 {
     load()
     {
@@ -114,4 +114,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.AdditionsController = AdditionsController;

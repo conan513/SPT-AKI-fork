@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class AdditionsConfig
 {
     constructor()
     {
@@ -51,4 +51,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.AdditionsConfig = AdditionsConfig;
