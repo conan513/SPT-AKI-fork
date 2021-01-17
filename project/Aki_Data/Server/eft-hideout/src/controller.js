@@ -38,7 +38,7 @@ const areaTypes = {
 
 const BITCOIN_FARM = "5d5c205bd582a50d042a3c0e";
 
-class Controller
+class HideoutController
 {
     upgrade(pmcData, body, sessionID)
     {
@@ -875,4 +875,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.HideoutController = HideoutController;

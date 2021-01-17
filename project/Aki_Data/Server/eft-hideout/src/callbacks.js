@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Callbacks
+class HideoutCallbacks
 {
     constructor()
     {
@@ -81,4 +81,4 @@ class Callbacks
 
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.HideoutCallbacks = HideoutCallbacks;
