@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Server
+class RagfairServer
 {
     constructor()
     {
@@ -519,4 +519,4 @@ class Server
     }
 }
 
-module.exports.Server = Server;
+module.exports.RagfairServer = RagfairServer;

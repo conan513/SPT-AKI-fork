@@ -6,12 +6,12 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Server } = require("./src/server.js");
-const { Controller } = require("./src/controller.js");
-const { Callbacks } = require("./src/callbacks.js");
-const { Config } = require("./src/config.js");
+const { RagfairServer } = require("./src/server.js");
+const { RagfairController } = require("./src/controller.js");
+const { RagfairCallbacks } = require("./src/callbacks.js");
+const { RagfairConfig } = require("./src/config.js");
 
-module.exports.server = new Server();
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
+module.exports.server = new RagfairServer();
+module.exports.controller = new RagfairController();
+module.exports.callbacks = new RagfairCallbacks();
+module.exports.config = new RagfairConfig();

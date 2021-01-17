@@ -11,7 +11,7 @@
 
 "use strict";
 
-class Controller
+class RagfairController
 {
     initialize()
     {
@@ -862,4 +862,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.RagfairController = RagfairController;
