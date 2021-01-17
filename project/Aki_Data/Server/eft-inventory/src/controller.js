@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Controller
+class InventoryController
 {
     /* Based on the item action, determine whose inventories we should be looking at for from and to. */
     getOwnerInventoryItems(body, sessionID)
@@ -920,4 +920,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.InventoryController = InventoryController;

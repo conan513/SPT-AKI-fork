@@ -6,10 +6,10 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Controller } = require("./src/controller.js");
-const { Callbacks } = require("./src/callbacks.js");
-const { Config } = require("./src/config.js");
+const { InventoryController } = require("./src/controller.js");
+const { InventoryCallbacks } = require("./src/callbacks.js");
+const { InventoryConfig } = require("./src/config.js");
 
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
+module.exports.controller = new InventoryController();
+module.exports.callbacks = new InventoryCallbacks();
+module.exports.config = new InventoryConfig();
