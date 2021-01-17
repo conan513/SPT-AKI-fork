@@ -132,7 +132,7 @@ class Server
 
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            assort = trader_f.controller.fenceAssort || { "items": [] };
+            assort = this.fenceAssort || { "items": [] };
         }
 
         for (const item of assort.items)
