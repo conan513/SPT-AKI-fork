@@ -224,21 +224,6 @@ class ProfileController
 
         return output;
     }
-
-    resetProfileQuestCondition(sessionID, conditionId)
-    {
-        let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
-
-        for (let quest of startedQuests)
-        {
-            const index = quest.completedConditions.indexOf(conditionId);
-
-            if (index > -1)
-            {
-                quest.completedConditions.splice(index, 1);
-            }
-        }
-    }
 }
 
 module.exports.ProfileController = ProfileController;

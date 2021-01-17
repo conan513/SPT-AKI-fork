@@ -14,11 +14,6 @@
 
 class Controller
 {
-    constructor()
-    {
-
-    }
-
     getClientQuests(sessionID)
     {
         let quests = [],
@@ -595,6 +590,21 @@ class Controller
         quest = common_f.json.clone(quest);
         quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
         return quest;
+    }
+
+    resetProfileQuestCondition(sessionID, conditionId)
+    {
+        let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
+
+        for (let quest of startedQuests)
+        {
+            const index = quest.completedConditions.indexOf(conditionId);
+
+            if (index > -1)
+            {
+                quest.completedConditions.splice(index, 1);
+            }
+        }
     }
 }
 
