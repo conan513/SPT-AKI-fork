@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Callbacks
+class DialogueCallbacks
 {
     constructor()
     {
@@ -120,4 +120,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.DialogueCallbacks = DialogueCallbacks;

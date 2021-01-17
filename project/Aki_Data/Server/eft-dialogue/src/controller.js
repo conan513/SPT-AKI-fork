@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Controller
+class DialogueController
 {
     constructor()
     {
@@ -268,4 +268,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.DialogueController = DialogueController;
