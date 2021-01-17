@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Controller
+class AccountController
 {
     find(sessionID)
     {
@@ -110,4 +110,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.AccountController = AccountController;

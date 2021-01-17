@@ -8,8 +8,8 @@
 
 "use strict";
 
-const { Controller } = require("./src/controller.js");
-const { Callbacks } = require("./src/callbacks.js");
+const { AccountController } = require("./src/controller.js");
+const { AccountCallbacks } = require("./src/callbacks.js");
 
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
+module.exports.controller = new AccountController();
+module.exports.callbacks = new AccountCallbacks();
