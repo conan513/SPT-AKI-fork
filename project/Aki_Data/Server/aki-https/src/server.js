@@ -1,4 +1,4 @@
-﻿/* server.js
+﻿/* HttpServer.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -15,7 +15,7 @@ const https = require("https");
 const WebSocket = require("ws");
 
 
-class Server
+class HttpServer
 {
     constructor()
     {
@@ -260,4 +260,4 @@ class Server
     }
 }
 
-module.exports.Server = Server;
+module.exports.HttpServer = HttpServer;

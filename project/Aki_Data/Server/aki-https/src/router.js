@@ -1,4 +1,4 @@
-/* router.js
+/* HttpRouter.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Router
+class HttpRouter
 {
     constructor()
     {
@@ -47,4 +47,4 @@ class Router
     }
 }
 
-module.exports.Router = Router;
+module.exports.HttpRouter = HttpRouter;

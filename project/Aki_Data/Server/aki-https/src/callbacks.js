@@ -1,4 +1,4 @@
-/* callbacks.js
+/* HttpCallbacks.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Callbacks
+class HttpCallbacks
 {
     constructor()
     {
@@ -37,4 +37,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.HttpCallbacks = HttpCallbacks;
