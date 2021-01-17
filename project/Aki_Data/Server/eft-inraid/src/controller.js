@@ -12,7 +12,7 @@
 
 "use strict";
 
-class Controller
+class InraidController
 {
     onLoad(sessionID)
     {
@@ -365,4 +365,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.InraidController = InraidController;

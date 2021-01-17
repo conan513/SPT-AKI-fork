@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class InraidConfig
 {
     constructor()
     {
@@ -27,4 +27,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.InraidConfig = InraidConfig;
