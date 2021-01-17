@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class LocationConfig
 {
     constructor()
     {
@@ -34,4 +34,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.LocationConfig = LocationConfig;

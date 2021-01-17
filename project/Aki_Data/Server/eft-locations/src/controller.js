@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Controller
+class LocationController
 {
     /* generates a random location preset to use for local session */
     generate(name)
@@ -140,4 +140,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.LocationController = LocationController;

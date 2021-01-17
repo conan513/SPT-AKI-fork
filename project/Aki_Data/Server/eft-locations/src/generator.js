@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Generator
+class LocationGenerator
 {
     generateDynamicLoot(dynamic, lootPositions, location)
     {
@@ -250,4 +250,4 @@ class Generator
     }
 }
 
-module.exports.Generator = Generator;
+module.exports.LocationGenerator = LocationGenerator;
