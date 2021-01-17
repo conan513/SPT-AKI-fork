@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class WishlistController
 {
     /* Adding item to wishlist
     *  input: playerProfileData, Request body
@@ -49,4 +49,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.WishlistController = WishlistController;
