@@ -1,4 +1,4 @@
-/* controller.js
+/* CertController.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -14,7 +14,7 @@
 const selfsigned = require("selfsigned");
 const sudo = require("sudo-prompt");
 
-class Controller
+class CertController
 {
     constructor()
     {
@@ -108,4 +108,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.CertController = CertController;
