@@ -15,10 +15,12 @@ class Packager
     constructor()
     {
         this.basepath = "Aki_Data/Server/";
+        this.staticLib = "lib.js";
         this.source = {};
         this.onLoad = {};
         this.onUpdate = {};
         this.onUpdateLastRun = {};
+        this.enableStaticLib = true;
     }
 
     importClass(name, filepath)
@@ -32,14 +34,31 @@ class Packager
         return JSON.parse(fs.readFileSync(`${this.basepath}loadorder.json`));
     }
 
+    /**
+     * Created Static Library for linking
+     * @param {string} [file]
+     */
+    createStaticLib(file)
+    {
+        const packageList = this.loadPackageList();
+        let output = "";
+        for (const pkg in packageList)
+        {
+            output += `globalThis.${pkg} = require("./${this.basepath}${packageList[pkg]}");\n`;
+        }
+        fs.writeFileSync(this.staticLib, output);
+        return true;
+    }
+
     load()
     {
-        const source = this.loadPackageList();
-
-        // import classes
-        for (const pkg in source)
+        if (this.enableStaticLib)
         {
-            this.importClass(pkg, `${this.basepath}${source[pkg]}`);
+            this.staticLoader();
+        }
+        else
+        {
+            this.dynamicLoader();
         }
 
         // execute onLoad callbacks
@@ -51,6 +70,28 @@ class Packager
         }
 
         setInterval(this.update.bind(this), 1000);
+    }
+
+    dynamicLoader()
+    {
+        const source = this.loadPackageList();
+
+        // import classes
+        for (const pkg in source)
+        {
+            this.importClass(pkg, `${this.basepath}${source[pkg]}`);
+        }
+    }
+
+    staticLoader ()
+    {
+        if (!fs.existsSync(this.staticLib))
+        {
+            this.createStaticLib();
+
+
+        }
+        require("../" + this.staticLib);
     }
 
     update()
