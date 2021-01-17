@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Callbacks
+class DatabaseImporter
 {
     constructor()
     {
@@ -150,4 +150,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.DatabaseImporter = DatabaseImporter;
