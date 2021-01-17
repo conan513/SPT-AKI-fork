@@ -191,9 +191,11 @@ class Controller
             // it's the item
             if (!(itemID in itemPresets))
             {
-                result.items.push(assort.items[assort.items.findIndex(i => i._id === itemID)]);
-                result.barter_scheme[itemID] = assort.barter_scheme[itemID];
-                result.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
+                const toPush = common_f.json.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
+                toPush._id = common_f.hash.generate();
+                result.items.push(toPush);
+                result.barter_scheme[toPush._id] = assort.barter_scheme[itemID];
+                result.loyal_level_items[toPush._id] = assort.loyal_level_items[itemID];
                 continue;
             }
 
@@ -202,6 +204,8 @@ class Controller
             let items = common_f.json.clone(itemPresets[itemID]._items);
             let ItemRootOldId = itemPresets[itemID]._parent;
 
+            items[0]._id = common_f.hash.generate();
+
             for (let i = 0; i < items.length; i++)
             {
                 let mod = items[i];
@@ -209,7 +213,7 @@ class Controller
                 //build root Item info
                 if (!("parentId" in mod))
                 {
-                    mod._id = itemID;
+                    mod._id = items[0]._id;
                     mod.parentId = "hideout";
                     mod.slotId = "hideout";
                     mod.upd = {
@@ -219,7 +223,7 @@ class Controller
                 }
                 else if (mod.parentId === ItemRootOldId)
                 {
-                    mod.parentId = itemID;
+                    mod.parentId = items[0]._id;
                 }
             }
 
@@ -231,9 +235,9 @@ class Controller
                 rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
             }
 
-            result.barter_scheme[itemID] = assort.barter_scheme[itemID];
-            result.barter_scheme[itemID][0][0].count = rub;
-            result.loyal_level_items[itemID] = assort.loyal_level_items[itemID];
+            result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
+            result.barter_scheme[items[0]._id][0][0].count = rub;
+            result.loyal_level_items[items[0]._id] = assort.loyal_level_items[itemID];
         }
 
         return result;
