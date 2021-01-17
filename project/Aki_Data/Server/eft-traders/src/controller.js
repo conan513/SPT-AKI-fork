@@ -120,8 +120,16 @@ class Controller
     {
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            common_f.logger.logWarning("generating fence");
-            return this.generateFenceAssort();
+            const time = common_f.time.getTimestamp();
+            const trader = database_f.server.tables.traders[traderID].base;
+
+            if (!database_f.server.tables.traders[traderID].tempassort || trader.supply_next_time < time)
+            {
+                common_f.logger.logWarning("generating fence");
+                database_f.server.tables.traders[traderID].tempassort = this.generateFenceAssort();
+                ragfair_f.server.generateTraderOffers(traderID);
+            }
+            return database_f.server.tables.traders[traderID].tempassort;
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
