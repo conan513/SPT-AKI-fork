@@ -128,7 +128,12 @@ class Server
 
         // add trader offers
         const time = common_f.time.getTimestamp();
-        const assort = database_f.server.tables.traders[traderID].assort;
+        let assort = database_f.server.tables.traders[traderID].assort;
+
+        if (traderID === "579dc571d53a0658a154fbec")
+        {
+            assort = database_f.server.tables.traders[traderID].tempassort || {"items":[]};
+        }
 
         for (const item of assort.items)
         {
