@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Controller
+class MatchController
 {
     constructor()
     {
@@ -153,4 +153,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.MatchController = MatchController;

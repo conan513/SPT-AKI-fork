@@ -6,10 +6,10 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Controller } = require("./src/controller.js");
-const { Callbacks } = require("./src/callbacks.js");
-const { Config } = require("./src/config.js");
+const { MatchController } = require("./src/controller.js");
+const { MatchCallbacks } = require("./src/callbacks.js");
+const { MatchConfig } = require("./src/config.js");
 
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
+module.exports.controller = new MatchController();
+module.exports.callbacks = new MatchCallbacks();
+module.exports.config = new MatchConfig();
