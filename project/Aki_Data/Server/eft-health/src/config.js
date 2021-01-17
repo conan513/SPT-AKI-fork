@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class HealthConfig
 {
     constructor()
     {
@@ -23,4 +23,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.HealthConfig = HealthConfig;

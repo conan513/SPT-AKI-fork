@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Controller
+class HealthController
 {
     resetVitality(sessionID)
     {
@@ -282,4 +282,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.HealthController = HealthController;
