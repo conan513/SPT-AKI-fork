@@ -166,7 +166,8 @@ class Server
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
 
             // create offer
-            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+
             this.createOffer(
                 common_f.hash.generate(),           // userID
                 common_f.time.getTimestamp(),       // time
@@ -448,6 +449,15 @@ class Server
         {
             return item._id === offerID;
         }));
+    }
+
+    getPresetItems(item)
+    {
+        const preset = common_f.json.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
+        preset[0].parentId = item.parentId;
+        preset[0].slotId = item.slotId;
+        preset[0].upd = item.upd;
+        return preset;
     }
 
     returnPlayerOffer(offerId, sessionID)
