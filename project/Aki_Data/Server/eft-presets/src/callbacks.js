@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Callbacks
+class PresetCallbacks
 {
     constructor()
     {
@@ -22,4 +22,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.PresetCallbacks = PresetCallbacks;

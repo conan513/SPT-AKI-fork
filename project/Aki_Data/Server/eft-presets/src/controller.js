@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class PresetController
 {
     initialize()
     {
@@ -103,4 +103,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.PresetController = PresetController;
