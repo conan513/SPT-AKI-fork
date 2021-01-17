@@ -12,7 +12,7 @@
 
 "use strict";
 
-class Controller
+class QuestController
 {
     getClientQuests(sessionID)
     {
@@ -608,4 +608,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.QuestController = QuestController;
