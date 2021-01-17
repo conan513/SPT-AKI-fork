@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Loader
+class ModLoader
 {
     constructor()
     {
@@ -240,4 +240,4 @@ class Loader
     }
 }
 
-module.exports.Loader = Loader;
+module.exports.ModLoader = ModLoader;

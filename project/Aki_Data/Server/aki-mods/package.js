@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Loader } = require("./src/loader.js");
-const { Callbacks } = require("./src/callbacks.js");
+const { ModLoader } = require("./src/loader.js");
+const { ModCallbacks } = require("./src/callbacks.js");
 
-module.exports.loader = new Loader();
-module.exports.callbacks = new Callbacks();
+module.exports.loader = new ModLoader();
+module.exports.callbacks = new ModCallbacks();
