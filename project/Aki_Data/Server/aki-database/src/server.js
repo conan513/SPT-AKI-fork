@@ -1,4 +1,4 @@
-/* server.js
+/* Database.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Server
+class Database
 {
     constructor()
     {
@@ -16,4 +16,4 @@ class Server
     }
 }
 
-module.exports.Server = Server;
+module.exports.Database = Database;

@@ -6,6 +6,6 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Server } = require("./src/server.js");
+const { Database } = require("./src/server.js");
 
-module.exports.server = new Server();
+module.exports.server = new Database();
