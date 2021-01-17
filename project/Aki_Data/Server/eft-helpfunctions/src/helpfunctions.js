@@ -18,7 +18,7 @@
 //////////////////////////////////// THIS CODE SHOULD BE STORED SOMEWHERE ELSE ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class HelpFunctions
+class PlzRefactorMeHelper
 {
     getSecureContainer(items)
     {
@@ -1151,4 +1151,4 @@ class HelpFunctions
     }
 }
 
-module.exports.HelpFunctions = HelpFunctions;
+module.exports.PlzRefactorMeHelper = PlzRefactorMeHelper;
