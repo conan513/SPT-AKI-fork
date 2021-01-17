@@ -15,6 +15,7 @@ class Controller
     constructor()
     {
         database_f.server.tables.traders = {};
+        this.fenceAssort = {};
     }
 
     load()
@@ -113,6 +114,7 @@ class Controller
             trader.supply_next_time = trader.supply_next_time + refresh * update;
             database_f.server.tables.traders[traderID].base = trader;
         }
+
         return true;
     }
 
@@ -123,13 +125,14 @@ class Controller
             const time = common_f.time.getTimestamp();
             const trader = database_f.server.tables.traders[traderID].base;
 
-            if (!database_f.server.tables.traders[traderID].tempassort || trader.supply_next_time < time)
+            if (!this.fenceAssort || trader.supply_next_time < time)
             {
                 common_f.logger.logWarning("generating fence");
-                database_f.server.tables.traders[traderID].tempassort = this.generateFenceAssort();
+                this.fenceAssort = this.generateFenceAssort();
                 ragfair_f.server.generateTraderOffers(traderID);
             }
-            return database_f.server.tables.traders[traderID].tempassort;
+            
+            return this.fenceAssort;
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
