@@ -6,6 +6,6 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Callbacks } = require("./src/callbacks.js");
+const { DatabaseImporter } = require("./src/callbacks.js");
 
-module.exports.callbacks = new Callbacks();
+module.exports.callbacks = new DatabaseImporter();

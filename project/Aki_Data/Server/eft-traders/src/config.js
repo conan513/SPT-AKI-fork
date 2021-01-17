@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class TraderConfig
 {
     constructor()
     {
@@ -17,4 +17,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.TraderConfig = TraderConfig;

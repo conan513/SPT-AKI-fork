@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Callbacks
+class InraidCallbacks
 {
     constructor()
     {
@@ -53,4 +53,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.InraidCallbacks = InraidCallbacks;

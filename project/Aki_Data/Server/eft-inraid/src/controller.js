@@ -12,7 +12,7 @@
 
 "use strict";
 
-class Controller
+class InraidController
 {
     onLoad(sessionID)
     {
@@ -41,9 +41,8 @@ class Controller
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
-        let map = database_f.server.tables.locations[locationName].base;
-        let mapKey = map.AccessKeys[0];
+        const locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
+        const mapKey = database_f.server.tables.locations[locationName].base.AccessKeys[0];
 
         if (!mapKey)
         {
@@ -54,31 +53,7 @@ class Controller
         {
             if (item._tpl === mapKey && item.slotId !== "Hideout")
             {
-                let usages = -1;
-
-                if (!helpfunc_f.helpFunctions.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
-                {
-                    usages = 1;
-                }
-                else
-                {
-                    usages = ("upd" in item && "Key" in item.upd) ? item.upd.Key.NumberOfUsages : -1;
-                }
-
-                if (usages === -1)
-                {
-                    item.upd = {"Key": {"NumberOfUsages": 1 }};
-                }
-                else
-                {
-                    item.upd.Key.NumberOfUsages += 1;
-                }
-
-                if (item.upd.Key.NumberOfUsages >= helpfunc_f.helpFunctions.getItem(mapKey)[1]._props.MaximumNumberOfUsage)
-                {
-                    inventory_f.controller.removeItemFromProfile(offraidData.profile, item._id);
-                }
-
+                inventory_f.controller.removeItemFromProfile(offraidData.profile, item._id);
                 break;
             }
         }
@@ -164,7 +139,7 @@ class Controller
             for (const questItem of carriedQuestItems)
             {
                 const conditionId = quest_f.controller.getFindItemIdForQuestItem(questItem);
-                profile_f.controller.resetProfileQuestCondition(sessionID, conditionId);
+                quest_f.controller.resetProfileQuestCondition(sessionID, conditionId);
             }
 
             //Delete carried quests items
@@ -390,4 +365,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.InraidController = InraidController;

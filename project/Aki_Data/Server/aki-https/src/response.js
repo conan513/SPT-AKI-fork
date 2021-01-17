@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Response
+class HttpResponse
 {
     clearString(s)
     {
@@ -57,4 +57,4 @@ class Response
     }
 }
 
-module.exports.Response = Response;
+module.exports.HttpResponse = HttpResponse;

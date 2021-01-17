@@ -12,13 +12,8 @@
 
 "use strict";
 
-class Controller
+class QuestController
 {
-    constructor()
-    {
-
-    }
-
     getClientQuests(sessionID)
     {
         let quests = [],
@@ -596,6 +591,21 @@ class Controller
         quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
         return quest;
     }
+
+    resetProfileQuestCondition(sessionID, conditionId)
+    {
+        let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
+
+        for (let quest of startedQuests)
+        {
+            const index = quest.completedConditions.indexOf(conditionId);
+
+            if (index > -1)
+            {
+                quest.completedConditions.splice(index, 1);
+            }
+        }
+    }
 }
 
-module.exports.Controller = Controller;
+module.exports.QuestController = QuestController;

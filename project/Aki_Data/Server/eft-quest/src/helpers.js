@@ -12,7 +12,7 @@
 
 "use strict";
 
-class Helpers
+class QuestHelpers
 {
     constructor()
     {
@@ -166,4 +166,4 @@ class Helpers
         }
     }
 }
-module.exports.Helpers = Helpers;
+module.exports.QuestHelpers = QuestHelpers;

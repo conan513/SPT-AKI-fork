@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Callbacks
+class RagfairCallbacks
 {
     constructor()
     {
@@ -82,4 +82,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.RagfairCallbacks = RagfairCallbacks;

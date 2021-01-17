@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Server
+class SaveServer
 {
     constructor()
     {
@@ -77,4 +77,4 @@ class Server
     }
 }
 
-module.exports.Server = Server;
+module.exports.SaveServer = SaveServer;

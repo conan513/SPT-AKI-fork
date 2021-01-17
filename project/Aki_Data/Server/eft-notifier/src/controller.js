@@ -16,7 +16,7 @@
  * Maintains a queue of notification messages which will be pushed upon request
  *  from client session.
  */
-class Controller
+class NotifierController
 {
     constructor()
     {
@@ -65,4 +65,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.NotifierController = NotifierController;

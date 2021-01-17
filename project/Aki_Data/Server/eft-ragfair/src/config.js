@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Config
+class RagfairConfig
 {
     constructor()
     {
@@ -65,4 +65,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.RagfairConfig = RagfairConfig;

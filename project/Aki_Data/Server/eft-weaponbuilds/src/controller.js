@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class PresetBuildController
 {
     getUserBuilds(sessionID)
     {
@@ -54,4 +54,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.PresetBuildController = PresetBuildController;

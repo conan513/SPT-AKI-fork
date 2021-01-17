@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class NoteController
 {
     addNote(pmcData, body, sessionID)
     {
@@ -38,4 +38,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.NoteController = NoteController;

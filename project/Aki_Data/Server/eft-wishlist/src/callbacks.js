@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Callbacks
+class WishlistCallbacks
 {
     constructor()
     {
@@ -28,4 +28,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.WishlistCallbacks = WishlistCallbacks;

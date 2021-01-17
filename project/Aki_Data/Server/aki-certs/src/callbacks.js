@@ -8,9 +8,7 @@
 
 "use strict";
 
-const fs = require("fs");
-
-class Callbacks
+class CertCallbacks
 {
     constructor()
     {
@@ -37,12 +35,14 @@ class Callbacks
     {
         const certs = certs_f.controller.getCerts();
         let sendType = this.isAttachment ? "attachment" : "inline";
+
         resp.writeHead(200, "OK",         {
             "Content-Type": https_f.server.mime["bin"],
             "Content-Disposition": `${sendType}; filename="${this.certFilename}"`
         });
+        
         resp.end(certs.cert);
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.CertCallbacks = CertCallbacks;

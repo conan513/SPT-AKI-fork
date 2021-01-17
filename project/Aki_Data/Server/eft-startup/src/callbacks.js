@@ -8,12 +8,11 @@
 
 "use strict";
 
-class Callbacks
+class GameCallbacks
 {
     constructor()
     {
         https_f.router.onStaticRoute["/client/game/config"] = this.getGameConfig.bind(this);
-        https_f.router.onStaticRoute["/client/profile/status"] = this.getProfileStatus.bind(this);
         https_f.router.onStaticRoute["/client/server/list"] = this.getServer.bind(this);
         https_f.router.onStaticRoute["/client/game/version/validate"] = this.versionValidate.bind(this);
         https_f.router.onStaticRoute["/client/game/start"] = this.gameStart.bind(this);
@@ -58,26 +57,6 @@ class Callbacks
         });
     }
 
-    getProfileStatus(url, info, sessionID)
-    {
-        return https_f.response.getBody([
-            {
-                "profileid": `scav${sessionID}`,
-                "status": "Free",
-                "sid": "",
-                "ip": "",
-                "port": 0
-            },
-            {
-                "profileid": `pmc${sessionID}`,
-                "status": "Free",
-                "sid": "",
-                "ip": "",
-                "port": 0
-            }
-        ]);
-    }
-
     getServer(url, info, sessionID)
     {
         return https_f.response.getBody([
@@ -97,4 +76,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.GameCallbacks = GameCallbacks;

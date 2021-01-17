@@ -1,4 +1,4 @@
-/* config.js
+/* HttpConfig.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class HttpConfig
 {
     constructor()
     {
@@ -20,4 +20,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.HttpConfig = HttpConfig;

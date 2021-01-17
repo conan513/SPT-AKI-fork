@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class WeatherController
 {
     generate()
     {
@@ -75,4 +75,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.WeatherController = WeatherController;

@@ -6,7 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-class EventHandler
+class ItemEventRouter
 {
     constructor()
     {
@@ -70,4 +70,4 @@ class EventHandler
     }
 }
 
-module.exports.EventHandler = EventHandler;
+module.exports.ItemEventRouter = ItemEventRouter;

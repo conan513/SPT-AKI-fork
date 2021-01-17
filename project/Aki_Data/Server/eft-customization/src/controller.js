@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class CustomizationController
 {
     wearClothing(pmcData, body, sessionID)
     {
@@ -140,4 +140,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.CustomizationController = CustomizationController;

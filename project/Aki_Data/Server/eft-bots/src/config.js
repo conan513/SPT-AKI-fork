@@ -1,4 +1,4 @@
-/* config.js
+/* BotConfig.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class BotConfig
 {
     constructor()
     {
@@ -46,4 +46,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.BotConfig = BotConfig;

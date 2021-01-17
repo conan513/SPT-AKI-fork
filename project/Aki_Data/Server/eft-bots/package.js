@@ -6,12 +6,12 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { Controller } = require("./src/controller.js");
-const { Callbacks } = require("./src/callbacks.js");
-const { Config } = require("./src/config.js");
-const { Generator } = require("./src/generator.js");
+const { BotController } = require("./src/controller.js");
+const { BotCallbacks } = require("./src/callbacks.js");
+const { BotConfig } = require("./src/config.js");
+const { BotGenerator } = require("./src/generator.js");
 
-module.exports.controller = new Controller();
-module.exports.callbacks = new Callbacks();
-module.exports.config = new Config();
-module.exports.generator = new Generator();
+module.exports.controller = new BotController();
+module.exports.callbacks = new BotCallbacks();
+module.exports.config = new BotConfig();
+module.exports.generator = new BotGenerator();

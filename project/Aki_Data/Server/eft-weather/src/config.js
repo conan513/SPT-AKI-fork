@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Config
+class WeatherConfig
 {
     constructor()
     {
@@ -54,4 +54,4 @@ class Config
     }
 }
 
-module.exports.Config = Config;
+module.exports.WeatherConfig = WeatherConfig;

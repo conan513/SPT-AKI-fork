@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Callbacks
+class ProfileCallbacks
 {
     constructor()
     {
@@ -20,6 +20,7 @@ class Callbacks
         https_f.router.onStaticRoute["/client/game/profile/nickname/change"] = this.changeNickname.bind(this);
         https_f.router.onStaticRoute["/client/game/profile/nickname/validate"] = this.validateNickname.bind(this);
         https_f.router.onStaticRoute["/client/game/profile/nickname/reserved"] = this.getReservedNickname.bind(this);
+        https_f.router.onStaticRoute["/client/profile/status"] = this.getProfileStatus.bind(this);
     }
 
     onLoad(sessionID)
@@ -86,6 +87,26 @@ class Callbacks
     {
         return https_f.response.getBody("SPTarkov");
     }
+
+    getProfileStatus(url, info, sessionID)
+    {
+        return https_f.response.getBody([
+            {
+                "profileid": `scav${sessionID}`,
+                "status": "Free",
+                "sid": "",
+                "ip": "",
+                "port": 0
+            },
+            {
+                "profileid": `pmc${sessionID}`,
+                "status": "Free",
+                "sid": "",
+                "ip": "",
+                "port": 0
+            }
+        ]);
+    }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.ProfileCallbacks = ProfileCallbacks;

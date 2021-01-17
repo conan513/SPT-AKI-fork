@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Controller
+class TradeController
 {
     buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
@@ -139,4 +139,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.TradeController = TradeController;

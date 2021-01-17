@@ -8,7 +8,7 @@
 
 "use strict";
 
-class ImageHandler
+class ImageRouter
 {
     constructor()
     {
@@ -33,4 +33,4 @@ class ImageHandler
     }
 }
 
-module.exports.ImageHandler = ImageHandler;
+module.exports.ImageRouter = ImageRouter;

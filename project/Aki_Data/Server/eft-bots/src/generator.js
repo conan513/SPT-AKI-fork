@@ -1,4 +1,4 @@
-/* generator.js
+/* BotGenerator.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -25,7 +25,7 @@ const EquipmentSlots = {
     Scabbard: "Scabbard"
 };
 
-class Generator
+class BotGenerator
 {
     constructor()
     {
@@ -925,4 +925,4 @@ class ExhaustableArray
     }
 }
 
-module.exports.Generator = Generator;
+module.exports.BotGenerator = BotGenerator;

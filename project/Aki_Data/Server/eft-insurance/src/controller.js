@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Controller
+class InsuranceController
 {
     constructor()
     {
@@ -390,4 +390,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.InsuranceController = InsuranceController;
