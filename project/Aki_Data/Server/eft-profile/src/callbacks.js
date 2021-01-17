@@ -9,7 +9,7 @@
 
 "use strict";
 
-class Callbacks
+class ProfileCallbacks
 {
     constructor()
     {
@@ -88,4 +88,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.ProfileCallbacks = ProfileCallbacks;

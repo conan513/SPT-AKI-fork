@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Controller
+class ProfileController
 {
     onLoad(sessionID)
     {
@@ -241,4 +241,4 @@ class Controller
     }
 }
 
-module.exports.Controller = Controller;
+module.exports.ProfileController = ProfileController;
