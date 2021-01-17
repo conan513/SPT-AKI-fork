@@ -10,7 +10,7 @@
 
 "use strict";
 
-class Callbacks
+class NotifierCallbacks
 {
     constructor()
     {
@@ -33,4 +33,4 @@ class Callbacks
     }
 }
 
-module.exports.Callbacks = Callbacks;
+module.exports.NotifierCallbacks = NotifierCallbacks;
