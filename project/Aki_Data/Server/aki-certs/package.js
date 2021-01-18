@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { CertController } = require("./src/controller.js");
-const { CertCallbacks } = require("./src/callbacks");
+const { CertController } = require("./src/CertController.js");
+const { CertCallbacks } = require("./src/CertCallbacks");
 
 module.exports.controller = new CertController();
 module.exports.callbacks = new CertCallbacks();
