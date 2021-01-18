@@ -615,21 +615,18 @@ class Controller
                     break;
 
                 case areaTypes.WATER_COLLECTOR:
-                    if (isGeneratorOn)
+                    for (let slot of area.slots)
                     {
-                        const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
-                        if (prod)
+                        if (slot.item)
                         {
-                            for (let slot of area.slots)
-                            {
-                                if (slot.item)
-                                {
-                                    WaterCollectorHasFilter = true;
-                                    break;
-                                }
-                            }
-                            area = this.updateWaterFilters(area, prod);
+                            WaterCollectorHasFilter = true;
+                            break;
                         }
+                    }
+                    const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
+                    if (prod)
+                    {
+                        area = this.updateWaterFilters(area, prod, isGeneratorOn);
                     }
                     break;
 
@@ -670,13 +667,13 @@ class Controller
 
             if (prod == WATER_COLLECTOR)
             {
+                let time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                if (!isGeneratorOn)
+                {
+                    time_elapsed = Math.floor(time_elapsed * 0.2);
+                }
                 if (WaterCollectorHasFilter)
                 {
-                    const time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
-                    if (!isGeneratorOn)
-                    {
-                        time_elapsed = time_elapsed * 0.2;
-                    }
                     pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 }
                 continue;
@@ -698,7 +695,7 @@ class Controller
             let time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
             if (recipe.continuous && !isGeneratorOn)
             {
-                time_elapsed = time_elapsed * 0.2;
+                time_elapsed = Math.floor(time_elapsed * 0.2);
             }
             pmcData.Hideout.Production[prod].Progress += time_elapsed;
         }
@@ -771,7 +768,7 @@ class Controller
         return generatorArea;
     }
 
-    updateWaterFilters(waterFilterArea, pwProd)
+    updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
     {
         const time_elapsed = (common_f.time.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
@@ -801,6 +798,10 @@ class Controller
                     filterDrainRate = (time_elapsed > production_time)
                                     ? filterDrainRate *= (production_time - pwProd.Progress)
                                     : filterDrainRate *= time_elapsed;
+                    if (!isGeneratorOn)
+                    {
+                        filterDrainRate = filterDrainRate * 0.2;
+                    }
 
                     let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
                                         ? waterFilterArea.slots[i].item[0].upd.Resource.Value
