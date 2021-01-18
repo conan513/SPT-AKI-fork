@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { MatchController } = require("./src/controller.js");
-const { MatchCallbacks } = require("./src/callbacks.js");
-const { MatchConfig } = require("./src/config.js");
+const { MatchController } = require("./src/MatchController.js");
+const { MatchCallbacks } = require("./src/MatchCallbacks.js");
+const { MatchConfig } = require("./src/MatchConfig.js");
 
 module.exports.controller = new MatchController();
 module.exports.callbacks = new MatchCallbacks();
