@@ -18,6 +18,7 @@ class GameCallbacks
         https_f.router.onStaticRoute["/client/game/start"] = this.gameStart.bind(this);
         https_f.router.onStaticRoute["/client/game/logout"] = this.gameLogout.bind(this);
         https_f.router.onStaticRoute["/client/checkVersion"] = this.validateGameVersion.bind(this);
+        https_f.router.onStaticRoute["/client/game/keepalive"] = this.gameKeepalive.bind(this);
     }
 
     versionValidate(url, info, sessionID)
@@ -73,6 +74,11 @@ class GameCallbacks
             "isvalid": true,
             "latestVersion": ""
         });
+    }
+
+    gameKeepalive(url, info, sessionID)
+    {
+        return https_f.response.getBody({"msg": "OK"});
     }
 }
 
