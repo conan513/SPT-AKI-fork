@@ -8,8 +8,6 @@
 
 "use strict";
 
-const fs = require("fs");
-
 class Packager
 {
     constructor()
@@ -23,8 +21,6 @@ class Packager
 
     load()
     {
-        const source = JSON.parse(fs.readFileSync(`${this.basepath}loadorder.json`));
-
         // import classes
         require("../Aki_Data/Server/src/lib.js");
 

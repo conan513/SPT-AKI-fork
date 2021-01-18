@@ -31,7 +31,7 @@ class DatabaseImporter
 
     load()
     {
-        database_f.server.tables = this.loadRecursive(`${core_f.packager.basepath}eft-database/db/`);
+        database_f.server.tables = this.loadRecursive(`${core_f.packager.basepath}db/`);
         this.loadImages();
     }
 
@@ -61,7 +61,7 @@ class DatabaseImporter
 
     loadImages()
     {
-        const basepath = `${core_f.packager.basepath}eft-database/res/`;
+        const basepath = `${core_f.packager.basepath}res/`;
         const res = common_f.vfs.getDirs(basepath);
         const routes = [
             "/files/CONTENT/banners/",
