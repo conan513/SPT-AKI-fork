@@ -14,7 +14,6 @@ const zlib = require("zlib");
 const https = require("https");
 const WebSocket = require("ws");
 
-
 class HttpServer
 {
     constructor()
