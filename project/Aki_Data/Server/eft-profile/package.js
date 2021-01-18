@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { ProfileController } = require("./src/controller.js");
-const { ProfileCallbacks } = require("./src/callbacks.js");
+const { ProfileController } = require("./src/ProfileController.js");
+const { ProfileCallbacks } = require("./src/ProfileCallbacks.js");
 
 module.exports.controller = new ProfileController();
 module.exports.callbacks = new ProfileCallbacks();
