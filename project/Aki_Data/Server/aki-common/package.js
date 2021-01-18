@@ -6,12 +6,12 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { VFS } = require("./src/vfs.js");
-const { JsonUtil } = require("./src/json.js");
-const { TimeUtil } = require("./src/time.js");
-const { RandomUtil } = require("./src/random.js");
-const { HashUtil } = require("./src/hash.js");
-const { Logger } = require("./src/logger.js");
+const { VFS } = require("./src/VFS.js");
+const { JsonUtil } = require("./src/JsonUtil.js");
+const { TimeUtil } = require("./src/TimeUtil.js");
+const { RandomUtil } = require("./src/RandomUtil.js");
+const { HashUtil } = require("./src/HashUtil.js");
+const { Logger } = require("./src/Logger.js");
 
 module.exports.vfs = new VFS();
 module.exports.json = new JsonUtil();
