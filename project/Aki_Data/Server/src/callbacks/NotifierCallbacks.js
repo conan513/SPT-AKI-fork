@@ -33,4 +33,4 @@ class NotifierCallbacks
     }
 }
 
-module.exports = NotifierCallbacks;
+module.exports = new NotifierCallbacks();

@@ -37,4 +37,4 @@ class HttpCallbacks
     }
 }
 
-module.exports = HttpCallbacks;
+module.exports = new HttpCallbacks();

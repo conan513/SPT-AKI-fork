@@ -44,4 +44,4 @@ class InsuranceCallbacks
     }
 }
 
-module.exports = InsuranceCallbacks;
+module.exports = new InsuranceCallbacks();

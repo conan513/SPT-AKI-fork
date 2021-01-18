@@ -21,21 +21,12 @@ class Packager
         this.onUpdateLastRun = {};
     }
 
-    importClass(name, filepath)
-    {
-        // import class
-        global[name] = require(`../${filepath}`);
-    }
-
     load()
     {
         const source = JSON.parse(fs.readFileSync(`${this.basepath}loadorder.json`));
 
         // import classes
-        for (const pkg in source)
-        {
-            this.importClass(pkg, `${this.basepath}${source[pkg]}`);
-        }
+        require("../Aki_Data/Server/src/lib.js");
 
         // execute onLoad callbacks
         console.log("Server: executing startup callbacks...");

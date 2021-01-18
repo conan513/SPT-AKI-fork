@@ -38,4 +38,4 @@ class BotCallbacks
     }
 }
 
-module.exports = BotCallbacks;
+module.exports = new BotCallbacks();

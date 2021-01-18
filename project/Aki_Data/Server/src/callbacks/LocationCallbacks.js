@@ -27,4 +27,4 @@ class LocationCallbacks
     }
 }
 
-module.exports = LocationCallbacks;
+module.exports = new LocationCallbacks();

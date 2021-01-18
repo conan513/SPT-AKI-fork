@@ -53,4 +53,4 @@ class InraidCallbacks
     }
 }
 
-module.exports = InraidCallbacks;
+module.exports = new InraidCallbacks();

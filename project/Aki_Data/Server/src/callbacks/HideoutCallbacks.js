@@ -81,4 +81,4 @@ class HideoutCallbacks
 
 }
 
-module.exports = HideoutCallbacks;
+module.exports = new HideoutCallbacks();

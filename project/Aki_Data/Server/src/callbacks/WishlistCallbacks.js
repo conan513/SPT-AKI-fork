@@ -28,4 +28,4 @@ class WishlistCallbacks
     }
 }
 
-module.exports = WishlistCallbacks;
+module.exports = new WishlistCallbacks();

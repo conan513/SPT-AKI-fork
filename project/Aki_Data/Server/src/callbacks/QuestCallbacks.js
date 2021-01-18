@@ -40,4 +40,4 @@ class QuestCallbacks
     }
 }
 
-module.exports = QuestCallbacks;
+module.exports = new QuestCallbacks();

@@ -22,4 +22,4 @@ class PresetCallbacks
     }
 }
 
-module.exports = PresetCallbacks;
+module.exports = new PresetCallbacks();

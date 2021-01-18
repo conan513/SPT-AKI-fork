@@ -13,11 +13,11 @@ global["certs_f"] = {
 
 global["https_f"] = {
     "config": require("./configs/HttpConfig.js"),
-    "response": require("./helpers/HttpResponse.js"),
-    "router": require("./router/HttpRouter.js"),
-    "image": require("./router/ImageRouter.js"),
-    "server": require("./server/HttpServer.js"),
-    "callbacks": require("./callbacks/HtppCallbacks.js")
+    "response": require("./utils/HttpResponse.js"),
+    "router": require("./routers/HttpRouter.js"),
+    "image": require("./routers/ImageRouter.js"),
+    "server": require("./servers/HttpServer.js"),
+    "callbacks": require("./callbacks/HttpCallbacks.js")
 };
 
 global["database_f"] = {
@@ -25,12 +25,12 @@ global["database_f"] = {
 };
 
 global["item_f"] = {
-    "eventHandler": require("./controllers/ItemEventController.js"),
+    "eventHandler": require("./routers/ItemEventRouter.js"),
     "callbacks": require("./callbacks/ItemEventCallbacks.js")
 };
 
 global["save_f"] = {
-    "server": require("./server/SaveServer.js"),
+    "server": require("./servers/SaveServer.js"),
     "callbacks": require("./callbacks/SaveCallbacks.js")
 };
 
@@ -69,7 +69,7 @@ global["notifier_f"] = {
 global["bots_f"] = {
     "config": require("./configs/BotConfig.js"),
     "controller": require("./controllers/BotController.js"),
-    "generator": require("./controllers/BotGenerator.js"),
+    "generator": require("./generators/BotGenerator.js"),
     "callbacks": require("./callbacks/BotCallbacks.js")
 };
 
@@ -146,7 +146,7 @@ global["preset_f"] = {
 
 global["ragfair_f"] = {
     "config": require("./configs/RagfairConfig.js"),
-    "server": require("./configs/RagfairServer.js"),
+    "server": require("./servers/RagfairServer.js"),
     "controller": require("./controllers/RagfairController.js"),
     "callbacks": require("./callbacks/RagfairCallbacks.js")
 };
@@ -160,7 +160,7 @@ global["weather_f"] = {
 global["location_f"] = {
     "config": require("./configs/LocationConfig.js"),
     "controller": require("./controllers/LocationController.js"),
-    "generator": require("./controllers/LocationGenerator.js"),
+    "generator": require("./generators/LocationGenerator.js"),
     "callbacks": require("./callbacks/LocationCallbacks.js")
 };
 
@@ -170,7 +170,9 @@ global["match_f"] = {
     "callbacks": require("./callbacks/MatchCallbacks.js")
 };
 
-require("./utils/DatabaseImporter.js");
+global["importScript_f"] = {
+    "callbacks": require("./utils/DatabaseImporter.js")
+}
 
 global["mods_f"] = {
     "loader": require("./controllers/ModController.js"),

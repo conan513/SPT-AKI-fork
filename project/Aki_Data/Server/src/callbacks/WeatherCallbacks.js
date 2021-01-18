@@ -21,4 +21,4 @@ class WeatherCallbacks
     }
 }
 
-module.exports = WeatherCallbacks;
+module.exports = new WeatherCallbacks();

@@ -34,4 +34,4 @@ class PresetBuildCallbacks
     }
 }
 
-module.exports = PresetBuildCallbacks;
+module.exports = new PresetBuildCallbacks();

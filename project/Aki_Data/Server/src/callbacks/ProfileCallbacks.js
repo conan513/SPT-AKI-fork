@@ -109,4 +109,4 @@ class ProfileCallbacks
     }
 }
 
-module.exports = ProfileCallbacks;
+module.exports = new ProfileCallbacks();

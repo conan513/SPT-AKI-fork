@@ -46,4 +46,4 @@ class HealthCallbacks
     }
 }
 
-module.exports = HealthCallbacks;
+module.exports = new HealthCallbacks();

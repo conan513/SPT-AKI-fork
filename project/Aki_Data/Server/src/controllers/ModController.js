@@ -24,6 +24,12 @@ class ModController
         this.executeMods();
     }
 
+    importClass(name, filepath)
+    {
+        // import class
+        global[name] = require(`../${filepath}`);
+    }
+
     importMods()
     {
         // get mods
@@ -64,7 +70,7 @@ class ModController
         {
             if ("main" in this.imported[mod])
             {
-                core_f.packager.importClass(mod, `${this.getModPath(mod)}${this.imported[mod].main}`);
+                this.importClass(mod, `${this.getModPath(mod)}${this.imported[mod].main}`);
             }
         }
 

@@ -82,4 +82,4 @@ class RagfairCallbacks
     }
 }
 
-module.exports = RagfairCallbacks;
+module.exports = new RagfairCallbacks();

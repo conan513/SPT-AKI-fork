@@ -46,4 +46,4 @@ class CustomizationCallbacks
 }
 
 
-module.exports = CustomizationCallbacks;
+module.exports = new CustomizationCallbacks();
