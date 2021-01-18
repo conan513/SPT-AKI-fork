@@ -13,7 +13,7 @@ global["certs_f"] = {
 };
 
 global["https_f"] = {
-    "config": require("./configs/HttpConfig.js"),
+    "config": require("./configs/HttpConfig.json"),
     "response": require("./utils/HttpResponse.js"),
     "router": require("./routers/HttpRouter.js"),
     "image": require("./routers/ImageRouter.js"),
@@ -37,13 +37,13 @@ global["save_f"] = {
 };
 
 global["health_f"] = {
-    "config": require("./configs/HealthConfig.js"),
+    "config": require("./configs/HealthConfig.json"),
     "controller": require("./controllers/HealthController.js"),
     "callbacks": require("./callbacks/HealthCallbacks.js")
 };
 
 global["inraid_f"] = {
-    "config": require("./configs/InraidConfig.js"),
+    "config": require("./configs/InraidConfig.json"),
     "controller": require("./controllers/InraidController.js"),
     "callbacks": require("./callbacks/InraidCallbacks.js")
 };
@@ -69,7 +69,7 @@ global["notifier_f"] = {
 };
 
 global["bots_f"] = {
-    "config": require("./configs/BotConfig.js"),
+    "config": require("./configs/BotConfig.json"),
     "controller": require("./controllers/BotController.js"),
     "generator": require("./generators/BotGenerator.js"),
     "callbacks": require("./callbacks/BotCallbacks.js")
@@ -80,7 +80,7 @@ global["helpfunc_f"] = {
 };
 
 global["quest_f"] = {
-    "config": require("./configs/QuestConfig.js"),
+    "config": require("./configs/QuestConfig.json"),
     "helpers": require("./helpers/QuestHelpers.js"),
     "controller": require("./controllers/QuestController.js"),
     "callbacks": require("./callbacks/QuestCallbacks.js")
@@ -92,7 +92,7 @@ global["note_f"] = {
 };
 
 global["inventory_f"] = {
-    "config": require("./configs/InventoryConfig.js"),
+    "config": require("./configs/InventoryConfig.json"),
     "controller": require("./controllers/InventoryController.js"),
     "callbacks": require("./callbacks/InventoryCallbacks.js")
 };
@@ -113,7 +113,7 @@ global["customization_f"] = {
 };
 
 global["hideout_f"] = {
-    "config": require("./configs/HideoutConfig.js"),
+    "config": require("./configs/HideoutConfig.json"),
     "controller": require("./controllers/HideoutController.js"),
     "callbacks": require("./callbacks/HideoutCallbacks.js")
 };
@@ -124,19 +124,19 @@ global["weaponbuilds_f"] = {
 };
 
 global["repair_f"] = {
-    "config": require("./configs/RepairConfig.js"),
+    "config": require("./configs/RepairConfig.json"),
     "controller": require("./controllers/RepairController.js"),
     "callbacks": require("./callbacks/RepairCallbacks.js")
 };
 
 global["insurance_f"] = {
-    "config": require("./configs/InsuranceConfig.js"),
+    "config": require("./configs/InsuranceConfig.json"),
     "controller": require("./controllers/InsuranceController.js"),
     "callbacks": require("./callbacks/InsuranceCallbacks.js")
 };
 
 global["trader_f"] = {
-    "config": require("./configs/TraderConfig.js"),
+    "config": require("./configs/TraderConfig.json"),
     "controller": require("./controllers/TraderController.js"),
     "callbacks": require("./callbacks/TraderCallbacks.js")
 };
@@ -147,27 +147,27 @@ global["preset_f"] = {
 };
 
 global["ragfair_f"] = {
-    "config": require("./configs/RagfairConfig.js"),
+    "config": require("./configs/RagfairConfig.json"),
     "server": require("./servers/RagfairServer.js"),
     "controller": require("./controllers/RagfairController.js"),
     "callbacks": require("./callbacks/RagfairCallbacks.js")
 };
 
 global["weather_f"] = {
-    "config": require("./configs/WeatherConfig.js"),
+    "config": require("./configs/WeatherConfig.json"),
     "controller": require("./controllers/WeatherController.js"),
     "callbacks": require("./callbacks/WeatherCallbacks.js")
 };
 
 global["location_f"] = {
-    "config": require("./configs/LocationConfig.js"),
+    "config": require("./configs/LocationConfig.json"),
     "controller": require("./controllers/LocationController.js"),
     "generator": require("./generators/LocationGenerator.js"),
     "callbacks": require("./callbacks/LocationCallbacks.js")
 };
 
 global["match_f"] = {
-    "config": require("./configs/MatchConfig.js"),
+    "config": require("./configs/MatchConfig.json"),
     "controller": require("./controllers/MatchController.js"),
     "callbacks": require("./callbacks/MatchCallbacks.js")
 };
