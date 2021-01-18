@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { HideoutController } = require("./src/controller.js");
-const { HideoutCallbacks } = require("./src/callbacks.js");
-const { HideoutConfig } = require("./src/config.js");
+const { HideoutController } = require("./src/HideoutController.js");
+const { HideoutCallbacks } = require("./src/HideoutCallbacks.js");
+const { HideoutConfig } = require("./src/HideoutConfig.js");
 
 module.exports.controller = new HideoutController();
 module.exports.callbacks = new HideoutCallbacks();
