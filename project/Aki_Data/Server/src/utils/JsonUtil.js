@@ -33,4 +33,4 @@ class JsonUtil
     }
 }
 
-module.exports = JsonUtil;
+module.exports = new JsonUtil();

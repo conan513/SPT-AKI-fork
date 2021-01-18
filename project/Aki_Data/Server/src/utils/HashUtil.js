@@ -24,4 +24,4 @@ class HashUtil
     }
 }
 
-module.exports = HashUtil;
+module.exports = new HashUtil();

@@ -925,4 +925,4 @@ class ExhaustableArray
     }
 }
 
-module.exports = BotGenerator;
+module.exports = new BotGenerator();

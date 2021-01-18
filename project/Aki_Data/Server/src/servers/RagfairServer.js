@@ -525,4 +525,4 @@ class RagfairServer
     }
 }
 
-module.exports = RagfairServer;
+module.exports = new RagfairServer();

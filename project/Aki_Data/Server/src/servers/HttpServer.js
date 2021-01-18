@@ -259,4 +259,4 @@ class HttpServer
     }
 }
 
-module.exports = HttpServer;
+module.exports = new HttpServer();

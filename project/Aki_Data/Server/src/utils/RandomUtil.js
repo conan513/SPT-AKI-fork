@@ -48,4 +48,4 @@ class RandomUtil
     }
 }
 
-module.exports = RandomUtil;
+module.exports = new RandomUtil();

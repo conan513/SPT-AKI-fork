@@ -1151,4 +1151,4 @@ class PlzRefactorMeHelper
     }
 }
 
-module.exports = PlzRefactorMeHelper;
+module.exports = new PlzRefactorMeHelper();

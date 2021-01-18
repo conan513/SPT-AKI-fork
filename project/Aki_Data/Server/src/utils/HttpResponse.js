@@ -57,4 +57,4 @@ class HttpResponse
     }
 }
 
-module.exports = HttpResponse;
+module.exports = new HttpResponse();

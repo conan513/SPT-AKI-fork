@@ -70,4 +70,4 @@ class ItemEventRouter
     }
 }
 
-module.exports = ItemEventRouter;
+module.exports = new ItemEventRouter();

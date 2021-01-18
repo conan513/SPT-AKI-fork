@@ -33,4 +33,4 @@ class ImageRouter
     }
 }
 
-module.exports = ImageRouter;
+module.exports = new ImageRouter();
