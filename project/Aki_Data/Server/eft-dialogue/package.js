@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { DialogueController } = require("./src/controller.js");
-const { DialogueCallbacks } = require("./src/callbacks.js");
+const { DialogueController } = require("./src/DialogueController.js");
+const { DialogueCallbacks } = require("./src/DialogueCallbacks.js");
 
 module.exports.controller = new DialogueController();
 module.exports.callbacks = new DialogueCallbacks();
