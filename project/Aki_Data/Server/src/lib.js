@@ -1,5 +1,3 @@
-// common_f
-
 global["common_f"] = {
     "vfs": require("./utils/VFS.js"),
     "json": require("./utils/JsonUtil.js"),
@@ -14,7 +12,12 @@ global["certs_f"] = {
 };
 
 global["https_f"] = {
-    // code here
+    "config": require("./configs/HttpConfig.js"),
+    "response": require("./helpers/HttpResponse.js"),
+    "router": require("./router/HttpRouter.js"),
+    "image": require("./router/ImageRouter.js"),
+    "server": require("./server/HttpServer.js"),
+    "callbacks": require("./callbacks/HtppCallbacks.js")
 };
 
 global["database_f"] = {
@@ -75,19 +78,26 @@ global["helpfunc_f"] = {
 };
 
 global["quest_f"] = {
-    // code here
+    "config": require("./configs/QuestConfig.js"),
+    "helpers": require("./helpers/QuestHelpers.js"),
+    "controller": require("./controllers/QuestController.js"),
+    "callbacks": require("./callbacks/QuestCallbacks.js")
 };
 
 global["note_f"] = {
-    // code here
+    "controller": require("./controllers/NoteController.js"),
+    "callbacks": require("./callbacks/NoteCallbacks.js")
 };
 
 global["inventory_f"] = {
-    // code here
+    "config": require("./configs/InventoryConfig.js"),
+    "controller": require("./controllers/InventoryController.js"),
+    "callbacks": require("./callbacks/InventoryCallbacks.js")
 };
 
 global["wishList_f"] = {
-    // code here
+    "controller": require("./controllers/WishlistController.js"),
+    "callbacks": require("./callbacks/WishlistCallbacks.js")
 };
 
 global["trade_f"] = {
@@ -160,11 +170,8 @@ global["match_f"] = {
     "callbacks": require("./callbacks/MatchCallbacks.js")
 };
 
-// single callbacks
-// <eft-startup>
-// <eft-database>
+require("./utils/DatabaseImporter.js");
 
-// modding
 global["mods_f"] = {
     "loader": require("./controllers/ModController.js"),
     "callbacks": require("./callbacks/ModCallbacks.js")
