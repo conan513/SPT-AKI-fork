@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { HealthController } = require("./src/controller.js");
-const { HealthCallbacks } = require("./src/callbacks.js");
-const { HealthConfig } = require("./src/config.js");
+const { HealthController } = require("./src/HealthController.js");
+const { HealthCallbacks } = require("./src/HealthCallbacks.js");
+const { HealthConfig } = require("./src/HealthConfig.js");
 
 module.exports.controller = new HealthController();
 module.exports.callbacks = new HealthCallbacks();
