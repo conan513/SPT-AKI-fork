@@ -8,7 +8,7 @@
 
 "use strict";
 
-class AccountCallbacks
+class LauncherCallbacks
 {
     constructor()
     {
@@ -74,4 +74,4 @@ class AccountCallbacks
     }
 }
 
-module.exports.AccountCallbacks = AccountCallbacks;
+module.exports.LauncherCallbacks = LauncherCallbacks;
