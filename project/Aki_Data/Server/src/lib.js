@@ -2,6 +2,7 @@ global["common_f"] = {
     "vfs": require("./utils/VFS.js"),
     "json": require("./utils/JsonUtil.js"),
     "hash": require("./utils/HashUtil.js"),
+    "random": require("./utils/RandomUtil.js"),
     "time": require("./utils/TimeUtil.js"),
     "logger": require("./utils/Logger.js")
 };
@@ -21,7 +22,8 @@ global["https_f"] = {
 };
 
 global["database_f"] = {
-    "server": require("./servers/DatabaseServer.js")
+    "server": require("./servers/DatabaseServer.js"),
+    "importScript": require("./utils/DatabaseImporter.js")
 };
 
 global["item_f"] = {
@@ -169,10 +171,6 @@ global["match_f"] = {
     "controller": require("./controllers/MatchController.js"),
     "callbacks": require("./callbacks/MatchCallbacks.js")
 };
-
-global["importScript_f"] = {
-    "callbacks": require("./utils/DatabaseImporter.js")
-}
 
 global["mods_f"] = {
     "loader": require("./controllers/ModController.js"),
