@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { RepairController } = require("./src/controller.js");
-const { RepairCallbacks } = require("./src/callbacks.js");
-const { RepairConfig } = require("./src/config.js");
+const { RepairController } = require("./src/RepairController.js");
+const { RepairCallbacks } = require("./src/RepairCallbacks.js");
+const { RepairConfig } = require("./src/RepairConfig.js");
 
 module.exports.controller = new RepairController();
 module.exports.callbacks = new RepairCallbacks();

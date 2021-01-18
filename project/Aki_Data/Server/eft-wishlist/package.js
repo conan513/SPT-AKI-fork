@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { WishlistController } = require("./src/controller.js");
-const { WishlistCallbacks } = require("./src/callbacks.js");
+const { WishlistController } = require("./src/WishlistController.js");
+const { WishlistCallbacks } = require("./src/WishlistCallbacks.js");
 
 module.exports.controller = new WishlistController();
 module.exports.callbacks = new WishlistCallbacks();

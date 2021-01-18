@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { NoteController } = require("./src/controller.js");
-const { NoteCallbacks } = require("./src/callbacks.js");
+const { NoteController } = require("./src/NoteController.js");
+const { NoteCallbacks } = require("./src/NoteCallbacks.js");
 
 module.exports.controller = new NoteController();
 module.exports.callbacks = new NoteCallbacks();

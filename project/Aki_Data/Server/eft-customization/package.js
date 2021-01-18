@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { CustomizationController } = require("./src/controller.js");
-const { CustomizationCallbacks } = require("./src/callbacks.js");
+const { CustomizationController } = require("./src/CustomizationController.js");
+const { CustomizationCallbacks } = require("./src/CustomizationCallbacks.js");
 
 module.exports.controller = new CustomizationController();
 module.exports.callbacks = new CustomizationCallbacks();

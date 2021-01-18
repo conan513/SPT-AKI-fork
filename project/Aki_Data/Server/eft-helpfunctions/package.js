@@ -6,6 +6,6 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { PlzRefactorMeHelper } = require("./src/helpfunctions.js");
+const { PlzRefactorMeHelper } = require("./src/PlzRefactorMeHelper.js");
 
 module.exports.helpFunctions = new PlzRefactorMeHelper();

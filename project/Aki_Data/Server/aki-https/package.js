@@ -6,12 +6,12 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { HttpResponse } = require("./src/response.js");
-const { HttpRouter } = require("./src/router.js");
-const { HttpServer } = require("./src/server.js");
-const { ImageRouter } = require("./src/image.js");
-const { HttpCallbacks } = require("./src/callbacks.js");
-const { HttpConfig } = require("./src/config.js");
+const { HttpResponse } = require("./src/HttpResponse.js");
+const { HttpRouter } = require("./src/HttpRouter.js");
+const { HttpServer } = require("./src/HttpServer.js");
+const { ImageRouter } = require("./src/ImageRouter.js");
+const { HttpCallbacks } = require("./src/HttpCallbacks.js");
+const { HttpConfig } = require("./src/HttpConfig.js");
 
 module.exports.response = new HttpResponse();
 module.exports.router = new HttpRouter();

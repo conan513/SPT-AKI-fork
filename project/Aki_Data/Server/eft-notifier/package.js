@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { NotifierController } = require("./src/controller.js");
-const { NotifierCallbacks } = require("./src/callbacks.js");
+const { NotifierController } = require("./src/NotifierController.js");
+const { NotifierCallbacks } = require("./src/NotifierCallbacks.js");
 
 module.exports.controller = new NotifierController();
 module.exports.callbacks = new NotifierCallbacks();

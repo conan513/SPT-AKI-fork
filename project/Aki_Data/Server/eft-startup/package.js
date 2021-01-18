@@ -6,6 +6,6 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { GameCallbacks } = require("./src/callbacks.js");
+const { GameCallbacks } = require("./src/GameCallbacks.js");
 
 module.exports.callbacks = new GameCallbacks();

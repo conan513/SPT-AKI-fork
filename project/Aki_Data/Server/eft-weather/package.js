@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { WeatherController } = require("./src/controller.js");
-const { WeatherCallbacks } = require("./src/callbacks.js");
-const { WeatherConfig } = require("./src/config.js");
+const { WeatherController } = require("./src/WeatherController.js");
+const { WeatherCallbacks } = require("./src/WeatherCallbacks.js");
+const { WeatherConfig } = require("./src/WeatherConfig.js");
 
 module.exports.controller = new WeatherController();
 module.exports.callbacks = new WeatherCallbacks();

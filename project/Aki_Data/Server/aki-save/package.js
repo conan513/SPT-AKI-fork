@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { SaveServer } = require("./src/server.js");
-const { SaveCallbacks } = require("./src/callbacks.js");
+const { SaveServer } = require("./src/SaveServer.js");
+const { SaveCallbacks } = require("./src/SaveCallbacks.js");
 
 module.exports.server = new SaveServer();
 module.exports.callbacks = new SaveCallbacks();

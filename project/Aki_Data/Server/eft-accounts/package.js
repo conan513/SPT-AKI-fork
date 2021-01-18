@@ -8,8 +8,8 @@
 
 "use strict";
 
-const { AccountController } = require("./src/controller.js");
-const { AccountCallbacks } = require("./src/callbacks.js");
+const { LauncherController } = require("./src/LauncherController.js");
+const { LauncherCallbacks } = require("./src/LauncherCallbacks.js");
 
-module.exports.controller = new AccountController();
-module.exports.callbacks = new AccountCallbacks();
+module.exports.controller = new LauncherController();
+module.exports.callbacks = new LauncherCallbacks();

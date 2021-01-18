@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { InsuranceController } = require("./src/controller.js");
-const { InsuranceCallbacks } = require("./src/callbacks.js");
-const { InsuranceConfig } = require("./src/config.js");
+const { InsuranceController } = require("./src/InsuranceController.js");
+const { InsuranceCallbacks } = require("./src/InsuranceCallbacks.js");
+const { InsuranceConfig } = require("./src/InsuranceConfig.js");
 
 module.exports.controller = new InsuranceController();
 module.exports.callbacks = new InsuranceCallbacks();

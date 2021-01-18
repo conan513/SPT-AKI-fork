@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { PresetBuildController } = require("./src/controller.js");
-const { PresetBuildCallbacks } = require("./src/callbacks.js");
+const { PresetBuildController } = require("./src/PresetBuildController.js");
+const { PresetBuildCallbacks } = require("./src/PresetBuildCallbacks.js");
 
 module.exports.controller = new PresetBuildController();
 module.exports.callbacks = new PresetBuildCallbacks();
