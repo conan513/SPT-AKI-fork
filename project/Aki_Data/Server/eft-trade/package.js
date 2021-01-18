@@ -6,8 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { TradeController } = require("./src/controller.js");
-const { TradeCallbacks } = require("./src/callbacks.js");
+const { TradeController } = require("./src/TradeController.js");
+const { TradeCallbacks } = require("./src/TradeCallbacks.js");
 
 module.exports.controller = new TradeController();
 module.exports.callbacks = new TradeCallbacks();
