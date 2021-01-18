@@ -31,6 +31,5 @@
     "weather_f": "eft-weather/package.js",
     "location_f": "eft-locations/package.js",
     "match_f": "eft-match/package.js",
-    "additions_f": "ext-additions/package.js",
     "mods_f": "aki-mods/package.js"
 }
