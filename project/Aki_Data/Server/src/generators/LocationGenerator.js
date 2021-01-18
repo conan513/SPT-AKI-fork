@@ -250,4 +250,4 @@ class LocationGenerator
     }
 }
 
-module.exports.LocationGenerator = LocationGenerator;
+module.exports = LocationGenerator;

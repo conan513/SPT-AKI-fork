@@ -65,4 +65,4 @@ class NotifierController
     }
 }
 
-module.exports.NotifierController = NotifierController;
+module.exports = NotifierController;

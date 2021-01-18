@@ -282,4 +282,4 @@ class HealthController
     }
 }
 
-module.exports.HealthController = HealthController;
+module.exports = HealthController;

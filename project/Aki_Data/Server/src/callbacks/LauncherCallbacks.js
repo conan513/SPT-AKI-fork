@@ -74,4 +74,4 @@ class LauncherCallbacks
     }
 }
 
-module.exports.LauncherCallbacks = LauncherCallbacks;
+module.exports = LauncherCallbacks;

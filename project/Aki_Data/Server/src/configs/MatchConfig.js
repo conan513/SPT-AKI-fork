@@ -16,4 +16,4 @@ class MatchConfig
     }
 }
 
-module.exports.MatchConfig = MatchConfig;
+module.exports = MatchConfig;

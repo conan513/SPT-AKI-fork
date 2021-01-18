@@ -139,4 +139,4 @@ class TradeController
     }
 }
 
-module.exports.TradeController = TradeController;
+module.exports = TradeController;

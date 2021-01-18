@@ -38,4 +38,4 @@ class NoteController
     }
 }
 
-module.exports.NoteController = NoteController;
+module.exports = NoteController;

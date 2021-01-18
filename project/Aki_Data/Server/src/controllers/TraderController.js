@@ -363,4 +363,4 @@ class TraderController
     }
 }
 
-module.exports.TraderController = TraderController;
+module.exports = TraderController;

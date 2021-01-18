@@ -150,4 +150,4 @@ class DatabaseImporter
     }
 }
 
-module.exports.DatabaseImporter = DatabaseImporter;
+module.exports = DatabaseImporter;

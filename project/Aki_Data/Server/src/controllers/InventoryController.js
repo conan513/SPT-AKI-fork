@@ -920,4 +920,4 @@ class InventoryController
     }
 }
 
-module.exports.InventoryController = InventoryController;
+module.exports = InventoryController;

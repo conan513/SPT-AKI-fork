@@ -226,4 +226,4 @@ class ProfileController
     }
 }
 
-module.exports.ProfileController = ProfileController;
+module.exports = ProfileController;

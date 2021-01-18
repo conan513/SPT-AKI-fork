@@ -49,4 +49,4 @@ class WishlistController
     }
 }
 
-module.exports.WishlistController = WishlistController;
+module.exports = WishlistController;

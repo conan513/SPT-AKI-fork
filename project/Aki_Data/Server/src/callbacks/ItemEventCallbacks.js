@@ -21,4 +21,4 @@ class ItemEventCallbacks
     }
 }
 
-module.exports.ItemEventCallbacks = ItemEventCallbacks;
+module.exports = ItemEventCallbacks;

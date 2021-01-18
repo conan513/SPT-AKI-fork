@@ -54,4 +54,4 @@ class WeatherConfig
     }
 }
 
-module.exports.WeatherConfig = WeatherConfig;
+module.exports = WeatherConfig;

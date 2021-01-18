@@ -28,4 +28,4 @@ class TradeCallbacks
     }
 }
 
-module.exports.TradeCallbacks = TradeCallbacks;
+module.exports = TradeCallbacks;

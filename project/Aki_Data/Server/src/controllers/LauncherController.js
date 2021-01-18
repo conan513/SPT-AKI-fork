@@ -110,4 +110,4 @@ class LauncherController
     }
 }
 
-module.exports.LauncherController = LauncherController;
+module.exports = LauncherController;

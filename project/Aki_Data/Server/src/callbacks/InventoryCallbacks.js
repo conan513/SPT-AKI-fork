@@ -93,4 +93,4 @@ class InventoryCallbacks
     }
 }
 
-module.exports.InventoryCallbacks = InventoryCallbacks;
+module.exports = InventoryCallbacks;

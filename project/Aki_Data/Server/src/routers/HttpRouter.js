@@ -47,4 +47,4 @@ class HttpRouter
     }
 }
 
-module.exports.HttpRouter = HttpRouter;
+module.exports = HttpRouter;

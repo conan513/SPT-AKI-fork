@@ -56,4 +56,4 @@ class TraderCallbacks
     }
 }
 
-module.exports.TraderCallbacks = TraderCallbacks;
+module.exports = TraderCallbacks;

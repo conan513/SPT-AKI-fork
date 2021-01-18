@@ -16,4 +16,4 @@ class DatabaseServer
     }
 }
 
-module.exports.DatabaseServer = DatabaseServer;
+module.exports = DatabaseServer;

@@ -140,4 +140,4 @@ class LocationController
     }
 }
 
-module.exports.LocationController = LocationController;
+module.exports = LocationController;

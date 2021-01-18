@@ -1,160 +1,112 @@
 // common_f
 
 global["common_f"] = {
-    // code here
+    "json": require("./utils/JsonUtil.js"),
+    "hash": require("./utils/HashUtil.js"),
+    "time": require("./utils/TimeUtil.js"),
+    "logger": require("./utils/Logger.js"),
+    "vfs": require("./utils/VFS.js"),
 };
-
-// certs_f
 
 global["certs_f"] = {
     // code here
 };
 
-// https_f
-
 global["https_f"] = {
     // code here
 };
-
-// database_f
 
 global["database_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
+global["item_f"] = {
+    // code here
+};
 
 global["item_f"] = {
     // code here
 };
 
-// item_f
-
 global["item_f"] = {
     // code here
 };
 
-// item_f
-
 global["item_f"] = {
     // code here
 };
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
-
-global["item_f"] = {
-    // code here
-};
-
-// item_f
 
 global["item_f"] = {
     // code here

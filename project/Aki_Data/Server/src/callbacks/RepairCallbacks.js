@@ -21,4 +21,4 @@ class RepairCallbacks
     }
 }
 
-module.exports.RepairCallbacks = RepairCallbacks;
+module.exports = RepairCallbacks;

@@ -33,4 +33,4 @@ class NoteCallbacks
     }
 }
 
-module.exports.NoteCallbacks = NoteCallbacks;
+module.exports = NoteCallbacks;

@@ -108,4 +108,4 @@ class CertController
     }
 }
 
-module.exports.CertController = CertController;
+module.exports = CertController;

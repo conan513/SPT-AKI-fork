@@ -27,4 +27,4 @@ class SaveCallbacks
     }
 }
 
-module.exports.SaveCallbacks = SaveCallbacks;
+module.exports = SaveCallbacks;

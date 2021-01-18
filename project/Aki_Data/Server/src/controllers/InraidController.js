@@ -365,4 +365,4 @@ class InraidController
     }
 }
 
-module.exports.InraidController = InraidController;
+module.exports = InraidController;

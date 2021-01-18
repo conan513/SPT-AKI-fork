@@ -120,4 +120,4 @@ class DialogueCallbacks
     }
 }
 
-module.exports.DialogueCallbacks = DialogueCallbacks;
+module.exports = DialogueCallbacks;

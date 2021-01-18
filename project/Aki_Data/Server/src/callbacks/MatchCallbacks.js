@@ -126,4 +126,4 @@ class MatchCallbacks
     }
 }
 
-module.exports.MatchCallbacks = MatchCallbacks;
+module.exports = MatchCallbacks;

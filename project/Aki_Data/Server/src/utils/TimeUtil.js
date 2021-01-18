@@ -41,4 +41,4 @@ class TimeUtil
     }
 }
 
-module.exports.TimeUtil = TimeUtil;
+module.exports = TimeUtil;

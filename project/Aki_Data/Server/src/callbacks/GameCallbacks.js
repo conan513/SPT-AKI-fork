@@ -82,4 +82,4 @@ class GameCallbacks
     }
 }
 
-module.exports.GameCallbacks = GameCallbacks;
+module.exports = GameCallbacks;

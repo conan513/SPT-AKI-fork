@@ -390,4 +390,4 @@ class InsuranceController
     }
 }
 
-module.exports.InsuranceController = InsuranceController;
+module.exports = InsuranceController;

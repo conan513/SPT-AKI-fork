@@ -140,4 +140,4 @@ class CustomizationController
     }
 }
 
-module.exports.CustomizationController = CustomizationController;
+module.exports = CustomizationController;

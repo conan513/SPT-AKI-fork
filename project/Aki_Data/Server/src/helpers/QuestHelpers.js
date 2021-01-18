@@ -166,4 +166,4 @@ class QuestHelpers
         }
     }
 }
-module.exports.QuestHelpers = QuestHelpers;
+module.exports = QuestHelpers;

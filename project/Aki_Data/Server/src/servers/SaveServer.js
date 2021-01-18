@@ -77,4 +77,4 @@ class SaveServer
     }
 }
 
-module.exports.SaveServer = SaveServer;
+module.exports = SaveServer;

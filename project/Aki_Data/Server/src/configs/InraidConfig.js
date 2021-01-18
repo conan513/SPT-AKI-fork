@@ -27,4 +27,4 @@ class InraidConfig
     }
 }
 
-module.exports.InraidConfig = InraidConfig;
+module.exports = InraidConfig;

@@ -45,4 +45,4 @@ class CertCallbacks
     }
 }
 
-module.exports.CertCallbacks = CertCallbacks;
+module.exports = CertCallbacks;

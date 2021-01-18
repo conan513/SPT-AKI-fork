@@ -153,4 +153,4 @@ class MatchController
     }
 }
 
-module.exports.MatchController = MatchController;
+module.exports = MatchController;

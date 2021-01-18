@@ -18,4 +18,4 @@ class InsuranceConfig
     }
 }
 
-module.exports.InsuranceConfig = InsuranceConfig;
+module.exports = InsuranceConfig;
