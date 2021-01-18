@@ -459,9 +459,15 @@ class RagfairServer
     getPresetItems(item)
     {
         const preset = common_f.json.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
-        preset[0].parentId = item.parentId;
-        preset[0].slotId = item.slotId;
-        preset[0].upd = item.upd;
+        const toChange = preset[0]._id;
+        preset[0] = item;
+        for (let mod of preset)
+        {
+            if (mod.parentId === toChange)
+            {
+                mod.parentId = item._id;
+            }
+        }
         return preset;
     }
 
