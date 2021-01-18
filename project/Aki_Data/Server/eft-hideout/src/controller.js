@@ -36,7 +36,9 @@ const areaTypes = {
     CHRISTMAS_TREE: 21
 };
 
+// Production recipe made from these areas
 const BITCOIN_FARM = "5d5c205bd582a50d042a3c0e";
+const WATER_COLLECTOR = "5d5589c1f934db045e6c5492";
 
 class Controller
 {
@@ -595,6 +597,7 @@ class Controller
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
+        let WaterCollectorHasFilter = false;
 
         const solarArea = pmcData.Hideout.Areas.find(area => area.type === 18);
         const solarPowerLevel = solarArea ? solarArea.level : 0;
@@ -614,7 +617,19 @@ class Controller
                 case areaTypes.WATER_COLLECTOR:
                     if (isGeneratorOn)
                     {
-                        area = this.updateWaterFilters(area);
+                        const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
+                        if (prod)
+                        {
+                            for (let slot of area.slots)
+                            {
+                                if (slot.item)
+                                {
+                                    WaterCollectorHasFilter = true;
+                                    break;
+                                }
+                            }
+                            area = this.updateWaterFilters(area, prod);
+                        }
                     }
                     break;
 
@@ -653,6 +668,20 @@ class Controller
                 continue;
             }
 
+            if (prod == WATER_COLLECTOR)
+            {
+                if (WaterCollectorHasFilter)
+                {
+                    const time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                    if (!isGeneratorOn)
+                    {
+                        time_elapsed = time_elapsed * 0.2;
+                    }
+                    pmcData.Hideout.Production[prod].Progress += time_elapsed;
+                }
+                continue;
+            }
+
             if (prod == BITCOIN_FARM)
             {
                 pmcData.Hideout.Production[prod] = this.updateBitcoinFarm(pmcData.Hideout.Production[prod], btcFarmCGs, isGeneratorOn);
@@ -684,15 +713,15 @@ class Controller
 
         for (let i = 0; i < generatorArea.slots.length; i++)
         {
-            if (!generatorArea.slots[i].item || !generatorArea.slots[i].item[0])
+            if (!generatorArea.slots[i].item)
             {
                 continue;
             }
             else
             {
                 let resourceValue = (generatorArea.slots[i].item[0].upd && generatorArea.slots[i].item[0].upd.Resource)
-                    ? generatorArea.slots[i].item[0].upd.Resource.Value
-                    : null;
+                                    ? generatorArea.slots[i].item[0].upd.Resource.Value
+                                    : null;
                 if (resourceValue === 0)
                 {
                     continue;
@@ -742,51 +771,70 @@ class Controller
         return generatorArea;
     }
 
-    updateWaterFilters(waterFilterArea)
+    updateWaterFilters(waterFilterArea, pwProd)
     {
+        const time_elapsed = (common_f.time.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
-        const filterDrainRate = 0.00333 * hideout_f.config.runInterval;
+        let filterDrainRate = 0.00333;
+        let production_time = 0;
 
-        for (let i = 0; i < waterFilterArea.slots.length; i++)
+        const recipes = database_f.server.tables.hideout.production;
+        for (const prod of recipes)
         {
-            if (!waterFilterArea.slots[i].item || !waterFilterArea.slots[i].item[0])
+            if (prod._id == WATER_COLLECTOR)
             {
-                continue;
-            }
-            else
-            {
-                let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
-                    ? waterFilterArea.slots[i].item[0].upd.Resource.Value
-                    : null;
-                if (!resourceValue)
-                {
-                    resourceValue = 100 - filterDrainRate;
-                }
-                else
-                {
-                    resourceValue -= filterDrainRate;
-                }
-                resourceValue = Math.round(resourceValue * 10000) / 10000;
-
-                if (resourceValue > 0)
-                {
-                    waterFilterArea.slots[i].item[0].upd = {
-                        "StackObjectsCount": 1,
-                        "Resource": {
-                            "Value": resourceValue
-                        }
-                    };
-                    console.log(`Water filter: ${resourceValue} filter left on slot ${i + 1}`);
-                }
-                else
-                {
-                    waterFilterArea.slots[i].item = [];
-                }
+                production_time = prod.productionTime;
                 break;
             }
         }
 
-        return waterFilterArea;
+        if (pwProd.Progress < production_time)
+        {
+            for (let i = 0; i < waterFilterArea.slots.length; i++)
+            {
+                if (!waterFilterArea.slots[i].item)
+                {
+                    continue;
+                }
+                else
+                {
+                    filterDrainRate = (time_elapsed > production_time)
+                                    ? filterDrainRate *= (production_time - pwProd.Progress)
+                                    : filterDrainRate *= time_elapsed;
+
+                    let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
+                                        ? waterFilterArea.slots[i].item[0].upd.Resource.Value
+                                        : null;
+                    if (!resourceValue)
+                    {
+                        resourceValue = 100;
+                    }
+                    else
+                    {
+                        resourceValue -= filterDrainRate;
+                    }
+                    resourceValue = Math.round(resourceValue * 10000) / 10000;
+
+                    if (resourceValue > 0)
+                    {
+                        waterFilterArea.slots[i].item[0].upd = {
+                            "StackObjectsCount": 1,
+                            "Resource": {
+                                "Value": resourceValue
+                            }
+                        };
+                        console.log(`Water filter: ${resourceValue} filter left on slot ${i + 1}`);
+                        break; // Break here to avoid updating all filters
+                    }
+                    else
+                    {
+                        waterFilterArea.slots[i].item = null;
+                    }
+                }
+            }
+
+            return waterFilterArea;
+        }
     }
 
     updateAirFilters(airFilterArea)
@@ -796,15 +844,15 @@ class Controller
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {
-            if (!airFilterArea.slots[i].item || !airFilterArea.slots[i].item[0])
+            if (!airFilterArea.slots[i].item)
             {
                 continue;
             }
             else
             {
                 let resourceValue = (airFilterArea.slots[i].item[0].upd && airFilterArea.slots[i].item[0].upd.Resource)
-                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
-                    : null;
+                                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
+                                    : null;
                 if (!resourceValue)
                 {
                     resourceValue = 300 - filterDrainRate;
@@ -824,12 +872,12 @@ class Controller
                         }
                     };
                     console.log(`Air filter: ${resourceValue} filter left on slot ${i + 1}`);
+                    break; // Break here to avoid updating all filters
                 }
                 else
                 {
-                    airFilterArea.slots[i].item = [];
+                    airFilterArea.slots[i].item = null;
                 }
-                break;
             }
         }
 
@@ -844,10 +892,11 @@ class Controller
         {
             btcProd.Progress += time_elapsed;
         }
-        
+
         // Function to reduce production time based on amount of GPU's
-        // Formula is based on the info that is available on the offical tarkov wiki
-        const btcFormula = 0.04137931 + (btcFarmCGs - 1) / 49 * 0.10386397;
+        // Client sees 72000 Progress as a bitcoin
+        // This need to be updated to be accurate under 50 CGs
+        const btcFormula = (0.05 + (btcFarmCGs - 1) / 49 * 0.15);
         const t2 = Math.pow(btcFormula, -1);
         const final_prodtime = Math.floor(t2 * 14400);
 
