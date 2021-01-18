@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { InraidController } = require("./src/controller.js");
-const { InraidCallbacks } = require("./src/callbacks.js");
-const { InraidConfig } = require("./src/config.js");
+const { InraidController } = require("./src/InraidController.js");
+const { InraidCallbacks } = require("./src/InraidCallbacks.js");
+const { InraidConfig } = require("./src/InraidConfig {.js");
 
 module.exports.controller = new InraidController();
 module.exports.callbacks = new InraidCallbacks();
