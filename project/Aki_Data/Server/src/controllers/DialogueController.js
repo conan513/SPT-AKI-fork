@@ -265,4 +265,4 @@ class DialogueController
     }
 }
 
-module.exports = DialogueController;
+module.exports = new DialogueController();

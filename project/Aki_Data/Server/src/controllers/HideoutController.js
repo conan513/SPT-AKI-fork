@@ -925,4 +925,4 @@ class HideoutController
     }
 }
 
-module.exports = HideoutController;
+module.exports = new HideoutController();

@@ -68,4 +68,4 @@ class RepairController
     }
 }
 
-module.exports = RepairController;
+module.exports = new RepairController();

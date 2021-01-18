@@ -139,4 +139,4 @@ class TradeController
     }
 }
 
-module.exports = TradeController;
+module.exports = new TradeController();

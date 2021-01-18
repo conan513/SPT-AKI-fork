@@ -54,4 +54,4 @@ class PresetBuildController
     }
 }
 
-module.exports = PresetBuildController;
+module.exports = new PresetBuildController();

@@ -153,4 +153,4 @@ class MatchController
     }
 }
 
-module.exports = MatchController;
+module.exports = new MatchController();

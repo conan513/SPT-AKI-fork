@@ -608,4 +608,4 @@ class QuestController
     }
 }
 
-module.exports = QuestController;
+module.exports = new QuestController();

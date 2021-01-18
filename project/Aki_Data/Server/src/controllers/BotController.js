@@ -213,4 +213,4 @@ class BotController
     }
 }
 
-module.exports = BotController;
+module.exports = new BotController();

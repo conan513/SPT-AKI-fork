@@ -103,4 +103,4 @@ class PresetController
     }
 }
 
-module.exports = PresetController;
+module.exports = new PresetController();

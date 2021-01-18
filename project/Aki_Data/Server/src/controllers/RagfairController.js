@@ -862,4 +862,4 @@ class RagfairController
     }
 }
 
-module.exports = RagfairController;
+module.exports = new RagfairController();

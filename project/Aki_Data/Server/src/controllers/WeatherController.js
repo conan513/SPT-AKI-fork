@@ -75,4 +75,4 @@ class WeatherController
     }
 }
 
-module.exports = WeatherController;
+module.exports = new WeatherController();
