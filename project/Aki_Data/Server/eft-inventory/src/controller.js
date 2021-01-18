@@ -803,21 +803,14 @@ class Controller
             // get trader assort
             if (body.fromOwner.type === "Trader")
             {
-                const traders = database_f.server.tables.traders;
-
-                for (const traderID in traders)
+                try
                 {
-                    if (!(body.item in traders[traderID].assort.loyal_level_items))
-                    {
-                        continue;
-                    }
-
-                    const assort = traders[traderID].assort.items.find((item) =>
-                    {
-                        return body.item === item._id;
-                    });
-
-                    itemID = assort._tpl;
+                    const assort = ragfair_f.server.offers.find(traderOffer => traderOffer._id === body.item);
+                    itemID = assort.items[0]._tpl;
+                }
+                catch
+                {
+                    console.log("No id with " + body.item + " found.");
                 }
             }
 

@@ -128,7 +128,12 @@ class Server
 
         // add trader offers
         const time = common_f.time.getTimestamp();
-        const assort = database_f.server.tables.traders[traderID].assort;
+        let assort = database_f.server.tables.traders[traderID].assort;
+
+        if (traderID === "579dc571d53a0658a154fbec")
+        {
+            assort = trader_f.controller.fenceAssort || { "items": [] };
+        }
 
         for (const item of assort.items)
         {
@@ -166,7 +171,8 @@ class Server
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
 
             // create offer
-            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+
             this.createOffer(
                 common_f.hash.generate(),           // userID
                 common_f.time.getTimestamp(),       // time
@@ -448,6 +454,21 @@ class Server
         {
             return item._id === offerID;
         }));
+    }
+
+    getPresetItems(item)
+    {
+        const preset = common_f.json.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
+        const toChange = preset[0]._id;
+        preset[0] = item;
+        for (let mod of preset)
+        {
+            if (mod.parentId === toChange)
+            {
+                mod.parentId = item._id;
+            }
+        }
+        return preset;
     }
 
     returnPlayerOffer(offerId, sessionID)
