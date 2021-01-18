@@ -17,4 +17,4 @@ class TraderConfig
     }
 }
 
-module.exports = TraderConfig;
+module.exports = new TraderConfig();

@@ -16,4 +16,4 @@ class QuestConfig
     }
 }
 
-module.exports = QuestConfig;
+module.exports = new QuestConfig();

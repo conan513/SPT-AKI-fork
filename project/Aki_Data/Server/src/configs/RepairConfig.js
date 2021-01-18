@@ -16,4 +16,4 @@ class RepairConfig
     }
 }
 
-module.exports = RepairConfig;
+module.exports = new RepairConfig();

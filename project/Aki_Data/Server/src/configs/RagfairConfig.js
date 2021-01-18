@@ -65,4 +65,4 @@ class RagfairConfig
     }
 }
 
-module.exports = RagfairConfig;
+module.exports = new RagfairConfig();

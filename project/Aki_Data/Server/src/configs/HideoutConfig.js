@@ -16,4 +16,4 @@ class HideoutConfig
     }
 }
 
-module.exports = HideoutConfig;
+module.exports = new HideoutConfig();

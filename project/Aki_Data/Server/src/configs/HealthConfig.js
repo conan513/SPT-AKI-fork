@@ -23,4 +23,4 @@ class HealthConfig
     }
 }
 
-module.exports = HealthConfig;
+module.exports = new HealthConfig();

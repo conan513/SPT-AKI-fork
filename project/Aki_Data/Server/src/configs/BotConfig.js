@@ -46,4 +46,4 @@ class BotConfig
     }
 }
 
-module.exports = BotConfig;
+module.exports = new BotConfig();

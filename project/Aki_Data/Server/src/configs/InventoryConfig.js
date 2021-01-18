@@ -16,4 +16,4 @@ class InventoryConfig
     }
 }
 
-module.exports = InventoryConfig;
+module.exports = new InventoryConfig();

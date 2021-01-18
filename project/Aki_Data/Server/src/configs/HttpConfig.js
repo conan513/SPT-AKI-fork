@@ -20,4 +20,4 @@ class HttpConfig
     }
 }
 
-module.exports = HttpConfig;
+module.exports = new HttpConfig();

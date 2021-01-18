@@ -34,4 +34,4 @@ class LocationConfig
     }
 }
 
-module.exports = LocationConfig;
+module.exports = new LocationConfig();

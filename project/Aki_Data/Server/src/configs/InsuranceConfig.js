@@ -18,4 +18,4 @@ class InsuranceConfig
     }
 }
 
-module.exports = InsuranceConfig;
+module.exports = new InsuranceConfig();
