@@ -240,4 +240,4 @@ class ModController
     }
 }
 
-module.exports.ModController = ModController;
+module.exports = new ModController();

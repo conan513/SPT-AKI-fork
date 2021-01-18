@@ -47,4 +47,4 @@ class ModCallbacks
     }
 }
 
-module.exports.ModCallbacks = ModCallbacks;
+module.exports = new ModCallbacks();

@@ -165,10 +165,7 @@ global["item_f"] = {
 // <eft-database>
 
 // mods_f
-const { ModController } = require("./controllers/ModController.js");
-const { ModCallbacks } = require("./callbacks/ModCallbacks.js");
-
 global["mods_f"] = {
-    "loader": new ModController(),
-    "callbacks": new ModCallbacks()
+    "loader": require("./controllers/ModController.js"),
+    "callbacks": require("./callbacks/ModCallbacks.js")
 };
