@@ -6,9 +6,9 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const { InventoryController } = require("./src/controller.js");
-const { InventoryCallbacks } = require("./src/callbacks.js");
-const { InventoryConfig } = require("./src/config.js");
+const { InventoryController } = require("./src/InventoryController.js");
+const { InventoryCallbacks } = require("./src/InventoryCallbacks.js");
+const { InventoryConfig } = require("./src/InventoryConfig.js");
 
 module.exports.controller = new InventoryController();
 module.exports.callbacks = new InventoryCallbacks();
