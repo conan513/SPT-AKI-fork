@@ -12,13 +12,16 @@
 
 class DialogueController
 {
-    static messageTypes = {
-        "npcTrader": 2,
-        "insuranceReturn": 8,
-        "questStart": 10,
-        "questFail": 11,
-        "questSuccess": 12
-    };
+    constructor()
+    {
+        this.messageTypes = {
+            "npcTrader": 2,
+            "insuranceReturn": 8,
+            "questStart": 10,
+            "questFail": 11,
+            "questSuccess": 12
+        };
+    }
 
     /* Set the content of the dialogue on the list tab. */
     generateDialogueList(sessionID)
@@ -79,11 +82,6 @@ class DialogueController
 	*/
     addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
-        if (save_f.server.profiles[sessionID].dialogues === undefined)
-        {
-            this.initializeDialogue(sessionID);
-        }
-
         let dialogueData = save_f.server.profiles[sessionID].dialogues;
         let isNewDialogue = !(dialogueID in dialogueData);
         let dialogue = dialogueData[dialogueID];

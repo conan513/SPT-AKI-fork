@@ -38,7 +38,7 @@ class Compiler
         "resource": Compiler.buildOptions.icon,
         "resourceType": "ICONGROUP",
         "resourceName": "MAINICON",
-    }
+    };
 
     static preBuild()
     {
