@@ -22,8 +22,8 @@ class HttpCallbacks
 
         // add server and router callbacks
         https_f.server.onRespond["IMAGE"] = this.sendImage.bind(this);
-        https_f.router.onDynamicRoute[".jpg"] = this.getImage.bind(this);
-        https_f.router.onDynamicRoute[".png"] = this.getImage.bind(this);
+        https_f.router.addDynamicRoute(".jpg", "Aki", this.getImage.bind(this));
+        https_f.router.addDynamicRoute(".png", "Aki", this.getImage.bind(this));
     }
 
     sendImage(sessionID, req, resp, body)

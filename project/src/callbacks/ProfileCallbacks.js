@@ -14,13 +14,13 @@ class ProfileCallbacks
     constructor()
     {
         save_f.server.onLoad["profile"] = this.onLoad.bind(this);
-        https_f.router.onStaticRoute["/client/game/profile/create"] = this.createProfile.bind(this);
-        https_f.router.onStaticRoute["/client/game/profile/list"] = this.getProfileData.bind(this);
-        https_f.router.onStaticRoute["/client/game/profile/savage/regenerate"] = this.regenerateScav.bind(this);
-        https_f.router.onStaticRoute["/client/game/profile/nickname/change"] = this.changeNickname.bind(this);
-        https_f.router.onStaticRoute["/client/game/profile/nickname/validate"] = this.validateNickname.bind(this);
-        https_f.router.onStaticRoute["/client/game/profile/nickname/reserved"] = this.getReservedNickname.bind(this);
-        https_f.router.onStaticRoute["/client/profile/status"] = this.getProfileStatus.bind(this);
+        https_f.router.addStaticRoute("/client/game/profile/create", "Aki", this.createProfile.bind(this));
+        https_f.router.addStaticRoute("/client/game/profile/list", "Aki", this.getProfileData.bind(this));
+        https_f.router.addStaticRoute("/client/game/profile/savage/regenerate", "Aki", this.regenerateScav.bind(this));
+        https_f.router.addStaticRoute("/client/game/profile/nickname/change", "Aki", this.changeNickname.bind(this));
+        https_f.router.addStaticRoute("/client/game/profile/nickname/validate", "Aki", this.validateNickname.bind(this));
+        https_f.router.addStaticRoute("/client/game/profile/nickname/reserved", "Aki", this.getReservedNickname.bind(this));
+        https_f.router.addStaticRoute("/client/profile/status", "Aki", this.getProfileStatus.bind(this));
     }
 
     onLoad(sessionID)

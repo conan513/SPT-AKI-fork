@@ -16,6 +16,18 @@ class HttpRouter
         this.onDynamicRoute = {};
     }
 
+    addStaticRoute(route, name, callback)
+    {
+        this.onStaticRoute[route] = this.onStaticRoute[route] || {};
+        this.onStaticRoute[route][name] = callback;
+    }
+
+    addDynamicRoute(route, name, callback)
+    {
+        this.onDynamicRoute[route] = this.onDynamicRoute[route] || {};
+        this.onDynamicRoute[route][name] = callback;
+    }
+
     getResponse(req, info, sessionID)
     {
         let output = "";
@@ -28,17 +40,20 @@ class HttpRouter
         }
 
         /* route request */
-        if (url in this.onStaticRoute)
+        if (this.onStaticRoute[url])
         {
-            output = this.onStaticRoute[url](url, info, sessionID);
+            for (const callback in this.onStaticRoute[url])
+            {
+                output = this.onStaticRoute[url][callback](url, info, sessionID, output);
+            }
         }
         else
         {
-            for (let key in this.onDynamicRoute)
+            if (this.onDynamicRoute.find((item) => { url.includes(item) }))
             {
-                if (url.includes(key))
+                for (const callback in this.onDynamicRoute[url])
                 {
-                    output = this.onDynamicRoute[key](url, info, sessionID);
+                    output = this.onDynamicRoute[url][callback](url, info, sessionID, output);
                 }
             }
         }

@@ -13,7 +13,7 @@ class QuestCallbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/client/quest/list"] = this.listQuests.bind(this);
+        https_f.router.addStaticRoute("/client/quest/list", "Aki", this.listQuests.bind(this));
         item_f.eventHandler.addEvent("QuestAccept", "Aki", this.acceptQuest.bind(this));
         item_f.eventHandler.addEvent("QuestComplete", "Aki", this.completeQuest.bind(this));
         item_f.eventHandler.addEvent("QuestHandover", "Aki", this.handoverQuest.bind(this));

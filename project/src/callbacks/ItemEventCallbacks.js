@@ -12,7 +12,7 @@ class ItemEventCallbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/client/game/profile/items/moving"] = this.handleEvents.bind(this);
+        https_f.router.addStaticRoute("/client/game/profile/items/moving", "Aki", this.handleEvents.bind(this));
     }
 
     handleEvents(url, info, sessionID)

@@ -12,7 +12,7 @@ class WeatherCallbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/client/weather"] = this.getWeather.bind(this);
+        https_f.router.addStaticRoute("/client/weather", "Aki", this.getWeather.bind(this));
     }
 
     getWeather(url, info, sessionID)

@@ -13,19 +13,19 @@ class DialogueCallbacks
     constructor()
     {
         core_f.packager.onUpdate["dialogue"] = this.update.bind(this);
-        https_f.router.onStaticRoute["/client/friend/list"] = this.getFriendList.bind(this);
-        https_f.router.onStaticRoute["/client/chatServer/list"] = this.getChatServerList.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/list"] = this.getMailDialogList.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/view"] = this.getMailDialogView.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/info"] = this.getMailDialogInfo.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/remove"] = this.removeDialog.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/pin"] = this.pinDialog.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/unpin"] = this.unpinDialog.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/read"] = this.setRead.bind(this);
-        https_f.router.onStaticRoute["/client/mail/dialog/getAllAttachments"] = this.getAllAttachments.bind(this);
-        https_f.router.onStaticRoute["/client/friend/request/list/outbox"] = this.listOutbox.bind(this);
-        https_f.router.onStaticRoute["/client/friend/request/list/inbox"] = this.listInbox.bind(this);
-        https_f.router.onStaticRoute["/client/friend/request/send"] = this.friendRequest.bind(this);
+        https_f.router.addStaticRoute("/client/friend/list", "Aki", this.getFriendList.bind(this));
+        https_f.router.addStaticRoute("/client/chatServer/list", "Aki", this.getChatServerList.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/list", "Aki", this.getMailDialogList.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/view", "Aki", this.getMailDialogView.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/info", "Aki", this.getMailDialogInfo.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/remove", "Aki", this.removeDialog.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/pin", "Aki", this.pinDialog.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/unpin", "Aki", this.unpinDialog.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/read", "Aki", this.setRead.bind(this));
+        https_f.router.addStaticRoute("/client/mail/dialog/getAllAttachments", "Aki", this.getAllAttachments.bind(this));
+        https_f.router.addStaticRoute("/client/friend/request/list/outbox", "Aki", this.listOutbox.bind(this));
+        https_f.router.addStaticRoute("/client/friend/request/list/inbox", "Aki", this.listInbox.bind(this));
+        https_f.router.addStaticRoute("/client/friend/request/send", "Aki", this.friendRequest.bind(this));
     }
 
     getFriendList(url, info, sessionID)

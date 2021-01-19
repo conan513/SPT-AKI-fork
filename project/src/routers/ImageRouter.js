@@ -21,7 +21,7 @@ class ImageRouter
         const url = req.url.split(".").slice(0, -1).join(".");
 
         // send image
-        if (url in this.onRoute)
+        if (this.onRoute[url])
         {
             https_f.server.sendFile(resp, this.onRoute[url]);
         }

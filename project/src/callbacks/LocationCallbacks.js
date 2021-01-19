@@ -12,8 +12,8 @@ class LocationCallbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/client/locations"] = this.getLocationData.bind(this);
-        https_f.router.onDynamicRoute["/api/location"] = this.getLocation.bind(this);
+        https_f.router.addStaticRoute("/client/locations", "Aki", this.getLocationData.bind(this));
+        https_f.router.addDynamicRoute("/api/location", "Aki", this.getLocation.bind(this));
     }
 
     getLocationData(url, info, sessionID)

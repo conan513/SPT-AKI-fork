@@ -35,7 +35,7 @@ class ItemEventRouter
         {
             const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
-            if (body.Action in this.onEvent)
+            if (this.onEvent[body.Action])
             {
                 for (const callback in this.onEvent[body.Action])
                 {
