@@ -63,7 +63,6 @@ class Compiler
     {
         if (vfs.exists(Compiler.buildOptions.tmp.dir))
         {
-            // TODO: delete files recurive
             vfs.removeDir(Compiler.buildOptions.tmp.dir);
         }
 
