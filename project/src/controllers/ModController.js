@@ -36,7 +36,7 @@ class ModController
         if (!common_f.vfs.exists(this.basepath))
         {
             // no mods folder found
-            common_f.vfs.createDir(this.basepath, { "recursive": true });
+            common_f.vfs.createDir(this.basepath);
             return;
         }
 

@@ -9,6 +9,7 @@
 "use strict";
 
 const fs = require("fs");
+const path = require("path");
 
 class VFS
 {
@@ -39,17 +40,18 @@ class VFS
 
         if (!this.exists(target))
         {
+            console.log(target)
             this.createDir(target);
         }
 
         for (const dir of dirs)
         {
-            this.copyDir(`${filepath}/${dir}/`, `${target}/${dir}/`);
+            this.copyDir(path.join(filepath, dir), path.join(target, dir));
         }
 
         for (const file of files)
         {
-            this.copyFile(`${filepath}/${file}`, `${target}/${file}`);
+            this.copyFile(path.join(filepath, file), path.join(target, file));
         }
     }
 
@@ -72,17 +74,17 @@ class VFS
 
     getFiles(filepath)
     {
-        return fs.readdirSync(filepath).filter((file) =>
+        return fs.readdirSync(filepath).filter((item) =>
         {
-            return fs.statSync(`${filepath}/${file}`).isFile();
+            return fs.statSync(path.join(filepath, item)).isFile();
         });
     }
 
     getDirs(filepath)
     {
-        return fs.readdirSync(filepath).filter((file) =>
+        return fs.readdirSync(filepath).filter((item) =>
         {
-            return fs.statSync(`${filepath}/${file}`).isDirectory();
+            return fs.statSync(path.join(filepath, item)).isDirectory();
         });
     }
 
@@ -98,12 +100,12 @@ class VFS
 
         for (const dir of dirs)
         {
-            this.removeDir(`${filepath}/${dir}/`);
+            this.removeDir(path.join(filepath, dir));
         }
 
         for (const file of files)
         {
-            this.removeFile(`${filepath}/${file}`);
+            this.removeFile(path.join(filepath, file));
         }
 
         fs.rmdirSync(filepath);
