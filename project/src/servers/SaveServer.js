@@ -13,7 +13,7 @@ class SaveServer
 {
     constructor()
     {
-        this.filepath = "user/profiles";
+        this.filepath = "user/profiles/";
         /** @type {UserProfile[]} */
         this.profiles = {};
         this.onLoad = {};
@@ -52,7 +52,7 @@ class SaveServer
      */
     loadProfile(sessionID)
     {
-        const file = `${this.filepath}/${sessionID}.json`;
+        const file = `${this.filepath}${sessionID}.json`;
 
         if (common_f.vfs.exists(file))
         {
@@ -73,7 +73,7 @@ class SaveServer
      */
     saveProfile(sessionID)
     {
-        const file = `${this.filepath}/${sessionID}.json`;
+        const file = `${this.filepath}${sessionID}.json`;
 
         // run callbacks
         for (const callback in this.onSave)
