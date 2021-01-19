@@ -166,6 +166,10 @@ globalThis["location_f"] = {
     "callbacks": require("./callbacks/LocationCallbacks.js")
 };
 
+globalThis["game_f"] = {
+    "callbacks": require("./callbacks/GameCallbacks.js")
+};
+
 globalThis["match_f"] = {
     "config": require("./configs/MatchConfig.json"),
     "controller": require("./controllers/MatchController.js"),
