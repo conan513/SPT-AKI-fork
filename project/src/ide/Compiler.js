@@ -16,25 +16,25 @@ class Compiler
 {
     static buildOptions = {
         "tmp": {
-            "dir": "build/out/",
+            "dir": "build/out",
             "exe": "Server-Tmp.exe"
         },
         "build": {
-            "dir": "build/",
+            "dir": "build",
             "exe": "Server.exe"
         },
-        "icon": "assets/res/icon.ico",
+        "icon": "assets/images/icon.ico",
         "entry": "src/ide/BuildEntry.js"
     };
     static nexeOptions = {
         "input": Compiler.buildOptions.entry,
-        "output": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
+        "output": `${Compiler.buildOptions.tmp.dir}/${Compiler.buildOptions.tmp.exe}`,
         "build": false
     };
     static resourceHackerOptions = {
         "operation": "addoverwrite",
-        "input": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
-        "output": `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`,
+        "input": `${Compiler.buildOptions.tmp.dir}/${Compiler.buildOptions.tmp.exe}`,
+        "output": `${Compiler.buildOptions.build.dir}/${Compiler.buildOptions.build.exe}`,
         "resource": Compiler.buildOptions.icon,
         "resourceType": "ICONGROUP",
         "resourceName": "MAINICON",
@@ -67,7 +67,7 @@ class Compiler
             vfs.removeDir(Compiler.buildOptions.tmp.dir);
         }
 
-        vfs.copyDir("assets/", "build/Aki_Data/Server/");
+        vfs.copyDir("assets", `${Compiler.buildOptions.build.dir}/Aki_Data/Server`);
     }
 
     static run()

@@ -1,10 +1,7 @@
-## SPT-AKI server
-package-lock.json
-Server.exe
-Server-Intermediate.exe
-.zip
-ResourceHacker.ini
-project/mods/
+## SPT-AKI
+*.exe
+*.zip
+project/build/
 project/user/
 
 ## visual studio
@@ -16,6 +13,7 @@ slnx-journal.sqlite
 ## nodejs
 node_modules
 node.exe
+package-lock.json
 
 ## windows
 desktop.ini

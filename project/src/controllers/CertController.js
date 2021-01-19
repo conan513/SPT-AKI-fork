@@ -22,7 +22,7 @@ class CertController
         this.certFile = `${this.certDir}cert.pem`;
         this.keyFile = `${this.certDir}key.pem`;
         this.fingerprint = "";
-        this.certs = "";
+        this.certs = undefined;
     }
 
     load()
@@ -34,54 +34,53 @@ class CertController
     {
         if (!this.certs)
         {
+            // load certs
             this.certs = this.readCerts();
+
             if (!this.certs)
             {
+                // no certs exist
                 this.generateCertificates();
             }
         }
+
         return this.certs;
     }
 
     readCerts()
     {
+        if (!common_f.vfs.exists(this.certDir))
+        {
+            common_f.vfs.createDir(this.certDir);
+        }
+
         if (common_f.vfs.exists(this.certFile) && common_f.vfs.exists(this.keyFile))
         {
             try
             {
                 const cert = common_f.vfs.readFile(this.certFile);
                 const key = common_f.vfs.readFile(this.keyFile);
-                return {cert: cert, key: key };
+                return { "cert": cert, "key": key };
             }
             catch (e)
             {
-                return false;
+                return undefined;
             }
         }
-        else
-        {
-            if (!common_f.vfs.exists(this.certDir))
-            {
-                common_f.vfs.createDir(this.certDir);
-            }
-        }
-        return false;
+
+        return undefined;
     }
 
     generateCertificates()
     {
-
         let cert;
         let key;
         let fingerprint;
 
-        ({ cert, private: key, fingerprint } = selfsigned.generate([{ name: "commonName", value: https_f.config.ip }], { days: 365 }));
-
-
-        common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
-
+        ({ cert, "private": key, fingerprint } = selfsigned.generate([{ "name": "commonName", "value": https_f.config.ip }], { "days": 365 }));
         common_f.vfs.writeFile(this.certFile, cert);
         common_f.vfs.writeFile(this.keyFile, key);
+        common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
 
         if (process.platform === "linux")
         {
@@ -93,6 +92,7 @@ class CertController
         else
         {
             common_f.logger.logInfo("Installing cert in trust store. You will be asked for admin privileges.");
+
             // Use CERTMGR.MSC to remove this Trust Store Certificate manually
             sudo.exec(`certutil.exe -f -addstore Root ${this.certFile}`, {
                 name: "Server"
@@ -100,11 +100,12 @@ class CertController
             {
                 if (error) throw error;
             });
-            common_f.logger.logInfo("Added OK.");
+
+            common_f.logger.logInfo("Added self-signed x509 certificate");
         }
 
         this.fingerprint = fingerprint;
-        this.certs = { cert: cert, key: key };
+        this.certs = { "cert": cert, "key": key };
     }
 }
 

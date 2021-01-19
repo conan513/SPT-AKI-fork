@@ -31,8 +31,8 @@ class DatabaseImporter
 
     load()
     {
-        const filepath = (globalThis.G_RELEASE_CONFIGURATION) ? "Aki_Data/Server/" : "./assets/";
-        database_f.server.tables = this.loadRecursive(`${filepath}database/`);
+        const filepath = (globalThis.G_RELEASE_CONFIGURATION) ? "Aki_Data/Server" : "./assets";
+        database_f.server.tables = this.loadRecursive(`${filepath}database`);
         this.loadImages(filepath);
     }
 
@@ -54,7 +54,7 @@ class DatabaseImporter
         // deep tree search
         for (const dir of directories)
         {
-            result[dir] = this.loadRecursive(`${filepath}${dir}/`);
+            result[dir] = this.loadRecursive(`${filepath}${dir}`);
         }
 
         return result;
@@ -62,7 +62,7 @@ class DatabaseImporter
 
     loadImages(filepath)
     {
-        const basepath = `${filepath}images/`;
+        const basepath = `${filepath}images`;
         const res = common_f.vfs.getDirs(basepath);
         const routes = [
             "/files/CONTENT/banners/",
@@ -74,7 +74,7 @@ class DatabaseImporter
 
         for (const i in res)
         {
-            const files = common_f.vfs.getFiles(`${basepath}${res[i]}/`);
+            const files = common_f.vfs.getFiles(`${basepath}${res[i]}`);
 
             for (const file of files)
             {

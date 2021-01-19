@@ -28,29 +28,31 @@ class VFS
         fs.copyFileSync(filepath, target);
     }
 
+    createDir(filepath)
+    {
+        fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { "recursive": true });
+    }
+
     copyDir(filepath, target)
     {
-        this.createDir(target);
+        if (!this.exists(target))
+        {
+            console.log(target);
+            this.createDir(target);
+        }
 
         const files = this.getFiles(filepath);
         const dirs = this.getDirs(filepath);
 
         for (const dir of dirs)
         {
-            this.copyDir(path.join(filepath, dir), path.join(target, dir));
+            this.copyDir(`${filepath}/${dir}/`, `${target}/${dir}/`);
         }
 
         for (const file of files)
         {
-            this.copyFile(path.join(filepath, file), path.join(target, file));
+            this.copyFile(`${filepath}/${file}`, `${target}/${file}`);
         }
-
-        fs.rmdirSync(filepath);
-    }
-
-    createDir(filepath)
-    {
-        fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { "recursive": true });
     }
 
     readFile(filepath)
@@ -97,12 +99,12 @@ class VFS
 
         for (const dir of dirs)
         {
-            this.removeDir(path.join(filepath, dir));
+            this.removeDir(`${filepath}/${dir}/`);
         }
 
         for (const file of files)
         {
-            this.removeFile(path.join(filepath, file));
+            this.removeFile(`${filepath}/${file}`);
         }
 
         fs.rmdirSync(filepath);
