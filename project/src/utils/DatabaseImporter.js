@@ -54,7 +54,7 @@ class DatabaseImporter
         // deep tree search
         for (const dir of directories)
         {
-            result[dir] = this.loadRecursive(`${filepath}/${dir}`);
+            result[dir] = this.loadRecursive(`${filepath}${dir}/`);
         }
 
         return result;
