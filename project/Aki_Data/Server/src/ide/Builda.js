@@ -10,7 +10,7 @@ const fs = require("fs");
 const childProcess = require("child_process");
 const { compile } = require("nexe");
 
-require("./check-version.js");
+require("./CheckVersion.js");
 
 // compile the application
 console.log("Building server");
@@ -25,7 +25,7 @@ compile({
     "input": "Aki_Data/Server/src/Program.js",
     "output": "Server-Intermediate",
     "build": false,
-    "ico": "dev/res/icon.ico"
+    "ico": "Aki_Data/Server/res/icon.ico"
 }).then((err) =>
 {
     console.log("Changing icon");

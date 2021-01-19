@@ -6,5 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-require("./check-version.js");
-require("../../Aki_Data/Server/src/Program.js");
+globalThis.G_DEBUG_CONFIGURATION = false;
+globalThis.G_RELEASE_CONFIGURATION = true;
+
+require("./CheckVersion.js");
+require("../Program.js");
