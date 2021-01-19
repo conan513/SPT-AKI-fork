@@ -65,7 +65,6 @@ class RagfairServer
         }
     }
 
-    // todo: move player offer code here
     update()
     {
         // remove expired offers
@@ -86,7 +85,7 @@ class RagfairServer
                 // Players need their items returning, and maybe their XP adjusting
                 if (this.isPlayer(offer.user.id))
                 {
-                    this.returnPlayerOffer(offer._id, sessionID);
+                    this.returnPlayerOffer(offer._id, offer.user.id);
                 }
 
                 // remove offer
