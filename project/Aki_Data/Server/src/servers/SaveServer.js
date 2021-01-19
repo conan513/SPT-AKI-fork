@@ -68,7 +68,7 @@ class SaveServer
     }
 
     /**
-     * Save Useer's Profile
+     * Save User's Profile
      * @param {string} sessionID
      */
     saveProfile(sessionID)

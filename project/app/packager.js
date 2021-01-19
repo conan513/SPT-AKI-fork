@@ -36,28 +36,6 @@ class Packager
         setInterval(this.update.bind(this), 1000);
     }
 
-    dynamicLoader()
-    {
-        const source = this.loadPackageList();
-
-        // import classes
-        for (const pkg in source)
-        {
-            this.importClass(pkg, `${this.basepath}${source[pkg]}`);
-        }
-    }
-
-    staticLoader ()
-    {
-        if (!fs.existsSync(this.staticLib))
-        {
-            this.createStaticLib();
-
-
-        }
-        require("../" + this.staticLib);
-    }
-
     update()
     {
         for (const taskId in this.onUpdate)

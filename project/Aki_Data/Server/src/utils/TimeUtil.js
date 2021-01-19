@@ -10,7 +10,6 @@
 
 class TimeUtil
 {
-
     formatTime(date)
     {
         const hours = `0${date.getHours()}`.substr(-2);
@@ -28,9 +27,7 @@ class TimeUtil
 
     getDate()
     {
-
-        let date = new Date();
-        return this.formatDate(date);
+        return this.formatDate(new Date());
     }
 
     getTime()
