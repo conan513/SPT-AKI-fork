@@ -18,7 +18,6 @@
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "build": "node dev/src/build.js",
-        "dev": "node app/setupdev.mjs",
         "start": "node dev/src/start.js",
         "lint": "eslint --fix ./**/*.js"
     },
