@@ -14,10 +14,10 @@ class TraderCallbacks
     {
         core_f.packager.onLoad["loadTraders"] = this.load.bind(this);
         core_f.packager.onUpdate["traders"] = this.update.bind(this);
-        https_f.router.onStaticRoute["/client/trading/api/getTradersList"] = this.getTraderList.bind(this);
-        https_f.router.onDynamicRoute["/client/trading/api/getUserAssortPrice/trader/"] = this.getProfilePurchases.bind(this);
-        https_f.router.onDynamicRoute["/client/trading/api/getTrader/"] = this.getTrader.bind(this);
-        https_f.router.onDynamicRoute["/client/trading/api/getTraderAssort/"] = this.getAssort.bind(this);
+        https_f.router.addStaticRoute("/client/trading/api/getTradersList", "Aki", this.getTraderList.bind(this));
+        https_f.router.addDynamicRoute("/client/trading/api/getUserAssortPrice/trader/", "Aki", this.getProfilePurchases.bind(this));
+        https_f.router.addDynamicRoute("/client/trading/api/getTrader/", "Aki", this.getTrader.bind(this));
+        https_f.router.addDynamicRoute("/client/trading/api/getTraderAssort/", "Aki", this.getAssort.bind(this));
     }
 
     load()

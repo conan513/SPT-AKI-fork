@@ -15,8 +15,8 @@ class ModCallbacks
     {
         core_f.packager.onLoad["loadMods"] = this.load.bind(this);
         https_f.server.onRespond["BUNDLE"] = this.sendBundle.bind(this);
-        https_f.router.onStaticRoute["/singleplayer/bundles"] = this.getBundles.bind(this);
-        https_f.router.onDynamicRoute[".bundle"] = this.getBundle.bind(this);
+        https_f.router.addStaticRoute("/singleplayer/bundles", "Aki", this.getBundles.bind(this));
+        https_f.router.addDynamicRoute(".bundle", "Aki", this.getBundle.bind(this));
     }
 
     load()

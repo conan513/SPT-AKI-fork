@@ -12,13 +12,13 @@ class GameCallbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/client/game/config"] = this.getGameConfig.bind(this);
-        https_f.router.onStaticRoute["/client/server/list"] = this.getServer.bind(this);
-        https_f.router.onStaticRoute["/client/game/version/validate"] = this.versionValidate.bind(this);
-        https_f.router.onStaticRoute["/client/game/start"] = this.gameStart.bind(this);
-        https_f.router.onStaticRoute["/client/game/logout"] = this.gameLogout.bind(this);
-        https_f.router.onStaticRoute["/client/checkVersion"] = this.validateGameVersion.bind(this);
-        https_f.router.onStaticRoute["/client/game/keepalive"] = this.gameKeepalive.bind(this);
+        https_f.router.addStaticRoute("/client/game/config", "Aki", this.getGameConfig.bind(this));
+        https_f.router.addStaticRoute("/client/server/list", "Aki", this.getServer.bind(this));
+        https_f.router.addStaticRoute("/client/game/version/validate", "Aki", this.versionValidate.bind(this));
+        https_f.router.addStaticRoute("/client/game/start", "Aki", this.gameStart.bind(this));
+        https_f.router.addStaticRoute("/client/game/logout", "Aki", this.gameLogout.bind(this));
+        https_f.router.addStaticRoute("/client/checkVersion", "Aki", this.validateGameVersion.bind(this));
+        https_f.router.addStaticRoute("/client/game/keepalive", "Aki", this.gameKeepalive.bind(this));
     }
 
     versionValidate(url, info, sessionID)

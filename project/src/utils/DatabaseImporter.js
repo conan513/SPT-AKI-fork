@@ -15,18 +15,18 @@ class DatabaseImporter
     {
         core_f.packager.onLoad["loadDatabase"] = this.load.bind(this);
 
-        https_f.router.onStaticRoute["/client/globals"] = this.getGlobals.bind(this);
-        https_f.router.onStaticRoute["/client/items"] = this.getTemplateItems.bind(this);
-        https_f.router.onStaticRoute["/client/handbook/templates"] = this.getTemplateHandbook.bind(this);
-        https_f.router.onStaticRoute["/client/customization"] = this.getTemplateSuits.bind(this);
-        https_f.router.onStaticRoute["/client/account/customization"] = this.getTemplateCharacter.bind(this);
-        https_f.router.onStaticRoute["/client/hideout/production/recipes"] = this.gethideoutProduction.bind(this);
-        https_f.router.onStaticRoute["/client/hideout/settings"] = this.getHideoutSettings.bind(this);
-        https_f.router.onStaticRoute["/client/hideout/areas"] = this.getHideoutAreas.bind(this);
-        https_f.router.onStaticRoute["/client/hideout/production/scavcase/recipes"] = this.getHideoutScavcase.bind(this);
-        https_f.router.onStaticRoute["/client/languages"] = this.getLocalesLanguages.bind(this);
-        https_f.router.onDynamicRoute["/client/menu/locale/"] = this.getLocalesMenu.bind(this);
-        https_f.router.onDynamicRoute["/client/locale/"] = this.getLocalesGlobal.bind(this);
+        https_f.router.addStaticRoute("/client/globals", "Aki", this.getGlobals.bind(this));
+        https_f.router.addStaticRoute("/client/items", "Aki", this.getTemplateItems.bind(this));
+        https_f.router.addStaticRoute("/client/handbook/templates", "Aki", this.getTemplateHandbook.bind(this));
+        https_f.router.addStaticRoute("/client/customization", "Aki", this.getTemplateSuits.bind(this));
+        https_f.router.addStaticRoute("/client/account/customization", "Aki", this.getTemplateCharacter.bind(this));
+        https_f.router.addStaticRoute("/client/hideout/production/recipes", "Aki", this.gethideoutProduction.bind(this));
+        https_f.router.addStaticRoute("/client/hideout/settings", "Aki", this.getHideoutSettings.bind(this));
+        https_f.router.addStaticRoute("/client/hideout/areas", "Aki", this.getHideoutAreas.bind(this));
+        https_f.router.addStaticRoute("/client/hideout/production/scavcase/recipes", "Aki", this.getHideoutScavcase.bind(this));
+        https_f.router.addStaticRoute("/client/languages", "Aki", this.getLocalesLanguages.bind(this));
+        https_f.router.addDynamicRoute("/client/menu/locale/", "Aki", this.getLocalesMenu.bind(this));
+        https_f.router.addDynamicRoute("/client/locale/", "Aki", this.getLocalesGlobal.bind(this));
     }
 
     load()

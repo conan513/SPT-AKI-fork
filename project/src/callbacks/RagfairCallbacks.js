@@ -19,13 +19,13 @@ class RagfairCallbacks
         core_f.packager.onLoad["loadRagfair"] = this.load.bind(this);
         core_f.packager.onUpdate["ragfair-update-offers"] = this.update.bind(this);
         core_f.packager.onUpdate["ragfair-process-playeroffers"] = this.updatePlayer.bind(this);
-        https_f.router.onStaticRoute["/client/ragfair/search"] = this.search.bind(this);
-        https_f.router.onStaticRoute["/client/ragfair/find"] = this.search.bind(this);
-        https_f.router.onStaticRoute["/client/ragfair/itemMarketPrice"] = this.getMarketPrice.bind(this);
-        https_f.router.onStaticRoute["/client/items/prices"] = this.getItemPrices.bind(this);
-        item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
-        item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
-        item_f.eventHandler.onEvent["RagFairRenewOffer"] = this.extendOffer.bind(this);
+        https_f.router.addStaticRoute("/client/ragfair/search", "Aki", this.search.bind(this));
+        https_f.router.addStaticRoute("/client/ragfair/find", "Aki", this.search.bind(this));
+        https_f.router.addStaticRoute("/client/ragfair/itemMarketPrice", "Aki", this.getMarketPrice.bind(this));
+        https_f.router.addStaticRoute("/client/items/prices", "Aki", this.getItemPrices.bind(this));
+        item_f.eventHandler.addEvent("RagFairAddOffer", "Aki", this.addOffer.bind(this));
+        item_f.eventHandler.addEvent("RagFairRemoveOffer", "Aki", this.removeOffer.bind(this));
+        item_f.eventHandler.addEvent("RagFairRenewOffer", "Aki", this.extendOffer.bind(this));
     }
 
     load()

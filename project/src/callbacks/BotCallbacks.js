@@ -12,9 +12,9 @@ class BotCallbacks
 {
     constructor()
     {
-        https_f.router.onStaticRoute["/client/game/bot/generate"] = this.generateBots.bind(this);
-        https_f.router.onDynamicRoute["/singleplayer/settings/bot/limit/"] = this.getBotLimit.bind(this);
-        https_f.router.onDynamicRoute["/singleplayer/settings/bot/difficulty/"] = this.getBotDifficulty.bind(this);
+        https_f.router.addStaticRoute("/client/game/bot/generate", "Aki", this.generateBots.bind(this));
+        https_f.router.addDynamicRoute("/singleplayer/settings/bot/limit/", "Aki", this.getBotLimit.bind(this));
+        https_f.router.addDynamicRoute("/singleplayer/settings/bot/difficulty/", "Aki", this.getBotDifficulty.bind(this));
     }
 
     getBotLimit(url, info, sessionID)

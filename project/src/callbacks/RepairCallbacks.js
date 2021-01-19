@@ -12,7 +12,7 @@ class RepairCallbacks
 {
     constructor()
     {
-        item_f.eventHandler.onEvent["Repair"] = this.repair.bind(this);
+        item_f.eventHandler.addEvent("Repair", "Aki", this.repair.bind(this));
     }
 
     repair(pmcData, body, sessionID)

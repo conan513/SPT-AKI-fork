@@ -17,6 +17,12 @@ class ItemEventRouter
         this.resetOutput();
     }
 
+    addEvent(action, name, callback)
+    {
+        this.onEvent[action] = this.onEvent[action] || {};
+        this.onEvent[action][name] = callback;
+    }
+
     /**
      * @param {{ data: any; }} info
      * @param {string} sessionID
@@ -29,9 +35,12 @@ class ItemEventRouter
         {
             const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
-            if (body.Action in this.onEvent)
+            if (this.onEvent[body.Action])
             {
-                result = this.onEvent[body.Action](pmcData, body, sessionID);
+                for (const callback in this.onEvent[body.Action])
+                {
+                    result = this.onEvent[body.Action][callback](pmcData, body, sessionID, result);
+                }
             }
             else
             {
@@ -60,15 +69,12 @@ class ItemEventRouter
     {
         this.output = data;
     }
-    /**
-     *
-     *
-     * @memberof EventHandler
 
+    /**
+     * @memberof EventHandler
      */
     resetOutput()
     {
-
         this.output = {
             "items": {
                 "new": [],

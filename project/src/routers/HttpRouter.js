@@ -16,29 +16,51 @@ class HttpRouter
         this.onDynamicRoute = {};
     }
 
+    addStaticRoute(route, name, callback)
+    {
+        this.onStaticRoute[route] = this.onStaticRoute[route] || {};
+        this.onStaticRoute[route][name] = callback;
+    }
+
+    addDynamicRoute(route, name, callback)
+    {
+        this.onDynamicRoute[route] = this.onDynamicRoute[route] || {};
+        this.onDynamicRoute[route][name] = callback;
+    }
+
     getResponse(req, info, sessionID)
     {
         let output = "";
         let url = req.url;
 
-        /* remove retry from URL */
+        // remove retry from url
         if (url.includes("?retry="))
         {
             url = url.split("?retry=")[0];
         }
 
-        /* route request */
-        if (url in this.onStaticRoute)
+        if (this.onStaticRoute[url])
         {
-            output = this.onStaticRoute[url](url, info, sessionID);
+            // static route found
+            for (const callback in this.onStaticRoute[url])
+            {
+                output = this.onStaticRoute[url][callback](url, info, sessionID, output);
+            }
         }
         else
         {
-            for (let key in this.onDynamicRoute)
+            for (const route in this.onDynamicRoute)
             {
-                if (url.includes(key))
+                if (!url.includes(route))
                 {
-                    output = this.onDynamicRoute[key](url, info, sessionID);
+                    // not the route we look for
+                    continue;
+                }
+
+                // dynamic route found
+                for (const callback in this.onDynamicRoute[route])
+                {
+                    output = this.onDynamicRoute[route][callback](url, info, sessionID, output);
                 }
             }
         }

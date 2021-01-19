@@ -21,7 +21,7 @@ class CertCallbacks
 
     load()
     {
-        https_f.router.onStaticRoute[this.endPoint] = this.registerBinary.bind(this);
+        https_f.router.addStaticRoute(this.endPoint, "Aki", this.registerBinary.bind(this));
         https_f.server.onRespond["CERT_BIN"] = this.sendBinary.bind(this);
         certs_f.controller.load();
     }
