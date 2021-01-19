@@ -8,8 +8,6 @@
 
 "use strict";
 
-const fs = require("fs");
-
 class Packager
 {
     constructor()
@@ -20,46 +18,12 @@ class Packager
         this.onLoad = {};
         this.onUpdate = {};
         this.onUpdateLastRun = {};
-        this.enableStaticLib = true;
-    }
-
-    importClass(name, filepath)
-    {
-        // import class
-        global[name] = require(`../${filepath}`);
-    }
-
-    loadPackageList()
-    {
-        return JSON.parse(fs.readFileSync(`${this.basepath}loadorder.json`));
-    }
-
-    /**
-     * Created Static Library for linking
-     * @param {string} [file]
-     */
-    createStaticLib(file)
-    {
-        const packageList = this.loadPackageList();
-        let output = "";
-        for (const pkg in packageList)
-        {
-            output += `globalThis.${pkg} = require("./${this.basepath}${packageList[pkg]}");\n`;
-        }
-        fs.writeFileSync(this.staticLib, output);
-        return true;
     }
 
     load()
     {
-        if (this.enableStaticLib)
-        {
-            this.staticLoader();
-        }
-        else
-        {
-            this.dynamicLoader();
-        }
+        // import classes
+        require("../Aki_Data/Server/src/lib.js");
 
         // execute onLoad callbacks
         console.log("Server: executing startup callbacks...");
