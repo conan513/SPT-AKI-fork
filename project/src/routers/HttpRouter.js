@@ -33,15 +33,15 @@ class HttpRouter
         let output = "";
         let url = req.url;
 
-        /* remove retry from URL */
+        // remove retry from url
         if (url.includes("?retry="))
         {
             url = url.split("?retry=")[0];
         }
 
-        /* route request */
         if (this.onStaticRoute[url])
         {
+            // static route found
             for (const callback in this.onStaticRoute[url])
             {
                 output = this.onStaticRoute[url][callback](url, info, sessionID, output);
@@ -49,11 +49,18 @@ class HttpRouter
         }
         else
         {
-            if (this.onDynamicRoute.find((item) => { url.includes(item) }))
+            for (const route in this.onDynamicRoute)
             {
-                for (const callback in this.onDynamicRoute[url])
+                if (!url.includes(route))
                 {
-                    output = this.onDynamicRoute[url][callback](url, info, sessionID, output);
+                    // not the route we look for
+                    continue;
+                }
+
+                // dynamic route found
+                for (const callback in this.onDynamicRoute[route])
+                {
+                    output = this.onDynamicRoute[route][callback](url, info, sessionID, output);
                 }
             }
         }
