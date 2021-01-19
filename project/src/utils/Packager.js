@@ -12,7 +12,6 @@ class Packager
 {
     constructor()
     {
-        this.basepath = (globalThis.G_RELEASE_CONFIGURATION) ? "Aki_Data/Server/" : "./";
         this.onLoad = {};
         this.onUpdate = {};
         this.onUpdateLastRun = {};

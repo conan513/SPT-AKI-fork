@@ -22,10 +22,12 @@ class Compiler
         "build": {
             "dir": "build/",
             "exe": "Server.exe"
-        }
+        },
+        "icon": "assets/res/icon.ico",
+        "entry": "src/ide/BuildEntry.js"
     };
     static nexeOptions = {
-        "input": "src/ide/BuildEntry.js",
+        "input": Compiler.buildOptions.entry,
         "output": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
         "build": false
     };
@@ -33,7 +35,7 @@ class Compiler
         "operation": "addoverwrite",
         "input": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
         "output": `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`,
-        "resource": "res/icon.ico",
+        "resource": Compiler.buildOptions.icon,
         "resourceType": "ICONGROUP",
         "resourceName": "MAINICON",
     }

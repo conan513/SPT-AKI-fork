@@ -31,8 +31,9 @@ class DatabaseImporter
 
     load()
     {
-        database_f.server.tables = this.loadRecursive(`${core_f.packager.basepath}db/`);
-        this.loadImages();
+        const filepath = (globalThis.G_RELEASE_CONFIGURATION) ? "Aki_Data/Server/" : "./assets/";
+        database_f.server.tables = this.loadRecursive(`${filepath}db/`);
+        this.loadImages(filepath);
     }
 
     loadRecursive(filepath)
@@ -59,9 +60,9 @@ class DatabaseImporter
         return result;
     }
 
-    loadImages()
+    loadImages(filepath)
     {
-        const basepath = `${core_f.packager.basepath}res/`;
+        const basepath = `${filepath}res/`;
         const res = common_f.vfs.getDirs(basepath);
         const routes = [
             "/files/CONTENT/banners/",
