@@ -22,7 +22,7 @@ if (fs.existsSync("Server.exe"))
 }
 
 compile({
-    "input": "Aki_Data/Server/src/app.js",
+    "input": "Aki_Data/Server/src/Program.js",
     "output": "Server-Intermediate",
     "build": false,
     "ico": "dev/res/icon.ico"
