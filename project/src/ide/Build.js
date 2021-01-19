@@ -6,7 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const fs = require("fs");
+const vfs = require("../utils/VFS.js");
 const { compile } = require("nexe");
 const resourceHacker = require('@lorki97/node-resourcehacker');
 
@@ -15,49 +15,54 @@ require("./CheckVersion.js");
 class Compiler
 {
     static buildOptions = {
-        "output": "Server.exe",
-        "temp": "Server-Temp.exe"
+        "tmp": {
+            "dir": "build/out/",
+            "exe": "Server-Tmp.exe"
+        },
+        "build": {
+            "dir": "build/",
+            "exe": "Server.exe"
+        }
     };
     static nexeOptions = {
-        "input": "Aki_Data/Server/src/ide/BuildEntry.js",
-        "output": Compiler.buildOptions.temp,
+        "input": "src/ide/BuildEntry.js",
+        "output": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
         "build": false
     };
     static resourceHackerOptions = {
         "operation": "addoverwrite",
-        "input": Compiler.buildOptions.temp,
-        "output": Compiler.buildOptions.output,
-        "resource": "Aki_Data/Server/res/icon.ico",
+        "input": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
+        "output": `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`,
+        "resource": "res/icon.ico",
         "resourceType": "ICONGROUP",
         "resourceName": "MAINICON",
     }
 
     static preBuild()
     {
-        if (fs.existsSync(Compiler.buildOptions.output))
+        if (vfs.exists(Compiler.buildOptions.build.dir))
         {
             console.log("Old build detected, removing the file");
-            fs.unlinkSync(Compiler.buildOptions.output);
+            vfs.removeDir(Compiler.buildOptions.build.dir);
         }
     }
 
     static nexeCompile()
     {
-        console.log("Compiling...");
         return compile(Compiler.nexeOptions);
     }
 
     static replaceIcon(callback)
     {
-        console.log("Changing icon...");
-        return resourceHacker(Compiler.resourceHackerOptions, callback);
+        resourceHacker(Compiler.resourceHackerOptions, callback);
     }
 
     static postBuild()
     {
-        if (fs.existsSync(Compiler.buildOptions.temp))
+        if (vfs.exists(Compiler.buildOptions.tmp.dir))
         {
-            fs.unlinkSync(Compiler.buildOptions.temp);
+            // TODO: delete files recurive
+            vfs.removeDir(Compiler.buildOptions.tmp.dir);
         }
     }
 
@@ -66,7 +71,10 @@ class Compiler
         // todo: find a solution that's not this
         // I fucking hate promises and callbacks like this
         Compiler.preBuild();
-        Compiler.nexeCompile().then(Compiler.replaceIcon(Compiler.postBuild));
+        Compiler.nexeCompile().then(() =>
+        {
+            Compiler.replaceIcon(Compiler.postBuild)
+        });
     }
 }
 
