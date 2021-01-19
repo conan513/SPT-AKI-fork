@@ -22,10 +22,10 @@ if (fs.existsSync("Server.exe"))
 }
 
 compile({
-    input: "app/main.js",
-    output: "Server-Intermediate",
-    build: false,
-    ico: "dev/res/icon.ico"
+    "input": "Aki_Data/Server/src/app.js",
+    "output": "Server-Intermediate",
+    "build": false,
+    "ico": "dev/res/icon.ico"
 }).then((err) =>
 {
     console.log("Changing icon");

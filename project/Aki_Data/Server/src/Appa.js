@@ -9,12 +9,7 @@
 "use strict";
 
 const process = require("process");
-const watermark = require("./watermark.js");
-
-// force packing of npm packages
-require("selfsigned");
-require("sudo-prompt");
-require("ws");
+const watermark = require("./utils/Watermark.js");
 
 // set window properties
 process.stdout.setEncoding("utf8");
@@ -25,6 +20,8 @@ watermark.instance.setTitle();
 watermark.instance.resetCursor();
 watermark.instance.draw();
 
+// import classes
+require("./Lib.js");
+
 // load and execute all packages
-global["core_f"] = require("./packager.js");
 core_f.packager.load();

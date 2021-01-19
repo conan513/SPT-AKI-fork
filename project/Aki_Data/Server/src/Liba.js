@@ -1,3 +1,6 @@
+globalThis["core_f"] = {}
+globalThis["core_f"]["packager"] = require("./utils/Packager.js");
+
 globalThis["common_f"] = {
     "vfs": require("./utils/VFS.js"),
     "json": require("./utils/JsonUtil.js"),

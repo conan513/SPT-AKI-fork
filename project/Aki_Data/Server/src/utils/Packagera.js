@@ -13,8 +13,6 @@ class Packager
     constructor()
     {
         this.basepath = "Aki_Data/Server/";
-        this.staticLib = "lib.js";
-        this.source = {};
         this.onLoad = {};
         this.onUpdate = {};
         this.onUpdateLastRun = {};
@@ -22,9 +20,6 @@ class Packager
 
     load()
     {
-        // import classes
-        require("../Aki_Data/Server/src/lib.js");
-
         // execute onLoad callbacks
         console.log("Server: executing startup callbacks...");
 
@@ -77,4 +72,4 @@ class Packager
     }
 }
 
-module.exports.packager = new Packager();
+module.exports = new Packager();

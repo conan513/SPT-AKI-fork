@@ -7,4 +7,4 @@
  */
 
 require("./check-version.js");
-require("../../app/main.js");
+require("../../Aki_Data/Server/src/App.js");
