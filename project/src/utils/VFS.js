@@ -18,9 +18,39 @@ class VFS
         return fs.existsSync(filepath);
     }
 
+    rename(filepath, target)
+    {
+        fs.renameSync(filepath, target);
+    }
+
+    copyFile(filepath, target)
+    {
+        fs.copyFileSync(filepath, target);
+    }
+
+    copyDir(filepath, target)
+    {
+        this.createDir(target);
+
+        const files = this.getFiles(filepath);
+        const dirs = this.getDirs(filepath);
+
+        for (const dir of dirs)
+        {
+            this.copyDir(path.join(filepath, dir), path.join(target, dir));
+        }
+
+        for (const file of files)
+        {
+            this.copyFile(path.join(filepath, file), path.join(target, file));
+        }
+
+        fs.rmdirSync(filepath);
+    }
+
     createDir(filepath)
     {
-        fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { recursive: true });
+        fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { "recursive": true });
     }
 
     readFile(filepath)
@@ -39,32 +69,6 @@ class VFS
         fs.writeFileSync(filepath, data, options);
     }
 
-    removeFile(filepath)
-    {
-        fs.unlinkSync(filepath);
-    }
-
-    removeDir(dir)
-    {
-        const files = fs.readdirSync(dir);
-
-        for (const file of files)
-        {
-            const filepath = path.join(dir, file);
-
-            if (fs.statSync(filepath).isDirectory())
-            {
-                this.removeDir(filepath);
-            }
-            else
-            {
-                this.removeFile(filepath);
-            }
-        }
-
-        fs.rmdirSync(dir);
-    }
-
     getFiles(filepath)
     {
         return fs.readdirSync(filepath).filter((file) =>
@@ -79,6 +83,29 @@ class VFS
         {
             return fs.statSync(`${filepath}/${file}`).isDirectory();
         });
+    }
+
+    removeFile(filepath)
+    {
+        fs.unlinkSync(filepath);
+    }
+
+    removeDir(filepath)
+    {
+        const files = this.getFiles(filepath);
+        const dirs = this.getDirs(filepath);
+
+        for (const dir of dirs)
+        {
+            this.removeDir(path.join(filepath, dir));
+        }
+
+        for (const file of files)
+        {
+            this.removeFile(path.join(filepath, file));
+        }
+
+        fs.rmdirSync(filepath);
     }
 }
 

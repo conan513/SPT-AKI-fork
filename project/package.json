@@ -17,7 +17,7 @@
     "repository": "https://dev.offline-tarkov.com/SPT-AKI/Server",
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
-        "build": "node src/ide/Build.js",
+        "build": "node src/ide/Compiler.js",
         "start": "node src/ide/StartEntry.js",
         "lint": "eslint --fix ./**/*.js"
     },

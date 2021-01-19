@@ -66,6 +66,8 @@ class Compiler
             // TODO: delete files recurive
             vfs.removeDir(Compiler.buildOptions.tmp.dir);
         }
+
+        vfs.copyDir("assets/", "build/Aki_Data/Server/");
     }
 
     static run()
