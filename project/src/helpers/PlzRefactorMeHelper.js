@@ -866,7 +866,6 @@ class PlzRefactorMeHelper
             }
         }
 
-        
         return list;
     }
 

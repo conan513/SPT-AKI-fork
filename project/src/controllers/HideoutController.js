@@ -608,6 +608,7 @@ class HideoutController
             {
                 case areaTypes.GENERATOR:
                     isGeneratorOn = area.active;
+
                     if (isGeneratorOn)
                     {
                         area = this.updateFuel(area, solarPowerLevel);
@@ -615,18 +616,22 @@ class HideoutController
                     break;
 
                 case areaTypes.WATER_COLLECTOR:
-                    for (let slot of area.slots)
                     {
-                        if (slot.item)
+                        for (let slot of area.slots)
                         {
-                            WaterCollectorHasFilter = true;
-                            break;
+                            if (slot.item)
+                            {
+                                WaterCollectorHasFilter = true;
+                                break;
+                            }
                         }
-                    }
-                    const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
-                    if (prod)
-                    {
-                        area = this.updateWaterFilters(area, prod, isGeneratorOn);
+
+                        const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
+
+                        if (prod)
+                        {
+                            area = this.updateWaterFilters(area, prod, isGeneratorOn);
+                        }
                     }
                     break;
 
@@ -672,6 +677,7 @@ class HideoutController
                 {
                     time_elapsed = Math.floor(time_elapsed * 0.2);
                 }
+
                 if (WaterCollectorHasFilter)
                 {
                     pmcData.Hideout.Production[prod].Progress += time_elapsed;
@@ -717,8 +723,8 @@ class HideoutController
             else
             {
                 let resourceValue = (generatorArea.slots[i].item[0].upd && generatorArea.slots[i].item[0].upd.Resource)
-                                    ? generatorArea.slots[i].item[0].upd.Resource.Value
-                                    : null;
+                    ? generatorArea.slots[i].item[0].upd.Resource.Value
+                    : null;
                 if (resourceValue === 0)
                 {
                     continue;
@@ -727,8 +733,8 @@ class HideoutController
                 {
                     const fuelItem = "5d1b371186f774253763a656"; // Expeditionary fuel tank
                     resourceValue = generatorArea.slots[i].item[0]._tpl === fuelItem
-                                    ? resourceValue = 60 - fuelDrainRate
-                                    : resourceValue = 100 - fuelDrainRate;
+                        ? resourceValue = 60 - fuelDrainRate
+                        : resourceValue = 100 - fuelDrainRate;
                 }
                 else
                 {
@@ -796,16 +802,16 @@ class HideoutController
                 else
                 {
                     filterDrainRate = (time_elapsed > production_time)
-                                    ? filterDrainRate *= (production_time - pwProd.Progress)
-                                    : filterDrainRate *= time_elapsed;
+                        ? filterDrainRate *= (production_time - pwProd.Progress)
+                        : filterDrainRate *= time_elapsed;
                     if (!isGeneratorOn)
                     {
                         filterDrainRate = filterDrainRate * 0.2;
                     }
 
                     let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
-                                        ? waterFilterArea.slots[i].item[0].upd.Resource.Value
-                                        : null;
+                        ? waterFilterArea.slots[i].item[0].upd.Resource.Value
+                        : null;
                     if (!resourceValue)
                     {
                         resourceValue = 100;
@@ -852,8 +858,8 @@ class HideoutController
             else
             {
                 let resourceValue = (airFilterArea.slots[i].item[0].upd && airFilterArea.slots[i].item[0].upd.Resource)
-                                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
-                                    : null;
+                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
+                    : null;
                 if (!resourceValue)
                 {
                     resourceValue = 300 - filterDrainRate;

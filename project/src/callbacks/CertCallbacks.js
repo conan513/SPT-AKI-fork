@@ -40,7 +40,7 @@ class CertCallbacks
             "Content-Type": https_f.server.mime["bin"],
             "Content-Disposition": `${sendType}; filename="${this.certFilename}"`
         });
-        
+
         resp.end(certs.cert);
     }
 }

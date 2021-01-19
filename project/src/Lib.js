@@ -1,4 +1,4 @@
-globalThis["core_f"] = {}
+globalThis["core_f"] = {};
 globalThis["core_f"]["packager"] = require("./utils/Packager.js");
 
 globalThis["common_f"] = {

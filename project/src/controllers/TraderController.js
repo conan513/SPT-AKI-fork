@@ -131,7 +131,7 @@ class TraderController
                 this.fenceAssort = this.generateFenceAssort();
                 ragfair_f.server.generateTraderOffers(traderID);
             }
-            
+
             return this.fenceAssort;
         }
 
