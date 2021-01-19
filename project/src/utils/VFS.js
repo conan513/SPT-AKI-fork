@@ -37,7 +37,6 @@ class VFS
     {
         if (!this.exists(target))
         {
-            console.log(target);
             this.createDir(target);
         }
 
