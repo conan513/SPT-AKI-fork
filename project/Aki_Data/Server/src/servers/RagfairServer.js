@@ -1,3 +1,4 @@
+//@ts-check
 /* server.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -187,7 +188,7 @@ class RagfairServer
     {
         const isTrader = this.isTrader(userID);
         const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
-        
+
         if (price === null)
         {
             price = this.getBarterPrice(userID, barterScheme);

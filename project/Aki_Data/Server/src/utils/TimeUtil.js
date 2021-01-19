@@ -37,7 +37,7 @@ class TimeUtil
 
     getTimestamp()
     {
-        return Math.floor(new Date() / 1000);
+        return Math.floor(new Date().getTime() / 1000);
     }
 }
 

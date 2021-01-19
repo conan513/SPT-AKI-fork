@@ -13,6 +13,7 @@ class Packager
     constructor()
     {
         this.basepath = "Aki_Data/Server/";
+        this.staticLib = "lib.js";
         this.source = {};
         this.onLoad = {};
         this.onUpdate = {};

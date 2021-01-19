@@ -1,3 +1,4 @@
+//@ts-check
 /* controller.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -456,6 +457,10 @@ class RagfairController
     }
 
     /* Scans a given slot type for filters and returns them as a Set */
+    /**
+     * @param {itemTemplate} item
+     * @param {string} slot
+     */
     getFilters(item, slot)
     {
         let result = new Set();
@@ -546,6 +551,11 @@ class RagfairController
         };
     }
 
+    /**
+     * @param {UserPMCProfile} pmcData
+     * @param {{ items: itemTemplate[]; requirements: itemTemplate[]; sellInOnePiece: boolean; }} info
+     * @param {string} sessionID
+     */
     addPlayerOffer(pmcData, info, sessionID)
     {
         const result = item_f.eventHandler.getOutput();
