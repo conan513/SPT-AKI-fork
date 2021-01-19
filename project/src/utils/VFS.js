@@ -35,13 +35,13 @@ class VFS
 
     copyDir(filepath, target)
     {
+        const files = this.getFiles(filepath);
+        const dirs = this.getDirs(filepath);
+
         if (!this.exists(target))
         {
             this.createDir(target);
         }
-
-        const files = this.getFiles(filepath);
-        const dirs = this.getDirs(filepath);
 
         for (const dir of dirs)
         {
@@ -61,12 +61,13 @@ class VFS
 
     writeFile(filepath, data = "", append = false)
     {
+        const options = (append) ? { "flag": "a" } : { "flag": "w" };
+        
         if (!this.exists(filepath))
         {
             this.createDir(filepath);
         }
 
-        const options = (append) ? { "flag": "a" } : { "flag": "w" };
         fs.writeFileSync(filepath, data, options);
     }
 
