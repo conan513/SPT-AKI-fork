@@ -40,8 +40,7 @@ class VFS
 
         if (!this.exists(target))
         {
-            console.log(target)
-            this.createDir(target);
+            this.createDir(`${target}/`);
         }
 
         for (const dir of dirs)
