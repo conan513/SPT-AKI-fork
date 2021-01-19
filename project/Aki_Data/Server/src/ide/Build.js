@@ -7,42 +7,67 @@
  */
 
 const fs = require("fs");
-const childProcess = require("child_process");
 const { compile } = require("nexe");
+const resourceHacker = require('@lorki97/node-resourcehacker');
 
 require("./CheckVersion.js");
 
-// compile the application
-console.log("Building server");
-
-if (fs.existsSync("Server.exe"))
+class Compiler
 {
-    console.log("Old server build detected, removing the file");
-    fs.unlinkSync("Server.exe");
+    static buildOptions = {
+        "output": "Server.exe",
+        "temp": "Server-Temp.exe"
+    };
+    static nexeOptions = {
+        "input": "Aki_Data/Server/src/ide/BuildEntry.js",
+        "output": Compiler.buildOptions.temp,
+        "build": false
+    };
+    static resourceHackerOptions = {
+        "operation": "addoverwrite",
+        "input": Compiler.buildOptions.temp,
+        "output": Compiler.buildOptions.output,
+        "resource": "Aki_Data/Server/res/icon.ico",
+        "resourceType": "ICONGROUP",
+        "resourceName": "MAINICON",
+    }
+
+    static preBuild()
+    {
+        if (fs.existsSync(Compiler.buildOptions.output))
+        {
+            console.log("Old build detected, removing the file");
+            fs.unlinkSync(Compiler.buildOptions.output);
+        }
+    }
+
+    static nexeCompile()
+    {
+        console.log("Compiling...");
+        return compile(Compiler.nexeOptions);
+    }
+
+    static replaceIcon(callback)
+    {
+        console.log("Changing icon...");
+        return resourceHacker(Compiler.resourceHackerOptions, callback);
+    }
+
+    static postBuild()
+    {
+        if (fs.existsSync(Compiler.buildOptions.temp))
+        {
+            fs.unlinkSync(Compiler.buildOptions.temp);
+        }
+    }
+
+    static run()
+    {
+        // todo: find a solution that's not this
+        // I fucking hate promises and callbacks like this
+        Compiler.preBuild();
+        Compiler.nexeCompile().then(Compiler.replaceIcon(Compiler.postBuild));
+    }
 }
 
-compile({
-    "input": "Aki_Data/Server/src/Program.js",
-    "output": "Server-Intermediate",
-    "build": false,
-    "ico": "Aki_Data/Server/res/icon.ico"
-}).then((err) =>
-{
-    console.log("Changing icon");
-
-    childProcess.execFile("dev/bin/ResourceHacker.exe", [
-        "-open",
-        "Server-Intermediate.exe",
-        "-save",
-        "Server.exe",
-        "-action",
-        "addoverwrite",
-        "-res",
-        "dev/res/icon.ico",
-        "-mask",
-        "ICONGROUP,MAINICON,"
-    ], (err) =>
-    {
-        fs.unlinkSync("Server-Intermediate.exe");
-    });
-});
+Compiler.run();
