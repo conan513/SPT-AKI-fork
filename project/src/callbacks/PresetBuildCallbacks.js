@@ -14,8 +14,8 @@ class PresetBuildCallbacks
     constructor()
     {
         https_f.router.onStaticRoute["/client/handbook/builds/my/list"] = this.getHandbookUserlist.bind(this);
-        item_f.eventHandler.onEvent["SaveBuild"] = this.saveBuild.bind(this);
-        item_f.eventHandler.onEvent["RemoveBuild"] = this.removeBuild.bind(this);
+        item_f.eventHandler.addEvent("SaveBuild", "Aki", this.saveBuild.bind(this));
+        item_f.eventHandler.addEvent("RemoveBuild", "Aki",this.removeBuild.bind(this));
     }
 
     getHandbookUserlist(url, info, sessionID)

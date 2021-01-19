@@ -23,9 +23,9 @@ class RagfairCallbacks
         https_f.router.onStaticRoute["/client/ragfair/find"] = this.search.bind(this);
         https_f.router.onStaticRoute["/client/ragfair/itemMarketPrice"] = this.getMarketPrice.bind(this);
         https_f.router.onStaticRoute["/client/items/prices"] = this.getItemPrices.bind(this);
-        item_f.eventHandler.onEvent["RagFairAddOffer"] = this.addOffer.bind(this);
-        item_f.eventHandler.onEvent["RagFairRemoveOffer"] = this.removeOffer.bind(this);
-        item_f.eventHandler.onEvent["RagFairRenewOffer"] = this.extendOffer.bind(this);
+        item_f.eventHandler.addEvent("RagFairAddOffer", "Aki", this.addOffer.bind(this));
+        item_f.eventHandler.addEvent("RagFairRemoveOffer", "Aki", this.removeOffer.bind(this));
+        item_f.eventHandler.addEvent("RagFairRenewOffer", "Aki", this.extendOffer.bind(this));
     }
 
     load()

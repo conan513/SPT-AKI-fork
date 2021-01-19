@@ -13,8 +13,8 @@ class WishlistCallbacks
 {
     constructor()
     {
-        item_f.eventHandler.onEvent["AddToWishList"] = this.addToWishlist.bind(this);
-        item_f.eventHandler.onEvent["RemoveFromWishList"] = this.removeFromWishlist.bind(this);
+        item_f.eventHandler.addEvent("AddToWishList", "Aki", this.addToWishlist.bind(this));
+        item_f.eventHandler.addEvent("RemoveFromWishList", "Aki", this.removeFromWishlist.bind(this));
     }
 
     addToWishlist(pmcData, body, sessionID)

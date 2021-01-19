@@ -15,7 +15,7 @@ class InsuranceCallbacks
         core_f.packager.onUpdate["eft-insurance"] = this.update.bind(this);
         save_f.server.onLoad["eft-insurance"] = this.onLoad.bind(this);
         https_f.router.onStaticRoute["/client/insurance/items/list/cost"] = this.getInsuranceCost.bind(this);
-        item_f.eventHandler.onEvent["Insure"] = this.insure.bind(this);
+        item_f.eventHandler.addEvent("Insure", "Aki", this.insure.bind(this));
     }
 
     onLoad(sessionID)

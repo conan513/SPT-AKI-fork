@@ -14,9 +14,9 @@ class HealthCallbacks
     {
         save_f.server.onLoad["health"] = this.onLoad.bind(this);
         https_f.router.onStaticRoute["/player/health/sync"] = this.syncHealth.bind(this);
-        item_f.eventHandler.onEvent["Eat"] = this.offraidEat.bind(this);
-        item_f.eventHandler.onEvent["Heal"] = this.offraidHeal.bind(this);
-        item_f.eventHandler.onEvent["RestoreHealth"] = this.healthTreatment.bind(this);
+        item_f.eventHandler.addEvent("Eat", "Aki", this.offraidEat.bind(this));
+        item_f.eventHandler.addEvent("Heal", "Aki", this.offraidHeal.bind(this));
+        item_f.eventHandler.addEvent("RestoreHealth", "Aki", this.healthTreatment.bind(this));
     }
 
     onLoad(sessionID)
