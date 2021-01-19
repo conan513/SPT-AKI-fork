@@ -9,7 +9,6 @@
 "use strict";
 
 const fs = require("fs");
-const path = require("path");
 
 class VFS
 {
@@ -62,7 +61,7 @@ class VFS
     writeFile(filepath, data = "", append = false)
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
-        
+
         if (!this.exists(filepath))
         {
             this.createDir(filepath);
