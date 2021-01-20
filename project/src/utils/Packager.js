@@ -10,10 +10,6 @@
 
 class Packager
 {
-    onLoad: {};
-    onUpdate: {};
-    onUpdateLastRun: {};
-    
     constructor()
     {
         this.onLoad = {};
