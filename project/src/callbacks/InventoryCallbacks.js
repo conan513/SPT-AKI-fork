@@ -16,7 +16,7 @@ class InventoryCallbacks
         item_f.eventHandler.addEvent("Remove", "Aki", this.removeItem.bind(this));
         item_f.eventHandler.addEvent("Split", "Aki", this.splitItem.bind(this));
         item_f.eventHandler.addEvent("Merge", "Aki", this.mergeItem.bind(this));
-        item_f.eventHandler.addEvent("Transfer", "Aki",this.transferItem.bind(this));
+        item_f.eventHandler.addEvent("Transfer", "Aki", this.transferItem.bind(this));
         item_f.eventHandler.addEvent("Swap", "Aki", this.swapItem.bind(this));
         item_f.eventHandler.addEvent("Fold", "Aki", this.foldItem.bind(this));
         item_f.eventHandler.addEvent("Toggle", "Aki", this.toggleItem.bind(this));

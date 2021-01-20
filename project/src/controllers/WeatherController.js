@@ -52,7 +52,7 @@ class WeatherController
         const date = common_f.time.formatDate(computedDate);
         const datetime = `${date} ${time}`;
 
-        data.weather.timestamp = Math.floor(computedDate / 1000);
+        data.weather.timestamp = Math.floor(computedDate.getTime() / 1000);
         data.weather.date = date;
         data.weather.time = datetime;
         data.date = date;

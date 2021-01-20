@@ -371,7 +371,12 @@ class PlzRefactorMeHelper
      */
     fromRUB(value, currency)
     {
-        return Math.round(value / this.getTemplatePrice(currency));
+        let price = this.getTemplatePrice(currency);
+        if (!price)
+        {
+            return 0;
+        }
+        return Math.round(value / price);
     }
 
     /**
@@ -859,7 +864,7 @@ class PlzRefactorMeHelper
 
             if (childitem.parentId === itemID && !list.find((item) =>
             {
-                return items._id == item._id;
+                return items._id === item._id;
             }))
             {
                 list.push.apply(list, this.findAndReturnChildrenAsItems(items, childitem._id));

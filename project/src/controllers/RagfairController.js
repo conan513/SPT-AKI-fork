@@ -13,7 +13,7 @@
 
 class RagfairController
 {
-    initialize()
+    constructor()
     {
         this.TPL_GOODS_SOLD = "5bdac0b686f7743e1665e09e";
         this.TPL_GOODS_RETURNED = "5bdac06e86f774296f5a19c5";

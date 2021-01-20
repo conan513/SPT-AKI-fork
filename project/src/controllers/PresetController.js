@@ -11,6 +11,11 @@
 
 class PresetController
 {
+    constructor()
+    {
+        this.lookup = {};
+    }
+
     initialize()
     {
         const presets = Object.values(database_f.server.tables.globals.ItemPresets);

@@ -35,7 +35,7 @@ class InsuranceController
     }
 
     /* remove insurance from an item */
-    remove(pmcData, body)
+    remove(pmcData, body, sessionID)
     {
         let toDo = [body];
 
