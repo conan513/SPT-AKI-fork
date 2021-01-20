@@ -80,8 +80,6 @@ class HttpServer
         return this.buffers[sessionID].buffer;
     }
 
-
-
     sendZlibJson(resp, output, sessionID)
     {
         resp.writeHead(200, "OK", {"Content-Type": this.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : `PHPSESSID=${sessionID}`});

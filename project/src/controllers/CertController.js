@@ -22,7 +22,7 @@ class CertController
         this.certFile = `${this.certDir}cert.pem`;
         this.keyFile = `${this.certDir}key.pem`;
         this.fingerprint = "";
-        this.certs = undefined;
+        this.certs = {};
     }
 
     load()
@@ -32,7 +32,7 @@ class CertController
 
     getCerts()
     {
-        if (!this.certs)
+        if (Object.keys(this.certs).length < 2)
         {
             // load certs
             this.certs = this.readCerts();
@@ -64,11 +64,11 @@ class CertController
             }
             catch (e)
             {
-                return undefined;
+                return {};
             }
         }
 
-        return undefined;
+        return {};
     }
 
     generateCertificates()

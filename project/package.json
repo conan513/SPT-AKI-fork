@@ -18,10 +18,10 @@
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "tsc": "tsc",
-        "prebuild": "npx tsc || true",
-        "build": "node out/dev/src/build",
-        "prestart":"npx tsc || true",
-        "start": "node out/dev/src/start",
+        "pre-build": "npx tsc || true",
+        "build": "node out/src/ide/Compiler",
+        "prestart": "npx tsc || true",
+        "start": "node out/src/ide/StartEntry",
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {

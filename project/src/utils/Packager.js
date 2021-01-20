@@ -10,6 +10,10 @@
 
 class Packager
 {
+    onLoad: {};
+    onUpdate: {};
+    onUpdateLastRun: {};
+    
     constructor()
     {
         this.onLoad = {};
@@ -36,7 +40,7 @@ class Packager
         {
             let success,
                 lastruntime = 0;
-            if (this.onUpdateLastRun[taskId] !== void 0)
+            if (this.onUpdateLastRun[taskId] !== undefined)
             {
                 lastruntime = this.onUpdateLastRun[taskId];
             }

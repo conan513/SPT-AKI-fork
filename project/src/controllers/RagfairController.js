@@ -1,4 +1,3 @@
-//@ts-check
 /* controller.js
  * license: NCSA
  * copyright: Senko's Pub

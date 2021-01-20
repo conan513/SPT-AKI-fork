@@ -9,11 +9,16 @@
 
 const semver = require("semver");
 
-if (!semver.satisfies(process.version, "v12.18.2"))
+if (semver.satisfies(process.version, "v12.18.2"))
+{
+    console.log("Your node version is correct.");
+} else 
 {
     console.log("Server requires node version v12.18.2");
     console.log(`Your version is ${process.version}`);
-    process.exit(1);
+    if (globalThis.G_RELEASE_CONFIGURATION)
+    {
+        process.exit(1);
+    }
+    console.log("Dev build, continuing...");
 }
-
-console.log("Your node version is correct.");
