@@ -31,7 +31,6 @@ class RagfairCallbacks
     load()
     {
         ragfair_f.server.load();
-        ragfair_f.controller.initialize();
     }
 
     search(url, info, sessionID)

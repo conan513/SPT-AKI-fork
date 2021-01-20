@@ -689,7 +689,7 @@ class QuestController
 
     resetProfileQuestCondition(sessionID, conditionId)
     {
-        let startedQuests = this.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
+        let startedQuests = profile_f.controller.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
 
         for (let quest of startedQuests)
         {

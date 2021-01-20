@@ -321,7 +321,7 @@ class TraderController
                 price -= (trader.discount / 100) * price;
             }
             price = helpfunc_f.helpFunctions.fromRUB(price, currency);
-            price = (price > 0 && price !== "NaN") ? price : 1;
+            price = (price > 0) ? price : 1;
 
             output[item._id] = [[{ "_tpl": currency, "count": price.toFixed(0) }]];
         }

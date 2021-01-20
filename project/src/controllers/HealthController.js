@@ -80,7 +80,7 @@ class HealthController
     {
         let output = item_f.eventHandler.getOutput();
         let resourceLeft;
-        let maxResource = {};
+        let maxResource;
 
         for (let item of pmcData.Inventory.items)
         {
@@ -91,7 +91,7 @@ class HealthController
 
                 if (maxResource > 1)
                 {
-                    if ("FoodDrink" in item.upd)
+                    if (item.upd.FoodDrink !== undefined)
                     {
                         item.upd.FoodDrink.HpPercent -= body.count;
                     }

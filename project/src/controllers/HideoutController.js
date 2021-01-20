@@ -616,7 +616,7 @@ class HideoutController
                     break;
 
                 case areaTypes.WATER_COLLECTOR:
-                    if (area.level == 3)
+                    if (area.level === 3)
                     {
                         const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
                         if (prod)
