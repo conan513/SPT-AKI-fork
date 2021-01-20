@@ -13,10 +13,9 @@ class CertCallbacks
     constructor()
     {
         this.endPoint = "/certs/get";
-        this.certFilename = "cerm.pem";
+        this.certFilename = "cert.pem";
         this.isAttachment = true;
         core_f.packager.onLoad["aki-certs"] = this.load.bind(this);
-
     }
 
     load()

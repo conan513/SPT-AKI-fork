@@ -223,7 +223,7 @@ class HideoutController
             pmcData = profile_f.controller.getPmcProfile(sessionID);
             output.items.new[0].upd = itemToMove.upd;
 
-            const item = pmcData.Inventory.items.find(i => i._id == output.items.new[0]._id);
+            const item = pmcData.Inventory.items.find(i => i._id === output.items.new[0]._id);
             if (item)
             {
                 item.upd = itemToMove.upd;
@@ -523,7 +523,7 @@ class HideoutController
 
                 for (let item in pmcData.Inventory.items)
                 {
-                    if (pmcData.Inventory.items[item]._id == pmcData.Inventory.stash)
+                    if (pmcData.Inventory.items[item]._id === pmcData.Inventory.stash)
                     {
                         pmcData.Inventory.items[item]._tpl = bonus.templateId;
                     }
@@ -677,7 +677,7 @@ class HideoutController
                 continue;
             }
 
-            if (prod == WATER_COLLECTOR)
+            if (prod === WATER_COLLECTOR)
             {
                 let time_elapsed = (common_f.time.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
                 if (!isGeneratorOn)
@@ -692,7 +692,7 @@ class HideoutController
                 continue;
             }
 
-            if (prod == BITCOIN_FARM)
+            if (prod === BITCOIN_FARM)
             {
                 pmcData.Hideout.Production[prod] = this.updateBitcoinFarm(pmcData.Hideout.Production[prod], btcFarmCGs, isGeneratorOn);
                 continue;
@@ -718,7 +718,7 @@ class HideoutController
     {
         // 1 resource last 14 min 27 sec, 1/14.45/60 = 0.00115
         let fuelDrainRate = 0.00115 * hideout_f.config.runInterval;
-        fuelDrainRate = solarPower == 1 ? fuelDrainRate / 2 : fuelDrainRate;
+        fuelDrainRate = solarPower === 1 ? fuelDrainRate / 2 : fuelDrainRate;
         let hasAnyFuelRemaining = false;
 
         for (let i = 0; i < generatorArea.slots.length; i++)
@@ -791,7 +791,7 @@ class HideoutController
         const recipes = database_f.server.tables.hideout.production;
         for (const prod of recipes)
         {
-            if (prod._id == WATER_COLLECTOR)
+            if (prod._id === WATER_COLLECTOR)
             {
                 production_time = prod.productionTime;
                 break;

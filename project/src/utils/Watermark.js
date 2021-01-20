@@ -1,4 +1,4 @@
-﻿/* watermark.js
+/* watermark.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub

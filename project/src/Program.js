@@ -9,7 +9,7 @@
 "use strict";
 
 const process = require("process");
-const watermark = require("./utils/Watermark.js");
+const watermark = require("./utils/Watermark");
 
 class Program
 {
@@ -25,7 +25,7 @@ class Program
         watermark.instance.draw();
 
         // import classes
-        require("./Lib.js");
+        require("./Lib");
 
         // load and execute all packages
         core_f.packager.load();
