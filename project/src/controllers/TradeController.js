@@ -13,11 +13,6 @@ class TradeController
 {
     buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
-        if (body.tid === "579dc571d53a0658a154fbec")
-        {
-            body.tid = "ragfair";
-        }
-
         const output = item_f.eventHandler.getOutput();
         const newReq = {
             "items": [
