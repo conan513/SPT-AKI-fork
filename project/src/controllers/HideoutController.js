@@ -599,7 +599,7 @@ class HideoutController
         let isGeneratorOn = false;
         let WaterCollectorHasFilter = false;
 
-        const solarArea = pmcData.Hideout.Areas.find(area => area.type === 18);
+        const solarArea = pmcData.Hideout.Areas.find(area => area.type === areaTypes.SOLAR_POWER);
         const solarPowerLevel = solarArea ? solarArea.level : 0;
 
         for (let area of pmcData.Hideout.Areas)
@@ -616,7 +616,21 @@ class HideoutController
                     break;
 
                 case areaTypes.WATER_COLLECTOR:
+                    if (area.level == 3)
                     {
+                        const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
+                        if (prod)
+                        {
+                            area = this.updateWaterFilters(area, prod, isGeneratorOn);
+                        }
+                        else
+                        {
+                            // continuousProductionStart()
+                            // seem to not trigger consistently
+                            const recipe = { "recipeId": WATER_COLLECTOR };
+                            this.registerProduction(pmcData, recipe, sessionID);
+                        }
+
                         for (let slot of area.slots)
                         {
                             if (slot.item)
@@ -624,13 +638,6 @@ class HideoutController
                                 WaterCollectorHasFilter = true;
                                 break;
                             }
-                        }
-
-                        const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
-
-                        if (prod)
-                        {
-                            area = this.updateWaterFilters(area, prod, isGeneratorOn);
                         }
                     }
                     break;
@@ -776,7 +783,7 @@ class HideoutController
 
     updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
     {
-        const time_elapsed = (common_f.time.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
+        let time_elapsed = (common_f.time.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
         let filterDrainRate = 0.00333;
         let production_time = 0;
@@ -801,20 +808,20 @@ class HideoutController
                 }
                 else
                 {
+                    if (!isGeneratorOn)
+                    {
+                        time_elapsed = Math.floor(time_elapsed * 0.2);
+                    }
                     filterDrainRate = (time_elapsed > production_time)
                         ? filterDrainRate *= (production_time - pwProd.Progress)
                         : filterDrainRate *= time_elapsed;
-                    if (!isGeneratorOn)
-                    {
-                        filterDrainRate = filterDrainRate * 0.2;
-                    }
 
                     let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
                         ? waterFilterArea.slots[i].item[0].upd.Resource.Value
                         : null;
                     if (!resourceValue)
                     {
-                        resourceValue = 100;
+                        resourceValue = 100 - filterDrainRate;
                     }
                     else
                     {
@@ -839,9 +846,9 @@ class HideoutController
                     }
                 }
             }
-
-            return waterFilterArea;
         }
+
+        return waterFilterArea;
     }
 
     updateAirFilters(airFilterArea)
