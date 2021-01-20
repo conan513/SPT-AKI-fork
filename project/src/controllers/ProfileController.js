@@ -185,7 +185,7 @@ class ProfileController
 
     /**
      * @param {{ Info: { SavageLockTime: any; }; }} profile
-     * @param {{ Bonuses: any; }} pmcData
+     * @param {UserPMCProfile} pmcData
      */
     setScavCooldownTimer(profile, pmcData)
     {

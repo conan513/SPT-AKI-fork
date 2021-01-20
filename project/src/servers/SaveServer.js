@@ -14,7 +14,7 @@ class SaveServer
     constructor()
     {
         this.filepath = "user/profiles/";
-        /** @type {UserProfile[]} */
+        /** @type {UserProfileDictionary} */
         this.profiles = {};
         this.onLoad = {};
         this.onSave = {};

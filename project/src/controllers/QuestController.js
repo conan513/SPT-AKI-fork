@@ -60,7 +60,7 @@ class QuestController
             // then this quest should not be visible
             for (const condition of conditions)
             {
-                /** @type {PlayerQuest} */
+                /** @type {PlayerQuest | undefined} */
                 const previousQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
 
                 // If the previous quest isn't in the user profile, it hasn't been completed or started
@@ -494,7 +494,7 @@ class QuestController
             }
         }
 
-        if (body.conditionId in pmcData.BackendCounters)
+        if (pmcData.BackendCounters[body.conditionId] !== undefined)
         {
             pmcData.BackendCounters[body.conditionId].value += counter;
         }
