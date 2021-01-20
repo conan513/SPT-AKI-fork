@@ -1,0 +1,25 @@
+{
+    "extends": "@tsconfig/node12/tsconfig.json",
+    "compilerOptions": {
+        "target": "es2019",
+        "module": "commonjs",
+        "allowJs": true,
+        "checkJs": true,
+        "declaration": false,
+        "emitDeclarationOnly": false,
+        "outDir": "build/@types/",
+        "removeComments": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "typeAcquisition": {
+        "enable": true
+    },
+    "include": [
+        "src"
+    ]
+}

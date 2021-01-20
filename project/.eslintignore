@@ -1,5 +1,6 @@
 # Exclude these folders from linting
 node_modules
+src/ide
 
 # Exclude these filetypes from linting
 *.json
