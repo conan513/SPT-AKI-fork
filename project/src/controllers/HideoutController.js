@@ -630,6 +630,7 @@ class HideoutController
                             const recipe = { "recipeId": WATER_COLLECTOR };
                             this.registerProduction(pmcData, recipe, sessionID);
                         }
+
                         for (let slot of area.slots)
                         {
                             if (slot.item)
@@ -683,6 +684,7 @@ class HideoutController
                 {
                     time_elapsed = Math.floor(time_elapsed * 0.2);
                 }
+
                 if (WaterCollectorHasFilter)
                 {
                     pmcData.Hideout.Production[prod].Progress += time_elapsed;
@@ -728,8 +730,8 @@ class HideoutController
             else
             {
                 let resourceValue = (generatorArea.slots[i].item[0].upd && generatorArea.slots[i].item[0].upd.Resource)
-                                    ? generatorArea.slots[i].item[0].upd.Resource.Value
-                                    : null;
+                    ? generatorArea.slots[i].item[0].upd.Resource.Value
+                    : null;
                 if (resourceValue === 0)
                 {
                     continue;
@@ -738,8 +740,8 @@ class HideoutController
                 {
                     const fuelItem = "5d1b371186f774253763a656"; // Expeditionary fuel tank
                     resourceValue = generatorArea.slots[i].item[0]._tpl === fuelItem
-                                    ? resourceValue = 60 - fuelDrainRate
-                                    : resourceValue = 100 - fuelDrainRate;
+                        ? resourceValue = 60 - fuelDrainRate
+                        : resourceValue = 100 - fuelDrainRate;
                 }
                 else
                 {
@@ -781,7 +783,7 @@ class HideoutController
 
     updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
     {
-        const time_elapsed = (common_f.time.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
+        let time_elapsed = (common_f.time.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
         let filterDrainRate = 0.00333;
         let production_time = 0;
@@ -811,12 +813,12 @@ class HideoutController
                         time_elapsed = Math.floor(time_elapsed * 0.2);
                     }
                     filterDrainRate = (time_elapsed > production_time)
-                                    ? filterDrainRate *= (production_time - pwProd.Progress)
-                                    : filterDrainRate *= time_elapsed;
+                        ? filterDrainRate *= (production_time - pwProd.Progress)
+                        : filterDrainRate *= time_elapsed;
 
                     let resourceValue = (waterFilterArea.slots[i].item[0].upd && waterFilterArea.slots[i].item[0].upd.Resource)
-                                        ? waterFilterArea.slots[i].item[0].upd.Resource.Value
-                                        : null;
+                        ? waterFilterArea.slots[i].item[0].upd.Resource.Value
+                        : null;
                     if (!resourceValue)
                     {
                         resourceValue = 100 - filterDrainRate;
@@ -863,8 +865,8 @@ class HideoutController
             else
             {
                 let resourceValue = (airFilterArea.slots[i].item[0].upd && airFilterArea.slots[i].item[0].upd.Resource)
-                                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
-                                    : null;
+                    ? airFilterArea.slots[i].item[0].upd.Resource.Value
+                    : null;
                 if (!resourceValue)
                 {
                     resourceValue = 300 - filterDrainRate;
