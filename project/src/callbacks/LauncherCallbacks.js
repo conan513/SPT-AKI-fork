@@ -31,7 +31,7 @@ class LauncherCallbacks
     connect()
     {
         return https_f.response.noBody({
-            "backendUrl": https_f.config.backendUrl,
+            "backendUrl": https_f.server.getBackendUrl(),
             "name": https_f.config.name,
             "editions": Object.keys(database_f.server.tables.templates.profiles)
         });

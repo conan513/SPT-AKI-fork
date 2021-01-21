@@ -86,7 +86,7 @@ class CertController
         {
             common_f.logger.logInfo("You are running on linux, you will have to install the cert manually.");
             common_f.logger.logInfo(`copy ${this.certFile} to your windows PC and run \n\t  certutil.exe -f -addstore Root <path to cert.pem>`);
-            common_f.logger.logInfo(`Cert can also be downloaded from ${https_f.config.backendUrl}${certs_f.callbacks.endPoint}`);
+            common_f.logger.logInfo(`Cert can also be downloaded from ${https_f.server.getBackendUrl()}${certs_f.callbacks.endPoint}`);
 
         }
         else
