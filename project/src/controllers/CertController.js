@@ -37,7 +37,7 @@ class CertController
             // load certs
             this.certs = this.readCerts();
 
-            if (!this.certs)
+            if (Object.keys(this.certs).length < 2)
             {
                 // no certs exist
                 this.generateCertificates();

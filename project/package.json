@@ -1,7 +1,7 @@
 {
     "name": "aki-server",
     "version": "1.0.0",
-    "main": "src/ide/BuildEntry.js",
+    "main": "",
     "author": "SPT-AKI",
     "contributors": [
         "Merijn Hendriks (Senko-san, InNoHurryToCode)",
@@ -18,9 +18,10 @@
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "tsc": "npx tsc",
-        "build": "node out/ide/Compiler.js",
-        "dev": "concurrently \"tsc -w\" \"nodemon node out/ide/StartEntry.js\"",
+        "compile": "node out/ide/Compiler.js",
+        "build": "node out/ide/BuildEntry.js",
         "start": "node out/ide/StartEntry.js",
+        "watch": "concurrently -k \"tsc -w\" \"nodemon --watch out out/ide/StartEntry.js\"",
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {
