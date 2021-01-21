@@ -10,7 +10,24 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "Run in Dev Mode (You probably want this one)",
+				"name": "watch - Run server in Dev Mode (You probably want this one)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"watch"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "start - Run server (Need to run tsc after every change)",
 				"runtimeExecutable": "npm",
 				"runtimeArgs": [
 					"run-script",
@@ -27,7 +44,41 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "Generate JS",
+				"name": "compile - Make nexe build (need tsc)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"compile"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "build - Test live build entry point (need tsc)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"compile"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "tsc - Generate JS files",
 				"runtimeExecutable": "npm",
 				"runtimeArgs": [
 					"run-script",
@@ -42,23 +93,6 @@
 				],
 				"outputCapture": "std"
 			},
-			{
-				"type": "node",
-				"request": "launch",
-				"name": "Run Server (Need to run Generate after every change)",
-				"runtimeExecutable": "npm",
-				"runtimeArgs": [
-					"run-script",
-					"start"
-				],
-				"cwd": "${workspaceFolder}",
-				"outFiles": [
-					"${workspaceFolder}/out/**/*.js"
-				],
-				"skipFiles": [
-					"**/node_modules/**"
-				]
-			}
 		],
 	},
 	"tasks": {
