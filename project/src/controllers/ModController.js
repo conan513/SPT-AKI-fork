@@ -119,7 +119,7 @@ class ModController
         {
             const bundle = {
                 "key": bundleInfo.key,
-                "path": `${https_f.config.backendUrl}/files/bundle/${bundleInfo.key}`,
+                "path": `${https_f.server.getBackendUrl()}/files/bundle/${bundleInfo.key}`,
                 "filepath" : ("path" in bundleInfo)
                     ? bundleInfo.path
                     : `${process.cwd()}/${modpath}bundles/${bundleInfo.key}`.replace(/\\/g, "/"),

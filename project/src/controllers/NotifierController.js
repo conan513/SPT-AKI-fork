@@ -45,12 +45,12 @@ class NotifierController
 
     getServer(sessionID)
     {
-        return `${https_f.config.backendUrl}/notifierServer/get/${sessionID}`;
+        return `${https_f.server.getBackendUrl()}/notifierServer/get/${sessionID}`;
     }
 
     getWebSocketServer(sessionID)
     {
-        return `${https_f.config.websocketUrl}/notifierServer/getwebsocket/${sessionID}`;
+        return `${https_f.server.getWebsocketUrl()}/notifierServer/getwebsocket/${sessionID}`;
     }
 
     getChannel(sessionID)

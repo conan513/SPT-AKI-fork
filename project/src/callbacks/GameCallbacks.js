@@ -49,10 +49,10 @@ class GameCallbacks
             "activeProfileId": `pmc${sessionID}`,
             "nickname": "user",
             "backend": {
-                "Trading": https_f.config.backendUrl,
-                "Messaging": https_f.config.backendUrl,
-                "Main": https_f.config.backendUrl,
-                "RagFair": https_f.config.backendUrl
+                "Trading": https_f.server.getBackendUrl(),
+                "Messaging": https_f.server.getBackendUrl(),
+                "Main": https_f.server.getBackendUrl(),
+                "RagFair": https_f.server.getBackendUrl(),
             },
             "totalInGame": 1
         });
@@ -78,7 +78,7 @@ class GameCallbacks
 
     gameKeepalive(url, info, sessionID)
     {
-        return https_f.response.getBody({"msg": "OK"});
+        return https_f.response.getBody({ "msg": "OK" });
     }
 }
 

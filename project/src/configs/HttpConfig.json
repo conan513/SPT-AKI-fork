@@ -1,7 +1,5 @@
 {
     "name": "SPT-AKI Server",
     "ip": "127.0.0.1",
-    "port": 443,
-    "backendUrl": "https://127.0.0.1:443",
-    "websocketUrl": "wss://127.0.0.1:443"
+    "port": 443
 }
