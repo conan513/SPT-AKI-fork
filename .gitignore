@@ -2,6 +2,7 @@
 *.exe
 *.zip
 project/build/
+project/out/
 project/user/
 
 ## visual studio

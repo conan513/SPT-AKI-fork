@@ -10,11 +10,51 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "Launch Program",
+				"name": "Run in Dev Mode (You probably want this one)",
 				"runtimeExecutable": "npm",
-  				"runtimeArgs": ["run-script", "start"],
+				"runtimeArgs": [
+					"run-script",
+					"start"
+				],
 				"cwd": "${workspaceFolder}",
-				"outFiles": ["${workspaceFolder}/out/**/*.js"],
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Generate JS",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"tsc"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				],
+				"outputCapture": "std"
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Run Server (Need to run Generate after every change)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"start"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
 				"skipFiles": [
 					"**/node_modules/**"
 				]
