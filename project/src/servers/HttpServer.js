@@ -230,7 +230,7 @@ class HttpServer
             this.handleRequest(req, res);
         }).listen(https_f.config.port, https_f.config.ip, () =>
         {
-            common_f.logger.logSuccess("Started webserver at ");
+            common_f.logger.logSuccess(`Started webserver at ${this.getBackendUrl()}`);
         });
         this.instance = instance;
 
