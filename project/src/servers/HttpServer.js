@@ -34,6 +34,21 @@ class HttpServer
         };
     }
 
+    buildUrl()
+    {
+        return `${https_f.config.ip}:${https_f.config.port}`;
+    }
+
+    getBackendUrl()
+    {
+        return `https://${this.buildUrl()}`;
+    }
+
+    getWebsocketUrl()
+    {
+        return `wss://${this.buildUrl()}`;
+    }
+
     getCookies(req)
     {
         let found = {};
@@ -215,7 +230,7 @@ class HttpServer
             this.handleRequest(req, res);
         }).listen(https_f.config.port, https_f.config.ip, () =>
         {
-            common_f.logger.logSuccess("Started server");
+            common_f.logger.logSuccess("Started webserver at ");
         });
         this.instance = instance;
 
