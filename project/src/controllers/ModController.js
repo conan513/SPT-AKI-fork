@@ -27,7 +27,7 @@ class ModController
     importClass(name, filepath)
     {
         // import class
-        global[name] = require(`../${filepath}`);
+        global[name] = require(`../../${filepath}`);
     }
 
     importMods()
