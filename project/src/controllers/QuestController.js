@@ -17,9 +17,9 @@ class QuestController
 {
     getClientQuests(sessionID)
     {
-        /** @type {QuestList} */
+        /** @type {Quest[]} */
         let quests = [];
-        /** @type {QuestList} */
+        /** @type {Quest[]} */
         let allQuests = this.questValues();
         /** @type {UserPMCProfile} */
         const profile = profile_f.controller.getPmcProfile(sessionID);
@@ -99,7 +99,7 @@ class QuestController
     }
 
     /**
-     * @param {itemTemplate} itemTpl
+     * @param {string} itemTpl
      */
     getFindItemIdForQuestItem(itemTpl)
     {
@@ -122,7 +122,8 @@ class QuestController
     }
 
     /**
-     * @param {{ items: itemTemplate[]; target: any; }} reward
+     * @param {QuestReward} reward
+     * @return {itemTemplate[]}
      */
     processReward(reward)
     {
@@ -130,6 +131,7 @@ class QuestController
         let rewardItems = [];
         /** @type {itemTemplate[]} */
         let targets = [];
+        /** @type {itemTemplate[]} */
         let mods = [];
 
         let itemCount = 1;
@@ -197,8 +199,8 @@ class QuestController
 
     /**
      * @param {UserPMCProfile} pmcData
-     * @param {{ qid: string | number; }} body
-     * @param {string} state
+     * @param {QuestRequestBody} body
+     * @param {"Started" | "Fail" | "AvailableForFinish" | "Success"} state
      * @param {string} sessionID
      */
     applyQuestReward(pmcData, body, state, sessionID)
@@ -283,8 +285,8 @@ class QuestController
     }
 
     /**
-     * @param {{ Quests: { qid: any; startTime: number; status: string; }[]; }} pmcData
-     * @param {{ qid: string; }} body
+     * @param {UserPMCProfile} pmcData
+     * @param {QuestRequestBody} body
      * @param {string} sessionID
      */
     acceptQuest(pmcData, body, sessionID)
@@ -311,7 +313,8 @@ class QuestController
             pmcData.Quests.push({
                 "qid": body.qid,
                 "startTime": time,
-                "status": state
+                "status": state,
+                "completedConditions": []
             });
         }
 
@@ -338,15 +341,15 @@ class QuestController
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
 
         let acceptQuestResponse = item_f.eventHandler.getOutput();
-        /** @type {QuestList} */
+        /** @type {Quest[]} */
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
 
         return acceptQuestResponse;
     }
 
     /**
-     * @param {{ Quests: { qid: string; startTime: number; status: string; }[]; }} pmcData
-     * @param {{ qid: string | number; }} body
+     * @param {UserPMCProfile} pmcData
+     * @param {{ qid: string; }} body
      * @param {string} sessionID
      */
     completeQuest(pmcData, body, sessionID)
@@ -375,6 +378,7 @@ class QuestController
                 }
                 else
                 {
+                    /** @type {PlayerQuest} */
                     const questData = {
                         "qid": checkFail._id,
                         "startTime": common_f.time.getTimestamp(),
@@ -621,6 +625,7 @@ class QuestController
             }
         }
     }
+
     /**
      * Get List of All Quests as an array
      *
@@ -629,7 +634,7 @@ class QuestController
      */
     questValues()
     {
-        /** @type {QuestList} */
+        /** @type {Quest[]} */
         return Object.values(database_f.server.tables.templates.quests);
     }
 
@@ -687,6 +692,10 @@ class QuestController
         return quest;
     }
 
+    /**
+     * @param {string} sessionID
+     * @param {string} conditionId
+     */
     resetProfileQuestCondition(sessionID, conditionId)
     {
         let startedQuests = profile_f.controller.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");

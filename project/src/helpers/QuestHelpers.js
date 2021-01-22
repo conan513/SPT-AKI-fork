@@ -105,9 +105,9 @@ class QuestHelpers
     }
 
     /**
-     * @param {QuestList} before
-     * @param {QuestList} after
-     * @return {QuestList}
+     * @param {Quest[]} before
+     * @param {Quest[]} after
+     * @return {Quest[]}
      */
     getDeltaQuests(before, after)
     {
@@ -131,7 +131,7 @@ class QuestHelpers
      * Debug Routine for showing some information on the
      * quest list in question.
      *
-     * @param {QuestList} quests
+     * @param {Quest[]} quests
      * @param {*} [label=null]
      * @memberof Helpers
      */

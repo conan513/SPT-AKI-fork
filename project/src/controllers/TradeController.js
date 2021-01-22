@@ -11,6 +11,13 @@
 
 class TradeController
 {
+    /**
+     * @param {UserPMCProfile} pmcData
+     * @param {{ item_id?: any; count?: any; tid: any; Action?: any; scheme_items?: any; }} body
+     * @param {string} sessionID
+     * @param {boolean} foundInRaid
+     * @param {any} upd
+     */
     buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
         const output = item_f.eventHandler.getOutput();
@@ -37,7 +44,12 @@ class TradeController
         return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
     }
 
-    // Selling item to trader
+    /**
+     * Selling item to trader
+     * @param {UserPMCProfile} pmcData
+     * @param {{ tid: any; items?: any; }} body
+     * @param {any} sessionID
+     */
     sellItem(pmcData, body, sessionID)
     {
         let money = 0;
