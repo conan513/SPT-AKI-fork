@@ -100,7 +100,7 @@ class LocationGenerator
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
-        let container2D = Array(container.height).fill().map(() => Array(container.width).fill(0));
+        let container2D = Array(container.height).fill(0).map(() => Array(container.width).fill(0));
         let minCount = container.minCount;
 
 

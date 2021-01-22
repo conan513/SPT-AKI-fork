@@ -113,3 +113,12 @@ interface apiEventResponse {
     builds: never[];
     currentSalesSums: {};
 }
+
+interface RequestBody {
+    id?: string;
+    qid?: string;
+}
+
+interface QuestRequestBody extends RequestBody {
+    qid: string;
+}

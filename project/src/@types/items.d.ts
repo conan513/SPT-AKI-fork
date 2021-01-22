@@ -1,7 +1,12 @@
-interface itemTemplate {
+interface itemTemplate
+{
     _id: string;
-    parentId?: string;
     _tpl: string;
+    _props?: {
+        filters?: unknown[];
+    };
+    parentId?: string;
+
     slotId?: string;
     upd?: {
         StackObjectsCount: number;
@@ -14,6 +19,7 @@ interface itemTemplate {
     }
 }
 
-interface ItemDictionary {
+interface ItemDictionary
+{
     [index: string]: itemTemplate;
 }

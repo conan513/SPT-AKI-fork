@@ -287,9 +287,14 @@ class InventoryController
         return "";
     }
 
-    /* Merge Item
-    * merges 2 items into one, deletes item from body.item and adding number of stacks into body.with
-    * */
+    /**
+     * Merge Item
+     * merges 2 items into one, deletes item from `body.item` and adding number of stacks into `body.with`
+     *
+     * @param {UserPMCProfile} pmcData
+     * @param {{ with: string; item: string; }} body
+     * @param {string} sessionID
+     */
     mergeItem(pmcData, body, sessionID)
     {
         let output = item_f.eventHandler.getOutput();
@@ -315,7 +320,7 @@ class InventoryController
                             items.from[key2].upd = {"StackObjectsCount" : 1};
                         }
 
-                        if ("upd" in items.to[key])
+                        if (items.to[key].upd !== undefined)
                         {
                             stackItem0 = items.to[key].upd.StackObjectsCount;
                         }
