@@ -797,8 +797,6 @@
 					"5ba26b17d4351e00367f9bdd"
 				],
 				"mod_handguard": [
-					"5c78f2792e221600106f4683",
-					"55d459824bdc2d892f8b4573",
 					"5c0e2f5cd174af02a012cfc9",
 					"5d123102d7ad1a004e475fe5"
 				],
@@ -1248,8 +1246,10 @@
 			},
 			"5d440b9fa4b93601354d480c": {
 				"mod_gas_block": [
-					"5d00ec68d7ad1a04a067e5be",
-					"56eabcd4d2720b66698b4574"
+					"56ea8d2fd2720b7c698b4570",
+					"56eabcd4d2720b66698b4574",
+					"5ae30e795acfc408fb139a0b",
+					"5d00ec68d7ad1a04a067e5be"
 				],
 				"mod_muzzle": [
 					"5c7954d52e221600106f4cc7",
@@ -1604,7 +1604,10 @@
 			},
 			"5c0e2f94d174af029f650d56": {
 				"mod_gas_block": [
-					"5a34fbadc4a28200741e230a"
+					"56ea8d2fd2720b7c698b4570",
+					"56eabcd4d2720b66698b4574",
+					"5ae30e795acfc408fb139a0b",
+					"5d00ec68d7ad1a04a067e5be"
 				],
 				"mod_muzzle": [
 					"5cc9b815d7f00c000e2579d6"
