@@ -1947,6 +1947,18 @@
 						"parentId": "",
 						"id": ""
 					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5979eee086f774311955e614",
+						"status": [
+							4
+						],
+						"index": 1,
+						"parentId": "",
+						"id": ""
+					}
 				}
 			],
 			"AvailableForFinish": [
