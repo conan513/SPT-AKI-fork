@@ -36,7 +36,7 @@ class RagfairController
         const aa = database_f.server.tables.locales.global["en"].templates[ia].Name || ia;
         const bb = database_f.server.tables.locales.global["en"].templates[ib].Name || ib;
 
-        return  (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
+        return (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
     }
 
     sortOffersByPrice(a, b)
@@ -505,7 +505,7 @@ class RagfairController
     {
         for (const sessionID in save_f.server.profiles)
         {
-            const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+            const profileOffers = this.getProfileOffers(sessionID);
             const timestamp = common_f.time.getTimestamp();
 
             if (!profileOffers || !profileOffers.length)
@@ -518,13 +518,40 @@ class RagfairController
                 if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
                 {
                     // item sold
-                    this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
-                    profileOffers.splice(index, 1);
+                    this.completeOffer(sessionID, offer, index);
+                    //       profileOffers.splice(index, 1);
                 }
             }
         }
         return true;
     }
+
+    getProfileOffers(sessionID)
+    {
+        const profile = profile_f.controller.getPmcProfile(sessionID);
+        return profile.RagfairInfo.offers;
+    }
+
+    getProfileOfferByIndex(sessionID, index)
+    {
+        const offers = this.getProfileOffers(sessionID);
+        if (offers[index] !== undefined)
+        {
+            return offers[index];
+        }
+        return [];
+    }
+
+    deleteOfferByIndex(sessionID, index)
+    {
+        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
+    }
+
+    updateOfferItemsByIndex(sessionID, index, newValues)
+    {
+        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
+    }
+
 
     getItemPrice(info)
     {
@@ -760,36 +787,84 @@ class RagfairController
         return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
     }
 
-    completeOffer(sessionID, requirements, moneyAmount, items, offerId)
+    /**
+     * @param {itemTemplate} item
+     */
+    fixItemStackCount(item)
     {
-        const itemTpl = items[0]._tpl;
+        if (item.upd === undefined)
+        {
+            item.upd = {
+                StackObjectsCount: 1
+            };
+        }
+
+        if (item.upd.StackObjectsCount === undefined)
+        {
+            item.upd.StackObjectsCount = 1;
+        }
+        return item;
+    }
+
+    completeOffer(sessionID, offer, offerId)
+    {
+        offer.items, offer._id;
+        const itemTpl = offer.items[0]._tpl;
         let itemCount = 0;
         let itemsToSend = [];
 
-        for (const item of items)
-        {
-            if (!("upd" in item) || !("StackObjectsCount" in item.upd))
-            {
-                itemCount += 1;
-            }
-            else
-            {
-                itemCount += item.upd.StackObjectsCount;
-            }
-        }
-
-        for (const item of requirements)
+        /* assemble the payment items */
+        for (let item of offer.requirements)
         {
             // Create an item of the specified currency
-            const requestedItem = {
+            let requestedItem = {
                 "_id": common_f.hash.generate(),
                 "_tpl": item._tpl,
                 "upd": { "StackObjectsCount": item.count }
             };
 
             // Split the money stacks in case more than the stack limit is requested
-            let stacks = helpfunc_f.helpFunctions.splitStack(requestedItem);
-            itemsToSend.push(...stacks);
+            if (helpfunc_f.helpFunctions.isMoneyTpl(requestedItem._tpl))
+            {
+                let stacks = helpfunc_f.helpFunctions.splitStack(requestedItem);
+                itemsToSend = [...itemsToSend, ...stacks];
+            }
+            else
+            {
+                let outItems = [requestedItem];
+                let presetItems = ragfair_f.server.getPresetItemsByTpl(requestedItem);
+                if (presetItems.length)
+                {
+                    if (item.onlyFunctional)
+                    {
+                        outItems = presetItems[0];
+                    }
+                }
+                itemsToSend = [...itemsToSend, ...outItems];
+            }
+        }
+
+        if (offer.sellInOnePiece)
+        {
+            for (let item of offer.items)
+            {
+                item = this.fixItemStackCount(item);
+                itemCount += item.upd.StackObjectsCount;
+                this.deleteOfferByIndex(sessionID, offerId);
+            }
+        }
+        else
+        {
+            // How many are we buying?
+            itemCount = 1; //common_f.random.getInt(1, offer.items.length);
+            if (itemCount < offer.items.length)
+            {
+                offer.items.splice(0, itemCount);
+            }
+            else
+            {
+                this.deleteOfferByIndex(sessionID, offerId);
+            }
         }
 
         // Generate a message to inform that item was sold
