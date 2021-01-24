@@ -494,7 +494,7 @@ class RagfairController
     {
         for (const sessionID in save_f.server.profiles)
         {
-            if ("RagfairInfo" in save_f.server.profiles[sessionID].characters.pmc)
+            if (save_f.server.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
             {
                 this.processOffers(sessionID);
             }
@@ -529,6 +529,10 @@ class RagfairController
     getProfileOffers(sessionID)
     {
         const profile = profile_f.controller.getPmcProfile(sessionID);
+        if (profile.RagfairInfo === undefined || profile.RagfairInfo.offers === undefined)
+        {
+            return [];
+        }
         return profile.RagfairInfo.offers;
     }
 
