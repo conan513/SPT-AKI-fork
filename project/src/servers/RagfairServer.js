@@ -459,6 +459,25 @@ class RagfairServer
     getPresetItems(item)
     {
         const preset = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
+        return this.reparentPresets(item, preset);
+    }
+
+    getPresetItemsByTpl(item)
+    {
+        let presets = [];
+        for (const itemId in database_f.server.tables.globals.ItemPresets)
+        {
+            if (database_f.server.tables.globals.ItemPresets[itemId]._items[0]._tpl === item._tpl)
+            {
+                let preset = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[itemId]._items);
+                presets.push(this.reparentPresets(item, preset));
+            }
+        }
+        return presets;
+    }
+
+    reparentPresets(item, preset)
+    {
         const toChange = preset[0]._id;
         preset[0] = item;
         for (let mod of preset)
