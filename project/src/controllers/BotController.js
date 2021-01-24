@@ -34,7 +34,7 @@ class BotController
 
     generateId(bot)
     {
-        const botId = common_f.hash.generate();
+        const botId = HashUtil.generate();
 
         bot._id = botId;
         bot.aid = botId;
@@ -47,16 +47,16 @@ class BotController
         const node = database_f.server.tables.bots.types[role.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
-        bot.Info.Nickname = common_f.random.getArrayValue(node.names);
+        bot.Info.Nickname = RandomUtil.getArrayValue(node.names);
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
-        bot.Info.Settings.Experience = common_f.random.getInt(node.experience.reward.min, node.experience.reward.max);
-        bot.Info.Voice = common_f.random.getArrayValue(node.appearance.voice);
+        bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
+        bot.Info.Voice = RandomUtil.getArrayValue(node.appearance.voice);
         bot.Health = this.generateHealth(node.health);
-        bot.Customization.Head = common_f.random.getArrayValue(node.appearance.head);
-        bot.Customization.Body = common_f.random.getArrayValue(node.appearance.body);
-        bot.Customization.Feet = common_f.random.getArrayValue(node.appearance.feet);
-        bot.Customization.Hands = common_f.random.getArrayValue(node.appearance.hands);
+        bot.Customization.Head = RandomUtil.getArrayValue(node.appearance.head);
+        bot.Customization.Body = RandomUtil.getArrayValue(node.appearance.body);
+        bot.Customization.Feet = RandomUtil.getArrayValue(node.appearance.feet);
+        bot.Customization.Hands = RandomUtil.getArrayValue(node.appearance.hands);
         bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
@@ -82,10 +82,10 @@ class BotController
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                const pmcSide = (common_f.random.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "Usec" : "Bear";
+                const pmcSide = (RandomUtil.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "Usec" : "Bear";
                 const role = condition.Role;
-                const isPmc = (role in bots_f.config.pmc.types && common_f.random.getInt(0, 99) < bots_f.config.pmc.types[role]);
-                let bot = common_f.json.clone(database_f.server.tables.bots.base);
+                const isPmc = (role in bots_f.config.pmc.types && RandomUtil.getInt(0, 99) < bots_f.config.pmc.types[role]);
+                let bot = JsonUtil.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = role;
@@ -106,7 +106,7 @@ class BotController
 
         // Get random level based on the exp table.
         let exp = 0;
-        let level = common_f.random.getInt(min, maxLevel);
+        let level = RandomUtil.getInt(min, maxLevel);
 
         for (let i = 0; i < level; i++)
         {
@@ -116,7 +116,7 @@ class BotController
         // Sprinkle in some random exp within the level, unless we are at max level.
         if (level < expTable.length - 1)
         {
-            exp += common_f.random.getInt(0, expTable[level].exp - 1);
+            exp += RandomUtil.getInt(0, expTable[level].exp - 1);
         }
 
         return {level, exp};
@@ -127,57 +127,57 @@ class BotController
     {
         return {
             "Hydration": {
-                "Current": common_f.random.getInt(healthObj.Hydration.min, healthObj.Hydration.max),
+                "Current": RandomUtil.getInt(healthObj.Hydration.min, healthObj.Hydration.max),
                 "Maximum": healthObj.Hydration.max
             },
             "Energy": {
-                "Current": common_f.random.getInt(healthObj.Energy.min, healthObj.Energy.max),
+                "Current": RandomUtil.getInt(healthObj.Energy.min, healthObj.Energy.max),
                 "Maximum": healthObj.Energy.max
             },
             "Temperature": {
-                "Current": common_f.random.getInt(healthObj.Temperature.min, healthObj.Temperature.max),
+                "Current": RandomUtil.getInt(healthObj.Temperature.min, healthObj.Temperature.max),
                 "Maximum": healthObj.Temperature.max
             },
             "BodyParts": {
                 "Head": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.Head.min, healthObj.BodyParts.Head.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.Head.min, healthObj.BodyParts.Head.max),
                         "Maximum": healthObj.BodyParts.Head.max
                     }
                 },
                 "Chest": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.Chest.min, healthObj.BodyParts.Chest.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.Chest.min, healthObj.BodyParts.Chest.max),
                         "Maximum": healthObj.BodyParts.Chest.max
                     }
                 },
                 "Stomach": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.Stomach.min, healthObj.BodyParts.Stomach.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.Stomach.min, healthObj.BodyParts.Stomach.max),
                         "Maximum": healthObj.BodyParts.Stomach.max
                     }
                 },
                 "LeftArm": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.LeftArm.min, healthObj.BodyParts.LeftArm.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.LeftArm.min, healthObj.BodyParts.LeftArm.max),
                         "Maximum": healthObj.BodyParts.LeftArm.max
                     }
                 },
                 "RightArm": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.RightArm.min, healthObj.BodyParts.RightArm.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.RightArm.min, healthObj.BodyParts.RightArm.max),
                         "Maximum": healthObj.BodyParts.RightArm.max
                     }
                 },
                 "LeftLeg": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.LeftLeg.min, healthObj.BodyParts.LeftLeg.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.LeftLeg.min, healthObj.BodyParts.LeftLeg.max),
                         "Maximum": healthObj.BodyParts.LeftLeg.max
                     }
                 },
                 "RightLeg": {
                     "Health": {
-                        "Current": common_f.random.getInt(healthObj.BodyParts.RightLeg.min, healthObj.BodyParts.RightLeg.max),
+                        "Current": RandomUtil.getInt(healthObj.BodyParts.RightLeg.min, healthObj.BodyParts.RightLeg.max),
                         "Maximum": healthObj.BodyParts.RightLeg.max
                     }
                 }
@@ -188,7 +188,7 @@ class BotController
     generateDogtag(bot)
     {
         bot.Inventory.items.push({
-            _id: common_f.hash.generate(),
+            _id: HashUtil.generate(),
             _tpl: ((bot.Info.Side === "Usec") ? "59f32c3b86f77472a31742f0" : "59f32bb586f774757e1e8442"),
             parentId: bot.Inventory.equipment,
             slotId: "Dogtag",

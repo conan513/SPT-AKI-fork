@@ -41,7 +41,7 @@ class Packager
                 lastruntime = this.onUpdateLastRun[taskId];
             }
 
-            const timeSinceLastRun = common_f.time.getTimestamp() - lastruntime;
+            const timeSinceLastRun = TimeUtil.getTimestamp() - lastruntime;
 
             try
             {
@@ -49,14 +49,14 @@ class Packager
             }
             catch (err)
             {
-                common_f.logger.logError(`Scheduled event: '${taskId}' failed to run successfully.`);
+                Logger.error(`Scheduled event: '${taskId}' failed to run successfully.`);
                 console.log(err);
                 success = false;
             }
 
             if (success)
             {
-                this.onUpdateLastRun[taskId] = common_f.time.getTimestamp();
+                this.onUpdateLastRun[taskId] = TimeUtil.getTimestamp();
             }
             else
             {
@@ -64,7 +64,7 @@ class Packager
                 const warnTime = 20 * 60;
                 if (success === void 0 && !(timeSinceLastRun % warnTime))
                 {
-                    common_f.logger.logInfo(`onUpdate: ${taskId} doesn't report success or fail`);
+                    Logger.info(`onUpdate: ${taskId} doesn't report success or fail`);
                 }
             }
         }

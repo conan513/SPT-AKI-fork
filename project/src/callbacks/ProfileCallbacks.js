@@ -61,7 +61,7 @@ class ProfileCallbacks
 
         return https_f.response.getBody({
             "status": 0,
-            "nicknamechangedate": common_f.time.getTimestamp()
+            "nicknamechangedate": TimeUtil.getTimestamp()
         });
     }
     /// --- TODO: USE LOCALIZED STRINGS --- ///

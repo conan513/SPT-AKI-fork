@@ -23,8 +23,8 @@ class WeatherController
 
     generateWeather(data)
     {
-        const enableRain = common_f.random.getBool();
-        const enableFog = common_f.random.getBool();
+        const enableRain = RandomUtil.getBool();
+        const enableFog = RandomUtil.getBool();
 
         data.weather.cloud = this.getRandomFloat("clouds");
         data.weather.wind_speed = this.getRandomInt("windSpeed");
@@ -48,8 +48,8 @@ class WeatherController
         computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
 
         // assign time
-        const time = common_f.time.formatTime(computedDate).replace("-", ":").replace("-", ":");
-        const date = common_f.time.formatDate(computedDate);
+        const time = TimeUtil.formatTime(computedDate).replace("-", ":").replace("-", ":");
+        const date = TimeUtil.formatDate(computedDate);
         const datetime = `${date} ${time}`;
 
         data.weather.timestamp = Math.floor(computedDate.getTime() / 1000);
@@ -64,13 +64,13 @@ class WeatherController
 
     getRandomFloat(node)
     {
-        return parseFloat(common_f.random.getFloat(weather_f.config.weather[node].min,
+        return parseFloat(RandomUtil.getFloat(weather_f.config.weather[node].min,
             weather_f.config.weather[node].max).toPrecision(3));
     }
 
     getRandomInt(node)
     {
-        return common_f.random.getInt(weather_f.config.weather[node].min,
+        return RandomUtil.getInt(weather_f.config.weather[node].min,
             weather_f.config.weather[node].max);
     }
 }

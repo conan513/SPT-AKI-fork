@@ -87,7 +87,7 @@ class QuestHelpers
                 case ">=":
                     return level >= cond._props.value;
                 default:
-                    common_f.logger.logDebug(`Unrecognised Comparison Method: ${cond._props.compareMethod}`);
+                    Logger.debug(`Unrecognised Comparison Method: ${cond._props.compareMethod}`);
                     return false;
             }
         }
@@ -141,7 +141,7 @@ class QuestHelpers
         for (const quest of quests)
         {
             const currentQuestLocale = this.getQuestLocale(quest._id);
-            common_f.logger.logDebug(`${currentQuestLocale.name} (${quest._id})`);
+            Logger.debug(`${currentQuestLocale.name} (${quest._id})`);
             for (const cond of quest.conditions.AvailableForStart)
             {
                 let output = `- ${cond._parent} `;
@@ -163,9 +163,9 @@ class QuestHelpers
                 {
                     output += `${cond._props.compareMethod} ${cond._props.value}`;
                 }
-                common_f.logger.logDebug(output);
+                Logger.debug(output);
             }
-            common_f.logger.logDebug("AvailableForFinish info:");
+            Logger.debug("AvailableForFinish info:");
             for (const cond of quest.conditions.AvailableForFinish)
             {
                 let output = `- ${cond._parent} `;
@@ -197,9 +197,9 @@ class QuestHelpers
                         break;
                 }
 
-                common_f.logger.logDebug(output);
+                Logger.debug(output);
             }
-            common_f.logger.logDebug("-- end\n");
+            Logger.debug("-- end\n");
         }
     }
 }

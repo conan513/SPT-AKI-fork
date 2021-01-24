@@ -95,7 +95,7 @@ class TraderController
 
     updateTraders()
     {
-        const time = common_f.time.getTimestamp();
+        const time = TimeUtil.getTimestamp();
         const update = trader_f.config.updateTime;
 
         for (const traderID in database_f.server.tables.traders)
@@ -122,12 +122,12 @@ class TraderController
     {
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            const time = common_f.time.getTimestamp();
+            const time = TimeUtil.getTimestamp();
             const trader = database_f.server.tables.traders[traderID].base;
 
             if (!this.fenceAssort || trader.supply_next_time < time)
             {
-                common_f.logger.logWarning("generating fence");
+                Logger.warning("generating fence");
                 this.fenceAssort = this.generateFenceAssort();
                 ragfair_f.server.generateTraderOffers(traderID);
             }
@@ -136,7 +136,7 @@ class TraderController
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        const traderData = common_f.json.clone(database_f.server.tables.traders[traderID]);
+        const traderData = JsonUtil.clone(database_f.server.tables.traders[traderID]);
         let result = traderData.assort;
 
         // strip items (1 is min level, 4 is max level)
@@ -189,7 +189,7 @@ class TraderController
 
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
-            let itemID = names[common_f.random.getInt(0, names.length - 1)];
+            let itemID = names[RandomUtil.getInt(0, names.length - 1)];
             let price = helpfunc_f.helpFunctions.getTemplatePrice(itemID);
 
             if (price === 0 || price === 1 || price === 100)
@@ -202,8 +202,8 @@ class TraderController
             // it's the item
             if (!(itemID in itemPresets))
             {
-                const toPush = common_f.json.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
-                toPush._id = common_f.hash.generate();
+                const toPush = JsonUtil.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
+                toPush._id = HashUtil.generate();
                 result.items.push(toPush);
                 result.barter_scheme[toPush._id] = assort.barter_scheme[itemID];
                 result.loyal_level_items[toPush._id] = assort.loyal_level_items[itemID];
@@ -212,10 +212,10 @@ class TraderController
 
             // it's itemPreset
             let rub = 0;
-            let items = common_f.json.clone(itemPresets[itemID]._items);
+            let items = JsonUtil.clone(itemPresets[itemID]._items);
             let ItemRootOldId = itemPresets[itemID]._parent;
 
-            items[0]._id = common_f.hash.generate();
+            items[0]._id = HashUtil.generate();
 
             for (let i = 0; i < items.length; i++)
             {

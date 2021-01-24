@@ -119,7 +119,7 @@ class HttpServer
         }
         catch (err)
         {
-            common_f.logger.logError(`sendMessage failed, with error: ${err}`);
+            Logger.error(`sendMessage failed, with error: ${err}`);
         }
     }
 
@@ -140,14 +140,14 @@ class HttpServer
     {
         // get response
         const text = (body) ? body.toString() : "{}";
-        const info = (text) ? common_f.json.deserialize(text) : {};
+        const info = (text) ? JsonUtil.deserialize(text) : {};
         let output = https_f.router.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */
         if (!output)
         {
-            common_f.logger.logError(`[UNHANDLED][${req.url}]`);
-            common_f.logger.log(info);
+            Logger.error(`[UNHANDLED][${req.url}]`);
+            Logger.log(info);
             output = https_f.response.getBody(null, 404, `UNHANDLED RESPONSE: ${req.url}`);
         }
 
@@ -173,7 +173,7 @@ class HttpServer
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
         const sessionID = this.getCookies(req)["PHPSESSID"];
 
-        common_f.logger.log(`[${sessionID}][${IP}] ${req.url}`);
+        Logger.log(`[${sessionID}][${IP}] ${req.url}`);
 
         // request without data
         if (req.method === "GET")
@@ -216,6 +216,11 @@ class HttpServer
 
                 zlib.inflate(data, (err, body) =>
                 {
+                    if (err)
+                    {
+		    	// fallback uncompressed data
+                        body = data;
+                    }
                     https_f.server.sendResponse(sessionID, req, resp, body);
                 });
             });
@@ -230,7 +235,7 @@ class HttpServer
             this.handleRequest(req, res);
         }).listen(https_f.config.port, https_f.config.ip, () =>
         {
-            common_f.logger.logSuccess(`Started webserver at ${this.getBackendUrl()}`);
+            Logger.success(`Started webserver at ${this.getBackendUrl()}`);
         });
         this.instance = instance;
 
@@ -242,7 +247,7 @@ class HttpServer
 
         this.wss.addListener("listening", () =>
         {
-            common_f.logger.logSuccess("Started websocket");
+            Logger.success("Started websocket");
         });
 
         this.wss.addListener("connection", (ws) =>
@@ -262,11 +267,11 @@ class HttpServer
         {
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
-                common_f.logger.logError("Non-root processes cannot bind to ports below 1024");
+                Logger.error("Non-root processes cannot bind to ports below 1024");
             }
             else
             {
-                common_f.logger.logError(`Port ${e.port} is already in use, check if the server isn't already running`);
+                Logger.error(`Port ${e.port} is already in use, check if the server isn't already running`);
             }
         });
     }

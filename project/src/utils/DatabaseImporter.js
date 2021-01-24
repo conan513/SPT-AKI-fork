@@ -41,14 +41,14 @@ class DatabaseImporter
         let result = {};
 
         // get all filepaths
-        const files = common_f.vfs.getFiles(filepath);
-        const directories = common_f.vfs.getDirs(filepath);
+        const files = vfs.getFiles(filepath);
+        const directories = vfs.getDirs(filepath);
 
         // add file content to result
         for (const file of files)
         {
             const filename = file.split(".").slice(0, -1).join(".");
-            result[filename] = common_f.json.deserialize(common_f.vfs.readFile(`${filepath}${file}`));
+            result[filename] = JsonUtil.deserialize(vfs.readFile(`${filepath}${file}`));
         }
 
         // deep tree search
@@ -62,7 +62,7 @@ class DatabaseImporter
 
     loadImages(filepath)
     {
-        const dirs = common_f.vfs.getDirs(filepath);
+        const dirs = vfs.getDirs(filepath);
         const routes = [
             "/files/CONTENT/banners/",
             "/files/handbook/",
@@ -73,7 +73,7 @@ class DatabaseImporter
 
         for (const i in dirs)
         {
-            const files = common_f.vfs.getFiles(`${filepath}${dirs[i]}`);
+            const files = vfs.getFiles(`${filepath}${dirs[i]}`);
 
             for (const file of files)
             {

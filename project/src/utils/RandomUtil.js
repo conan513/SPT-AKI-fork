@@ -1,4 +1,4 @@
-/* common_f.random.js
+/* RandomUtil.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -10,6 +10,11 @@
 
 class RandomUtil
 {
+    /**
+     * @param {number} min
+     * @param {number} max
+     * @returns {number}
+     */
     getInt(min, max)
     {
         min = Math.ceil(min);

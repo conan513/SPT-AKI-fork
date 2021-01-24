@@ -19,7 +19,7 @@ class LocationController
         let output = location.base;
         let ids = {};
 
-        output.UnixDateTime = common_f.time.getTimestamp();
+        output.UnixDateTime = TimeUtil.getTimestamp();
 
         // don't generate loot on hideout
         if (name === "hideout")
@@ -30,8 +30,8 @@ class LocationController
         // generate loot
         let forced = location.loot.forced;
         let mounted = location.loot.mounted;
-        let statics = common_f.json.clone(location.loot.static);
-        let dynamic = common_f.json.clone(location.loot.dynamic);
+        let statics = JsonUtil.clone(location.loot.static);
+        let dynamic = JsonUtil.clone(location.loot.dynamic);
         output.Loot = [];
 
         // mounted weapons
@@ -73,7 +73,7 @@ class LocationController
             output.Loot.push(data);
             count++;
         }
-        common_f.logger.logSuccess("A total of " + count + " containers generated");
+        Logger.success("A total of " + count + " containers generated");
 
         // dyanmic loot
         let max = location_f.config.limits[name];
@@ -102,8 +102,8 @@ class LocationController
         }
 
         // done generating
-        common_f.logger.logSuccess("A total of " + count + " items spawned");
-        common_f.logger.logSuccess("Generated location " + name);
+        Logger.success("A total of " + count + " items spawned");
+        Logger.success("Generated location " + name);
         return output;
     }
 

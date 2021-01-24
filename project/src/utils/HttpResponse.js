@@ -22,7 +22,7 @@ class HttpResponse
 
     noBody(data)
     {
-        return this.clearString(common_f.json.serialize(data));
+        return this.clearString(JsonUtil.serialize(data));
     }
 
     getBody(data, err = 0, errmsg = null)
@@ -32,7 +32,7 @@ class HttpResponse
 
     getUnclearedBody(data, err = 0, errmsg = null)
     {
-        return common_f.json.serialize({
+        return JsonUtil.serialize({
             "err": err,
             "errmsg": errmsg,
             "data": data

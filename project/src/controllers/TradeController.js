@@ -34,11 +34,11 @@ class TradeController
         {
             if (!helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID))
             {
-                common_f.logger.logError("no money found");
+                Logger.error("no money found");
                 throw "Transaction failed";
             }
 
-            common_f.logger.logSuccess("Bought item: " + body.item_id);
+            Logger.success("Bought item: " + body.item_id);
         };
 
         return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
@@ -72,7 +72,7 @@ class TradeController
                 // item found
                 if (item._id === checkID)
                 {
-                    common_f.logger.logInfo("Selling: " + checkID);
+                    Logger.info("Selling: " + checkID);
 
                     // remove item
                     insurance_f.controller.remove(pmcData, checkID, sessionID);

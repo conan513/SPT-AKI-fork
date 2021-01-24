@@ -42,7 +42,7 @@ class InsuranceController
         //Find the item and all of it's relates
         if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
         {
-            common_f.logger.logError("item id is not valid");
+            Logger.error("item id is not valid");
             return;
         }
 
@@ -212,22 +212,22 @@ class InsuranceController
         for (let traderId in this.insured[sessionID])
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
-            let time = common_f.time.getTimestamp() + common_f.random.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
+            let time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
             let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
             let messageContent = {
-                "templateId": common_f.random.getArrayValue(dialogueTemplates.insuranceStart),
+                "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceStart),
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
             };
 
             dialogue_f.controller.addDialogueMessage(traderId, messageContent, sessionID);
 
             messageContent = {
-                "templateId": common_f.random.getArrayValue(dialogueTemplates.insuranceFound),
+                "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceFound),
                 "type": dialogue_f.controller.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
-                    "date": common_f.time.getDate(),
-                    "time": common_f.time.getTime(),
+                    "date": TimeUtil.getDate(),
+                    "time": TimeUtil.getTime(),
                     "location": pmcData.Info.EntryPoint
                 }
             };
@@ -255,7 +255,7 @@ class InsuranceController
 
     processReturn()
     {
-        const time = common_f.time.getTimestamp();
+        const time = TimeUtil.getTimestamp();
 
         for (const sessionID in save_f.server.profiles)
         {
@@ -272,10 +272,10 @@ class InsuranceController
                 }
 
                 // Inject a little bit of a surprise by failing the insurance from time to time ;)
-                if (common_f.random.getInt(0, 99) >= insurance_f.config.returnChance)
+                if (RandomUtil.getInt(0, 99) >= insurance_f.config.returnChance)
                 {
                     const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
-                    insured.messageContent.templateId = common_f.random.getArrayValue(insuranceFailedTemplates);
+                    insured.messageContent.templateId = RandomUtil.getArrayValue(insuranceFailedTemplates);
                     insured.items = [];
                 }
 
@@ -310,7 +310,7 @@ class InsuranceController
         // pay the item	to profile
         if (!helpfunc_f.helpFunctions.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
-            common_f.logger.logError("no money found");
+            Logger.error("no money found");
             return "";
         }
 

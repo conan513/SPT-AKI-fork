@@ -23,12 +23,12 @@ class SaveServer
     load()
     {
         // get files to load
-        if (!common_f.vfs.exists(this.filepath))
+        if (!vfs.exists(this.filepath))
         {
-            common_f.vfs.createDir(this.filepath);
+            vfs.createDir(this.filepath);
         }
 
-        const files = common_f.vfs.getFiles(this.filepath);
+        const files = vfs.getFiles(this.filepath);
 
         // load profiles
         for (let file of files)
@@ -54,10 +54,10 @@ class SaveServer
     {
         const file = `${this.filepath}${sessionID}.json`;
 
-        if (common_f.vfs.exists(file))
+        if (vfs.exists(file))
         {
             // load profile
-            this.profiles[sessionID] = common_f.json.deserialize(common_f.vfs.readFile(file));
+            this.profiles[sessionID] = JsonUtil.deserialize(vfs.readFile(file));
         }
 
         // run callbacks
@@ -82,7 +82,7 @@ class SaveServer
         }
 
         // save profile
-        common_f.vfs.writeFile(file, common_f.json.serialize(this.profiles[sessionID], true));
+        vfs.writeFile(file, JsonUtil.serialize(this.profiles[sessionID], true));
     }
 }
 

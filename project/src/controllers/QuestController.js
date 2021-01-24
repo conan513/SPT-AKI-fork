@@ -83,7 +83,7 @@ class QuestController
                 )
                 {
                     let statusName = Object.keys(quest_f.helpers.status)[condition._props.status[0]];
-                    common_f.logger.logDebug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${quest_f.helpers.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
+                    Logger.debug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${quest_f.helpers.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
                     continue;
                 }
                 canSend = false;
@@ -163,7 +163,7 @@ class QuestController
 
             for (const mod of mods)
             {
-                items.push(common_f.json.clone(mod));
+                items.push(JsonUtil.clone(mod));
             }
 
             for (let i = 0; i < itemCount; i++)
@@ -298,7 +298,7 @@ class QuestController
             {
                 return q.qid === body.qid;
             });
-        const time = common_f.time.getTimestamp();
+        const time = TimeUtil.getTimestamp();
         const state = "Started";
 
         if (quest)
@@ -381,7 +381,7 @@ class QuestController
                     /** @type {PlayerQuest} */
                     const questData = {
                         "qid": checkFail._id,
-                        "startTime": common_f.time.getTimestamp(),
+                        "startTime": TimeUtil.getTimestamp(),
                         "status": "Fail"
                     };
                     pmcData.Quests.push(questData);
@@ -460,7 +460,7 @@ class QuestController
 
         if (handoverMode && value === 0)
         {
-            common_f.logger.logError("Quest handover error: condition not found or incorrect value. qid=" + body.qid + ", condition=" + body.conditionId);
+            Logger.error("Quest handover error: condition not found or incorrect value. qid=" + body.qid + ", condition=" + body.conditionId);
             return output;
         }
 
@@ -684,7 +684,7 @@ class QuestController
      */
     cleanQuestConditions(quest)
     {
-        quest = common_f.json.clone(quest);
+        quest = JsonUtil.clone(quest);
         /**
          * @param {{ _parent: string; }} q
          */

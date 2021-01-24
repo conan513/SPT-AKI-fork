@@ -1,4 +1,4 @@
-/* common_f.hash.js
+/* HashUtil.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -23,7 +23,7 @@ class HashUtil
     generate()
     {
         const shasum = crypto.createHash("sha1");
-        const time = Math.random() * common_f.time.getTimestamp();
+        const time = Math.random() * TimeUtil.getTimestamp();
 
         shasum.update(time.toString());
         return shasum.digest("hex").substring(0, 24);

@@ -22,11 +22,6 @@ class LauncherCallbacks
         https_f.router.addStaticRoute("/launcher/profile/change/wipe", "Aki", this.wipe.bind(this));
     }
 
-    load()
-    {
-        account_f.controller.initialize();
-    }
-
     // TODO: REFACTOR THIS
     connect()
     {

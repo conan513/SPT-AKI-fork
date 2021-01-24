@@ -49,17 +49,17 @@ class CertController
 
     readCerts()
     {
-        if (!common_f.vfs.exists(this.certDir))
+        if (!vfs.exists(this.certDir))
         {
-            common_f.vfs.createDir(this.certDir);
+            vfs.createDir(this.certDir);
         }
 
-        if (common_f.vfs.exists(this.certFile) && common_f.vfs.exists(this.keyFile))
+        if (vfs.exists(this.certFile) && vfs.exists(this.keyFile))
         {
             try
             {
-                const cert = common_f.vfs.readFile(this.certFile);
-                const key = common_f.vfs.readFile(this.keyFile);
+                const cert = vfs.readFile(this.certFile);
+                const key = vfs.readFile(this.keyFile);
                 return { "cert": cert, "key": key };
             }
             catch (e)
@@ -78,20 +78,20 @@ class CertController
         let fingerprint;
 
         ({ cert, "private": key, fingerprint } = selfsigned.generate([{ "name": "commonName", "value": https_f.config.ip }], { "days": 365 }));
-        common_f.vfs.writeFile(this.certFile, cert);
-        common_f.vfs.writeFile(this.keyFile, key);
-        common_f.logger.logInfo(`Generated self-signed x509 certificate ${fingerprint}`);
+        vfs.writeFile(this.certFile, cert);
+        vfs.writeFile(this.keyFile, key);
+        Logger.info(`Generated self-signed x509 certificate ${fingerprint}`);
 
         if (process.platform === "linux")
         {
-            common_f.logger.logInfo("You are running on linux, you will have to install the cert manually.");
-            common_f.logger.logInfo(`copy ${this.certFile} to your windows PC and run \n\t  certutil.exe -f -addstore Root <path to cert.pem>`);
-            common_f.logger.logInfo(`Cert can also be downloaded from ${https_f.server.getBackendUrl()}${certs_f.callbacks.endPoint}`);
+            Logger.info("You are running on linux, you will have to install the cert manually.");
+            Logger.info(`copy ${this.certFile} to your windows PC and run \n\t  certutil.exe -f -addstore Root <path to cert.pem>`);
+            Logger.info(`Cert can also be downloaded from ${https_f.server.getBackendUrl()}${certs_f.callbacks.endPoint}`);
 
         }
         else
         {
-            common_f.logger.logInfo("Installing cert in trust store. You will be asked for admin privileges.");
+            Logger.info("Installing cert in trust store. You will be asked for admin privileges.");
 
             // Use CERTMGR.MSC to remove this Trust Store Certificate manually
             sudo.exec(`certutil.exe -f -addstore Root ${this.certFile}`, {
@@ -101,7 +101,7 @@ class CertController
                 if (error) throw error;
             });
 
-            common_f.logger.logInfo("Added self-signed x509 certificate");
+            Logger.info("Added self-signed x509 certificate");
         }
 
         this.fingerprint = fingerprint;

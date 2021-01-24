@@ -33,22 +33,22 @@ class ModController
     importMods()
     {
         // get mods
-        if (!common_f.vfs.exists(this.basepath))
+        if (!vfs.exists(this.basepath))
         {
             // no mods folder found
-            common_f.vfs.createDir(this.basepath);
+            vfs.createDir(this.basepath);
             return;
         }
 
-        common_f.logger.log("ModLoader: loading mods...");
-        const mods = common_f.vfs.getDirs(this.basepath);
+        Logger.log("ModLoader: loading mods...");
+        const mods = vfs.getDirs(this.basepath);
 
         // validate mods
         for (const mod of mods)
         {
             if (!this.validMod(mod))
             {
-                common_f.logger.logError("Invalid mod encountered");
+                Logger.error("Invalid mod encountered");
                 return;
             }
         }
@@ -100,7 +100,7 @@ class ModController
 
     getBundle(key, local)
     {
-        const bundle = common_f.json.clone(this.bundles[key]);
+        const bundle = JsonUtil.clone(this.bundles[key]);
 
         if (local)
         {
@@ -113,7 +113,7 @@ class ModController
 
     addBundles(modpath)
     {
-        const manifest = common_f.json.deserialize(common_f.vfs.readFile(`${modpath}bundles.json`)).manifest;
+        const manifest = JsonUtil.deserialize(vfs.readFile(`${modpath}bundles.json`)).manifest;
 
         for (const bundleInfo of manifest)
         {
@@ -135,10 +135,10 @@ class ModController
         const modpath = this.getModPath(mod);
 
         // add mod to imported list
-        this.imported[mod] = common_f.json.deserialize(common_f.vfs.readFile(`${modpath}/package.json`));
+        this.imported[mod] = JsonUtil.deserialize(vfs.readFile(`${modpath}/package.json`));
 
         // add mod bundles
-        if (common_f.vfs.exists(`${modpath}bundles.json`))
+        if (vfs.exists(`${modpath}bundles.json`))
         {
             this.addBundles(modpath);
         }
@@ -147,14 +147,14 @@ class ModController
     validMod(mod)
     {
         // check if config exists
-        if (!common_f.vfs.exists(`${this.getModPath(mod)}/package.json`))
+        if (!vfs.exists(`${this.getModPath(mod)}/package.json`))
         {
             console.log(`Mod ${mod} is missing package.json`);
             return false;
         }
 
         // validate mod
-        const config = common_f.json.deserialize(common_f.vfs.readFile(`${this.getModPath(mod)}/package.json`));
+        const config = JsonUtil.deserialize(vfs.readFile(`${this.getModPath(mod)}/package.json`));
         const checks = ["name", "author", "version", "license"];
         let issue = false;
 
@@ -176,7 +176,7 @@ class ModController
             }
 
 
-            if (!common_f.vfs.exists(`${this.getModPath(mod)}/${config.main}`))
+            if (!vfs.exists(`${this.getModPath(mod)}/${config.main}`))
             {
                 console.log(`Mod ${mod} package.json main property points to non-existing file`);
                 issue = true;
@@ -197,14 +197,14 @@ class ModController
         if (mod in visited)
         {
             // front: white, back: red
-            common_f.logger.logError("Cyclic dependency detected");
+            Logger.error("Cyclic dependency detected");
 
             // additional info
-            common_f.logger.log(`checking: ${mod}`);
-            common_f.logger.log("checked:");
-            common_f.logger.log(result);
-            common_f.logger.log("visited:");
-            common_f.logger.log(visited);
+            Logger.log(`checking: ${mod}`);
+            Logger.log("checked:");
+            Logger.log(result);
+            Logger.log("visited:");
+            Logger.log(visited);
 
             // wait for input
             process.exit(1);

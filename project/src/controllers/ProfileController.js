@@ -96,10 +96,10 @@ class ProfileController
         pmcData.savage = "scav" + sessionID;
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
-        pmcData.Info.RegistrationDate = common_f.time.getTimestamp();
+        pmcData.Info.RegistrationDate = TimeUtil.getTimestamp();
         pmcData.Info.Voice = database_f.server.tables.templates.suits[info.voiceId]._name;
         pmcData.Customization.Head = info.headId;
-        pmcData.Health.UpdateTime = common_f.time.getTimestamp();
+        pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
         pmcData.Quests = [];
 
         // create profile
