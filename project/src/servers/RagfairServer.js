@@ -213,7 +213,7 @@ class RagfairServer
                 "avatar": trader.avatar
             },
             "root": items[0]._id,
-            "items": items,
+            "items": common_f.json.clone(items),
             "requirements": barterScheme,
             "requirementsCost": price,
             "itemsCost": price,
@@ -404,8 +404,15 @@ class RagfairServer
         {
             price += helpfunc_f.helpFunctions.fromRUB(this.prices.dynamic[it._tpl], currency);
         }
+        
+        price = Math.round(price * common_f.random.getFloat(ragfair_f.config.dynamic.price.min, ragfair_f.config.dynamic.price.max));
+        
+        if (price < 1)
+        {
+            price = 1;
+        }
 
-        return Math.round(price * common_f.random.getFloat(ragfair_f.config.dynamic.price.min, ragfair_f.config.dynamic.price.max));
+        return price;
     }
 
     getOfferRequirements(items)
