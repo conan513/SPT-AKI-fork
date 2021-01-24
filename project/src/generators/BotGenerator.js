@@ -59,7 +59,7 @@ class BotGenerator
         this.generateEquipment(EquipmentSlots.ArmorVest, templateInventory.equipment.ArmorVest, templateInventory.mods, equipmentChances);
 
         // Roll weapon spawns and generate a weapon for each roll that passed
-        const shouldSpawnPrimary = common_f.random.getIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
+        const shouldSpawnPrimary = RandomUtil.getIntEx(100) <= equipmentChances.equipment.FirstPrimaryWeapon;
         const weaponSpawns = [
             {
                 slot: EquipmentSlots.FirstPrimaryWeapon,
@@ -67,11 +67,11 @@ class BotGenerator
             },
             { // Only roll for a chance at secondary if primary roll was successful
                 slot: EquipmentSlots.SecondPrimaryWeapon,
-                shouldSpawn: shouldSpawnPrimary ? common_f.random.getIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
+                shouldSpawn: shouldSpawnPrimary ? RandomUtil.getIntEx(100) <= equipmentChances.equipment.SecondPrimaryWeapon : false
             },
             { // Roll for an extra pistol, unless primary roll failed - in that case, pistol is guaranteed
                 slot: EquipmentSlots.Holster,
-                shouldSpawn: shouldSpawnPrimary ? common_f.random.getIntEx(100) <= equipmentChances.equipment.Holster : true
+                shouldSpawn: shouldSpawnPrimary ? RandomUtil.getIntEx(100) <= equipmentChances.equipment.Holster : true
             }
         ];
 
@@ -90,21 +90,21 @@ class BotGenerator
 
         this.generateLoot(templateInventory.items, generation.items);
 
-        return common_f.json.clone(this.inventory);
+        return JsonUtil.clone(this.inventory);
     }
 
     generateInventoryBase()
     {
-        const equipmentId = common_f.hash.generate();
+        const equipmentId = HashUtil.generate();
         const equipmentTpl = "55d7217a4bdc2d86028b456d";
 
-        const stashId = common_f.hash.generate();
+        const stashId = HashUtil.generate();
         const stashTpl = "566abbc34bdc2d92178b4576";
 
-        const questRaidItemsId = common_f.hash.generate();
+        const questRaidItemsId = HashUtil.generate();
         const questRaidItemsTpl = "5963866286f7747bf429b572";
 
-        const questStashItemsId = common_f.hash.generate();
+        const questStashItemsId = HashUtil.generate();
         const questStashItemsTpl = "5963866b86f7747bfa1c4462";
 
         return {
@@ -141,21 +141,21 @@ class BotGenerator
             : spawnChances.equipment[equipmentSlot];
         if (typeof spawnChance === "undefined")
         {
-            common_f.logger.logWarning(`No spawn chance was defined for ${equipmentSlot}`);
+            Logger.warning(`No spawn chance was defined for ${equipmentSlot}`);
             return;
         }
 
-        const shouldSpawn = common_f.random.getIntEx(100) <= spawnChance;
+        const shouldSpawn = RandomUtil.getIntEx(100) <= spawnChance;
         if (equipmentPool.length && shouldSpawn)
         {
-            const id = common_f.hash.generate();
-            const tpl = common_f.random.getArrayValue(equipmentPool);
+            const id = HashUtil.generate();
+            const tpl = RandomUtil.getArrayValue(equipmentPool);
             const itemTemplate = database_f.server.tables.templates.items[tpl];
 
             if (!itemTemplate)
             {
-                common_f.logger.logError(`Could not find item template with tpl ${tpl}`);
-                common_f.logger.logInfo(`EquipmentSlot -> ${equipmentSlot}`);
+                Logger.error(`Could not find item template with tpl ${tpl}`);
+                Logger.info(`EquipmentSlot -> ${equipmentSlot}`);
                 return;
             }
 
@@ -187,14 +187,14 @@ class BotGenerator
 
     generateWeapon(equipmentSlot, weaponPool, modPool, modChances, magCounts)
     {
-        const id = common_f.hash.generate();
-        const tpl = common_f.random.getArrayValue(weaponPool);
+        const id = HashUtil.generate();
+        const tpl = RandomUtil.getArrayValue(weaponPool);
         const itemTemplate = database_f.server.tables.templates.items[tpl];
 
         if (!itemTemplate)
         {
-            common_f.logger.logError(`Could not find item template with tpl ${tpl}`);
-            common_f.logger.logError(`WeaponSlot -> ${equipmentSlot}`);
+            Logger.error(`Could not find item template with tpl ${tpl}`);
+            Logger.error(`WeaponSlot -> ${equipmentSlot}`);
             return;
         }
 
@@ -214,7 +214,7 @@ class BotGenerator
         if (!this.isWeaponValid(weaponMods))
         {
             // Invalid weapon generated, fallback to preset
-            common_f.logger.logWarning(`Weapon ${tpl} was generated incorrectly, see error above`);
+            Logger.warning(`Weapon ${tpl} was generated incorrectly, see error above`);
             weaponMods = [];
 
             // TODO: Right now, preset weapons trigger a lot of warnings regarding missing ammo in magazines & such
@@ -240,7 +240,7 @@ class BotGenerator
             }
             else
             {
-                common_f.logger.logError(`Could not find preset for weapon with tpl ${tpl}`);
+                Logger.error(`Could not find preset for weapon with tpl ${tpl}`);
                 return;
             }
         }
@@ -268,7 +268,7 @@ class BotGenerator
             && !parentTemplate._props.Cartridges.length
             && !parentTemplate._props.Chambers.length)
         {
-            common_f.logger.logError(`Item ${parentTemplate._id} had mods defined, but no slots to support them`);
+            Logger.error(`Item ${parentTemplate._id} had mods defined, but no slots to support them`);
             return items;
         }
 
@@ -290,14 +290,14 @@ class BotGenerator
 
             if (!itemSlot)
             {
-                common_f.logger.logError(`Slot '${modSlot}' does not exist for item ${parentTemplate._id}`);
+                Logger.error(`Slot '${modSlot}' does not exist for item ${parentTemplate._id}`);
                 continue;
             }
 
             const modSpawnChance = itemSlot._required || ["mod_magazine", "patron_in_weapon", "cartridges"].includes(modSlot)
                 ? 100
                 : modSpawnChances[modSlot];
-            if (common_f.random.getIntEx(100) > modSpawnChance)
+            if (RandomUtil.getIntEx(100) > modSpawnChance)
             {
                 continue;
             }
@@ -320,26 +320,26 @@ class BotGenerator
             {
                 if (itemSlot._required)
                 {
-                    common_f.logger.logError(`Could not locate any compatible items to fill '${modSlot}' for ${parentTemplate._id}`);
+                    Logger.error(`Could not locate any compatible items to fill '${modSlot}' for ${parentTemplate._id}`);
                 }
                 continue;
             }
 
             if (!itemSlot._props.filters[0].Filter.includes(modTpl))
             {
-                common_f.logger.logError(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${parentTemplate._id}`);
+                Logger.error(`Mod ${modTpl} is not compatible with slot '${modSlot}' for item ${parentTemplate._id}`);
                 continue;
             }
 
             const modTemplate = database_f.server.tables.templates.items[modTpl];
             if (!modTemplate)
             {
-                common_f.logger.logError(`Could not find mod item template with tpl ${modTpl}`);
-                common_f.logger.logInfo(`Item -> ${parentTemplate._id}; Slot -> ${modSlot}`);
+                Logger.error(`Could not find mod item template with tpl ${modTpl}`);
+                Logger.info(`Item -> ${parentTemplate._id}; Slot -> ${modSlot}`);
                 continue;
             }
 
-            const modId = common_f.hash.generate();
+            const modId = HashUtil.generate();
             items.push({
                 "_id": modId,
                 "_tpl": modTpl,
@@ -429,7 +429,7 @@ class BotGenerator
                 const slotItem = itemList.find(i => i.parentId === item._id && i.slotId === slot._name);
                 if (!slotItem)
                 {
-                    common_f.logger.logError(`Required slot '${slot._name}' on ${template._id} was empty`);
+                    Logger.error(`Required slot '${slot._name}' on ${template._id} was empty`);
                     return false;
                 }
             }
@@ -446,7 +446,7 @@ class BotGenerator
         const magazine = weaponMods.find(m => m.slotId === "mod_magazine");
         if (!magazine)
         {
-            common_f.logger.logWarning(`Generated weapon with tpl ${weaponTemplate._id} had no magazine`);
+            Logger.warning(`Generated weapon with tpl ${weaponTemplate._id} had no magazine`);
             magazineTpl = weaponTemplate._props.defMagType;
         }
         else
@@ -457,7 +457,7 @@ class BotGenerator
         let magTemplate = database_f.server.tables.templates.items[magazineTpl];
         if (!magTemplate)
         {
-            common_f.logger.logError(`Could not find magazine template with tpl ${magazineTpl}`);
+            Logger.error(`Could not find magazine template with tpl ${magazineTpl}`);
             return;
         }
 
@@ -482,14 +482,14 @@ class BotGenerator
         {
             for (let i = 0; i < count; i++)
             {
-                const magId = common_f.hash.generate();
+                const magId = HashUtil.generate();
                 const magWithAmmo = [
                     {
                         "_id": magId,
                         "_tpl": magazineTpl
                     },
                     {
-                        "_id": common_f.hash.generate(),
+                        "_id": HashUtil.generate(),
                         "_tpl": ammoTpl,
                         "parentId": magId,
                         "slotId": "cartridges",
@@ -519,7 +519,7 @@ class BotGenerator
                     magTemplate = database_f.server.tables.templates.items[magazineTpl];
                     if (!magTemplate)
                     {
-                        common_f.logger.logError(`Could not find magazine template with tpl ${magazineTpl}`);
+                        Logger.error(`Could not find magazine template with tpl ${magazineTpl}`);
                         break;
                     }
 
@@ -536,14 +536,14 @@ class BotGenerator
         const ammoTemplate = database_f.server.tables.templates.items[ammoTpl];
         if (!ammoTemplate)
         {
-            common_f.logger.logError(`Could not find ammo template with tpl ${ammoTpl}`);
+            Logger.error(`Could not find ammo template with tpl ${ammoTpl}`);
             return;
         }
 
         // Add 4 stacks of bullets to SecuredContainer
         for (let i = 0; i < 4; i++)
         {
-            const id = common_f.hash.generate();
+            const id = HashUtil.generate();
             this.addItemWithChildrenToEquipmentSlot([EquipmentSlots.SecuredContainer], id, ammoTpl, [{
                 "_id": id,
                 "_tpl": ammoTpl,
@@ -555,7 +555,7 @@ class BotGenerator
     addBullets(ammoTpl, bulletCount)
     {
         const ammoItems = helpfunc_f.helpFunctions.splitStack({
-            "_id": common_f.hash.generate(),
+            "_id": HashUtil.generate(),
             "_tpl": ammoTpl,
             "upd": {"StackObjectsCount": bulletCount}
         });
@@ -582,7 +582,7 @@ class BotGenerator
             if (!ammoToUse)
             {
                 // Still could not locate ammo to use? Fallback to weapon default
-                common_f.logger.logWarning(`Could not locate ammo to use for ${weaponTemplate._id}, falling back to default -> ${weaponTemplate._props.defAmmo}`);
+                Logger.warning(`Could not locate ammo to use for ${weaponTemplate._id}, falling back to default -> ${weaponTemplate._props.defAmmo}`);
                 // Immediatelly returns, as default ammo is guaranteed to be compatible
                 return weaponTemplate._props.defAmmo;
             }
@@ -611,7 +611,7 @@ class BotGenerator
         const modTemplate = database_f.server.tables.templates.items[magazine._tpl];
         if (!modTemplate)
         {
-            common_f.logger.logError(`Could not find magazine template with tpl ${magazine._tpl}`);
+            Logger.error(`Could not find magazine template with tpl ${magazine._tpl}`);
             return;
         }
 
@@ -620,9 +620,9 @@ class BotGenerator
 
         if (!cartridges)
         {
-            common_f.logger.logWarning(`Magazine with tpl ${magazine._tpl} had no ammo`);
+            Logger.warning(`Magazine with tpl ${magazine._tpl} had no ammo`);
             weaponMods.push({
-                "_id": common_f.hash.generate(),
+                "_id": HashUtil.generate(),
                 "_tpl": ammoTpl,
                 "parentId": magazine._id,
                 "slotId": "cartridges",
@@ -709,7 +709,7 @@ class BotGenerator
             {
                 const itemIndex = this.getBiasedRandomNumber(0, pool.length - 1, pool.length - 1, 3);
                 const itemTemplate = pool[itemIndex];
-                const id = common_f.hash.generate();
+                const id = HashUtil.generate();
 
                 const itemsToAdd = [{
                     "_id": id,
@@ -721,7 +721,7 @@ class BotGenerator
                 if (itemTemplate._props.StackSlots && itemTemplate._props.StackSlots.length)
                 {
                     itemsToAdd.push({
-                        "_id": common_f.hash.generate(),
+                        "_id": HashUtil.generate(),
                         "_tpl": itemTemplate._props.StackSlots[0]._props.filters[0].Filter[0],
                         "parentId": id,
                         "slotId": "cartridges",
@@ -749,7 +749,7 @@ class BotGenerator
             const containerTemplate = database_f.server.tables.templates.items[container._tpl];
             if (!containerTemplate)
             {
-                common_f.logger.logError(`Could not find container template with tpl ${container._tpl}`);
+                Logger.error(`Could not find container template with tpl ${container._tpl}`);
                 continue;
             }
 
@@ -829,8 +829,8 @@ class BotGenerator
              * A shift that is equal to the available range only has a 50% chance of rolling correctly, theoretically halving performance.
              * Shifting even further drops the success chance very rapidly - so we want to warn against that */
 
-            common_f.logger.logWarning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
-            common_f.logger.logInfo(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
+            Logger.warning("Bias shift for random number generation is greater than the range of available numbers.\nThis can have a very severe performance impact!");
+            Logger.info(`min -> ${min}; max -> ${max}; shift -> ${shift}`);
         }
 
         const gaussianRandom = (n) =>
@@ -898,7 +898,7 @@ class ExhaustableArray
 {
     constructor(itemPool)
     {
-        this.pool = common_f.json.clone(itemPool);
+        this.pool = JsonUtil.clone(itemPool);
     }
 
     getRandomValue()
@@ -908,8 +908,8 @@ class ExhaustableArray
             return null;
         }
 
-        const index = common_f.random.getInt(0, this.pool.length - 1);
-        const toReturn = common_f.json.clone(this.pool[index]);
+        const index = RandomUtil.getInt(0, this.pool.length - 1);
+        const toReturn = JsonUtil.clone(this.pool[index]);
         this.pool.splice(index, 1);
         return toReturn;
     }

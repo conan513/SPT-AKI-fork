@@ -26,7 +26,7 @@ class ModCallbacks
 
     sendBundle(sessionID, req, resp, body)
     {
-        common_f.logger.logInfo(`[BUNDLE]: ${req.url}`);
+        Logger.info(`[BUNDLE]: ${req.url}`);
 
         const key = req.url.split("/bundle/")[1];
         const bundle = mods_f.loader.getBundle(key, true);

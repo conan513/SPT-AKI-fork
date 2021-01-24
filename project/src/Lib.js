@@ -1,14 +1,12 @@
 globalThis["core_f"] = {};
 globalThis["core_f"]["packager"] = require("./utils/Packager.js");
 
-globalThis["common_f"] = {
-    "vfs": require("./utils/VFS.js"),
-    "json": require("./utils/JsonUtil.js"),
-    "hash": require("./utils/HashUtil.js"),
-    "random": require("./utils/RandomUtil.js"),
-    "time": require("./utils/TimeUtil.js"),
-    "logger": require("./utils/Logger.js")
-};
+globalThis["vfs"] = require("./utils/VFS.js");
+globalThis["JsonUtil"] = require("./utils/JsonUtil");
+globalThis["HashUtil"] = require("./utils/HashUtil");
+globalThis["RandomUtil"] = require("./utils/RandomUtil");
+globalThis["TimeUtil"] = require("./utils/TimeUtil");
+globalThis["Logger"] = require("./utils/Logger");
 
 globalThis["certs_f"] = {
     "controller": require("./controllers/CertController.js"),

@@ -12,18 +12,23 @@
 
 class LocationGenerator
 {
+    /**
+     * @param {unknown[]} dynamic
+     * @param {CoOrds | []} lootPositions
+     * @param {{ base: { GlobalLootChanceModifier: any; }; }} location
+     */
     generateDynamicLoot(dynamic, lootPositions, location)
     {
-        let rndLootIndex = common_f.random.getInt(0, dynamic.length - 1);
+        let rndLootIndex = RandomUtil.getInt(0, dynamic.length - 1);
         let rndLoot = dynamic[rndLootIndex];
 
         if (!rndLoot.data)
         {
-            delete dynamic.splice(rndLootIndex, 1);
+            dynamic.splice(rndLootIndex, 1);
             return { "result": "error" };
         }
 
-        let rndLootTypeIndex = common_f.random.getInt(0, rndLoot.data.length - 1);
+        let rndLootTypeIndex = RandomUtil.getInt(0, rndLoot.data.length - 1);
         let data = rndLoot.data[rndLootTypeIndex];
 
         //Check if LootItem is overlapping
@@ -35,14 +40,14 @@ class LocationGenerator
 
             if (dynamic[rndLootIndex].data.length === 0)
             {
-                delete dynamic.splice(rndLootIndex, 1);
+                dynamic.splice(rndLootIndex, 1);
             }
 
             return { "status": "error" };
         }
 
         //random loot Id
-        data.Id = common_f.hash.generate();
+        data.Id = HashUtil.generate();
 
         //create lootItem list
         let lootItemsHash = {};
@@ -65,7 +70,7 @@ class LocationGenerator
         //reset itemId and childrenItemId
         for (const itemId of Object.keys(lootItemsHash))
         {
-            let newId = common_f.hash.generate();
+            let newId = HashUtil.generate();
             lootItemsHash[itemId]._id = newId;
 
             if (itemId === data.Root)
@@ -82,9 +87,9 @@ class LocationGenerator
 
         const globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
         const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
-        const num = common_f.random.getInt(0, 100);
+        const num = RandomUtil.getInt(0, 100);
         const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
-        const itemChance = (spawnChance * globalLootChanceModifier * locationLootChanceModifier).toFixed(0);
+        const itemChance = Math.round(spawnChance * globalLootChanceModifier * locationLootChanceModifier);
 
         if (itemChance >= num)
         {
@@ -96,7 +101,7 @@ class LocationGenerator
 
     generateContainerLoot(items)
     {
-        let container = common_f.json.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
+        let container = JsonUtil.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
@@ -115,7 +120,7 @@ class LocationGenerator
 
         for (let i = minCount; i < container.maxCount; i++)
         {
-            let roll = common_f.random.getInt(0, 100);
+            let roll = RandomUtil.getInt(0, 100);
 
             if (roll < container.chance)
             {
@@ -134,10 +139,10 @@ class LocationGenerator
 
             while (!result.success && maxAttempts)
             {
-                let roll = common_f.random.getInt(0, maxProbability);
+                let roll = RandomUtil.getInt(0, maxProbability);
                 rolledIndex = container.items.findIndex(itm => itm.cumulativeChance >= roll);
                 const rolled = container.items[rolledIndex];
-                item = common_f.json.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
+                item = JsonUtil.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
 
                 if (rolled.preset)
                 {
@@ -162,7 +167,7 @@ class LocationGenerator
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = common_f.json.clone(preset_f.controller.getStandardPreset(item._id));
+                let preset = JsonUtil.clone(preset_f.controller.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };
@@ -211,7 +216,7 @@ class LocationGenerator
             if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
                 // Money or Ammo stack
-                let stackCount = common_f.random.getInt(item._props.StackMinRandom, item._props.StackMaxRandom);
+                let stackCount = RandomUtil.getInt(item._props.StackMinRandom, item._props.StackMaxRandom);
                 containerItem.upd = { "StackObjectsCount": stackCount };
             }
             else if (item._parent === "543be5cb4bdc2deb348b4568")

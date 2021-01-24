@@ -213,7 +213,7 @@ class InventoryController
         //Find the item and all of it's relates
         if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
         {
-            common_f.logger.logError("item id is not valid");
+            Logger.error("item id is not valid");
             return "";
         }
 
@@ -260,7 +260,7 @@ class InventoryController
             {
                 item.upd.StackObjectsCount -= body.count;
 
-                let newItem = common_f.hash.generate();
+                let newItem = HashUtil.generate();
 
                 output.items.new.push({
                     "_id": newItem,
@@ -453,7 +453,7 @@ class InventoryController
         {
             if (baseItem.item_id in database_f.server.tables.globals.ItemPresets)
             {
-                const presetItems = common_f.json.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
+                const presetItems = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
@@ -497,7 +497,7 @@ class InventoryController
                         {
                             if (count > 0)
                             {
-                                let newItemToAdd = common_f.json.clone(itemToAdd);
+                                let newItemToAdd = JsonUtil.clone(itemToAdd);
                                 if (count > tmpItem._props.StackMaxSize)
                                 {
                                     count = count - tmpItem._props.StackMaxSize;
@@ -540,7 +540,7 @@ class InventoryController
                 }
                 catch (err)
                 {
-                    common_f.logger.logError("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
+                    Logger.error("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
                     return helpfunc_f.helpFunctions.appendErrorToOutput(output, "Not enough stash space");
                 }
 
@@ -568,7 +568,7 @@ class InventoryController
 
         for (let itemToAdd of itemsToAdd)
         {
-            let newItem = common_f.hash.generate();
+            let newItem = HashUtil.generate();
             let toDo = [[itemToAdd.itemRef._id, newItem]];
             let upd = {"StackObjectsCount": itemToAdd.count};
 
@@ -629,7 +629,7 @@ class InventoryController
                 {
                     let ammoStackSize = maxCount <= ammoStackMaxSize ? maxCount : ammoStackMaxSize;
                     ammos.push({
-                        "_id": common_f.hash.generate(),
+                        "_id": HashUtil.generate(),
                         "_tpl": ammoTmplId,
                         "parentId": toDo[0][1],
                         "slotId": "cartridges",
@@ -653,7 +653,7 @@ class InventoryController
                 {
                     if (itemLib[tmpKey].parentId && itemLib[tmpKey].parentId === toDo[0][0])
                     {
-                        newItem = common_f.hash.generate();
+                        newItem = HashUtil.generate();
 
                         let SlotID = itemLib[tmpKey].slotId;
 

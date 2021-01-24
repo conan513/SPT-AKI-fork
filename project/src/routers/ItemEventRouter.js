@@ -44,7 +44,7 @@ class ItemEventRouter
             }
             else
             {
-                common_f.logger.logError(`[UNHANDLED EVENT] ${body.Action}`);
+                Logger.error(`[UNHANDLED EVENT] ${body.Action}`);
             }
         }
 

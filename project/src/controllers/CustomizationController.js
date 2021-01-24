@@ -88,7 +88,7 @@ class CustomizationController
 
         if (!offer)
         {
-            common_f.logger.logError("OOPS");
+            Logger.error("OOPS");
             return output;
         }
 

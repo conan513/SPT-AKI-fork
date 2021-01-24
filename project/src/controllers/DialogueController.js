@@ -106,7 +106,7 @@ class DialogueController
 
         if (rewards.length > 0)
         {
-            const stashId = common_f.hash.generate();
+            const stashId = HashUtil.generate();
 
             items.stash = stashId;
             items.data = [];
@@ -127,7 +127,7 @@ class DialogueController
         }
 
         let message = {
-            "_id": common_f.hash.generate(),
+            "_id": HashUtil.generate(),
             "uid": dialogueID,
             "type": messageContent.type,
             "dt": Date.now() / 1000,

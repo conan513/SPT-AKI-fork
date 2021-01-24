@@ -145,7 +145,7 @@ class HealthController
         this.saveEffects(pmcData, sessionID);
         this.resetVitality(sessionID);
 
-        pmcData.Health.UpdateTime = common_f.time.getTimestamp();
+        pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
     }
 
     healthTreatment(pmcData, info, sessionID)

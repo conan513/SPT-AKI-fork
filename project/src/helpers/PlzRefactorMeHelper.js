@@ -84,7 +84,7 @@ class PlzRefactorMeHelper
         const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
         {
-            common_f.logger.logError("No stash found");
+            Logger.error("No stash found");
             return "";
         }
 
@@ -120,7 +120,7 @@ class PlzRefactorMeHelper
 
         // Get random level based on the exp table.
         /** @type {number} */
-        let randomLevel = common_f.random.getInt(0, expTable.length - 1) + 1;
+        let randomLevel = RandomUtil.getInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
         {
@@ -130,7 +130,7 @@ class PlzRefactorMeHelper
         // Sprinkle in some random exp within the level, unless we are at max level.
         if (randomLevel < expTable.length - 1)
         {
-            exp += common_f.random.getInt(0, expTable[randomLevel].exp - 1);
+            exp += RandomUtil.getInt(0, expTable[randomLevel].exp - 1);
         }
 
         return exp;
@@ -170,7 +170,7 @@ class PlzRefactorMeHelper
         }
 
         // update inventoryId
-        const newInventoryId = common_f.hash.generate();
+        const newInventoryId = HashUtil.generate();
         inventoryItemHash[inventoryId]._id = newInventoryId;
         profile.Inventory.equipment = newInventoryId;
 
@@ -473,7 +473,7 @@ class PlzRefactorMeHelper
         output.currentSalesSums[body.tid] = saleSum;
 
         // save changes
-        common_f.logger.logSuccess("Items taken. Status OK.");
+        Logger.success("Items taken. Status OK.");
         item_f.eventHandler.setOutput(output);
         return true;
     }
@@ -936,7 +936,7 @@ class PlzRefactorMeHelper
     replaceIDs(pmcData, items, fastPanel = null)
     {
         // replace bsg shit long ID with proper one
-        let string_inventory = common_f.json.serialize(items);
+        let string_inventory = JsonUtil.serialize(items);
 
         for (let item of items)
         {
@@ -966,7 +966,7 @@ class PlzRefactorMeHelper
 
             // replace id
             let old_id = item._id;
-            let new_id = common_f.hash.generate();
+            let new_id = HashUtil.generate();
 
             string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
             // Also replace in quick slot if the old ID exists.
@@ -982,7 +982,7 @@ class PlzRefactorMeHelper
             }
         }
 
-        items = common_f.json.deserialize(string_inventory);
+        items = JsonUtil.deserialize(string_inventory);
 
         // fix duplicate id's
         let dupes = {};
@@ -1004,7 +1004,7 @@ class PlzRefactorMeHelper
             // register the parents
             if (dupes[item._id] > 1)
             {
-                let newId = common_f.hash.generate();
+                let newId = HashUtil.generate();
 
                 newParents[item.parentId] = newParents[item.parentId] || [];
                 newParents[item.parentId].push(item);
@@ -1076,7 +1076,7 @@ class PlzRefactorMeHelper
             let amount = Math.min(count, maxStack);
             let newStack = this.clone(item);
 
-            newStack._id = common_f.hash.generate();
+            newStack._id = HashUtil.generate();
             newStack.upd.StackObjectsCount = amount;
             count -= amount;
             stacks.push(newStack);
@@ -1087,7 +1087,7 @@ class PlzRefactorMeHelper
 
     clone(x)
     {
-        return common_f.json.deserialize(common_f.json.serialize(x));
+        return JsonUtil.deserialize(JsonUtil.serialize(x));
     }
 
     arrayIntersect(a, b)
@@ -1244,7 +1244,7 @@ class PlzRefactorMeHelper
                 }
                 catch (e)
                 {
-                    common_f.logger.logError(`[OOB] for item with id ${item._id}; Error message: ${e}`);
+                    Logger.error(`[OOB] for item with id ${item._id}; Error message: ${e}`);
                 }
             }
         }

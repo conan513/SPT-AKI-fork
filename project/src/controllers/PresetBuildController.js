@@ -24,7 +24,7 @@ class PresetBuildController
     saveBuild(pmcData, body, sessionID)
     {
         delete body.Action;
-        body.id = common_f.hash.generate();
+        body.id = HashUtil.generate();
 
         let output = item_f.eventHandler.getOutput();
         let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;

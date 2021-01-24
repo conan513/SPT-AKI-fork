@@ -68,7 +68,7 @@ class RagfairServer
     update()
     {
         // remove expired offers
-        const time = common_f.time.getTimestamp();
+        const time = TimeUtil.getTimestamp();
 
         for (const i in this.offers)
         {
@@ -127,7 +127,7 @@ class RagfairServer
         });
 
         // add trader offers
-        const time = common_f.time.getTimestamp();
+        const time = TimeUtil.getTimestamp();
         let assort = database_f.server.tables.traders[traderID].assort;
 
         if (traderID === "579dc571d53a0658a154fbec")
@@ -156,7 +156,7 @@ class RagfairServer
     {
         const config = ragfair_f.config.dynamic;
         const count = config.threshold + config.batchSize;
-        const assort = common_f.json.clone(database_f.server.tables.traders["ragfair"].assort);
+        const assort = JsonUtil.clone(database_f.server.tables.traders["ragfair"].assort);
         const assortItems = assort.items.filter((item) =>
         {
             return item.slotId === "hideout";
@@ -165,17 +165,17 @@ class RagfairServer
         while (this.offers.length < count)
         {
             // get base item and stack
-            let item = common_f.random.getArrayValue(assortItems);
+            let item = RandomUtil.getArrayValue(assortItems);
             const isPreset = preset_f.controller.isPreset(item._id);
 
-            item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(common_f.random.getInt(config.stack.min, config.stack.max));
+            item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
 
             // create offer
             const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
 
             this.createOffer(
-                common_f.hash.generate(),           // userID
-                common_f.time.getTimestamp(),       // time
+                HashUtil.generate(),           // userID
+                TimeUtil.getTimestamp(),       // time
                 items,                              // items
                 this.getOfferRequirements(items),   // barter scheme
                 assort.loyal_level_items[item._id], // loyal level
@@ -202,7 +202,7 @@ class RagfairServer
 
         // user.id = profile.characters.pmc._id??
         let offer = {
-            "_id": (isTrader) ? items[0]._id : common_f.hash.generate(),
+            "_id": (isTrader) ? items[0]._id : HashUtil.generate(),
             "intId": 0,
             "user": {
                 "id": this.getTraderId(userID),
@@ -272,8 +272,8 @@ class RagfairServer
 
         // generated offer
         // recurse if name is longer than max characters allowed (15 characters)
-        const type = (common_f.random.getInt(0, 1) === 0) ? "usec" : "bear";
-        const name = common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
+        const type = (RandomUtil.getInt(0, 1) === 0) ? "usec" : "bear";
+        const name = RandomUtil.getArrayValue(database_f.server.tables.bots.types[type].names);
         return (name.length > 15) ? this.getNickname(userID) : name;
     }
 
@@ -282,7 +282,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return common_f.time.getTimestamp() + Math.round(ragfair_f.config.player.sellTimeHrs * 3600);
+            return TimeUtil.getTimestamp() + Math.round(ragfair_f.config.player.sellTimeHrs * 3600);
         }
 
         if (this.isTrader(userID))
@@ -292,7 +292,7 @@ class RagfairServer
         }
 
         // generated offer
-        return Math.round(time + common_f.random.getInt(ragfair_f.config.dynamic.endTime.min, ragfair_f.config.dynamic.endTime.max) * 60);
+        return Math.round(time + RandomUtil.getInt(ragfair_f.config.dynamic.endTime.min, ragfair_f.config.dynamic.endTime.max) * 60);
     }
 
     getRating(userID)
@@ -310,7 +310,7 @@ class RagfairServer
         }
 
         // generated offer
-        return common_f.random.getFloat(ragfair_f.config.dynamic.rating.min, ragfair_f.config.dynamic.rating.max);
+        return RandomUtil.getFloat(ragfair_f.config.dynamic.rating.min, ragfair_f.config.dynamic.rating.max);
     }
 
     getRatingGrowing(userID)
@@ -328,7 +328,7 @@ class RagfairServer
         }
 
         // generated offer
-        return common_f.random.getBool();
+        return RandomUtil.getBool();
     }
 
     getItemCondition(userID, items)
@@ -337,7 +337,7 @@ class RagfairServer
 
         if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
-            const multiplier = common_f.random.getFloat(ragfair_f.config.dynamic.condition.min, ragfair_f.config.dynamic.condition.max);
+            const multiplier = RandomUtil.getFloat(ragfair_f.config.dynamic.condition.min, ragfair_f.config.dynamic.condition.max);
 
             if ("Repairable" in item.upd)
             {
@@ -405,7 +405,7 @@ class RagfairServer
             price += helpfunc_f.helpFunctions.fromRUB(this.prices.dynamic[it._tpl], currency);
         }
 
-        return Math.round(price * common_f.random.getFloat(ragfair_f.config.dynamic.price.min, ragfair_f.config.dynamic.price.max));
+        return Math.round(price * RandomUtil.getFloat(ragfair_f.config.dynamic.price.min, ragfair_f.config.dynamic.price.max));
     }
 
     getOfferRequirements(items)
@@ -450,7 +450,7 @@ class RagfairServer
 
     getOffer(offerID)
     {
-        return common_f.json.clone(this.offers.find((item) =>
+        return JsonUtil.clone(this.offers.find((item) =>
         {
             return item._id === offerID;
         }));
@@ -458,7 +458,7 @@ class RagfairServer
 
     getPresetItems(item)
     {
-        const preset = common_f.json.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
+        const preset = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
         const toChange = preset[0]._id;
         preset[0] = item;
         for (let mod of preset)
@@ -479,11 +479,11 @@ class RagfairServer
 
         if (index === -1)
         {
-            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
-        const itemsToReturn = common_f.json.clone(offers[index].items);
+        const itemsToReturn = JsonUtil.clone(offers[index].items);
         ragfair_f.controller.returnItems(sessionID, itemsToReturn);
         offers.splice(index, 1);
 

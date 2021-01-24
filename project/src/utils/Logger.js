@@ -1,4 +1,4 @@
-/* common_f.logger.js
+/* Logger.js
  * license: NCSA
  * copyright: Senko's Pub
  * website: https://www.guilded.gg/senkospub
@@ -44,7 +44,7 @@ class Logger
     {
         process.on("uncaughtException", (error, promise) =>
         {
-            this.logError("Trace:");
+            this.error("Trace:");
             this.log(error);
         });
     }
@@ -65,30 +65,30 @@ class Logger
         }
 
         // save logged message
-        common_f.vfs.writeFile(this.filepath, `${util.format(data)}\n`, true);
+        vfs.writeFile(this.filepath, `${util.format(data)}\n`, true);
     }
 
-    logError(data)
+    error(data)
     {
         this.log(`[ERROR] ${data}`, "white", "red");
     }
 
-    logWarning(data)
+    warning(data)
     {
         this.log(`[WARNING] ${data}`, "white", "yellow");
     }
 
-    logSuccess(data)
+    success(data)
     {
         this.log(`[SUCCESS] ${data}`, "white", "green");
     }
 
-    logInfo(data)
+    info(data)
     {
         this.log(`[INFO] ${data}`, "cyan", "black");
     }
 
-    logDebug(data, isError = false)
+    debug(data, isError = false)
     {
         if (this.showDebug)
         {

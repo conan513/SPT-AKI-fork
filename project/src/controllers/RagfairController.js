@@ -221,7 +221,7 @@ class RagfairController
             return false;
         }
 
-        if (info.oneHourExpiration && offer.endTime - common_f.time.getTimestamp() > 3600)
+        if (info.oneHourExpiration && offer.endTime - TimeUtil.getTimestamp() > 3600)
         {
             // offer doesnt expire within an hour
             return false;
@@ -506,7 +506,7 @@ class RagfairController
         for (const sessionID in save_f.server.profiles)
         {
             const profileOffers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-            const timestamp = common_f.time.getTimestamp();
+            const timestamp = TimeUtil.getTimestamp();
 
             if (!profileOffers || !profileOffers.length)
             {
@@ -515,7 +515,7 @@ class RagfairController
 
             for (const [index, offer] of profileOffers.entries())
             {
-                if (common_f.random.getInt(0, 99) < ragfair_f.config.player.sellChance)
+                if (RandomUtil.getInt(0, 99) < ragfair_f.config.player.sellChance)
                 {
                     // item sold
                     this.completeOffer(sessionID, offer.requirements, offer.summaryCost, offer.items, offer._id);
@@ -566,7 +566,7 @@ class RagfairController
 
         if (!info || !info.items || info.items.length === 0)
         {
-            common_f.logger.logError("Invalid addOffer request");
+            Logger.error("Invalid addOffer request");
             return helpfunc_f.helpFunctions.appendErrorToOutput(result);
         }
 
@@ -596,7 +596,7 @@ class RagfairController
 
             if (!item)
             {
-                common_f.logger.logError(`Failed to find item with _id: ${itemId} in inventory!`);
+                Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
                 return helpfunc_f.helpFunctions.appendErrorToOutput(result);
             }
 
@@ -622,7 +622,7 @@ class RagfairController
 
         if (!invItems || !invItems.length)
         {
-            common_f.logger.logError("Could not find any requested items in the inventory");
+            Logger.error("Could not find any requested items in the inventory");
             return helpfunc_f.helpFunctions.appendErrorToOutput(result);
         }
 
@@ -635,7 +635,7 @@ class RagfairController
         if (!basePrice)
         {
             // Don't want to accidentally divide by 0
-            common_f.logger.logError("Failed to count base price for offer");
+            Logger.error("Failed to count base price for offer");
             return helpfunc_f.helpFunctions.appendErrorToOutput(result);
         }
 
@@ -654,7 +654,7 @@ class RagfairController
         if (ragfair_f.config.player.enableFees)
         {
             let tax = this.calculateTax(info, offerPrice, requirementsPriceInRub);
-            common_f.logger.logInfo(`Tax Calculated to be: ${tax}`);
+            Logger.info(`Tax Calculated to be: ${tax}`);
         }
 
         return result;
@@ -712,7 +712,7 @@ class RagfairController
 
         if (index === -1)
         {
-            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
@@ -731,7 +731,7 @@ class RagfairController
 
         if (index === -1)
         {
-            common_f.logger.logWarning(`Could not find offer to remove with offerId -> ${offerId}`);
+            Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
@@ -782,7 +782,7 @@ class RagfairController
         {
             // Create an item of the specified currency
             const requestedItem = {
-                "_id": common_f.hash.generate(),
+                "_id": HashUtil.generate(),
                 "_tpl": item._tpl,
                 "upd": { "StackObjectsCount": item.count }
             };
@@ -855,7 +855,7 @@ class RagfairController
 
         return ragfair_f.server.createOffer(
             profile.characters.pmc.aid,
-            common_f.time.getTimestamp(),
+            TimeUtil.getTimestamp(),
             formattedItems,
             formattedRequirements,
             loyalLevel,
@@ -866,8 +866,8 @@ class RagfairController
 
     fetchRandomPmcName()
     {
-        const type = common_f.random.getInt(0, 1) === 0 ? "usec" : "bear";
-        return common_f.random.getArrayValue(database_f.server.tables.bots.types[type].names);
+        const type = RandomUtil.getInt(0, 1) === 0 ? "usec" : "bear";
+        return RandomUtil.getArrayValue(database_f.server.tables.bots.types[type].names);
     }
 }
 

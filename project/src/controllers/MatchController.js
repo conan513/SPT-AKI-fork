@@ -121,7 +121,7 @@ class MatchController
             "status": "wait",
             "isSavage": false,
             "timeShift": "CURR",
-            "dt": common_f.time.getTimestamp(),
+            "dt": TimeUtil.getTimestamp(),
             "players": [
                 {
                     "_id": `pmc${sessionID}`,

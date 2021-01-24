@@ -55,7 +55,7 @@ class LauncherController
 
     createAccount(info)
     {
-        const sessionID = common_f.hash.generate();
+        const sessionID = HashUtil.generate();
 
         save_f.server.profiles[sessionID] = {
             "info": {

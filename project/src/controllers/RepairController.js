@@ -40,7 +40,7 @@ class RepairController
 
             if (!helpfunc_f.helpFunctions.payMoney(pmcData, {"scheme_items": [{"id": repairItem._id, "count": Math.round(repairCost)}], "tid": body.tid}, sessionID))
             {
-                common_f.logger.logError("no money found");
+                Logger.error("no money found");
                 return "";
             }
 
