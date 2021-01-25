@@ -36,20 +36,13 @@ class RagfairServer
         {
             const pmcData = save_f.server.profiles[sessionID].characters.pmc;
 
-            if (!("RagfairInfo" in pmcData))
+            if (pmcData.RagfairInfo === undefined || pmcData.RagfairInfo.offers === undefined)
             {
                 // profile is wiped
                 continue;
             }
 
             const profileOffers = pmcData.RagfairInfo.offers;
-
-            if (profileOffers && profileOffers.length)
-            {
-                // no offers
-                continue;
-            }
-
             for (const offer of profileOffers)
             {
                 this.offers.push(offer);
@@ -83,9 +76,9 @@ class RagfairServer
                 }
 
                 // Players need their items returning, and maybe their XP adjusting
-                if (this.isPlayer(offer.user.id))
+                if (this.isPlayer(offer.user.id.replace(/^pmc/, "")))
                 {
-                    this.returnPlayerOffer(offer._id, offer.user.id);
+                    this.returnPlayerOffer(offer);
                 }
 
                 // remove offer
@@ -213,7 +206,7 @@ class RagfairServer
                 "avatar": trader.avatar
             },
             "root": items[0]._id,
-            "items": common_f.json.clone(items),
+            "items": JsonUtil.clone(items),
             "requirements": barterScheme,
             "requirementsCost": price,
             "itemsCost": price,
@@ -483,35 +476,58 @@ class RagfairServer
         return presets;
     }
 
+    /**
+     * Take the `_id` from `item`, and re
+     * @param {itemTemplate} item
+     * @param {itemTemplate[]} preset
+     */
     reparentPresets(item, preset)
     {
-        const toChange = preset[0]._id;
-        preset[0] = item;
+        const oldRootId = preset[0]._id;
+        let idMappings = {};
+        idMappings[oldRootId] = item._id;
         for (let mod of preset)
         {
-            if (mod.parentId === toChange)
+            if (idMappings[mod._id] === undefined)
             {
-                mod.parentId = item._id;
+                idMappings[mod._id] = HashUtil.generate();
+            }
+
+            if (mod.parentId !== undefined && idMappings[mod.parentId] === undefined)
+            {
+                idMappings[mod.parentId] = HashUtil.generate();
+            }
+            mod._id =  idMappings[mod._id];
+            if (mod.parentId !== undefined)
+            {
+                mod.parentId =  idMappings[mod.parentId];
             }
         }
+        preset[0] = item;
         return preset;
     }
 
-    returnPlayerOffer(offerId, sessionID)
+    returnPlayerOffer(offer)
     {
         // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
-        const index = offers.findIndex(offer => offer._id === offerId);
+        const profile = profile_f.controller.getProfileByPmcId(offer.user.id);
+        const index = profile.RagfairInfo.offers.findIndex(o => o._id === offer._id);
 
         if (index === -1)
         {
-            Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
+            Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
             return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
-        const itemsToReturn = JsonUtil.clone(offers[index].items);
-        ragfair_f.controller.returnItems(sessionID, itemsToReturn);
-        offers.splice(index, 1);
+        let itemsToReturn = [];
+        offer.items.forEach(item =>
+        {
+            item = ragfair_f.controller.fixItemStackCount(item);
+            item.upd.SpawnedInSession = true;
+            itemsToReturn = [...itemsToReturn, ...helpfunc_f.helpFunctions.splitStack(item)];
+        });
+        ragfair_f.controller.returnItems(profile.aid, itemsToReturn);
+        profile.RagfairInfo.offers.splice(index, 1);
 
         return item_f.eventHandler.getOutput();
     }
@@ -545,9 +561,14 @@ class RagfairServer
         return userID in database_f.server.tables.traders;
     }
 
+
     isPlayer(userID)
     {
-        return userID in save_f.server.profiles;
+        if (profile_f.controller.getPmcProfile(userID) !== undefined)
+        {
+            return true;
+        }
+        return false;
     }
 }
 
