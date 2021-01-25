@@ -10,14 +10,89 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "Launch Program",
+				"name": "watch - Run server in Dev Mode (You probably want this one)",
 				"runtimeExecutable": "npm",
-  				"runtimeArgs": ["run-script", "start"],
+				"runtimeArgs": [
+					"run-script",
+					"watch"
+				],
 				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
 				"skipFiles": [
-					"!**/node_modules/**"
+					"**/node_modules/**"
 				]
-			}
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "start - Run server (Need to run tsc after every change)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"start"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "compile - Make nexe build (need tsc)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"compile"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "build - Test live build entry point (need tsc)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"compile"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "tsc - Generate JS files",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"tsc"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				],
+				"outputCapture": "std"
+			},
 		],
 	},
 	"tasks": {
@@ -45,7 +120,8 @@
 		]
 	},
 	"settings": {
-		"window.title": "SPT-AKI Server",
+		"window.title": "SPT-AKI Server Dev",
 		"git-graph.commitDetailsView.location": "Docked to Bottom",
+		"typescript.tsdk": "node_modules/typescript/lib",
 	}
 }
