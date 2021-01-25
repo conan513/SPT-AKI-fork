@@ -213,7 +213,7 @@ class RagfairServer
                 "avatar": trader.avatar
             },
             "root": items[0]._id,
-            "items": JsonUtil.clone(items),
+            "items": common_f.json.clone(items),
             "requirements": barterScheme,
             "requirementsCost": price,
             "itemsCost": price,
