@@ -864,7 +864,7 @@ class PlzRefactorMeHelper
 
             if (childitem.parentId === itemID && !list.find((item) =>
             {
-                return items._id === item._id;
+                return itemID === item._id;
             }))
             {
                 list.push.apply(list, this.findAndReturnChildrenAsItems(items, childitem._id));
@@ -1045,6 +1045,10 @@ class PlzRefactorMeHelper
         return items;
     }
 
+    isItemTplStackable(tpl)
+    {
+        return database_f.server.tables.templates.items[tpl]._props.StackMaxSize > 1;
+    }
 
     /**
      * split item stack if it exceeds StackMaxSize

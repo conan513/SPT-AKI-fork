@@ -37,6 +37,10 @@ class ProfileController
      */
     getPmcProfile(sessionID)
     {
+        if (save_f.server.profiles[sessionID] === undefined || save_f.server.profiles[sessionID].characters.pmc === undefined)
+        {
+            return undefined;
+        }
         return save_f.server.profiles[sessionID].characters.pmc;
     }
 
@@ -269,6 +273,18 @@ class ProfileController
         }
 
         return output;
+    }
+
+    getProfileByPmcId(pmcId)
+    {
+        for (const sessionID in save_f.server.profiles)
+        {
+            if (save_f.server.profiles[sessionID].characters.pmc._id === pmcId)
+            {
+                return save_f.server.profiles[sessionID].characters.pmc;
+            }
+        }
+        return undefined;
     }
 }
 
