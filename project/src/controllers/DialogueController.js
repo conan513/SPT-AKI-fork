@@ -110,7 +110,7 @@ class DialogueController
 
             items.stash = stashId;
             items.data = [];
-            rewards = helpfunc_f.helpFunctions.replaceIDs(null, rewards);
+            rewards = Helpers.replaceIDs(null, rewards);
 
             for (let reward of rewards)
             {

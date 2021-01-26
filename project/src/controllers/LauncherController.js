@@ -30,7 +30,7 @@ class LauncherController
         for (const sessionID in save_f.server.profiles)
         {
             const account = save_f.server.profiles[sessionID].info;
-
+            info.username = info.email;
             if (info.username === account.username && info.password === account.password)
             {
                 return sessionID;

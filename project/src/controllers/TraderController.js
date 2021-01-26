@@ -71,7 +71,7 @@ class TraderController
         let loyaltyLevels = database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
-        pmcData.Info.Level = helpfunc_f.helpFunctions.calculateLevel(pmcData);
+        pmcData.Info.Level = Helpers.calculateLevel(pmcData);
 
         // level up traders
         let targetLevel = 0;
@@ -190,7 +190,7 @@ class TraderController
         for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
-            let price = helpfunc_f.helpFunctions.getTemplatePrice(itemID);
+            let price = Helpers.getTemplatePrice(itemID);
 
             if (price === 0 || price === 1 || price === 100)
             {
@@ -243,7 +243,7 @@ class TraderController
             // calculate preset price
             for (let it of items)
             {
-                rub += helpfunc_f.helpFunctions.getTemplatePrice(it._tpl);
+                rub += Helpers.getTemplatePrice(it._tpl);
             }
 
             result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
@@ -257,7 +257,7 @@ class TraderController
     // delete assort keys
     removeItemFromAssort(assort, itemID)
     {
-        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildrenByItems(assort.items, itemID);
+        let ids_toremove = Helpers.findAndReturnChildrenByItems(assort.items, itemID);
 
         delete assort.barter_scheme[itemID];
         delete assort.loyal_level_items[itemID];
@@ -280,7 +280,7 @@ class TraderController
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let trader = database_f.server.tables.traders[traderID].base;
-        let currency = helpfunc_f.helpFunctions.getCurrency(trader.currency);
+        let currency = Helpers.getCurrency(trader.currency);
         let output = {};
 
         // get sellable items
@@ -292,14 +292,14 @@ class TraderController
             || item._id === pmcData.Inventory.stash
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
-            || helpfunc_f.helpFunctions.isNotSellable(item._tpl)
+            || Helpers.isNotSellable(item._tpl)
             || this.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
 
             // find all child of the item (including itself) and sum the price
-            for (let childItem of helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
+            for (let childItem of Helpers.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
                 let tempPrice = (database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice >= 1) ? database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice : 1;
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
@@ -307,20 +307,20 @@ class TraderController
             }
 
             // dogtag calculation
-            if ("upd" in item && "Dogtag" in item.upd && helpfunc_f.helpFunctions.isDogtag(item._tpl))
+            if ("upd" in item && "Dogtag" in item.upd && Helpers.isDogtag(item._tpl))
             {
                 price *= item.upd.Dogtag.Level;
             }
 
             // meds & repairable calculation
-            price *= helpfunc_f.helpFunctions.getItemQualityPrice(item);
+            price *= Helpers.getItemQualityPrice(item);
 
             // get real price
             if (trader.discount > 0)
             {
                 price -= (trader.discount / 100) * price;
             }
-            price = helpfunc_f.helpFunctions.fromRUB(price, currency);
+            price = Helpers.fromRUB(price, currency);
             price = (price > 0) ? price : 1;
 
             output[item._id] = [[{ "_tpl": currency, "count": price.toFixed(0) }]];
@@ -339,7 +339,7 @@ class TraderController
 
         for (let filter of traderFilters)
         {
-            for (let iaaaaa of helpfunc_f.helpFunctions.templatesWithParent(filter))
+            for (let iaaaaa of Helpers.templatesWithParent(filter))
             {
                 if (iaaaaa === tplToCheck)
                 {
@@ -347,9 +347,9 @@ class TraderController
                 }
             }
 
-            for (let subcateg of helpfunc_f.helpFunctions.childrenCategories(filter))
+            for (let subcateg of Helpers.childrenCategories(filter))
             {
-                for (let itemFromSubcateg of helpfunc_f.helpFunctions.templatesWithParent(subcateg))
+                for (let itemFromSubcateg of Helpers.templatesWithParent(subcateg))
                 {
                     if (itemFromSubcateg === tplToCheck)
                     {

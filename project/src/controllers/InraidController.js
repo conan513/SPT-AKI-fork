@@ -103,7 +103,7 @@ class InraidController
             offraidData.profile = this.removeFoundItems(offraidData.profile);
         }
 
-        offraidData.profile.Inventory.items = helpfunc_f.helpFunctions.replaceIDs(offraidData.profile, offraidData.profile.Inventory.items, offraidData.profile.Inventory.fastPanel);
+        offraidData.profile.Inventory.items = Helpers.replaceIDs(offraidData.profile, offraidData.profile.Inventory.items, offraidData.profile.Inventory.fastPanel);
 
         // set profile equipment to the raid equipment
         if (isPlayerScav)

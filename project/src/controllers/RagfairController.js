@@ -162,7 +162,7 @@ class RagfairController
 
             if (result.length)
             {
-                result = helpfunc_f.helpFunctions.arrayIntersect(result, handbook);
+                result = Helpers.arrayIntersect(result, handbook);
             }
             else
             {
@@ -253,7 +253,7 @@ class RagfairController
 
         if (item.upd.MedKit || item.upd.Repairable)
         {
-            const percentage = 100 * helpfunc_f.helpFunctions.getItemQualityPrice(item);
+            const percentage = 100 * Helpers.getItemQualityPrice(item);
 
             if (info.conditionFrom > 0 && info.conditionFrom >= percentage)
             {
@@ -268,17 +268,17 @@ class RagfairController
             }
         }
 
-        if (info.removeBartering && !helpfunc_f.helpFunctions.isMoneyTpl(money))
+        if (info.removeBartering && !Helpers.isMoneyTpl(money))
         {
             // don't include barter offers
             return false;
         }
 
-        if (info.currency > 0 && helpfunc_f.helpFunctions.isMoneyTpl(money))
+        if (info.currency > 0 && Helpers.isMoneyTpl(money))
         {
             const currencies = ["all", "RUB", "USD", "EUR"];
 
-            if (helpfunc_f.helpFunctions.getCurrencyTag(money) !== currencies[info.currency])
+            if (Helpers.getCurrencyTag(money) !== currencies[info.currency])
             {
                 // don't include item paid in wrong currency
                 return false;
@@ -338,11 +338,11 @@ class RagfairController
         // if its "mods" great-parent category, do double recursive loop
         if (handbookId === "5b5f71a686f77447ed5636ab")
         {
-            for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
+            for (const categ of Helpers.childrenCategories(handbookId))
             {
-                for (const subcateg of helpfunc_f.helpFunctions.childrenCategories(categ))
+                for (const subcateg of Helpers.childrenCategories(categ))
                 {
-                    result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(subcateg)];
+                    result = [...result, ...Helpers.templatesWithParent(subcateg)];
                 }
             }
 
@@ -350,14 +350,14 @@ class RagfairController
         }
 
         // item is in any other category
-        if (helpfunc_f.helpFunctions.isCategory(handbookId))
+        if (Helpers.isCategory(handbookId))
         {
             // list all item of the category
-            result = helpfunc_f.helpFunctions.templatesWithParent(handbookId);
+            result = Helpers.templatesWithParent(handbookId);
 
-            for (const categ of helpfunc_f.helpFunctions.childrenCategories(handbookId))
+            for (const categ of Helpers.childrenCategories(handbookId))
             {
-                result = [...result, ...helpfunc_f.helpFunctions.templatesWithParent(categ)];
+                result = [...result, ...Helpers.templatesWithParent(categ)];
             }
 
             return result;
@@ -592,7 +592,7 @@ class RagfairController
         items.forEach(item =>
         {
             item = this.fixItemStackCount(item);
-            if (helpfunc_f.helpFunctions.isItemTplStackable(item._tpl))
+            if (Helpers.isItemTplStackable(item._tpl))
             {
                 if (mergeItems[item._tpl] === undefined)
                 {
@@ -639,21 +639,21 @@ class RagfairController
         if (!info || !info.items || info.items.length === 0)
         {
             Logger.error("Invalid addOffer request");
-            return helpfunc_f.helpFunctions.appendErrorToOutput(result);
+            return Helpers.appendErrorToOutput(result);
         }
 
         if (!info.requirements)
         {
-            return helpfunc_f.helpFunctions.appendErrorToOutput(result, "How did you place the offer with no requirements?");
+            return Helpers.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
         for (const item of info.requirements)
         {
             let requestedItemTpl = item._tpl;
 
-            if (helpfunc_f.helpFunctions.isMoneyTpl(requestedItemTpl))
+            if (Helpers.isMoneyTpl(requestedItemTpl))
             {
-                requirementsPriceInRub += helpfunc_f.helpFunctions.inRUB(item.count, requestedItemTpl);
+                requirementsPriceInRub += Helpers.inRUB(item.count, requestedItemTpl);
             }
             else
             {
@@ -669,11 +669,11 @@ class RagfairController
             if (item === undefined)
             {
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
-                return helpfunc_f.helpFunctions.appendErrorToOutput(result);
+                return Helpers.appendErrorToOutput(result);
             }
             item = this.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
-            invItems.push(...helpfunc_f.helpFunctions.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
+            invItems.push(...Helpers.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
             offerPrice += ragfair_f.server.prices.dynamic[item._tpl] * itemStackCount;
         }
 
@@ -687,7 +687,7 @@ class RagfairController
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
-            return helpfunc_f.helpFunctions.appendErrorToOutput(result);
+            return Helpers.appendErrorToOutput(result);
         }
 
         for (const item of invItems)
@@ -700,7 +700,7 @@ class RagfairController
         {
             // Don't want to accidentally divide by 0
             Logger.error("Failed to count base price for offer");
-            return helpfunc_f.helpFunctions.appendErrorToOutput(result);
+            return Helpers.appendErrorToOutput(result);
         }
 
         // Preparations are done, create the offer
@@ -777,7 +777,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return Helpers.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -802,7 +802,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return Helpers.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;
@@ -915,7 +915,7 @@ class RagfairController
                 "upd": { "StackObjectsCount": requirement.count * boughtAmount }
             };
 
-            let stacks = helpfunc_f.helpFunctions.splitStack(requestedItem);
+            let stacks = Helpers.splitStack(requestedItem);
             stacks.forEach(item =>
             {
                 let outItems = [item];

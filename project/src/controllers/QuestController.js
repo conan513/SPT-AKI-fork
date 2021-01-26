@@ -147,7 +147,7 @@ class QuestController
                     itemCount = item.upd.StackObjectsCount;
                     item.upd.StackObjectsCount = 1;
                 }
-                targets = helpfunc_f.helpFunctions.splitStack(item);
+                targets = Helpers.splitStack(item);
             }
             else
             {
@@ -167,7 +167,7 @@ class QuestController
             }
 
             for (let i = 0; i < itemCount; i++)
-                rewardItems = rewardItems.concat(helpfunc_f.helpFunctions.replaceIDs(null, items));
+                rewardItems = rewardItems.concat(Helpers.replaceIDs(null, items));
         }
 
         return rewardItems;
@@ -481,7 +481,7 @@ class QuestController
             else
             {
                 // for weapon handover quests, remove the item and its children.
-                const toRemove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, itemHandover.id);
+                const toRemove = Helpers.findAndReturnChildren(pmcData, itemHandover.id);
                 let index = pmcData.Inventory.items.length;
 
                 // important: don't tell the client to remove the attachments, it will handle it
@@ -576,7 +576,7 @@ class QuestController
         {
             if (reward.type === "Item")
             {
-                if (helpfunc_f.helpFunctions.isMoneyTpl(reward.items[0]._tpl))
+                if (Helpers.isMoneyTpl(reward.items[0]._tpl))
                 {
                     reward.items[0].upd.StackObjectsCount += Math.round(reward.items[0].upd.StackObjectsCount * moneyBoost / 100);
                 }

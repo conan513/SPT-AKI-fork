@@ -177,7 +177,7 @@ class ProfileController
         scavData.Info.Settings = {};
 
         // remove secure container
-        scavData = helpfunc_f.helpFunctions.removeSecureContainer(scavData);
+        scavData = Helpers.removeSecureContainer(scavData);
 
         // set cooldown timer
         scavData = this.setScavCooldownTimer(scavData, pmcData);

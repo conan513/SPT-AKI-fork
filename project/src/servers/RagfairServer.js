@@ -136,7 +136,7 @@ class RagfairServer
                 continue;
             }
 
-            const items = [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = [...[item], ...Helpers.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
 
@@ -164,7 +164,7 @@ class RagfairServer
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
 
             // create offer
-            const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...helpfunc_f.helpFunctions.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...Helpers.findAndReturnChildrenByAssort(item._id, assort.items)];
 
             this.createOffer(
                 HashUtil.generate(),           // userID
@@ -191,7 +191,7 @@ class RagfairServer
 
         // get properties
         items = this.getItemCondition(userID, items);
-        price = (this.isPlayer(userID) || this.isTrader(userID)) ? price : Math.round(price * helpfunc_f.helpFunctions.getItemQualityPrice(items[0]));
+        price = (this.isPlayer(userID) || this.isTrader(userID)) ? price : Math.round(price * Helpers.getItemQualityPrice(items[0]));
 
         // user.id = profile.characters.pmc._id??
         let offer = {
@@ -351,7 +351,7 @@ class RagfairServer
 
     addMissingCondition(item)
     {
-        const props = helpfunc_f.helpFunctions.getItem(item._tpl)[1]._props;
+        const props = Helpers.getItem(item._tpl)[1]._props;
         const isRepairable = ("Durability" in props);
         const isMedkit = ("MaxHpResource" in props);
 
@@ -395,7 +395,7 @@ class RagfairServer
 
         for (const it of items)
         {
-            price += helpfunc_f.helpFunctions.fromRUB(this.prices.dynamic[it._tpl], currency);
+            price += Helpers.fromRUB(this.prices.dynamic[it._tpl], currency);
         }
 
         price = Math.round(price * RandomUtil.getFloat(ragfair_f.config.dynamic.price.min, ragfair_f.config.dynamic.price.max));
@@ -441,7 +441,7 @@ class RagfairServer
         // trader offers
         for (const itemID in items)
         {
-            this.prices.trader[itemID] = Math.round(helpfunc_f.helpFunctions.getTemplatePrice(itemID));
+            this.prices.trader[itemID] = Math.round(Helpers.getTemplatePrice(itemID));
         }
 
         // dynamic offers
@@ -516,7 +516,7 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return helpfunc_f.helpFunctions.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return Helpers.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         let itemsToReturn = [];
@@ -524,7 +524,7 @@ class RagfairServer
         {
             item = ragfair_f.controller.fixItemStackCount(item);
             item.upd.SpawnedInSession = true;
-            itemsToReturn = [...itemsToReturn, ...helpfunc_f.helpFunctions.splitStack(item)];
+            itemsToReturn = [...itemsToReturn, ...Helpers.splitStack(item)];
         });
         ragfair_f.controller.returnItems(profile.aid, itemsToReturn);
         profile.RagfairInfo.offers.splice(index, 1);

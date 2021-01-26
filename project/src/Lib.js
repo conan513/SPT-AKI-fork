@@ -1,12 +1,14 @@
 globalThis["core_f"] = {};
 globalThis["core_f"]["packager"] = require("./utils/Packager.js");
 
-globalThis["vfs"] = require("./utils/VFS.js");
-globalThis["JsonUtil"] = require("./utils/JsonUtil");
-globalThis["HashUtil"] = require("./utils/HashUtil");
-globalThis["RandomUtil"] = require("./utils/RandomUtil");
-globalThis["TimeUtil"] = require("./utils/TimeUtil");
-globalThis["Logger"] = require("./utils/Logger");
+globalThis.vfs = require("./utils/VFS.js");
+globalThis.JsonUtil = require("./utils/JsonUtil");
+globalThis.HashUtil = require("./utils/HashUtil");
+globalThis.RandomUtil = require("./utils/RandomUtil");
+globalThis.TimeUtil = require("./utils/TimeUtil");
+globalThis.Logger = require("./utils/Logger");
+globalThis.Helpers = require("./helpers/PlzRefactorMeHelper.js");
+globalThis.Mods = require("./controllers/ModController.js");
 
 globalThis["certs_f"] = {
     "controller": require("./controllers/CertController.js"),
@@ -74,10 +76,6 @@ globalThis["bots_f"] = {
     "controller": require("./controllers/BotController.js"),
     "generator": require("./generators/BotGenerator.js"),
     "callbacks": require("./callbacks/BotCallbacks.js")
-};
-
-globalThis["helpfunc_f"] = {
-    "helpFunctions": require("./helpers/PlzRefactorMeHelper.js"),
 };
 
 globalThis["quest_f"] = {
@@ -176,6 +174,8 @@ globalThis["match_f"] = {
     "controller": require("./controllers/MatchController.js"),
     "callbacks": require("./callbacks/MatchCallbacks.js")
 };
+
+
 
 globalThis["mods_f"] = {
     "loader": require("./controllers/ModController.js"),
