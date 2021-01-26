@@ -10,7 +10,22 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "watch - Run server in Dev Mode (You probably want this one)",
+				"name": "install",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"install"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
+				]
+			},	{
+				"type": "node",
+				"request": "launch",
+				"name": "watch - restart on code change",
 				"runtimeExecutable": "npm",
 				"runtimeArgs": [
 					"run-script",
@@ -27,7 +42,7 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "start - Run server (Need to run tsc after every change)",
+				"name": "start - Run server",
 				"runtimeExecutable": "npm",
 				"runtimeArgs": [
 					"run-script",
