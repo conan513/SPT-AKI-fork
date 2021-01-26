@@ -864,7 +864,7 @@ class PlzRefactorMeHelper
 
             if (childitem.parentId === itemID && !list.find((item) =>
             {
-                return itemID === item._id;
+                return childitem._id === item._id;
             }))
             {
                 list.push.apply(list, this.findAndReturnChildrenAsItems(items, childitem._id));
