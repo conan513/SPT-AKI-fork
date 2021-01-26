@@ -21,6 +21,7 @@ class HttpServer
         this.buffers = {};
         this.onReceive = {};
         this.onRespond = {};
+        this.webSockets = {};
         this.mime = {
             css:"text/css",
             bin: "application/octet-stream",
@@ -111,11 +112,18 @@ class HttpServer
         resp.end(output);
     }
 
-    sendMessage(output)
+    sendMessage(output, sessionID)
     {
         try
         {
-            this.websocket.send(JSON.stringify(output));
+            if (this.webSockets[sessionID] !== undefined && this.webSockets[sessionID].readyState === WebSocket.OPEN)
+            {
+                this.webSockets[sessionID].send(JSON.stringify(output));
+            }
+            else
+            {
+                Logger.debug(`Socket not ready for ${sessionID}, message not sent`);
+            }
         }
         catch (err)
         {
@@ -218,7 +226,7 @@ class HttpServer
                 {
                     if (err)
                     {
-		    	// fallback uncompressed data
+                        // fallback uncompressed data
                         body = data;
                     }
                     https_f.server.sendResponse(sessionID, req, resp, body);
@@ -250,17 +258,7 @@ class HttpServer
             Logger.success("Started websocket");
         });
 
-        this.wss.addListener("connection", (ws) =>
-        {
-            this.websocket = ws;
-            setInterval(() =>
-            {
-                if (ws.readyState === WebSocket.OPEN)
-                {
-                    ws.send(JSON.stringify(notifier_f.controller.defaultMessage));
-                }
-            }, 90000);
-        });
+        this.wss.addListener("connection", this.wsOnConnection.bind(this));
 
         /* server is already running or program using privileged port without root */
         this.instance.on("error", (e) =>
@@ -274,6 +272,35 @@ class HttpServer
                 Logger.error(`Port ${e.port} is already in use, check if the server isn't already running`);
             }
         });
+    }
+
+    wsOnConnection(ws, req)
+    {
+        // Strip request and break it into sections
+        let splitUrl = req.url.replace(/\?.*$/, "").split("/"),
+            sessionID = splitUrl.pop();
+
+        Logger.info(`[WS] Player: ${sessionID} has connected`);
+        ws.on("message", function message(msg)
+        {
+            // doesn't reach here
+            Logger.info(`Received message ${msg} from user ${sessionID}`);
+        });
+        this.webSockets[sessionID] = ws;
+        let pingHandler = setInterval(() =>
+        {
+            Logger.debug(`[WS] Pinging player: ${sessionID}`);
+            if (ws.readyState === WebSocket.OPEN)
+            {
+                ws.send(JSON.stringify(notifier_f.controller.defaultMessage));
+            }
+            else
+            {
+                Logger.debug("[WS] Socket lost, deleting handle");
+                clearInterval(pingHandler);
+                delete this.webSockets[sessionID];
+            }
+        }, 90000);
     }
 }
 
