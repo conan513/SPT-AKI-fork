@@ -21,7 +21,7 @@ class ModCallbacks
 
     load()
     {
-        mods_f.loader.load();
+        Mods.load();
     }
 
     sendBundle(sessionID, req, resp, body)
@@ -29,7 +29,7 @@ class ModCallbacks
         Logger.info(`[BUNDLE]: ${req.url}`);
 
         const key = req.url.split("/bundle/")[1];
-        const bundle = mods_f.loader.getBundle(key, true);
+        const bundle = Mods.getBundle(key, true);
 
         // send bundle
         https_f.server.sendFile(resp, bundle.path);
@@ -38,7 +38,7 @@ class ModCallbacks
     getBundles(url, info, sessionID)
     {
         const local = (https_f.config.ip === "127.0.0.1" || https_f.config.ip === "localhost");
-        return https_f.response.noBody(mods_f.loader.getBundles(local));
+        return https_f.response.noBody(Mods.getBundles(local));
     }
 
     getBundle(url, info, sessionID)

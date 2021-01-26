@@ -90,7 +90,7 @@ class InventoryController
     {
         this.handleCartridges(fromItems, body);
 
-        let idsToMove = Helpers.findAndReturnChildrenByItems(fromItems, body.item);
+        let idsToMove = ItemHelper.findAndReturnChildrenByItems(fromItems, body.item);
 
         for (let itemId of idsToMove)
         {
@@ -182,7 +182,7 @@ class InventoryController
     removeItemFromProfile(profileData, itemId, output = null)
     {
         // get items to remove
-        let ids_toremove = Helpers.findAndReturnChildren(profileData, itemId);
+        let ids_toremove = InventoryHelper.findAndReturnChildren(profileData, itemId);
 
         //remove one by one all related items and itself
         for (let i in ids_toremove)
@@ -472,7 +472,7 @@ class InventoryController
             {
                 // Only grab the relevant trader items and add unique values
                 const traderItems = trader_f.controller.getAssort(sessionID, body.tid).items;
-                const relevantItems = Helpers.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
+                const relevantItems = ItemHelper.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
                 const toAdd = relevantItems.filter(traderItem => !itemLib.some(item => traderItem._id === item._id));
                 itemLib.push(...toAdd);
             }
@@ -481,7 +481,7 @@ class InventoryController
             {
                 if (item._id === baseItem.item_id)
                 {
-                    const tmpItem = Helpers.getItem(item._tpl)[1];
+                    const tmpItem = ItemHelper.getItem(item._tpl)[1];
                     const itemToAdd = { itemRef: item, count: baseItem.count, isPreset: baseItem.isPreset };
                     let MaxStacks = 1;
 
@@ -524,8 +524,8 @@ class InventoryController
         let StashFS_2D = Helpers.getPlayerStashSlotMap(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
-            let itemSize = Helpers.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
-            let findSlotResult = Helpers.findSlotForItem(StashFS_2D, itemSize[0], itemSize[1]);
+            let itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
+            let findSlotResult = ContainerHelper.findSlotForItem(StashFS_2D, itemSize[0], itemSize[1]);
 
             if (findSlotResult.success)
             {
@@ -536,19 +536,19 @@ class InventoryController
 
                 try
                 {
-                    StashFS_2D = Helpers.fillContainerMapWithItem(StashFS_2D, findSlotResult.x, findSlotResult.y, itemSizeX, itemSizeY);
+                    StashFS_2D = ContainerHelper.fillContainerMapWithItem(StashFS_2D, findSlotResult.x, findSlotResult.y, itemSizeX, itemSizeY);
                 }
                 catch (err)
                 {
                     Logger.error("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
-                    return Helpers.appendErrorToOutput(output, "Not enough stash space");
+                    return ResponseHelper.appendErrorToOutput(output, "Not enough stash space");
                 }
 
                 itemToAdd.location = { x: findSlotResult.x, y: findSlotResult.y, rotation: findSlotResult.rotation };
             }
             else
             {
-                return Helpers.appendErrorToOutput(output, "Not enough stash space");
+                return ResponseHelper.appendErrorToOutput(output, "Not enough stash space");
             }
         }
 
@@ -563,7 +563,7 @@ class InventoryController
         catch (err)
         {
             let message = typeof err === "string" ? err : "An unknown error occurred";
-            return Helpers.appendErrorToOutput(output, message);
+            return ResponseHelper.appendErrorToOutput(output, message);
         }
 
         for (let itemToAdd of itemsToAdd)
@@ -614,14 +614,14 @@ class InventoryController
 
             // If this is an ammobox, add cartridges to it.
             // Damaged ammo box are not loaded.
-            const itemInfo = Helpers.getItem(itemToAdd.itemRef._tpl)[1];
+            const itemInfo = ItemHelper.getItem(itemToAdd.itemRef._tpl)[1];
             let ammoBoxInfo = itemInfo._props.StackSlots;
             if (ammoBoxInfo !== undefined && itemInfo._name.indexOf("_damaged") < 0)
             {
                 // Cartridge info seems to be an array of size 1 for some reason... (See AmmoBox constructor in client code)
                 let maxCount = ammoBoxInfo[0]._max_count;
                 let ammoTmplId = ammoBoxInfo[0]._props.filters[0].Filter[0];
-                let ammoStackMaxSize = Helpers.getItem(ammoTmplId)[1]._props.StackMaxSize;
+                let ammoStackMaxSize = ItemHelper.getItem(ammoTmplId)[1]._props.StackMaxSize;
                 let ammos = [];
                 let location = 0;
 

@@ -62,7 +62,7 @@ class HealthController
                 }
                 else
                 {
-                    const maxhp = Helpers.getItem(item._tpl)[1]._props.MaxHpResource;
+                    const maxhp = ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
                     item.upd.MedKit = {"HpResource": maxhp - body.count};
                 }
 
@@ -86,7 +86,7 @@ class HealthController
         {
             if (item._id === body.item)
             {
-                let itemProps = Helpers.getItem(item._tpl)[1]._props;
+                let itemProps = ItemHelper.getItem(item._tpl)[1]._props;
                 maxResource = itemProps.MaxResource;
 
                 if (maxResource > 1)

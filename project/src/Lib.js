@@ -1,14 +1,18 @@
 globalThis["core_f"] = {};
-globalThis["core_f"]["packager"] = require("./utils/Packager.js");
+globalThis["core_f"]["packager"] = require("./utils/Packager");
 
-globalThis.vfs = require("./utils/VFS.js");
+globalThis.vfs = require("./utils/VFS");
 globalThis.JsonUtil = require("./utils/JsonUtil");
 globalThis.HashUtil = require("./utils/HashUtil");
 globalThis.RandomUtil = require("./utils/RandomUtil");
 globalThis.TimeUtil = require("./utils/TimeUtil");
 globalThis.Logger = require("./utils/Logger");
-globalThis.Helpers = require("./helpers/PlzRefactorMeHelper.js");
-globalThis.Mods = require("./controllers/ModController.js");
+globalThis.Helpers = require("./helpers/PlzRefactorMeHelper");
+globalThis.ResponseHelper = require("./helpers/ResponseHelper");
+globalThis.ItemHelper = require("./helpers/ItemHelper");
+globalThis.InventoryHelper = require("./helpers/InventoryHelper");
+globalThis.ContainerHelper = require("./helpers/ContainerHelper");
+globalThis.Mods = require("./controllers/ModController");
 
 globalThis["certs_f"] = {
     "controller": require("./controllers/CertController.js"),

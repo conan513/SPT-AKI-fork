@@ -257,7 +257,7 @@ class TraderController
     // delete assort keys
     removeItemFromAssort(assort, itemID)
     {
-        let ids_toremove = Helpers.findAndReturnChildrenByItems(assort.items, itemID);
+        let ids_toremove = ItemHelper.findAndReturnChildrenByItems(assort.items, itemID);
 
         delete assort.barter_scheme[itemID];
         delete assort.loyal_level_items[itemID];
@@ -292,14 +292,14 @@ class TraderController
             || item._id === pmcData.Inventory.stash
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
-            || Helpers.isNotSellable(item._tpl)
+            || ItemHelper.isNotSellable(item._tpl)
             || this.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
 
             // find all child of the item (including itself) and sum the price
-            for (let childItem of Helpers.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
+            for (let childItem of ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
                 let tempPrice = (database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice >= 1) ? database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice : 1;
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
@@ -307,13 +307,13 @@ class TraderController
             }
 
             // dogtag calculation
-            if ("upd" in item && "Dogtag" in item.upd && Helpers.isDogtag(item._tpl))
+            if ("upd" in item && "Dogtag" in item.upd && ItemHelper.isDogtag(item._tpl))
             {
                 price *= item.upd.Dogtag.Level;
             }
 
             // meds & repairable calculation
-            price *= Helpers.getItemQualityPrice(item);
+            price *= ItemHelper.getItemQualityPrice(item);
 
             // get real price
             if (trader.discount > 0)

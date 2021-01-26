@@ -147,7 +147,7 @@ class QuestController
                     itemCount = item.upd.StackObjectsCount;
                     item.upd.StackObjectsCount = 1;
                 }
-                targets = Helpers.splitStack(item);
+                targets = ItemHelper.splitStack(item);
             }
             else
             {
@@ -481,7 +481,7 @@ class QuestController
             else
             {
                 // for weapon handover quests, remove the item and its children.
-                const toRemove = Helpers.findAndReturnChildren(pmcData, itemHandover.id);
+                const toRemove = InventoryHelper.findAndReturnChildren(pmcData, itemHandover.id);
                 let index = pmcData.Inventory.items.length;
 
                 // important: don't tell the client to remove the attachments, it will handle it

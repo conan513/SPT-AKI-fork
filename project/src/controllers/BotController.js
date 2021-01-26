@@ -69,7 +69,7 @@ class BotController
         bot = this.generateId(bot);
 
         // generate new inventory ID
-        bot = Helpers.generateInventoryID(bot);
+        bot = InventoryHelper.generateInventoryID(bot);
 
         return bot;
     }

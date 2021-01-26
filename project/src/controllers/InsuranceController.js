@@ -49,7 +49,7 @@ class InsuranceController
         }
 
         // get all ids related to this item, +including this item itself
-        let ids_toremove = Helpers.findAndReturnChildren(pmcData, toDo[0]);
+        let ids_toremove = InventoryHelper.findAndReturnChildren(pmcData, toDo[0]);
 
         for (let i in ids_toremove)
         {
@@ -174,7 +174,7 @@ class InsuranceController
         const pmcItemsHash = {};
 
         let gears = [];
-        let securedContainerItems = Helpers.getSecureContainer(offraidData.profile.Inventory.items);
+        let securedContainerItems = InventoryHelper.getSecureContainer(offraidData.profile.Inventory.items);
 
         for (const item of preRaidGear)
         {

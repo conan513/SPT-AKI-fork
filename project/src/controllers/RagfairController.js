@@ -253,7 +253,7 @@ class RagfairController
 
         if (item.upd.MedKit || item.upd.Repairable)
         {
-            const percentage = 100 * Helpers.getItemQualityPrice(item);
+            const percentage = 100 * ItemHelper.getItemQualityPrice(item);
 
             if (info.conditionFrom > 0 && info.conditionFrom >= percentage)
             {
@@ -591,8 +591,8 @@ class RagfairController
         let mergedStacks = [];
         items.forEach(item =>
         {
-            item = this.fixItemStackCount(item);
-            if (Helpers.isItemTplStackable(item._tpl))
+            item = ItemHelper.fixItemStackCount(item);
+            if (ItemHelper.isItemTplStackable(item._tpl))
             {
                 if (mergeItems[item._tpl] === undefined)
                 {
@@ -639,12 +639,12 @@ class RagfairController
         if (!info || !info.items || info.items.length === 0)
         {
             Logger.error("Invalid addOffer request");
-            return Helpers.appendErrorToOutput(result);
+            return ResponseHelper.appendErrorToOutput(result);
         }
 
         if (!info.requirements)
         {
-            return Helpers.appendErrorToOutput(result, "How did you place the offer with no requirements?");
+            return ResponseHelper.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
         for (const item of info.requirements)
@@ -669,11 +669,11 @@ class RagfairController
             if (item === undefined)
             {
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
-                return Helpers.appendErrorToOutput(result);
+                return ResponseHelper.appendErrorToOutput(result);
             }
-            item = this.fixItemStackCount(item);
+            item = ItemHelper.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
-            invItems.push(...Helpers.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
+            invItems.push(...ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
             offerPrice += ragfair_f.server.prices.dynamic[item._tpl] * itemStackCount;
         }
 
@@ -687,7 +687,7 @@ class RagfairController
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
-            return Helpers.appendErrorToOutput(result);
+            return ResponseHelper.appendErrorToOutput(result);
         }
 
         for (const item of invItems)
@@ -700,7 +700,7 @@ class RagfairController
         {
             // Don't want to accidentally divide by 0
             Logger.error("Failed to count base price for offer");
-            return Helpers.appendErrorToOutput(result);
+            return ResponseHelper.appendErrorToOutput(result);
         }
 
         // Preparations are done, create the offer
@@ -777,7 +777,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return Helpers.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return ResponseHelper.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -802,7 +802,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return Helpers.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return ResponseHelper.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;
@@ -831,25 +831,6 @@ class RagfairController
     }
 
     /**
-     * @param {itemTemplate} item
-     */
-    fixItemStackCount(item)
-    {
-        if (item.upd === undefined)
-        {
-            item.upd = {
-                StackObjectsCount: 1
-            };
-        }
-
-        if (item.upd.StackObjectsCount === undefined)
-        {
-            item.upd.StackObjectsCount = 1;
-        }
-        return item;
-    }
-
-    /**
      * @param {string} sessionID
      * @param {{ items: any[]; _id: any; sellInOnePiece: any; requirements: any; }} offer
      * @param {any} offerId
@@ -864,7 +845,7 @@ class RagfairController
         {
             for (let item of offer.items)
             {
-                item = this.fixItemStackCount(item);
+                item = ItemHelper.fixItemStackCount(item);
                 this.deleteOfferByIndex(sessionID, offerId);
             }
         }
@@ -915,7 +896,7 @@ class RagfairController
                 "upd": { "StackObjectsCount": requirement.count * boughtAmount }
             };
 
-            let stacks = Helpers.splitStack(requestedItem);
+            let stacks = ItemHelper.splitStack(requestedItem);
             stacks.forEach(item =>
             {
                 let outItems = [item];

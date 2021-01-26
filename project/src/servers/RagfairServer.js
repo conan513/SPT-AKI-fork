@@ -136,7 +136,7 @@ class RagfairServer
                 continue;
             }
 
-            const items = [...[item], ...Helpers.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
 
@@ -164,7 +164,7 @@ class RagfairServer
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
 
             // create offer
-            const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...Helpers.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = (isPreset) ? this.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
 
             this.createOffer(
                 HashUtil.generate(),           // userID
@@ -191,7 +191,7 @@ class RagfairServer
 
         // get properties
         items = this.getItemCondition(userID, items);
-        price = (this.isPlayer(userID) || this.isTrader(userID)) ? price : Math.round(price * Helpers.getItemQualityPrice(items[0]));
+        price = (this.isPlayer(userID) || this.isTrader(userID)) ? price : Math.round(price * ItemHelper.getItemQualityPrice(items[0]));
 
         // user.id = profile.characters.pmc._id??
         let offer = {
@@ -351,7 +351,7 @@ class RagfairServer
 
     addMissingCondition(item)
     {
-        const props = Helpers.getItem(item._tpl)[1]._props;
+        const props = ItemHelper.getItem(item._tpl)[1]._props;
         const isRepairable = ("Durability" in props);
         const isMedkit = ("MaxHpResource" in props);
 
@@ -516,15 +516,15 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return Helpers.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return ResponseHelper.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         let itemsToReturn = [];
         offer.items.forEach(item =>
         {
-            item = ragfair_f.controller.fixItemStackCount(item);
+            item = ItemHelper.fixItemStackCount(item);
             item.upd.SpawnedInSession = true;
-            itemsToReturn = [...itemsToReturn, ...Helpers.splitStack(item)];
+            itemsToReturn = [...itemsToReturn, ...ItemHelper.splitStack(item)];
         });
         ragfair_f.controller.returnItems(profile.aid, itemsToReturn);
         profile.RagfairInfo.offers.splice(index, 1);
