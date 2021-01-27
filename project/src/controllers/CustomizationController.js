@@ -15,7 +15,7 @@ class CustomizationController
     {
         for (let i = 0; i < body.suites.length; i++)
         {
-            let suite = database_f.server.tables.templates.suits[body.suites[i]];
+            let suite = database_f.server.tables.templates.customization[body.suites[i]];
 
             // this parent reffers to Lower Node
             if (suite._parent === "5cd944d01388ce000a659df9")
@@ -37,7 +37,7 @@ class CustomizationController
     getTraderSuits(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let templates = database_f.server.tables.templates.suits;
+        let templates = database_f.server.tables.templates.customization;
         let suits = database_f.server.tables.traders[traderID].suits;
         let result = [];
 
