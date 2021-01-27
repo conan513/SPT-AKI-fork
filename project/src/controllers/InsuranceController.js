@@ -15,10 +15,12 @@ class InsuranceController
     constructor()
     {
         this.insured = {};
+        this.templatesById = {};
     }
 
     onLoad(sessionID)
     {
+        this.generateTemplatesById();
         let profile = save_f.server.profiles[sessionID];
 
         if (!("insurance" in profile))
@@ -47,7 +49,7 @@ class InsuranceController
         }
 
         // get all ids related to this item, +including this item itself
-        let ids_toremove = helpfunc_f.helpFunctions.findAndReturnChildren(pmcData, toDo[0]);
+        let ids_toremove = InventoryHelper.findAndReturnChildren(pmcData, toDo[0]);
 
         for (let i in ids_toremove)
         {
@@ -172,7 +174,7 @@ class InsuranceController
         const pmcItemsHash = {};
 
         let gears = [];
-        let securedContainerItems = helpfunc_f.helpFunctions.getSecureContainer(offraidData.profile.Inventory.items);
+        let securedContainerItems = InventoryHelper.getSecureContainer(offraidData.profile.Inventory.items);
 
         for (const item of preRaidGear)
         {
@@ -308,7 +310,7 @@ class InsuranceController
         }
 
         // pay the item	to profile
-        if (!helpfunc_f.helpFunctions.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        if (!Helpers.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
             Logger.error("no money found");
             return "";
@@ -326,24 +328,25 @@ class InsuranceController
         return item_f.eventHandler.getOutput();
     }
 
+    generateTemplatesById()
+    {
+        if (Object.keys(this.templatesById).length === 0)
+        {
+            for (const item of database_f.server.tables.templates.handbook.Items)
+            {
+                this.templatesById[item.Id] = item;
+            }
+        }
+    }
+
     // TODO: Move to helper functions
     getItemPrice(_tpl)
     {
         let price = 0;
 
-        if (typeof (global.templatesById) === "undefined")
+        if (this.templatesById[_tpl] !== undefined)
         {
-            global.templatesById = {};
-
-            for (const item of database_f.server.tables.templates.handbook.Items)
-            {
-                templatesById[item.Id] = item;
-            }
-        }
-
-        if (_tpl in templatesById)
-        {
-            let template = templatesById[_tpl];
+            let template = this.templatesById[_tpl];
             price = template.Price;
         }
         else

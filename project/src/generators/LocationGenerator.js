@@ -112,9 +112,9 @@ class LocationGenerator
         // Spawn any forced items first
         for (let i = 1; i < items.length; i++)
         {
-            const item = helpfunc_f.helpFunctions.getItem(items[i]._tpl)[1];
+            const item = ItemHelper.getItem(items[i]._tpl)[1];
 
-            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(
+            container2D = ContainerHelper.fillContainerMapWithItem(
                 container2D, items[i].location.x, items[i].location.y, item._props.Width, item._props.Height, items[i].location.r);
         }
 
@@ -142,7 +142,7 @@ class LocationGenerator
                 let roll = RandomUtil.getInt(0, maxProbability);
                 rolledIndex = container.items.findIndex(itm => itm.cumulativeChance >= roll);
                 const rolled = container.items[rolledIndex];
-                item = JsonUtil.clone(helpfunc_f.helpFunctions.getItem(rolled.id)[1]);
+                item = JsonUtil.clone(ItemHelper.getItem(rolled.id)[1]);
 
                 if (rolled.preset)
                 {
@@ -152,7 +152,7 @@ class LocationGenerator
                     item._props.Height = rolled.preset.h;
                 }
 
-                result = helpfunc_f.helpFunctions.findSlotForItem(container2D, item._props.Width, item._props.Height);
+                result = ContainerHelper.findSlotForItem(container2D, item._props.Width, item._props.Height);
                 maxAttempts--;
             }
 
@@ -160,7 +160,7 @@ class LocationGenerator
             if (!result.success)
                 break;
 
-            container2D = helpfunc_f.helpFunctions.fillContainerMapWithItem(
+            container2D = ContainerHelper.fillContainerMapWithItem(
                 container2D, result.x, result.y, item._props.Width, item._props.Height, result.rotation);
             let rot = result.rotation ? 1 : 0;
 
@@ -178,7 +178,7 @@ class LocationGenerator
 
                     if (preset._items[p].slotId === "mod_magazine")
                     {
-                        let mag = helpfunc_f.helpFunctions.getItem(preset._items[p]._tpl)[1];
+                        let mag = ItemHelper.getItem(preset._items[p]._tpl)[1];
                         let cartridges = {
                             "_id": idPrefix + idSuffix.toString(16),
                             "_tpl": item._props.defAmmo,

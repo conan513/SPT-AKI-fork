@@ -554,7 +554,7 @@ class BotGenerator
 
     addBullets(ammoTpl, bulletCount)
     {
-        const ammoItems = helpfunc_f.helpFunctions.splitStack({
+        const ammoItems = ItemHelper.splitStack({
             "_id": HashUtil.generate(),
             "_tpl": ammoTpl,
             "upd": {"StackObjectsCount": bulletCount}
@@ -759,13 +759,13 @@ class BotGenerator
                 continue;
             }
 
-            const itemSize = helpfunc_f.helpFunctions.getItemSize(parentTpl, parentId, itemWithChildren);
+            const itemSize = InventoryHelper.getItemSize(parentTpl, parentId, itemWithChildren);
 
             for (const slot of containerTemplate._props.Grids)
             {
                 const containerItems = this.inventory.items.filter(i => i.parentId === container._id && i.slotId === slot._name);
-                const slotMap = helpfunc_f.helpFunctions.getContainerMap(slot._props.cellsH, slot._props.cellsV, containerItems, container._id);
-                const findSlotResult = helpfunc_f.helpFunctions.findSlotForItem(slotMap, itemSize[0], itemSize[1]);
+                const slotMap = ContainerHelper.getContainerMap(slot._props.cellsH, slot._props.cellsV, containerItems, container._id);
+                const findSlotResult = ContainerHelper.findSlotForItem(slotMap, itemSize[0], itemSize[1]);
 
                 if (findSlotResult.success)
                 {

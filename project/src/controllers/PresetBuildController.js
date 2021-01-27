@@ -31,7 +31,7 @@ class PresetBuildController
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
-        body.items = helpfunc_f.helpFunctions.replaceIDs(pmcData, body.items, false);
+        body.items = Helpers.replaceIDs(pmcData, body.items, false);
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
