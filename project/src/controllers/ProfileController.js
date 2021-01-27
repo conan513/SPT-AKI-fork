@@ -101,7 +101,7 @@ class ProfileController
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = TimeUtil.getTimestamp();
-        pmcData.Info.Voice = database_f.server.tables.templates.suits[info.voiceId]._name;
+        pmcData.Info.Voice = database_f.server.tables.templates.customization[info.voiceId]._name;
         pmcData.Customization.Head = info.headId;
         pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
         pmcData.Quests = [];
@@ -177,7 +177,7 @@ class ProfileController
         scavData.Info.Settings = {};
 
         // remove secure container
-        scavData = helpfunc_f.helpFunctions.removeSecureContainer(scavData);
+        scavData = InventoryHelper.removeSecureContainer(scavData);
 
         // set cooldown timer
         scavData = this.setScavCooldownTimer(scavData, pmcData);

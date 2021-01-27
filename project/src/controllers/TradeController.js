@@ -32,7 +32,7 @@ class TradeController
         };
         const callback = () =>
         {
-            if (!helpfunc_f.helpFunctions.payMoney(pmcData, body, sessionID))
+            if (!Helpers.payMoney(pmcData, body, sessionID))
             {
                 Logger.error("no money found");
                 throw "Transaction failed";
@@ -91,7 +91,7 @@ class TradeController
         }
 
         // get money the item]
-        return helpfunc_f.helpFunctions.getMoney(pmcData, money, body, output, sessionID);
+        return Helpers.getMoney(pmcData, money, body, output, sessionID);
     }
 
     // separate is that selling or buying

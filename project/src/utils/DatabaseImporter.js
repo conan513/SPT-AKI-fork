@@ -101,7 +101,7 @@ class DatabaseImporter
 
     getTemplateSuits(url, info, sessionID)
     {
-        return https_f.response.getBody(database_f.server.tables.templates.suits);
+        return https_f.response.getBody(database_f.server.tables.templates.customization);
     }
 
     getTemplateCharacter(url, info, sessionID)
