@@ -536,7 +536,7 @@
                     "55801eed4bdc2d89578b4588"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "DVL",
@@ -544,7 +544,7 @@
                     "588892092459774ac91d4b11"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "TOZ106",
@@ -552,7 +552,7 @@
                     "5a38e6bac4a2826c6e06d79b"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "R11SRASS",
@@ -603,7 +603,7 @@
                     "5ae08f0a5acfc408fb1398a1"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "SA-58",
@@ -636,7 +636,7 @@
                     "5bfea6e90db834001b7347f3"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "VPO101",
@@ -719,7 +719,7 @@
                     "5de652c31b7e3716273428be"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "T5000",
@@ -727,7 +727,7 @@
                     "5df24cf80dee1b22f862e9bc"
                 ],
                 "Level2": 500,
-                "Level3": 2000
+                "Level3": 1000
             },
             {
                 "Name": "SR25",
@@ -3511,7 +3511,7 @@
         },
         "AzimuthPanelShowsPlayerOrientation": false
     },
-    "time": 1611288978,
+    "time": 1611711545,
     "bot_presets": [
         {
             "UseThis": true,
