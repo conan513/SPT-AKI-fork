@@ -1,7 +1,19 @@
-
+/**
+ * ItemHelper.js
+ * license: NCSA
+ * copyright: Senko's Pub
+ * website: https://www.guilded.gg/senkospub
+ * authors:
+ * - Senko-san (Merijn Hendriks)
+ * - Terkoiz
+ *
+ * @class ItemHelper
+ * @description Helpers related to Items
+ */
 class ItemHelper
 {
     /**
+     * Adds StackObjectsCount to an item, if it doesn't exist
      * @param {itemTemplate} item
      */
     fixItemStackCount(item)
