@@ -275,6 +275,7 @@ class InsuranceController
                 // Inject a little bit of a surprise by failing the insurance from time to time ;)
                 let toLook = [
                     "hideout",
+                    "main",
                     "mod_scope",
                     "mod_magazine",
                     "mod_sight_rear",
@@ -293,7 +294,7 @@ class InsuranceController
 
                 for (let insuredItem of insured.items)
                 {
-                    if (toLook.includes(insuredItem.slotId) && RandomUtil.getInt(0, 99) >= insurance_f.config.returnChance && !toDelete.includes(insuredItem._id))
+                    if ((toLook.includes(insuredItem.slotId) || !isNaN(insuredItem.slotId)) && RandomUtil.getInt(0, 99) >= insurance_f.config.returnChance && !toDelete.includes(insuredItem._id))
                     {
                         toDelete.push.apply(toDelete, ItemHelper.findAndReturnChildrenByItems(insured.items, insuredItem._id));
                     }
