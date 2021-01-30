@@ -272,8 +272,23 @@ class InsuranceController
                 {
                     continue;
                 }
-
-                let toLook = ["hideout", "mod_scope", "mod_magazine", "mod_sight_rear", "mod_sight_front", "mod_tactical", "mod_muzzle", "mod_tactical_2", "mod_foregrip", "mod_tactical_000", "mod_tactical_001", "mod_tactical_002", "mod_tactical_003"];
+                // Inject a little bit of a surprise by failing the insurance from time to time ;)
+                let toLook = [
+                    "hideout",
+                    "mod_scope",
+                    "mod_magazine",
+                    "mod_sight_rear",
+                    "mod_sight_front",
+                    "mod_tactical",
+                    "mod_muzzle",
+                    "mod_tactical_2",
+                    "mod_foregrip",
+                    "mod_tactical_000",
+                    "mod_tactical_001",
+                    "mod_tactical_002",
+                    "mod_tactical_003",
+                    "mod_nvg"
+                ];
                 let toDelete = [];
 
                 for (let insuredItem of insured.items)
@@ -283,7 +298,7 @@ class InsuranceController
                         toDelete.push.apply(toDelete, ItemHelper.findAndReturnChildrenByItems(insured.items, insuredItem._id));
                     }
                 }
-
+                
                 for (var pos = insured.items.length - 1; pos >= 0; --pos)
                 {
                     if (toDelete.includes(insured.items[pos]._id))
@@ -292,8 +307,7 @@ class InsuranceController
                     }
                 }
 
-                // Inject a little bit of a surprise by failing the insurance from time to time ;)
-                if (insured.items.length = 0)
+                if (insured.items.length === 0)
                 {
                     const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
                     insured.messageContent.templateId = RandomUtil.getArrayValue(insuranceFailedTemplates);
