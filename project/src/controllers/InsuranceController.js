@@ -272,13 +272,46 @@ class InsuranceController
                 {
                     continue;
                 }
-
                 // Inject a little bit of a surprise by failing the insurance from time to time ;)
-                if (RandomUtil.getInt(0, 99) >= insurance_f.config.returnChance)
+                let toLook = [
+                    "hideout",
+                    "main",
+                    "mod_scope",
+                    "mod_magazine",
+                    "mod_sight_rear",
+                    "mod_sight_front",
+                    "mod_tactical",
+                    "mod_muzzle",
+                    "mod_tactical_2",
+                    "mod_foregrip",
+                    "mod_tactical_000",
+                    "mod_tactical_001",
+                    "mod_tactical_002",
+                    "mod_tactical_003",
+                    "mod_nvg"
+                ];
+                let toDelete = [];
+
+                for (let insuredItem of insured.items)
+                {
+                    if ((toLook.includes(insuredItem.slotId) || !isNaN(insuredItem.slotId)) && RandomUtil.getInt(0, 99) >= insurance_f.config.returnChance && !toDelete.includes(insuredItem._id))
+                    {
+                        toDelete.push.apply(toDelete, ItemHelper.findAndReturnChildrenByItems(insured.items, insuredItem._id));
+                    }
+                }
+                
+                for (var pos = insured.items.length - 1; pos >= 0; --pos)
+                {
+                    if (toDelete.includes(insured.items[pos]._id))
+                    {
+                        insured.items.splice(pos, 1);
+                    }
+                }
+
+                if (insured.items.length === 0)
                 {
                     const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
                     insured.messageContent.templateId = RandomUtil.getArrayValue(insuranceFailedTemplates);
-                    insured.items = [];
                 }
 
                 dialogue_f.controller.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
