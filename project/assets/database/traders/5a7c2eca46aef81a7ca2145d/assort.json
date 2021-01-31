@@ -1,6 +1,52 @@
 {
     "items": [
         {
+            "_id": "UMP45_Mech_Trade",
+            "_tpl": "5fc3e272f8b6a877a729eac5",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "5fd2517dbdd50d684f73a47d",
+            "_tpl": "5fc3e466187fea44d52eda90",
+            "parentId": "UMP45_Mech_Trade",
+            "slotId": "mod_magazine"
+        },
+        {
+            "_id": "5fd2517dbdd50d684f73a47e",
+            "_tpl": "5fc3e4ee7283c4046c5814af",
+            "parentId": "UMP45_Mech_Trade",
+            "slotId": "mod_stock"
+        },
+        {
+            "_id": "5fd2517dbdd50d684f73a47f",
+            "_tpl": "5fc3e4a27283c4046c5814ab",
+            "parentId": "UMP45_Mech_Trade",
+            "slotId": "mod_barrel"
+        },
+        {
+            "_id": "5fd2517dbdd50d684f73a480",
+            "_tpl": "5fc53954f8b6a877a729eaeb",
+            "parentId": "UMP45_Mech_Trade",
+            "slotId": "mod_mount_000"
+        },
+        {
+            "_id": "5fd2517dbdd50d684f73a481",
+            "_tpl": "5fc5396e900b1d5091531e72",
+            "parentId": "UMP45_Mech_Trade",
+            "slotId": "mod_mount_001"
+        },
+        {
+            "_id": "5fd2517dbdd50d684f73a482",
+            "_tpl": "5fc5396e900b1d5091531e72",
+            "parentId": "UMP45_Mech_Trade",
+            "slotId": "mod_mount_002"
+        },
+        {
             "_id": "zevTech",
             "_tpl": "5a71e1868dc32e00094b97f3",
             "parentId": "hideout",
@@ -6227,6 +6273,26 @@
         }
     ],
     "barter_scheme": {
+        "UMP45_Mech_Trade":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5734781f24597737e04bf32a"
+                }
+            ],
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590a386e86f77429692b27ab"
+                }
+            ],
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5c06782b86f77426df5407d2"
+                }
+            ]
+        ],
         "zevTech": [
             [
                 {
@@ -10030,7 +10096,8 @@
         "308TacX": 4,
         "VectorG30": 3,
         "5e0ac74b9d594972a112a9ed": 3,
-        "45ACP_Silencer": 4,
-        "zevTech": 3
+        "45ACP_Silencer": 2,
+        "zevTech": 3,
+        "UMP45_Mech_Trade":1
     }
 }

@@ -16,8 +16,18 @@
             "parentId": "hideout",
             "slotId": "hideout",
             "upd": {
-                "UnlimitedCount": true,
-                "StackObjectsCount": 999999999
+                "UnlimitedCount": false,
+                "StackObjectsCount": 5000
+            }
+        },
+        {
+            "_id": "HemostaticTrade2",
+            "_tpl": "5e8488fa988a8701445df1e4",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 5000
             }
         },
         {
@@ -648,6 +658,14 @@
                 }
             ]
         ],
+        "HemostaticTrade2": [
+            [
+                {
+                    "count": 2,
+                    "_tpl": "59e35ef086f7741777737012"
+                }
+            ]
+        ],
         "TourniquetTrade": [
             [
                 {
@@ -1244,6 +1262,7 @@
     "loyal_level_items": {
         "TourniquetTrade": 1,
         "HemostaticTrade": 3,
+        "HemostaticTrade2": 1,
         "5eeca648bfed7142cb3105b2": 1,
         "5eeca648bfed7142cb3105b4": 2,
         "5eeca648bfed7142cb3105b6": 2,
