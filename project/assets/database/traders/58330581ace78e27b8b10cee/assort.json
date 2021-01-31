@@ -1,6 +1,108 @@
 {
     "items": [
         {
+            "_id": "SigMCX_Barter",
+            "_tpl": "5fbcc1d9016cce60e8341ab3",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "SigMCX_PistolGrip",
+            "_tpl": "5fbcbd6c187fea44d52eda14",
+            "parentId": "SigMCX_Barter",
+            "slotId": "mod_pistol_grip"
+        },
+        {
+            "_id": "SigMCX_Mag",
+            "_tpl": "55d4887d4bdc2d962f8b4570",
+            "parentId": "SigMCX_Barter",
+            "slotId": "mod_magazine"
+        },
+        {
+            "_id": "SigMCX_Receiver",
+            "_tpl": "5fbcc3e4d6fa9c00c571bb58",
+            "parentId": "SigMCX_Barter",
+            "slotId": "mod_reciever"
+        },
+        {
+            "_id": "SigMCX_Barrel",
+            "_tpl": "5fbbfacda56d053a3543f799",
+            "parentId": "SigMCX_Receiver",
+            "slotId": "mod_barrel"
+        },
+        {
+            "_id": "SigMCX_Muzzle",
+            "_tpl": "5fbc22ccf24b94483f726483",
+            "parentId": "SigMCX_Barrel",
+            "slotId": "mod_muzzle"
+        },
+        {
+            "_id": "5fd35eb1a8c881276c55e71a",
+            "_tpl": "5fbcbd10ab884124df0cd563",
+            "parentId": "SigMCX_Muzzle",
+            "slotId": "mod_muzzle_000"
+        },
+        {
+            "_id": "SigMCX_GasBlock",
+            "_tpl": "5fbc210bf24b94483f726481",
+            "parentId": "SigMCX_Barrel",
+            "slotId": "mod_gas_block"
+        },
+        {
+            "_id": "SigMCX_Handguard",
+            "_tpl": "5fbc226eca32ed67276c155d",
+            "parentId": "SigMCX_Receiver",
+            "slotId": "mod_handguard"
+        },
+        {
+            "_id": "SigMCX_Front",
+            "_tpl": "5fc0fa362770a0045c59c677",
+            "parentId": "SigMCX_Handguard",
+            "slotId": "mod_sight_front"
+        },
+        {
+            "_id": "SigMCX_Rear",
+            "_tpl": "5fc0fa957283c4046c58147e",
+            "parentId": "SigMCX_Receiver",
+            "slotId": "mod_sight_rear"
+        },
+        {
+            "_id": "SigMCX_Stock",
+            "_tpl": "5fbcc437d724d907e2077d5c",
+            "parentId": "SigMCX_Barter",
+            "slotId": "mod_stock"
+        },
+        {
+            "_id": "SigMCX_Charge",
+            "_tpl": "5fbcc640016cce60e8341acc",
+            "parentId": "SigMCX_Barter",
+            "slotId": "mod_charge"
+        },
+        {
+            "_id": "Silencer12K",
+            "_tpl": "59c0ec5b86f77435b128bfca",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "MagexG30",
+            "_tpl": "5fb651dc85f90547f674b6f4",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "5eeca63dbfed7142cb30fd0d",
             "_tpl": "5a7ad2e851dfba0016153692",
             "parentId": "hideout",
@@ -1973,70 +2075,6 @@
             }
         },
         {
-            "_id": "5eeca635bfed7142cb30f7de",
-            "_tpl": "5c07c60e0db834002330051f",
-            "upd": {
-                "UnlimitedCount": true,
-                "StackObjectsCount": 999999999
-            },
-            "parentId": "hideout",
-            "slotId": "hideout"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7df",
-            "_tpl": "5c0e2ff6d174af02a1659d4a",
-            "parentId": "5eeca635bfed7142cb30f7de",
-            "slotId": "mod_pistol_grip"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e0",
-            "_tpl": "5aaa5e60e5b5b000140293d6",
-            "parentId": "5eeca635bfed7142cb30f7de",
-            "slotId": "mod_magazine"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e1",
-            "_tpl": "5c0e2f26d174af02a9625114",
-            "parentId": "5eeca635bfed7142cb30f7de",
-            "slotId": "mod_reciever"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e2",
-            "_tpl": "5c0e2f94d174af029f650d56",
-            "parentId": "5eeca635bfed7142cb30f7e1",
-            "slotId": "mod_barrel"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e3",
-            "_tpl": "5c0fafb6d174af02a96260ba",
-            "parentId": "5eeca635bfed7142cb30f7e2",
-            "slotId": "mod_muzzle"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e4",
-            "_tpl": "5ae30e795acfc408fb139a0b",
-            "parentId": "5eeca635bfed7142cb30f7e2",
-            "slotId": "mod_gas_block"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e5",
-            "_tpl": "5c0e2f5cd174af02a012cfc9",
-            "parentId": "5eeca635bfed7142cb30f7e1",
-            "slotId": "mod_handguard"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e6",
-            "_tpl": "5649be884bdc2d79388b4577",
-            "parentId": "5eeca635bfed7142cb30f7de",
-            "slotId": "mod_stock"
-        },
-        {
-            "_id": "5eeca635bfed7142cb30f7e7",
-            "_tpl": "5c0faf68d174af02a96260b8",
-            "parentId": "5eeca635bfed7142cb30f7de",
-            "slotId": "mod_charge"
-        },
-        {
             "_id": "5eeca635bfed7142cb30f7e9",
             "_tpl": "5c78f2882e22165df16b832e",
             "parentId": "hideout",
@@ -2608,6 +2646,42 @@
         }
     ],
     "barter_scheme": {
+        "SigMCX_Barter":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "56742c324bdc2d150f8b456d"
+                }
+            ],
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5bc9b720d4351e450201234b"
+                }
+            ]
+        ],
+        "Silencer12K": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "59e3647686f774176a362507"
+                }
+            ]
+        ],
+        "MagexG30": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5734770f24597738025ee254"
+                }
+            ],
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5d1c819a86f774771b0acd6c"
+                }
+            ]
+        ],
         "5eeca63dbfed7142cb30fd0d": [
             [
                 {
@@ -3798,14 +3872,6 @@
                 }
             ]
         ],
-        "5eeca635bfed7142cb30f7de": [
-            [
-                {
-                    "count": 1,
-                    "_tpl": "590a358486f77429692b2790"
-                }
-            ]
-        ],
         "5eeca635bfed7142cb30f7e9": [
             [
                 {
@@ -4142,7 +4208,7 @@
         "5eeca634bfed7142cb30f6e3": 3,
         "5eeca635bfed7142cb30f6e5": 2,
         "5eeca635bfed7142cb30f6e7": 1,
-        "5eeca635bfed7142cb30f6e9": 2,
+        "5eeca635bfed7142cb30f6e9": 1,
         "5eeca635bfed7142cb30f6eb": 1,
         "5eeca635bfed7142cb30f6f5": 2,
         "5eeca635bfed7142cb30f6f7": 2,
@@ -4159,7 +4225,7 @@
         "5eeca635bfed7142cb30f716": 3,
         "5eeca635bfed7142cb30f718": 2,
         "5eeca635bfed7142cb30f71a": 3,
-        "5eeca635bfed7142cb30f71c": 2,
+        "5eeca635bfed7142cb30f71c": 1,
         "5eeca635bfed7142cb30f71e": 3,
         "5eeca635bfed7142cb30f720": 4,
         "5eeca635bfed7142cb30f728": 3,
@@ -4178,7 +4244,7 @@
         "5eeca635bfed7142cb30f746": 3,
         "5eeca635bfed7142cb30f748": 2,
         "5eeca635bfed7142cb30f74a": 3,
-        "5eeca635bfed7142cb30f74c": 2,
+        "5eeca635bfed7142cb30f74c": 1,
         "5eeca635bfed7142cb30f74e": 2,
         "5eeca635bfed7142cb30f750": 1,
         "5eeca635bfed7142cb30f752": 2,
@@ -4216,7 +4282,7 @@
         "5eeca635bfed7142cb30f7a2": 2,
         "5eeca635bfed7142cb30f7a4": 1,
         "5eeca635bfed7142cb30f7a6": 2,
-        "5eeca635bfed7142cb30f7a8": 3,
+        "5eeca635bfed7142cb30f7a8": 1,
         "5eeca635bfed7142cb30f7aa": 3,
         "5eeca635bfed7142cb30f7ac": 4,
         "5eeca635bfed7142cb30f7ae": 3,
@@ -4235,7 +4301,7 @@
         "5eeca635bfed7142cb30f7c8": 2,
         "5eeca635bfed7142cb30f7ca": 2,
         "5eeca635bfed7142cb30f7cc": 4,
-        "5eeca635bfed7142cb30f7ce": 2,
+        "5eeca635bfed7142cb30f7ce": 1,
         "5eeca635bfed7142cb30f7d0": 2,
         "5eeca635bfed7142cb30f7d2": 3,
         "5eeca635bfed7142cb30f7d4": 2,
@@ -4243,7 +4309,6 @@
         "5eeca635bfed7142cb30f7d8": 4,
         "5eeca635bfed7142cb30f7da": 4,
         "5eeca635bfed7142cb30f7dc": 2,
-        "5eeca635bfed7142cb30f7de": 1,
         "5eeca635bfed7142cb30f7e9": 4,
         "5eeca635bfed7142cb30f7eb": 1,
         "5eeca635bfed7142cb30f7ed": 3,
@@ -4269,7 +4334,7 @@
         "5eeca635bfed7142cb30f81f": 2,
         "5eeca635bfed7142cb30f821": 3,
         "5eeca635bfed7142cb30f823": 3,
-        "5eeca635bfed7142cb30f832": 2,
+        "5eeca635bfed7142cb30f832": 1,
         "5eeca635bfed7142cb30f834": 1,
         "5eeca635bfed7142cb30f836": 1,
         "5eeca635bfed7142cb30f83b": 1,
@@ -4288,6 +4353,8 @@
         "rotor43": 3,
         "9mm_rip_box": 4,
         "5eeca63dbfed7142cb30fd0d": 2,
-        "5fd251c90d9c95034825edb6": 3
+        "5fd251c90d9c95034825edb6": 3,
+        "MagexG30": 2,
+        "SigMCX_Barter":2
     }
 }
