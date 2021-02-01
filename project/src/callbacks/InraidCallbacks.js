@@ -10,16 +10,6 @@
 
 class InraidCallbacks
 {
-    constructor()
-    {
-        save_f.server.onLoad["inraid"] = this.onLoad.bind(this);
-        https_f.router.addStaticRoute("/raid/map/name", "Aki", this.registerPlayer.bind(this));
-        https_f.router.addStaticRoute("/raid/profile/save", "Aki", this.saveProgress.bind(this));
-        https_f.router.addStaticRoute("/singleplayer/settings/raid/endstate", "Aki", this.getRaidEndState.bind(this));
-        https_f.router.addStaticRoute("/singleplayer/settings/weapon/durability", "Aki", this.getWeaponDurability.bind(this));
-        https_f.router.addStaticRoute("/singleplayer/settings/raid/menu", "Aki", this.getRaidMenuSettings.bind(this));
-    }
-
     onLoad(sessionID)
     {
         return inraid_f.controller.onLoad(sessionID);

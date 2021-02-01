@@ -10,13 +10,6 @@
 
 class BotCallbacks
 {
-    constructor()
-    {
-        https_f.router.addStaticRoute("/client/game/bot/generate", "Aki", this.generateBots.bind(this));
-        https_f.router.addDynamicRoute("/singleplayer/settings/bot/limit/", "Aki", this.getBotLimit.bind(this));
-        https_f.router.addDynamicRoute("/singleplayer/settings/bot/difficulty/", "Aki", this.getBotDifficulty.bind(this));
-    }
-
     getBotLimit(url, info, sessionID)
     {
         const splittedUrl = url.split("/");

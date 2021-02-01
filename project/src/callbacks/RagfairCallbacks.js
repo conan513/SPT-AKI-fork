@@ -16,16 +16,6 @@ class RagfairCallbacks
     {
         /* should be a config var, but might not be around for long */
         this.runInterval = 1 * 60;
-        core_f.packager.onLoad["loadRagfair"] = this.load.bind(this);
-        core_f.packager.onUpdate["ragfair-update-offers"] = this.update.bind(this);
-        core_f.packager.onUpdate["ragfair-process-playeroffers"] = this.updatePlayer.bind(this);
-        https_f.router.addStaticRoute("/client/ragfair/search", "Aki", this.search.bind(this));
-        https_f.router.addStaticRoute("/client/ragfair/find", "Aki", this.search.bind(this));
-        https_f.router.addStaticRoute("/client/ragfair/itemMarketPrice", "Aki", this.getMarketPrice.bind(this));
-        https_f.router.addStaticRoute("/client/items/prices", "Aki", this.getItemPrices.bind(this));
-        item_f.eventHandler.addEvent("RagFairAddOffer", "Aki", this.addOffer.bind(this));
-        item_f.eventHandler.addEvent("RagFairRemoveOffer", "Aki", this.removeOffer.bind(this));
-        item_f.eventHandler.addEvent("RagFairRenewOffer", "Aki", this.extendOffer.bind(this));
     }
 
     load()

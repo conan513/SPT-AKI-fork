@@ -10,33 +10,6 @@
 
 class MatchCallbacks
 {
-    constructor()
-    {
-        https_f.router.addStaticRoute("/client/friend/request/send", "Aki", this.friendRequest.bind(this));
-        https_f.router.addStaticRoute("/raid/profile/list", "Aki", this.getProfile.bind(this));
-        https_f.router.addStaticRoute("/client/match/available", "Aki", this.serverAvailable.bind(this));
-        https_f.router.addStaticRoute("/client/match/updatePing", "Aki", this.updatePing.bind(this));
-        https_f.router.addStaticRoute("/client/match/join", "Aki", this.joinMatch.bind(this));
-        https_f.router.addStaticRoute("/client/match/exit", "Aki", this.exitMatch.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/create", "Aki", this.createGroup.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/delete", "Aki", this.deleteGroup.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/status", "Aki", this.getGroupStatus.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/start_game", "Aki", this.joinMatch.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/exit_from_menu", "Aki", this.exitToMenu.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/looking/start", "Aki", this.startGroupSearch.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/looking/stop", "Aki", this.stopGroupSearch.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/invite/send", "Aki", this.sendGroupInvite.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/invite/accept", "Aki", this.acceptGroupInvite.bind(this));
-        https_f.router.addStaticRoute("/client/match/group/invite/cancel", "Aki", this.cancelGroupInvite.bind(this));
-        https_f.router.addStaticRoute("/client/putMetrics", "Aki", this.putMetrics.bind(this));
-        https_f.router.addStaticRoute("/client/getMetricsConfig", "Aki", this.getMetrics.bind(this));
-    }
-
-    friendRequest(url, request, sessionID)
-    {
-        return https_f.response.nullResponse();
-    }
-
     updatePing(url, info, sessionID)
     {
         return https_f.response.nullResponse();

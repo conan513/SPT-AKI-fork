@@ -10,11 +10,6 @@
 
 class RepairCallbacks
 {
-    constructor()
-    {
-        item_f.eventHandler.addEvent("Repair", "Aki", this.repair.bind(this));
-    }
-
     repair(pmcData, body, sessionID)
     {
         return repair_f.controller.repair(pmcData, body, sessionID);

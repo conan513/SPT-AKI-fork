@@ -1,4 +1,3 @@
-
 interface Quest
 {
     rewards: {
@@ -14,6 +13,7 @@ interface QuestRewardList
 {
     [index: string]: QuestReward;
 }
+
 interface QuestReward
 {
     type: string;
@@ -21,6 +21,7 @@ interface QuestReward
     target: string;
     mods: itemTemplate[];
 }
+
 interface QuestConditionsList
 {
     Fail: any;
@@ -40,6 +41,7 @@ interface QuestSuccessCriteria
     _parent;
 
 }
+
 interface QuestAvailableForFinishConditions extends QuestSuccessCriteria
 {
     _parent: "FindItem" | "CounterCreator" | "HandoverItem" | "PlaceBeacon";
@@ -58,4 +60,3 @@ interface PlayerQuest
     statusTimers: unknown;
     startTime: number;
 }
-

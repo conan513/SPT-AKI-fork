@@ -10,23 +10,6 @@
 
 class InventoryCallbacks
 {
-    constructor()
-    {
-        item_f.eventHandler.addEvent("Move", "Aki", this.moveItem.bind(this));
-        item_f.eventHandler.addEvent("Remove", "Aki", this.removeItem.bind(this));
-        item_f.eventHandler.addEvent("Split", "Aki", this.splitItem.bind(this));
-        item_f.eventHandler.addEvent("Merge", "Aki", this.mergeItem.bind(this));
-        item_f.eventHandler.addEvent("Transfer", "Aki", this.transferItem.bind(this));
-        item_f.eventHandler.addEvent("Swap", "Aki", this.swapItem.bind(this));
-        item_f.eventHandler.addEvent("Fold", "Aki", this.foldItem.bind(this));
-        item_f.eventHandler.addEvent("Toggle", "Aki", this.toggleItem.bind(this));
-        item_f.eventHandler.addEvent("Tag", "Aki", this.tagItem.bind(this));
-        item_f.eventHandler.addEvent("Bind", "Aki", this.bindItem.bind(this));
-        item_f.eventHandler.addEvent("Examine", "Aki", this.examineItem.bind(this));
-        item_f.eventHandler.addEvent("ReadEncyclopedia", "Aki", this.readEncyclopedia.bind(this));
-        item_f.eventHandler.addEvent("ApplyInventoryChanges", "Aki", this.sortInventory.bind(this));
-    }
-
     moveItem(pmcData, body, sessionID)
     {
         return inventory_f.controller.moveItem(pmcData, body, sessionID);

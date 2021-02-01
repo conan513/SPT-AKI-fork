@@ -10,13 +10,6 @@
 
 class NoteCallbacks
 {
-    constructor()
-    {
-        item_f.eventHandler.addEvent("AddNote", "Aki", this.addNote.bind(this));
-        item_f.eventHandler.addEvent("EditNote", "Aki", this.editNote.bind(this));
-        item_f.eventHandler.addEvent("DeleteNote", "Aki", this.deleteNote.bind(this));
-    }
-
     addNote(pmcData, body, sessionID)
     {
         return note_f.controller.addNote(pmcData, body, sessionID);

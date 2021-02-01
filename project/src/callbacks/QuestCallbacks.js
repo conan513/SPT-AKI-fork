@@ -11,14 +11,6 @@
 
 class QuestCallbacks
 {
-    constructor()
-    {
-        https_f.router.addStaticRoute("/client/quest/list", "Aki", this.listQuests.bind(this));
-        item_f.eventHandler.addEvent("QuestAccept", "Aki", this.acceptQuest.bind(this));
-        item_f.eventHandler.addEvent("QuestComplete", "Aki", this.completeQuest.bind(this));
-        item_f.eventHandler.addEvent("QuestHandover", "Aki", this.handoverQuest.bind(this));
-    }
-
     acceptQuest(pmcData, body, sessionID)
     {
         return quest_f.controller.acceptQuest(pmcData, body, sessionID);

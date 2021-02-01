@@ -37,8 +37,6 @@ interface UserPMCProfile {
         GlobalWipe: boolean;
         NicknameChangeDate: number;
         Bans: [];
-
-
     };
     Inventory: {
         items: itemTemplate[];

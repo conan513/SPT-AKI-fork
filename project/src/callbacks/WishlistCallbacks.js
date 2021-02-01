@@ -11,12 +11,6 @@
 
 class WishlistCallbacks
 {
-    constructor()
-    {
-        item_f.eventHandler.addEvent("AddToWishList", "Aki", this.addToWishlist.bind(this));
-        item_f.eventHandler.addEvent("RemoveFromWishList", "Aki", this.removeFromWishlist.bind(this));
-    }
-
     addToWishlist(pmcData, body, sessionID)
     {
         return wishList_f.controller.addToWishList(pmcData, body, sessionID);

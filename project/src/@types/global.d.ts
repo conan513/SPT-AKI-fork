@@ -40,9 +40,11 @@ declare var pkgs: Record<string, akiPackage>;
 interface pkgThing {
 
 }
+
 interface akiPkgLookup {
 
 }
+
 interface akiPackage {
     helpFunctions: any;
     eventHandler: any;
@@ -73,10 +75,7 @@ interface akiCore_f {
     packager: Packager
 }
 
-
 declare var hash: string;
-
-
 
 interface HashDictionary {
     [index: string]: object;
@@ -87,7 +86,6 @@ enum Currency {
     USD = "5696686a4bdc2da3298b456a",
     RUB = "5449016a4bdc2d6f028b456f",
 }
-
 
 interface TemplateLookup {
     items: {

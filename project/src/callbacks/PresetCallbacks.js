@@ -11,11 +11,6 @@
 
 class PresetCallbacks
 {
-    constructor()
-    {
-        core_f.packager.onLoad["loadPresets"] = this.load.bind(this);
-    }
-
     load()
     {
         preset_f.controller.initialize();
