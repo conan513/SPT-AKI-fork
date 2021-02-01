@@ -10,7 +10,7 @@
 
 const process = require("process");
 const watermark = require("./utils/Watermark");
-const app = require("./utils/App");
+const App = require("./utils/App");
 
 class Program
 {
@@ -21,16 +21,16 @@ class Program
         process.title = "SPT-AKI Server";
 
         // show watermark
-        watermark.instance.setTitle();
-        watermark.instance.resetCursor();
-        watermark.instance.draw();
+        watermark.setTitle();
+        watermark.resetCursor();
+        watermark.draw();
 
         // import classes
         require("./Lib");
         require("./Bindings");
 
         // load and execute all packages
-        app.load();
+        App.load();
     }
 }
 

@@ -12,7 +12,7 @@ class HttpCallbacks
 {
     static load()
     {
-        https_f.server.load();        
+        https_f.server.load();
     }
 
     static sendImage(sessionID, req, resp, body)

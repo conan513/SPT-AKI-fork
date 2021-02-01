@@ -10,40 +10,37 @@
 
 class Watermark
 {
-    constructor()
-    {
-        this.name = "SPT-AKI";
-        this.version = "R8";
-        this.url = "https://www.guilded.gg/senkospub";
-        this.colors = {
-            "front": "\x1b[33m",    // gold
-            "back": "\x1b[40m"      // black
-        };
-        this.text = [
-            `${this.name} ${this.version}`,
-            `${this.url}`
-        ];
-    }
+    static project = "SPT-AKI";
+    static version = "R8";
+    static url = "https://www.guilded.gg/senkospub";
+    static colors = {
+        "front": "\x1b[33m",    // gold
+        "back": "\x1b[40m"      // black
+    };
+    static text = [
+        `${Watermark.project} ${Watermark.version}`,
+        `${Watermark.url}`
+    ];
 
     /** Set window title */
-    setTitle()
+    static setTitle()
     {
-        process.title = `${this.name} ${this.version}`;
+        process.title = `${Watermark.project} ${Watermark.version}`;
     }
 
     /** Reset console cursor to top */
-    resetCursor()
+    static resetCursor()
     {
         process.stdout.write("\u001B[2J\u001B[0;0f");
     }
 
     /** Draw the watermark */
-    draw()
+    static draw()
     {
         let result = [];
 
         // calculate size
-        const longestLength = this.text.reduce((a, b) =>
+        const longestLength = Watermark.text.reduce((a, b) =>
         {
             return a.length > b.length ? a : b;
         }).length;
@@ -59,7 +56,7 @@ class Watermark
         // get watermark to draw
         result.push(`┌─${line}─┐`);
 
-        for (const text of this.text)
+        for (const text of Watermark.text)
         {
             const spacingSize = longestLength - text.length;
             let spacingText = text;
@@ -77,9 +74,9 @@ class Watermark
         // draw the watermark
         for (const text of result)
         {
-            console.log(`${this.colors.front + this.colors.back}${text}\x1b[0m`);
+            console.log(`${Watermark.colors.front + Watermark.colors.back}${text}\x1b[0m`);
         }
     }
 }
 
-module.exports.instance = new Watermark();
+module.exports = Watermark;

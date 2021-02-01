@@ -1,5 +1,5 @@
 // utils
-const app = require("./utils/App");
+const App = require("./utils/App");
 const DatabaseImporter = require("./utils/DatabaseImporter");
 
 // callbacks
@@ -35,7 +35,7 @@ const WeatherCallbacks = require("./callbacks/WeatherCallbacks");
 const WishlistCallbacks = require("./callbacks/WishlistCallbacks");
 
 // server load
-app.onLoad = {
+App.onLoad = {
     "aki-database": DatabaseImporter.load,
     "aki-certs": CertCallbacks.load,
     "aki-https": HttpCallbacks.load,
@@ -47,7 +47,7 @@ app.onLoad = {
 };
 
 // server update
-app.onUpdate = {
+App.onUpdate = {
     "aki-dialogue": DialogueCallbacks.update,
     "aki-hideout": HideoutCallbacks.update,
     "aki-insurance": InsuranceCallbacks.update,

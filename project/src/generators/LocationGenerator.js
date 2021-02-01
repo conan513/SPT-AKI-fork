@@ -172,7 +172,7 @@ class LocationGenerator
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };
 
-                for (var p in preset._items)
+                for (let p in preset._items)
                 {
                     items.push(preset._items[p]);
 
