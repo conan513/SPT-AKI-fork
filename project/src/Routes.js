@@ -1,5 +1,6 @@
 // utils
 const app = require("./utils/App");
+const DatabaseImporter = require("./utils/DatabaseImporter");
 
 // callbacks
 const BotCallbacks = require("./callbacks/BotCallbacks");
@@ -32,37 +33,44 @@ const TradeCallbacks = require("./callbacks/TradeCallbacks");
 const TraderCallbacks = require("./callbacks/TraderCallbacks");
 const WeatherCallbacks = require("./callbacks/WeatherCallbacks");
 const WishlistCallbacks = require("./callbacks/WishlistCallbacks");
-const DatabaseImporter = require("./utils/DatabaseImporter");
 
 // server load
-app.onLoad["aki-certs"] = CertCallbacks.load;
-app.onLoad["aki-https"] = HttpCallbacks.load;
-app.onLoad["aki-mods"] = ModCallbacks.load;
-app.onLoad["aki-presets"] = PresetCallbacks.load;
-app.onLoad["aki-ragfair"] = RagfairCallbacks.load;
-app.onLoad["aki-save"] = SaveCallbacks.load;
-app.onLoad["aki-traders"] = TraderCallbacks.load;
-app.onLoad["aki-database"] = DatabaseImporter.load;
+app.onLoad = {
+    "aki-database": DatabaseImporter.load.bind(DatabaseImporter),
+    "aki-certs": CertCallbacks.load,
+    "aki-https": HttpCallbacks.load,
+    "aki-mods": ModCallbacks.load,
+    "aki-presets": PresetCallbacks.load,
+    "aki-ragfair": RagfairCallbacks.load,
+    "aki-save": SaveCallbacks.load,
+    "aki-traders": TraderCallbacks.load
+};
 
 // server update
-app.onUpdate["aki-dialogue"] = DialogueCallbacks.update;
-app.onUpdate["aki-hideout"] = HideoutCallbacks.update;
-app.onUpdate["aki-insurance"] = InsuranceCallbacks.update;
-app.onUpdate["aki-ragfair-offers"] = RagfairCallbacks.update;
-app.onUpdate["aki-ragfair-player"] = RagfairCallbacks.updatePlayer;
-app.onUpdate["aki-traders"] = TraderCallbacks.update;
+app.onUpdate = {
+    "aki-dialogue": DialogueCallbacks.update,
+    "aki-hideout": HideoutCallbacks.update,
+    "aki-insurance": InsuranceCallbacks.update,
+    "aki-ragfair-offers": RagfairCallbacks.update,
+    "aki-ragfair-player": RagfairCallbacks.updatePlayer,
+    "aki-traders": TraderCallbacks.update
+};
 
 // saves load
-save_f.server.onLoad["aki-health"] = HealthCallbacks.onLoad;
-save_f.server.onLoad["aki-inraid"] = InraidCallbacks.onLoad;
-save_f.server.onLoad["aki-insurance"] = InsuranceCallbacks.onLoad;
-save_f.server.onLoad["aki-profile"] = ProfileCallbacks.onLoad;
+save_f.server.onLoad = {
+    "aki-health": HealthCallbacks.onLoad,
+    "aki-inraid": InraidCallbacks.onLoad,
+    "aki-insurance": InsuranceCallbacks.onLoad,
+    "aki-profile": ProfileCallbacks.onLoad
+};
 
 // server respond
-https_f.server.onRespond["CERT_BIN"] = CertCallbacks.sendBinary;
-https_f.server.onRespond["IMAGE"] = HttpCallbacks.sendImage;
-https_f.server.onRespond["BUNDLE"] = ModCallbacks.sendBundle;
-https_f.server.onReceive["SAVE"] = SaveCallbacks.save;
+https_f.server.onRespond = {
+    "CERT_BIN": CertCallbacks.sendBinary,
+    "IMAGE": HttpCallbacks.sendImage,
+    "BUNDLE": ModCallbacks.sendBundle,
+    "SAVE": SaveCallbacks.save
+}
 
 // Static routes
 https_f.router.addStaticRoute("/client/game/bot/generate", "Aki", BotCallbacks.generateBots);
