@@ -32,7 +32,6 @@ class ProfileCallbacks
         return https_f.response.getBody([profile_f.controller.generateScav(sessionID)]);
     }
 
-    /// --- TODO: USE LOCALIZED STRINGS --- ///
     static changeNickname(url, info, sessionID)
     {
         const output = profile_f.controller.changeNickname(info, sessionID);
