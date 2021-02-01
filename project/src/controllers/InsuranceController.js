@@ -300,7 +300,7 @@ class InsuranceController
                     }
                 }
 
-                for (var pos = insured.items.length - 1; pos >= 0; --pos)
+                for (let pos = insured.items.length - 1; pos >= 0; --pos)
                 {
                     if (toDelete.includes(insured.items[pos]._id))
                     {
