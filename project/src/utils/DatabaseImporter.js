@@ -9,6 +9,8 @@
 
 "use strict";
 
+const VFS = require("./VFS");
+
 class DatabaseImporter
 {
     static load()
@@ -23,14 +25,14 @@ class DatabaseImporter
         let result = {};
 
         // get all filepaths
-        const files = vfs.getFiles(filepath);
-        const directories = vfs.getDirs(filepath);
+        const files = VFS.getFiles(filepath);
+        const directories = VFS.getDirs(filepath);
 
         // add file content to result
         for (const file of files)
         {
             const filename = file.split(".").slice(0, -1).join(".");
-            result[filename] = JsonUtil.deserialize(vfs.readFile(`${filepath}${file}`));
+            result[filename] = JsonUtil.deserialize(VFS.readFile(`${filepath}${file}`));
         }
 
         // deep tree search
@@ -44,7 +46,7 @@ class DatabaseImporter
 
     static loadImages(filepath)
     {
-        const dirs = vfs.getDirs(filepath);
+        const dirs = VFS.getDirs(filepath);
         const routes = [
             "/files/CONTENT/banners/",
             "/files/handbook/",
@@ -55,7 +57,7 @@ class DatabaseImporter
 
         for (const i in dirs)
         {
-            const files = vfs.getFiles(`${filepath}${dirs[i]}`);
+            const files = VFS.getFiles(`${filepath}${dirs[i]}`);
 
             for (const file of files)
             {

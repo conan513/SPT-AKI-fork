@@ -1,4 +1,3 @@
-globalThis.vfs = require("./utils/VFS");
 globalThis.JsonUtil = require("./utils/JsonUtil");
 globalThis.HashUtil = require("./utils/HashUtil");
 globalThis.RandomUtil = require("./utils/RandomUtil");

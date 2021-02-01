@@ -13,6 +13,7 @@
 
 const selfsigned = require("selfsigned");
 const sudo = require("sudo-prompt");
+const VFS = require("../utils/VFS");
 
 class CertController
 {
@@ -49,17 +50,17 @@ class CertController
 
     readCerts()
     {
-        if (!vfs.exists(this.certDir))
+        if (!VFS.exists(this.certDir))
         {
-            vfs.createDir(this.certDir);
+            VFS.createDir(this.certDir);
         }
 
-        if (vfs.exists(this.certFile) && vfs.exists(this.keyFile))
+        if (VFS.exists(this.certFile) && VFS.exists(this.keyFile))
         {
             try
             {
-                const cert = vfs.readFile(this.certFile);
-                const key = vfs.readFile(this.keyFile);
+                const cert = VFS.readFile(this.certFile);
+                const key = VFS.readFile(this.keyFile);
                 return { "cert": cert, "key": key };
             }
             catch (e)
@@ -78,8 +79,8 @@ class CertController
         let fingerprint;
 
         ({ cert, "private": key, fingerprint } = selfsigned.generate([{ "name": "commonName", "value": https_f.config.ip }], { "days": 365 }));
-        vfs.writeFile(this.certFile, cert);
-        vfs.writeFile(this.keyFile, key);
+        VFS.writeFile(this.certFile, cert);
+        VFS.writeFile(this.keyFile, key);
         Logger.info(`Generated self-signed x509 certificate ${fingerprint}`);
 
         if (process.platform === "linux")
