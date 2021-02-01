@@ -10,15 +10,6 @@
 
 class HealthCallbacks
 {
-    constructor()
-    {
-        save_f.server.onLoad["health"] = this.onLoad.bind(this);
-        https_f.router.addStaticRoute("/player/health/sync", "Aki", this.syncHealth.bind(this));
-        item_f.eventHandler.addEvent("Eat", "Aki", this.offraidEat.bind(this));
-        item_f.eventHandler.addEvent("Heal", "Aki", this.offraidHeal.bind(this));
-        item_f.eventHandler.addEvent("RestoreHealth", "Aki", this.healthTreatment.bind(this));
-    }
-
     onLoad(sessionID)
     {
         return health_f.controller.resetVitality(sessionID);

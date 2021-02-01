@@ -15,13 +15,10 @@ class CertCallbacks
         this.endPoint = "/certs/get";
         this.certFilename = "cert.pem";
         this.isAttachment = true;
-        core_f.packager.onLoad["aki-certs"] = this.load.bind(this);
     }
 
     load()
     {
-        https_f.router.addStaticRoute(this.endPoint, "Aki", this.registerBinary.bind(this));
-        https_f.server.onRespond["CERT_BIN"] = this.sendBinary.bind(this);
         certs_f.controller.load();
     }
 

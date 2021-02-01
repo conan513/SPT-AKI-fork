@@ -10,20 +10,6 @@
 
 class HideoutCallbacks
 {
-    constructor()
-    {
-        core_f.packager.onUpdate["hideout"] = this.update.bind(this);
-        item_f.eventHandler.addEvent("HideoutUpgrade", "Aki", this.upgrade.bind(this));
-        item_f.eventHandler.addEvent("HideoutUpgradeComplete", "Aki", this.upgradeComplete.bind(this));
-        item_f.eventHandler.addEvent("HideoutPutItemsInAreaSlots", "Aki", this.putItemsInAreaSlots.bind(this));
-        item_f.eventHandler.addEvent("HideoutTakeItemsFromAreaSlots", "Aki", this.takeItemsFromAreaSlots.bind(this));
-        item_f.eventHandler.addEvent("HideoutToggleArea", "Aki", this.toggleArea.bind(this));
-        item_f.eventHandler.addEvent("HideoutSingleProductionStart", "Aki", this.singleProductionStart.bind(this));
-        item_f.eventHandler.addEvent("HideoutScavCaseProductionStart", "Aki", this.scavCaseProductionStart.bind(this));
-        item_f.eventHandler.addEvent("HideoutContinuousProductionStart", "Aki", this.continuousProductionStart.bind(this));
-        item_f.eventHandler.addEvent("HideoutTakeProduction", "Aki", this.takeProduction.bind(this));
-    }
-
     upgrade(pmcData, body, sessionID)
     {
         return hideout_f.controller.upgrade(pmcData, body, sessionID);

@@ -26,6 +26,7 @@ class Program
 
         // import classes
         require("./Lib");
+        require("./Routes");
 
         // load and execute all packages
         core_f.packager.load();

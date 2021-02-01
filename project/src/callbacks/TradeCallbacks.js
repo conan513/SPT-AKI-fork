@@ -11,12 +11,6 @@
 
 class TradeCallbacks
 {
-    constructor()
-    {
-        item_f.eventHandler.addEvent("TradingConfirm", "Aki", this.processTrade.bind(this));
-        item_f.eventHandler.addEvent("RagFairBuyOffer", "Aki", this.processRagfairTrade.bind(this));
-    }
-
     processTrade(pmcData, body, sessionID)
     {
         return trade_f.controller.confirmTrading(pmcData, body, sessionID);

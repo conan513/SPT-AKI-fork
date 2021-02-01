@@ -179,8 +179,6 @@ globalThis["match_f"] = {
     "callbacks": require("./callbacks/MatchCallbacks.js")
 };
 
-
-
 globalThis["mods_f"] = {
     "loader": require("./controllers/ModController.js"),
     "callbacks": require("./callbacks/ModCallbacks.js")

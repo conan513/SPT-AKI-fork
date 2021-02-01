@@ -10,17 +10,6 @@
 
 class GameCallbacks
 {
-    constructor()
-    {
-        https_f.router.addStaticRoute("/client/game/config", "Aki", this.getGameConfig.bind(this));
-        https_f.router.addStaticRoute("/client/server/list", "Aki", this.getServer.bind(this));
-        https_f.router.addStaticRoute("/client/game/version/validate", "Aki", this.versionValidate.bind(this));
-        https_f.router.addStaticRoute("/client/game/start", "Aki", this.gameStart.bind(this));
-        https_f.router.addStaticRoute("/client/game/logout", "Aki", this.gameLogout.bind(this));
-        https_f.router.addStaticRoute("/client/checkVersion", "Aki", this.validateGameVersion.bind(this));
-        https_f.router.addStaticRoute("/client/game/keepalive", "Aki", this.gameKeepalive.bind(this));
-    }
-
     versionValidate(url, info, sessionID)
     {
         return https_f.response.nullResponse();

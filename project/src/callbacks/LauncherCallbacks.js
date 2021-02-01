@@ -10,19 +10,6 @@
 
 class LauncherCallbacks
 {
-    constructor()
-    {
-        // TODO: REFACTOR THIS
-        https_f.router.addStaticRoute("/launcher/server/connect", "Aki", this.connect.bind(this));
-        https_f.router.addStaticRoute("/launcher/profile/login", "Aki", this.login.bind(this));
-        https_f.router.addStaticRoute("/launcher/profile/register", "Aki", this.register.bind(this));
-        https_f.router.addStaticRoute("/launcher/profile/get", "Aki", this.get.bind(this));
-        https_f.router.addStaticRoute("/launcher/profile/change/username", "Aki", this.changeUsername.bind(this));
-        https_f.router.addStaticRoute("/launcher/profile/change/password", "Aki", this.changePassword.bind(this));
-        https_f.router.addStaticRoute("/launcher/profile/change/wipe", "Aki", this.wipe.bind(this));
-    }
-
-    // TODO: REFACTOR THIS
     connect()
     {
         return https_f.response.noBody({
