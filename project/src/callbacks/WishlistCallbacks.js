@@ -9,16 +9,18 @@
 
 "use strict";
 
+const WishlistController = require("../controllers/WishlistController");
+
 class WishlistCallbacks
 {
     static addToWishlist(pmcData, body, sessionID)
     {
-        return wishList_f.controller.addToWishList(pmcData, body, sessionID);
+        return WishlistController.addToWishList(pmcData, body, sessionID);
     }
 
     static removeFromWishlist(pmcData, body, sessionID)
     {
-        return wishList_f.controller.removeFromWishList(pmcData, body, sessionID);
+        return WishlistController.removeFromWishList(pmcData, body, sessionID);
     }
 }
 

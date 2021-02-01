@@ -13,6 +13,7 @@ const fs = require("fs");
 const zlib = require("zlib");
 const https = require("https");
 const WebSocket = require("ws");
+const CertController = require("../controllers/CertController");
 
 class HttpServer
 {
@@ -23,15 +24,15 @@ class HttpServer
         this.onRespond = {};
         this.webSockets = {};
         this.mime = {
-            css:"text/css",
-            bin: "application/octet-stream",
-            html: "text/html",
-            jpg: "image/jpeg",
-            js: "text/javascript",
-            json: "application/json",
-            png: "image/png",
-            svg: "image/svg+xml",
-            txt: "text/plain",
+            "css": "text/css",
+            "bin": "application/octet-stream",
+            "html": "text/html",
+            "jpg": "image/jpeg",
+            "js": "text/javascript",
+            "json": "application/json",
+            "png": "image/png",
+            "svg": "image/svg+xml",
+            "txt": "text/plain",
         };
     }
 
@@ -238,31 +239,19 @@ class HttpServer
     load()
     {
         /* create server */
-        const instance = https.createServer(certs_f.controller.getCerts(), (req, res) =>
+        this.instance = https.createServer(CertController.getCerts(), (req, res) =>
         {
             this.handleRequest(req, res);
-        }).listen(https_f.config.port, https_f.config.ip, () =>
+        });
+        
+        this.instance.listen(https_f.config.port, https_f.config.ip, () =>
         {
             Logger.success(`Started webserver at ${this.getBackendUrl()}`);
         });
-        this.instance = instance;
-
-        // Setting up websocket
-        const wss = new WebSocket.Server({
-            server: this.instance
-        });
-        this.wss = wss;
-
-        this.wss.addListener("listening", () =>
-        {
-            Logger.success("Started websocket");
-        });
-
-        this.wss.addListener("connection", this.wsOnConnection.bind(this));
-
-        /* server is already running or program using privileged port without root */
+        
         this.instance.on("error", (e) =>
         {
+            /* server is already running or program using privileged port without root */
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
             {
                 Logger.error("Non-root processes cannot bind to ports below 1024");
@@ -272,24 +261,40 @@ class HttpServer
                 Logger.error(`Port ${e.port} is already in use, check if the server isn't already running`);
             }
         });
+
+        // Setting up websocket
+        this.wss = new WebSocket.Server({
+            "server": this.instance
+        });
+        
+        this.wss.addListener("listening", () =>
+        {
+            Logger.success("Started websocket");
+        });
+        
+        this.wss.addListener("connection", this.wsOnConnection.bind(this));
     }
 
     wsOnConnection(ws, req)
     {
         // Strip request and break it into sections
-        let splitUrl = req.url.replace(/\?.*$/, "").split("/"),
-            sessionID = splitUrl.pop();
+        let splitUrl = req.url.replace(/\?.*$/, "").split("/");
+        let sessionID = splitUrl.pop();
 
         Logger.info(`[WS] Player: ${sessionID} has connected`);
+
         ws.on("message", function message(msg)
         {
             // doesn't reach here
             Logger.info(`Received message ${msg} from user ${sessionID}`);
         });
+
         this.webSockets[sessionID] = ws;
+
         let pingHandler = setInterval(() =>
         {
             Logger.debug(`[WS] Pinging player: ${sessionID}`);
+
             if (ws.readyState === WebSocket.OPEN)
             {
                 ws.send(JSON.stringify(notifier_f.controller.defaultMessage));

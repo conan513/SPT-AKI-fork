@@ -15,7 +15,7 @@ class WishlistController
     *  input: playerProfileData, Request body
     *  output: OK (saved profile)
     * */
-    addToWishList(pmcData, body, sessionID)
+    static addToWishList(pmcData, body, sessionID)
     {
         for (let item in pmcData["Wishlist"])
         {
@@ -35,7 +35,7 @@ class WishlistController
     *  input: playerProfileData, Request body
     *  output: OK (saved profile)
     * */
-    removeFromWishList(pmcData, body, sessionID)
+    static removeFromWishList(pmcData, body, sessionID)
     {
         for (let i = 0; i < pmcData.WishList.length; i++)
         {
@@ -49,4 +49,4 @@ class WishlistController
     }
 }
 
-module.exports = new WishlistController();
+module.exports = WishlistController;

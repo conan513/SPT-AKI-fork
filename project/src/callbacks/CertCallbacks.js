@@ -8,11 +8,13 @@
 
 "use strict";
 
+const CertController = require("../controllers/CertController");
+
 class CertCallbacks
 {
     static load()
     {
-        certs_f.controller.load();
+        CertController.load();
     }
 
     static registerBinary(url, info, sessionID)
@@ -22,7 +24,7 @@ class CertCallbacks
 
     static sendBinary(sessionID, req, resp, body)
     {
-        const certs = certs_f.controller.getCerts();
+        const certs = CertController.getCerts();
         const isAttachment = true;
         const sendType = isAttachment ? "attachment" : "inline";
 

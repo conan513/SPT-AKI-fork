@@ -10,10 +10,6 @@ globalThis.InventoryHelper = require("./helpers/InventoryHelper");
 globalThis.ContainerHelper = require("./helpers/ContainerHelper");
 globalThis.Mods = require("./controllers/ModController");
 
-globalThis["certs_f"] = {
-    "controller": require("./controllers/CertController.js")
-};
-
 globalThis["https_f"] = {
     "config": require("./configs/HttpConfig.json"),
     "response": require("./utils/HttpResponse.js"),
@@ -72,17 +68,9 @@ globalThis["quest_f"] = {
     "controller": require("./controllers/QuestController.js")
 };
 
-globalThis["note_f"] = {
-    "controller": require("./controllers/NoteController.js")
-};
-
 globalThis["inventory_f"] = {
     "config": require("./configs/InventoryConfig.json"),
     "controller": require("./controllers/InventoryController.js")
-};
-
-globalThis["wishList_f"] = {
-    "controller": require("./controllers/WishlistController.js")
 };
 
 globalThis["trade_f"] = {
