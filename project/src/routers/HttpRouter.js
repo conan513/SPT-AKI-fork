@@ -16,18 +16,6 @@ class HttpRouter
         this.onDynamicRoute = {};
     }
 
-    addStaticRoute(route, name, callback)
-    {
-        this.onStaticRoute[route] = this.onStaticRoute[route] || {};
-        this.onStaticRoute[route][name] = callback;
-    }
-
-    addDynamicRoute(route, name, callback)
-    {
-        this.onDynamicRoute[route] = this.onDynamicRoute[route] || {};
-        this.onDynamicRoute[route][name] = callback;
-    }
-
     getResponse(req, info, sessionID)
     {
         let output = "";

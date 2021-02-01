@@ -10,11 +10,6 @@
 
 class MatchCallbacks
 {
-    friendRequest(url, request, sessionID)
-    {
-        return https_f.response.nullResponse();
-    }
-
     updatePing(url, info, sessionID)
     {
         return https_f.response.nullResponse();

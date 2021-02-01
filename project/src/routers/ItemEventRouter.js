@@ -17,12 +17,6 @@ class ItemEventRouter
         this.resetOutput();
     }
 
-    addEvent(action, name, callback)
-    {
-        this.onEvent[action] = this.onEvent[action] || {};
-        this.onEvent[action][name] = callback;
-    }
-
     /**
      * @param {{ data: any; }} info
      * @param {string} sessionID
