@@ -10,22 +10,22 @@
 
 class GameCallbacks
 {
-    versionValidate(url, info, sessionID)
+    static versionValidate(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    gameStart(url, info, sessionID)
+    static gameStart(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    gameLogout(url, info, sessionID)
+    static gameLogout(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    getGameConfig(url, info, sessionID)
+    static getGameConfig(url, info, sessionID)
     {
         return https_f.response.getBody({
             "queued": false,
@@ -47,7 +47,7 @@ class GameCallbacks
         });
     }
 
-    getServer(url, info, sessionID)
+    static getServer(url, info, sessionID)
     {
         return https_f.response.getBody([
             {
@@ -57,7 +57,7 @@ class GameCallbacks
         ]);
     }
 
-    validateGameVersion(url, info, sessionID)
+    static validateGameVersion(url, info, sessionID)
     {
         return https_f.response.getBody({
             "isvalid": true,
@@ -65,10 +65,12 @@ class GameCallbacks
         });
     }
 
-    gameKeepalive(url, info, sessionID)
+    static gameKeepalive(url, info, sessionID)
     {
-        return https_f.response.getBody({ "msg": "OK" });
+        return https_f.response.getBody({
+            "msg": "OK"
+        });
     }
 }
 
-module.exports = new GameCallbacks();
+module.exports = GameCallbacks;

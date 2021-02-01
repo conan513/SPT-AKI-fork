@@ -10,7 +10,7 @@
 
 class CustomizationCallbacks
 {
-    getSuits(url, info, sessionID)
+    static getSuits(url, info, sessionID)
     {
         return https_f.response.getBody({
             "_id": `pmc${sessionID}`,
@@ -18,7 +18,7 @@ class CustomizationCallbacks
         });
     }
 
-    getTraderSuits(url, info, sessionID)
+    static getTraderSuits(url, info, sessionID)
     {
         let splittedUrl = url.split("/");
         let traderID = splittedUrl[splittedUrl.length - 2];
@@ -26,16 +26,15 @@ class CustomizationCallbacks
         return https_f.response.getBody(customization_f.controller.getTraderSuits(traderID, sessionID));
     }
 
-    wearClothing(pmcData, body, sessionID)
+    static wearClothing(pmcData, body, sessionID)
     {
         return customization_f.controller.wearClothing(pmcData, body, sessionID);
     }
 
-    buyClothing(pmcData, body, sessionID)
+    static buyClothing(pmcData, body, sessionID)
     {
         return customization_f.controller.buyClothing(pmcData, body, sessionID);
     }
 }
 
-
-module.exports = new CustomizationCallbacks();
+module.exports = CustomizationCallbacks;

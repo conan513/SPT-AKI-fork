@@ -11,10 +11,10 @@
 
 class PresetCallbacks
 {
-    load()
+    static load()
     {
         preset_f.controller.initialize();
     }
 }
 
-module.exports = new PresetCallbacks();
+module.exports = PresetCallbacks;

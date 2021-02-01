@@ -36,471 +36,470 @@ const WishlistCallbacks = require("./callbacks/WishlistCallbacks");
 
 // server load
 app.onLoad = {
-    "aki-database": DatabaseImporter.load.bind(DatabaseImporter),
-    "aki-certs": CertCallbacks.load.bind(CertCallbacks),
-    "aki-https": HttpCallbacks.load.bind(HttpCallbacks),
-    "aki-mods": ModCallbacks.load.bind(ModCallbacks),
-    "aki-presets": PresetCallbacks.load.bind(PresetCallbacks),
-    "aki-ragfair": RagfairCallbacks.load.bind(RagfairCallbacks),
-    "aki-save": SaveCallbacks.load.bind(SaveCallbacks),
-    "aki-traders": TraderCallbacks.load.bind(TraderCallbacks)
+    "aki-database": DatabaseImporter.load,
+    "aki-certs": CertCallbacks.load,
+    "aki-https": HttpCallbacks.load,
+    "aki-mods": ModCallbacks.load,
+    "aki-presets": PresetCallbacks.load,
+    "aki-ragfair": RagfairCallbacks.load,
+    "aki-save": SaveCallbacks.load,
+    "aki-traders": TraderCallbacks.load
 };
 
 // server update
 app.onUpdate = {
-    "aki-dialogue": DialogueCallbacks.update.bind(DialogueCallbacks),
-    "aki-hideout": HideoutCallbacks.update.bind(HideoutCallbacks),
-    "aki-insurance": InsuranceCallbacks.update.bind(InsuranceCallbacks),
-    "aki-ragfair-offers": RagfairCallbacks.update.bind(RagfairCallbacks),
-    "aki-ragfair-player": RagfairCallbacks.updatePlayer.bind(RagfairCallbacks),
-    "aki-traders": TraderCallbacks.update.bind(TraderCallbacks)
+    "aki-dialogue": DialogueCallbacks.update,
+    "aki-hideout": HideoutCallbacks.update,
+    "aki-insurance": InsuranceCallbacks.update,
+    "aki-ragfair-offers": RagfairCallbacks.update,
+    "aki-ragfair-player": RagfairCallbacks.updatePlayer,
+    "aki-traders": TraderCallbacks.update
 },
 
 // saves load
 save_f.server.onLoad = {
-    "aki-health": HealthCallbacks.onLoad.bind(HealthCallbacks),
-    "aki-inraid": InraidCallbacks.onLoad.bind(InraidCallbacks),
-    "aki-insurance": InsuranceCallbacks.onLoad.bind(InsuranceCallbacks),
-    "aki-profile": ProfileCallbacks.onLoad.bind(ProfileCallbacks)
+    "aki-health": HealthCallbacks.onLoad,
+    "aki-inraid": InraidCallbacks.onLoad,
+    "aki-insurance": InsuranceCallbacks.onLoad,
+    "aki-profile": ProfileCallbacks.onLoad
 };
 
 // server respond
 https_f.server.onRespond = {
-    "CERT_BIN": CertCallbacks.sendBinary.bind(CertCallbacks),
-    "IMAGE": HttpCallbacks.sendImage.bind(HttpCallbacks),
-    "BUNDLE": ModCallbacks.sendBundle.bind(ModCallbacks),
-    "SAVE": SaveCallbacks.save.bind(SaveCallbacks)
+    "CERT_BIN": CertCallbacks.sendBinary,
+    "IMAGE": HttpCallbacks.sendImage,
+    "BUNDLE": ModCallbacks.sendBundle,
+    "SAVE": SaveCallbacks.save
 };
 
 // Static routes
 https_f.router.onStaticRoute = {
     "/client/game/bot/generate": {
-        "aki": BotCallbacks.generateBots.bind(BotCallbacks)
+        "aki": BotCallbacks.generateBots
+    },
+    "/certs/get": {
+        "aki": CertCallbacks.registerBinary
     },
     "/client/trading/customization/storage": {
-        "aki": CustomizationCallbacks.getSuits.bind(CustomizationCallbacks)
+        "aki": CustomizationCallbacks.getSuits
     },
     "/client/globals": {
-        "aki": DataCallbacks.getGlobals.bind(DataCallbacks)
+        "aki": DataCallbacks.getGlobals
     },
     "/client/items": {
-        "aki": DataCallbacks.getTemplateItems.bind(DataCallbacks)
+        "aki": DataCallbacks.getTemplateItems
     },
     "/client/handbook/templates": {
-        "aki": DataCallbacks.getTemplateHandbook.bind(DataCallbacks)
+        "aki": DataCallbacks.getTemplateHandbook
     },
     "/client/customization": {
-        "aki": DataCallbacks.getTemplateSuits.bind(DataCallbacks)
+        "aki": DataCallbacks.getTemplateSuits
     },
     "/client/account/customization": {
-        "aki": DataCallbacks.getTemplateCharacter.bind(DataCallbacks)
+        "aki": DataCallbacks.getTemplateCharacter
     },
     "/client/hideout/production/recipes": {
-        "aki": DataCallbacks.gethideoutProduction.bind(DataCallbacks)
+        "aki": DataCallbacks.gethideoutProduction
     },
     "/client/hideout/settings": {
-        "aki": DataCallbacks.getHideoutSettings.bind(DataCallbacks)
+        "aki": DataCallbacks.getHideoutSettings
     },
     "/client/hideout/areas": {
-        "aki": DataCallbacks.getHideoutAreas.bind(DataCallbacks)
+        "aki": DataCallbacks.getHideoutAreas
     },
     "/client/hideout/production/scavcase/recipes": {
-        "aki": DataCallbacks.getHideoutScavcase.bind(DataCallbacks)
+        "aki": DataCallbacks.getHideoutScavcase
     },
     "/client/languages": {
-        "aki": DataCallbacks.getLocalesLanguages.bind(DataCallbacks)
+        "aki": DataCallbacks.getLocalesLanguages
     },
     "/client/friend/list": {
-        "aki": DialogueCallbacks.getFriendList.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.getFriendList
     },
     "/client/chatServer/list": {
-        "aki": DialogueCallbacks.getChatServerList.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.getChatServerList
     },
     "/client/mail/dialog/list": {
-        "aki": DialogueCallbacks.getMailDialogList.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.getMailDialogList
     },
     "/client/mail/dialog/view": {
-        "aki": DialogueCallbacks.getMailDialogView.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.getMailDialogView
     },
     "/client/mail/dialog/info": {
-        "aki": DialogueCallbacks.getMailDialogInfo.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.getMailDialogInfo
     },
     "/client/mail/dialog/remove": {
-        "aki": DialogueCallbacks.removeDialog.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.removeDialog
     },
     "/client/mail/dialog/pin": {
-        "aki": DialogueCallbacks.pinDialog.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.pinDialog
     },
     "/client/mail/dialog/unpin": {
-        "aki": DialogueCallbacks.unpinDialog.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.unpinDialog
     },
     "/client/mail/dialog/read": {
-        "aki": DialogueCallbacks.setRead.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.setRead
     },
     "/client/mail/dialog/getAllAttachments": {
-        "aki": DialogueCallbacks.getAllAttachments.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.getAllAttachments
     },
     "/client/friend/request/list/outbox": {
-        "aki": DialogueCallbacks.listOutbox.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.listOutbox
     },
     "/client/friend/request/list/inbox": {
-        "aki": DialogueCallbacks.listInbox.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.listInbox
     },
     "/client/friend/request/send": {
-        "aki": DialogueCallbacks.friendRequest.bind(DialogueCallbacks)
+        "aki": DialogueCallbacks.friendRequest
     },
     "/client/game/config": {
-        "aki": GameCallbacks.getGameConfig.bind(GameCallbacks)
+        "aki": GameCallbacks.getGameConfig
     },
     "/client/server/list": {
-        "aki": GameCallbacks.getServer.bind(GameCallbacks)
+        "aki": GameCallbacks.getServer
     },
     "/client/game/version/validate": {
-        "aki": GameCallbacks.versionValidate.bind(GameCallbacks)
+        "aki": GameCallbacks.versionValidate
     },
     "/client/game/start": {
-        "aki": GameCallbacks.gameStart.bind(GameCallbacks)
+        "aki": GameCallbacks.gameStart
     },
     "/client/game/logout": {
-        "aki": GameCallbacks.gameLogout.bind(GameCallbacks)
+        "aki": GameCallbacks.gameLogout
     },
     "/client/checkVersion": {
-        "aki": GameCallbacks.validateGameVersion.bind(GameCallbacks)
+        "aki": GameCallbacks.validateGameVersion
     },
     "/client/game/keepalive": {
-        "aki": GameCallbacks.gameKeepalive.bind(GameCallbacks)
+        "aki": GameCallbacks.gameKeepalive
     },
     "/player/health/sync": {
-        "aki": HealthCallbacks.syncHealth.bind(HealthCallbacks)
+        "aki": HealthCallbacks.syncHealth
     },
     "/raid/map/name": {
-        "aki": InraidCallbacks.registerPlayer.bind(InraidCallbacks)
+        "aki": InraidCallbacks.registerPlayer
     },
     "/raid/profile/save": {
-        "aki": InraidCallbacks.saveProgress.bind(InraidCallbacks)
+        "aki": InraidCallbacks.saveProgress
     },
     "/singleplayer/settings/raid/endstate": {
-        "aki": InraidCallbacks.getRaidEndState.bind(InraidCallbacks)
+        "aki": InraidCallbacks.getRaidEndState
     },
     "/singleplayer/settings/weapon/durability": {
-        "aki": InraidCallbacks.getWeaponDurability.bind(InraidCallbacks)
+        "aki": InraidCallbacks.getWeaponDurability
     },
     "/singleplayer/settings/raid/menu": {
-        "aki": InraidCallbacks.getRaidMenuSettings.bind(InraidCallbacks)
+        "aki": InraidCallbacks.getRaidMenuSettings
     },
     "/client/insurance/items/list/cost": {
-        "aki": InsuranceCallbacks.getInsuranceCost.bind(InsuranceCallbacks)
+        "aki": InsuranceCallbacks.getInsuranceCost
     },
     "/client/game/profile/items/moving": {
-        "aki": ItemEventCallbacks.handleEvents.bind(ItemEventCallbacks)
+        "aki": ItemEventCallbacks.handleEvents
     },
     "/launcher/server/connect": {
-        "aki": LauncherCallbacks.connect.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.connect
     },
     "/launcher/profile/login": {
-        "aki": LauncherCallbacks.login.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.login
     },
     "/launcher/profile/register": {
-        "aki": LauncherCallbacks.register.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.register
     },
     "/launcher/profile/get": {
-        "aki": LauncherCallbacks.get.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.get
     },
     "/launcher/profile/change/username": {
-        "aki": LauncherCallbacks.changeUsername.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.changeUsername
     },
     "/launcher/profile/change/password": {
-        "aki": LauncherCallbacks.changePassword.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.changePassword
     },
     "/launcher/profile/change/wipe": {
-        "aki": LauncherCallbacks.wipe.bind(LauncherCallbacks)
+        "aki": LauncherCallbacks.wipe
     },
     "/client/locations": {
-        "aki": LocationCallbacks.getLocationData.bind(LocationCallbacks)
+        "aki": LocationCallbacks.getLocationData
     },
     "/raid/profile/list": {
-        "aki": MatchCallbacks.getProfile.bind(MatchCallbacks)
+        "aki": MatchCallbacks.getProfile
     },
     "/client/match/available": {
-        "aki": MatchCallbacks.serverAvailable.bind(MatchCallbacks)
+        "aki": MatchCallbacks.serverAvailable
     },
     "/client/match/updatePing": {
-        "aki": MatchCallbacks.updatePing.bind(MatchCallbacks)
+        "aki": MatchCallbacks.updatePing
     },
     "/client/match/join": {
-        "aki": MatchCallbacks.joinMatch.bind(MatchCallbacks)
+        "aki": MatchCallbacks.joinMatch
     },
     "/client/match/exit": {
-        "aki": MatchCallbacks.exitMatch.bind(MatchCallbacks)
+        "aki": MatchCallbacks.exitMatch
     },
     "/client/match/group/create": {
-        "aki": MatchCallbacks.createGroup.bind(MatchCallbacks)
+        "aki": MatchCallbacks.createGroup
     },
     "/client/match/group/delete": {
-        "aki": MatchCallbacks.deleteGroup.bind(MatchCallbacks)
+        "aki": MatchCallbacks.deleteGroup
     },
     "/client/match/group/status": {
-        "aki": MatchCallbacks.getGroupStatus.bind(MatchCallbacks)
+        "aki": MatchCallbacks.getGroupStatus
     },
     "/client/match/group/start_game": {
-        "aki": MatchCallbacks.joinMatch.bind(MatchCallbacks)
+        "aki": MatchCallbacks.joinMatch
     },
     "/client/match/group/exit_from_menu": {
-        "aki": MatchCallbacks.exitToMenu.bind(MatchCallbacks)
+        "aki": MatchCallbacks.exitToMenu
     },
     "/client/match/group/looking/start": {
-        "aki": MatchCallbacks.startGroupSearch.bind(MatchCallbacks)
+        "aki": MatchCallbacks.startGroupSearch
     },
     "/client/match/group/looking/stop": {
-        "aki": MatchCallbacks.stopGroupSearch.bind(MatchCallbacks)
+        "aki": MatchCallbacks.stopGroupSearch
     },
     "/client/match/group/invite/send": {
-        "aki": MatchCallbacks.sendGroupInvite.bind(MatchCallbacks)
+        "aki": MatchCallbacks.sendGroupInvite
     },
     "/client/match/group/invite/accept": {
-        "aki": MatchCallbacks.acceptGroupInvite.bind(MatchCallbacks)
+        "aki": MatchCallbacks.acceptGroupInvite
     },
     "/client/match/group/invite/cancel": {
-        "aki": MatchCallbacks.cancelGroupInvite.bind(MatchCallbacks)
+        "aki": MatchCallbacks.cancelGroupInvite
     },
     "/client/putMetrics": {
-        "aki": MatchCallbacks.putMetrics.bind(MatchCallbacks)
+        "aki": MatchCallbacks.putMetrics
     },
     "/client/getMetricsConfig": {
-        "aki": MatchCallbacks.getMetrics.bind(MatchCallbacks)
+        "aki": MatchCallbacks.getMetrics
     },
     "/singleplayer/bundles": {
-        "aki": ModCallbacks.getBundles.bind(MatchCallbacks)
+        "aki": ModCallbacks.getBundles
     },
     "/client/notifier/channel/create": {
-        "aki": NotifierCallbacks.createNotifierChannel.bind(NoteCallbacks)
+        "aki": NotifierCallbacks.createNotifierChannel
     },
     "/client/game/profile/select": {
-        "aki": NotifierCallbacks.selectProfile.bind(NoteCallbacks)
+        "aki": NotifierCallbacks.selectProfile
     },
     "/client/handbook/builds/my/list": {
-        "aki": PresetBuildCallbacks.getHandbookUserlist.bind(PresetBuildCallbacks)
+        "aki": PresetBuildCallbacks.getHandbookUserlist
     },
     "/client/game/profile/create": {
-        "aki": ProfileCallbacks.createProfile.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.createProfile
     },
     "/client/game/profile/list": {
-        "aki": ProfileCallbacks.getProfileData.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.getProfileData
     },
     "/client/game/profile/savage/regenerate": {
-        "aki": ProfileCallbacks.regenerateScav.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.regenerateScav
     },
     "/client/game/profile/nickname/change": {
-        "aki": ProfileCallbacks.changeNickname.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.changeNickname
     },
     "/client/game/profile/nickname/validate": {
-        "aki": ProfileCallbacks.validateNickname.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.validateNickname
     },
     "/client/game/profile/nickname/reserved": {
-        "aki": ProfileCallbacks.getReservedNickname.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.getReservedNickname
     },
     "/client/profile/status": {
-        "aki": ProfileCallbacks.getProfileStatus.bind(ProfileCallbacks)
+        "aki": ProfileCallbacks.getProfileStatus
     },
     "/client/quest/list": {
-        "aki": QuestCallbacks.listQuests.bind(QuestCallbacks)
+        "aki": QuestCallbacks.listQuests
     },
     "/client/ragfair/search": {
-        "aki": RagfairCallbacks.search.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.search
     },
     "/client/ragfair/find": {
-        "aki": RagfairCallbacks.search.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.search
     },
     "/client/ragfair/itemMarketPrice": {
-        "aki": RagfairCallbacks.getMarketPrice.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.getMarketPrice
     },
     "/client/items/prices": {
-        "aki": RagfairCallbacks.getItemPrices.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.getItemPrices
     },
     "/client/trading/api/getTradersList": {
-        "aki": TraderCallbacks.getTraderList.bind(TraderCallbacks)
+        "aki": TraderCallbacks.getTraderList
     },
     "/client/weather": {
-        "aki": WeatherCallbacks.getWeather.bind(WeatherCallbacks)
+        "aki": WeatherCallbacks.getWeather
     },
 };
-
-https_f.router.onStaticRoute[CertCallbacks.endPoint] = {
-    "aki": CertCallbacks.registerBinary.bind(CertCallbacks)
-},
 
 // Dynamic routes
 https_f.router.onDynamicRoute = {
     "/client/menu/locale/": {
-        "aki": DataCallbacks.getLocalesMenu.bind(DataCallbacks)
+        "aki": DataCallbacks.getLocalesMenu
     },
     "/client/locale/": {
-        "aki": DataCallbacks.getLocalesGlobal.bind(DataCallbacks)
+        "aki": DataCallbacks.getLocalesGlobal
     },
     "/singleplayer/settings/bot/limit/": {
-        "aki": BotCallbacks.getBotLimit.bind(BotCallbacks)
+        "aki": BotCallbacks.getBotLimit
     },
     "/singleplayer/settings/bot/difficulty/": {
-        "aki": BotCallbacks.getBotDifficulty.bind(BotCallbacks)
+        "aki": BotCallbacks.getBotDifficulty
     },
     "/client/trading/customization/": {
-        "aki": CustomizationCallbacks.getTraderSuits.bind(CustomizationCallbacks)
+        "aki": CustomizationCallbacks.getTraderSuits
     },
     ".jpg": {
-        "aki": HttpCallbacks.getImage.bind(HttpCallbacks)
+        "aki": HttpCallbacks.getImage
     },
     ".png": {
-        "aki": HttpCallbacks.getImage.bind(HttpCallbacks)
+        "aki": HttpCallbacks.getImage
     },
     "/api/location": {
-        "aki": LocationCallbacks.getLocation.bind(LocationCallbacks)
+        "aki": LocationCallbacks.getLocation
     },
     ".bundle": {
-        "aki": ModCallbacks.getBundle.bind(ModCallbacks)
+        "aki": ModCallbacks.getBundle
     },
     "/client/trading/api/getUserAssortPrice/trader/": {
-        "aki": TraderCallbacks.getProfilePurchases.bind(TraderCallbacks)
+        "aki": TraderCallbacks.getProfilePurchases
     },
     "/client/trading/api/getTrader/": {
-        "aki": TraderCallbacks.getTrader.bind(TraderCallbacks)
+        "aki": TraderCallbacks.getTrader
     },
     "/client/trading/api/getTraderAssort/": {
-        "aki": TraderCallbacks.getAssort.bind(TraderCallbacks)
+        "aki": TraderCallbacks.getAssort
     }
 };
 
 // client/game/item/moving request event
 item_f.eventHandler.onEvent = {
     "CustomizationWear": {
-        "aki": CustomizationCallbacks.wearClothing.bind(CustomizationCallbacks)
+        "aki": CustomizationCallbacks.wearClothing
     },
     "CustomizationBuy": {
-        "aki": CustomizationCallbacks.buyClothing.bind(CustomizationCallbacks)
+        "aki": CustomizationCallbacks.buyClothing
     },
     "Eat": {
-        "aki": HealthCallbacks.offraidEat.bind(HealthCallbacks)
+        "aki": HealthCallbacks.offraidEat
     },
     "Heal": {
-        "aki": HealthCallbacks.offraidHeal.bind(HealthCallbacks)
+        "aki": HealthCallbacks.offraidHeal
     },
     "RestoreHealth": {
-        "aki": HealthCallbacks.healthTreatment.bind(HealthCallbacks)
+        "aki": HealthCallbacks.healthTreatment
     },
     "HideoutUpgrade": {
-        "aki": HideoutCallbacks.upgrade.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.upgrade
     },
     "HideoutUpgradeComplete": {
-        "aki": HideoutCallbacks.upgradeComplete.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.upgradeComplete
     },
     "HideoutPutItemsInAreaSlots": {
-        "aki": HideoutCallbacks.putItemsInAreaSlots.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.putItemsInAreaSlots
     },
     "HideoutTakeItemsFromAreaSlots": {
-        "aki": HideoutCallbacks.takeItemsFromAreaSlots.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.takeItemsFromAreaSlots
     },
     "HideoutToggleArea": {
-        "aki": HideoutCallbacks.toggleArea.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.toggleArea
     },
     "HideoutSingleProductionStart": {
-        "aki": HideoutCallbacks.singleProductionStart.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.singleProductionStart
     },
     "HideoutScavCaseProductionStart": {
-        "aki": HideoutCallbacks.scavCaseProductionStart.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.scavCaseProductionStart
     },
     "HideoutContinuousProductionStart": {
-        "aki": HideoutCallbacks.continuousProductionStart.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.continuousProductionStart
     },
     "HideoutTakeProduction": {
-        "aki": HideoutCallbacks.takeProduction.bind(HideoutCallbacks)
+        "aki": HideoutCallbacks.takeProduction
     },
     "Insure": {
-        "aki": InsuranceCallbacks.insure.bind(InsuranceCallbacks)
+        "aki": InsuranceCallbacks.insure
     },
     "Move": {
-        "aki": InventoryCallbacks.moveItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.moveItem
     },
     "Remove": {
-        "aki": InventoryCallbacks.removeItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.removeItem
     },
     "Split": {
-        "aki": InventoryCallbacks.splitItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.splitItem
     },
     "Merge": {
-        "aki": InventoryCallbacks.mergeItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.mergeItem
     },
     "Transfer": {
-        "aki": InventoryCallbacks.transferItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.transferItem
     },
     "Swap": {
-        "aki": InventoryCallbacks.swapItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.swapItem
     },
     "Fold": {
-        "aki": InventoryCallbacks.foldItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.foldItem
     },
     "Toggle": {
-        "aki": InventoryCallbacks.toggleItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.toggleItem
     },
     "Tag": {
-        "aki": InventoryCallbacks.tagItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.tagItem
     },
     "Bind": {
-        "aki": InventoryCallbacks.bindItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.bindItem
     },
     "Examine": {
-        "aki": InventoryCallbacks.examineItem.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.examineItem
     },
     "ReadEncyclopedia": {
-        "aki": InventoryCallbacks.readEncyclopedia.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.readEncyclopedia
     },
     "ApplyInventoryChanges": {
-        "aki": InventoryCallbacks.sortInventory.bind(InventoryCallbacks)
+        "aki": InventoryCallbacks.sortInventory
     },
     "AddNote": {
-        "aki": NoteCallbacks.addNote.bind(NoteCallbacks)
+        "aki": NoteCallbacks.addNote
     },
     "EditNote": {
-        "aki": NoteCallbacks.editNote.bind(NoteCallbacks)
+        "aki": NoteCallbacks.editNote
     },
     "DeleteNote": {
-        "aki": NoteCallbacks.deleteNote.bind(NoteCallbacks)
+        "aki": NoteCallbacks.deleteNote
     },
     "SaveBuild": {
-        "aki": PresetBuildCallbacks.saveBuild.bind(PresetBuildCallbacks)
+        "aki": PresetBuildCallbacks.saveBuild
     },
     "RemoveBuild": {
-        "aki": PresetBuildCallbacks.removeBuild.bind(PresetBuildCallbacks)
+        "aki": PresetBuildCallbacks.removeBuild
     },
     "QuestAccept": {
-        "aki": QuestCallbacks.acceptQuest.bind(QuestCallbacks)
+        "aki": QuestCallbacks.acceptQuest
     },
     "QuestComplete": {
-        "aki": QuestCallbacks.completeQuest.bind(QuestCallbacks)
+        "aki": QuestCallbacks.completeQuest
     },
     "QuestHandover": {
-        "aki": QuestCallbacks.handoverQuest.bind(QuestCallbacks)
+        "aki": QuestCallbacks.handoverQuest
     },
     "RagFairAddOffer": {
-        "aki": RagfairCallbacks.addOffer.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.addOffer
     },
     "RagFairRemoveOffer": {
-        "aki": RagfairCallbacks.removeOffer.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.removeOffer
     },
     "RagFairRenewOffer": {
-        "aki": RagfairCallbacks.extendOffer.bind(RagfairCallbacks)
+        "aki": RagfairCallbacks.extendOffer
     },
     "Repair": {
-        "aki": RepairCallbacks.repair.bind(RepairCallbacks)
+        "aki": RepairCallbacks.repair
     },
     "TradingConfirm": {
-        "aki": TradeCallbacks.processTrade.bind(TradeCallbacks)
+        "aki": TradeCallbacks.processTrade
     },
     "RagFairBuyOffer": {
-        "aki": TradeCallbacks.processRagfairTrade.bind(TradeCallbacks)
+        "aki": TradeCallbacks.processRagfairTrade
     },
     "AddToWishList": {
-        "aki": WishlistCallbacks.addToWishlist.bind(WishlistCallbacks)
+        "aki": WishlistCallbacks.addToWishlist
     },
     "RemoveFromWishList": {
-        "aki": WishlistCallbacks.removeFromWishlist.bind(WishlistCallbacks)
+        "aki": WishlistCallbacks.removeFromWishlist
     }
 };

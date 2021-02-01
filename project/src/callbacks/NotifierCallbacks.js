@@ -12,12 +12,12 @@
 
 class NotifierCallbacks
 {
-    createNotifierChannel(url, info, sessionID)
+    static createNotifierChannel(url, info, sessionID)
     {
         return https_f.response.getBody(notifier_f.controller.getChannel(sessionID));
     }
 
-    selectProfile(url, info, sessionID)
+    static selectProfile(url, info, sessionID)
     {
         return https_f.response.getBody({
             "status": "ok",
@@ -27,4 +27,4 @@ class NotifierCallbacks
     }
 }
 
-module.exports = new NotifierCallbacks();
+module.exports = NotifierCallbacks;

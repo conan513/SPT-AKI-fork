@@ -11,15 +11,15 @@
 
 class WishlistCallbacks
 {
-    addToWishlist(pmcData, body, sessionID)
+    static addToWishlist(pmcData, body, sessionID)
     {
         return wishList_f.controller.addToWishList(pmcData, body, sessionID);
     }
 
-    removeFromWishlist(pmcData, body, sessionID)
+    static removeFromWishlist(pmcData, body, sessionID)
     {
         return wishList_f.controller.removeFromWishList(pmcData, body, sessionID);
     }
 }
 
-module.exports = new WishlistCallbacks();
+module.exports = WishlistCallbacks;

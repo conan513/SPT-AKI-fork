@@ -10,10 +10,10 @@
 
 class ItemEventCallbacks
 {
-    handleEvents(url, info, sessionID)
+    static handleEvents(url, info, sessionID)
     {
         return https_f.response.getBody(item_f.eventHandler.handleEvents(info, sessionID));
     }
 }
 
-module.exports = new ItemEventCallbacks();
+module.exports = ItemEventCallbacks;

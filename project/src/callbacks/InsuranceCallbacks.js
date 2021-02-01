@@ -10,22 +10,22 @@
 
 class InsuranceCallbacks
 {
-    onLoad(sessionID)
+    static onLoad(sessionID)
     {
         return insurance_f.controller.onLoad(sessionID);
     }
 
-    getInsuranceCost(url, info, sessionID)
+    static getInsuranceCost(url, info, sessionID)
     {
         return https_f.response.getBody(insurance_f.controller.cost(info, sessionID));
     }
 
-    insure(pmcData, body, sessionID)
+    static insure(pmcData, body, sessionID)
     {
         return insurance_f.controller.insure(pmcData, body, sessionID);
     }
 
-    update(timeSinceLastRun)
+    static update(timeSinceLastRun)
     {
         if (timeSinceLastRun > insurance_f.config.runInterval)
         {
@@ -36,4 +36,4 @@ class InsuranceCallbacks
     }
 }
 
-module.exports = new InsuranceCallbacks();
+module.exports = InsuranceCallbacks;

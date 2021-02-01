@@ -10,35 +10,29 @@
 
 class CertCallbacks
 {
-    constructor()
-    {
-        this.endPoint = "/certs/get";
-        this.certFilename = "cert.pem";
-        this.isAttachment = true;
-    }
-
-    load()
+    static load()
     {
         certs_f.controller.load();
     }
 
-    registerBinary(url, info, sessionID)
+    static registerBinary(url, info, sessionID)
     {
         return "CERT_BIN";
     }
 
-    sendBinary(sessionID, req, resp, body)
+    static sendBinary(sessionID, req, resp, body)
     {
         const certs = certs_f.controller.getCerts();
-        let sendType = this.isAttachment ? "attachment" : "inline";
+        const isAttachment = true;
+        const sendType = isAttachment ? "attachment" : "inline";
 
         resp.writeHead(200, "OK",         {
             "Content-Type": https_f.server.mime["bin"],
-            "Content-Disposition": `${sendType}; filename="${this.certFilename}"`
+            "Content-Disposition": `${sendType}; filename=cert.pem`
         });
 
         resp.end(certs.cert);
     }
 }
 
-module.exports = new CertCallbacks();
+module.exports = CertCallbacks;

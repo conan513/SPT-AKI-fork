@@ -10,7 +10,7 @@
 
 class LauncherCallbacks
 {
-    connect()
+    static connect()
     {
         return https_f.response.noBody({
             "backendUrl": https_f.server.getBackendUrl(),
@@ -19,41 +19,41 @@ class LauncherCallbacks
         });
     }
 
-    login(url, info, sessionID)
+    static login(url, info, sessionID)
     {
         const output = account_f.controller.login(info);
         return (!output) ? "FAILED" : output;
     }
 
-    register(url, info, sessionID)
+    static register(url, info, sessionID)
     {
         const output = account_f.controller.register(info);
         return (!output) ? "FAILED" : "OK";
     }
 
-    get(url, info, sessionID)
+    static get(url, info, sessionID)
     {
         const output = account_f.controller.find(account_f.controller.login(info));
         return https_f.response.noBody(output);
     }
 
-    changeUsername(url, info, sessionID)
+    static changeUsername(url, info, sessionID)
     {
         const output = account_f.controller.changeUsername(info);
         return (!output) ? "FAILED" : "OK";
     }
 
-    changePassword(url, info, sessionID)
+    static changePassword(url, info, sessionID)
     {
         const output = account_f.controller.changePassword(info);
         return (!output) ? "FAILED" : "OK";
     }
 
-    wipe(url, info, sessionID)
+    static wipe(url, info, sessionID)
     {
         const output = account_f.controller.wipe(info);
         return (!output) ? "FAILED" : "OK";
     }
 }
 
-module.exports = new LauncherCallbacks();
+module.exports = LauncherCallbacks;

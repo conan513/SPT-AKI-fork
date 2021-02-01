@@ -10,37 +10,37 @@
 
 class InraidCallbacks
 {
-    onLoad(sessionID)
+    static onLoad(sessionID)
     {
         return inraid_f.controller.onLoad(sessionID);
     }
 
-    registerPlayer(url, info, sessionID)
+    static registerPlayer(url, info, sessionID)
     {
         inraid_f.controller.addPlayer(sessionID, info);
         return https_f.response.nullResponse();
     }
 
-    saveProgress(url, info, sessionID)
+    static saveProgress(url, info, sessionID)
     {
         inraid_f.controller.saveProgress(info, sessionID);
         return https_f.response.nullResponse();
     }
 
-    getRaidEndState()
+    static getRaidEndState()
     {
         return https_f.response.noBody(inraid_f.config.MIAOnRaidEnd);
     }
 
-    getRaidMenuSettings(url, info, sessionID)
+    static getRaidMenuSettings(url, info, sessionID)
     {
         return https_f.response.noBody(inraid_f.config.raidMenuSettings);
     }
 
-    getWeaponDurability(url, info, sessionID)
+    static getWeaponDurability(url, info, sessionID)
     {
         return https_f.response.noBody(inraid_f.config.save.durability);
     }
 }
 
-module.exports = new InraidCallbacks();
+module.exports = InraidCallbacks;
