@@ -54,7 +54,7 @@ App.onUpdate = {
     "aki-ragfair-offers": RagfairCallbacks.update,
     "aki-ragfair-player": RagfairCallbacks.updatePlayer,
     "aki-traders": TraderCallbacks.update
-},
+};
 
 // saves load
 save_f.server.onLoad = {
@@ -325,7 +325,7 @@ https_f.router.onStaticRoute = {
     },
     "/client/weather": {
         "aki": WeatherCallbacks.getWeather
-    },
+    }
 };
 
 // Dynamic routes
