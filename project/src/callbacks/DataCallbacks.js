@@ -11,71 +11,71 @@
 
 class DataCallbacks
 {
-    getGlobals(url, info, sessionID)
+    static getGlobals(url, info, sessionID)
     {
         database_f.server.tables.globals.time = Date.now() / 1000;
         return https_f.response.getBody(database_f.server.tables.globals);
     }
 
-    getTemplateItems(url, info, sessionID)
+    static getTemplateItems(url, info, sessionID)
     {
         return https_f.response.getUnclearedBody(database_f.server.tables.templates.items);
     }
 
-    getTemplateHandbook(url, info, sessionID)
+    static getTemplateHandbook(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.templates.handbook);
     }
 
-    getTemplateSuits(url, info, sessionID)
+    static getTemplateSuits(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.templates.customization);
     }
 
-    getTemplateCharacter(url, info, sessionID)
+    static getTemplateCharacter(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.templates.character);
     }
 
-    getTemplateQuests(url, info, sessionID)
+    static getTemplateQuests(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.templates.quests);
     }
 
-    getHideoutSettings(url, info, sessionID)
+    static getHideoutSettings(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.hideout.settings);
     }
 
-    getHideoutAreas(url, info, sessionID)
+    static getHideoutAreas(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.hideout.areas);
     }
 
-    gethideoutProduction(url, info, sessionID)
+    static gethideoutProduction(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.hideout.production);
     }
 
-    getHideoutScavcase(url, info, sessionID)
+    static getHideoutScavcase(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.hideout.scavcase);
     }
 
-    getLocalesLanguages(url, info, sessionID)
+    static getLocalesLanguages(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.locales.languages);
     }
 
-    getLocalesMenu(url, info, sessionID)
+    static getLocalesMenu(url, info, sessionID)
     {
         return https_f.response.getBody(database_f.server.tables.locales.menu[url.replace("/client/menu/locale/", "")]);
     }
 
-    getLocalesGlobal(url, info, sessionID)
+    static getLocalesGlobal(url, info, sessionID)
     {
         return https_f.response.getUnclearedBody(database_f.server.tables.locales.global[url.replace("/client/locale/", "")]);
     }
 }
 
-module.exports = new DataCallbacks();
+module.exports = DataCallbacks;

@@ -10,10 +10,10 @@
 
 class RepairCallbacks
 {
-    repair(pmcData, body, sessionID)
+    static repair(pmcData, body, sessionID)
     {
         return repair_f.controller.repair(pmcData, body, sessionID);
     }
 }
 
-module.exports = new RepairCallbacks();
+module.exports = RepairCallbacks;

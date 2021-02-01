@@ -11,15 +11,15 @@
 
 class TradeCallbacks
 {
-    processTrade(pmcData, body, sessionID)
+    static processTrade(pmcData, body, sessionID)
     {
         return trade_f.controller.confirmTrading(pmcData, body, sessionID);
     }
 
-    processRagfairTrade(pmcData, body, sessionID)
+    static processRagfairTrade(pmcData, body, sessionID)
     {
         return trade_f.controller.confirmRagfairTrading(pmcData, body, sessionID);
     }
 }
 
-module.exports = new TradeCallbacks();
+module.exports = TradeCallbacks;

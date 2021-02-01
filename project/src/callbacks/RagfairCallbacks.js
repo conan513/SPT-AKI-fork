@@ -12,58 +12,55 @@
 
 class RagfairCallbacks
 {
-    constructor()
-    {
-        /* should be a config var, but might not be around for long */
-        this.runInterval = 1 * 60;
-    }
-
-    load()
+    static load()
     {
         ragfair_f.server.load();
     }
 
-    search(url, info, sessionID)
+    static search(url, info, sessionID)
     {
         return https_f.response.getBody(ragfair_f.controller.getOffers(sessionID, info));
     }
 
-    getMarketPrice(url, info, sessionID)
+    static getMarketPrice(url, info, sessionID)
     {
         return https_f.response.getBody(ragfair_f.controller.getItemPrice(info));
     }
 
-    getItemPrices(url, info, sessionID)
+    static getItemPrices(url, info, sessionID)
     {
         return https_f.response.getBody(ragfair_f.server.prices.dynamic);
     }
 
-    addOffer(pmcData, info, sessionID)
+    static addOffer(pmcData, info, sessionID)
     {
         return ragfair_f.controller.addPlayerOffer(pmcData, info, sessionID);
     }
 
-    removeOffer(pmcData, info, sessionID)
+    static removeOffer(pmcData, info, sessionID)
     {
         return ragfair_f.controller.removeOffer(info.offerId, sessionID);
     }
 
-    extendOffer(pmcData, info, sessionID)
+    static extendOffer(pmcData, info, sessionID)
     {
         Logger.info(JsonUtil.serialize(info)); // TODO: Remove this once finished
         return ragfair_f.controller.extendOffer(info, sessionID);
     }
 
-    update(timeSinceLastRun)
+    static update(timeSinceLastRun)
     {
         ragfair_f.server.update();
         return true;
     }
 
     /* todo: merge remains with main update function above */
-    updatePlayer(timeSinceLastRun)
+    static updatePlayer(timeSinceLastRun)
     {
-        if (timeSinceLastRun > this.runInterval)
+        /* should be a config var, but might not be around for long */
+        const runInterval = 1 * 60;
+
+        if (timeSinceLastRun > runInterval)
         {
             ragfair_f.controller.update();
             return true;
@@ -71,4 +68,4 @@ class RagfairCallbacks
     }
 }
 
-module.exports = new RagfairCallbacks();
+module.exports = RagfairCallbacks;

@@ -10,15 +10,15 @@
 
 class SaveCallbacks
 {
-    load()
+    static load()
     {
         save_f.server.load();
     }
 
-    save(sessionID, req, resp, body, output)
+    static save(sessionID, req, resp, body, output)
     {
         save_f.server.save();
     }
 }
 
-module.exports = new SaveCallbacks();
+module.exports = SaveCallbacks;

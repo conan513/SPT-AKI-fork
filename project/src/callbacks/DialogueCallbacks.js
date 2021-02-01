@@ -10,16 +10,20 @@
 
 class DialogueCallbacks
 {
-    getFriendList(url, info, sessionID)
+    static getFriendList(url, info, sessionID)
     {
-        return https_f.response.getBody({"Friends":[], "Ignore":[], "InIgnoreList":[]});
+        return https_f.response.getBody({
+            "Friends":[],
+            "Ignore":[],
+            "InIgnoreList":[]
+        });
     }
 
-    getChatServerList(url, info, sessionID)
+    static getChatServerList(url, info, sessionID)
     {
         return https_f.response.getBody([
             {
-                "_id": "5ae20a0dcb1c13123084756f",
+                "_id": HashUtil.generate(),
                 "RegistrationId": 20,
                 "DateTime": TimeUtil.getTimestamp(),
                 "IsDeveloper": true,
@@ -37,69 +41,69 @@ class DialogueCallbacks
         ]);
     }
 
-    getMailDialogList(url, info, sessionID)
+    static getMailDialogList(url, info, sessionID)
     {
         return dialogue_f.controller.generateDialogueList(sessionID);
     }
 
-    getMailDialogView(url, info, sessionID)
+    static getMailDialogView(url, info, sessionID)
     {
         return dialogue_f.controller.generateDialogueView(info.dialogId, sessionID);
     }
 
-    getMailDialogInfo(url, info, sessionID)
+    static getMailDialogInfo(url, info, sessionID)
     {
         return https_f.response.getBody(dialogue_f.controller.getDialogueInfo(info.dialogId, sessionID));
     }
 
-    removeDialog(url, info, sessionID)
+    static removeDialog(url, info, sessionID)
     {
         dialogue_f.controller.removeDialogue(info.dialogId, sessionID);
         return https_f.response.emptyArrayResponse();
     }
 
-    pinDialog(url, info, sessionID)
+    static pinDialog(url, info, sessionID)
     {
         dialogue_f.controller.setDialoguePin(info.dialogId, true, sessionID);
         return https_f.response.emptyArrayResponse();
     }
 
-    unpinDialog(url, info, sessionID)
+    static unpinDialog(url, info, sessionID)
     {
         dialogue_f.controller.setDialoguePin(info.dialogId, false, sessionID);
         return https_f.response.emptyArrayResponse();
     }
 
-    setRead(url, info, sessionID)
+    static setRead(url, info, sessionID)
     {
         dialogue_f.controller.setRead(info.dialogs, sessionID);
         return https_f.response.emptyArrayResponse();
     }
 
-    getAllAttachments(url, info, sessionID)
+    static getAllAttachments(url, info, sessionID)
     {
         return https_f.response.getBody(dialogue_f.controller.getAllAttachments(info.dialogId, sessionID));
     }
 
-    listOutbox(url, info, sessionID)
+    static listOutbox(url, info, sessionID)
     {
         return https_f.response.emptyArrayResponse();
     }
 
-    listInbox(url, info, sessionID)
+    static listInbox(url, info, sessionID)
     {
         return https_f.response.emptyArrayResponse();
     }
 
-    friendRequest(url, request, sessionID)
+    static friendRequest(url, request, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    update()
+    static update()
     {
         dialogue_f.controller.update();
     }
 }
 
-module.exports = new DialogueCallbacks();
+module.exports = DialogueCallbacks;

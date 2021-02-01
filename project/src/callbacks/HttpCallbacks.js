@@ -10,20 +10,20 @@
 
 class HttpCallbacks
 {
-    load()
+    static load()
     {
         https_f.server.load();        
     }
 
-    sendImage(sessionID, req, resp, body)
+    static sendImage(sessionID, req, resp, body)
     {
         https_f.image.sendImage(sessionID, req, resp, body);
     }
 
-    getImage()
+    static getImage()
     {
         return https_f.image.getImage();
     }
 }
 
-module.exports = new HttpCallbacks();
+module.exports = HttpCallbacks;

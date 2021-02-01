@@ -11,12 +11,12 @@
 
 class ModCallbacks
 {
-    load()
+    static load()
     {
         Mods.load();
     }
 
-    sendBundle(sessionID, req, resp, body)
+    static sendBundle(sessionID, req, resp, body)
     {
         Logger.info(`[BUNDLE]: ${req.url}`);
 
@@ -27,16 +27,16 @@ class ModCallbacks
         https_f.server.sendFile(resp, bundle.path);
     }
 
-    getBundles(url, info, sessionID)
+    static getBundles(url, info, sessionID)
     {
         const local = (https_f.config.ip === "127.0.0.1" || https_f.config.ip === "localhost");
         return https_f.response.noBody(Mods.getBundles(local));
     }
 
-    getBundle(url, info, sessionID)
+    static getBundle(url, info, sessionID)
     {
         return "BUNDLE";
     }
 }
 
-module.exports = new ModCallbacks();
+module.exports = ModCallbacks;

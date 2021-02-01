@@ -11,29 +11,29 @@
 
 class ProfileCallbacks
 {
-    onLoad(sessionID)
+    static onLoad(sessionID)
     {
         return profile_f.controller.onLoad(sessionID);
     }
 
-    createProfile(url, info, sessionID)
+    static createProfile(url, info, sessionID)
     {
         profile_f.controller.createProfile(info, sessionID);
         return https_f.response.getBody({"uid": `pmc${sessionID}`});
     }
 
-    getProfileData(url, info, sessionID)
+    static getProfileData(url, info, sessionID)
     {
         return https_f.response.getBody(profile_f.controller.getCompleteProfile(sessionID));
     }
 
-    regenerateScav(url, info, sessionID)
+    static regenerateScav(url, info, sessionID)
     {
         return https_f.response.getBody([profile_f.controller.generateScav(sessionID)]);
     }
 
     /// --- TODO: USE LOCALIZED STRINGS --- ///
-    changeNickname(url, info, sessionID)
+    static changeNickname(url, info, sessionID)
     {
         const output = profile_f.controller.changeNickname(info, sessionID);
 
@@ -52,8 +52,8 @@ class ProfileCallbacks
             "nicknamechangedate": TimeUtil.getTimestamp()
         });
     }
-    /// --- TODO: USE LOCALIZED STRINGS --- ///
-    validateNickname(url, info, sessionID)
+
+    static validateNickname(url, info, sessionID)
     {
         const output = profile_f.controller.validateNickname(info, sessionID);
 
@@ -69,14 +69,13 @@ class ProfileCallbacks
 
         return https_f.response.getBody({"status": "ok"});
     }
-    /// --- TODO: USE LOCALIZED STRINGS --- ///
 
-    getReservedNickname(url, info, sessionID)
+    static getReservedNickname(url, info, sessionID)
     {
         return https_f.response.getBody("SPTarkov");
     }
 
-    getProfileStatus(url, info, sessionID)
+    static getProfileStatus(url, info, sessionID)
     {
         return https_f.response.getBody([
             {
@@ -97,4 +96,4 @@ class ProfileCallbacks
     }
 }
 
-module.exports = new ProfileCallbacks();
+module.exports = ProfileCallbacks;

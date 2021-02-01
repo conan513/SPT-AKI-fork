@@ -10,57 +10,57 @@
 
 class MatchCallbacks
 {
-    updatePing(url, info, sessionID)
+    static updatePing(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    exitMatch(url, info, sessionID)
+    static exitMatch(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    exitToMenu(url, info, sessionID)
+    static exitToMenu(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    startGroupSearch(url, info, sessionID)
+    static startGroupSearch(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    stopGroupSearch(url, info, sessionID)
+    static stopGroupSearch(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    sendGroupInvite(url, info, sessionID)
+    static sendGroupInvite(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    acceptGroupInvite(url, info, sessionID)
+    static acceptGroupInvite(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    cancelGroupInvite(url, info, sessionID)
+    static cancelGroupInvite(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    putMetrics(url, info, sessionID)
+    static putMetrics(url, info, sessionID)
     {
         return https_f.response.nullResponse();
     }
 
-    getProfile(url, info, sessionID)
+    static getProfile(url, info, sessionID)
     {
         return https_f.response.getBody(match_f.controller.getProfile(info));
     }
 
-    serverAvailable(url, info, sessionID)
+    static serverAvailable(url, info, sessionID)
     {
         let output = match_f.controller.getEnabled();
 
@@ -72,31 +72,31 @@ class MatchCallbacks
         return https_f.response.getBody(output);
     }
 
-    joinMatch(url, info, sessionID)
+    static joinMatch(url, info, sessionID)
     {
         return https_f.response.getBody(match_f.controller.joinMatch(info, sessionID));
     }
 
-    getMetrics(url, info, sessionID)
+    static getMetrics(url, info, sessionID)
     {
         return https_f.response.getBody(JsonUtil.serialize(database_f.server.tables.match.metrics));
     }
 
-    getGroupStatus(url, info, sessionID)
+    static getGroupStatus(url, info, sessionID)
     {
         return https_f.response.getBody(match_f.controller.getGroupStatus(info));
     }
 
-    createGroup(url, info, sessionID)
+    static createGroup(url, info, sessionID)
     {
         return https_f.response.getBody(match_f.controller.createGroup(sessionID, info));
     }
 
-    deleteGroup(url, info, sessionID)
+    static deleteGroup(url, info, sessionID)
     {
         match_f.controller.deleteGroup(info);
         return https_f.response.nullResponse();
     }
 }
 
-module.exports = new MatchCallbacks();
+module.exports = MatchCallbacks;
