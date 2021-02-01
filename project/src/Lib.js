@@ -142,7 +142,3 @@ globalThis["match_f"] = {
     "config": require("./configs/MatchConfig.json"),
     "controller": require("./controllers/MatchController.js")
 };
-
-globalThis["mods_f"] = {
-    "loader": require("./controllers/ModController.js")
-};
