@@ -27,8 +27,7 @@ globalThis["https_f"] = {
 };
 
 globalThis["database_f"] = {
-    "server": require("./servers/DatabaseServer.js"),
-    "importScript": require("./utils/DatabaseImporter.js")
+    "server": require("./servers/DatabaseServer.js")
 };
 
 globalThis["item_f"] = {

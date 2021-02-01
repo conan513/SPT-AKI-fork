@@ -1,6 +1,7 @@
 const BotCallbacks = require("./callbacks/BotCallbacks");
 const CertCallbacks = require("./callbacks/CertCallbacks");
 const CustomizationCallbacks = require("./callbacks/CustomizationCallbacks");
+const DataCallbacks = require("./callbacks/DataCallbacks");
 const DialogueCallbacks = require("./callbacks/DialogueCallbacks");
 const GameCallbacks = require("./callbacks/GameCallbacks");
 const HealthCallbacks = require("./callbacks/HealthCallbacks");
@@ -27,6 +28,7 @@ const TradeCallbacks = require("./callbacks/TradeCallbacks");
 const TraderCallbacks = require("./callbacks/TraderCallbacks");
 const WeatherCallbacks = require("./callbacks/WeatherCallbacks");
 const WishlistCallbacks = require("./callbacks/WishlistCallbacks");
+const DatabaseImporter = require("./utils/DatabaseImporter")
 
 // server load
 core_f.packager.onLoad["aki-certs"] = CertCallbacks.load;
@@ -36,6 +38,7 @@ core_f.packager.onLoad["aki-presets"] = PresetCallbacks.load.bind(this);
 core_f.packager.onLoad["aki-ragfair"] = RagfairCallbacks.load.bind(this);
 core_f.packager.onLoad["aki-save"] = SaveCallbacks.load.bind(this);
 core_f.packager.onLoad["aki-traders"] = TraderCallbacks.load.bind(this);
+core_f.packager.onLoad["aki-database"] = DatabaseImporter.load.bind(this);
 
 // server update
 core_f.packager.onUpdate["aki-dialogue"] = DialogueCallbacks.update.bind(this);
@@ -61,6 +64,18 @@ https_f.server.onReceive["SAVE"] = SaveCallbacks.save.bind(this);
 https_f.router.addStaticRoute("/client/game/bot/generate", "Aki", BotCallbacks.generateBots);
 https_f.router.addStaticRoute(CertCallbacks.endPoint, "Aki", CertCallbacks.registerBinary);
 https_f.router.addStaticRoute("/client/trading/customization/storage", "Aki", CustomizationCallbacks.getSuits.bind(this));
+https_f.router.addStaticRoute("/client/globals", "Aki", DataCallbacks.getGlobals.bind(this));
+https_f.router.addStaticRoute("/client/items", "Aki", DataCallbacks.getTemplateItems.bind(this));
+https_f.router.addStaticRoute("/client/handbook/templates", "Aki", DataCallbacks.getTemplateHandbook.bind(this));
+https_f.router.addStaticRoute("/client/customization", "Aki", DataCallbacks.getTemplateSuits.bind(this));
+https_f.router.addStaticRoute("/client/account/customization", "Aki", DataCallbacks.getTemplateCharacter.bind(this));
+https_f.router.addStaticRoute("/client/hideout/production/recipes", "Aki", DataCallbacks.gethideoutProduction.bind(this));
+https_f.router.addStaticRoute("/client/hideout/settings", "Aki", DataCallbacks.getHideoutSettings.bind(this));
+https_f.router.addStaticRoute("/client/hideout/areas", "Aki", DataCallbacks.getHideoutAreas.bind(this));
+https_f.router.addStaticRoute("/client/hideout/production/scavcase/recipes", "Aki", DataCallbacks.getHideoutScavcase.bind(this));
+https_f.router.addStaticRoute("/client/languages", "Aki", DataCallbacks.getLocalesLanguages.bind(this));
+https_f.router.addDynamicRoute("/client/menu/locale/", "Aki", DataCallbacks.getLocalesMenu.bind(this));
+https_f.router.addDynamicRoute("/client/locale/", "Aki", DataCallbacks.getLocalesGlobal.bind(this));
 https_f.router.addStaticRoute("/client/friend/list", "Aki", DialogueCallbacks.getFriendList.bind(this));
 https_f.router.addStaticRoute("/client/chatServer/list", "Aki", DialogueCallbacks.getChatServerList.bind(this));
 https_f.router.addStaticRoute("/client/mail/dialog/list", "Aki", DialogueCallbacks.getMailDialogList.bind(this));
