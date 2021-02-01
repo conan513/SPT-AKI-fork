@@ -1,3 +1,7 @@
+// utils
+const app = require("./utils/App");
+
+// callbacks
 const BotCallbacks = require("./callbacks/BotCallbacks");
 const CertCallbacks = require("./callbacks/CertCallbacks");
 const CustomizationCallbacks = require("./callbacks/CustomizationCallbacks");
@@ -28,25 +32,25 @@ const TradeCallbacks = require("./callbacks/TradeCallbacks");
 const TraderCallbacks = require("./callbacks/TraderCallbacks");
 const WeatherCallbacks = require("./callbacks/WeatherCallbacks");
 const WishlistCallbacks = require("./callbacks/WishlistCallbacks");
-const DatabaseImporter = require("./utils/DatabaseImporter")
+const DatabaseImporter = require("./utils/DatabaseImporter");
 
 // server load
-core_f.packager.onLoad["aki-certs"] = CertCallbacks.load;
-core_f.packager.onLoad["aki-https"] = HttpCallbacks.load.bind(this);
-core_f.packager.onLoad["aki-mods"] = ModCallbacks.load.bind(this);
-core_f.packager.onLoad["aki-presets"] = PresetCallbacks.load.bind(this);
-core_f.packager.onLoad["aki-ragfair"] = RagfairCallbacks.load.bind(this);
-core_f.packager.onLoad["aki-save"] = SaveCallbacks.load.bind(this);
-core_f.packager.onLoad["aki-traders"] = TraderCallbacks.load.bind(this);
-core_f.packager.onLoad["aki-database"] = DatabaseImporter.load.bind(this);
+app.onLoad["aki-certs"] = CertCallbacks.load;
+app.onLoad["aki-https"] = HttpCallbacks.load.bind(this);
+app.onLoad["aki-mods"] = ModCallbacks.load.bind(this);
+app.onLoad["aki-presets"] = PresetCallbacks.load.bind(this);
+app.onLoad["aki-ragfair"] = RagfairCallbacks.load.bind(this);
+app.onLoad["aki-save"] = SaveCallbacks.load.bind(this);
+app.onLoad["aki-traders"] = TraderCallbacks.load.bind(this);
+app.onLoad["aki-database"] = DatabaseImporter.load.bind(this);
 
 // server update
-core_f.packager.onUpdate["aki-dialogue"] = DialogueCallbacks.update.bind(this);
-core_f.packager.onUpdate["aki-hideout"] = HideoutCallbacks.update.bind(this);
-core_f.packager.onUpdate["aki-insurance"] = InsuranceCallbacks.update.bind(this);
-core_f.packager.onUpdate["aki-ragfair-offers"] = RagfairCallbacks.update.bind(this);
-core_f.packager.onUpdate["aki-ragfair-player"] = RagfairCallbacks.updatePlayer.bind(this);
-core_f.packager.onUpdate["aki-traders"] = TraderCallbacks.update.bind(this);
+app.onUpdate["aki-dialogue"] = DialogueCallbacks.update.bind(this);
+app.onUpdate["aki-hideout"] = HideoutCallbacks.update.bind(this);
+app.onUpdate["aki-insurance"] = InsuranceCallbacks.update.bind(this);
+app.onUpdate["aki-ragfair-offers"] = RagfairCallbacks.update.bind(this);
+app.onUpdate["aki-ragfair-player"] = RagfairCallbacks.updatePlayer.bind(this);
+app.onUpdate["aki-traders"] = TraderCallbacks.update.bind(this);
 
 // saves load
 save_f.server.onLoad["aki-health"] = HealthCallbacks.onLoad.bind(this);

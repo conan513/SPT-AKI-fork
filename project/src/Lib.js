@@ -1,6 +1,3 @@
-globalThis["core_f"] = {};
-globalThis["core_f"]["packager"] = require("./utils/Packager");
-
 globalThis.vfs = require("./utils/VFS");
 globalThis.JsonUtil = require("./utils/JsonUtil");
 globalThis.HashUtil = require("./utils/HashUtil");

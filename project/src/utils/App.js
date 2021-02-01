@@ -8,7 +8,7 @@
 
 "use strict";
 
-class Packager
+class App
 {
     constructor()
     {
@@ -71,4 +71,4 @@ class Packager
     }
 }
 
-module.exports = new Packager();
+module.exports = new App();

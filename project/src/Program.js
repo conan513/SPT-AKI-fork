@@ -10,6 +10,7 @@
 
 const process = require("process");
 const watermark = require("./utils/Watermark");
+const app = require("./utils/App");
 
 class Program
 {
@@ -29,7 +30,7 @@ class Program
         require("./Routes");
 
         // load and execute all packages
-        core_f.packager.load();
+        app.load();
     }
 }
 
