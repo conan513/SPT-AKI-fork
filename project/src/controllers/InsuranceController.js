@@ -299,7 +299,7 @@ class InsuranceController
                         toDelete.push.apply(toDelete, ItemHelper.findAndReturnChildrenByItems(insured.items, insuredItem._id));
                     }
                 }
-                
+
                 for (var pos = insured.items.length - 1; pos >= 0; --pos)
                 {
                     if (toDelete.includes(insured.items[pos]._id))
