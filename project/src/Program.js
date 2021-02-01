@@ -27,7 +27,7 @@ class Program
 
         // import classes
         require("./Lib");
-        require("./Routes");
+        require("./Bindings");
 
         // load and execute all packages
         app.load();
