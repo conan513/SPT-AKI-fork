@@ -8,11 +8,13 @@
 
 "use strict";
 
+const RepairController = require("../controllers/RepairController.js")
+
 class RepairCallbacks
 {
     static repair(pmcData, body, sessionID)
     {
-        return repair_f.controller.repair(pmcData, body, sessionID);
+        return RepairController.repair(pmcData, body, sessionID);
     }
 }
 

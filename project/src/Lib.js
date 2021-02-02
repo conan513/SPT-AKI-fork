@@ -88,11 +88,6 @@ globalThis["weaponbuilds_f"] = {
     "controller": require("./controllers/PresetBuildController.js")
 };
 
-globalThis["repair_f"] = {
-    "config": require("./configs/RepairConfig.json"),
-    "controller": require("./controllers/RepairController.js")
-};
-
 globalThis["insurance_f"] = {
     "config": require("./configs/InsuranceConfig.json"),
     "controller": require("./controllers/InsuranceController.js")
