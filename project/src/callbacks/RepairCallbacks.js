@@ -8,7 +8,7 @@
 
 "use strict";
 
-const RepairController = require("../controllers/RepairController.js")
+const RepairController = require("../controllers/RepairController.js");
 
 class RepairCallbacks
 {
