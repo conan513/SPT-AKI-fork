@@ -11,7 +11,7 @@
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "R8";
+    static version = "BLEEDINGEDGE-A8";
     static url = "https://www.guilded.gg/senkospub";
     static colors = {
         "front": "\x1b[33m",    // gold
@@ -19,7 +19,10 @@ class Watermark
     };
     static text = [
         `${Watermark.project} ${Watermark.version}`,
-        `${Watermark.url}`
+        `${Watermark.url}`,
+        "",
+        "NO SUPPORT FOR THIS BUILD",
+        "USE AT YOUR OWN RISK"
     ];
 
     /** Set window title */

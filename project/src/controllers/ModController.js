@@ -8,6 +8,8 @@
 
 "use strict";
 
+const VFS = require("../utils/VFS");
+
 class ModController
 {
     constructor()
@@ -33,15 +35,15 @@ class ModController
     importMods()
     {
         // get mods
-        if (!vfs.exists(this.basepath))
+        if (!VFS.exists(this.basepath))
         {
             // no mods folder found
-            vfs.createDir(this.basepath);
+            VFS.createDir(this.basepath);
             return;
         }
 
         Logger.log("ModLoader: loading mods...");
-        const mods = vfs.getDirs(this.basepath);
+        const mods = VFS.getDirs(this.basepath);
 
         // validate mods
         for (const mod of mods)
@@ -113,7 +115,7 @@ class ModController
 
     addBundles(modpath)
     {
-        const manifest = JsonUtil.deserialize(vfs.readFile(`${modpath}bundles.json`)).manifest;
+        const manifest = JsonUtil.deserialize(VFS.readFile(`${modpath}bundles.json`)).manifest;
 
         for (const bundleInfo of manifest)
         {
@@ -135,10 +137,10 @@ class ModController
         const modpath = this.getModPath(mod);
 
         // add mod to imported list
-        this.imported[mod] = JsonUtil.deserialize(vfs.readFile(`${modpath}/package.json`));
+        this.imported[mod] = JsonUtil.deserialize(VFS.readFile(`${modpath}/package.json`));
 
         // add mod bundles
-        if (vfs.exists(`${modpath}bundles.json`))
+        if (VFS.exists(`${modpath}bundles.json`))
         {
             this.addBundles(modpath);
         }
@@ -147,14 +149,14 @@ class ModController
     validMod(mod)
     {
         // check if config exists
-        if (!vfs.exists(`${this.getModPath(mod)}/package.json`))
+        if (!VFS.exists(`${this.getModPath(mod)}/package.json`))
         {
             console.log(`Mod ${mod} is missing package.json`);
             return false;
         }
 
         // validate mod
-        const config = JsonUtil.deserialize(vfs.readFile(`${this.getModPath(mod)}/package.json`));
+        const config = JsonUtil.deserialize(VFS.readFile(`${this.getModPath(mod)}/package.json`));
         const checks = ["name", "author", "version", "license"];
         let issue = false;
 
@@ -176,7 +178,7 @@ class ModController
             }
 
 
-            if (!vfs.exists(`${this.getModPath(mod)}/${config.main}`))
+            if (!VFS.exists(`${this.getModPath(mod)}/${config.main}`))
             {
                 console.log(`Mod ${mod} package.json main property points to non-existing file`);
                 issue = true;

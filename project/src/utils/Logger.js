@@ -7,6 +7,7 @@
  */
 
 const util = require("util");
+const VFS = require("./VFS");
 
 class Logger
 {
@@ -65,7 +66,7 @@ class Logger
         }
 
         // save logged message
-        vfs.writeFile(this.filepath, `${util.format(data)}\n`, true);
+        VFS.writeFile(this.filepath, `${util.format(data)}\n`, true);
     }
 
     error(data)

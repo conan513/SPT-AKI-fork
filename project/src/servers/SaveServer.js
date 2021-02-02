@@ -9,6 +9,8 @@
 
 "use strict";
 
+const VFS = require("../utils/VFS");
+
 class SaveServer
 {
     constructor()
@@ -23,12 +25,12 @@ class SaveServer
     load()
     {
         // get files to load
-        if (!vfs.exists(this.filepath))
+        if (!VFS.exists(this.filepath))
         {
-            vfs.createDir(this.filepath);
+            VFS.createDir(this.filepath);
         }
 
-        const files = vfs.getFiles(this.filepath);
+        const files = VFS.getFiles(this.filepath);
 
         // load profiles
         for (let file of files)
@@ -54,10 +56,10 @@ class SaveServer
     {
         const file = `${this.filepath}${sessionID}.json`;
 
-        if (vfs.exists(file))
+        if (VFS.exists(file))
         {
             // load profile
-            this.profiles[sessionID] = JsonUtil.deserialize(vfs.readFile(file));
+            this.profiles[sessionID] = JsonUtil.deserialize(VFS.readFile(file));
         }
 
         // run callbacks
@@ -82,7 +84,7 @@ class SaveServer
         }
 
         // save profile
-        vfs.writeFile(file, JsonUtil.serialize(this.profiles[sessionID], true));
+        VFS.writeFile(file, JsonUtil.serialize(this.profiles[sessionID], true));
     }
 }
 

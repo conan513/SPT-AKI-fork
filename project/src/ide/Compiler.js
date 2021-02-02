@@ -6,7 +6,7 @@
  * - Senko-san (Merijn Hendriks)
  */
 
-const vfs = require("../utils/VFS.js");
+const VFS = require("../utils/VFS");
 const { compile } = require("nexe");
 const resourceHacker = require('@lorki97/node-resourcehacker');
 
@@ -42,10 +42,10 @@ class Compiler
 
     static preBuild()
     {
-        if (vfs.exists(Compiler.buildOptions.build.dir))
+        if (VFS.exists(Compiler.buildOptions.build.dir))
         {
             console.log("Old build detected, removing the file");
-            vfs.removeDir(Compiler.buildOptions.build.dir);
+            VFS.removeDir(Compiler.buildOptions.build.dir);
         }
     }
 
@@ -61,12 +61,12 @@ class Compiler
 
     static postBuild()
     {
-        if (vfs.exists(Compiler.buildOptions.tmp.dir))
+        if (VFS.exists(Compiler.buildOptions.tmp.dir))
         {
-            vfs.removeDir(Compiler.buildOptions.tmp.dir);
+            VFS.removeDir(Compiler.buildOptions.tmp.dir);
         }
 
-        vfs.copyDir("assets/", `${Compiler.buildOptions.build.dir}Aki_Data/Server/`);
+        VFS.copyDir("assets/", `${Compiler.buildOptions.build.dir}Aki_Data/Server/`);
     }
 
     static run()
