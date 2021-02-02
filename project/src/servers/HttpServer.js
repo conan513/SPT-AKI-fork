@@ -22,7 +22,7 @@ class HttpServer
     {
         this.buffers = {};
         this.onReceive = {};
-        this.onRespond = {};
+        this.onRespond = require("../bindings/ServerRespond");
         this.webSockets = {};
         this.mime = {
             "css": "text/css",

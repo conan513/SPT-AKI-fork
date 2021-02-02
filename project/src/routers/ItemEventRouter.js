@@ -12,7 +12,7 @@ class ItemEventRouter
     {
         /** @type {apiEventResponse} */
         this.output;
-        this.onEvent = {};
+        this.onEvent = require("../bindings/ItemEvents");
 
         this.resetOutput();
     }
