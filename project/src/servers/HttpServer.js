@@ -244,12 +244,12 @@ class HttpServer
         {
             this.handleRequest(req, res);
         });
-        
+
         httpss.listen(https_f.config.port, https_f.config.ip, () =>
         {
             Logger.success(`Started webserver at ${this.getBackendUrl()}`);
         });
-        
+
         httpss.on("error", (e) =>
         {
             /* server is already running or program using privileged port without root */
@@ -267,12 +267,12 @@ class HttpServer
         const wss = new WebSocket.Server({
             "server": httpss
         });
-        
+
         wss.addListener("listening", () =>
         {
             Logger.success("Started websocket");
         });
-        
+
         wss.addListener("connection", this.wsOnConnection.bind(this));
     }
 
