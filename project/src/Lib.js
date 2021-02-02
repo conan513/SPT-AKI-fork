@@ -113,11 +113,6 @@ globalThis["ragfair_f"] = {
     "controller": require("./controllers/RagfairController.js")
 };
 
-globalThis["weather_f"] = {
-    "config": require("./configs/WeatherConfig.json"),
-    "controller": require("./controllers/WeatherController.js")
-};
-
 globalThis["location_f"] = {
     "config": require("./configs/LocationConfig.json"),
     "controller": require("./controllers/LocationController.js"),

@@ -8,11 +8,13 @@
 
 "use strict";
 
+const WeatherController = require("../controllers/WeatherController.js");
+
 class WeatherCallbacks
 {
     static getWeather(url, info, sessionID)
     {
-        return https_f.response.getBody(weather_f.controller.generate());
+        return https_f.response.getBody(WeatherController.generate());
     }
 }
 
