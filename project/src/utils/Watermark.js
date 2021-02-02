@@ -19,7 +19,10 @@ class Watermark
     };
     static text = [
         `${Watermark.project} ${Watermark.version}`,
-        `${Watermark.url}`
+        `${Watermark.url}`,
+        "",
+        "NO SUPPORT FOR THIS BUILD",
+        "USE AT YOUR OWN RISK"
     ];
 
     /** Set window title */
