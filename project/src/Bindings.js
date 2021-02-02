@@ -54,7 +54,8 @@ App.onUpdate = {
     "aki-insurance": InsuranceCallbacks.update,
     "aki-ragfair-offers": RagfairCallbacks.update,
     "aki-ragfair-player": RagfairCallbacks.updatePlayer,
-    "aki-traders": TraderCallbacks.update
+    "aki-traders": TraderCallbacks.update,
+    "aki-save": SaveCallbacks.update
 };
 
 // saves load
@@ -70,7 +71,6 @@ https_f.server.onRespond = {
     "CERT_BIN": CertCallbacks.sendBinary,
     "IMAGE": HttpCallbacks.sendImage,
     "BUNDLE": ModCallbacks.sendBundle,
-    "SAVE": SaveCallbacks.save
 };
 
 // Static routes
