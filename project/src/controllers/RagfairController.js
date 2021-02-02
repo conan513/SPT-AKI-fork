@@ -639,12 +639,12 @@ class RagfairController
         if (!info || !info.items || info.items.length === 0)
         {
             Logger.error("Invalid addOffer request");
-            return ResponseHelper.appendErrorToOutput(result);
+            return https_f.response.appendErrorToOutput(result);
         }
 
         if (!info.requirements)
         {
-            return ResponseHelper.appendErrorToOutput(result, "How did you place the offer with no requirements?");
+            return https_f.response.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
         for (const item of info.requirements)
@@ -669,7 +669,7 @@ class RagfairController
             if (item === undefined)
             {
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
-                return ResponseHelper.appendErrorToOutput(result);
+                return https_f.response.appendErrorToOutput(result);
             }
             item = ItemHelper.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
@@ -687,7 +687,7 @@ class RagfairController
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
-            return ResponseHelper.appendErrorToOutput(result);
+            return https_f.response.appendErrorToOutput(result);
         }
 
         for (const item of invItems)
@@ -700,7 +700,7 @@ class RagfairController
         {
             // Don't want to accidentally divide by 0
             Logger.error("Failed to count base price for offer");
-            return ResponseHelper.appendErrorToOutput(result);
+            return https_f.response.appendErrorToOutput(result);
         }
 
         // Preparations are done, create the offer
@@ -777,7 +777,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return ResponseHelper.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -802,7 +802,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return ResponseHelper.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;
