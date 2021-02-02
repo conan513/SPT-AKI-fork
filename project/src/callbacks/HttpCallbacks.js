@@ -8,6 +8,8 @@
 
 "use strict";
 
+const ImageRouter = require("../routers/ImageRouter");
+
 class HttpCallbacks
 {
     static load()
@@ -17,12 +19,12 @@ class HttpCallbacks
 
     static sendImage(sessionID, req, resp, body)
     {
-        https_f.image.sendImage(sessionID, req, resp, body);
+        ImageRouter.sendImage(sessionID, req, resp, body);
     }
 
     static getImage()
     {
-        return https_f.image.getImage();
+        return ImageRouter.getImage();
     }
 }
 

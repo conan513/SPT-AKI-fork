@@ -10,13 +10,10 @@
 
 class HttpRouter
 {
-    constructor()
-    {
-        this.onStaticRoute = {};
-        this.onDynamicRoute = {};
-    }
+    static onStaticRoute = {};
+    static onDynamicRoute = {};
 
-    getResponse(req, info, sessionID)
+    static getResponse(req, info, sessionID)
     {
         let output = "";
         let url = req.url;
@@ -27,17 +24,17 @@ class HttpRouter
             url = url.split("?retry=")[0];
         }
 
-        if (this.onStaticRoute[url])
+        if (HttpRouter.onStaticRoute[url])
         {
             // static route found
-            for (const callback in this.onStaticRoute[url])
+            for (const callback in HttpRouter.onStaticRoute[url])
             {
-                output = this.onStaticRoute[url][callback](url, info, sessionID, output);
+                output = HttpRouter.onStaticRoute[url][callback](url, info, sessionID, output);
             }
         }
         else
         {
-            for (const route in this.onDynamicRoute)
+            for (const route in HttpRouter.onDynamicRoute)
             {
                 if (!url.includes(route))
                 {
@@ -46,9 +43,9 @@ class HttpRouter
                 }
 
                 // dynamic route found
-                for (const callback in this.onDynamicRoute[route])
+                for (const callback in HttpRouter.onDynamicRoute[route])
                 {
-                    output = this.onDynamicRoute[route][callback](url, info, sessionID, output);
+                    output = HttpRouter.onDynamicRoute[route][callback](url, info, sessionID, output);
                 }
             }
         }
@@ -57,4 +54,4 @@ class HttpRouter
     }
 }
 
-module.exports = new HttpRouter();
+module.exports = HttpRouter;

@@ -13,8 +13,6 @@ globalThis.Mods = require("./controllers/ModController");
 globalThis["https_f"] = {
     "config": require("./configs/HttpConfig.json"),
     "response": require("./utils/HttpResponse.js"),
-    "router": require("./routers/HttpRouter.js"),
-    "image": require("./routers/ImageRouter.js"),
     "server": require("./servers/HttpServer.js")
 };
 

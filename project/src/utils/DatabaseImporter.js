@@ -10,6 +10,7 @@
 "use strict";
 
 const VFS = require("./VFS");
+const ImageRouter = require("../routers/ImageRouter");
 
 class DatabaseImporter
 {
@@ -62,7 +63,7 @@ class DatabaseImporter
             for (const file of files)
             {
                 const filename = file.split(".").slice(0, -1).join(".");
-                https_f.image.onRoute[`${routes[i]}${filename}`] = `${filepath}${dirs[i]}/${file}`;
+                ImageRouter.onRoute[`${routes[i]}${filename}`] = `${filepath}${dirs[i]}/${file}`;
             }
         }
     }

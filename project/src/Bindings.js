@@ -1,5 +1,6 @@
 // utils
 const App = require("./utils/App");
+const HttpRouter = require("./routers/HttpRouter");
 const DatabaseImporter = require("./utils/DatabaseImporter");
 
 // callbacks
@@ -73,7 +74,7 @@ https_f.server.onRespond = {
 };
 
 // Static routes
-https_f.router.onStaticRoute = {
+HttpRouter.onStaticRoute = {
     "/client/game/bot/generate": {
         "aki": BotCallbacks.generateBots
     },
@@ -329,7 +330,7 @@ https_f.router.onStaticRoute = {
 };
 
 // Dynamic routes
-https_f.router.onDynamicRoute = {
+HttpRouter.onDynamicRoute = {
     "/client/menu/locale/": {
         "aki": DataCallbacks.getLocalesMenu
     },

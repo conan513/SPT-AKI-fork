@@ -13,6 +13,7 @@ const fs = require("fs");
 const zlib = require("zlib");
 const https = require("https");
 const WebSocket = require("ws");
+const HttpRouter = require("../routers/HttpRouter");
 const CertController = require("../controllers/CertController");
 
 class HttpServer
@@ -150,7 +151,7 @@ class HttpServer
         // get response
         const text = (body) ? body.toString() : "{}";
         const info = (text) ? JsonUtil.deserialize(text) : {};
-        let output = https_f.router.getResponse(req, info, sessionID);
+        let output = HttpRouter.getResponse(req, info, sessionID);
 
         /* route doesn't exist or response is not properly set up */
         if (!output)
