@@ -8,6 +8,8 @@
 
 "use strict";
 
+const CustomizationController = require("../controllers/CustomizationController.js");
+
 class CustomizationCallbacks
 {
     static getSuits(url, info, sessionID)
@@ -20,20 +22,20 @@ class CustomizationCallbacks
 
     static getTraderSuits(url, info, sessionID)
     {
-        let splittedUrl = url.split("/");
-        let traderID = splittedUrl[splittedUrl.length - 2];
+        const splittedUrl = url.split("/");
+        const traderID = splittedUrl[splittedUrl.length - 2];
 
-        return https_f.response.getBody(customization_f.controller.getTraderSuits(traderID, sessionID));
+        return https_f.response.getBody(CustomizationController.getTraderSuits(traderID, sessionID));
     }
 
     static wearClothing(pmcData, body, sessionID)
     {
-        return customization_f.controller.wearClothing(pmcData, body, sessionID);
+        return CustomizationController.wearClothing(pmcData, body, sessionID);
     }
 
     static buyClothing(pmcData, body, sessionID)
     {
-        return customization_f.controller.buyClothing(pmcData, body, sessionID);
+        return CustomizationController.buyClothing(pmcData, body, sessionID);
     }
 }
 

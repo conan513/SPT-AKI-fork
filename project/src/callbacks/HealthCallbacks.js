@@ -8,32 +8,34 @@
 
 "use strict";
 
+const HealthController = require("../controllers/HealthController.js");
+
 class HealthCallbacks
 {
     static onLoad(sessionID)
     {
-        return health_f.controller.resetVitality(sessionID);
+        return HealthController.resetVitality(sessionID);
     }
 
     static syncHealth(url, info, sessionID)
     {
-        health_f.controller.saveVitality(profile_f.controller.getPmcProfile(sessionID), info, sessionID);
+        HealthController.saveVitality(profile_f.controller.getPmcProfile(sessionID), info, sessionID);
         return https_f.response.emptyResponse();
     }
 
     static offraidEat(pmcData, body, sessionID)
     {
-        return health_f.controller.offraidEat(pmcData, body, sessionID);
+        return HealthController.offraidEat(pmcData, body, sessionID);
     }
 
     static offraidHeal(pmcData, body, sessionID)
     {
-        return health_f.controller.offraidHeal(pmcData, body, sessionID);
+        return HealthController.offraidHeal(pmcData, body, sessionID);
     }
 
     static healthTreatment(pmcData, info, sessionID)
     {
-        return health_f.controller.healthTreatment(pmcData, info, sessionID);
+        return HealthController.healthTreatment(pmcData, info, sessionID);
     }
 }
 

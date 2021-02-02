@@ -28,11 +28,6 @@ globalThis["save_f"] = {
     "server": require("./servers/SaveServer.js")
 };
 
-globalThis["health_f"] = {
-    "config": require("./configs/HealthConfig.json"),
-    "controller": require("./controllers/HealthController.js")
-};
-
 globalThis["inraid_f"] = {
     "config": require("./configs/InraidConfig.json"),
     "controller": require("./controllers/InraidController.js")
@@ -69,10 +64,6 @@ globalThis["inventory_f"] = {
 
 globalThis["trade_f"] = {
     "controller": require("./controllers/TradeController.js")
-};
-
-globalThis["customization_f"] = {
-    "controller": require("./controllers/CustomizationController.js")
 };
 
 globalThis["hideout_f"] = {

@@ -11,7 +11,7 @@
 
 class CustomizationController
 {
-    wearClothing(pmcData, body, sessionID)
+    static wearClothing(pmcData, body, sessionID)
     {
         for (let i = 0; i < body.suites.length; i++)
         {
@@ -34,7 +34,7 @@ class CustomizationController
         return item_f.eventHandler.getOutput();
     }
 
-    getTraderSuits(traderID, sessionID)
+    static getTraderSuits(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let templates = database_f.server.tables.templates.customization;
@@ -59,7 +59,7 @@ class CustomizationController
         return result;
     }
 
-    getAllTraderSuits(sessionID)
+    static getAllTraderSuits(sessionID)
     {
         const traders = database_f.server.tables.traders;
         let result = [];
@@ -68,19 +68,19 @@ class CustomizationController
         {
             if (traders[traderID].base.customization_seller === true)
             {
-                result = [...result, ...this.getTraderSuits(traderID, sessionID)];
+                result = [...result, ...CustomizationController.getTraderSuits(traderID, sessionID)];
             }
         }
 
         return result;
     }
 
-    buyClothing(pmcData, body, sessionID)
+    static buyClothing(pmcData, body, sessionID)
     {
         let output = item_f.eventHandler.getOutput();
 
         // find suit offer
-        const offers = this.getAllTraderSuits(sessionID);
+        const offers = CustomizationController.getAllTraderSuits(sessionID);
         let offer = offers.find((suit) =>
         {
             return body.offer === suit._id;
@@ -115,7 +115,7 @@ class CustomizationController
 
                 if (sellItem.del === true)
                 {
-                    output.items.del.push({"_id": sellItem.id});
+                    output.items.del.push(item);
                     pmcData.Inventory.items.splice(itemID, 1);
                 }
 
@@ -140,4 +140,4 @@ class CustomizationController
     }
 }
 
-module.exports = new CustomizationController();
+module.exports = CustomizationController;
