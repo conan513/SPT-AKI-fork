@@ -42,10 +42,6 @@ globalThis["dialogue_f"] = {
     "controller": require("./controllers/DialogueController.js")
 };
 
-globalThis["account_f"] = {
-    "controller": require("./controllers/LauncherController.js")
-};
-
 globalThis["profile_f"] = {
     "controller": require("./controllers/ProfileController.js")
 };

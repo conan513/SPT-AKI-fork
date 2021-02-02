@@ -11,6 +11,8 @@
 
 "use strict";
 
+const LauncherController = require("./LauncherController.js");
+
 class ProfileController
 {
     /**
@@ -37,10 +39,6 @@ class ProfileController
      */
     getPmcProfile(sessionID)
     {
-        if (save_f.server.profiles[sessionID] === undefined || save_f.server.profiles[sessionID].characters.pmc === undefined)
-        {
-            return undefined;
-        }
         return save_f.server.profiles[sessionID].characters.pmc;
     }
 
@@ -68,7 +66,7 @@ class ProfileController
     {
         let output = [];
 
-        if (!account_f.controller.isWiped(sessionID))
+        if (!.controller.isWiped(sessionID))
         {
             output.push(this.getPmcProfile(sessionID));
             output.push(this.getScavProfile(sessionID));
@@ -83,7 +81,7 @@ class ProfileController
      */
     createProfile(info, sessionID)
     {
-        const account = account_f.controller.find(sessionID);
+        const account = LauncherController.find(sessionID);
         const profile = database_f.server.tables.templates.profiles[account.edition][info.side.toLowerCase()];
         /** @type {UserPMCProfile} */
         let pmcData = profile.character;
@@ -141,7 +139,7 @@ class ProfileController
      */
     resetTrader(sessionID, traderID)
     {
-        const account = account_f.controller.find(sessionID);
+        const account = LauncherController.find(sessionID);
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
         const traderWipe = database_f.server.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 

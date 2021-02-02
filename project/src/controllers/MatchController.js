@@ -8,6 +8,7 @@
 
 "use strict";
 
+const LauncherController = require("./LauncherController.js");
 const MatchConfig = require("../configs/MatchConfig.json");
 
 class MatchController
@@ -73,7 +74,7 @@ class MatchController
 
         // --- LOOP (DO THIS FOR EVERY PLAYER IN GROUP)
         // get player profile
-        let account = account_f.controller.find(sessionID);
+        let account = LauncherController.find(sessionID);
         let profileID = "";
 
         if (info.savage === true)
