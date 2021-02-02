@@ -10,8 +10,8 @@
 
 class HttpRouter
 {
-    static onStaticRoute = {};
-    static onDynamicRoute = {};
+    static onStaticRoute = require("../bindings/StaticRoutes");
+    static onDynamicRoute = require("../bindings/DynamicRoutes");
 
     static getResponse(req, info, sessionID)
     {

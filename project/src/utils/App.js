@@ -10,8 +10,8 @@
 
 class App
 {
-    static onLoad = {};
-    static onUpdate = {};
+    static onLoad = require("../bindings/AppLoad");
+    static onUpdate = require("../bindings/AppUpdate");
     static onUpdateLastRun = {};
 
     static load()

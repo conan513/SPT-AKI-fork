@@ -18,7 +18,7 @@ class SaveServer
         this.filepath = "user/profiles/";
         /** @type {UserProfileDictionary} */
         this.profiles = {};
-        this.onLoad = {};
+        this.onLoad = require("../bindings/SaveLoad");
         this.onSave = {};
     }
 
