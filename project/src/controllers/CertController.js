@@ -13,53 +13,51 @@
 
 const selfsigned = require("selfsigned");
 const sudo = require("sudo-prompt");
+const VFS = require("../utils/VFS");
 
 class CertController
 {
-    constructor()
+    static certDir = "user/certs/";
+    static certFile = `${CertController.certDir}cert.pem`;
+    static keyFile = `${CertController.certDir}key.pem`;
+    static fingerprint = "";
+    static certs = {};
+
+    static load()
     {
-        this.certDir = "user/certs/";
-        this.certFile = `${this.certDir}cert.pem`;
-        this.keyFile = `${this.certDir}key.pem`;
-        this.fingerprint = "";
-        this.certs = {};
+        CertController.getCerts();
     }
 
-    load()
+    static getCerts()
     {
-        this.getCerts();
-    }
-
-    getCerts()
-    {
-        if (Object.keys(this.certs).length < 2)
+        if (Object.keys(CertController.certs).length < 2)
         {
             // load certs
-            this.certs = this.readCerts();
+            CertController.certs = CertController.readCerts();
 
-            if (Object.keys(this.certs).length < 2)
+            if (Object.keys(CertController.certs).length < 2)
             {
                 // no certs exist
-                this.generateCertificates();
+                CertController.generateCertificates();
             }
         }
 
-        return this.certs;
+        return CertController.certs;
     }
 
-    readCerts()
+    static readCerts()
     {
-        if (!vfs.exists(this.certDir))
+        if (!VFS.exists(CertController.certDir))
         {
-            vfs.createDir(this.certDir);
+            VFS.createDir(CertController.certDir);
         }
 
-        if (vfs.exists(this.certFile) && vfs.exists(this.keyFile))
+        if (VFS.exists(CertController.certFile) && VFS.exists(CertController.keyFile))
         {
             try
             {
-                const cert = vfs.readFile(this.certFile);
-                const key = vfs.readFile(this.keyFile);
+                const cert = VFS.readFile(CertController.certFile);
+                const key = VFS.readFile(CertController.keyFile);
                 return { "cert": cert, "key": key };
             }
             catch (e)
@@ -71,21 +69,21 @@ class CertController
         return {};
     }
 
-    generateCertificates()
+    static generateCertificates()
     {
         let cert;
         let key;
         let fingerprint;
 
         ({ cert, "private": key, fingerprint } = selfsigned.generate([{ "name": "commonName", "value": https_f.config.ip }], { "days": 365 }));
-        vfs.writeFile(this.certFile, cert);
-        vfs.writeFile(this.keyFile, key);
+        VFS.writeFile(CertController.certFile, cert);
+        VFS.writeFile(CertController.keyFile, key);
         Logger.info(`Generated self-signed x509 certificate ${fingerprint}`);
 
         if (process.platform === "linux")
         {
             Logger.info("You are running on linux, you will have to install the cert manually.");
-            Logger.info(`copy ${this.certFile} to your windows PC and run \n\t  certutil.exe -f -addstore Root <path to cert.pem>`);
+            Logger.info(`copy ${CertController.certFile} to your windows PC and run \n\t  certutil.exe -f -addstore Root <path to cert.pem>`);
             Logger.info(`Cert can also be downloaded from ${https_f.server.getBackendUrl()}${certs_f.callbacks.endPoint}`);
 
         }
@@ -94,7 +92,7 @@ class CertController
             Logger.info("Installing cert in trust store. You will be asked for admin privileges.");
 
             // Use CERTMGR.MSC to remove this Trust Store Certificate manually
-            sudo.exec(`certutil.exe -f -addstore Root ${this.certFile}`, {
+            sudo.exec(`certutil.exe -f -addstore Root ${CertController.certFile}`, {
                 name: "Server"
             }, (error, stdout, stderr) =>
             {
@@ -104,9 +102,12 @@ class CertController
             Logger.info("Added self-signed x509 certificate");
         }
 
-        this.fingerprint = fingerprint;
-        this.certs = { "cert": cert, "key": key };
+        CertController.fingerprint = fingerprint;
+        CertController.certs = {
+            "cert": cert,
+            "key": key
+        };
     }
 }
 
-module.exports = new CertController();
+module.exports = CertController;

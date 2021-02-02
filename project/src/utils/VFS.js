@@ -13,65 +13,65 @@ const path = require("path");
 
 class VFS
 {
-    exists(filepath)
+    static exists(filepath)
     {
         return fs.existsSync(filepath);
     }
 
-    rename(filepath, target)
+    static rename(filepath, target)
     {
         fs.renameSync(filepath, target);
     }
 
-    copyFile(filepath, target)
+    static copyFile(filepath, target)
     {
         fs.copyFileSync(filepath, target);
     }
 
-    createDir(filepath)
+    static createDir(filepath)
     {
         fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { "recursive": true });
     }
 
-    copyDir(filepath, target)
+    static copyDir(filepath, target)
     {
         const files = this.getFiles(filepath);
         const dirs = this.getDirs(filepath);
 
         if (!this.exists(target))
         {
-            this.createDir(`${target}/`);
+            VFS.createDir(`${target}/`);
         }
 
         for (const dir of dirs)
         {
-            this.copyDir(path.join(filepath, dir), path.join(target, dir));
+            VFS.copyDir(path.join(filepath, dir), path.join(target, dir));
         }
 
         for (const file of files)
         {
-            this.copyFile(path.join(filepath, file), path.join(target, file));
+            VFS.copyFile(path.join(filepath, file), path.join(target, file));
         }
     }
 
-    readFile(filepath)
+    static readFile(filepath)
     {
         return fs.readFileSync(filepath);
     }
 
-    writeFile(filepath, data = "", append = false)
+    static writeFile(filepath, data = "", append = false)
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
 
-        if (!this.exists(filepath))
+        if (!VFS.exists(filepath))
         {
-            this.createDir(filepath);
+            VFS.createDir(filepath);
         }
 
         fs.writeFileSync(filepath, data, options);
     }
 
-    getFiles(filepath)
+    static getFiles(filepath)
     {
         return fs.readdirSync(filepath).filter((item) =>
         {
@@ -79,7 +79,7 @@ class VFS
         });
     }
 
-    getDirs(filepath)
+    static getDirs(filepath)
     {
         return fs.readdirSync(filepath).filter((item) =>
         {
@@ -87,28 +87,28 @@ class VFS
         });
     }
 
-    removeFile(filepath)
+    static removeFile(filepath)
     {
         fs.unlinkSync(filepath);
     }
 
-    removeDir(filepath)
+    static removeDir(filepath)
     {
-        const files = this.getFiles(filepath);
-        const dirs = this.getDirs(filepath);
+        const files = VFS.getFiles(filepath);
+        const dirs = VFS.getDirs(filepath);
 
         for (const dir of dirs)
         {
-            this.removeDir(path.join(filepath, dir));
+            VFS.removeDir(path.join(filepath, dir));
         }
 
         for (const file of files)
         {
-            this.removeFile(path.join(filepath, file));
+            VFS.removeFile(path.join(filepath, file));
         }
 
         fs.rmdirSync(filepath);
     }
 }
 
-module.exports = new VFS();
+module.exports = VFS;

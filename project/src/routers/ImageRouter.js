@@ -10,27 +10,24 @@
 
 class ImageRouter
 {
-    constructor()
-    {
-        this.onRoute = {};
-    }
+    static onRoute = {};
 
-    sendImage(sessionID, req, resp, body)
+    static sendImage(sessionID, req, resp, body)
     {
         // remove file extension
         const url = req.url.split(".").slice(0, -1).join(".");
 
         // send image
-        if (this.onRoute[url])
+        if (ImageRouter.onRoute[url])
         {
-            https_f.server.sendFile(resp, this.onRoute[url]);
+            https_f.server.sendFile(resp, ImageRouter.onRoute[url]);
         }
     }
 
-    getImage(url, info, sessionID)
+    static getImage(url, info, sessionID)
     {
         return "IMAGE";
     }
 }
 
-module.exports = new ImageRouter();
+module.exports = ImageRouter;

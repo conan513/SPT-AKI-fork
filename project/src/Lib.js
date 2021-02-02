@@ -1,4 +1,3 @@
-globalThis.vfs = require("./utils/VFS");
 globalThis.JsonUtil = require("./utils/JsonUtil");
 globalThis.HashUtil = require("./utils/HashUtil");
 globalThis.RandomUtil = require("./utils/RandomUtil");
@@ -11,15 +10,9 @@ globalThis.InventoryHelper = require("./helpers/InventoryHelper");
 globalThis.ContainerHelper = require("./helpers/ContainerHelper");
 globalThis.Mods = require("./controllers/ModController");
 
-globalThis["certs_f"] = {
-    "controller": require("./controllers/CertController.js")
-};
-
 globalThis["https_f"] = {
     "config": require("./configs/HttpConfig.json"),
     "response": require("./utils/HttpResponse.js"),
-    "router": require("./routers/HttpRouter.js"),
-    "image": require("./routers/ImageRouter.js"),
     "server": require("./servers/HttpServer.js")
 };
 
@@ -73,17 +66,9 @@ globalThis["quest_f"] = {
     "controller": require("./controllers/QuestController.js")
 };
 
-globalThis["note_f"] = {
-    "controller": require("./controllers/NoteController.js")
-};
-
 globalThis["inventory_f"] = {
     "config": require("./configs/InventoryConfig.json"),
     "controller": require("./controllers/InventoryController.js")
-};
-
-globalThis["wishList_f"] = {
-    "controller": require("./controllers/WishlistController.js")
 };
 
 globalThis["trade_f"] = {
@@ -142,8 +127,4 @@ globalThis["location_f"] = {
 globalThis["match_f"] = {
     "config": require("./configs/MatchConfig.json"),
     "controller": require("./controllers/MatchController.js")
-};
-
-globalThis["mods_f"] = {
-    "loader": require("./controllers/ModController.js")
 };

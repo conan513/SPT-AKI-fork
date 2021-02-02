@@ -11,7 +11,7 @@
 
 class NoteController
 {
-    addNote(pmcData, body, sessionID)
+    static addNote(pmcData, body, sessionID)
     {
         pmcData.Notes.Notes.push({
             "Time": body.note.Time,
@@ -21,7 +21,7 @@ class NoteController
         return item_f.eventHandler.getOutput();
     }
 
-    editNote(pmcData, body, sessionID)
+    static editNote(pmcData, body, sessionID)
     {
         pmcData.Notes.Notes[body.index] = {
             "Time": body.note.Time,
@@ -31,11 +31,11 @@ class NoteController
         return item_f.eventHandler.getOutput();
     }
 
-    deleteNote(pmcData, body, sessionID)
+    static deleteNote(pmcData, body, sessionID)
     {
         pmcData.Notes.Notes.splice(body.index, 1);
         return item_f.eventHandler.getOutput();
     }
 }
 
-module.exports = new NoteController();
+module.exports = NoteController;
