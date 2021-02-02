@@ -15,9 +15,17 @@ class SaveCallbacks
         save_f.server.load();
     }
 
-    static save(sessionID, req, resp, body, output)
+    static update(timeSinceLastRun)
     {
-        save_f.server.save();
+        // run every 15 seconds
+        if (timeSinceLastRun > 15 * 1)
+        {
+            save_f.server.save();
+            Logger.debug("Saved profiles");
+            return true;
+        }
+
+        return false;
     }
 }
 

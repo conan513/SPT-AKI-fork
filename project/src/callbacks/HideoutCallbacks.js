@@ -62,6 +62,7 @@ class HideoutCallbacks
             hideout_f.controller.update();
             return true;
         }
+
         return false;
     }
 }

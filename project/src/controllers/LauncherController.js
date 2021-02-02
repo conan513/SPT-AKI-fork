@@ -10,7 +10,7 @@
 
 class LauncherController
 {
-    find(sessionID)
+    static find(sessionID)
     {
         if (sessionID in save_f.server.profiles)
         {
@@ -20,12 +20,12 @@ class LauncherController
         return undefined;
     }
 
-    isWiped(sessionID)
+    static isWiped(sessionID)
     {
         return save_f.server.profiles[sessionID].info.wipe;
     }
 
-    login(info)
+    static login(info)
     {
         for (const sessionID in save_f.server.profiles)
         {
@@ -39,7 +39,7 @@ class LauncherController
         return "";
     }
 
-    register(info)
+    static register(info)
     {
         for (const sessionID in save_f.server.profiles)
         {
@@ -49,10 +49,10 @@ class LauncherController
             }
         }
 
-        return this.createAccount(info);
+        return LauncherController.createAccount(info);
     }
 
-    createAccount(info)
+    static createAccount(info)
     {
         const sessionID = HashUtil.generate();
 
@@ -71,9 +71,9 @@ class LauncherController
         return sessionID;
     }
 
-    changeUsername(info)
+    static changeUsername(info)
     {
-        const sessionID = this.login(info);
+        const sessionID = LauncherController.login(info);
 
         if (sessionID)
         {
@@ -83,9 +83,9 @@ class LauncherController
         return sessionID;
     }
 
-    changePassword(info)
+    static changePassword(info)
     {
-        const sessionID = this.login(info);
+        const sessionID = LauncherController.login(info);
 
         if (sessionID)
         {
@@ -95,9 +95,9 @@ class LauncherController
         return sessionID;
     }
 
-    wipe(info)
+    static wipe(info)
     {
-        const sessionID = this.login(info);
+        const sessionID = LauncherController.login(info);
 
         if (sessionID)
         {
@@ -109,4 +109,4 @@ class LauncherController
     }
 }
 
-module.exports = new LauncherController();
+module.exports = LauncherController;

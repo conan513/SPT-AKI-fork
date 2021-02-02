@@ -9,40 +9,24 @@
 
 "use strict";
 
+const WeatherConfig = require("../configs/WeatherConfig.json");
+
 class WeatherController
 {
-    generate()
+    static generate()
     {
         let result = { "weather": {} };
 
-        result = this.calculateTime(result);
-        result = this.generateWeather(result);
+        result = WeatherController.calculateTime(result);
+        result = WeatherController.generateWeather(result);
 
         return result;
     }
 
-    generateWeather(data)
-    {
-        const enableRain = RandomUtil.getBool();
-        const enableFog = RandomUtil.getBool();
-
-        data.weather.cloud = this.getRandomFloat("clouds");
-        data.weather.wind_speed = this.getRandomInt("windSpeed");
-        data.weather.wind_direction = this.getRandomInt("windDirection");
-        data.weather.wind_gustiness = this.getRandomFloat("windGustiness");
-        data.weather.rain = (enableRain) ? this.getRandomInt("rain") : 0;
-        data.weather.rain_intensity = (enableRain) ? this.getRandomFloat("rainIntensity") : 0;
-        data.weather.fog = (enableFog) ? this.getRandomFloat("fog") : 0;
-        data.weather.temp = this.getRandomInt("temp");
-        data.weather.pressure = this.getRandomInt("pressure");
-
-        return data;
-    }
-
-    calculateTime(data)
+    static calculateTime(data)
     {
         // get time acceleration
-        const deltaSeconds = Math.floor(process.uptime()) * weather_f.config.acceleration;
+        const deltaSeconds = Math.floor(process.uptime()) * WeatherConfig.acceleration;
         const computedDate = new Date();
 
         computedDate.setSeconds(computedDate.getSeconds() + deltaSeconds);
@@ -57,22 +41,40 @@ class WeatherController
         data.weather.time = datetime;
         data.date = date;
         data.time = time;
-        data.acceleration = weather_f.config.acceleration;
+        data.acceleration = WeatherConfig.acceleration;
 
         return data;
     }
 
-    getRandomFloat(node)
+    static generateWeather(data)
     {
-        return parseFloat(RandomUtil.getFloat(weather_f.config.weather[node].min,
-            weather_f.config.weather[node].max).toPrecision(3));
+        const enableRain = RandomUtil.getBool();
+        const enableFog = RandomUtil.getBool();
+
+        data.weather.cloud = WeatherController.getRandomFloat("clouds");
+        data.weather.wind_speed = WeatherController.getRandomInt("windSpeed");
+        data.weather.wind_direction = WeatherController.getRandomInt("windDirection");
+        data.weather.wind_gustiness = WeatherController.getRandomFloat("windGustiness");
+        data.weather.rain = (enableRain) ? WeatherController.getRandomInt("rain") : 0;
+        data.weather.rain_intensity = (enableRain) ? WeatherController.getRandomFloat("rainIntensity") : 0;
+        data.weather.fog = (enableFog) ? WeatherController.getRandomFloat("fog") : 0;
+        data.weather.temp = WeatherController.getRandomInt("temp");
+        data.weather.pressure = WeatherController.getRandomInt("pressure");
+
+        return data;
     }
 
-    getRandomInt(node)
+    static getRandomFloat(node)
     {
-        return RandomUtil.getInt(weather_f.config.weather[node].min,
-            weather_f.config.weather[node].max);
+        return parseFloat(RandomUtil.getFloat(WeatherConfig.weather[node].min,
+            WeatherConfig.weather[node].max).toPrecision(3));
+    }
+
+    static getRandomInt(node)
+    {
+        return RandomUtil.getInt(WeatherConfig.weather[node].min,
+            WeatherConfig.weather[node].max);
     }
 }
 
-module.exports = new WeatherController();
+module.exports = WeatherController;

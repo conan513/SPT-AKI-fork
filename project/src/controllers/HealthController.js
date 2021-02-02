@@ -10,9 +10,11 @@
 
 "use strict";
 
+const HealthConfig = require("../configs/HealthConfig.json");
+
 class HealthController
 {
-    resetVitality(sessionID)
+    static resetVitality(sessionID)
     {
         let profile = save_f.server.profiles[sessionID];
 
@@ -42,7 +44,7 @@ class HealthController
         return profile;
     }
 
-    offraidHeal(pmcData, body, sessionID)
+    static offraidHeal(pmcData, body, sessionID)
     {
         let output = item_f.eventHandler.getOutput();
 
@@ -76,7 +78,7 @@ class HealthController
         return output;
     }
 
-    offraidEat(pmcData, body, sessionID)
+    static offraidEat(pmcData, body, sessionID)
     {
         let output = item_f.eventHandler.getOutput();
         let resourceLeft;
@@ -114,7 +116,7 @@ class HealthController
     }
 
     /* stores in-raid player health */
-    saveVitality(pmcData, info, sessionID)
+    static saveVitality(pmcData, info, sessionID)
     {
         const BodyPartsList = info.Health;
         let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
@@ -137,18 +139,18 @@ class HealthController
             }
             else
             {
-                nodeHealth[bodyPart] = pmcData.Health.BodyParts[bodyPart].Health.Maximum * health_f.config.healthMultipliers.death;
+                nodeHealth[bodyPart] = pmcData.Health.BodyParts[bodyPart].Health.Maximum * HealthConfig.healthMultipliers.death;
             }
         }
 
-        this.saveHealth(pmcData, sessionID);
-        this.saveEffects(pmcData, sessionID);
-        this.resetVitality(sessionID);
+        HealthController.saveHealth(pmcData, sessionID);
+        HealthController.saveEffects(pmcData, sessionID);
+        HealthController.resetVitality(sessionID);
 
         pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
     }
 
-    healthTreatment(pmcData, info, sessionID)
+    static healthTreatment(pmcData, info, sessionID)
     {
         const body = {
             "Action": "RestoreHealth",
@@ -178,11 +180,11 @@ class HealthController
         healthInfo.Energy = pmcData.Health.Energy.Current + info.difference.Energy;
         healthInfo.Temperature = pmcData.Health.Temperature.Current;
 
-        this.saveVitality(pmcData, healthInfo, sessionID);
+        HealthController.saveVitality(pmcData, healthInfo, sessionID);
         return item_f.eventHandler.getOutput();
     }
 
-    addEffect(pmcData, sessionID, info)
+    static addEffect(pmcData, sessionID, info)
     {
         let bodyPart = pmcData.Health.BodyParts[info.bodyPart];
 
@@ -199,15 +201,15 @@ class HealthController
         }
 
         // delete empty property to prevent client bugs
-        if (this.isEmpty(bodyPart.Effects))
+        if (HealthController.isEmpty(bodyPart.Effects))
         {
             delete bodyPart.Effects;
         }
     }
 
-    saveHealth(pmcData, sessionID)
+    static saveHealth(pmcData, sessionID)
     {
-        if (!health_f.config.save.health)
+        if (!HealthConfig.save.health)
         {
             return;
         }
@@ -233,7 +235,7 @@ class HealthController
                 if (target === 0)
                 {
                     // blacked body part
-                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * health_f.config.healthMultipliers.blacked);
+                    target = Math.round(pmcData.Health.BodyParts[item].Health.Maximum * HealthConfig.healthMultipliers.blacked);
                 }
 
                 pmcData.Health.BodyParts[item].Health.Current = target;
@@ -241,9 +243,9 @@ class HealthController
         }
     }
 
-    saveEffects(pmcData, sessionID)
+    static saveEffects(pmcData, sessionID)
     {
-        if (!health_f.config.save.effects)
+        if (!HealthConfig.save.effects)
         {
             return;
         }
@@ -261,14 +263,14 @@ class HealthController
                 switch (effect)
                 {
                     case "Fracture":
-                        this.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "Fracture"});
+                        HealthController.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "Fracture"});
                         break;
                 }
             }
         }
     }
 
-    isEmpty(map)
+    static isEmpty(map)
     {
         for (let key in map)
         {
@@ -282,4 +284,4 @@ class HealthController
     }
 }
 
-module.exports = new HealthController();
+module.exports = HealthController;

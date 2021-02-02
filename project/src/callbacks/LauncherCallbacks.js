@@ -8,6 +8,8 @@
 
 "use strict";
 
+const LauncherController = require("../controllers/LauncherController.js");
+
 class LauncherCallbacks
 {
     static connect()
@@ -21,37 +23,37 @@ class LauncherCallbacks
 
     static login(url, info, sessionID)
     {
-        const output = account_f.controller.login(info);
+        const output = LauncherController.login(info);
         return (!output) ? "FAILED" : output;
     }
 
     static register(url, info, sessionID)
     {
-        const output = account_f.controller.register(info);
+        const output = LauncherController.register(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     static get(url, info, sessionID)
     {
-        const output = account_f.controller.find(account_f.controller.login(info));
+        const output = LauncherController.find(LauncherController.login(info));
         return https_f.response.noBody(output);
     }
 
     static changeUsername(url, info, sessionID)
     {
-        const output = account_f.controller.changeUsername(info);
+        const output = LauncherController.changeUsername(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     static changePassword(url, info, sessionID)
     {
-        const output = account_f.controller.changePassword(info);
+        const output = LauncherController.changePassword(info);
         return (!output) ? "FAILED" : "OK";
     }
 
     static wipe(url, info, sessionID)
     {
-        const output = account_f.controller.wipe(info);
+        const output = LauncherController.wipe(info);
         return (!output) ? "FAILED" : "OK";
     }
 }

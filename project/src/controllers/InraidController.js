@@ -12,6 +12,8 @@
 
 "use strict";
 
+const HealthController = require("./HealthController.js");
+
 class InraidController
 {
     onLoad(sessionID)
@@ -109,14 +111,14 @@ class InraidController
         if (isPlayerScav)
         {
             scavData = this.setInventory(scavData, offraidData.profile);
-            health_f.controller.resetVitality(sessionID);
+            HealthController.resetVitality(sessionID);
             profile_f.controller.setScavProfile(sessionID, scavData);
             return;
         }
         else
         {
             pmcData = this.setInventory(pmcData, offraidData.profile);
-            health_f.controller.saveVitality(pmcData, offraidData.health, sessionID);
+            HealthController.saveVitality(pmcData, offraidData.health, sessionID);
         }
 
         // remove inventory if player died and send insurance items

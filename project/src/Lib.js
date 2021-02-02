@@ -27,11 +27,6 @@ globalThis["save_f"] = {
     "server": require("./servers/SaveServer.js")
 };
 
-globalThis["health_f"] = {
-    "config": require("./configs/HealthConfig.json"),
-    "controller": require("./controllers/HealthController.js")
-};
-
 globalThis["inraid_f"] = {
     "config": require("./configs/InraidConfig.json"),
     "controller": require("./controllers/InraidController.js")
@@ -39,10 +34,6 @@ globalThis["inraid_f"] = {
 
 globalThis["dialogue_f"] = {
     "controller": require("./controllers/DialogueController.js")
-};
-
-globalThis["account_f"] = {
-    "controller": require("./controllers/LauncherController.js")
 };
 
 globalThis["profile_f"] = {
@@ -74,10 +65,6 @@ globalThis["trade_f"] = {
     "controller": require("./controllers/TradeController.js")
 };
 
-globalThis["customization_f"] = {
-    "controller": require("./controllers/CustomizationController.js")
-};
-
 globalThis["hideout_f"] = {
     "config": require("./configs/HideoutConfig.json"),
     "controller": require("./controllers/HideoutController.js")
@@ -85,11 +72,6 @@ globalThis["hideout_f"] = {
 
 globalThis["weaponbuilds_f"] = {
     "controller": require("./controllers/PresetBuildController.js")
-};
-
-globalThis["repair_f"] = {
-    "config": require("./configs/RepairConfig.json"),
-    "controller": require("./controllers/RepairController.js")
 };
 
 globalThis["insurance_f"] = {
@@ -112,18 +94,8 @@ globalThis["ragfair_f"] = {
     "controller": require("./controllers/RagfairController.js")
 };
 
-globalThis["weather_f"] = {
-    "config": require("./configs/WeatherConfig.json"),
-    "controller": require("./controllers/WeatherController.js")
-};
-
 globalThis["location_f"] = {
     "config": require("./configs/LocationConfig.json"),
     "controller": require("./controllers/LocationController.js"),
     "generator": require("./generators/LocationGenerator.js")
-};
-
-globalThis["match_f"] = {
-    "config": require("./configs/MatchConfig.json"),
-    "controller": require("./controllers/MatchController.js")
 };

@@ -8,38 +8,42 @@
 
 "use strict";
 
+const LauncherController = require("./LauncherController.js");
+const MatchConfig = require("../configs/MatchConfig.json");
+
 class MatchController
 {
-    constructor()
-    {
-        /* this.servers = {}; */
-        this.locations = {};
-    }
+    /* static servers = {}; */
+    static locations = {};
 
     /*
-    addServer(info) {
-        for (let server in this.servers) {
-            if (this.servers[server].id === info.id) {
+    static addServer(info)
+    {
+        for (let server in MatchController.servers)
+        {
+            if (MatchController.servers[server].id === info.id)
+            {
                 return "OK";
             }
         }
 
-        this.servers[info.id] = {"ip": info.ip, "port": info.port, "location": info.location};
+        MatchController.servers[info.id] = {"ip": info.ip, "port": info.port, "location": info.location};
         return "FAILED";
     }
 
-    removeServer(info) {
-        delete this.servers[info.id];
+    static removeServer(info)
+    {
+        delete MatchController.servers[info.id];
         return "OK";
     }
-*/
+    */
 
-    getEnabled()
+    static getEnabled()
     {
-        return match_f.config.enabled;
+        return MatchConfig.enabled;
     }
 
-    getProfile(info)
+    static getProfile(info)
     {
         if (info.profileId.includes("pmcAID"))
         {
@@ -54,7 +58,7 @@ class MatchController
         return null;
     }
 
-    getMatch(location)
+    static getMatch(location)
     {
         return {
             "id": "TEST",
@@ -63,14 +67,14 @@ class MatchController
         };
     }
 
-    joinMatch(info, sessionID)
+    static joinMatch(info, sessionID)
     {
-        let match = this.getMatch(info.location);
+        let match = MatchController.getMatch(info.location);
         let output = [];
 
         // --- LOOP (DO THIS FOR EVERY PLAYER IN GROUP)
         // get player profile
-        let account = account_f.controller.find(sessionID);
+        let account = LauncherController.find(sessionID);
         let profileID = "";
 
         if (info.savage === true)
@@ -99,7 +103,7 @@ class MatchController
         return output;
     }
 
-    getGroupStatus(info)
+    static getGroupStatus(info)
     {
         return {
             "players": [],
@@ -108,11 +112,11 @@ class MatchController
         };
     }
 
-    createGroup(sessionID, info)
+    static createGroup(sessionID, info)
     {
         let groupID = "test";
 
-        this.locations[info.location].groups[groupID] = {
+        MatchController.locations[info.location].groups[groupID] = {
             "_id": groupID,
             "owner": `pmc${sessionID}`,
             "location": info.location,
@@ -134,18 +138,18 @@ class MatchController
             "customDataCenter": []
         };
 
-        return this.locations[info.location].groups[groupID];
+        return MatchController.locations[info.location].groups[groupID];
     }
 
-    deleteGroup(info)
+    static deleteGroup(info)
     {
-        for (let locationID in this.locations)
+        for (let locationID in MatchController.locations)
         {
-            for (let groupID in this.locations[locationID].groups)
+            for (let groupID in MatchController.locations[locationID].groups)
             {
                 if (groupID === info.groupId)
                 {
-                    delete this.locations[locationID].groups[groupID];
+                    delete MatchController.locations[locationID].groups[groupID];
                     return;
                 }
             }
@@ -153,4 +157,4 @@ class MatchController
     }
 }
 
-module.exports = new MatchController();
+module.exports = MatchController;
