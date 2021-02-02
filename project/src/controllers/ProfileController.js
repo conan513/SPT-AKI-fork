@@ -66,7 +66,7 @@ class ProfileController
     {
         let output = [];
 
-        if (!.controller.isWiped(sessionID))
+        if (!LauncherController.isWiped(sessionID))
         {
             output.push(this.getPmcProfile(sessionID));
             output.push(this.getScavProfile(sessionID));
