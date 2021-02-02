@@ -240,17 +240,17 @@ class HttpServer
     load()
     {
         /* create server */
-        this.instance = https.createServer(CertController.getCerts(), (req, res) =>
+        const httpss = https.createServer(CertController.getCerts(), (req, res) =>
         {
             this.handleRequest(req, res);
         });
         
-        this.instance.listen(https_f.config.port, https_f.config.ip, () =>
+        httpss.listen(https_f.config.port, https_f.config.ip, () =>
         {
             Logger.success(`Started webserver at ${this.getBackendUrl()}`);
         });
         
-        this.instance.on("error", (e) =>
+        httpss.on("error", (e) =>
         {
             /* server is already running or program using privileged port without root */
             if (process.platform === "linux" && !(process.getuid && process.getuid() === 0) && e.port < 1024)
@@ -264,16 +264,16 @@ class HttpServer
         });
 
         // Setting up websocket
-        this.wss = new WebSocket.Server({
-            "server": this.instance
+        const wss = new WebSocket.Server({
+            "server": httpss
         });
         
-        this.wss.addListener("listening", () =>
+        wss.addListener("listening", () =>
         {
             Logger.success("Started websocket");
         });
         
-        this.wss.addListener("connection", this.wsOnConnection.bind(this));
+        wss.addListener("connection", this.wsOnConnection.bind(this));
     }
 
     wsOnConnection(ws, req)
