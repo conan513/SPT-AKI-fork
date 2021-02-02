@@ -11,7 +11,7 @@
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "R8";
+    static version = "BLEEDINGEDGE-A8";
     static url = "https://www.guilded.gg/senkospub";
     static colors = {
         "front": "\x1b[33m",    // gold
