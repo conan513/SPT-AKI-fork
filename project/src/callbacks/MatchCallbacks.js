@@ -8,6 +8,8 @@
 
 "use strict";
 
+const MatchController = require("../controllers/MatchController.js");
+
 class MatchCallbacks
 {
     static updatePing(url, info, sessionID)
@@ -57,12 +59,12 @@ class MatchCallbacks
 
     static getProfile(url, info, sessionID)
     {
-        return https_f.response.getBody(match_f.controller.getProfile(info));
+        return https_f.response.getBody(MatchController.getProfile(info));
     }
 
     static serverAvailable(url, info, sessionID)
     {
-        let output = match_f.controller.getEnabled();
+        let output = MatchController.getEnabled();
 
         if (output === false)
         {
@@ -74,7 +76,7 @@ class MatchCallbacks
 
     static joinMatch(url, info, sessionID)
     {
-        return https_f.response.getBody(match_f.controller.joinMatch(info, sessionID));
+        return https_f.response.getBody(MatchController.joinMatch(info, sessionID));
     }
 
     static getMetrics(url, info, sessionID)
@@ -84,17 +86,17 @@ class MatchCallbacks
 
     static getGroupStatus(url, info, sessionID)
     {
-        return https_f.response.getBody(match_f.controller.getGroupStatus(info));
+        return https_f.response.getBody(MatchController.getGroupStatus(info));
     }
 
     static createGroup(url, info, sessionID)
     {
-        return https_f.response.getBody(match_f.controller.createGroup(sessionID, info));
+        return https_f.response.getBody(MatchController.createGroup(sessionID, info));
     }
 
     static deleteGroup(url, info, sessionID)
     {
-        match_f.controller.deleteGroup(info);
+        MatchController.deleteGroup(info);
         return https_f.response.nullResponse();
     }
 }

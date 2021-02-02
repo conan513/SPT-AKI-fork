@@ -113,8 +113,3 @@ globalThis["location_f"] = {
     "controller": require("./controllers/LocationController.js"),
     "generator": require("./generators/LocationGenerator.js")
 };
-
-globalThis["match_f"] = {
-    "config": require("./configs/MatchConfig.json"),
-    "controller": require("./controllers/MatchController.js")
-};
