@@ -5,7 +5,6 @@ globalThis.RandomUtil = require("./utils/RandomUtil");
 globalThis.TimeUtil = require("./utils/TimeUtil");
 globalThis.Logger = require("./utils/Logger");
 globalThis.Helpers = require("./helpers/PlzRefactorMeHelper");
-globalThis.ResponseHelper = require("./helpers/ResponseHelper");
 globalThis.ItemHelper = require("./helpers/ItemHelper");
 globalThis.InventoryHelper = require("./helpers/InventoryHelper");
 globalThis.ContainerHelper = require("./helpers/ContainerHelper");

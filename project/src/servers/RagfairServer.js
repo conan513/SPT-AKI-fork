@@ -516,7 +516,7 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return ResponseHelper.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
         }
 
         let itemsToReturn = [];
