@@ -1,6 +1,26 @@
 {
     "items": [
         {
+            "_id": "MetalFuelTank",
+            "_tpl": "5d1b36a186f7742523398433",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "ValdayBarter",
+            "_tpl": "5c0517910db83400232ffee5",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "5e0ac74b9d594972a112aa0a",
             "_tpl": "5cadfbf7ae92152ac412eeef",
             "upd": {
@@ -4529,10 +4549,30 @@
         }
     ],
     "barter_scheme": {
+        "MetalFuelTank":[[
+            {
+                "count": 2,
+                "_tpl": "59fafb5d86f774067a6f2084"
+            },{
+                "count": 1,
+                "_tpl": "5b43575a86f77424f443fe62"
+            }
+        ]],
+        "ValdayBarter":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5d40407c86f774318526545a"
+                },{
+                    "count": 1,
+                    "_tpl": "590c5f0d86f77413997acfab"
+                }
+            ]
+        ],
         "5e0ac74b9d594972a112aa0a": [
             [
                 {
-                    "count": 3,
+                    "count": 2,
                     "_tpl": "5d40407c86f774318526545a"
                 }
             ]
@@ -4930,6 +4970,14 @@
                 {
                     "count": 1,
                     "_tpl": "59e3658a86f7741776641ac4"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "5909e99886f7740c983b9984"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "573476d324597737da2adc13"
                 }
             ]
         ],
@@ -5476,11 +5524,11 @@
         "5eeca646bfed7142cb3103d5": [
             [
                 {
-                    "count": 6,
+                    "count": 5,
                     "_tpl": "573475fb24597737fb1379e1"
                 },
                 {
-                    "count": 4,
+                    "count": 3,
                     "_tpl": "573476d324597737da2adc13"
                 }
             ]
@@ -5845,7 +5893,7 @@
             [
                 {
                     "count": 1,
-                    "_tpl": "5d6fc87386f77449db3db94e"
+                    "_tpl": "590c5a7286f7747884343aea"
                 }
             ]
         ],
@@ -5884,8 +5932,12 @@
         "5eeca646bfed7142cb310486": [
             [
                 {
-                    "count": 2,
+                    "count": 1,
                     "_tpl": "573478bc24597738002c6175"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5e2af00086f7746d3f3c33f7"
                 }
             ]
         ],
@@ -5900,8 +5952,8 @@
         "5eeca646bfed7142cb310492": [
             [
                 {
-                    "count": 2,
-                    "_tpl": "590a386e86f77429692b27ab"
+                    "count": 1,
+                    "_tpl": "5d1b32c186f774252167a530"
                 }
             ]
         ],
@@ -5996,8 +6048,8 @@
         "5eeca646bfed7142cb3104b9": [
             [
                 {
-                    "count": 1,
-                    "_tpl": "5d6fc78386f77449d825f9dc"
+                    "count": 2,
+                    "_tpl": "59faf98186f774067b6be103"
                 }
             ]
         ],
@@ -6112,8 +6164,8 @@
                     "_tpl": "590c5a7286f7747884343aea"
                 },
                 {
-                    "count": 65,
-                    "_tpl": "5a6086ea4f39f99cd479502f"
+                    "count": 3,
+                    "_tpl": "5d1c819a86f774771b0acd6c"
                 }
             ]
         ],
@@ -6352,8 +6404,12 @@
         "5eeca647bfed7142cb31054b": [
             [
                 {
-                    "count": 5,
+                    "count": 1,
                     "_tpl": "5d0376a486f7747d8050965c"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5c06779c86f77426e00dd782"
                 }
             ]
         ],
@@ -6472,7 +6528,7 @@
         "5eeca647bfed7142cb31056e": [
             [
                 {
-                    "count": 5,
+                    "count": 4,
                     "_tpl": "57347cd0245977445a2d6ff1"
                 }
             ]
@@ -6672,6 +6728,10 @@
                 {
                     "count": 2,
                     "_tpl": "5751496424597720a27126da"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "573476d324597737da2adc13"
                 }
             ]
         ]
@@ -6847,7 +6907,7 @@
         "5eeca646bfed7142cb3104b3": 2,
         "5eeca646bfed7142cb3104b5": 3,
         "5eeca646bfed7142cb3104b7": 1,
-        "5eeca646bfed7142cb3104b9": 4,
+        "5eeca646bfed7142cb3104b9": 3,
         "5eeca646bfed7142cb3104bb": 1,
         "5eeca646bfed7142cb3104bd": 2,
         "5eeca646bfed7142cb3104bf": 2,
@@ -6932,14 +6992,16 @@
         "5eeca647bfed7142cb3105aa": 2,
         "5eeca647bfed7142cb3105b0": 3,
         "5eff99fe2e3bbe575000ed57": 3,
-        "5f6771214ef1ca4f4e1b8a07": 2,
+        "5f6771214ef1ca4f4e1b8a07": 3,
         "BarricadeAmmo": 4,
         "StarAmmo": 3,
         "Shrapnel10": 2,
         "Shrapnel25": 3,
-        "5f6770f839a13e712a1dff55": 3,
+        "5f6770f839a13e712a1dff55": 2,
         "545x39_bs": 4,
         "7n12_bp_pack": 4,
-        "5e0ac74b9d594972a112aa0a": 4
+        "5e0ac74b9d594972a112aa0a": 4,
+        "ValdayBarter": 2,
+        "MetalFuelTank": 2
     }
 }
