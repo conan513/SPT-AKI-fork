@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "ValdayBarter",
+            "_tpl": "5c0517910db83400232ffee5",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "5e0ac74b9d594972a112aa0a",
             "_tpl": "5cadfbf7ae92152ac412eeef",
             "upd": {
@@ -4529,6 +4539,17 @@
         }
     ],
     "barter_scheme": {
+        "ValdayBarter":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5d40407c86f774318526545a"
+                },{
+                    "count": 1,
+                    "_tpl": "590c5f0d86f77413997acfab"
+                }
+            ]
+        ],
         "5e0ac74b9d594972a112aa0a": [
             [
                 {
@@ -6952,6 +6973,7 @@
         "5f6770f839a13e712a1dff55": 3,
         "545x39_bs": 4,
         "7n12_bp_pack": 4,
-        "5e0ac74b9d594972a112aa0a": 4
+        "5e0ac74b9d594972a112aa0a": 4,
+        "ValdayBarter": 2
     }
 }
