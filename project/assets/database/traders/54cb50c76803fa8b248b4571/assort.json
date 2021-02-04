@@ -1,16 +1,6 @@
 {
     "items": [
         {
-            "_id": "MetalFuelTank",
-            "_tpl": "5d1b36a186f7742523398433",
-            "parentId": "hideout",
-            "slotId": "hideout",
-            "upd": {
-                "UnlimitedCount": true,
-                "StackObjectsCount": 999999999
-            }
-        },
-        {
             "_id": "ValdayBarter",
             "_tpl": "5c0517910db83400232ffee5",
             "parentId": "hideout",
@@ -4549,15 +4539,6 @@
         }
     ],
     "barter_scheme": {
-        "MetalFuelTank":[[
-            {
-                "count": 2,
-                "_tpl": "59fafb5d86f774067a6f2084"
-            },{
-                "count": 1,
-                "_tpl": "5b43575a86f77424f443fe62"
-            }
-        ]],
         "ValdayBarter":[
             [
                 {
@@ -7001,7 +6982,6 @@
         "545x39_bs": 4,
         "7n12_bp_pack": 4,
         "5e0ac74b9d594972a112aa0a": 4,
-        "ValdayBarter": 2,
-        "MetalFuelTank": 2
+        "ValdayBarter": 2
     }
 }
