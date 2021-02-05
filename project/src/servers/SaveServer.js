@@ -33,10 +33,12 @@ class SaveServer
         const files = VFS.getFiles(this.filepath);
 
         // load profiles
-        for (let file of files)
-        {
+        for (let file of files) {
+            let fileType = file.split(".").pop();
             file = file.split(".").slice(0, -1).join(".");
-            this.loadProfile(file);
+            if (fileType == "json") {
+                this.loadProfile(file);
+            }
         }
     }
 
