@@ -27,7 +27,9 @@
     "pmc": {
         "isUsec": 50,
         "types": {
-            "assaultGroup": 100
+            "assault": 30,
+            "assaultGroup": 100,
+            "pmcBot": 30
         }
     }
 }
