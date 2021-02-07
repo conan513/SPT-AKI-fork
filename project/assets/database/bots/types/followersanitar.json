@@ -85,6 +85,38 @@
 			}
 		}
 	},
+	"skills": {
+		"Common": {
+			"Endurance": {
+				"min": 5100,
+				"max": 5100
+			},
+			"Strength": {
+				"min": 5100,
+				"max": 5100
+			},
+			"Vitality": {
+				"min": 5100,
+				"max": 5100
+			},
+			"Health": {
+				"min": 5100,
+				"max": 5100
+			},
+			"StressResistance": {
+				"min": 5100,
+				"max": 5100
+			},
+			"BotReload": {
+				"min": 3000,
+				"max": 3000
+			},
+			"MagDrills": {
+				"min": 5100,
+				"max": 5100
+			}
+		}
+	},
 	"inventory": {
 		"equipment": {
 			"Headwear": [
