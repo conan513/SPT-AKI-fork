@@ -149,10 +149,6 @@
 				"min": 0,
 				"max": 5100
 			},
-			"AttachedLauncher": {
-				"min": 0,
-				"max": 5100
-			},
 			"Throwing": {
 				"min": 0,
 				"max": 5100
