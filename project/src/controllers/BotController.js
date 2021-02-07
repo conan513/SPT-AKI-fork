@@ -188,37 +188,36 @@ class BotController
 
     generateSkills(skillsObj)
     {
-		let skillsOutput = [];
-		let masteriesOutput = [];
+		let skills = [];
+		let masteries = [];
+
+         // skills
+        if (skillsObj.Common)
+        {
+            for (const skillId in skillsObj.Common)
+            {
+                skills.push({
+                    "Id": skillId,
+                    "Progress": RandomUtil.getInt(skillsObj.Common[skillId].min, skillsObj.Common[skillId].max),
+                });
+            }
+        }
+
+        // masteries
+        if (skillsObj.Mastering)
+        {
+            for (const masteringId in skillsObj.Mastering)
+            {
+                masteries.push({
+                    "Id": masteringId,
+                    "Progress": RandomUtil.getInt(skillsObj.Mastering[masteringId].min, skillsObj.Mastering[masteringId].max)
+                });
+            }
+        }
 		
-		if (skillsObj) {
-			if (skillsObj.Common) {
-				for (const skillId in skillsObj.Common) {
-					skillsOutput.push(
-						{
-							"Id": skillId,
-							"Progress": RandomUtil.getInt(skillsObj.Common[skillId].min, skillsObj.Common[skillId].max),
-							"PointsEarnedDuringSession": 0,
-							"LastAccess": 0
-						}
-					)
-				}
-			}
-			if (skillsObj.Mastering) {
-				for (const masteringId in skillsObj.Mastering) {
-					masteriesOutput.push(
-						{
-							"Id": masteringId,
-							"Progress": RandomUtil.getInt(skillsObj.Mastering[masteringId].min, skillsObj.Mastering[masteringId].max)
-						}
-					)
-				}
-			}
-		}
-		
-		return{
-			"Common": skillsOutput,
-			"Mastering": masteriesOutput,
+		return {
+			"Common": skills,
+			"Mastering": masteries,
 			"Points": 0
 		};
     }
