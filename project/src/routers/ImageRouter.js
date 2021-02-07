@@ -15,7 +15,7 @@ class ImageRouter
     static sendImage(sessionID, req, resp, body)
     {
         // remove file extension
-        const url = req.url.split(".").slice(0, -1).join(".");
+        const url = VFS.stripExtension(req.url);
 
         // send image
         if (ImageRouter.onRoute[url])

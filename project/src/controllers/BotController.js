@@ -53,6 +53,7 @@ class BotController
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
         bot.Info.Voice = RandomUtil.getArrayValue(node.appearance.voice);
         bot.Health = this.generateHealth(node.health);
+        bot.Skills = this.generateSkills(node.skills);
         bot.Customization.Head = RandomUtil.getArrayValue(node.appearance.head);
         bot.Customization.Body = RandomUtil.getArrayValue(node.appearance.body);
         bot.Customization.Feet = RandomUtil.getArrayValue(node.appearance.feet);
@@ -182,6 +183,42 @@ class BotController
                     }
                 }
             }
+        };
+    }
+
+    generateSkills(skillsObj)
+    {
+        let skills = [];
+        let masteries = [];
+
+        // skills
+        if (skillsObj.Common)
+        {
+            for (const skillId in skillsObj.Common)
+            {
+                skills.push({
+                    "Id": skillId,
+                    "Progress": RandomUtil.getInt(skillsObj.Common[skillId].min, skillsObj.Common[skillId].max),
+                });
+            }
+        }
+
+        // masteries
+        if (skillsObj.Mastering)
+        {
+            for (const masteringId in skillsObj.Mastering)
+            {
+                masteries.push({
+                    "Id": masteringId,
+                    "Progress": RandomUtil.getInt(skillsObj.Mastering[masteringId].min, skillsObj.Mastering[masteringId].max)
+                });
+            }
+        }
+
+        return {
+            "Common": skills,
+            "Mastering": masteries,
+            "Points": 0
         };
     }
 
