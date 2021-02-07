@@ -53,7 +53,7 @@ class BotController
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
         bot.Info.Voice = RandomUtil.getArrayValue(node.appearance.voice);
         bot.Health = this.generateHealth(node.health);
-        bot.Skills = this.generateSkills(node.skills)
+        bot.Skills = this.generateSkills(node.skills);
         bot.Customization.Head = RandomUtil.getArrayValue(node.appearance.head);
         bot.Customization.Body = RandomUtil.getArrayValue(node.appearance.body);
         bot.Customization.Feet = RandomUtil.getArrayValue(node.appearance.feet);
@@ -188,10 +188,10 @@ class BotController
 
     generateSkills(skillsObj)
     {
-		let skills = [];
-		let masteries = [];
+        let skills = [];
+        let masteries = [];
 
-         // skills
+        // skills
         if (skillsObj.Common)
         {
             for (const skillId in skillsObj.Common)
@@ -214,12 +214,12 @@ class BotController
                 });
             }
         }
-		
-		return {
-			"Common": skills,
-			"Mastering": masteries,
-			"Points": 0
-		};
+
+        return {
+            "Common": skills,
+            "Mastering": masteries,
+            "Points": 0
+        };
     }
 
     generateDogtag(bot)

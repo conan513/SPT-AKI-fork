@@ -33,7 +33,8 @@ class DatabaseImporter
         // add file content to result
         for (const file of files)
         {
-            if (VFS.getFileExtension(file) === "json") {
+            if (VFS.getFileExtension(file) === "json")
+            {
                 const filename = VFS.stripExtension(file);
                 result[filename] = JsonUtil.deserialize(VFS.readFile(`${filepath}${file}`));
             }
