@@ -24,7 +24,7 @@ class Compiler
             "exe": "Server.exe"
         },
         "icon": "assets/images/icon.ico",
-        "entry": "src/ide/BuildEntry.js"
+        "entry": "src/ide/ReleaseEntry.js"
     };
     static nexeOptions = {
         "input": Compiler.buildOptions.entry,

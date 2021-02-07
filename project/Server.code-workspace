@@ -10,26 +10,11 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "install",
-				"runtimeExecutable": "npm",
-				"runtimeArgs": [
-					"install"
-				],
-				"cwd": "${workspaceFolder}",
-				"outFiles": [
-					"${workspaceFolder}/out/**/*.js"
-				],
-				"skipFiles": [
-					"**/node_modules/**"
-				]
-			},	{
-				"type": "node",
-				"request": "launch",
-				"name": "watch - restart on code change",
+				"name": "Test (debug)",
 				"runtimeExecutable": "npm",
 				"runtimeArgs": [
 					"run-script",
-					"watch"
+					"test:debug"
 				],
 				"cwd": "${workspaceFolder}",
 				"outFiles": [
@@ -42,11 +27,11 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "start - Run server",
+				"name": "Test (release)",
 				"runtimeExecutable": "npm",
 				"runtimeArgs": [
 					"run-script",
-					"start"
+					"test:release"
 				],
 				"cwd": "${workspaceFolder}",
 				"outFiles": [
@@ -55,59 +40,7 @@
 				"skipFiles": [
 					"**/node_modules/**"
 				]
-			},
-			{
-				"type": "node",
-				"request": "launch",
-				"name": "compile - Make nexe build (need tsc)",
-				"runtimeExecutable": "npm",
-				"runtimeArgs": [
-					"run-script",
-					"compile"
-				],
-				"cwd": "${workspaceFolder}",
-				"outFiles": [
-					"${workspaceFolder}/out/**/*.js"
-				],
-				"skipFiles": [
-					"**/node_modules/**"
-				]
-			},
-			{
-				"type": "node",
-				"request": "launch",
-				"name": "build - Test live build entry point (need tsc)",
-				"runtimeExecutable": "npm",
-				"runtimeArgs": [
-					"run-script",
-					"compile"
-				],
-				"cwd": "${workspaceFolder}",
-				"outFiles": [
-					"${workspaceFolder}/out/**/*.js"
-				],
-				"skipFiles": [
-					"**/node_modules/**"
-				]
-			},
-			{
-				"type": "node",
-				"request": "launch",
-				"name": "tsc - Generate JS files",
-				"runtimeExecutable": "npm",
-				"runtimeArgs": [
-					"run-script",
-					"tsc"
-				],
-				"cwd": "${workspaceFolder}",
-				"outFiles": [
-					"${workspaceFolder}/out/**/*.js"
-				],
-				"skipFiles": [
-					"**/node_modules/**"
-				],
-				"outputCapture": "std"
-			},
+			}
 		],
 	},
 	"tasks": {
@@ -116,7 +49,7 @@
 			{
 				"label": "build",
 				"type": "npm",
-				"script": "build",
+				"script": "build:exe",
 				"group": {
 					"kind": "build",
 					"isDefault": true
