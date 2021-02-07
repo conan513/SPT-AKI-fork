@@ -9,6 +9,7 @@
 
 "use strict";
 
+const JsonUtil = require("../utils/JsonUtil");
 const VFS = require("../utils/VFS");
 
 class SaveServer
@@ -33,11 +34,11 @@ class SaveServer
         const files = VFS.getFiles(this.filepath);
 
         // load profiles
-        for (let file of files) {
-            let fileType = file.split(".").pop();
-            file = file.split(".").slice(0, -1).join(".");
-            if (fileType == "json") {
-                this.loadProfile(file);
+        for (let file of files)
+        {
+            if (VFS.getFileExtension(file) == "json")
+            {
+                this.loadProfile(VFS.stripExtension(file));
             }
         }
     }

@@ -109,6 +109,21 @@ class VFS
 
         fs.rmdirSync(filepath);
     }
+
+    static explodePath(filepath)
+    {
+        return filepath.split("/");
+    }
+
+    static getFileExtension(filepath)
+    {
+        return filepath.split(".").pop();
+    }
+
+    static stripExtension(filepath)
+    {
+        return filepath.split(".").slice(0, -1).join(".");
+    }
 }
 
 module.exports = VFS;
