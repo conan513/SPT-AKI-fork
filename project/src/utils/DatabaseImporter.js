@@ -11,6 +11,7 @@
 
 const VFS = require("./VFS");
 const ImageRouter = require("../routers/ImageRouter");
+const JsonUtil = require("./JsonUtil");
 
 class DatabaseImporter
 {
@@ -32,8 +33,10 @@ class DatabaseImporter
         // add file content to result
         for (const file of files)
         {
-            const filename = file.split(".").slice(0, -1).join(".");
-            result[filename] = JsonUtil.deserialize(VFS.readFile(`${filepath}${file}`));
+            if (VFS.getFileExtension(file) === "json") {
+                const filename = VFS.stripExtension(file);
+                result[filename] = JsonUtil.deserialize(VFS.readFile(`${filepath}${file}`));
+            }
         }
 
         // deep tree search
@@ -62,7 +65,7 @@ class DatabaseImporter
 
             for (const file of files)
             {
-                const filename = file.split(".").slice(0, -1).join(".");
+                const filename = VFS.stripExtension(file);
                 ImageRouter.onRoute[`${routes[i]}${filename}`] = `${filepath}${dirs[i]}/${file}`;
             }
         }
