@@ -10241,18 +10241,6 @@
 				{
 					"_parent": "Quest",
 					"_props": {
-						"target": "59ca1a6286f774509a270942",
-						"status": [
-							4
-						],
-						"index": 6,
-						"parentId": "",
-						"id": ""
-					}
-				},
-				{
-					"_parent": "Quest",
-					"_props": {
 						"target": "5b478ff486f7744d184ecbbf",
 						"status": [
 							4
@@ -10582,18 +10570,6 @@
 							4
 						],
 						"index": 34,
-						"parentId": "",
-						"id": ""
-					}
-				},
-				{
-					"_parent": "Quest",
-					"_props": {
-						"target": "596a0e1686f7741ddf17dbee",
-						"status": [
-							4
-						],
-						"index": 35,
 						"parentId": "",
 						"id": ""
 					}
