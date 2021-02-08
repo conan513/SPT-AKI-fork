@@ -8,6 +8,8 @@
 
 "use strict";
 
+const VFS = require("../utils/VFS");
+
 class ImageRouter
 {
     static onRoute = {};
