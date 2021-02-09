@@ -703,7 +703,7 @@ class RagfairController
             Logger.error("Failed to count base price for offer");
             return https_f.response.appendErrorToOutput(result);
         }
-        
+
         // Preparations are done, create the offer
         const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
         save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
