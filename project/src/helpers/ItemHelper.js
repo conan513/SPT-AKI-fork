@@ -114,7 +114,7 @@ class ItemHelper
             // Include itself.
             if (childitem._id === itemID)
             {
-                list.push(childitem);
+                list.unshift(childitem);
                 continue;
             }
 

@@ -594,7 +594,7 @@ class RagfairController
         items.forEach(item =>
         {
             item = ItemHelper.fixItemStackCount(item);
-            if (ItemHelper.isItemTplStackable(item._tpl))
+            if (ItemHelper.isItemTplStackable(item._tpl) && item.parentId === "hideout")
             {
                 if (mergeItems[item._tpl] === undefined)
                 {
@@ -839,7 +839,8 @@ class RagfairController
      */
     completeOffer(sessionID, offer, offerId)
     {
-        const itemTpl = offer.items[0]._tpl;
+        const parent = offer.items.filter(offerItem => offerItem.parentId === "hideout");
+        const itemTpl = parent[0]._tpl;
         let boughtAmount = 1;
         let itemsToSend = [];
 
@@ -853,14 +854,22 @@ class RagfairController
         }
         else
         {
-            // Is this multiple items or one stack of multiple items?
+            // Is this multiple items or one stack of same item?
             if (offer.items.length > 1)
             {
                 // How many are we buying?
-                boughtAmount = RandomUtil.getInt(1, offer.items.length);
-                if (boughtAmount < offer.items.length)
+                boughtAmount = RandomUtil.getInt(1, parent.length);
+                if (boughtAmount < parent.length)
                 {
-                    offer.items.splice(offerId, boughtAmount);
+                    for (let i = 0; i < boughtAmount; i++)
+                    {
+                        let toDelete = ItemHelper.findAndReturnChildrenByItems(offer.items, parent[i]._id);
+                        
+                        for (let toDeleteId of toDelete)
+                        {
+                            offer.items.splice(offer.items.findIndex(item => item._id === toDeleteId), 1)
+                        }
+                    }
                 }
                 else
                 {
@@ -959,9 +968,12 @@ class RagfairController
         let loyalLevel = 1;
         const formattedItems = items.map(item =>
         {
+            let isChild = items.find(it => it._id === item.parentId);
             return {
                 "_id": item._id,
                 "_tpl": item._tpl,
+                "parentId": (isChild) ? item.parentId : "hideout",
+                "slotId": (isChild) ? item.slotId : "hideout",
                 "upd": item.upd
             };
         });
