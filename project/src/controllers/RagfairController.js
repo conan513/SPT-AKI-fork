@@ -679,6 +679,11 @@ class RagfairController
             offerPrice += ragfair_f.server.prices.dynamic[item._tpl] * itemStackCount;
         }
 
+        if (invItems.length > 1)
+        {
+            info.sellInOnePiece = true;
+        }
+
         if (info.sellInOnePiece)
         {
             itemStackCount = 1;
