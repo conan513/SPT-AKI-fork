@@ -854,8 +854,8 @@ class RagfairController
         }
         else
         {
-            // Is this multiple items or one stack of multiple items?
-            if (parent.length > 1)
+            // Is this multiple items or one stack of same item?
+            if (offer.items.length > 1)
             {
                 // How many are we buying?
                 boughtAmount = RandomUtil.getInt(1, parent.length);
@@ -878,7 +878,7 @@ class RagfairController
             }
             else
             {
-                if (parent[0].upd.StackObjectsCount === undefined || parent[0].upd.StackObjectsCount === 1)
+                if (offer.items[0].upd.StackObjectsCount === undefined || offer.items[0].upd.StackObjectsCount === 1)
                 {
                     this.deleteOfferByIndex(sessionID, offerId);
                 }
