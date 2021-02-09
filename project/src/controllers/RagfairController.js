@@ -620,6 +620,7 @@ class RagfairController
                 });
             }
         }
+
         return mergedStacks;
     }
 
