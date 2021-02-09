@@ -703,17 +703,17 @@ class RagfairController
             Logger.error("Failed to count base price for offer");
             return https_f.response.appendErrorToOutput(result);
         }
+        
+        // Preparations are done, create the offer
+        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
+        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        result.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
             inventory_f.controller.removeItem(pmcData, itemToRemove, result, sessionID);
         }
-        
-        // Preparations are done, create the offer
-        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
-        result.ragFairOffers.push(offer);
 
         // TODO: Subtract flea market fee from stash
         if (ragfair_f.config.player.enableFees)
