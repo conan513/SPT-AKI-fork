@@ -9,13 +9,14 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const RepairConfig = require("../configs/RepairConfig.json");
 
 class RepairController
 {
     repair(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         const trader = trader_f.controller.getTrader(body.tid, sessionID);
         const repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 

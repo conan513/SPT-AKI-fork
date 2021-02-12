@@ -11,6 +11,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const InsuranceConfig = require("../configs/InsuranceConfig.json");
 
 class InsuranceController
@@ -361,7 +362,7 @@ class InsuranceController
             });
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     generateTemplatesById()

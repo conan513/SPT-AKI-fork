@@ -14,6 +14,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const QuestConfig = require("../configs/QuestConfig.json");
 
 class QuestController
@@ -343,7 +344,7 @@ class QuestController
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
 
-        let acceptQuestResponse = item_f.eventHandler.getOutput();
+        let acceptQuestResponse = ItemEventRouter.getOutput();
         /** @type {Quest[]} */
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
 
@@ -404,7 +405,7 @@ class QuestController
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let completeQuestResponse = item_f.eventHandler.getOutput();
+        let completeQuestResponse = ItemEventRouter.getOutput();
         completeQuestResponse.quests = quest_f.helpers.getDeltaQuests(beforeQuests, this.getClientQuests(sessionID));
         quest_f.helpers.dumpQuests(completeQuestResponse.quests);
         return completeQuestResponse;
@@ -430,7 +431,7 @@ class QuestController
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let failedQuestResponse = item_f.eventHandler.getOutput();
+        let failedQuestResponse = ItemEventRouter.getOutput();
         failedQuestResponse.quests = this.failedUnlocked(body.qid, sessionID);
 
         return failedQuestResponse;
@@ -445,7 +446,7 @@ class QuestController
     {
         const quest = DatabaseServer.tables.templates.quests[body.qid];
         const types = ["HandoverItem", "WeaponAssembly"];
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let handoverMode = true;
         let value = 0;
         let counter = 0;

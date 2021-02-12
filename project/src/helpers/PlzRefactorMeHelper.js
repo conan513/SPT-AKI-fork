@@ -15,6 +15,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// PLEASE REFACTOR THIS //////////////////////////////////////////////
@@ -242,7 +243,7 @@ class PlzRefactorMeHelper
      */
     payMoney(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let currencyTpl = this.getCurrency(trader.currency);
 
@@ -328,7 +329,7 @@ class PlzRefactorMeHelper
 
         // save changes
         Logger.success("Items taken. Status OK.");
-        item_f.eventHandler.setOutput(output);
+        ItemEventRouter.setOutput(output);
         return true;
     }
 

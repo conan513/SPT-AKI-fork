@@ -10,6 +10,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 
 class CustomizationController
 {
@@ -33,7 +34,7 @@ class CustomizationController
             }
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     static getTraderSuits(traderID, sessionID)
@@ -79,7 +80,7 @@ class CustomizationController
 
     static buyClothing(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         // find suit offer
         const offers = CustomizationController.getAllTraderSuits(sessionID);

@@ -9,6 +9,8 @@
 
 "use strict";
 
+const ItemEventRouter = require("../routers/ItemEventRouter");
+
 class PresetBuildController
 {
     getUserBuilds(sessionID)
@@ -26,7 +28,7 @@ class PresetBuildController
         delete body.Action;
         body.id = HashUtil.generate();
 
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
@@ -60,7 +62,7 @@ class PresetBuildController
             }
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 }
 

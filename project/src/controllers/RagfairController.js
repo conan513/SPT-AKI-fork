@@ -12,6 +12,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const QuestConfig = require("../configs/QuestConfig.json");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 
@@ -635,7 +636,7 @@ class RagfairController
      */
     addPlayerOffer(pmcData, info, sessionID)
     {
-        const result = item_f.eventHandler.getOutput();
+        const result = ItemEventRouter.getOutput();
         let requirementsPriceInRub = 0;
         let offerPrice = 0;
         let itemStackCount = 0;
@@ -783,7 +784,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -793,7 +794,7 @@ class RagfairController
             offers[index].endTime = Math.round(newEndTime);
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     extendOffer(info, sessionID)
@@ -808,11 +809,11 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     getCurrencySymbol(currencyTpl)
@@ -953,7 +954,7 @@ class RagfairController
 
         // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     returnItems(sessionID, items)

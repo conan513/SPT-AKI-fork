@@ -10,6 +10,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 
 class RagfairServer
@@ -519,7 +520,7 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let itemsToReturn = [];
@@ -532,7 +533,7 @@ class RagfairServer
         ragfair_f.controller.returnItems(profile.aid, itemsToReturn);
         profile.RagfairInfo.offers.splice(index, 1);
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     removeOfferStack(offerID, amount)

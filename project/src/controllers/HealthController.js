@@ -10,6 +10,7 @@
 
 "use strict";
 
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const HealthConfig = require("../configs/HealthConfig.json");
 
 class HealthController
@@ -46,7 +47,7 @@ class HealthController
 
     static offraidHeal(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         // update medkit used (hpresource)
         for (let item of pmcData.Inventory.items)
@@ -80,7 +81,7 @@ class HealthController
 
     static offraidEat(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let resourceLeft;
         let maxResource;
 
@@ -181,7 +182,7 @@ class HealthController
         healthInfo.Temperature = pmcData.Health.Temperature.Current;
 
         HealthController.saveVitality(pmcData, healthInfo, sessionID);
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     static addEffect(pmcData, sessionID, info)
