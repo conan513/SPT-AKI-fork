@@ -11,6 +11,9 @@
 
 "use strict";
 
+const QuestConfig = require("../configs/QuestConfig.json");
+const RagfairConfig = require("../configs/RagfairConfig.json");
+
 class RagfairController
 {
     constructor()
@@ -179,13 +182,13 @@ class RagfairController
 
         for (const traderID in database_f.server.tables.traders)
         {
-            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
+            if (traderID !== "ragfair" && !RagfairConfig.static.traders[traderID])
             {
                 // skip trader except ragfair when trader is disabled
                 continue;
             }
 
-            if (traderID === "ragfair" && !ragfair_f.config.static.items)
+            if (traderID === "ragfair" && !RagfairConfig.static.items)
             {
                 // skip ragfair when unknown is disabled
                 continue;
@@ -515,7 +518,7 @@ class RagfairController
 
             for (const [index, offer] of profileOffers.entries())
             {
-                if (RandomUtil.getInt(0, 99) < ragfair_f.config.player.sellChance)
+                if (RandomUtil.getInt(0, 99) < RagfairConfig.player.sellChance)
                 {
                     // item sold
                     this.completeOffer(sessionID, offer, index);
@@ -717,7 +720,7 @@ class RagfairController
         }
 
         // TODO: Subtract flea market fee from stash
-        if (ragfair_f.config.player.enableFees)
+        if (RagfairConfig.player.enableFees)
         {
             let tax = this.calculateTax(info, offerPrice, requirementsPriceInRub);
             Logger.info(`Tax Calculated to be: ${tax}`);
@@ -937,7 +940,7 @@ class RagfairController
         const messageContent = {
             "text": messageText.replace(/"/g, ""),
             "type": 4, // EMessageType.FleamarketMessage
-            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "maxStorageTime": QuestConfig.redeemTime * 3600,
             "ragfair": {
                 "offerId": offerId,
                 "count": boughtAmount,
@@ -957,7 +960,7 @@ class RagfairController
         const messageContent = {
             "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);

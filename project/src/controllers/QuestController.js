@@ -13,6 +13,8 @@
 
 "use strict";
 
+const QuestConfig = require("../configs/QuestConfig.json");
+
 class QuestController
 {
     getClientQuests(sessionID)
@@ -326,7 +328,7 @@ class QuestController
         let messageContent = {
             "templateId": questLocale.startedMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questStart"),
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
         if (questLocale.startedMessageText === "" || questLocale.startedMessageText.length === 24)
@@ -334,7 +336,7 @@ class QuestController
             messageContent = {
                 "templateId": questLocale.description,
                 "type": dialogue_f.controller.getMessageTypeValue("questStart"),
-                "maxStorageTime": quest_f.config.redeemTime * 3600
+                "maxStorageTime": QuestConfig.redeemTime * 3600
             };
         }
 
@@ -396,7 +398,7 @@ class QuestController
         let messageContent = {
             "templateId": questLocale.successMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questSuccess"),
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
@@ -422,7 +424,7 @@ class QuestController
         let messageContent = {
             "templateId": questLocale.failMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questFail"),
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);

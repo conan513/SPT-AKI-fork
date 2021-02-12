@@ -10,6 +10,8 @@
 
 "use strict";
 
+const InventoryConfig = require("../configs/InventoryConfig.json");
+
 class InventoryController
 {
     /* Based on the item action, determine whose inventories we should be looking at for from and to. */
@@ -589,7 +591,7 @@ class InventoryController
 
             // hideout items need to be marked as found in raid
             // or in case people want all items to be marked as found in raid
-            if (foundInRaid || inventory_f.config.newItemsMarkedFound)
+            if (foundInRaid || InventoryConfig.newItemsMarkedFound)
             {
                 upd["SpawnedInSession"] = true;
             }

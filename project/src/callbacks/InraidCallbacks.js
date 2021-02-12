@@ -8,6 +8,8 @@
 
 "use strict";
 
+const InraidConfig = require("../configs/InraidConfig.json");
+
 class InraidCallbacks
 {
     static onLoad(sessionID)
@@ -29,17 +31,17 @@ class InraidCallbacks
 
     static getRaidEndState()
     {
-        return https_f.response.noBody(inraid_f.config.MIAOnRaidEnd);
+        return https_f.response.noBody(InraidConfig.MIAOnRaidEnd);
     }
 
     static getRaidMenuSettings(url, info, sessionID)
     {
-        return https_f.response.noBody(inraid_f.config.raidMenuSettings);
+        return https_f.response.noBody(InraidConfig.raidMenuSettings);
     }
 
     static getWeaponDurability(url, info, sessionID)
     {
-        return https_f.response.noBody(inraid_f.config.save.durability);
+        return https_f.response.noBody(InraidConfig.save.durability);
     }
 }
 

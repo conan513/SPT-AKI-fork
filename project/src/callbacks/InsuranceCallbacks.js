@@ -8,6 +8,8 @@
 
 "use strict";
 
+const InsuranceConfig = require("../configs/InsuranceConfig.json");
+
 class InsuranceCallbacks
 {
     static onLoad(sessionID)
@@ -27,7 +29,7 @@ class InsuranceCallbacks
 
     static update(timeSinceLastRun)
     {
-        if (timeSinceLastRun > insurance_f.config.runInterval)
+        if (timeSinceLastRun > InsuranceConfig.runInterval)
         {
             insurance_f.controller.processReturn();
             return true;

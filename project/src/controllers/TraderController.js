@@ -10,6 +10,8 @@
 
 "use strict";
 
+const TraderConfig = require("../configs/TraderConfig.json");
+
 class TraderController
 {
     constructor()
@@ -96,7 +98,7 @@ class TraderController
     updateTraders()
     {
         const time = TimeUtil.getTimestamp();
-        const update = trader_f.config.updateTime;
+        const update = TraderConfig.updateTime;
 
         for (const traderID in database_f.server.tables.traders)
         {
@@ -187,7 +189,7 @@ class TraderController
             "loyal_level_items": {}
         };
 
-        for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
+        for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
             let price = Helpers.getTemplatePrice(itemID);

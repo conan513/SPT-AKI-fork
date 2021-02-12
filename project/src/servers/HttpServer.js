@@ -15,6 +15,7 @@ const https = require("https");
 const WebSocket = require("ws");
 const HttpRouter = require("../routers/HttpRouter");
 const CertController = require("../controllers/CertController");
+const HttpConfig = require("../configs/HttpConfig.json");
 
 class HttpServer
 {
@@ -39,7 +40,7 @@ class HttpServer
 
     buildUrl()
     {
-        return `${https_f.config.ip}:${https_f.config.port}`;
+        return `${HttpConfig.ip}:${HttpConfig.port}`;
     }
 
     getBackendUrl()
@@ -245,7 +246,7 @@ class HttpServer
             this.handleRequest(req, res);
         });
 
-        httpss.listen(https_f.config.port, https_f.config.ip, () =>
+        httpss.listen(HttpConfig.port, HttpConfig.ip, () =>
         {
             Logger.success(`Started webserver at ${this.getBackendUrl()}`);
         });

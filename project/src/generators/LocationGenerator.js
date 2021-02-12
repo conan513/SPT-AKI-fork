@@ -10,11 +10,13 @@
 
 "use strict";
 
+const LocationConfig = require("../configs/LocationConfig.json");
+
 class LocationGenerator
 {
     /**
      * @param {unknown[]} dynamic
-     * @param {CoOrds | []} lootPositions
+     * @param {Coords | []} lootPositions
      * @param {{ base: { GlobalLootChanceModifier: any; }; }} location
      */
     generateDynamicLoot(dynamic, lootPositions, location)
@@ -33,7 +35,7 @@ class LocationGenerator
 
         //Check if LootItem is overlapping
         let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
-        if (!location_f.config.allowLootOverlay && lootPositions.includes(position))
+        if (!LocationConfig.allowLootOverlay && lootPositions.includes(position))
         {
             //Clear selected loot
             dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
