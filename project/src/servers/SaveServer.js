@@ -28,15 +28,15 @@ class SaveServer
             VFS.createDir(SaveServer.filepath);
         }
 
-        const files = VFS.getFiles(SaveServer.filepath);
+        const files = VFS.getFiles(SaveServer.filepath).filter((item) =>
+        {
+            return VFS.getFileExtension(item) != "json";
+        });
 
         // load profiles
         for (let file of files)
         {
-            if (VFS.getFileExtension(file) == "json")
-            {
-                SaveServer.loadProfile(VFS.stripExtension(file));
-            }
+            SaveServer.loadProfile(VFS.stripExtension(file));
         }
     }
 
