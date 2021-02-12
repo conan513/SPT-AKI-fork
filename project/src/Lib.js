@@ -27,7 +27,6 @@ globalThis["save_f"] = {
 };
 
 globalThis["inraid_f"] = {
-    "config": require("./configs/InraidConfig.json"),
     "controller": require("./controllers/InraidController.js")
 };
 

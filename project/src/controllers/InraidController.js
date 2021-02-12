@@ -13,6 +13,7 @@
 "use strict";
 
 const HealthController = require("./HealthController.js");
+const InraidConfig = require("../configs/InraidConfig.json");
 
 class InraidController
 {
@@ -63,7 +64,7 @@ class InraidController
 
     saveProgress(offraidData, sessionID)
     {
-        if (!inraid_f.config.save.loot)
+        if (!InraidConfig.save.loot)
         {
             return;
         }
