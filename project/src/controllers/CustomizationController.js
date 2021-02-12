@@ -10,6 +10,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 
 class CustomizationController
@@ -96,7 +97,7 @@ class CustomizationController
         }
 
         // check if outfit already exists
-        if (save_f.server.profiles[sessionID].suits.find((suit) =>
+        if (SaveServer.profiles[sessionID].suits.find((suit) =>
         {
             return suit === body.offer;
         }))
@@ -138,7 +139,7 @@ class CustomizationController
         }
 
         // add suit
-        save_f.server.profiles[sessionID].suits.push(offer.suiteId);
+        SaveServer.profiles[sessionID].suits.push(offer.suiteId);
         return output;
     }
 }

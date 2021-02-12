@@ -11,6 +11,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const InsuranceConfig = require("../configs/InsuranceConfig.json");
 
@@ -25,7 +26,7 @@ class InsuranceController
     onLoad(sessionID)
     {
         this.generateTemplatesById();
-        let profile = save_f.server.profiles[sessionID];
+        let profile = SaveServer.profiles[sessionID];
 
         if (!("insurance" in profile))
         {
@@ -248,7 +249,7 @@ class InsuranceController
                 }
             }
 
-            save_f.server.profiles[sessionID].insurance.push({
+            SaveServer.profiles[sessionID].insurance.push({
                 "scheduledTime": time,
                 "traderId": traderId,
                 "messageContent": messageContent,
@@ -263,9 +264,9 @@ class InsuranceController
     {
         const time = TimeUtil.getTimestamp();
 
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            let insurance = save_f.server.profiles[sessionID].insurance;
+            let insurance = SaveServer.profiles[sessionID].insurance;
             let i = insurance.length;
 
             while (i-- > 0)
@@ -322,7 +323,7 @@ class InsuranceController
                 insurance.splice(i, 1);
             }
 
-            save_f.server.profiles[sessionID].insurance = insurance;
+            SaveServer.profiles[sessionID].insurance = insurance;
         }
     }
 

@@ -10,6 +10,7 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const HealthConfig = require("../configs/HealthConfig.json");
 
@@ -17,7 +18,7 @@ class HealthController
 {
     static resetVitality(sessionID)
     {
-        let profile = save_f.server.profiles[sessionID];
+        let profile = SaveServer.profiles[sessionID];
 
         profile.vitality = {
             "health": {
@@ -120,8 +121,8 @@ class HealthController
     static saveVitality(pmcData, info, sessionID)
     {
         const BodyPartsList = info.Health;
-        let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
-        let nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
+        let nodeHealth = SaveServer.profiles[sessionID].vitality.health;
+        let nodeEffects = SaveServer.profiles[sessionID].vitality.effects;
 
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
@@ -215,7 +216,7 @@ class HealthController
             return;
         }
 
-        let nodeHealth = save_f.server.profiles[sessionID].vitality.health;
+        let nodeHealth = SaveServer.profiles[sessionID].vitality.health;
 
         for (const item in nodeHealth)
         {
@@ -251,7 +252,7 @@ class HealthController
             return;
         }
 
-        const nodeEffects = save_f.server.profiles[sessionID].vitality.effects;
+        const nodeEffects = SaveServer.profiles[sessionID].vitality.effects;
 
         for (const bodyPart in nodeEffects)
         {

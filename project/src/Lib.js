@@ -14,10 +14,6 @@ globalThis["https_f"] = {
     "server": require("./servers/HttpServer.js")
 };
 
-globalThis["save_f"] = {
-    "server": require("./servers/SaveServer.js")
-};
-
 globalThis["inraid_f"] = {
     "controller": require("./controllers/InraidController.js")
 };

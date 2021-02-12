@@ -10,6 +10,8 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
+
 class DialogueController
 {
     constructor()
@@ -28,7 +30,7 @@ class DialogueController
     {
         let data = [];
 
-        for (let dialogueId in save_f.server.profiles[sessionID].dialogues)
+        for (let dialogueId in SaveServer.profiles[sessionID].dialogues)
         {
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
@@ -39,7 +41,7 @@ class DialogueController
     /* Get the content of a dialogue. */
     getDialogueInfo(dialogueId, sessionID)
     {
-        let dialogue = save_f.server.profiles[sessionID].dialogues[dialogueId];
+        let dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
 
         return {
             "_id": dialogueId,
@@ -57,7 +59,7 @@ class DialogueController
 	*/
     generateDialogueView(dialogueId, sessionID)
     {
-        let dialogue = save_f.server.profiles[sessionID].dialogues[dialogueId];
+        let dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
         dialogue.new = 0;
 
         // Set number of new attachments, but ignore those that have expired.
@@ -74,7 +76,7 @@ class DialogueController
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return https_f.response.getBody({"messages": save_f.server.profiles[sessionID].dialogues[dialogueId].messages});
+        return https_f.response.getBody({"messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages});
     }
 
     /*
@@ -82,7 +84,7 @@ class DialogueController
 	*/
     addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
-        let dialogueData = save_f.server.profiles[sessionID].dialogues;
+        let dialogueData = SaveServer.profiles[sessionID].dialogues;
         let isNewDialogue = !(dialogueID in dialogueData);
         let dialogue = dialogueData[dialogueID];
 
@@ -168,7 +170,7 @@ class DialogueController
 	*/
     getMessageItemContents(messageId, sessionID)
     {
-        let dialogueData = save_f.server.profiles[sessionID].dialogues;
+        let dialogueData = SaveServer.profiles[sessionID].dialogues;
 
         for (let dialogueId in dialogueData)
         {
@@ -178,10 +180,10 @@ class DialogueController
             {
                 if (message._id === messageId)
                 {
-                    let attachmentsNew = save_f.server.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
+                    let attachmentsNew = SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
                     if (attachmentsNew > 0)
                     {
-                        save_f.server.profiles[sessionID].dialogues[dialogueId].attachmentsNew = attachmentsNew - 1;
+                        SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = attachmentsNew - 1;
                     }
                     message.rewardCollected = true;
                     return message.items.data;
@@ -194,17 +196,17 @@ class DialogueController
 
     removeDialogue(dialogueId, sessionID)
     {
-        delete save_f.server.profiles[sessionID].dialogues[dialogueId];
+        delete SaveServer.profiles[sessionID].dialogues[dialogueId];
     }
 
     setDialoguePin(dialogueId, shouldPin, sessionID)
     {
-        save_f.server.profiles[sessionID].dialogues[dialogueId].pinned = shouldPin;
+        SaveServer.profiles[sessionID].dialogues[dialogueId].pinned = shouldPin;
     }
 
     setRead(dialogueIds, sessionID)
     {
-        let dialogueData = save_f.server.profiles[sessionID].dialogues;
+        let dialogueData = SaveServer.profiles[sessionID].dialogues;
 
         for (let dialogId of dialogueIds)
         {
@@ -219,7 +221,7 @@ class DialogueController
         let output = [];
         let timeNow = Date.now() / 1000;
 
-        for (let message of save_f.server.profiles[sessionID].dialogues[dialogueId].messages)
+        for (let message of SaveServer.profiles[sessionID].dialogues[dialogueId].messages)
         {
             if (timeNow < (message.dt + message.maxStorageTime))
             {
@@ -227,13 +229,13 @@ class DialogueController
             }
         }
 
-        save_f.server.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
+        SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
         return {"messages": output};
     }
 
     update()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
             this.removeExpiredItems(sessionID);
         }
@@ -242,9 +244,9 @@ class DialogueController
     // deletion of items that has been expired. triggers when updating traders.
     removeExpiredItems(sessionID)
     {
-        for (let dialogueId in save_f.server.profiles[sessionID].dialogues)
+        for (let dialogueId in SaveServer.profiles[sessionID].dialogues)
         {
-            for (let message of save_f.server.profiles[sessionID].dialogues[dialogueId].messages)
+            for (let message of SaveServer.profiles[sessionID].dialogues[dialogueId].messages)
             {
                 if ((Date.now() / 1000) > (message.dt + message.maxStorageTime))
                 {

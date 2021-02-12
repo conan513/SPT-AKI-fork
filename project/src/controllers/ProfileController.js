@@ -12,6 +12,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const LauncherController = require("./LauncherController.js");
 
 class ProfileController
@@ -21,7 +22,7 @@ class ProfileController
      */
     onLoad(sessionID)
     {
-        let profile = save_f.server.profiles[sessionID];
+        let profile = SaveServer.profiles[sessionID];
 
         if (!("characters" in profile))
         {
@@ -40,12 +41,12 @@ class ProfileController
      */
     getPmcProfile(sessionID)
     {
-        if (save_f.server.profiles[sessionID] === undefined || save_f.server.profiles[sessionID].characters.pmc === undefined)
+        if (SaveServer.profiles[sessionID] === undefined || SaveServer.profiles[sessionID].characters.pmc === undefined)
         {
             return undefined;
         }
 
-        return save_f.server.profiles[sessionID].characters.pmc;
+        return SaveServer.profiles[sessionID].characters.pmc;
     }
 
     /**
@@ -53,7 +54,7 @@ class ProfileController
      */
     getScavProfile(sessionID)
     {
-        return save_f.server.profiles[sessionID].characters.scav;
+        return SaveServer.profiles[sessionID].characters.scav;
     }
 
     /**
@@ -62,7 +63,7 @@ class ProfileController
      */
     setScavProfile(sessionID, scavData)
     {
-        save_f.server.profiles[sessionID].characters.scav = scavData;
+        SaveServer.profiles[sessionID].characters.scav = scavData;
     }
 
     /**
@@ -93,9 +94,9 @@ class ProfileController
         let pmcData = profile.character;
 
         // delete existing profile
-        if (sessionID in save_f.server.profiles)
+        if (sessionID in SaveServer.profiles)
         {
-            delete save_f.server.profiles[sessionID];
+            delete SaveServer.profiles[sessionID];
         }
 
         // pmc
@@ -111,7 +112,7 @@ class ProfileController
         pmcData.Quests = [];
 
         // create profile
-        save_f.server.profiles[sessionID] = {
+        SaveServer.profiles[sessionID] = {
             "info": account,
             "characters": {
                 "pmc": pmcData,
@@ -123,7 +124,7 @@ class ProfileController
         };
 
         // pmc profile needs to exist first
-        save_f.server.profiles[sessionID].characters.scav = this.generateScav(sessionID);
+        SaveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
 
         for (let traderID in DatabaseServer.tables.traders)
         {
@@ -131,12 +132,12 @@ class ProfileController
         }
 
         // store minimal profile and reload it
-        save_f.server.saveProfile(sessionID);
-        save_f.server.loadProfile(sessionID);
+        SaveServer.saveProfile(sessionID);
+        SaveServer.loadProfile(sessionID);
 
         // completed account creation
-        save_f.server.profiles[sessionID].info.wipe = false;
-        save_f.server.saveProfile(sessionID);
+        SaveServer.profiles[sessionID].info.wipe = false;
+        SaveServer.saveProfile(sessionID);
     }
 
     /**
@@ -223,9 +224,9 @@ class ProfileController
      */
     isNicknameTaken(info, sessionID)
     {
-        for (const id in save_f.server.profiles)
+        for (const id in SaveServer.profiles)
         {
-            const profile = save_f.server.profiles[id];
+            const profile = SaveServer.profiles[id];
 
             if (!("characters" in profile) || !("pmc" in profile.characters) || !("Info" in profile.characters.pmc))
             {
@@ -281,11 +282,11 @@ class ProfileController
 
     getProfileByPmcId(pmcId)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if (save_f.server.profiles[sessionID].characters.pmc._id === pmcId)
+            if (SaveServer.profiles[sessionID].characters.pmc._id === pmcId)
             {
-                return save_f.server.profiles[sessionID].characters.pmc;
+                return SaveServer.profiles[sessionID].characters.pmc;
             }
         }
         return undefined;

@@ -8,6 +8,7 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
 const CustomizationController = require("../controllers/CustomizationController.js");
 
 class CustomizationCallbacks
@@ -16,7 +17,7 @@ class CustomizationCallbacks
     {
         return https_f.response.getBody({
             "_id": `pmc${sessionID}`,
-            "suites": save_f.server.profiles[sessionID].suits
+            "suites": SaveServer.profiles[sessionID].suits
         });
     }
 

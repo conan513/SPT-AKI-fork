@@ -10,6 +10,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 
@@ -36,9 +37,9 @@ class RagfairServer
 
     addPlayerOffers()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            const pmcData = save_f.server.profiles[sessionID].characters.pmc;
+            const pmcData = SaveServer.profiles[sessionID].characters.pmc;
 
             if (pmcData.RagfairInfo === undefined || pmcData.RagfairInfo.offers === undefined)
             {
@@ -230,7 +231,7 @@ class RagfairServer
     {
         if (this.isPlayer(userID))
         {
-            return save_f.server.profiles[userID].characters.pmc._id;
+            return SaveServer.profiles[userID].characters.pmc._id;
         }
         return userID;
     }
@@ -240,7 +241,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.Info.AccountType;
+            return SaveServer.profiles[userID].characters.pmc.Info.AccountType;
         }
 
         if (this.isTrader(userID))
@@ -258,7 +259,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.Info.Nickname;
+            return SaveServer.profiles[userID].characters.pmc.Info.Nickname;
         }
 
         if (this.isTrader(userID))
@@ -297,7 +298,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.RagfairInfo.rating;
+            return SaveServer.profiles[userID].characters.pmc.RagfairInfo.rating;
         }
 
         if (this.isTrader(userID))
@@ -315,7 +316,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.RagfairInfo.isRatingGrowing;
+            return SaveServer.profiles[userID].characters.pmc.RagfairInfo.isRatingGrowing;
         }
 
         if (this.isTrader(userID))

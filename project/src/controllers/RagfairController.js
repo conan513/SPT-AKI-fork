@@ -12,6 +12,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const QuestConfig = require("../configs/QuestConfig.json");
 const RagfairConfig = require("../configs/RagfairConfig.json");
@@ -497,9 +498,9 @@ class RagfairController
 
     update()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if (save_f.server.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
+            if (SaveServer.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
             {
                 this.processOffers(sessionID);
             }
@@ -508,7 +509,7 @@ class RagfairController
 
     processOffers(sessionID)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
             const profileOffers = this.getProfileOffers(sessionID);
             const timestamp = TimeUtil.getTimestamp();
@@ -554,12 +555,12 @@ class RagfairController
 
     deleteOfferByIndex(sessionID, index)
     {
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
     }
 
     updateOfferItemsByIndex(sessionID, index, newValues)
     {
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
     }
 
 
@@ -711,8 +712,8 @@ class RagfairController
         }
 
         // Preparations are done, create the offer
-        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        const offer = this.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         result.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
@@ -778,7 +779,7 @@ class RagfairController
      */
     removeOffer(offerId, sessionID)
     {
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
         if (index === -1)
@@ -803,7 +804,7 @@ class RagfairController
         let secondsToAdd = info.renewalTime * 60 * 60;
 
         // TODO: Subtract money and change offer endTime
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
         if (index === -1)

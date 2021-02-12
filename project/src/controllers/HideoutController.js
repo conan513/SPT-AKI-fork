@@ -12,6 +12,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const HideoutConfig = require("../configs/HideoutConfig.json");
 
@@ -586,9 +587,9 @@ class HideoutController
 
     update()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if ("Hideout" in save_f.server.profiles[sessionID].characters.pmc)
+            if ("Hideout" in SaveServer.profiles[sessionID].characters.pmc)
             {
                 this.updatePlayerHideout(sessionID);
             }
