@@ -8,11 +8,13 @@
 
 "use strict";
 
+const ItemEventRouter = require("../routers/ItemEventRouter");
+
 class ItemEventCallbacks
 {
     static handleEvents(url, info, sessionID)
     {
-        return https_f.response.getBody(item_f.eventHandler.handleEvents(info, sessionID));
+        return https_f.response.getBody(ItemEventRouter.handleEvents(info, sessionID));
     }
 }
 

@@ -8,11 +8,13 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
+
 class SaveCallbacks
 {
     static load()
     {
-        save_f.server.load();
+        SaveServer.load();
     }
 
     static update(timeSinceLastRun)
@@ -20,7 +22,7 @@ class SaveCallbacks
         // run every 15 seconds
         if (timeSinceLastRun > 15 * 1)
         {
-            save_f.server.save();
+            SaveServer.save();
             Logger.debug("Saved profiles");
             return true;
         }

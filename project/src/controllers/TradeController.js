@@ -9,6 +9,8 @@
 
 "use strict";
 
+const ItemEventRouter = require("../routers/ItemEventRouter");
+
 class TradeController
 {
     /**
@@ -20,7 +22,7 @@ class TradeController
      */
     buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
-        const output = item_f.eventHandler.getOutput();
+        const output = ItemEventRouter.getOutput();
         const newReq = {
             "items": [
                 {
@@ -54,7 +56,7 @@ class TradeController
     {
         let money = 0;
         let prices = trader_f.controller.getPurchasesData(body.tid, sessionID);
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         for (let sellItem of body.items)
         {
@@ -115,7 +117,7 @@ class TradeController
     // Ragfair trading
     confirmRagfairTrading(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         for (let offer of body.offers)
         {

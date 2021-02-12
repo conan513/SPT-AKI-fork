@@ -6,7 +6,11 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - Terkoiz
- *
+ */
+
+const DatabaseServer = require("../servers/DatabaseServer");
+
+/*
  * @class InventoryHelper
  * @description Helpers related to Inventory
  */
@@ -324,15 +328,15 @@ class InventoryHelper
     //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
         let stashTPL = this.getStashType(sessionID);
         let stashX =
-      database_f.server.tables.templates.items[stashTPL]._props.Grids[0]._props
+      DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props
           .cellsH !== 0
-          ? database_f.server.tables.templates.items[stashTPL]._props.Grids[0]
+          ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]
               ._props.cellsH
           : 10;
         let stashY =
-      database_f.server.tables.templates.items[stashTPL]._props.Grids[0]._props
+      DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props
           .cellsV !== 0
-          ? database_f.server.tables.templates.items[stashTPL]._props.Grids[0]
+          ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]
               ._props.cellsV
           : 66;
         return [stashX, stashY];

@@ -9,6 +9,9 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 
 class RagfairServer
@@ -34,9 +37,9 @@ class RagfairServer
 
     addPlayerOffers()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            const pmcData = save_f.server.profiles[sessionID].characters.pmc;
+            const pmcData = SaveServer.profiles[sessionID].characters.pmc;
 
             if (pmcData.RagfairInfo === undefined || pmcData.RagfairInfo.offers === undefined)
             {
@@ -54,7 +57,7 @@ class RagfairServer
 
     addTraders()
     {
-        for (const traderID in database_f.server.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
             this.toUpdate[traderID] = true;
         }
@@ -123,7 +126,7 @@ class RagfairServer
 
         // add trader offers
         const time = TimeUtil.getTimestamp();
-        let assort = database_f.server.tables.traders[traderID].assort;
+        let assort = DatabaseServer.tables.traders[traderID].assort;
 
         if (traderID === "579dc571d53a0658a154fbec")
         {
@@ -151,7 +154,7 @@ class RagfairServer
     {
         const config = RagfairConfig.dynamic;
         const count = config.threshold + config.batchSize;
-        const assort = JsonUtil.clone(database_f.server.tables.traders["ragfair"].assort);
+        const assort = JsonUtil.clone(DatabaseServer.tables.traders["ragfair"].assort);
         const assortItems = assort.items.filter((item) =>
         {
             return item.slotId === "hideout";
@@ -181,7 +184,7 @@ class RagfairServer
     createOffer(userID, time, items, barterScheme, loyalLevel, sellInOnePiece = false, price = null)
     {
         const isTrader = this.isTrader(userID);
-        const trader = database_f.server.tables.traders[(isTrader) ? userID : "ragfair"].base;
+        const trader = DatabaseServer.tables.traders[(isTrader) ? userID : "ragfair"].base;
 
         if (price === null)
         {
@@ -228,7 +231,7 @@ class RagfairServer
     {
         if (this.isPlayer(userID))
         {
-            return save_f.server.profiles[userID].characters.pmc._id;
+            return SaveServer.profiles[userID].characters.pmc._id;
         }
         return userID;
     }
@@ -238,7 +241,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.Info.AccountType;
+            return SaveServer.profiles[userID].characters.pmc.Info.AccountType;
         }
 
         if (this.isTrader(userID))
@@ -256,19 +259,19 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.Info.Nickname;
+            return SaveServer.profiles[userID].characters.pmc.Info.Nickname;
         }
 
         if (this.isTrader(userID))
         {
             // trader offer
-            return database_f.server.tables.traders[userID].base.nickname;
+            return DatabaseServer.tables.traders[userID].base.nickname;
         }
 
         // generated offer
         // recurse if name is longer than max characters allowed (15 characters)
         const type = (RandomUtil.getInt(0, 1) === 0) ? "usec" : "bear";
-        const name = RandomUtil.getArrayValue(database_f.server.tables.bots.types[type].names);
+        const name = RandomUtil.getArrayValue(DatabaseServer.tables.bots.types[type].names);
         return (name.length > 15) ? this.getNickname(userID) : name;
     }
 
@@ -283,7 +286,7 @@ class RagfairServer
         if (this.isTrader(userID))
         {
             // trader offer
-            return database_f.server.tables.traders[userID].base.supply_next_time;
+            return DatabaseServer.tables.traders[userID].base.supply_next_time;
         }
 
         // generated offer
@@ -295,7 +298,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.RagfairInfo.rating;
+            return SaveServer.profiles[userID].characters.pmc.RagfairInfo.rating;
         }
 
         if (this.isTrader(userID))
@@ -313,7 +316,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return save_f.server.profiles[userID].characters.pmc.RagfairInfo.isRatingGrowing;
+            return SaveServer.profiles[userID].characters.pmc.RagfairInfo.isRatingGrowing;
         }
 
         if (this.isTrader(userID))
@@ -437,8 +440,8 @@ class RagfairServer
 
     getItemPrices()
     {
-        const items = database_f.server.tables.templates.items;
-        const prices = database_f.server.tables.templates.prices;
+        const items = DatabaseServer.tables.templates.items;
+        const prices = DatabaseServer.tables.templates.prices;
 
         // trader offers
         for (const itemID in items)
@@ -460,18 +463,18 @@ class RagfairServer
 
     getPresetItems(item)
     {
-        const preset = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[item._id]._items);
+        const preset = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[item._id]._items);
         return this.reparentPresets(item, preset);
     }
 
     getPresetItemsByTpl(item)
     {
         let presets = [];
-        for (const itemId in database_f.server.tables.globals.ItemPresets)
+        for (const itemId in DatabaseServer.tables.globals.ItemPresets)
         {
-            if (database_f.server.tables.globals.ItemPresets[itemId]._items[0]._tpl === item._tpl)
+            if (DatabaseServer.tables.globals.ItemPresets[itemId]._items[0]._tpl === item._tpl)
             {
-                let preset = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[itemId]._items);
+                let preset = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[itemId]._items);
                 presets.push(this.reparentPresets(item, preset));
             }
         }
@@ -518,7 +521,7 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let itemsToReturn = [];
@@ -531,7 +534,7 @@ class RagfairServer
         ragfair_f.controller.returnItems(profile.aid, itemsToReturn);
         profile.RagfairInfo.offers.splice(index, 1);
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     removeOfferStack(offerID, amount)
@@ -560,7 +563,7 @@ class RagfairServer
 
     isTrader(userID)
     {
-        return userID in database_f.server.tables.traders;
+        return userID in DatabaseServer.tables.traders;
     }
 
 

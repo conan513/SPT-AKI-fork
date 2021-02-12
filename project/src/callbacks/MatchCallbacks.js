@@ -8,6 +8,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const MatchController = require("../controllers/MatchController.js");
 
 class MatchCallbacks
@@ -81,7 +82,7 @@ class MatchCallbacks
 
     static getMetrics(url, info, sessionID)
     {
-        return https_f.response.getBody(JsonUtil.serialize(database_f.server.tables.match.metrics));
+        return https_f.response.getBody(JsonUtil.serialize(DatabaseServer.tables.match.metrics));
     }
 
     static getGroupStatus(url, info, sessionID)

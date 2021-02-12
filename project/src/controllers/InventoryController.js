@@ -10,6 +10,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const InventoryConfig = require("../configs/InventoryConfig.json");
 
 class InventoryController
@@ -68,7 +70,7 @@ class InventoryController
     * */
     moveItem(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let items = this.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
@@ -226,7 +228,7 @@ class InventoryController
     discardItem(pmcData, body, sessionID)
     {
         insurance_f.controller.remove(pmcData, body.item, sessionID);
-        return this.removeItem(pmcData, body.item, item_f.eventHandler.getOutput(), sessionID);
+        return this.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
     }
 
     /* Split Item
@@ -234,7 +236,7 @@ class InventoryController
     * */
     splitItem(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let location = body.container.location;
 
         let items = this.getOwnerInventoryItems(body, sessionID);
@@ -299,7 +301,7 @@ class InventoryController
      */
     mergeItem(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let items = this.getOwnerInventoryItems(body, sessionID);
 
         for (let key in items.to)
@@ -354,7 +356,7 @@ class InventoryController
     * */
     transferItem(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let itemFrom = null;
         let itemTo = null;
 
@@ -420,7 +422,7 @@ class InventoryController
     * */
     swapItem(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         for (let iterItem of pmcData.Inventory.items)
         {
@@ -453,9 +455,9 @@ class InventoryController
 
         for (let baseItem of body.items)
         {
-            if (baseItem.item_id in database_f.server.tables.globals.ItemPresets)
+            if (baseItem.item_id in DatabaseServer.tables.globals.ItemPresets)
             {
-                const presetItems = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
+                const presetItems = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
@@ -725,7 +727,7 @@ class InventoryController
             if (item._id && item._id === body.item)
             {
                 item.upd.Foldable = {"Folded": body.value};
-                return item_f.eventHandler.getOutput();
+                return ItemEventRouter.getOutput();
             }
         }
 
@@ -739,7 +741,7 @@ class InventoryController
             if (item._id && item._id === body.item)
             {
                 item.upd.Togglable = {"On": body.value};
-                return item_f.eventHandler.getOutput();
+                return ItemEventRouter.getOutput();
             }
         }
 
@@ -772,7 +774,7 @@ class InventoryController
                     Object.assign(item, myobject);
                 }
 
-                return item_f.eventHandler.getOutput();
+                return ItemEventRouter.getOutput();
             }
         }
 
@@ -790,7 +792,7 @@ class InventoryController
         }
 
         pmcData.Inventory.fastPanel[body.index] = body.item;
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     examineItem(pmcData, body, sessionID)
@@ -835,7 +837,7 @@ class InventoryController
         if (!itemID)
         {
             // item template
-            if (body.item in database_f.server.tables.templates.items)
+            if (body.item in DatabaseServer.tables.templates.items)
             {
                 itemID = body.item;
             }
@@ -858,13 +860,13 @@ class InventoryController
         if (itemID)
         {
             // item found
-            const item = database_f.server.tables.templates.items[itemID];
+            const item = DatabaseServer.tables.templates.items[itemID];
 
             pmcData.Info.Experience += item._props.ExamineExperience;
             pmcData.Encyclopedia[itemID] = true;
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     readEncyclopedia(pmcData, body, sessionID)
@@ -874,7 +876,7 @@ class InventoryController
             pmcData.Encyclopedia[id] = true;
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     sortInventory(pmcData, body, sessionID)
@@ -921,7 +923,7 @@ class InventoryController
         }
 
         pmcData.Inventory.items = items;
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 }
 

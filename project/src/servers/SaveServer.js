@@ -14,61 +14,58 @@ const VFS = require("../utils/VFS");
 
 class SaveServer
 {
-    constructor()
-    {
-        this.filepath = "user/profiles/";
-        /** @type {UserProfileDictionary} */
-        this.profiles = {};
-        this.onLoad = require("../bindings/SaveLoad");
-        this.onSave = {};
-    }
+    static filepath = "user/profiles/";
+    /** @type {UserProfileDictionary} */
+    static profiles = {};
+    static onLoad = require("../bindings/SaveLoad");
+    static onSave = {};
 
-    load()
+    static load()
     {
         // get files to load
-        if (!VFS.exists(this.filepath))
+        if (!VFS.exists(SaveServer.filepath))
         {
-            VFS.createDir(this.filepath);
+            VFS.createDir(SaveServer.filepath);
         }
 
-        const files = VFS.getFiles(this.filepath);
+        const files = VFS.getFiles(SaveServer.filepath).filter((item) =>
+        {
+            return VFS.getFileExtension(item) != "json";
+        });
 
         // load profiles
         for (let file of files)
         {
-            if (VFS.getFileExtension(file) == "json")
-            {
-                this.loadProfile(VFS.stripExtension(file));
-            }
+            SaveServer.loadProfile(VFS.stripExtension(file));
         }
     }
 
-    save()
+    static save()
     {
         // load profiles
-        for (const sessionID in this.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            this.saveProfile(sessionID);
+            SaveServer.saveProfile(sessionID);
         }
     }
 
     /**
      * @param {string} sessionID
      */
-    loadProfile(sessionID)
+    static loadProfile(sessionID)
     {
-        const file = `${this.filepath}${sessionID}.json`;
+        const file = `${SaveServer.filepath}${sessionID}.json`;
 
         if (VFS.exists(file))
         {
             // load profile
-            this.profiles[sessionID] = JsonUtil.deserialize(VFS.readFile(file));
+            SaveServer.profiles[sessionID] = JsonUtil.deserialize(VFS.readFile(file));
         }
 
         // run callbacks
-        for (const callback in this.onLoad)
+        for (const callback in SaveServer.onLoad)
         {
-            this.profiles[sessionID] = this.onLoad[callback](sessionID);
+            SaveServer.profiles[sessionID] = SaveServer.onLoad[callback](sessionID);
         }
     }
 
@@ -76,19 +73,19 @@ class SaveServer
      * Save User's Profile
      * @param {string} sessionID
      */
-    saveProfile(sessionID)
+    static saveProfile(sessionID)
     {
-        const file = `${this.filepath}${sessionID}.json`;
+        const file = `${SaveServer.filepath}${sessionID}.json`;
 
         // run callbacks
-        for (const callback in this.onSave)
+        for (const callback in SaveServer.onSave)
         {
-            this.profiles[sessionID] = this.onSave[callback](sessionID);
+            SaveServer.profiles[sessionID] = SaveServer.onSave[callback](sessionID);
         }
 
         // save profile
-        VFS.writeFile(file, JsonUtil.serialize(this.profiles[sessionID], true));
+        VFS.writeFile(file, JsonUtil.serialize(SaveServer.profiles[sessionID], true));
     }
 }
 
-module.exports = new SaveServer();
+module.exports = SaveServer;

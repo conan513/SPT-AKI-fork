@@ -10,6 +10,7 @@
 "use strict";
 
 const VFS = require("./VFS");
+const DatabaseServer = require("../servers/DatabaseServer");
 const ImageRouter = require("../routers/ImageRouter");
 const JsonUtil = require("./JsonUtil");
 
@@ -18,7 +19,7 @@ class DatabaseImporter
     static load()
     {
         const filepath = (globalThis.G_RELEASE_CONFIGURATION) ? "Aki_Data/Server/" : "./assets/";
-        database_f.server.tables = DatabaseImporter.loadRecursive(`${filepath}database/`);
+        DatabaseServer.tables = DatabaseImporter.loadRecursive(`${filepath}database/`);
         DatabaseImporter.loadImages(`${filepath}images/`);
     }
 

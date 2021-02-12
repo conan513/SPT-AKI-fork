@@ -12,6 +12,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const HealthController = require("./HealthController.js");
 const InraidConfig = require("../configs/InraidConfig.json");
 
@@ -19,7 +21,7 @@ class InraidController
 {
     onLoad(sessionID)
     {
-        let profile = save_f.server.profiles[sessionID];
+        let profile = SaveServer.profiles[sessionID];
 
         if (!("inraid" in profile))
         {
@@ -34,18 +36,18 @@ class InraidController
 
     addPlayer(sessionID, info)
     {
-        save_f.server.profiles[sessionID].inraid.location = info.Location;
+        SaveServer.profiles[sessionID].inraid.location = info.Location;
     }
 
     removePlayer(sessionID)
     {
-        save_f.server.profiles[sessionID].inraid.location = "none";
+        SaveServer.profiles[sessionID].inraid.location = "none";
     }
 
     removeMapAccessKey(offraidData, sessionID)
     {
-        const locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
-        const mapKey = database_f.server.tables.locations[locationName].base.AccessKeys[0];
+        const locationName = SaveServer.profiles[sessionID].inraid.location.toLowerCase();
+        const mapKey = DatabaseServer.tables.locations[locationName].base.AccessKeys[0];
 
         if (!mapKey)
         {
@@ -69,9 +71,9 @@ class InraidController
             return;
         }
 
-        let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
+        let locationName = SaveServer.profiles[sessionID].inraid.location.toLowerCase();
 
-        let map = database_f.server.tables.locations[locationName].base;
+        let map = DatabaseServer.tables.locations[locationName].base;
         let insuranceEnabled = map.Insurance;
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let scavData = profile_f.controller.getScavProfile(sessionID);
@@ -79,7 +81,7 @@ class InraidController
         const isDead = (offraidData.exit !== "survived" && offraidData.exit !== "runner");
         const preRaidGear = (isPlayerScav) ? [] : this.getPlayerGear(pmcData.Inventory.items);
 
-        save_f.server.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
+        SaveServer.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
 
         if (!isPlayerScav)
         {

@@ -13,6 +13,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const QuestConfig = require("../configs/QuestConfig.json");
 
 class QuestController
@@ -236,7 +238,7 @@ class QuestController
         }
 
         // give reward
-        let quest = database_f.server.tables.templates.quests[body.qid];
+        let quest = DatabaseServer.tables.templates.quests[body.qid];
 
         if (intelCenterBonus > 0)
         {
@@ -322,8 +324,8 @@ class QuestController
 
         // Create a dialog message for starting the quest.
         // Note that for starting quests, the correct locale field is "description", not "startedMessageText".
-        let questDb = database_f.server.tables.templates.quests[body.qid];
-        let questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        let questDb = DatabaseServer.tables.templates.quests[body.qid];
+        let questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let questRewards = this.getQuestRewardItems(questDb, state);
         let messageContent = {
             "templateId": questLocale.startedMessageText,
@@ -342,7 +344,7 @@ class QuestController
 
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
 
-        let acceptQuestResponse = item_f.eventHandler.getOutput();
+        let acceptQuestResponse = ItemEventRouter.getOutput();
         /** @type {Quest[]} */
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
 
@@ -393,8 +395,8 @@ class QuestController
 
         // Create a dialog message for completing the quest.
         /** @type {Quest} */
-        let quest = database_f.server.tables.templates.quests[body.qid];
-        const questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        let quest = DatabaseServer.tables.templates.quests[body.qid];
+        const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.successMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questSuccess"),
@@ -403,7 +405,7 @@ class QuestController
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let completeQuestResponse = item_f.eventHandler.getOutput();
+        let completeQuestResponse = ItemEventRouter.getOutput();
         completeQuestResponse.quests = quest_f.helpers.getDeltaQuests(beforeQuests, this.getClientQuests(sessionID));
         quest_f.helpers.dumpQuests(completeQuestResponse.quests);
         return completeQuestResponse;
@@ -419,8 +421,8 @@ class QuestController
         let questRewards = this.applyQuestReward(pmcData, body, "Fail", sessionID);
 
         // Create a dialog message for completing the quest.
-        const quest = database_f.server.tables.templates.quests[body.qid];
-        const questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        const quest = DatabaseServer.tables.templates.quests[body.qid];
+        const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.failMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questFail"),
@@ -429,7 +431,7 @@ class QuestController
 
         dialogue_f.controller.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let failedQuestResponse = item_f.eventHandler.getOutput();
+        let failedQuestResponse = ItemEventRouter.getOutput();
         failedQuestResponse.quests = this.failedUnlocked(body.qid, sessionID);
 
         return failedQuestResponse;
@@ -442,9 +444,9 @@ class QuestController
      */
     handoverQuest(pmcData, body, sessionID)
     {
-        const quest = database_f.server.tables.templates.quests[body.qid];
+        const quest = DatabaseServer.tables.templates.quests[body.qid];
         const types = ["HandoverItem", "WeaponAssembly"];
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         let handoverMode = true;
         let value = 0;
         let counter = 0;
@@ -637,7 +639,7 @@ class QuestController
     questValues()
     {
         /** @type {Quest[]} */
-        return Object.values(database_f.server.tables.templates.quests);
+        return Object.values(DatabaseServer.tables.templates.quests);
     }
 
     /*

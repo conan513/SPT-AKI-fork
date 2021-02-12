@@ -10,6 +10,9 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const InsuranceConfig = require("../configs/InsuranceConfig.json");
 
 class InsuranceController
@@ -23,7 +26,7 @@ class InsuranceController
     onLoad(sessionID)
     {
         this.generateTemplatesById();
-        let profile = save_f.server.profiles[sessionID];
+        let profile = SaveServer.profiles[sessionID];
 
         if (!("insurance" in profile))
         {
@@ -217,7 +220,7 @@ class InsuranceController
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
-            let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
+            let dialogueTemplates = DatabaseServer.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceStart),
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
@@ -246,7 +249,7 @@ class InsuranceController
                 }
             }
 
-            save_f.server.profiles[sessionID].insurance.push({
+            SaveServer.profiles[sessionID].insurance.push({
                 "scheduledTime": time,
                 "traderId": traderId,
                 "messageContent": messageContent,
@@ -261,9 +264,9 @@ class InsuranceController
     {
         const time = TimeUtil.getTimestamp();
 
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            let insurance = save_f.server.profiles[sessionID].insurance;
+            let insurance = SaveServer.profiles[sessionID].insurance;
             let i = insurance.length;
 
             while (i-- > 0)
@@ -312,7 +315,7 @@ class InsuranceController
 
                 if (insured.items.length === 0)
                 {
-                    const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
+                    const insuranceFailedTemplates = DatabaseServer.tables.traders[insured.traderId].dialogue.insuranceFailed;
                     insured.messageContent.templateId = RandomUtil.getArrayValue(insuranceFailedTemplates);
                 }
 
@@ -320,7 +323,7 @@ class InsuranceController
                 insurance.splice(i, 1);
             }
 
-            save_f.server.profiles[sessionID].insurance = insurance;
+            SaveServer.profiles[sessionID].insurance = insurance;
         }
     }
 
@@ -360,14 +363,14 @@ class InsuranceController
             });
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     generateTemplatesById()
     {
         if (Object.keys(this.templatesById).length === 0)
         {
-            for (const item of database_f.server.tables.templates.handbook.Items)
+            for (const item of DatabaseServer.tables.templates.handbook.Items)
             {
                 this.templatesById[item.Id] = item;
             }
@@ -386,7 +389,7 @@ class InsuranceController
         }
         else
         {
-            let item = database_f.server.tables.templates.items[_tpl];
+            let item = DatabaseServer.tables.templates.items[_tpl];
             price = item._props.CreditsPrice;
         }
 

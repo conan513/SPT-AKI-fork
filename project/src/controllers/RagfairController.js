@@ -11,6 +11,9 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
+const ItemEventRouter = require("../routers/ItemEventRouter");
 const QuestConfig = require("../configs/QuestConfig.json");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 
@@ -36,8 +39,8 @@ class RagfairController
     {
         const ia = a.items[0]._tpl;
         const ib = b.items[0]._tpl;
-        const aa = database_f.server.tables.locales.global["en"].templates[ia].Name || ia;
-        const bb = database_f.server.tables.locales.global["en"].templates[ib].Name || ib;
+        const aa = DatabaseServer.tables.locales.global["en"].templates[ia].Name || ia;
+        const bb = DatabaseServer.tables.locales.global["en"].templates[ib].Name || ib;
 
         return (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
     }
@@ -180,7 +183,7 @@ class RagfairController
     {
         let result = {};
 
-        for (const traderID in database_f.server.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
             if (traderID !== "ragfair" && !RagfairConfig.static.traders[traderID])
             {
@@ -301,7 +304,7 @@ class RagfairController
         }
 
         // handle trader items
-        if (offer.user.id in database_f.server.tables.traders)
+        if (offer.user.id in DatabaseServer.tables.traders)
         {
             if (!(offer.user.id in assorts))
             {
@@ -373,7 +376,7 @@ class RagfairController
 
     getLinkedSearchList(linkedSearchId)
     {
-        const item = database_f.server.tables.templates.items[linkedSearchId];
+        const item = DatabaseServer.tables.templates.items[linkedSearchId];
 
         // merging all possible filters without duplicates
         const result = new Set([
@@ -389,7 +392,7 @@ class RagfairController
     {
         let result = [];
 
-        for (const item of Object.values(database_f.server.tables.templates.items))
+        for (const item of Object.values(DatabaseServer.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
                 || this.isInFilter(neededSearchId, item, "Chambers")
@@ -495,9 +498,9 @@ class RagfairController
 
     update()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if (save_f.server.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
+            if (SaveServer.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
             {
                 this.processOffers(sessionID);
             }
@@ -506,7 +509,7 @@ class RagfairController
 
     processOffers(sessionID)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
             const profileOffers = this.getProfileOffers(sessionID);
             const timestamp = TimeUtil.getTimestamp();
@@ -552,12 +555,12 @@ class RagfairController
 
     deleteOfferByIndex(sessionID, index)
     {
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
     }
 
     updateOfferItemsByIndex(sessionID, index, newValues)
     {
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
     }
 
 
@@ -634,7 +637,7 @@ class RagfairController
      */
     addPlayerOffer(pmcData, info, sessionID)
     {
-        const result = item_f.eventHandler.getOutput();
+        const result = ItemEventRouter.getOutput();
         let requirementsPriceInRub = 0;
         let offerPrice = 0;
         let itemStackCount = 0;
@@ -709,8 +712,8 @@ class RagfairController
         }
 
         // Preparations are done, create the offer
-        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        const offer = this.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         result.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
@@ -776,13 +779,13 @@ class RagfairController
      */
     removeOffer(offerId, sessionID)
     {
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -792,7 +795,7 @@ class RagfairController
             offers[index].endTime = Math.round(newEndTime);
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     extendOffer(info, sessionID)
@@ -801,17 +804,17 @@ class RagfairController
         let secondsToAdd = info.renewalTime * 60 * 60;
 
         // TODO: Subtract money and change offer endTime
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     getCurrencySymbol(currencyTpl)
@@ -927,9 +930,9 @@ class RagfairController
         }
 
         // Generate a message to inform that item was sold
-        let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
+        let messageTpl = DatabaseServer.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
         let tplVars = {
-            "soldItem": database_f.server.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
+            "soldItem": DatabaseServer.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
             "buyerNickname": this.fetchRandomPmcName(),
             "itemCount": boughtAmount
         };
@@ -952,13 +955,13 @@ class RagfairController
 
         // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     returnItems(sessionID, items)
     {
         const messageContent = {
-            "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
+            "text": DatabaseServer.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
             "maxStorageTime": QuestConfig.redeemTime * 3600
         };
@@ -1004,7 +1007,7 @@ class RagfairController
     fetchRandomPmcName()
     {
         const type = RandomUtil.getInt(0, 1) === 0 ? "usec" : "bear";
-        return RandomUtil.getArrayValue(database_f.server.tables.bots.types[type].names);
+        return RandomUtil.getArrayValue(DatabaseServer.tables.bots.types[type].names);
     }
 }
 

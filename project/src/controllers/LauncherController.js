@@ -8,13 +8,15 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
+
 class LauncherController
 {
     static find(sessionID)
     {
-        if (sessionID in save_f.server.profiles)
+        if (sessionID in SaveServer.profiles)
         {
-            return save_f.server.profiles[sessionID].info;
+            return SaveServer.profiles[sessionID].info;
         }
 
         return undefined;
@@ -22,14 +24,14 @@ class LauncherController
 
     static isWiped(sessionID)
     {
-        return save_f.server.profiles[sessionID].info.wipe;
+        return SaveServer.profiles[sessionID].info.wipe;
     }
 
     static login(info)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            const account = save_f.server.profiles[sessionID].info;
+            const account = SaveServer.profiles[sessionID].info;
             if (info.username === account.username && info.password === account.password)
             {
                 return sessionID;
@@ -41,9 +43,9 @@ class LauncherController
 
     static register(info)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if (info.username === save_f.server.profiles[sessionID].info.username)
+            if (info.username === SaveServer.profiles[sessionID].info.username)
             {
                 return "";
             }
@@ -56,7 +58,7 @@ class LauncherController
     {
         const sessionID = HashUtil.generate();
 
-        save_f.server.profiles[sessionID] = {
+        SaveServer.profiles[sessionID] = {
             "info": {
                 "id": sessionID,
                 "username": info.username,
@@ -66,8 +68,8 @@ class LauncherController
             }
         };
 
-        save_f.server.loadProfile(sessionID);
-        save_f.server.saveProfile(sessionID);
+        SaveServer.loadProfile(sessionID);
+        SaveServer.saveProfile(sessionID);
         return sessionID;
     }
 
@@ -77,7 +79,7 @@ class LauncherController
 
         if (sessionID)
         {
-            save_f.server.profiles[sessionID].info.username = info.change;
+            SaveServer.profiles[sessionID].info.username = info.change;
         }
 
         return sessionID;
@@ -89,7 +91,7 @@ class LauncherController
 
         if (sessionID)
         {
-            save_f.server.profiles[sessionID].info.password = info.change;
+            SaveServer.profiles[sessionID].info.password = info.change;
         }
 
         return sessionID;
@@ -101,8 +103,8 @@ class LauncherController
 
         if (sessionID)
         {
-            save_f.server.profiles[sessionID].info.edition = info.edition;
-            save_f.server.profiles[sessionID].info.wipe = true;
+            SaveServer.profiles[sessionID].info.edition = info.edition;
+            SaveServer.profiles[sessionID].info.wipe = true;
         }
 
         return sessionID;

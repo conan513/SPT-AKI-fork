@@ -11,6 +11,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
 const LauncherController = require("./LauncherController.js");
 
 class ProfileController
@@ -20,7 +22,7 @@ class ProfileController
      */
     onLoad(sessionID)
     {
-        let profile = save_f.server.profiles[sessionID];
+        let profile = SaveServer.profiles[sessionID];
 
         if (!("characters" in profile))
         {
@@ -39,12 +41,12 @@ class ProfileController
      */
     getPmcProfile(sessionID)
     {
-        if (save_f.server.profiles[sessionID] === undefined || save_f.server.profiles[sessionID].characters.pmc === undefined)
+        if (SaveServer.profiles[sessionID] === undefined || SaveServer.profiles[sessionID].characters.pmc === undefined)
         {
             return undefined;
         }
 
-        return save_f.server.profiles[sessionID].characters.pmc;
+        return SaveServer.profiles[sessionID].characters.pmc;
     }
 
     /**
@@ -52,7 +54,7 @@ class ProfileController
      */
     getScavProfile(sessionID)
     {
-        return save_f.server.profiles[sessionID].characters.scav;
+        return SaveServer.profiles[sessionID].characters.scav;
     }
 
     /**
@@ -61,7 +63,7 @@ class ProfileController
      */
     setScavProfile(sessionID, scavData)
     {
-        save_f.server.profiles[sessionID].characters.scav = scavData;
+        SaveServer.profiles[sessionID].characters.scav = scavData;
     }
 
     /**
@@ -87,14 +89,14 @@ class ProfileController
     createProfile(info, sessionID)
     {
         const account = LauncherController.find(sessionID);
-        const profile = database_f.server.tables.templates.profiles[account.edition][info.side.toLowerCase()];
+        const profile = DatabaseServer.tables.templates.profiles[account.edition][info.side.toLowerCase()];
         /** @type {UserPMCProfile} */
         let pmcData = profile.character;
 
         // delete existing profile
-        if (sessionID in save_f.server.profiles)
+        if (sessionID in SaveServer.profiles)
         {
-            delete save_f.server.profiles[sessionID];
+            delete SaveServer.profiles[sessionID];
         }
 
         // pmc
@@ -104,13 +106,13 @@ class ProfileController
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = TimeUtil.getTimestamp();
-        pmcData.Info.Voice = database_f.server.tables.templates.customization[info.voiceId]._name;
+        pmcData.Info.Voice = DatabaseServer.tables.templates.customization[info.voiceId]._name;
         pmcData.Customization.Head = info.headId;
         pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
         pmcData.Quests = [];
 
         // create profile
-        save_f.server.profiles[sessionID] = {
+        SaveServer.profiles[sessionID] = {
             "info": account,
             "characters": {
                 "pmc": pmcData,
@@ -122,20 +124,20 @@ class ProfileController
         };
 
         // pmc profile needs to exist first
-        save_f.server.profiles[sessionID].characters.scav = this.generateScav(sessionID);
+        SaveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
 
-        for (let traderID in database_f.server.tables.traders)
+        for (let traderID in DatabaseServer.tables.traders)
         {
             this.resetTrader(sessionID, traderID);
         }
 
         // store minimal profile and reload it
-        save_f.server.saveProfile(sessionID);
-        save_f.server.loadProfile(sessionID);
+        SaveServer.saveProfile(sessionID);
+        SaveServer.loadProfile(sessionID);
 
         // completed account creation
-        save_f.server.profiles[sessionID].info.wipe = false;
-        save_f.server.saveProfile(sessionID);
+        SaveServer.profiles[sessionID].info.wipe = false;
+        SaveServer.saveProfile(sessionID);
     }
 
     /**
@@ -146,15 +148,15 @@ class ProfileController
     {
         const account = LauncherController.find(sessionID);
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        const traderWipe = database_f.server.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
+        const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
             "currentLevel": 1,
             "currentSalesSum": traderWipe.initialSalesSum,
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
-            "loyaltyLevels": database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "display": database_f.server.tables.traders[traderID].base.display
+            "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels,
+            "display": DatabaseServer.tables.traders[traderID].base.display
         };
     }
 
@@ -198,7 +200,7 @@ class ProfileController
     {
         // Set cooldown time.
         // Make sure to apply ScavCooldownTimer bonus from Hideout if the player has it.
-        let scavLockDuration = database_f.server.tables.globals.config.SavagePlayCooldown;
+        let scavLockDuration = DatabaseServer.tables.globals.config.SavagePlayCooldown;
         let modifier = 1;
 
         for (const bonus of pmcData.Bonuses)
@@ -222,9 +224,9 @@ class ProfileController
      */
     isNicknameTaken(info, sessionID)
     {
-        for (const id in save_f.server.profiles)
+        for (const id in SaveServer.profiles)
         {
-            const profile = save_f.server.profiles[id];
+            const profile = SaveServer.profiles[id];
 
             if (!("characters" in profile) || !("pmc" in profile.characters) || !("Info" in profile.characters.pmc))
             {
@@ -280,11 +282,11 @@ class ProfileController
 
     getProfileByPmcId(pmcId)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if (save_f.server.profiles[sessionID].characters.pmc._id === pmcId)
+            if (SaveServer.profiles[sessionID].characters.pmc._id === pmcId)
             {
-                return save_f.server.profiles[sessionID].characters.pmc;
+                return SaveServer.profiles[sessionID].characters.pmc;
             }
         }
         return undefined;

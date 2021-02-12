@@ -10,6 +10,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const LocationConfig = require("../configs/LocationConfig.json");
 
 class LocationController
@@ -17,7 +18,7 @@ class LocationController
     /* generates a random location preset to use for local session */
     generate(name)
     {
-        let location = database_f.server.tables.locations[name];
+        let location = DatabaseServer.tables.locations[name];
         let output = location.base;
         let ids = {};
 
@@ -119,8 +120,8 @@ class LocationController
     /* get all locations without loot data */
     generateAll()
     {
-        let locations = database_f.server.tables.locations;
-        let base = database_f.server.tables.locations.base;
+        let locations = DatabaseServer.tables.locations;
+        let base = DatabaseServer.tables.locations.base;
         let data = {};
 
         // use right id's and strip loot
