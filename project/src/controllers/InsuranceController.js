@@ -10,6 +10,8 @@
 
 "use strict";
 
+const InsuranceConfig = require("../configs/InsuranceConfig.json");
+
 class InsuranceController
 {
     constructor()
@@ -294,7 +296,7 @@ class InsuranceController
 
                 for (let insuredItem of insured.items)
                 {
-                    if ((toLook.includes(insuredItem.slotId) || !isNaN(insuredItem.slotId)) && RandomUtil.getInt(0, 99) >= insurance_f.config.returnChance && !toDelete.includes(insuredItem._id))
+                    if ((toLook.includes(insuredItem.slotId) || !isNaN(insuredItem.slotId)) && RandomUtil.getInt(0, 99) >= InsuranceConfig.returnChance && !toDelete.includes(insuredItem._id))
                     {
                         toDelete.push.apply(toDelete, ItemHelper.findAndReturnChildrenByItems(insured.items, insuredItem._id));
                     }
@@ -393,7 +395,7 @@ class InsuranceController
 
     getPremium(pmcData, inventoryItem, traderId)
     {
-        let premium = this.getItemPrice(inventoryItem._tpl) * insurance_f.config.priceMultiplier;
+        let premium = this.getItemPrice(inventoryItem._tpl) * InsuranceConfig.priceMultiplier;
         premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
         return Math.round(premium);
     }
