@@ -53,7 +53,6 @@ globalThis["quest_f"] = {
 };
 
 globalThis["inventory_f"] = {
-    "config": require("./configs/InventoryConfig.json"),
     "controller": require("./controllers/InventoryController.js")
 };
 
