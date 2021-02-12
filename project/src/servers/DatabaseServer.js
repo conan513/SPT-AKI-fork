@@ -10,10 +10,7 @@
 
 class DatabaseServer
 {
-    constructor()
-    {
-        this.tables = {};
-    }
+    static tables = {};
 }
 
-module.exports = new DatabaseServer();
+module.exports = DatabaseServer;

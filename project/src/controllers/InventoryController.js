@@ -10,6 +10,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const InventoryConfig = require("../configs/InventoryConfig.json");
 
 class InventoryController
@@ -453,9 +454,9 @@ class InventoryController
 
         for (let baseItem of body.items)
         {
-            if (baseItem.item_id in database_f.server.tables.globals.ItemPresets)
+            if (baseItem.item_id in DatabaseServer.tables.globals.ItemPresets)
             {
-                const presetItems = JsonUtil.clone(database_f.server.tables.globals.ItemPresets[baseItem.item_id]._items);
+                const presetItems = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[baseItem.item_id]._items);
                 itemLib.push(...presetItems);
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
@@ -835,7 +836,7 @@ class InventoryController
         if (!itemID)
         {
             // item template
-            if (body.item in database_f.server.tables.templates.items)
+            if (body.item in DatabaseServer.tables.templates.items)
             {
                 itemID = body.item;
             }
@@ -858,7 +859,7 @@ class InventoryController
         if (itemID)
         {
             // item found
-            const item = database_f.server.tables.templates.items[itemID];
+            const item = DatabaseServer.tables.templates.items[itemID];
 
             pmcData.Info.Experience += item._props.ExamineExperience;
             pmcData.Encyclopedia[itemID] = true;

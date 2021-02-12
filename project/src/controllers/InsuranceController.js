@@ -10,6 +10,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const InsuranceConfig = require("../configs/InsuranceConfig.json");
 
 class InsuranceController
@@ -217,7 +218,7 @@ class InsuranceController
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
-            let dialogueTemplates = database_f.server.tables.traders[traderId].dialogue;
+            let dialogueTemplates = DatabaseServer.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceStart),
                 "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
@@ -312,7 +313,7 @@ class InsuranceController
 
                 if (insured.items.length === 0)
                 {
-                    const insuranceFailedTemplates = database_f.server.tables.traders[insured.traderId].dialogue.insuranceFailed;
+                    const insuranceFailedTemplates = DatabaseServer.tables.traders[insured.traderId].dialogue.insuranceFailed;
                     insured.messageContent.templateId = RandomUtil.getArrayValue(insuranceFailedTemplates);
                 }
 
@@ -367,7 +368,7 @@ class InsuranceController
     {
         if (Object.keys(this.templatesById).length === 0)
         {
-            for (const item of database_f.server.tables.templates.handbook.Items)
+            for (const item of DatabaseServer.tables.templates.handbook.Items)
             {
                 this.templatesById[item.Id] = item;
             }
@@ -386,7 +387,7 @@ class InsuranceController
         }
         else
         {
-            let item = database_f.server.tables.templates.items[_tpl];
+            let item = DatabaseServer.tables.templates.items[_tpl];
             price = item._props.CreditsPrice;
         }
 

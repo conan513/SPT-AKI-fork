@@ -13,6 +13,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+
 class QuestHelpers
 {
     constructor()
@@ -100,7 +102,7 @@ class QuestHelpers
      */
     getQuestLocale(questId)
     {
-        const questLocale = database_f.server.tables.locales.global["en"].quest[questId];
+        const questLocale = DatabaseServer.tables.locales.global["en"].quest[questId];
         return questLocale;
     }
 

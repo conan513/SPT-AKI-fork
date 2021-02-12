@@ -11,6 +11,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const HideoutConfig = require("../configs/HideoutConfig.json");
 
 const areaTypes = {
@@ -85,7 +86,7 @@ class HideoutController
             return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
         }
 
-        const hideoutData = database_f.server.tables.hideout.areas.find(area => area.type === body.areaType);
+        const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === body.areaType);
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
@@ -118,7 +119,7 @@ class HideoutController
         hideoutArea.completeTime = 0;
         hideoutArea.constructing = false;
 
-        const hideoutData = database_f.server.tables.hideout.areas.find(area => area.type === hideoutArea.type);
+        const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === hideoutArea.type);
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
@@ -322,7 +323,7 @@ class HideoutController
             }
         }
 
-        const recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
+        const recipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (!recipe)
         {
             Logger.error(`Failed to find Scav Case recipe with id ${body.recipeId}`);
@@ -347,9 +348,9 @@ class HideoutController
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = RandomUtil.getIntEx(Object.keys(database_f.server.tables.templates.items).length);
-                let randomKey = Object.keys(database_f.server.tables.templates.items)[random];
-                let tempItem = database_f.server.tables.templates.items[randomKey];
+                let random = RandomUtil.getIntEx(Object.keys(DatabaseServer.tables.templates.items).length);
+                let randomKey = Object.keys(DatabaseServer.tables.templates.items)[random];
+                let tempItem = DatabaseServer.tables.templates.items[randomKey];
 
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
@@ -421,7 +422,7 @@ class HideoutController
             return this.getBTC(pmcData, body, sessionID);
         }
 
-        let recipe = database_f.server.tables.hideout.production.find(r => r._id === body.recipeId);
+        let recipe = DatabaseServer.tables.hideout.production.find(r => r._id === body.recipeId);
         if (recipe)
         {
             // create item and throw it into profile
@@ -457,7 +458,7 @@ class HideoutController
             return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
-        recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
+        recipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (recipe)
         {
             const kvp = Object.entries(pmcData.Hideout.Production).find(kvp => kvp[1].RecipeId === body.recipeId);
@@ -495,7 +496,7 @@ class HideoutController
 
     registerProduction(pmcData, body, sessionID)
     {
-        const recipe = database_f.server.tables.hideout.production.find(p => p._id === body.recipeId);
+        const recipe = DatabaseServer.tables.hideout.production.find(p => p._id === body.recipeId);
         if (!recipe)
         {
             Logger.error(`Failed to locate recipe with _id ${body.recipeId}`);
@@ -595,7 +596,7 @@ class HideoutController
 
     updatePlayerHideout(sessionID)
     {
-        const recipes = database_f.server.tables.hideout.production;
+        const recipes = DatabaseServer.tables.hideout.production;
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
@@ -666,7 +667,7 @@ class HideoutController
         // update production time
         for (let prod in pmcData.Hideout.Production)
         {
-            const scavCaseRecipe = database_f.server.tables.hideout.scavcase.find(r => r._id === prod);
+            const scavCaseRecipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === prod);
             if (!pmcData.Hideout.Production[prod].inProgress)
             {
                 continue;
@@ -790,7 +791,7 @@ class HideoutController
         let filterDrainRate = 0.00333;
         let production_time = 0;
 
-        const recipes = database_f.server.tables.hideout.production;
+        const recipes = DatabaseServer.tables.hideout.production;
         for (const prod of recipes)
         {
             if (prod._id === WATER_COLLECTOR)

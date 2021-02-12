@@ -8,6 +8,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const RepairConfig = require("../configs/RepairConfig.json");
 
 class RepairController
@@ -32,7 +33,7 @@ class RepairController
             }
 
             // get repair price and pay the money
-            const repairCost = Math.round((database_f.server.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * RepairConfig.priceMultiplier);
+            const repairCost = Math.round((DatabaseServer.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * RepairConfig.priceMultiplier);
             const options = {
                 "scheme_items": [
                     {

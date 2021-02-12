@@ -14,6 +14,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// PLEASE REFACTOR THIS //////////////////////////////////////////////
 //////////////////////////////////// THIS CODE SHOULD BE STORED SOMEWHERE ELSE ///////////////////////////////////
@@ -28,7 +30,7 @@ class PlzRefactorMeHelper
     {
         let exp = 0;
 
-        for (let level in database_f.server.tables.globals.config.exp.level.exp_table)
+        for (let level in DatabaseServer.tables.globals.config.exp.level.exp_table)
         {
             if (pmcData.Info.Experience < exp)
             {
@@ -36,7 +38,7 @@ class PlzRefactorMeHelper
             }
 
             pmcData.Info.Level = parseInt(level);
-            exp += database_f.server.tables.globals.config.exp.level.exp_table[level].exp;
+            exp += DatabaseServer.tables.globals.config.exp.level.exp_table[level].exp;
         }
 
         return pmcData.Info.Level;
@@ -46,7 +48,7 @@ class PlzRefactorMeHelper
     {
         let exp = 0;
         /** @type {array} */
-        let expTable = database_f.server.tables.globals.config.exp.level.exp_table;
+        let expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
         /** @type {number} */
@@ -87,14 +89,14 @@ class PlzRefactorMeHelper
                 }
             };
 
-            for (let x of database_f.server.tables.templates.handbook.Items)
+            for (let x of DatabaseServer.tables.templates.handbook.Items)
             {
                 lookup.items.byId[x.Id] = x.Price;
                 lookup.items.byParent[x.ParentId] || (lookup.items.byParent[x.ParentId] = []);
                 lookup.items.byParent[x.ParentId].push(x.Id);
             }
 
-            for (let x of database_f.server.tables.templates.handbook.Categories)
+            for (let x of DatabaseServer.tables.templates.handbook.Categories)
             {
                 lookup.categories.byId[x.Id] = x.ParentId ? x.ParentId : null;
                 if (x.ParentId)
@@ -370,7 +372,7 @@ class PlzRefactorMeHelper
         let trader = trader_f.controller.getTrader(body.tid, sessionID);
         let currency = this.getCurrency(trader.currency);
         let calcAmount = this.fromRUB(this.inRUB(amount, currency), currency);
-        let maxStackSize = database_f.server.tables.templates.items[currency]._props.StackMaxSize;
+        let maxStackSize = DatabaseServer.tables.templates.items[currency]._props.StackMaxSize;
         let skip = false;
 
         for (let item of pmcData.Inventory.items)

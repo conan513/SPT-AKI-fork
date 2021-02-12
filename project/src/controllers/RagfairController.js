@@ -11,6 +11,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const QuestConfig = require("../configs/QuestConfig.json");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 
@@ -36,8 +37,8 @@ class RagfairController
     {
         const ia = a.items[0]._tpl;
         const ib = b.items[0]._tpl;
-        const aa = database_f.server.tables.locales.global["en"].templates[ia].Name || ia;
-        const bb = database_f.server.tables.locales.global["en"].templates[ib].Name || ib;
+        const aa = DatabaseServer.tables.locales.global["en"].templates[ia].Name || ia;
+        const bb = DatabaseServer.tables.locales.global["en"].templates[ib].Name || ib;
 
         return (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
     }
@@ -180,7 +181,7 @@ class RagfairController
     {
         let result = {};
 
-        for (const traderID in database_f.server.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
             if (traderID !== "ragfair" && !RagfairConfig.static.traders[traderID])
             {
@@ -301,7 +302,7 @@ class RagfairController
         }
 
         // handle trader items
-        if (offer.user.id in database_f.server.tables.traders)
+        if (offer.user.id in DatabaseServer.tables.traders)
         {
             if (!(offer.user.id in assorts))
             {
@@ -373,7 +374,7 @@ class RagfairController
 
     getLinkedSearchList(linkedSearchId)
     {
-        const item = database_f.server.tables.templates.items[linkedSearchId];
+        const item = DatabaseServer.tables.templates.items[linkedSearchId];
 
         // merging all possible filters without duplicates
         const result = new Set([
@@ -389,7 +390,7 @@ class RagfairController
     {
         let result = [];
 
-        for (const item of Object.values(database_f.server.tables.templates.items))
+        for (const item of Object.values(DatabaseServer.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
                 || this.isInFilter(neededSearchId, item, "Chambers")
@@ -927,9 +928,9 @@ class RagfairController
         }
 
         // Generate a message to inform that item was sold
-        let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
+        let messageTpl = DatabaseServer.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
         let tplVars = {
-            "soldItem": database_f.server.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
+            "soldItem": DatabaseServer.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
             "buyerNickname": this.fetchRandomPmcName(),
             "itemCount": boughtAmount
         };
@@ -958,7 +959,7 @@ class RagfairController
     returnItems(sessionID, items)
     {
         const messageContent = {
-            "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
+            "text": DatabaseServer.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
             "maxStorageTime": QuestConfig.redeemTime * 3600
         };
@@ -1004,7 +1005,7 @@ class RagfairController
     fetchRandomPmcName()
     {
         const type = RandomUtil.getInt(0, 1) === 0 ? "usec" : "bear";
-        return RandomUtil.getArrayValue(database_f.server.tables.bots.types[type].names);
+        return RandomUtil.getArrayValue(DatabaseServer.tables.bots.types[type].names);
     }
 }
 

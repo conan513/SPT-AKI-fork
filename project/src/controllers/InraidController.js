@@ -12,6 +12,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const HealthController = require("./HealthController.js");
 const InraidConfig = require("../configs/InraidConfig.json");
 
@@ -45,7 +46,7 @@ class InraidController
     removeMapAccessKey(offraidData, sessionID)
     {
         const locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
-        const mapKey = database_f.server.tables.locations[locationName].base.AccessKeys[0];
+        const mapKey = DatabaseServer.tables.locations[locationName].base.AccessKeys[0];
 
         if (!mapKey)
         {
@@ -71,7 +72,7 @@ class InraidController
 
         let locationName = save_f.server.profiles[sessionID].inraid.location.toLowerCase();
 
-        let map = database_f.server.tables.locations[locationName].base;
+        let map = DatabaseServer.tables.locations[locationName].base;
         let insuranceEnabled = map.Insurance;
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let scavData = profile_f.controller.getScavProfile(sessionID);

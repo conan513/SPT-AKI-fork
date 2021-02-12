@@ -6,7 +6,11 @@
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - Terkoiz
- *
+ */
+
+const DatabaseServer = require("../servers/DatabaseServer");
+
+ /*
  * @class ItemHelper
  * @description Helpers related to Items
  */
@@ -39,9 +43,9 @@ class ItemHelper
     getItem(template)
     {
         // -> Gets item from <input: _tpl>
-        if (template in database_f.server.tables.templates.items)
+        if (template in DatabaseServer.tables.templates.items)
         {
-            return [true, database_f.server.tables.templates.items[template]];
+            return [true, DatabaseServer.tables.templates.items[template]];
         }
 
         return [false, {}];
@@ -190,7 +194,7 @@ class ItemHelper
     }
     isItemTplStackable(tpl)
     {
-        return database_f.server.tables.templates.items[tpl]._props.StackMaxSize > 1;
+        return DatabaseServer.tables.templates.items[tpl]._props.StackMaxSize > 1;
     }
 
     /**
@@ -205,7 +209,7 @@ class ItemHelper
             return [item];
         }
 
-        let maxStack = database_f.server.tables.templates.items[item._tpl]._props.StackMaxSize;
+        let maxStack = DatabaseServer.tables.templates.items[item._tpl]._props.StackMaxSize;
         let count = item.upd.StackObjectsCount;
         /** @type {itemTemplate[]} */
         let stacks = [];

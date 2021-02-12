@@ -13,6 +13,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const QuestConfig = require("../configs/QuestConfig.json");
 
 class QuestController
@@ -236,7 +237,7 @@ class QuestController
         }
 
         // give reward
-        let quest = database_f.server.tables.templates.quests[body.qid];
+        let quest = DatabaseServer.tables.templates.quests[body.qid];
 
         if (intelCenterBonus > 0)
         {
@@ -322,8 +323,8 @@ class QuestController
 
         // Create a dialog message for starting the quest.
         // Note that for starting quests, the correct locale field is "description", not "startedMessageText".
-        let questDb = database_f.server.tables.templates.quests[body.qid];
-        let questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        let questDb = DatabaseServer.tables.templates.quests[body.qid];
+        let questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let questRewards = this.getQuestRewardItems(questDb, state);
         let messageContent = {
             "templateId": questLocale.startedMessageText,
@@ -393,8 +394,8 @@ class QuestController
 
         // Create a dialog message for completing the quest.
         /** @type {Quest} */
-        let quest = database_f.server.tables.templates.quests[body.qid];
-        const questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        let quest = DatabaseServer.tables.templates.quests[body.qid];
+        const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.successMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questSuccess"),
@@ -419,8 +420,8 @@ class QuestController
         let questRewards = this.applyQuestReward(pmcData, body, "Fail", sessionID);
 
         // Create a dialog message for completing the quest.
-        const quest = database_f.server.tables.templates.quests[body.qid];
-        const questLocale = database_f.server.tables.locales.global["en"].quest[body.qid];
+        const quest = DatabaseServer.tables.templates.quests[body.qid];
+        const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
             "templateId": questLocale.failMessageText,
             "type": dialogue_f.controller.getMessageTypeValue("questFail"),
@@ -442,7 +443,7 @@ class QuestController
      */
     handoverQuest(pmcData, body, sessionID)
     {
-        const quest = database_f.server.tables.templates.quests[body.qid];
+        const quest = DatabaseServer.tables.templates.quests[body.qid];
         const types = ["HandoverItem", "WeaponAssembly"];
         let output = item_f.eventHandler.getOutput();
         let handoverMode = true;
@@ -637,7 +638,7 @@ class QuestController
     questValues()
     {
         /** @type {Quest[]} */
-        return Object.values(database_f.server.tables.templates.quests);
+        return Object.values(DatabaseServer.tables.templates.quests);
     }
 
     /*

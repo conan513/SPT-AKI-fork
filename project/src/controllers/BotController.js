@@ -9,6 +9,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const BotConfig = require("../configs/BotConfig.json");
 
 class BotController
@@ -24,14 +25,14 @@ class BotController
         {
             // requested difficulty shared among bots
             case "core":
-                return database_f.server.tables.bots.core;
+                return DatabaseServer.tables.bots.core;
 
             // don't replace type
             default:
                 break;
         }
 
-        return database_f.server.tables.bots.types[type].difficulty[difficulty];
+        return DatabaseServer.tables.bots.types[type].difficulty[difficulty];
     }
 
     generateId(bot)
@@ -46,7 +47,7 @@ class BotController
     generateBot(bot, role)
     {
         // generate bot
-        const node = database_f.server.tables.bots.types[role.toLowerCase()];
+        const node = DatabaseServer.tables.bots.types[role.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Nickname = RandomUtil.getArrayValue(node.names);
@@ -88,7 +89,7 @@ class BotController
                 const pmcSide = (RandomUtil.getInt(0, 99) < BotConfig.pmc.isUsec) ? "Usec" : "Bear";
                 const role = condition.Role;
                 const isPmc = (role in BotConfig.pmc.types && RandomUtil.getInt(0, 99) < BotConfig.pmc.types[role]);
-                let bot = JsonUtil.clone(database_f.server.tables.bots.base);
+                let bot = JsonUtil.clone(DatabaseServer.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = role;
@@ -104,7 +105,7 @@ class BotController
 
     generateRandomLevel(min, max)
     {
-        const expTable = database_f.server.tables.globals.config.exp.level.exp_table;
+        const expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
 
         // Get random level based on the exp table.

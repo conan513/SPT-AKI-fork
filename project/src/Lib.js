@@ -14,10 +14,6 @@ globalThis["https_f"] = {
     "server": require("./servers/HttpServer.js")
 };
 
-globalThis["database_f"] = {
-    "server": require("./servers/DatabaseServer.js")
-};
-
 globalThis["item_f"] = {
     "eventHandler": require("./routers/ItemEventRouter.js")
 };

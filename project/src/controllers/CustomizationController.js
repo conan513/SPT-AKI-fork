@@ -9,13 +9,15 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+
 class CustomizationController
 {
     static wearClothing(pmcData, body, sessionID)
     {
         for (let i = 0; i < body.suites.length; i++)
         {
-            let suite = database_f.server.tables.templates.customization[body.suites[i]];
+            let suite = DatabaseServer.tables.templates.customization[body.suites[i]];
 
             // this parent reffers to Lower Node
             if (suite._parent === "5cd944d01388ce000a659df9")
@@ -37,8 +39,8 @@ class CustomizationController
     static getTraderSuits(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let templates = database_f.server.tables.templates.customization;
-        let suits = database_f.server.tables.traders[traderID].suits;
+        let templates = DatabaseServer.tables.templates.customization;
+        let suits = DatabaseServer.tables.traders[traderID].suits;
         let result = [];
 
         // get only suites from the player's side (e.g. USEC)
@@ -61,7 +63,7 @@ class CustomizationController
 
     static getAllTraderSuits(sessionID)
     {
-        const traders = database_f.server.tables.traders;
+        const traders = DatabaseServer.tables.traders;
         let result = [];
 
         for (let traderID in traders)

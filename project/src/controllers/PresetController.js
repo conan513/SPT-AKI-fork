@@ -9,6 +9,8 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+
 class PresetController
 {
     constructor()
@@ -18,7 +20,7 @@ class PresetController
 
     initialize()
     {
-        const presets = Object.values(database_f.server.tables.globals.ItemPresets);
+        const presets = Object.values(DatabaseServer.tables.globals.ItemPresets);
         const reverse = {};
 
         for (const p of presets)
@@ -38,7 +40,7 @@ class PresetController
 
     isPreset(id)
     {
-        return id in database_f.server.tables.globals.ItemPresets;
+        return id in DatabaseServer.tables.globals.ItemPresets;
     }
 
     hasPreset(templateId)
@@ -48,7 +50,7 @@ class PresetController
 
     getPreset(id)
     {
-        return database_f.server.tables.globals.ItemPresets[id];
+        return DatabaseServer.tables.globals.ItemPresets[id];
     }
 
     getPresets(templateId)
@@ -63,7 +65,7 @@ class PresetController
 
         for (const id of ids)
         {
-            presets.push(database_f.server.tables.globals.ItemPresets[id]);
+            presets.push(DatabaseServer.tables.globals.ItemPresets[id]);
         }
 
         return presets;
@@ -93,7 +95,7 @@ class PresetController
     {
         if (this.isPreset(presetId))
         {
-            let preset = database_f.server.tables.globals.ItemPresets[presetId];
+            let preset = DatabaseServer.tables.globals.ItemPresets[presetId];
 
             for (let item of preset._items)
             {

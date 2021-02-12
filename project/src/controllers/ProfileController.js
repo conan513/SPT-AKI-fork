@@ -11,6 +11,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const LauncherController = require("./LauncherController.js");
 
 class ProfileController
@@ -87,7 +88,7 @@ class ProfileController
     createProfile(info, sessionID)
     {
         const account = LauncherController.find(sessionID);
-        const profile = database_f.server.tables.templates.profiles[account.edition][info.side.toLowerCase()];
+        const profile = DatabaseServer.tables.templates.profiles[account.edition][info.side.toLowerCase()];
         /** @type {UserPMCProfile} */
         let pmcData = profile.character;
 
@@ -104,7 +105,7 @@ class ProfileController
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = TimeUtil.getTimestamp();
-        pmcData.Info.Voice = database_f.server.tables.templates.customization[info.voiceId]._name;
+        pmcData.Info.Voice = DatabaseServer.tables.templates.customization[info.voiceId]._name;
         pmcData.Customization.Head = info.headId;
         pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
         pmcData.Quests = [];
@@ -124,7 +125,7 @@ class ProfileController
         // pmc profile needs to exist first
         save_f.server.profiles[sessionID].characters.scav = this.generateScav(sessionID);
 
-        for (let traderID in database_f.server.tables.traders)
+        for (let traderID in DatabaseServer.tables.traders)
         {
             this.resetTrader(sessionID, traderID);
         }
@@ -146,15 +147,15 @@ class ProfileController
     {
         const account = LauncherController.find(sessionID);
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        const traderWipe = database_f.server.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
+        const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
             "currentLevel": 1,
             "currentSalesSum": traderWipe.initialSalesSum,
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
-            "loyaltyLevels": database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels,
-            "display": database_f.server.tables.traders[traderID].base.display
+            "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels,
+            "display": DatabaseServer.tables.traders[traderID].base.display
         };
     }
 
@@ -198,7 +199,7 @@ class ProfileController
     {
         // Set cooldown time.
         // Make sure to apply ScavCooldownTimer bonus from Hideout if the player has it.
-        let scavLockDuration = database_f.server.tables.globals.config.SavagePlayCooldown;
+        let scavLockDuration = DatabaseServer.tables.globals.config.SavagePlayCooldown;
         let modifier = 1;
 
         for (const bonus of pmcData.Bonuses)

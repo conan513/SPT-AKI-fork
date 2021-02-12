@@ -8,6 +8,7 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const LauncherController = require("../controllers/LauncherController.js");
 const HttpConfig = require("../configs/HttpConfig.json");
 
@@ -18,7 +19,7 @@ class LauncherCallbacks
         return https_f.response.noBody({
             "backendUrl": https_f.server.getBackendUrl(),
             "name": HttpConfig.name,
-            "editions": Object.keys(database_f.server.tables.templates.profiles)
+            "editions": Object.keys(DatabaseServer.tables.templates.profiles)
         });
     }
 
