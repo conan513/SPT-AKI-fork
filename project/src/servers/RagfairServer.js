@@ -9,6 +9,8 @@
 
 "use strict";
 
+const RagfairConfig = require("../configs/RagfairConfig.json");
+
 class RagfairServer
 {
     constructor()
@@ -98,7 +100,7 @@ class RagfairServer
         }
 
         // generate dynamic offers
-        if (ragfair_f.config.dynamic.enabled && this.offers.length < ragfair_f.config.dynamic.threshold)
+        if (RagfairConfig.dynamic.enabled && this.offers.length < RagfairConfig.dynamic.threshold)
         {
             // offer count below threshold
             this.generateDynamicOffers();
@@ -147,7 +149,7 @@ class RagfairServer
 
     generateDynamicOffers()
     {
-        const config = ragfair_f.config.dynamic;
+        const config = RagfairConfig.dynamic;
         const count = config.threshold + config.batchSize;
         const assort = JsonUtil.clone(database_f.server.tables.traders["ragfair"].assort);
         const assortItems = assort.items.filter((item) =>
@@ -275,7 +277,7 @@ class RagfairServer
         if (this.isPlayer(userID))
         {
             // player offer
-            return TimeUtil.getTimestamp() + Math.round(ragfair_f.config.player.sellTimeHrs * 3600);
+            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.player.sellTimeHrs * 3600);
         }
 
         if (this.isTrader(userID))
@@ -285,7 +287,7 @@ class RagfairServer
         }
 
         // generated offer
-        return Math.round(time + RandomUtil.getInt(ragfair_f.config.dynamic.endTime.min, ragfair_f.config.dynamic.endTime.max) * 60);
+        return Math.round(time + RandomUtil.getInt(RagfairConfig.dynamic.endTime.min, RagfairConfig.dynamic.endTime.max) * 60);
     }
 
     getRating(userID)
@@ -303,7 +305,7 @@ class RagfairServer
         }
 
         // generated offer
-        return RandomUtil.getFloat(ragfair_f.config.dynamic.rating.min, ragfair_f.config.dynamic.rating.max);
+        return RandomUtil.getFloat(RagfairConfig.dynamic.rating.min, RagfairConfig.dynamic.rating.max);
     }
 
     getRatingGrowing(userID)
@@ -330,7 +332,7 @@ class RagfairServer
 
         if (!this.isPlayer(userID) && !this.isTrader(userID))
         {
-            const multiplier = RandomUtil.getFloat(ragfair_f.config.dynamic.condition.min, ragfair_f.config.dynamic.condition.max);
+            const multiplier = RandomUtil.getFloat(RagfairConfig.dynamic.condition.min, RagfairConfig.dynamic.condition.max);
 
             if ("Repairable" in item.upd)
             {
@@ -375,7 +377,7 @@ class RagfairServer
 
     getDynamicOfferCurrency()
     {
-        const currencies = ragfair_f.config.dynamic.currencies;
+        const currencies = RagfairConfig.dynamic.currencies;
         let bias = [];
 
         for (let item in currencies)
@@ -398,7 +400,7 @@ class RagfairServer
             price += Helpers.fromRUB(this.prices.dynamic[it._tpl], currency);
         }
 
-        price = Math.round(price * RandomUtil.getFloat(ragfair_f.config.dynamic.price.min, ragfair_f.config.dynamic.price.max));
+        price = Math.round(price * RandomUtil.getFloat(RagfairConfig.dynamic.price.min, RagfairConfig.dynamic.price.max));
 
         if (price < 1)
         {
@@ -445,7 +447,7 @@ class RagfairServer
         }
 
         // dynamic offers
-        this.prices.dynamic = (ragfair_f.config.dynamic.liveprices) ? {...this.prices.trader, ...prices} : this.prices.trader;
+        this.prices.dynamic = (RagfairConfig.dynamic.liveprices) ? {...this.prices.trader, ...prices} : this.prices.trader;
     }
 
     getOffer(offerID)
@@ -534,7 +536,7 @@ class RagfairServer
 
     removeOfferStack(offerID, amount)
     {
-        if (!ragfair_f.config.dynamic.enabled)
+        if (!RagfairConfig.dynamic.enabled)
         {
             return;
         }

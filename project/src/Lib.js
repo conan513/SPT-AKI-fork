@@ -81,7 +81,6 @@ globalThis["preset_f"] = {
 };
 
 globalThis["ragfair_f"] = {
-    "config": require("./configs/RagfairConfig.json"),
     "server": require("./servers/RagfairServer.js"),
     "controller": require("./controllers/RagfairController.js")
 };
