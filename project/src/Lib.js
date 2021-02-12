@@ -86,7 +86,6 @@ globalThis["ragfair_f"] = {
 };
 
 globalThis["location_f"] = {
-    "config": require("./configs/LocationConfig.json"),
     "controller": require("./controllers/LocationController.js"),
     "generator": require("./generators/LocationGenerator.js")
 };

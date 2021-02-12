@@ -10,6 +10,8 @@
 
 "use strict";
 
+const LocationConfig = require("../configs/LocationConfig.json");
+
 class LocationController
 {
     /* generates a random location preset to use for local session */
@@ -76,7 +78,7 @@ class LocationController
         Logger.success("A total of " + count + " containers generated");
 
         // dyanmic loot
-        let max = location_f.config.limits[name];
+        let max = LocationConfig.limits[name];
         count = 0;
 
         // Loot position list for filtering the lootItem in the same position.
