@@ -9,6 +9,7 @@
 "use strict";
 
 const LauncherController = require("../controllers/LauncherController.js");
+const HttpConfig = require("../configs/HttpConfig.json");
 
 class LauncherCallbacks
 {
@@ -16,7 +17,7 @@ class LauncherCallbacks
     {
         return https_f.response.noBody({
             "backendUrl": https_f.server.getBackendUrl(),
-            "name": https_f.config.name,
+            "name": HttpConfig.name,
             "editions": Object.keys(database_f.server.tables.templates.profiles)
         });
     }

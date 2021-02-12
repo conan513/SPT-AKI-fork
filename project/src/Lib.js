@@ -10,7 +10,6 @@ globalThis.ContainerHelper = require("./helpers/ContainerHelper");
 globalThis.Mods = require("./controllers/ModController");
 
 globalThis["https_f"] = {
-    "config": require("./configs/HttpConfig.json"),
     "response": require("./utils/HttpResponse.js"),
     "server": require("./servers/HttpServer.js")
 };

@@ -10,6 +10,8 @@
 
 "use strict";
 
+const HttpConfig = require("../configs/HttpConfig.json");
+
 /**
  * EFT-Notifier-Controller
  *
@@ -56,7 +58,7 @@ class NotifierController
     getChannel(sessionID)
     {
         return {
-            "server": https_f.config.ip,
+            "server": HttpConfig.ip,
             "channel_id": sessionID,
             "url": this.getServer(sessionID),
             "notifierServer": this.getServer(sessionID),

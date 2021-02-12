@@ -9,6 +9,8 @@
 
 "use strict";
 
+const HttpConfig = require("../configs/HttpConfig.json");
+
 class ModCallbacks
 {
     static load()
@@ -29,7 +31,7 @@ class ModCallbacks
 
     static getBundles(url, info, sessionID)
     {
-        const local = (https_f.config.ip === "127.0.0.1" || https_f.config.ip === "localhost");
+        const local = (HttpConfig.ip === "127.0.0.1" || HttpConfig.ip === "localhost");
         return https_f.response.noBody(Mods.getBundles(local));
     }
 

@@ -51,8 +51,8 @@ class GameCallbacks
     {
         return https_f.response.getBody([
             {
-                "ip": https_f.config.ip,
-                "port": https_f.config.port
+                "ip": HttpConfig.ip,
+                "port": HttpConfig.port
             }
         ]);
     }

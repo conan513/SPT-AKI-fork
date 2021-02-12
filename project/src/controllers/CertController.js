@@ -14,6 +14,7 @@
 const selfsigned = require("selfsigned");
 const sudo = require("sudo-prompt");
 const VFS = require("../utils/VFS");
+const HttpConfig = require("../configs/HttpConfig.json");
 
 class CertController
 {
@@ -75,7 +76,7 @@ class CertController
         let key;
         let fingerprint;
 
-        ({ cert, "private": key, fingerprint } = selfsigned.generate([{ "name": "commonName", "value": https_f.config.ip }], { "days": 365 }));
+        ({ cert, "private": key, fingerprint } = selfsigned.generate([{ "name": "commonName", "value": HttpConfig.ip }], { "days": 365 }));
         VFS.writeFile(CertController.certFile, cert);
         VFS.writeFile(CertController.keyFile, key);
         Logger.info(`Generated self-signed x509 certificate ${fingerprint}`);
