@@ -48,7 +48,6 @@ globalThis["bots_f"] = {
 };
 
 globalThis["quest_f"] = {
-    "config": require("./configs/QuestConfig.json"),
     "helpers": require("./helpers/QuestHelpers.js"),
     "controller": require("./controllers/QuestController.js")
 };

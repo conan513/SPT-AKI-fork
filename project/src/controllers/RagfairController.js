@@ -11,6 +11,8 @@
 
 "use strict";
 
+const QuestConfig = require("../configs/QuestConfig.json");
+
 class RagfairController
 {
     constructor()
@@ -937,7 +939,7 @@ class RagfairController
         const messageContent = {
             "text": messageText.replace(/"/g, ""),
             "type": 4, // EMessageType.FleamarketMessage
-            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "maxStorageTime": QuestConfig.redeemTime * 3600,
             "ragfair": {
                 "offerId": offerId,
                 "count": boughtAmount,
@@ -957,7 +959,7 @@ class RagfairController
         const messageContent = {
             "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
