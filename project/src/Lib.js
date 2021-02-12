@@ -61,7 +61,6 @@ globalThis["trade_f"] = {
 };
 
 globalThis["hideout_f"] = {
-    "config": require("./configs/HideoutConfig.json"),
     "controller": require("./controllers/HideoutController.js")
 };
 

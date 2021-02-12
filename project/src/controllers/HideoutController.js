@@ -11,6 +11,8 @@
 
 "use strict";
 
+const HideoutConfig = require("../configs/HideoutConfig.json");
+
 const areaTypes = {
     VENTS: 0,
     SECURITY: 1,
@@ -717,7 +719,7 @@ class HideoutController
     updateFuel(generatorArea, solarPower)
     {
         // 1 resource last 14 min 27 sec, 1/14.45/60 = 0.00115
-        let fuelDrainRate = 0.00115 * hideout_f.config.runInterval;
+        let fuelDrainRate = 0.00115 * HideoutConfig.runInterval;
         fuelDrainRate = solarPower === 1 ? fuelDrainRate / 2 : fuelDrainRate;
         let hasAnyFuelRemaining = false;
 
@@ -854,7 +856,7 @@ class HideoutController
     updateAirFilters(airFilterArea)
     {
         // 300 resources last 20 hrs, 300/20/60/60 = 0.00416
-        const filterDrainRate = 0.00416 * hideout_f.config.runInterval;
+        const filterDrainRate = 0.00416 * HideoutConfig.runInterval;
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {

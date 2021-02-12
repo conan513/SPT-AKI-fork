@@ -8,6 +8,8 @@
 
 "use strict";
 
+const HideoutConfig = require("../configs/HideoutConfig.json");
+
 class HideoutCallbacks
 {
     static upgrade(pmcData, body, sessionID)
@@ -57,7 +59,7 @@ class HideoutCallbacks
 
     static update(timeSinceLastRun)
     {
-        if (timeSinceLastRun > hideout_f.config.runInterval)
+        if (timeSinceLastRun > HideoutConfig.runInterval)
         {
             hideout_f.controller.update();
             return true;
