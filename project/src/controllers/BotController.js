@@ -9,11 +9,13 @@
 
 "use strict";
 
+const BotConfig = require("../configs/BotConfig.json");
+
 class BotController
 {
     getBotLimit(type)
     {
-        return bots_f.config.limits[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
+        return BotConfig.limits[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
     }
 
     getBotDifficulty(type, difficulty)
@@ -83,9 +85,9 @@ class BotController
         {
             for (let i = 0; i < condition.Limit; i++)
             {
-                const pmcSide = (RandomUtil.getInt(0, 99) < bots_f.config.pmc.isUsec) ? "Usec" : "Bear";
+                const pmcSide = (RandomUtil.getInt(0, 99) < BotConfig.pmc.isUsec) ? "Usec" : "Bear";
                 const role = condition.Role;
-                const isPmc = (role in bots_f.config.pmc.types && RandomUtil.getInt(0, 99) < bots_f.config.pmc.types[role]);
+                const isPmc = (role in BotConfig.pmc.types && RandomUtil.getInt(0, 99) < BotConfig.pmc.types[role]);
                 let bot = JsonUtil.clone(database_f.server.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;

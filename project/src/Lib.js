@@ -43,7 +43,6 @@ globalThis["notifier_f"] = {
 };
 
 globalThis["bots_f"] = {
-    "config": require("./configs/BotConfig.json"),
     "controller": require("./controllers/BotController.js"),
     "generator": require("./generators/BotGenerator.js")
 };
