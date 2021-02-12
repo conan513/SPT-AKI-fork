@@ -73,7 +73,6 @@ globalThis["insurance_f"] = {
 };
 
 globalThis["trader_f"] = {
-    "config": require("./configs/TraderConfig.json"),
     "controller": require("./controllers/TraderController.js")
 };
 
