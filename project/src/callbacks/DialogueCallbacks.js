@@ -8,11 +8,15 @@
 
 "use strict";
 
+const HashUtil = require("../utils/HashUtil");
+const HttpResponse = require("../utils/HttpResponse");
+const TimeUtil = require("../utils/TimeUtil");
+
 class DialogueCallbacks
 {
     static getFriendList(url, info, sessionID)
     {
-        return https_f.response.getBody({
+        return HttpResponse.getBody({
             "Friends":[],
             "Ignore":[],
             "InIgnoreList":[]
@@ -21,7 +25,7 @@ class DialogueCallbacks
 
     static getChatServerList(url, info, sessionID)
     {
-        return https_f.response.getBody([
+        return HttpResponse.getBody([
             {
                 "_id": HashUtil.generate(),
                 "RegistrationId": 20,
@@ -53,51 +57,51 @@ class DialogueCallbacks
 
     static getMailDialogInfo(url, info, sessionID)
     {
-        return https_f.response.getBody(dialogue_f.controller.getDialogueInfo(info.dialogId, sessionID));
+        return HttpResponse.getBody(dialogue_f.controller.getDialogueInfo(info.dialogId, sessionID));
     }
 
     static removeDialog(url, info, sessionID)
     {
         dialogue_f.controller.removeDialogue(info.dialogId, sessionID);
-        return https_f.response.emptyArrayResponse();
+        return HttpResponse.emptyArrayResponse();
     }
 
     static pinDialog(url, info, sessionID)
     {
         dialogue_f.controller.setDialoguePin(info.dialogId, true, sessionID);
-        return https_f.response.emptyArrayResponse();
+        return HttpResponse.emptyArrayResponse();
     }
 
     static unpinDialog(url, info, sessionID)
     {
         dialogue_f.controller.setDialoguePin(info.dialogId, false, sessionID);
-        return https_f.response.emptyArrayResponse();
+        return HttpResponse.emptyArrayResponse();
     }
 
     static setRead(url, info, sessionID)
     {
         dialogue_f.controller.setRead(info.dialogs, sessionID);
-        return https_f.response.emptyArrayResponse();
+        return HttpResponse.emptyArrayResponse();
     }
 
     static getAllAttachments(url, info, sessionID)
     {
-        return https_f.response.getBody(dialogue_f.controller.getAllAttachments(info.dialogId, sessionID));
+        return HttpResponse.getBody(dialogue_f.controller.getAllAttachments(info.dialogId, sessionID));
     }
 
     static listOutbox(url, info, sessionID)
     {
-        return https_f.response.emptyArrayResponse();
+        return HttpResponse.emptyArrayResponse();
     }
 
     static listInbox(url, info, sessionID)
     {
-        return https_f.response.emptyArrayResponse();
+        return HttpResponse.emptyArrayResponse();
     }
 
     static friendRequest(url, request, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static update()

@@ -9,6 +9,7 @@
 "use strict";
 
 const SaveServer = require("../servers/SaveServer.js");
+const Logger = require("../utils/Logger.js");
 
 class SaveCallbacks
 {

@@ -12,6 +12,11 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const LocationConfig = require("../configs/LocationConfig.json");
+const RandomUtil = require("../utils/RandomUtil");
+const JsonUtil = require("../utils/JsonUtil");
+const HashUtil = require("../utils/HashUtil");
+const ContainerHelper = require("../helpers/ContainerHelper");
+const ItemHelper = require("../helpers/ItemHelper");
 
 class LocationGenerator
 {

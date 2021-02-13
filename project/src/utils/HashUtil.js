@@ -11,6 +11,7 @@
 "use strict";
 
 const crypto = require("crypto");
+const TimeUtil = require("./TimeUtil");
 
 class HashUtil
 {

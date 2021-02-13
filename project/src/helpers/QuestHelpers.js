@@ -14,6 +14,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const Logger = require("../utils/Logger");
 
 class QuestHelpers
 {

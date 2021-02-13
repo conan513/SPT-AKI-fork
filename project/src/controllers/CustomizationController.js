@@ -12,6 +12,7 @@
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
+const Logger = require("../utils/Logger");
 
 class CustomizationController
 {

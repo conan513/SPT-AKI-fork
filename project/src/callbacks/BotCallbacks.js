@@ -8,13 +8,15 @@
 
 "use strict";
 
+const HttpResponse = require("../utils/HttpResponse");
+
 class BotCallbacks
 {
     static getBotLimit(url, info, sessionID)
     {
         const splittedUrl = url.split("/");
         const type = splittedUrl[splittedUrl.length - 1];
-        return https_f.response.noBody(bots_f.controller.getBotLimit(type));
+        return HttpResponse.noBody(bots_f.controller.getBotLimit(type));
     }
 
     static getBotDifficulty(url, info, sessionID)
@@ -22,12 +24,12 @@ class BotCallbacks
         const splittedUrl = url.split("/");
         const type = splittedUrl[splittedUrl.length - 2].toLowerCase();
         const difficulty = splittedUrl[splittedUrl.length - 1];
-        return https_f.response.noBody(bots_f.controller.getBotDifficulty(type, difficulty));
+        return HttpResponse.noBody(bots_f.controller.getBotDifficulty(type, difficulty));
     }
 
     static generateBots(url, info, sessionID)
     {
-        return https_f.response.getBody(bots_f.controller.generate(info));
+        return HttpResponse.getBody(bots_f.controller.generate(info));
     }
 }
 

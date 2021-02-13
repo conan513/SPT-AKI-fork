@@ -13,6 +13,14 @@
 const DatabaseServer = require("../servers/DatabaseServer");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const InventoryConfig = require("../configs/InventoryConfig.json");
+const ItemHelper = require("../helpers/ItemHelper");
+const InventoryHelper = require("../helpers/InventoryHelper");
+const Logger = require("../utils/Logger");
+const HashUtil = require("../utils/HashUtil");
+const JsonUtil = require("../utils/JsonUtil");
+const Helpers = require("../helpers/PlzRefactorMeHelper");
+const ContainerHelper = require("../helpers/ContainerHelper");
+const HttpResponse = require("../utils/HttpResponse");
 
 class InventoryController
 {
@@ -545,14 +553,14 @@ class InventoryController
                 catch (err)
                 {
                     Logger.error("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
-                    return https_f.response.appendErrorToOutput(output, "Not enough stash space");
+                    return HttpResponse.appendErrorToOutput(output, "Not enough stash space");
                 }
 
                 itemToAdd.location = { x: findSlotResult.x, y: findSlotResult.y, rotation: findSlotResult.rotation };
             }
             else
             {
-                return https_f.response.appendErrorToOutput(output, "Not enough stash space");
+                return HttpResponse.appendErrorToOutput(output, "Not enough stash space");
             }
         }
 
@@ -567,7 +575,7 @@ class InventoryController
         catch (err)
         {
             let message = typeof err === "string" ? err : "An unknown error occurred";
-            return https_f.response.appendErrorToOutput(output, message);
+            return HttpResponse.appendErrorToOutput(output, message);
         }
 
         for (let itemToAdd of itemsToAdd)

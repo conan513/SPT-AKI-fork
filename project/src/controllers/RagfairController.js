@@ -16,6 +16,13 @@ const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const QuestConfig = require("../configs/QuestConfig.json");
 const RagfairConfig = require("../configs/RagfairConfig.json");
+const Logger = require("../utils/Logger");
+const RandomUtil = require("../utils/RandomUtil");
+const ItemHelper = require("../helpers/ItemHelper");
+const TimeUtil = require("../utils/TimeUtil");
+const Helpers = require("../helpers/PlzRefactorMeHelper");
+const HashUtil = require("../utils/HashUtil");
+const HttpResponse = require("../utils/HttpResponse");
 
 class RagfairController
 {
@@ -647,12 +654,12 @@ class RagfairController
         if (!info || !info.items || info.items.length === 0)
         {
             Logger.error("Invalid addOffer request");
-            return https_f.response.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(result);
         }
 
         if (!info.requirements)
         {
-            return https_f.response.appendErrorToOutput(result, "How did you place the offer with no requirements?");
+            return HttpResponse.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
         for (const item of info.requirements)
@@ -677,7 +684,7 @@ class RagfairController
             if (item === undefined)
             {
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
-                return https_f.response.appendErrorToOutput(result);
+                return HttpResponse.appendErrorToOutput(result);
             }
             item = ItemHelper.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
@@ -695,7 +702,7 @@ class RagfairController
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
-            return https_f.response.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(result);
         }
 
         for (const item of invItems)
@@ -708,7 +715,7 @@ class RagfairController
         {
             // Don't want to accidentally divide by 0
             Logger.error("Failed to count base price for offer");
-            return https_f.response.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(result);
         }
 
         // Preparations are done, create the offer
@@ -785,7 +792,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -810,7 +817,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;

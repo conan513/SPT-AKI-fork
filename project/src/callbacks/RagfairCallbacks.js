@@ -10,6 +10,10 @@
 
 "use strict";
 
+const HttpResponse = require("../utils/HttpResponse");
+const JsonUtil = require("../utils/JsonUtil");
+const Logger = require("../utils/Logger");
+
 class RagfairCallbacks
 {
     static load()
@@ -19,17 +23,17 @@ class RagfairCallbacks
 
     static search(url, info, sessionID)
     {
-        return https_f.response.getBody(ragfair_f.controller.getOffers(sessionID, info));
+        return HttpResponse.getBody(ragfair_f.controller.getOffers(sessionID, info));
     }
 
     static getMarketPrice(url, info, sessionID)
     {
-        return https_f.response.getBody(ragfair_f.controller.getItemPrice(info));
+        return HttpResponse.getBody(ragfair_f.controller.getItemPrice(info));
     }
 
     static getItemPrices(url, info, sessionID)
     {
-        return https_f.response.getBody(ragfair_f.server.prices.dynamic);
+        return HttpResponse.getBody(ragfair_f.server.prices.dynamic);
     }
 
     static addOffer(pmcData, info, sessionID)

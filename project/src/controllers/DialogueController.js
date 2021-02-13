@@ -11,6 +11,8 @@
 "use strict";
 
 const SaveServer = require("../servers/SaveServer.js");
+const HashUtil = require("../utils/HashUtil.js");
+const HttpResponse = require("../utils/HttpResponse.js");
 
 class DialogueController
 {
@@ -35,7 +37,7 @@ class DialogueController
             data.push(this.getDialogueInfo(dialogueId, sessionID));
         }
 
-        return https_f.response.getBody(data);
+        return HttpResponse.getBody(data);
     }
 
     /* Get the content of a dialogue. */
@@ -76,7 +78,7 @@ class DialogueController
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return https_f.response.getBody({"messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages});
+        return HttpResponse.getBody({"messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages});
     }
 
     /*
@@ -112,6 +114,7 @@ class DialogueController
 
             items.stash = stashId;
             items.data = [];
+            // @ts-ignore
             rewards = Helpers.replaceIDs(null, rewards);
 
             for (let reward of rewards)

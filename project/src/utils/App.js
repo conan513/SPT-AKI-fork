@@ -8,6 +8,9 @@
 
 "use strict";
 
+const Logger = require("./Logger");
+const TimeUtil = require("./TimeUtil");
+
 class App
 {
     static onLoad = require("../bindings/AppLoad");
