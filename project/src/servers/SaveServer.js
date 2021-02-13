@@ -30,7 +30,7 @@ class SaveServer
 
         const files = VFS.getFiles(SaveServer.filepath).filter((item) =>
         {
-            return VFS.getFileExtension(item) != "json";
+            return VFS.getFileExtension(item) === "json";
         });
 
         // load profiles
