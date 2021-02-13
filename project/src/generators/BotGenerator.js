@@ -8,7 +8,14 @@
 
 "use strict";
 
+const ContainerHelper = require("../helpers/ContainerHelper");
+const InventoryHelper = require("../helpers/InventoryHelper");
+const ItemHelper = require("../helpers/ItemHelper");
 const DatabaseServer = require("../servers/DatabaseServer");
+const HashUtil = require("../utils/HashUtil");
+const JsonUtil = require("../utils/JsonUtil");
+const Logger = require("../utils/Logger");
+const RandomUtil = require("../utils/RandomUtil");
 
 const EquipmentSlots = {
     Headwear: "Headwear",

@@ -9,6 +9,7 @@
 "use strict";
 
 const InraidConfig = require("../configs/InraidConfig.json");
+const HttpResponse = require("../utils/HttpResponse");
 
 class InraidCallbacks
 {
@@ -20,28 +21,28 @@ class InraidCallbacks
     static registerPlayer(url, info, sessionID)
     {
         inraid_f.controller.addPlayer(sessionID, info);
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static saveProgress(url, info, sessionID)
     {
         inraid_f.controller.saveProgress(info, sessionID);
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static getRaidEndState()
     {
-        return https_f.response.noBody(InraidConfig.MIAOnRaidEnd);
+        return HttpResponse.noBody(InraidConfig.MIAOnRaidEnd);
     }
 
     static getRaidMenuSettings(url, info, sessionID)
     {
-        return https_f.response.noBody(InraidConfig.raidMenuSettings);
+        return HttpResponse.noBody(InraidConfig.raidMenuSettings);
     }
 
     static getWeaponDurability(url, info, sessionID)
     {
-        return https_f.response.noBody(InraidConfig.save.durability);
+        return HttpResponse.noBody(InraidConfig.save.durability);
     }
 }
 

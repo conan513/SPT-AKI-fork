@@ -13,11 +13,15 @@
 const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const HealthConfig = require("../configs/HealthConfig.json");
+const ItemHelper = require("../helpers/ItemHelper.js");
+const Helpers = require("../helpers/PlzRefactorMeHelper");
+const TimeUtil = require("../utils/TimeUtil.js");
 
 class HealthController
 {
     static resetVitality(sessionID)
     {
+        console.log(SaveServer.profiles);
         let profile = SaveServer.profiles[sessionID];
 
         profile.vitality = {

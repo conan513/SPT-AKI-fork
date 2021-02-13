@@ -6,6 +6,8 @@
  * - Senko-san (Merijn Hendriks)
  */
 
+const Logger = require("../utils/Logger");
+
 class ItemEventRouter
 {
     /** @type {apiEventResponse} */

@@ -9,6 +9,9 @@
  */
 
 const DatabaseServer = require("../servers/DatabaseServer");
+const HashUtil = require("../utils/HashUtil");
+const Logger = require("../utils/Logger");
+const ItemHelper = require("./ItemHelper");
 
 /*
  * @class InventoryHelper

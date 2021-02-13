@@ -8,6 +8,8 @@
 
 "use strict";
 
+const JsonUtil = require("./JsonUtil");
+
 class HttpResponse
 {
     clearString(s)

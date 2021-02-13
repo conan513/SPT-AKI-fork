@@ -11,6 +11,10 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const BotConfig = require("../configs/BotConfig.json");
+const HashUtil = require("../utils/HashUtil");
+const RandomUtil = require("../utils/RandomUtil");
+const InventoryHelper = require("../helpers/InventoryHelper");
+const JsonUtil = require("../utils/JsonUtil");
 
 class BotController
 {

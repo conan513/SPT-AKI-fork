@@ -9,6 +9,7 @@
 "use strict";
 
 const SaveServer = require("../servers/SaveServer.js");
+const HashUtil = require("../utils/HashUtil.js");
 
 class LauncherController
 {

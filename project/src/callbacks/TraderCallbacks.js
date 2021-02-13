@@ -8,6 +8,8 @@
 
 "use strict";
 
+const HttpResponse = require("../utils/HttpResponse");
+
 class TraderCallbacks
 {
     static load()
@@ -17,27 +19,27 @@ class TraderCallbacks
 
     static getTraderList(url, info, sessionID)
     {
-        return https_f.response.getBody(trader_f.controller.getAllTraders(sessionID));
+        return HttpResponse.getBody(trader_f.controller.getAllTraders(sessionID));
     }
 
     static getProfilePurchases(url, info, sessionID)
     {
         const traderID = url.substr(url.lastIndexOf("/") + 1);
-        return https_f.response.getBody(trader_f.controller.getPurchasesData(traderID, sessionID));
+        return HttpResponse.getBody(trader_f.controller.getPurchasesData(traderID, sessionID));
     }
 
     static getTrader(url, info, sessionID)
     {
         const traderID = url.replace("/client/trading/api/getTrader/", "");
         trader_f.controller.updateTraders();
-        return https_f.response.getBody(trader_f.controller.getTrader(traderID, sessionID));
+        return HttpResponse.getBody(trader_f.controller.getTrader(traderID, sessionID));
     }
 
     static getAssort(url, info, sessionID)
     {
         const traderID = url.replace("/client/trading/api/getTraderAssort/", "");
         trader_f.controller.updateTraders();
-        return https_f.response.getBody(trader_f.controller.getAssort(sessionID, traderID));
+        return HttpResponse.getBody(trader_f.controller.getAssort(sessionID, traderID));
     }
 
     static update()

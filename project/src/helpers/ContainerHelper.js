@@ -1,3 +1,6 @@
+const Logger = require("../utils/Logger");
+const InventoryHelper = require("./InventoryHelper");
+
 /**
  * ContainerHelper.js
  * license: NCSA

@@ -11,6 +11,7 @@
 const DatabaseServer = require("../servers/DatabaseServer");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const RepairConfig = require("../configs/RepairConfig.json");
+const Logger = require("../utils/Logger");
 
 class RepairController
 {
@@ -45,6 +46,7 @@ class RepairController
                 "tid": body.tid
             };
 
+            // @ts-ignore
             if (!Helpers.payMoney(pmcData, options, sessionID))
             {
                 Logger.error("no money found");

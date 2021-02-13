@@ -9,6 +9,7 @@
 "use strict";
 
 const InsuranceConfig = require("../configs/InsuranceConfig.json");
+const HttpResponse = require("../utils/HttpResponse");
 
 class InsuranceCallbacks
 {
@@ -19,7 +20,7 @@ class InsuranceCallbacks
 
     static getInsuranceCost(url, info, sessionID)
     {
-        return https_f.response.getBody(insurance_f.controller.cost(info, sessionID));
+        return HttpResponse.getBody(insurance_f.controller.cost(info, sessionID));
     }
 
     static insure(pmcData, body, sessionID)

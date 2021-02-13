@@ -13,6 +13,13 @@ const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
 const ItemEventRouter = require("../routers/ItemEventRouter");
 const RagfairConfig = require("../configs/RagfairConfig.json");
+const ItemHelper = require("../helpers/ItemHelper");
+const JsonUtil = require("../utils/JsonUtil");
+const RandomUtil = require("../utils/RandomUtil");
+const HashUtil = require("../utils/HashUtil");
+const TimeUtil = require("../utils/TimeUtil");
+const Logger = require("../utils/Logger");
+const HttpResponse = require("../utils/HttpResponse");
 
 class RagfairServer
 {
@@ -521,7 +528,7 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return https_f.response.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let itemsToReturn = [];

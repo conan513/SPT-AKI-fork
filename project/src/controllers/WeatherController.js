@@ -10,6 +10,8 @@
 "use strict";
 
 const WeatherConfig = require("../configs/WeatherConfig.json");
+const RandomUtil = require("../utils/RandomUtil");
+const TimeUtil = require("../utils/TimeUtil");
 
 class WeatherController
 {
