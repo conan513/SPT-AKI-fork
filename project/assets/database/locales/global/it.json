@@ -794,7 +794,7 @@
         "Shaft": "Condotto",
         "Magazine": "Caricatore",
         "currWinStreak": "Attuale serie di vittorie",
-        "SecuredContainer": "Marsupio",
+        "SecuredContainer": "Valigetta",
         "Barrel": "Canna",
         "expSurvive": "Esperienza per Sopravvivenza",
         "RETURN TO RAID": "RITORNA AL RAID",
@@ -1332,14 +1332,14 @@
         "MOD_EQUIPMENT_000": "ARCATA",
         "ZB-1011": "ZB-1011",
         "TURNOFF": "SPEGNI",
-        "Dorms V-Ex": "Veicolo Dormitori",
+        "Dorms V-Ex": "Veicolo d'estrazione dormitori",
         "Factory Shacks": "Factory Baracche",
         "Trailer Park": "Parcheggio Rimorchi",
         "WeaponStiffHands": "Aumenta l'ergonomia dell'arma del [(+{0:0%})]",
         "DOWN: ": "GIÙ: ",
         "RUAF Roadblock": "Posto di blocco RUAF",
         "Old Gas Station": "Vecchia Stazione di Benzina",
-        "Administration Gate": "Cancello dell'amministrazione",
+        "Administration Gate": "Cancello amministrazione",
         "Crossroads": "Incrocio",
         "Warehouse 4": "Magazzino 4",
         "NEEDHELP": "HO BISOGNO DI AIUTO",
@@ -1416,9 +1416,9 @@
         "Tutorial_Prev": "<<< INDIETRO",
         "Tutorial_ConfirmationDialog_Title": "Tutorial",
         "MetabolismPhysicsNoForget": "Le abilità fisiche non possono più essere dimenticate",
-        "Tutorial_TabGearHandBag_Title": "Fodero",
+        "Tutorial_TabGearHandBag_Title": "Valigetta",
         "Tutorial_CloseConfirmationDialog_Decline": "No",
-        "Tutorial_TabGearHandBag_Description": "Il borsello contiene un contenitore sicuro. Gli oggetti di questo contenitore <color=#00ffba><b>non possono essere rimossi </b></color> dal tuo corpo dopo la morte. Si consiglia di conservare qui gli oggetti di particolare valore, come denaro, medicinali rari, chiavi, ecc.",
+        "Tutorial_TabGearHandBag_Description": "Il valigetta contiene un contenitore sicuro. Gli oggetti di questo contenitore <color=#00ffba><b>non possono essere rimossi </b></color> dal tuo corpo dopo la morte. Si consiglia di conservare qui gli oggetti di particolare valore, come denaro, medicinali rari, chiavi, ecc.",
         "RUAF Gate": "Cancello RUAF",
         "Tutorial_Next": "AVANTI >>>",
         "Tutorial_TabTradeQuest_Title": "Incarichi dei mercanti",
@@ -1522,7 +1522,7 @@
         "LL": "LL",
         "QuestTypeWeaponAssembly": "Modifiche dei parametri orientati",
         "NW Exfil": "Punto di Estrazione Ferroviario",
-        "SE Exfil": "Checkpoint dell'Emercom",
+        "SE Exfil": "Checkpoint Emercom",
         "repairability": "riparabilità",
         "repairability/Very good": "Molto buona",
         "ThrowingStrengthBuff": "Aumento sulla forza di lancio del [(+{0:0%})]",
@@ -2026,7 +2026,7 @@
         "hideout_UnlockItemPassiveCreation": "Sbloccare elementi passivi di creazione",
         "FUTURE BONUSES:": "BONUS FUTURI:",
         "LOOT FROM SCAVS": "BOTTINO DA SCAVS",
-        "Get items": "Otteni gli oggetti",
+        "Get items": "Ottieni gli oggetti",
         "CURRENT BONUSES:": "BONUS ATTUALI:",
         "LEVEL {0} UPGRADE REQUIREMENTS": "LIVELLO {0} REQUISITI DI AGGIORNAMENTO",
         "UPGRADE": "AGGIORNAMENTO",
@@ -2580,8 +2580,30 @@
         "lightbleedingdelta": "Possibilitá di causare sanguinamento leggero",
         "choose face and voice": "SCEGLI FACCIA E VOCE",
         "un-sec": "Blocco Stradale UN Nord",
-        "NetworkError/TooManyFriendRequestsHeader": "Errore",
-        "NetworkError/TooManyFriendRequestsMessage": "Non puoi inviare richieste di amicizia troppo spesso. Riprova tra 10 minuti"
+        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
+        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
+        "BloodLoss": "Emorragia",
+        "REMOVES BLOODLOSS": "RIMUOVE EMORRAGIA",
+        "\"Magazine checked: \"": "Caricatore controllato:",
+        "You have already bought the maximum amount of this item in the current restock": "Hai già comprato la quantità massima di oggetti nell'attuale rifornimento",
+        "DamageType_Bloodloss": "Emorragia",
+        "you can't transfer item while moving": "Non puoi trasferire l'oggetto mentre ti muovi",
+        "place": "PIAZZA",
+        "This location is not available for scav": "Questo zona non é disponibile per gli scav",
+        "Interchange": "Interchange",
+        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
+        "No action available": "No available actions",
+        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
+        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
+        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
+        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
+        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
+        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
+        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
+        "Critical error": "Critical error",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
     },
     "enum": [],
     "error": {
@@ -2611,52 +2633,52 @@
         "5a8fd75188a45036844e0af7": "Ok, ho finito con questa assicurazione. Torna se hai bisogno di qualcosa. Basta che non ti dimentichi di portare i soldi.",
         "5a8fd75188a45036844e0b09": "Oggi non è il tuo giorno fortunato, il tempo per il deposito è scaduto.",
         "5a8fd75188a45036844e0b01": "Hai per caso perso la tua roba a {location}, non è vero? Ci stanno già lavorando, non preoccuparti.",
-        "5a8fd75188a45036844e0afd": "Per 24 ore stavo tenendo la tua roba! Per un giorno intero! Ora è andata.",
-        "5a8fd75188a45036844e0b06": "La roba è tua, il caso è chiuso, nessun reclamo. Vuoi colpirlo di nuovo?",
-        "5a8fd75188a45036844e0b08": "La tua assicurazione ha funzionato bene questa volta. Sbrigati con la prossima.",
-        "5a8fd75188a45036844e0af9": "Dove sei stato amico? Ho tenuto la tua roba per troppo tempo - l'ho già venduta. Scusa.",
+        "5a8fd75188a45036844e0afd": "Per 24 ore ho tenuto la tua robaccia! Un giorno intero! Ora è troppo tardi... andata.",
+        "5a8fd75188a45036844e0b06": "La roba è tua, il caso è chiuso, nessun reclamo. Vuoi riprovarci?",
+        "5a8fd75188a45036844e0b08": "La tua assicurazione ha funzionato bene questa volta. Sbrigati a stipularne una nuova.",
+        "5a8fd75188a45036844e0af9": "Dove sei stato amico? Ho tenuto la tua roba per troppo tempo, l'ho già venduta. Scusa.",
         "5a8fd75188a45036844e0b05": "Consapevolmente assicurato da come vedo. Oggi è il tuo giorno fortunato. Ci vediamo.",
         "5a8fd75188a45036844e0b03": "I miei uomini sono sul posto e stanno ancora cercando la tua roba. Si paziente.",
         "5a8fd75188a45036844e0afb": "Sì... buonanotte. E' impossibile recuperare questi oggetti perché il tempo di deposito è scaduto. E' stato un piacere.",
-        "5a8fd75188a45036844e0af4": "Ok, è tutto per ora. Sentiti libero di usare i servizi assicurativi ogni volta che ne hai bisogno.",
+        "5a8fd75188a45036844e0af4": "Ok, è tutto per ora. Sentiti libero di usare le nostre polizze assicurative tutte le volte che ne hai bisogno.",
         "5a8fd75188a45036844e0af3": "Sto per chiudere l'assicurazione del {date} alle {time}. Cerca di rimanere in vita il più possibile, soldato.",
-        "5a8fd75188a45036844e0aff": "Ho la segnalazione che i miei ragazzi sono sul posto e stanno cercando le tue cose. Tutto ciò che saremo in grado di trovare - te lo porteremo, non sudare.",
+        "5a8fd75188a45036844e0aff": "Ho la segnalazione che i miei ragazzi sono sul posto e stanno cercando le tue cose. Tutto ciò che saremo in grado di trovare te lo porteremo, non c'è bisogno di sudare così.",
         "5a8fd75188a45036844e0b0c": "Mi dispiace dirtelo, ma non è stata trovata alcuna merce assicurata. Scusa.",
-        "5a8fd75188a45036844e0b0e": "Vedendo che sei in gravi difficoltà finanziarie, ho deciso di inviarti un piccolo pacchetto di assistenza, un investimento nel nostro comune futuro luminoso.",
-        "5a8fd75188a45036844e0ad8": "Ho qua del bottino che ci è arrivato dopo un recupero. Hai perso qualcosa il giorno {date} alle ore {time} nella zona di {location}?",
-        "5a8fd75188a45036844e0add": "Hai stipulato tu una assicurazione in data {date} per le ore {time} nella zona di {location}? Hai perso le tue cose moschettiere? Pfft, prendili Rambo, raccogli i tuoi preziosi beni.",
-        "5a8fd75188a45036844e0ad9": "Hai sentito del massiccio intervento avvenuto il {date} alle ore {time} nella zona {location}? O forse eri anche tu li? Ho trovato un sacco di roba interessante. Dagli un occhio, magari ci trovi anche qualcosa di tuo. Altrimenti la metterò in vendita.",
+        "5a8fd75188a45036844e0b0e": "Vedendo che sei in gravi difficoltà finanziarie, ho deciso di inviarti un piccolo pacchetto di assistenza, un investimento per il nostro comune futuro luminoso.",
+        "5a8fd75188a45036844e0ad8": "Ho qua del bottino che abbiamo recuperato da poco. Hai perso per caso qualcosa il giorno {date} alle ore {time} nella zona di {location}?",
+        "5a8fd75188a45036844e0add": "Hai stipulato tu una assicurazione in data {date} per le ore {time} nella zona di {location}? Hai perso le tue cose moschettiere? Pfft, prendili Rambo, ti sono stati riportati indietro.",
+        "5a8fd75188a45036844e0ad9": "Hai sentito del massiccio intervento avvenuto il {date} alle ore {time} nella zona {location}? Ti trovavi lì per caso? Ho trovato un sacco di roba interessante. Dacci un'occhiata, magari ritrovi qualcosa di tuo. Altrimenti la metterò in vendita.",
         "5a8fd75188a45036844e0aef": "I miei colleghi stanno lavorando sulla tua situazione. Devi aspettare un po 'di tempo.",
-        "5a8fd75188a45036844e0aed": "No, no, no. I tempi di archiviazione sono scaduti e non è possibile ottenere nulla da questa assicurazione. Scusa.",
-        "5a8fd75188a45036844e0ae1": "Mercenario, hai assicurato i tuoi beni prima del raid del {date} alle ore {time} nella zona di {location}? Perchè sono stati recuperati. Eccoli.",
-        "5a8fd75188a45036844e0ad7": "Ehilà! Ho qui alcune delle tue cose che hai assicurato il {date} alle ore {time} e perse nella zona di {location}. Ricorda, non le terrò per sempre. Hai 24 ore di tempo per prenderle!",
-        "5a8fd75188a45036844e0adc": "Che succede soldato? Sei stato per caso tu a sparpagliare tutta la roba ritrovata nella zona di {location} alle ore {time} il {date}? Prendila, prima che cambi idea.",
+        "5a8fd75188a45036844e0aed": "No, no, no. Il tempo per il deposito è scaduto e non puoi ottere più nulla da questa assicurazione. Scusa.",
+        "5a8fd75188a45036844e0ae1": "Mercenario, hai assicurato i tuoi beni prima del raid del {date} alle ore {time} nella zona di {location}? Immagino di si visto che te li abbiamo recuperati.",
+        "5a8fd75188a45036844e0ad7": "Ehilà! Ho qui alcune delle tue cose che hai assicurato il {date} alle ore {time} e perse nella zona di {location}. Ricorda, non le terrò per sempre. Hai 24 ore di tempo per riprendertele!",
+        "5a8fd75188a45036844e0adc": "Che c'è soldato? Sei stato per caso tu a sparpagliare tutta la roba ritrovata nella zona di {location} alle ore {time} il {date}? Prendila, prima che cambi idea.",
         "5a8fd75188a45036844e0aec": "l'assicurazione del {date} alle {time} è scaduta",
-        "5a8fd75188a45036844e0adf": "Coraggio soldato! La tua assicurazione del {date} alle ore {time} nella zona di {location} ha funzionato. Reputati fortunato, perchè non lo sono tutti!",
-        "5a8fd75188a45036844e0ae5": "Felice di vederti ancora tutto d'un pezzo dopo che il tuo equipaggiamento assicurato il {date} è stato recuperato dalla zona di {location}. Ti interessa riaverli?",
-        "5a8fd75188a45036844e0aea": "Hey! Ti ho detto che non posso tenere la tua roba per cosi' tanto tempo! Ora è andata!",
-        "5a8fd75188a45036844e0ae4": "Ti interessano ancora i tuoi oggetti assicurati il {date} alle ore {time}? Prendili il prima possibile.",
-        "5a8fd75188a45036844e0ade": "Sembrerebbe che il Raid del giorno {date} nella zona di {location} sia andato male huh? So che è così dato che il tuo equipaggiamento è qua. Vuoi riprenderla o cosa?",
-        "5a8fd75188a45036844e0af0": "I miei ragazzi sono andati per le tue cose",
+        "5a8fd75188a45036844e0adf": "Coraggio soldato! La tua assicurazione del {date} alle ore {time} nella zona di {location} ha funzionato. Reputati fortunato, perchè non tutti lo sono!",
+        "5a8fd75188a45036844e0ae5": "Felice di rivederti ancora tutto d'un pezzo, inoltre anche il tuo equipaggiamento assicurato il {date} è stato recuperato dalla zona di {location}. Ti interessa riaverli?",
+        "5a8fd75188a45036844e0aea": "Hey! Ti avevo avvisato che non posso tenere la tua roba per così tanto tempo! È andata!",
+        "5a8fd75188a45036844e0ae4": "Ti interessano ancora i tuoi oggetti assicurati il {date} alle ore {time}? Riprenditeli il prima possibile.",
+        "5a8fd75188a45036844e0ade": "Sembrerebbe che il Raid del giorno {date} nella zona di {location} sia andato male vero? Lo so per certo visto che ho ritrovato dell'equipaggiamento che ti appartiene. Ti sbrighi a riprenderlo o cosa?",
+        "5a8fd75188a45036844e0af0": "I miei ragazzi sono andati in cerca delle tue cose",
         "5a8fd75188a45036844e0ae0": "Ehi pistolero da quattro soldi! Si dico a te. Hai avuto la sensazione che fosse uno di quei giorni in cui prepari i bagagli per il {date} nella zona di {location}? Ci hai visto giusto quando ti sei assicurato la roba. Prendila, ma prima firma sulla linea tratteggiata che vedi.",
         "5a8fd75188a45036844e0aee": "Ok, i miei ragazzi sono andati a recuperare le tue cose. Tieni duro, zuccherino.",
-        "5a8fd75188a45036844e0ae3": "E' un bene che tu ci sia. Alcuni oggetti sono stati recuperati come d'accordo in base alla polizza assicurativa del {date} nella zona di {location}, non sono oggetti che conosco bene, cerca di averne più cura.",
+        "5a8fd75188a45036844e0ae3": "E' un bene che tu ci sia. Alcuni oggetti sono stati recuperati come d'accordo in base alla polizza assicurativa del {date} nella zona di {location}, non sono oggetti con cui ho normalmente a che fare, cerca di averne più cura.",
         "5a8fd75188a45036844e0ada": "Quindi suppongo che l'assicurazione stipulata in data {date} nella zona di {location} per questi beni, sia tua?",
-        "5a8fd75188a45036844e0afa": "Cosa stai cercando di dire? Dovresti venire prima per prendere gli articoli ritrovati - ora sono spariti!",
+        "5a8fd75188a45036844e0afa": "Cosa mi stai cercando di dire? Dovevi pensarci prima, hai fatto passare troppo tempo e il tuo equipaggiamento ora è sparito!",
         "5a8fd75188a45036844e0af6": "Vedo che è andato tutto abbastanza bene. Chiudo questa assicurazione del {date} alle ore {time}. Prova ad essere un po' più cauto la prossima volta.",
         "5a8fd75188a45036844e0adb": "Come noto, hai aperto una assicurazione il {date} nella zona di {location}? Sei molto fortunato, il tuo equipaggiamento è stato recuperato.",
-        "5a8fd75188a45036844e0ae2": "Giovanotto, non sono una esperta di questa roba, ma sembra che questi oggetti assicurati il {date} alle ore {time} appartengono a te. Sono stati recuperati nella zona di {location}.",
+        "5a8fd75188a45036844e0ae2": "Giovanotto, non sono un'esperta di questa roba, ma sembra che questi oggetti assicurati il {date} alle ore {time} appartengono a te. Sono stati recuperati nella zona di {location}.",
         "5a8fd75188a45036844e0af2": "Allora? Siamo a posto? Ci vediamo dopo, ho del lavoro da fare.",
         "5a8fd75188a45036844e0b02": "I miei cacciatori sono andati a {location} per recuperare le tue cose. Speriamo solo che nessuno le abbia già saccheggiate.",
-        "5a8fd75188a45036844e0b00": "Quindi, i miei amici sono in {location} e hanno avviato le ricerche per trovare le cose che hai perso. Se queste cose non sono state rubate da altri, te le riporteremo indietro.",
+        "5a8fd75188a45036844e0b00": "Quindi, i miei amici sono a {location} e hanno avviato le ricerche per trovare le cose che hai perso. Se queste cose non sono state rubate da altri, te le riporteremo sicuramente indietro.",
         "5a8fd75188a45036844e0afe": "I miei cani sono andati in ({location}) per trovare le tue cose. Le riporteranno indietro se nessuno le ha rubate.",
         "5a8fd75188a45036844e0b0a": "Sei stato sfortunato oggi soldato. Qualcuno ci ha anticipato e ti ha rubato tutte le tue cose. Non ti incazzare!",
         "5a8fd75188a45036844e0af5": "Chiudo l'assicurazione aperta il {date} alle ore {time}. Arrivederci.",
         "5a8fd75188a45036844e0ae9": "Bene! L'assicurazione è conclusa.",
-        "5a8fd75188a45036844e0aeb": "Giovanotto, non sono un custode del magazzino e non posso tenere per sempre i tuoi oggetti. Ho paura che questi oggetti siano spariti.",
+        "5a8fd75188a45036844e0aeb": "Giovanotto, non faccio certo il custode del magazzino e non posso tenere per sempre i tuoi oggetti. Mi rincuora dirti che i tuoi oggetti sono spariti.",
         "5a8fd75188a45036844e0afc": "Dove sei stato? Ti ho tenuto le cose il più a lungo possibile, ti ho pensato morto e ho venduto tutto. Pensi che sia gratis questo magazzino? No! non lo è!",
         "5a8fd75188a45036844e0b0b": "Mi dispiace, ma l'assicurazione ha fallito, i miei ragazzi hanno cercato ovunque senza successo.",
-        "5a8fd75188a45036844e0af8": "Cosa? La tua roba? Non c'è più il la tua roba - non potevo aspettare cosi' tanto. La prossima volta sii più vigile.",
+        "5a8fd75188a45036844e0af8": "Cosa? La tua roba? Non c'è più il la tua roba, non potevo aspettare cosi' tanto. La prossima volta sii più vigile.",
         "5a8fd75188a45036844e0b07": "Hey, hai del talento, sei riuscito ad assicurarti nel momento giusto. Il caso assicurativo è chiuso.",
         "5a8fd75188a45036844e0b04": "La tua assicurazione è completata. Arrivederci alla prossima.",
         "5a8fd75188a45036844e0b0d": "Temo che nulla è stato ritrovato.",
@@ -2823,17 +2845,17 @@
         "5abe61a886f7746ad512da92": "Grazie per il tuo aiuto con i furgoni. Siamo arrivati appena in tempo, fortuna che questi Scav non hanno avuto il tempo di smantellarli. Mentre investivagamo sulle conseguenza del tunnel crollato, abbiamo incontrato un dirigente della Terragroup di nome Gelandewagen. Sembrerebbe che una buona parte dei dirigenti della Teragroup siano morti durante l'evacuazione. Sono a conoscenza che la ricerca medica era una delle priorità della compagnia e sono quasi del tutto sicura che durante l'evacuazione non siano riusciti a portare via dati e materiali. Qualunque cosa loro stessero facendo penso che possano rivelarsi molto utili sia per noi che per la scienza medica in generale. Potremmo guadagnarci un biglietto di sola andata per venir via da Tarkov e forse anche più d'uno. Mi incontravo regolarmente con alcuni membri della Terragroup per discutere dei problema sulla sanità, e quindi ho una certa familiarità su alcuni dei loro lavori. Una della mie conoscenze che pe dirla tutta faceva capo a Gelandewaden, viveva nel resort. Fammi controllare... ecco, stanza 306. Ispezionala per verificare che non abbiano lasciato qualcosa di veramente utile.",
         "5abe61a886f7746ad512da8d": "Ciao,\n\nCi conosciamo da tanto tempo ormai, ed è impossibile trovarci in disaccordo. Sono sicuro che la nostra collaborazione interessi tanto a te quando a me. Tranquillo non ne approfitterò. Sono entrato in contatto con una persona che possiede un grande deposito di rifornimenti medici Occidentali ed è disposto a vendermeli, ma soltanto con denaro straniero. Se riuscirai a darmi una mano... amici come prima.",
         "5ac2438186f77412450b42c5": "Grazie, lo farò avere a Dimi... al cecchino ",
-        "5ac242f286f774138762ee03": "Sì, sono il Meccanico. Ho molto lavoro da fare. Andando dritti al punto, ti vuoi davvero rendere utile? È un peccato che ci sia così poco tempo e il l'unità di programmazione per il PLC100 è fuori uso. Tutti quegli ordini da inviare... comunque, ti starai chiedendo perchè ti sto dicendo tutto questo? Ho bisogno che tu mi assembli un MP-133, non ho avuto tempo per farlo io e dovrai cercare anche altre parti che non ho in questo momento. Quest'arma deve avere una ergonomia di almeno 47, un designatore laser, un caricatore esteso e meno di 950 di rinculo. Inoltre deve essere compatto, non più di 4 cartucce. Poi parleremo di ulteriori affari.",
+        "5ac242f286f774138762ee03": "Sì, sono il Meccanico. Ho molto lavoro da fare. Andando dritti al punto, ti vuoi davvero rendere utile? È un peccato che ci sia così poco tempo e il l'unità di programmazione per il PLC100 è fuori uso. Tutti quegli ordini da inviare... comunque, ti starai chiedendo perchè ti sto dicendo tutto questo? Ho bisogno che tu mi assembli un MP-133, non ho avuto tempo per farlo io e dovrai cercare anche altre parti che non ho in questo momento. Quest'arma deve avere una ergonomia di almeno 47, un designatore laser, un caricatore esteso e meno di 950 di rinculo. Inoltre deve essere compatto, non più di 4 celle. Poi parleremo di ulteriori affari.",
         "5abe61a886f7746ad512da95": "Il sangue è una buona fonte di informazioni. Non così buona come un progetto ben realizzato, ma comunque buona. E' passato un pò di tempo da quando ho fatto ricerca scientifica in prima persona. Ricordo che dovevo aiutare un virologo con la sua tesi... sembra ieri... eppure è passato un sacco di tempo. L'arrivo di Internet ha reso tutto molto più facile, permettendomi di scambiare informazioni anche con colleghi di altre nazioni. Ora senza una connessione internet, rischio di perdermi questa opportunità di ricercare nel database Scopus, sono abbastanza sicura che lì troverei le risposte alle domande su qel campione di sangue. Mi chiederai...\"dove potremmo trovare accesso alla rete?\" Beh, per risolvere questo problema mi è stato detto di contattare il tipo che si fà chiamare \"Mechanic\". Sembra che lui abbia la possibilità di accedere ad Internet con una connessione relativamente veloce! Gli ho chiesto di cercarmi gli articoli che mi servono. Inoltre mi ha chiesto un pagamento sotto forma di polvere propellente. Non ho idea di cosa se ne farà. Sembra che stia trafficando in munizioni o qualcosa di simile, sinceramente non ero abbastanza interessata per stare ferma ad ascoltarlo. La cosa importante è che mi farà avere le informazioni di cui ho assolutamente bisogno. Procuragli quello che chiede, e lascialo in un posto specifico dentro Factory. Pullula di scav la dentro durante il giorno, quindi meglio farlo di notte.",
         "5ac2437986f774124836841b": "Comodo per il combattimento in spazi ristretti e silenzioso ...",
-        "5ac2438186f77412450b42c8": "Ho parlato troppo l'ultima volta. Succede quando ti ritrovi per un po' immerso nei pensieri. Molte cose ti riempiono la testa mentre ti ritrovi seduto a calibrare mirini. Quell'M4 era uno splendore, me lo hanno tolto dalle mani in un attimo. Un Bear è passato da qui di recente, si fa chiamare Sniper, o qualcosa del genere. Ha bisogno di un fucile da cecchino Lobaev Saboteur, con un' ottica e un mirino multi-laser, un rinculo minore di 400, un'ergonomia sopra i 20 ed un peso minore di 6,6Kg. Ha detto che ne ha bisogno per un utilizzo oltre i 2000 metri. Il tizio mi sembra molto serio quindi, fai del tuo meglio per renderla un'arma professionale.",
+        "5ac2438186f77412450b42c8": "Ho parlato troppo l'ultima volta. Succede quando ti ritrovi da solo con i tuoi pensieri. Molte cose ti scivolano fuori dalla testa mentre ti ritrovi seduto a calibrare mirini. Quell'M4 era uno splendore, me lo hanno tolto dalle mani in un attimo. Un Bear è passato da qui di recente, si fa chiamare Sniper, o qualcosa del genere. Ha bisogno di un fucile da cecchino Lobaev Saboteur, con un' ottica e un mirino laser, un rinculo minore di 400, comodità maggiore di 20 ed un peso minore di 6,6Kg. Ha detto che ne ha bisogno per l'utilizzo oltre i 2000 metri. Il tizio mi sembra molto serio quindi, fai del tuo meglio per renderla una arma professionale.",
         "5ac244f386f7741356335af6": "A volte penso che alla fine non è un male se mi ritrovo bloccato qua a Tarkov. L'intero mondo sembra essere partito con un biglietto di sola andata per l'inferno, uno spalancato, freddo abisso. Ogni cosa non ha più senso. Le persone, i valori in cui credono, i loro pensieri e anche i loro obiettivi. Non conoscono più la gioia di vivere, il lavoro, avere dei figli. Sono tutti stanchi dell'illusione sulle proprie scelte di tutto quello che hanno, da avere un lavoro alla scelta sè comprare pacchetti di sigarette blu o rosse. Sta succedendo ovunque in ogni angolo del mondo. Alla fine, qui a Tarkov, siamo almeno onesti con noi stessi. Vediamo tutto in un modo già realemente esagerato, senza valori falsati, quando non solo sappiamo decidere quale detersivo è meglio per rimuovere le macchie dal bucato, ma anche come tenersi al caldo durante la notte e sapere dove cercare le munizioni per eliminare un parassita che sta minando la tua vita. Solo grazie a questo e soprattutto in un tipo di società onesta come la nostra, le persone mostrano il loro vero io. Cosa ne pensi? Ok, grazie per essermi stato ad ascoltare. Alcuni tizi stanno chiedendo un M4 completamente accessoriato. Hanno bisogno di un silenziatore, un caricatore esteso a 60 colpi, una ergonomia sopra i 51 e un rinculo meno di 300. Particolare attenzione al peso che non superi i 3.8 Kg con un mirino di gittata di 800 o superiore.",
         "5ac3463486f7741d6118b985": "Proprio come previsto, nel caos, gli oggetti di valore potrebbero essere proprio sotto il naso di tutti e nessuno comunque se ne accorgerà minimamente",
         "5ac244ce86f7741356335af0": "Sei abile nel sotterfugio? Non abbastanza immagino, perché il Cecchino non ti trovi. Mi sento un po' come quel ragazzo, come si chiama? Brendan mi pare. Mi stavo domandando... dove sono finiti tutti i grandi eroi del passato, che hanno suscitato tanta ammirazione? Perché si sono rivelati così vuoti? Perché ora, con questo caos in giro, gente come il Cecchino è diventato uno di questi eroi? Perché in passato abbiamo ignorato questi mastini da guerra, mentre ora nè cerchiamo con così tanto fervore una possibile amicizia? Cosa ne pensi al riguardo? Nel mentre ho un altro ordine, per un R11 RSAS. Dovrebbe avere una distanza di puntamento di almeno 1500 o superiore. Un peso di 6,5 kg o meno e inoltre necessiterebbe anche un silenziatore, un'ergonomia superiore a 21 e un rinculo inferiore a 350.",
         "5ac345e886f7741d632339f3": "Qualcuno ha appena deciso di portare al ribasso il mercato, facendo circolare una bella somma di Bitcoin. È accaduto così spesso che la TARGox ha iniziato ad accettare offerte dieci volte più economiche del loro valore di mercato. La coda della offerte si continuava a riempire sempre più con quelle più economiche. Sono riuscito per caso ad acquistarne circa duecento. Adesso il prezzo è tornato alla normalità come se non fosse successo niente. Dobbiamo riuscire a controllare il mercato con questa situazione attuale favorevole. Già conosci Factory vero? Ci sono alcune schede elettroniche di controllo là. Per trovarle, dovresti riuscire a notare delle luci rosse di emergenza. Portati dietro un paio di strumenti e ripara i pannelli mentre io lavorerò sul raffreddamento.\n",
         "5ac345e886f7741d632339f0": "Sei stato più veloce di quanto pensassi, ho quasi finito con il raffreddamento\n",
         "5ac244ce86f7741356335aed": "Amo i proiettili 7.62, sono un buon calibro",
-        "5ac2437986f774124836841e": "Quando ero bambino le persone erano solite dire \"non è la destinazione ad essere importante, ma il viaggio.\" Ma se la destinazione siamo noi stessi? Che cosa sai di quando usare al meglio i tuoi riflessi o ad esempio quanti colpi ti rimangono nel caricatore? Mi sembrano affermazioni particolarmente vere, quando sei costretto a sopravvivere ad aggrapparti a questo mondo con tutte le tue forze. Ho bisogno di un MP5, con caricatore esteso da 50 colpi, un silenziatore, una torcia tattica e una gittata maggiore di 200. Una maneggevolezza sopra i 45 e un rinculo minore ai 150, con un peso massimo pari a 3,8Kg. Quindi decidi... che cosa è più importante per te stesso? il viaggio o la destinazione.?",
+        "5ac2437986f774124836841e": "Quando ero bambino le persone erano solite dire \"non è la destinazione ad essere importante, ma il viaggio.\" Ma se la destinazione siamo noi stessi? Che cosa sai di quando usare al meglio i tuoi riflessi o ad esempio quanti colpi ti rimangono nel caricatore? Mi sembrano affermazioni particolarmente vere, quando sei costretto a sopravvivere ad aggrapparti a questo mondo con tutte le tue forze. Ho bisogno di un MP5, con caricatore esteso da 50 colpi, un silenziatore, una torcia tattica e una gittata maggiore di 200. Ergonomia sopra i 45, un rinculo minore ai 250, con un peso massimo pari a 3,8Kg. Quindi decidi che cosa è più importante per te stesso, il viaggio o la destinazione.",
         "5ac3461486f7741d6224abb8": "Dovrebbe essere sufficiente per iniziare",
         "5ac244f386f7741356335af3": "L'arma della democrazia... Grazie.",
         "5ac3479686f774288030819b": "Pavel Yegorovich è uno dei tanti che sono rimasti. Mi chiedo se questa scelta è stata forzata dal suo essere un militare o solo perchè non ha trovato ancora il tempo di partire.",
@@ -2854,7 +2876,7 @@
         "5ac3479686f774288030819e": "Non mi piace fingere, anche se tutti noi lo facciamo. Qualche volta per sopravvivere, altre volte perchè abbiamo soltanto paura. Sai, io non sono mai stato un tipo loquace, specialmente con gli estranei, ma sembri un bravo ragazzo. Se riuscirai ad ottenere la mia fiducia, penso che potrai venire a patti con chiunque. Dopo tutto, soltanto i rapporti personali ci permettono di sopravvivere oggi. Parlando con Pavel Yegorovich, se lui si fida di te, può darsi che poi preparerò quella fornitura di polvere da sparo.",
         "5ac346ee86f7741d6224abcd": "Stavo pensando a ciò di cui abbiamo parlato l'ultima volta. Le persone sono veramente divenute più gentili con lo sviluppo della civiltà non trovi? Vanno veramente mano nella mano? Tutto questo tempo, dove crediamo ci sia civiltà, la vita è diventata più confortevole, più semplice. C'erano sempre meno problemi di sicurezza e di alimentazione. È facile essere umani quando niente ti minaccia.\nLa risposta a queste domande cel'avevo davanti agli occhi. La situazione a Tarkov è l'esempio lampante di quanto siamo diventati gentili.\nQuando abbiamo dovuto affrontare il problema della sopravvivenza è uscito che le persone decenti non sono più comuni di 500 anni fa.\nForse anche meno. Ti senti un po' uno di loro? Ok, lascia stare, non pensarci. Mi servi per fare una cosa. Dovrai ricordarti alcune informazioni che ti procurerò a memoria; quindi fai pratica con la mente e memorizzati tomi di informazioni, ti contatterò più tardi.",
         "5ac3477a86f7742880308197": "Un giorno ci sbarazzeremo per sempre di quella mano invisibile che ogni giorno ci prende e ci usa come dei badge e che ci ha portato a tutto questo casino, senza escludere una possibile grande guerra. Sembrerebbe effettivamente che tutti questi eventi ci porteranno a quella fine. Io ho lavorato a Tarkov presso l'impianto chimico come un normalissimo capo settore. Erano bei tempi, tutti lo pensavano, me compreso. Ora è pieno di Scav, briganti e fuorilegge. Vorrei capire quali ancora dei locali di Factory sono usufruibili e quali no, va e trova quali delle varie uscite sono rimaste accessibili.",
-        "5ae327d286f7745d3a7704be": "L'ho chiamata Lusya, la rete neurale intendo. Se rimango in silenzio si comporta molto bene, addirittura mi ricorda persino di dormire quando effettivamente dovrei, ma nel momento in cui inzio a parlare, prova a distrarmi, mettendo della musica o cose del genere. Comunque l'ho allenata con delle frasi prese da Film perchè sembrerebbero molto più appropriate anche se sinceramente a mio modesto parere non lo sono. Dovrò pensare quali sono gli stimoli migliori per imitare le persone reali, piuttosto che una società e i suoi stereotipi. Ma come sempre sto tergiversando. Assembla un AK-105 con un silenziatore e un caricatore da 60. Come parametri deve avere: una distanza di puntamento minore di 800, un' ergonomia sopra i 48, un rinculo meno di 550 è un peso di 4.8kg o inferiore. E come sempre deve rimanere compatta con al massimo 8 cartucce.",
+        "5ae327d286f7745d3a7704be": "L'ho chiamata Lusya, la rete neurale intendo. Se rimango in silenzio si comporta molto bene, addirittura mi ricorda persino di dormire quando effettivamente dovrei, ma nel momento in cui inzio a parlare, prova a distrarmi, mettendo della musica o cose del genere. Comunque l'ho allenata con delle frasi prese da Film perchè sembrerebbero molto più appropriate anche se sinceramente a mio modesto parere non lo sono. Dovrò pensare quali sono gli stimoli migliori per imitare le persone reali, piuttosto che una società e i suoi stereotipi. Ma come sempre sto tergiversando. Assembla un AK-105 con un silenziatore e un caricatore da 60. Come parametri deve avere: una distanza di puntamento minore di 800, una ergonomia sopra i 48, un rinculo meno di 550 è un peso di 4.8kg o inferiore. E come sempre deve rimanere compatta con al massimo 8 cartucce.",
         "5ae44bfe86f7744d733e560c": "Benvenuto in squadra, amico.",
         "5ae327d286f7745d3a7704bb": "Sono riuscito a trovare un modo per allenare il network! Si, l'AK va bene.",
         "5ae44bfe86f7744d733e560f": "Che giornata avventurosa! E che sguardo da duro amico, chi ti ha reclutato le forze speciali? il corpo militare? Vabbè chi se ne frega, non ha importanza. Non fraintendermi, non sono contro i PMC o i mercenari, è solo che la situazione in cui ci troviamo, l'attuale stato in cui versa la città è una merda totale. Quindi immagino che tu sia per fare affari con me? Be' come prima cosa devo capire chi sei, abituarmi alla tua presenza, capisci? Iniziamo con il commercio e vediamo come va prima di parlare di veri affari.",
@@ -2862,9 +2884,9 @@
         "5ae3272086f77444fd36f5e3": "Cosa importante, la comodità, importante in questo caso quanto lo è per le scarpe",
         "5ae44dd386f7744f1a7eb65d": "Hai una mira incredibile, quasi quanto un cecchino.",
         "5ae326bc86f7742a41359302": "Buon'arma, ottimo assemblaggio",
-        "5ae3272086f77444fd36f5e6": "Secondo te, tutte le sofferenze che hanno colpito gli abitanti della nostra città sono il risultato delle azioni della società stessa, oppure è tutto pilotato e questo è solo l'inizio? Ci penso spesso, da quando è passato di qua il tizio con il fulmine in faccia. Sono convinto che anche se ci fosse una mano invisibile a pilotare tutto questo, la nostra società se lo è meritato. Con le nostre azioni, comprando scarpe da ginnastica o anche solo barbabietole, abbiamo supportato coloro che sì, hanno costruito laboratori ed imprese, ma solo per poi usarle per gettarci negli abissi. Ok, sto farneticando di nuovo. Portami un AKM con un'impugnatura anteriore Fortis, un soppressore ed un caricatore da 30 della Magpul. Deve avere un' ergonomia superiore a 45, un rinculo inferiore a 350 e una gittata superiore agli 800 metri.",
-        "5ae3277d86f7745b4246b391": "Ho a disposizione due reti neurali, una riconosce le faccie e le compara con quelle presenti sul database, l'altra monitorizza i commerci fatti con le cryptovalute e reagisce di conseguenza. Oggi ho deciso di crearne un'altra, che misura la temperatura, l'umidità, la pressione e gli altri parametri del mio nascondiglio, e tra l'altro reagisce al mio umore. Vediamo come si comporterà una volta attiva. C'è un ordine per un AKS-74N con componenti Zenit. Monta una ergonomia di 55, un rinculo minore di 500 e che possa contenere al massimo 8 cartucce. Ma la cosa più importante è l'impugnatura, un calcio PT-3, con copri polvere e freno di bocca Zenit, in pratica tutte parti Zenit. Forse lo donerò al l'ex cittadino di San Pietroburgo.",
-        "5ae3280a86f77444fc552709": "Mentre ero occupato con la rete, ho iniziato a domandarmi quanto noi umani, siamo realmente differenti da essa e quando riusciremo, se mai ci riusciremo, a scambiare i nostri cervelli con quelli di un sistema elettronico. Tu cosa ne pensi, tutto questo accadrà prima o poi? Io penso di si, molto presto, ancora non sappiamo quali processi si verifichino all'interno delle reti neurali, c'è solamente un segnale in entrata e il risultato delle sue azioni, e come lui stesso impara seguendo istruzioni attraverso le sue stesse regole, cablando di continuo i suoi collegamenti neurali al suo interno. Quanto è veramente differente rispetto a noi? Vorresti vivere in un mondo dove solo la tua mente e la tua immaginazione limitino le tue azioni? In verità io penso che vivere in un mondo del genere, può non essere meglio rispetto a vivere nel nostro, soprattutto se non ci sono obiettivi e da dove questi ultimi potrebbero arrivare, se tu sei immortale e onnipotente... Questa volta abbiamo bisogno di un calcio Shock per AS VAL. GL, un dispositivo tattico ANPEQ-15, un visore notturno NSPU-M e un caricatore da 30 colpi. Un'ergonomia superiore i 34 e un rinculo inferiore a 250.",
+        "5ae3272086f77444fd36f5e6": "Secondo te, tutte le sofferenze che hanno colpito gli abitanti della nostra città sono il risultato delle azioni della società stessa, oppure è tutto pilotato e questo è solo l'inizio? Ci penso spesso, da quando è passato di qua il tizio con il fulmine in faccia. Sono convinto che anche se ci fosse una mano invisibile a pilotare tutto questo, la nostra società se lo è meritato. Con le nostre azioni, comprando scarpe da ginnastica o anche solo barbabietole, abbiamo supportato coloro che sì, hanno costruito laboratori ed imprese, ma solo per poi usarle gettarci negli abissi. Ok, sto blaterando di nuovo. Portami un AKM con un'impugnatura anteriore Fortis, un soppressore ed un caricatore da 30 della Magpul. Deve avere un' ergonomia superiore a 45, un rinculo inferiore a 350 e una gittata superiore agli 800 metri.",
+        "5ae3277d86f7745b4246b391": "Ho a disposizione due reti neurali, una riconosce le faccie e le compara con quelle presenti sul database, l'altra monitorizza i commerci fatti con le cryptovalute e reagisce di conseguenza. Oggi ho deciso di crearne un'altra, che misura la temperatura, l'umidità, la pressione e gli altri parametri del mio nascondiglio, e tra l'altro reagisce al mio umore. Vediamo come si comporterà una volta attiva. C'è un ordine per un AKS-74N con componenti Zenit. Monta una ergonomia di 55, un rinculo minore di 500, che possa contenere al massimo 8 cartucce. Ma la cosa più importante è l'impugnatura, un calcio PT-3, un copri polvere, freno di bocca Zenit, in pratica tutte parti Zenit. Forse lo donerò al l'ex cittadino di San Pietroburgo.",
+        "5ae3280a86f77444fc552709": "Mentre ero occupato con la rete, ho iniziato a domandarmi quanto noi umani, siamo realmente differenti da essa e quando riusciremo, sè mai ci riusciremo, a scambiare i nostri cervelli con quelli di un sistema elettronico. Tu cosa ne pensi, tutto questo accadrà prima o poi? Io penso di si, molto presto, ancora non sappiamo quali processi si verifichino all'interno delle reti neurali, c'è solamente un segnale in entrata e il risultato delle sue azioni, e come lui stesso impara seguendo istruzioni attraverso le sue stesse regole, cablando di continuo i suoi collegamenti neurali al suo interno. Quanto è veramente differente rispetto a noi? Vorresti vivere in un mondo dove solo la tua mente e la tua immaginazione limitino le tue azioni? In verità io penso che vivere in un mondo del genere, può non essere meglio rispetto a vivere nel nostro, soprattutto se non ci sono obiettivi e da dove questi ultimi potrebbero arrivare, se tu sei immortale e onnipotente... Questa volta abbiamo bisogno di un calcio Shok AS VAL. GL, un Dispositivo Tattico ANPEQ-15, un visore notturno NSPU-M e un caricatore da 30 colpi. Un'ergonomia superiore i 34 e un rinculo di circa 250 massimo.",
         "5ae3277d86f7745b4246b38e": "Lascia pure sulla cassa, grazie",
         "5ae3280a86f77444fc552706": "Afferra la chiave, ci sta che si riveli utile ad Interchange",
         "5ae44ffe86f774149f15f4ec": "Sai una cosa fratello? gli scarti avranno sempre un valore; guerra o non guerra, le persone compreranno sempre quella spazzatura. Ultra aveva un sacco di roba di marca, la stessa roba che gli permetteva di accaparrarsi con facilità i clienti; anche io potrei usare le stesse cose prese da li. Vai e dai un occhio veloce, controlla che non ci sia qualcosa rimasto che ancora non è stato buttato via. Non sprecare il tuo tempo a rovistare nei cestini ma focalizzati soltanto sulla roba di marca.",
@@ -2903,7 +2925,7 @@
         "5af5886186f774153d712bb8": 123,
         "5af5886186f774153d712bb7": 123,
         "5b486ce586f7744882493785": "Spero che tu non abbia detto a nessuno dello scopo per cui è stato costruito questo MPX.",
-        "5b486ce586f7744882493788": "Il tempo stringe... nel mentre un tizio ci ha contattato per chiarire i suoi affari con il Dealmaker. Quest'ultimo è tutt'oggi operativo da qualche parte nei dormitori della Factory circondato dai suoi scagnozzi. È qui che entri in ballo tu, assemblagli un po' di MPX che abbiano un'impugnatura a pistola Skelettonized AR-15, un Annihilator flash hider, una torcia tattica Steiner LAS/TAC 2, un mirino per una distanza di avvistamento di 300m o più ed un'ergonomia superiore a 52. Il peso deve essere inferiore ai 4 kg, mentre il rinculo invece meno di 200. Ti avviso, non proferire parola con nessuno del perché ne hai bisogno. Il Dealmaker non sarà felice di venirlo a sapere, so inoltre che i suoi ragazzi son ben addestrati nel combattimento, servirono nell'esercito prima di lavorare a Factory.",
+        "5b486ce586f7744882493788": "Il tempo stringe... nel mentre un tizio ci ha contattato per chiarire i suoi affari con il Dealmaker. Quest'ultimo è tutt'oggi operativo da qualche parte nei dormitori della Factory circondato dai suoi scagnozzi. È qui che entri in ballo tu, assemblagli un po' di MPX che abbiano un'impugnatura a pistola Skelettonized AR-15, un Annihilator flash hider, una torcia tattica Steiner LAS/TAC 2, un mirino per una distanza di avvistamento di 300m o più ed un'ergonomia superiore a 52. Il peso deve essere inferiore ai 4 kg, mentre il rinculo minore di 250. Ti avviso, non proferire parola con nessuno del perché ne hai bisogno. Il Dealmaker non sarà felice di venirlo a sapere, so inoltre che i suoi ragazzi son ben addestrati nel combattimento, servirono nell'esercito prima di lavorare a Factory.",
         "5b486d0e86f7744f4b12d792": "Voglio provare a insegnare a Lusya a distinguere fra la verità e le menzogne, se fosse accurata almeno al 90%, sarebbe interessante ascoltare tutti quei politici e pezzi grossi della TerraGroup, che proprio ieri si gongolavano deila nobiltà dei loro obbiettivi e parlavano di benefici per la nostra zona economica e del radioso futuro che avevamo davanti. Quanto di tutto questo erano solo bugie? Io penso tutte. C'è una richiesta per un AKMN edizione MOE, ci dovresti montare un paramano, il calcio e l'impugnatura della MOE. Tutto di colore nero. In più, monta anche un freno di bocca Rotor 43 e un'impugnatura tattica Magpul M-LOK AFG. Il fucile deve avere un rinculo inferiore a 350, un' ergonomia maggiore di 47 e un peso minore di 5 kg, con una gittata di 500.",
         "5b486d3e86f7743780259fd1": "Comunque per quanto riguarda il Cecch... Dima, non una parola con nessuno, ma penso che tu mi hai già capito.",
         "5b486d3e86f7743780259fd4": "Questo è per il Cecchino; da una settimana circa è da qualche parte a Woods a dare la caccia ai cattivi, a giudicare dal fatto che si è preparato uno zaino infernale con MRE, acciarino, batterie e acqua. Lo ha lasciato da me per ora. Ha richiesto un M1A modificato con un supporto Ultimak M8, un' ottica notturna 7-35-56, un mirino reflex T1, un device tattico HOLOsun. Inoltre un'ergonomia sopra i 20, un rinculo sotto i 400 e un peso totale di 7.3 kg o meno.",
@@ -2916,7 +2938,7 @@
         "5b486e2a86f7744a08514b1c": "Dal profondo del mio cuore. Farò la consegna.",
         "5b486c9386f7744a08514b1b": "Un po' di tempo fa, incontrai il proprietario della Kiba Arms, siamo stati insieme anche a Banya, anche se non mi sentivo particolarmente a mio agio con lui. Pensa che si ruppe addirittura una gamba mentre cercava di tuffarsi dal molo. Il buontempone sognava di allestire un campo di Soft Air. Sembrava che potesse un giorno vedere la luce a Tarkov, il più grande e famoso campo di battaglia di Soft Air di tutti i tempi, con una sola differenza: qui moriresti e perderesti tutto ricevendo un solo colpo singolo. Assemblami un AK-102, con un silenziatore Rotor 43, un'impugnatura tattica Magpul AFG OD, e una torcia elettrica Zenit. L'ergonomia deve essere superiore a 50, un rinculo inferiore a circa 500, un mirino ottico di 500 o più. Assicurati che non immagazzini più di 8 cartucce.",
         "5b486d0e86f7744f4b12d78f": "Grazie, Sono un po' occupato adesso, ci vediamo dopo.",
-        "5b486d8686f77450c05449c9": "Quanto pensi che costi la vita umana? Non molto credo. Ma ancor più sorprendente è il giro che ruota sull'arte contemporanea. Il costo delle opere d'arte di rinomati artisti aumenta di valore anno dopo anno. Hanno del talento, ma oggi sembra che, più diamo importanza agli oggetti, più che con il tempo tutto poi diventerà per essere definito arte. Potrebbe essere un'opera di Grotko, un urinatoio abbandonato o un mucchio di spazzatura. Comunque per come la vedo io, le vere opere d'arte sono le armi, iniziando con quelle corpo a corpo, già riconosciute a livello planetario e già presenti in molti musei, fino ad arrivare agli storici AK o M4, belli così come sono. Ma le armi solo successivamente diventano vera e propria arte, quando diventano uniche, pezzi unici e rari, nelle mani di chi sa veramente usarle, modificandole per i propri bisogni, creando un vero pezzo da novanta, da esposizione. Portami questo pezzo d'arte, un M4A1 con un silenziatore FDE NT4, un paramano MK con lunghezza del fucile di 10, un mirino termico, e un caricatore da 60 colpi. L'ergonomia dovrebbe essere non minore di 48, il rinculo meno di 250 e un peso totale di 5 kg o meno.",
+        "5b486d8686f77450c05449c9": "Quanto pensi che costi la vita umana? Non molto credo. Ma ancor più sorprendente è il giro che ruota sull'arte contemporanea. Il costo delle opere d'arte di rinomati artisti aumenta di valore anno dopo anno. Hanno del talento, ma oggi sembra che, più diamo importanza agli oggetti, più che con il tempo tutto poi diventerà per essere definito arte. Potrebbe essere un'opera di Grotko, un urinatoio abbandonato o un mucchio di spazzatura. Comunque per come la vedo io, le vere opere d'arte sono le armi, iniziando con quelle corpo a corpo, già riconosciute a livello planetario e già presenti in molti musei, fino ad arrivare agli storici AK o M4, belli così come sono. Ma le armi solo successivamente diventano vera e propria arte, quando diventano uniche, pezzi unici e rari, nelle mani di chi sa veramente usarle, modificandole per i propri bisogni, creando un vero pezzo da novanta, da esposizione. Portami questo pezzo d'arte, un M4A1 con un silenziatore FDE NT4, un paramano MK con lunghezza del fucile di 10, un mirino termico, e un caricatore da 60 colpi. L'ergonomia dovrebbe essere non minore di 52, il rinculo meno di 250 e un peso totale di 5 kg o meno.",
         "5b486ddf86f7744ba00f2234": "Il meccanico l'ha chiesto, lo spedirò a lui in giornata.",
         "5b48704286f7744a14343905": "Tutta questa tecnologia non è chiaramente per me, l'immagine è velata e il segnale è una merda, ma ho già notato alcuni “ratti grassi”. Grazie, grande aiuto!",
         "5b486e8e86f77448824937ad": "Accidenti. Impressionante, grazie",
@@ -2996,8 +3018,8 @@
         "5c13a99d86f77463932d9bc5": "Mi sono recentemente imbattuto su alcuni device interessanti... Il primo sembra essere un'unità di archiviazione di qualche nazionalità straniera, mentre il secondo è un lettore di qualche tipo. Pezzi comunque estremamente interessanti ma la cosa più importante è che questa è la prima volta cui riesco a metterci forse le mani sopra. Ci sta che qualcuno sia riuscito a importarli eludendo i blocchi stradali o a rubarli da un magazzino segreto. Ad una prima analisi non sembrano fatti in casa, quindi direi che mi faranno fruttare molti soldi. Capirai che abbiamo davanti manifattura di prim'ordine, quindi non mi affiderei a qualche rivenditore, sarebbe troppo sciocco. Se tu me li porterai, vedrai che ci guadagneremo entrambi.",
         "5c1a4e1286f774072447df2b": "Giovanotto non sei andato vero a {location}? E' un'area riservata e ad oggi è molto pericolosa. Faresti meglio a lasciar perdere e dimenticare la tua roba che hai lasciato lì.",
         "5c1a533f86f77438bd2bfc6d": "Tutto ciò che è stato perso nel territorio della Terra Group è considerato perso per sempre. Sono comunque contento di vederti vivo e vegeto.",
-        "5c1a4d5286f77431700f6134": "Quindi, per come la vedo io puoi dire addio alla tua attrezzatura persa nella zona limitata della Terra Group. La mia gente non visita di proposito quelle zone, quindi ho paura che dovrai accettare il fatto di aver perso tutto.",
-        "5c1a4cc786f77435a060f47a": "Dove sei riuscito a perdere la tua roba? I miei uomini non sono riusciti nè a trovare la tua spazzatura, né la maledetta posizione in {location}.",
+        "5c1a4d5286f77431700f6134": "Quindi, per come la vedo io puoi dire addio alla tua attrezzatura persa nella zona off-limit della Terra Group. La mia gente non visita di proposito quelle zone, quindi ho paura che dovrai accettare il fatto di aver perso tutto.",
+        "5c1a4cc786f77435a060f47a": "Dove sei riuscito a perdere la tua roba? I miei uomini non sono riusciti nè a trovare la tua spazzatura, né la maledetta posizione a {location}.",
         "5c1a52c686f77431740a3839": "Sebbene abbia chiesto ai miei uomini di cercare la tua roba e nonostante tu l'abbia perduta nella zona di {location}, non hanno ancora fatto ritorno e ho perso pure i contatti.",
         "5c1a4ccf86f774072447defe": "Ho mandato i miei scagnozzi a cercare a {location}, ma nessuno è più tornato. Sembrerebbero scomparsi nel nulla. ",
         "5c5d950686f7747a777ade0f": "Ah, sei tu? Risolutore locale mh? Si, ti conosco, e ti conviene imparare una cosa. Non sei l'unico. Ci sono altre persone la fuori, potrebbero anche essere più abili di te. Questi tizi camminano in giro e pensando agli affari loro lasciano ogni tanto in giro della roba. Il fatto è che quella roba mi serve. So che è difficile da trovare, ma la ricompensa non ti deluderà.",
@@ -3023,7 +3045,7 @@
         "5d25dbd086f77443e625e383": "Ti dico una cosa. Se il tuo avversario è cieco non può farti nulla. Non ha importanza che tipo di equipaggiamento indossa. La stessa cosa per te. Solo delle buone capacità e una grande confidenza in sè stessi possono venire in aiuto per uscire da certe situazioni.",
         "5d25d4cb86f77443e55d2f76": "Devi sempre mantenere l'auto controllo. A prescindere dalla situazione, non importa se hai preso un proiettile o semplicemente sei ubriaco... Perdi il controllo o ti fai prendere dal panico? muori.",
         "5d25fd4c86f77409de05bba9": "Come ho letto in un articolo l'occhio umano può abituarsi all'oscurità. Sai, sono andato a controllare e mi sono rotto quasi una gamba in un frangi vento. A quanto pare sono un po' troppo vecchio per una tale metamorfosi. Ma tu invece sei nel pieno della vita. Addestrarsi nella visione notturna può aiutarti molto nei nostri difficili compiti. Prenditi cura di questa cosa.",
-        "5d25fd4c86f77409de05bba6": "Quanti ne hai detto che ci sono la? Dieci? Tutti senza un \"device\"? Alla fine il cacciatore notturno è uscito allo scoperto.",
+        "5d25fd4c86f77409de05bba6": "Quanti hai detto che ce ne sono la? Tutti senza un \"device\"? Alla fine il cacciatore notturno è uscito allo scoperto.",
         "5d26042386f77443ff46d19d": "Ho perso il conto di quanta merda ho visto facendo il guardia caccia. Così tante persone differenti si perdono nei boschi che nemmeno ti immagini. Alcuni di loro sono riusciti ad uscirne vivi e vegeti, altri non sono stati poi così fortunati. Devi avere dei gran coglioni per riuscire ad uscirne vivo.",
         "5d26042386f77443ff46d19a": "Come usava dire Aleksandr Suvorov? “Addestramento duro, combattimento facile; addestramento facile, combattimento duro”. Questa abilità ti verrà in aiuto, fidati.",
         "5d260f8686f77469f04444b5": "Bene, combattente, è tempo di ripulire Tarkov da tutta questa immondizia. Tu ed io abbiamo tanta strada da fare e tu hai tanto da imparare ancora. Bene, perchè non iniziare dall'area dell'impianto chimico? Un sacco di cose interessanti ci vengono prodotte, inoltre ci ho lavorato per metà anno come capo della sicurezza, fino a che non è arrivata la TerraGroup. Da quel giorno sono iniziate ad accadere cose veramente strane, te lo sto dicendo perchè vidi che smisero di fare detergenti e si misero a produrre qualcos'altro, cose di cui non sappiamo niente. Quando a Tarkov c'è stato il boom di illegalità, la Terragroup ha abbandonato l'edificio e i predoni hanno iniziato a smembrare letteralmente Factory, ricordo quel posto meglio della mia casa. Per farla breve, tutto è sbagliato. Va e da una lezione a quei banditi. Se qualcosa di veramente utile è rimasto, è sicuramente nell'area degli uffici, non ti sbaglierai. Fai che i predoni perdano l'orientamento, almeno per un po'.",
@@ -3059,7 +3081,7 @@
         "5d2f378786f774169b7e0069": "Ehilà guerriero! Come stai? Sempre a far del bene? Ascolta, mi è stato richiesto di svolgere un compito insolito, in breve il Meccanico, mi ha chiesto di provvedere a relizzare un marchingegno per casa sua e questo \"aggeggio\" è talmente complesso che richiede buona attrezzatura elettronica. Da quel che so, purtroppo non c'è un luogo in città dove si può raccattare questo tipo di materiale... dannazione. Fortunatamente però, voci di corridoio, dicono che da qualche parte nei laboratori della Terragroup se ne potrebbero trovare. So che è troppo rischioso mandarti direttamente nei laboratori, però dovresti cercarmi delle Tessere Magnetiche di accesso. Mi aiuteresti? Si le tessere devono essere nuove di pacca, non quelle usate che puoi comprare dai commercianti.",
         "5d4bec6a86f7741e530d2c02": "Lo hai fatto veramente! Bene cazzo. Manterrò la mia parola. Eccoti la ricompensa.",
         "5d66912c86f774368f43a242": "Quelli sono dei fottuti diavolo di fucili! Bel Lavoro! Suppongo che per me sia giunta l'ora di dedicarmi alla produzione di armi da fuoco!",
-        "5d66912c86f774368f43a245": "Dai, su entra... Vuoi un po ' di tè? Ascolta, questo è l'affare. Presto ospiterò alcuni amici. Vorrei andare a caccia con loro, ma non c'è storia che regga che ce li porterò senza avergli dato dei SIGNORI fucili. Voglio che tu me ne procuri tre. Fucili che sarò felice di aggiungere alla mia collezione una volta che avremo finito con la caccia. Non preoccuparti per la ricompensa. Non ti deluderà. Ti scriverò una nota con i requisiti. Il rinculo deve essere meno di 600, una ergonomia di 50 e più e un'ottica March Tactical 3-24X42FFP",
+        "5d66912c86f774368f43a245": "Dai, su entra... Vuoi un po ' di tè? Ascolta, questo è l'affare. Presto ospiterò alcuni amici. Vorrei andare a caccia con loro, ma non c'è storia che regga che ce li porterò senza avergli dato dei SIGNORI fucili. Voglio che ci procuri un paio di bei fucili. Fucili che sarò felice di aggiungere alla mia collezione una volta che avremo finito con la caccia. Devi amare il tiro a lungo raggio. Ma prima, devi assicurarti che il fucile sia azzerato correttamente. Abbiamo il cliente che fa al caso nostro, il suo nome è Shturman. É in agguato intorno a una segheria su Woods, brutto bastardo. Non preoccuparti per la ricompensa. Non ti deluderà. Ti scriverò una nota con i requisiti per i fucili. (Remington M700 con ottica March Tactical 3-24x42 FFP)",
         "5d66914986f7743690020694": "Guarda chi abbiamo qui! Ciao! Ho sentito alcune voci che ci sono ancora un sacco di provviste di cibo nei depositi della vecchia base militare abbandonata. Inoltre dicono che tutt'oggi alcuni banditi bazzichino da quelle parti, dopo che il RUAF ha lasciato l'edificio. Fammi un favore, scovali e cerca anche l'ubicazione dei depositi; io poi farò in modo che la prossima volta che i banditi raggiungeranno quei posti si ritroveranno davanti uno spettacolo infernale.",
         "5d66914986f7743690020691": "Hanno già preso tutto? Merda, dobbiamo essere più veloci.",
         "5d6fb45f86f77449d825f9cc": "Quindi? hai deciso? Solo un paio di iniezioni. Qui e qui. Mantieni la calma, almeno per un paio di giorni rilassati e prendi le vitamine.",
@@ -3071,7 +3093,7 @@
         "5db82b8e8bf4c142f615e0d8": "Il pacchetto è stato aggiornato!\nTi ringraziamo per il supporto del progetto, e ti inviamo dell'equipaggiamento aggiuntivo!",
         "5dc5401c86f77469c5053043": "Già fatto? Ottimo lavoro! Aspetta un minuto, ho bisogno di marcare le dimensioni e devono capire come fare a farlo. Ma ehi, tu dovresti già saperlo, il materiale non è a buon mercato questi giorni!",
         "5dc5401c86f77469c5053046": "Bene, ecco come stanno le cose, abbiamo uno stronzo elegante al Mall Ultra, in agguato che fa incetta di ogni cosa che trova, sparando a chiunque si avvicini. Ho bisogno che tu ne ne sbarazzi e in fretta... una volta per tutte. La gente ne ha paura. Ti dirò di più, eliminalo dalla faccia della terra e ti procurerò un bel \"completo\" a cui darai un uso appropriato.",
-        "5e0653d486f774478e6132f3": "Molto bene guerriero, sei ancora sul pezzo in cerca di acquisire sempre nuova esperienza? Ammiro veramente i tipi così! Ecco a te un piccolo regalo!",
+        "5e0653d486f774478e6132f3": "Molto bene guerriero, sempre sul pezzo e pronto a nuove esperienze? Ammiro veramente i tipi così! Ecco a te un piccolo regalo!",
         "5e4c01bb86f774264f758301": "Dai, vieni, non c'è bisogno di rimanere impalato davanti all'entrata. Ho un affare per te. In questo momento sono un attimino impegnato con gli ordini, e pure quasi senza materiali. Me ne puoi raccattare da qualche parte? Voglio essere in grado di offrire qualcosa di nuovo per farlo. Non essere a buon mercato anche se. Made in.. beh, si sa dove. E sì, assicurarsi che quei materiali siano in buono stato. Sono abbastanza sicuro che ne puoi trovare un po' ai magazzini Ultra, se non ricordo male ne avevano un bel po' in passato. Buona fortuna",
         "5e4c013a86f774264f7582f3": "Ei fratello entra. Vuoi possedere qualcosa di fico? Ho una novità da mostrarti, non molto comune e soprattutto non gratis. Portami queste cose, e evita che arrivino consumate, anche perchè sono a corto di scorte e sono oberato di ordini e richieste. Prova a cercarli negli Ultra, in passato ne vendevano molte quel tipo, ma i predoni devono averle razziate in tutta Tarkov.",
         "5e4c01bb86f774264f7582fe": "Ce l'hai fatta? Ottimo lavoro. Torna più tardi, avrò un altro incarico per te.",
@@ -3086,7 +3108,7 @@
         "5eaab0193cf86b0e62795663": "Quindi ce l'hai fatta. Come va il tuo mal di testa? Hai le vertigini? Nausea? Non ti preoccupare, sono tutti effetti collaterali, dovrai pur pagare il prezzo per rimanere vivo e vegeto. Comunque ascoltami, ho alcuni consigli per ridurre questi effetti collaterali così che la prossima volta ti sentirai meglio.",
         "5ee5e6ba233a4f161e46b493": "Molto bene guerriero, hai imparato qualcosa di nuovo vero? Questa esperienza la risfrutterai in altre situazioni di guerriglia, ne sono sicuro, credi ad un vecchio soldato che di cose ne ha passate. Mi hai reso veramente felice, con il tuo successo mi hai riportato alla mente vecchi giorni di gloria e per questo ho un regalino per te.",
         "5ee5e6d812a2b34a4350bd53": "Sempre sul chi va la vero? Più che giusto se serve a non ripetere errori di altri. Ecco prendi questo, ti tornerà utile per i tuoi affari.",
-        "5ee5e7128a8d84455531b614": "Vedo che non perdi tempo invano. Conoscenza, fratello mio, non è solo necessaria per gli scienziati, ma anche per i soldati. È con questa tipologia che poi si diventa poi professionali. Ecco, prendi, potrebbe tornarti utile.",
+        "5ee5e7128a8d84455531b614": "Vedo che non perdi tempo invano. La conoscenza fratello mio, non è solo necessaria per gli scienziati, ma anche per i soldati. È con quest'ultima che poi si diventa poi professionali. Ecco, prendi, potrebbe tornarti utile.",
         "5ede5521fa6dc072ce15d6dc": "Quindi mi stai dicendo che è un rifugio con centro di comando? Le voci non mentono Mm? Dannazione! Manderò i miei uomini adesso. Ecco tieni questo. Come promesso.",
         "5ede5521fa6dc072ce15d6df": "Saluti soldato. Ecco l'affare, un uccellino mi ha detto che quegli ex militari che hanno rafforzato la sicurezza della base militare di Reserve, hanno scavato un passaggio per il bunker sotterraneo. Naturalmente, non l'hanno fatto con le proprie mani, ma hanno costretto gli scav a fare il lavoro al posto loro e molto probabilmente nessuno di quei poveri bastardi ce l'ha fatta. Comunque, non ho idea di che tipo di bunker sia. Ho ricavato qualche informazione e sembra che potrebbe essere il bunker di comando. Ma non sono sicuro che sia proprio quel bunker, o potrebbe essere un rifugio antiatomico per il personale della base. Non c'è motivo di mandare un gruppo di recupero solo per farli morire da quei predoni, per ora. Controlla quel sotterraneo e fammi sapere se vale la pena inviare un gruppo lì. La paga è buona.",
         "5ede569dfe4acc383071864b": "Ah ah, ecco qua, adesso mi è chiaro fome funziona. Può il bunker collegare tutti gli ambienti della base? Cazzo, come è ben progettato, con tutta la comodità del mondo si può raggiungere ogni parte della base sotto il naso di chiunque. Adesso è chiaro perché i predatori sono là, tutta la base è sotto controllo. Grazie, guerriero!",
@@ -3115,8 +3137,8 @@
         "5fd4c93f99cf630ebf4fabdf": "So, have you figured out what's what yet?  Here's the stuff, and keep your eyes open when you go out raiding. If you want to trade, come see me.",
         "5fdb3e50148b192e1a7463e2": "Significa che i miei ragazzi non ce l'hanno fatta e i convogli sono stati saccheggiati... In più dici un campo USEC nelle vicinanze? Che fregatura. Ma grazie per il lavoro.",
         "5fdb3e50148b192e1a7463e5": "Saluti, soldato. Ho un lavoro per te. Per farla breve, ho perso il contatto con uno dei miei gruppi, ed è stato un po' di tempo fa. Quando é successo il casino, li ho mandati nel bosco a prendere un carico. Temo che abbiano subito un'imboscata, l'ultima volta che li ho visti, hanno riferito che gli USEC si stavano avvicinando. Controlla se qualcuno è sopravvissuto. Avevano un BRDM, Bukhanka e un camion di qualche tipo, non ricordo esattamente che tipo. Penso che anche gli USEC si siano sistemati lì vicino.",
-        "600303b71448362c785bc3b2": "Of course I heard the air in the Woods tremble. Shturman got what he deserved. Don't stand still, you can buy new rifles now.",
-        "600303b71448362c785bc3b5": "Greetings! Come on in. I got a job for you. I just got a shipment of imported guns. The big ones, long-range, .338 caliber. And you know I'm a fan of that stuff. And there's another long-range shooter called Shturman. Deal with him, he's been a huge problem for a while now. And I'll give you an opportunity to buy those overseas elephant guns. Now move, I'm waiting to hear from you."
+        "600303b71448362c785bc3b2": "Naturalmente ho sentito l'aria nel bosco tremare. Shturman ha ottenuto quello che meritava. Non stare impalato, ora puoi acquistare nuovi fucili.",
+        "600303b71448362c785bc3b5": "Saluti! Entra. Ho un lavoro per te. Ho appena ricevuto una spedizione di armi importate. Quelle grandi, a lungo raggio, calibro .338. E sai che sono un fan di quella roba. C'è un altro cecchino chiamato Shturman. Tratta con lui, è stato un grosso problema fino adesso. E ti darò l'opportunità di comprare quelle pistole elefante d'oltremare. Ora muoviti, aspetto tue notizie."
     },
     "quest": {
         "5936d90786f7742b1420ba5b": {
@@ -3150,7 +3172,7 @@
             "name": "Sparatoria al picnic",
             "note": "",
             "conditions": {
-                "5cb31b6188a450159d330a18": "Neutralizza 15 scavs a Woods"
+                "5cb31b6188a450159d330a18": "Neutralizza 15 scav a Woods"
             },
             "description": "5abe61a786f7746ad512da47",
             "failMessageText": "5c3f046586f7741b10261462",
@@ -3162,8 +3184,8 @@
             "name": "Consegna dal passato",
             "note": "",
             "conditions": {
-                "59674fe586f7744f4e358aa2": "Lascia il contenitore nella sala svago a Factory, al 2 ° piano del 3 negozio",
-                "5968929e86f7740d121082d3": "Trova una cassetta protettiva nell'ufficio del direttore Tarcone nel terminale della dogana",
+                "59674fe586f7744f4e358aa2": "Lascia la valigetta nella sala svago a Factory, al 2° piano del negozio 3",
+                "5968929e86f7740d121082d3": "Trova la valigetta di sicurezza nell'ufficio del direttore Tarcone al terminale di Custom",
                 "5977784486f774285402cf52": "Sopravvivi ed esci da Factory.",
                 "5978b48b86f7746ef62ef859": ""
             },
@@ -3179,8 +3201,8 @@
             "conditions": {
                 "596762ec86f77426d3687a87": "Sopravvivi ed esci da Customs",
                 "5968941f86f7740d1570bbd2": "Trova la chiave nel dormitorio",
-                "5968943f86f7740d137ebfc2": "Trova la cartella protettiva 0031 in un dormitorio a Customs",
-                "5968948986f7740d121082d4": "Consegna la cartella protettiva 0031 a Prapor",
+                "5968943f86f7740d137ebfc2": "Trova la cartella sicura 0031 nel dormitorio a Customs",
+                "5968948986f7740d121082d4": "Consegna la cartella sicura 0031 a Prapor",
                 "5a3fbdb086f7745a554f0c31": "Ottieni l'accesso alla stanza chiusa negli uffici di Factory"
             },
             "description": "5abe61a786f7746ad512da49",
@@ -3219,7 +3241,7 @@
             "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "596760e186f7741e11214d58": {
-            "name": "Il Postino Pat, p. 2",
+            "name": "Il Postino Pat, p. 2°",
             "note": "",
             "conditions": {
                 "5968975586f7740e7266d974": "Consegna la lettera del messaggero alla Therapist."
@@ -3231,10 +3253,10 @@
             "location": "any"
         },
         "5967725e86f774601a446662": {
-            "name": "Percuotendo il cassiere",
+            "name": "Minacciando il cassiere",
             "note": "",
             "conditions": {
-                "5968981986f7740d1648df42": "Trova qualcosa di prezioso nella stanza 203",
+                "5968981986f7740d1648df42": "Trova qualcosa di prezioso nella stanza 203 dei dormitori",
                 "5968988286f7740d14064724": "Consegna l'oggetto a Prapor",
                 "5a3fc03286f77414d64f9941": "Accedi alla stanza 214"
             },
@@ -3258,7 +3280,7 @@
             "location": "any"
         },
         "59689ee586f7740d1570bbd5": {
-            "name": "Standard Sanitari, p. 1",
+            "name": "Standard Sanitari, p.1°",
             "note": "",
             "conditions": {
                 "59689f7586f7740d14064726": "Consegna l'analizzatore di gas alla Therapist.",
@@ -3286,7 +3308,7 @@
             "location": "56f40101d2720b2a4d8b45d6"
         },
         "5968eb3186f7741dde183a4d": {
-            "name": "Operazione Aquarius, p. 2",
+            "name": "Operazione Aquarius, p. 2°",
             "note": "",
             "conditions": {
                 "5968eb9b86f7741ddb481543": "Elimina 15 Scav a Customs"
@@ -3330,7 +3352,7 @@
             "name": "Piani di rifornimento",
             "note": "",
             "conditions": {
-                "596a0e7086f7741ddf17dbef": "Trova la cartella protetta nella segheria",
+                "596a0e7086f7741ddf17dbef": "Trova la cartella sicura nella segheria",
                 "596a0e8086f7741ddd6c104c": "Consegna la cartella alla Therapist",
                 "596a0eaf86f774576d4c957f": "Sopravvivi ed esci da Woods",
                 "596a113d86f7741ddd6c104d": "Un tipo di sabotaggio - successo."
@@ -3358,7 +3380,7 @@
             "name": "Merci standard",
             "note": "",
             "conditions": {
-                "596a1f0486f77456630ea4d2": "Trova in raid 15 scatolette di carne",
+                "596a1f0486f77456630ea4d2": "Trova in raid 15 lattine di carne in scatola",
                 "596a1f1586f77420d2328077": "Consegna le lattine alla Therapist"
             },
             "description": "5abe61a786f7746ad512da56",
@@ -3368,7 +3390,7 @@
             "location": "any"
         },
         "596a204686f774576d4c95de": {
-            "name": "Standard Sanitari, p. 2",
+            "name": "Standard Sanitari, p. 2°",
             "note": "",
             "conditions": {
                 "596a20ac86f7741ddf17dbf4": "Consegna l'analizzatore di gas alla Therapist",
@@ -3437,10 +3459,10 @@
             "location": "any"
         },
         "5979ed3886f77431307dc512": {
-            "name": "Cosa c'è nella unità flash?",
+            "name": "Cosa c'è nella chiavetta USB?",
             "note": "",
             "conditions": {
-                "5979ee2986f7743ec214c7a4": " Trova in raid due penne USB con dati al suo interno",
+                "5979ee2986f7743ec214c7a4": " Trova in raid due chiavette USB contenente dati",
                 "5979ee4586f7743ec214c7a5": "Consegnali a Skier",
                 "59819f0986f7744e6d0b7520": ""
             },
@@ -3468,7 +3490,7 @@
             "note": "",
             "conditions": {
                 "598f0c6386f7746c837802cc": "Uccidi 20 Scav a Customs",
-                "5b0e766b86f7746bfa618964": "Uccidi 25 Scavs a Customs"
+                "5b0e766b86f7746bfa618964": "Uccidi 25 Scav a Customs"
             },
             "description": "5abe61a786f7746ad512da5d",
             "failMessageText": "5ab0f32686f7745dd409f57e",
@@ -3484,7 +3506,7 @@
                 "5979fc9286f77426d702a0f5": "Consegnali a Skier",
                 "5a3fbbfd86f77459d52a16a8": "Trova il posto in cui dorme il Vice Capo della sicurezza"
             },
-            "name": "Chimica, p. 1",
+            "name": "Chimica, p.1°",
             "note": "",
             "description": "5abe61a786f7746ad512da5e",
             "failMessageText": "",
@@ -3493,7 +3515,7 @@
             "location": "56f40101d2720b2a4d8b45d6"
         },
         "597a0b2986f77426d66c0633": {
-            "name": "Chimica, p. 2",
+            "name": "Chimica, p. 2°",
             "note": "",
             "conditions": {
                 "597a0bb486f77426d66c0634": "Trova qualsiasi informazione che potrebbe aiutarti nell'indagine",
@@ -3508,7 +3530,7 @@
             "location": "56f40101d2720b2a4d8b45d6"
         },
         "597a0e5786f77426d66c0636": {
-            "name": "Chimica, p. 3",
+            "name": "Chimica, p. 3°",
             "note": "",
             "conditions": {
                 "597a15b386f774799e5cd152": "Trova una siringa di sostanze chimiche a Factory",
@@ -3521,12 +3543,12 @@
             "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "597a0f5686f774273b74f676": {
-            "name": "Chimica, p. 4",
+            "name": "Chimica, p. 4°",
             "note": "",
             "conditions": {
-                "59b242ea86f7741e6e0e7a86": "Marca il trasporto chimico con un segnalatore",
+                "59b242ea86f7741e6e0e7a86": "Marca il camion ce trasporta sostanze chimiche con un marcatore",
                 "59b95de686f77418457056ef": "Sopravvivi ed esci da Customs",
-                "5a3fbc9586f77459d52a16c4": "Trova un trasporto con i prodotti chimici"
+                "5a3fbc9586f77459d52a16c4": "Trova un camion che trasporta prodotti chimici"
             },
             "description": "5abe61a786f7746ad512da61",
             "failMessageText": "5ab0f32686f7745dd409f583",
@@ -3551,8 +3573,8 @@
         "597a171586f77405ba6887d3": {
             "conditions": {
                 "597a178786f774799e5cd155": "Sopravvivi ed esci da Customs",
-                "5998360886f77456936817f3": "Marca il trasporto chimico con un segnalatore",
-                "5a3fbec386f77413bd5fc20a": "Trova un trasporto con i prodotti chimici"
+                "5998360886f77456936817f3": "Marca il trasporto chimico con un marcatore",
+                "5a3fbec386f77413bd5fc20a": "Trova un camion che trasporta prodotti chimici"
             },
             "name": "Cliente importante",
             "note": "",
@@ -3566,10 +3588,10 @@
             "name": "Deposito BP",
             "note": "",
             "conditions": {
-                "59c128b986f77415037680df": "Marchia il serbatoio di carburante №1 con un tracciatore a Customs",
-                "59c128cc86f774189b3c84b5": "Marchia il serbatoio di carburante №2 con un tracciatore a Customs",
-                "59c128d886f77414fe7f1a64": "Marchia il serbatoio di carburante №3 con un tracciatore a Customs",
-                "59c128f386f774189b3c84bb": "Marchia il serbatoio di carburante №4 con un tracciatore a Customs",
+                "59c128b986f77415037680df": "Marca il serbatoio del camion cisterna №1 con un marcatore a Customs",
+                "59c128cc86f774189b3c84b5": "Marca il serbatoio del camion cisterna №2 con un marcatore a Customs",
+                "59c128d886f77414fe7f1a64": "Marca il serbatoio del camion cisterna №3 con un marcatore a Customs",
+                "59c128f386f774189b3c84bb": "Marca il serbatoio del camion cisterna №4 con un marcatore a Customs",
                 "5c92184386f7746afa2e7840": "Sopravvivi e lascia la zona"
             },
             "description": "5abe61a786f7746ad512da64",
@@ -3582,7 +3604,7 @@
             "name": "Il Punitore",
             "note": "",
             "conditions": {
-                "59674d5186f00443b872d5f7": "Uccidi 15 Scavs a Shoreline usando un'arma della serie AKM"
+                "59674d5186f00443b872d5f7": "Uccidi 15 Scav a Shoreline usando un'arma della serie AKM"
             },
             "description": "5abe61a886f7746ad512da65",
             "failMessageText": "5c76b8c886f77457e5444c95",
@@ -3591,7 +3613,7 @@
             "location": "5704e554d2720bac5b8b456e"
         },
         "59c50c8886f7745fed3193bf": {
-            "name": "Il Punitore. Parte 2.",
+            "name": "Il Punitore. 2° Parte.",
             "note": "",
             "conditions": {
                 "59c50f1686f77412ef2c01e7": "Consegna le maschere a Prapor",
@@ -3606,10 +3628,10 @@
             "location": "5704e554d2720bac5b8b456e"
         },
         "59c512ad86f7741f0d09de9b": {
-            "name": "Il Punitore. Parte 3.",
+            "name": "Il Punitore. 3° Parte.",
             "note": "",
             "conditions": {
-                "59674d5186f77446b852d5f7": "Uccidi 25 Scavs a Customs con AKS-74U"
+                "59674d5186f77446b852d5f7": "Uccidi 25 Scav a Customs con l'AKS-74U"
             },
             "description": "5abe61a886f7746ad512da67",
             "failMessageText": "5ab0f32686f7745dd409f58c",
@@ -3662,7 +3684,7 @@
             "location": "any"
         },
         "59ca264786f77445a80ed044": {
-            "name": "Il Punitore. Parte 4.",
+            "name": "Il Punitore. 4° Parte.",
             "note": "",
             "conditions": {
                 "59ca27f786f77445aa0ddc14": "Uccidi 10 PMC su Shoreline. È necessario indossare un passamontagna e un gilet scav",
@@ -3677,7 +3699,7 @@
             "location": "any"
         },
         "59ca29fb86f77445ab465c87": {
-            "name": "Il Punitore. Parte 5.",
+            "name": "Il Punitore. 5° Parte.",
             "note": "",
             "conditions": {
                 "59ca2c3086f77445aa0ddc15": "Consegna un fucile M4A1 a Prapor",
@@ -3695,7 +3717,7 @@
             "location": "any"
         },
         "59ca2eb686f77445a80ed049": {
-            "name": "Il Punitore. Parte 6.",
+            "name": "Il Punitore. 6° Parte.",
             "note": "",
             "conditions": {
                 "59ca2fba86f77445e4732b25": "Uccidi 15 operatori PMC. È necessario utilizzare fucili SVD",
@@ -3719,9 +3741,9 @@
         },
         "5a03153686f77442d90e2171": {
             "conditions": {
-                "5c9a17c686f7747dbe2da3c1": "Uccidi 7 Scavs a Shoreline con fucili calibro 12 alla testa"
+                "5c9a17c686f7747dbe2da3c1": "Uccidi 7 Scav a Shoreline con fucili calibro 12 colpendoli alla testa"
             },
-            "name": "Il tour della Spa. Parte 1",
+            "name": "Il tour della Spa. 1° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da70",
             "failMessageText": "5c6a780186f7742242420c05",
@@ -3735,7 +3757,7 @@
                 "5a0325f286f7744384509230": "Marca una strada sicura con un segnalatore",
                 "5a37d80986f774245c063b69": "Sopravvivi e lascia la zona"
             },
-            "name": "Il tour della Spa. Parte 2",
+            "name": "Il tour della Spa. 2° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da71",
             "failMessageText": "5c6a786c86f77425a93eb549",
@@ -3748,13 +3770,13 @@
                 "5a03282286f77456b91542ef": "Trova in raid un WD-40 100 ml",
                 "5a03289686f7745dbc6c5063": "Consegna un WD-40 da 100 ml",
                 "5a0328b086f77457a7099ea5": "Trova in raid 2 Detergenti per tergicristalli",
-                "5a0328cb86f77456b91543b8": "Consegna 2 detergenti Clin",
+                "5a0328cb86f77456b91543b8": "Consegna 2 detergenti per tergicristalli Clin",
                 "5a0328f586f774580168ced4": "Trova in raid 2 tubi corrugati",
                 "5a03290586f774584d1594c4": "Consegna 2 tubi corrugati",
                 "5a280b3c86f7741b16366337": "Trova in raid 2 flaconi di candeggina Ox",
                 "5a280b5486f7741f751bfeea": "Consegna 2 flaconi di candeggina Ox"
             },
-            "name": "Il tour della Spa. Parte 3",
+            "name": "Il tour della Spa. 3° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da72",
             "failMessageText": "5c6a78c186f77425b467b3fd",
@@ -3768,7 +3790,7 @@
                 "5a3ba65f86f7743af1475f11": "Trova i generatori nell'ala sinistra",
                 "5c94f65286f77455185027ee": "Sopravvivi e lascia la zona"
             },
-            "name": "Il tour della Spa. Parte 4",
+            "name": "Il tour della Spa. 4° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da73",
             "failMessageText": "5c6a78e086f77424b36ff635",
@@ -3781,7 +3803,7 @@
                 "5a044a6c86f7747370402d91": "Trova la chiave nelle stanze chiuse del resort",
                 "5a280f8d86f774141b501756": "Consegna la chiave delle stanze chiuse del resort"
             },
-            "name": "Il tour della Spa. Parte 5",
+            "name": "Il tour della Spa. 5° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da74",
             "failMessageText": "5c3dfa4886f77404901dec84",
@@ -3808,9 +3830,9 @@
         },
         "5a27b7a786f774579c3eb376": {
             "conditions": {
-                "5a27e73f86f7740fb275c94b": "Marchia il primo veicolo Tiger a Customs",
-                "5a27e75886f7740aef4a9157": "Marchia il secondo veicolo Tiger a Customs",
-                "5a29653986f77406a3435b26": "Marchia il terzo veicolo Tiger a Customs",
+                "5a27e73f86f7740fb275c94b": "Marca il primo veicolo Tiger a Customs",
+                "5a27e75886f7740aef4a9157": "Marca il secondo veicolo Tiger a Customs",
+                "5a29653986f77406a3435b26": "Marca il terzo veicolo Tiger a Customs",
                 "5c9394a986f7741228714be3": "Sopravvivi e lascia la zona"
             },
             "name": "Tigr Safari",
@@ -3823,9 +3845,9 @@
         },
         "5a27b7d686f77460d847e6a6": {
             "conditions": {
-                "5a27fc8186f7746371546243": "Marchia il secondo carro armato T-90 a Shoreline",
-                "5a27fc9686f774675744bb60": "Marchia il terzo carro armato T-90 a Shoreline",
-                "5a37e8ae86f77415076b401d": "Marchia il primo carro armato T-90 a Shoreline",
+                "5a27fc8186f7746371546243": "Marca il secondo carro armato T-90 a Shoreline",
+                "5a27fc9686f774675744bb60": "Marca il terzo carro armato T-90 a Shoreline",
+                "5a37e8ae86f77415076b401d": "Marca il primo carro armato T-90 a Shoreline",
                 "5c939d0e86f774185203c4c3": "Sopravvivi e lascia la zona"
             },
             "name": " Rottami di Metallo",
@@ -3877,7 +3899,7 @@
                 "5a28051286f7740eb10bac04": "Sopravvivi e lascia la zona",
                 "5a3ba51d86f7743af1475c3a": "Trova l'informatore disperso"
             },
-            "name": "Il Culto. Parte 1",
+            "name": "Il Culto. 1° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da7a",
             "failMessageText": "5c6a757786f77425a93eb46c",
@@ -3887,12 +3909,12 @@
         },
         "5a27ba1c86f77461ea5a3c56": {
             "conditions": {
-                "5a2806b386f77420062f0fbd": "Mettere il segnalatore sul luogo del rituale a Customs",
-                "5a2806e086f774291b084041": "Lascia il segnalatore sul primo punto rituale in Woods",
-                "5a2806f886f774513d3e69f5": "Mettere il segnalatore sul luogo del rituale a Shoreline",
-                "5fe0e9ed3f3a7d4169035e8e": "Lascia il secondo segnalatore sul luogo del rituale in Woods"
+                "5a2806b386f77420062f0fbd": "Metti il marcatore sul luogo del rituale a Customs",
+                "5a2806e086f774291b084041": "Metti il marcatore sul primo punto del rituale a Woods",
+                "5a2806f886f774513d3e69f5": "Metti il marcatore sul luogo del rituale a Shoreline",
+                "5fe0e9ed3f3a7d4169035e8e": "Metti il marcatore sul secondo punto del rituale a Woods"
             },
-            "name": "Il Culto. Parte 2",
+            "name": "Il Culto. Parte 2°",
             "note": "",
             "description": "5abe61a886f7746ad512da7b",
             "failMessageText": "",
@@ -3904,7 +3926,7 @@
             "conditions": {
                 "5a28127b86f7743808504ecc": "Consegna 8000$"
             },
-            "name": "Il tour della Spa. Parte 6",
+            "name": "Il tour della Spa. 6° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da7c",
             "failMessageText": "",
@@ -3923,7 +3945,7 @@
                 "5a28163686f7740ab4084611": "Trova in raid, 2 bombole di propano da 5l",
                 "5a28164786f77405822f36d9": "Consegna 2 bombole di propano da 5L"
             },
-            "name": "Il tour della Spa. Parte 7",
+            "name": "Il tour della Spa. 7° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da7d",
             "failMessageText": "5ca72a7a86f7747c754ef7b3",
@@ -3936,7 +3958,7 @@
                 "5a28183186f774398675d127": "Trova il registro della merce nella sala computer",
                 "5a28184c86f774376e43772a": "Consegna i dati recuperati a Peacekeeper"
             },
-            "name": "Cargo X. Parte 1",
+            "name": "Cargo X. Parte 1°",
             "note": "",
             "description": "5abe61a886f7746ad512da7e",
             "failMessageText": "5c6a7bcc86f77448a07909dc",
@@ -3950,7 +3972,7 @@
                 "5a2e966286f7742f6c4f27a6": "Dai le informazioni sulla seconda parte della merce a Peacekeeper",
                 "5a3ba76486f7744d39436da2": "Trova una stanza con i serbatoi"
             },
-            "name": "Cargo X. Parte 2",
+            "name": "Cargo X. Parte 2°",
             "note": "",
             "description": "5abe61a886f7746ad512da7f",
             "failMessageText": "5c3e16e186f77454501589a7",
@@ -3963,7 +3985,7 @@
                 "5a37de5486f7741535394d69": "Sopravvivi e lascia la zona",
                 "5a3ba7db86f7744f0e568c9c": "Trova il cargo nascosto della Terragroup"
             },
-            "name": "Cargo X. Parte 3",
+            "name": "Cargo X. Parte 3°",
             "note": "",
             "description": "5abe61a886f7746ad512da80",
             "failMessageText": "5c6a7be186f77443325fb6cf",
@@ -3975,7 +3997,7 @@
             "conditions": {
                 "5c9de99286f7741ced54c902": "Uccidi 10 Scav a Shoreline, utilizzando un'arma silenziata M4 o ADAR"
             },
-            "name": "Lavoro sporco. Parte 1",
+            "name": "Lavoro sporco. 1° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da81",
             "failMessageText": "5c3f019286f7744975524023",
@@ -3989,7 +4011,7 @@
                 "5a37dc0c86f77469da071ef2": "Sopravvivi e lascia la zona",
                 "5a3ba97386f77459df27d10e": "Trova l'abitazione dei pescatori"
             },
-            "name": "Lavoro sporco. Parte 2",
+            "name": "Lavoro sporco. 2° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da82",
             "failMessageText": "5c3f01e786f7744975524025",
@@ -4002,7 +4024,7 @@
                 "5a37db0c86f7745b8f4be68a": "Sopravvivi e lascia la zona",
                 "5a3baa2586f7745b791b72fa": "Trova l'auto di Artyom"
             },
-            "name": "Lavoro sporco. Parte 3",
+            "name": "Lavoro sporco. 3° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da83",
             "failMessageText": "5c6a7c7286f77448d91231f4",
@@ -4015,7 +4037,7 @@
                 "5a28221e86f7741d5b719624": "Trova un elenco degli ospiti del resort",
                 "5a28223786f7741c7a0b5401": "Consegna la lista degli inquilini a Peacekeeper"
             },
-            "name": "Lavoro sporco. Parte 4",
+            "name": "Lavoro sporco. 4° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da84",
             "failMessageText": "5c3f02bd86f774100b631504",
@@ -4028,7 +4050,7 @@
                 "5a2822de86f7740a245249ce": "Consegna le informazioni a Peacekeeper",
                 "5a2e958d86f77416be092111": "Trova informazioni sul lavoro che ha fatto Artyom"
             },
-            "name": "Lavoro sporco. Parte 5",
+            "name": "Lavoro sporco. 5° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da85",
             "failMessageText": "5c6a7cae86f77448a0790a1d",
@@ -4038,9 +4060,9 @@
         },
         "5a27bc8586f7741b543d8ea4": {
             "conditions": {
-                "5a28235e86f7741da250b438": "Raggiungi il livello 7 nell'abilità cucile da Cecchino"
+                "5a28235e86f7741da250b438": "Raggiungi il livello 7 nell'abilità fucile da Cecchino"
             },
-            "name": "Lavoro sporco. Parte 6",
+            "name": "Lavoro sporco. 6° Parte",
             "note": "",
             "description": "5abe61a886f7746ad512da86",
             "failMessageText": "5c3f035486f7744975524027",
@@ -4054,7 +4076,7 @@
                 "5ec137962d5b8510d548aef1": "Trova in raid 7 piastrine PMC \"USEC\"",
                 "5ec137dcc367fc6781104613": "Consegna 7 piastrine PMC \"USEC\""
             },
-            "name": "Un amico dall'Ovest. Parte 1",
+            "name": "Un amico dall'Ovest. Parte 1°",
             "note": "",
             "description": "5abe61a886f7746ad512da87",
             "failMessageText": "5c2741be86f77459d6729c6b",
@@ -4066,7 +4088,7 @@
             "conditions": {
                 "5a27d34586f7744e1115b327": "Consegna 6000$"
             },
-            "name": "Un amico dall'Ovest. Parte 2",
+            "name": "Un amico dall'Ovest. Parte 2°",
             "note": "",
             "description": "5abe61a886f7746ad512da88",
             "failMessageText": "5c76c98d86f7746585525875",
@@ -4091,12 +4113,12 @@
         },
         "5a68661a86f774500f48afb0": {
             "conditions": {
-                "5a6873bc86f7741f8d4589a3": "Marchia la 1° ambulanza",
-                "5a6873d786f7743ad1151d6e": "Marchia la 2° ambulanza",
-                "5a6873ec86f7743cc55d8622": "Marchia la 3° ambulanza",
+                "5a6873bc86f7741f8d4589a3": "Marca la 1° ambulanza",
+                "5a6873d786f7743ad1151d6e": "Marca la 2° ambulanza",
+                "5a6873ec86f7743cc55d8622": "Marca la 3° ambulanza",
                 "5a6874a186f77474f43809fd": "Sopravvivi ed esci dalla zona"
             },
-            "name": "La Privacy sull'Assistenza Sanitaria. Parte 1",
+            "name": "La Privacy sull'Assistenza Sanitaria. Parte 1°",
             "note": "",
             "description": "5abe61a886f7746ad512da91",
             "failMessageText": "5c6a7e1d86f77448d912326c",
@@ -4110,7 +4132,7 @@
                 "5a68763786f77474c33a40a1": "Raccogli informazioni sul destino della Terragroup research",
                 "5a68764c86f77474c4269f3c": "Sopravvivi ed esci dalla zona"
             },
-            "name": "La Privacy sull'Assistenza Sanitaria. Parte 2",
+            "name": "La Privacy sull'Assistenza Sanitaria. Parte 2°",
             "note": "",
             "description": "5abe61a886f7746ad512da92",
             "failMessageText": "5c76c79586f7746582258de6",
@@ -4125,7 +4147,7 @@
                 "5a68777586f774747d4b0d9e": "Consegna il campione di sangue",
                 "5a68778c86f77423391f38f0": "Sopravvivi ed esci dalla zona"
             },
-            "name": "La Privacy sull'Assistenza Sanitaria. Parte 3",
+            "name": "La Privacy sull'Assistenza Sanitaria. Parte 3°",
             "note": "",
             "description": "5abe61a886f7746ad512da93",
             "failMessageText": "",
@@ -4137,7 +4159,7 @@
             "conditions": {
                 "5a6878e886f7745e65687985": "Aumenta il livello dell'abilità Salute a 4"
             },
-            "name": "La Privacy sull'Assistenza Sanitaria. Parte 4",
+            "name": "La Privacy sull'Assistenza Sanitaria. Parte 4°",
             "note": "",
             "description": "5abe61a886f7746ad512da94",
             "failMessageText": "5c6a7e7986f774421c20ac1a",
@@ -4148,9 +4170,9 @@
         "5a68669a86f774255929b4d4": {
             "conditions": {
                 "5a6879be86f774284429b1bb": "Individua il punto di scarico di notte a Factory",
-                "5a687a1c86f7745f2152168c": "Ottieni 3 sacchi di polvere da sparo e lasciali nel punto indicato"
+                "5a687a1c86f7745f2152168c": "Ottieni 3 pacchi di polvere da sparo e lasciali nel punto indicato"
             },
-            "name": "Privacy sull'Assistenza Sanitaria. Parte 5",
+            "name": "Privacy sull'Assistenza Sanitaria. Parte 5°",
             "note": "",
             "description": "5abe61a886f7746ad512da95",
             "failMessageText": "5c6a808c86f77422192c0903",
@@ -4159,7 +4181,7 @@
             "location": "59fc81d786f774390775787e"
         },
         "5ac23c6186f7741247042bad": {
-            "name": "\nArmaiolo. Parte 1",
+            "name": "Armaiolo. Parte 1°",
             "note": "",
             "conditions": {
                 "5accd5e386f77463027e9397": "Modifica l'MP-133 affinché rispetti le specifiche richieste",
@@ -4172,7 +4194,7 @@
             "location": "any"
         },
         "5ac2426c86f774138762edfe": {
-            "name": "Armaiolo. Parte 2",
+            "name": "Armaiolo. Parte 2°",
             "note": "",
             "conditions": {
                 "5accd9b686f774112d7173d1": "Modifica l'AKS-74U affinché rispetti le specifiche richieste",
@@ -4186,7 +4208,7 @@
             "location": "any"
         },
         "5ac2428686f77412450b42bf": {
-            "name": "Armaiolo. Parte 3",
+            "name": "Armaiolo. Parte 3°",
             "note": "",
             "conditions": {
                 "5accde3686f7740cea1b7ec2": "Modifica l'MP5 affinché rispetti le specifiche richieste",
@@ -4200,7 +4222,7 @@
             "location": "any"
         },
         "5ac242ab86f77412464f68b4": {
-            "name": "Armaiolo. Parte 5",
+            "name": "Armaiolo. Parte 5°",
             "note": "",
             "conditions": {
                 "5acce08b86f7745f8521fa64": "Modifica il DVL-10 affinché rispetti le specifiche richieste",
@@ -4214,7 +4236,7 @@
             "location": "any"
         },
         "5ac244c486f77413e12cf945": {
-            "name": "Armaiolo. Parte 6",
+            "name": "Armaiolo. Parte 6°",
             "note": "",
             "conditions": {
                 "5acce11786f77411ed6fa6eb": "Modifica l'R11 RSASS affinché rispetti le specifiche richieste",
@@ -4228,7 +4250,7 @@
             "location": "any"
         },
         "5ac244eb86f7741356335af1": {
-            "name": "Armaiolo. Parte 4",
+            "name": "Armaiolo. Parte 4°",
             "note": "",
             "conditions": {
                 "5accdfdb86f77412265cbfc9": "Modifica l'M4A1 affinché rispetti le specifiche richieste",
@@ -4242,7 +4264,7 @@
             "location": "any"
         },
         "5ac345dc86f774288030817f": {
-            "name": "Farming. Parte 1",
+            "name": "Farming. 1° Parte",
             "note": "",
             "conditions": {
                 "5ac7a4ba86f77409f3423628": "Ripara la prima scheda di controllo",
@@ -4258,7 +4280,7 @@
             "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5ac3460c86f7742880308185": {
-            "name": "Farming. Parte 2",
+            "name": "Farming. 2° Parte",
             "note": "",
             "conditions": {
                 "5ac502a786f7740bde1b000c": "Trova in raid 2 cavi di alimentazione",
@@ -4277,10 +4299,10 @@
             "location": "any"
         },
         "5ac3462b86f7741d6118b983": {
-            "name": "Farming. Parte 3",
+            "name": "Farming. Parte 3°",
             "note": "",
             "conditions": {
-                "5ac6240786f77417204ca2b9": "Trova un magazzino di oggetti sequestrati",
+                "5ac6240786f77417204ca2b9": "Trova un magazzino con oggetti sequestrati",
                 "5ac6248586f77416781dd3a3": "Ottieni il pacchetto con le schede grafiche",
                 "5ac624b286f77416781dd3ac": "Consegna il pacchetto con le schede grafiche",
                 "5acf3b2586f7741cdb2f7f8b": "",
@@ -4293,7 +4315,7 @@
             "location": "56f40101d2720b2a4d8b45d6"
         },
         "5ac3464c86f7741d651d6877": {
-            "name": "Farming. Parte 4",
+            "name": "Farming. Parte 4°",
             "note": "",
             "conditions": {
                 "5ac5081086f7740bde1b002f": "Trova in raid le schede grafiche, 3pz",
@@ -4310,7 +4332,7 @@
             "location": "any"
         },
         "5ac3467986f7741d6224abc2": {
-            "name": "Il Segnale. Parte 1",
+            "name": "Il Segnale. Parte 1°",
             "note": "",
             "conditions": {
                 "5ac5e0fa86f77431c305d243": "Trova la prima sorgente del segnale",
@@ -4326,7 +4348,7 @@
             "location": "5704e554d2720bac5b8b456e"
         },
         "5ac346a886f7744e1b083d67": {
-            "name": "Il Segnale. Parte 2",
+            "name": "Il Segnale. 2° Parte",
             "note": "",
             "conditions": {
                 "5ac5e79986f7747398341847": "Consegna 3 CPU per PC",
@@ -4347,7 +4369,7 @@
             "location": "any"
         },
         "5ac346cf86f7741d63233a02": {
-            "name": "Il Segnale. Parte 3",
+            "name": "Il Segnale. Parte 3°",
             "note": "",
             "conditions": {
                 "5ac7a7bf86f774132252a524": "Posiziona il primo disturbatore di segnale",
@@ -4362,7 +4384,7 @@
             "location": "5704e554d2720bac5b8b456e"
         },
         "5ac346e886f7741d6118b99b": {
-            "name": "Il Segnale. Parte 4",
+            "name": "Il Segnale. Parte 4°",
             "note": "",
             "conditions": {
                 "5ac5eb3286f7746e7a509a09": "Aumenta l'abilità memoria a 4",
@@ -4432,7 +4454,7 @@
                 "5af4132686f774174a49af96": "",
                 "5af4134a86f7742574673cc5": ""
             },
-            "name": "Armaiolo. Parte 7",
+            "name": "Armaiolo. Parte 7°",
             "note": "",
             "successMessageText": "5ae326bc86f7742a41359302",
             "failMessageText": "5ae326bc86f7742a41359303",
@@ -4446,7 +4468,7 @@
                 "5af4136586f774551341dc75": "",
                 "5af4139286f774522e34389b": ""
             },
-            "name": "Armaiolo. Parte 8",
+            "name": "Armaiolo. Parte 8°",
             "note": "",
             "successMessageText": "5ae3272086f77444fd36f5e3",
             "failMessageText": "5ae3272086f77444fd36f5e4",
@@ -4460,7 +4482,7 @@
                 "5af413ae86f774522e3438a5": "",
                 "5af413b686f774522c7a6791": ""
             },
-            "name": "Armaiolo. Parte 9",
+            "name": "Armaiolo. Parte 9°",
             "note": "",
             "successMessageText": "5ae3277d86f7745b4246b38e",
             "failMessageText": "5ae3277d86f7745b4246b38f",
@@ -4474,7 +4496,7 @@
                 "5af413ce86f774522e3438ae": "",
                 "5af413e486f774522e3438df": ""
             },
-            "name": "Armaiolo. Parte 10",
+            "name": "Armaiolo. Parte 10°",
             "note": "",
             "successMessageText": "5ae327d286f7745d3a7704bb",
             "failMessageText": "5ae327d286f7745d3a7704bc",
@@ -4488,7 +4510,7 @@
                 "5af413fa86f77407184494f3": "",
                 "5af4140186f774522d460775": ""
             },
-            "name": "Armaiolo. Parte 11",
+            "name": "Armaiolo. Parte 11°",
             "note": "",
             "successMessageText": "5ae3280a86f77444fc552706",
             "failMessageText": "5ae3280a86f77444fc552707",
@@ -4542,9 +4564,9 @@
         },
         "5ae448f286f77448d73c0131": {
             "conditions": {
-                "5ae452c086f774336a397578": "Marchia carro armato 1",
-                "5ae452de86f77450595c4333": "Marchia carro armato 2",
-                "5ae452fa86f774336a39758e": "Marchia carro armato 3",
+                "5ae452c086f774336a397578": "Marca il primo camion cisterna",
+                "5ae452de86f77450595c4333": "Marca il secondo camion cisterna",
+                "5ae452fa86f774336a39758e": "Marca il terzo camion cisterna",
                 "5ae4531986f774177033c3e6": "Sopravvivi e lascia la zona",
                 "5b50761b88a4507f45121125": ""
             },
@@ -4582,7 +4604,7 @@
                 "5ae9b3c986f77432c81e2ce6": "Consegna la bolla riguardante la merce IDEA",
                 "5af415b286f77407184495dd": ""
             },
-            "name": "Database. Parte 1",
+            "name": "Database. Parte 1°",
             "note": "",
             "successMessageText": "5ae9b1c986f7743a5736fc04",
             "failMessageText": "5ae9b1c986f7743a5736fc05",
@@ -4596,7 +4618,7 @@
                 "5ae9b63286f774229110402d": "Consegna i documenti di trasporto della merce OLI",
                 "5af415c386f7745c267423a7": ""
             },
-            "name": "Database. Parte 2",
+            "name": "Database. Parte 2°",
             "note": "",
             "successMessageText": "5ae9b57d86f77432c81e2faa",
             "failMessageText": "5ae9b57d86f77432c81e2fab",
@@ -4613,7 +4635,7 @@
                 "5af415f486f7745bf73dad59": "",
                 "5af4201386f774267375038c": ""
             },
-            "name": "Cucilo bene. Parte 1",
+            "name": "Ricucilo bene. Parte 1°",
             "note": "",
             "successMessageText": "5ae454ed86f774626b445ec0",
             "failMessageText": "5ae454ed86f774626b445ec1",
@@ -4629,7 +4651,7 @@
                 "5ae9b93b86f7746e0026221a": "Consegna un Gzhel in condizioni 50-100%",
                 "5af4165d86f7745bf73dad72": ""
             },
-            "name": "Cucilo bene. Parte 2",
+            "name": "Cucilo bene. Parte 2°",
             "note": "",
             "successMessageText": "5ae4568186f7744a4c600479",
             "failMessageText": "5ae4568186f7744a4c60047a",
@@ -4644,7 +4666,7 @@
                 "5ae9be7f86f7746c6337153d": "Consegna un 6B43 in condizioni 50-100%",
                 "5ae9bea886f77468ab400e64": "Consegna un 6B43 in condizioni 50-100%"
             },
-            "name": "Cucilo bene. Parte 3",
+            "name": "Ricucilo bene. Parte 3°",
             "note": "",
             "successMessageText": "5ae9ba1086f77415a869b400",
             "failMessageText": "5ae9ba1086f77415a869b401",
@@ -4660,7 +4682,7 @@
                 "5af07a0286f7747dba10d8ac": "Consegna 2 Giubbotti Tattici BlackRock",
                 "5af4168d86f7745c267423dc": ""
             },
-            "name": "Cucilo bene. Parte 4",
+            "name": "Cucilo bene. Parte 4°",
             "note": "",
             "successMessageText": "5ae9bf2886f774703201f136",
             "failMessageText": "5ae9bf2886f774703201f137",
@@ -4670,10 +4692,10 @@
         },
         "5ae4498786f7744bde357695": {
             "conditions": {
-                "5ae9c0a686f774703201f143": "Ottieni il manuale sulla progettazione del vestiario Parte 1",
-                "5ae9c0c986f77468ab400f88": "Consegna il manuale sulla progettazione del vestiario Parte 1",
-                "5ae9c0e186f7746419683c5e": "Ottieni il manuale sulla progettazione del vestiario Parte 2",
-                "5ae9c10686f774703201f146": "Consegna il manuale sulla progettazione del vestiario Parte 2",
+                "5ae9c0a686f774703201f143": "Ottieni il manuale sulla progettazione del vestiario Parte 1°",
+                "5ae9c0c986f77468ab400f88": "Consegna il manuale sulla progettazione del vestiario Parte 1°",
+                "5ae9c0e186f7746419683c5e": "Ottieni il manuale sulla progettazione del vestiario Parte 2°",
+                "5ae9c10686f774703201f146": "Consegna il manuale sulla progettazione del vestiario Parte 2°",
                 "5af416f086f7745c524a375f": "",
                 "5af4192c86f774297e641027": ""
             },
@@ -4701,7 +4723,7 @@
         },
         "5ae449a586f7744bde357696": {
             "conditions": {
-                "5ae9c38e86f7743515398707": "Aumenta il livello di fedeltà con la Dottoressa a 3",
+                "5ae9c38e86f7743515398707": "Aumenta il livello di fedeltà con la Therapist a 3",
                 "5af4172f86f774059056f692": ""
             },
             "name": "Non c'è bisogno di agitarsi",
@@ -4734,7 +4756,7 @@
             "conditions": {
                 "5af417c086f7742a2712c3c2": "",
                 "5af4196886f7742a2627a4be": "",
-                "5bb60cbc88a45011a8235cc5": "Sopravvivi al Raid allo Scambio Autostradale per 7 volte"
+                "5bb60cbc88a45011a8235cc5": "Sopravvivi ad Interchange per 7 volte"
             },
             "name": "Vendite notturne",
             "note": "",
@@ -4766,7 +4788,7 @@
                 "5b4f082f86f7747a284dd609": "",
                 "5b4f0cc186f7744def7f3389": ""
             },
-            "name": "Armaiolo. Parte 12",
+            "name": "Armaiolo. Parte 12°",
             "note": "",
             "successMessageText": "5b486c9386f7744a08514b18",
             "failMessageText": "5b486c9386f7744a08514b19",
@@ -4780,7 +4802,7 @@
                 "5b4f085586f7747a2910a9b2": "",
                 "5b4f0d6086f7742c1f5a3c4d": ""
             },
-            "name": "Armaiolo. Parte 13",
+            "name": "Armaiolo. Parte 13°",
             "note": "",
             "successMessageText": "5b486ce586f7744882493785",
             "failMessageText": "5b486ce586f7744882493786",
@@ -4794,7 +4816,7 @@
                 "5b4f087886f77479806f2c61": "",
                 "5b4f0cce86f774287331639a": ""
             },
-            "name": "Armaiolo. Parte 14",
+            "name": "Armaiolo. Parte 14°",
             "note": "",
             "successMessageText": "5b486d0e86f7744f4b12d78f",
             "failMessageText": "5b486d0e86f7744f4b12d790",
@@ -4808,7 +4830,7 @@
                 "5b4f094886f7747b127d9d7f": "",
                 "5b4f0d7186f77412bc326997": ""
             },
-            "name": "Armaiolo. Parte 15",
+            "name": "Armaiolo. Parte 15°",
             "note": "",
             "successMessageText": "5b486d3e86f7743780259fd1",
             "failMessageText": "5b486d3e86f7743780259fd2",
@@ -4822,7 +4844,7 @@
                 "5b4f095b86f7747a2637c3f9": "",
                 "5b4f0ce686f77429c16dcb63": ""
             },
-            "name": "Armaiolo. Parte 16",
+            "name": "Armaiolo. Parte 16°",
             "note": "",
             "successMessageText": "5b486d8686f77450c05449c6",
             "failMessageText": "5b486d8686f77450c05449c7",
@@ -4838,7 +4860,7 @@
                 "5b4f09f586f7744fba15b2dc": "",
                 "5b4f0c7b86f77479ee584ab0": ""
             },
-            "name": "Il Sangue della Guerra Parte 2",
+            "name": "Il Sangue della Guerra Parte 2°",
             "note": "",
             "successMessageText": "5b486ddf86f7744ba00f2234",
             "failMessageText": "5b486ddf86f7744ba00f2235",
@@ -4886,9 +4908,9 @@
         },
         "5b478d0f86f7744d190d91b5": {
             "conditions": {
-                "5b478d8986f774563c7a4809": "Marchia il primo minibus",
-                "5b478daf86f7744d1c35339b": "Marchia il secondo minibus",
-                "5b478dca86f7744d190d91c2": "Marchia il terzo minibus",
+                "5b478d8986f774563c7a4809": "Marca il primo minibus",
+                "5b478daf86f7744d1c35339b": "Marca il secondo minibus",
+                "5b478dca86f7744d190d91c2": "Marca il terzo minibus",
                 "5b478de086f7744d1c3533a1": "Sopravvivi e lascia la zona",
                 "5b4f0ac386f7747a2637c4c0": "",
                 "5b4f0c9d86f7744def7f3385": ""
@@ -4907,12 +4929,12 @@
                 "5b478f8886f7744d1b23c622": "Consegna il primo contenitore Chimico",
                 "5b4c826b86f7743cc87bcee4": "Ottieni il secondo contenitore Chimico",
                 "5b4c82cd86f774170c6e4169": "Ottieni il terzo contenitore Chimico",
-                "5b4c832686f77419603eb8f0": "Consegna il secondo contenitore chimico",
-                "5b4c836486f77417063a09dc": "Consegna il terzo contenitore chimico",
+                "5b4c832686f77419603eb8f0": "Consegna il secondo contenitore Chimico",
+                "5b4c836486f77417063a09dc": "Consegna il terzo contenitore Chimico",
                 "5b4f0b8b86f7747a2910aaa4": "",
                 "5b4f0c1486f7747a2637c513": ""
             },
-            "name": "\"Vitamine\", p.1",
+            "name": "\"Vitamine\", p. 1°",
             "note": "",
             "successMessageText": "5b486fbf86f77450c0544c16",
             "failMessageText": "5b486fbf86f77450c0544c17",
@@ -4928,7 +4950,7 @@
                 "5cb5ffd986f7746ef55de2c7": "Trova in raid 4 Respiratori",
                 "5ec1388d83b69d213d3c2ee0": "Trova in raid 3 Kit Medici per trasfusioni"
             },
-            "name": "\"Vitamine\", p. 2",
+            "name": "\"Vitamine\", p. 2°",
             "note": "",
             "successMessageText": "5b48700686f7744f4b12d7ef",
             "failMessageText": "5b48700686f7744f4b12d7f0",
@@ -4997,7 +5019,7 @@
                 "5bc850d186f7747213700892": "Uccidi 5 Scav da un minimo di 40 metri di distanza, con un fucile a otturatore scorrevole senza mirino",
                 "5bdac2f186f7743e152e8695": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 1",
+            "name": "\"Il tiratore di Tarkov\" Parte 1°",
             "note": "",
             "successMessageText": "5bc477dc86f7744fd57fafe8",
             "failMessageText": "5bc477dc86f7744fd57fafe9",
@@ -5012,7 +5034,7 @@
                 "5bd9944f86f774035c4877f3": "Spara 2 colpi in testa da un minimo di 40 metri con un fucile a otturatore scorrevole",
                 "5bdabf0586f7743e1809c555": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 2",
+            "name": "\"Il tiratore di Tarkov\" Parte 2°",
             "note": "",
             "successMessageText": "5bc47a2386f7743920281689",
             "failMessageText": "5bc47a2386f774392028168a",
@@ -5025,7 +5047,7 @@
                 "5bc47e3e86f7741e6b2f3332": "Uccidi 3 PMC con un fucile a otturatore scorrevole a distanza ravvicinata, a meno di 25 metri di distanza",
                 "5bdabf1f86f7743e1809c556": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 3",
+            "name": "\"Il tiratore di Tarkov\" Parte 3°",
             "note": "",
             "successMessageText": "5bc47df886f7741e6b2f3325",
             "failMessageText": "5bc47df886f7741e6b2f3326",
@@ -5038,7 +5060,7 @@
                 "5bc4813886f774226045cb9a": "Aumenta a 3 l'abilità del Fucile da Cecchino",
                 "5bdabf3386f7743e171249ae": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 4",
+            "name": "\"Il tiratore di Tarkov\" Parte 4°",
             "note": "",
             "successMessageText": "5bc480f886f7741b09231869",
             "failMessageText": "5bc480f886f7741b0923186a",
@@ -5051,7 +5073,7 @@
                 "5bc84f7a86f774294c2f6862": "Uccidi 8 Scav a Customs con un fucile a otturatore scorrevole tra le 21:00 e le 05:00",
                 "5bdabf4486f7743e1665df6d": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 5",
+            "name": "\"Il tiratore di Tarkov\" Parte 5°",
             "note": "",
             "successMessageText": "5bc4829786f774105516c76a",
             "failMessageText": "5bc4829786f774105516c76b",
@@ -5064,7 +5086,7 @@
                 "5bc483ba86f77415034ba8d0": "Uccidi 5 Scav con un fucile a otturatore scorrevole",
                 "5bdabf5386f7743e152e867c": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 6",
+            "name": "\"Il tiratore di Tarkov\" Parte 6°",
             "note": "",
             "successMessageText": "5bc4839f86f7746b5a283eb5",
             "failMessageText": "5bc4839f86f7746b5a283eb6",
@@ -5077,7 +5099,7 @@
                 "5bc485b586f774726473a858": "Uccidi 5 PMC con un fucile a otturatore scorrevole silenziato, da una distanza minima di 45 metri",
                 "5bdabf6286f7743e171249af": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 7",
+            "name": "\"Il tiratore di Tarkov\" Parte 7°",
             "note": "",
             "successMessageText": "5bc4859286f7746ea275856e",
             "failMessageText": "5bc4859286f7746ea275856f",
@@ -5090,7 +5112,7 @@
                 "5bc48aed86f77452c947ce67": "Uccidi 3 PMC con un fucile a retro carica in un singolo raid a Woods",
                 "5bdabf7186f7743e152e867d": ""
             },
-            "name": "\"Il tiratore di Tarkov\" Parte 8",
+            "name": "\"Il tiratore di Tarkov\" Parte 8°",
             "note": "",
             "successMessageText": "5bc4898e86f7746b7978fe32",
             "failMessageText": "5bc4898e86f7746b7978fe33",
@@ -5100,13 +5122,13 @@
         },
         "5c0bbaa886f7746941031d82": {
             "conditions": {
-                "5c0bc32986f7743e4d1002d2": "Metti il fucile da cecchino CB-98 (Dormitori, 3 ° piano. Mucchio di spazzatura di fronte alle scale)",
+                "5c0bc32986f7743e4d1002d2": "Metti il fucile da cecchino CB-98 (Dormitori, 3° piano. Mucchio di spazzatura di fronte alle scale)",
                 "5c0bc43e86f7744794440ba5": "Metti degli orologi Roler (Dormitori, 3 ° piano. Mucchio di spazzatura di fronte alle scale)",
                 "5c12320586f77437e44bcb15": "Metti delle false Penne Usb (Dormitori, 3 ° piano. Mucchio di spazzatura di fronte alle scale)",
-                "5c1233ac86f77406fa13baea": "Non uccidere Scav alla dogana fino a che la missione non è completata",
+                "5c1233ac86f77406fa13baea": "Non uccidere Scav a Customs fino a che la missione non è stata completata",
                 "5c17b96486f774331c793f28": "",
                 "5c1fa91586f7740de474cb36": "",
-                "5c50481c86f77410650e0521": "Trova una penna usb finta"
+                "5c50481c86f77410650e0521": "Trova una penna USB finta"
             },
             "name": "Stronzate",
             "note": "",
@@ -5151,7 +5173,7 @@
                 "5c1fabb986f77431f74f0de6": "",
                 "5c1fabd686f77410894b63f8": ""
             },
-            "name": "Test di Guida. Parte 1",
+            "name": "Test di Guida. Parte 1°",
             "note": "",
             "successMessageText": "5c0bd95686f77479cf22c2f2",
             "failMessageText": "5c0bd95686f77479cf22c2f3",
@@ -5244,7 +5266,7 @@
                 "5ec13d45a1032866196c939b": "Trova in raid 2 processori programmabili Virtex",
                 "5ec13da983b69d213d3c2ee4": "Trova in raid un Trasmettitore di Segnale wireless Militare COFDM"
             },
-            "name": "Dare in prestito. Parte 2",
+            "name": "Dare in prestito. Parte 2°",
             "note": "",
             "successMessageText": "5c0d0f4186f774363760aef3",
             "failMessageText": "5c0d0f4186f774363760aef4",
@@ -5320,14 +5342,14 @@
         },
         "5c10f94386f774227172c572": {
             "conditions": {
-                "5c10f94386f774227172c574": "Trova e marchia la prima riserva di carburante",
+                "5c10f94386f774227172c574": "Trova e marca la prima riserva di carburante",
                 "5c10f94386f774227172c575": "Trova e marca la seconda scorta di carburante",
-                "5c10f94386f774227172c576": " Trova e marchia la terza riserva di carburante",
+                "5c10f94386f774227172c576": " Trova e marca la terza riserva di carburante",
                 "5c10f94386f774227172c577": "Sopravvivi e lascia la zona",
                 "5c1fb27e86f7744a160dda8c": "",
                 "5c1fcf9486f7742b3b47e370": ""
             },
-            "name": "Il Sangue della Guerra Parte 3",
+            "name": "Il Sangue della Guerra Parte 3°",
             "note": "",
             "successMessageText": "5c11412586f7745f60313bf2",
             "failMessageText": "5c11412586f7745f60313bf3",
@@ -5375,7 +5397,7 @@
                 "5ca7254e86f7740d424a2043": "Trova in raid 3 teiere antiche",
                 "5ca7258986f7740d424a2044": "Trova in raid 2 vasi antichi"
             },
-            "name": "Vivere alla grande non è un crimine Parte 2",
+            "name": "Vivere alla grande non è un crimine Parte 2°",
             "note": "",
             "successMessageText": "5c11424286f77461fd4d9582",
             "failMessageText": "5c11424286f77461fd4d9583",
@@ -5399,7 +5421,7 @@
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
-                "5c12470d86f77465ae27a8c0": "Raggiungi il 4 ° livello di reputazione con Ragman",
+                "5c12470d86f77465ae27a8c0": "Raggiungi il 4° livello di reputazione con Ragman",
                 "5c1247f386f77452db1d2b03": "Raggiungi il 4° livello di reputazione con Skier",
                 "5c12484586f7744b83469074": "Raggiungi il 4° livello di reputazione con il Mechanic",
                 "5c12487386f7742a60324299": "Raggiungi il 4° livello di reputazione con Peacekeeper",
@@ -5451,7 +5473,7 @@
                 "5c51c03186f7740ada3f2c3d": "Consegna un Gphone Dorato",
                 "5c51c04286f77478be4009f5": "Consegna un vasetto di maionese DevilDog",
                 "5c51c23a86f77478bb033466": "Consegna una scatoletta di Spratti",
-                "5c51c24c86f77416a11e5cb7": "Consegna dei falsi baffi",
+                "5c51c24c86f77416a11e5cb7": "Consegna dei baffi finti",
                 "5c51c25c86f77478bf5632af": "Consegna il berretto di Kotton",
                 "5c51db2a86f77478be4009ff": "",
                 "5c52b92e86f77478be400a00": "",
@@ -5588,10 +5610,10 @@
         },
         "5d25b6be86f77444001e1b89": {
             "conditions": {
-                "5d25beca86f77409dd5cdbb3": "Deposita l'MRE \"Iskra\" nel bunker ZB1016",
-                "5d25beeb86f77443fe45765f": "Deposita la bottiglia di acqua nel bunker ZB1016",
-                "5d2deedc86f77459121c3118": "Deposita l'MRE \"Iskra\" nel bunker ZB1014",
-                "5d2defc586f774591510e6b9": "Deposita la bottiglia di acqua nel bunker ZB1014",
+                "5d25beca86f77409dd5cdbb3": "Deposita l'MRE \"Iskra\" nel bunker ZB-016",
+                "5d25beeb86f77443fe45765f": "Deposita la bottiglia di acqua nel bunker ZB-016",
+                "5d2deedc86f77459121c3118": "Deposita l'MRE \"Iskra\" nel bunker ZB-014",
+                "5d2defc586f774591510e6b9": "Deposita la bottiglia di acqua nel bunker ZB-014",
                 "5d76307886f774454c5360c1": "",
                 "5d77d13e86f77461b27a237a": ""
             },
@@ -5709,7 +5731,7 @@
                 "5d763d7c86f774452073df77": "",
                 "5d77cc4886f7742fa732bf14": ""
             },
-            "name": "Il percorso del cacciatore. confine sicuro",
+            "name": "Il percorso del cacciatore. Perimetro sicuro",
             "note": "",
             "successMessageText": "5d260f8686f77469f04444b2",
             "failMessageText": "5d260f8686f77469f04444b3",
@@ -5887,12 +5909,12 @@
         },
         "5d25e48d86f77408251c4bfb": {
             "conditions": {
-                "5d27491686f77475aa5cf5b9": "Consegna 3 penne Usb",
-                "5d6949e786f774238a38d9e0": "Trovare 3 penne Usb in raid",
+                "5d27491686f77475aa5cf5b9": "Consegna 3 penne USB",
+                "5d6949e786f774238a38d9e0": "Trovare 3 penne USB in raid",
                 "5d77a27d86f774319c488835": "",
                 "5d77a29b86f7742fa65b6600": ""
             },
-            "name": "Affari loschi",
+            "name": "Loschi affari",
             "note": "",
             "successMessageText": "5d2747db86f7741d0b1f40ac",
             "failMessageText": "5d2747db86f7741d0b1f40ad",
@@ -5919,11 +5941,11 @@
         },
         "5d25e4b786f77408251c4bfc": {
             "conditions": {
-                "5d2f375186f7745916404955": "Trova 2 tessere magnetiche di accesso ai Laboratori della Terragroup",
+                "5d2f375186f7745916404955": "Trova 2 tessere magnetiche di accesso ai Terragroup Lab",
                 "5d778ebb86f7742fa732bf09": "",
                 "5d778ec586f7745041358b37": "",
                 "5d778f7d86f7742fa65b65f9": "",
-                "5d8a09d386f77410b4225d13": "Consegna 2 tessere magnetiche di accesso della Terragroup"
+                "5d8a09d386f77410b4225d13": "Consegna 2 tessere magnetiche di accesso ai Terragroup Lab"
             },
             "name": "Luogo di pesca",
             "note": "",
@@ -5937,7 +5959,7 @@
             "conditions": {
                 "5d7793fa86f7742fa901bc80": "",
                 "5d77940986f7742fa732bf0a": "",
-                "5fd8aa3206fb3a6b8154a2c3": "Get a Shturman kill with a Remington M700 with a scope"
+                "5fd8aa3206fb3a6b8154a2c3": "Uccidi Shturman, armato di Remington M700 con ottica"
             },
             "name": "Battuta di caccia",
             "note": "",
@@ -6326,9 +6348,9 @@
         "5eda19f0edce541157209cee": {
             "conditions": {
                 "5eda1a67ef0ad2643e73af31": "",
-                "5eda1d6ec586607c09662d54": "Marchia il primo posto di scambio a Shoreline",
-                "5eda1da9a58a4c49c74165ee": "Marchia il secondo posto di scambio a Shoreline",
-                "5eda1dd3317f6066993c1744": "Marchia il terzo posto di scambio a Shoreline",
+                "5eda1d6ec586607c09662d54": "Marca il primo posto di scambio a Shoreline",
+                "5eda1da9a58a4c49c74165ee": "Marca il secondo posto di scambio a Shoreline",
+                "5eda1dd3317f6066993c1744": "Marca il terzo posto di scambio a Shoreline",
                 "5f0389268580cc37797e0026": "Sopravvivi e lascia la zona",
                 "5f1049d7aa82db0e8f75cb7b": "",
                 "5f1049fe6e4dc7329756c9e8": ""
@@ -6364,7 +6386,7 @@
                 "5f104ae158bd417a8a3e9d8f": "",
                 "5f104af087fa885f9d696bed": ""
             },
-            "name": "Colleghi Par. 1",
+            "name": "Colleghi Pt. 1°",
             "note": "",
             "successMessageText": "5edab779bcf60e4a143cb298",
             "failMessageText": "5edab779bcf60e4a143cb299",
@@ -6380,7 +6402,7 @@
                 "5edabbff0880da21347b382b": "Ottieni l'oftalmoscopio di Sanitar in raid",
                 "5edabc2ca0055865214cb5a6": "Consegna alla Therapist l'oftalmoscopio di Sanitar"
             },
-            "name": "Colleghi Par. 2",
+            "name": "Colleghi Pr. 2°",
             "note": "",
             "successMessageText": "5edaba9ed143ed1d6378d126",
             "failMessageText": "5edaba9ed143ed1d6378d127",
@@ -6448,7 +6470,7 @@
                 "5f070350f6b5847ad975ceac": "Ottieni in raid 3-(b-TG)",
                 "5f0495b8efefac7f7227de63": "Consegna 3(b-TG) alla Therapist"
             },
-            "name": "Colleghi Par. 3",
+            "name": "Colleghi Pt. 3°",
             "note": "",
             "successMessageText": "5edac362930f5454f51dcacc",
             "failMessageText": "5edac362930f5454f51dcacd",
@@ -6462,8 +6484,8 @@
                 "5edac6db0bb72a50635c73b7": "",
                 "5edac79da0055865214cb5be": "",
                 "5edac7f4cc183c769d778bdf": "",
-                "5edac8483c809a44ef12b4d2": "Consegna la penna Usb marcata con il nastro adesivo a Peacekeeper",
-                "5eec9d054110547f1f545c99": "Trova la postazione di lavoro di Sanitar nei Laboratori",
+                "5edac8483c809a44ef12b4d2": "Consegna la penna USB marcata con il nastro adesivo a Peacekeeper",
+                "5eec9d054110547f1f545c99": "Trova la postazione di lavoro di Sanitar in Lab",
                 "5eff5674befb6436ce3bbaf7": "Raccogli informazioni sul lavoro di Sanitar"
             },
             "name": "Dipendente TerraGroup",
@@ -6482,7 +6504,7 @@
                 "5ee8eecc0b4ef7326256c660": "Individua la control room nel bunker sotterraneo",
                 "5ef094ac32e6cc3234361a30": ""
             },
-            "name": "Il bunker. Prt.1",
+            "name": "Il bunker. Pt. 1°",
             "note": "",
             "successMessageText": "5ede5521fa6dc072ce15d6dc",
             "failMessageText": "5ede5521fa6dc072ce15d6dd",
@@ -6503,7 +6525,7 @@
                 "5ee8eddde932d53763761b2c": "Individua una delle due porte ermetiche che conducono alle caserme №2 (pedone bianco)",
                 "5ee8edf1500391756d7498a7": "Individua la porta ermetica che conduce all'edificio del centro di controllo aereo. (re bianco)"
             },
-            "name": "Il bunker. Prt.2",
+            "name": "Il bunker. Pt. 2°",
             "note": "",
             "successMessageText": "5ede569dfe4acc383071864b",
             "failMessageText": "5ede569dfe4acc383071864c",
@@ -6614,7 +6636,7 @@
                 "5fd9fad9c1ce6b1a3b486d02": "",
                 "5fdc862eaf5a054cc9333005": ""
             },
-            "name": "Cerca missione",
+            "name": "Missione di ricerca",
             "note": "",
             "successMessageText": "5fdb3e50148b192e1a7463e2",
             "failMessageText": "5fdb3e50148b192e1a7463e3",
@@ -6624,11 +6646,11 @@
         },
         "600302d73b897b11364cd161": {
             "conditions": {
-                "600303250b79c6604058ce30": "Eliminate Shturman 25 times",
+                "600303250b79c6604058ce30": "Uccidi Shturman 25 volte",
                 "600304b78dfec348e767018c": "",
                 "600304c38dfec348e767018e": ""
             },
-            "name": "Hunter",
+            "name": "Cacciatore",
             "note": "",
             "successMessageText": "600303b71448362c785bc3b2",
             "failMessageText": "600303b71448362c785bc3b3",
@@ -8652,9 +8674,9 @@
             "Description": "Un fazzoletto di stoffa, tipicamente una bandana, copre la faccia dal naso fino al collo, è il segno più comune di un membro di una gang."
         },
         "5732ee6a24597719ae0c0281": {
-            "Name": "Marsupio",
+            "Name": "Valigetta",
             "ShortName": "Borsello",
-            "Description": "Marsupio resistente e conveniente, per tenere più vicino quello che ti serve."
+            "Description": "Valigetta resistente e conveniente, per tenere più vicino quello che ti serve."
         },
         "5733279d245977289b77ec24": {
             "Name": "Batteria per macchina",
@@ -13760,7 +13782,7 @@
         "5b7be46e5acfc400170e2dcf": {
             "Name": "Guida 5\" Vltor CASV",
             "ShortName": "5\" Vltor",
-            "Description": "Vltor guide for CASV 5 inch system allows you to install additional equipment on the handguards with the standard CASV interface."
+            "Description": "La guida Vltor per il sistema CASV da 5\" consente di installare attrezzature aggiuntive sui paramano con interfaccia CASV standard."
         },
         "5b7be47f5acfc400170e2dd2": {
             "Name": "Guida Magpul M-LOK 2.5\"",
@@ -16608,12 +16630,12 @@
             "Description": "Acqua purificata e arricchita, che non è solo gustosa, ma anche un bene per la vostra salute."
         },
         "5d1b36a186f7742523398433": {
-            "Name": "Serbatoio carburante in metallo",
+            "Name": "Tanica di benzina in metallo",
             "ShortName": "Carburante",
-            "Description": "Serbatoio di carburante in metallo per liquidi infiammabili."
+            "Description": "Tanica di benzina in metallo per liquidi infiammabili."
         },
         "5d1b371186f774253763a656": {
-            "Name": "Barile di carburante della spedizione",
+            "Name": "Tanica di benzina da spedizione",
             "ShortName": "Carburante",
             "Description": "Tanica leggera in plastica per la spedizione di carburante."
         },
@@ -18135,9 +18157,9 @@
             "Description": "Tessuto leggero, isolante e impermeabile per la produzione di vari abiti sia militari che civili."
         },
         "5e2af4a786f7746d3f3c3400": {
-            "Name": "Panno Ripstop",
-            "ShortName": "Ripstop",
-            "Description": "I tessuti Ripstop sono dei tessuti spesso fabbricati in Nylon che utilizzano una specifica tecnica di rinforzo che li rende resistenti a lacerazioni e strappi. Utilizzati per la produzione di tessuti speciali militari e per la produzione di attrezzi vari."
+            "Name": "Panno antistrappo",
+            "ShortName": "Antistrappo",
+            "Description": "I tessuti antistrappo sono dei tessuti spesso fabbricati in Nylon che utilizzano una specifica tecnica di rinforzo che li rende resistenti a lacerazioni e strappi. Utilizzati per la produzione di tessuti speciali militari e per la produzione di attrezzi vari."
         },
         "5e2af4d286f7746d4159f07a": {
             "Name": "Panno in fibra di aramide",
@@ -18389,7 +18411,7 @@
             "Description": "Il laccio emostatico prende il nome da Friedrich August von Esmarch, che ne propose l'uso, insieme ad altri metodi nella chirurgia militare da campo."
         },
         "5e8488fa988a8701445df1e4": {
-            "Name": "CALOK-B Emostatico",
+            "Name": "Emostatico CALOK-B",
             "ShortName": "Emostatico",
             "Description": "L'Applicatore con agente emostatico Calok-B, consente di iniettare granuli emostatici attraverso l'apertura della ferita direttamente alla fonte del sanguinamento in pochi secondi."
         },
@@ -18560,7 +18582,7 @@
             "Description": ""
         },
         "5e9dcf5986f7746c417435b3": {
-            "Name": "Zaino LBT-8005A Day Pack",
+            "Name": "Zainetto LBT-8005A",
             "ShortName": "Day Pack",
             "Description": "Un zaino semplice e affidabile da 14 litri in mimetica nera Multicam."
         },
@@ -18736,9 +18758,9 @@
             "Description": "Calcio ergonomico in polimeri per fucile a pompa Mossberg M590 con calciolo in gomma, prodotto dalla Magpul."
         },
         "5eeb2ff5ea4f8b73c827350b": {
-            "Name": "Tactical rail for M590",
+            "Name": "Slitta tattica per M590",
             "ShortName": "Guida M590",
-            "Description": "Picatinny rail for M590."
+            "Description": "Slitta Picatinny per M590."
         },
         "5ef1b9f0c64c5d0dfc0571a1": {
             "Name": "Adattatore per calcio LEO 1° gen. per M590",
@@ -18974,7 +18996,7 @@
             "Description": "Mirino frontale Lomount per M45, prodotto dalla Novak."
         },
         "5f4f9eb969cdc30ff33f09db": {
-            "Name": "Boussola portatile professionale EYE MK.2",
+            "Name": "Bussola portatile professionale EYE MK.2",
             "ShortName": "Bussola",
             "Description": "Bussola portatile. Permettere di orientarti velocemente, indicando la direzione dei poli magnetici della Terra. Con esso puoi determinare facilmente l'Azimuth."
         },
@@ -19201,14 +19223,14 @@
             "Description": "Fascia da braccio viola esclusiva del Twitch Rivals 2020"
         },
         "5fb64bc92b1b027b1f50bcf2": {
-            "Name": "TDI KRISS Vector Gen.2 .45 ACP submachinegun",
+            "Name": "Mitragliatrice TDI Kriss Vector Gen.2 .45 ACP",
             "ShortName": "Vector .45",
-            "Description": "The KRISS Vector SMG is the ideal choice for law enforcement and military seeking a controllable, compact, weapon system for close quarter combat environments. The low bore axis and Super V recoil mitigation system allow for the most controllable select-fire operation, or fast semi-automatic follow up shots."
+            "Description": "Il KRISS Vector SMG è la scelta ideale per forze dell'ordine e militari alla ricerca di un sistema d'arma compatto e controllabile per ambienti di combattimento ravvicinati. L'asse di alesaggio basso e il sistema di mitigazione del rinculo Super V consentono le operazioni di scontro a fuoco più controllate, o colpi semi-automatici veloci."
         },
         "5fb651b52b1b027b1f50bcff": {
-            "Name": "Glock .45 ACP magazine",
+            "Name": "Caricatore Glock .45 ACP",
             "ShortName": "Glock 45 ",
-            "Description": "Standard-issue 13-round magazine for Glock 21 .45 ACP."
+            "Description": "Caricatore standard da 13 colpi per Glock .45 ACP."
         },
         "5fb651dc85f90547f674b6f4": {
             "Name": "Caricatore Magex G30 per Glock .45 ACP",
@@ -19216,9 +19238,9 @@
             "Description": "Caricatore Magex G30 30 colpi per Glock."
         },
         "5fb65363d1409e5ca04b54f5": {
-            "Name": "5\" Vector barrel .45 ACP",
+            "Name": "Canna 5\" Vector .45 ACP",
             "ShortName": "Vector 5\" .45",
-            "Description": "5\" barrel for Vector .45 ACP."
+            "Description": "Canna 5\" per Vector .45 ACP."
         },
         "5fb653962b1b027b1f50bd03": {
             "Name": "Canna 6\" Vector .45 ACP",
@@ -19226,299 +19248,299 @@
             "Description": "Canna 6\" per Vector .45 ACP."
         },
         "5fb65424956329274326f316": {
-            "Name": "Kriss Vector .45 ACP Flash hider",
+            "Name": "Spegnifiamma Kriss Vector .45 ACP",
             "ShortName": "Vector 45",
-            "Description": "Regular Kriss Vector .45 ACP flashhider."
+            "Description": "Spegnifiamma Kriss Vector .45 ACP."
         },
         "5fb6548dd1409e5ca04b54f9": {
-            "Name": "Kriss Vector .45 ACP  thread protection cap",
-            "ShortName": "Vector protection cap",
-            "Description": "Threading protection cap for Vector .45 ACP barrel."
+            "Name": "Cappuccio di protezione filettato per Kriss Vector .45 ACP",
+            "ShortName": "Cappuccio di protezione per Vector",
+            "Description": "Cappuccio di protezione filettato per canna del Vector .45 ACP."
         },
         "5fb6558ad6f0b2136f2d7eb7": {
-            "Name": "KRISSVector Gen.2 folding stock",
-            "ShortName": "Vector fold.",
-            "Description": "KRISS Vector Gen.2 folding stock."
+            "Name": "Calcio pieghevole KRISS Vector Gen.2",
+            "ShortName": "Calcio Vector.",
+            "Description": "Calcio pieghevole KRISS Vector Gen.2."
         },
         "5fb655a72b1b027b1f50bd06": {
-            "Name": "Kriss Vector Pistol Sling Adapter",
+            "Name": "Adattatore per cinghia Kriss Vector",
             "ShortName": "Vector PSA",
-            "Description": "Pistol Sling Adapter for a Kriss Vector."
+            "Description": "Adattatore per cinghia per il Kriss Vector."
         },
         "5fb655b748c711690e3a8d5a": {
-            "Name": "KRISS Vector non folding stock adapter",
+            "Name": "Adattatore calcio non pieghevole KRISS Vector",
             "ShortName": "Vector NFA",
-            "Description": "Non-Foldind Adapter for installation of telescopic stock buffer tubes on KRISS Vector."
+            "Description": "Adattatore non pieghevole per l'installazione di calci telescopici su KRISS Vector."
         },
         "5fb6564947ce63734e3fa1da": {
-            "Name": "KRISS Defiance Low Profile Flip-Up rear sight",
-            "ShortName": "Defiance Rearsight",
-            "Description": "Removable folding rear sight KRISS Defiance Low Profile Flip-Up rear sight."
+            "Name": "Mirino KRISS Defiance a basso profilo sollevabile",
+            "ShortName": "Mirino posteriore Defiance",
+            "Description": "Mirino posteriore pieghevole rimovibile KRISS Defiance a basso profilo sollevabile."
         },
         "5fb6567747ce63734e3fa1dc": {
-            "Name": "Kriss \"Defiance Low Profile Flip Up\" Frontsight",
+            "Name": "Mirino Kriss \"Defiance a basso profilo sollevabile\"",
             "ShortName": "Defiance Front",
-            "Description": "Removable folding front sight Kriss \"Defiance Low Profile Flip Up\", installed on the mount."
+            "Description": "Mirino anteriore pieghevole rimovibile Kriss \"Defiance a basso profilo sollevabile\", installato sul supporto."
         },
         "5fbb976df9986c4cff3fe5f2": {
-            "Name": "KRISS Vector Bottom rail",
-            "ShortName": "Vector Bottom",
-            "Description": "Bottom rail for Vector allows you to install additional equipment."
+            "Name": "Guida inferiore KRISS Vector",
+            "ShortName": "Vector inf.",
+            "Description": "Slitta inferiore per Vector che ti permette di installare equipaggiamento aggiuntivo."
         },
         "5fbb978207e8a97d1f0902d3": {
-            "Name": "KRISS Mk.5 Modular rail for Vector",
-            "ShortName": "Mk.5 Modular",
-            "Description": "Mk.5 modular system allows you to install additional equipment on the handguard."
+            "Name": "Slitta modulare KRISS Mk.5 per Vector",
+            "ShortName": "Mk.5 Modulare",
+            "Description": "Il sistema modulare Mk.5 consente di installare attrezzature aggiuntive sul paramano."
         },
         "5fbbaa86f9986c4cff3fe5f6": {
-            "Name": "KRISS Defiance DS150 stock",
+            "Name": "Calcio KRISS Defiance DS150",
             "ShortName": "Calcio DS150",
-            "Description": "Drop-in replacement buttstock for AR15/M16 carbines by Magpul Original Equipment. Uses mil-spec sized receiver extension tubes. Frame profile avoids snagging and shields the release latch to prevent accidental activation, includes a standard 0.30\" thick rubber butt-pad to prevent slippage even with body armor or modular gear."
+            "Description": "Tampone di ricambio per carabine AR15/M16 della Magpul Original Equipment. Utilizza tubi di prolunga per ricevitori di dimensioni mil-spec. Il profilo del telaio evita strappi e scherma il bloccaggio di sgancio per evitare l'attivazione accidentale, include un tampone in gomma spessa 0,30\" standard per prevenire lo scivolamento anche con armatura o ingranaggi modulari."
         },
         "5fbbc3324e8a554c40648348": {
-            "Name": "KRISS Vector 9x19 Flash hider",
+            "Name": "Spegnifiamma Kriss Vector 9x19",
             "ShortName": "Vector 9x19",
-            "Description": "Regular KRISS Vector 9x19 Flash hider."
+            "Description": "Spegnifiamma standard Kriss Vector 9x19."
         },
         "5fbbc34106bde7524f03cbe9": {
-            "Name": "Vector 9x19 thread protection cap",
-            "ShortName": "Vector protection cap",
-            "Description": "Threading protection cap for Vector 9x19 barrel."
+            "Name": "Cappuccio di protezione filettato Vector 9x19",
+            "ShortName": "Cappuccio di protezione per Vector",
+            "Description": "Cappuccio di protezione filettato per canna del Vector 9x19."
         },
         "5fbbc366ca32ed67276c1557": {
-            "Name": "5\" barrel for Vector 9x19",
+            "Name": "Canna 5\" per Vector 9x19",
             "ShortName": "Vector 5\" 9x19",
-            "Description": "5-inch threaded barrel for Vector 9x19, product by KRISS."
+            "Description": "Canna filettata da 5\" per Vector 9x19, prodotto dalla KRISS."
         },
         "5fbbc383d5cb881a7363194a": {
-            "Name": "6\" barrel for Vector 9x19",
+            "Name": "Canna 6\" per Vector 9x19",
             "ShortName": "Vector 6\" 9x19",
-            "Description": "6-inch threaded barrel for Vector 9x19, product by KRISS."
+            "Description": "Canna filettata da 6\" per Vector 9x19, prodotto dalla KRISS."
         },
         "5fbbfabed5cb881a7363194e": {
-            "Name": "171mm barrel for MCX and compatible .300 BLK",
+            "Name": "Canna da 171mm per MCX e armi .300 BLK compatibili",
             "ShortName": "171mm MCX .300 BLK",
-            "Description": "The barrel for an MCX-based weapon for the .300 BLK cartridge, 171mm long.\n"
+            "Description": "La canna per un'arma basata su MCX per la cartuccia .300 BLK, lunga 171mm."
         },
         "5fbbfacda56d053a3543f799": {
-            "Name": "229mm barrel for MCX and compatible .300 BLK",
+            "Name": "Canna da 229mm per MCX e armi .300 BLK compatibili",
             "ShortName": "229mm MCX .300 BLK",
-            "Description": "The barrel for an MCX-based weapon for the .300 BLK cartridge, 229mm long.\n"
+            "Description": "La canna per un'arma basata su MCX per la cartuccia .300 BLK, lunga 229mm."
         },
         "5fbc210bf24b94483f726481": {
-            "Name": "SIG MCX Gas Block",
+            "Name": "Blocco gas SIG MCX",
             "ShortName": "MCX Gas.Bl.",
-            "Description": "The gas block is designed for use in the SIG Sauer MCX."
+            "Description": "Il blocco gas è stato progettato per SIG Sauer MCX."
         },
         "5fbc226eca32ed67276c155d": {
-            "Name": "SIG 8\" keymod foregrip for MCX",
+            "Name": "Impugnatura anteriore SIG 8\" keymod per MCX",
             "ShortName": "MCX 8\"",
-            "Description": "The handguard for the SIG MCX, equipped with a Keymod interface for attaching additional equipment."
+            "Description": "Il paramano per il SIG MCX, dotato di interfaccia Keymod per il fissaggio di attrezzature aggiuntive."
         },
         "5fbc227aa56d053a3543f79e": {
-            "Name": "SIG 12\" keymod foregrip for MCX",
+            "Name": "Impugnatura anteriore SIG 12\" keymod per MCX",
             "ShortName": "MCX 12\"",
-            "Description": "The handguard for the SIG MCX, equipped with a Keymod interface for attaching additional equipment."
+            "Description": "Il paramano per il SIG MCX, dotato di interfaccia Keymod per il fissaggio di attrezzature aggiuntive."
         },
         "5fbc22ccf24b94483f726483": {
-            "Name": "SIG Taper-LOK Muzzle Adapter",
+            "Name": "Adattatore freno di bocca SIG Taper-LOK",
             "ShortName": "T-LOK",
-            "Description": "The patented \"Taper-LOK\" mounting system allows the installation of various muzzle devices."
+            "Description": "Il sistema di montaggio brevettato \"Taper-LOK\" consente l'installazione di vari dispositivi di museruola."
         },
         "5fbcbcf593164a5b6278efb2": {
-            "Name": "3-prong SIG Flash hider 7.62x51",
+            "Name": "Spegnifiamma 3-punte SIG 7.62x51",
             "ShortName": "3-pr.FH",
-            "Description": "Sig 3-prong flash hider can be installed on a patented Taper-LOK mounting system."
+            "Description": "Il spegnifiamma 3-punte SIG può essere installato su un sistema di montaggio brevettato Taper-LOK."
         },
         "5fbcbd02900b1d5091531dd3": {
-            "Name": "SIG micro brake muzzle brake 7.62x51",
+            "Name": "SIG Micro Brake freno di bocca 7.62x51",
             "ShortName": "Micr. Br.",
-            "Description": "SIG micro brake can be installed on a patented Taper-LOK mounting system."
+            "Description": "Il SIG Micro Brake può essere installato su un sistema di montaggio brevettato Taper-LOK."
         },
         "5fbcbd10ab884124df0cd563": {
-            "Name": "SIG Two Port brake muzzle brake 7.62x51",
+            "Name": "Freno di bocca SIG Two Port 7.62x51",
             "ShortName": "TPB 7.62x51",
-            "Description": "SIG two port muzzle brake can be installed on a patented Taper-LOK mounting system."
+            "Description": "Il SIG Two Port può essere installato su un sistema di montaggio brevettato Taper-LOK."
         },
         "5fbcbd6c187fea44d52eda14": {
-            "Name": "SIG MCX pistol grip",
+            "Name": "Impugnatura a pistola SIG MCX",
             "ShortName": "Pistola MCX",
-            "Description": "Polymer pistol grip for Sig-Sauer MCX."
+            "Description": "Impugnatura a pistola in polimero per Sig-Sauer MCX."
         },
         "5fbcc1d9016cce60e8341ab3": {
-            "Name": "SIG MCX .300 AAC Blackout Assault Rifle",
+            "Name": "Fucile d'assalto SIG MCX .300 AAC Blackout",
             "ShortName": "SIG MCX 300 blk",
-            "Description": "The MCX line, designed and manufactured by SIG Sauer, is available in both semi-automatic and automatic versions and features a short-stroke gas piston system, which is inherited from the earlier SIG MPX submachine gun."
+            "Description": "La linea MCX, progettata e prodotta dalla SIG Sauer, è disponibile sia in versione semi-automatica che automatica e dispone di un sistema a pistoni a gas a corsa breve, ereditato dalla precedente mitragliatrice SIG MPX."
         },
         "5fbcc3e4d6fa9c00c571bb58": {
-            "Name": "Upper receiver of the first generation Sig-Sauer MCX",
+            "Name": "Ricevitore superiore della prima generazione Sig-Sauer MCX",
             "ShortName": "MCX 1 gen.",
-            "Description": "Upper receiver for MCX of the first generation produced by Sig-Sauer. Features a mount for attaching additional equipment."
+            "Description": "Castello superiore per MCX di prima generazione prodotto dalla Sig-Sauer. Dispone di un supporto per il fissaggio di equipaggiamento aggiuntivo."
         },
         "5fbcc429900b1d5091531dd7": {
-            "Name": "SIG Sauer telescoping MCX/MPX stock",
-            "ShortName": "MCX/MPX telescoping",
-            "Description": "A telescopic stock for MCX/MPX manufactured by SIG Sauer."
+            "Name": "Calcio telescopico SIG Sauer MCX/MPX",
+            "ShortName": "Telescopico MCX/MPX",
+            "Description": "Un calcio telescopico per MCX/MPX prodotto dalla SIG Sauer."
         },
         "5fbcc437d724d907e2077d5c": {
-            "Name": "SIG Sauer Thin lightweight MCX/MPX stock",
-            "ShortName": "MCX/MPX thin",
-            "Description": "Thin and lightweight stock for MCX/MPX manufactured by SIG Sauer."
+            "Name": "Calcio alleggerito SIG Sauer MCX/MPX",
+            "ShortName": "MCX/MPX leggero",
+            "Description": "Calcio sottile e leggero per MCX/MPX prodotto dalla SIG Sauer."
         },
         "5fbcc640016cce60e8341acc": {
-            "Name": "Sig-Sauer charging handle for MCX",
+            "Name": "Impugnatura di ricarica Sig-Sauer per MCX",
             "ShortName": "MCX Chr.",
-            "Description": "Standard charging handle for Sig-Sauer MCX and compatible systems."
+            "Description": "Impugnatura di ricarica standard per MCX Sig-Sauer e sistemi compatibili."
         },
         "5fbe3ffdf8b6a877a729ea82": {
             "Name": ".300 BPZ AAC Blackout",
             "ShortName": "BPZ",
-            "Description": "The .300 AAC Blackout cartridges were developed by Advanced Armament Corporation (AAC) for use in the M4 carbine to achieve ballistics similar to the 7.62x39mm supersonic cartridge, and to offer a subsonic yet powerful cartridge for the AR15 platform as an alternative to the MP5SD 9mm, all while utilizing a standard (STANAG) magazine.  This affordable FMJ cartridge is produced on Barnaul Ammo Plant.",
+            "Description": "Le cartucce .300 Blackout AAC sono state sviluppate dalla Advanced Armament Corporation (AAC) per l'uso nella carabina M4 per ottenere balistica simile alla cartuccia supersonica 7,62x39mm, per offrire una cartuccia subsonica ma potente per la piattaforma AR15 in alternativa alla MP5SD 9mm, il tutto utilizzando un caricatore standard (STANAG). Questa cartuccia FMJ è prodotta dalla Barnaul Ammo Plant.",
             "casingName": ".300 AAC Blackout BPZ"
         },
         "5fbe760793164a5b6278efc8": {
-            "Name": "Sig-Sauer SRD QD 7.62x51 Sound Suppressor ",
+            "Name": "Silenziatore Sig-Sauer SRD QD 7.62x51",
             "ShortName": "SRD QD 7.62x51",
-            "Description": "The SRD 7.62x51 is a Grade 5 titanium suppressor that uses quick-release muzzle devices to attach the suppressor to the gun."
+            "Description": "L'SRD 7.62x51 è un soppressore in titanio di grado 5 che utilizza dispositivi a sgancio rapido per collegare il soppressore alla pistola."
         },
         "5fbe7618d6fa9c00c571bb6c": {
-            "Name": "Sig-Sauer \"SRD\" 7.62x51 Sound Suppressor ",
+            "Name": "Silenziatore Sig-Sauer \"SRD\" 7.62x51",
             "ShortName": "\"SRD\" 7.62x51",
-            "Description": "The SRD 7.62x51 is a Grade 5 titanium suppressor."
+            "Description": "L'SRD 7.62x51 è un soppressore in titanio di grado 5."
         },
         "5fc0f9b5d724d907e2077d82": {
-            "Name": "MVF001 A3 Vertical Grip KeyMod black",
+            "Name": "Impugnatura verticale MVF001 A3 KeyMod nera",
             "ShortName": "MVF001 A3",
-            "Description": "The A3 tactical grip MVF001 A3. The grip was designed specifically for the KeyMod interface."
+            "Description": "L'impugnatura tattica A3 MVF001 A3. L'impugnatura è stata progettata specificamente per l'interfaccia Keymod."
         },
         "5fc0f9cbd6fa9c00c571bb90": {
-            "Name": "Sig Sauer Vertical Foregrip Keymod Black",
+            "Name": "Impugnatura verticale Sig Sauer Keymod nero",
             "ShortName": "SSVFK nero",
-            "Description": "Sig Sauer Vertical Foregrip tactical grip for Keymod interface. The Sig Sauer Vertical Foregrip grip is made from the highest grade materials and is of Sig Sauer quality."
+            "Description": "Impugnatura verticale Sig Sauer per interfaccia Keymod. L'impugnatura Sig Sauer è realizzata con materiali di altissima qualità ed è della Sig Sauer."
         },
         "5fc0fa362770a0045c59c677": {
-            "Name": "SIG MCX Folding sight Frontsight",
+            "Name": "Mirino anteriore pieghevole SIG MCX",
             "ShortName": "SIG Anteriore",
-            "Description": "Rail mounted flip up iron sight for AR rifle"
+            "Description": "Slitta con montato mirino per fucile AR"
         },
         "5fc0fa957283c4046c58147e": {
-            "Name": "SIG MCX Flip Up sight Rearsight",
-            "ShortName": "SIG Rear Flip",
-            "Description": "Removable folding rear sight SIG Flip Up Rearsight."
+            "Name": "Mirino posteriore sollevabile SIG MCX",
+            "ShortName": "Mirino posteriore SIG",
+            "Description": "Tacca di mira rimovibile e pieghevole della SIG."
         },
         "5fc22d7c187fea44d52eda44": {
-            "Name": "Mk-18 .338 LM marksman rifle",
+            "Name": "Fucile da cecchino Mk-18 . 338 LM",
             "ShortName": "Mk-18 .338 LM",
-            "Description": "The Mk-18 Mod 1 Extreme Distance Capable Semi-Automatic Rifle was designed to take advantage of the ballistic capabilities of the .338 Lapua Magnum, .338 Norma Magnum, and .300 Norma Magnum cartridges. The system provides extreme distance capability in a lightweight and mobile semi-auto platform. Utilizing SWORD’s proprietary short-stroke piston system the rifle is precise, reliable, and durable. Featuring ambidextrous controls, ergonomic features, and built-in modularity, the MK18 is a great choice for the avid hunter, long-range enthusiast, and competition shooter."
+            "Description": "Il fucile Mk-18 Mod 1 è stato progettato per sfruttare le capacità balistiche del .338 Lapua Magnum, .338 Norma Magnum, e cartucce .300 Norma Magnum. Il sistema é ottimo per le lunghe distanze, é leggero e semi automatico. Utilizzando il sistema brevettato a pistone a corsa breve della SWORD, il fucile è preciso, affidabile e durevole. Dotato di comandi per ambidestri, caratteristiche ergonomiche e modularità integrata, l'MK18 è un'ottima scelta per gli appassionati di caccia, appassionati di lungo raggio e sparatutto da competizione."
         },
         "5fc23426900b1d5091531e15": {
-            "Name": "Sword Int. Mk-18 .338 LM 10-round magazine",
+            "Name": "Caricatore Sword Int. Mk-18 .338 LM 10-colpi",
             "ShortName": "Mk-18 10",
-            "Description": "10-round Mk-18 magazine, for .338 LM ammunition."
+            "Description": "Caricatore 10-colpi Mk-18, per munizioni .338 LM."
         },
         "5fc235db2770a0045c59c683": {
-            "Name": "Sword int. 18 inch handguard for Mk-18",
-            "ShortName": "Sword 18 ich",
-            "Description": "18 inch long, lightweight M-LOK compatible handguard for Mk-18."
+            "Name": "Paramano Sword int. 18\" per Mk-18",
+            "ShortName": "Sword 18\"",
+            "Description": "Paramano leggero M-LOK da 18\" per Mk-18."
         },
         "5fc2360f900b1d5091531e19": {
-            "Name": "Mk-18 Gas Block",
-            "ShortName": "Mk-18 Gas.Bl.",
-            "Description": "Mk-18 gas block designed manufactured by \"Sword International\"."
+            "Name": "Blocco gas Mk-18",
+            "ShortName": "Bl.Gas Mk-18.",
+            "Description": "Blocco gas Mk-18 progettato dalla \"Sword International\"."
         },
         "5fc23636016cce60e8341b05": {
-            "Name": "SilencerCo AC-858 ASR .338 LM Muzzle brake",
+            "Name": "Freno di bocca SilencerCo AC-858 ASR .338 LM",
             "ShortName": "AC-858",
-            "Description": ".338 LM muzzle brake developed by SilencerCo."
+            "Description": "Freno di bocca.338 LM progettato dalla SilencerCo."
         },
         "5fc23678ab884124df0cd590": {
-            "Name": "24\" barrel for Mk-18 .338 LM",
+            "Name": "Canna 24\" per Mk-18 .338 LM",
             "ShortName": "24\" Mk-18 .338 LM",
-            "Description": "A barrel for Mk-18 for .338 LM, 610 mm long."
+            "Description": "Una canna per Mk-18 per .338 LM, lunga 610 mm.\n"
         },
         "5fc2369685fd526b824a5713": {
-            "Name": "B5 Precision stock",
+            "Name": "Calcio B5 Precision",
             "ShortName": "Precision",
-            "Description": "Telescopic Precision stock product by B5."
+            "Description": "Calcio telescopico di precisione prodotto dalla B5."
         },
         "5fc275cf85fd526b824a571a": {
             "Name": ".338 Lapua Magnum FMJ",
             "ShortName": "FMJ",
-            "Description": "Regular round with an FMJ bullet.",
+            "Description": "Colpi standard con proiettile FMJ.",
             "casingName": ".338 Lapua Magnum FMJ"
         },
         "5fc278107283c4046c581489": {
-            "Name": "Sword Int. Mk-18 mod 1 Upper receiver",
+            "Name": "Ricevitore superiore Sword Int. Mk-18 mod 1",
             "ShortName": "Mk-18 Superiore",
-            "Description": "Regular upper receiver for Mk-18 Mod 1 by Sword International. Fitted with mount for attaching additional equipment."
+            "Description": "Ricevitore superiore standard per Mk-18 Mod 1 della Sword International. Dotato di supporto per il fissaggio di equipaggiamento aggiuntivo."
         },
         "5fc382a9d724d907e2077dab": {
             "Name": ".338 Lapua Magnum AP",
             "ShortName": "AP",
-            "Description": ".338 Lapua Magnum AP round with 239 Grain armor-piercing bullet.",
+            "Description": ".338 Lapua Magnum AP colpi perforanti a grana 239.",
             "casingName": ".338 Lapua AP"
         },
         "5fc382b6d6fa9c00c571bbc3": {
             "Name": ".338 Lapua Magnum TAC-X",
             "ShortName": "TAC-X",
-            "Description": ".338 Lapua Magnum TAC-X- civilian round with a expanding bullet.",
+            "Description": ".338 Lapua Magnum TAC-X- colpi civili con proiettili espandibili.",
             "casingName": ".338 Lapua Magnum TAC-X"
         },
         "5fc382c1016cce60e8341b20": {
             "Name": ".338 UPZ Lapua Magnum",
             "ShortName": "UPZ",
-            "Description": ".338 Lapua magnum hunting round, manufatured by \"Ulyanovs Cartridge Works\"",
+            "Description": "Cartuccia da caccia.338 Lapua magnum, prodotta dalla \"Ulyanovs Cartridge Works\"",
             "casingName": ".338 \"UPZ\" Lapua Magnum"
         },
         "5fc3e272f8b6a877a729eac5": {
-            "Name": "HK UMP 45 submachinegun",
+            "Name": "Mitragliatore HK UMP 45",
             "ShortName": "UMP 45",
-            "Description": "Heckler & Koch UMP - submachine gun, designed by German company Heckler & Koch in the 1990s as a lighter and cheaper analog of the MP5. This version is designed to fire a .45 ACP cartridge and has a reduced to 600 rpm rate of fire."
+            "Description": "Heckler & Koch UMP - mitragliatore, progettato dalla società tedesca Heckler & Koch negli anni '90 come un analogo più leggero e più economico dell'MP5. Questa versione è progettata per sparare una cartuccia .45 ACP e ha una velocità di fuoco ridotta a 600 rpm."
         },
         "5fc3e466187fea44d52eda90": {
-            "Name": "Standard UMP 25-round .45 ACP magazine",
+            "Name": "Caricatore standard da 25 colpi UMP .45 ACP",
             "ShortName": "UMP 45",
-            "Description": "25-round .45 ACP magazine for UMP."
+            "Description": "Caricatore da 25 colpi .45 ACP per UMP."
         },
         "5fc3e4a27283c4046c5814ab": {
-            "Name": "8\" barrel for UMP .45 ACP",
+            "Name": "Canna 8\" per UMP .45 ACP",
             "ShortName": "8\" UMP .45 ACP",
-            "Description": "A barrel for UMP chambered in .45 ACP ammo, 200mm long."
+            "Description": "Una canna per UMP camerata per munizioni .45 ACP, lunga 200mm."
         },
         "5fc3e4ee7283c4046c5814af": {
-            "Name": "Polymer stock for UMP",
+            "Name": "Calcio in polimeri per UMP",
             "ShortName": "Calcio UMP",
-            "Description": "Polymer stock for UMP manufactured by Heckler & Koch."
+            "Description": "Calcio in polimeri per UMP prodotto dalla Heckler & Koch."
         },
         "5fc3f2d5900b1d5091531e57": {
-            "Name": "TDI Kriss Vector Gen.2 9x19 submachinegun",
+            "Name": "Mitragliatrice TDI Kriss Vector Gen.2 9x19",
             "ShortName": "Vector 9mm",
-            "Description": "The KRISS Vector SMG is the ideal choice for law enforcement and military seeking a controllable, compact, weapon system for close quarter combat environments. The low bore axis and Super V recoil mitigation system allow for the most controllable select fire operation, or fast semi-automatic follow up shots."
+            "Description": "Il KRISS Vector SMG è la scelta ideale per forze dell'ordine e militari alla ricerca di un sistema d'arma compatto e controllabile per ambienti di combattimento ravvicinati. L'asse di alesaggio basso e il sistema di mitigazione del rinculo Super V consentono le operazioni di scontro a fuoco più controllate, o colpi semi-automatici veloci."
         },
         "5fc4b97bab884124df0cd5e3": {
-            "Name": "Piston Mount adapter for Silencerco Omega 45k",
+            "Name": "Adattatore per montaggio a pistone per Silencerco Omega 45k",
             "ShortName": "Píst. Omega",
-            "Description": "Piston Mount adapter for installation of Silencerco Omega 45k silencer directly onto the barrel threading."
+            "Description": "Adattatore per montaggio a pistone per l'installazione del silenziatore Silencerco Omega 45k direttamente sulla canna filettata."
         },
         "5fc4b992187fea44d52edaa9": {
-            "Name": "Direct Thread Mount adapter for Silencerco Omega 45k",
+            "Name": "Adattatore Direct Thread Mount per Silencerco Omega 45k",
             "ShortName": "DT Omega",
-            "Description": "Direct Thread Mount adapter for installation of Silencerco Omega 45k silencer directly onto the barrel threading."
+            "Description": "Adattatore Direct Thread Mount per l'installazione del silenziatore Silencerco Omega 45k direttamente sulla canna filettata."
         },
         "5fc4b9b17283c4046c5814d7": {
-            "Name": "SilencerCo Omega 45k .45 ACP sound suppressor",
+            "Name": "Silenziatore SilencerCo Omega 45k .45 ACP",
             "ShortName": "Omega 45k",
-            "Description": "Light sound suppressor made by SilencerCo. "
+            "Description": "Soppressore leggero fabbricato dalla SilencerCo. "
         },
         "5fc53954f8b6a877a729eaeb": {
-            "Name": "HK UMP Bottom rail",
+            "Name": "Slitta inferiore HK UMP",
             "ShortName": "Guida inf.",
-            "Description": "Bottom rail for UMP allows you to install a various tactical foregrips."
+            "Description": "Slitta inferiore per UMP che consente di installare diverse impugnature frontali tattiche."
         },
         "5fc5396e900b1d5091531e72": {
-            "Name": "HK UMP Side rail",
+            "Name": "Slitta laterale HK UMP",
             "ShortName": "UMP side",
-            "Description": "Side rail for UMP allows you to install additional equipment."
+            "Description": "Slitta laterale per UMP che ti permette di installare equipaggiamento aggiuntivo."
         },
         "5fc64ea372b0dd78d51159dc": {
             "Name": "Pugnale del cultista",
@@ -19536,19 +19558,19 @@
             "Description": "Progettato per il personale delle forze speciali. Permette di ridurre la temperatura corporea per un breve periodo, rallentando significativamente il metabolismo. L'uso dell'SJ9 porta ad una significativa riduzione della quantità di calore rilasciato nell'ambiente, pur mantenendo un livello sicuro di metabolismo all'interno. Viene utilizzato durante le operazioni notturne, consentendo di essere difficilmente visibile per i dispositivi con la visione termica."
         },
         "5fce0cf655375d18a253eff0": {
-            "Name": "Magpul RVG grip FDE",
+            "Name": "Impugnatura Magpul RVG FDE",
             "ShortName": "RVG FDE",
-            "Description": "Magpul RVG (Rail Vertical Grip) tactical grip. Common, unsophisticated and inexpensive, ergonomically shaped vertical foregrip."
+            "Description": "Impugnatura tattica Magpul RVG (Rail Vertical Grip). Comune, non sofisticata ed economica, impugnatura verticale sagomata ergonomicamente."
         },
         "5fce0f9b55375d18a253eff2": {
-            "Name": "KRISS Vector Side rail",
+            "Name": "Guida laterale KRISS Vector",
             "ShortName": "Vector lat.",
-            "Description": "Side rail for Vector allows you to install additional equipment."
+            "Description": "Slitta laterale per Vector che ti permette di installare equipaggiamento aggiuntivo."
         },
         "5fce16961f152d4312622bc9": {
-            "Name": "KRISS Defiance DS150 FDE stock",
+            "Name": "Calcio KRISS Defiance DS150 FDE",
             "ShortName": "DS150 FDE",
-            "Description": "Quick detachable stock for AR15/M16 carbines with the military-style telescopic tube. The frame shape avoids jamming and accidental release of the lever, and the rubber buttstock, with its standard thickness, slides less on armor or modular equipment."
+            "Description": "Calcio rimovibile rapido per carabine AR15/M16 con tubo telescopico in stile militare. La forma del telaio evita l'inceppamento e lo sgancio accidentale della leva, e il contrafforte in gomma, con il suo spessore standard, scivola meno su armatura o attrezzature modulari."
         },
         "5fce3e0cfe40296c1d5fd782": {
             "Name": "bear_tshirt_termo",
@@ -19588,7 +19610,7 @@
         "5fd20ff893a8961fc660a954": {
             "Name": ".300 AAC Blackout AP",
             "ShortName": "300 AP",
-            "Description": ".300 AAC Blackout armor piercing round",
+            "Description": ".300 AAC Blackout colpi penetranti",
             "casingName": ".300 AAC Blackout AP"
         },
         "5fd3e77be504291efd0040ad": {
@@ -19617,25 +19639,25 @@
             "Description": ""
         },
         "5fd4c474dd870108a754b241": {
-            "Name": "5.11 Hexgrid plate carrier",
+            "Name": "5.11 Hexgrid con piastre balistiche",
             "ShortName": "HGrid",
-            "Description": "Plate carrier by 5.11 Tactical intended for use with chest rigs."
+            "Description": "Giubbotto anti-proiettile della 5.11 Tactical destinato per l'uso con attrezzature toraciche."
         },
         "5fd4c4fa16cac650092f6771": {
-            "Name": "DIY IDEA chest rig",
+            "Name": "Giubbotto tattico DIY IDEA",
             "ShortName": "IDEA",
-            "Description": "Handcrafted chest rig made from IDEA store bag. It is impossible to say that it is reliable and suitable for a wide range of military and tactical applications, but at least it is a good example of a hobo-style.",
+            "Description": "Giubbotto tattico realizzato a mano con borse IDEA. È impossibile dire che è affidabile e adatto per una vasta gamma di applicazioni militari e tattiche, ma almeno è un buon esempio di stile da \"vagabondo\".",
             "RigLayoutName": "IDEA"
         },
         "5fd4c5477a8d854fa0105061": {
-            "Name": "Security vest",
+            "Name": "Giubbotto di sicurezza",
             "ShortName": "Gilet",
-            "Description": "The simplest, life-worn vest of the security services."
+            "Description": "Il più semplice giubbotto indossato dai servizi di sicurezza."
         },
         "5fd4c60f875c30179f5d04c2": {
-            "Name": "Gear Craft GC-BSS-MK1 rig",
+            "Name": "Gilet Gear Craft GC-BSS-MK1",
             "ShortName": "BSS-MK1",
-            "Description": "Shoulder belt system of a new generation, set for patrol and assault operations.",
+            "Description": "Sistema cintura a spalla di nuova generazione, predisposto per operazioni di pattugliamento e assalto.",
             "RigLayoutName": "BSS-MK1"
         },
         "5fd7910ae3bfcf6cab4c9f55": {

@@ -502,7 +502,7 @@
         "Sessions": "Sessions",
         "No free room for that item": "Pas de place pour cet objet",
         "Screenshot captured to": "Capture d’écran sauvegardée dans",
-        "Search": "Rechercher",
+        "Search": "Fouille",
         "Fails": "Échecs",
         "Km2": "Km²",
         "KillDeathRate": "Ratio Éliminations/Morts (É/M)",
@@ -628,7 +628,7 @@
         "Awaiting players...": "En attente de joueurs...",
         "Died": "Mort",
         "GET READY!": "PRÉPAREZ-VOUS !",
-        "Welcome screen description": "Bienvenue sur Escape from Tarkov ! \n\nDans ce jeu, vous devrez lutter pour votre vie et survivre aux dangers de Tarkov, une ville Russe dans la région de Norvinsk, au bord du chaos, de l’effondrement et de l'extinction de la civilisation. Votre personnage est un opérateur d’une société militaire privée (PMC), pris dans le tourbillon des événements à la suite de Contract Wars. La zone est sous quarantaine, votre commandement opérationnel ne répond pas et vos précédents objectifs de mission ont perdu leur intérêt. Désormais chacun a ses objectifs personnels - s’adapter et survivre, s’échapper ou prendre en charge la vie des autres en tentant de les sauver. \n\nÀ chaque session de jeu, soyez prêt à mourir et perdre tout ce que vous avez. Gardez à l’esprit que chaque dysfonctionnement de votre connexion ou de votre équipement réseau peut conduire à une déconnexion du jeu et mener à la mort de votre personnage ainsi qu'à la perte de tous les objets ou armes que vous avez récupérés durant la session de jeu. \n\nOui, vous allez mourir, et surement très souvent, mais n’oubliez pas : ce n'est qu'un jeu. Bonne chance dans les bas-fond de Tarkov !",
+        "Welcome screen description": "Bienvenue sur Escape from Tarkov ! \n\nDans ce jeu, vous devrez lutter pour votre vie et survivre aux dangers de Tarkov, une ville Russe dans la région de Norvinsk, au bord du chaos, de l’effondrement et de l'extinction de la civilisation. Votre personnage est un opérateur d’une société militaire privée (PMC), pris dans le tourbillon des événements à la suite de Contract Wars. La zone est sous quarantaine, votre commandement opérationnel ne répond pas et vos précédents objectifs de mission ont perdu leur intérêt. Désormais chacun a ses objectifs personnels - s’adapter et survivre, s’échapper ou prendre en charge la vie des autres en tentant de les sauver. \n\nÀ chaque session de jeu, soyez prêt à mourir et perdre tout ce que vous avez. Gardez à l’esprit que chaque dysfonctionnement de votre connexion ou de votre équipement réseau peut conduire à une déconnexion du jeu et mener à la mort de votre personnage ainsi qu'à la perte de tous les objets ou armes que vous avez récupérés durant la session de jeu. \n\nOui, vous allez mourir, et surement très souvent, mais n’oubliez pas : ce n'est qu'un jeu. Bonne chance dans les bas-fonds de Tarkov !",
         "Attention! Your character is still in the raid. Time remaining for reconnection {0}": "Attention ! Votre personnage est toujours en raid. Reconnexion : {0}",
         "Avoid the engagement of your own PMC": "Évitez d’engager votre propre PMC",
         "Deploying in progress": "Déploiement",
@@ -717,7 +717,7 @@
         "REMOVES FRACTURE": "RETIRE LES FRACTURES",
         "ExitConfirm": "Êtes vous sûr de vouloir quitter ?",
         "InRaid": "En raid",
-        "Exit": "QUITTER",
+        "Exit": "SORTIE",
         "CONFIRMATION": "CONFIRMATION",
         "Right Hand": "MAIN DROITE",
         "INVITE": "INVITER",
@@ -2557,11 +2557,11 @@
         "DamageType_Poison": "Poison",
         "Intoxication": "Toxine inconnue",
         "UI/HealthTreatmentAction_Intoxication": "Traiter",
-        "UI/HealthTreatmentName_Intoxication": "Poisoning",
+        "UI/HealthTreatmentName_Intoxication": "Empoisonnement",
         "UnknownToxin": "Toxine inconnue",
-        "PoisonedWeapon": "Poisoned Blade",
+        "PoisonedWeapon": "Lame empoisonnée",
         "UI/ItemAttribute/UsesLeft_{}": "{0} restante(s)",
-        "Antidote": "Antidode",
+        "Antidote": "Antidote",
         "MetabolismMiscDebuffTime": "Reduction of time of action of all negative effects of stimulants, food, water to [(-{0:0%})]",
         "MetabolismPoisonTime": "Réduction de la durée d'action des poisons de [(-{0:0%})]",
         "ImmunityMiscEffects": "Reduction of all negative effects of stimulants, food and water to [(+{0:0%})]",
@@ -2580,8 +2580,30 @@
         "lightbleedingdelta": "Chance de provoquer une hémorragie légère",
         "choose face and voice": "CHOISISSEZ VOTRE VISAGE ET VOTRE VOIX ",
         "un-sec": "Barrage ONU nord",
-        "NetworkError/TooManyFriendRequestsHeader": "Erreur",
-        "NetworkError/TooManyFriendRequestsMessage": "Vous ne pouvez pas envoyer de requêtes d'ami trop souvent. Essayez à nouveau dans 10 minutes"
+        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
+        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
+        "BloodLoss": "Hémorragie",
+        "REMOVES BLOODLOSS": "RETIRE LES HÉMORRAGIES",
+        "\"Magazine checked: \"": "Chargeur vérifié : ",
+        "You have already bought the maximum amount of this item in the current restock": "Vous avez atteint la limite d'achat pour cet article au cours de ce re-stockage",
+        "DamageType_Bloodloss": "Hémorragie",
+        "you can't transfer item while moving": "Vous ne pouvez pas transférer d'objet en vous déplaçant",
+        "place": "PLACER",
+        "This location is not available for scav": "Cette zone n'est pas accessible aux scavs",
+        "Interchange": "Échangeur",
+        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
+        "No action available": "No available actions",
+        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
+        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
+        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
+        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
+        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
+        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
+        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
+        "Critical error": "Critical error",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
     },
     "enum": [],
     "error": {
@@ -2833,7 +2855,7 @@
         "5ac345e886f7741d632339f3": "Quelqu'un vient de décider de faire chuter le marché en lâchant une épaisse liasse de bitcoins. Si épaisse que TARGox a commencé à accepter des offres 10 fois moins chères que la valeur marchande. Les transactions se sont poursuivies tout en étant constamment réapprovisionnées avec des offres encore moins chères. J'ai par hasard réussi à en acheter quelques centaines. Et aujourd'hui, le prix est revenu à la normale, comme si de rien n'était. On doit entrer dans la partie tant que le marché est contrôlé de cette façon. Tu connais déjà bien l'usine, il y a des panneaux de contrôle sur place. Pour les trouver, suis les signaux d'alerte rouges. Prends quelques outils et répare les panneaux pendant que je travaille sur le refroidissement.\n",
         "5ac345e886f7741d632339f0": "Tu as été plus rapide que je ne le pensais, j'ai presque terminé avec le refroidissement\n",
         "5ac244ce86f7741356335aed": "J'adore le 7,62, un bon calibre",
-        "5ac2437986f774124836841e": "Quand j'étais enfant, les gens avaient pour habitude de dire que ce n'est pas la destination qui compte mais le voyage en lui-même. Mais qu'en est-il lorsque la destination est soi-même, ce que tu sais, tes réflexes et combien de balles tu as dans le chargeur ? C'est particulièrement vrai lorsque tu es censé survivre, en t'accrochant à ce monde avec tes dents. J'ai besoin d'un MP5. Avec un chargeur étendu de 50 cartouches, un réducteur de son, une lampe tactique et une portée du système de visée supérieure à 200 m. Une ergonomie supérieure à 45 et un recul inférieur à 150. Poids maximum de 3,8 kg. Et décide de ce qui est le plus important à tes yeux, le voyage ou la destination.",
+        "5ac2437986f774124836841e": "Quand j'étais enfant, les gens avaient pour habitude de dire que ce n'est pas la destination qui compte mais le voyage en lui-même. Mais qu'en est-il lorsque la destination est soi-même, ce que tu sais, tes réflexes et combien de balles tu as dans le chargeur ? C'est particulièrement vrai lorsque tu es censé survivre, en t'accrochant à ce monde avec tes dents. J'ai besoin d'un MP5. Avec un chargeur étendu de 50 cartouches, un réducteur de son, une lampe tactique et une portée du système de visée supérieure à 200 m. Une ergonomie supérieure à 45 et un recul inférieur à 250. Poids maximum de 3,8 kg. Et décide de ce qui est le plus important à tes yeux, le voyage ou la destination.",
         "5ac3461486f7741d6224abb8": "Ça devrait être suffisant pour commencer",
         "5ac244f386f7741356335af3": "L'arme de la démocratie... Merci.",
         "5ac3479686f774288030819b": "Pavel Yegorovich est l'un des rares à être resté. Je me demande si c'est parce qu'il est militaire ou juste parce qu'il n'a pas eu le temps de partir.",
@@ -2862,9 +2884,9 @@
         "5ae3272086f77444fd36f5e3": "Le plus important, c'est le confort, comme pour tes baskets",
         "5ae44dd386f7744f1a7eb65d": "Tu es un sacré tireur, presque comme un sniper.",
         "5ae326bc86f7742a41359302": "Bonne arme, du solide",
-        "5ae3272086f77444fd36f5e6": "Qu'en penses-tu ? Est-ce que toute la souffrance qui s'abat sur les habitants de notre ville est le résultat des actions de la société, ou d'un plan contrôlé qui ne fait que commencer ? J'y pense tout le temps. Bien que j'aie décidé moi-même que, même si tout cela est contrôlé par quelqu'un, notre société l'a mérité. Nous avons par nos actions, par l'achat de baskets ou de nos salades de betteraves, soutenus ceux qui construisent les laboratoires et les entreprises pour les utiliser dans l'objectif de nous plonger dans les abysses. Bon, je m'égare encore une fois, retour aux affaires. Trouve moi un AKM avec une poignée tactique Fortis Shift, un réducteur de son et un chargeur 30 cartouches Magpul. L'ensemble doit avoir une ergonomie supérieure à 45, un recul inférieur à 350, et une portée du système de visée de 800 m ou plus.",
+        "5ae3272086f77444fd36f5e6": "Qu'en penses-tu ? Est-ce que toute la souffrances qui s'abat sur les habitants de notre ville est le résultat des actions de la société, ou d'un plan contrôlé qui ne fait que commencer ? J'y pense tout le temps. Bien que j'aie décidé moi-même que, même si tout cela est contrôlé par quelqu'un, notre société l'a mérité. Nous avons par nos actions, par l'achat de baskets ou de nos salades de betteraves, soutenus ceux qui construisent les laboratoires et les entreprises pour les utiliser dans l'objectif de nous plonger dans les abysses. Bon, je m'égare encore une fois, retour aux affaires. Trouve moi un AKM avec une poignée tactique Fortis Shift, un réducteur de son et un chargeur 30 cartouches Magpul. L'ensemble doit avoir une ergonomie supérieure à 45, un recul inférieur à 350, et une portée du système de visée de 800 m ou plus.",
         "5ae3277d86f7745b4246b391": "J'ai deux réseaux de neurones artificiels, l'un reconnaît les visages via les caméras et les compare avec la base de données et l'autre surveille les échanges de cryptomonnaie et s'adapte en fonction. Aujourd'hui j'ai décidé d'en créer un de plus, qui sera chargé de surveiller la température, l'humidité, la pression et autres paramètres de ma planque ainsi que parmi d'autres fonctions, de réagir à mon humeur. Nous allons voir ce que ça donne une fois terminé. J'ai une commande pour un AKS-74N avec des pièces Zenith, avec une ergonomie supérieure à 55, un recul inférieur à 500 et n'occupant pas plus de 8 cellules. Et le plus important, avec une poignée pistolet, une crosse PT-3, un boitier supérieur et un frein de bouche par Zenith, du Zenith partout. C'est peut-être un cadeau pour un ex-citoyen de Saint-Pétersbourg.",
-        "5ae3280a86f77444fc552709": "Alors que j'étais occupé avec le réseau, j'ai commencé à me demander en quelle façon sommes-nous différents et quand pourrons-nous remplacer nos cerveaux périssables avec ce genre de systèmes. Qu'en penses-tu, serons-nous capables de ça un jour ? Je pense qu'on le sera très bientôt, nous savons déjà quels processus se produisent à l'intérieur d'un réseau neuronal, il y a seulement un signal en entrée, le résultat de ses actions et la façon dont il a appris de lui-même, câblant ses propres neurones à l'intérieur de lui-même. Comment est-il différent de nous ? Aimerais-tu vivre dans un monde où seul l'esprit et l'imagination limitent vos actions ? La vérité est, je crois, que vivre dans un tel monde peut ne pas être mieux que dans notre monde actuel étant donné qu'il n'y a pas de but ni aucun objectif si vous êtes immortel et tout-puissant... Cette fois, nous avons besoin d'un AS VAL avec une crosse GL Shock, un équipement tactique ANPEQ-15, d'une lunette de vision nocturne NSPU-M et d'un chargeur de 30 cartouches, d'une ergonomie supérieure à 34 et d'un recul inférieur à 250.",
+        "5ae3280a86f77444fc552709": "Alors que j'étais occupé avec le réseau, j'ai commencé à me demander en quelle façon sommes-nous différents et quand pourrons-nous remplacer nos cerveaux périssables avec ce genre de systèmes. Qu'en penses-tu, serons-nous capables de ça un jour ? Je pense qu'on le sera très bientôt, nous savons déjà quels processus se produisent à l'intérieur d'un réseau neuronal, il y a seulement un signal en entrée, le résultat de ses actions et la façon dont il a appris de lui-même, câblant ses propres neurones à l'intérieur de lui-même. Comment est-il différent de nous ? Aimerais-tu vivre dans un monde où seul l'esprit et l'imagination limitent vos actions ? La vérité est, je crois, que vivre dans un tel monde peut ne pas être mieux que dans notre monde actuel étant donné qu'il n'y a pas de but ni aucun objectif si vous êtes immortel et tout-puissant... Cette fois, nous avons besoin d'un AS VAL avec une crosse GL Shock, un équipement tactique ANPEQ-15, d'une lunette de vision nocturne NSPU-M, d'un chargeur de 30 cartouches, d'une ergonomie supérieure à 34 et d'un recul inférieur à 250.",
         "5ae3277d86f7745b4246b38e": "Laisse le sur la caisse, merci",
         "5ae3280a86f77444fc552706": "Tiens, la clé, elle te sera peut être utile à l'Échangeur",
         "5ae44ffe86f774149f15f4ec": "Tu sais frérot, je vais te dire un truc, les vêtements auront toujours de la valeur. Guerre ou pas guerre, les gens achètent toujours ces trucs. L’Ultra avait une multitude de magasins de marque, le genre dans lesquels les gens aiment se ruer, je pourrais leur trouver une utilité à partir de maintenant. Passes-y faire un tour vite fait, regarde s’il reste des choses, s’ils ne sont pas saccagés. Par contre inutile de faire le fond des étagères, je ne veux que de la marque.",
@@ -2903,10 +2925,10 @@
         "5af5886186f774153d712bb8": 123,
         "5af5886186f774153d712bb7": 123,
         "5b486ce586f7744882493785": "J'espère que tu n'as pas parlé de ce MPX à qui que ce soit.",
-        "5b486ce586f7744882493788": "Le temps presse, un gars veut en finir avec le Dealmaker, qui se trouve quelque part autour des dortoirs avec des gars de l'usine. Assemble-lui un MPX, avec une poignée pistolet type squelette pour AR-15, un cache-flamme Annihilator et une lampe tactique Steiner LAS/TAC 2. Il nous faut une portée du système de visée de 300 m ou plus, une ergonomie supérieure à 52, un poids inférieur à 4 kg et un recul inférieur à 250. Ne parle de ça à personne, je ne pense pas que le Dealmaker soit très content de l'apprendre et ses gars ne rigolent pas, ils étaient tous enrôlés avant de travailler à l'usine.",
+        "5b486ce586f7744882493788": "Le temps presse, un gars veut en finir avec Reshala, qui se trouve quelque part autour des dortoirs avec des gars de l'usine. Assemble-lui un MPX, avec une poignée pistolet type squelette pour AR-15, un cache-flamme Annihilator et une lampe tactique Steiner LAS/TAC 2. Il nous faut une portée du système de visée de 300 m ou plus, une ergonomie supérieure à 52, un poids inférieur à 4 kg et un recul inférieur à 250. Ne parle de ça à personne, je ne pense pas que Reshala soit très content de l'apprendre et ses gars ne rigolent pas, ils étaient tous enrôlés avant de travailler à l'usine.",
         "5b486d0e86f7744f4b12d792": "Je veux apprendre à Lusya comment faire la différence entre le mensonge et la vérité, si les résultats sont bons à 90 %, ça sera intéressant d'écouter ces politiciens et porte-paroles de Terragroup avec leurs idées brillantes et promettant un avenir merveilleux ainsi qu'une bonne économie. Combien de mensonges y a-t-il là-dedans ? Je pense... que tous leurs discours sont des mensonges. J'ai une demande pour un AKMN version MOE. Le garde-main, la poignée pistolet et la poignée tactique doivent être MOE. Tout en noir. De plus, il faudrait un réducteur de son Rotor 43, un recul inférieur à 350, une ergonomie supérieure à 47 et une portée du système de visée de 500 mètres. Le tout, pour 5 kg ou moins.",
         "5b486d3e86f7743780259fd1": "Au passage, pour Sni... Dima, pas un mot à quiconque, mais je pense que tu avais déjà compris.",
-        "5b486d3e86f7743780259fd4": "Celle-ci est pour un sniper, on dirait qu'il va se poser dans les bois pour en chasser les méchants. Je pense qu'il va y passer une semaine vu le sac de rations, de batteries et d'eau qu'il avait avec lui. Je l'ai stocké avec moi en attendant. Il a besoin d'une M1A, avec un montage Ultimak M8. Une lunette Nightforce 7-35x56, un viseur reflex T1 et un équipement tactique Holosun. L'ensemble doit avoir une ergonomie supérieure à 20, un recul inférieur à 400 et un poids de 7,3 kg ou moins.",
+        "5b486d3e86f7743780259fd4": "Celle-ci est pour un sniper, on dirait qu'il va se poser dans les Bois pour en chasser les méchants. Je pense qu'il va y passer une semaine vu le sac de rations, de batteries et d'eau qu'il avait avec lui. Je l'ai stocké avec moi en attendant. Il a besoin d'une M1A, avec un montage Ultimak M8. Une lunette Nightforce 7-35x56, un viseur reflex T1 et un équipement tactique Holosun. L'ensemble doit avoir une ergonomie supérieure à 20, un recul inférieur à 400 et un poids de 7,3 kg ou moins.",
         "5b486c9386f7744a08514b18": "Bien joué, laisse-le sur la caisse.",
         "5b486d8686f77450c05449c6": "Ça me donne envie de la mettre dans une vitrine pour l'admirer.",
         "5b486e2a86f7744a08514b1f": "Salam, récemment j'ai reçu le gars qui est en quelque sorte un proche de Reshala. Un mec putain de bien fringué avec une pierre précieuse au doigt de la taille d'un bouchon de bouteille. Je l'ai vu à un rassemblement une fois, il conduisait une BMW. Il dit que, guerre ou pas guerre, son refuge doit être classe. Enfin, ce n'est pas tellement un refuge, c'est plus une planque. Trouve-moi quelques bijoux, je vais lui donner pour nos affaires et cherche des montres Roler. C'est mieux d'être en bon terme avec des gars comme ça, crois-moi.\n",
@@ -2916,7 +2938,7 @@
         "5b486e2a86f7744a08514b1c": "Merci du fond du cœur, je vais faire la livraison.",
         "5b486c9386f7744a08514b1b": "Il y a quelque temps, j'ai rencontré le propriétaire de l'armurerie Kiba Arms, on est même allé au banya, mais je ne suis pas tellement dans ce genre de truc. Lui, par contre, s'est cassé le bras en essayant de plonger depuis la jetée. Un gars bien sympa, il rêvait constamment de monter un terrain d'airsoft. On dirait que son rêve est devenu réalité dans Tarkov, le plus grand et meilleur champ de bataille au monde, mais avec une petite différence, ici tu meurs et perds absolument tout d'une seule balle. Assemble-moi un AK-102, avec un réducteur de son Rotor 43, une poignée tactique AFG OD et une lampe Zenith 2U. Je veux une ergonomie supérieure à 50, un recul inférieur à 500 et une portée du système de visée de 500 m ou plus. Fais en sorte que ça n'occupe pas plus de 8 cellules.",
         "5b486d0e86f7744f4b12d78f": "Merci, je suis occupé là, je te revois plus tard.",
-        "5b486d8686f77450c05449c9": "Quel est le prix d'une vie humaine selon toi ? Pas cher je suppose. Mais ce qui me surprend encore plus, c'est le marché de l'art contemporain. Le prix des œuvres des artistes célèbres montent chaque année. Ils sont vraiment talentueux, mais plus tu regardes, plus tu as l'impression que tout et n'importe quoi peut être de l'art, que ce soit une peinture de Grotko, un urinoir ou un tas de poubelles. Mais selon moi, les œuvres d'art les plus incroyables sont les armes en commençant par leurs courbes avec des armes reconnues dans le monde entier et trouvables dans beaucoup de musées comme des vieilles AK ou M4. Elles sont magnifiques telles qu'elles sont. Mais les armes ne deviennent que de l'art que lorsqu'elles deviennent uniques, dans les mains d'un combattant capable de les utiliser et de les modifier comme il le souhaite créant ainsi une œuvre d'art qui pourrait être exposée dans les meilleurs musées. Apporte-moi une œuvre de ce genre. J'ai besoin d'une M4A1 avec un réducteur de son NT4 FDE, un garde-main MK10, une lunette thermique et un chargeur de 60 cartouches. Le tout avec une ergonomie supérieure à 48, un recul inférieur à 250 et moins de 5 kg.",
+        "5b486d8686f77450c05449c9": "Quel est le prix d'une vie humaine selon toi ? Pas cher je suppose. Mais ce qui me surprend encore plus, c'est le marché de l'art contemporain. Le prix des œuvres des artistes célèbres montent chaque année. Ils sont vraiment talentueux, mais plus tu regardes, plus tu as l'impression que tout et n'importe quoi peut être de l'art, que ce soit une peinture de Grotko, un urinoir ou un tas de poubelles. Mais selon moi, les œuvres d'art les plus incroyables sont les armes en commençant par leurs courbes avec des armes reconnues dans le monde entier et trouvables dans beaucoup de musées comme des vieilles AK ou M4. Elles sont magnifiques telles qu'elles sont. Mais les armes ne deviennent que de l'art que lorsqu'elles deviennent uniques, dans les mains d'un combattant capable de les utiliser et de les modifier comme il le souhaite créant ainsi une œuvre d'art qui pourrait être exposée dans les meilleurs musées. Apporte-moi une œuvre de ce genre. J'ai besoin d'une M4A1 avec un réducteur de son NT4 FDE, un garde-main MK10, une lunette thermique REAP-IR et un chargeur de 60 cartouches. Le tout avec une ergonomie supérieure à 48, un recul inférieur à 250 et moins de 5 kg.",
         "5b486ddf86f7744ba00f2234": "Le mécano m'en a demandé, je vais lui envoyer dans la journée.",
         "5b48704286f7744a14343905": "Toute cette technologie n'est clairement pas pour moi, l'image est immonde et le signal est merdique, mais j'ai déjà trouvé des \"gros rats\". Merci pour l'aide précieuse !",
         "5b486e8e86f77448824937ad": "Ooph. Impressionnant, merci",
@@ -3003,7 +3025,7 @@
         "5c5d950686f7747a777ade0f": "Ah c'est toi. Le dépanneur du coin, hein ? Ouais, je suis au courant te concernant. Et tu devrais retenir une chose. Tu n'es pas le seul. Il y tout un tas d'autres mecs réglo dehors, peut être encore plus talentueux que toi, ils se baladent et gèrent leurs affaires, et de temps en temps ils laissent du matos derrière eux. Et le truc, c'est que j'ai besoin de ces quelques objets particuliers. Je sais qu'ils sont compliqués à trouver, mais la récompense ne te décevra pas.",
         "5c5d950686f7747a777ade0c": "Tu as tout ? Nickel. Prends ta récompense, comme promis !",
         "5d2496bd86f77425cc4e9475": "Tu l'as ? Bien joué. Bon, je pense que tu as mérité d'être mis en contact avec Jaeger. Il aura sûrement pas mal de boulot pour toi.",
-        "5d2496bd86f77425cc4e9478": "Te voilà, je t’attendais justement. Il y a quelques heures de ça, mon vieil ami Jaeger m'a contacté pour m'informer qu'il avait des renseignements bien utiles pour moi. Les renseignements dont j'ai besoin sont cryptées et se trouvent dans la réserve naturelle de priozersky. Où exactement, il ne m'a pas spécifié, mais il a laissé un indice : \"Cherche un endroit où un chasseur attendrait sa proie\". Rapporte-moi ce sac et tu vas adorer la récompense.",
+        "5d2496bd86f77425cc4e9478": "Te voilà, je t’attendais justement. Il y a quelques heures de ça, mon vieil ami Jaeger m'a contacté pour m'informer qu'il avait des renseignements bien utiles pour moi. Les renseignements dont j'ai besoin sont cryptés et se trouvent dans la réserve naturelle de priozersky. Où exactement, il ne m'a pas spécifié, mais il a laissé un indice : \"Cherche un endroit où un chasseur attendrait sa proie\". Rapporte-moi ce sac et tu vas adorer la récompense.",
         "5d24b83286f7743d2612b6f8": "Merci. Désormais nous pouvons passer aux affaires principales.",
         "5d24b83286f7743d2612b6fb": "Salut ! Je t'observe depuis longtemps, j'ai eu vent de tes bonnes et mauvaises actions. Par nos temps difficiles, il est dur de rester soi-même, il faut choisir un camp. Donc me voilà dans le camp des personnes qui éradiquent nos terres de diverses infections, de ceux qui nous tirent vers des abysses bien sombres. Si tu veux t'y joindre, je serais ravi de t'aider. Le Mécano m'a informé de ton parcours et m'a dit qu'on peut te faire confiance. Avec tous ces événements je n'ai plus aucune volonté de rester à l'écart de ce qu'il se passe dans la région. Au début je pensais qu'il serait mieux que je reste reclus dans les contrées sauvages de ma réserve, mais pas après ce qu'on commencé à faire les bandits locaux, pas après tous ces meurtres et ces vols, pas après ce qu'ils ont fait à notre ville... D'une façon générale, j'ai vraiment besoin de tes services, et pour commencer, j'ai besoin que tu rapportes des vivres. Mon train de vie d'ermite a bien entamé mes provisions.",
         "5d25a9e486f77443e3514eba": "Сам видишь времена пошли жёсткие помощи ждать неоткуда, а что нас не убивает делает сильнее.",
@@ -3023,7 +3045,7 @@
         "5d25dbd086f77443e625e383": "Je vais te dire un truc. Si ton adversaire est aveuglé, il n'y a rien qu'il puisse faire contre toi, peu importe l'équipement qu'il possède. L'inverse est également vrai. Seules tes compétences et ton assurance pourront t'aider à surmonter une telle situation.",
         "5d25d4cb86f77443e55d2f76": "Il faut toujours garder le contrôle de soi, quelle que soit la situation. Si tu perds le contrôle ou que tu paniques, tu meurs, peu importe ce qu'il s'est passé, que tu te sois pris une balle ou que tu sois juste bourré.",
         "5d25fd4c86f77409de05bba9": "Comme je l'ai lu dans un article, l’œil humain est capable de s'adapté à l'obscurité. Tu sais, j'ai été vérifié, et j'ai failli me péter une jambe dans un brise-vent. Il semblerait que je sois un peu trop vieux pour ces métaphores, par contre toi, tu es en pleine fleur de l'âge. Une vision entraînée peut nous être utile dans les tâches les plus difficiles. Occupe-t'en.",
-        "5d25fd4c86f77409de05bba6": "Combien dis-tu qu'il y en avait ? Dix ? Et tout ça sans aucun \"appareil\" ? Il semblerait bien que tu aies révélé le chasseur nocturne qui sommeille en toi.",
+        "5d25fd4c86f77409de05bba6": "Combien dis-tu qu'il y en avait ? Et tout ça sans aucun \"appareil\" ? Il semblerait bien que tu aies révélé le chasseur nocturne qui sommeille en toi.",
         "5d26042386f77443ff46d19d": "Je ne peux même pas compter le nombre choses que j'ai vu en tant que garde-chasse. Tant de gens différents se sont perdus dans ces bois. Certains s'en sont tiré indemnes, d'autres non. Il faut être sacrément endurci pour sortir des bois en vie.",
         "5d26042386f77443ff46d19a": "Que disait Suvorov déjà ? \"Ce qui est dur à l'entraînement sera facile pendant la bataille.\" Cette compétence te sera bien utile, fais-moi confiance.",
         "5d260f8686f77469f04444b5": "Et bien soldat, il est désormais l'heure de commencer à purifier Tarkov de toutes ces ordures. Toi et moi avons déjà fait un long chemin et tu as encore beaucoup à apprendre. Bref, commençons par le secteur de l'usine de produits chimiques, ça te va ? Un tas de choses bien utiles y étaient produites, j'y ai même travaillé pendant 6 mois en tant que chef de la sécurité jusqu'à ce que Terragroup ne débarque. Depuis, des trucs étranges ont commencé à se produire, moi je te le dis, ils ont arrêté la production régulière pour quelque chose de bien différent, bien sombre. Et avec les étincelles de l'anarchie commençant à se propager, ils ont fui. Les maraudeurs ont ensuite commencé à démanteler l'usine, et je m'en rappelle des moindres recoins. Pour faire court, c'est vraiment dégueulasse, donc va leur apprendre une leçon. S'il reste encore quelque chose d'utile, ça serait sûrement dans les bureaux, tu ne pourras pas le rater. Fais oublier à ces pilleurs cet endroit, au moins pendant un certain temps.",
@@ -3059,7 +3081,7 @@
         "5d2f378786f774169b7e0069": "Salut le guerrier ! Comment tu vas ? Tout se passe bien ? Écoute, j'ai une demande inhabituelle, le Mécano veut que je lui fasse un dispositif particulier pour sa planque, mais ce dispositif est tellement complexe qu'il va nécessiter des composants électroniques avancés. Il n'y a nul part dans la ville où trouver ce genre de composants, fait chier. Mais il y a des rumeurs qui disent que de tels composants pourraient être trouvés quelque part dans les laboratoires Terragroup. Les laboratoires sont bien trop dangereux à l'heure actuelle pour que je t'y envoie, je m'occuperai moi-même de cette partie, mais je veux bien que tu me rapportes quelques cartes d'accès pour pouvoir y enter. Tu veux bien m'aider ? Ah oui, les cartes doivent être neuves, donc pas celles qui proviennent des marchands.",
         "5d4bec6a86f7741e530d2c02": "Tu l'as vraiment fait putain ! Bien joué ! Je tiens donc ma promesse. Voilà ta récompense.",
         "5d66912c86f774368f43a242": "Ce sont de sacrés beaux fusils de précision ! Bon travail ! Je suppose qu'il est temps pour moi de me mettre à la modification d'armes.",
-        "5d66912c86f774368f43a245": "Rentre. Tu veux du thé ? Bien, peu importe. Donc écoute, voilà le topo. Prochainement, je vais héberger quelques-uns de mes amis. Je veux aller à la chasse avec eux, mais il n'y a clairement pas moyen que je les emmène chasser avec ces fusils MR. Je veux que tu m'apportes trois beaux fusils de précision, le genre que je pourrais ajouter à ma collection après la partie de chasse terminée. Ne t'inquiète pas pour la récompense, je ne te décevrai pas. Je vais t'écrire un mot avec le cahier des charges pour les fusils. Un recul inférieur à 600, une ergonomie supérieure à 50 et équipé d'une lunette de visée March Tactical 3-24x42 FFP.",
+        "5d66912c86f774368f43a245": "Rentre. Tu veux du thé ? Bien, peu importe. Donc écoute, voilà le topo. Prochainement, je vais héberger quelques-uns de mes amis. Je veux aller à la chasse avec eux, mais il n'y a clairement pas moyen que je les emmène chasser avec ces fusils MP. Je veux que tu m'apportes deux beaux fusils de précision, le genre que je pourrais ajouter à ma collection après la partie de chasse terminée. Mais dans un premier temps, il faut t'assurer qu'ils soient correctement réglés, et j'ai l’opportunité parfaite pour t'en assurer, son nom est Shturman. Il traine aux alentours de la scierie dans les bois, ce salopard. Ne t'inquiète pas pour la récompense, je ne te décevrai pas. Je vais t'écrire un mot avec le cahier des charges pour les fusils de précision. (Remington M700 équipé d'une lunette de visée March Tactical 3-24x42 FFP.)",
         "5d66914986f7743690020694": "Regardez qui arrive ! Salut ! J'ai entendu certaines rumeurs disant qu'il reste toujours beaucoup de nourriture dans les vieux entrepôts de la base militaire. Il se dit que les bandits ont commencé à trainer dans les alentours à la recherche de nourriture après le départ de la RUAF. Fais-moi une faveur, trouve leur piste et l'endroit exact où se trouvent ces entrepôts, puis je ferai en sorte que la prochaine visite de ces bandits soit un véritable feu d'artifice.",
         "5d66914986f7743690020691": "Ils avaient déjà tout récupéré ? Merde ! Faut qu'on soit plus rapide.",
         "5d6fb45f86f77449d825f9cc": "Alors, tu as fait ton choix ? Quelques petites injections et ce sera bon. Et voilà. Reste tranquille pendant au moins quelques jours, repose-toi et prends des vitamines.",
@@ -3115,8 +3137,8 @@
         "5fd4c93f99cf630ebf4fabdf": "So, have you figured out what's what yet?  Here's the stuff, and keep your eyes open when you go out raiding. If you want to trade, come see me.",
         "5fdb3e50148b192e1a7463e2": "Ça veut donc dire que mes gars ne sont s'en pas sortis et que le convoi a été pillé...et il y a bien un camp de la USEC à côté ? Ça craint. Mais merci pour les informations.",
         "5fdb3e50148b192e1a7463e5": "Salutation soldat, j'ai un job pour toi. Pour faire court, j'ai perdu le contact avec un de mes groupes, ça fait maintenant quelque temps. Quand c'était la merde, je les envoyais dans les bois pour ramasser quelques cargaisons. J'ai bien peur qu'ils aient été pris en embuscade, la dernière fois que j'ai eu des nouvelles de leur part, ils me disaient que des opérateurs de la USEC se rapprochaient d'eux. Va voir si certains d'entre eux ont survécus. Ils avaient un VBL, un minibus et une sorte de camion, je ne me rappelle plus exactement du modèle. Je pense aussi que la USEC a établi un camp à proximité.",
-        "600303b71448362c785bc3b2": "Of course I heard the air in the Woods tremble. Shturman got what he deserved. Don't stand still, you can buy new rifles now.",
-        "600303b71448362c785bc3b5": "Greetings! Come on in. I got a job for you. I just got a shipment of imported guns. The big ones, long-range, .338 caliber. And you know I'm a fan of that stuff. And there's another long-range shooter called Shturman. Deal with him, he's been a huge problem for a while now. And I'll give you an opportunity to buy those overseas elephant guns. Now move, I'm waiting to hear from you."
+        "600303b71448362c785bc3b2": "Bien sûr que j'ai entendu le raffut dans les bois. Shturman a eu ce qu'il méritait. Ne reste pas planté là, tu peux acheter de nouveaux fusils de précision désormais.",
+        "600303b71448362c785bc3b5": "Salutations ! Entre donc, j'ai un boulot pour toi. Je viens de recevoir une livraison d'armes que j'ai fais importer, des armes de gros calibre pour les tirs à longues distances, de calibre .338,tu sais que j'adore ce genre de truc. Un tireur longue distance est de la partie, Shturman, occupe toi de lui, ça fait un moment qu'il me cause des ennuis. Je te donnerai ensuite l'opportunité d'acheter ces véritables carabines à éléphants. Bouge maintenant, j'attends de tes nouvelles."
     },
     "quest": {
         "5936d90786f7742b1420ba5b": {
@@ -3399,8 +3421,8 @@
         "596b36c586f77450d6045ad2": {
             "name": "Fournisseur",
             "conditions": {
-                "597867e986f7741b265c6bd3": "Livrez les gilets pare-balles trouvés en raid à Skier",
-                "5ab8d44c86f7745b2325bd0c": "Livrez les fusils trouvés en raid à Skier"
+                "597867e986f7741b265c6bd3": "Livrez le gilet pare-balles trouvé en raid à Skier",
+                "5ab8d44c86f7745b2325bd0c": "Livrez le fusil trouvé en raid à Skier"
             },
             "description": "5abe61a886f7746ad512da99",
             "note": "",
@@ -3890,7 +3912,7 @@
                 "5a2806b386f77420062f0fbd": "Placez la balise à l'emplacement du rituel des douanes",
                 "5a2806e086f774291b084041": "Placez la balise au premier emplacement du rituel dans les Bois",
                 "5a2806f886f774513d3e69f5": "Placez la balise à l'emplacement du rituel du littoral",
-                "5fe0e9ed3f3a7d4169035e8e": "Placez la balise au second emplacement du rituel dans les Bois"
+                "5fe0e9ed3f3a7d4169035e8e": "Placez la balise au second emplacement du rituel dans les bois"
             },
             "name": "Le Culte - Partie 2",
             "description": "5abe61a886f7746ad512da7b",
@@ -4558,10 +4580,10 @@
         },
         "5ae4490786f7744ca822adcc": {
             "conditions": {
-                "5ae4543686f7742dc043c903": "Livrez les chapeaux cache-oreille 'Ushanka'",
+                "5ae4543686f7742dc043c903": "Livrez les chapeaux cache-oreilles \"Ushanka\"",
                 "5ae454a086f7742be909a81a": "Livrez les chapeaux de cowboy",
                 "5af4157f86f7745f696ebd3d": "",
-                "5fd89729a8c881276c560433": "Trouvez en raid 2 chapeaux cache-oreille 'Ushanka'",
+                "5fd89729a8c881276c560433": "Trouvez en raid 2 chapeaux cache-oreilles Ushanka",
                 "5fd89799c54dc00f463272d3": "Trouvez en raid 2 chapeaux de cowboy"
             },
             "name": "Habillé pour tuer",
@@ -4994,7 +5016,7 @@
         },
         "5bc4776586f774512d07cf05": {
             "conditions": {
-                "5bc850d186f7747213700892": "Tuez 5 scavs à plus de 40 mètres avec un fusil de précision sans optique",
+                "5bc850d186f7747213700892": "Tuez 5 scavs à plus de 40 mètres avec un fusil de précision à verrou sans optique",
                 "5bdac2f186f7743e152e8695": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 1",
@@ -5007,9 +5029,9 @@
         },
         "5bc479e586f7747f376c7da3": {
             "conditions": {
-                "5bd983d886f7747ba73fc246": "Effectuez 3 tirs dans les jambes à plus de 40 mètres avec un fusil de précision",
+                "5bd983d886f7747ba73fc246": "Effectuez 3 tirs dans les jambes à plus de 40 mètres avec un fusil de précision à verrou",
                 "5bd9842e86f7747baa07aba7": "",
-                "5bd9944f86f774035c4877f3": "Effectuez 2 tirs à la tête à plus de 40 mètres avec un fusil de précision",
+                "5bd9944f86f774035c4877f3": "Effectuez 2 tirs à la tête à plus de 40 mètres avec un fusil de précision à verrou",
                 "5bdabf0586f7743e1809c555": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 2",
@@ -5022,7 +5044,7 @@
         },
         "5bc47dbf86f7741ee74e93b9": {
             "conditions": {
-                "5bc47e3e86f7741e6b2f3332": "Tuez 3 opérateurs d'une PMC à moins de 25 mètres avec un fusil de précision",
+                "5bc47e3e86f7741e6b2f3332": "Tuez 3 opérateurs d'une PMC à moins de 25 mètres avec un fusil de précision à verrou",
                 "5bdabf1f86f7743e1809c556": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 3",
@@ -5048,7 +5070,7 @@
         },
         "5bc4826c86f774106d22d88b": {
             "conditions": {
-                "5bc84f7a86f774294c2f6862": "Tuez 8 scavs dans les douanes entre 21h et 05h avec un fusil de précision",
+                "5bc84f7a86f774294c2f6862": "Tuez 8 scavs dans les douanes entre 21h et 05h avec un fusil de précision à verrou",
                 "5bdabf4486f7743e1665df6d": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 5",
@@ -5061,7 +5083,7 @@
         },
         "5bc4836986f7740c0152911c": {
             "conditions": {
-                "5bc483ba86f77415034ba8d0": "Tuez 5 scavs sniper avec un fusil de précision",
+                "5bc483ba86f77415034ba8d0": "Tuez 5 scavs sniper avec un fusil de précision à verrou",
                 "5bdabf5386f7743e152e867c": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 6",
@@ -5074,7 +5096,7 @@
         },
         "5bc4856986f77454c317bea7": {
             "conditions": {
-                "5bc485b586f774726473a858": "Tuez 5 opérateurs d'une PMC à plus 45 mètres avec un fusil de précision muni d'un réducteur de son",
+                "5bc485b586f774726473a858": "Tuez 5 opérateurs d'une PMC à plus 45 mètres avec un fusil de précision à verrou muni d'un réducteur de son",
                 "5bdabf6286f7743e171249af": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 7",
@@ -5087,7 +5109,7 @@
         },
         "5bc4893c86f774626f5ebf3e": {
             "conditions": {
-                "5bc48aed86f77452c947ce67": "Tuez 3 opérateurs d'une PMC avec un fusil de précision au cours d'un même raid dans les bois",
+                "5bc48aed86f77452c947ce67": "Tuez 3 opérateurs d'une PMC avec un fusil de précision à verrou au cours d'un même raid dans les bois",
                 "5bdabf7186f7743e152e867d": ""
             },
             "name": "\"Le tireur de Tarkov\" - Partie 8",
@@ -5560,7 +5582,7 @@
             "conditions": {
                 "5d24ba7886f77439c92d6baa": "Trouvez en raid ou fabriquez 3 rations militaires Iskra",
                 "5d24bb4886f77439c92d6bad": "Trouvez en raid 2 sachets de croûtons de seigle Emelya",
-                "5d24bb7286f7741f7956be74": "Trouvez en raids 2 conserves de délicieux ragoût de bœuf",
+                "5d24bb7286f7741f7956be74": "Trouvez en raid 2 conserves de délicieux ragoût de bœuf",
                 "5d76276186f774454c5360bc": "",
                 "5d77d51c86f7742fa65b6608": ""
             },
@@ -5937,7 +5959,7 @@
             "conditions": {
                 "5d7793fa86f7742fa901bc80": "",
                 "5d77940986f7742fa732bf0a": "",
-                "5fd8aa3206fb3a6b8154a2c3": "Get a Shturman kill with a Remington M700 with a scope"
+                "5fd8aa3206fb3a6b8154a2c3": "Tuez Shturman avec un Remington M700 muni d'une lunette"
             },
             "name": "Partie de chasse",
             "note": "",
@@ -6624,11 +6646,11 @@
         },
         "600302d73b897b11364cd161": {
             "conditions": {
-                "600303250b79c6604058ce30": "Eliminate Shturman 25 times",
+                "600303250b79c6604058ce30": "Éliminez Shturman 25 fois",
                 "600304b78dfec348e767018c": "",
                 "600304c38dfec348e767018e": ""
             },
-            "name": "Hunter",
+            "name": "Chasseur",
             "note": "",
             "successMessageText": "600303b71448362c785bc3b2",
             "failMessageText": "600303b71448362c785bc3b3",
@@ -11284,9 +11306,9 @@
             "RigLayoutName": "Gilet Wartech"
         },
         "59e7708286f7742cbd762753": {
-            "Name": "Chapeau cache-oreille Ushanka",
+            "Name": "Chapeau cache-oreilles Ushanka",
             "ShortName": "Ushanka",
-            "Description": "Un chapeau cache-oreille est un classique pour un Russe, comme le pense la plupart des gens d'autres pays."
+            "Description": "Un chapeau cache-oreilles est un classique pour un Russe, comme le pense la plupart des gens d'autres pays."
         },
         "59e770b986f7742cbd762754": {
             "Name": "Lunettes balistiques",
@@ -11929,7 +11951,7 @@
             "Description": "Réducteur de son léger produit par SilencerCo."
         },
         "5a32aa0cc4a28232996e405f": {
-            "Name": "Embase Trijicon RMR pour pistolets SIG SAUER",
+            "Name": "Embase Trijicon RMR pour pistolets SIG Sauer",
             "ShortName": "RM50",
             "Description": "Remplace la hausse pour permettre le montage de n'importe quel Trijicon RMR."
         },
@@ -13434,12 +13456,12 @@
         "5b39ffbd5acfc47a8773fb06": {
             "Name": "Poignée caoutchouc ergonomique avec empreintes des doigts pour P226",
             "ShortName": "Hogue P226",
-            "Description": "Poignée caoutchouc ergonomique avec empreintes des doigts pour les pistolets SIG SAUER P226, produite par Hogue."
+            "Description": "Poignée caoutchouc ergonomique avec empreintes des doigts pour les pistolets SIG Sauer P226, produite par Hogue."
         },
         "5b3a08b25acfc4001754880c": {
             "Name": "Montage bridge pour P226",
             "ShortName": "Mont. P226",
-            "Description": "Montage SIG SAUER type bridge. Vous permet de monter n'importe quel viseur ou accessoires tactiques."
+            "Description": "Montage SIG Sauer type bridge. Vous permet de monter n'importe quel viseur ou accessoires tactiques."
         },
         "5b3a16655acfc40016387a2a": {
             "Name": "Cache-flamme Annihilator 7,62x39, 5,56x45 et 9 mm pour AR-15",
@@ -15211,7 +15233,7 @@
             "casingName": "9x19 mm Traçante Verte"
         },
         "5c46fbd72e2216398b5a8c9c": {
-            "Name": "Fusil de précision SVDS 7,62x54",
+            "Name": "Fusil de précision semi-automatique SVDS 7,62x54",
             "ShortName": "SVDS",
             "Description": "Fusil de précision Dragunov avec crosse rétractable, version SVDS. Mis au point spécialement pour troupes aéroportées et les unités des forces spéciales."
         },
@@ -15478,7 +15500,7 @@
         "5c6beec32e221601da3578f2": {
             "Name": "Compensateur TJ Custom 9x19",
             "ShortName": "TJ",
-            "Description": "Compensateur produit par TJ Custom pour les pistolets SIG SAUER P226."
+            "Description": "Compensateur produit par TJ Custom pour les pistolets SIG Sauer P226."
         },
         "5c6bf4aa2e2216001219b0ae": {
             "Name": "Poignée pistolet US Palm pour AK",
@@ -16048,9 +16070,9 @@
             "Description": ""
         },
         "5cda9bcfd7f00c0c0b53e900": {
-            "Name": "Poignée pistolet verticale pour ASh-12",
+            "Name": "Poignée tactique verticale pour ASh-12",
             "ShortName": "ASh-12",
-            "Description": "Poignée pistolet verticale pour ASh-12."
+            "Description": "Poignée tactique verticale pour ASh-12."
         },
         "5cdaa99dd7f00c002412d0b2": {
             "Name": "Garde-main polymère pour ASh-12",
@@ -19207,8 +19229,8 @@
             "Description": "Le pistolet-mitrailleur KRISS Vector est le choix idéal pour le personnel des forces de l'ordre et militaire recherchant un système d'arme contrôlable et compact pour les environnements en combat rapproché. L'axe bas du canon et le système d'atténuation du recul Super V permettent des tirs contrôlables en automatique ou lors de tirs semi-auto successifs."
         },
         "5fb651b52b1b027b1f50bcff": {
-            "Name": "Chargeur Glock .45 ACP",
-            "ShortName": "Glock .45 ACP",
+            "Name": "Chargeur Glock .45 ACP 13 coups",
+            "ShortName": "Glock .45",
             "Description": "Chargeur standard 13 coups .45 ACP pour Glock 21."
         },
         "5fb651dc85f90547f674b6f4": {
@@ -19227,9 +19249,9 @@
             "Description": "Canon de 6\" pour KRISS Vector .45 ACP."
         },
         "5fb65424956329274326f316": {
-            "Name": "Cache-flamme.45 ACP pour KRISS Vector",
-            "ShortName": "FDB Vector .45",
-            "Description": "Cache-flamme standard .45 ACP pour KRISS Vector"
+            "Name": "Cache-flamme .45 ACP pour KRISS Vector",
+            "ShortName": "Vector .45",
+            "Description": "Cache-flamme standard .45 ACP pour KRISS Vector."
         },
         "5fb6548dd1409e5ca04b54f9": {
             "Name": "Bague de protection de filetage .45 ACP pour KRISS Vector",
@@ -19344,7 +19366,7 @@
         "5fbcbd6c187fea44d52eda14": {
             "Name": "Poignée pistolet polymère pour SIG MCX",
             "ShortName": "PP MCX",
-            "Description": "Poignée pistolet en polymère pour SIG SAUER MCX."
+            "Description": "Poignée pistolet en polymère pour SIG Sauer MCX."
         },
         "5fbcc1d9016cce60e8341ab3": {
             "Name": "Fusil d'assaut SIG MCX .300 AAC Blackout",
@@ -19352,9 +19374,9 @@
             "Description": "La gamme MCX conçue et produite par SIG Sauer est disponible aussi bien en version semi-automatique qu'en automatique et dispose d'un système d'emprunt de gaz à piston à course courte tiré de la gamme des pistolets-mitrailleurs MPX."
         },
         "5fbcc3e4d6fa9c00c571bb58": {
-            "Name": "Boitier supérieur pour SIG-Sauer MCX première génération",
+            "Name": "Boitier supérieur pour SIG Sauer MCX première génération",
             "ShortName": "MCX 1 gen.",
-            "Description": "Boitier supérieur pour MCX de première génération produit par SIG-Sauer. Équipé d'un rail Picatinny pour l'installation d'équipements et accessoires supplémentaires."
+            "Description": "Boitier supérieur pour MCX de première génération produit par SIG Sauer. Équipé d'un rail Picatinny pour l'installation d'équipements et accessoires supplémentaires."
         },
         "5fbcc429900b1d5091531dd7": {
             "Name": "Crosse télescopique SIG Sauer pour MCX/MPX",
@@ -19367,9 +19389,9 @@
             "Description": "Crosse fine et légère pour MCX/MPX produite par SIG Sauer."
         },
         "5fbcc640016cce60e8341acc": {
-            "Name": "Levier d'armement SIG SAUER pour MCX",
+            "Name": "Levier d'armement SIG Sauer pour MCX",
             "ShortName": "LA MCX",
-            "Description": "Levier d'armement standard pour SIG SAUER MCX et systèmes compatibles."
+            "Description": "Levier d'armement standard pour SIG Sauer MCX et systèmes compatibles."
         },
         "5fbe3ffdf8b6a877a729ea82": {
             "Name": ".300 AAC Blackout BPZ",
@@ -19378,14 +19400,14 @@
             "casingName": ".300 AAC Blackout BPZ"
         },
         "5fbe760793164a5b6278efc8": {
-            "Name": "Réducteur de son SIG SAUER SRD QD 7,62x51",
+            "Name": "Réducteur de son SIG Sauer SRD QD 7,62x51",
             "ShortName": "SRD QD 7,62x51",
-            "Description": "Le SRS 7,62x51 est un réducteur de son en titane de grade 5 utilisant un système à détachement rapide (Quick Detach) pour se monter sur l'arme."
+            "Description": "Le SRD 7,62x51 est un réducteur de son en titane de grade 5 utilisant un système à détachement rapide (Quick Detach) pour se monter sur l'arme."
         },
         "5fbe7618d6fa9c00c571bb6c": {
-            "Name": "Réducteur de son SIG SAUER SRD 7,62x51",
+            "Name": "Réducteur de son SIG Sauer SRD 7,62x51",
             "ShortName": "SRD 7,62x51",
-            "Description": "Le SRS 7,62x51 est un réducteur de son en titane de grade 5."
+            "Description": "Le SRD 7,62x51 est un réducteur de son en titane de grade 5."
         },
         "5fc0f9b5d724d907e2077d82": {
             "Name": "Poignée tactique verticale MVF001 A3 KeyMod noire",
@@ -19393,9 +19415,9 @@
             "Description": "La poignée tactique verticale MVF001 A3 a été conçue spécifiquement pour l'interface KeyMod."
         },
         "5fc0f9cbd6fa9c00c571bb90": {
-            "Name": "Poignée tactique verticale SIG SAUER KeyMod noire",
+            "Name": "Poignée tactique verticale SIG Sauer KeyMod noire",
             "ShortName": "SSVFK noire",
-            "Description": "Poignée tactique verticale SIG SAUER pour les interfaces de montage KeyMod. Elle est produite avec les meilleurs matériaux et est de qualité SIG SAUER."
+            "Description": "Poignée tactique verticale SIG Sauer pour les interfaces de montage KeyMod. Elle est produite avec les meilleurs matériaux et est de qualité SIG Sauer."
         },
         "5fc0fa362770a0045c59c677": {
             "Name": "Guidon escamotable pour SIG MCX",
@@ -19497,9 +19519,9 @@
             "Description": "Le pistolet-mitrailleur KRISS Vector est le choix idéal pour le personnel des forces de l'ordre et militaire recherchant un système d'arme contrôlable et compact pour les environnements en combat rapproché. L'axe bas du canon et le système d'atténuation du recul Super V permettent des tirs contrôlables en automatique ou lors de tirs semi-auto successifs."
         },
         "5fc4b97bab884124df0cd5e3": {
-            "Name": "Adaptateur de montage sur piston pour Silencerco Omega 45k",
+            "Name": "Adaptateur de montage sur piston pour SilencerCo Omega 45k",
             "ShortName": "Pist. Omega",
-            "Description": "Adaptateur de filetage pour l'installation du réducteur de son Silencerco Omega 45k directement sur le filetage du canon."
+            "Description": "Adaptateur de filetage pour l'installation du réducteur de son SilencerCo Omega 45k directement sur le filetage du canon."
         },
         "5fc4b992187fea44d52edaa9": {
             "Name": "Adaptateur de filetage pour Silencerco Omega 45k",
@@ -19522,14 +19544,14 @@
             "Description": "Rail latéral pour UMP permettant l'installation d'équipements et accessoires supplémentaires."
         },
         "5fc64ea372b0dd78d51159dc": {
-            "Name": "Cultist's knife",
-            "ShortName": "Knife",
-            "Description": "A knife of a strange shape and with strange signs, taken from the сultists. Apparently, it is used as a ritual knife, but, it is not limited to this use for sure. It has technological changes in the design intended for the use of toxic substances - it is better not to touch the blade."
+            "Name": "Couteau de cultiste",
+            "ShortName": "Couteau",
+            "Description": "Un couteau d'une étrange forme comportant d'étranges symboles provenant d'un cultiste. Il est apparemment utilisé comme un couteau de rituel, mais n'est pas limité à cette utilisation. Il possède un design fait pour l'utilisation de substances toxiques, il ne vaut mieux pas toucher la lame."
         },
         "5fca138c2a7b221b2852a5c6": {
             "Name": "Antidote xTG-12",
             "ShortName": "xTG-12",
-            "Description": "Removes most of the known poisons and toxins used in the combat industry. Can be used to relieve the effects of natural poisons. Gives immunity to poisoning while the components are in the blood system. Can reduce health status."
+            "Description": "Permet de contrer les effets de la plupart des poisons et toxines utilisés dans l'industrie du combat. Peut être utilisé pour soulager des effets des poisons naturels. Donne une immunité à l’empoisonnement tant que les principes actifs sont dans le système sanguin. Peut affecter la santé."
         },
         "5fca13ca637ee0341a484f46": {
             "Name": "Injecteur de stimulant de combat SJ9 TGLabs",
@@ -19636,7 +19658,7 @@
         "5fd4c60f875c30179f5d04c2": {
             "Name": "Gilet tactique Gear Craft GC-BSS-MK1",
             "ShortName": "BSS-MK1",
-            "Description": "Gilet tactique nouvelle génération, agencé pour les opérations de patrouille et les d'assaut.",
+            "Description": "Gilet tactique nouvelle génération, agencé pour les opérations de patrouille et les d'assauts.",
             "RigLayoutName": "BSS-MK1"
         },
         "5fd7910ae3bfcf6cab4c9f55": {
