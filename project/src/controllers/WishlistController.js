@@ -9,8 +9,6 @@
 
 "use strict";
 
-const ItemEventRouter = require("../routers/ItemEventRouter");
-
 class WishlistController
 {
     /* Adding item to wishlist

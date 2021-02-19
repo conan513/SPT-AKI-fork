@@ -11,7 +11,6 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const InventoryConfig = require("../configs/InventoryConfig.json");
 const ItemHelper = require("../helpers/ItemHelper");
 const InventoryHelper = require("../helpers/InventoryHelper");

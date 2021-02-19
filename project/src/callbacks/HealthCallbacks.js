@@ -8,7 +8,6 @@
 
 "use strict";
 
-const HealthController = require("../controllers/HealthController.js");
 const HttpResponse = require("../utils/HttpResponse.js");
 
 class HealthCallbacks

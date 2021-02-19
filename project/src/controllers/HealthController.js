@@ -11,7 +11,6 @@
 "use strict";
 
 const SaveServer = require("../servers/SaveServer.js");
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const HealthConfig = require("../configs/HealthConfig.json");
 const ItemHelper = require("../helpers/ItemHelper.js");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
@@ -21,7 +20,6 @@ class HealthController
 {
     static resetVitality(sessionID)
     {
-        console.log(SaveServer.profiles);
         let profile = SaveServer.profiles[sessionID];
 
         profile.vitality = {

@@ -13,7 +13,6 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const HideoutConfig = require("../configs/HideoutConfig.json");
 const HttpResponse = require("../utils/HttpResponse");
 const TimeUtil = require("../utils/TimeUtil");

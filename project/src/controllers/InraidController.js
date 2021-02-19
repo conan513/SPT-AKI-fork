@@ -14,7 +14,6 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const HealthController = require("./HealthController.js");
 const InraidConfig = require("../configs/InraidConfig.json");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 

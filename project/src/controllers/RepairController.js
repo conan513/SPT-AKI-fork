@@ -9,7 +9,6 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const RepairConfig = require("../configs/RepairConfig.json");
 const Logger = require("../utils/Logger");
 
