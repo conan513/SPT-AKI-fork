@@ -9,7 +9,6 @@
 
 "use strict";
 
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const Logger = require("../utils/Logger");
 
 class TradeController

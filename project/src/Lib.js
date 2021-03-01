@@ -8,6 +8,8 @@ globalThis.ItemHelper = require("./helpers/ItemHelper");
 globalThis.InventoryHelper = require("./helpers/InventoryHelper");
 globalThis.ContainerHelper = require("./helpers/ContainerHelper");
 globalThis.Mods = require("./controllers/ModController");
+globalThis.HealthController = require("./controllers/HealthController");
+globalThis.ItemEventRouter = require("./routers/ItemEventRouter");
 
 globalThis["https_f"] = {
     "response": require("./utils/HttpResponse.js"),

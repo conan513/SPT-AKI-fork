@@ -9,6 +9,7 @@
 "use strict";
 
 const HttpResponse = require("../utils/HttpResponse");
+const HttpConfig = require("../configs/HttpConfig.json");
 
 class GameCallbacks
 {

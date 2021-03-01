@@ -12,7 +12,6 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const InsuranceConfig = require("../configs/InsuranceConfig.json");
 const Logger = require("../utils/Logger");
 const RandomUtil = require("../utils/RandomUtil");

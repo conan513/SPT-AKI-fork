@@ -8,7 +8,6 @@
 
 "use strict";
 
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const HttpResponse = require("../utils/HttpResponse");
 
 class ItemEventCallbacks

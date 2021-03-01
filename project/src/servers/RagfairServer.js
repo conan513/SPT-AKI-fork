@@ -11,7 +11,6 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const ItemEventRouter = require("../routers/ItemEventRouter");
 const RagfairConfig = require("../configs/RagfairConfig.json");
 const ItemHelper = require("../helpers/ItemHelper");
 const JsonUtil = require("../utils/JsonUtil");

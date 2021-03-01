@@ -9,8 +9,6 @@
 
 "use strict";
 
-const ItemEventRouter = require("../routers/ItemEventRouter");
-
 class NoteController
 {
     static addNote(pmcData, body, sessionID)
