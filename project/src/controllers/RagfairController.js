@@ -111,7 +111,7 @@ class RagfairController
         // TODO: write cheapes price detection mechanism, prevent trader-player item duplicates
         if (info.buildCount)
         {
-            info.offerOwnerType = 2;
+            info.offerOwnerType = 0;
             info.onlyFunctional = false;
         }
 
@@ -121,14 +121,8 @@ class RagfairController
             result.categories = ragfair_f.server.categories;
         }
 
-        // get offers to send
-        for (const offer of ragfair_f.server.offers)
-        {
-            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
-            {
-                result.offers.push(offer);
-            }
-        }
+        result.offers = info.buildCount ? this.getOffersForBuild(info, itemsToAdd, assorts) : 
+                                          this.getValidOffers(info, itemsToAdd, assorts);
 
         // set offer indexes
         let counter = 0;
@@ -139,12 +133,53 @@ class RagfairController
         }
 
         // sort offers
-        result.offers = this.sortOffers(result.offers, info.sortType, info.sortDirection);
+        result.offers = this.sortOffers(result.offers, 5, info.sortDirection);
 
         // set categories count
         this.countCategories(result);
 
         return result;
+    }
+
+    getValidOffers(info, itemsToAdd, assorts)
+    {
+        let offers = [];
+        for (const offer of ragfair_f.server.offers)
+        {
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            {
+                offers.push(offer);
+            }
+        }
+        return offers;
+    }
+
+    getOffersForBuild(info, itemsToAdd, assorts)
+    {
+        let tempOffers = {};
+        let offers = [];
+
+        for (const offer of ragfair_f.server.offers)
+        {
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            {
+                if(!tempOffers.hasOwnProperty(offer.items[0]._tpl))
+                {
+                    tempOffers[offer.items[0]._tpl] = [];
+                }
+
+                tempOffers[offer.items[0]._tpl].push(offer);
+            }
+        }
+
+        for(const item in tempOffers)
+        {
+            let itemOffers = tempOffers[item];
+            let offer = this.sortOffers(itemOffers, info.sortType, 1)[0];
+            offers.push(offer);
+        }
+
+        return offers;
     }
 
     filterCategories(sessionID, info)
