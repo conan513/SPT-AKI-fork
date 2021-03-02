@@ -107,8 +107,7 @@ class RagfairController
             "selectedCategory": "5b5f78dc86f77409407a7f8e"
         };
 
-        // force player-only in weapon preset build purchase
-        // TODO: write cheapes price detection mechanism, prevent trader-player item duplicates
+        // force all trader types in weapon preset build purchase
         if (info.buildCount)
         {
             info.offerOwnerType = 0;
@@ -133,7 +132,7 @@ class RagfairController
         }
 
         // sort offers
-        result.offers = this.sortOffers(result.offers, 5, info.sortDirection);
+        result.offers = this.sortOffers(result.offers, info.sortType, info.sortDirection);
 
         // set categories count
         this.countCategories(result);
