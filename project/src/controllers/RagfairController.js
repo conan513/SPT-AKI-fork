@@ -155,26 +155,26 @@ class RagfairController
 
     getOffersForBuild(info, itemsToAdd, assorts)
     {
-        let tempOffers = {};
+        let offersMap = new Map();
         let offers = [];
 
         for (const offer of ragfair_f.server.offers)
         {
             if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
             {
-                if(!tempOffers.hasOwnProperty(offer.items[0]._tpl))
+                let key = offer.items[0]._tpl
+                if(!offersMap.has(key))
                 {
-                    tempOffers[offer.items[0]._tpl] = [];
+                    offersMap.set(key, []);
                 }
 
-                tempOffers[offer.items[0]._tpl].push(offer);
+                offersMap.get(key).push(offer);
             }
         }
 
-        for(const item in tempOffers)
+        for(let tmpOffers of offersMap.values())
         {
-            let itemOffers = tempOffers[item];
-            let offer = this.sortOffers(itemOffers, info.sortType, 1)[0];
+            let offer = this.sortOffers(tmpOffers, info.sortType, 1)[0];
             offers.push(offer);
         }
 
