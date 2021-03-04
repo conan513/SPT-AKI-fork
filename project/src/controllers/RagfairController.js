@@ -174,7 +174,7 @@ class RagfairController
 
         for(let tmpOffers of offersMap.values())
         {
-            let offer = this.sortOffers(tmpOffers, info.sortType, 1)[0];
+            let offer = this.sortOffers(tmpOffers, 5, 0)[0];
             offers.push(offer);
         }
 
