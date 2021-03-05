@@ -400,9 +400,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Решала"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

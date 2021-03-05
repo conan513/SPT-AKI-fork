@@ -412,9 +412,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Санитар"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

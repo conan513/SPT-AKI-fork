@@ -596,7 +596,7 @@
 			"SpecialLoot": []
 		}
 	},
-	"names": [
+	"firstName": [
 		"Жирный",
 		"Косой",
 		"Райан",
@@ -626,6 +626,7 @@
 		"Матрос",
 		"Альфонс"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {
