@@ -406,9 +406,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Килла"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

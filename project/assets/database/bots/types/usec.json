@@ -4167,7 +4167,7 @@
 			"SpecialLoot": []
 		}
 	},
-	"names": [
+	"firstName": [
 		"Bob Dylan",
 		"Jerry Cowan",
 		"Moses Justice",
@@ -4269,6 +4269,7 @@
 		"Daniel Felix",
 		"Solomon Mack"
 	],
+	"lastName": [],
 	"chances": {
 		"equipment": {
 			"Headwear": 72,
