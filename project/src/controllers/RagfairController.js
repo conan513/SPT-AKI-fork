@@ -107,11 +107,10 @@ class RagfairController
             "selectedCategory": "5b5f78dc86f77409407a7f8e"
         };
 
-        // force player-only in weapon preset build purchase
-        // TODO: write cheapes price detection mechanism, prevent trader-player item duplicates
+        // force all trader types in weapon preset build purchase
         if (info.buildCount)
         {
-            info.offerOwnerType = 2;
+            info.offerOwnerType = 0;
             info.onlyFunctional = false;
         }
 
@@ -121,14 +120,8 @@ class RagfairController
             result.categories = ragfair_f.server.categories;
         }
 
-        // get offers to send
-        for (const offer of ragfair_f.server.offers)
-        {
-            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
-            {
-                result.offers.push(offer);
-            }
-        }
+        result.offers = info.buildCount ? this.getOffersForBuild(info, itemsToAdd, assorts) : 
+                                          this.getValidOffers(info, itemsToAdd, assorts);
 
         // set offer indexes
         let counter = 0;
@@ -145,6 +138,47 @@ class RagfairController
         this.countCategories(result);
 
         return result;
+    }
+
+    getValidOffers(info, itemsToAdd, assorts)
+    {
+        let offers = [];
+        for (const offer of ragfair_f.server.offers)
+        {
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            {
+                offers.push(offer);
+            }
+        }
+        return offers;
+    }
+
+    getOffersForBuild(info, itemsToAdd, assorts)
+    {
+        let offersMap = new Map();
+        let offers = [];
+
+        for (const offer of ragfair_f.server.offers)
+        {
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            {
+                let key = offer.items[0]._tpl
+                if(!offersMap.has(key))
+                {
+                    offersMap.set(key, []);
+                }
+
+                offersMap.get(key).push(offer);
+            }
+        }
+
+        for(let tmpOffers of offersMap.values())
+        {
+            let offer = this.sortOffers(tmpOffers, 5, 0)[0];
+            offers.push(offer);
+        }
+
+        return offers;
     }
 
     filterCategories(sessionID, info)
