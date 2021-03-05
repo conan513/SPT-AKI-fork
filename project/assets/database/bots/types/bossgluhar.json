@@ -500,9 +500,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Глухарь"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

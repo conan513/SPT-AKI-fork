@@ -1045,9 +1045,10 @@
 			"SpecialLoot": []
 		}
 	},
-	"names": [
+	"firstName": [
 		"Сектант"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

@@ -54,7 +54,7 @@ class BotController
         const node = DatabaseServer.tables.bots.types[role.toLowerCase()];
         const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
-        bot.Info.Nickname = RandomUtil.getArrayValue(node.names);
+        bot.Info.Nickname = `${RandomUtil.getArrayValue(node.firstName)} ${RandomUtil.getArrayValue(node.lastName) || ""}`;
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);

@@ -306,9 +306,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Штурман"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

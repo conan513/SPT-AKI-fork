@@ -475,7 +475,7 @@
 			"SpecialLoot": []
 		}
 	},
-	"names": [
+	"firstName": [
 		"Караул",
 		"Серый",
 		"Ветеран",
@@ -505,6 +505,7 @@
 		"Мышь",
 		"Ж-12"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {
