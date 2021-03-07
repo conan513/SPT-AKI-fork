@@ -339,14 +339,14 @@
 	"MaxBotPerZone": 2,
 	"OpenZones": "ZoneIDEA,ZoneRoad,ZoneCenter,ZoneCenterBot,ZoneOLI,ZoneOLIPark,ZoneGoshan,ZonePowerStation,ZoneTrucks,ZoneIDEAPark",
 	"OcculsionCullingEnabled": true,
-	"GlobalLootChanceModifier": 0.5,
+	"GlobalLootChanceModifier": 0.83,
 	"OldSpawn": false,
 	"NewSpawn": true,
-	"BotMax": 10,
-	"BotStart": 20,
-	"BotStop": 3400,
+	"BotMax": 12,
+	"BotStart": 60,
+	"BotStop": 2400,
 	"BotMaxTimePlayer": 2000,
-	"BotSpawnTimeOnMin": 180,
+	"BotSpawnTimeOnMin": 140,
 	"BotSpawnTimeOnMax": 220,
 	"BotSpawnTimeOffMin": 30,
 	"BotSpawnTimeOffMax": 40,
@@ -478,7 +478,7 @@
 			"BossEscortType": "followerBully",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "0",
-			"Time": 1
+			"Time": -1
 		}
 	],
 	"SpawnPointParams": [

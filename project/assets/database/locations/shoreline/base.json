@@ -28,9 +28,9 @@
 			"number": 0,
 			"time_min": 5,
 			"time_max": 11,
-			"slots_min": 1,
+			"slots_min": 2,
 			"slots_max": 4,
-			"SpawnPoints": "ZoneGreenHouses",
+			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "easy",
 			"isPlayers": false,
@@ -65,7 +65,7 @@
 			"time_min": 160,
 			"time_max": 168,
 			"slots_min": 1,
-			"slots_max": 3,
+			"slots_max": 2,
 			"SpawnPoints": "ZoneMeteoStation",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -77,7 +77,7 @@
 			"time_min": 5,
 			"time_max": 11,
 			"slots_min": 1,
-			"slots_max": 3,
+			"slots_max": 2,
 			"SpawnPoints": "ZonePowerStation",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -89,7 +89,7 @@
 			"time_min": 5,
 			"time_max": 11,
 			"slots_min": 1,
-			"slots_max": 3,
+			"slots_max": 2,
 			"SpawnPoints": "ZoneBusStation",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -101,7 +101,7 @@
 			"time_min": 170,
 			"time_max": 178,
 			"slots_min": 1,
-			"slots_max": 3,
+			"slots_max": 2,
 			"SpawnPoints": "ZoneRailWays",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -113,7 +113,7 @@
 			"time_min": 180,
 			"time_max": 190,
 			"slots_min": 1,
-			"slots_max": 3,
+			"slots_max": 2,
 			"SpawnPoints": "ZonePort",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -196,7 +196,7 @@
 			"number": 15,
 			"time_min": 200,
 			"time_max": 300,
-			"slots_min": 1,
+			"slots_min": 2,
 			"slots_max": 4,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -232,8 +232,8 @@
 			"number": 18,
 			"time_min": -1,
 			"time_max": -1,
-			"slots_min": 2,
-			"slots_max": 4,
+			"slots_min": 1,
+			"slots_max": 2,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -268,7 +268,7 @@
 			"number": 21,
 			"time_min": 200,
 			"time_max": 600,
-			"slots_min": 0,
+			"slots_min": 2,
 			"slots_max": 4,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -280,7 +280,7 @@
 			"number": 22,
 			"time_min": 0,
 			"time_max": 11,
-			"slots_min": 1,
+			"slots_min": 2,
 			"slots_max": 4,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -292,7 +292,7 @@
 			"number": 23,
 			"time_min": 400,
 			"time_max": 800,
-			"slots_min": 0,
+			"slots_min": 2,
 			"slots_max": 4,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -370,28 +370,28 @@
 	"doors": [],
 	"tmp_location_field_remove_me": 0,
 	"MinDistToExitPoint": 30,
-	"MaxDistToFreePoint": 1200,
-	"MinDistToFreePoint": 80,
-	"MaxBotPerZone": 5,
+	"MaxDistToFreePoint": 300,
+	"MinDistToFreePoint": 85,
+	"MaxBotPerZone": 4,
 	"OpenZones": "ZoneSanatorium,ZonePassFar,ZonePassClose,ZoneTunnel,ZoneStartVillage,ZoneBunker",
 	"OcculsionCullingEnabled": true,
 	"GlobalLootChanceModifier": 0.3,
 	"OldSpawn": true,
 	"NewSpawn": false,
-	"BotMax": 0,
-	"BotStart": 0,
-	"BotStop": 0,
-	"BotMaxTimePlayer": 0,
-	"BotSpawnTimeOnMin": 0,
-	"BotSpawnTimeOnMax": 0,
-	"BotSpawnTimeOffMin": 0,
-	"BotSpawnTimeOffMax": 0,
-	"BotMaxPlayer": 0,
-	"BotEasy": 0,
-	"BotNormal": 0,
-	"BotHard": 0,
+	"BotMax": 13,
+	"BotStart": 20,
+	"BotStop": 2700,
+	"BotMaxTimePlayer": 2000,
+	"BotSpawnTimeOnMin": 160,
+	"BotSpawnTimeOnMax": 220,
+	"BotSpawnTimeOffMin": 30,
+	"BotSpawnTimeOffMax": 50,
+	"BotMaxPlayer": 7,
+	"BotEasy": 10,
+	"BotNormal": 50,
+	"BotHard": 40,
 	"BotImpossible": 0,
-	"BotAssault": 0,
+	"BotAssault": 100,
 	"BotMarksman": 0,
 	"DisabledScavExits": "",
 	"AccessKeys": [],
@@ -476,13 +476,13 @@
 		{
 			"BossName": "sectantPriest",
 			"BossChance": 28,
-			"BossZone": "ZoneForestGasStation",
+			"BossZone": "ZoneForestGasStation,ZoneForestSpawn",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "sectantWarrior",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "5",
-			"Time": 1
+			"Time": -1
 		},
 		{
 			"BossName": "bossSanitar",
@@ -493,7 +493,7 @@
 			"BossEscortType": "followerSanitar",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "2",
-			"Time": 1
+			"Time": -1
 		}
 	],
 	"SpawnPointParams": [
@@ -952,7 +952,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -981,7 +981,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -1297,7 +1297,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -1487,7 +1487,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 4,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -2440,7 +2440,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -2573,7 +2573,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 4,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -2611,7 +2611,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -3331,7 +3331,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -4276,7 +4276,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -5640,7 +5640,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 4,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -5923,7 +5923,8 @@
 				"Savage"
 			],
 			"Categories": [
-				"Bot"
+				"Bot",
+				"Boss"
 			],
 			"Infiltration": "",
 			"DelayToCanSpawnSec": 4,
@@ -5935,7 +5936,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 71.23
+					"Radius": 70
 				}
 			}
 		},
@@ -6106,7 +6107,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -6323,7 +6324,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 4,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -6617,7 +6618,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -6646,7 +6647,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -6862,7 +6863,8 @@
 				"Savage"
 			],
 			"Categories": [
-				"Bot"
+				"Bot",
+				"Boss"
 			],
 			"Infiltration": "",
 			"DelayToCanSpawnSec": 4,
@@ -7017,7 +7019,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
@@ -7074,7 +7076,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 5
+					"Radius": 50
 				}
 			}
 		},
