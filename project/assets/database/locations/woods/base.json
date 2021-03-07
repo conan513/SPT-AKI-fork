@@ -12,7 +12,7 @@
 	"Area": 0,
 	"RequiredPlayerLevel": 0,
 	"MinPlayers": 8,
-	"MaxPlayers": 13,
+	"MaxPlayers": 14,
 	"exit_count": 1,
 	"exit_access_time": 10,
 	"exit_time": 90,
@@ -81,7 +81,7 @@
 			"time_min": 700,
 			"time_max": 800,
 			"slots_min": 0,
-			"slots_max": 0,
+			"slots_max": 1,
 			"SpawnPoints": "ZoneWoodCutter",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -93,8 +93,8 @@
 			"number": 5,
 			"time_min": 800,
 			"time_max": 1000,
-			"slots_min": 1,
-			"slots_max": 0,
+			"slots_min": 0,
+			"slots_max": 1,
 			"SpawnPoints": "ZoneHouse",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -159,7 +159,7 @@
 			"time_min": 140,
 			"time_max": 160,
 			"slots_min": 0,
-			"slots_max": 1,
+			"slots_max": 2,
 			"SpawnPoints": "ZoneMiniHouse",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -177,7 +177,7 @@
 			"BotSide": "Savage",
 			"BotPreset": "hard",
 			"WildSpawnType": "assault",
-			"isPlayers": false,
+			"isPlayers": true,
 			"OpenZones": ""
 		},
 		{
@@ -197,7 +197,7 @@
 			"number": 0,
 			"time_min": 0,
 			"time_max": 120,
-			"slots_min": 0,
+			"slots_min": 2,
 			"slots_max": 3,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -210,21 +210,21 @@
 			"number": 0,
 			"time_min": 150,
 			"time_max": 180,
-			"slots_min": 0,
+			"slots_min": 2,
 			"slots_max": 5,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
 			"WildSpawnType": "assault",
-			"isPlayers": true,
+			"isPlayers": false,
 			"OpenZones": ""
 		},
 		{
 			"number": 0,
 			"time_min": 180,
 			"time_max": 210,
-			"slots_min": 1,
-			"slots_max": 5,
+			"slots_min": 2,
+			"slots_max": 6,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -236,8 +236,8 @@
 			"number": 0,
 			"time_min": 400,
 			"time_max": 600,
-			"slots_min": 1,
-			"slots_max": 5,
+			"slots_min": 2,
+			"slots_max": 6,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "easy",
@@ -249,8 +249,8 @@
 			"number": 0,
 			"time_min": 600,
 			"time_max": 800,
-			"slots_min": 1,
-			"slots_max": 4,
+			"slots_min": 2,
+			"slots_max": 6,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -268,28 +268,28 @@
 			"BotSide": "Savage",
 			"BotPreset": "hard",
 			"WildSpawnType": "assault",
-			"isPlayers": true,
+			"isPlayers": false,
 			"OpenZones": ""
 		},
 		{
 			"number": 0,
 			"time_min": 400,
 			"time_max": 420,
-			"slots_min": 0,
+			"slots_min": 1,
 			"slots_max": 5,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
 			"WildSpawnType": "assault",
-			"isPlayers": false,
+			"isPlayers": true,
 			"OpenZones": ""
 		},
 		{
 			"number": 0,
 			"time_min": -1,
 			"time_max": -1,
-			"slots_min": 2,
-			"slots_max": 4,
+			"slots_min": 0,
+			"slots_max": 1,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -312,7 +312,7 @@
 	"MaxBotPerZone": 5,
 	"OpenZones": "ZoneRedHouse,ZoneHighRocks,ZoneWoodCutter,ZoneHouse,ZoneBigRocks,ZoneRoad,ZoneMiniHouse,",
 	"OcculsionCullingEnabled": false,
-	"GlobalLootChanceModifier": 1,
+	"GlobalLootChanceModifier": 0.7,
 	"OldSpawn": true,
 	"NewSpawn": false,
 	"BotMax": 0,
@@ -332,7 +332,7 @@
 	"BotMarksman": 0,
 	"DisabledScavExits": "",
 	"AccessKeys": [],
-	"UnixDateTime": 1608302052,
+	"UnixDateTime": 1612786077,
 	"users_gather_seconds": 0,
 	"users_spawn_seconds_n": 120,
 	"users_spawn_seconds_n2": 200,
@@ -437,20 +437,6 @@
 			"RequirementTip": "EXFIL_Item"
 		},
 		{
-			"Name": "Alpinist",
-			"EntryPoints": "House,Old Station",
-			"Chance": 100,
-			"MinTime": 0,
-			"MaxTime": 0,
-			"PlayersCount": 0,
-			"ExfiltrationTime": 8,
-			"PassageRequirement": "Reference",
-			"ExfiltrationType": "Individual",
-			"Id": "Alpinist",
-			"Count": 0,
-			"RequirementTip": ""
-		},
-		{
 			"Name": "Factory Gate",
 			"EntryPoints": "House,Old Station",
 			"Chance": 100,
@@ -463,6 +449,20 @@
 			"Id": "",
 			"Count": 0,
 			"RequirementTip": "EXFIL_Cooperate"
+		},
+		{
+			"Name": "un-sec",
+			"EntryPoints": "House",
+			"Chance": 100,
+			"MinTime": 0,
+			"MaxTime": 0,
+			"PlayersCount": 0,
+			"ExfiltrationTime": 8,
+			"PassageRequirement": "None",
+			"ExfiltrationType": "Individual",
+			"Id": "",
+			"Count": 0,
+			"RequirementTip": ""
 		}
 	],
 	"DisabledForScav": false,
@@ -476,18 +476,18 @@
 			"BossEscortType": "sectantWarrior",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "5",
-			"Time": 1
+			"Time": -1
 		},
 		{
 			"BossName": "bossKojaniy",
-			"BossChance": 39,
+			"BossChance": 41,
 			"BossZone": "ZoneWoodCutter",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "followerKojaniy",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "2",
-			"Time": 1
+			"Time": -1
 		}
 	],
 	"SpawnPointParams": [
@@ -723,9 +723,9 @@
 		{
 			"Id": "0629d023-ea80-45cb-8376-9ea211e740f9",
 			"Position": {
-				"x": -55.5800171,
-				"y": 8.2,
-				"z": -566.6599
+				"x": -63.1000061,
+				"y": 9.763999,
+				"z": -587.319946
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -752,9 +752,9 @@
 		{
 			"Id": "06f65382-5ecf-4852-9020-5b37c432331f",
 			"Position": {
-				"x": -412.52,
-				"y": 10.5852394,
-				"z": -532.7606
+				"x": -420.16,
+				"y": 12.174,
+				"z": -509.619965
 			},
 			"Rotation": 14.210001,
 			"Sides": [
@@ -1066,9 +1066,9 @@
 		{
 			"Id": "100d945d-1da3-434e-9a45-5d07c64bc296",
 			"Position": {
-				"x": -414.6,
-				"y": 10.5119991,
-				"z": -532.7606
+				"x": -420.16,
+				"y": 11.2839994,
+				"z": -519.410034
 			},
 			"Rotation": 14.210001,
 			"Sides": [
@@ -1294,9 +1294,9 @@
 		{
 			"Id": "191b6c5a-0fb7-40b2-95b4-3a33397eb872",
 			"Position": {
-				"x": -54.26999,
-				"y": 8.24,
-				"z": -568.13
+				"x": -54.1099854,
+				"y": 8.883999,
+				"z": -579.439941
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -1722,9 +1722,9 @@
 		{
 			"Id": "2685c5c9-9bde-40c1-bbc2-3a0f3b024106",
 			"Position": {
-				"x": 58.01367,
-				"y": 8.555095,
-				"z": -658.62
+				"x": 61.22003,
+				"y": 9.033999,
+				"z": -657.75
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -2380,9 +2380,9 @@
 		{
 			"Id": "3977d085-4fa2-45dd-a341-ddb0fa55c06d",
 			"Position": {
-				"x": -417.66,
-				"y": 10.1674347,
-				"z": -532.74
+				"x": -408.96,
+				"y": 12.584,
+				"z": -513.01
 			},
 			"Rotation": 14.210001,
 			"Sides": [
@@ -2608,9 +2608,9 @@
 		{
 			"Id": "43598be9-9042-4e06-8ee9-11a3d346d570",
 			"Position": {
-				"x": -61.75,
-				"y": 8.87,
-				"z": -568.059937
+				"x": -63.6699829,
+				"y": 9.714,
+				"z": -581.03
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -3093,9 +3093,9 @@
 		{
 			"Id": "5beb21e5-df5f-4db0-b607-202cb7a62ecf",
 			"Position": {
-				"x": 58.01367,
-				"y": 8.574565,
-				"z": -662.319946
+				"x": 59.6199951,
+				"y": 8.883999,
+				"z": -659.78
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -3406,9 +3406,9 @@
 		{
 			"Id": "6aef3e62-3a74-4d9b-a168-d3520f740ba2",
 			"Position": {
-				"x": -420.69,
-				"y": 9.237153,
-				"z": -532.7606
+				"x": -413.22,
+				"y": 11.7039995,
+				"z": -522.429932
 			},
 			"Rotation": 14.210001,
 			"Sides": [
@@ -3634,9 +3634,9 @@
 		{
 			"Id": "76582ea6-095f-494d-83b8-c9335ba3f14f",
 			"Position": {
-				"x": 58.01367,
-				"y": 8.344956,
-				"z": -654.939941
+				"x": 59.8300171,
+				"y": 8.794,
+				"z": -654.540039
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -4264,9 +4264,9 @@
 		{
 			"Id": "922c0b4f-5177-448b-8ab3-b8df4f82aa12",
 			"Position": {
-				"x": -418.83,
-				"y": 9.770834,
-				"z": -532.7606
+				"x": -418.82,
+				"y": 11.874,
+				"z": -515.23
 			},
 			"Rotation": 14.210001,
 			"Sides": [
@@ -5556,9 +5556,9 @@
 		{
 			"Id": "bf2a6323-087e-4d49-a160-ea86b8295ac0",
 			"Position": {
-				"x": 58.01367,
-				"y": 8.561754,
-				"z": -659.059937
+				"x": 63.3200073,
+				"y": 8.99399948,
+				"z": -661.4
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -5986,9 +5986,9 @@
 		{
 			"Id": "ceb25518-5a40-42cd-b57d-076d40d29890",
 			"Position": {
-				"x": -57.9100037,
-				"y": 9.36,
-				"z": -570.73
+				"x": -60.97,
+				"y": 9.24399948,
+				"z": -579.6
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -6273,9 +6273,9 @@
 		{
 			"Id": "da22cead-d753-44c4-b44e-131a3d9690b7",
 			"Position": {
-				"x": -59.76999,
-				"y": 9.02,
-				"z": -573.309937
+				"x": -59.6399841,
+				"y": 9.093999,
+				"z": -577.11
 			},
 			"Rotation": 316.58,
 			"Sides": [
@@ -6388,9 +6388,9 @@
 		{
 			"Id": "e0fb7ebc-0a4c-45a3-b5a3-ba5e6b1456ba",
 			"Position": {
-				"x": 70.96997,
-				"y": 9.42,
-				"z": -657.4199
+				"x": 64.6600342,
+				"y": 9.084,
+				"z": -656.64
 			},
 			"Rotation": 284.39,
 			"Sides": [
