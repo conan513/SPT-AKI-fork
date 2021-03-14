@@ -457,24 +457,26 @@
 		}
 	},
 	"firstName": [
-		"Кулинг Заводской",
-		"Тоха Заводской",
-		"Антон Заводской",
-		"Жора Заводской",
-		"Вася Заводской",
-		"Филя Заводской",
-		"Скиф Заводской",
-		"Штопор Заводской",
-		"Стас Заводской",
-		"Торпеда Заводской",
-		"Колян Заводской",
-		"Гена Заводской",
-		"Леша Заводской",
-		"Витек Заводской",
-		"Саня Заводской",
-		"Гриша Заводской"
+		"Кулинг",
+		"Тоха",
+		"Антон",
+		"Жора",
+		"Вася",
+		"Филя",
+		"Скиф",
+		"Штопор",
+		"Стас",
+		"Торпеда",
+		"Колян",
+		"Гена",
+		"Леша",
+		"Витек",
+		"Саня",
+		"Гриша"
 	],
-	"lastName": [],
+	"lastName": [
+		"Заводской"
+	],
 	"difficulty": {
 		"easy": {
 			"Lay": {
@@ -839,6 +841,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -1302,6 +1305,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -1765,6 +1769,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -2228,6 +2233,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {

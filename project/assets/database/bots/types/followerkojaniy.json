@@ -494,24 +494,26 @@
 		}
 	},
 	"firstName": [
-		"Робинзон Светлоозерский",
-		"Мальчик Светлоозерский",
-		"Енчик Светлоозерский",
-		"Мотыль Светлоозерский",
-		"Пашок Светлоозерский",
-		"Марат Светлоозерский",
-		"Вован Светлоозерский",
-		"Пляжник Светлоозерский",
-		"Шмыга Светлоозерский",
-		"Угрюм Светлоозерский",
-		"Димон Светлоозерский",
-		"Качок Светлоозерский",
-		"Тоха Светлоозерский",
-		"Крыса Светлоозерский",
-		"Мелс Светлоозерский",
-		"Саня Светлоозерский"
+		"Робинзон",
+		"Мальчик",
+		"Енчик",
+		"Мотыль",
+		"Пашок",
+		"Марат",
+		"Вован",
+		"Пляжник",
+		"Шмыга",
+		"Угрюм",
+		"Димон",
+		"Качок",
+		"Тоха",
+		"Крыса",
+		"Мелс",
+		"Саня"
 	],
-	"lastName": [],
+	"lastName": [
+		"Светлоозерский"
+	],
 	"difficulty": {
 		"easy": {
 			"Lay": {
@@ -886,6 +888,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"CAN_EXECUTE_REQUESTS": false
 			},
 			"Boss": {
@@ -1360,6 +1363,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"CAN_EXECUTE_REQUESTS": false
 			},
 			"Boss": {
@@ -1834,6 +1838,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"CAN_EXECUTE_REQUESTS": false
 			},
 			"Boss": {
@@ -2308,6 +2313,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"CAN_EXECUTE_REQUESTS": false
 			},
 			"Boss": {
