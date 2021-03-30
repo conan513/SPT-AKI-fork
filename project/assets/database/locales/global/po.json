@@ -1015,7 +1015,7 @@
         "SearchDescription": "Habilidade de busca rápida e eficaz em corpos",
         "FirstAidDescription": "Habilidade com Kit de primeiros socorros faz uso de medicamentos mais rápidos e mais efetivos.",
         "MeleeDescription": "Habilidades de manipulação armas corpo a corpo",
-        "EnduranceBreathElite": "Exaustão física não causa falta de fôlego",
+        "EnduranceBreathElite": "A respiração não depende de energia",
         "TroubleShootingDescription": "Habilidade de solucionar problemas facilita correção de falhas em armas.  ",
         "NightOpsDescription": "Operando durante a noite faz os movimentos serem mais fáceis, a experiência cresce mais que o usual. E, claro, isso reflete no preço de aparelhos de Visão Noturna.",
         "MiscDescription": "Habilidade de manuseio com Armas variadas",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Gerador industrial para garantir a operação autônoma das instalações de produção. Também conta com suporte para conectar tanques de combustíveis adicionais.",
         "hideout_area_2_stage_2_description": "Banheiro básico com um vaso de madeira do tipo \"Fossa\", um lavatório, ligado ao sistema de abastecimento de água. Tudo isso aumenta a higiene e a limpeza do abrigo.",
         "hideout_area_3_name": "Estoque",
-        "hideout_area_3_stage_2_description": "Inventário médio (10x36)",
+        "hideout_area_3_stage_2_description": "Inventário médio (10x38)",
         "hideout_area_0_stage_3_description": "Melhore o duto de ventilação com ventiladores elétricos para aumentar o fluxo de ar. Um completo sistema de circulação de ar é necessário para a produção avançada e pesquisas químicas.",
         "hideout_area_1_stage_2_description": "Um hall de entrada aprimorado com uma porta reforçada, um cabide, e outros itens domésticos. Não vai poder entrar no esconderijo com apenas um chute.",
         "hideout_area_4_name": "Gerador",
-        "hideout_area_3_stage_3_description": "Inventário grande (10x46)",
-        "hideout_area_3_stage_4_description": "Tamanho máximo do Inventário (10x66)",
+        "hideout_area_3_stage_3_description": "Inventário grande (10x48)",
+        "hideout_area_3_stage_4_description": "Tamanho máximo do Inventário (10x68)",
         "hideout_area_5_name": "Aquecimento",
         "hideout_area_2_stage_1_description": "Banheiro primitivo. Não há duvidas que é inconfortável. Apenas um balde e uma caixa pequena para manter o saneamento básico no alojamento.",
         "hideout_area_4_stage_1_description": "Um gerador simples capaz de alimentar os equipamentos básicos do esconderijo. O coração do seu refúgio. É necessário combustível para alimentar toda a rede elétrica.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Coletor de água",
         "hideout_area_5_stage_1_description": "Um barril simples com fogo para manter o calor. Uma maneira muito básica de aquecer. Perigoso por causa do monóxido de carbono liberado pela combustão.",
         "hideout_area_1_stage_3_description": "Um avançado sistema de segurança para abrigo, que inclui, além de um enorme porta de bunker, uma câmera de vigilância, um sistema de intercomunicação, extintores de incêndio, bem como vigas especiais para aumentar a resistência estrutural de paredes e tetos.",
-        "hideout_area_3_stage_1_description": "Inventário pequeno (10x26)",
+        "hideout_area_3_stage_1_description": "Inventário pequeno (10x28)",
         "hideout_area_5_stage_3_description": "Equipa todo o abrigo com aquecedores elétricos adicionais. Agora, junto com o forno a lenha, ninguém passará frio.",
         "hideout_area_2_stage_3_description": "Banheiro avançado, com um vaso sanitário seco, chuveiro e lixeiro. Tudo o que você precisa está conectado ao sistema de água corrente e oferece o melhor em higiene pessoal.",
         "hideout_area_9_stage_2_description": "Um lugar para relaxar, equipado com uma cama comum, criado mudo, e até uma TV velha. Cria um sentimento de conforto e gera memórias nostálgicas da vida anterior.",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Chance de causar hemorragias",
         "lightbleedingdelta": "Chance de causar sangramentos",
         "choose face and voice": "ESCOLHA FACE E VOZ",
+        "TroubleFixing": "Aumentar velocidade de solução de problemas (em até 50%). 1% para cada nível de habilidade.",
+        "TroubleFixingAmmoElite": "Reduz a chance de mau funcionamento de um carregador em 50% depois de resolver mau funcionamento pela mesma razão",
+        "ZeroWeaponDeteriorationOnRepair": "Não equipar enquanto conserta",
+        "NetworkError/TooManyFriendRequestsHeader": "Excesso de solicitações",
+        "NetworkError/TooManyFriendRequestsMessage": "Tente novamente em {0} segundos",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Você não possui chats ainda.</b></size>\nConvide amigos para iniciar um ou entre no Chat Global.",
+        "TroubleFixingDurElite": "Reduz a chance de mau funcionamento baseado na durabilidade da arma em 50% depois de resolver mau funcionamento pela mesma razão",
+        "WeaponDurabilityLossOnShotReduce": "Desgaste de arma reduzido (em até 50%) ao disparar",
         "un-sec": "Northern UN roadblock",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Sangramento",
         "REMOVES BLOODLOSS": "ESTANCAR SANGRAMENTO",
         "\"Magazine checked: \"": "Carregador verificado:",
-        "You have already bought the maximum amount of this item in the current restock": "Você já comprou o limite máximo para esse item no estoque atual",
         "DamageType_Bloodloss": "Sangramento",
         "you can't transfer item while moving": "Você não pode transferir um item enquanto se move",
         "place": "COLOCAR",
         "This location is not available for scav": "Local indisponível para scav",
         "Interchange": "Interchange",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "Falha ao carregar dados, verifique sua conexão. Tentar entrar na tela de tratamento novamente, ou ir direto ao menu principal?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "O Mod {0} não pode ser instalado em arma rebatida",
+        "No action available": "Sem ação disponível",
+        "ProfileEvent/AssortmentLockRule": "Negociação <b>{0}</b> bloqueada.",
+        "ProfileEvent/ExamineItems": "Examinar <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Reset examinação do item <b>{0}</b>.",
+        "ProfileEvent/ProfileLockTimer": "Definir espera de Scav em <b>{0}</b> segundos.",
+        "ProfileEvent/ProfileUnlock": "Reset intervalo Scav.",
+        "ProfileEvent/UnlockTrader": "Comerciante <b>{0}</b> desbloqueado.",
+        "ProfileEvent/LockTrader": "Comerciante <b>{0}</b> bloqueado.",
+        "ProfileEvent/MasteringSkill": "Mudar o progresso da maestria de <b>{0}</b> para <b>{1}</b>.",
+        "Critical error": "Erro crítico",
+        "TroubleFixingMagElite": "Reduz a chance de mau funcionamento de uma munição em 50% depois de resolver mau funcionamento pela mesma razão",
+        "WeaponDeteriorationChanceReduce": "Reduz probabilidade de desgaste durante reparo (em até 60%)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Baixa latência",
+        "UI/Settings/NVidiaReflexMode/Off": "Desligado",
+        "UI/Settings/NVidiaReflexMode/On": "Ligado",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Ligado e ampliado",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex está ligado. Desligue-o para alterar esse parâmetro.",
+        "NVidia Reflex settings will be applied after restart.": "A configuração NVidia Reflex será aplicado após reinicialização.",
+        "FoundInRaid": "Encontrado em incursão",
+        "loudness": "VOLUME",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "Do fundo do meu coração, vou fazer a entrega.",
         "5b486c9386f7744a08514b1b": "Muito tempo atrás, conheci o proprietário da Kiba Arms, fomos até a banya na ocasião, mesmo não gostando muito. Ele, no entanto, quase quebrou a perna tentando dar um mergulho do cais. O camarada sonhou o tempo todo em construir um lugar pra Airsoft. Parece que o seu desejo se tornou realidade em Tarkov, o maior e mais violento espaço pra combate no mundo, com uma diferença: aqui, você morre e perde tudo com uma única bala perdida. Faça uma AK-102, com Silenciador Rotor 43, Empunhadura tática Magpul M-LOK AFG e uma lanterna tática 2U \"Kleh\". A ergonomia deve ser maior que 50, a soma do recuo dever ser menos de 500, e o alcance efetivo de 500m ou mais. Tenha certeza que não ocupa mais de 8 células.",
         "5b486d0e86f7744f4b12d78f": "Obrigado, estou um pouco ocupado agora, falamos mais tarde.",
-        "5b486d8686f77450c05449c9": "Quanto vale a vida humana, o que você acha? Não muito, eu suponho. Mas o que é ainda mais surpreendente pra mim, é a arte contemporânea do mercado. O valor de obras de renomados autores cresce a cada ano. Eles são definitivamente talentosos, mas quanto mais você olha, mais parece que qualquer coisa pode ser arte. Pode ser uma pintura nobre, um mictório ou um monte de merda. Na verdade, na minha opinião, as maiores peças de arte são armas, começando com as brancas, que são reconhecidas universalmente como uma e podem ser achadas em vários museus, até uma velha AK ou M4, que são linda como estiverem. Mas armas só transcendem para uma verdadeira arte quando se tornam únicas, singulares, edição limitada, na mão de quem sabe usar, aquele que modifica para suas próprias necessidades, criando uma obra prima que merece ser mostrada toda sua beleza em um museu. Me traga uma obra prima, uma M4A1 com silenciador NT4 FDE, guarda-mão MK 10, uma mira térmica REAP-IR e um carregador de 60 munições. Ergonomia não pode ser menos de 48, e a soma do recuo menos de 250 e peso de no máximo 5 kg.",
+        "5b486d8686f77450c05449c9": "Quanto vale a vida humana, o que você acha? Não muito, eu suponho. Mas o que é ainda mais surpreendente pra mim, é a arte contemporânea do mercado. O valor de obras de renomados autores cresce a cada ano. Eles são definitivamente talentosos, mas quanto mais você olha, mais parece que qualquer coisa pode ser arte. Pode ser uma pintura nobre, um mictório ou um monte de merda. Na verdade, na minha opinião, as maiores peças de arte são armas, começando com as brancas, que são reconhecidas universalmente como uma e podem ser achadas em vários museus, até uma velha AK ou M4, que são linda como estiverem. Mas armas só transcendem para uma verdadeira arte quando se tornam únicas, singulares, edição limitada, na mão de quem sabe usar, aquele que modifica para suas próprias necessidades, criando uma obra prima que merece ser mostrada toda sua beleza em um museu. Me traga uma obra prima, uma M4A1 com silenciador NT4 FDE, guarda-mão MK 10, uma mira térmica REAP-IR e um carregador de 60 munições. Ergonomia não pode ser menos de 52, e a soma do recuo menos de 250 e peso de no máximo 5 kg.",
         "5b486ddf86f7744ba00f2234": "O mecânico me pediu, vou mandar pra ele hoje.",
         "5b48704286f7744a14343905": "Toda essa tecnologia não é comigo, a imagem é embaçada e o sinal é uma merda, mas já consegui identificar uns \"ratão gordo\". Obrigado pela ajuda!",
         "5b486e8e86f77448824937ad": "Uau! Impressionante, obrigado",
@@ -3193,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Evidencia de má reputação",
@@ -3209,7 +3238,7 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Casquinhas de sorvete",
@@ -3470,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Ostentação",
@@ -3483,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Mendigo Polikhim",
@@ -3656,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Compra de lealdade",
@@ -3892,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -5417,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6374,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "Caminho do caçador. Sádico",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Colegas de trabalho. Pt.2",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7580,9 +7615,9 @@
             "Description": "O alcance produzido por uma mira Leupold híbrida compreende a mira óptica Mark 4 HAMR 4x24mm com mira reflex DeltaPoint instalada em cima dela. Foi desenvolvida carabina de precisão de médio alcance usando a mira 4x, sendo igualmente eficaz em lugares fechados graças ao uso de mira reflex compacta quando necessário."
         },
         "544a5caa4bdc2d1a388b4568": {
-            "Name": "Veste Tática Crye Precision AVS com armadura",
+            "Name": "Porta blindagem Crye Precision AVS",
             "ShortName": "AVS",
-            "Description": "Crye Precision AVS (Adaptive Vest System) é um sistema de plataforma altamente versátil que pode ser rapidamente transformado de uma engrenagem leve de baixa visibilidade em um colete totalmente blindado e carregado."
+            "Description": "Crye Precision AVS (Adaptive Vest System) é um porta blindagem leve de materiais combinados. Um dos porta blindagem mais confortáveis."
         },
         "544a5cde4bdc2d39388b456b": {
             "Name": "Mochila Flyye MBSS",
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munição",
             "ShortName": "Munição",
-            "Description": "Munição",
-            "casingName": null
+            "Description": "Munição"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Modificação funcional",
@@ -13680,9 +13714,9 @@
             "RigLayoutName": "Comando"
         },
         "5b44cad286f77402a54ae7e5": {
-            "Name": "Colete tático blindado TacTec 5.11",
+            "Name": "Porta blindagem TacTec 5.11",
             "ShortName": "TacTec ",
-            "Description": "Colete tático com placas de armadura feitas de polietileno (classe 5) e diversos bolsos para uso com rifles de assalto.",
+            "Description": "Porta blindagem com placas de armadura feitas de polietileno (classe 5) e diversos bolsos para uso com rifles de assalto.",
             "RigLayoutName": "TacTec "
         },
         "5b44cd8b86f774503d30cba2": {
@@ -14245,9 +14279,9 @@
             "Description": "Coronha padrão e retrátil para a MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
+            "Name": "Mapa da Interchange",
             "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Description": "Planta detalhada da Interchange"
         },
         "5bead2e00db834001c062938": {
             "Name": "Ferramenta de trincheira MPL-50",
@@ -14940,9 +14974,9 @@
             "RigLayoutName": "ana m1"
         },
         "5c0e746986f7741453628fe5": {
-            "Name": "Colete tático Wartech TV-110",
+            "Name": "Porta blindagem Wartech TV-110",
             "ShortName": "TV-110",
-            "Description": "Colete tático com placas de armadura feito em aço balístico (classe 4) com proteção para as costas e peito epenas. Equipado com uma série de bolsos.",
+            "Description": "Porta blindagem com placas de armadura feito em aço balístico (classe 4) com proteção para as costas e peito epenas. Equipado com uma série de bolsos.",
             "RigLayoutName": "TV-110"
         },
         "5c0e774286f77468413cc5b2": {
@@ -17229,9 +17263,9 @@
             "RigLayoutName": "D3CRX"
         },
         "5d5d87f786f77427997cfaef": {
-            "Name": "Porta armadura Ars Arma A18 Skanda",
+            "Name": "Porta blindagem Ars Arma A18 Skanda",
             "ShortName": "A18",
-            "Description": "Colete tático com placas de armadura (classe 4) apenas com proteção no peito e nas costas. E é equipado com uma série de bolsos.",
+            "Description": "Porta blindagem com placas de armadura (classe 4) apenas com proteção no peito e nas costas. E é equipado com uma série de bolsos.",
             "RigLayoutName": "A18"
         },
         "5d5d8ca986f7742798716522": {
@@ -18203,9 +18237,9 @@
             "Description": "Cartão eletrônico reutilizável, pertencente, de acordo com o logo, à Corporação TerraGroup."
         },
         "5e4abb5086f77406975c9342": {
-            "Name": "Plate Carrier liso LBT 6094A",
+            "Name": "Porta blindagem liso LBT 6094A",
             "ShortName": "Liso",
-            "Description": "Plate carrier simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
+            "Description": "Porta blindagem simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
         },
         "5e4abc1f86f774069619fbaa": {
             "Name": "Colete tático Spiritus Systems Bank Robber",
@@ -19675,6 +19709,326 @@
             "Name": "Balaclava Smoke",
             "ShortName": "Smoke",
             "Description": "A balaclava característica do famoso artista de hip-hop de Tarkov - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "Kit de primeiro socorro pessoal tático AFAK",
+            "ShortName": "AFAK",
+            "Description": "AFAK (kit de primeiros socorros adaptativo). Uma versão mais avançada do kit de primeiros socorros pessoal."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Torniquete hemostático CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (Torniquete de aplicação tática) impede a perda de sangue bloqueando a passagem por aplicação de pressão no membro afetado. Utiliza um sistema de tensão auto ajustável com uma fivela resistente a puxões."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Ração de água de emergência",
+            "ShortName": "RAE",
+            "Description": "Água potável para uso em caso de emergência e outras circunstâncias em que um suprimento de emergência de líquido seja necessário, pronta para ser armazenada por vários anos."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Dispositivo para realizar operações de resgate\" Taiga-1. Uma ferramenta de sobrevivência verdadeiramente versátil. É uma arma, uma pá, um machado e tudo o que você possa imaginar. Foi desenvolvido e produzido na URSS para várias agências."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "Um cartucho especial projetado para o Corpo de Fuzileiros Navais dos Estados Unidos. A bala tem a ponta aberta com uma frente com ponta de chumbo e uma base de cobre. O chumbo é para quebrar obstáculos e o cobre é para maior penetração na barreira.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "Um cartucho perfurante de blindagem SSA muito raro projetado para substituir o M995. A bala contém um núcleo de carboneto de tungstênio para máxima penetração em alvos rígidos.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "MAI AP",
+            "Description": "Cartuchos MAI perfurantes de 7.62x39 com um núcleo de carboneto exposto.",
+            "casingName": "7.62x39 mm MAI AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "Carregador de 16 munições calibre 9x19 para PL-15",
+            "ShortName": "9x19 PL15",
+            "Description": "Carregador padrão de 16 munições para PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "Ferrolho para pistola PL-15",
+            "ShortName": "Ferrolho PL15",
+            "Description": "Ferrolho padrão para pistola PL-15."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "Massa de mira padrão PL-15",
+            "ShortName": "MM PL15",
+            "Description": "Massa de mira de uso padrão para pistola PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "Massa de mira estendida PL-15",
+            "ShortName": "MME PL15",
+            "Description": "Massa de mira estendida para pistola PL-15 projetada para uso com um supressor de ruído."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "Alça de mira estendida PL-15",
+            "ShortName": "Sup. RS",
+            "Description": "Alça de mira estendida para pistola PL-15 projetada para uso com um supressor de ruído."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "Alça de mira padrão PL-15",
+            "ShortName": "AM PL15",
+            "Description": "Alçade mira de uso padrão para pistola PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Cano padrão para PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Cano de uso padrão para pistola PL-15."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Cano com rosca para PL-15",
+            "ShortName": "PL15 rosc.",
+            "Description": "Cano com costa para pistola PL15 9x19."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "Supressor de ruído PL-15 9x19mm",
+            "ShortName": "PL15 sup.",
+            "Description": "Supressor de ruído padrão para pistola PL-15."
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "Pistola PL-15 9x19",
+            "ShortName": "PL-15",
+            "Description": "Uma pistola russa de carregamento automático com calibre 9x19 mm, desenvolvida por uma equipe de designers da empresa Kalashnikov sob a liderança de Dmitry Lebedev para as necessidades das agências de aplicação da lei russas."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "Tubo de coronha STM Arms",
+            "ShortName": "Tubo STM",
+            "Description": "Tubo receptor extensor STM Arms, 4 posições, diâmetro de especificação militar compatível com qualquer carabina baseada no AR-15."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Coronha GL Core Fab Defense",
+            "ShortName": "GL Core",
+            "Description": "Coronha Telescópica feita por Fab Defense."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver para carabina STM-9 9x19",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver para a carabina STM-9. Equipado com um trilho para anexar dispositivos adicionais."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "Empunhadura Grip DLG-123 para compatíveis AR-15",
+            "ShortName": "DLG123",
+            "Description": "Empunhadura DLG-123, pode ser instalada em qualquer arma compatível com empunhaduras AR-15."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Magwell padrão para STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "Cano 10.5\" para STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 266mm."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "Cano 12\" para STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 304mm."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "Cano 14\" para STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 355mm."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "Cano 16\" para STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 406mm."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "Alça do ferrolho ambidestro MASP para AR-15",
+            "ShortName": "Alça MASP",
+            "Description": "Alça do ferrolho MASP para AR-15 e compatíveis."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "Quebra-chamas STM-9 9x19",
+            "ShortName": "STM9 MB",
+            "Description": "Quebra-chamas STM-9 9x19 Regular."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Cinza",
+            "ShortName": "Magwell",
+            "Description": "Magwell padrão para STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "Carabina STM-9 Gen.2 9x19",
+            "ShortName": "STM-9",
+            "Description": "Uma carabina com calibre de pistola com excelente desempenho já \"fora da caixa\". Desenhado com a participação do medalhista mundial de bronze no Rifle Semi-Auto Vadim Mikhailov. Precisão, velocidade, conforto de recuo."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Fone de ouvido Opsmen Earmor M32",
+            "ShortName": "M32",
+            "Description": "O HEADSET EARMOR M32 MOD3 Eletronic Communication Hearing Protector é um protetor auditivo de comunicação eletrônica ativado, ideal para usos táticos."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "Óculos NPP KlASS Condor",
+            "ShortName": "Condor",
+            "Description": "Óculos balístico com lentes de alta resistência para impacto."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Colete de caça Umka М33-SET1",
+            "ShortName": "Umka",
+            "Description": "O colete Umka М33-SET1 é projetado para caçadores, viajantes, e profissionais rurais e oficiais de segurança."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Colete tático CSA",
+            "ShortName": "CSA",
+            "Description": "O mais simples colete tático, costurado às pressas com materiais duvidosos. Ele é projetado para airsoft. O uso militar deste modelo é possível, mas não recomendado."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Bolsa Hazard4 Takedown",
+            "ShortName": "Takedown",
+            "Description": "Bolsa com alça única projetada para carregar armas de cano longo."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Bolsa de alça Eberlestock G2 Gunslinger (dry earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Mochila modular media militar com compartimento adicional para armas full-size."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "Guarda mão STM 9\" M-LOK para AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "Guarda-mão STM 9\" para AR-15 equipada com interface M-LOK para instalação de dispositivos adicionais e acessórios."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "Guarda mão STM 15\" M-LOK para AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "Guarda-mão STM 15\" para AR-15 equipada com interface M-LOK para instalação de dispositivos adicionais e acessórios."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "Guarda mão STM 12\" M-LOK para AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "Guarda-mão STM 12\" para AR-15 equipada com interface M-LOK para instalação de dispositivos adicionais e acessórios. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Boné Exército preto",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Boné Exército Coyote",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Boné Exército Flora",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Boné Exército deserto",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "Boné Exército UCP",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Máscara de gás GP-7",
+            "ShortName": "GP-7",
+            "Description": "Máscara de gás civil GP-7 é uma proteção individual dos órgãos respiratório, olhos e face."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Colete tático Azimut SS Jhuk (preto)",
+            "ShortName": "Azimut",
+            "Description": "Dispositivo de nylon simples com bolsos não removíveis. Permite que você carregue uma quantidade bastante impressionante de munição à custa da conveniência.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "Porta blindagem liso LBT (bronze)",
+            "ShortName": "Slick",
+            "Description": "Porta blindagem simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "Porta blindagem liso LBT (oliva)",
+            "ShortName": "Slick",
+            "Description": "Porta blindagem simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Bolsa Hazard4 Takedown (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Bolsa com alça única projetada para carregar armas de cano longo."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Caixa de termita",
+            "ShortName": "Térmite",
+            "Description": "As misturas incendiárias à base de térmite são uma mistura de pó de alumínio e óxido de ferro. Esses compostos têm uma temperatura de combustão muito alta e são capazes de queimar sem a presença de oxigênio. O térmite tem um efeito de queima extremamente forte e é quase impossível de extinguir."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Chave catraca",
+            "ShortName": "Catraca.",
+            "Description": "As chaves catracas são uma das ferramentas indispensáveis para todo chaveiro e mecânico em uma estação de serviço de manutenção do carro. Permite que você trabalhe em um espaço confinado. Tem a capacidade de mudar rapidamente entre as cabeças. Instrumento de ouro!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Tijolo TNT TP-200",
+            "ShortName": "TP-200",
+            "Description": "TP-200 é destinado ao uso como cargas na produção de pesquisas sísmicas, detonadores intermediários ao iniciar cargas explosivas em poços, destruindo itens superdimensionados e executar operações especiais com detonação."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Colete tático Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Dispositivo de nylon simples com bolsos não removíveis. Permite que você carregue uma quantidade bastante impressionante de munição à custa da conveniência.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "Boné Exército CADPAT",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
         }
     },
     "locations": {

@@ -1015,7 +1015,7 @@
         "SearchDescription": "Habilidad que te permite registrar los cadáveres de forma más rápida y efectiva.",
         "FirstAidDescription": "Primeros Auxilios hace que usar botiquines sea más rápido y eficaz.",
         "MeleeDescription": "Habilidad en el manejo de armas cuerpo a cuerpo.",
-        "EnduranceBreathElite": "El esfuerzo físico excesivo no causa disnea.",
+        "EnduranceBreathElite": "El aguante es independiente de la energía del personaje.",
         "TroubleShootingDescription": "Esta habilidad facilita la rectificación de los fallos de funcionamiento de las armas.  ",
         "NightOpsDescription": "Operaciones Nocturnas hace que moverse sea más sencillo y que consigas más experiencia de lo normal. Por supuesto, esto se refleja también en una reducción del precio de las ópticas de visión nocturna.",
         "MiscDescription": "Habilidad en el manejo de otros tipos de armas.",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Generador de tipo industrial que asegura el correcto funcionamiento autónomo de las instalaciones de producción. También proporciona espacio adicional para la instalación de bidones de combustible.",
         "hideout_area_2_stage_2_description": "Un cuarto de baño básico. El retrete tiene una taza de madera más confortable y también se dispone de un lavabo. Ambos están conectados al sistema de abastecimiento de agua. En general, sirve para que se eleve el nivel de limpieza e higiene en el refugio.",
         "hideout_area_3_name": "Alijo",
-        "hideout_area_3_stage_2_description": "Alijo mediano (10x36)",
+        "hideout_area_3_stage_2_description": "Alijo mediano (10x38)",
         "hideout_area_0_stage_3_description": "Mejora del conducto de ventilación con ventiladores eléctricos para incrementar el flujo de aire. Un sistema de circulación de aire complejo es necesario para la producción avanzada e investigación de químicos.",
         "hideout_area_1_stage_2_description": "Puerta de entrada reforzada, con un perchero y otros objetos domésticos. ¡Ya no podrán entrar en tu refugio de una patada!",
         "hideout_area_4_name": "Generador",
-        "hideout_area_3_stage_3_description": "Alijo grande (10x46)",
-        "hideout_area_3_stage_4_description": "Alijo de máximo tamaño (10x66)",
+        "hideout_area_3_stage_3_description": "Alijo grande (10x48)",
+        "hideout_area_3_stage_4_description": "Alijo de tamaño máximo (10x68)",
         "hideout_area_5_name": "Calefacción",
         "hideout_area_2_stage_1_description": "Un retrete bastante rudimentario. No se puede decir que sea gran cosa. Se trata de un simple cubo y un recipiente con arena, con el fin de mantener un mínimo de salubridad en el refugio.",
         "hideout_area_4_stage_1_description": "Un sencillo generador eléctrico que proporciona suministro eléctrico al equipamiento básico del refugio. ¡El corazón de tu escondite! Necesita combustible para mantener en funcionamiento toda la red eléctrica del refugio.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Colector de Agua",
         "hideout_area_5_stage_1_description": "Un simple barril herrumbroso con leña, que permite mantener un poco el calor. Es el sistema de calefacción más básico. También es peligroso, debido a la acumulación de monóxido de carbono.",
         "hideout_area_1_stage_3_description": "Se trata de un sistema de seguridad avanzado para el refugio, que incluye una puerta blindada para el búnker, una cámara de vigilancia, un sistema de intercomuniación, extintores, así como refuerzos especiales para incrementar la resistencia estructural de las paredes y el techo.",
-        "hideout_area_3_stage_1_description": "Alijo pequeño (10x26)",
+        "hideout_area_3_stage_1_description": "Alijo pequeño (10x28)",
         "hideout_area_5_stage_3_description": "Instalación de un sistema de calefacción eléctrica en todo el refugio. Ahora, junto con la ayuda de la estufa, estarás tranquilo ante el frío.",
         "hideout_area_2_stage_3_description": "Cuarto de baño avanzado, con un retrete sellado para evitar malos olores, una ducha y un cubo de basura. Todo se encuentra conectado al sistema de abastecimiento de agua, y proporciona un nivel de higiene personal más que aceptable.",
         "hideout_area_9_stage_2_description": "Un lugar para relajarse, equipado con una cama normal, mesilla e, incluso, una televisión vieja. Genera sensación de comodidad y trae los viejos recuerdos de tu vida pasada...",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Probabilidad de causar hemorragias graves.",
         "lightbleedingdelta": "Probabilidad de causar hemorragias leves.",
         "choose face and voice": "ESCOGE CARA Y VOZ",
+        "TroubleFixing": "Incrementa la velocidad de la habilidad Resolución de Problemas (hasta un 50%). Y un 1% por cada nivel.",
+        "TroubleFixingAmmoElite": "Reduce la probabilidad de fallos de funcionamiento provocados por los cargadores en un 50%, tras arreglar el fallo causado por la misma razón.",
+        "ZeroWeaponDeteriorationOnRepair": "No se produce desgaste durante las reparaciones.",
+        "NetworkError/TooManyFriendRequestsHeader": "Demasiadas peticiones.",
+        "NetworkError/TooManyFriendRequestsMessage": "Inténtalo de nuevo en {0} segundos.",
+        "UI/Chat/NoDialogsPlaceholder": "<size=150%>Aún no tienes conversaciones.</size>\nInvita a tus amigos a iniciar una o entra en el Chat Global.",
+        "TroubleFixingDurElite": "Reduce la probabilidad de fallos de funcionamiento basados en la durabilidad del arma en un 50%, tras arreglar el fallo causado por la misma razón.",
+        "WeaponDurabilityLossOnShotReduce": "Reduce el desgaste del arma al disparar (hasta en un 50%).",
         "un-sec": "Bloqueo Norte de la ONU",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Hemorragia",
         "REMOVES BLOODLOSS": "DETIENE LA HEMORRAGIA",
         "\"Magazine checked: \"": "Cargador comprobado:",
-        "You have already bought the maximum amount of this item in the current restock": "Ya has comprado la cantidad máxima de este objeto en el reabastecimiento actual.",
         "DamageType_Bloodloss": "Hemorragia",
         "you can't transfer item while moving": "No puedes colocar el objeto mientras te mueves.",
         "place": "COLOCAR",
         "This location is not available for scav": "Esta localización no está disponible para Scav.",
         "Interchange": "Interchange",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "Carga de datos fallida, comprueba el estado de la conexión. Intenta entrar a la pantalla de tratamiento de nuevo, o ve directamente al menú principal.",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "La modificación {0} no se puede instalar con la culata plegada.",
+        "No action available": "No hay acciones disponibles.",
+        "ProfileEvent/AssortmentLockRule": "Tratos bloqueados con el vendedor: <b>{0}</b>.",
+        "ProfileEvent/ExamineItems": "Examina el objeto <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Restauración de la examinación del objeto <b>{0}</b>.",
+        "ProfileEvent/ProfileLockTimer": "Define el tempo de espera para el Scav en <b>{0}</b> segundos.",
+        "ProfileEvent/ProfileUnlock": "Restaurar el tiempo de espera del Scav.",
+        "ProfileEvent/UnlockTrader": "Vendedor <b>{0}</b> desbloqueado.",
+        "ProfileEvent/LockTrader": "Vendedor <b>{0}</b> bloqueado.",
+        "ProfileEvent/MasteringSkill": "Cambio en el progreso de la maestría <b>{0}</b> en <b>{1}</b>.",
+        "Critical error": "Error crítico.",
+        "TroubleFixingMagElite": "Reduce la probabilidad de fallos de funcionamiento provocados por los casquillos en un 50%, tras arreglar el fallo causado por la misma razón.",
+        "WeaponDeteriorationChanceReduce": "Reduce la probabilidad de desgaste durante la reparación (hasta en un -60%).",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Low Latency",
+        "UI/Settings/NVidiaReflexMode/Off": "Desactivado",
+        "UI/Settings/NVidiaReflexMode/On": "Activado",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Activado y aumentado",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex está activado. Desactívalo para cambiar este parámetro.",
+        "NVidia Reflex settings will be applied after restart.": "La configuración de NVidia Reflex se aplicará tras reiniciar el juego.",
+        "FoundInRaid": "Encontrado en la Incursión",
+        "loudness": "RUIDO",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2722,7 +2751,7 @@
         "5ab0f32686f7745dd409f57d": "Cuando acabes, ve a divertirte un rato, anda. Seguro que todos salimos ganando.",
         "5ab0f32686f7745dd409f580": "Me pregunto cuanto tiempo habrá estado vagando por ahí. ¿Cómo habrá sobrevivido? ¡Pero si no atinaba a decir ni una palabra! En fin, primero vamos a desinfectarlo entero con colonia y después lo abrimos para echar un vistazo.",
         "5ab0f32686f7745dd409f587": "En fin... A ver, ¿por qué leches estás ayudando a Skier? ¿Te soborna con dinero? ¿Te ha prometido una parte? ¡Qué le den a él y a ti también!",
-        "5ab0f32686f7745dd409f5a0": "Bien, espero que los tanque sigan intactos.",
+        "5ab0f32686f7745dd409f5a0": "Bien, espero que los tanques sigan intactos.",
         "5ab0f32686f7745dd409f583": "¡Maldito cabrón! ¡Todo se ha ido a la mierda! ¡Joder! Tanto esfuerzo desperdiciado... ¿¡Qué coño te pasa!? Eres un tío sensato, no un loco. Bah, no te quiero ni ver. ¡Has arruinado un negocio de puta madre! ¡No pienso encargarte ningún asunto serio!",
         "5ab0f32686f7745dd409f584": "¡Ahora sí que sí! Bien hecho, hermano. Es impresionante que no te hayas rajado en el último momento. Es hora de que hagamos negocios en serio...",
         "5ab0f32686f7745dd409f585": "No sé qué decir. Me asusta pensar quién podría necesitar este químico y para qué.",
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "Te lo agradezco desde el fondo de mi corazón. Me encargaré de entregárselos.",
         "5b486c9386f7744a08514b1b": "Hace bastante tiempo conocí al dueño de Kiba Arms. Por aquél entonces incluso fuimos juntos a una banya, pese a que no son lo mío. Él, en cambio, incluso se rompió la pierna intentando saltar desde el borde. Era un tipo muy agradable, soñaba todo el tiempo con montar un campo de Airsoft. Parece que sus deseos se han hecho realidad en Tarkov, el campo de batalla más grande y más espectacular del mundo. Aunque solo con una pequeña diferencia: aquí puedes morir y perderlo todo con una simple bala perdida. En fin, tienes que montar un AK-102 con un silenciador Rotor 43, empuñadura táctica Magpul AFG en OD y una linterna táctica Zenit 2U. La ergonomía debe ser superior a 50, el retroceso menor de 500 y el rango efectivo de 500 o más. Asegúrate de que no ocupe más de 8 huecos.",
         "5b486d0e86f7744f4b12d78f": "Gracias. Estoy un poco ocupado ahora, te digo algo luego.",
-        "5b486d8686f77450c05449c9": "¿Cuánto crees que puede costar una vida humana? No mucho, supongo... Pero lo que todavía me sorprende más es el mercado de las obras de arte moderno. El precio de las piezas de los artistas más reconocidos crece cada año. Tienen talento, sin duda, pero cuanto más las miras más te das cuenta de que hoy en día se considera arte a cualquier cosa. Ya sea una pintura de Grotko, un orinal mal puesto o un montón de basura, literalmente. En mi opinión las obras de arte más increíbles son las armas, empezando por los viejos pero míticos modelos de AK y M4. Preciosos tal como son en su forma original. Aunque es cierto que las armas solo pueden transcender a su forma artística más fina, cuando llegan a considerarse piezas únicas. Aquéllas en las manos de alguien que sepa utilizarlas, de alguien que las modifique para sus necesidades, creando auténticas obras maestras dignas de ser exhibidas en los mejores museos... Así que tráeme una de esas obras maestras, una M4A1 con un silenciador KAC QDSS NT-4 en FDE, guardamano MK 10, óptica térmica y cargador de 60 balas. La ergonomía debe ser de al menos 48, el retroceso total menos de 250 y el peso de 5 kg o menos.",
+        "5b486d8686f77450c05449c9": "¿Cuánto crees que puede costar una vida humana? No mucho, supongo... Pero lo que todavía me sorprende más es el mercado de las obras de arte moderno. El precio de las piezas de los artistas más reconocidos crece cada año. Tienen talento, sin duda, pero cuanto más las miras más te das cuenta de que hoy en día se considera arte a cualquier cosa. Ya sea una pintura de Grotko, un orinal mal puesto o un montón de basura, literalmente. En mi opinión las obras de arte más increíbles son las armas, empezando por los viejos pero míticos modelos de AK y M4. Preciosos tal como son en su forma original. Aunque es cierto que las armas solo pueden transcender a su forma artística más fina, cuando llegan a considerarse piezas únicas. Aquéllas en las manos de alguien que sepa utilizarlas, de alguien que las modifique para sus necesidades, creando auténticas obras maestras dignas de ser exhibidas en los mejores museos... Así que tráeme una de esas obras maestras, una M4A1 con un silenciador KAC QDSS NT-4 en FDE, guardamano MK 10, óptica térmica y cargador de 60 balas. La ergonomía debe ser de al menos 52, el retroceso total menos de 250 y el peso de 5 kg o menos.",
         "5b486ddf86f7744ba00f2234": "Mechanic ha estado preguntando por ellos, se los enviaré hoy.",
         "5b48704286f7744a14343905": "Está claro que estas cosas no son lo mío, la imagen se ve pixelada y la señal es una mierda. Aunque ya he visto algunas \"ratas\" bien gordas. ¡Gracias! ¡Te has portado de puta madre!",
         "5b486e8e86f77448824937ad": "¡Guau! Impresionante, gracias.",
@@ -3193,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Evidencias Incómodas",
@@ -3209,7 +3238,7 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Alta Capacidad",
@@ -3470,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Chapado en Oro",
@@ -3483,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "El Vagabundo de la Polikhim",
@@ -3656,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Lealtad en Venta",
@@ -3892,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -5417,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6374,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "La Senda del Cazador: Sádico",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Compañeros II",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munición",
             "ShortName": "Munición",
-            "Description": "Munición",
-            "casingName": null
+            "Description": "Munición"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Mod. funcional",
@@ -9537,7 +9571,7 @@
             "Description": "La óptica SpecterDR (Dual Rol) 1x/4x, de la serie de ópticas Specter diseñadas por ELCAN, ha marcado un antes y un después en el desarrollo de las ópticas. Se la considera pionera, por ser la primera óptica de aumento variable que realmente posee dos modos de magnificación de x1 y x4 aumentos con un simple toque. "
         },
         "57aca93d2459771f2c7e26db": {
-            "Name": "Óptica ELCAN pecterDR 1x/4x FDE",
+            "Name": "Óptica ELCAN SpecterDR 1x/4x FDE",
             "ShortName": "DR 1/4x FDE",
             "Description": "La óptica SpecterDR (Dual Rol) 1x/4x, de la serie de ópticas Specter diseñadas por ELCAN, ha marcado un antes y un después en el desarrollo de las ópticas. Se la considera pionera, por ser la primera óptica de aumento variable que realmente posee dos modos de magnificación de x1 y x4 aumentos con un simple toque."
         },
@@ -14244,9 +14278,9 @@
             "Description": "Culata retráctil estándar para el subfusil MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "",
-            "ShortName": "",
-            "Description": ""
+            "Name": "Plano de papel de Interchange",
+            "ShortName": "Interchange",
+            "Description": "Plano detallado de Interchange."
         },
         "5bead2e00db834001c062938": {
             "Name": "Pala de trinchera MPL-50",
@@ -18202,7 +18236,7 @@
             "Description": "Tarjeta electrónica reutilizable que pertenece, según el logo de la misma, a la Corporación TerraGroup."
         },
         "5e4abb5086f77406975c9342": {
-            "Name": "Chaleco portaplacas LBT 6094A Slick",
+            "Name": "Chaleco portaplacas LBT 6094A Slick (Negro)",
             "ShortName": "Slick",
             "Description": "Un chaleco portaplacas sencillo fabricado por la compañía London Bridge Trading Inc. Se trata de un diseño minimalista especialmente diseñado para ser utilizado con chalecos tácticos ligeros de tipo \"chest rig\"."
         },
@@ -18413,7 +18447,7 @@
         "5e8488fa988a8701445df1e4": {
             "Name": "Hemostático CALOK-B",
             "ShortName": "Hemostático",
-            "Description": "El agente hemostático CALOK-B permite inyectar gránulos hemostáticos a través de heridas abiertas, permitiendo detener la hemorragia directamente en la fuente de la misma en solo uno segundos."
+            "Description": "El agente hemostático CALOK-B permite inyectar gránulos hemostáticos a través de heridas abiertas, permitiendo detener la hemorragia directamente en la fuente de la misma en solo unos segundos."
         },
         "5e848cc2988a8701445df1e8": {
             "Name": "Escopeta TOZ KS-23M del 23/75",
@@ -19674,6 +19708,326 @@
             "Name": "Pasamontañas de Smoke",
             "ShortName": "Smoke",
             "Description": "El pasamontañas característico del famoso artista de hiphop de Tarkov: Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "Botiquín táctico de primeros auxilios AFAK",
+            "ShortName": "AFAK",
+            "Description": "Botiquín de primeros auxilios adaptativo o AFAK (Adaptative First Aid Kit). Una versión más avanzada del IFAK."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Torniquete hemostático CAT",
+            "ShortName": "CAT",
+            "Description": "El torniquete de combate CAT (Combat Application Tourniquet) previene la pérdida de sangre bloqueando la hemorragia mediante la aplicación de presión en el miembro afectado. Usa un sistema de tensión autoajustable y una hebilla resistente a los tirones."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Ración de agua para emergencias",
+            "ShortName": "RAE",
+            "Description": "Una ración de agua purificada para utilizarse en casos de emergencia o durante circunstancias donde se requiere el suministro de agua potable. Diseñada para ser almacenada durante varios años."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "Machete UVSR Taiga-1 (Dispositivo para Realizar Operaciones de Rescate o \"Ustroystvo Vypolneniya Spasatel'nykh Rabot\"). Es una herramienta de supervivencia verdaderamente versátil. Es un arma, una pala, un hacha y cualquier cosa que puedas imaginarte. Fue desarrollado y producido en la URSS para varias agencias gubernamentales."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "Munición Mk 318 Mod 0 (SOST) de 5,56x45 mm",
+            "ShortName": "SOST",
+            "Description": "Un cartucho especial diseñado para el Cuerpo de Marines de los Estados Unidos. La bala cuenta con una punta abierta y tiene un núcleo de plomo (en la parte superior) y una base de cobre sólido. El plomo sirve para derribar obstáculos y el cobre para una mejor penetración ante barreras.",
+            "casingName": "Mk 318 Mod 0 5,56x45 mm"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "Munición SSA AP de 5,56x45 mm",
+            "ShortName": "SSA AP",
+            "Description": "Un raro cartucho antiblindaje de tipo SSA, diseñado para reemplazar al cartucho M995 de 5,56x45 mm. La bala contiene un núcleo de carburo de tungsteno para una máxima penetración de objetivos blindados.",
+            "casingName": "SSA AP 5,56x45 mm"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "Munición MAI AP de 7,62x39 mm",
+            "ShortName": "AP 7,62",
+            "Description": "Munición MAI antiblindaje de calibre 7,62x39 mm con un núcleo expuesto de carburo de tungsteno.",
+            "casingName": "MAI AP 7,62x39 mm"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "Cargador de 16 balas para PL-15 de 9x19 mm",
+            "ShortName": "PL15 9x19",
+            "Description": "Cargador estándar de 16 balas para PL-15 de calibre 9x19 mm."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "Corredera de PL-15",
+            "ShortName": "Corr. PL15",
+            "Description": "Corredera estándar para pistola PL-15."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "Punto de mira estándar para PL-15",
+            "ShortName": "PM PL15",
+            "Description": "Punto de mira estándar para la pistola PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "Punto de mira extendido para PL-15",
+            "ShortName": "PMEPL15",
+            "Description": "Punto de mira extendido para la pistola PL-15 que está diseñado para usarse con un supresor acoplado al arma."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "Alza extendida para PL-15",
+            "ShortName": "AE PL15",
+            "Description": "Alza extendida para la pistola PL-15 que está diseñada para usarse con un supresor acoplado al arma."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "Alza estándar para PL-15",
+            "ShortName": "A PL-15",
+            "Description": "Alza estándar para la pistola PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Cañón estándar para PL-15 de 9x19 mm",
+            "ShortName": "PL-15 9x19",
+            "Description": "Cañón estándar para la pistola PL-15."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Cañón con rosca para PL-15",
+            "ShortName": "R. PL15",
+            "Description": "Cañón con punta de rosca para la pistola PL-15 de 9x19 mm."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "Silenciador para PL-15 de 9x19 mm.",
+            "ShortName": "S. PL15",
+            "Description": "Silenciador estándar para la pistola PL-15."
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "Pistola PL-15 de 9x19 mm",
+            "ShortName": "PL-15",
+            "Description": "La PL-15 es una pistola rusa semiautomática de calibre 9x19 mm, que fue desarrollada por un equipo de diseñadores de Kalashnikov Concern bajo el liderazgo de Dmitry Lebedev para las necesidades de las agencias policiales rusas."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "Tubo de culata STM Arms",
+            "ShortName": "Tubo STM",
+            "Description": "Tubo de culata STM Arms Receiver Extension Buffer Tube, con 4 posiciones y diámetro Com-Spec compatible con fusiles basados en la carabina AR-15."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Culata Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Culata telescópica GL Core producida por Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Cuerpo superior para STM-9 de 9x19 mm",
+            "ShortName": "CS STM-9",
+            "Description": "Cuerpo superior para la carabina STM-9. Equipado con una montura para acoplar dispositivos adicionales."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "Pistolete DLG-123 para AR-15 y compatibles",
+            "ShortName": "DLG123",
+            "Description": "El pistolete DLG-123 puede ser instalado en cualquier arma compatible con pistoletes AR-15."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Extractor STM-9",
+            "ShortName": "Extractor",
+            "Description": "Extractor estándar para la carabina STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "Cañón de 10,5\" para STM-9 de 9x19 mm",
+            "ShortName": "10,5\" STM-9 9x19",
+            "Description": "Cañón de 266 mm de largo para STM-9 de 9x19 mm."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "Cañón de 12\" para STM-9 de 9x19 mm",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "Cañón de 304 mm de largo para STM-9 de 9x19 mm."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "Cañón de 14\" para STM-9 de 9x19 mm",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "Cañón de 355 mm de largo para STM-9 de 9x19 mm."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "Cañón de 16\" para STM-9 de 9x19 mm",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "Cañón de 406 mm de largo para STM-9 de 9x19 mm."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "Palanca de montar MASP Ambi para AR-15",
+            "ShortName": "PM MASP",
+            "Description": "Palanca de montar ambidiestra MASP Ambi para AR-15 y sistemas compatibles."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "Freno de boca STM-9 de 9x19 mm",
+            "ShortName": "FB STM9",
+            "Description": "Freno de boca estándar para STM-9 de 9x19 mm."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Extractor STM-9 (Gris)",
+            "ShortName": "Extractor",
+            "Description": "Extractor estándar de color gris para la carabina STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "Carabina STM-9 Gen. 2 de 9x19 mm",
+            "ShortName": "STM-9",
+            "Description": "Carabina con calibre de pistola (PPC) que cuenta con un desempeño excelente de tipo \"lista para usar\". Diseñada con la participación del medallista de bronce mundial en Rifle Semiautomático Vadim Mikhailov. Precisión, velocidad y comodidad en el retroceso."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Auriculares Opsmen Earmor M32",
+            "ShortName": "M32",
+            "Description": "Los Earmor M32 son unos auriculares protectores con comunicación electrónica activa y amplificación de los sonidos de baja frecuencia, ideales para cualquier aplicación táctica."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "Gafas NPP KIAS Condor",
+            "ShortName": "Condor",
+            "Description": "Gafas balísticas rusas de alta resistencia con lentes capaces de aguantar los impactos."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Chaleco de cazador Umka M33-SET1",
+            "ShortName": "Umka",
+            "Description": "El chaleco Umka M33-SET1 fue diseñado para cazadores, viajeros y profesionales de las fuerzas de seguridad desplegados sobre el terreno."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Chaleco táctico CSA",
+            "ShortName": "CSA",
+            "Description": "El chaleco tipo \"chest rig\" más simple, cosido vagamente con materiales de dudosa procedencia. Está diseñado para el airsoft. El uso de este modelo para aplicaciones militares es posible, pero no se recomienda."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Mochila cruzada Hazard4 Takedown",
+            "ShortName": "Takedown",
+            "Description": "Mochila cruzada de una sola correa diseñada para transportar armas de cañón largo."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Mochila Eberlestock G2 Gunslinger II (Dry Earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Mochila modular de tamaño medio con un compartimento especial para armas largas."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "Guardamano de 9\" M-LOK STM para AR-15",
+            "ShortName": "9\" STM",
+            "Description": "Guardamano STM de 9 pulgadas para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "Guardamano de 15\" M-LOK STM para AR-15",
+            "ShortName": "15\" STM",
+            "Description": "Guardamano STM de 15 pulgadas para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "Guardamano de 12\" M-LOK STM para AR-15",
+            "ShortName": "12\" STM",
+            "Description": "Guardamano STM de 12 pulgadas para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Gorra militar (Negro)",
+            "ShortName": "Gorra",
+            "Description": "Gorra militar."
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Gorra militar (Coyote)",
+            "ShortName": "Gorra",
+            "Description": "Gorra militar."
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Gorra militar (Flora)",
+            "ShortName": "Gorra",
+            "Description": "Gorra militar."
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Gorra militar (Desierto)",
+            "ShortName": "Gorra",
+            "Description": "Gorra militar."
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "Gorra militar (UCP)",
+            "ShortName": "Gorra",
+            "Description": "Gorra militar."
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Máscara antigás GP-7",
+            "ShortName": "GP-7",
+            "Description": "La máscara antigás civil GP-7 es un medio de protección efectivo para el filtraje de partículas o gases que amenacen el sistema respiratorio, los ojos o la piel de la cara."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Chaleco Azimut SS Jhuk (Negro)",
+            "ShortName": "Azimut",
+            "Description": "Chalecto táctico tipo \"chest harness\" de nailon con bolsillos fijos. Permite llevar una cantidad sorprendente de munición a costa de su falta de modularidad.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "Chaleco portaplacas LBT 6094A Slick (Tan)",
+            "ShortName": "Slick",
+            "Description": "Un chaleco portaplacas sencillo fabricado por la compañía London Bridge Trading Inc. Se trata de un diseño minimalista especialmente diseñado para ser utilizado con chalecos tácticos ligeros de tipo \"chest rig\"."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "Chaleco portaplacas LBT 6094A Slick (Oliva)",
+            "ShortName": "Slick",
+            "Description": "Un chaleco portaplacas sencillo fabricado por la compañía London Bridge Trading Inc. Se trata de un diseño minimalista especialmente diseñado para ser utilizado con chalecos tácticos ligeros de tipo \"chest rig\"."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Mochila cruzada Hazard4 Takedown (Multicam)",
+            "ShortName": "Takedown",
+            "Description": "Mochila cruzada de una sola correa diseñada para transportar armas de cañón largo."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Bote de termita",
+            "ShortName": "Termita",
+            "Description": "Las mezclas incendiarias basadas en la termita están constituidas por polvo de aluminio y óxido de hierro. Estos compuestos alcanzan temperaturas de combustión muy altas y son capaces de funcionar sin la presencia de oxígeno. La termita provoca una llama extremadamente potente que es casi imposible de extinguir."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Llave inglesa Ratchet",
+            "ShortName": "Ratch.",
+            "Description": "Las llaves inglesas Ratchet son herramientas indispensables para cualquier cerrajero o mecánico. Permiten trabajar en espacios cerrados y ofrecen la posibilidad cambiar rápidamente de cabezal. ¡Oro puro, acho!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Carga de TNT TP-200",
+            "ShortName": "TP-200",
+            "Description": "La TP-200 está diseñada para usarse como carga en la realización de sondeos sísmicos, como detonadores intermedios para voladuras en pozo, así como la destrucción de objetos de gran tamaño y operaciones especiales de voladura."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Chaleco Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Chalecto táctico tipo \"chest harness\" de nailon con bolsillos fijos. Permite llevar una cantidad sorprendente de munición a costa de su falta de modularidad.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "Gorra militar (CADPAT)",
+            "ShortName": "Gorra",
+            "Description": "Gorra militar."
         }
     },
     "locations": {

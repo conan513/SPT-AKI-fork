@@ -1015,7 +1015,7 @@
         "SearchDescription": "Efektívna a rýchla zručnosť prehľadávania mŕtvych tiel",
         "FirstAidDescription": "Zručnosti v prvej pomoci umožňuje využívať lekárničky rýchlejšie a s vyššou efektivitou.",
         "MeleeDescription": "Zručnosť narábania s chladnými zbraňami",
-        "EnduranceBreathElite": "Fyzická námaha nespôsobuje apneu",
+        "EnduranceBreathElite": "Dýchanie nie je závislé na energii",
         "TroubleShootingDescription": "Zručnosť v riešení problémov uľahčuje odstraňovanie problému v prípade poruchy zbrane.  ",
         "NightOpsDescription": "Nasadenie v noci umožňuje ľahší pohyb a rýchlejšie získavanie skúsenosti než bežne. A samozrejme sa to odráža i na cene prístrojov pre nočné videnie.",
         "MiscDescription": "Zručnosť narábania s rôznymi zbraňami",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Priemyselný generátor zabezpečuje autonómnu operáciu výrobných zariadení. Taktiež poskytuje ďalšie miesta pre inštaláciu palivových kanistrov.",
         "hideout_area_2_stage_2_description": "Základná kúpelňa s drevenou toaletou typu: latrína, umývadlo pripojené k vodovodu. To všetko vám v kryte zaisťuje vyššiu úroveň čistoty a hygieny.",
         "hideout_area_3_name": "Skrýš",
-        "hideout_area_3_stage_2_description": "Stredná skrýš (10x36)",
+        "hideout_area_3_stage_2_description": "Stredná skrýš (10x38)",
         "hideout_area_0_stage_3_description": "Montáž vzduchotechnického potrubia s elektrickým ventilátorom zvýši rýchlosť prietoku vzduchu. Kompletný systém cirkulácie vzduchu je potrebný pre výrobu pokročilých zariadení a chemický výskum.",
         "hideout_area_1_stage_2_description": "Vylepšená vstupná hala so zosilnenými dverami, vešiakom na šaty a ďalšími predmetmi pre domácnosť. Tieto dvere už jedným kopom nevyrazíte.",
         "hideout_area_4_name": "Generátor",
-        "hideout_area_3_stage_3_description": "Veľká skrýš (10x46)",
-        "hideout_area_3_stage_4_description": "Skrýš s maximálnou veľkosťou (10x66)",
+        "hideout_area_3_stage_3_description": "Veľká skrýš (10x48)",
+        "hideout_area_3_stage_4_description": "Skrýš s maximálnou veľkosťou (10x68)",
         "hideout_area_5_name": "Kúrenie",
         "hideout_area_2_stage_1_description": "Primitívny záchod. Nedá se hovoriť o nejakej vybavenosti. K udržaniu základnej hygieny je tu len vedro a krabica na odpadky.",
         "hideout_area_4_stage_1_description": "Srdce vášho útočišťa. Jednoduchý palivový generátor, ktorý vám môže v kryte poskytnúť elektrickú energiu pre základné zariadenia. K udržaniu výkonu celej rozvodnej siete je potrebné palivo.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Zberač vody",
         "hideout_area_5_stage_1_description": "Jednoduchý sud s drevom na kúrenie na udržanie tepla. Veľmi základná možnosť vykurovania. Nebezpečný, pretože horenie uvoľňuje oxid uhoľnatý.",
         "hideout_area_1_stage_3_description": "Pokročilý bezpečnostný systém krytu, ktorý zahrňuje, okrem pancierových dverí, video kamier, intercomu a hasiaceho prístroja, taktiež špeciálne betónové výstuhy, ktoré zvyšujú štrukturálnu pevnosť stien a stropu.",
-        "hideout_area_3_stage_1_description": "Malá skrýš (10x26)",
+        "hideout_area_3_stage_1_description": "Malá skrýš (10x28)",
         "hideout_area_5_stage_3_description": "Vybavenie celého krytu s dodatočnými elektrickými ohrievačmi. Teraz, spolu s liatinovými kachľami, sa už nemusíte báť, že by vám bola zima.",
         "hideout_area_2_stage_3_description": "Pokročilá kúpelňa s chemickým záchodom, sprchou a odpadkovým košom. Všetko čo potrebujete je pripojené na systém zásobovania vodou a poskytuje najvyššiu úroveň dostupnej osobnej hygieny.",
         "hideout_area_9_stage_2_description": "Miesto k odpočinku, vybavené normálnou posteľou, nočným stolíkom a dokonca i starým televízorom. To všetko vytvára pocit pohodlia a naväzuje nostalgické spomienky na predchádzajúci život.",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Šanca na spôsobenie ťažkého krvácania",
         "lightbleedingdelta": "Šanca na spôsobenie ľahkého krvácania",
         "choose face and voice": "VÝBER TVÁRE A HLASU",
+        "TroubleFixing": "Zvýšenie rýchlosti riešení závad (až o 50%). 1% za každou úroveň schopnosti.",
+        "TroubleFixingAmmoElite": "Znižuje pravdepodobnosť porúch spôsobených zásobníkom o 50% po oprave poruchy rovnakého pôvodu",
+        "ZeroWeaponDeteriorationOnRepair": "Žiadne opotrebenie počas opravy",
+        "NetworkError/TooManyFriendRequestsHeader": "Príliš veľa žiadosti",
+        "NetworkError/TooManyFriendRequestsMessage": "Skúste to znovu za {0} sekúnd",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Zatiaľ nemáte žiadne dialógy.</b></size>\nPre vytvorenie pozvite priateľov alebo sa pripojte ku globálnemu chatu.",
+        "TroubleFixingDurElite": "Znižuje pravdepodobnosť porúch spôsobených stavom zbrane o 50% po oprave poruchy rovnakého pôvodu",
+        "WeaponDurabilityLossOnShotReduce": "Znižuje opotrebovanie zbrane pri streľbe (až o 50%)",
         "un-sec": "Severní zátarás UN",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Krvácanie",
         "REMOVES BLOODLOSS": "ODSTRAŇUJE KRVÁCANIE",
         "\"Magazine checked: \"": "Zásobník skontrolovaný:",
-        "You have already bought the maximum amount of this item in the current restock": "Už ste zakúpili maximálny počet, týchto položiek z aktuálne u obchodníka uskladnených kusov",
         "DamageType_Bloodloss": "Krvácanie",
         "you can't transfer item while moving": "Ak ste v pohybe, nie je možné premiestniť predmet",
         "place": "UMIESTNIŤ",
         "This location is not available for scav": "Tato lokácia nie je pre SCAVa dostupná",
         "Interchange": "Interchange",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "Nepodarilo sa načítať dáta, skontrolujte stav siete. Skúste znovu otvoriť obrazovku pre liečbu zranení, alebo ju preskočte a prejdite do hlavného menu.",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Modifikáciu {0} nie je možné nainštalovať na zbraň so sklopenou pažbou",
+        "No action available": "Žiadne dostupné akcie",
+        "ProfileEvent/AssortmentLockRule": "Predajcová ponuka <b>{0}</b> je uzamknutá.",
+        "ProfileEvent/ExamineItems": "Preskúmať predmet <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Preskúmanie predmetu <b>{0}</b> bolo resetované.",
+        "ProfileEvent/ProfileLockTimer": "Nastaviť dostupnosť Scava na <b>{0}</b> sekúnd.",
+        "ProfileEvent/ProfileUnlock": "Dostupnosť ďalšieho Scava.",
+        "ProfileEvent/UnlockTrader": "Odomknutý obchodník <b>{0}</b>.",
+        "ProfileEvent/LockTrader": "Uzamknutý obchodník <b>{0}</b>.",
+        "ProfileEvent/MasteringSkill": "Zmena <b>{0}</b> zlepšenie schopnosti na <b>{1}</b>.",
+        "Critical error": "Kritická chyba",
+        "TroubleFixingMagElite": "Znižuje pravdepodobnosť porúch spôsobených muníciou o 50% po oprave poruchy rovnakého pôvodu",
+        "WeaponDeteriorationChanceReduce": "Znížená pravdepodobnosť opotrebenia počas oprav (až o -60%)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Low Latency",
+        "UI/Settings/NVidiaReflexMode/Off": "Vypnuté",
+        "UI/Settings/NVidiaReflexMode/On": "Zapnuté",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Zapnuté s Boostom",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex je zapnutý. Pokiaľ chcete tieto parametri zmeniť, vypnite ho.",
+        "NVidia Reflex settings will be applied after restart.": "Nastavenia NVidia Reflex budú použité po reštartovaní.",
+        "FoundInRaid": "Nájdené v raide",
+        "loudness": "HLASITOSŤ",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "Z hĺbky môjho srdca. Ja už uskutočním dodanie.",
         "5b486c9386f7744a08514b1b": "Kedysi, som raz stretol vlastníka Kiba Arms, dokonca sme potom zašli do verejných kúpeľov so saunou, i keď mi to nie je veľmi po chuti. Dokonca si zlomil nohu, keď sa snažil skočiť do bazénu. Veselý chlapík, celý čas sníval, že založí obrovské airsoftové ihrisko. Zdá sa že jeho sen sa stal skutočnosťou, z Tarkova sa stalo najväčšie a najlepšie bojisko na svete, len s jedným drobným detailom: Tu, zomrieš a stratíš všetko behom sekundy od jedinej zblúdilej strely. Poskladaj mi AK-102 s tlmičom Rotor 43, taktickou rukoväťou Magpul AFG OD a svietidlom Zenit 2U. Ergonómia by mala byť nad 50 a celkový spätný ráz pod 500. Efektívny zameriavač na 500 a viac metrov. Ale postaraj sa aby nezaberal viac než 8 slotov.",
         "5b486d0e86f7744f4b12d78f": "Vďaka. Som teraz trochu zaneprázdnený, uvidíme sa neskôr.",
-        "5b486d8686f77450c05449c9": "Aká je cena ľudského života? Hádam, že to veľa nebude. Ale čo je ešte prekvapivejšie pre mňa, je súčasný trh s umením. Cena diel od známych autorov rastie každý rok. Určite sú talentovaný, ale čim viac na to pozeráš, tým viac máš pocit, že v dnešnej dobe môže byť umením čokoľvek. Môže to byť Grotková maľba, pohodený pisoár, alebo hromada odpadkov. Každopádne, podľa môjho skromného názoru sú najkrajšími kusmi umenia zbrane, od kúskov starých chladných zbraní - ktoré už sú všeobecne uznané ako umenie a môžeš ich nájsť v mnohých múzeách - až po staré AK alebo M4, ktoré sú krásne v svojej prostote. Ale zo zbrane sa stane skutočné umenie až keď je úplne jedinečná, jediná svojho druhu, v rukách niekoho kto vie ako ju použiť, kto si ju upravil podľa svojich potrieb, tak vytvoríš majstrovské dielo vhodné vystavenia i v tých najprestížnejších múzeách. Prines mi podobné majstrovské dielo, M4A1 s tlmičom NT4 FDE, predpažbím MK 10, termálnym zameriavačom REAP-IR a 60-ranovým zásobníkom. Ergonómia by nemala byť menšia než 48 a celkový spätný ráz nad 250, a váha by nemala byť viac než 5kg.",
+        "5b486d8686f77450c05449c9": "Aká je cena ľudského života? Hádam, že to veľa nebude. Ale čo je ešte prekvapivejšie pre mňa, je súčasný trh s umením. Cena diel od známych autorov rastie každý rok. Určite sú talentovaný, ale čim viac na to pozeráš, tým viac máš pocit, že v dnešnej dobe môže byť umením čokoľvek. Môže to byť Grotková maľba, pohodený pisoár, alebo hromada odpadkov. Každopádne, podľa môjho skromného názoru sú najkrajšími kusmi umenia zbrane, od kúskov starých chladných zbraní - ktoré už sú všeobecne uznané ako umenie a môžeš ich nájsť v mnohých múzeách - až po staré AK alebo M4, ktoré sú krásne v svojej prostote. Ale zo zbrane sa stane skutočné umenie až keď je úplne jedinečná, jediná svojho druhu, v rukách niekoho kto vie ako ju použiť, kto si ju upravil podľa svojich potrieb, tak vytvoríš majstrovské dielo vhodné vystavenia i v tých najprestížnejších múzeách. Prines mi podobné majstrovské dielo, M4A1 s tlmičom NT4 FDE, predpažbím MK 10, termálnym zameriavačom REAP-IR a 60-ranovým zásobníkom. Ergonómia by nemala byť menšia než 52 a celkový spätný ráz nad 250, a váha by nemala byť viac než 5kg.",
         "5b486ddf86f7744ba00f2234": "Mechanik si to žiadal, pošlem mu to dnes.",
         "5b48704286f7744a14343905": "Všetka tá technika to nie je moja šálka kávy, obraz je rozhádzaný a signál je nahovno, ale už sa mi podarilo vystriehnuť dáke \"tučné krysy\". Ďakujem, veľmi mi to pomohlo!",
         "5b486e8e86f77448824937ad": "Uffff. Pôsobivé, vďaka",
@@ -3081,7 +3110,7 @@
         "5d2f378786f774169b7e0069": "Zdravím, bojovník! Ako sa máš? Darí sa ti? Počúvaj, dostal som neobvyklú úlohu, Mechanik ma požiadal, aby som vyrobil jednu špeciálnu vec pre jeho domov, a táto „vecička“ by mala byť tak šikovná, že je potrebná pokročilá elektronika. Sakra, v celom meste sa nikde tieto veci nedajú nájsť. Hovorí sa však, že niekde v laboratóriu TerraGroup je veľa podobného vybavenia. Môžu tam byť časti, ktoré potrebujem. V laboratóriu samotnom je práve príliš nebezpečné, aby som ta tam ihneď poslal, ale potreboval by som zatiaľ aspoň získať vstupné karty. Pomôžeš? Áno, karty by mali byť nové, nie tie, ktoré si môžeš kúpiť od obchodníkov.",
         "5d4bec6a86f7741e530d2c02": "Skutočne si to zvládol! No kurva skvelo. Takže držím svoje slovo. Tu je tvoja odmena.",
         "5d66912c86f774368f43a242": "To sú sakra pušky! Dobrá práca! Myslím, že je čas, aby som pochytil niečo z remesla zbrojára!",
-        "5d66912c86f774368f43a245": "Come on in. Want some tea? Well, whatever. So listen, here's the deal. Soon I will be hosting a few friends of mine. I want to go hunting with them, but there's just no way I can take them hunting with these MP shotguns. I want you to get us a couple of nice rifles. Such rifles so I could add them to my personal collection after this hunt. You gotta love long-range shooting. But first, you have to make sure the rifle is zeroed properly. And we have just the client for that, his name is Shturman. He's lurking around a lumbermill in the woods, nasty bastard. Don't worry about the reward. It won't disappoint you. I'll write you a note with the stats for the rifles. (Remington M700 with a March Tactical 3-24x42 FFP scope)",
+        "5d66912c86f774368f43a245": "Poď ďalej. Chceš čaj? Dobre, tak nič. Takže počúvaj, mám na teba požiadavku. Čoskoro budem hostiť niekoľko mojich priateľov. Chcem s nimi ísť na lov, ale nemôžem ich zobrať loviť len s týmito MP brokovnicami. Chcem, aby si nám zohnal pár pekných pušiek. Také pušky, aby som ich po tom love mohol pridať do mojej osobnej zbierky. Streľbu na diaľku proste musíš milovať, ale najprv sa musíš uistiť že puška je zacielená správne. A na to máme toto správneho človeka, jeho meno je Shturman. Potuluje sa okolo píly na Woods, nechutný týpek. Nerob si starosti s odmenou. Nesklamem ta. Napíšem ti zoznam požiadaviek na parametrami pušiek. (Remington M700 s optikou March Tactical 3-24x42 FFP)",
         "5d66914986f7743690020694": "Pozri, koho to tu máme! Ahoj! Počul som nejaké zvesti, že vo vojenských skladoch na starej vojenskej základni zostalo ešte veľa jedla. Hovorí sa, že sa tam začali potulovať zlodeji a hľadajú čo tam ešte ostalo po RUAF. Urob mi láskavosť, nájdi ich cestičky a samotné miesto, kde sa tieto sklady nachádzajú. A potom ti ručím za to, že ďalšia návšteva tých banditov bude pekelná show.",
         "5d66914986f7743690020691": "Už všetko zobrali? Do riti, musíme byť rýchlejší.",
         "5d6fb45f86f77449d825f9cc": "Takže si sa rozhodol? Len pár injekcií. Tu a tu. Oddýchni si, aspoň pár dní, viac sa uvoľni a užívaj vitamíny.",
@@ -3135,10 +3164,10 @@
         "5f08e8d3ec85fa71e9393f65": "Ahoj, počuli ste to už? Nové ovocie sa objavilo v oblasti rezortu, so zdravotníckou minulosťou, zdá sa, že keď sa TerraGroup usadila v sanatóriu, tiež visel okolo. Chlapík, nie je len tak jednoduchý a zrejme sa vyzná v chémií, pretože predáva stimulanty. Podľa rečí je nejako spojený s TerraGroup, zdá sa, že tam pôsobil, alebo len poznal ľudí, ktorí tam pracovali, to nie je úplne jasné. Ale v skratke, určite má buď kanceláriu alebo skrýšu, niekde v stredisku, takže ťa potrebujem, aby si pre mna našiel to miesto. Potom tam pošlem špecialistov, možno nájdu niečo zaujímavé.",
         "5fd4c9229e4b2a58b34bbd2b": "You seem to have recently split off from your group, you'll catch a bullet if you don't keep your eyes open. I'll give you a little boost from me. I see you're a decent fellow, and we'll get even as soon as you get the hang of it. I'm always in need of workers for my missions. Oh, yeah, everybody calls me Prapor, let's get acquainted. ",
         "5fd4c93f99cf630ebf4fabdf": "So, have you figured out what's what yet?  Here's the stuff, and keep your eyes open when you go out raiding. If you want to trade, come see me.",
-        "5fdb3e50148b192e1a7463e2": "It means my guys didn't make it and the transports were looted... Plus a USEC camp nearby, you say? That sucks. But thanks for the work, though.",
-        "5fdb3e50148b192e1a7463e5": "Greetings, soldier. I have a job for you. Long story short, I lost contact with one of my groups, and it's been quite a while ago. When the shit hit the fan, I sent them to the woods to pick up some cargo. I'm afraid they got ambushed, the last time I got through, they reported the USECs were closing in on them.  Check to see if anyone survived. They had a BRDM, Bukhanka and truck of some sort, I do not remember exactly what kind. I think that the USECs must have settled somewhere near there too.",
-        "600303b71448362c785bc3b2": "Of course I heard the air in the Woods tremble. Shturman got what he deserved. Don't stand still, you can buy new rifles now.",
-        "600303b71448362c785bc3b5": "Greetings! Come on in. I got a job for you. I just got a shipment of imported guns. The big ones, long-range, .338 caliber. And you know I'm a fan of that stuff. And there's another long-range shooter called Shturman. Deal with him, he's been a huge problem for a while now. And I'll give you an opportunity to buy those overseas elephant guns. Now move, I'm waiting to hear from you."
+        "5fdb3e50148b192e1a7463e2": "To znamená, že to moji chlapi nezvládli a náklad z transportu bol rozkradnutý... Plus, je neďaleko tábor USEC? To je na hovno. Ale i tak, ďakujem, že si si sa o to postaral.",
+        "5fdb3e50148b192e1a7463e5": "Zdravím Vás, vojak. Mám pre vás prácu. Dlhý príbeh, skrátim to. Stratil som kontakt s jednou zo svojich skupín a je to už pomerne dávno. \"Keď hovno padlo do ventilátoru\", poslal som ich do lesa, aby vyzdvihli jednu zásielku. Obavám sa, že boli prepadnutý. Keď som sa s nimi naposledy spojil, hlásili, že se k nim blíži USEC. Skontrolujte, či niekto prežil. Mali BRDM, Bukhanku a nejaké nákladné auto, nepamätám si presne aké. Myslím, že USEC sa museli usadiť niekde nablízku.",
+        "600303b71448362c785bc3b2": "Samozrejme som počul, ako sa vzduch vo Woods trasie. Shturman dostal, co si zaslúžil. Nestoj tu, od teraz si môžeš kúpiť nové pušky.",
+        "600303b71448362c785bc3b5": "Zdravím! Poď ďalej. Mám pre teba prácu. Práve som dostal zásielku zbraní z dovozu. Tie veľké s veľkým dostrelom, ráže .338. Ty vieš, že som do týchto veci totálne zažratí. A mám tu ďalšieho ostrostrelca, volá sa Shturman. Už nejakú dobu predstavuje veľký problém. Vybav to s nim a umožním ti kúpiť si tie zámorské pušky na slony. A teraz padaj. Budem čakať na tvoju správu."
     },
     "quest": {
         "5936d90786f7742b1420ba5b": {
@@ -3193,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Dôkazy o zlej povesti",
@@ -3209,7 +3238,7 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Zmrzlinové kornútky",
@@ -3470,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Zlatý swag",
@@ -3483,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Polikhimský tulák",
@@ -3656,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Výpredaj vernosti",
@@ -3892,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -5417,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6374,7 +6403,7 @@
             "failMessageText": "5edab4e4218d181e29451437",
             "startedMessageText": "5edab4e4218d181e29451438",
             "description": "5edab4e4218d181e29451439",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "failMessageText": "5edaba9ed143ed1d6378d127",
             "startedMessageText": "5edaba9ed143ed1d6378d128",
             "description": "5edaba9ed143ed1d6378d129",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munícia",
             "ShortName": "Munícia",
-            "Description": "Munícia",
-            "casingName": null
+            "Description": "Munícia"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Funkčné modifikácie",
@@ -14244,9 +14278,9 @@
             "Description": "Štandardná, zasúvacia pažba pre MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
+            "Name": "Papierová mapa Interchange",
             "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Description": "Podrobná mapa Interchange"
         },
         "5bead2e00db834001c062938": {
             "Name": "Lopatka MPL-50",
@@ -19384,7 +19418,7 @@
         },
         "5fbcc437d724d907e2077d5c": {
             "Name": "SIG Sauer Thin lightweight MCX/MPX stock",
-            "ShortName": "MCX/MPX thin",
+            "ShortName": "MCX/MPX úzka",
             "Description": "Thin and lightweight stock for MCX/MPX manufactured by SIG Sauer."
         },
         "5fbcc640016cce60e8341acc": {
@@ -19404,19 +19438,19 @@
             "Description": "SRD 7.62x51 je titanový tlmič 5. triedy, ktorý se k zbraní pripevňuje pomocou rýchloupínacích úsťových zariadení."
         },
         "5fbe7618d6fa9c00c571bb6c": {
-            "Name": "Sig-Sauer \"SRD\" 7.62x51 Sound Suppressor ",
+            "Name": "Tlmič Sig-Sauer \"SRD\" 7.62x51 ",
             "ShortName": "\"SRD\" 7.62x51",
             "Description": "SRD 7.62x51 je titánový tlmič triedy 5."
         },
         "5fc0f9b5d724d907e2077d82": {
-            "Name": "MVF001 A3 Vertical Grip KeyMod black",
+            "Name": "Vertikálna rukoväť MVF001 A3 pre KeyMod (čierna)",
             "ShortName": "MVF001 A3",
-            "Description": "The A3 tactical grip MVF001 A3. The grip was designed specifically for the KeyMod interface."
+            "Description": "Taktická rukoväť MVF001 A3, ktorá bola navrhnutá špeciálne pre rozhranie KeyMod."
         },
         "5fc0f9cbd6fa9c00c571bb90": {
-            "Name": "Sig Sauer Vertical Foregrip Keymod Black",
-            "ShortName": "SSVFK blk.",
-            "Description": "Sig Sauer Vertical Foregrip tactical grip for Keymod interface. The Sig Sauer Vertical Foregrip grip is made from the highest grade materials and is of Sig Sauer quality."
+            "Name": "Taktická vertikálna rukoväť Sig Sauer KeyMod (čierna)",
+            "ShortName": "SSVFK čierna",
+            "Description": "Vertikálna taktická rukoväť Sig Sauer pre rozhranie KeyMod. Je vyrobená z najlepších materiálov na úrovni kvality Sig Sauer."
         },
         "5fc0fa362770a0045c59c677": {
             "Name": "SIG MCX Folding sight Frontsight",
@@ -19429,9 +19463,9 @@
             "Description": "Odnímateľné sklopné zadné mieridlá SIG."
         },
         "5fc22d7c187fea44d52eda44": {
-            "Name": "Mk-18 .338 LM marksman rifle",
+            "Name": "Precízna puška Mk-18 .338 LM",
             "ShortName": "Mk-18 .338 LM",
-            "Description": "The Mk-18 Mod 1 Extreme Distance Capable Semi-Automatic Rifle was designed to take advantage of the ballistic capabilities of the .338 Lapua Magnum, .338 Norma Magnum, and .300 Norma Magnum cartridges. The system provides extreme distance capability in a lightweight and mobile semi-auto platform. Utilizing SWORD’s proprietary short-stroke piston system the rifle is precise, reliable, and durable. Featuring ambidextrous controls, ergonomic features, and built-in modularity, the MK18 is a great choice for the avid hunter, long-range enthusiast, and competition shooter."
+            "Description": "Poloautomatická puška Mk-18 Mod 1 Extreme Distance Capable Semi-Automatic Rifle bola navrhnutá, aby využila balistické schopnosti nábojov .338 Lapua Magnum, .338 Norma Magnum a .300 Norma Magnum. Systém poskytuje možnosti streľby na extrémnu vzdialenosť v ľahkej a mobilnej poloautomatickej platforme. Vďaka patentovanému piestovému systém SWORD s krátkym zdvihom je puška presná, spoľahlivá a odolná. Vďaka obojstranným ovládacím prvkom, ergonomickým tvarom a modularite je MK18 skvelou voľbou pre vášnivého lovca, nadšencov pre streľbu na veľkú vzdialenosť a súťažných strelcov."
         },
         "5fc23426900b1d5091531e15": {
             "Name": "10-ranný zásobník .338 LM Sword Int. pre Mk-18",
@@ -19464,10 +19498,10 @@
             "Description": "Teleskopická pažba Presicion vyrábaná spoločnosťou B5."
         },
         "5fc275cf85fd526b824a571a": {
-            "Name": ".338 Lapua Magnum FMJ",
+            "Name": "338 Lapua Magnum FMJ",
             "ShortName": "FMJ",
-            "Description": "Regular round with an FMJ bullet.",
-            "casingName": ".338 Lapua Magnum FMJ"
+            "Description": "Štandardná munícia s FMJ strelou.",
+            "casingName": "338 Lapua Magnum FMJ"
         },
         "5fc278107283c4046c581489": {
             "Name": "Púzdro záveru Sword Int. Mk-18 mod 1",
@@ -19495,22 +19529,22 @@
         "5fc3e272f8b6a877a729eac5": {
             "Name": "Samopal HK UMP .45 ACP",
             "ShortName": "UMP 45",
-            "Description": "Heckler & Koch UMP - submachine gun, designed by German company Heckler & Koch in the 1990s as a lighter and cheaper analog of the MP5. This version is designed to fire a .45 ACP cartridge and has a reduced to 600 rpm rate of fire."
+            "Description": "Heckler & Koch UMP - samopal, ktorý bol navrhnutý nemeckou společnostou Heckler & Koch v 90. rokoch ako ľahšia a lacnejšia varianta MP5. Táto verzia je navrhnutá pre muníciu .45 ACP a kadenciu streľby má zníženú na 600 rán/min."
         },
         "5fc3e466187fea44d52eda90": {
-            "Name": "Standard UMP 25-round .45 ACP magazine",
+            "Name": "25-ranový štandardný zásobník pre UMP .45 ACP",
             "ShortName": "UMP 45",
-            "Description": "25-round .45 ACP magazine for UMP."
+            "Description": "25-ranový .45 ACP zásobník pre UMP."
         },
         "5fc3e4a27283c4046c5814ab": {
-            "Name": "8\" barrel for UMP .45 ACP",
+            "Name": "8\" hlaveň pre UMP .45 ACP",
             "ShortName": "8\" UMP .45 ACP",
-            "Description": "A barrel for UMP chambered in .45 ACP ammo, 200mm long."
+            "Description": "200mm dlhá hlaveň pre UMP komorovaná v ráži .45ACP."
         },
         "5fc3e4ee7283c4046c5814af": {
-            "Name": "Polymer stock for UMP",
-            "ShortName": "UMP Stock",
-            "Description": "Polymer stock for UMP manufactured by Heckler & Koch."
+            "Name": "Polymérová pažba pre UMP",
+            "ShortName": "Pažba UMP",
+            "Description": "Polymérová pažba pre UMP vyrobená spoločnosťou Heckler & Koch."
         },
         "5fc3f2d5900b1d5091531e57": {
             "Name": "Samopal KRISS Vector TDI Gen.2 9x19",
@@ -19518,34 +19552,34 @@
             "Description": "Samopal KRISS Vector je ideálnou voľbou pre bezpečnostné jednotky a armádu, ktoré hľadajú spoľahlivý a kompaktný zbraňový systém pre streľbu z bezprostrednej blízkosti. Vďaka hlavni uloženej nízko v osi k spúšti a systému Super V, ktorý redukuje spätný ráz, je zbraň najstabilnejšia pri streľbe dávkou, alebo pri rýchlej streľbe jednotlivými ranami."
         },
         "5fc4b97bab884124df0cd5e3": {
-            "Name": "Piston Mount adapter for Silencerco Omega 45k",
+            "Name": "Adaptér Piston Mount pre SilencerCo Omega 45k",
             "ShortName": "Pist.Omega",
-            "Description": "Piston Mount adapter for installation of Silencerco Omega 45k silencer directly onto the barrel threading."
+            "Description": "Adaptér Piston Mount pre inštaláciu tlmiča SilencerCo Omega 45k priamo na závit hlavne."
         },
         "5fc4b992187fea44d52edaa9": {
-            "Name": "Direct Thread Mount adapter for Silencerco Omega 45k",
+            "Name": "Priamy závitový adaptér pre SilencerCo Omega 45k",
             "ShortName": "DT Omega",
-            "Description": "Direct Thread Mount adapter for installation of Silencerco Omega 45k silencer directly onto the barrel threading."
+            "Description": "Priamy závitový adaptér SilencerCo Omega 45k, ktorý je možné nasadiť priamo na závit hlavne zbrane."
         },
         "5fc4b9b17283c4046c5814d7": {
-            "Name": "SilencerCo Omega 45k .45 ACP sound suppressor",
+            "Name": "Tlmič SilencerCo Omega 45k pre .45 ACP",
             "ShortName": "Omega 45k",
-            "Description": "Light sound suppressor made by SilencerCo. "
+            "Description": "Ľahký tlmič vyrobený spoločnosťou SilencerCo. "
         },
         "5fc53954f8b6a877a729eaeb": {
-            "Name": "HK UMP Bottom rail",
-            "ShortName": "rail bott.",
-            "Description": "Bottom rail for UMP allows you to install a various tactical foregrips."
+            "Name": "Spodná lišta pre HK UMP",
+            "ShortName": "UMP spodná",
+            "Description": "Spodná lišta pre UMP, ktorá vám umožňuje inštaláciu taktických rukovätí."
         },
         "5fc5396e900b1d5091531e72": {
-            "Name": "HK UMP Side rail",
-            "ShortName": "UMP side",
-            "Description": "Side rail for UMP allows you to install additional equipment."
+            "Name": "Bočná lišta pre HK UMP",
+            "ShortName": "UMP bočná",
+            "Description": "Bočná lišta pre UMP umožňuje inštaláciu dodatočného vybavenia."
         },
         "5fc64ea372b0dd78d51159dc": {
-            "Name": "Cultist's knife",
-            "ShortName": "Knife",
-            "Description": "A knife of a strange shape and with strange signs, taken from the сultists. Apparently, it is used as a ritual knife, but, it is not limited to this use for sure. It has technological changes in the design intended for the use of toxic substances - it is better not to touch the blade."
+            "Name": "Kultistický nôž",
+            "ShortName": "Nôž",
+            "Description": "Nôž zvláštneho tvaru s podivnými znakmi, získaný od kultistov. Zdá sa, že sa používa ako rituálny nôž, ale určite to nie je jeho jediné využitie. Technologické zmeny dizajnu umožňujú použitie toxických látok na čepeli - je lepšie sa čepele nedotýkať."
         },
         "5fca138c2a7b221b2852a5c6": {
             "Name": "Protijed xTG-12",
@@ -19558,9 +19592,9 @@
             "Description": "Navrhnutý pre členov špeciálnych jednotiek. Umožňuje znížiť na krátky moment teplotu ľudského tela a výrazne spomaliť metabolizmus. Použitie SJ9 vedie k výraznému zníženiu tepla uvoľňovaného do prostredia zatiaľ čo je udržiavaná bezpečná úroveň vnútorných organov. Používa sa počas nočných operácií, umožňujúc ťažšie spozorovanie termálnymi zameriavacími prístrojmi."
         },
         "5fce0cf655375d18a253eff0": {
-            "Name": "Magpul RVG grip FDE",
+            "Name": "Rukoväť Magpul RVG FDE",
             "ShortName": "RVG FDE",
-            "Description": "Magpul RVG (Rail Vertical Grip) tactical grip. Common, unsophisticated and inexpensive, ergonomically shaped vertical foregrip."
+            "Description": "Taktická rukoväť Magpul RVG (Rail Vertical Grip). Bežná, prostá, lacná a ergonomický tvarovaná rukoväť."
         },
         "5fce0f9b55375d18a253eff2": {
             "Name": "KRISS Vector Side rail",
@@ -19674,6 +19708,326 @@
             "Name": "Kukla Smoke",
             "ShortName": "Smoke",
             "Description": "Značková kukla známeho Hip-Hopového umelca z Tarkova - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK personal tactical first aid kit",
+            "ShortName": "AFAK",
+            "Description": "AFAK (Adaptive First Aid Kit). A more advanced version of the personal first aid kit."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Hemostatic tourniquet CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (combat application tourniquet) prevents blood loss by blocking the blood outlet by applying pressure to the affected limb. It uses a self-adjusting tensioning system and a tug-resistant buckle."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Emergency water ration",
+            "ShortName": "EWR",
+            "Description": "Drinking water for use in case of emergency and other circumstances where an emergency supply of liquid is needed, ready to be stored for several years."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Device for carrying out rescue operations\" Taiga-1. A truly versatile survival tool. It is a weapon and a shovel and an axe and everything you can imagine. It was developed and produced in the USSR for various agencies."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "A special cartridge designed for the United States Marine Corps. The bullet has an open nose with a lead tipped front and a copper base. Lead is for breaking down obstacles, and copper is for further penetration of the barrier.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "A very rare SSA armor-piercing cartridge designed to replace the M995. The bullet contains a tungsten carbide core for maximum penetration of hard targets.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "MAI armor-piercing 7.62x39 cartridges with a exposed carbide core.",
+            "casingName": "7.62x39 mm AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19 magazine, 16-round capacity",
+            "ShortName": "9x19 PL15",
+            "Description": "Standard-issue 16-round magazine for PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15 pistol slide",
+            "ShortName": "PL15 Slide",
+            "Description": "Regular slide for PL-15 pistol."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15 Standard Frontsight",
+            "ShortName": "PL15 FS",
+            "Description": "Regular front sight for PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15 extended front sight",
+            "ShortName": "PL15 FS",
+            "Description": "Extended PL-15 front sight designed for use with a sound suppressor."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15 extended rear sight",
+            "ShortName": "Sup. RS",
+            "Description": "Extended PL-15 rear sight designed for use with a sound suppressor."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15 Standard Rear-sight",
+            "ShortName": "PL15 RS",
+            "Description": "Regular rear-sight for PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Regular barrel for PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Regular barrel for PL-15 pistol."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Threaded barrel for PL-15",
+            "ShortName": "PL15 thr.",
+            "Description": "Threaded barrel for PL15 9x19 pistol."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19mm sound suppressor",
+            "ShortName": "PL15 std.",
+            "Description": "Regular PL-15 sound suppressor. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19 pistol",
+            "ShortName": "PL-15",
+            "Description": "A Russian self-loading pistol chambered for 9x19mm, developed by a team of designers from the Kalashnikov concern under the leadership of Dmitry Lebedev for the needs of Russian law enforcement agencies."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms buffer tube",
+            "ShortName": "STM Tube",
+            "Description": "STM Arms Receiver Extension Buffer Tube, 4-position, Com-Spec diameter will fit any AR-15-based carbine."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Telescopic stock product by Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver for STM-9 9x19 carbine",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver for STM-9 carbine. Equipped with a mount for attaching additional devices."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 pistol grip for AR-15 based systems",
+            "ShortName": "DLG123",
+            "Description": "DLG-123 pistol grip can be installed at any weapon compatible with AR-15 grips."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5\" barrel for STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 266mm long."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12\" barrel for STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 304mm long."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14\" barrel for STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 355mm long."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16\" barrel for STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 406mm long."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi battle charging handle for AR-15",
+            "ShortName": "MASP Charge",
+            "Description": "MASP Ambi battle charging handle for AR-15 and compatible systems."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19 muzzle brake",
+            "ShortName": "STM9 MB",
+            "Description": "Regular STM-9 9x19 muzzle brake."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Grey",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 carabine",
+            "ShortName": "STM-9",
+            "Description": "A PCC carbine with excellent performance already \"out of the box\". Designed with the participation of world bronze medalist in Semi-Auto Rifle Vadim Mikhailov. Accuracy, speed, comfort of recoil."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 headset",
+            "ShortName": "M32",
+            "Description": "The EARMOR M32 is an activated electronic communication hearing protector, ideal for tactical use."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "NPP KlASS Condor glasses",
+            "ShortName": "Condor",
+            "Description": "Heavy-duty ballistic shooting glasses with impact-resistant lenses."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Umka М33-SET1 hunter's vest",
+            "ShortName": "Umka",
+            "Description": "The Umka M33-SET1 vest is designed for hunters, travelers, field professionals and security officers."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Taktická vesta CSA",
+            "ShortName": "CSA",
+            "Description": "Najjednoduchší hrudní postroj, ušitý narýchlo z pochybných materiálov, určený pre airsoft. Vojenské použitie tohoto modelu je možné, ale neodporúča sa."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Hazard4 Takedown sling backpack",
+            "ShortName": "Takedown",
+            "Description": "Single-strap sling backpack designed for carrying long-barreled weapons."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Eberlestock G2 Gunslinger II backpack (dry earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Medium-sized modular military backpack with additional compartment for full-size weapons."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "STM 9 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "STM 9 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "STM 15 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "STM 15 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "STM 12 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "STM 12 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Black Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Coyote Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Flora Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Desert Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "UCP Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Plynová maska GP-7",
+            "ShortName": "GP-7",
+            "Description": "Civilná plynová maska GP-7 je filtračný prostriedok individuálnej ochrany dýchacích orgánov, očí a pokožky tváre."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Azimut SS Jhuk Chest Harness (black)",
+            "ShortName": "Azimut",
+            "Description": "Simple nylon bearing system with non-removable pouches. Allows you to carry a fairly impressive amount of ammunition at the expense of convenience.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "LBT 6094A Slick Plate Carrier (tan)",
+            "ShortName": "Slick",
+            "Description": "Simple plate carrier by LBT company. The most minimalistic design intended for use with chest rigs."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "LBT 6094A Slick Plate Carrier (olive)",
+            "ShortName": "Slick",
+            "Description": "Simple plate carrier by LBT company. The most minimalistic design intended for use with chest rigs."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Hazard4 Takedown sling backpack (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Single-strap sling backpack designed for carrying long-barreled weapons."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Termite",
+            "ShortName": "Termite",
+            "Description": "Termite-based incendiary mixtures are a mixture of aluminum powder and iron oxide. These compounds have a very high combustion temperature and are capable of burning without the presence of oxygen. Termite has an extremely strong burning effect and is almost impossible to extinguish."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Ratchet wrench",
+            "ShortName": "Ratch.",
+            "Description": "Ratchets are an indispensable tool that every locksmith and mechanic at a service station should have for car maintenance. Allows you to work in a confined space. Has the ability to quickly change working heads. Golden instrument!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Tehla TP-200 TNT",
+            "ShortName": "TP-200",
+            "Description": "TP-200 is intended for use as charges in the production of seismic surveys, intermediate detonators when initiating borehole explosive charges, crushing oversized items and performing special blasting operations."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Hrudný postroj Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Simple nylon bearing system with non-removable pouches. Allows you to carry a fairly impressive amount of ammunition at the expense of convenience.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "CADPAT Vojenská čiapka ",
+            "ShortName": "Čiapka",
+            "Description": "Vojenská čiapka"
         }
     },
     "locations": {

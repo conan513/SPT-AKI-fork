@@ -1015,7 +1015,7 @@
         "SearchDescription": "Hatékony és gyors test keresés készség",
         "FirstAidDescription": "Az elsősegély képesség fejlődésével az elsősegély csomagok használata gyorsabb és hatékonyabb lesz.",
         "MeleeDescription": "Közelharci fegyverek kezelési képességek",
-        "EnduranceBreathElite": "Fizikai megterhelés nem okoz légzés-megszűnést",
+        "EnduranceBreathElite": "A légzés nem függ az energiától",
         "TroubleShootingDescription": "A problémamegoldás képesség egyszerűsíti fegyver meghibásodások elhárítását.  ",
         "NightOpsDescription": "Az éjszakai hadművelet megkönnyíti a mozgást és gyorsabban teszel szert tapasztalatra mint általában. Természetesen ez visszatükröződik az éjjellátó árában.",
         "MiscDescription": "Egyéb fegyverek kezelési képességek",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Ipari generátor, biztosítja a gyártósorok autonóm működésé. Üzemanyag kannák tárolásához további tárolókkal.",
         "hideout_area_2_stage_2_description": "Alap fürdőszoba, fa vécével, \"pottyantós\" fajta. A mosdó állvány a vízrendszerhez van kötve, ezzel növeli a menedék tisztaságát és higiéniáját.",
         "hideout_area_3_name": "Tároló",
-        "hideout_area_3_stage_2_description": "Közepes tároló(10x36)",
+        "hideout_area_3_stage_2_description": "Közepes tároló(10x38)",
         "hideout_area_0_stage_3_description": "Kiegészítő ventilátorok a szellőző nyílásokhoz a légáram növeléséhez. Egy komplett légkeringető rendszer szükséges a komplex gyártáshoz és a kémiai kutatásokhoz.",
         "hideout_area_1_stage_2_description": "Feljavított előszoba megerősített ajtóval, fogassal, és további háztartási cikkekkel. Az ilyen ajtókat nem tudod csak úgy berúgni egy rúgással.",
         "hideout_area_4_name": "Generátor",
-        "hideout_area_3_stage_3_description": "Nagy tároló(10x46)",
-        "hideout_area_3_stage_4_description": "Maximális méretű tároló (10x66)",
+        "hideout_area_3_stage_3_description": "Nagy tároló(10x48)",
+        "hideout_area_3_stage_4_description": "Maximális méretű tároló (10x68)",
         "hideout_area_5_name": "Fűtés",
         "hideout_area_2_stage_1_description": "Primitív wc. Szó sincs kényelemről, csak egy vödör egy alom hogy meglegyen az alapvető higiénia a menedékben.",
         "hideout_area_4_stage_1_description": "Egyszerű üzemanyagos generátor, ami elektromossággal látja el az alapvető menedékben lévő felszelést. A menedéked szíve. Üzemanyag szükséges az elektromos hálózat folyamatos ellátásához.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Víz gyűjtő",
         "hideout_area_5_stage_1_description": "Egyszerű hordó tűzifával a hőmérséklet fenntartásához. A legegyszerűbb mód a fűtésre. A szén-monoxid mérgezés miatt veszélyes.",
         "hideout_area_1_stage_3_description": "Fejlett biztonsági rendszer menedékekhez, ami magában foglal, egy páncélozott bunker ajtót, kamerás megfigyelő rendszert, belső kommunikációs rendszert, tűzoltó készülékeket, és különleges rögzítőket amik növelik a szerkezeti szilárdságát a falaknak és a plafonnak.",
-        "hideout_area_3_stage_1_description": "Kis tároló(10x26)",
+        "hideout_area_3_stage_1_description": "Kis tároló(10x28)",
         "hideout_area_5_stage_3_description": "A menedék felszerelése további elektromos fűtőtestekkel. A kályha ezekkel kiegészítve, már nem is olyan félelmetes a hideg, ugye?",
         "hideout_area_2_stage_3_description": "Fejlett fürdőszoba, szekrénnyel, zuhannyal és szemetessel. Minden a vízrendszerre kötve, ezzel biztosítva a legmegfizettethetőbb személy higiéniát.",
         "hideout_area_9_stage_2_description": "Egy hely a kikapcsolódásra, sima ággyal felszelve, éjjeliszekrénnyel és egy öreg tv-vel, Ad egy kis komfortot és nosztalgikus emlékekkel áraszt el a korábbi életedről.",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Esély az erős vérzés okozásra",
         "lightbleedingdelta": "Esély az gyenge vérzés okozásra",
         "choose face and voice": "VÁLASSZ ARCOT ÉS HANGOT",
+        "TroubleFixing": "Növeli a problémamegoldás sebességét (50%-ig). 1% minden szintnél.",
+        "TroubleFixingAmmoElite": "Csökkenti a meghibásodások esélyét a tártól 50%-al, miután javítva lett a hiba amit ugyan az a probléma okozott",
+        "ZeroWeaponDeteriorationOnRepair": "Nincs elhasználódás javítás alatt",
+        "NetworkError/TooManyFriendRequestsHeader": "Túl sok kérés",
+        "NetworkError/TooManyFriendRequestsMessage": "Próbáld újra {0} másodperc múlva",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Nincs még beszélgetésed.</b></size>\nHívj meg barátokat hogy elkezd egyet, vagy csatlakozz a globális chat-hez.",
+        "TroubleFixingDurElite": "Csökkenti a meghibásodások esélyét a fegyverek tartóssága alapján 50%-al, miután javítva lett a hiba amit ugyan az a probléma okozott",
+        "WeaponDurabilityLossOnShotReduce": "Csökkenti a fegyver használódását (max 50%ig) tüzelés közben",
         "un-sec": "Northern UN roadblock",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Vérveszteség",
         "REMOVES BLOODLOSS": "MEGSZÜNTETI A VÉRZÉST",
         "\"Magazine checked: \"": "Tár ellenőrizve:",
-        "You have already bought the maximum amount of this item in the current restock": "Már megvásároltad a maximális mennyiséget ebből a tárgyból ami jelenleg készleten van",
         "DamageType_Bloodloss": "Vérveszteség",
         "you can't transfer item while moving": "Nem helyezhetsz át tárgyakat mozgás közben",
         "place": "ELHELYEZ",
         "This location is not available for scav": "Ez a terület nem elérhető SCAV módban",
         "Interchange": "Interchange",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "Nem sikerült az adatbetöltés, ellenőrizd a hálózat állapotát. Próbálj újra belépni a kezelés képernyőre, vagy továbbhaladjunk a főmenübe?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "A(z) {0} kiegészítő nem felszerelhető a behajtott válltámaszos fegyverre",
+        "No action available": "Nincs elérhető művelet",
+        "ProfileEvent/AssortmentLockRule": "A kereskedő <b>{0}</b> ajánlata zárolva.",
+        "ProfileEvent/ExamineItems": "<b>{0}</b> tárgy megvizsgálása.",
+        "ProfileEvent/ForgetItems": "<b>{0}</b> tárgy vizsgálásának a megszakítása.",
+        "ProfileEvent/ProfileLockTimer": "Scav visszaszámlálás beállítása <b>{0}</b> másodpercre.",
+        "ProfileEvent/ProfileUnlock": "Scav visszaszámlálási időzítő.",
+        "ProfileEvent/UnlockTrader": "Kereskedő <b>{0}</b> feloldása.",
+        "ProfileEvent/LockTrader": "Kereskedő <b>{0}</b> lezárása.",
+        "ProfileEvent/MasteringSkill": "Módosítja a <b>{0}</b> elsajátításának a haladását <b>{1}</b> -re.",
+        "Critical error": "Kritikus hiba",
+        "TroubleFixingMagElite": "Csökkenti a meghibásodások esélyét a tölténytől 50%-al, miután javítva lett a hiba amit ugyan az a probléma okozott",
+        "WeaponDeteriorationChanceReduce": "Csökkenti az esélyét elhasználódásnak javítás alatt (max 60%-ig)",
+        "Ui/Settings/NVidiaReflexType": "NVIDIA Reflex alacsony késleltetés",
+        "UI/Settings/NVidiaReflexMode/Off": "Ki",
+        "UI/Settings/NVidiaReflexMode/On": "Be",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Be és rásegítés",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "Az NVIDIA Reflex bekapcsolva. Kapcsold ki hogy megváltoztasd a paramétert.",
+        "NVidia Reflex settings will be applied after restart.": "NVIDIA Reflex beállítások újraindítás után alkalmazva lesznek.",
+        "FoundInRaid": "Raidben talált",
+        "loudness": "HANGOSSÁG",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "Mélységes köszönet. Leszállítom az árut.",
         "5b486c9386f7744a08514b1b": "Elég rég már, de egyszer találkoztam a Kiba Arms tulajdonosával, még banya-ba is elmentünk, attól függetlenül hogy én annyira nem voltam oda érte. Ő ezzel szemben még a lábát is eltörte ahogy a mólóról ugrott egy fejest. Jolly mindig arról álmodott hogy Airsoft pályát épít. Úgy látszik a kívánsága teljesült Tarkovban, a világ legnagyobb és a legjobb harctere lett, azzal a kis különbséggel hogyha itt meghalsz minden elveszítesz, akár egy kósza golyótól is. Rakj össze egy AK-102-t, Rotor 43 hangtompítóval, Magpul AFG OD taktikai markolattal és Zenit 2U lámpával. Ergonómiája legyen 50 fölött, a visszarúgása pedig kevesebb mint 500, a célzási távolság pedig 500 vagy több. Lehetőleg ne foglaljon többet mint 8 cella.",
         "5b486d0e86f7744f4b12d78f": "Köszönöm. Egy kicsit elfoglalt vagyok jelenleg, később találkozunk.",
-        "5b486d8686f77450c05449c9": "Mennyit ér egy emberi élet, hogy gondolod? Nem sokat, szerintem. De ami még meglepőbb számomra, az a kortárs művészeti piac. A híres művészek műveinek az ára évről évre nő. Egyértelműen tehetségesek, de minél többet nézed, rájössz hogy bármi lehet egy mű. Lehet az egy Grotko festmény, egy kitelepített piszoár vagy egy rakás szemét. Azonban a véleményem szerint, a legcsodásabb művek a fegyverek, kezdve a közelharci fegyverekkel, - ami már univerzálisan el is lett ismerve és ezért rengeteg múzeumban megtalálható - egészen egy öreg AK vagy M4-ig ami már úgy gyönyörű ahogy van. De a fegyverek csak akkor lesznek valódi műremekek ha egyedivé válnak, egyedülállóvá, egy olyan kezében aki tudja használni, aki a saját igényei szerint alakítja át, olyan művet létrehozva amit megéri a legjobb múzeumokban kiállítani. Hozz nekem egy ilyen mesterművet, egy M4A1-et NT4 FDE hangtompítóval, puska hosszúságú MK 10 előaggyal, REAP-IR hőlátó távcsővel, és 60 töltényes tárral. Az ergonómiája nem lehet kevesebb mint 48 , a visszarúgása legyen kevesebb mint 250, a súlya pedig 5 kg vagy kevesebb.",
+        "5b486d8686f77450c05449c9": "Mennyit ér egy emberi élet, hogy gondolod? Nem sokat, szerintem. De ami még meglepőbb számomra, az a kortárs művészeti piac. A híres művészek műveinek az ára évről évre nő. Egyértelműen tehetségesek, de minél többet nézed, rájössz hogy bármi lehet egy mű. Lehet az egy Grotko festmény, egy kitelepített piszoár vagy egy rakás szemét. Azonban a véleményem szerint, a legcsodásabb művek a fegyverek, kezdve a közelharci fegyverekkel, - ami már univerzálisan el is lett ismerve és ezért rengeteg múzeumban megtalálható - egészen egy öreg AK vagy M4-ig ami már úgy gyönyörű ahogy van. De a fegyverek csak akkor lesznek valódi műremekek ha egyedivé válnak, egyedülállóvá, egy olyan kezében aki tudja használni, aki a saját igényei szerint alakítja át, olyan művet létrehozva amit megéri a legjobb múzeumokban kiállítani. Hozz nekem egy ilyen mesterművet, egy M4A1-et NT4 FDE hangtompítóval, puska hosszúságú MK 10 előaggyal, REAP-IR hőlátó távcsővel, és 60 töltényes tárral. Az ergonómiája nem lehet kevesebb mint 52 , a visszarúgása legyen kevesebb mint 250, a súlya pedig 5 kg vagy kevesebb.",
         "5b486ddf86f7744ba00f2234": "Mechanic kérte, még ma elküldöm neki.",
         "5b48704286f7744a14343905": "Ez a cucc biztos hogy nem nekem való, a kép homályos, a jel szar, de mégis kiszúrtam vele pár \" dagadt patkányt\". Köszönöm, nagy segítség!",
         "5b486e8e86f77448824937ad": "Uhh. Lenyűgöző, köszönöm",
@@ -3193,7 +3222,7 @@
                 "5977784486f774285402cf52": "Juss ki élve a Factory területről.",
                 "5978b48b86f7746ef62ef859": ""
             },
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "successMessageText": "5ab0f32686f7745dd409f566",
@@ -3209,7 +3238,7 @@
                 "5968948986f7740d121082d4": "Add át a 0031-es biztonságos mappát Prapornak",
                 "5a3fbdb086f7745a554f0c31": "Juss be a Factory zárt irodájába"
             },
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "successMessageText": "5ab0f32686f7745dd409f567",
@@ -3470,7 +3499,7 @@
                 "5979ee4586f7743ec214c7a5": "Add át őket Skiernek",
                 "59819f0986f7744e6d0b7520": ""
             },
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "successMessageText": "5ab0f32686f7745dd409f57d",
@@ -3483,7 +3512,7 @@
                 "5979ef4586f77431307dc513": "Találj egy aranyozott Zibbo gyújtót",
                 "5979ef7986f77431307dc514": "Hagyd a gyújtót a tréler parkban található munkásszállóban (Customs)"
             },
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "failMessageText": "5ab0f32686f7745dd409f57e",
@@ -3656,7 +3685,7 @@
             },
             "name": "A bizalom visszanyerése",
             "note": "",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "successMessageText": "5ab0f32686f7745dd409f58f",
@@ -3892,7 +3921,7 @@
             },
             "name": "Humanitárius Ellátmányok",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "successMessageText": "5ab0f32686f7745dd409f5a3",
@@ -5417,7 +5446,7 @@
             },
             "name": "Rajtaütés",
             "note": "",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "successMessageText": "5c12457886f77468cf6f7342",
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6374,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "A vadász útja. Szadista",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Kollégák 2.rész",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Lőszer",
             "ShortName": "Lőszer",
-            "Description": "Lőszer",
-            "casingName": null
+            "Description": "Lőszer"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Elérhető kiegészítő",
@@ -19674,6 +19708,326 @@
             "Name": "Smoke balaclava",
             "ShortName": "Smoke",
             "Description": "A híres tarkovi hip-hop előadó Smoke jelképéül szolgáló balaclava."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK personal tactical first aid kit",
+            "ShortName": "AFAK",
+            "Description": "AFAK (Adaptive First Aid Kit). A more advanced version of the personal first aid kit."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Hemostatic tourniquet CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (combat application tourniquet) prevents blood loss by blocking the blood outlet by applying pressure to the affected limb. It uses a self-adjusting tensioning system and a tug-resistant buckle."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Emergency water ration",
+            "ShortName": "EWR",
+            "Description": "Drinking water for use in case of emergency and other circumstances where an emergency supply of liquid is needed, ready to be stored for several years."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Device for carrying out rescue operations\" Taiga-1. A truly versatile survival tool. It is a weapon and a shovel and an axe and everything you can imagine. It was developed and produced in the USSR for various agencies."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "A special cartridge designed for the United States Marine Corps. The bullet has an open nose with a lead tipped front and a copper base. Lead is for breaking down obstacles, and copper is for further penetration of the barrier.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "A very rare SSA armor-piercing cartridge designed to replace the M995. The bullet contains a tungsten carbide core for maximum penetration of hard targets.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "MAI armor-piercing 7.62x39 cartridges with a exposed carbide core.",
+            "casingName": "7.62x39 mm AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19 magazine, 16-round capacity",
+            "ShortName": "9x19 PL15",
+            "Description": "Standard-issue 16-round magazine for PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15 pistol slide",
+            "ShortName": "PL15 Slide",
+            "Description": "Regular slide for PL-15 pistol."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15 Standard Frontsight",
+            "ShortName": "PL15 FS",
+            "Description": "Regular front sight for PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15 extended front sight",
+            "ShortName": "PL15 FS",
+            "Description": "Extended PL-15 front sight designed for use with a sound suppressor."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15 extended rear sight",
+            "ShortName": "Sup. RS",
+            "Description": "Extended PL-15 rear sight designed for use with a sound suppressor."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15 Standard Rear-sight",
+            "ShortName": "PL15 RS",
+            "Description": "Regular rear-sight for PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Regular barrel for PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Regular barrel for PL-15 pistol."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Threaded barrel for PL-15",
+            "ShortName": "PL15 thr.",
+            "Description": "Threaded barrel for PL15 9x19 pistol."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19mm sound suppressor",
+            "ShortName": "PL15 std.",
+            "Description": "Regular PL-15 sound suppressor. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19 pistol",
+            "ShortName": "PL-15",
+            "Description": "A Russian self-loading pistol chambered for 9x19mm, developed by a team of designers from the Kalashnikov concern under the leadership of Dmitry Lebedev for the needs of Russian law enforcement agencies."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms buffer tube",
+            "ShortName": "STM Tube",
+            "Description": "STM Arms Receiver Extension Buffer Tube, 4-position, Com-Spec diameter will fit any AR-15-based carbine."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Telescopic stock product by Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver for STM-9 9x19 carbine",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver for STM-9 carbine. Equipped with a mound for attaching additional devices."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 pistol grip for AR-15 based systems",
+            "ShortName": "DLG123",
+            "Description": "DLG-123 pistol grip can be installed at any weapon compatible with AR-15 grips."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5\" barrel for STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 266mm long."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12\" barrel for STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 304mm long."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14\" barrel for STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 355mm long."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16\" barrel for STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 406mm long."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi battle charging handle for AR-15",
+            "ShortName": "MASP Charge",
+            "Description": "MASP Ambi battle charging handle for AR-15 and compatible systems."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19 muzzle brake",
+            "ShortName": "STM9 MB",
+            "Description": "Regular STM-9 9x19 muzzle brake."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Grey",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 carabine",
+            "ShortName": "STM-9",
+            "Description": "A PCC carbine with excellent performance already \"out of the box\". Designed with the participation of world bronze medalist in Semi-Auto Rifle Vadim Mikhailov. Accuracy, speed, comfort of recoil."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 fejhallgató",
+            "ShortName": "M32",
+            "Description": "Az EARMOR M32 egy aktív elektronikus kommunikációs és hallásvédelmi eszköz, ideális taktikai használatra."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "NPP KlASS Condor szemüveg",
+            "ShortName": "Condor",
+            "Description": "Nagy teherbírású ballisztikai szemüveg, ütésálló lencsékkel."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Umka М33-SET1 vadász mellény",
+            "ShortName": "Umka",
+            "Description": "Az Umka M33-SET1 mellény vadászoknak, utazóknak, terepen levő profiknak és biztonsági szolgálatoknak lett tervezve."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "CSA mellény",
+            "ShortName": "CSA",
+            "Description": "A legegyszerűbb mellény, sietősen összevarrva kétes anyagokból. Airsoftra lett tervezve. Katonai használata is lehetséges de nem ajánlott."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Hazard4 Takedown szíjas hátizsák",
+            "ShortName": "Takedown",
+            "Description": "Egy pántos szíjas hátizsák, hosszú csövű fegyverek szállítására lett tervezve."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Eberlestock G2 Gunslinger II hátizsák (dry earth színű)",
+            "ShortName": "Gunslinger",
+            "Description": "Közepes méretű moduláris katonai hátizsák további tárolókkal a teljes méretű fegyverekhez."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "STM 9 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "STM 9 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "STM 15 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "STM 15 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "STM 12 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "STM 12 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Fekete katonai sapka",
+            "ShortName": "Sapka",
+            "Description": "Katonai sapka"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Coyote színű katonai sapka",
+            "ShortName": "Sapka",
+            "Description": "Katonai sapka"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Növénymintás katonai sapka",
+            "ShortName": "Sapka",
+            "Description": "Katonai sapka"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Sivatagi katonai sapka",
+            "ShortName": "Sapka",
+            "Description": "Katonai sapka"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "UCP katonai sapka",
+            "ShortName": "Sapka",
+            "Description": "Katonai sapka"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "GP-7 gázmaszk",
+            "ShortName": "GP-7",
+            "Description": "GP-7 egy civil gázmaszk ami a légzés védelmét szolgálja, miközben védi a szemeket és a arcbőrt is."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Azimut SS Jhuk málhamellény (fekete)",
+            "ShortName": "Azimut",
+            "Description": "Egyszerű nejlon teherviselő rendszer nem eltávolítható zsebekkel. Lehetővé teszi hogy meglehetősen nagy mennyiségű lőszert vigyen magával a használója a kényelmet feláldozva.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "LBT 6094A Slick Plate Carrier (tan színű)",
+            "ShortName": "Slick",
+            "Description": "LBT gyártású egyszerű plate carrier (páncélbetétes taktikai mellény). A legminimalistább dizájnt alkalmazva hogy málhamellényekkel egyszerre lehessen használni."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "LBT 6094A Slick Plate Carrier (oliva színű)",
+            "ShortName": "Slick",
+            "Description": "LBT gyártású egyszerű plate carrier (páncélbetétes taktikai mellény). A legminimalistább dizájnt alkalmazva hogy málhamellényekkel egyszerre lehessen használni."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Hazard4 Takedown szíjas hátizsák (multicam mintás)",
+            "ShortName": "Takedown",
+            "Description": "Egy pántos szíjas hátizsák, hosszú csövű fegyverek szállítására lett tervezve."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Can of termite",
+            "ShortName": "Termite",
+            "Description": "A termit egy gyúlékony keveréke az alumínium pornak és a vasoxidnak. Ennek a keveréknek nagyon magas az égési hőmérséklete és képes oxigén nélkül is égni. A termit nagyon agresszíven ég és szinte lehetetlen eloltani."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Racsnis kulcs",
+            "ShortName": "Racsni",
+            "Description": "A racsnis kulcs elengedhetetlen eszköze a lakatosoknak és a gépészeknek. Lehetővé teszi hogy szűk helyen dolgoz. Cserélhető fejű, igazi csoda."
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "TP-200 TNT",
+            "ShortName": "TP-200",
+            "Description": "A TP-200-at használják szeizmikus méréseknél, közbenső detonátorként töltetek berobbantáskor, túlméretes tárgyak összetöréséhez, és különleges robbantási műveletek elvégzéséhez."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Azimut SS Jhuk málhamellény (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Egyszerű nejlon teherviselő rendszer nem eltávolítható zsebekkel. Lehetővé teszi hogy meglehetősen nagy mennyiségű lőszert vigyen magával a használója a kényelmet feláldozva.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "CADPAT katonai sapka ",
+            "ShortName": "Sapka",
+            "Description": "Katonai sapka"
         }
     },
     "locations": {

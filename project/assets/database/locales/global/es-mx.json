@@ -561,7 +561,7 @@
         "Standing with {0} increased by {1}": "Reputación con {0} incrementada a {1}",
         "Progress": "Progreso",
         "MOD_PISTOL_GRIP": "PISTOLETE",
-        "MOD_MAG_SHAFT": "MAG WELL",
+        "MOD_MAG_SHAFT": "BROCAL",
         "MOD_BIPOD": "BÍPODE",
         "MOD_MAGAZINE": "CARGADOR",
         "MOD_FOREGRIP": "EMPUÑADURA",
@@ -586,7 +586,7 @@
         "Raids Short": "I: <color=#C3C5BBFF>{0}</color>",
         "PATRON_IN_WEAPON": "RECÁMARA",
         "Merchant": "Comerciante",
-        "Dogtag": "CHAPA",
+        "Dogtag": "PLACA",
         "Kills Short": "B: <color=#C3C5BBFF>{0}</color>",
         "(S/R) Survival rate": "(T/S) Tasa de supervivencia",
         "Special": "Especiales",
@@ -963,14 +963,14 @@
         "WeaponModding": "Modificación de Arma",
         "Sniping": "Tirador Expero",
         "FirstAid": "Primeros Auxilios",
-        "AttachedLauncher": "Lanzagranadas Bajo el Cañón",
+        "AttachedLauncher": "Aditamento Lanzagranadas",
         "BearAksystems": "Sistemas AK BEAR",
         "HeavyVests": "Chalecos Antibalas Pesados",
         "Cleanoperations": "Operaciones Limpias",
         "ProneMovement": "Movimiento Pecho Tierra",
         "CovertMovement": "Movimiento a Cubierto",
         "DMR": "Fusil TD",
-        "Troubleshooting": "Solución de Problemas",
+        "Troubleshooting": "Resolución de Problemas",
         "LightVests": "Chalecos Antibalas Ligeros",
         "EnduranceBuffEnduranceInc": "Incrementa el Aguante en un [(+{0:0%})]",
         "NightOps": "Operaciones Nocturnas",
@@ -1008,15 +1008,15 @@
         "AssaultDescription": "Habilidad manejando armas de asalto.",
         "AimMasterDescription": "Dominar la puntería reduce el tiempo de apuntado y el balanceo del cañón inmediatamente después.",
         "IntellectDescription": "Con un alto Intelecto aumentas la velocidad para examinar objetos, forzar cerraduras e incrementa la calidad en la reparación de armas.",
-        "AttachedLauncherDescription": "Habilidades manejando lanzagranadas bajo el cañón",
+        "AttachedLauncherDescription": "Habilidad utilizando el aditamento lanzagranadas.",
         "HMGDescription": "Habilidades manejando ametralladora pesada",
         "ShotgunDescription": "Habilidad manejando escopeta.",
         "SnipingDescription": "La habilidad Tirador Experto reduce el retroceso cuando apuntas, especialmente cuando estás pecho tierra, y te permite aguantar la respiración por más tiempo. ",
         "SearchDescription": "Habilidad que te permite registrar los cadáveres de forma más rápida y efectiva",
         "FirstAidDescription": "La habilidad de Primeros Auxilios hace que el uso de botiquines sea más rápido y eficiente.",
         "MeleeDescription": "Habilidades manejando armas cuerpo a cuerpo",
-        "EnduranceBreathElite": "El esfuerzo físico excesivo no causa disnea",
-        "TroubleShootingDescription": "La habilidad Solución de Problemas facilita la rectificación del mal funcionamiento de un arma.  ",
+        "EnduranceBreathElite": "La respiración es independiente de la energía.",
+        "TroubleShootingDescription": "La habilidad Resolución de Problemas facilita la rectificación del mal funcionamiento de un arma.  ",
         "NightOpsDescription": "Operar de noche facilitará el movimiento y obtendrás experiencia más rápido de lo habitual. Y, por supuesto, se reflejará en los precios de los dispositivos de visión nocturna.",
         "MiscDescription": "Habilidades manejando diversas armas",
         "RecoilControlDescription": "Un mayor control sobre el retroceso reduce la dispersión horizontal, haciéndolo más controlable.",
@@ -1194,7 +1194,7 @@
         "Good standing": "buena",
         "Horrible standing": "horrible",
         "Voice 1": "Voz 1",
-        "QuestTypePickUp": "Recojer",
+        "QuestTypePickUp": "Recogida",
         "No items selected": "No hay objetos seleccionados",
         "FIRE": "FUEGO",
         "enter item name": "introduce el nombre del objeto",
@@ -1255,7 +1255,7 @@
         "QuestTypeExperience": "Experiencia",
         "QuestTimeLimit": "Límite de tiempo:",
         "QuestStatusLocked": "Bloqueada",
-        "QuestTypeDiscover": "Descubrimiento",
+        "QuestTypeDiscover": "Búsqueda",
         "Abort": "ABORTAR",
         "SkillLevelUpMessage": "La habilidad {0} subió al nivel {1}",
         "QuestStatusFail": "Fallida",
@@ -1751,7 +1751,7 @@
         "AI amount": "Cantidad de IA",
         "BotDifficulty/AsOnline": "Como en online",
         "Random weather conditions": "Meteorología aleatoria",
-        "You cannot take off a dogtag from a friend or group member": "No puedes quitarle la Chapa a un amigo o miembro del grupo",
+        "You cannot take off a dogtag from a friend or group member": "No puedes quitarle la Placa a un amigo o miembro del grupo",
         "BotDifficulty/Easy": "Fácil",
         "EXFIL_water_wait": "Espera a que baje el nivel del agua",
         "BotAmount/Low": "Baja",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Generador industrial para garantizar el funcionamiento autónomo de las instalaciones de producción. También proporciona espacios adicionales para instalar latas de combustible.",
         "hideout_area_2_stage_2_description": "Un baño básico con un inodoro de madera y un lavamanos conectados al sistema de abastecimiento de agua. Todo esto ayuda a incrementar el nivel de limpieza e higiene del refugio.",
         "hideout_area_3_name": "Alijo",
-        "hideout_area_3_stage_2_description": "Alijo mediano (10x36)",
+        "hideout_area_3_stage_2_description": "Alijo mediano (10x38)",
         "hideout_area_0_stage_3_description": "Mejora del conducto de ventilación con ventiladores eléctricos para incrementar el flujo de aire. Se necesita de un sistema de ventilación completo para la producción avanzada e investigación de químicos.",
         "hideout_area_1_stage_2_description": "Una entrada con una puerta reforzada además de un perchero y otros objetos domésticos. Ahora si que no podrán abrir la puerta a patadas.",
         "hideout_area_4_name": "Generador",
-        "hideout_area_3_stage_3_description": "Alijo grande (10x46)",
-        "hideout_area_3_stage_4_description": "Alijo de tamaño máximo (10x66)",
+        "hideout_area_3_stage_3_description": "Alijo grande (10x48)",
+        "hideout_area_3_stage_4_description": "Alijo de máximo tamaño (10x68)",
         "hideout_area_5_name": "Calefacción",
         "hideout_area_2_stage_1_description": "Un inodoro rudimentario. No es la gran cosa. Solo un balde y un recipiente de arena para tener un aseo básico en el refugio.",
         "hideout_area_4_stage_1_description": "Un generador eléctrico sencillo que provee un suministro eléctrico básico al equipo del refugio. Es el corazón de tu refugio. Necesita combustible para mantener funcionando toda la red eléctrica del refugio.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Colector de Agua",
         "hideout_area_5_stage_1_description": "Un simple barril con leña para mantener un poco caliente el ambiente. Realmente es un sistema de calefacción muy básico. También es muy peligroso, debido a la toxicidad del monóxido de carbono.",
         "hideout_area_1_stage_3_description": "Un sistema de seguridad avanzado para el refugio, el cual incluye una puerta blindada de búnker, una cámara de vigilancia, un intercomunicador, extintores, así como refuerzos especiales para incrementar la fuerza estructural de las paredes y el techo.",
-        "hideout_area_3_stage_1_description": "Alijo pequeño (10x26)",
+        "hideout_area_3_stage_1_description": "Alijo pequeño (10x28)",
         "hideout_area_5_stage_3_description": "Equipa todo el refugio con calefactores eléctricos adicionales. Ahora, junto con la ayuda del calefactor potbelly, el frío será cosa del pasado.",
         "hideout_area_2_stage_3_description": "Un baño avanzado con inodoro portátil, una ducha y un bote de basura. Todo está conectado al sistema de abastecimiento de agua y proporciona un nivel aceptable de higiene personal.",
         "hideout_area_9_stage_2_description": "Un lugar para relajarse, equipado con una cama normal, buró e incluso una televisión vieja. Crea una sensación de comodidad y trae viejos recuerdos de una vida pasada.",
@@ -2508,7 +2508,7 @@
         "Ui/Settings/Visibility/Autohide": "Ocultar automáticamente",
         "Ui/Settings/HealthColorScheme": "Color en el esquema de salud",
         "Compass": "Brújula",
-        "Failed to sort item in {0}": "No se pudo ordenar el objeto en {0}",
+        "Failed to sort item in {0}": "No se pudo ordenar el objeto en: {0}",
         "UI/Dialogs/handover_with_contained_items_confirmation": "Algunos de los contenedores seleccionados tienen objetos en su interior. ¿Estás seguro de querer entregarlos?",
         "Crafting": "Artesanía",
         "HideoutManagement": "Gestión del Refugio",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Probabilidad de causar hemorragia grave",
         "lightbleedingdelta": "Probabilidad de causar hemorragia leve",
         "choose face and voice": "ELIGE ROSTRO Y VOZ",
+        "TroubleFixing": "Incrementa la velocidad de resolución de problemas (hasta en un 50%). 1% por cada nivel de habilidad.",
+        "TroubleFixingAmmoElite": "Reduce en un 50% la probabilidad del mal funcionamiento causado por cargadores, después de haber rectificado un mal funcionamiento de la misma causa.",
+        "ZeroWeaponDeteriorationOnRepair": "No hay desgaste durante la reparación.",
+        "NetworkError/TooManyFriendRequestsHeader": "Demasiadas solicitudes.",
+        "NetworkError/TooManyFriendRequestsMessage": "Intenta de nuevo en {0} segundos.",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Aún no tienes conversaciones.</b></size>\nInvita a amigos a iniciar una o únete al Chat Global.",
+        "TroubleFixingDurElite": "Reduce en un 50% la probabilidad del mal funcionamiento basado en la durabilidad de las armas, después de haber rectificado un fallo de la misma causa.",
+        "WeaponDurabilityLossOnShotReduce": "Reduce el desgaste del arma al disparar (hasta en un 50%).",
         "un-sec": "Bloqueo Norte de la ONU",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Hemorragia",
         "REMOVES BLOODLOSS": "DETIENE LA HEMORRAGIA",
         "\"Magazine checked: \"": "Cargador comprobado: ",
-        "You have already bought the maximum amount of this item in the current restock": "Ya compraste la cantidad máxima de este objeto en el abastecimiento actual.",
         "DamageType_Bloodloss": "Hemorragia",
         "you can't transfer item while moving": "No puedes transferir objetos mientras te mueves.",
         "place": "COLOCAR",
         "This location is not available for scav": "Esta ubicación no está disponible como Scav",
         "Interchange": "Intercambio",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "No se pudo cargar la información, comprueba el estado de la red. ¿Deseas intentar acceder a la ventana de Tratamiento Médico de nuevo?, o bien, saltarla e ir al menú principal.",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "La pieza {0} no puede instalarse en un arma plegada.",
+        "No action available": "No hay acciones disponibles.",
+        "ProfileEvent/AssortmentLockRule": "Trato bloqueado con el comerciante: <b>{0}</b>.",
+        "ProfileEvent/ExamineItems": "Examinar objeto <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Reinicio de examinación del objeto: <b>{0}</b>.",
+        "ProfileEvent/ProfileLockTimer": "Determinado el tiempo para usar el Scav a <b>{0}</b> segundos.",
+        "ProfileEvent/ProfileUnlock": "Tiempo para usar el Scav reiniciando.",
+        "ProfileEvent/UnlockTrader": "Comerciante: <b>{0}</b>, desbloqueado.",
+        "ProfileEvent/LockTrader": "Comerciante: <b>{0}</b>, bloqueado.",
+        "ProfileEvent/MasteringSkill": "Cambio en el progreso de maestría de <b>{0}</b> a <b>{1}</b>.",
+        "Critical error": "Error crítico",
+        "TroubleFixingMagElite": "Reduce en un 50% la probabilidad del mal funcionamiento causado por cartuchos, después de haber rectificado un fallo de la misma causa.",
+        "WeaponDeteriorationChanceReduce": "Reduce la probabilidad de desgaste durante la reparación (hasta en un -60%)",
+        "Ui/Settings/NVidiaReflexType": "NVIDIA Reflex Latencia Baja",
+        "UI/Settings/NVidiaReflexMode/Off": "Desactivar",
+        "UI/Settings/NVidiaReflexMode/On": "Activar",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Activar y aumentar",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVIDIA Reflex está activo. Desactívalo para cambiar este parámetro.",
+        "NVidia Reflex settings will be applied after restart.": "La configuración de NVIDIA Reflex se aplicará al reiniciar el juego.",
+        "FoundInRaid": "Encontrado en incursión",
+        "loudness": "VOLUMEN",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -3193,7 +3222,7 @@
                 "5977784486f774285402cf52": "Sobrevive y escapa de la Fábrica.",
                 "5978b48b86f7746ef62ef859": ""
             },
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "successMessageText": "5ab0f32686f7745dd409f566",
@@ -3209,7 +3238,7 @@
                 "5968948986f7740d121082d4": "Entrega el estuche seguro 0031 a Prapor",
                 "5a3fbdb086f7745a554f0c31": "Obtén acceso a la habitación cerrada en las oficinas de la Fábrica"
             },
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "successMessageText": "5ab0f32686f7745dd409f567",
@@ -3470,7 +3499,7 @@
                 "5979ee4586f7743ec214c7a5": "Entrégalas a Skier",
                 "59819f0986f7744e6d0b7520": ""
             },
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "successMessageText": "5ab0f32686f7745dd409f57d",
@@ -3483,7 +3512,7 @@
                 "5979ef4586f77431307dc513": "Encuentra el encendedor Zibbo dorado",
                 "5979ef7986f77431307dc514": "Deja el encendedor en el barracón del estacionamiento de camiones (Aduanas)"
             },
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "failMessageText": "5ab0f32686f7745dd409f57e",
@@ -3656,7 +3685,7 @@
             },
             "name": "Recuperando la Confianza",
             "note": "",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "successMessageText": "5ab0f32686f7745dd409f58f",
@@ -3892,7 +3921,7 @@
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "name": "Suministros Humanitarios",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "successMessageText": "5ab0f32686f7745dd409f5a3",
@@ -5417,7 +5446,7 @@
             "description": "5c12350786f7745c8b0203f2",
             "name": "Trampa",
             "note": "",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "successMessageText": "5c12457886f77468cf6f7342",
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6374,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "El Camino del Cazador: Sádico",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Compañeros. Parte 2",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7580,9 +7615,9 @@
             "Description": "La mira telescópica híbrida producida por Leupold consta de la mira telescópica Mark 4 HAMR 4x24 mm con una mira réflex DeltaPoint instalada encima. Fue desarrollada para brindar precisión a las carabinas de rango medio al usar la óptica 4x, además de ser efectiva en combate cercano gracias a su mira réflex compacta."
         },
         "544a5caa4bdc2d1a388b4568": {
-            "Name": "Chaleco porta placas Crye Precision AVS",
+            "Name": "Chaleco portaplacas Crye Precision AVS",
             "ShortName": "AVS",
-            "Description": "El chaleco Crye Precision AVS está equipado con placas balísticas de materiales combinados. Es uno de los chalecos porta placas más cómodos de usar."
+            "Description": "El chaleco Crye Precision AVS está equipado con placas balísticas de materiales combinados. Es uno de los chalecos portaplacas más cómodos de usar."
         },
         "544a5cde4bdc2d39388b456b": {
             "Name": "Mochila Flyye MBSS",
@@ -7610,9 +7645,9 @@
             "Description": "Jeringa desechable llena de morfina - fármaco muy potente, utilizado principalmente para tratar el dolor agudo y crónico. "
         },
         "544fb45d4bdc2dee738b4568": {
-            "Name": "Kit de primeros auxilios Salewa",
+            "Name": "Botiquín de primeros auxilios Salewa",
             "ShortName": "Salewa",
-            "Description": "Kit de primeros auxilios que contiene un bivibag impermeable, distintos tipos de vendajes y utensilios médicos."
+            "Description": "Botiquín de primeros auxilios que contiene un bivibag impermeable, distintos tipos de vendajes y utensilios médicos."
         },
         "544fb5454bdc2df8738b456a": {
             "Name": "Multiherramienta Leatherman",
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munición",
             "ShortName": "Munición",
-            "Description": "Munición",
-            "casingName": null
+            "Description": "Munición"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Mod funcional",
@@ -7743,7 +7777,7 @@
             "Description": "Empuñadura táctica Tango Down Stubby BGV-MK46K. Empuñadura corta para usar en armas de combate cercano o corto alcance. Ideal para escopetas de asalto. Contiene un compartimento para baterías o SPTA."
         },
         "55818a104bdc2db9688b4569": {
-            "Name": "Guardamanos",
+            "Name": "Guardamano",
             "ShortName": "Objeto",
             "Description": "Objeto"
         },
@@ -7883,9 +7917,9 @@
             "Description": "Palanca de carga estándar para AR-15 y sistemas compatibles."
         },
         "55d459824bdc2d892f8b4573": {
-            "Name": "Guardamanos KAC RIS Knight's Armament para AR-15 y compatibles",
+            "Name": "Guardamano KAC RIS Knight's Armament para AR-15 y compatibles",
             "ShortName": "KAC RIS",
-            "Description": "El KAC RIS de Knight's Armament es el guardamanos estándar para el M4A1, pero puede ser instalado en la mayoría de los AR-15 siempre y cuando el cañón del arma sea del largo correcto. Equipado con 4 superficies para la instalación de accesorios adicionales y protector de calor."
+            "Description": "El KAC RIS de Knight's Armament es el guardamano estándar para el M4A1, pero puede ser instalado en la mayoría de los AR-15 siempre y cuando el cañón del arma sea del largo correcto. Equipado con 4 superficies para la instalación de accesorios adicionales y protector de calor."
         },
         "55d45d3f4bdc2d972f8b456c": {
             "Name": "Corredera de haya Izhmekh para MP-133",
@@ -7938,7 +7972,7 @@
             "Description": "Cargador de metal de 30-balas para Colt AR-15, diseñado conforme al estándar STANAG 4179 para munición 5.56x45.\nEl estándar STANAG 4179 fue aprobado por los miembros de la OTAN en 1980 para propósitos de unificación de municiones y cargadores de personal aliado."
         },
         "55d48a634bdc2d8b2f8b456a": {
-            "Name": "Montura Kiba Arms International SPRM para escopetas de corredera\n",
+            "Name": "Montura Kiba Arms International SPRM para escopetas de corredera",
             "ShortName": "SPRM",
             "Description": "La montura universal de 13 posiciones SPRM de Kiba Arms International, para acoplar dispositivos adicionales a las escopetas de corredera."
         },
@@ -7988,9 +8022,9 @@
             "Description": "Inventario Predeterminado"
         },
         "55f84c3c4bdc2d5f408b4576": {
-            "Name": "Guardamanos Daniel Defence RIS II 9.5 para sistemas compatibles con AR-15",
+            "Name": "Guardamano Daniel Defence RIS II 9.5 para sistemas compatibles con AR-15",
             "ShortName": "RIS II 9.5 FDE",
-            "Description": "El guardamanos Daniel Defence RIS II 9.5 es una parte del programa SOPMOD Block II para reemplazar los guardamanos estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamanos es incompatible con el lanzagranadas M203 UBGL."
+            "Description": "El guardamano Daniel Defence RIS II 9.5 es una parte del programa SOPMOD Block II para reemplazar los guardamano estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamano es incompatible con el lanzagranadas M203 UBGL."
         },
         "560835c74bdc2dc8488b456f": {
             "Name": "Cañón de 510 mm con banda superior para la escopeta MP-133 Cal. 12",
@@ -8130,34 +8164,34 @@
             "Description": "La palanca de carga RP-1 de Zenit es un fabricada con aleación de aluminio D16T laminado con una capa negra. Compatible con todos los modelos de fusiles AK y carabinas basadas en él.\nLa RP-1 es más grande y conveniente que la palanca de carga original, dado que mejora la ergonomía y hace más cómoda la manipulación del arma. La RP-1 se instala sobre la palanca base mediante un kit de pernos incluidos. © Zenit"
         },
         "5648ae314bdc2d3d1c8b457f": {
-            "Name": "Guardamanos CAA RS47 para sistemas AK compatibles",
+            "Name": "Guardamano CAA RS47 para sistemas AK compatibles",
             "ShortName": "CAA RS47",
-            "Description": "El guardamanos RS47, fabricado por Command Arms con polímeros ligeros, adaptado a la mayoría de fusiles y carabinas diseñados en base a los fusiles AK. Equipado con dos rieles cortos y dos rieles largos para la instalación de dispositivos adicionales."
+            "Description": "El guardamano RS47, fabricado por Command Arms con polímeros ligeros, adaptado a la mayoría de fusiles y carabinas diseñados en base a los fusiles AK. Equipado con dos rieles cortos y dos rieles largos para la instalación de dispositivos adicionales."
         },
         "5648b0744bdc2d363b8b4578": {
-            "Name": "Guardamanos de madera para AK-74 (6P20 Sb.6)",
+            "Name": "Guardamano de madera para AK-74 (6P20 Sb.6)",
             "ShortName": "6P20 Sb.6",
-            "Description": "Guardamanos de madera estándar producido por Izhmash para AK-74."
+            "Description": "Guardamano de madera estándar producido por Izhmash para AK-74."
         },
         "5648b1504bdc2d9d488b4584": {
-            "Name": "Guardamanos de polímero para AK-74 (6P20 Sb.9)",
+            "Name": "Guardamano de polímero para AK-74 (6P20 Sb.9)",
             "ShortName": "6P20 Sb.9",
-            "Description": "Guardamanos de polímero producido por Izhmash para AK-74 que reemplaza al de madera clásico."
+            "Description": "Guardamano de polímero producido por Izhmash para AK-74 que reemplaza al de madera clásico."
         },
         "5648b2414bdc2d3b4c8b4578": {
-            "Name": "Guardamanos UltiMAK M1-B para AK",
+            "Name": "Guardamano UltiMAK M1-B para AK",
             "ShortName": "M1-B",
-            "Description": "M1-B diseñado por Ultimak solo reemplaza el tubo de gases estándar, convirtiéndolo en una montura para miras. La parte inferior sigue siendo la misma; en este caso, el guardamanos de polímero de AK-47. Fijado en el cañón para mejorar la confiabilidad."
+            "Description": "M1-B diseñado por Ultimak solo reemplaza el tubo de gases estándar, convirtiéndolo en una montura para miras. La parte inferior sigue siendo la misma; en este caso, el guardamano de polímero de AK-47. Fijado en el cañón para mejorar la confiabilidad."
         },
         "5648b4534bdc2d3d1c8b4580": {
-            "Name": "Guardamanos B-10M y montura de riel B-19",
+            "Name": "Guardamano B-10M y montura de riel B-19",
             "ShortName": "B-10M B-19",
-            "Description": "El guardamanos B-10M es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar de los guardamanos estándares de la serie AK 103, 104, 105, 74S, 74M, AKM y AKMS. La montura de riel B-19 es básicamente un soporte para miras que queda suspendida sobre el tubo de gases. También está hecha con la aleación de aluminio D16T con revestimiento negro, puede ser instalada en el guardamanos B-10M o B-21M. ©Zenit"
+            "Description": "El guardamano B-10M es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar de los guardamano estándares de la serie AK 103, 104, 105, 74S, 74M, AKM y AKMS. La montura de riel B-19 es básicamente un soporte para miras que queda suspendida sobre el tubo de gases. También está hecha con la aleación de aluminio D16T con revestimiento negro, puede ser instalada en el guardamano B-10M o B-21M. ©Zenit"
         },
         "5648b62b4bdc2d9d488b4585": {
-            "Name": "Lanzagranadas bajo el cañón GP-34",
+            "Name": "Aditamento lanzagranadas GP-34",
             "ShortName": "GP-34",
-            "Description": "Lanzagranadas bajo el cañón para granadas de 40 mm VOG-25, instalado en la familia de fusiles de asalto AK."
+            "Description": "Lanzagranadas bajo el cañón para granadas de 40 mm VOG-25, utilizado en la familia de fusiles de asalto AK."
         },
         "5648b6ff4bdc2d3d1c8b4581": {
             "Name": "Montura Tactica Tula 10000",
@@ -8425,7 +8459,7 @@
         "56deee15d2720bee328b4567": {
             "Name": "Cierre de cargador de 4-cartuchos Cal. 12 MP153x4 para MP-153",
             "ShortName": "MP153x4",
-            "Description": "Tapa de guardamanos MP-153 Cal. 12 30x25"
+            "Description": "Tapa de guardamano MP-153 Cal. 12 30x25"
         },
         "56deeefcd2720bc8328b4568": {
             "Name": "Cargador extendido de 8-cartuchos Cal. 12 MP153x8 para MP-153",
@@ -8566,7 +8600,7 @@
         "56ea8222d2720b69698b4567": {
             "Name": "Bípode Izhmash para SV-98",
             "ShortName": "Bípode SV-98",
-            "Description": "Bípode estándar del fusil de francotirador SV-98. Se puede plegar en el guardamanos cuando no se utiliza."
+            "Description": "Bípode estándar del fusil de francotirador SV-98. Se puede plegar en el guardamano cuando no se utiliza."
         },
         "56ea8d2fd2720b7c698b4570": {
             "Name": "Bloque de Gases Windham Weaponry con riel",
@@ -8867,7 +8901,7 @@
         "573603c924597764442bd9cb": {
             "Name": "Munición 7.62x25 mm TT PT gzh",
             "ShortName": "PT gzh",
-            "Description": "Munición de 7.62x25 mm Tokarev PT gzh (Índice GAU - 57-T-133) - Es un cartucho con una bala trazadora de 5.8 gramos con un núcleo de plomo en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate.\n\nA pesar de que este cartucho tiene una distancia efectiva de 100 metros su capacidad de trazado oscila entre los 350 y 400 metros, diseñado para utilizarse en los subfusiles PPD, PPS y PPSh junto con el cartucho 7.62x25 mm TT Pst y proporcionar un poder de parada similar.",
+            "Description": "Munición de 7.62x25 mm Tokarev PT gzh (Índice GAU - 57-T-133) - Es un cartucho con una bala trazadora de 5.8 gramos con un núcleo de plomo en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate (Trazado de color: Rojo).\n\nA pesar de que este cartucho tiene una distancia efectiva de 100 metros su capacidad de trazado oscila entre los 350 y 400 metros, diseñado para utilizarse en los subfusiles PPD, PPS y PPSh junto con el cartucho 7.62x25 mm TT Pst y proporcionar un poder de parada similar.",
             "casingName": "7.62x25 mm TT PT gzh"
         },
         "573718ba2459775a75491131": {
@@ -8885,13 +8919,13 @@
         "573719df2459775a626ccbc2": {
             "Name": "Munición 9x18 mm PM PBM gzh",
             "ShortName": "PBM gzh",
-            "Description": "Munición de 9x18 mm Makarov PBM gzh (Índice GRAU - 7N25) - Es un cartucho con una bala PBM antiblindaje de 3.6 gramos con un núcleo de acero reforzado al alto carbón con semi-encamisado de aluminio, en un casquillo bimetálico.\n\nEste cartucho fue diseñado en los años noventa para incrementar las capacidades de penetración de las armas de 9x18PM, y gracias a su alta velocidad de salida es capaz de atravesar equipos de protección balística básica, así como ciertos equipos de protección intermedios a cortas distancias a costa de un pequeño incremento en el retroceso.",
+            "Description": "Munición de 9x18 mm Makarov PBM gzh (Índice GRAU - 7N25) - Es un cartucho con una bala PBM antiblindaje de 3.6 gramos con un núcleo de acero reforzado al alto carbón con semi-encamisado bimetálico, en un casquillo bimetálico.\n\nEste cartucho fue diseñado en los años noventa para incrementar las capacidades de penetración de las armas de 9x18PM, y gracias a su alta velocidad de salida es capaz de atravesar equipos de protección balística básica, así como ciertos equipos de protección intermedios a cortas distancias a costa de un pequeño incremento en el retroceso.",
             "casingName": "9x18 mm PM PBM"
         },
         "57371aab2459775a77142f22": {
             "Name": "Munición 9x18 mm PM PMM",
             "ShortName": "PMM",
-            "Description": "Munición de 9x18 mm PMM PstM gzh (Índice GAU - 57-N-181SM, Índice GRAU - 7N16) - Es un cartucho con una bala de 5.6 gramos con un núcleo de acero con encamisado bimetálico en forma de cono truncado, en un casquillo bimetálico.\n\nEl cartucho 9x18 mm PMM es la modernización del cartucho 9×18 mm PM, diseñado con la intención de incrementar sus capacidades de penetración, y contiene una carga de pólvora incrementada, haciendo que sea peligroso disparar este cartucho en armamento no compatible; está diseñado para utilizarse con la pistola PMM (Una versión modernizada de la pistola Makarov PM).",
+            "Description": "Munición de 9x18 mm PMM PstM gzh (Índice GAU - 57-N-181SM, Índice GRAU - 7N16) - Es un cartucho con una bala de 5.6 gramos con un núcleo de acero con encamisado bimetálico en forma de cono truncado, en un casquillo bimetálico.\n\nEl cartucho 9x18 mm PMM es la modernización del cartucho 9×18 mm PM, diseñado con la intención de incrementar sus capacidades de penetración ante equipos de protección balística básica, y contiene una carga de pólvora incrementada, haciendo que sea peligroso disparar este cartucho en armamento no compatible; está diseñado para utilizarse con la pistola PMM (Una versión modernizada de la pistola Makarov PM).",
             "casingName": "9x18 mm PM PMM"
         },
         "57371b192459775a9f58a5e0": {
@@ -8903,7 +8937,7 @@
         "57371e4124597760ff7b25f1": {
             "Name": "Munición 9x18 mm PM PPT gzh",
             "ShortName": "PPT gzh",
-            "Description": "Munición de 9x18 mm Makarov PPT gzh (Índice GAU - 57-T-181) - Es un cartucho con una bala de plomo trazadora de 3.6 gramos en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate.\n\nCon la llegada de nuevos subfusiles en la década de los noventa, el Ministerio de Asuntos Interiores se interesó en desarrollar una munición con capacidades de trazado superiores a los 100 metros, además de proporcionar poder de parada al impactar.",
+            "Description": "Munición de 9x18 mm Makarov PPT gzh (Índice GAU - 57-T-181) - Es un cartucho con una bala de plomo trazadora de 3.6 gramos en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate (Trazado de color: Rojo).\n\nCon la llegada de nuevos subfusiles en la década de los noventa, el Ministerio de Asuntos Interiores se interesó en desarrollar una munición con capacidades de trazado superiores a los 100 metros, además de proporcionar poder de parada al impactar.",
             "casingName": "9x18 mm PM PPT gzh"
         },
         "57371eb62459776125652ac1": {
@@ -9270,9 +9304,9 @@
             "Description": "Protector de rosca estándar para el cañón de la escopeta SOK-12."
         },
         "576169e62459773c69055191": {
-            "Name": "Guardamanos de polímero Sb.7-1 para SOK-12",
+            "Name": "Guardamano de polímero Sb.7-1 para SOK-12",
             "ShortName": "Sb.7-1",
-            "Description": "El Sb.7-1 es un guardamanos estándar de polímero con eslabón para portafusil, se instala en SOK-12 y SOK-12S."
+            "Description": "El Sb.7-1 es un guardamano estándar de polímero con eslabón para portafusil, se instala en SOK-12 y SOK-12S."
         },
         "57616a9e2459773c7a400234": {
             "Name": "Cargador de 5-cartuchos 12/76 Sb.5 para SOK-12 y armas compatibles",
@@ -9642,9 +9676,9 @@
             "Description": "Tomahawk táctico, multiherramienta y herramienta para irrumpir, solución todo en uno."
         },
         "57cff947245977638e6f2a19": {
-            "Name": "Guardamanos Magpul MOE AKM (Negro) para AK",
+            "Name": "Guardamano Magpul MOE AKM (Negro) para AK",
             "ShortName": "MOE AKM",
-            "Description": "El Guardamanos Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "57cffb66245977632f391a99": {
             "Name": "Empuñadura táctica Magpul M-LOK AFG",
@@ -9667,24 +9701,24 @@
             "Description": "Empuñadura angular táctica Magpul M-LOK AFG. Solo puede instalarse en la ranura M-LOK del equipo correspondiente con licencia de Magpul."
         },
         "57cffd8224597763b03fc609": {
-            "Name": "Guardamanos Magpul MOE AKM (Flat Dark Earth) para AK",
+            "Name": "Guardamano Magpul MOE AKM (Flat Dark Earth) para AK",
             "ShortName": "MOE AKM",
-            "Description": "El Guardamanos Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "57cffddc24597763133760c6": {
-            "Name": "Guardamanos Magpul MOE AKM (Flat Dark Earth) para AK",
+            "Name": "Guardamano Magpul MOE AKM (Flat Dark Earth) para AK",
             "ShortName": "MOE AKM",
-            "Description": "El Guardamanos Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "57cffe0024597763b03fc60b": {
-            "Name": "Guardamanos Magpul MOE AKM (Ciruela) para AK",
+            "Name": "Guardamano Magpul MOE AKM (Ciruela) para AK",
             "ShortName": "MOE AKM",
-            "Description": "El Guardamanos Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "57cffe20245977632f391a9d": {
-            "Name": "Guardamanos Magpul MOE AKM (Gris Discreto) para AK",
+            "Name": "Guardamano Magpul MOE AKM (Gris Discreto) para AK",
             "ShortName": "MOE AKM",
-            "Description": "El Guardamanos Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul MOE AKM se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "57d14d2524597714373db789": {
             "Name": "Subfusil PP-91 Kedr 9x18 mm PM",
@@ -9737,9 +9771,9 @@
             "Description": "Freno de boca estándar de IzhMash para AKS-74U y AKS-74UN, instalado en una rosca de 24x1.5 mm."
         },
         "57dc32dc245977596d4ef3d3": {
-            "Name": "Guardamanos de madera para AKS-74U (6P26 Sb.6)",
+            "Name": "Guardamano de madera para AKS-74U (6P26 Sb.6)",
             "ShortName": "6P26 Sb.6",
-            "Description": "Guardamanos de madera estándar para AKS-74U, AKS-74UN y AKS-74UBN, fabricado por IzhMash."
+            "Description": "Guardamano de madera estándar para AKS-74U, AKS-74UN y AKS-74UBN, fabricado por IzhMash."
         },
         "57dc334d245977597164366f": {
             "Name": "Cubierta superior AKS-74U (6P26 Sb.7)",
@@ -9802,14 +9836,14 @@
             "Description": "El Holosun LS321 es un multi-láser táctico con láser de color verde en el espectro de luz visible, láser IR y linterna IR."
         },
         "57ffa9f4245977728561e844": {
-            "Name": "Guardamanos B-11 AKS-74U",
+            "Name": "Guardamano B-11 AKS-74U",
             "ShortName": "B-11",
-            "Description": "El guardamanos B-11 es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar del guardamanos estándar de el AKS-74U. Viene equipado con monturas de riel Picatinny en tres lados, permitiendo la instalación de equipo adicional (empuñaduras tácticas, linternas, designadores láser)."
+            "Description": "El guardamano B-11 es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar del guardamano estándar de el AKS-74U. Viene equipado con monturas de riel Picatinny en tres lados, permitiendo la instalación de equipo adicional (empuñaduras tácticas, linternas, designadores láser)."
         },
         "57ffaea724597779f52b3a4d": {
             "Name": "Montura B-12",
             "ShortName": "B-12",
-            "Description": "La montura B-12 se instala en el lateral del guardamanos B-11 y le provee al arma los medios para añadir miras complejas y dispositivos tácticos por el riel de montura que se forma sobre el tubo de gas del arma y el lateral del guardamanos."
+            "Description": "La montura B-12 se instala en el lateral del guardamano B-11 y le provee al arma los medios para añadir miras complejas y dispositivos tácticos por el riel de montura que se forma sobre el tubo de gas del arma y el lateral del guardamano."
         },
         "57ffb0062459777a045af529": {
             "Name": "Montura B-18",
@@ -9837,14 +9871,14 @@
             "Description": "El alijo mal camuflado de alguien."
         },
         "5827272a24597748c74bdeea": {
-            "Name": "Guardamanos de aluminio MTU002 Long Top para SOK-12",
+            "Name": "Guardamano de aluminio MTU002 Long Top para SOK-12",
             "ShortName": "MTU002 L",
-            "Description": "El UTG PRO MTU002 Tactical Quad Rail Long Top es un guardamanos ligero de aluminio aeroespacial con eslabón para portafusil, diseñado para instalarse en carabinas Saiga."
+            "Description": "El UTG PRO MTU002 Tactical Quad Rail Long Top es un guardamano ligero de aluminio aeroespacial con eslabón para portafusil, diseñado para instalarse en carabinas Saiga."
         },
         "58272b392459774b4c7b3ccd": {
-            "Name": "Guardamanos de aluminio MTU002 Short Top para SOK-12",
+            "Name": "Guardamano de aluminio MTU002 Short Top para SOK-12",
             "ShortName": "MTU002 S",
-            "Description": "El UTG PRO MTU002 Tactical Quad Rail Short Top es un guardamanos ligero de aluminio aeroespacial con eslabón para portafusil, diseñado para instalarse en carabinas Saiga."
+            "Description": "El UTG PRO MTU002 Tactical Quad Rail Short Top es un guardamano ligero de aluminio aeroespacial con eslabón para portafusil, diseñado para instalarse en carabinas Saiga."
         },
         "58272b842459774abc128d50": {
             "Name": "Montura SOK-12 CSS SIGHT RAIL MOUNT para mira trasera",
@@ -10020,9 +10054,9 @@
             "Description": "Bípode Harris HBR ultraligero con mecanismo de retracción con resorte. Usado alrededor de todo el mundo por personal militar y civil."
         },
         "5888976c24597754281f93f5": {
-            "Name": "Guardamanos LOBAEV Arms para DVL-10 M2",
+            "Name": "Guardamano LOBAEV Arms para DVL-10 M2",
             "ShortName": "DVL-10 M2",
-            "Description": "Guardamanos estándar de LOBAEV Arms para el fusil de francotirador DVL-10 M2"
+            "Description": "Guardamano estándar de LOBAEV Arms para el fusil de francotirador DVL-10 M2"
         },
         "5888988e24597752fe43a6fa": {
             "Name": "Cargador de 10-balas .308 (7.62x51) para DVL-10",
@@ -10045,9 +10079,9 @@
             "Description": "Culata universal estándar LOBAEV Arms."
         },
         "588b56d02459771481110ae2": {
-            "Name": "Guardamanos Daniel Defence RIS II 9.5 para sistemas compatibles con AR-15",
+            "Name": "Guardamano Daniel Defence RIS II 9.5 para sistemas compatibles con AR-15",
             "ShortName": "RIS II 9.5 NEG",
-            "Description": "El guardamanos Daniel Defence RIS II 9.5 es una parte del programa SOPMOD Block II para reemplazar los guardamanos estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamanos es incompatible con el lanzagranadas M203 UBGL."
+            "Description": "El guardamano Daniel Defence RIS II 9.5 es una parte del programa SOPMOD Block II para reemplazar los guardamano estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamano es incompatible con el lanzagranadas M203 UBGL."
         },
         "58948c8e86f77409493f7266": {
             "Name": "Subfusil SIG MPX 9x19 mm",
@@ -10085,9 +10119,9 @@
             "Description": "Cañón de 203 mm de largo para armas basadas en MPX con recámara para munición 9x19. "
         },
         "5894a42086f77426d2590762": {
-            "Name": "Guardamanos SIG MPX Gen. 1 para MPX",
+            "Name": "Guardamano SIG MPX Gen. 1 para MPX",
             "ShortName": "MPX Gen. 1",
-            "Description": "Primera generación de guardamanos SIG MPX"
+            "Description": "Primera generación de guardamano SIG MPX"
         },
         "5894a51286f77426d13baf02": {
             "Name": "Pistolete para SIG MPX",
@@ -10110,14 +10144,14 @@
             "Description": "Mira trasera plegable y removible SIG Flip Up Rearsight."
         },
         "58a56f8d86f774651579314c": {
-            "Name": "Adaptador de riel de 2 pulgadas para el guardamanos SIG MPX Gen. 1",
+            "Name": "Adaptador de riel de 2 pulgadas para el guardamano SIG MPX Gen. 1",
             "ShortName": "2\" Gen. 1",
-            "Description": "El adaptador de riel de 2 pulgadas para el guardamanos SIG MPX Gen. 1 permite instalar equipamiento adicional en la primera generación de guardamanos SIG MPX."
+            "Description": "El adaptador de riel de 2 pulgadas para el guardamano SIG MPX Gen. 1 permite instalar equipamiento adicional en la primera generación de guardamano SIG MPX."
         },
         "58a5c12e86f7745d585a2b9e": {
-            "Name": "Adaptador de riel de 4 pulgadas para el guardamanos SIG MPX Gen. 1",
+            "Name": "Adaptador de riel de 4 pulgadas para el guardamano SIG MPX Gen. 1",
             "ShortName": "4\" Gen. 1",
-            "Description": "El adaptador de riel de 4 pulgadas para el guardamanos SIG MPX Gen. 1 permite instalar equipamiento adicional en la primera generación de guardamanos SIG MPX."
+            "Description": "El adaptador de riel de 4 pulgadas para el guardamano SIG MPX Gen. 1 permite instalar equipamiento adicional en la primera generación de guardamano SIG MPX."
         },
         "58ac1bf086f77420ed183f9f": {
             "Name": "Adaptador de tubo para culata retráctil SIG",
@@ -10426,17 +10460,17 @@
             "Description": "Diario con cubierta de cuero. Cubierto con varios nombres famosos, direcciones y números de teléfono. Alguien podría encontrarlo peculiarmente útil."
         },
         "590c657e86f77412b013051d": {
-            "Name": "Kit de Primeros Auxilios Grizzly",
+            "Name": "Botiquín de primeros auxilios Grizzly",
             "ShortName": "Grizzly",
-            "Description": "El kit médico de viaje Grizzly es considerado uno de los mejores kits de primeros auxilios. Contiene todo lo necesario para brindar atención médica oportuna en condiciones extremas."
+            "Description": "El botiquín médico de viaje Grizzly es considerado uno de los mejores botiquines de primeros auxilios. Contiene todo lo necesario para brindar atención médica oportuna en condiciones extremas."
         },
         "590c661e86f7741e566b646a": {
-            "Name": "Kit de primeros auxilios de Automóvil",
+            "Name": "Botiquín de primeros auxilios de Automóvil",
             "ShortName": "Auto",
             "Description": "Como un extintor de incendios, el botiquín de primeros auxilios del automóvil es una medida de protección crucial en caso de emergencia en la carretera."
         },
         "590c678286f77426c9660122": {
-            "Name": "Kit táctico de primeros auxilios IFAK",
+            "Name": "Botiquín táctico individual de primeros auxilios IFAK",
             "ShortName": "IFAK",
             "Description": "El IFAK es un botiquín estándar de uso personal para los soldados en servicio. El primer botiquín de primeros auxilios IFAK oficial del Cuerpo de Marines de los Estados Unidos (Individual First Aid Kit of the United States Marine Corps). El más reciente, de tercera generación (gen3), es el mejor diseñado y rico en contenido."
         },
@@ -10616,9 +10650,9 @@
             "Description": "Palanca de carga estándar para el subfusil HK MP5."
         },
         "5926c36d86f77467a92a8629": {
-            "Name": "Guardamanos de polímero Wide Tropical para MP5",
+            "Name": "Guardamano de polímero Wide Tropical para MP5",
             "ShortName": "MP5WT",
-            "Description": "Guardamanos de polímero para subfusil MP5 producido por HK, la tan famosa versión Wide Tropical."
+            "Description": "Guardamano de polímero para subfusil MP5 producido por HK, la tan famosa versión Wide Tropical."
         },
         "5926c3b286f774640d189b6b": {
             "Name": "Cargador estándar de 30-balas 9x19 para MP5",
@@ -10661,9 +10695,9 @@
             "Description": "Recibidor superior MP5SD para el subfusil MP5, fabricado por HK."
         },
         "5926f34786f77469195bfe92": {
-            "Name": "Guardamanos de polímero para MP5SD",
+            "Name": "Guardamano de polímero para MP5SD",
             "ShortName": "Guard. MP5SD",
-            "Description": "Guardamanos de polímero producido por HK para el subfusil MP5 en su versión SD."
+            "Description": "Guardamano de polímero producido por HK para el subfusil MP5 en su versión SD."
         },
         "5929a2a086f7744f4b234d43": {
             "Name": "Chaleco táctico UMTBS 6sh112 Reconocimiento-Francotirador",
@@ -10839,14 +10873,14 @@
             "Description": "Pistolete anatómico inspirado en el pistolete de la M249 SAW LMG"
         },
         "595cf16b86f77427440c32e2": {
-            "Name": "Guardamanos War Sport LVOA-S negro para uso con AR-15 y compatibles",
+            "Name": "Guardamano War Sport LVOA-S negro para uso con AR-15 y compatibles",
             "ShortName": "LVOA-S negro",
-            "Description": "Guardamanos ligero War Sport LVOA-S (SBR) para uso con fusiles deportivos basados en AR-15"
+            "Description": "Guardamano ligero War Sport LVOA-S (SBR) para uso con fusiles deportivos basados en AR-15"
         },
         "595cfa8b86f77427437e845b": {
-            "Name": "Guardamanos War Sport LVOA-C negro para AR-15 y compatibles",
+            "Name": "Guardamano War Sport LVOA-C negro para AR-15 y compatibles",
             "ShortName": "LVOA-C negro",
-            "Description": "Guardamanos ligero War Sport LVOA-C para uso con fusiles deportivos basados en AR-15"
+            "Description": "Guardamano ligero War Sport LVOA-C para uso con fusiles deportivos basados en AR-15"
         },
         "5963866286f7747bf429b572": {
             "Name": "Alijo",
@@ -11007,9 +11041,9 @@
             "Description": "El tubo de gases canaliza la dirección de desplazamiento del pistón de gas"
         },
         "59d64f2f86f77417193ef8b3": {
-            "Name": "Guardamanos de madera para AK-74 (6P1 Sb.6-1)",
+            "Name": "Guardamano de madera para AK-74 (6P1 Sb.6-1)",
             "ShortName": "6P1 Sb.6-1",
-            "Description": "Guardamanos estándar de madera producido por Izhmash para AKM."
+            "Description": "Guardamano estándar de madera producido por Izhmash para AKM."
         },
         "59d64fc686f774171b243fe2": {
             "Name": "Freno de boca y compensador Izhmash 7.62x39 AKM (6P1 0-14)",
@@ -11069,17 +11103,17 @@
         "59e0bdb186f774156f04ce82": {
             "Name": "Guía Vltor CASV keymod de 2 pulgadas",
             "ShortName": "2In. CASV",
-            "Description": "El sistema de guía Vltor CASV para keymod de 2 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz keymod estándar."
+            "Description": "El sistema de guía Vltor CASV para keymod de 2 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz keymod estándar."
         },
         "59e0be5d86f7742d48765bd2": {
             "Name": "Guía Vltor CASV keymod de 4 pulgadas",
             "ShortName": "4 in. CASV",
-            "Description": "El sistema de guía Vltor CASV para keymod de 4 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz keymod estándar."
+            "Description": "El sistema de guía Vltor CASV para keymod de 4 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz keymod estándar."
         },
         "59e0bed186f774156f04ce84": {
             "Name": "Guía Vltor CASV keymod de 6 pulgadas",
             "ShortName": "6In. CASV",
-            "Description": "El sistema de guía Vltor CASV para keymod de 6 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz keymod estándar."
+            "Description": "El sistema de guía Vltor CASV para keymod de 6 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz keymod estándar."
         },
         "59e0d99486f7744a32234762": {
             "Name": "7.62x39 mm BP",
@@ -11206,9 +11240,9 @@
             "Description": "Culata estándar de madera fabricada por Molot para VPO-136."
         },
         "59e6284f86f77440d569536f": {
-            "Name": "Guardamanos de madera para VPO-136",
+            "Name": "Guardamano de madera para VPO-136",
             "ShortName": "VPO-136",
-            "Description": "Guardamanos de madera estándar para la carabina Vepr KM/VPO-136, fabricado por Molot."
+            "Description": "Guardamano de madera estándar para la carabina Vepr KM/VPO-136, fabricado por Molot."
         },
         "59e62cc886f77440d40b52a1": {
             "Name": "Pistolete de baquelita Izhmash para AKM",
@@ -11316,9 +11350,9 @@
             "Description": "Están diseñadas para proteger los ojos y parte de la cara del usuario contra fragmentos de metralla, derrames de químicos agresivos y aceites, aerosoles nocivos, factores térmicos, influencias atmosféricas y golpes en todo tipo de operaciones de combate y durante actividades diarias."
         },
         "59e770f986f7742cbe3164ef": {
-            "Name": "Gorra Militar",
-            "ShortName": "Gorra",
-            "Description": "Gorra militar"
+            "Name": "Tocado militar verde",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar de color verde."
         },
         "59e7711e86f7746cae05fbe1": {
             "Name": "Casco antidisturbios Kolpak-1S",
@@ -11347,9 +11381,9 @@
             "Description": "Mira trasera estándar para AKM / VPO-209, fabricada por Molot."
         },
         "59e898ee86f77427614bd225": {
-            "Name": "Guardamanos de madera AKM / VPO-209",
+            "Name": "Guardamano de madera AKM / VPO-209",
             "ShortName": "VPO-209",
-            "Description": "Guardamanos estándar de madera para AKM / VPO-209 producido por Molot."
+            "Description": "Guardamano estándar de madera para AKM / VPO-209 producido por Molot."
         },
         "59e89d0986f77427600d226e": {
             "Name": "Culata Molot de madera VPO-209",
@@ -11382,14 +11416,14 @@
             "Description": "Jack-o'-lantern está aquí para protegerte del Mal"
         },
         "59f32bb586f774757e1e8442": {
-            "Name": "Chapa de identificación BEAR",
-            "ShortName": "Chapa",
-            "Description": "La chapa de identificación militar sirve para identificar rápidamente a los heridos y fallecidos en combate. "
+            "Name": "Placa de identificación BEAR",
+            "ShortName": "Placa",
+            "Description": "La placa de identificación militar sirve para identificar rápidamente a los heridos y fallecidos en combate. "
         },
         "59f32c3b86f77472a31742f0": {
-            "Name": "Chapa de identificación USEC",
-            "ShortName": "Chapa",
-            "Description": "La chapa de identificación militar sirve para identificar rápidamente a los heridos y fallecidos en combate. "
+            "Name": "Placa de identificación USEC",
+            "ShortName": "Placa",
+            "Description": "La placa de identificación militar sirve para identificar rápidamente a los heridos y fallecidos en combate. "
         },
         "59f8a37386f7747af3328f06": {
             "Name": "Empuñadura táctica Fortis Shift",
@@ -11477,9 +11511,9 @@
             "Description": "Freno de boca Zenith DTK-4M, fabricado con aleación de titanio, está diseñado para ser instalado en fusiles automáticos Kalashnikov de 5.45 y 7.62. Aunque está catalogado como un freno de boca, solo puede ser comprado por el personal de ciertas autoridades en particular."
         },
         "59fb375986f7741b681b81a6": {
-            "Name": "Guardamanos para AKM Krebs Custom UFM Keymod System",
+            "Name": "Guardamano para AKM Krebs Custom UFM Keymod System",
             "ShortName": "UFM",
-            "Description": "Guardamanos ligero de aluminio Krebs Custom UFM Keymod System para AKM con muchas ranuras Keymod para instalar rieles. Se necesita Kiba Arms VDM CS para ser instalado."
+            "Description": "Guardamano ligero de aluminio Krebs Custom UFM Keymod System para AKM con muchas ranuras Keymod para instalar rieles. Se necesita Kiba Arms VDM CS para ser instalado."
         },
         "59fc48e086f77463b1118392": {
             "Name": "Empuñadura Magpul RVG (Negra)",
@@ -11489,7 +11523,7 @@
         "59ff346386f77477562ff5e2": {
             "Name": "Fusil de asalto AKMS 7.62x39",
             "ShortName": "AKMS",
-            "Description": "AKMS (Índice GRAU — 6P4) es una variante de la AKM con la culata plegable. Se pliega hacia adelante-abajo, bajo el guardamanos. Diseñado específicamente para tropas aerotransportadas."
+            "Description": "AKMS (Índice GRAU — 6P4) es una variante de la AKM con la culata plegable. Se pliega hacia adelante-abajo, bajo el guardamano. Diseñado específicamente para tropas aerotransportadas."
         },
         "59ff3b6a86f77477562ff5ed": {
             "Name": "Culata Izhmash para AKMS (6P4 Sb.1-19)",
@@ -11509,7 +11543,7 @@
         "5a01ad4786f77450561fda02": {
             "Name": "Tubo de gases Kiba Arms VDM CS",
             "ShortName": "VDM CS",
-            "Description": "Tubo de gases personalizado para guardamanos específicos."
+            "Description": "Tubo de gases personalizado para guardamano específicos."
         },
         "5a01c29586f77474660c694c": {
             "Name": "Cargador de 30-balas 7.62x39 6L10 Izhmash para AK y compatibles",
@@ -11887,7 +11921,7 @@
         "5a26ac0ec4a28200741e1e18": {
             "Name": "Munición 9x21 mm SP13 BT gzh",
             "ShortName": "SP13",
-            "Description": "Munición de 9x21 mm BT gzh (SP13, Índice GRAU - 7BT3) - Es un cartucho con una bala trazadora de 7.3 gramos con un núcleo de acero en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate.\n\nEsta bala BT (Broneboynaya Trassiruyushchaya; \"Antiblindaje Trazadora\") fue desarrollada para los subfusiles de calibre 9x21 mm por TsNIITochMash con base en el cartucho 9x21 mm PS \"SP10\" y posee características superiores a este, pudiendo atravesar protecciones balísticas básicas e intermedias, además de causar un daño significativo tras atravesar el blindaje del objetivo.",
+            "Description": "Munición de 9x21 mm BT gzh (SP13, Índice GRAU - 7BT3) - Es un cartucho con una bala trazadora antiblindaje de 7.3 gramos con un núcleo de acero en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate (Trazado de color: Rojo).\n\nEsta bala BT (Broneboynaya Trassiruyushchaya; \"Antiblindaje Trazadora\") fue desarrollada para los subfusiles de calibre 9x21 mm por TsNIITochMash con base en el cartucho 9x21 mm PS \"SP10\" y posee características superiores a este, pudiendo atravesar protecciones balísticas básicas e intermedias, además de causar un daño significativo tras atravesar el blindaje del objetivo.",
             "casingName": "9x21 mm SP13"
         },
         "5a27b281c4a28200741e1e52": {
@@ -11926,12 +11960,12 @@
             "Description": "Las memorias USB seguras retráctiles son utilizadas frecuentemente por los empleados de TerraGroup. Seguramente han de contener datos importantes."
         },
         "5a294d7c86f7740651337cf9": {
-            "Name": "Disco SAS de los drones",
+            "Name": "Disco SAS de dron",
             "ShortName": "Disco SAS ",
             "Description": "Caja reforzada con unidad de disco duro SAS. Utilizados para el almacenamiento de datos en la industria militar."
         },
         "5a294d8486f774068638cd93": {
-            "Name": "Disco SAS de los drones",
+            "Name": "Disco SAS de dron",
             "ShortName": "Disco SAS",
             "Description": "Caja reforzada con unidad de disco duro SAS. Utilizados para el almacenamiento de datos en la industria militar."
         },
@@ -11941,9 +11975,9 @@
             "Description": "Granada de humo de fabricación soviética, diseñada para crear zonas de humo para cobertura o designación de objetivos. Barata y muy común en los países de la antigua Unión Soviética."
         },
         "5a329052c4a28200741e22d3": {
-            "Name": "Guardamanos Remington Arms para R11 RSASS",
+            "Name": "Guardamano Remington Arms para R11 RSASS",
             "ShortName": "RSASS",
-            "Description": "Guardamanos base para Remington R11 RSASS. También se puede montar en cualquier recibidor de AR10/AR15."
+            "Description": "Guardamano base para Remington R11 RSASS. También se puede montar en cualquier recibidor de AR10/AR15."
         },
         "5a32a064c4a28200741e22de": {
             "Name": "Supresor SilencerCo Osprey 9 9x19 mm",
@@ -12471,14 +12505,14 @@
             "Description": "Mapa del sanatorio Azure Coast en la Costa"
         },
         "5a9548c9159bd400133e97b3": {
-            "Name": "Guardamanos de aluminio TL-99 para MP5",
+            "Name": "Guardamano de aluminio TL-99 para MP5",
             "ShortName": "TL-99",
-            "Description": "Guardamanos de aluminio para MP5, producido por Brugger and Thomet, equipado con 3 monturas de riel para la instalación de dispositivos adicionales."
+            "Description": "Guardamano de aluminio para MP5, producido por Brugger and Thomet, equipado con 3 monturas de riel para la instalación de dispositivos adicionales."
         },
         "5a957c3fa2750c00137fa5f7": {
-            "Name": "XRSU47SU Guardamanos Táctico para AKS-74U",
+            "Name": "Guardamano táctico XRSU47SU para AKS-74U",
             "ShortName": "XRSU47SU",
-            "Description": "Guardamanos táctico de aluminio para AKS-74U, AKS-74UN, AKS-74UBN, diseñado y fabricado por SAA. Equipado con múltiples monturas de riel para la instalación de una amplia gama de equipamiento adicional."
+            "Description": "Guardamano táctico de aluminio para AKS-74U, AKS-74UN, AKS-74UBN, diseñado y fabricado por SAA. Equipado con múltiples monturas de riel para la instalación de una amplia gama de equipamiento adicional."
         },
         "5a966ec8a2750c00171b3f36": {
             "Name": "Montura de riel B&T 3x para MP5",
@@ -12496,24 +12530,24 @@
             "Description": "Corredera ligera para pistolas Glock 9x19."
         },
         "5a9d56c8a2750c0032157146": {
-            "Name": "Guardamanos Strike Industries TRAX 1",
+            "Name": "Guardamano Strike Industries TRAX 1",
             "ShortName": "TRAX 1",
             "Description": "El Strike Industries AK TRAX 1 es un sistema de riel modular Drop-In, es versátil, ligero y resistente. Proporciona una plataforma adaptable para que el usuario monte sus accesorios. Se puede combinar con TRAX 2 para una mayor modularidad."
         },
         "5a9d6d00a2750c5c985b5305": {
             "Name": "Guía Strike Industries keymod de 4 pulgadas",
             "ShortName": "4 in. SI",
-            "Description": "El sistema de guía Strike Industries para keymod de 4 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz keymod estándar."
+            "Description": "El sistema de guía Strike Industries para keymod de 4 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz keymod estándar."
         },
         "5a9d6d13a2750c00164f6b03": {
             "Name": "Guía Strike Industries keymod de 6 pulgadas",
             "ShortName": "6In. SI",
-            "Description": "El sistema de guía Strike Industries para keymod de 6 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz keymod estándar."
+            "Description": "El sistema de guía Strike Industries para keymod de 6 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz keymod estándar."
         },
         "5a9d6d21a2750c00137fa649": {
             "Name": "Guía Puente Strike Industries",
             "ShortName": "Puente",
-            "Description": "El sistema de Guía Puente para keymod te permite instalar equipamiento adicional en el guardamanos con la interfaz keymod estándar."
+            "Description": "El sistema de Guía Puente para keymod te permite instalar equipamiento adicional en el guardamano con la interfaz keymod estándar."
         },
         "5a9d6d34a2750c00141e07da": {
             "Name": "Strike Industries TRAX 2",
@@ -12571,9 +12605,9 @@
             "Description": "Gorra de béisbol PMC BEAR"
         },
         "5aa2b89be5b5b0001569311f": {
-            "Name": "Gorra EmerCom",
+            "Name": "Tocado EmerCom",
             "ShortName": "Emercom",
-            "Description": "Gorra del Emergency Committee (EmerCom de la Federación Rusa)"
+            "Description": "Tocado del Ministerio de Control de Emergencias de la Federación Rusa (EmerCom)."
         },
         "5aa2b8d7e5b5b00014028f4a": {
             "Name": "Gorra de policía",
@@ -13163,9 +13197,9 @@
             "Description": "Culata telescópica producida por LMT. Es parte del Sopmod Block 0."
         },
         "5ae30db85acfc408fb139a05": {
-            "Name": "Guardamanos Colt M4 Length para AR-15 y compatibles",
+            "Name": "Guardamano Colt M4 Length para AR-15 y compatibles",
             "ShortName": "M4 Estd.",
-            "Description": "Colt M4 Length es el guardamanos estándar de servicio para M4A1."
+            "Description": "Colt M4 Length es el guardamano estándar de servicio para M4A1."
         },
         "5ae30e795acfc408fb139a0b": {
             "Name": "Mira Frontal Colt M4",
@@ -13298,9 +13332,9 @@
             "Description": "Un cañón de 280 mm de largo para DS Arms SA-58 7.62x51."
         },
         "5b099a9d5acfc47a8607efe7": {
-            "Name": "Guardamanos de riel cuádruple DS Arms para SA-58",
+            "Name": "Guardamano de riel cuádruple DS Arms para SA-58",
             "ShortName": "Riel Cuádruple",
-            "Description": "Guardamanos de riel cuádruple DS Arms para SA-58. Equipado con cuatro monturas para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano de riel cuádruple DS Arms para SA-58. Equipado con cuatro monturas para la instalación adicional de accesorios y dispositivos."
         },
         "5b099ac65acfc400186331e1": {
             "Name": "Cargador de 20-balas 7.62x51 para FAL/SA-58",
@@ -13383,9 +13417,9 @@
             "Description": "Palanca de carga Raptor para AR-15 y sistemas compatibles."
         },
         "5b237e425acfc4771e1be0b6": {
-            "Name": "Guardamanos combinado con bloque de gases de TROY Industries para AK",
+            "Name": "Guardamano combinado con bloque de gases de TROY Industries para AK",
             "ShortName": "TROY Combo",
-            "Description": "Guardamanos combinado con un bloque de gases. Un producto de TROY Industries."
+            "Description": "Guardamano combinado con un bloque de gases. Un producto de TROY Industries."
         },
         "5b2388675acfc4771e1be0be": {
             "Name": "Mira telescópica Burris FullField TAC 30 1-4x24",
@@ -13398,9 +13432,9 @@
             "Description": "Montura universal de 30 mm para miras telescópicas, para ser instalada en rieles Picatinny."
         },
         "5b2cfa535acfc432ff4db7a0": {
-            "Name": "Guardamanos MK 10 para AR-15 y compatibles",
+            "Name": "Guardamano MK 10 para AR-15 y compatibles",
             "ShortName": "MK10 RL",
-            "Description": "Guardamanos ligero Mark 10 producido por \"Alexander Arms\". Hecho con fibra de vidrio G10 y es compatible con la mayoría de carabinas basadas en AR-15."
+            "Description": "Guardamano ligero Mark 10 producido por \"Alexander Arms\". Hecho con fibra de vidrio G10 y es compatible con la mayoría de carabinas basadas en AR-15."
         },
         "5b30ac585acfc433000eb79c": {
             "Name": "Pistolete Magpul MOE para AK",
@@ -13415,12 +13449,12 @@
         "5b30bc165acfc40016387293": {
             "Name": "Guía de 3 pulgadas Alexander Arms",
             "ShortName": "Mk10 3 In.",
-            "Description": "Guía Alexander Arms de 3 pulgadas de largo para Mk 10, te permite instalar equipamiento adicional en el guardamanos."
+            "Description": "Guía Alexander Arms de 3 pulgadas de largo para Mk 10, te permite instalar equipamiento adicional en el guardamano."
         },
         "5b30bc285acfc47a8608615d": {
             "Name": "Guía de 3 pulgadas Alexander Arms",
             "ShortName": "Mk10 10 In.",
-            "Description": "Guía Alexander Arms de 10 pulgadas de largo para Mk 10, te permite instalar equipamiento adicional en el guardamanos."
+            "Description": "Guía Alexander Arms de 10 pulgadas de largo para Mk 10, te permite instalar equipamiento adicional en el guardamano."
         },
         "5b31163c5acfc400153b71cb": {
             "Name": "Montura Sig Sauer para miras de la serie Romeo.",
@@ -13679,7 +13713,7 @@
             "RigLayoutName": "Commando"
         },
         "5b44cad286f77402a54ae7e5": {
-            "Name": "Chaleco porta placas 5.11 Tactec",
+            "Name": "Chaleco portaplacas 5.11 Tactec",
             "ShortName": "Tactec ",
             "Description": "Chaleco táctico con placas balísticas hechas de polietileno (clase 5) y un conjunto de bolsillos para cargadores de fusiles de asalto.",
             "RigLayoutName": "Tactec "
@@ -13712,12 +13746,12 @@
         "5b4736a986f774040571e998": {
             "Name": "Guía Troy QARS de 3.2 pulgadas",
             "ShortName": "QARS 3.2in.",
-            "Description": "Riel Troy QARS de 3.2 pulgadas para guardamanos de Troy industries, permite instalar equipamiento adicional."
+            "Description": "Riel Troy QARS de 3.2 pulgadas para guardamano de Troy industries, permite instalar equipamiento adicional."
         },
         "5b4736b986f77405cb415c10": {
             "Name": "Guía Troy QARS de 4.2 pulgadas",
             "ShortName": "QARS 4.2in.",
-            "Description": "Riel Troy QARS de 4.2 pulgadas para guardamanos de Troy industries, permite instalar equipamiento adicional."
+            "Description": "Riel Troy QARS de 4.2 pulgadas para guardamano de Troy industries, permite instalar equipamiento adicional."
         },
         "5b4c72b386f7745b453af9c0": {
             "Name": "Controlador de Motor",
@@ -13760,59 +13794,59 @@
             "Description": "Un cañón de 533 mm de largo para DS Arms SA-58 7.62x51."
         },
         "5b7be1ca5acfc400170e2d2f": {
-            "Name": "Guardamanos DS Arms de Tamaño Completo con Riel Cuádruple para SA-58",
+            "Name": "Guardamano DS Arms de Tamaño Completo con Riel Cuádruple para SA-58",
             "ShortName": "Riel Cuádruple",
-            "Description": "Guardamanos DS Arms de tamaño completo con riel cuádruple para SA-58. Equipado con 4 monturas para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano DS Arms de tamaño completo con riel cuádruple para SA-58. Equipado con 4 monturas para la instalación adicional de accesorios y dispositivos."
         },
         "5b7be2345acfc400196d524a": {
-            "Name": "Guardamanos Aim Sports Universal KeyMod para FAL",
+            "Name": "Guardamano Aim Sports Universal KeyMod para FAL",
             "ShortName": "Guard. KeyMod",
-            "Description": "Guardamanos Aim Sports Universal KeyMod para FAL equipado con interfaz KeyMod para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Aim Sports Universal KeyMod para FAL equipado con interfaz KeyMod para la instalación adicional de accesorios y dispositivos."
         },
         "5b7be4575acfc400161d0832": {
             "Name": "Guía Vltor CASV de 2 pulgadas",
             "ShortName": "2 in. Vltor",
-            "Description": "El sistema de guía Vltor CASV de 2 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz CASV estándar."
+            "Description": "El sistema de guía Vltor CASV de 2 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz CASV estándar."
         },
         "5b7be4645acfc400170e2dcc": {
             "Name": "Guía Vltor CASV de 4 pulgadas",
             "ShortName": "4 in. Vltor",
-            "Description": "El sistema de guía Vltor CASV de 4 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz CASV estándar."
+            "Description": "El sistema de guía Vltor CASV de 4 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz CASV estándar."
         },
         "5b7be46e5acfc400170e2dcf": {
             "Name": "Guía Vltor CASV de 5 pulgadas",
             "ShortName": "5 in.Vltor",
-            "Description": "El sistema de guía Vltor CASV de 5 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz CASV estándar."
+            "Description": "El sistema de guía Vltor CASV de 5 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz CASV estándar."
         },
         "5b7be47f5acfc400170e2dd2": {
             "Name": "Guía Magpul M-LOK de 2.5 pulgadas",
             "ShortName": "2.5 in. M-LOK",
-            "Description": "El sistema de guía Magpul M-LOK de 2.5 pulgadas te permite instalar equipamiento adicional sobre guardamanos con la interfaz M-LOK estándar."
+            "Description": "El sistema de guía Magpul M-LOK de 2.5 pulgadas te permite instalar equipamiento adicional sobre guardamano con la interfaz M-LOK estándar."
         },
         "5b7be4895acfc400170e2dd5": {
             "Name": "Guía Magpul M-LOK de 4.1 pulgadas",
             "ShortName": "4.1 in. M-LOK",
-            "Description": "El sistema de guía Magpul M-LOK de 4.1 pulgadas te permite instalar equipamiento adicional sobre guardamanos con la interfaz M-LOK estándar."
+            "Description": "El sistema de guía Magpul M-LOK de 4.1 pulgadas te permite instalar equipamiento adicional sobre guardamano con la interfaz M-LOK estándar."
         },
         "5b7bebc85acfc43bca706666": {
-            "Name": "Guardamanos Aim Sports Universal M-LOK para FAL",
+            "Name": "Guardamano Aim Sports Universal M-LOK para FAL",
             "ShortName": "Guard. M-LOK",
-            "Description": "Guardamanos Aim Sports Universal M-LOK para FAL equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Aim Sports Universal M-LOK para FAL equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5b7bed205acfc400161d08cc": {
-            "Name": "Guardamanos Austriaco original para FAL",
+            "Name": "Guardamano Austriaco original para FAL",
             "ShortName": "Guard. FAL",
-            "Description": "Guardamanos Austriaco original para FAL producido por Fabric National"
+            "Description": "Guardamano Austriaco original para FAL producido por Fabric National"
         },
         "5b7bedd75acfc43d825283f9": {
-            "Name": "Guardamanos Vltor CASV FAL para FAL",
+            "Name": "Guardamano Vltor CASV FAL para FAL",
             "ShortName": "Guard. CASV FAL",
-            "Description": "Guardamanos Vltor CASV FAL para FAL equipado con una interfaz CASV para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Vltor CASV FAL para FAL equipado con una interfaz CASV para la instalación de accesorios y dispositivos adicionales."
         },
         "5b7bee755acfc400196d5383": {
-            "Name": "Guardamanos Vltor CASV FAS para FAL",
+            "Name": "Guardamano Vltor CASV FAS para FAL",
             "ShortName": "Guard. CASV FAS",
-            "Description": "Guardamanos Vltor CASV FAS para FAL equipado con una interfaz CASV para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Vltor CASV FAS para FAL equipado con una interfaz CASV para la instalación de accesorios y dispositivos adicionales."
         },
         "5b7bef1e5acfc43d82528402": {
             "Name": "Cargador de 10-balas 7.62x51 para FAL/SA-58",
@@ -13870,9 +13904,9 @@
             "Description": "Culata Humpback de polímero para SA-58, fabricada por DS Arms."
         },
         "5b7d671b5acfc43d82528ddd": {
-            "Name": "Guardamanos DSA estilo Belga para FAL",
+            "Name": "Guardamano DSA estilo Belga para FAL",
             "ShortName": "FAL estilo Belga",
-            "Description": "Guardamanos estilo Belga para el fusil FAL, producido por DS Arms."
+            "Description": "Guardamano estilo Belga para el fusil FAL, producido por DS Arms."
         },
         "5b7d678a5acfc4001a5c4022": {
             "Name": "Pistolete estándar \"DS Arms\" para SA-58",
@@ -13900,34 +13934,34 @@
             "Description": "Cubierta superior estándar para el fusil FAL."
         },
         "5b800e9286f7747a8b04f3ff": {
-            "Name": "Guardamanos Hexagon para AK",
+            "Name": "Guardamano Hexagon para AK",
             "ShortName": "Hex Neg",
-            "Description": "Guardamanos Hexagon para AK."
+            "Description": "Guardamano Hexagon para AK."
         },
         "5b800ebc86f774394e230a90": {
             "Name": "Riel mediano para Hexagon",
             "ShortName": "Hexagon Med",
-            "Description": "El riel mediano para guardamanos Hexagon te permite instalar equipamiento adicional."
+            "Description": "El riel mediano para guardamano Hexagon te permite instalar equipamiento adicional."
         },
         "5b800ed086f7747baf6e2f9e": {
             "Name": "Riel corto para Hexagon",
             "ShortName": "Hex.",
-            "Description": "El riel corto para el guardamanos Hexagon te permite instalar equipamiento adicional."
+            "Description": "El riel corto para el guardamano Hexagon te permite instalar equipamiento adicional."
         },
         "5b80242286f77429445e0b47": {
-            "Name": "Guardamanos Hexagon para AK (Rojo anodizado)",
+            "Name": "Guardamano Hexagon para AK (Rojo anodizado)",
             "ShortName": "Hex rojo",
             "Description": "Guardamano anodizado Hexagon de color rojo para AK. ¡DA RED GOEZ FASTA!"
         },
         "5b84038986f774774913b0c1": {
             "Name": "Riel corto para Hexagon (Rojo anodizado)",
             "ShortName": "Hex.",
-            "Description": "El riel corto para guardamanos Hexagon te permite instalar equipamiento adicional."
+            "Description": "El riel corto para guardamano Hexagon te permite instalar equipamiento adicional."
         },
         "5b8403a086f7747ff856f4e2": {
             "Name": "Riel mediano para Hexagon (Rojo anodizado)",
             "ShortName": "Hex.",
-            "Description": "El riel mediano para guardamanos Hexagon te permite instalar equipamiento adicional."
+            "Description": "El riel mediano para guardamano Hexagon te permite instalar equipamiento adicional."
         },
         "5b86a0e586f7745b600ccb23": {
             "Name": "Silenciador Bramit para fusil Mosin",
@@ -14049,19 +14083,19 @@
             "Description": "Bloque de gases estándar Low Profile para el fusil HK 416A5."
         },
         "5bb20de5d4351e0035629e59": {
-            "Name": "Guardamanos de riel-cuádruple HK para sistemas compatibles con 416",
+            "Name": "Guardamano de riel-cuádruple HK para sistemas compatibles con 416",
             "ShortName": "Riel-Cuádruple",
-            "Description": "Guardamanos de Riel-cuádruple para 416 y compatibles. Viene con cuatro rieles picatinny para acoplar una amplia cantidad de accesorios diferentes. Producido por Heckler and Koch."
+            "Description": "Guardamano de Riel-cuádruple para 416 y compatibles. Viene con cuatro rieles picatinny para acoplar una amplia cantidad de accesorios diferentes. Producido por Heckler and Koch."
         },
         "5bb20df1d4351e00347787d5": {
-            "Name": "Guardamanos de riel-cuádruple HK con MF plegable para compatibles con 416",
+            "Name": "Guardamano de riel-cuádruple HK con MF plegable para compatibles con 416",
             "ShortName": "Cuádruple con mira",
-            "Description": "Guardamanos de Riel-cuádruple para 416 y compatibles. Viene con cuatro rieles picatinny para acoplar una amplia cantidad de accesorios diferentes y con mira frontal plegable. Producido por Heckler and Koch."
+            "Description": "Guardamano de Riel-cuádruple para 416 y compatibles. Viene con cuatro rieles picatinny para acoplar una amplia cantidad de accesorios diferentes y con mira frontal plegable. Producido por Heckler and Koch."
         },
         "5bb20dfcd4351e00334c9e24": {
-            "Name": "Guardamanos extendido de riel-cuádruple HK para sistemas compatibles con 416",
+            "Name": "Guardamano extendido de riel-cuádruple HK para sistemas compatibles con 416",
             "ShortName": "Cuádruple Extd.",
-            "Description": "Guardamanos extendido de riel-cuádruple para 416 y compatibles. Viene con cuatro rieles picatinny para acoplar una amplia cantidad de accesorios diferentes. Producido por Heckler and Koch.\n"
+            "Description": "Guardamano extendido de riel-cuádruple para 416 y compatibles. Viene con cuatro rieles picatinny para acoplar una amplia cantidad de accesorios diferentes. Producido por Heckler and Koch.\n"
         },
         "5bb20e0ed4351e3bac1212dc": {
             "Name": "Pistolete HK Battle Grip con Beavertail para sistemas basados en AR-15",
@@ -14244,9 +14278,9 @@
             "Description": "Culata retráctil estándar para MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
-            "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Name": "Mapa de papel de Intercambio",
+            "ShortName": "Intercambio",
+            "Description": "Mapa detallado de Intercambio."
         },
         "5bead2e00db834001c062938": {
             "Name": "Pala de trinchera MPL-50",
@@ -14279,9 +14313,9 @@
             "Description": "Freno de boca y compensador estándar producido por Izhmash para RPK-16 5.45x39."
         },
         "5beec3e30db8340019619424": {
-            "Name": "Guardamanos estándar Izhmash para RPK-16",
+            "Name": "Guardamano estándar Izhmash para RPK-16",
             "ShortName": "Guard. RPK-16",
-            "Description": "Guardamanos estándar para RPK-16."
+            "Description": "Guardamano estándar para RPK-16."
         },
         "5beec8b20db834001961942a": {
             "Name": "Tubo receptor Izhmash para RPK-16",
@@ -14311,12 +14345,12 @@
         "5beecbb80db834001d2c465e": {
             "Name": "Riel Izhmash RPK-16",
             "ShortName": "Riel RPK-16",
-            "Description": "Riel Izhmash para el guardamanos de la RPK-16, te permite instalar equipamiento adicional."
+            "Description": "Riel Izhmash para el guardamano de la RPK-16, te permite instalar equipamiento adicional."
         },
         "5beed0f50db834001c062b12": {
             "Name": "Ametralladora ligera RPK-16 5.45x39",
             "ShortName": "RPK-16",
-            "Description": "La ametralladora ligera Rusa más moderna - la RPK-16 con recámara para munición 5.45x39 mm. Las características fundamentales de esta arma son - desmontaje rápido de cañones, ergonomía mejorada y rieles weaver tanto en el guardamanos como en la cubierta superior."
+            "Description": "La ametralladora ligera Rusa más moderna - la RPK-16 con recámara para munición 5.45x39 mm. Las características fundamentales de esta arma son - desmontaje rápido de cañones, ergonomía mejorada y rieles weaver tanto en el guardamano como en la cubierta superior."
         },
         "5bf3e03b0db834001d2c4a9c": {
             "Name": "Fusil de asalto AK-74 5.45x39",
@@ -14401,7 +14435,7 @@
         "5bfe86df0db834001b734685": {
             "Name": "Culata Fab Defence GLR-16-S",
             "ShortName": "GLR-16-S",
-            "Description": "Culata telescópica GLR-16-S producida por Fab Defence"
+            "Description": "Culata telescópica GLR-16-S producida por Fab Defence."
         },
         "5bfe89510db834001808a127": {
             "Name": "Tubo receptor Fab Defence para pistolete AGR-870",
@@ -14511,12 +14545,12 @@
         "5c0102aa0db834001b734ba1": {
             "Name": "Guía Remington RAHG de 2 pulgadas",
             "ShortName": "2 in. RAHG",
-            "Description": "La guía Remington RAHG de 2 pulgadas te permite instalar equipamiento adicional en el guardamanos."
+            "Description": "La guía Remington RAHG de 2 pulgadas te permite instalar equipamiento adicional en el guardamano."
         },
         "5c0102b20db834001d23eebc": {
             "Name": "Guía Remington RAHG de 4 pulgadas",
             "ShortName": "4 in. RAHG",
-            "Description": "La guía Remington RAHG de 4 pulgadas te permite instalar equipamiento adicional en el guardamanos."
+            "Description": "La guía Remington RAHG de 4 pulgadas te permite instalar equipamiento adicional en el guardamano."
         },
         "5c010a700db834001d23ef5d": {
             "Name": "Corredera Sig Emperor Scorpion para P226",
@@ -14759,9 +14793,9 @@
             "Description": "Una hielera isotérmica especial con refrigeración eléctrica para almacenar alimentos. La hielera Mr. Holodilnick enfría todo, incluso las cosas que son imposibles de enfriar."
         },
         "5c093e3486f77430cb02e593": {
-            "Name": "Estuche para chapas de identificación",
-            "ShortName": "Chapas",
-            "Description": "Un pequeño estuche para almacenar chapas de identificación"
+            "Name": "Estuche para placa de identificación",
+            "ShortName": "Placas",
+            "Description": "Un pequeño estuche para almacenar placa de identificación"
         },
         "5c0a2cec0db834001b7ce47d": {
             "Name": "Mira Eotech HHS-1 Tan",
@@ -14830,9 +14864,9 @@
             "Description": "Recibidor superior para la carabina ADAR 2-15, fabricado por ADAR. Equipado con una montura para acoplar dispositivos adicionales."
         },
         "5c0e2f5cd174af02a012cfc9": {
-            "Name": "Guardamanos de madera ADAR 2-15 para AR-15 y compatibles",
+            "Name": "Guardamano de madera ADAR 2-15 para AR-15 y compatibles",
             "ShortName": "Guard. 2-15",
-            "Description": "Guardamanos de madera estilo SVD para ADAR 2-15."
+            "Description": "Guardamano de madera estilo SVD para ADAR 2-15."
         },
         "5c0e2f94d174af029f650d56": {
             "Name": "Cañón Molot de 406 mm para AR-15 y compatibles con 5.56x45",
@@ -14879,7 +14913,7 @@
         "5c0e533786f7747fa23f4d47": {
             "Name": "Droga hemostática Zagustin",
             "ShortName": "Zagustin",
-            "Description": "Droga de tipo militar. Inhibe los activadores de profibrinolisina y ralentiza su transformación en fibrinolisina. Detiene temporalmente la hemorragia e incrementa la resistencia a la perdida de sangre. Tiene efectos secundarios. Conduce a una deshidratación severa"
+            "Description": "Droga de tipo militar. Inhibe los activadores de profibrinolisina y ralentiza su transformación en fibrinolisina. Detiene temporalmente la hemorragia e incrementa la resistencia a la pérdida de sangre. Tiene efectos secundarios. Conduce a una deshidratación severa"
         },
         "5c0e534186f7747fa1419867": {
             "Name": "Inyector con estimulante regenerativo eTG-change",
@@ -14939,9 +14973,9 @@
             "RigLayoutName": "ana m1"
         },
         "5c0e746986f7741453628fe5": {
-            "Name": "Chaleco porta placas Wartech TV-110",
+            "Name": "Chaleco portaplacas Wartech TV-110",
             "ShortName": "TV-110",
-            "Description": "Un chaleco porta placas con placas balísticas de acero reforzado (clase 4), las placas solo protegen el pecho y la parte superior de la espalda. Además de estar equipado con un conjunto de bolsillos.",
+            "Description": "Un chaleco portaplacas con placas balísticas de acero reforzado (clase 4), las placas solo protegen el pecho y la parte superior de la espalda. Además de estar equipado con un conjunto de bolsas y portacargadores.",
             "RigLayoutName": "TV-110"
         },
         "5c0e774286f77468413cc5b2": {
@@ -15086,9 +15120,9 @@
             "Description": "Los auriculares activos Peltor Tactical Sport están diseñados para proteger tus oídos."
         },
         "5c17664f2e2216398b5a7e3c": {
-            "Name": "Guardamanos VLTOR CMRD Keymod para AK",
+            "Name": "Guardamano VLTOR CMRD Keymod para AK",
             "ShortName": "CMRD",
-            "Description": "Guardamanos VLTOR CMRD Keymod System de aluminio ligero para AK, con una gran cantidad de ranuras Keymod para la instalación de rieles adicionales."
+            "Description": "Guardamano VLTOR CMRD Keymod System de aluminio ligero para AK, con una gran cantidad de ranuras Keymod para la instalación de rieles adicionales."
         },
         "5c1780312e221602b66cc189": {
             "Name": "Mira trasera plegable KAC Folding",
@@ -15138,37 +15172,37 @@
         "5c1bc4812e22164bef5cfde7": {
             "Name": "Empuñadura Zenit RK-0",
             "ShortName": "RK-0",
-            "Description": "La empuñadura RK-0 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
+            "Description": "La empuñadura RK-0 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
         },
         "5c1bc5612e221602b5429350": {
             "Name": "Empuñadura Zenit RK-1",
             "ShortName": "RK-1",
-            "Description": "La empuñadura RK-1 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
+            "Description": "La empuñadura RK-1 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
         },
         "5c1bc5af2e221602b412949b": {
             "Name": "Empuñadura Zenit RK-2",
             "ShortName": "RK-2",
-            "Description": "La empuñadura RK-2 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
+            "Description": "La empuñadura RK-2 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
         },
         "5c1bc5fb2e221602b1779b32": {
             "Name": "Empuñadura Zenit RK-4",
             "ShortName": "RK-4",
-            "Description": "La empuñadura RK-4 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
+            "Description": "La empuñadura RK-4 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
         },
         "5c1bc7432e221602b412949d": {
             "Name": "Empuñadura Zenit RK-5",
             "ShortName": "RK-5",
-            "Description": "La empuñadura RK-5 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
+            "Description": "La empuñadura RK-5 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
         },
         "5c1bc7752e221602b1779b34": {
             "Name": "Empuñadura Zenit RK-6",
             "ShortName": "RK-6",
-            "Description": "La empuñadura RK-6 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
+            "Description": "La empuñadura RK-6 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar."
         },
         "5c1cd46f2e22164bef5cfedb": {
             "Name": "Empuñadura Zenit RK-1 en una montura B-25U",
             "ShortName": "B-25U RK-1",
-            "Description": "La empuñadura RK-1 puede instalarse en guardamanos que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar. Instalada en una montura B-25U para facilitar el manejo de las ametralladoras ligeras."
+            "Description": "La empuñadura RK-1 puede instalarse en guardamano que tienen riel \"WEAVER\" en la parte inferior. Proporciona mejor control operacional del arma al disparar. Instalada en una montura B-25U para facilitar el manejo de las ametralladoras ligeras."
         },
         "5c1cdd302e221602b3137250": {
             "Name": "Montura Compact Mount para miras",
@@ -15228,7 +15262,7 @@
         "5c3df7d588a4501f290594e5": {
             "Name": "Munición 9x19 mm T gzh Green Tracer",
             "ShortName": "GT",
-            "Description": "Munición de 9x19 mm T gzh Green Tracer (Índice GRAU - 7T4) - Es un cartucho con una bala trazadora de color verde con un núcleo de acero en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate.\n\nUn cartucho con capacidades de trazado desarrollado por TsNIITochMash para los subfusiles rusos de calibre 9x19 mm, a pesar de tener un núcleo de acero y una velocidad de salida promedio en relación con otros cartuchos del mismo calibre, la bala de este cartucho aún tiene dificultades para atravesar protecciones balísticas básicas, sin embargo, puede proporcionar un efecto de parada significativo en el objetivo.",
+            "Description": "Munición de 9x19 mm T gzh Green Tracer (Índice GRAU - 7T4) - Es un cartucho con una bala trazadora con núcleo de acero en un casquillo bimetálico, diseñada para la designación de blancos y para ajustar el fuego durante el combate (Trazado de color: Verde).\n\nUn cartucho con capacidades de trazado desarrollado por TsNIITochMash para los subfusiles rusos de calibre 9x19 mm, a pesar de tener un núcleo de acero y una velocidad de salida promedio en relación con otros cartuchos del mismo calibre, la bala de este cartucho aún tiene dificultades para atravesar protecciones balísticas básicas, sin embargo, puede proporcionar un efecto de parada significativo en el objetivo.",
             "casingName": "9x19 mm Green Tracer"
         },
         "5c46fbd72e2216398b5a8c9c": {
@@ -15277,9 +15311,9 @@
             "Description": "Cargador de acero Izhmash SVD de 10-balas 7.62x54, para fusiles basados en SVD."
         },
         "5c471c6c2e221602b66cd9ae": {
-            "Name": "Guardamanos SVDS de polímero",
+            "Name": "Guardamano SVDS de polímero",
             "ShortName": "G. SVDS",
-            "Description": "Guardamanos SVDS de polímero producido por Izhmash, el cual reemplaza el clásico guardamanos de madera."
+            "Description": "Guardamano SVDS de polímero producido por Izhmash, el cual reemplaza el clásico guardamano de madera."
         },
         "5c471c842e221615214259b5": {
             "Name": "Tubo de gases SVDS",
@@ -15297,9 +15331,9 @@
             "Description": "El fusil MDR es un producto de la compañía estadounidense Desert Tech LLC, es un arma modular, multi-calibre y tiene un diseño bullpup compacto. Los cañones de calibres y longitudes diferentes pueden ser cambiados por el usuario final en cuestión de minutos utilizando una mínima cantidad de herramientas. "
         },
         "5c48a14f2e2216152006edd7": {
-            "Name": "Guardamanos Desert Tech para MDR",
+            "Name": "Guardamano Desert Tech para MDR",
             "ShortName": "Guard. MDR",
-            "Description": "Guardamanos Desert Tech para MDR, equipado con interfaz M-LOK para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Desert Tech para MDR, equipado con interfaz M-LOK para la instalación de accesorios y dispositivos adicionales."
         },
         "5c48a2852e221602b21d5923": {
             "Name": "Cañón de 406 mm para MDR y compatibles con 5.56x45",
@@ -15377,9 +15411,9 @@
             "Description": "El Zenit Perst-3 es un dispositivo táctico que combina un designador láser visible e infrarrojo con una linterna infrarroja."
         },
         "5c59529a2e221602b177d160": {
-            "Name": "Guardamanos Lancer OEM 14 inch M-LOK para MPX",
+            "Name": "Guardamano Lancer OEM 14 inch M-LOK para MPX",
             "ShortName": "OEM 14 inch",
-            "Description": "Guardamanos Lancer OEM de 14 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Lancer OEM de 14 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c5970672e221602b21d7855": {
             "Name": "Cargador de 35-balas 7.62x39 ProMag AALVX 35 para SKS",
@@ -15407,24 +15441,24 @@
             "Description": "Cañón de 14 pulgadas de largo para armas basadas en MPX con recámara para munición 9x19. "
         },
         "5c5db5f22e2216000e5e47e8": {
-            "Name": "Guardamanos Midwest 4.5 inch M-LOK para MPX",
+            "Name": "Guardamano Midwest 4.5 inch M-LOK para MPX",
             "ShortName": "Midwest 4.5 inch",
-            "Description": "Guardamanos Midwest de 4.5 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Midwest de 4.5 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c5db5fc2e2216000f1b2842": {
-            "Name": "Guardamanos Midwest 6.5 inch M-LOK para MPX",
+            "Name": "Guardamano Midwest 6.5 inch M-LOK para MPX",
             "ShortName": "Midwest 6.5 inch",
-            "Description": "Guardamanos Midwest de 6.5 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Midwest de 6.5 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c5db6302e2216000e5e47f0": {
-            "Name": "Guardamanos Midwest 10.5 inch M-LOK para MPX",
+            "Name": "Guardamano Midwest 10.5 inch M-LOK para MPX",
             "ShortName": "Midwest 10.5 inch",
-            "Description": "Guardamanos Midwest de 10.5 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Midwest de 10.5 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c5db63a2e2216000f1b284a": {
-            "Name": "Guardamanos Midwest 14 inch M-LOK para MPX",
+            "Name": "Guardamano Midwest 14 inch M-LOK para MPX",
             "ShortName": "Midwest 14 inch",
-            "Description": "Guardamanos Midwest de 14 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Midwest de 14 pulgadas de largo para MPX, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c5db6552e2216001026119d": {
             "Name": "Cargador estándar de 20-balas 9x19 para MPX",
@@ -15482,9 +15516,9 @@
             "Description": "Cargador ProMag de polímero de 73-balas para munición 7.62x39, para AKM y sistemas compatibles."
         },
         "5c617a5f2e2216000f1e81b3": {
-            "Name": "Guardamanos Zenit B-10 para AK",
+            "Name": "Guardamano Zenit B-10 para AK",
             "ShortName": "B-10",
-            "Description": "El guardamanos B-10 es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar del guardamanos estándar de AK. Viene equipado con monturas de riel Picatinny en dos lados, permitiendo la instalación de equipo adicional (empuñaduras tácticas, linternas, designadores láser)."
+            "Description": "El guardamano B-10 es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar del guardamano estándar de AK. Viene equipado con monturas de riel Picatinny en dos lados, permitiendo la instalación de equipo adicional (empuñaduras tácticas, linternas, designadores láser)."
         },
         "5c61a40d2e2216001403158d": {
             "Name": "Plataforma de riel B-13",
@@ -15507,29 +15541,29 @@
             "Description": "Pistolete ligero para AK, producido por US Palm. "
         },
         "5c6c2c9c2e2216000f2002e4": {
-            "Name": "Guardamanos Troy Industries 13\" M-LOK para 416A5",
+            "Name": "Guardamano Troy Industries 13\" M-LOK para 416A5",
             "ShortName": "Troy M-LOK",
-            "Description": "Guardamanos Troy Industries M-LOK de fibra de carbono para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Troy Industries M-LOK de fibra de carbono para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c6d10e82e221601da357b07": {
-            "Name": "Guardamanos HK MRS 14\" keymod para 416A5",
+            "Name": "Guardamano HK MRS 14\" keymod para 416A5",
             "ShortName": "HK Keymod",
-            "Description": "Guardamanos HK MRS keymod para 416A5, equipado con interfaz keymod para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano HK MRS keymod para 416A5, equipado con interfaz keymod para la instalación adicional de accesorios y dispositivos."
         },
         "5c6d10fa2e221600106f3f23": {
-            "Name": "Guardamanos Midwest 9\" M-LOK para 416A5",
+            "Name": "Guardamano Midwest 9\" M-LOK para 416A5",
             "ShortName": "Midwest M-LOK",
-            "Description": "Guardamanos Midwest M-LOK para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Midwest M-LOK para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c6d11072e2216000e69d2e4": {
-            "Name": "Guardamanos Midwest 13.5\" M-LOK para 416A5",
+            "Name": "Guardamano Midwest 13.5\" M-LOK para 416A5",
             "ShortName": "Midwest M-LOK",
-            "Description": "Guardamanos Midwest M-LOK para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Midwest M-LOK para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c6d11152e2216000f2003e7": {
-            "Name": "Guardamanos Strike Industries CRUX 15\" M-LOK para 416A5",
+            "Name": "Guardamano Strike Industries CRUX 15\" M-LOK para 416A5",
             "ShortName": "Guard. CRUX",
-            "Description": "Guardamanos Strike Industries CRUX para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Strike Industries CRUX para 416A5, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c6d42cb2e2216000e69d7d1": {
             "Name": "Cargador de 30-balas 5.56x45 HK Polymer mag 30 STANAG",
@@ -15547,9 +15581,9 @@
             "Description": "Cargador de polímero TROY Battlemag de 30-balas para munición 5.56x45."
         },
         "5c6d5d8b2e221644fc630b39": {
-            "Name": "Guardamanos Stngr Vypr 10\" M-LOK para AR15",
+            "Name": "Guardamano Stngr Vypr 10\" M-LOK para AR15",
             "ShortName": "Stngr Vypr",
-            "Description": "Guardamanos Stngr Vypr para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Stngr Vypr para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c6d710d2e22165df16b81e7": {
             "Name": "Reductor de fogonazo Surefire WarComp 5.56x45 para AR-15",
@@ -15567,29 +15601,29 @@
             "Description": "Un cañón de 264 mm de largo para armas basadas en 416 de munición 5.56x45 OTAN. "
         },
         "5c78f2492e221600114c9f04": {
-            "Name": "Guardamanos SAI 14.5\" QD Rail para AR-15",
+            "Name": "Guardamano SAI 14.5\" QD Rail para AR-15",
             "ShortName": "SAI QD Rail",
-            "Description": "Guardamanos Salinet Arms QD Rail para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Salinet Arms QD Rail para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c78f2612e221600114c9f0d": {
-            "Name": "Guardamanos SAI 10\" QD Rail para AR-15",
+            "Name": "Guardamano SAI 10\" QD Rail para AR-15",
             "ShortName": "SAI QD Rail",
-            "Description": "Guardamanos Salinet Arms QD Rail para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Salinet Arms QD Rail para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c78f26f2e221601da3581d1": {
-            "Name": "Guardamanos Magpul MOE SL tamaño mediano M-LOK para AR-15",
+            "Name": "Guardamano Magpul MOE SL tamaño mediano M-LOK para AR-15",
             "ShortName": "MOE SL",
-            "Description": "Guardamanos Magpul MOE SL para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Magpul MOE SL para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c78f2792e221600106f4683": {
-            "Name": "Guardamanos Magpul MOE SL tamaño carabina M-LOK para AR-15",
+            "Name": "Guardamano Magpul MOE SL tamaño carabina M-LOK para AR-15",
             "ShortName": "MOE SL",
-            "Description": "Guardamanos Magpul MOE SL para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Magpul MOE SL para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5c78f2882e22165df16b832e": {
             "Name": "SAI Jail Break 5.56x45 para AR-15",
             "ShortName": "Jail Break",
-            "Description": "Bocacha Jail Break fabricada por Salient Arms. Solo puede ser instalada en guardamanos de Salient Arms."
+            "Description": "Bocacha Jail Break fabricada por Salient Arms. Solo puede ser instalada en guardamano de Salient Arms."
         },
         "5c791e872e2216001219c40a": {
             "Name": "Empuñadura táctica SI \"Cobra tactical\"",
@@ -15728,29 +15762,29 @@
             "Description": "Culata estándar de fusil Mosin personalizada para ser utilizada en las escopetas TOZ-106. Fue creada mediante el uso de antigua magia negra rusa llamada \"Napiling\"."
         },
         "5c9a07572e221644f31c4b32": {
-            "Name": "Guardamanos Magpul Zhukov-U (Negro) para AK",
+            "Name": "Guardamano Magpul Zhukov-U (Negro) para AK",
             "ShortName": "Zhukov-U",
-            "Description": "El Guardamanos Magpul Zhukov-U se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul Zhukov-U se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "5c9a1c3a2e2216000e69fb6a": {
-            "Name": "Guardamanos Magpul Zhukov-U (FDE) para AK",
+            "Name": "Guardamano Magpul Zhukov-U (FDE) para AK",
             "ShortName": "Zhukov-U",
-            "Description": "El Guardamanos Magpul Zhukov-U se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul Zhukov-U se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "5c9a1c422e221600106f69f0": {
-            "Name": "Guardamanos Magpul Zhukov-U (Ciruela) para AK",
+            "Name": "Guardamano Magpul Zhukov-U (Ciruela) para AK",
             "ShortName": "Zhukov-U",
-            "Description": "El Guardamanos Magpul Zhukov-U se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El Guardamano Magpul Zhukov-U se instala en sistemas de armas compatibles AKM/AK-74. Equipado con monturas licenciadas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "5c9a25172e2216000f20314e": {
-            "Name": "Guardamanos Daniel Defence RIS II 12.25 para sistemas compatibles con AR-15",
+            "Name": "Guardamano Daniel Defence RIS II 12.25 para sistemas compatibles con AR-15",
             "ShortName": "RIS II 12.25 FDE",
-            "Description": "El guardamanos Daniel Defence RIS II 12.25 es una parte del programa SOPMOD Block II para reemplazar los guardamanos estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamanos es incompatible con el lanzagranadas M203 UBGL."
+            "Description": "El guardamano Daniel Defence RIS II 12.25 es una parte del programa SOPMOD Block II para reemplazar los guardamano estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamano es incompatible con el lanzagranadas M203 UBGL."
         },
         "5c9a26332e2216001219ea70": {
-            "Name": "Guardamanos Daniel Defence RIS II FSP 9.5 para sistemas compatibles con AR-15",
+            "Name": "Guardamano Daniel Defence RIS II FSP 9.5 para sistemas compatibles con AR-15",
             "ShortName": "RIS II FSP 9.5 FDE",
-            "Description": "El guardamanos Daniel Defence RIS II FSP 9.5 es una parte del programa SOPMOD Block II para reemplazar los guardamanos estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamanos es incompatible con el lanzagranadas M203 UBGL."
+            "Description": "El guardamano Daniel Defence RIS II FSP 9.5 es una parte del programa SOPMOD Block II para reemplazar los guardamano estándar M4CQBR o el MK18 del servicio US SOCOM. Fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales. Este guardamano es incompatible con el lanzagranadas M203 UBGL."
         },
         "5ca20abf86f77418567a43f2": {
             "Name": "Arnés de Pecho Triton M43-A",
@@ -15882,14 +15916,14 @@
             "Description": "Supresor táctico fabricado por CKIB para el fusil de asalto ASh-12 12.7x55."
         },
         "5cbda392ae92155f3c17c39f": {
-            "Name": "Guardamanos de polímero para la serie AK-100",
+            "Name": "Guardamano de polímero para la serie AK-100",
             "ShortName": "Pol. AK",
-            "Description": "Guardamanos de polímero para fusiles de asalto de la serie AK-100, el cual es una versión mejorada del guardamanos de polímero del AK74M, producido por Izhmash."
+            "Description": "Guardamano de polímero para fusiles de asalto de la serie AK-100, el cual es una versión mejorada del guardamano de polímero del AK74M, producido por Izhmash."
         },
         "5cbda9f4ae9215000e5b9bfc": {
-            "Name": "Guardamanos de polímero (6P20 Sb.9) color ciruela para AK-74",
+            "Name": "Guardamano de polímero (6P20 Sb.9) color ciruela para AK-74",
             "ShortName": "6P20 Sb.9 Ciruela",
-            "Description": "Guardamanos de polímero producido por Izhmash para AK-74, hecho de polímero pigmentado, en este caso de color ciruela."
+            "Description": "Guardamano de polímero producido por Izhmash para AK-74, hecho de polímero pigmentado, en este caso de color ciruela."
         },
         "5cbdaf89ae9215000e5b9c94": {
             "Name": "Cargador de 30-balas 5.45x39 6L23 color ciruela para AK-74 y compatibles",
@@ -15969,7 +16003,7 @@
         "5cc7015ae4a949001152b4c6": {
             "Name": "Riel superior FN para el recibidor superior estándar de P90",
             "ShortName": "Riel FN sup.",
-            "Description": "El sistema de guía Vltor CASV de 2 pulgadas te permite instalar equipamiento adicional en el guardamanos con la interfaz CASV estándar."
+            "Description": "El sistema de guía Vltor CASV de 2 pulgadas te permite instalar equipamiento adicional en el guardamano con la interfaz CASV estándar."
         },
         "5cc701aae4a949000e1ea45c": {
             "Name": "Cañón de 10.5\" para P90 5.7x28",
@@ -15984,31 +16018,31 @@
         "5cc80f38e4a949001152b560": {
             "Name": "Munición 5.7x28 mm SS190",
             "ShortName": "SS190",
-            "Description": "La munición SS190 “Duty” se constituye de un proyectil con núcleo de aluminio, esta munición es clasificada de bajo riesgo, ya que está diseñada para evitar daños colaterales por sobre-penetración.",
+            "Description": "Munición de 5.7x28 mm FN SS190 - Es un cartucho con una bala antiblindaje de 2 gramos con una punta penetradora de acero sobre un núcleo de aluminio y con encamisado de cobre reforzado, en un casquillo de latón.\n\nGracias a su velocidad de salida y diseño, este cartucho tiene capacidades para atravesar protecciones balísticas corporales básicas y otorga excelentes resultados ante modelos de protección intermedia, sin embargo, debido a su diseño, posee una alta probabilidad de rebote en diversas superficies.",
             "casingName": "5.7x28 mm SS190"
         },
         "5cc80f53e4a949000e1ea4f8": {
             "Name": "Munición 5.7x28 mm L191",
             "ShortName": "L191",
-            "Description": "Munición con bala trazadora, permite detectar la trayectoria de la bala de manera eficiente en condiciones de baja iluminación.",
+            "Description": "Munición de 5.7x28 mm FN L191 - Es un cartucho con una bala trazadora antiblindaje de 2.1 gramos con una punta penetradora de acero sobre un núcleo de aluminio y con encamisado de cobre reforzado, en un casquillo de latón, diseñada para la designación de blancos y para ajustar el fuego durante el combate (Trazado de color: Rojo).\n\nEste cartucho se diseñó para proporcionar capacidades de trazado a los subfusiles de calibre 5.7x28 mm durante el fuego automático, concretamente al subfusil FN P90 en conjunción con el cartucho 5.7x28 mm FN SS190, además de ser capaz para atravesar protecciones balísticas corporales básicas así como algunos modelos intermedios sin embargo, debido a su diseño, posee una alta probabilidad de rebote en diversas superficies.",
             "casingName": "5.7x28 mm L191"
         },
         "5cc80f67e4a949035e43bbba": {
             "Name": "Munición 5.7x28 mm SB193",
             "ShortName": "SB193",
-            "Description": "Bala 5.7x28 subsónica diseñada para ser utilizada en armas con supresor.",
+            "Description": "Munición de 5.7x28 mm FN SB193 - Es un cartucho con una bala subsónica de 4 gramos con un núcleo de plomo con encamisado de cobre reforzado, en un casquillo de latón con carga de pólvora reducida.\n\nLa carga de pólvora en este cartucho está ajustada para asegurar el ciclo del arma cuando se utiliza en la pistola FN Five-seveN y el subfusil FN P90, logrando una excelente reducción del sonido al usarse junto con un supresor, y a pesar de su baja velocidad de salida, la bala cuenta con capacidades balísticas para atravesar protecciones balísticas corporales básicas y otorga excelentes resultados ante modelos de protección intermedia.",
             "casingName": "5.7x28 mm SB193"
         },
         "5cc80f79e4a949033c7343b2": {
             "Name": "Munición 5.7x28 mm SS198LF",
             "ShortName": "SS198LF",
-            "Description": "Esta es una munición restringida para la población civil, se constituye de un proyectil de punta hueca con núcleo de aluminio, esta munición es libre de plomo (Lead Free) y es marcada de color verde en la punta.",
+            "Description": "Munición de 5.7x28 mm FN SS198LF - Es un cartucho con una bala de punta abierta de 1.8 gramos con un núcleo de aluminio y con encamisado de cobre, en un casquillo de latón.\n\nEste cartucho fue diseñado para ser usado por fuerzas policiales, alcanzando velocidades de salida superiores en comparación a otros cartuchos del mismo calibre y proporcionando un poder de parada significativo, aunque su propio diseño reduce sus capacidades para atravesar hasta las protecciones balísticas corporales más básicas.",
             "casingName": "5.7x28 mm SS198LF"
         },
         "5cc80f8fe4a949033b0224a2": {
             "Name": "Munición 5.7x28 mm SS197SR",
             "ShortName": "SS197SR",
-            "Description": "Esta munición deportiva se constituye de un proyectil con núcleo de plomo y una punta de polímero.",
+            "Description": "Munición de 5.7x28 mm FN SS197SR - Es un cartucho con una bala expansiva de 2.6 gramos con un núcleo de plomo encamisado de cobre y con una punta balística de polímero, en un casquillo de latón.\n\nEsta bala cuenta con una punta balística que funciona como cuña en el núcleo de plomo al impactar, permitiendo que la bala se expanda y cause un daño significativo en el objetivo, y a pesar de la particularidad de su diseño y su baja velocidad en comparación con otros cartuchos de su calibre, es capaz para atravesar protecciones balísticas corporales básicas.",
             "casingName": "5.7x28 mm SS197SR"
         },
         "5cc82796e24e8d000f5859a8": {
@@ -16024,13 +16058,13 @@
         "5cc86832d7f00c000d3a6e6c": {
             "Name": "Munición 5.7x28 mm R37.F",
             "ShortName": "R37.F",
-            "Description": "La munición de nueva generación FN 57 Defense Ammo de R&R Weapon Systems: R37.F. Esta munición FN 57 Defense Ammo tiene un perfil balístico superior, alcanzando velocidades desde 2100/fps hasta 2400/fps. El desempeño balístico del proyectil R37.F es único, ya que al impactar se fragmenta en tres afilados pétalos los cuales pueden penetrar entre 5 a 7 pulgadas, mientras que la base del proyectil puede seguir penetrando entre 15 a 17 pulgadas después de haber atravesado 4 capas de tela de mezclilla.\n\nEsta munición FN 57 Defense Ammo se compone de una bala de 37 gramos de cobre con una punta hueca de fragmentación. Se fabrica con maquinaria CNC y con cobre 99.5% monolítico. El proyectil tiene una punta que se fragmenta/expande de forma violenta y una base perforante. El nivel de penetración de la base es de entre 15 a 17 pulgadas, mientras que los pétalos pueden penetrar entre 5 a 7 pulgadas de gel balístico después de haber atravesado 4 capas de tela de mezclilla. Si lo que buscas es una de las municiones más devastadoras disponibles de FN 57 Defence Ammo para la pistola FN 5.7 o para el subfusil PS90, la has encontrado.",
+            "Description": "Munición de 5.7x28 mm FN R37.F - Es un cartucho con una bala de punta hueca de 2.4 gramos hecha completamente de cobre, en un casquillo de latón.\n\nLa bala está diseñada para fragmentarse al impactar, convirtiendo la punta de la bala en tres afiladas flechas con forma de pétalo, otorgando un poder de parada sobresaliente además de causar efectos negativos sustanciales al objetivo tras impactar, a costa de capacidades de penetración, incluso ante protección balística básica.",
             "casingName": "5.7x28 mm R37.F"
         },
         "5cc86840d7f00c002412c56c": {
             "Name": "Munición 5.7x28 mm R37.X",
             "ShortName": "R37.X",
-            "Description": "La munición de nueva generación FN 57 Defense Ammo de R&R Weapon Systems: R37.X. Esta munición FN 57 Defense Ammo tiene un perfil balístico superior, alcanzando velocidades desde 2100/fps hasta 2400/fps. El desempeño balístico del proyectil R37.X es único, ya que al impactar se fragmenta en tres afiladas flechas en forma de pétalo, las cuales pueden penetrar entre 12 a 15 pulgadas después de haber atravesado 4 capas de tela de mezclilla.\n\nEsta munición FN 57 Defense Ammo se compone de una bala expansiva de 37 gramos de cobre con punta hueca. Se fabrica con maquinaria CNC y con cobre 99.5% monolítico. El proyectil tiene una punta que se expande al impactar para infligir un daño severo al objetivo. Si lo que buscas es una de las municiones más devastadoras disponibles de FN 57 Defence Ammo para la pistola FN 5.7 o para el subfusil PS90, la has encontrado.",
+            "Description": "Munición de 5.7x28 mm FN R37.X - Es un cartucho con una bala de punta abierta de 2.4 gramos hecha completamente de cobre, en un casquillo de latón.\n\nLa bala está diseñada para expandirse al impactar, convirtiendo la punta de la bala en una afilada estrella de tres puntas con forma de pétalo, otorgando un considerable poder de parada además de causar efectos negativos sustanciales al objetivo tras impactar, a costa de capacidades de penetración, incluso ante protección balística básica.",
             "casingName": "5.7x28 mm R37.X"
         },
         "5cc9a96cd7f00c011c04e04a": {
@@ -16074,9 +16108,9 @@
             "Description": "Empuñadura vertical para el fusil de asalto ASh-12."
         },
         "5cdaa99dd7f00c002412d0b2": {
-            "Name": "Guardamanos de polímero para ASh-12",
+            "Name": "Guardamano de polímero para ASh-12",
             "ShortName": "Guard. ASh-12",
-            "Description": "Guardamanos de polímero para el fusil de asalto ASh-12, producido por CKIB."
+            "Description": "Guardamano de polímero para el fusil de asalto ASh-12, producido por CKIB."
         },
         "5cdd7685d7f00c000f260ed2": {
             "Name": "Freno de boca Keeno Arms SHREWD 7.62x51 para AR-10",
@@ -16099,9 +16133,9 @@
             "Description": "Adaptador plegable para instalar tubos receptores de culatas telescópicas en el Kit MOD X para el fusil de francotirador M700."
         },
         "5cde7afdd7f00c000d36b89d": {
-            "Name": "Guardamanos A*B Arms MOD X Gen.3 keymod para M700",
+            "Name": "Guardamano A*B Arms MOD X Gen.3 keymod para M700",
             "ShortName": "MOD X",
-            "Description": "El guardamanos A*B Arms MOD X Gen.3 keymod para el fusil M700, está equipado con interfaz keymod para la instalación adicional de accesorios y dispositivos."
+            "Description": "El guardamano A*B Arms MOD X Gen.3 keymod para el fusil M700, está equipado con interfaz keymod para la instalación adicional de accesorios y dispositivos."
         },
         "5cde7b43d7f00c000d36b93e": {
             "Name": "Montura A*B Arms MOD X para M700",
@@ -16200,9 +16234,9 @@
             "Description": "Culata Archangel de polímero para el fusil de francotirador Remington Model 700."
         },
         "5cf4e3f3d7f00c06595bc7f0": {
-            "Name": "Guardamanos 5.45 Design \"Aggressor\" para AK",
+            "Name": "Guardamano 5.45 Design \"Aggressor\" para AK",
             "ShortName": "Aggressor",
-            "Description": "“Aggressor” es un guardamanos con rieles fabricado por 5.45 Design para la serie de fusiles AK."
+            "Description": "“Aggressor” es un guardamano con rieles fabricado por 5.45 Design para la serie de fusiles AK."
         },
         "5cf4fb76d7f00c065703d3ac": {
             "Name": "Empuñadura táctica RTM Pillau",
@@ -16245,9 +16279,9 @@
             "Description": "Protector ocular de goma para la mira telescópica USP-1"
         },
         "5cf656f2d7f00c06585fb6eb": {
-            "Name": "Guardamanos VS-24 combinado con bloque de gases VS-33c para AK",
+            "Name": "Guardamano VS-24 combinado con bloque de gases VS-33c para AK",
             "ShortName": "Combo VS",
-            "Description": "Un guardamanos VS-24 combinado con el bloque de gases VS-33c. Producido por VS para AK."
+            "Description": "Un guardamano VS-24 combinado con el bloque de gases VS-33c. Producido por VS para AK."
         },
         "5cf67a1bd7f00c06585fb6f3": {
             "Name": "Adaptador de rosca Weapon Tuning para fusil Mosin",
@@ -16320,9 +16354,9 @@
             "Description": "Cinta de munición para 100-balas"
         },
         "5d00e0cbd7ad1a6c6566a42d": {
-            "Name": "Guardamanos Strike Industries Viper Carbine Length M-LOK para AR-15",
+            "Name": "Guardamano Strike Industries Viper Carbine Length M-LOK para AR-15",
             "ShortName": "Viper",
-            "Description": "Guardamanos Strike Industries Viper para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Strike Industries Viper para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5d00ec68d7ad1a04a067e5be": {
             "Name": "Bloque de gases JP Enterprises Gas System-5b para AR-15",
@@ -16330,24 +16364,24 @@
             "Description": "Un bloque de gases de bajo perfil, el cual puede ser instalado en armas basadas en el AR-15 estándar."
         },
         "5d00ede1d7ad1a0940739a76": {
-            "Name": "Guardamanos Noveske SWS N6 de 10.5 pulgadas para sistemas compatibles con AR-10",
+            "Name": "Guardamano Noveske SWS N6 de 10.5 pulgadas para sistemas compatibles con AR-10",
             "ShortName": "N6 10.5\"",
-            "Description": "Guardamanos Noveske SWS N6 de 10.5 pulgadas fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Noveske SWS N6 de 10.5 pulgadas fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales."
         },
         "5d00ef6dd7ad1a0940739b16": {
-            "Name": "Guardamanos Noveske SWS N6 Split para sistemas compatibles con AR-10",
+            "Name": "Guardamano Noveske SWS N6 Split para sistemas compatibles con AR-10",
             "ShortName": "N6 Split",
-            "Description": "Guardamanos Noveske SWS N6 Split fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Noveske SWS N6 Split fabricado con una aleación ligera pero resistente de aluminio aeroespacial. Equipado con 4 monturas para la instalación de accesorios y dispositivos adicionales."
         },
         "5d00f63bd7ad1a59283b1c1e": {
-            "Name": "Guardamanos Strike Industries Viper Carbine Length M-LOK para AR-15",
+            "Name": "Guardamano Strike Industries Viper Carbine Length M-LOK para AR-15",
             "ShortName": "Viper",
-            "Description": "Guardamanos Strike Industries Viper para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Strike Industries Viper para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5d010d1cd7ad1a59283b1ce7": {
-            "Name": "Guardamanos CAA HX-5 para MP5",
+            "Name": "Guardamano CAA HX-5 para MP5",
             "ShortName": "HX-5",
-            "Description": "Guardamanos HX-5 para el subfusil MP5, equipado con 5 monturas de riel para la instalación de dispositivos adicionales, producido por CAA."
+            "Description": "Guardamano HX-5 para el subfusil MP5, equipado con 5 monturas de riel para la instalación de dispositivos adicionales, producido por CAA."
         },
         "5d0236dad7ad1a0940739d29": {
             "Name": "Culata Fab Defence UAS para SKS",
@@ -16485,49 +16519,49 @@
             "Description": "Cantonera pequeña Double Star para culatas de la serie ACE."
         },
         "5d122e7bd7ad1a07102d6d7f": {
-            "Name": "Guardamanos URX 3.1 10.75\" para AR-15",
+            "Name": "Guardamano URX 3.1 10.75\" para AR-15",
             "ShortName": "URX 3.1 10.75\"",
-            "Description": "Guardamanos Knights Armament URX 3.1 de 10.75 pulgadas para AR-15 equipado con una interfaz única para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Knights Armament URX 3.1 de 10.75 pulgadas para AR-15 equipado con una interfaz única para la instalación adicional de accesorios y dispositivos."
         },
         "5d123102d7ad1a004e475fe5": {
-            "Name": "Guardamanos URX 3 8\" para AR-15",
+            "Name": "Guardamano URX 3 8\" para AR-15",
             "ShortName": "URX 3 8\"",
-            "Description": "Guardamanos Knights Armament URX 3 de 8 pulgadas para AR-15 equipado con una interfaz única para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Knights Armament URX 3 de 8 pulgadas para AR-15 equipado con una interfaz única para la instalación adicional de accesorios y dispositivos."
         },
         "5d123a3cd7ad1a004e476058": {
             "Name": "Panel KAC corto para URX 3/3.1",
             "ShortName": "KAC Corto",
-            "Description": "Panel corto cubre rieles para los guardamanos URX 3 y URX 3.1, fabricado por Knights Armament."
+            "Description": "Panel corto cubre rieles para los guardamano URX 3 y URX 3.1, fabricado por Knights Armament."
         },
         "5d123b70d7ad1a0ee35e0754": {
             "Name": "Panel KAC largo para URX 3/3.1",
             "ShortName": "KAC Largo",
-            "Description": "Panel largo cubre rieles para los guardamanos URX 3 y URX 3.1, fabricado por Knights Armament."
+            "Description": "Panel largo cubre rieles para los guardamano URX 3 y URX 3.1, fabricado por Knights Armament."
         },
         "5d123b7dd7ad1a004f01b262": {
             "Name": "Panel KAC con tope para URX 3/3.1",
             "ShortName": "KAC Tope",
-            "Description": "Panel cubre rieles con tope para los guardamanos URX 3 y URX 3.1, fabricado por Knights Armament."
+            "Description": "Panel cubre rieles con tope para los guardamano URX 3 y URX 3.1, fabricado por Knights Armament."
         },
         "5d124c01d7ad1a115c7d59fb": {
             "Name": "Panel KAC corto FDE para URX 3/3.1",
             "ShortName": "KAC Corto",
-            "Description": "Panel corto cubre rieles para los guardamanos URX 3 y URX 3.1, fabricado por Knights Armament."
+            "Description": "Panel corto cubre rieles para los guardamano URX 3 y URX 3.1, fabricado por Knights Armament."
         },
         "5d124c0ed7ad1a10d168dd9b": {
             "Name": "Panel KAC largo FDE para URX 3/3.1",
             "ShortName": "KAC Largo",
-            "Description": "Panel largo cubre rieles para los guardamanos URX 3 y URX 3.1, fabricado por Knights Armament."
+            "Description": "Panel largo cubre rieles para los guardamano URX 3 y URX 3.1, fabricado por Knights Armament."
         },
         "5d124c1ad7ad1a12227c53a7": {
             "Name": "Panel KAC con tope FDE para URX 3/3.1",
             "ShortName": "KAC Tope",
-            "Description": "Panel cubre rieles con tope para los guardamanos URX 3 y URX 3.1, fabricado por Knights Armament."
+            "Description": "Panel cubre rieles con tope para los guardamano URX 3 y URX 3.1, fabricado por Knights Armament."
         },
         "5d133067d7ad1a33013f95b4": {
             "Name": "Guía KAC URX de 3\"",
             "ShortName": "3\" URX",
-            "Description": "El sistema de guía KAC de 3 pulgadas para URX te permite instalar equipamiento adicional en los guardamanos con la interfaz KAC estándar."
+            "Description": "El sistema de guía KAC de 3 pulgadas para URX te permite instalar equipamiento adicional en los guardamano con la interfaz KAC estándar."
         },
         "5d1340b3d7ad1a0b52682ed7": {
             "Name": "Cargador de 30-balas 5.56x45 PMAG GEN M3 30 STANAG",
@@ -16555,9 +16589,9 @@
             "Description": "Culata de remplazo tipo \"Drop-in\" para carabinas AR15/M16 por Magpul Original Equipment. Utiliza tubos de extensión con estándar Mil-spec. El perfil de la culata evita que se enganche y protege el pasador para evitar una activación accidental, incluye una fina cantonera de goma de 0.30 pulgadas para evitar el deslizamiento, incluso con chaleco antibalas o chaleco táctico."
         },
         "5d15ce51d7ad1a1eff619092": {
-            "Name": "Guardamanos Alfa Arms Goliaf para AKS-74U",
+            "Name": "Guardamano Alfa Arms Goliaf para AKS-74U",
             "ShortName": "Goliaf",
-            "Description": "El guardamanos es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar del guardamanos estándar de el AKS-74U. Viene equipado con monturas de riel Picatinny en tres lados, permitiendo la instalación de equipo adicional (empuñaduras tácticas, linternas, designadores láser)."
+            "Description": "El guardamano es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar del guardamano estándar de el AKS-74U. Viene equipado con monturas de riel Picatinny en tres lados, permitiendo la instalación de equipo adicional (empuñaduras tácticas, linternas, designadores láser)."
         },
         "5d15cf3bd7ad1a67e71518b2": {
             "Name": "Pistolete Magpul MOE (FDE) para AR-15",
@@ -16565,14 +16599,14 @@
             "Description": "El pistolete de polímero Magpul MOE (Magpul Original Equipment) puede instalarse en cualquier arma compatible con pistoletes de AR-15. Gracias a su forma ergonómica y textura antideslizante, hace más cómodo el agarre y el control del arma. Dentro del pistolete hay espacio libre para piezas de repuesto, herramientas, kit de accesorios o baterías."
         },
         "5d19cd96d7ad1a4a992c9f52": {
-            "Name": "Guardamanos PTR Tri-Rail para MP5",
+            "Name": "Guardamano PTR Tri-Rail para MP5",
             "ShortName": "Tri-Rail",
-            "Description": "Guardamanos Tri-Rail para el subfusil MP5, equipado con 3 monturas de riel para la instalación de dispositivos adicionales, producido por PTR."
+            "Description": "Guardamano Tri-Rail para el subfusil MP5, equipado con 3 monturas de riel para la instalación de dispositivos adicionales, producido por PTR."
         },
         "5d1b198cd7ad1a604869ad72": {
-            "Name": "Guardamanos TDI AKM-L para AK",
+            "Name": "Guardamano TDI AKM-L para AK",
             "ShortName": "AKM-L",
-            "Description": "El guardamanos TDI AKM-L puede ser instalado en sistemas de armas compatibles con AKM/AK-74. Equipado con monturas M-LOK para la instalación de dispositivos o rieles adicionales. "
+            "Description": "El guardamano TDI AKM-L puede ser instalado en sistemas de armas compatibles con AKM/AK-74. Equipado con monturas M-LOK para la instalación de dispositivos o rieles adicionales. "
         },
         "5d1b2f3f86f774252167a52c": {
             "Name": "Filtro absorbente FP-100",
@@ -16907,7 +16941,7 @@
         "5d235bb686f77443f4331278": {
             "Name": "Estuche pequeño S I C C",
             "ShortName": "SICC",
-            "Description": "Un estuche pequeño para almacenar objetos pequeños, tales como tarjetas, billetes y monedas así como chapas de identificación y llaves."
+            "Description": "Un estuche pequeño para almacenar objetos pequeños, tales como tarjetas, billetes y monedas así como placa de identificación y llaves."
         },
         "5d2369418abbc306c62e0c80": {
             "Name": "Linterna táctica Steiner Dbal PL",
@@ -16980,9 +17014,9 @@
             "Description": "La cubierta superior TWS Dog Leg con riel Picatinny integrado es compatible con todos los modelos de fusiles automáticos y carabinas Kalashnikov basados en la plataforma AK."
         },
         "5d2c829448f0353a5c7d6674": {
-            "Name": "Guardamanos CAF WASR 10-63 de madera para AK",
+            "Name": "Guardamano CAF WASR 10-63 de madera para AK",
             "ShortName": "WASR 10-63",
-            "Description": "Guardamanos rumano compatible con AK, producido por Cugir Arms Factory."
+            "Description": "Guardamano rumano compatible con AK, producido por Cugir Arms Factory."
         },
         "5d2da1e948f035477b1ce2ba": {
             "Name": "Mira réflex Trijicon SRS-02",
@@ -17005,9 +17039,9 @@
             "Description": "Cargador estándar de 20-balas 9x19 para el subfusil MP5."
         },
         "5d2f259b48f0355a844acd74": {
-            "Name": "Guardamanos de polímero para MP5K",
+            "Name": "Guardamano de polímero para MP5K",
             "ShortName": "MP5K",
-            "Description": "Guardamanos de polímero producido por HK para el subfusil MP5 Kurz."
+            "Description": "Guardamano de polímero producido por HK para el subfusil MP5 Kurz."
         },
         "5d2f25bc48f03502573e5d85": {
             "Name": "Tapa de culata HK End Cap para MP5 Kurz",
@@ -17126,9 +17160,9 @@
             "Description": "Recibidor superior ligero Lightweight para el fusil TX15, equipado con una montura para acoplar equipo adicional. Fabricado por Lone Star."
         },
         "5d4405f0a4b9361e6a4e6bd9": {
-            "Name": "Guardamanos Lone Star Ion Lite para AR-15 y compatibles",
+            "Name": "Guardamano Lone Star Ion Lite para AR-15 y compatibles",
             "ShortName": "Ion Lite",
-            "Description": "Guardamanos ligero Lone Star Ion Lite para fusiles deportivos basados en AR-15."
+            "Description": "Guardamano ligero Lone Star Ion Lite para fusiles deportivos basados en AR-15."
         },
         "5d440625a4b9361eec4ae6c5": {
             "Name": "Freno de boca Thunder Beast 223CB 5.56x45",
@@ -17171,19 +17205,19 @@
             "Description": "El Thunder Beast 30CB es un freno de boca muy efectivo, que también sirve como plataforma para acoplar supresores tipo QD."
         },
         "5d4aaa54a4b9365392071170": {
-            "Name": "Guardamanos TDI AKM-L para AK (Rojo anodizado)",
+            "Name": "Guardamano TDI AKM-L para AK (Rojo anodizado)",
             "ShortName": "AKM-L RA",
-            "Description": "El guardamanos TDI AKM-L puede ser instalado en sistemas de armas compatibles con AKM/AK-74. Equipado con monturas M-LOK para la instalación de dispositivos o rieles adicionales. Rojo anodizado."
+            "Description": "El guardamano TDI AKM-L puede ser instalado en sistemas de armas compatibles con AKM/AK-74. Equipado con monturas M-LOK para la instalación de dispositivos o rieles adicionales. Rojo anodizado."
         },
         "5d4aaa73a4b9365392071175": {
-            "Name": "Guardamanos TDI AKM-L para AK (Bronce anodizado)",
+            "Name": "Guardamano TDI AKM-L para AK (Bronce anodizado)",
             "ShortName": "AKM-L BA",
-            "Description": "El guardamanos TDI AKM-L puede ser instalado en sistemas de armas compatibles con AKM/AK-74. Equipado con monturas M-LOK para la instalación de dispositivos o rieles adicionales. Bronce anodizado."
+            "Description": "El guardamano TDI AKM-L puede ser instalado en sistemas de armas compatibles con AKM/AK-74. Equipado con monturas M-LOK para la instalación de dispositivos o rieles adicionales. Bronce anodizado."
         },
         "5d4aab30a4b9365435358c55": {
-            "Name": "Guardamanos VS-24 blanco combinado con bloque de gases VS-33c para AK",
+            "Name": "Guardamano VS-24 blanco combinado con bloque de gases VS-33c para AK",
             "ShortName": "Combo VS Bl.",
-            "Description": "Un guardamanos VS-24 combinado con el bloque de gases VS-33c. Producido por VS para AK. Modelo de color blanco."
+            "Description": "Un guardamano VS-24 combinado con el bloque de gases VS-33c. Producido por VS para AK. Modelo de color blanco."
         },
         "5d4da0cb86f77450fe0a6629": {
             "Name": "usec_upper_commando",
@@ -17228,9 +17262,9 @@
             "RigLayoutName": "D3CRX"
         },
         "5d5d87f786f77427997cfaef": {
-            "Name": "Chaleco porta placas Ars Arma A18 Skanda",
+            "Name": "Chaleco portaplacas Ars Arma A18 Skanda",
             "ShortName": "A18",
-            "Description": "Un chaleco porta placas con placas balísticas (clase 4), las placas solo protegen el pecho y la espalda. Además de estar equipado con un conjunto de bolsillos.",
+            "Description": "Un chaleco portaplacas con placas balísticas (clase 4), las placas solo protegen el pecho y la espalda. Además de estar equipado con un conjunto de bolsas y portacargadores.",
             "RigLayoutName": "A18"
         },
         "5d5d8ca986f7742798716522": {
@@ -17630,9 +17664,9 @@
             "Description": "El fusil MDR es un producto de la compañía estadounidense Desert Tech LLC, es un arma modular, multi-calibre y tiene un diseño bullpup compacto. Los cañones de calibres y longitudes diferentes pueden ser cambiados por el usuario final en cuestión de minutos utilizando una mínima cantidad de herramientas. "
         },
         "5dcbd6b46ec07c0c4347a564": {
-            "Name": "Guardamanos Desert Tech para MDR (Negro)",
+            "Name": "Guardamano Desert Tech para MDR (Negro)",
             "ShortName": "Guard. MDR",
-            "Description": "Guardamanos Desert Tech para MDR, equipado con interfaz M-LOK para la instalación de accesorios y dispositivos adicionales. Versión de color negro."
+            "Description": "Guardamano Desert Tech para MDR, equipado con interfaz M-LOK para la instalación de accesorios y dispositivos adicionales. Versión de color negro."
         },
         "5dcbd6dddbd3d91b3e5468de": {
             "Name": "Pistolete Desert Tech para MDR (Negro)",
@@ -17765,9 +17799,9 @@
             "Description": "Cargador de 5-balas 7.62x51 (.308) fabricado por Orsis para el fusil de francotirador T-5000."
         },
         "5df25d3bfd6b4e6e2276dc9a": {
-            "Name": "Guardamanos Orsis para T-5000",
+            "Name": "Guardamano Orsis para T-5000",
             "ShortName": "Guard. T-5000",
-            "Description": "Guardamanos Orsis para el fusil de francotirador T-5000."
+            "Description": "Guardamano Orsis para el fusil de francotirador T-5000."
         },
         "5df35ddddfc58d14537c2036": {
             "Name": "Culata Orsis para T-5000M",
@@ -17792,12 +17826,12 @@
         "5df35ea9c41b2312ea3334d8": {
             "Name": "Riel largo Orsis",
             "ShortName": "Orsis Largo",
-            "Description": "Riel largo Orsis para el fusil T-5000, permite la instalación de equipamiento adicional en el guardamanos."
+            "Description": "Riel largo Orsis para el fusil T-5000, permite la instalación de equipamiento adicional en el guardamano."
         },
         "5df35eb2b11454561e3923e2": {
             "Name": "Riel mediano Orsis",
             "ShortName": "Orsis Med.",
-            "Description": "Riel mediano Orsis para el fusil T-5000, permite la instalación de equipamiento adicional en el guardamanos."
+            "Description": "Riel mediano Orsis para el fusil T-5000, permite la instalación de equipamiento adicional en el guardamano."
         },
         "5df36948bb49d91fb446d5ad": {
             "Name": "Empuñadura acolchonada para T-5000",
@@ -17916,9 +17950,9 @@
             "Description": "Cargador Steel Knight's Armament Company de 20-balas 7.62x51 OTAN en doble hilera."
         },
         "5df916dfbb49d91fb446d6b9": {
-            "Name": "Guardamanos URX-4 para AR-10 y compatibles",
+            "Name": "Guardamano URX-4 para AR-10 y compatibles",
             "ShortName": "URX-4 14.5\"",
-            "Description": "Guardamanos ligero URX-4 de 14.5 pulgadas con ranuras M-LOK, compatible con fusiles AR-10."
+            "Description": "Guardamano ligero URX-4 de 14.5 pulgadas con ranuras M-LOK, compatible con fusiles AR-10."
         },
         "5df917564a9f347bc92edca3": {
             "Name": "Cañón de 16\" para SR-25 7.62x51 y compatibles",
@@ -18202,9 +18236,9 @@
             "Description": "Tarjeta de acceso electrónica reutilizable, según el logo, pertenece a la Corporación TerraGroup."
         },
         "5e4abb5086f77406975c9342": {
-            "Name": "Chaleco porta placas LBT 6094A Slick Plate Carrier",
+            "Name": "Chaleco portaplacas LBT 6094A Slick (Negro)",
             "ShortName": "Slick",
-            "Description": "Un chaleco porta placas sencillo, fabricado por la compañía LBT. Uno de los diseños más minimalistas para usarlo en conjunto con chalecos tácticos."
+            "Description": "Un chaleco portaplacas sencillo, fabricado por la compañía LBT. Uno de los diseños más minimalistas para usarlo en conjunto con chalecos tácticos."
         },
         "5e4abc1f86f774069619fbaa": {
             "Name": "Chaleco táctico Spiritus Systems Bank Robber Chest Rig",
@@ -18224,7 +18258,7 @@
             "RigLayoutName": "Tarzan"
         },
         "5e4ac41886f77406a511c9a8": {
-            "Name": "Chaleco porta placas Ars Arma CPC MOD.2",
+            "Name": "Chaleco portaplacas Ars Arma CPC MOD.2",
             "ShortName": "AACPC",
             "Description": "La modificación de segunda generación del chaleco antibalas CPC diseñado por Crye Precision y adoptado por Ars Arma para las fuerzas especiales de la Federación Rusa. Este chaleco modular tiene de base un corsé de polímero el cual se adapta al cuerpo y fija el chaleco al cuerpo durante el movimiento, y también contribuye a una mejor distribución del peso. Hecho basándose en la configuración de asalto para los bolsillos y los elementos de protección.",
             "RigLayoutName": "AACPC"
@@ -18305,14 +18339,14 @@
             "Description": "Máscara de la peste restaurada del Doctor Pestily. Un objeto raro y aterrador, utilizado por los Cultistas en Tarkov."
         },
         "5e56991336989c75ab4f03f6": {
-            "Name": "Guardamanos Moderno IzhMash para SVD",
+            "Name": "Guardamano Moderno IzhMash para SVD",
             "ShortName": "SVD Mod.",
-            "Description": "Prototipo de guardamanos para el kit moderno de fusiles de francotirador SVD."
+            "Description": "Prototipo de guardamano para el kit moderno de fusiles de francotirador SVD."
         },
         "5e5699df2161e06ac158df6f": {
-            "Name": "Guardamanos CAA XRS DRG para SVD",
+            "Name": "Guardamano CAA XRS DRG para SVD",
             "ShortName": "XRS DRG",
-            "Description": "Guardamanos de aluminio con cuatro rieles Picatinny, para el fusil de francotirador SVD."
+            "Description": "Guardamano de aluminio con cuatro rieles Picatinny, para el fusil de francotirador SVD."
         },
         "5e569a0156edd02abe09f27d": {
             "Name": "Riel Moderno IzhMash para SVD",
@@ -18402,7 +18436,7 @@
         "5e81f423763d9f754677bf2e": {
             "Name": "Munición .45 ACP Match FMJ",
             "ShortName": ".45 FMJ",
-            "Description": "Munición de calibre .45 ACP (11.43x23 mm) Match FMJ (Cartucho .45 Ball, M1911) - Es un cartucho utilizado por el Ejército de los Estados Unidos de América con una bala grado Match de 14.9 gramos con un núcleo de plomo con encamisado de cobre, en un casquillo de latón.\n\nEste cartucho es fabricado con una mayor precisión y ofrece un efecto de parada sobresaliente a costa de capacidades de penetración, incluso ante protección balística básica.",
+            "Description": "Munición de calibre .45 ACP (11.43x23 mm) Match FMJ (Cartucho .45 Ball, M1911) - Es un cartucho utilizado por el Ejército de los Estados Unidos de América, cuenta con una bala grado Match de 14.9 gramos con un núcleo de plomo con encamisado de cobre, en un casquillo de latón.\n\nEste cartucho es fabricado con una mayor precisión y ofrece un efecto de parada sobresaliente a costa de capacidades de penetración, incluso ante protección balística básica.",
             "casingName": ".45 ACP Match FMJ"
         },
         "5e831507ea0a7c419c2f9bd9": {
@@ -18632,14 +18666,14 @@
             "Description": "Una réplica del casco Ops-Core Fast sin protección balística, fabricada por Tac-Kek. Puede ser modificada con varios componentes."
         },
         "5ea16acdfadf1d18c87b0784": {
-            "Name": "Guardamanos Geissele SMR Mk.16 9.5\" M-LOK para AR-15",
+            "Name": "Guardamano Geissele SMR Mk.16 9.5\" M-LOK para AR-15",
             "ShortName": "SMR Mk.16 9.5",
-            "Description": "Guardamanos Geissele SMR Mk. de 9.5 pulgadas M-LOK para AR-15, equipado con una interfaz M-LOK para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Geissele SMR Mk. de 9.5 pulgadas M-LOK para AR-15, equipado con una interfaz M-LOK para la instalación de accesorios y dispositivos adicionales."
         },
         "5ea16ada09aa976f2e7a51be": {
-            "Name": "Guardamanos Geissele SMR Mk.16 13.5\" M-LOK para AR-15",
+            "Name": "Guardamano Geissele SMR Mk.16 13.5\" M-LOK para AR-15",
             "ShortName": "SMR Mk.16 13.5",
-            "Description": "Guardamanos Geissele SMR Mk. de 13.5 pulgadas M-LOK para AR-15, equipado con una interfaz M-LOK para la instalación de accesorios y dispositivos adicionales."
+            "Description": "Guardamano Geissele SMR Mk. de 13.5 pulgadas M-LOK para AR-15, equipado con una interfaz M-LOK para la instalación de accesorios y dispositivos adicionales."
         },
         "5ea16d4d5aad6446a939753d": {
             "Name": "Palanca de carga Geissele ACH para AR-15",
@@ -18823,9 +18857,9 @@
             "Description": "Freno de boca Anarchy Outdoors .45 ACP para la pistola M1911A1."
         },
         "5efaf417aeb21837e749c7f2": {
-            "Name": "Guardamanos B-30 y montura de riel B-31S",
+            "Name": "Guardamano B-30 y montura de riel B-31S",
             "ShortName": "B-30 B-31S",
-            "Description": "El guardamanos B-30 es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar de los guardamanos estándares de la serie AK 103, 104, 105, 74S, 74M, AKM y AKMS. La montura de riel B-31S es básicamente un soporte para miras que queda suspendida sobre el tubo de gases. También está hecha con la aleación de aluminio D16T con revestimiento negro, puede ser instalada en el guardamanos B-30. ©Zenit"
+            "Description": "El guardamano B-30 es fabricado a partir de una aleación de aluminio D16T con revestimiento negro y puede instalarse en lugar de los guardamano estándares de la serie AK 103, 104, 105, 74S, 74M, AKM y AKMS. La montura de riel B-31S es básicamente un soporte para miras que queda suspendida sobre el tubo de gases. También está hecha con la aleación de aluminio D16T con revestimiento negro, puede ser instalada en el guardamano B-30. ©Zenit"
         },
         "5efb0c1bd79ff02a1f5e68d9": {
             "Name": "7.62x51 mm M993",
@@ -18836,13 +18870,13 @@
         "5efb0cabfb3e451d70735af5": {
             "Name": "Munición .45 ACP AP",
             "ShortName": ".45 AP",
-            "Description": "Munición de calibre .45 ACP (11.43x23 mm) AP - Es un cartucho con un proyectil perforante de dos partes, la bala consta de una Sabot y un penetrador endurecido.\n\nA pesar de su baja velocidad, este cartucho está diseñado para neutralizar al personal enemigo equipado con protección balística básica e intermedia, y aun así otorgar un significativo efecto de parada.",
+            "Description": "Munición de calibre .45 ACP (11.43x23 mm) AP - Es un cartucho con un proyectil perforante de dos partes, la bala consta de una Sabot y un penetrador endurecido.\n\nGracias a su diseño, este cartucho es capaz de atravesar protecciones balísticas corporales básicas e intermedias a pesar de su velocidad de salida, y aun así otorgar un significativo efecto de parada.",
             "casingName": ".45 AP"
         },
         "5efb0d4f4bc50b58e81710f3": {
             "Name": "Munición .45 ACP Lasermatch FMJ",
             "ShortName": ".45 LM",
-            "Description": "Munición de calibre .45 ACP (11.43x23 mm) Lasermatch FMJ (Cartucho .45 Trazador) - Es un cartucho con una bala de 14.9 gramos con un núcleo de plomo con encaminado de cobre, en un casquillo de latón; diseñada para la designación de blancos y para ajustar el fuego durante el combate.\n\nEste cartucho ofrece un efecto de parada sobresaliente a costa de capacidades de penetración, incluso ante protección balística básica.",
+            "Description": "Munición de calibre .45 ACP (11.43x23 mm) Lasermatch FMJ (Cartucho .45 Trazador) - Es un cartucho con una bala de 14.9 gramos con un núcleo de plomo con encamisado de cobre, en un casquillo de latón; diseñada para la designación de blancos y para ajustar el fuego durante el combate (Trazado de color: Rojo).\n\nEste cartucho se diseñó para proporcionar capacidades de trazado a los subfusiles de calibre .45 ACP durante el fuego automático, además de ofrecer un efecto de parada sobresaliente a costa de capacidades de penetración, incluso ante protección balística básica.",
             "casingName": ".45 ACP Lasermatch FMJ"
         },
         "5efb0da7a29a85116f6ea05f": {
@@ -18860,7 +18894,7 @@
         "5efb0fc6aeb21837e749c801": {
             "Name": "Munición .45 ACP Hydra-Shok",
             "ShortName": ".45 HS",
-            "Description": "Munición de calibre .45 ACP (11.43x23 mm) Hydra-Shok - Es un cartucho con una bala de punta hueca encamisada de 14.9 gramos con una punta de plomo en el centro de la cavidad y con encamisado de cobre, en un casquillo de latón.\n\nEste cartucho está diseñado para proporcionar un efecto de parada superior a costa de capacidades de penetración, incluso ante protección balística básica.",
+            "Description": "Munición de calibre .45 ACP (11.43x23 mm) Hydra-Shok - Es un cartucho con una bala de punta hueca encamisada de 14.9 gramos con una punta de plomo en el centro de la cavidad y con encamisado de cobre, en un casquillo de latón.\n\nA pesar de tener una velocidad de salida levemente inferior para su calibre, este cartucho proporciona una de las mejores transiciones de energía del calibre .45 ACP, pudiendo causar graves efectos negativos en el objetivo tras impactar, ofreciendo un efecto de parada superior a costa de capacidades de penetración, incluso ante protección balística básica.",
             "casingName": ".45 ACP Hydra-Shok"
         },
         "5efdaf6de6a30218ed211a48": {
@@ -18926,14 +18960,14 @@
             "Description": "Un cañón de 16 pulgadas de largo para el fusil RFB de munición 7.62x51."
         },
         "5f2aa47a200e2c0ee46efa71": {
-            "Name": "Guardamanos estándar Kel-Tec para RFB",
+            "Name": "Guardamano estándar Kel-Tec para RFB",
             "ShortName": "Guard. RFB",
-            "Description": "Guardamanos estándar para el fusil RFB, fabricado por Kel-Tec."
+            "Description": "Guardamano estándar para el fusil RFB, fabricado por Kel-Tec."
         },
         "5f2aa493cd375f14e15eea72": {
-            "Name": "Riel de guardamanos Kel-Tec para RFB",
+            "Name": "Riel de guardamano Kel-Tec para RFB",
             "ShortName": "Riel RFB Guard.",
-            "Description": "Riel largo para la parte inferior del fusil RFB, te permite instalar equipamiento adicional en el guardamanos."
+            "Description": "Riel largo para la parte inferior del fusil RFB, te permite instalar equipamiento adicional en el guardamano."
         },
         "5f2aa49f9b44de6b1b4e68d4": {
             "Name": "Montura de riel Kel-Tec para RFB",
@@ -19132,14 +19166,14 @@
             "Description": "Puedes llamarla boina verde, pero es una boina color olivo."
         },
         "5f6331e097199b7db2128dc2": {
-            "Name": "Guardamanos X47 Tactical para AK y compatibles",
+            "Name": "Guardamano X47 Tactical para AK y compatibles",
             "ShortName": "X47",
-            "Description": "Guardamanos táctico de aluminio para la familia de fusiles AK, diseñado y fabricado por TDI. Equipado con múltiples monturas de riel para la instalación de una amplia gama de equipamiento adicional."
+            "Description": "Guardamano táctico de aluminio para la familia de fusiles AK, diseñado y fabricado por TDI. Equipado con múltiples monturas de riel para la instalación de una amplia gama de equipamiento adicional."
         },
         "5f6336bbda967c74a42e9932": {
-            "Name": "Guardamanos Lancer LCH-7 12.5 inch M-LOK para AR-10",
+            "Name": "Guardamano Lancer LCH-7 12.5 inch M-LOK para AR-10",
             "ShortName": "LCH-7 12.5",
-            "Description": "Guardamanos Lancer LCH-7 12.5 inch M-LOK de 12.5 pulgadas para AR-10, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+            "Description": "Guardamano Lancer LCH-7 12.5 inch M-LOK de 12.5 pulgadas para AR-10, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
         },
         "5f6339d53ada5942720e2dc3": {
             "Name": "Bocacha Ferfrans \"CRD\" 5.56x45",
@@ -19184,7 +19218,7 @@
         "5f63418ef5750b524b45f116": {
             "Name": "Guardamano de aluminio Bravo-18 para SOK-12",
             "ShortName": "Bravo-18",
-            "Description": "El Bravo-18 es un guardamanos ligero de aluminio aeroespacial, diseñado para instalarse en carabinas Saiga."
+            "Description": "El Bravo-18 es un guardamano ligero de aluminio aeroespacial, diseñado para instalarse en carabinas Saiga."
         },
         "5f6372e2865db925d54f3869": {
             "Name": "Freno de boca Ferfrans Muzzle Brake 5.56x45",
@@ -19290,7 +19324,7 @@
         "5fbb978207e8a97d1f0902d3": {
             "Name": "Riel modular KRISS Mk.5 para Vector",
             "ShortName": "Riel Mk.5",
-            "Description": "El sistema de riel modular Mk.5 te permite instalar equipo adicional en el guardamanos."
+            "Description": "El sistema de riel modular Mk.5 te permite instalar equipo adicional en el guardamano."
         },
         "5fbbaa86f9986c4cff3fe5f6": {
             "Name": "Culata KRISS Defiance DS150",
@@ -19333,14 +19367,14 @@
             "Description": "Un bloque de gases diseñado para el fusil SIG Sauer MCX."
         },
         "5fbc226eca32ed67276c155d": {
-            "Name": "Guardamanos SIG 8\" KeyMod para MCX",
+            "Name": "Guardamano SIG 8\" KeyMod para MCX",
             "ShortName": "MCX 8\"",
-            "Description": "Guardamanos para el fusil SIG MCX, equipado con interfaz KeyMod para acoplar equipo adicional."
+            "Description": "Guardamano para el fusil SIG MCX, equipado con interfaz KeyMod para acoplar equipo adicional."
         },
         "5fbc227aa56d053a3543f79e": {
-            "Name": "Guardamanos SIG 12\" KeyMod para MCX",
+            "Name": "Guardamano SIG 12\" KeyMod para MCX",
             "ShortName": "MCX 12\"",
-            "Description": "Guardamanos para el fusil SIG MCX, equipado con interfaz KeyMod para acoplar equipo adicional."
+            "Description": "Guardamano para el fusil SIG MCX, equipado con interfaz KeyMod para acoplar equipo adicional."
         },
         "5fbc22ccf24b94483f726483": {
             "Name": "Adaptador de bocacha SIG Taper-LOK",
@@ -19439,9 +19473,9 @@
             "Description": "Cargador Sword Int. con capacidad para 10-balas .338 Lapua Magnum (8.6x70 mm) para el fusil Mk-18."
         },
         "5fc235db2770a0045c59c683": {
-            "Name": "Guardamanos Sword Int. 18\" para Mk-18",
+            "Name": "Guardamano Sword Int. 18\" para Mk-18",
             "ShortName": "Sword 18\"",
-            "Description": "Guardamanos ligero de 18 pulgadas compatible con M-LOK, para el fusil Mk-18."
+            "Description": "Guardamano ligero de 18 pulgadas compatible con M-LOK, para el fusil Mk-18."
         },
         "5fc2360f900b1d5091531e19": {
             "Name": "Bloque de gases para Mk-18",
@@ -19639,9 +19673,9 @@
             "Description": ""
         },
         "5fd4c474dd870108a754b241": {
-            "Name": "Chaleco porta placas 5.11 Hexgrid",
-            "ShortName": "Hexgrid",
-            "Description": "Un chaleco porta placas diseñado para usarse bajo el chaleco táctico, fabricado por 5.11 Tactical."
+            "Name": "Chaleco portaplacas 5.11 Hexgrid",
+            "ShortName": "HGrid",
+            "Description": "Un chaleco portaplacas diseñado para usarse bajo el chaleco táctico, fabricado por 5.11 Tactical."
         },
         "5fd4c4fa16cac650092f6771": {
             "Name": "Chaleco táctico IDEA \"Hágalo Usted Mismo\"",
@@ -19674,6 +19708,326 @@
             "Name": "Pasamontañas Smoke",
             "ShortName": "Smoke",
             "Description": "El pasamontañas icónico del famoso artista Hip-Hop de Tarkov - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "Botiquín táctico individual de primeros auxilios AFAK",
+            "ShortName": "AFAK",
+            "Description": "El botiquín AFAK (Adaptive First Aid Kit; \"Kit de Primeros Auxilios Adaptativo\") es la versión más avanzada de los botiquines individuales de primeros auxilios."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Torniquete hemostático CAT",
+            "ShortName": "CAT",
+            "Description": "El torniquete CAT (Combat Application Tourniquet; \"Torniquete de Aplicación para el Combate\") previene las hemorragias, bloqueado la salida de sangre al aplicar presión en la extremidad afectada. Utiliza un sistema de tensión autoajustable y una hebilla resistente a tirones."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Ración de Agua para Emergencias",
+            "ShortName": "RAE",
+            "Description": "Una ración de agua purificada para utilizarse en casos de emergencia o durante circunstancias donde es requerido el suministro de agua potable. Diseñada para ser almacenada durante varios años."
+        },
+        "601948682627df266209af05": {
+            "Name": "Machete UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "Machete UVSR Taiga-1 (Ustroystvo Vypolneniya Spasatel'nykh Rabot; \"Dispositivo para Realizar Operaciones de Rescate\"). Es una herramienta de supervivencia verdaderamente versátil. Es un arma, una pala, un hacha y cualquier cosa que puedas imaginarte. Fue desarrollado y producido en la URSS para varias agencias gubernamentales."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "Un cartucho especial diseñado para el Cuerpo de Marines de los Estados Unidos. La bala cuenta con una punta abierta y tiene un núcleo de plomo (en la parte superior) y una base de cobre sólido. El plomo sirve para derribar obstáculos y el cobre para una mejor penetración ante barreras.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0 (SOST)"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "Un raro cartucho antiblindaje de SSA, diseñado para reemplazar el cartucho 5.56x45 M995. La bala contiene un núcleo de carburo de tungsteno para una máxima penetración de objetivos blindados.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "MAI AP",
+            "Description": "Cartucho MAI antiblindaje de 7.62x39 con un núcleo expuesto de carburo de tungsteno.",
+            "casingName": "7.62x39 mm MAI AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "Cargador de 16-balas 9x19 para PL-15",
+            "ShortName": "9x19 PL-15",
+            "Description": "Cargador estándar de 16-balas 9x19 para la pistola PL-15."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "Corredera para PL-15",
+            "ShortName": "Crra. PL-15",
+            "Description": "Corredera estándar para la pistola PL-15."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "Mira frontal estándar para PL-15",
+            "ShortName": "MF PL-15",
+            "Description": "Mira frontal estándar para la pistola PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "Mira frontal extendida para PL-15",
+            "ShortName": "MF PL-15",
+            "Description": "Mira frontal extendida para la pistola PL-15, diseñada para usarse con un supresor acoplado al arma."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "Mira trasera extendida para PL-15",
+            "ShortName": "MT PL-15",
+            "Description": "Mira trasera extendida para la pistola PL-15, diseñada para usarse con un supresor acoplado al arma."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "Mira trasera estándar para PL-15",
+            "ShortName": "MT PL-15",
+            "Description": "Mira trasera estándar para la pistola PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Cañón estándar para PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Cañón estándar para la pistola PL-15."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Cañón roscado para PL-15",
+            "ShortName": "PL-15 rosca",
+            "Description": "Cañón roscado para la pistola PL-15 9x19."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "Supresor para PL-15 9x19 mm",
+            "ShortName": "Supresor PL-15",
+            "Description": "Supresor estándar de 9x19 mm para la pistola PL-15. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "Pistola PL-15 9x19",
+            "ShortName": "PL-15",
+            "Description": "La PL-15 es una pistola rusa semiautomática de calibre 9x19 mm que fue desarrollada por un grupo de diseñadores de Kalashnikov Concern bajo el liderazgo Dmitry Lebedev para las necesidades de las agencias policiales rusas."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "Tubo receptor STM Arms",
+            "ShortName": "Tubo STM",
+            "Description": "Tubo Receptor de Culata STM Arms de 4 posiciones, con diámetro Com-Spec compatible con fusiles basados en la carabina AR-15."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Culata Fab Defence GL Core",
+            "ShortName": "GL Core",
+            "Description": "Culata telescópica GL Core producida por Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Recibidor superior para la carabina STM-9 9x19",
+            "ShortName": "Sup. STM-9",
+            "Description": "Recibidor superior para la carabina STM-9. Equipado con una montura para acoplar dispositivos adicionales."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "Pistolete DLG-123 para sistemas basados en AR-15",
+            "ShortName": "DLG-123",
+            "Description": "El pistolete DLG-123 puede ser instalado en cualquier arma compatible con pistoletes AR-15."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Brocal para STM-9",
+            "ShortName": "Brocal STM-9",
+            "Description": "Brocal estándar para la carabina STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "Cañón de 10.5\" para STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "Un cañón de 266 mm de largo para la carabina STM-9 de munición 9x19 mm."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "Cañón de 12\" para STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "Un cañón de 304 mm de largo para la carabina STM-9 de munición 9x19 mm."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "Cañón de 14\" para STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "Un cañón de 355 mm de largo para la carabina STM-9 de munición 9x19 mm."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "Cañón de 16\" para STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "Un cañón de 406 mm de largo para la carabina STM-9 de munición 9x19 mm."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "Palanca de carga MASP Ambi Battle para AR-15",
+            "ShortName": "Palc. MASP",
+            "Description": "Palanca de carga ambidiestra MASP Ambi Battle para AR-15 y sistemas compatibles."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "Freno de boca STM-9 9x19",
+            "ShortName": "FB STM-9",
+            "Description": "Freno de boca estándar para la carabina STM-9 9x19."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Brocal para STM-9 (Gris)",
+            "ShortName": "Brocal STM-9 G.",
+            "Description": "Brocal estándar de color gris para la carabina STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "Carabina STM-9 Gen.2 9x19",
+            "ShortName": "STM-9",
+            "Description": "Una Carabina de Calibre de Pistola (PCC) con un desempeño excelente \"lista para usar\". Diseñada con la participación del medallista de bronce mundial en Rifle Semiautomático Vadim Mikhailov. Precisión, velocidad, comodidad en el retroceso."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Auriculares Opsmen Earmor M32",
+            "ShortName": "M32",
+            "Description": "Los EARMOR M32 son unos auriculares activos electrónicos para comunicación por radio y protección auditiva, ideales para operaciones tácticas."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "Gafas NPP KIASS Condor",
+            "ShortName": "Condor",
+            "Description": "Gafas resistentes a impactos, para trabajo pesado y prácticas de tiro."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Chaleco de cazador Umka M33-SET1",
+            "ShortName": "Umka",
+            "Description": "El chaleco Umka M33-SET1 está diseñado para cazadores, viajeros, profesionales de campo y elementos de seguridad."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Chaleco táctico CSA",
+            "ShortName": "CSA",
+            "Description": "Un chaleco táctico sencillo, cosido apresuradamente con materiales de dudosa procedencia. A pesar de que está diseñado para el Airsoft, es posible utilizarlo para fines militares, pero no está recomendado."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Mochila Hazard4 Takedown tipo hombrera",
+            "ShortName": "Takedown",
+            "Description": "Una mochila tipo hombrera con una sola correa, diseñada para llevar armas largas."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Mochila Eberlestock G2 Gunslinger II (Dry Earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Una mochila militar modular de tamaño medio con un compartimiento adicional para armas largas."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "Guardamano STM 9 inch M-LOK para AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "Guardamano STM 9 inch M-LOK de 9 pulgadas para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "Guardamano STM 15 inch M-LOK para AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "Guardamano STM 15 inch M-LOK de 15 pulgadas para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "Guardamano STM 12 inch M-LOK para AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "Guardamano STM 12 inch M-LOK de 12 pulgadas para AR-15, equipado con interfaz M-LOK para la instalación adicional de accesorios y dispositivos."
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Tocado militar negro",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar de color negro."
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Tocado militar coyote",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar de color coyote."
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Tocado militar flora",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar con patrón de flora."
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Tocado militar desértico",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar con patrón para desierto."
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "Tocado militar UCP",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar con patrón UCP (Universal Camouflage Pattern; \"Patrón de Camuflaje Universal\")."
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Máscara antigás GP-7",
+            "ShortName": "GP-7",
+            "Description": "La máscara civil antigás GP-7 es un dispositivo de filtrado de aire para protección individual del sistema respiratorio, los ojos y la piel de la cara."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Arnés de Pecho Azimut SS Jhuk (Negro)",
+            "ShortName": "Azimut",
+            "Description": "Un sistema de soporte simple hecho de nailon con portacargadores fijados. Te permite llevar una cantidad de munición bastante impresionante a expensas de comodidad.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "Chaleco portaplacas LBT 6094A Slick (Tan)",
+            "ShortName": "Slick",
+            "Description": "Un chaleco portaplacas sencillo, fabricado por la compañía LBT. Uno de los diseños más minimalistas para usarlo en conjunto con chalecos tácticos."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "Chaleco portaplacas LBT 6094A Slick (Olivo)",
+            "ShortName": "Slick",
+            "Description": "Un chaleco portaplacas sencillo, fabricado por la compañía LBT. Uno de los diseños más minimalistas para usarlo en conjunto con chalecos tácticos."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Mochila Hazard4 Takedown tipo hombrera (Multicam)",
+            "ShortName": "Takedown",
+            "Description": "Una mochila tipo hombrera con una sola correa, diseñada para llevar armas largas."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Bote de termita",
+            "ShortName": "Termita",
+            "Description": "Los componentes incendiarios basados en Termita se hacen con una mezcla de óxido de hierro y aluminio en polvo. Estos componentes tienen unas temperaturas de combustión bastante elevadas y son capaces de arder sin la presencia de oxígeno. La Termita tiene un fuerte efecto de combustión y es casi imposible de extinguir."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Llave de carraca",
+            "ShortName": "Carraca",
+            "Description": "La llave de carraca es una herramienta indispensable en la estación de trabajo de cualquier cerrajero o mecánico para el mantenimiento de vehículos. Te permite trabajar en espacios confinados y tiene funciones que le permiten cambiar fácilmente de vaso. ¡Un instrumento que vale oro!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Ladrillo de TNT TP-200",
+            "ShortName": "TP-200",
+            "Description": "El TP-200 está diseñado como carga explosiva para la producción de sondeos sísmicos, tambien como detonador intermedio de cargas explosivas en perforaciones, demoler objetos sobredimensionados y para realizar operaciones de voladura especiales."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Arnés de Pecho Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Un sistema de soporte simple hecho de nailon con portacargadores fijados. Te permite llevar una cantidad de munición bastante impresionante a expensas de comodidad.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "Tocado militar CADPAT",
+            "ShortName": "Tocado",
+            "Description": "Un tocado militar con patrón CADPAT (Canadian Disruptive Pattern; \"Patrón Disruptivo Canadiense\")."
         }
     },
     "locations": {

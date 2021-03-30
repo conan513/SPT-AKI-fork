@@ -848,7 +848,7 @@
         "specFound": "Nalezeny speciální zbraně",
         "3050Kills": "Zabito hráčů s úrovní 31-50",
         "placesLooted": "Míst prohledáno",
-        "modsFound": "Nalezeno modif.",
+        "modsFound": "Nalezeno modifikací",
         "overallAccr": "Celková přesnost",
         "bartitemsFound": "Nalezeno zboží na výměnu",
         "headshots": "Headshots",
@@ -1015,7 +1015,7 @@
         "SearchDescription": "Schopnost efektivního a rychlého prohledání těla",
         "FirstAidDescription": "Schopnost První pomoc urychluje použití a účinnost lékárniček.",
         "MeleeDescription": "Schopnost manipulace s chladnými zbraněmi",
-        "EnduranceBreathElite": "Fyzická námaha nezpůsobuje spánkové apnoe",
+        "EnduranceBreathElite": "Dýchání není závislé na energii",
         "TroubleShootingDescription": "Schopnost Řešení problémů usnadňuje opravu závad na zbrani v boji.  ",
         "NightOpsDescription": "Noční výsadek umožňuje snadnější přesun s tím také souvisí rychlejší nárůst zkušeností než obvykle. A samozřejmě to souvisí i s cenou nočního vidění.",
         "MiscDescription": "Schopnost manipulace s ruznorodými zbraněmi",
@@ -1726,7 +1726,7 @@
         "COPY METADATA": "ZKOPÍROVAT METADATA",
         "Recoil Back": "Horizontální zpětný ráz",
         "ChangeButton": "ZMĚNIT",
-        "handbook/enter entity name": "pojmenujte subjekt",
+        "handbook/enter entity name": "zadejte název předmětu",
         "Not enough place for item": "Na předmět není dostatek místa",
         "NicknameCanBeChangedAfter": "Změna přezdívky postavy bude možná po {0} UTC.",
         "You have already bought the maximum amount of this item in the current restock.": "Již jste koupili maximální množství této položky\nz aktuálně naskladněného množství.",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Průmyslový generátor pro zajištění autonomního provozu výrobních zařízení. Také poskytuje více dalších slotů pro instalaci palivových kanystrů.",
         "hideout_area_2_stage_2_description": "Základní koupelna s dřevěnou toaleta typu latríny, umyvadlo a připojení k vodovodu. Toto vše vám v krytu zajišťuje vyšší úroveň čistoty a hygieny.",
         "hideout_area_3_name": "Skrýš",
-        "hideout_area_3_stage_2_description": "Střední skrýš (10x36)",
+        "hideout_area_3_stage_2_description": "Střední skrýš (10x38)",
         "hideout_area_0_stage_3_description": "Montáž ventilačního potrubí s elektrickými ventilátory pro zvýšení proudění vzduchu. Kompletní systém cirkulace vzduchu, potřebný pro moderní výrobu a chemický výzkum.",
         "hideout_area_1_stage_2_description": "Vylepšená vstupní hala se zesílenými dveřmi, věšákem na šaty a dalšími předměty pro domácnost. Takové dveře už jedním kopem nevyrazíte.",
         "hideout_area_4_name": "Generátor",
-        "hideout_area_3_stage_3_description": "Velká skrýš (10x46)",
-        "hideout_area_3_stage_4_description": "Skrýš maximální velikosti (10x66)",
+        "hideout_area_3_stage_3_description": "Velká skrýš (10x48)",
+        "hideout_area_3_stage_4_description": "Skrýš maximální velikosti (10x68)",
         "hideout_area_5_name": "Vytápění",
         "hideout_area_2_stage_1_description": "Primitivní záchod. Nedá se mluvit o nějakém vybavenosti. K udržení základní hygieny je zde jen kbelík a bedna s kočolitem.",
         "hideout_area_4_stage_1_description": "Srdce vašeho útočiště. Jednoduchý palivový generátor, který vám může v krytu poskytnout elektrickou energii pro základní zařízení. K udržení výkonu celé rozvodné sítě je potřebné palivo.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Vodní kolektor",
         "hideout_area_5_stage_1_description": "Obyčejný barel s dřívím na otop. Velmi základní a nebezpečná možnost vytápění, protože hoření produkuje toxický oxid uhelnatý.",
         "hideout_area_1_stage_3_description": "Pokročilý bezpečnostní systém krytu, který zahrnuje, kromě pancéřových dveří, video kamer, intercom a hasičáků, také speciální betonové výztuhy, které zvyšují strukturální pevnost stěn a stropů.",
-        "hideout_area_3_stage_1_description": "Malá skrýš (10x26)",
+        "hideout_area_3_stage_1_description": "Malá skrýš (10x28)",
         "hideout_area_5_stage_3_description": "Vybavení celého krytu dalšími elektrickými přímotopy. Nyní, společně s litinovými kamny se už zimy bát nemusíte.",
         "hideout_area_2_stage_3_description": "Moderní koupelna s chemickým záchodem, sprchu a odpadkovým košem. Vše potřebné je napojeno na vodovod a poskytuje nejvyšší úroveň dostupné osobní hygieny.",
         "hideout_area_9_stage_2_description": "Místo k relaxaci, vybavené normální postelí, nočním stolkem a dokonce i starou TV. To vše vytváří pocit pohodlí a navazuje nostalgické vzpomínky na dřívější život.",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Šance na způsobení těžkého krvácení",
         "lightbleedingdelta": "Šance na způsobení lehkého krvácení",
         "choose face and voice": "VYBRAT OBLIČEJ A HLAS",
+        "TroubleFixing": "Zvýšení rychlosti řešení problémů (až o 50%). 1% za každou úroveň dovednosti.",
+        "TroubleFixingAmmoElite": "Snižuje pravděpodobnost závad způsobených zásobníkem o 50% po opravě závady stejného původu",
+        "ZeroWeaponDeteriorationOnRepair": "Žádné opotřebení během opravy",
+        "NetworkError/TooManyFriendRequestsHeader": "Příliš mnoho žádostí",
+        "NetworkError/TooManyFriendRequestsMessage": "Zkuste to znovu za {0} sekund",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Zatím nemáte žádné dialogy.</b></size>\nPro vytvoření pozvěte přátele nebo se připojte ke globálnímu chatu.",
+        "TroubleFixingDurElite": "Snižuje pravděpodobnost závad způsobených životností zbraní o 50% po opravě závady stejného původu",
+        "WeaponDurabilityLossOnShotReduce": "Snížení opotřebení zbraně při střelbě (až o 50%)",
         "un-sec": "Severní zátaras UN",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Ztráta krve",
         "REMOVES BLOODLOSS": "ODSTRAŇUJE ZTRÁTU KRVE",
         "\"Magazine checked: \"": "Zásobník zkontrolován:",
-        "You have already bought the maximum amount of this item in the current restock": "Již jste koupil maximální množství této položky z aktuálně naskladněného množství",
         "DamageType_Bloodloss": "Ztráta krve",
         "you can't transfer item while moving": "Předmět nelze přesunout, pokud se hýbete",
         "place": "UMÍSTENÍ",
         "This location is not available for scav": "Tato lokace není pro SCAVa dostupná",
         "Interchange": "Interchange",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "Načtení dat se nezdařilo, zkontrolujte stav sítě. Zkuste znovu vstoupit na obrazovku pro léčbu, nebo ji přeskočte a přejděte do hlavního menu.",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Modifikaci {0} nelze nainstalovat na sklopenou zbraň",
+        "No action available": "Žádné dostupné akce",
+        "ProfileEvent/AssortmentLockRule": "Obchodníkova nabídka <b>{0}</b> je uzamčena.",
+        "ProfileEvent/ExamineItems": "Prozkoumat předmět <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Prozkoumání předmětu <b>{0}</b> bylo resetováno.",
+        "ProfileEvent/ProfileLockTimer": "Nastavit dostupnost Scava na <b>{0}</b> sekund.",
+        "ProfileEvent/ProfileUnlock": "Reset dostupnosti Scava.",
+        "ProfileEvent/UnlockTrader": "Odemčen obchodník <b>{0}</b>.",
+        "ProfileEvent/LockTrader": "Uzamčen obchodník <b>{0}</b>.",
+        "ProfileEvent/MasteringSkill": "Změna <b>{0}</b> zlepšení manipulace na <b>{1}</b>.",
+        "Critical error": "Kritická chyba",
+        "TroubleFixingMagElite": "Snižuje pravděpodobnost závad způsobených municí o 50% po opravě závady stejného původu",
+        "WeaponDeteriorationChanceReduce": "Snížená pravděpodobnost opotřebení během oprav (až o -60%)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Low Latency",
+        "UI/Settings/NVidiaReflexMode/Off": "Vypnuto",
+        "UI/Settings/NVidiaReflexMode/On": "Zapnuto",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Zapnuto a vylepšeno",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex je zapnut. Pokud chcete tyto parametry změnit, vypněte ho.",
+        "NVidia Reflex settings will be applied after restart.": "Nastavení NVidia Reflex bude použito po restartování.",
+        "FoundInRaid": "Nalezeno v raidu",
+        "loudness": "HLASITOST",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2845,7 +2874,7 @@
         "5abe61a886f7746ad512da92": "Díky za pomoc s těmi dodávkami. Stihli jsme to právě v čas, dokonce je ještě předtím než je nestihli Scavové rozebrat. Při zkoumání následků pádu tunelu, jsme narazili na tělo vedoucího Terragroup, Gelandewagena. Zdá se, že část nejvyššího managementu společnosti tam zahynula, když se snažili evakuovat. Jsem si vědoma, že lékařský výzkum byl jednou z nejvyšších priorit společnosti a také jsem si téměř jista, že jelikož měli opravu naspěch nestihli odvézt všechny dokumenty a zásoby. Ať už tam dělali cokoliv, myslím, že to může být velmi užitečné jak pro nás, tak pro lékařskou vědu obecně. Může nám to také zajistit letenku z Tarkova, možná i více než jednu. Pravidelně jsem se setkávala s určitými zaměstnanci z Terragroup, probírali jsme problémy týkající se zdravotní péče a díky tomu jsem byla částečně obeznámena některými typy jejich činnosti. Jeden z mých známých, který byl mimochodem přímým podřízeným zesnulého Gelandewagenova vedení, žil někde v budově zdravotního střediska. Počkejte, podívám se po tom... tady to je, pokoj 306. Prohledejte ho, zda-li tam nemohlo něco zůstat.",
         "5abe61a886f7746ad512da8d": "Zdravím.\n\nZnáme se už dost dlouho a není důvod bychom měli mezi sebou spory. Jsem si jistá, že ti záleží na naší spolupráci stejně jako mě. Neboj se, nebudu tě do ničeho tlačit. Jsem teď v kontaktu s člověkem, který má velké zásoby zdravotního materiálu ze Západu. Je ochotný mi to prodat, ale jen za zahraniční měnu. Pokud mi s tím pomůžeš, tak si můžeme znovu říkat přátelé.",
         "5ac2438186f77412450b42c5": "Díky, předám to sni... Dimovi",
-        "5ac242f286f774138762ee03": "Ano, já jsem Mechanik. Mám tu spoustu práce. Pojďme rovnou k věci. Chtěl jsi pomoct? Je škoda, že je tu tak málo času a programovací jednotka pro PLC100 je mimo provoz. A ty příkazy k bootování. To je fuk, Proč ti ty věci vůbec říkám? Sestav mi MP-133 s největší pravděpodobností na to nebudu mít čas a nějaké části tady ani nemám. Ať to má více jak 47 ergonomie, laserový zaměřovač, rozšířený zásobník a méně jak 950 zpětného rázu. A taky ať je kompaktní, ne větší než 4 sloty. Pak si promluvíme.",
+        "5ac242f286f774138762ee03": "Ano, já jsem Mechanik. Mám spoustu práce. Pojďme rovnou k věci, chtěl jsi pomoct? Je to škoda, tak málo času a programovací jednotka pro PLC100 je mimo provoz. A ty příkazy k bootování. To je fuk, proč ti to vůbec říkám? Potřebuju aby si mi sestavil MP-133. Nebudu na to mít čas a některé části ani nemám. Ať to má více než 47 ergonomie, laserový zaměřovač, rozšířený zásobník a méně jak 950 celkového zpětného rázu. A taky ať je kompaktní, ne větší než 4 sloty. Pak si promluvíme.",
         "5abe61a886f7746ad512da95": "Krev je dobrým zdrojem informací. Není tak dobrá jako správně zpracovaná dokumentace, ale stačí to. Už je to dlouho, co jsem naposledy dělala rozbor. Vzpomínám si, že se tenkrát jednalo o pomoc místnímu virologovi s jeho rigorózní prací. Připadá mi to jako by to bylo nedávno a přitom je to už tak dávno. Nyní s rozšířením internetového připojení je mnohem snazší vyměňovat si informace dokonce i s kolegy z jiných zemí. Tady a teď mi možnost projít si databázi Scopus velice chybí. Jsem si celkem jistá, že odpovědi na otázky, které vyvstávají ze zkoumání krevních vzorků tam jsou. Kde by mohl teď člověk získat přístup na web, ptáte se? K řešení tohoto problému, mi bylo doporučen obrátit se na člověka jménem Mechanik. Jak se ukázalo, ten přístup k Internetu má. A i relativně rychlé připojení. Požádala jsem ho, aby pro mne vyhledal potřebné články. Za své služby si řekl si o malý poplatek, ale v formě střelného prachu, ať už z jakéhokoli důvodu. Vypadá to, že se zabývá přebíjením munice, nebo něčím takovým. Nezajímalo mě to natolik, abych tomu věnovala čas. Nejdůležitější je, že nám poskytne informace, které potřebujeme. Obstarejte to, co žádá a nechte to na určeném místě ve Factory. Ve dne se to tam hemží Scavy, takže bude nejlepší udělat to v noci.",
         "5ac2437986f774124836841b": "Vhodné pro CQB a tiché ...",
         "5ac2438186f77412450b42c8": "Minule jsem toho nakecal až moc. To se stává, když jsem nějakou dobu sám se svými myšlenkami. Spousta věcí se mi honí hlavou zatímco tu sedím a seřizuji mířidla. Ta M4 se ukázala být hodně dobrá. Během chvíli byla pryč. Nějaký Bear se tu nedávno stavil, jmenoval se Sniper nebo tak nějak. Potřebuje odstřelovací pušku Lobaev Saboteur s puškohledem a multi-laserovým zařízením se zpětným rázem méně než 400, ergonomií nad 20 a hmotností pod 6.6 kg. Řekl, že to potřebuje na dvoukilometrový zásah. Ten chlap je náročný, tak si dej záležet.",
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "Z hloubi svého srdce. Doručím to.",
         "5b486c9386f7744a08514b1b": "Jednou, už docela dávno, jsem se setkal s majitelem Kiba Arms. Dokonce jsme spolu pak zašli do veřejných lázní se saunou, ačkoli to není zrovna nic pro mě. Každopádně si tam zlomil nohu, když se pokusil skočit do vody, veselý chlapík. Snil o založení celoroční airsoftové základny s bojištěm. Zdá se, že se mu to v Tarkově vyplnilo. Největší a nejlepší bojiště na světě, jen s malým rozdílem: tady zemřete a vše ztratíte díky jediné zbloudilé střele. Dejte dohromady AK-102 s tlumičem Rotor 43, taktickou rukojetí Magpul AFG OD a svítilnu Zenit 2U. Ergonomie by měla být více než 50, zpětný ráz nižší než 500, efektivnost mířidel 500 m nebo více. A zajistěte, aby nebyla větší než přes 8 slotů.",
         "5b486d0e86f7744f4b12d78f": "Díky. Jsem teď trochu zaneprázdněn, uvidíme se později.",
-        "5b486d8686f77450c05449c9": "Jakou má lidský život cenu, co myslíte? Nic moc, řekl bych. Ale co je pro mě ještě více překvapivé je současný trh s uměním. Hodnota děl od renomovaných autorů roste každý rok. Jsou určitě talentovaní, ale čím víc se na to díváte, tím více se vám zdá, že umění může být cokoliv. Může být obraz Grotka, vyhozený pisoár nebo hromada odpadků. Nicméně podle mého názoru nejvíce úžasná umělecká díla jsou zbraně, počínaje chladnými - které, jako takové již jsou všeobecně jako umění uznávány a lze je nalézt v mnoha muzeích - staré AK nebo M4, které jsou krásné, takové jaké jsou. Ale zbraň představuje skutečné umění, jen když se stane unikátní. Kousek po kousku, v rukou někoho, kdo ví, jak jí upravit. Kdo jí modifikuje k obrazu svému, vytváří mistrovské dílo a takové zaslouží být vystaveno v nejlepších muzeích. Přineste mi jedeno takové mistrovské dílo. M4A1 s tlumičem NT4 FDE, dlouhým puškovým předpažbím MK 10, puškohledem s termovizí REAP-IR a 60-ranným zásobníkem. Ergonomie by měla být víc než 48, zpětný ráz méně než 250 a hmotnost 5 kg nebo méně.",
+        "5b486d8686f77450c05449c9": "Jakou má lidský život cenu, co myslíte? Nic moc, řekl bych. Ale co je pro mě ještě více překvapivé je současný trh s uměním. Hodnota děl od renomovaných autorů roste každý rok. Jsou určitě talentovaní, ale čím víc se na to díváte, tím více se vám zdá, že umění může být cokoliv. Může být obraz Grotka, vyhozený pisoár nebo hromada odpadků. Nicméně podle mého názoru nejvíce úžasná umělecká díla jsou zbraně, počínaje chladnými - které, jako takové již jsou všeobecně jako umění uznávány a lze je nalézt v mnoha muzeích - staré AK nebo M4, které jsou krásné, takové jaké jsou. Ale zbraň představuje skutečné umění, jen když se stane unikátní. Kousek po kousku, v rukou někoho, kdo ví, jak jí upravit. Kdo jí modifikuje k obrazu svému, vytváří mistrovské dílo a takové zaslouží být vystaveno v nejlepších muzeích. Přineste mi jedeno takové mistrovské dílo. M4A1 s tlumičem NT4 FDE, dlouhým puškovým předpažbím MK 10, puškohledem s termovizí REAP-IR a 60-ranným zásobníkem. Ergonomie by měla být víc než 52, zpětný ráz méně než 250 a hmotnost 5 kg nebo méně.",
         "5b486ddf86f7744ba00f2234": "Mechanik se po tom ptal, dnes mu to pošlu.",
         "5b48704286f7744a14343905": "Všechna tato technologie očividně není nic pro mě, obraz je rozmazaný a signál na prd, ale nějaký \"pěkně vyžraný krysy\" jsem už zahlédl. Díky, pomohlo mi to!",
         "5b486e8e86f77448824937ad": "Oooph. Působivé, díky",
@@ -3136,7 +3165,7 @@
         "5fd4c9229e4b2a58b34bbd2b": "You seem to have recently split off from your group, you'll catch a bullet if you don't keep your eyes open. I'll give you a little boost from me. I see you're a decent fellow, and we'll get even as soon as you get the hang of it. I'm always in need of workers for my missions. Oh, yeah, everybody calls me Prapor, let's get acquainted. ",
         "5fd4c93f99cf630ebf4fabdf": "So, have you figured out what's what yet?  Here's the stuff, and keep your eyes open when you go out raiding. If you want to trade, come see me.",
         "5fdb3e50148b192e1a7463e2": "To znamená, že to moji chlapi nezvládli a náklad z transportů byl rozkraden... Plus, je poblíž tábor USEC? To je na hovno. Ale i tak, díky, že jsi to vyřídil.",
-        "5fdb3e50148b192e1a7463e5": "Zdravím vás, vojáku. Mám pro vás práci. Dlouhý příběh, zkrátím ho. ztratil jsem kontakt s jednou ze svých skupin a je to už docela dávno. \"Když hovno zasáhlo ventilátor\", poslal jsem je do lesa, aby vyzvedli nějaký náklad. Obávám se, že byli přepadeni. Když jsem se s nimi naposledy spojil, hlásili, že se k nim blíží USEC. Zkontrolujte, zda někdo přežil. Měli BRDM, Bukhanku a nějaké nákladní auto, nepamatuji si přesně jaké. Myslím, že i USEC se museli usadit někde poblíž.",
+        "5fdb3e50148b192e1a7463e5": "Zdravím vás, vojáku. Mám pro vás práci. Dlouhý příběh, zkrátím ho. Ztratil jsem kontakt s jednou ze svých skupin a je to už docela dávno. \"Když hovno zasáhlo ventilátor\", poslal jsem je do lesa, aby vyzvedli nějaký náklad. Obávám se, že byli přepadeni. Když jsem se s nimi naposledy spojil, hlásili, že se k nim blíží USEC. Zkontrolujte, zda někdo přežil. Měli BRDM, Bukhanku a nějaké nákladní auto, nepamatuji si přesně jaké. Myslím, že i USEC se museli usadit někde poblíž.",
         "600303b71448362c785bc3b2": "Samozřejmě jsem slyšel, jak se vzduch ve Woods třese. Shturman dostal, co si zasloužil. Nestůj tady, teď si můžeš koupit nové pušky.",
         "600303b71448362c785bc3b5": "Zdravím! Pojď dál. Mám pro tebe práci. Právě jsem dostal zásilku zbraní z dovozu. Ty velký s velkým dostřelem, ráže .338. Ty víš, že jsem těchto věcí zapálenej. A mám tu dalšího ostrostřelce, jménem Shturman. Už nějakou dobu je to velký problém. Vyřiď to s nim a umožním ti koupit si ty zámořský kvéry na slony. A teď se hni. Počkám, až se mi ozveš."
     },
@@ -3193,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Důkaz špatně pověsti",
@@ -3209,7 +3238,7 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Kornouty na zmrzlinu",
@@ -3470,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Zlatý lup",
@@ -3483,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Polikhimský tulák",
@@ -3656,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Vyplatit se",
@@ -3892,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -5417,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6374,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "Cesta lovce. Sadista",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Kolegové. Pt.2",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munice",
             "ShortName": "Munice",
-            "Description": "Munice",
-            "casingName": null
+            "Description": "Munice"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Funkční modifikace",
@@ -13668,7 +13702,7 @@
             "Description": "Dálkové ovládání na wi-fi kameru"
         },
         "5b44c6ae86f7742d1627baea": {
-            "Name": "Bojový batoh Ana taktické Beta 2 ",
+            "Name": "Bojový batoh Ana tactical Beta 2 ",
             "ShortName": "Beta2",
             "Description": "Lehký a prostorný batoh od Ana Tactical. Navržen pro použití v různorodých podmínkách a terénu."
         },
@@ -14244,9 +14278,9 @@
             "Description": "Standardní, zásuvná pažba pro MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
+            "Name": "Interchange - papírová mapa ",
             "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Description": "Interchange - podrobná mapa"
         },
         "5bead2e00db834001c062938": {
             "Name": "Lopatka MPL-50",
@@ -19674,6 +19708,326 @@
             "Name": "Kukla Smoke",
             "ShortName": "Smoke",
             "Description": "Značková kukla slavného hiphopového umělce z Tarkova - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK personal tactical first aid kit",
+            "ShortName": "AFAK",
+            "Description": "AFAK (Adaptive First Aid Kit). A more advanced version of the personal first aid kit."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Hemostatic tourniquet CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (combat application tourniquet) prevents blood loss by blocking the blood outlet by applying pressure to the affected limb. It uses a self-adjusting tensioning system and a tug-resistant buckle."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Emergency water ration",
+            "ShortName": "EWR",
+            "Description": "Drinking water for use in case of emergency and other circumstances where an emergency supply of liquid is needed, ready to be stored for several years."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Device for carrying out rescue operations\" Taiga-1. A truly versatile survival tool. It is a weapon and a shovel and an axe and everything you can imagine. It was developed and produced in the USSR for various agencies."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "A special cartridge designed for the United States Marine Corps. The bullet has an open nose with a lead tipped front and a copper base. Lead is for breaking down obstacles, and copper is for further penetration of the barrier.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "A very rare SSA armor-piercing cartridge designed to replace the M995. The bullet contains a tungsten carbide core for maximum penetration of hard targets.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "MAI armor-piercing 7.62x39 cartridges with a exposed carbide core.",
+            "casingName": "7.62x39 mm AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19 magazine, 16-round capacity",
+            "ShortName": "9x19 PL15",
+            "Description": "Standard-issue 16-round magazine for PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15 pistol slide",
+            "ShortName": "PL15 Slide",
+            "Description": "Regular slide for PL-15 pistol."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15 Standard Frontsight",
+            "ShortName": "PL15 FS",
+            "Description": "Regular front sight for PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15 extended front sight",
+            "ShortName": "PL15 FS",
+            "Description": "Extended PL-15 front sight designed for use with a sound suppressor."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15 extended rear sight",
+            "ShortName": "Sup. RS",
+            "Description": "Extended PL-15 rear sight designed for use with a sound suppressor."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15 Standard Rear-sight",
+            "ShortName": "PL15 RS",
+            "Description": "Regular rear-sight for PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Regular barrel for PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Regular barrel for PL-15 pistol."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Threaded barrel for PL-15",
+            "ShortName": "PL15 thr.",
+            "Description": "Threaded barrel for PL15 9x19 pistol."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19mm sound suppressor",
+            "ShortName": "PL15 std.",
+            "Description": "Regular PL-15 sound suppressor. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19 pistol",
+            "ShortName": "PL-15",
+            "Description": "A Russian self-loading pistol chambered for 9x19mm, developed by a team of designers from the Kalashnikov concern under the leadership of Dmitry Lebedev for the needs of Russian law enforcement agencies."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms buffer tube",
+            "ShortName": "STM Tube",
+            "Description": "STM Arms Receiver Extension Buffer Tube, 4-position, Com-Spec diameter will fit any AR-15-based carbine."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Telescopic stock product by Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver for STM-9 9x19 carbine",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver for STM-9 carbine. Equipped with a mount for attaching additional devices."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 pistol grip for AR-15 based systems",
+            "ShortName": "DLG123",
+            "Description": "DLG-123 pistol grip can be installed at any weapon compatible with AR-15 grips."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5\" barrel for STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 266mm long."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12\" barrel for STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 304mm long."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14\" barrel for STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 355mm long."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16\" barrel for STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 406mm long."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi battle charging handle for AR-15",
+            "ShortName": "MASP Charge",
+            "Description": "MASP Ambi battle charging handle for AR-15 and compatible systems."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19 muzzle brake",
+            "ShortName": "STM9 MB",
+            "Description": "Regular STM-9 9x19 muzzle brake."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Grey",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 carabine",
+            "ShortName": "STM-9",
+            "Description": "A PCC carbine with excellent performance already \"out of the box\". Designed with the participation of world bronze medalist in Semi-Auto Rifle Vadim Mikhailov. Accuracy, speed, comfort of recoil."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 headset",
+            "ShortName": "M32",
+            "Description": "EARMOR M32 je aktivní elektronické komunikační zařízení a ochrana sluchu současně. Ideální pro taktické použití."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "Brýle NPP KlASS Condor",
+            "ShortName": "Condor",
+            "Description": "Odolné balistické střelecké brýle s nárazuvzdornými čočkami."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Lovecká vesta Umka М33-SET1",
+            "ShortName": "Umka",
+            "Description": "Vesta Umka M33-SET1 je vytvořena pro lovce, cestovatele, vojenské profesionály a bezpečnostní důstojníky."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Taktická vesta CSA",
+            "ShortName": "CSA",
+            "Description": "Nejjednodušší hrudní postroj, ušitý narychlo z pochybných materiálů, určený pro airsoft. Vojenské použití tohoto modelu je možné, ale nedoporučuje se."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Batoh pře rameno Hazard4 Takedown",
+            "ShortName": "Takedown",
+            "Description": "Jedno-popruhový batoh přes rameno designovaný pro nošení dlouhých zbraní."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Batoh Eberlestock G2 Gunslinger II (suchá zemina)",
+            "ShortName": "Gunslinger",
+            "Description": "Modulární vojenský batoh střední velikosti s dodatečným rozšířením oddílů na zbraně běžného rozměru."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "STM 9 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "STM 9 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "STM 15 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "STM 15 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "STM 12 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "STM 12 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Vojenská čepice Black",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Vojenská čepice Coyote",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Vojenská čepice Flora",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Vojenská čepice Desert",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "Vojenská čepice UCP",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Plynová maska GP-7",
+            "ShortName": "GP-7",
+            "Description": "Civilní plynová maska GP-7 je filtrační prostředek individuální ochrany dýchacích orgánů, očí a pokožky obličeje."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Hrudní postroj Azimut SS Jhuk Chest Harness (černá)",
+            "ShortName": "Azimut",
+            "Description": "Jednoduchý, nylonový nosný systém s neodnímatelnými kapsami. Umožňuje nosit až pohádkově impozantní množství munice, bohužel na úkor pohodlí.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "Nosič plátů LBT 6094A (bronzová)",
+            "ShortName": "Slick",
+            "Description": "Jednoduchý nosič plátů od spol. LBT. Maximálně minimalistický design určený k použití s taktickou vestou."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "Nosič plátů LBT 6094A (olivová)",
+            "ShortName": "Slick",
+            "Description": "Jednoduchý nosič plátů od spol. LBT. Maximálně minimalistický design určený k použití s taktickou vestou."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Batoh přes rameno Hazard4 Takedown (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Jedno-popruhový batoh přes rameno designovaný pro nošení dlouhých zbraní."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Termite",
+            "ShortName": "Termite",
+            "Description": "Zápalné směsi na bázi termitů jsou sloučeniny hliníkového prášku a oxidu železa. Tyto směsi mají velmi vysokou teplotu hoření a jsou schopné hořet i bez přítomnosti kyslíku. Termit má extrémně vysokou hořlavost a je téměř nemožné jej uhasit."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Ráčna",
+            "ShortName": "Ráčna",
+            "Description": "Ráčny jsou nepostradatelným nářadím, které by měl mít každý zámečník nebo mechanik v autoservisu. Umožňují práci ve stísněném prostoru a mají rychle vyměnitelné pracovní hlavy. Neocenitelné nářadí!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Cihla TP-200 TNT",
+            "ShortName": "TP-200",
+            "Description": "TP-200 je určen k použití v náložích při seismickém průzkumu, nebo jako meziproduktový detonátor při iniciaci výbušných náloží ve vrtech, dále k drcení nadrozměrných předmětů a k provádění speciálních trhacích prací."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Hrudní postroj Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Jednoduchý, nylonový nosný systém s neodnímatelnými kapsami. Umožňuje nosit až pohádkově impozantní množství munice, bohužel na úkor pohodlí.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "Vojenská čepice CADPAT ",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
         }
     },
     "locations": {
@@ -19824,9 +20178,9 @@
         "5a7c2eca46aef81a7ca2145d": {
             "FullName": "Sergej Arsenyevich Samoylov",
             "FirstName": "Sergej Arsenyevich",
-            "Nickname": "Mechanic",
+            "Nickname": "Mechanik",
             "Location": "Chemička",
-            "Description": "Předák z chemičky. Před konfliktem a na jeho počátku upravoval a opravoval zbraně a prováděl údržbu složitých zařízení a technologií. Preferuje život s ústraní a diskrétní jednání. Pracovat s ním je výzvou, jelikož zadává různorodé a obtížné úkoly."
+            "Description": "Předák z chemičky. Před konfliktem a na jeho počátku upravoval a opravoval zbraně a prováděl údržbu složitých zařízení a technologií. Preferuje život v ústraní a diskrétní jednání. Pracovat s ním je výzvou, jelikož zadává různorodé a obtížné úkoly."
         },
         "5ac3b934156ae10c4430e83c": {
             "FullName": "Abramyan Arshavir Sarkisivich",
