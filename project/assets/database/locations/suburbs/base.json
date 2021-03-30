@@ -101,6 +101,12 @@
 	"exits": [],
 	"DisabledForScav": false,
 	"SpawnPointParams": [],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Suburbs",
 	"_Id": "5714dc342459777137212e0b",
 	"Loot": [],

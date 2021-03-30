@@ -1015,7 +1015,7 @@
         "SearchDescription": "Hızlı ve efektif vücut arama becerisi",
         "FirstAidDescription": "İlk yardım becerileri, ilk yardım kitlerinin kullanımını daha hızlı ve daha verimli hale getirir.",
         "MeleeDescription": "Yakın saldırı silahı kullanma becerisi",
-        "EnduranceBreathElite": "Fiziksel çaba nefes darlığına neden olmaz",
+        "EnduranceBreathElite": "Nefes almak, enerjiden bağımsızdır",
         "TroubleShootingDescription": "Sorun giderme becerisi, silah arızalarının çözümlenmesini kolaylaştırır.  ",
         "NightOpsDescription": "Gece operasyonlarında hareketi kolaylaştırır ve normalden daha fazla deneyim kazandırır. Ve elbette tüm bunlar gece görüş optiklerinin fiyatlarına yansımaktadır.",
         "MiscDescription": "Çeşitli silah kullanma becerisi",
@@ -1920,7 +1920,7 @@
         "hideout_area_4_stage_3_description": "Sanayi tipi jeneratör, üretim tesislerinin otomasyonunu sağlar. Ayrıca yakıt ikmali için fazladan yuvaları vardır.",
         "hideout_area_2_stage_2_description": "Ahşap tuvaleti olan ve su tedarik sistemine bağlı bir lavabosu bulunan temel bir banyo. Tüm bunlar sığınağın hijyen ve temizlik seviyesini yükseltir.",
         "hideout_area_3_name": "Zula",
-        "hideout_area_3_stage_2_description": "Orta büyüklük zula (10x36)",
+        "hideout_area_3_stage_2_description": "Orta boy zula(10x38)",
         "hideout_area_0_stage_3_description": "Hava sirkülasyonunun kalitesini artırmak için elektrikli fanların havalandırma kanalına takılması. Gelişmiş bileşenlerin ve kimyasal araştırmaların üretimi için tam bir hava sirkülasyon sistemi gereklidir.",
         "hideout_area_1_stage_2_description": "Güçlendirilmiş kapısı, bir kıyafet askısı ve diğer ev eşyaları olan düzgün bir hol. Böyle bir kapıyı tek bir tekme ile kıramazsınız.",
         "hideout_area_4_name": "Jeneratör",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "Ağır kanamaya neden olma şansı ",
         "lightbleedingdelta": "Hafif kanamaya neden olma şansı ",
         "choose face and voice": "SURATINIZI VE SESİNİZİ SEÇİN",
+        "TroubleFixing": "Çözüm arama hızını artırın (%50'ye kadar). Her beceri seviyesi için %1.",
+        "TroubleFixingAmmoElite": "Aynı nedenden kaynaklanan bir arızayı düzelttikten sonra şarjörün arıza yapma olasılığını %50 azaltır",
+        "ZeroWeaponDeteriorationOnRepair": "Onarım esnasında aşınma yok",
+        "NetworkError/TooManyFriendRequestsHeader": "Çok fazla istek var",
+        "NetworkError/TooManyFriendRequestsMessage": "{0} saniye sonra tekrar deneyin",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Henüz bir diyaloğun yok.</b></size> Yeni bir tane başlatmak için arkadaşlarını davet et ya da Global Sohbet’e katıl.",
+        "TroubleFixingDurElite": "Aynı nedenden kaynaklanan bir arızayı düzelttikten sonra, silahların dayanıklılığına bağlı arıza olasılığını %50 azaltır",
+        "WeaponDurabilityLossOnShotReduce": "Ateş ederken daha az silah aşınması (%50'ye kadar)",
         "un-sec": "Kuzey BM barikatı",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "Kan Kaybı",
         "REMOVES BLOODLOSS": "KAN KAYBINI DURDURUR",
         "\"Magazine checked: \"": "Şarjör kontrol edildi:",
-        "You have already bought the maximum amount of this item in the current restock": "Mevcut stoktaki bu eşyanın maksimum miktarını zaten aldınız",
         "DamageType_Bloodloss": "Kan Kaybı",
         "you can't transfer item while moving": "Hareket ederken nesneleri hareket ettiremezsiniz",
         "place": "YERLEŞTİR",
         "This location is not available for scav": "Bu alan scav modunda kullanılamaz",
         "Interchange": "Kavşak",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "Veri yüklenirken hata oluştu, internet bağlantınızı kontrol edin. İyileştirme ekranına tekrar girmeyi deneyin, ya da geçip ana menüye gidin?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} katlanmış silaha uygulanamaz",
+        "No action available": "Mevcut eylem yok",
+        "ProfileEvent/AssortmentLockRule": "Tüccar anlaşması <b>{0}</b> kilitli.",
+        "ProfileEvent/ExamineItems": "<b>{0}</b> eşyasını incele.",
+        "ProfileEvent/ForgetItems": "<b>{0}</b> eşyasını incelemeyi sıfırla.",
+        "ProfileEvent/ProfileLockTimer": "Scav dolum süresini <b>{0}</b> saniyeye ayarla.",
+        "ProfileEvent/ProfileUnlock": "Scav dolum süresini sıfırla.",
+        "ProfileEvent/UnlockTrader": "Tüccar <b>{0}</b> kilidini aç.",
+        "ProfileEvent/LockTrader": "Tüccar <b>{0}</b> kilitli.",
+        "ProfileEvent/MasteringSkill": "<b>{0}</b> yeteneğinin seviyesini <b>{1}</b> olarak değiştir.",
+        "Critical error": "Kritik hata",
+        "TroubleFixingMagElite": "Aynı nedenden kaynaklanan bir arızayı düzelttikten sonra mermiden kaynaklanan arıza olasılığını %50 azaltır",
+        "WeaponDeteriorationChanceReduce": "Onarım sırasında daha düşük aşınma olasılığı (-%60'a kadar)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Düşük Gecikme",
+        "UI/Settings/NVidiaReflexMode/Off": "Kapalı",
+        "UI/Settings/NVidiaReflexMode/On": "Açık",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Açık ve güçlendirilmiş",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex açık. Bu parametreyi değiştirmek için kapatın.",
+        "NVidia Reflex settings will be applied after restart.": "NVidia Reflex ayarı, yeniden başlattıktan sonra uygulanacaktır.",
+        "FoundInRaid": "Baskında bulundu",
+        "loudness": "GÜRÜLTÜ",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "Kalbimin derinliklerinden. Teslimatı yaparım.",
         "5b486c9386f7744a08514b1b": "Quite long ago, I once met the owner of Kiba Arms, we even went to banya then, though I’m not particularly into it. He, however, even broke his leg trying to jump-dive from the pier. Jolly fellow dreamt of setting up an Airsoft grounds all the time. It seems his wish came true in Tarkov, the largest and best-fighting grounds in the world, with an only minor difference: here, you die and lose everything from a single stray bullet. Put together an AK-102, with Rotor 43 silencer, Magpul AFG OD tactical grip, and Zenit 2U flashlight. Ergonomics should be over 50, recoil sum less than 500, sighting range 500 or more. Make sure it doesn’t take up more than 8 cells.",
         "5b486d0e86f7744f4b12d78f": "Teşekkürler. Şimdi meşgulüm, Sonra görüşürüz.",
-        "5b486d8686f77450c05449c9": "How much does human life cost, how do you think? Not much, I guess. But what’s even more surprising for me, it’s the contemporary art market. The value of pieces by renowned authors grows every year. They are definitely talented, but the more you look at it, the more it seems that anything can be art. It can be a Grotko painting, a displaced urinal or a bunch of garbage. However, in my opinion, the most amazing pieces of art are weapons, starting with the melee - which is already universally recognized as such and can be found in many museums - to an old AK or M4, which are beautiful as they are. But weapon only then transcends to true art when it becomes unique, one-of-a-kind, in the hands of someone who knows how to use it, who modifies it for his own needs, creating a masterpiece worthy of being displayed in the best of museums. Bring me one such masterpiece, an M4A1 with NT4 FDE silencer, rifle length MK 10 handguard, thermal scope REAP-IR, and a 60-round magazine. Ergonomics should be not less than 48, the recoil sum less than 250, and the weight of 5 kg or less.",
+        "5b486d8686f77450c05449c9": "How much does human life cost, how do you think? Not much, I guess. But what’s even more surprising for me, it’s the contemporary art market. The value of pieces by renowned authors grows every year. They are definitely talented, but the more you look at it, the more it seems that anything can be art. It can be a Grotko painting, a displaced urinal or a bunch of garbage. However, in my opinion, the most amazing pieces of art are weapons, starting with the melee - which is already universally recognized as such and can be found in many museums - to an old AK or M4, which are beautiful as they are. But weapon only then transcends to true art when it becomes unique, one-of-a-kind, in the hands of someone who knows how to use it, who modifies it for his own needs, creating a masterpiece worthy of being displayed in the best of museums. Bring me one such masterpiece, an M4A1 with NT4 FDE silencer, rifle length MK 10 handguard, thermal scope REAP-IR, and a 60-round magazine. Ergonomics should be not less than 52, the recoil sum less than 250, and the weight of 5 kg or less.",
         "5b486ddf86f7744ba00f2234": "Mechanic istemişti, gün içerisinde yollarım.",
         "5b48704286f7744a14343905": "Açıkçası bütün bu aletler bana göre değil, görüntü bulanık ayrıca sinyal de boktan, ama buna rağmen birkaç \"kokuşmuş sıçan\" saptadım. Teşekkürler, çok yardımın dokundu!",
         "5b486e8e86f77448824937ad": "Uuuuu. Etkileyici, teşekkürler",
@@ -3081,7 +3110,7 @@
         "5d2f378786f774169b7e0069": "Merhabalar savaşçı! Nasılsın? Her şey yolunda mı? Dinle şimdi, elimde sıra dışı bir görev var, Mekanik kendi mekanı için benden özel bir şey istedi, bu \"şey\" o kadar zorlayıcı bir iş ki çok gelişmiş elektronik aletlere ihtiyacım olacak. Ne yazık ki şehirde bu aletleri bulmanın yolu yok, lanet olsun. Ama söylentilere göre gizli bir Terragroup labratuarı varmış, sanırım burada aradığım aletleri bulabiliriz. Orası oldukça tehlikeli bir yer ve seni tek başına göndermek istemiyorum ama bana içeri girebilmek için gerekli kartları bulabilirsin. Yardım edecek misin? Güzel, kartlar yeni olmalı, diğer tüccarlardan aldığın eski kartları getirme.",
         "5d4bec6a86f7741e530d2c02": "Cidden başardın! Harika bir iş. Ben de sözümün eri birisi olarak sana ödülünü vereyim.",
         "5d66912c86f774368f43a242": "Bunlar inanılmaz güzel tüfekler! İyi iş çıkarmışsın! Ben de mi silah yapmaya başlasam!",
-        "5d66912c86f774368f43a245": "Come on in. Want some tea? Well, whatever. So listen, here's the deal. Soon I will be hosting a few friends of mine. I want to go hunting with them, but there's just no way I can take them hunting with these MP shotguns. I want you to get us a couple of nice rifles. Such rifles so I could add them to my personal collection after this hunt. You gotta love long-range shooting. But first, you have to make sure the rifle is zeroed properly. And we have just the client for that, his name is Shturman. He's lurking around a lumbermill in the woods, nasty bastard. Don't worry about the reward. It won't disappoint you. I'll write you a note with the stats for the rifles. (Remington M700 with a March Tactical 3-24x42 FFP scope)",
+        "5d66912c86f774368f43a245": "İçer gelsene. Çay içer misin? Peki, her neyse. Şimdi dinle, anlaşma şu şekilde. Yakında bir kaç arkadaşımı ağırlayacağım. Onlarla ava gitmek istiyorum, ama onları bu MP pompalı tüfekleriyle ava götüremem. Bize birkaç güzel tüfek getirmeni istiyorum. O kadar güzel olsunlar ki, avdan sonra onları kişisel koleksiyonuma ekleyebileyim. Uzun mesafeli atış yapmayı seviyor olmalısın. Ama önce, tüfeklerin sıfırlandığından emin ol. Ve bunun için bir müşterimiz var, ismi Shturman. Ormanda kereste fabrikasının oralarda takılıyor, iğrenç piç. Ödül hakkında endişelenme. Seni hayal kırıklığına uğratmayacağım. Tüfeklerin özellikleriyle ilgili sana bir not yazacağım. (Remington M700, March Tactical 3-24x42 FFP Dürbün ile beraber)",
         "5d66914986f7743690020694": "Bil bakalım burada kim varmış! Merhabalar! Eski askeri üssün depolarının hala ağzına kadar yemekle dolu olduğuna dair bir duyum aldım. Bazı haydutlar, RUAF güçleri üssü terk ettikten sonra yemek aramak için bölgede gezer olmuş. Bana bir iyilik yap, onların izlerini takip et ve depoların yerini bul. Ve ben de haydutlarla konukseverliğin ne demek olduğunu göstereyim.",
         "5d66914986f7743690020691": "Her şeyi aldılar mı? Lanet olsun, daha hızlı olmak zorundayız.",
         "5d6fb45f86f77449d825f9cc": "Kararını verdin mi? Sadece bir kaç iğne. Buraya ve şuraya. Rahatla, bir kaç gün dinlen ve bolca vitamin al.",
@@ -3193,7 +3222,7 @@
                 "5977784486f774285402cf52": "Hayatta kal ve Fabrika mekanından çık.",
                 "5978b48b86f7746ef62ef859": ""
             },
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "successMessageText": "5ab0f32686f7745dd409f566",
@@ -3209,7 +3238,7 @@
                 "5968948986f7740d121082d4": "Şifreli 0031 dosyasını Prapora teslim et",
                 "5a3fbdb086f7745a554f0c31": "Fabrika ofislerindeki kapalı odaya erişim sağlayın"
             },
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "successMessageText": "5ab0f32686f7745dd409f567",
@@ -3470,7 +3499,7 @@
                 "5979ee4586f7743ec214c7a5": "Skier'a teslim et",
                 "59819f0986f7744e6d0b7520": ""
             },
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "successMessageText": "5ab0f32686f7745dd409f57d",
@@ -3483,7 +3512,7 @@
                 "5979ef4586f77431307dc513": "Altın Zibbo çakmağı bul",
                 "5979ef7986f77431307dc514": "Dorse parkındaki barınağa bir çakmak bırak (Gümrük)"
             },
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "failMessageText": "5ab0f32686f7745dd409f57e",
@@ -3656,7 +3685,7 @@
             },
             "name": "Güveni geri kazan",
             "note": "",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "successMessageText": "5ab0f32686f7745dd409f58f",
@@ -3892,7 +3921,7 @@
             },
             "name": "İnsani Yardım Malzemeleri",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "successMessageText": "5ab0f32686f7745dd409f5a3",
@@ -5417,7 +5446,7 @@
             },
             "name": "Test çalışması",
             "note": "",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "successMessageText": "5c12457886f77468cf6f7342",
@@ -5737,7 +5766,7 @@
             },
             "name": "Avcı yolu. Güvenli çevre",
             "note": "",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "successMessageText": "5d26f9f086f77469ee70ac2c",
@@ -5753,7 +5782,7 @@
             },
             "name": "Avcı yolu. Kupa",
             "note": "",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "successMessageText": "5d27018e86f77469ef0f8950",
@@ -5797,7 +5826,7 @@
             },
             "name": "Avcı yolu. Satılmış",
             "note": "",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "successMessageText": "5d27245186f774483c7bdb13",
@@ -5813,7 +5842,7 @@
             },
             "name": "Avcı yolu. Orman bekçisi",
             "note": "",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "successMessageText": "5d272b9086f774070261ec1d",
@@ -5841,7 +5870,7 @@
             },
             "name": "Avcı yolu. Kötü bekçi",
             "note": "",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "successMessageText": "5d27366b86f77445710a8072",
@@ -5855,7 +5884,7 @@
             },
             "name": "Avcı yolu. Silgi",
             "note": "",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "successMessageText": "5d2739d386f77445710a8077",
@@ -5967,7 +5996,7 @@
             },
             "name": "Av gezisi",
             "note": "",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "successMessageText": "5d66914986f7743690020691",
@@ -6374,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "Avcı yolu. Sadist",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "İş Arkadaşları. Bölüm.2",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Cephane",
             "ShortName": "Cephane",
-            "Description": "Cephane",
-            "casingName": null
+            "Description": "Cephane"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Fonksiyonel eklenti",
@@ -19674,6 +19708,326 @@
             "Name": "Smoke kar maskesi",
             "ShortName": "Smoke",
             "Description": "Tarkov'un ünlü hip-hop sanatcısı \"Smoke\" tarafından imzalı kar maskesi."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK personal tactical first aid kit",
+            "ShortName": "AFAK",
+            "Description": "AFAK (Adaptive First Aid Kit). A more advanced version of the personal first aid kit."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Hemostatic tourniquet CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (combat application tourniquet) prevents blood loss by blocking the blood outlet by applying pressure to the affected limb. It uses a self-adjusting tensioning system and a tug-resistant buckle."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Emergency water ration",
+            "ShortName": "EWR",
+            "Description": "Drinking water for use in case of emergency and other circumstances where an emergency supply of liquid is needed, ready to be stored for several years."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Device for carrying out rescue operations\" Taiga-1. A truly versatile survival tool. It is a weapon and a shovel and an axe and everything you can imagine. It was developed and produced in the USSR for various agencies."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "A special cartridge designed for the United States Marine Corps. The bullet has an open nose with a lead tipped front and a copper base. Lead is for breaking down obstacles, and copper is for further penetration of the barrier.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "A very rare SSA armor-piercing cartridge designed to replace the M995. The bullet contains a tungsten carbide core for maximum penetration of hard targets.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "MAI armor-piercing 7.62x39 cartridges with a exposed carbide core.",
+            "casingName": "7.62x39 mm AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19 magazine, 16-round capacity",
+            "ShortName": "9x19 PL15",
+            "Description": "Standard-issue 16-round magazine for PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15 pistol slide",
+            "ShortName": "PL15 Slide",
+            "Description": "Regular slide for PL-15 pistol."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15 Standard Frontsight",
+            "ShortName": "PL15 FS",
+            "Description": "Regular front sight for PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15 extended front sight",
+            "ShortName": "PL15 FS",
+            "Description": "Extended PL-15 front sight designed for use with a sound suppressor."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15 extended rear sight",
+            "ShortName": "Sup. RS",
+            "Description": "Extended PL-15 rear sight designed for use with a sound suppressor."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15 Standard Rear-sight",
+            "ShortName": "PL15 RS",
+            "Description": "Regular rear-sight for PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Regular barrel for PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Regular barrel for PL-15 pistol."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Threaded barrel for PL-15",
+            "ShortName": "PL15 thr.",
+            "Description": "Threaded barrel for PL15 9x19 pistol."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19mm sound suppressor",
+            "ShortName": "PL15 std.",
+            "Description": "Regular PL-15 sound suppressor. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19 pistol",
+            "ShortName": "PL-15",
+            "Description": "A Russian self-loading pistol chambered for 9x19mm, developed by a team of designers from the Kalashnikov concern under the leadership of Dmitry Lebedev for the needs of Russian law enforcement agencies."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms buffer tube",
+            "ShortName": "STM Tube",
+            "Description": "STM Arms Receiver Extension Buffer Tube, 4-position, Com-Spec diameter will fit any AR-15-based carbine."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Telescopic stock product by Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver for STM-9 9x19 carbine",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver for STM-9 carbine. Equipped with a mound for attaching additional devices."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 pistol grip for AR-15 based systems",
+            "ShortName": "DLG123",
+            "Description": "DLG-123 pistol grip can be installed at any weapon compatible with AR-15 grips."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5\" barrel for STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 266mm long."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12\" barrel for STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 304mm long."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14\" barrel for STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 355mm long."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16\" barrel for STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 406mm long."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi battle charging handle for AR-15",
+            "ShortName": "MASP Charge",
+            "Description": "MASP Ambi battle charging handle for AR-15 and compatible systems."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19 muzzle brake",
+            "ShortName": "STM9 MB",
+            "Description": "Regular STM-9 9x19 muzzle brake."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Grey",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 carabine",
+            "ShortName": "STM-9",
+            "Description": "A PCC carbine with excellent performance already \"out of the box\". Designed with the participation of world bronze medalist in Semi-Auto Rifle Vadim Mikhailov. Accuracy, speed, comfort of recoil."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 kulaklık",
+            "ShortName": "M32",
+            "Description": "The EARMOR M32 aktif elektronik komünikasyon kulak koruyucusu, taktiksel kullanım için idealdir."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "NPP KlASS Condor gözlük",
+            "ShortName": "Condor",
+            "Description": "Patlamaya dirençli lensli ağır görev balistik atış gözlüğü."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Umka М33-SET1 avcı yeleği",
+            "ShortName": "Umka",
+            "Description": "The Umka M33-SET1 yelek avcılar, seyyahlar, alan profesyonelleri ve emniyet görevlileri için dizayn edilmiştir."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "CSA hücum yeleği",
+            "ShortName": "CSA",
+            "Description": "The simplest chest rig, sewn hastily from dubious materials. It is designed for airsoft. Military use of this model is possible, but not recommended."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Hazard4 Takedown sling backpack",
+            "ShortName": "Takedown",
+            "Description": "Single-strap sling backpack designed for carrying long-barreled weapons."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Eberlestock G2 Gunslinger II backpack (dry earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Medium-sized modular military backpack with additional compartment for full-size weapons."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "STM 9 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "STM 9 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "STM 15 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "STM 15 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "STM 12 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "STM 12 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Black Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Coyote Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Flora Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Desert Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "UCP Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "GP-7 gasmask",
+            "ShortName": "GP-7",
+            "Description": "Civilian gas mask GP-7 is a filtering means of individual protection of respiratory organs, eyes and face skin."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Azimut SS Jhuk Chest Harness (black)",
+            "ShortName": "Azimut",
+            "Description": "Simple nylon bearing system with non-removable pouches. Allows you to carry a fairly impressive amount of ammunition at the expense of convenience.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "LBT 6094A Slick Plate Carrier (tan)",
+            "ShortName": "Slick",
+            "Description": "Simple plate carrier by LBT company. The most minimalistic design intended for use with chest rigs."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "LBT 6094A Slick Plate Carrier (olive)",
+            "ShortName": "Slick",
+            "Description": "Simple plate carrier by LBT company. The most minimalistic design intended for use with chest rigs."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Hazard4 Takedown sling backpack (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Single-strap sling backpack designed for carrying long-barreled weapons."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Can of termite",
+            "ShortName": "Termite",
+            "Description": "Termite-based incendiary mixtures are a mixture of aluminum powder and iron oxide. These compounds have a very high combustion temperature and are capable of burning without the presence of oxygen. Termite has an extremely strong burning effect and is almost impossible to extinguish."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Ratchet wrench",
+            "ShortName": "Ratch.",
+            "Description": "Ratchets are an indispensable tool that every locksmith and mechanic at a service station should have for car maintenance. Allows you to work in a confined space. Has the ability to quickly change working heads. Golden instrument!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "TP-200 TNT brick",
+            "ShortName": "TP-200",
+            "Description": "TP-200 is intended for use as charges in the production of seismic surveys, intermediate detonators when initiating borehole explosive charges, crushing oversized items and performing special blasting operations."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Azimut SS Jhuk Chest Harness (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Simple nylon bearing system with non-removable pouches. Allows you to carry a fairly impressive amount of ammunition at the expense of convenience.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "CADPAT Army cap ",
+            "ShortName": "Şapka",
+            "Description": "Askeri şapka"
         }
     },
     "locations": {

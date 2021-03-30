@@ -3700,6 +3700,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "laboratory",
 	"_Id": "5b0fc42d86f7744a585f9105",
 	"Loot": [],

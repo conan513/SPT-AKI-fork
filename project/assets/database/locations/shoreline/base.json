@@ -7484,6 +7484,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Shoreline",
 	"_Id": "5704e554d2720bac5b8b456e",
 	"Loot": [],

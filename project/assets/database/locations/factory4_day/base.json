@@ -1861,6 +1861,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "factory4_day",
 	"_Id": "55f2d3fd4bdc2d5f408b4567",
 	"Loot": [],

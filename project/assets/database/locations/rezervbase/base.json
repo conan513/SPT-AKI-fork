@@ -4812,6 +4812,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "RezervBase",
 	"_Id": "5704e5fad2720bc05b8b4567",
 	"Loot": [],

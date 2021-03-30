@@ -5709,6 +5709,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Interchange",
 	"_Id": "5714dbc024597771384a510d",
 	"Loot": [],

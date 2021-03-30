@@ -101,6 +101,12 @@
 	"exits": [],
 	"DisabledForScav": false,
 	"SpawnPointParams": [],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Lighthouse",
 	"_Id": "5704e4dad2720bb55b8b4567",
 	"Loot": [],

@@ -34,9 +34,9 @@ class InraidController
         return profile;
     }
 
-    addPlayer(sessionID, info)
+    addPlayer(sessionID, location)
     {
-        SaveServer.profiles[sessionID].inraid.location = info.Location;
+        SaveServer.profiles[sessionID].inraid.location = location;
     }
 
     removePlayer(sessionID)

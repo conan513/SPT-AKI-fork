@@ -101,6 +101,12 @@
 	"exits": [],
 	"DisabledForScav": false,
 	"SpawnPointParams": [],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Terminal",
 	"_Id": "5704e5a4d2720bb45b8b4567",
 	"Loot": [],

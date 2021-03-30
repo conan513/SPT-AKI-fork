@@ -269,7 +269,7 @@
         "Attention! This is a Beta version of Escape from Tarkov for testing purposes.": "注意！这是“逃离塔科夫”的Beta测试版本。\n",
         "Friend request from {0} declined succesfully!": "来自 {0} 的好友申请被拒绝了！",
         "SOUND OFF": "关闭声音",
-        "Select BEAR Character": "你是Battle Encounter Assault Regiment（BEAR）的行动人员，BEAR是一家由前苏联各国前特种部队军官组建的俄国PMC公司。BEAR以俄国政府代理人的身份参与了“契约战争”，揭露了Terra Group实验室的非法活动，成功给他们与USEC（西方成立的PMC）这一安全承包商之间持续的武装冲突画上了句号。",
+        "Select BEAR Character": "你是Battle Encounter Assault Regiment（BEAR）的行动人员，BEAR是一家由前苏联各国前特种部队军官组建的俄国PMC公司。BEAR以俄国政府代理人的身份参与了“契约战争”，揭露了Terra集团 - 实验室的非法活动，成功给他们与USEC（西方成立的PMC）这一安全承包商之间持续的武装冲突画上了句号。",
         "has been kicked from the dialog": "已被移出对话",
         "Attention! You’ve completed the raid way too early.": "注意！你过早完成了这个战局。",
         "Can't open context menu while searching": "搜索时无法打开快捷菜单",
@@ -279,7 +279,7 @@
         "has been removed from friends list succesfully!": "已从你的好友名单中成功移除！",
         "Blood lost": "失血量",
         "Not enough experience gained. Therefore, you have received the Ran Through exit status.": "没有获得足够的经验。因此您的撤离状态为“匆匆逃离”。",
-        "Select USEC Character": "你是United Security（USEC）的一名行动人员，作为海外安全承包商受雇于Terra Group Labs。USEC的主要目标是：销毁其雇主进行可能的非法活动时，产生的任何相关证据，并保护其财产不被BEAR（俄政府聘请调查TerraGroup活动的PMC）夺取。",
+        "Select USEC Character": "你是United Security（USEC）的一名行动人员，作为海外安全承包商受雇于Terra集团 Labs。USEC的主要目标是：销毁其雇主进行可能的非法活动时，产生的任何相关证据，并保护其财产不被BEAR（俄政府聘请调查TerraGroup活动的PMC）夺取。",
         "Press any key...": "按任意键...",
         "Aiming deadzone:": "瞄准盲区：",
         "Offline raid description": "为了更为方便的进行各种测试，游戏的Beta版本包含一个特殊的离线模式，允许玩家单独进入战局（可以选择是否带有Scav）。该模式可用于探索和测试各种地点、调整武器、测试角色，以及在游戏服务器繁忙或不可用时进行其他你想进行的活动。\n\n我们计划在未来增加离线模式中可以进行的活动种类，使其包含更多用于测试的功能。",
@@ -918,7 +918,7 @@
         "Perception": "感知",
         "Exceptions:": "例外:",
         "Repair price rate": "维修费用",
-        "PlantLocationDescription": "16号化工厂的厂区和设施曾被非法租用给Terra Group公司。这个工厂在“契约战争”期间成为了USEC和BEAR双方争夺市工业区控制权的激战战场。随着之后的混乱加剧，工厂变成了幸存的市民、Scav和各种武装人员的避风港，其中也包括残存的USEC和BEAR行动人员。",
+        "PlantLocationDescription": "16号化工厂的厂区和设施曾被非法租用给Terra集团公司。这个工厂在“契约战争”期间成为了USEC和BEAR双方争夺市工业区控制权的激战战场。随着之后的混乱加剧，工厂变成了幸存的市民、Scav和各种武装人员的避风港，其中也包括残存的USEC和BEAR行动人员。",
         "bad": "糟糕",
         "NotEnoughMoney": "没有足够的钱",
         "very bad": "非常糟",
@@ -1015,7 +1015,7 @@
         "SearchDescription": "高效而快速的搜身技能",
         "FirstAidDescription": "急救技术可以让你更快更有效果地使用急救包。",
         "MeleeDescription": "近战武器使用技能",
-        "EnduranceBreathElite": "耗尽体力时不会导致呼吸困难",
+        "EnduranceBreathElite": "呼吸不再受能量值影响",
         "TroubleShootingDescription": "排除故障技能有助于排除武器故障。",
         "NightOpsDescription": "夜间行动技能使你在夜间移动更方便，而且也可以获得比平常更多的经验。当然也会反映在夜视设备的价格上。",
         "MiscDescription": "其他武器使用技能",
@@ -1146,7 +1146,7 @@
         "Rig": "胸挂",
         "StatsTreatment": "治疗经验",
         "InputTextPlaceholder": "输入文字",
-        "MAXIMUM THROW DAMAGE": "最大投掷距离",
+        "MAXIMUM THROW DAMAGE": "单片破片最大伤害",
         "MarkerDelete": "删除标记",
         "StatsCausedHeavyDamage": "造成严重伤害",
         "ExpBonusRunner": "匆匆逃离",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "工业级发电机确保生产设施的自主运行。一样有用于安装燃料罐的附加槽。",
         "hideout_area_2_stage_2_description": "带有“shithole”型木制马桶的基础卫生间，还有一个与供水系统相连的洗脸台。这些东西共同提高了庇护所的清洁和卫生水平。",
         "hideout_area_3_name": "仓库",
-        "hideout_area_3_stage_2_description": "中型仓库（10x36）",
+        "hideout_area_3_stage_2_description": "中型仓库（10x38）",
         "hideout_area_0_stage_3_description": "在通风管道内安装电风扇以增加风量。先进的生产和化学研究需要这样一个完整的空气循环系统。",
         "hideout_area_1_stage_2_description": "一个经过改进的门厅，包含加固门、一个衣架和其他家居用品。这样的门你是没法一脚踢开的。",
         "hideout_area_4_name": "发电机",
-        "hideout_area_3_stage_3_description": "大型仓库（10x46）",
-        "hideout_area_3_stage_4_description": "最大仓库（10x66）",
+        "hideout_area_3_stage_3_description": "大型仓库（10x48）",
+        "hideout_area_3_stage_4_description": "最大仓库（10x68）",
         "hideout_area_5_name": "加热器",
         "hideout_area_2_stage_1_description": "原始的马桶。不用担心任何便利设施所带来的各种问题。只有一个桶和一个垃圾箱来维持庇护所的基本卫生。",
         "hideout_area_4_stage_1_description": "一个简单的燃油发电机，可以为庇护所设备提供基础电力。是您庇护所的心脏。需要燃料来维持整个电网的运转需求。",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "集水器",
         "hideout_area_5_stage_1_description": "一个用来维持热度的简易木柴桶。加热器的基础选择。有一氧化碳中毒的风险。",
         "hideout_area_1_stage_3_description": "一套高级庇护所安保系统，包含装甲掩体门、视频监控摄像机、对讲机系统、灭火设施、以及增加墙壁和天花板结构强度的特殊装置。",
-        "hideout_area_3_stage_1_description": "小型仓库（10x26）",
+        "hideout_area_3_stage_1_description": "小型仓库（10x28）",
         "hideout_area_5_stage_3_description": "为整个庇护所额外配备电加热器。现在在大肚炉与电加热器的共同作用下，不会再有骇人的寒冷。",
         "hideout_area_2_stage_3_description": "高级卫生间，带干衣柜、淋浴器和垃圾桶。您需要的一切都与供水系统相连，使您达到最高性价比的个人卫生水平。",
         "hideout_area_9_stage_2_description": "一个供人放松的地方，配有一张普通的床、床头柜甚至一台旧电视。它创造了一种舒适的感觉，给人一种怀旧的前世回忆。",
@@ -2579,31 +2579,60 @@
         "heavybleedingdelta": "造成大出血的概率",
         "lightbleedingdelta": "造成轻微出血的概率",
         "choose face and voice": "选择面部和声音",
+        "TroubleFixing": "加快排障速度（最大50%）。每级提升1%。",
+        "TroubleFixingAmmoElite": "当武器因弹匣发生故障后，由相同原因再次发生故障的概率降低50%",
+        "ZeroWeaponDeteriorationOnRepair": "维修时不产生磨损",
+        "NetworkError/TooManyFriendRequestsHeader": "好友请求过多",
+        "NetworkError/TooManyFriendRequestsMessage": "{0} 秒后再尝试",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>你目前没有会话</b></size>\n邀请好友对话，或加入公共聊天室。",
+        "TroubleFixingDurElite": "当武器因耐久度问题发生故障后，由相同原因再次发生故障的概率降低50%",
+        "WeaponDurabilityLossOnShotReduce": "降低开火时的枪械磨损（最高50%）",
         "un-sec": "北部UN路障",
-        "NetworkError/TooManyFriendRequestsHeader": "Too many requests",
-        "NetworkError/TooManyFriendRequestsMessage": "Try again in {0} seconds",
         "BloodLoss": "失血",
         "REMOVES BLOODLOSS": "止血",
         "\"Magazine checked: \"": "弹匣已检查:",
-        "You have already bought the maximum amount of this item in the current restock": "你已经购买了该物品在本次补货周期内所允许购买的最大数量",
         "DamageType_Bloodloss": "失血",
         "you can't transfer item while moving": "你无法在移动中转移物品",
         "place": "安放",
         "This location is not available for scav": "这一地区Scav不可进入",
         "Interchange": "立交桥",
-        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
-        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
-        "No action available": "No available actions",
-        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
-        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
-        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
-        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
-        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
-        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
-        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
-        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
-        "Critical error": "Critical error",
-        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat."
+        "Matchend/ErrorUpdatingDataForHealing": "加载数据失败，请检查网络状况。尝试重载治疗界面，或跳过并返回主菜单？",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "配件 {0} 不能安装在已折叠的武器上",
+        "No action available": "无可用操作",
+        "ProfileEvent/AssortmentLockRule": "商人交易 <b>{0}</b> 已锁定。",
+        "ProfileEvent/ExamineItems": "检视物品 <b>{0}</b>。",
+        "ProfileEvent/ForgetItems": "已重置 <b>{0}</b> 物品检视状态。",
+        "ProfileEvent/ProfileLockTimer": "将Scav冷却时间设定为 <b>{0}</b> 秒。",
+        "ProfileEvent/ProfileUnlock": "Scav冷却时间已重置。",
+        "ProfileEvent/UnlockTrader": "商人 <b>{0}</b> 已解锁。",
+        "ProfileEvent/LockTrader": "商人 <b>{0}</b> 未解锁。",
+        "ProfileEvent/MasteringSkill": "将 <b>{0}</b> 专精进度更改为 <b>{1}</b>。",
+        "Critical error": "严重错误",
+        "TroubleFixingMagElite": "当武器因弹药发生故障后，由相同原因再次发生故障的概率降低50%",
+        "WeaponDeteriorationChanceReduce": "降低装备维修时的磨损（最高-60%）",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex低延迟",
+        "UI/Settings/NVidiaReflexMode/Off": "关闭",
+        "UI/Settings/NVidiaReflexMode/On": "开启",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "开启并增强",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex已打开。要改变这一参数请先关闭垂直同步。",
+        "NVidia Reflex settings will be applied after restart.": "NVidia Reflex设置将在重启后生效。",
+        "FoundInRaid": "在战局中找到",
+        "loudness": "开火声音",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2702,7 +2731,7 @@
         "5ab0f32686f7745dd409f576": "真高兴能找到个既可靠又有正义感的勇者。",
         "5ab0f32686f7745dd409f56c": "时机正好，你干的这事儿即使算不上普惠众生，起码也帮了很多人。",
         "5ab0f32686f7745dd409f565": "什么，又成功了？有点勇士的样子了哦？可别被塔科夫吓的屁滚尿流哈！别介意！事情干得不错，我欠你个人情。大生意整的好，那就你好我好大家好，明白吗？",
-        "5abe61a786f7746ad512da4a": "嘿，战士，还能打么？行啊。我这儿有个活，实际上是小事一桩，让你来算是杀鸡用牛刀，就当是帮我个忙吧。有人送给我一个包裹，就放在伐木场后面的地堡里。里面是6个60发弹匣。畅销货，你懂的。他们为了挡住拾荒者，在铁栏杆上加了把锁。以前Terra Group的人经常在那儿逗留，其中一个家伙应该存了一把备用的钥匙。他住在工厂附近的一个宿舍楼里，过去看看吧。说实在的，如果你进不去那个地堡，去其它地方找也无所谓，这事我还是挺着急的。",
+        "5abe61a786f7746ad512da4a": "嘿，战士，还能打么？行啊。我这儿有个活，实际上是小事一桩，让你来算是杀鸡用牛刀，就当是帮我个忙吧。有人送给我一个包裹，就放在伐木场后面的地堡里。里面是6个60发弹匣。畅销货，你懂的。他们为了挡住拾荒者，在铁栏杆上加了把锁。以前Terra集团的人经常在那儿逗留，其中一个家伙应该存了一把备用的钥匙。他住在工厂附近的一个宿舍楼里，过去看看吧。说实在的，如果你进不去那个地堡，去其它地方找也无所谓，这事我还是挺着急的。",
         "5ab0f32686f7745dd409f57a": "啊！哈！这下可让我真正见识了什么叫灭口！现在所有人都在说外面有个游荡的魔鬼，干掉了一大帮人。做的真不错，奖励拿好。",
         "5ab0f32686f7745dd409f582": "很好，现在是时候让实验加快进展了，我们过一段时间再看看。",
         "5ab0f32686f7745dd409f57e": "妈的……显然指望你是个错误，现在我也没什么可以帮你的了。真是谢谢你留下的这半截子破事，现在麻烦都淹到我脖子了。",
@@ -2770,7 +2799,7 @@
         "5abe61a886f7746ad512da90": "translation_pending",
         "5abe61a786f7746ad512da47": "过的怎么样？好小子！不是每个人都这么走运。显然你确实有两下子。这很好，说明你有一些基本的战术思维。所以，我手上有这么一件难办的事要交给你：你知道锯木厂吧？就是那儿。我有几个朋友想要去那里办点事，但是那儿的有几个缺根筋的人渣，总觉得自己才是那儿的老大，总是在给我的朋友们找茬。根据我的消息，这些白痴不超过十五个人，对你这样的老兵油子来说应该不算难，只要你够机灵就行。你怎么说？\n",
         "5abe61a886f7746ad512da6f": "translation_pending",
-        "5abe61a786f7746ad512da49": "别来无恙，我亲爱的同志，来借一步说话，如果你有兴趣的话我这有件活儿给你整。我正在为找一个东西而绞尽脑汁，长话短说，有个在他妈的Polikim干活的工头搞到了一批非常重要的文件。你也知道，多少人都在为Terra Group和它们同党的相关罪证而疯狂火拼。之后的展开你也猜到了，但是那些试图把东西搞到手的人又蠢又猴急，工头还没来得及开口就被他们弄死了。你能想象吗？太不专业太没水平了！跟这些智障真是没法做生意。好了，回到主题。工头把那些文件藏在了某个地方，我已经把他周围的人都盘问个遍。总的来说，恐怕是找不到了，但是运气这事儿谁又说得准呢？一句话，这工头之前是在化学车间干活的。看看，真是屎上添屎。在工厂厂区的某个地方肯定有供他和他的狐朋狗友藏身的地儿。他们在里面吃喝拉撒，没准还会喊几个婊子进去嗨翻天。我估摸着我要的东西就在那儿。如果这还找不到，那我也没辙了。",
+        "5abe61a786f7746ad512da49": "别来无恙，我亲爱的同志，来借一步说话，如果你有兴趣的话我这有件活儿给你整。我正在为找一个东西而绞尽脑汁，长话短说，有个在他妈的Polikim干活的工头搞到了一批非常重要的文件。你也知道，多少人都在为Terra集团和它们同党的相关罪证而疯狂火拼。之后的展开你也猜到了，但是那些试图把东西搞到手的人又蠢又猴急，工头还没来得及开口就被他们弄死了。你能想象吗？太不专业太没水平了！跟这些智障真是没法做生意。好了，回到主题。工头把那些文件藏在了某个地方，我已经把他周围的人都盘问个遍。总的来说，恐怕是找不到了，但是运气这事儿谁又说得准呢？一句话，这工头之前是在化学车间干活的。看看，真是屎上添屎。在工厂厂区的某个地方肯定有供他和他的狐朋狗友藏身的地儿。他们在里面吃喝拉撒，没准还会喊几个婊子进去嗨翻天。我估摸着我要的东西就在那儿。如果这还找不到，那我也没辙了。",
         "5abe61a786f7746ad512da48": "气色不错啊，大兵。看样子你还待在这破地儿没走？闲话不多说了。我这有件事儿，挺敏感的事情。我们现在算是互相信任了吧？所以现在我也信任你。我不能告诉你这任务的细节信息，反正和我交给你的事没啥大关系。你的任务就是去拿一样东西，再把它放到另一个地方。听起来不难吧，但是这里有点细节问题，东西在海关，你要把它放到工厂里的某个地方。有兴趣吗？",
         "5abe61a786f7746ad512da61": "事情是这样的。这桩化学品交易实在是太神奇了，我们一下就弄明白了应该交给谁。现在接收方已经准备好了，只剩下一个问题要解决：找到更多的这种黄色化学物质。这个问题的关键在之前已经部分解决了——有人已经尝试过了。不知道他们是有意还是无意，但是如果你觉得从同一份文档里找到的寄售票据可信，那么这表明已经有人试过把一整箱的那玩意从工厂里带出来。但是这些货物没有在任何一个检查站登记过，所以我觉得还值得在工厂里继续找找。不只是一个破注射器，那可是一整箱。找找某种标记，也许箱子上应该有。明白了吗？还有一件事。我的小甜甜Prapor和Therapist好像也察觉到了，他们一直在到处打探，拜托你千万别在这时候跟我耍两面派。就这一点活，干完之后，我们就能掌管这个地方了。祝你好运，兄弟。我会向Ragman提起你的——他会给你搞些头盔给你买，很不错的那种。",
         "5abe61a786f7746ad512da50": "很高兴见到你，年轻人，我有一份高薪的工作要交给你。我们这里当前面临的饮水难题及其罪魁祸首，你应该已经知道了，现在我得委托你来解决一些事情。我们发现了污染饮水的源头，也找到了如何阻止的办法，只是想要彻底解决还需要几天时间。工程师已经在着手此事，但水源恢复正常之前, 我们不得不依靠稀少的剩余储备水来维生，日子过的实在是太艰难了。然而我了解到，有些人在污染之前设法储备了干粮和纯净水，就是住在工厂宿舍的那帮人。有几个人看见他们带着满满几个塑料桶的净水。每个人都有生存下去的权利，但他们没必要储备那么多，因为他们不知道，在几天内这一切问题都会恢复的。而由于缺水，我们这里许多人却可能活不到那一天了。请找到他们储存水的地方，并告诉我。",
@@ -2926,7 +2955,7 @@
         "5af5886186f774153d712bb7": 123,
         "5b486ce586f7744882493785": "希望你没有把这把MPX的用途告诉别人。",
         "5b486ce586f7744882493788": "剩下的时间不多了，一些人想跟Dealmaker谈谈，就是和工厂区的人一起在宿舍楼附近搞事儿的。给他组装一把MPX，带有镂空设计的AR-15手枪式握把，Annihilator生产的消焰器，和Steiner生产的LAS/TAC 2战术手电。有效射击距离为300或更远，人机工效大于52，重量小于4千克，总体后坐力低于250。记得别告诉任何人为什么你需要这个，Dealmaker听到可不会高兴的。他的人可厉害的很，而且在工厂干活前还都服过役。",
-        "5b486d0e86f7744f4b12d792": "我尝试去教导Lusya如何从谎言中分辨出真相，如果结果能保证90%的准确率，那么有的时候听听那些满嘴跑火车的政治家和Terra Group的科学家说话还挺有趣的，就比如昨天他们还在夸夸其谈自己的政治理想和崇高目标，给我们经济区的利益和未来的光明前景打包票下保证。这当中有多少是空头支票和讹言谎语？我认为，全都是。这有一个MOE版的AKMN的订单，要求：护木，枪托和手枪式握把都必须是MOE的，清一色黑。顺便再加个Rotor 43的膛口制退器和Magpul M-LOK AFG战术握把，后坐力总和小于350，人机工效大于47，重量为5公斤或者更低，有效射程为500。",
+        "5b486d0e86f7744f4b12d792": "我尝试去教导Lusya如何从谎言中分辨出真相，如果结果能保证90%的准确率，那么有的时候听听那些满嘴跑火车的政治家和Terra集团的科学家说话还挺有趣的，就比如昨天他们还在夸夸其谈自己的政治理想和崇高目标，给我们经济区的利益和未来的光明前景打包票下保证。这当中有多少是空头支票和讹言谎语？我认为，全都是。这有一个MOE版的AKMN的订单，要求：护木，枪托和手枪式握把都必须是MOE的，清一色黑。顺便再加个Rotor 43的膛口制退器和Magpul M-LOK AFG战术握把，后坐力总和小于350，人机工效大于47，重量为5公斤或者更低，有效射程为500。",
         "5b486d3e86f7743780259fd1": "顺便说下关于Sni......Dima，不要跟别人提起一个字，但我想你应该已经明白了。",
         "5b486d3e86f7743780259fd4": "这个是给神枪手先生的，似乎他正准备到森林的某个地方去狩猎坏蛋们，要去一整个星期。这是我从他背包里那一大堆的MRE，打火石，电池和水得出的结论。到现在这些东西还留在我这儿。他需要一把M1A，装备Ultimak M8基座，Nightforce 7-35-56瞄准镜，T1反射式瞄具，HOLOsun战术装置。人机工效大于20，总体后坐力低于400，总重量为7.3公斤或更低。",
         "5b486c9386f7744a08514b18": "做的好，把它放在箱子上吧。",
@@ -2938,7 +2967,7 @@
         "5b486e2a86f7744a08514b1c": "打心底里佩服你。我待会儿去送货。",
         "5b486c9386f7744a08514b1b": "很久以前，我曾见过Kiba Arms的老板，我俩甚至一起去蒸了桑拿，虽然我并不是特别喜欢。然而，他在跳水的时候意外摔断了腿。这个快乐的家伙一直梦想着能建个气枪场地。现在看来，他的梦想已经在塔科夫里实现了——在这个世界上最大、最残酷的战场里，实现了。虽然有点细微的差别：在这里，人被杀，就会死。一颗子弹，你就什么也没了。组装一把AK-102，带有Rotor 43的消音器，Magpul AFG OD色的战术握把，还有Zenit产的2U手电。人体工程学要大于50，总体后坐力小于500，有效射击范围为500或更远。确保它不会占超过8个格子。",
         "5b486d0e86f7744f4b12d78f": "多谢。我现在有点忙，回头见。",
-        "5b486d8686f77450c05449c9": "你认为，一条人命值多少？我猜，没多少。但让我惊讶的是现在的艺术市场。著名艺术家的作品每年都在增值。虽然他们的才华毋庸置疑，但是当你看的越多，你就越是觉得什么东西都可以是艺术。艺术可以是Grotko的画，也可以是挪了位置的小便池或一堆垃圾什么的。然而在我看来，最震人心魄的艺术品是武器，从肉搏兵器来说吧——这已经是举世公认的，在许多博物馆都能找到——再到一把老旧的AK或者M4，它们魅力依旧。但武器只有在追求独特的时候才能超越真的艺术，成为独一无二的。被掌握在懂得如何使用它的人手中，并根据自己的需要加以修改的武器，才是一个值得在最顶级博物馆展出的杰作。现在给我搞一把这样的杰作，一把M4A1，带有NT4 FDE色的消音器，步枪长度的MK10护木，REAP-IR热成像瞄准镜，和一个60发的弹匣。人机工效不能低于48，总体后坐力小于250，然后重量为5公斤或更低。",
+        "5b486d8686f77450c05449c9": "你认为，一条人命值多少？我猜，没多少。但让我惊讶的是现在的艺术市场。著名艺术家的作品每年都在增值。虽然他们的才华毋庸置疑，但是当你看的越多，你就越是觉得什么东西都可以是艺术。艺术可以是Grotko的画，也可以是挪了位置的小便池或一堆垃圾什么的。然而在我看来，最震人心魄的艺术品是武器，从肉搏兵器来说吧——这已经是举世公认的，在许多博物馆都能找到——再到一把老旧的AK或者M4，它们魅力依旧。但武器只有在追求独特的时候才能超越真的艺术，成为独一无二的。被掌握在懂得如何使用它的人手中，并根据自己的需要加以修改的武器，才是一个值得在最顶级博物馆展出的杰作。现在给我搞一把这样的杰作，一把M4A1，带有NT4 FDE色的消音器，步枪长度的MK10护木，REAP-IR热成像瞄准镜，和一个60发的弹匣。人机工效不能低于52，总体后坐力小于250，然后重量为5公斤或更低。",
         "5b486ddf86f7744ba00f2234": "Mechanic刚催过，我今天就送给他。",
         "5b48704286f7744a14343905": "这些高科技玩意儿很显然不是我想要的，图像模糊如同马赛克，信号也糟糕的很，但我已经发现了一些“肥老鼠”。谢谢，真是帮了我大忙！",
         "5b486e8e86f77448824937ad": "哇噢。令人印象深刻，谢了。",
@@ -3017,8 +3046,8 @@
         "5c13997e86f774210563ece1": "真倒霉……我知道这不是件简单活儿……这就是为什么我需要一个专业人士。",
         "5c13a99d86f77463932d9bc5": "最近我偶然找到了一些设备……先是一些国外的储存设备，之后又是一些看上去像某种读取器的玩意儿。这么跟你说吧，这些玩意儿很“有趣”。最重要的是，这种稀罕货我是头一次见到。可能是封锁被突破了或者是某个秘密仓库被撬了，才让这些宝贝流通出来。它们很显然不是国内的土货，是之后能让我发财的洋宝贝。我得提一句，你得自己去找到它们，因为它们都是些高级货——不能靠那些二手贩子，它们只会拿垃圾玩意儿糊弄你。如果你能把它弄来，我能让你一块儿发财。",
         "5c1a4e1286f774072447df2b": "小伙子，你该不会去了 {location}吧？那个禁区还是十分危险的，丢在那的东西就别指望能拿回来了。",
-        "5c1a533f86f77438bd2bfc6d": "在Terra Group的地盘丢掉的东西肯定是找不回来了。但是至少你还活得好好的。",
-        "5c1a4d5286f77431700f6134": "据我所知，你的东西丢到了Terra Group的禁区里。我的人基本上不去那个地方，所以你的装备肯定没了。",
+        "5c1a533f86f77438bd2bfc6d": "在Terra集团的地盘丢掉的东西肯定是找不回来了。但是至少你还活得好好的。",
+        "5c1a4d5286f77431700f6134": "据我所知，你的东西丢到了Terra集团的禁区里。我的人基本上不去那个地方，所以你的装备肯定没了。",
         "5c1a4cc786f77435a060f47a": "你把你的东西丢哪儿了？我的人既没有找到你的那堆垃圾，也他妈没找到{location}。",
         "5c1a52c686f77431740a3839": "虽然你把你的装备丢在了{location}那里，但是我还是让我的人去找你的装备了。他们到现在还没有回来，而且我已经和他们失去联系了。",
         "5c1a4ccf86f774072447defe": "我已经派我的伙计们去搜索{location}，但是一个都没回来。看来他们都完蛋了。",
@@ -3130,7 +3159,7 @@
         "5edac362930f5454f51dcacd": "很遗憾你听了这个Jaeger 的话，却没有听理性的声音。这位Sanitar用他的知识和药物可以在很多方面帮助我们。他不是位圣人，但每个人都应该有机会赎罪不是吗吗？但你剥夺了他的权利，我对你非常不满。",
         "5edac362930f5454f51dcacf": "年轻人，等等。我知道Jaeger会让你杀了那个Sanitar，但你不一定非得这么做。我明白这听起来不太好，用Jaeger的话来说，它就是一团有血有肉的怪物，但它不是。我相信Sanitar只是想帮助当地人。考虑到目前的情况，他做了最复杂的手术，结果往往很糟糕也就不足为奇了。他是一位拥有最宝贵知识的医生，那可以挽救更多的生命。一个能进入对我们极其重要的药品仓库的医生。他已经和我进行了谈判，并将很快开始合作。但为了这个，我需要一些他感兴趣的东西，我想我意识到他的兴趣是一个实验室。访问钥匙卡和军用兴奋剂的样本，我认为它们是他进行实验的基础。你能帮我找到它们吗？",
         "5edac64ba0055865214cb5b8": "我们解码了这个U盘驱动器。那里有很多重要的信息，但我不能什么都告诉你。私下里，我可以告诉你关于 Sanitar 的事，他是个科学家。他研究药物，制造药物，然后在人身上进行试验。非常......大胆的实验，而且其中一些明显是违背伦理的研究。",
-        "5edac64ba0055865214cb5bb": "祝你有个好日子。因为今日真的很棒。我是对的，新的兴奋剂与 Terra Group 有关。Mechanic 发现了一点关于 Sanitar 的信息，对我们来说有点贵，但总比什么都没有好。Sanitar 曾为 TerraGroup 工作，他可不是普通员工，接受过医学教育，是个传染病专家，离过婚......就是这样。再给我弄点信息，我的朋友，我很感兴趣他从哪里得到这些资源。找到他的工作场所，再挖点信息出来。",
+        "5edac64ba0055865214cb5bb": "祝你有个好日子。因为今日真的很棒。我是对的，新的兴奋剂与 Terra集团 有关。Mechanic 发现了一点关于 Sanitar 的信息，对我们来说有点贵，但总比什么都没有好。Sanitar 曾为 TerraGroup 工作，他可不是普通员工，接受过医学教育，是个传染病专家，离过婚......就是这样。再给我弄点信息，我的朋友，我很感兴趣他从哪里得到这些资源。找到他的工作场所，再挖点信息出来。",
         "5f08e8d3ec85fa71e9393f62": "就是它，就在一楼？我的人去过那里不少次，却什么都没发现。谢谢你。",
         "5f08e8d3ec85fa71e9393f65": "嗨，你听说那个了吗？一个新面孔出现在了疗养院，过去是个医生，TerraGroup 驻扎在了疗养院之后，他就在附近闲逛。这家伙可不是那么简单，他显然很懂化学，因为他卖兴奋剂。据传闻，他与 TerraGroup 有某种关系，似乎在那里工作过，或者只是和那些曾经工作过的人关系密切，目前还不清楚。但长话短说，他肯定在疗养院有自己的办公室或仓库，所以我需要你帮我找这个地方。我会派专家去那里，也许他们会发现一些有趣的东西。",
         "5fd4c9229e4b2a58b34bbd2b": "You seem to have recently split off from your group, you'll catch a bullet if you don't keep your eyes open. I'll give you a little boost from me. I see you're a decent fellow, and we'll get even as soon as you get the hang of it. I'm always in need of workers for my missions. Oh, yeah, everybody calls me Prapor, let's get acquainted. ",
@@ -3193,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "罪证",
@@ -3209,14 +3238,14 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "蛋卷冰淇淋",
             "note": "",
             "conditions": {
                 "59675e1d86f77414b07f137d": "上交3个60发弹容量的AK弹匣给Prapor",
-                "5967938c86f77468cf5f9f54": "在Terra Group员工房间里找到地堡的钥匙",
+                "5967938c86f77468cf5f9f54": "在Terra集团员工房间里找到地堡的钥匙",
                 "5968ed3186f77420d2328013": "在战局中找到3个60发弹容量的AK弹匣",
                 "5a3fbe3a86f77414422e0d9b": "在森林里找到正确的地堡"
             },
@@ -3470,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "金色失物",
@@ -3483,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Polikhim流浪汉",
@@ -3656,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "收买人心",
@@ -3892,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -3983,7 +4012,7 @@
         "5a27bb5986f7741dfb660900": {
             "conditions": {
                 "5a37de5486f7741535394d69": "以幸存状态撤离该区域",
-                "5a3ba7db86f7744f0e568c9c": "找到隐藏的Terra Group货物"
+                "5a3ba7db86f7744f0e568c9c": "找到隐藏的Terra集团货物"
             },
             "name": "神秘货物  - Part 3",
             "note": "",
@@ -4128,8 +4157,8 @@
         },
         "5a68663e86f774501078f78a": {
             "conditions": {
-                "5a68760f86f7743cc55d8709": "找到能提供Terra Group研究内容下落的信息",
-                "5a68763786f77474c33a40a1": "上交能提供Terra Group研究内容下落的信息",
+                "5a68760f86f7743cc55d8709": "找到能提供Terra集团研究内容下落的信息",
+                "5a68763786f77474c33a40a1": "上交能提供Terra集团研究内容下落的信息",
                 "5a68764c86f77474c4269f3c": "以幸存状态撤离该区域"
             },
             "name": "私密医疗  - Part 2",
@@ -5417,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5737,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5753,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5797,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5813,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5841,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5855,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5967,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "储备",
@@ -6374,7 +6403,7 @@
             "failMessageText": "5edab4e4218d181e29451437",
             "startedMessageText": "5edab4e4218d181e29451438",
             "description": "5edab4e4218d181e29451439",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6408,7 +6437,7 @@
             "failMessageText": "5edaba9ed143ed1d6378d127",
             "startedMessageText": "5edaba9ed143ed1d6378d128",
             "description": "5edaba9ed143ed1d6378d129",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -7139,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7654,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "弹药",
             "ShortName": "弹药",
-            "Description": "弹药",
-            "casingName": null
+            "Description": "弹药"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "功能性模块",
@@ -14244,9 +14278,9 @@
             "Description": "MP7A2的标准可伸缩枪托。"
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
-            "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Name": "立交桥纸地图",
+            "ShortName": "立交桥",
+            "Description": "立交桥的详细平面图"
         },
         "5bead2e00db834001c062938": {
             "Name": "MPL-50挖掘工具",
@@ -14869,12 +14903,12 @@
         "5c0e531286f7747fa54205c2": {
             "Name": "SJ1 TGLabs战斗兴奋剂注射器",
             "ShortName": "SJ1 TGLabs",
-            "Description": "战斗兴奋剂。在战斗前注射能够获得力量和耐力。可以降低疼痛敏感度。兴奋剂被允许供特种作战单位使用。由Terra Group Labs开发，上面有SJ1的标记。有副作用。"
+            "Description": "战斗兴奋剂。在战斗前注射能够获得力量和耐力。可以降低疼痛敏感度。兴奋剂被允许供特种作战单位使用。由Terra集团 Labs开发，上面有SJ1的标记。有副作用。"
         },
         "5c0e531d86f7747fa23f4d42": {
             "Name": "SJ6 TGLabs战斗兴奋剂注射器",
             "ShortName": "SJ6 TGLabs",
-            "Description": "战斗兴奋剂。在战斗前注射能够提高身体能力。兴奋剂被允许供特种作战单位使用。由Terra Group Labs开发，上面有SJ6的标记。有副作用。"
+            "Description": "战斗兴奋剂。在战斗前注射能够提高身体能力。兴奋剂被允许供特种作战单位使用。由Terra集团 Labs开发，上面有SJ6的标记。有副作用。"
         },
         "5c0e533786f7747fa23f4d47": {
             "Name": "Zagustin止血剂",
@@ -18690,7 +18724,7 @@
         "5ed515f6915ec335206e4152": {
             "Name": "AHF1-M",
             "ShortName": "AHF1-M",
-            "Description": "基于人类抗血友病因子的军用药物。由 TerraGroup 实验室开发，作为一种强大的混凝剂，专门用于 USEC 行动人员。可以暂时止血，并增强对流血的抵抗力。轻微改善健康指标，会导致脱水。"
+            "Description": "基于人类抗血友病因子的军用药物。由 TerraGroup 实验室开发，作为一种强大的凝结剂，专门用于 USEC 行动人员。可以暂时止血，并增强对流血的抵抗力。轻微改善健康指标，会导致脱水。"
         },
         "5ed5160a87bb8443d10680b5": {
             "Name": "Meldonin",
@@ -19674,6 +19708,326 @@
             "Name": "Smoke巴拉克拉瓦头套",
             "ShortName": "Smoke",
             "Description": "巴拉克拉瓦头套，上面的签名来自名震塔科夫的嘻哈艺术家 — Smoke。"
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK单兵战术急救包",
+            "ShortName": "AFAK",
+            "Description": "AFAK（通用急救包），更高级的单兵急救医疗包。"
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "CAT止血带",
+            "ShortName": "CAT",
+            "Description": "CAT（战斗用止血带）可通过对肢体施加压力来止血。它带有可自行调节的收缩组件和防拉开的卡扣。"
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "应急用水",
+            "ShortName": "应急用水",
+            "Description": "在紧急情况或其他急需供水的情况下使用的饮用水，可存放数年。"
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR（用于营救行动的装置）Taiga-1。一套真正齐全的生存工具。它可以用作武器、铲子、斧头，或者一切你能想到的东西。这套工具由苏联研发制造，提供给各单位使用。"
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45毫米 Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "为美国海军陆战队专门定制的弹药。这种子弹拥有铅制尖头和铜制弹头。铅头用于击穿障碍物，而铜头可以加强穿透效果。",
+            "casingName": "5.56x45毫米 Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45毫米 SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "极度罕见的SSA穿甲弹，用于替代M995。这种子弹拥有碳化钨弹芯，能将穿甲能力最大化。",
+            "casingName": "5.56x45毫米 SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39毫米 MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "带有碳化物弹芯的7.62x39 MAI穿甲弹。",
+            "casingName": "7.62x39毫米 AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19弹匣，16发弹容量",
+            "ShortName": "9x19 PL15",
+            "Description": "标准的16发PL-15 9x19弹匣。"
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15手枪套筒",
+            "ShortName": "PL15套筒",
+            "Description": "PL-15手枪的标配套筒。"
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15标准准星",
+            "ShortName": "PL15准星",
+            "Description": "PL-15标准准星。"
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15加长准星",
+            "ShortName": "PL15准星",
+            "Description": "PL-15加长准星，可与消音器搭配使用。"
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15加长照门",
+            "ShortName": "Sup.照门",
+            "Description": "PL-15加长照门，可与消音器搭配使用。"
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15标准照门",
+            "ShortName": "PL15照门",
+            "Description": "PL-15的标准照门。"
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "PL-15 9x19标准枪管",
+            "ShortName": "PL-15 9x19",
+            "Description": "PL-15 9x19手枪的标准枪管。"
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "PL-15带螺纹枪管",
+            "ShortName": "PL15螺纹枪管",
+            "Description": "用于PL15 9x19手枪的带螺纹枪管。"
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19毫米声音抑制器",
+            "ShortName": "PL15抑制器",
+            "Description": "PL-15标准声音抑制器。"
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19手枪",
+            "ShortName": "PL-15",
+            "Description": "俄制9x19毫米自动装填手枪，由Dmitry Lebedev带领的卡拉什尼科夫公司研发团队为俄罗斯执法机构设计。"
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms缓冲管",
+            "ShortName": "STM缓冲管",
+            "Description": "STM Arms机匣的延长缓冲管，4档调节，适合所有AR-15系列商用卡宾枪。"
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core枪托",
+            "ShortName": "GL Core",
+            "Description": "Fab Defence生产的伸缩式枪托。"
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "STM-9 9x19上机匣",
+            "ShortName": "STM-9 上机匣",
+            "Description": "STM-9上机匣。附带导轨可以安装额外配件。"
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 AR-15系统手枪式握把",
+            "ShortName": "DLG123",
+            "Description": "可以安装在任何AR-15枪族武器上的DLG-123手枪式握把。"
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "STM-9弹匣转换器",
+            "ShortName": "弹匣转换器",
+            "Description": "STM-9标准弹匣口径转换器。"
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5英寸STM-9枪管 9x19",
+            "ShortName": "10.5英寸STM-9 9x19",
+            "Description": "适用于STM-9，发射9x19弹的266毫米枪管。"
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12英寸STM-9枪管 9x19",
+            "ShortName": "12英寸STM-9 9x19",
+            "Description": "适用于STM-9，发射9x19弹的304毫米枪管。"
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14英寸STM-9枪管 9x19",
+            "ShortName": "14英寸STM-9 9x19",
+            "Description": "适用于STM-9，发射9x19弹的335毫米枪管。"
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16英寸STM-9枪管 9x19",
+            "ShortName": "16英寸STM-9 9x19",
+            "Description": "适用于STM-9，发射9x19弹的406毫米枪管。"
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi AR-15拉机柄",
+            "ShortName": "MASP拉机柄",
+            "Description": "AR-15兼容系统使用的MASP Ambi拉机柄。"
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19枪口制退器",
+            "ShortName": "STM9制退器",
+            "Description": "STM-9 9x19标准枪口制退器。"
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "STM-9弹匣转换器 Grey",
+            "ShortName": "弹匣转换器",
+            "Description": "STM-9标准弹匣口径转换器。"
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 卡宾枪",
+            "ShortName": "STM-9",
+            "Description": "一把拥有优秀表现的手枪口径卡宾枪。与世界射击竞赛的铜奖获得者Vadim Mikhailov共同设计。这把枪拥有高精度，高射速以及低后坐力。"
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 耳机",
+            "ShortName": "M32",
+            "Description": "EARMOR M32 是一款主动式电子通讯听力保护设备，适用于战术需要。"
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "NPP KIASS Condor 护目镜",
+            "ShortName": "Condor",
+            "Description": "结实的射击用护目镜，带有防眩光镜片。"
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Umka М33-SET1 猎人背心",
+            "ShortName": "Umka",
+            "Description": "Umka M33-SET1 背心专为狩猎者、旅行者、战斗人员和安全人员设计。"
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "CSA胸挂",
+            "ShortName": "CSA",
+            "Description": "最简易的胸挂，用不太可靠的材料草草缝制而成，专门针对玩具枪设计。在军事上使用这款胸挂是可行的，但不推荐这么做。"
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Hazard4 Takedown 吊带背包",
+            "ShortName": "Takedown",
+            "Description": "被设计用于携带长枪管武器的单吊带背包。"
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Eberlestock G2 Gunslinger II 背包 (dry earth)",
+            "ShortName": "Gunslinger",
+            "Description": "中等大小的模块化军用背包，附带可存放全尺寸武器的隔层。"
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "AR-15 STM 9英寸 M-LOK 护木",
+            "ShortName": "STM 9英寸",
+            "Description": "适用于AR-15的 STM 9英寸 M-LOK 护木，配备了一个可以安装附加设备和配件的 M-LOK 接口。"
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "AR-15 STM 15英寸 M-LOK 护木",
+            "ShortName": "STM 15英寸",
+            "Description": "适用于AR-15的 STM 15英寸 M-LOK 护木，配备了一个可以安装附加设备和配件的 M-LOK 接口。"
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "AR-15 STM 12英寸 M-LOK 护木",
+            "ShortName": "STM 12英寸",
+            "Description": "适用于AR-15的 STM 12英寸 M-LOK 护木，配备了一个可以安装附加设备和配件的 M-LOK 接口。"
+        },
+        "603618feffd42c541047f771": {
+            "Name": "黑色军帽",
+            "ShortName": "帽子",
+            "Description": "军帽"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Coyote军帽",
+            "ShortName": "帽子",
+            "Description": "军帽"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Flora军帽",
+            "ShortName": "帽子",
+            "Description": "军帽"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "沙漠军帽",
+            "ShortName": "帽子",
+            "Description": "军帽"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "UCP军帽",
+            "ShortName": "帽子",
+            "Description": "军帽"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "GP-7防毒面具",
+            "ShortName": "GP-7",
+            "Description": "GP-7 民用防毒面具可用于呼吸器官、眼部和脸部皮肤的个人防护。"
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Azimut SS Jhuk 背带 （黑）",
+            "ShortName": "Azimut",
+            "Description": "带有不可拆卸口袋的简易尼龙负重系统。允许你在牺牲一定便捷性的条件下携带更多弹药。",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "LBT 6094A 轻型插板胸挂 (tan)",
+            "ShortName": "Slick",
+            "Description": "LBT 公司的简易插板胸挂。专门为胸挂进行了简约设计。"
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "LBT 6094A 轻型插板胸挂 (olive)",
+            "ShortName": "Slick",
+            "Description": "LBT 公司的简易插板胸挂。专门为胸挂进行了简约设计。"
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Hazard4 Takedown 吊带背包 (multicam)",
+            "ShortName": "Takedown",
+            "Description": "被设计用于携带长枪管武器的单吊带背包。"
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "罐装铝热剂",
+            "ShortName": "铝热剂",
+            "Description": "铝热剂由铝粉和氧化铁混合而成。这种化合物燃点很高，并且燃烧不需要氧气。铝热剂燃烧极其剧烈，几乎不可能被扑灭。"
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "棘轮扳手",
+            "ShortName": "棘轮",
+            "Description": "棘轮是每个锁匠和机械师在维修车辆时不可或缺的一种工具。它能让你在狭小的空间操作零件。这把扳手支持快速更换棘轮头。金牌工具！"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "TP-200 砖型TNT",
+            "ShortName": "TP-200",
+            "Description": "TP-200是用于地震勘探、钻孔炸药、破碎超大物品和执行特殊爆破作业时的中间雷管。"
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Azimut SS Jhuk 背带 （SURPAT）",
+            "ShortName": "Azimut",
+            "Description": "带有不可拆卸口袋的简易负重系统。允许你在牺牲一定便捷性的条件下携带更多弹药。",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "CADPAT军帽 ",
+            "ShortName": "帽子",
+            "Description": "军帽"
         }
     },
     "locations": {
