@@ -685,11 +685,17 @@ class Controller
                         }
                         else
                         {
+                            let itemLocation = {};
+                            if (itemLib[tmpKey]["location"] !== undefined) {
+                                itemLocation["location"] = itemLib[tmpKey]["location"];
+                            }
+
                             output.items.new.push({
                                 "_id": newItem,
                                 "_tpl": itemLib[tmpKey]._tpl,
                                 "parentId": toDo[0][1],
                                 "slotId": SlotID,
+                                ...itemLocation,
                                 "upd": upd
                             });
 
@@ -698,6 +704,7 @@ class Controller
                                 "_tpl": itemLib[tmpKey]._tpl,
                                 "parentId": toDo[0][1],
                                 "slotId": itemLib[tmpKey].slotId,
+                                ...itemLocation,
                                 "upd": upd
                             });
                         }
