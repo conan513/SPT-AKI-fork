@@ -6493,6 +6493,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "bigmap",
 	"_Id": "56f40101d2720b2a4d8b45d6",
 	"Loot": [],

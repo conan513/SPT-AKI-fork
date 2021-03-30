@@ -7327,6 +7327,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Woods",
 	"_Id": "5704e3c2d2720bac5b8b4567",
 	"Loot": [],

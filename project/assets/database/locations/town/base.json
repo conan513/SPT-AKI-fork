@@ -101,6 +101,12 @@
 	"exits": [],
 	"DisabledForScav": false,
 	"SpawnPointParams": [],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Town",
 	"_Id": "5704e47ed2720bb35b8b4568",
 	"Loot": [],

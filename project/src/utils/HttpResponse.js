@@ -37,15 +37,14 @@ class HttpResponse
         return JsonUtil.serialize({
             "err": err,
             "errmsg": errmsg,
-            "data": data
+            "data": data,
+            "crc": 0
         });
     }
 
     emptyResponse()
     {
-        const data = "";
-        const errmsg = "";
-        return this.getBody(data, 0, errmsg);
+        return this.getBody("", 0, "");
     }
 
     nullResponse()

@@ -556,6 +556,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "develop",
 	"_Id": "56db0b3bd2720bb0678b4567",
 	"Loot": [],

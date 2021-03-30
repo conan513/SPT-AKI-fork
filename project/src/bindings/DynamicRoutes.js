@@ -31,6 +31,9 @@ module.exports = {
     "/api/location": {
         "aki": LocationCallbacks.getLocation
     },
+    "/client/location/getLocalloot": {
+        "aki": LocationCallbacks.getLocationTest
+    },
     ".bundle": {
         "aki": ModCallbacks.getBundle
     },

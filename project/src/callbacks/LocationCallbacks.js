@@ -22,6 +22,12 @@ class LocationCallbacks
     {
         return JsonUtil.serialize(location_f.controller.get(url.replace("/api/location/", "")));
     }
+
+    static getLocationTest(url, info, sessionID)
+    {
+        const location = url.split("=")[1].replace("&variantId", "");
+        return HttpResponse.getBody(location_f.controller.get(location));
+    }
 }
 
 module.exports = LocationCallbacks;

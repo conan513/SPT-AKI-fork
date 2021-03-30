@@ -1861,6 +1861,12 @@
 			}
 		}
 	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "factory4_night",
 	"_Id": "59fc81d786f774390775787e",
 	"Loot": [],

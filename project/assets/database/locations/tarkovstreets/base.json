@@ -104,6 +104,12 @@
 		"$oid": "5c82534488a45046451a2386"
 	},
 	"SpawnPointParams": [],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Tarkov Streets",
 	"_Id": "5714dc692459777137212e12",
 	"Loot": [],

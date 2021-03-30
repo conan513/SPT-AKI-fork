@@ -101,6 +101,12 @@
 	"exits": [],
 	"DisabledForScav": false,
 	"SpawnPointParams": [],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
+		}
+	],
 	"Id": "Private Area",
 	"_Id": "5704e64ad2720bb55b8b456e",
 	"Loot": [],
