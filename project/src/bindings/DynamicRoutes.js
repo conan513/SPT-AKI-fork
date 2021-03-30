@@ -1,6 +1,7 @@
 const BotCallbacks = require("../callbacks/BotCallbacks");
 const CustomizationCallbacks = require("../callbacks/CustomizationCallbacks");
 const DataCallbacks = require("../callbacks/DataCallbacks");
+const InraidCallbacks = require("../callbacks/InraidCallbacks");
 const HttpCallbacks = require("../callbacks/HttpCallbacks");
 const LocationCallbacks = require("../callbacks/LocationCallbacks");
 const ModCallbacks = require("../callbacks/ModCallbacks");
@@ -28,11 +29,11 @@ module.exports = {
     ".png": {
         "aki": HttpCallbacks.getImage
     },
-    "/api/location": {
+    "/client/location/getLocalloot": {
         "aki": LocationCallbacks.getLocation
     },
-    "/client/location/getLocalloot": {
-        "aki": LocationCallbacks.getLocationTest
+    "/raid/map/name": {
+        "aki": InraidCallbacks.registerPlayer
     },
     ".bundle": {
         "aki": ModCallbacks.getBundle

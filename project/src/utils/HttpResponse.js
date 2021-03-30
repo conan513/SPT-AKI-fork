@@ -37,8 +37,7 @@ class HttpResponse
         return JsonUtil.serialize({
             "err": err,
             "errmsg": errmsg,
-            "data": data,
-            "crc": 0
+            "data": data
         });
     }
 
