@@ -176,7 +176,7 @@ class QuestHelpers
                     case "HandoverItem":
                     case "PlaceBeacon":
                         break;
-                    
+
                     default:
                         output += `${cond._props.compareMethod} ${cond._props.value}`;
                         console.log(cond);
@@ -185,7 +185,7 @@ class QuestHelpers
 
                 Logger.debug(output);
             }
-            
+
             Logger.debug("-- end\n");
         }
     }

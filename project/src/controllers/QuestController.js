@@ -49,7 +49,7 @@ class QuestController
 
             // If the quest has no quest conditions then add to visible quest list
             const conditions = quest_f.helpers.getQuestConditions(quest.conditions.AvailableForStart);
-            
+
             if (conditions.length === 0)
             {
                 quests.push(quest);

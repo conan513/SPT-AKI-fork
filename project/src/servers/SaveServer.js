@@ -63,7 +63,7 @@ class SaveServer
             SaveServer.profiles[sessionID] = SaveServer.onLoad[callback](sessionID);
         }
     }
-    
+
     static saveProfile(sessionID)
     {
         const file = `${SaveServer.filepath}${sessionID}.json`;

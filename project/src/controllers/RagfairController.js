@@ -120,8 +120,8 @@ class RagfairController
             result.categories = ragfair_f.server.categories;
         }
 
-        result.offers = info.buildCount ? this.getOffersForBuild(info, itemsToAdd, assorts) : 
-                                          this.getValidOffers(info, itemsToAdd, assorts);
+        result.offers = info.buildCount ? this.getOffersForBuild(info, itemsToAdd, assorts) :
+            this.getValidOffers(info, itemsToAdd, assorts);
 
         // set offer indexes
         let counter = 0;
@@ -162,8 +162,8 @@ class RagfairController
         {
             if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
             {
-                let key = offer.items[0]._tpl
-                if(!offersMap.has(key))
+                let key = offer.items[0]._tpl;
+                if (!offersMap.has(key))
                 {
                     offersMap.set(key, []);
                 }
@@ -172,7 +172,7 @@ class RagfairController
             }
         }
 
-        for(let tmpOffers of offersMap.values())
+        for (let tmpOffers of offersMap.values())
         {
             let offer = this.sortOffers(tmpOffers, 5, 0)[0];
             offers.push(offer);
@@ -895,10 +895,10 @@ class RagfairController
                     for (let i = 0; i < boughtAmount; i++)
                     {
                         let toDelete = ItemHelper.findAndReturnChildrenByItems(offer.items, parent[i]._id);
-                        
+
                         for (let toDeleteId of toDelete)
                         {
-                            offer.items.splice(offer.items.findIndex(item => item._id === toDeleteId), 1)
+                            offer.items.splice(offer.items.findIndex(item => item._id === toDeleteId), 1);
                         }
                     }
                 }

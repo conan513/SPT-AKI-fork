@@ -697,7 +697,8 @@ class InventoryController
                         else
                         {
                             let itemLocation = {};
-                            if (itemLib[tmpKey]["location"] !== undefined) {
+                            if (itemLib[tmpKey]["location"] !== undefined)
+                            {
                                 itemLocation["location"] = itemLib[tmpKey]["location"];
                             }
 
