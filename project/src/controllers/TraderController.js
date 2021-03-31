@@ -310,7 +310,7 @@ class TraderController
             // find all child of the item (including itself) and sum the price
             for (let childItem of ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
-                let tempPrice = DatabaseServer.tables.templates.handbook.Items.Find((i) => { return childItem._tpl === i.Id}).Price || 1;
+                let tempPrice = DatabaseServer.tables.templates.handbook.Items.find((i) => { return childItem._tpl === i.Id}).Price || 1;
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
                 price = price + (tempPrice * count);
             }
