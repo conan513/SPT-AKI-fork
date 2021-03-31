@@ -10,12 +10,35 @@
 			{
 				"type": "node",
 				"request": "launch",
-				"name": "Launch Program",
+				"name": "Test (debug)",
 				"runtimeExecutable": "npm",
-  				"runtimeArgs": ["run-script", "start"],
+				"runtimeArgs": [
+					"run-script",
+					"test:debug"
+				],
 				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
 				"skipFiles": [
-					"!**/node_modules/**"
+					"**/node_modules/**"
+				]
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Test (release)",
+				"runtimeExecutable": "npm",
+				"runtimeArgs": [
+					"run-script",
+					"test:release"
+				],
+				"cwd": "${workspaceFolder}",
+				"outFiles": [
+					"${workspaceFolder}/out/**/*.js"
+				],
+				"skipFiles": [
+					"**/node_modules/**"
 				]
 			}
 		],
@@ -26,7 +49,7 @@
 			{
 				"label": "build",
 				"type": "npm",
-				"script": "build",
+				"script": "build:exe",
 				"group": {
 					"kind": "build",
 					"isDefault": true
@@ -45,7 +68,8 @@
 		]
 	},
 	"settings": {
-		"window.title": "SPT-AKI Server",
+		"window.title": "SPT-AKI Server Dev",
 		"git-graph.commitDetailsView.location": "Docked to Bottom",
+		"typescript.tsdk": "node_modules/typescript/lib",
 	}
 }

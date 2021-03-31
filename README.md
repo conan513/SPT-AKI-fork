@@ -10,11 +10,18 @@ Modding framework for Escape From Tarkov
 
 ## Setup
 
-VSCodium > tasks > run task... > NPM > install
+1. VSCodium > File > Open Workspace... > `Server.code-workspace`
+2. VSCodium > Terminal > New Terminal
+3. Terminal > `npm install`
+4. Terminal > `npm run build:types`
 
 ## Build
 
-VSCodium > tasks > run build task
+VSCodium > Terminal > Run Build Task...
+
+## Test
+
+VSCodium > Run > Start Debug
 
 ## Authors
 
