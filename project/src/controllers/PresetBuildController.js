@@ -20,11 +20,6 @@ class PresetBuildController
         return Object.values(SaveServer.profiles[sessionID].weaponbuilds);
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {{ Action: any; id: string; items: { _id: any; }[]; root: any; name: string | number; }} body
-     * @param {string} sessionID
-     */
     saveBuild(pmcData, body, sessionID)
     {
         delete body.Action;
@@ -45,11 +40,6 @@ class PresetBuildController
         return output;
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {RequestBody} body
-     * @param {string} sessionID
-     */
     removeBuild(pmcData, body, sessionID)
     {
         let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;

@@ -11,16 +11,8 @@
 const DatabaseServer = require("../servers/DatabaseServer");
 const JsonUtil = require("../utils/JsonUtil");
 
- /*
- * @class ItemHelper
- * @description Helpers related to Items
- */
 class ItemHelper
 {
-    /**
-     * Adds StackObjectsCount to an item, if it doesn't exist
-     * @param {itemTemplate} item
-     */
     fixItemStackCount(item)
     {
         if (item.upd === undefined)
@@ -38,8 +30,6 @@ class ItemHelper
     }
 
     /* Gets item data from items.json
-    * input: Item Template ID
-    * output: [ItemFound?(true,false), itemData]
     * */
     getItem(template)
     {
@@ -84,13 +74,8 @@ class ItemHelper
         return result;
     }
 
-    /**
-     * @param {itemTemplate[]} items
-     * @param {string} itemID
-     */
     findAndReturnChildrenByItems(items, itemID)
     {
-        /** @type {string[]} */
         let list = [];
 
         for (let childitem of items)
@@ -107,8 +92,6 @@ class ItemHelper
 
     /**
      * A variant of findAndReturnChildren where the output is list of item objects instead of their ids.
-     * @param {itemTemplate[]} items Array of item objects, root item ID.
-     * @param {string} itemID Array of item objects containing root item and its children.
      */
     findAndReturnChildrenAsItems(items, itemID)
     {
@@ -137,12 +120,9 @@ class ItemHelper
 
     /**
      * find childs of the item in a given assort (weapons pars for example, need recursive loop function)
-     * @param {string} itemIdToFind
-     * @param {itemTemplate[]} assort
      */
     findAndReturnChildrenByAssort(itemIdToFind, assort)
     {
-        /** @type {itemTemplate[]} */
         let list = [];
 
         for (let itemFromAssort of assort)
@@ -164,7 +144,6 @@ class ItemHelper
      * Is Dogtag
      * Checks if an item is a dogtag. Used under profile_f.js to modify preparePrice based
      * on the level of the dogtag
-     * @param {string} itemId
      */
     isDogtag(itemId)
     {
@@ -200,8 +179,6 @@ class ItemHelper
 
     /**
      * split item stack if it exceeds StackMaxSize
-     * @param {itemTemplate} item
-     * @returns {itemTemplate[]} array of these items with StackObjectsCount <= StackMaxSize
      */
     splitStack(item)
     {
@@ -212,7 +189,6 @@ class ItemHelper
 
         let maxStack = DatabaseServer.tables.templates.items[item._tpl]._props.StackMaxSize;
         let count = item.upd.StackObjectsCount;
-        /** @type {itemTemplate[]} */
         let stacks = [];
 
         // If the current count is already equal or less than the max

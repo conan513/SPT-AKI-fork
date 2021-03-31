@@ -45,7 +45,6 @@ class RepairController
                 "tid": body.tid
             };
 
-            // @ts-ignore
             if (!Helpers.payMoney(pmcData, options, sessionID))
             {
                 Logger.error("no money found");

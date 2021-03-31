@@ -10,11 +10,6 @@
 
 class RandomUtil
 {
-    /**
-     * @param {number} min
-     * @param {number} max
-     * @returns {number}
-     */
     getInt(min, max)
     {
         min = Math.ceil(min);

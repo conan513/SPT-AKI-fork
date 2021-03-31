@@ -1,4 +1,3 @@
-//@ts-check
 /* server.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -15,7 +14,6 @@ const VFS = require("../utils/VFS");
 class SaveServer
 {
     static filepath = "user/profiles/";
-    /** @type {UserProfileDictionary} */
     static profiles = {};
     static onLoad = require("../bindings/SaveLoad");
     static onSave = {};
@@ -49,9 +47,6 @@ class SaveServer
         }
     }
 
-    /**
-     * @param {string} sessionID
-     */
     static loadProfile(sessionID)
     {
         const file = `${SaveServer.filepath}${sessionID}.json`;
@@ -68,11 +63,7 @@ class SaveServer
             SaveServer.profiles[sessionID] = SaveServer.onLoad[callback](sessionID);
         }
     }
-
-    /**
-     * Save User's Profile
-     * @param {string} sessionID
-     */
+    
     static saveProfile(sessionID)
     {
         const file = `${SaveServer.filepath}${sessionID}.json`;

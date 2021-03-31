@@ -56,9 +56,6 @@ class HttpResponse
         return this.getBody([]);
     }
 
-    /**
-     * @param {apiEventResponse} output
-     */
     appendErrorToOutput(output, message = "An unknown error occurred", title = "Error")
     {
         output.badRequest = [{

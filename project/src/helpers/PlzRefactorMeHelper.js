@@ -1,4 +1,3 @@
-//@ts-check
 /* helpfunctions.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -30,9 +29,6 @@ const ItemHelper = require("./ItemHelper");
 
 class PlzRefactorMeHelper
 {
-    /**
-     * @param {UserPMCProfile} pmcData
-     */
     calculateLevel(pmcData)
     {
         let exp = 0;
@@ -54,11 +50,9 @@ class PlzRefactorMeHelper
     getRandomExperience()
     {
         let exp = 0;
-        /** @type {array} */
         let expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
-        /** @type {number} */
         let randomLevel = RandomUtil.getInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
@@ -77,9 +71,6 @@ class PlzRefactorMeHelper
 
     /**
      * A reverse lookup for templates
-     *
-     * @return {TemplateLookup}
-     * @memberof HelpFunctions
      */
     tplLookup()
     {
@@ -106,22 +97,21 @@ class PlzRefactorMeHelper
             for (let x of DatabaseServer.tables.templates.handbook.Categories)
             {
                 lookup.categories.byId[x.Id] = x.ParentId ? x.ParentId : null;
+
                 if (x.ParentId)
-                { // root as no parent
+                {
+                    // root as no parent
                     lookup.categories.byParent[x.ParentId] || (lookup.categories.byParent[x.ParentId] = []);
                     lookup.categories.byParent[x.ParentId].push(x.Id);
                 }
             }
-            /** @type {TemplateLookup} */
+
             this.tplLookup.lookup = lookup;
         }
 
         return this.tplLookup.lookup;
     }
 
-    /**
-     * @param {Currency} x
-     */
     getTemplatePrice(x)
     {
         return (x in this.tplLookup().items.byId) ? this.tplLookup().items.byId[x] : 1;
@@ -147,10 +137,6 @@ class PlzRefactorMeHelper
     * input: PlayerData
     * output: table[y][x]
     * */
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {string} sessionID
-     */
     getPlayerStashSlotMap(pmcData, sessionID)
     {
         const PlayerStashSize = InventoryHelper.getPlayerStashSize(sessionID);
@@ -159,8 +145,6 @@ class PlzRefactorMeHelper
 
     /**
      * Check whether tpl is Money
-     * @param {string} tpl
-     * @returns {boolean}
      */
     isMoneyTpl(tpl)
     {
@@ -171,9 +155,6 @@ class PlzRefactorMeHelper
     * input: currency(tag)
     * output: template ID
     * */
-    /**
-     * @param {string} currency
-     */
     getCurrency(currency)
     {
         switch (currency)
@@ -193,9 +174,6 @@ class PlzRefactorMeHelper
     * input: currency(tag)
     * output: template ID
     * */
-    /**
-     * @param {string} currency
-     */
     getCurrencyTag(currency)
     {
         switch (currency)
@@ -215,10 +193,6 @@ class PlzRefactorMeHelper
     * input:  value, currency tpl
     * output: value after conversion
     */
-    /**
-     * @param {number} value
-     * @param {string} currency
-     */
     inRUB(value, currency)
     {
         return Math.round(value * this.getTemplatePrice(currency));
@@ -226,9 +200,6 @@ class PlzRefactorMeHelper
 
     /**
      * Gets Ruble to Currency conversion Value
-     * @param {number} value
-     * @param {Currency} currency
-     * @return {number} value after conversion
      */
     fromRUB(value, currency)
     {
@@ -242,10 +213,6 @@ class PlzRefactorMeHelper
 
     /**
      * take money and insert items into return to server request
-     * @param {UserPMCProfile} pmcData
-     * @param {{ Action?: any; tid: any; scheme_items: any; }} body
-     * @param {string} sessionID
-     * @returns {boolean}
      */
     payMoney(pmcData, body, sessionID)
     {
@@ -341,15 +308,10 @@ class PlzRefactorMeHelper
 
     /**
      * Find Barter items in the inventory
-     * @param {"tpl"} by
-     * @param {UserPMCProfile} pmcData
-     * @param {string} barter_itemID
-     * @returns {itemTemplate[]}
      */
     findBarterItems(by, pmcData, barter_itemID)
     { // find required items to take after buying (handles multiple items)
         const barterIDs = typeof barter_itemID === "string" ? [barter_itemID] : barter_itemID;
-        /** @type {itemTemplate[]} */
         let itemsArray = [];
 
         for (const barterID of barterIDs)
@@ -367,12 +329,6 @@ class PlzRefactorMeHelper
 
     /**
      * receive money back after selling
-     * @param {UserPMCProfile} pmcData
-     * @param {number} amount numberToReturn
-     * @param {{ tid: string | number; }} body request.body
-     * @param {apiEventResponse} output
-     * @param {any} sessionID
-     * @returns none (output is sended to item.js, and profile is saved to file)
      */
     getMoney(pmcData, amount, body, output, sessionID)
     {

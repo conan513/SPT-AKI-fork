@@ -1,4 +1,3 @@
-//@ts-check
 /* controller.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -24,19 +23,13 @@ class QuestController
 {
     getClientQuests(sessionID)
     {
-        /** @type {Quest[]} */
         let quests = [];
-        /** @type {Quest[]} */
         let allQuests = this.questValues();
-        /** @type {UserPMCProfile} */
         const profile = profile_f.controller.getPmcProfile(sessionID);
 
         for (let quest of allQuests)
         {
             // If a quest is already in the profile we need to just add it
-            /**
-             * @param {{ qid: string; }} pq
-             */
             if (profile.Quests.includes(pq => pq.qid === quest._id))
             {
                 quests.push(quest);
@@ -44,8 +37,8 @@ class QuestController
             }
 
             // Don't add quests that have a level higher than the user's
-            /** @type {QuestAvailableForStartConditions[]} */
             const levels = quest_f.helpers.getLevelConditions(quest.conditions.AvailableForStart);
+
             if (levels.length)
             {
                 if (!quest_f.helpers.evaluateLevel(profile, levels[0]))
@@ -53,9 +46,10 @@ class QuestController
                     continue;
                 }
             }
-            /** @type {QuestAvailableForStartConditions[]} */
-            const conditions = quest_f.helpers.getQuestConditions(quest.conditions.AvailableForStart);
+
             // If the quest has no quest conditions then add to visible quest list
+            const conditions = quest_f.helpers.getQuestConditions(quest.conditions.AvailableForStart);
+            
             if (conditions.length === 0)
             {
                 quests.push(quest);
@@ -63,11 +57,11 @@ class QuestController
             }
 
             let canSend = true;
+
             // Check the status of each quest condition, if any are not completed
             // then this quest should not be visible
             for (const condition of conditions)
             {
-                /** @type {PlayerQuest | undefined} */
                 const previousQuest = profile.Quests.find(pq => pq.qid === condition._props.target);
 
                 // If the previous quest isn't in the user profile, it hasn't been completed or started
@@ -105,9 +99,6 @@ class QuestController
         return quests;
     }
 
-    /**
-     * @param {string} itemTpl
-     */
     getFindItemIdForQuestItem(itemTpl)
     {
         for (const quest of this.questValues())
@@ -128,17 +119,10 @@ class QuestController
         }
     }
 
-    /**
-     * @param {QuestReward} reward
-     * @return {itemTemplate[]}
-     */
     processReward(reward)
     {
-        /** @type {itemTemplate[]} */
         let rewardItems = [];
-        /** @type {itemTemplate[]} */
         let targets = [];
-        /** @type {itemTemplate[]} */
         let mods = [];
 
         let itemCount = 1;
@@ -165,7 +149,6 @@ class QuestController
         // add mods to the base items, fix ids
         for (const target of targets)
         {
-            /** @type {itemTemplate[]} */
             let items = [target];
 
             for (const mod of mods)
@@ -185,10 +168,6 @@ class QuestController
     * input: state, the quest status that holds the items (Started, Success, Fail)
     * output: an array of items with the correct maxStack
     */
-    /**
-     * @param {{ rewards: { [x: string]: any; }; }} quest
-     * @param {string} state
-     */
     getQuestRewardItems(quest, state)
     {
         let questRewards = [];
@@ -204,12 +183,6 @@ class QuestController
         return questRewards;
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {QuestRequestBody} body
-     * @param {"Started" | "Fail" | "AvailableForFinish" | "Success"} state
-     * @param {string} sessionID
-     */
     applyQuestReward(pmcData, body, state, sessionID)
     {
         let intelCenterBonus = 0;//percentage of money reward
@@ -291,22 +264,14 @@ class QuestController
         return this.getQuestRewardItems(quest, state);
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {QuestRequestBody} body
-     * @param {string} sessionID
-     */
     acceptQuest(pmcData, body, sessionID)
     {
-        let /**
-             * @param {{ qid: any; }} q
-             */
-            quest = pmcData.Quests.find((q) =>
-            {
-                return q.qid === body.qid;
-            });
         const time = TimeUtil.getTimestamp();
         const state = "Started";
+        let quest = pmcData.Quests.find((q) =>
+        {
+            return q.qid === body.qid;
+        });
 
         if (quest)
         {
@@ -348,17 +313,10 @@ class QuestController
         dialogue_f.controller.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
 
         let acceptQuestResponse = ItemEventRouter.getOutput();
-        /** @type {Quest[]} */
         acceptQuestResponse.quests = this.acceptedUnlocked(body.qid, sessionID);
-
         return acceptQuestResponse;
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {{ qid: string; }} body
-     * @param {string} sessionID
-     */
     completeQuest(pmcData, body, sessionID)
     {
         const beforeQuests = this.getClientQuests(sessionID);
@@ -374,10 +332,8 @@ class QuestController
         {
             if (checkFail.conditions.Fail[0]._props.status[0] === quest_f.helpers.status.Success)
             {
-                const /**
-                     * @param {{ qid: string; }} qq
-                     */
-                    checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
+                const checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
+
                 if (checkQuestId)
                 {
                     const failBody = { "Action": "QuestComplete", "qid": checkFail._id, "removeExcessItems": true };
@@ -385,7 +341,6 @@ class QuestController
                 }
                 else
                 {
-                    /** @type {PlayerQuest} */
                     const questData = {
                         "qid": checkFail._id,
                         "startTime": TimeUtil.getTimestamp(),
@@ -397,7 +352,6 @@ class QuestController
         }
 
         // Create a dialog message for completing the quest.
-        /** @type {Quest} */
         let quest = DatabaseServer.tables.templates.quests[body.qid];
         const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
         let messageContent = {
@@ -414,11 +368,6 @@ class QuestController
         return completeQuestResponse;
     }
 
-    /**
-     * @param {any} pmcData
-     * @param {{ Action?: string; qid: any; removeExcessItems?: boolean; }} body
-     * @param {any} sessionID
-     */
     failQuest(pmcData, body, sessionID)
     {
         let questRewards = this.applyQuestReward(pmcData, body, "Fail", sessionID);
@@ -440,11 +389,6 @@ class QuestController
         return failedQuestResponse;
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {{ qid: string; conditionId: string; items: any; }} body
-     * @param {string} sessionID
-     */
     handoverQuest(pmcData, body, sessionID)
     {
         const quest = DatabaseServer.tables.templates.quests[body.qid];
@@ -517,10 +461,6 @@ class QuestController
         return output;
     }
 
-    /**
-     * @param {string} acceptedQuestId
-     * @param {string} sessionID
-     */
     acceptedUnlocked(acceptedQuestId, sessionID)
     {
         const profile = profile_f.controller.getPmcProfile(sessionID);
@@ -544,12 +484,6 @@ class QuestController
         return this.cleanQuestList(quests);
     }
 
-
-
-    /**
-     * @param {string} failedQuestId
-     * @param {string} sessionID
-     */
     failedUnlocked(failedQuestId, sessionID)
     {
         const profile = profile_f.controller.getPmcProfile(sessionID);
@@ -573,10 +507,6 @@ class QuestController
         return this.cleanQuestList(quests);
     }
 
-    /**
-     * @param {Quest} quest
-     * @param {number} moneyBoost
-     */
     applyMoneyBoost(quest, moneyBoost)
     {
         for (let reward of quest.rewards.Success)
@@ -595,12 +525,6 @@ class QuestController
 
     /* Sets the item stack to value, or delete the item if value <= 0 */
     // TODO maybe merge this function and the one from customization
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {string} id
-     * @param {number} value
-     * @param {apiEventResponse} output
-     */
     changeItemStack(pmcData, id, value, output)
     {
         for (let inventoryItem in pmcData.Inventory.items)
@@ -635,13 +559,9 @@ class QuestController
 
     /**
      * Get List of All Quests as an array
-     *
-     * @return {Quest[]}
-     * @memberof quest_f.Controller
      */
     questValues()
     {
-        /** @type {Quest[]} */
         return Object.values(DatabaseServer.tables.templates.quests);
     }
 
@@ -656,10 +576,6 @@ class QuestController
     * 6 - FailRestartable
     * 7 - MarkedAsFailed
     */
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {string} questID
-     */
     questStatus(pmcData, questID)
     {
         for (let quest of pmcData.Quests)
@@ -673,9 +589,6 @@ class QuestController
         return "Locked";
     }
 
-    /**
-     * @param {Quest[]} quests
-     */
     cleanQuestList(quests)
     {
         for (const i in quests)
@@ -686,23 +599,13 @@ class QuestController
         return quests;
     }
 
-    /**
-     * @param {Quest} quest
-     */
     cleanQuestConditions(quest)
     {
         quest = JsonUtil.clone(quest);
-        /**
-         * @param {{ _parent: string; }} q
-         */
         quest.conditions.AvailableForStart = quest.conditions.AvailableForStart.filter(q => q._parent === "Level");
         return quest;
     }
 
-    /**
-     * @param {string} sessionID
-     * @param {string} conditionId
-     */
     resetProfileQuestCondition(sessionID, conditionId)
     {
         let startedQuests = profile_f.controller.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");

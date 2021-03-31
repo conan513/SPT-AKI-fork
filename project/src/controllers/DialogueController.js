@@ -114,7 +114,6 @@ class DialogueController
 
             items.stash = stashId;
             items.data = [];
-            // @ts-ignore
             rewards = Helpers.replaceIDs(null, rewards);
 
             for (let reward of rewards)

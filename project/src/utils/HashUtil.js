@@ -15,12 +15,6 @@ const TimeUtil = require("./TimeUtil");
 
 class HashUtil
 {
-    /**
-   *
-   *
-   * @return {string}
-   * @memberof HashUtil
-   */
     generate()
     {
         const shasum = crypto.createHash("sha1");

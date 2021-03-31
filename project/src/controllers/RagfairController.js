@@ -502,10 +502,6 @@ class RagfairController
     }
 
     /* Scans a given slot type for filters and returns them as a Set */
-    /**
-     * @param {itemTemplate} item
-     * @param {string} slot
-     */
     getFilters(item, slot)
     {
         let result = new Set();
@@ -631,7 +627,6 @@ class RagfairController
     /**
      * Merges Stackable Items
      * Ragfair allows abnormally large stacks.
-     * @param {itemTemplate[]} items
      */
     mergeStackable(items)
     {
@@ -670,11 +665,6 @@ class RagfairController
         return mergedStacks;
     }
 
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {{ items: string[]; requirements: itemTemplate[]; sellInOnePiece: boolean; }} info
-     * @param {string} sessionID
-     */
     addPlayerOffer(pmcData, info, sessionID)
     {
         const result = ItemEventRouter.getOutput();
@@ -878,11 +868,6 @@ class RagfairController
         return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
     }
 
-    /**
-     * @param {string} sessionID
-     * @param {{ items: any[]; _id: any; sellInOnePiece: any; requirements: any; }} offer
-     * @param {any} offerId
-     */
     completeOffer(sessionID, offer, offerId)
     {
         const parent = offer.items.filter(offerItem => offerItem.parentId === "hideout");

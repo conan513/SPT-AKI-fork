@@ -16,7 +16,7 @@ class Compiler
 {
     static buildOptions = {
         "tmp": {
-            "dir": "build/out/",
+            "dir": "obj/",
             "exe": "Server-Tmp.exe"
         },
         "build": {
@@ -24,7 +24,7 @@ class Compiler
             "exe": "Server.exe"
         },
         "icon": "assets/images/icon.ico",
-        "entry": "src/ide/ReleaseEntry.js"
+        "entry": "obj/ide/ReleaseEntry.js"
     };
     static nexeOptions = {
         "input": Compiler.buildOptions.entry,

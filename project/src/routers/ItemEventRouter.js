@@ -10,14 +10,9 @@ const Logger = require("../utils/Logger");
 
 class ItemEventRouter
 {
-    /** @type {apiEventResponse} */
     static output = ItemEventRouter.getOutput();
     static onEvent = require("../bindings/ItemEvents");
 
-    /**
-     * @param {{ data: any; }} info
-     * @param {string} sessionID
-     */
     static handleEvents(info, sessionID)
     {
         let result = "";
@@ -53,17 +48,11 @@ class ItemEventRouter
         return ItemEventRouter.output;
     }
 
-    /**
-     * @param {apiEventResponse} data
-     */
     static setOutput(data)
     {
         ItemEventRouter.output = data;
     }
 
-    /**
-     * @memberof EventHandler
-     */
     static resetOutput()
     {
         ItemEventRouter.output = {

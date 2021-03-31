@@ -1,4 +1,3 @@
-//@ts-check
 /* controller.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -19,9 +18,6 @@ const LauncherController = require("./LauncherController.js");
 
 class ProfileController
 {
-    /**
-     * @param {string} sessionID
-     */
     onLoad(sessionID)
     {
         let profile = SaveServer.profiles[sessionID];
@@ -37,10 +33,6 @@ class ProfileController
         return profile;
     }
 
-    /**
-     * @param {string} sessionID
-     * @returns {UserPMCProfile}
-     */
     getPmcProfile(sessionID)
     {
         if (SaveServer.profiles[sessionID] === undefined || SaveServer.profiles[sessionID].characters.pmc === undefined)
@@ -51,26 +43,16 @@ class ProfileController
         return SaveServer.profiles[sessionID].characters.pmc;
     }
 
-    /**
-     * @param {string | number} sessionID
-     */
     getScavProfile(sessionID)
     {
         return SaveServer.profiles[sessionID].characters.scav;
     }
 
-    /**
-     * @param {string | number} sessionID
-     * @param {any} scavData
-     */
     setScavProfile(sessionID, scavData)
     {
         SaveServer.profiles[sessionID].characters.scav = scavData;
     }
 
-    /**
-     * @param {any} sessionID
-     */
     getCompleteProfile(sessionID)
     {
         let output = [];
@@ -84,15 +66,10 @@ class ProfileController
         return output;
     }
 
-    /**
-     * @param {{ side: string; nickname: string; voiceId: string | number; headId: any; }} info
-     * @param {string} sessionID
-     */
     createProfile(info, sessionID)
     {
         const account = LauncherController.find(sessionID);
         const profile = DatabaseServer.tables.templates.profiles[account.edition][info.side.toLowerCase()];
-        /** @type {UserPMCProfile} */
         let pmcData = profile.character;
 
         // delete existing profile
@@ -142,10 +119,6 @@ class ProfileController
         SaveServer.saveProfile(sessionID);
     }
 
-    /**
-     * @param {any} sessionID
-     * @param {string} traderID
-     */
     resetTrader(sessionID, traderID)
     {
         const account = LauncherController.find(sessionID);
@@ -162,9 +135,6 @@ class ProfileController
         };
     }
 
-    /**
-     * @param {any} sessionID
-     */
     generateScav(sessionID)
     {
         const pmcData = this.getPmcProfile(sessionID);
@@ -194,10 +164,6 @@ class ProfileController
         return scavData;
     }
 
-    /**
-     * @param {{ Info: { SavageLockTime: any; }; }} profile
-     * @param {UserPMCProfile} pmcData
-     */
     setScavCooldownTimer(profile, pmcData)
     {
         // Set cooldown time.
@@ -220,10 +186,6 @@ class ProfileController
         return profile;
     }
 
-    /**
-     * @param {{ nickname: string; }} info
-     * @param {any} sessionID
-     */
     isNicknameTaken(info, sessionID)
     {
         for (const id in SaveServer.profiles)
@@ -244,10 +206,6 @@ class ProfileController
         return false;
     }
 
-    /**
-     * @param {{ nickname: string }} info
-     * @param {any} sessionID
-     */
     validateNickname(info, sessionID)
     {
         if (info.nickname.length < 3)
@@ -263,10 +221,6 @@ class ProfileController
         return "OK";
     }
 
-    /**
-     * @param {{ nickname: string; }} info
-     * @param {any} sessionID
-     */
     changeNickname(info, sessionID)
     {
         let output = this.validateNickname(info, sessionID);

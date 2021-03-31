@@ -13,20 +13,12 @@ const HashUtil = require("../utils/HashUtil");
 const Logger = require("../utils/Logger");
 const ItemHelper = require("./ItemHelper");
 
-/*
- * @class InventoryHelper
- * @description Helpers related to Inventory
- */
 class InventoryHelper
 {
-    /**
-   * @param {itemTemplate[]} items
-   */
     getSecureContainer(items)
     {
     // Player Slots we care about
         const inventorySlots = ["SecuredContainer"];
-        /** @type {itemTemplate[]} */
         let inventoryItems = [];
 
         // Get an array of root player items
@@ -94,12 +86,8 @@ class InventoryHelper
         return profile;
     }
 
-    /**
-   * @param {hash} sessionID
-   */
     getStashType(sessionID)
     {
-    /** @type {UserPMCProfile} */
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
         const stashObj = pmcData.Inventory.items.find(
@@ -113,9 +101,7 @@ class InventoryHelper
 
         return stashObj._tpl;
     }
-    /**
-   * @param {UserPMCProfile} profile
-   */
+
     generateInventoryID(profile)
     {
         let itemsByParentHash = {};
@@ -162,15 +148,11 @@ class InventoryHelper
 
         return profile;
     }
+
     /* Calculate Size of item inputed
-   * inputs Item template ID, Item Id, InventoryItem (item from inventory having _id and _tpl)
-   * outputs [width, height]
-   * */
-    /**
-   * @param {itemTemplate} itemtpl
-   * @param {string} itemID
-   * @param {itemTemplate[]} InventoryItem
-   */
+     * inputs Item template ID, Item Id, InventoryItem (item from inventory having _id and _tpl)
+     * outputs [width, height]
+     */
     getItemSize(itemtpl, itemID, InventoryItem)
     {
     // -> Prepares item Width and height returns [sizeX, sizeY]
@@ -183,11 +165,6 @@ class InventoryHelper
 
     // note from 2027: there IS a thing i didn't explore and that is Merges With Children
     // -> Prepares item Width and height returns [sizeX, sizeY]
-    /**
-   * @param {itemTemplate} itemtpl
-   * @param {string} itemID
-   * @param {{ byItemId: any; byParentId: any; }} inventoryItemHash
-   */
     getSizeByInventoryItemHash(itemtpl, itemID, inventoryItemHash)
     {
         let toDo = [itemID];
@@ -310,10 +287,6 @@ class InventoryHelper
    * List is backward first item is the furthest child and last item is main item
    * returns all child items ids in array, includes itself and children
    * */
-    /**
-   * @param {UserPMCProfile} pmcData
-   * @param {string} itemID
-   */
     findAndReturnChildren(pmcData, itemID)
     {
         return ItemHelper.findAndReturnChildrenByItems(
@@ -345,9 +318,6 @@ class InventoryHelper
         return [stashX, stashY];
     }
 
-    /**
-   * @param {itemTemplate[]} InventoryItem
-   */
     getInventoryItemHash(InventoryItem)
     {
         let inventoryItemHash = {
@@ -378,9 +348,6 @@ class InventoryHelper
    * Recursively checks if the given item is
    * inside the stash, that is it has the stash as
    * ancestor with slotId=hideout
-   *
-   * @param {UserPMCProfile} pmcData
-   * @param {itemTemplate} item
    */
     isItemInStash(pmcData, item)
     {

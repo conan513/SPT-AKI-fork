@@ -20,11 +20,6 @@ const ItemHelper = require("../helpers/ItemHelper");
 
 class LocationGenerator
 {
-    /**
-     * @param {unknown[]} dynamic
-     * @param {Coords | []} lootPositions
-     * @param {{ base: { GlobalLootChanceModifier: any; }; }} location
-     */
     generateDynamicLoot(dynamic, lootPositions, location)
     {
         let rndLootIndex = RandomUtil.getInt(0, dynamic.length - 1);

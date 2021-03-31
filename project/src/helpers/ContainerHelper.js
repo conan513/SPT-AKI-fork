@@ -9,8 +9,6 @@ const InventoryHelper = require("./InventoryHelper");
  * authors:
  * - Senko-san (Merijn Hendriks)
  * - Terkoiz
- *
- * @class ContainerHelper
  */
 class ContainerHelper
 {

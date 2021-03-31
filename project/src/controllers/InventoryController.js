@@ -301,10 +301,6 @@ class InventoryController
     /**
      * Merge Item
      * merges 2 items into one, deletes item from `body.item` and adding number of stacks into `body.with`
-     *
-     * @param {UserPMCProfile} pmcData
-     * @param {{ with: string; item: string; }} body
-     * @param {string} sessionID
      */
     mergeItem(pmcData, body, sessionID)
     {

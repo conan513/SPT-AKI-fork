@@ -1,4 +1,3 @@
-//@ts-check
 /* server.js
  * license: NCSA
  * copyright: Senko's Pub
@@ -487,11 +486,6 @@ class RagfairServer
         return presets;
     }
 
-    /**
-     * Take the `_id` from `item`, and re
-     * @param {itemTemplate} item
-     * @param {itemTemplate[]} preset
-     */
     reparentPresets(item, preset)
     {
         const oldRootId = preset[0]._id;
