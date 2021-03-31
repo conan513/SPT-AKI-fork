@@ -14,7 +14,7 @@
 const selfsigned = require("selfsigned");
 const sudo = require("sudo-prompt");
 const VFS = require("../utils/VFS");
-const HttpConfig = require("../configs/HttpConfig.json");
+const HttpConfig = require("../configs/Httpconfig.js");
 const Logger = require("../utils/Logger");
 
 class CertController

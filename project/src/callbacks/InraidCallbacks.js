@@ -8,7 +8,7 @@
 
 "use strict";
 
-const InraidConfig = require("../configs/InraidConfig.json");
+const InraidConfig = require("../configs/Inraidconfig.js");
 const HttpResponse = require("../utils/HttpResponse");
 
 class InraidCallbacks

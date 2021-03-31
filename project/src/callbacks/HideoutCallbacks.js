@@ -8,7 +8,7 @@
 
 "use strict";
 
-const HideoutConfig = require("../configs/HideoutConfig.json");
+const HideoutConfig = require("../configs/Hideoutconfig.js");
 
 class HideoutCallbacks
 {

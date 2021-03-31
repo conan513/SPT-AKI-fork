@@ -10,7 +10,7 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const RagfairConfig = require("../configs/RagfairConfig.json");
+const RagfairConfig = require("../configs/Ragfairconfig.js");
 const ItemHelper = require("../helpers/ItemHelper");
 const JsonUtil = require("../utils/JsonUtil");
 const RandomUtil = require("../utils/RandomUtil");

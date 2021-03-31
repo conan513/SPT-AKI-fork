@@ -1,4 +1,4 @@
-{
+const config = {
     "player": {
         "sellChance": 25,
         "sellTimeHrs": 12,
@@ -48,4 +48,6 @@
             "569668774bdc2da2298b4568": 2
         }
     }
-}
+};
+
+module.exports = config;

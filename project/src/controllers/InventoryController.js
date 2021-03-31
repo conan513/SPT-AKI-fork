@@ -11,7 +11,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const InventoryConfig = require("../configs/InventoryConfig.json");
+const InventoryConfig = require("../configs/Inventoryconfig.js");
 const ItemHelper = require("../helpers/ItemHelper");
 const InventoryHelper = require("../helpers/InventoryHelper");
 const Logger = require("../utils/Logger");

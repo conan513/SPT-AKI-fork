@@ -1,4 +1,4 @@
-{
+const config = {
     "acceleration": 7,
     "weather": {
         "clouds": {
@@ -38,4 +38,6 @@
             "max": 764
         }
     }
-}
+};
+
+module.exports = config;

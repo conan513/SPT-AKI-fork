@@ -10,7 +10,7 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const LauncherController = require("../controllers/LauncherController.js");
-const HttpConfig = require("../configs/HttpConfig.json");
+const HttpConfig = require("../configs/Httpconfig.js");
 const HttpResponse = require("../utils/HttpResponse");
 
 class LauncherCallbacks

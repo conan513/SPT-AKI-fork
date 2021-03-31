@@ -13,8 +13,8 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const QuestConfig = require("../configs/QuestConfig.json");
-const RagfairConfig = require("../configs/RagfairConfig.json");
+const QuestConfig = require("../configs/Questconfig.js");
+const RagfairConfig = require("../configs/Ragfairconfig.js");
 const Logger = require("../utils/Logger");
 const RandomUtil = require("../utils/RandomUtil");
 const ItemHelper = require("../helpers/ItemHelper");

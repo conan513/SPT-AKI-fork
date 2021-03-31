@@ -12,7 +12,7 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const InsuranceConfig = require("../configs/InsuranceConfig.json");
+const InsuranceConfig = require("../configs/Insuranceconfig.js");
 const Logger = require("../utils/Logger");
 const RandomUtil = require("../utils/RandomUtil");
 const InventoryHelper = require("../helpers/InventoryHelper");

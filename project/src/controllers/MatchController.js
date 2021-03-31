@@ -9,7 +9,7 @@
 "use strict";
 
 const LauncherController = require("./LauncherController.js");
-const MatchConfig = require("../configs/MatchConfig.json");
+const MatchConfig = require("../configs/Matchconfig.js");
 const TimeUtil = require("../utils/TimeUtil.js");
 
 class MatchController

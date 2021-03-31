@@ -11,7 +11,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const LocationConfig = require("../configs/LocationConfig.json");
+const LocationConfig = require("../configs/Locationconfig.js");
 const RandomUtil = require("../utils/RandomUtil");
 const JsonUtil = require("../utils/JsonUtil");
 const HashUtil = require("../utils/HashUtil");

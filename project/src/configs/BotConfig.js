@@ -1,4 +1,4 @@
-{
+const config = {
     "limits": {
         "assault": 30,
         "assaultGroup": 30,
@@ -32,4 +32,6 @@
             "pmcBot": 30
         }
     }
-}
+};
+
+module.exports = config;

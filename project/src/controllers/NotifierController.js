@@ -10,7 +10,7 @@
 
 "use strict";
 
-const HttpConfig = require("../configs/HttpConfig.json");
+const HttpConfig = require("../configs/Httpconfig.js");
 
 /**
  * EFT-Notifier-Controller

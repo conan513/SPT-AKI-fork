@@ -10,7 +10,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const BotConfig = require("../configs/BotConfig.json");
+const BotConfig = require("../configs/Botconfig.js");
 const HashUtil = require("../utils/HashUtil");
 const RandomUtil = require("../utils/RandomUtil");
 const InventoryHelper = require("../helpers/InventoryHelper");

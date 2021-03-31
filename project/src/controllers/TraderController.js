@@ -11,7 +11,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const TraderConfig = require("../configs/TraderConfig.json");
+const TraderConfig = require("../configs/Traderconfig.js");
 const TimeUtil = require("../utils/TimeUtil");
 const Logger = require("../utils/Logger");
 const JsonUtil = require("../utils/JsonUtil");

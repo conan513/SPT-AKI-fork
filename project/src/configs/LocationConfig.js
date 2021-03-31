@@ -1,4 +1,4 @@
-{
+const config = {
     "allowLootOverlay": false,
     "limits": {
         "bigmap": 1000,
@@ -18,4 +18,6 @@
         "terminal": 0,
         "town": 0
     }
-}
+};
+
+module.exports = config;

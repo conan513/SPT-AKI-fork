@@ -13,7 +13,7 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const HideoutConfig = require("../configs/HideoutConfig.json");
+const HideoutConfig = require("../configs/Hideoutconfig.js");
 const HttpResponse = require("../utils/HttpResponse");
 const TimeUtil = require("../utils/TimeUtil");
 const Logger = require("../utils/Logger");

@@ -8,7 +8,7 @@
 
 "use strict";
 
-const InsuranceConfig = require("../configs/InsuranceConfig.json");
+const InsuranceConfig = require("../configs/Insuranceconfig.js");
 const HttpResponse = require("../utils/HttpResponse");
 
 class InsuranceCallbacks

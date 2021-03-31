@@ -1,4 +1,4 @@
-{
+const config = {
     "healthMultipliers": {
         "death": 0.3,
         "blacked": 0.1
@@ -7,4 +7,6 @@
         "health": true,
         "effects": true
     }
-}
+};
+
+module.exports = config;

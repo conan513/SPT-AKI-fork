@@ -9,7 +9,7 @@
 
 "use strict";
 
-const WeatherConfig = require("../configs/WeatherConfig.json");
+const WeatherConfig = require("../configs/Weatherconfig.js");
 const RandomUtil = require("../utils/RandomUtil");
 const TimeUtil = require("../utils/TimeUtil");
 

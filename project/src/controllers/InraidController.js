@@ -14,7 +14,7 @@
 
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
-const InraidConfig = require("../configs/InraidConfig.json");
+const InraidConfig = require("../configs/Inraidconfig.js");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 
 class InraidController

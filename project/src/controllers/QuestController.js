@@ -13,7 +13,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const QuestConfig = require("../configs/QuestConfig.json");
+const QuestConfig = require("../configs/Questconfig.js");
 const TimeUtil = require("../utils/TimeUtil");
 const ItemHelper = require("../helpers/ItemHelper");
 const Helpers = require("../helpers/PlzRefactorMeHelper");

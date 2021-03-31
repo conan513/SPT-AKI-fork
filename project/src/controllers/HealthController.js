@@ -11,7 +11,7 @@
 "use strict";
 
 const SaveServer = require("../servers/SaveServer.js");
-const HealthConfig = require("../configs/HealthConfig.json");
+const HealthConfig = require("../configs/Healthconfig.js");
 const ItemHelper = require("../helpers/ItemHelper.js");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 const TimeUtil = require("../utils/TimeUtil.js");

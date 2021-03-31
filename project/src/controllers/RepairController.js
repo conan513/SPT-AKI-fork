@@ -9,7 +9,7 @@
 "use strict";
 
 const DatabaseServer = require("../servers/DatabaseServer");
-const RepairConfig = require("../configs/RepairConfig.json");
+const RepairConfig = require("../configs/Repairconfig.js");
 const Logger = require("../utils/Logger");
 
 class RepairController
