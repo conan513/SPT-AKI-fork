@@ -11,6 +11,18 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
+const QuestConfig = require("../configs/QuestConfig.json");
+const RagfairConfig = require("../configs/RagfairConfig.json");
+const Logger = require("../utils/Logger");
+const RandomUtil = require("../utils/RandomUtil");
+const ItemHelper = require("../helpers/ItemHelper");
+const TimeUtil = require("../utils/TimeUtil");
+const Helpers = require("../helpers/PlzRefactorMeHelper");
+const HashUtil = require("../utils/HashUtil");
+const HttpResponse = require("../utils/HttpResponse");
+
 class RagfairController
 {
     constructor()
@@ -33,8 +45,8 @@ class RagfairController
     {
         const ia = a.items[0]._tpl;
         const ib = b.items[0]._tpl;
-        const aa = database_f.server.tables.locales.global["en"].templates[ia].Name || ia;
-        const bb = database_f.server.tables.locales.global["en"].templates[ib].Name || ib;
+        const aa = DatabaseServer.tables.locales.global["en"].templates[ia].Name || ia;
+        const bb = DatabaseServer.tables.locales.global["en"].templates[ib].Name || ib;
 
         return (aa < bb) ? -1 : (aa > bb) ? 1 : 0;
     }
@@ -95,11 +107,10 @@ class RagfairController
             "selectedCategory": "5b5f78dc86f77409407a7f8e"
         };
 
-        // force player-only in weapon preset build purchase
-        // TODO: write cheapes price detection mechanism, prevent trader-player item duplicates
+        // force all trader types in weapon preset build purchase
         if (info.buildCount)
         {
-            info.offerOwnerType = 2;
+            info.offerOwnerType = 0;
             info.onlyFunctional = false;
         }
 
@@ -109,14 +120,8 @@ class RagfairController
             result.categories = ragfair_f.server.categories;
         }
 
-        // get offers to send
-        for (const offer of ragfair_f.server.offers)
-        {
-            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
-            {
-                result.offers.push(offer);
-            }
-        }
+        result.offers = info.buildCount ? this.getOffersForBuild(info, itemsToAdd, assorts) : 
+                                          this.getValidOffers(info, itemsToAdd, assorts);
 
         // set offer indexes
         let counter = 0;
@@ -133,6 +138,47 @@ class RagfairController
         this.countCategories(result);
 
         return result;
+    }
+
+    getValidOffers(info, itemsToAdd, assorts)
+    {
+        let offers = [];
+        for (const offer of ragfair_f.server.offers)
+        {
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            {
+                offers.push(offer);
+            }
+        }
+        return offers;
+    }
+
+    getOffersForBuild(info, itemsToAdd, assorts)
+    {
+        let offersMap = new Map();
+        let offers = [];
+
+        for (const offer of ragfair_f.server.offers)
+        {
+            if (this.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            {
+                let key = offer.items[0]._tpl
+                if(!offersMap.has(key))
+                {
+                    offersMap.set(key, []);
+                }
+
+                offersMap.get(key).push(offer);
+            }
+        }
+
+        for(let tmpOffers of offersMap.values())
+        {
+            let offer = this.sortOffers(tmpOffers, 5, 0)[0];
+            offers.push(offer);
+        }
+
+        return offers;
     }
 
     filterCategories(sessionID, info)
@@ -177,15 +223,15 @@ class RagfairController
     {
         let result = {};
 
-        for (const traderID in database_f.server.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
-            if (traderID !== "ragfair" && !ragfair_f.config.static.traders[traderID])
+            if (traderID !== "ragfair" && !RagfairConfig.static.traders[traderID])
             {
                 // skip trader except ragfair when trader is disabled
                 continue;
             }
 
-            if (traderID === "ragfair" && !ragfair_f.config.static.items)
+            if (traderID === "ragfair" && !RagfairConfig.static.items)
             {
                 // skip ragfair when unknown is disabled
                 continue;
@@ -298,7 +344,7 @@ class RagfairController
         }
 
         // handle trader items
-        if (offer.user.id in database_f.server.tables.traders)
+        if (offer.user.id in DatabaseServer.tables.traders)
         {
             if (!(offer.user.id in assorts))
             {
@@ -370,7 +416,7 @@ class RagfairController
 
     getLinkedSearchList(linkedSearchId)
     {
-        const item = database_f.server.tables.templates.items[linkedSearchId];
+        const item = DatabaseServer.tables.templates.items[linkedSearchId];
 
         // merging all possible filters without duplicates
         const result = new Set([
@@ -386,7 +432,7 @@ class RagfairController
     {
         let result = [];
 
-        for (const item of Object.values(database_f.server.tables.templates.items))
+        for (const item of Object.values(DatabaseServer.tables.templates.items))
         {
             if (this.isInFilter(neededSearchId, item, "Slots")
                 || this.isInFilter(neededSearchId, item, "Chambers")
@@ -492,9 +538,9 @@ class RagfairController
 
     update()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if (save_f.server.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
+            if (SaveServer.profiles[sessionID].characters.pmc.RagfairInfo !== undefined)
             {
                 this.processOffers(sessionID);
             }
@@ -503,7 +549,7 @@ class RagfairController
 
     processOffers(sessionID)
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
             const profileOffers = this.getProfileOffers(sessionID);
             const timestamp = TimeUtil.getTimestamp();
@@ -515,7 +561,7 @@ class RagfairController
 
             for (const [index, offer] of profileOffers.entries())
             {
-                if (RandomUtil.getInt(0, 99) < ragfair_f.config.player.sellChance)
+                if (RandomUtil.getInt(0, 99) < RagfairConfig.player.sellChance)
                 {
                     // item sold
                     this.completeOffer(sessionID, offer, index);
@@ -549,12 +595,12 @@ class RagfairController
 
     deleteOfferByIndex(sessionID, index)
     {
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
     }
 
     updateOfferItemsByIndex(sessionID, index, newValues)
     {
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers[index].items = newValues;
     }
 
 
@@ -594,7 +640,7 @@ class RagfairController
         items.forEach(item =>
         {
             item = ItemHelper.fixItemStackCount(item);
-            if (ItemHelper.isItemTplStackable(item._tpl))
+            if (ItemHelper.isItemTplStackable(item._tpl) && item.parentId === "hideout")
             {
                 if (mergeItems[item._tpl] === undefined)
                 {
@@ -631,7 +677,7 @@ class RagfairController
      */
     addPlayerOffer(pmcData, info, sessionID)
     {
-        const result = item_f.eventHandler.getOutput();
+        const result = ItemEventRouter.getOutput();
         let requirementsPriceInRub = 0;
         let offerPrice = 0;
         let itemStackCount = 0;
@@ -641,12 +687,12 @@ class RagfairController
         if (!info || !info.items || info.items.length === 0)
         {
             Logger.error("Invalid addOffer request");
-            return https_f.response.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(result);
         }
 
         if (!info.requirements)
         {
-            return https_f.response.appendErrorToOutput(result, "How did you place the offer with no requirements?");
+            return HttpResponse.appendErrorToOutput(result, "How did you place the offer with no requirements?");
         }
 
         for (const item of info.requirements)
@@ -671,7 +717,7 @@ class RagfairController
             if (item === undefined)
             {
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
-                return https_f.response.appendErrorToOutput(result);
+                return HttpResponse.appendErrorToOutput(result);
             }
             item = ItemHelper.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
@@ -689,7 +735,7 @@ class RagfairController
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
-            return https_f.response.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(result);
         }
 
         for (const item of invItems)
@@ -702,12 +748,12 @@ class RagfairController
         {
             // Don't want to accidentally divide by 0
             Logger.error("Failed to count base price for offer");
-            return https_f.response.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(result);
         }
 
         // Preparations are done, create the offer
-        const offer = this.createPlayerOffer(save_f.server.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
-        save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        const offer = this.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, this.mergeStackable(invItems), info.sellInOnePiece, offerPrice);
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         result.ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
@@ -717,7 +763,7 @@ class RagfairController
         }
 
         // TODO: Subtract flea market fee from stash
-        if (ragfair_f.config.player.enableFees)
+        if (RagfairConfig.player.enableFees)
         {
             let tax = this.calculateTax(info, offerPrice, requirementsPriceInRub);
             Logger.info(`Tax Calculated to be: ${tax}`);
@@ -773,13 +819,13 @@ class RagfairController
      */
     removeOffer(offerId, sessionID)
     {
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -789,7 +835,7 @@ class RagfairController
             offers[index].endTime = Math.round(newEndTime);
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     extendOffer(info, sessionID)
@@ -798,17 +844,17 @@ class RagfairController
         let secondsToAdd = info.renewalTime * 60 * 60;
 
         // TODO: Subtract money and change offer endTime
-        const offers = save_f.server.profiles[sessionID].characters.pmc.RagfairInfo.offers;
+        const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
         offers[index].endTime += secondsToAdd;
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     getCurrencySymbol(currencyTpl)
@@ -839,7 +885,8 @@ class RagfairController
      */
     completeOffer(sessionID, offer, offerId)
     {
-        const itemTpl = offer.items[0]._tpl;
+        const parent = offer.items.filter(offerItem => offerItem.parentId === "hideout");
+        const itemTpl = parent[0]._tpl;
         let boughtAmount = 1;
         let itemsToSend = [];
 
@@ -853,14 +900,22 @@ class RagfairController
         }
         else
         {
-            // Is this multiple items or one stack of multiple items?
+            // Is this multiple items or one stack of same item?
             if (offer.items.length > 1)
             {
                 // How many are we buying?
-                boughtAmount = RandomUtil.getInt(1, offer.items.length);
-                if (boughtAmount < offer.items.length)
+                boughtAmount = RandomUtil.getInt(1, parent.length);
+                if (boughtAmount < parent.length)
                 {
-                    offer.items.splice(offerId, boughtAmount);
+                    for (let i = 0; i < boughtAmount; i++)
+                    {
+                        let toDelete = ItemHelper.findAndReturnChildrenByItems(offer.items, parent[i]._id);
+                        
+                        for (let toDeleteId of toDelete)
+                        {
+                            offer.items.splice(offer.items.findIndex(item => item._id === toDeleteId), 1)
+                        }
+                    }
                 }
                 else
                 {
@@ -915,9 +970,9 @@ class RagfairController
         }
 
         // Generate a message to inform that item was sold
-        let messageTpl = database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
+        let messageTpl = DatabaseServer.tables.locales.global["en"].mail[this.TPL_GOODS_SOLD];
         let tplVars = {
-            "soldItem": database_f.server.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
+            "soldItem": DatabaseServer.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
             "buyerNickname": this.fetchRandomPmcName(),
             "itemCount": boughtAmount
         };
@@ -928,7 +983,7 @@ class RagfairController
         const messageContent = {
             "text": messageText.replace(/"/g, ""),
             "type": 4, // EMessageType.FleamarketMessage
-            "maxStorageTime": quest_f.config.redeemTime * 3600,
+            "maxStorageTime": QuestConfig.redeemTime * 3600,
             "ragfair": {
                 "offerId": offerId,
                 "count": boughtAmount,
@@ -940,15 +995,15 @@ class RagfairController
 
         // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     returnItems(sessionID, items)
     {
         const messageContent = {
-            "text": database_f.server.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
+            "text": DatabaseServer.tables.locales.global["en"].mail[this.TPL_GOODS_RETURNED],
             "type": 13,
-            "maxStorageTime": quest_f.config.redeemTime * 3600
+            "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
         dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
@@ -959,9 +1014,12 @@ class RagfairController
         let loyalLevel = 1;
         const formattedItems = items.map(item =>
         {
+            let isChild = items.find(it => it._id === item.parentId);
             return {
                 "_id": item._id,
                 "_tpl": item._tpl,
+                "parentId": (isChild) ? item.parentId : "hideout",
+                "slotId": (isChild) ? item.slotId : "hideout",
                 "upd": item.upd
             };
         });
@@ -989,7 +1047,7 @@ class RagfairController
     fetchRandomPmcName()
     {
         const type = RandomUtil.getInt(0, 1) === 0 ? "usec" : "bear";
-        return RandomUtil.getArrayValue(database_f.server.tables.bots.types[type].names);
+        return RandomUtil.getArrayValue(DatabaseServer.tables.bots.types[type].names);
     }
 }
 

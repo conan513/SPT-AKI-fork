@@ -2579,9 +2579,60 @@
         "heavybleedingdelta": "Chance to cause heavy bleeding",
         "lightbleedingdelta": "Chance to cause light bleeding",
         "choose face and voice": "CHOOSE FACE AND VOICE",
-        "un-sec": "Northern UN roadblock",
+        "TroubleFixing": "Increase speed of troubleshooting (up to 50%). 1% for each skill level.",
+        "TroubleFixingAmmoElite": "Reduces the chance of malfunctions from the magazine by 50% after fixing a malfunction caused by the same reason",
+        "ZeroWeaponDeteriorationOnRepair": "No wear during a repair",
         "NetworkError/TooManyFriendRequestsHeader": "Error",
-        "NetworkError/TooManyFriendRequestsMessage": "You can't send friendship requests too often. Try again in 10 minutes"
+        "NetworkError/TooManyFriendRequestsMessage": "You can't send friendship requests too often. Try again in 10 minutes",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>You have no dialogs yet.</b></size>\r\nInvite friends to start a new one or join the Global Chat.",
+        "TroubleFixingDurElite": "Reduces the chance of malfunctions based on the durability of weapons by 50% after fixing a malfunction caused by the same reason",
+        "WeaponDurabilityLossOnShotReduce": "Reduced gun wear (up to 50%) when firing",
+        "un-sec": "Northern UN roadblock",
+        "BloodLoss": "Bloodloss",
+        "REMOVES BLOODLOSS": "REMOVES BLOODLOSS",
+        "\"Magazine checked: \"": "Magazine checked:",
+        "DamageType_Bloodloss": "Bloodloss",
+        "you can't transfer item while moving": "You can't transfer item while moving",
+        "place": "PLACE",
+        "This location is not available for scav": "This location is not available for scav",
+        "Interchange": "Interchange",
+        "Matchend/ErrorUpdatingDataForHealing": "Failed to load data, check the network status. Try to enter the treatment screen again, or skip it and go to the main menu?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Mod {0} cannot be installed on the folded weapon",
+        "No action available": "No available actions",
+        "ProfileEvent/AssortmentLockRule": "Trader's deal <b>{0}</b> lock.",
+        "ProfileEvent/ExamineItems": "Examine item <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Item <b>{0}</b> examination reset.",
+        "ProfileEvent/ProfileLockTimer": "Set Scav cooldown at <b>{0}</b> seconds.",
+        "ProfileEvent/ProfileUnlock": "Scav cooldown reset.",
+        "ProfileEvent/UnlockTrader": "Trader <b>{0}</b>'s unlock.",
+        "ProfileEvent/LockTrader": "Trader <b>{0}</b>'s lock.",
+        "ProfileEvent/MasteringSkill": "Change of the <b>{0}</b> mastering progress to <b>{1}</b>.",
+        "Critical error": "Critical error",
+        "TroubleFixingMagElite": "Reduces the chance of malfunctions from a cartridge by 50% after fixing a malfunction caused by the same reason",
+        "WeaponDeteriorationChanceReduce": "Reduced probability of wear during repair (up to -60%)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Low Latency",
+        "UI/Settings/NVidiaReflexMode/Off": "Off",
+        "UI/Settings/NVidiaReflexMode/On": "On",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "On and boost",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex is on. Turn it off to change this parameter.",
+        "NVidia Reflex settings will be applied after restart.": "NVidia Reflex settings will be applied after restart.",
+        "FoundInRaid": "Found in raid",
+        "loudness": "LOUDNESS",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -3171,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Dowód złej reputacji",
@@ -3187,7 +3238,7 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Wafle do lodów",
@@ -3448,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Złoty łup",
@@ -3461,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Żul z Polikhim",
@@ -3634,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Wkupienie w łaski",
@@ -3870,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -5390,7 +5441,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5706,7 +5757,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5722,7 +5773,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5766,7 +5817,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5782,7 +5833,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5810,7 +5861,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5824,7 +5875,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5935,7 +5986,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6342,7 +6393,7 @@
             "failMessageText": "5edab4e4218d181e29451437",
             "startedMessageText": "5edab4e4218d181e29451438",
             "description": "5edab4e4218d181e29451439",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6376,7 +6427,7 @@
             "failMessageText": "5edaba9ed143ed1d6378d127",
             "startedMessageText": "5edaba9ed143ed1d6378d128",
             "description": "5edaba9ed143ed1d6378d129",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -6513,7 +6564,7 @@
             "failMessageText": "5f08e8d3ec85fa71e9393f63",
             "startedMessageText": "5f08e8d3ec85fa71e9393f64",
             "description": "5f08e8d3ec85fa71e9393f65",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5f70abfae9f14826bf7c1c65": {
             "conditions": {
@@ -7096,6 +7147,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7611,8 +7668,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Amunicja",
             "ShortName": "Amunicja",
-            "Description": "Amunicja",
-            "casingName": null
+            "Description": "Amunicja"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Modyfikacja funkcjonalna",
@@ -19277,12 +19333,12 @@
         "5fbbfabed5cb881a7363194e": {
             "Name": "171mm barrel for MCX and compatible .300 BLK",
             "ShortName": "171mm MCX .300 BLK",
-            "Description": "The barrel for an MCX-based weapon for the .300 BLK cartridge, 171mm long.\r\n"
+            "Description": "The barrel for an MCX-based weapon for the .300 BLK cartridge, 171mm long.\n"
         },
         "5fbbfacda56d053a3543f799": {
             "Name": "229mm barrel for MCX and compatible .300 BLK",
             "ShortName": "229mm MCX .300 BLK",
-            "Description": "The barrel for an MCX-based weapon for the .300 BLK cartridge, 229mm long.\r\n"
+            "Description": "The barrel for an MCX-based weapon for the .300 BLK cartridge, 229mm long.\n"
         },
         "5fbc210bf24b94483f726481": {
             "Name": "SIG MCX Gas Block",
@@ -19631,6 +19687,326 @@
             "Name": "Smoke balaclava",
             "ShortName": "Smoke",
             "Description": "The signature balaclava of the famous hip-hop artist of Tarkov - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK personal tactical first aid kit",
+            "ShortName": "AFAK",
+            "Description": "AFAK (Adaptive First Aid Kit). A more advanced version of the personal first aid kit."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Hemostatic tourniquet CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (combat application tourniquet) prevents blood loss by blocking the blood outlet by applying pressure to the affected limb. It uses a self-adjusting tensioning system and a tug-resistant buckle."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Emergency water ration",
+            "ShortName": "EWR",
+            "Description": "Drinking water for use in case of emergency and other circumstances where an emergency supply of liquid is needed, ready to be stored for several years."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Device for carrying out rescue operations\" Taiga-1. A truly versatile survival tool. It is a weapon and a shovel and an axe and everything you can imagine. It was developed and produced in the USSR for various agencies."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "A special cartridge designed for the United States Marine Corps. The bullet has an open nose with a lead tipped front and a copper base. Lead is for breaking down obstacles, and copper is for further penetration of the barrier.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "A very rare SSA armor-piercing cartridge designed to replace the M995. The bullet contains a tungsten carbide core for maximum penetration of hard targets.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "MAI armor-piercing 7.62x39 cartridges with a exposed carbide core.",
+            "casingName": "7.62x39 mm AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19 magazine, 16-round capacity",
+            "ShortName": "9x19 PL15",
+            "Description": "Standard-issue 16-round magazine for PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15 pistol slide",
+            "ShortName": "PL15 Slide",
+            "Description": "Regular slide for PL-15 pistol."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15 Standard Frontsight",
+            "ShortName": "PL15 FS",
+            "Description": "Regular front sight for PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15 extended front sight",
+            "ShortName": "PL15 FS",
+            "Description": "Extended PL-15 front sight designed for use with a sound suppressor."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15 extended rear sight",
+            "ShortName": "Sup. RS",
+            "Description": "Extended PL-15 rear sight designed for use with a sound suppressor."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15 Standard Rear-sight",
+            "ShortName": "PL15 RS",
+            "Description": "Regular rear-sight for PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Regular barrel for PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Regular barrel for PL-15 pistol."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Threaded barrel for PL-15",
+            "ShortName": "PL15 thr.",
+            "Description": "Threaded barrel for PL15 9x19 pistol."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19mm sound suppressor",
+            "ShortName": "PL15 std.",
+            "Description": "Regular PL-15 sound suppressor. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19 pistol",
+            "ShortName": "PL-15",
+            "Description": "A Russian self-loading pistol chambered for 9x19mm, developed by a team of designers from the Kalashnikov concern under the leadership of Dmitry Lebedev for the needs of Russian law enforcement agencies."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms buffer tube",
+            "ShortName": "STM Tube",
+            "Description": "STM Arms Receiver Extension Buffer Tube, 4-position, Com-Spec diameter will fit any AR-15-based carbine."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Telescopic stock product by Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver for STM-9 9x19 carbine",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver for STM-9 carbine. Equipped with a mount for attaching additional devices."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 pistol grip for AR-15 based systems",
+            "ShortName": "DLG123",
+            "Description": "DLG-123 pistol grip can be installed at any weapon compatible with AR-15 grips."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5\" barrel for STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 266mm long."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12\" barrel for STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 304mm long."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14\" barrel for STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 355mm long."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16\" barrel for STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 406mm long."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi battle charging handle for AR-15",
+            "ShortName": "MASP Charge",
+            "Description": "MASP Ambi battle charging handle for AR-15 and compatible systems."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19 muzzle brake",
+            "ShortName": "STM9 MB",
+            "Description": "Regular STM-9 9x19 muzzle brake."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Grey",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 carabine",
+            "ShortName": "STM-9",
+            "Description": "A PCC carbine with excellent performance already \"out of the box\". Designed with the participation of world bronze medalist in Semi-Auto Rifle Vadim Mikhailov. Accuracy, speed, comfort of recoil."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 headset",
+            "ShortName": "M32",
+            "Description": "The EARMOR M32 is an activated electronic communication hearing protector, ideal for tactical use."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "NPP KlASS Condor glasses",
+            "ShortName": "Condor",
+            "Description": "Heavy-duty ballistic shooting glasses with impact-resistant lenses."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Umka М33-SET1 hunter's vest",
+            "ShortName": "Umka",
+            "Description": "The Umka M33-SET1 vest is designed for hunters, travelers, field professionals and security officers."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "CSA chest rig",
+            "ShortName": "CSA",
+            "Description": "The simplest chest rig, sewn hastily from dubious materials. It is designed for airsoft. Military use of this model is possible, but not recommended."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Hazard4 Takedown sling backpack",
+            "ShortName": "Takedown",
+            "Description": "Single-strap sling backpack designed for carrying long-barreled weapons."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Eberlestock G2 Gunslinger II backpack (dry earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Medium-sized modular military backpack with additional compartment for full-size weapons."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "STM 9 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "STM 9 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "STM 15 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "STM 15 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "STM 12 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "STM 12 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Black Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Coyote Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Flora Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Desert Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "UCP Army cap",
+            "ShortName": "Cap",
+            "Description": "Military cap"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "GP-7 gasmask",
+            "ShortName": "GP-7",
+            "Description": "Civilian gas mask GP-7 is a filtering means of individual protection of respiratory organs, eyes and face skin."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Azimut SS Jhuk Chest Harness (black)",
+            "ShortName": "Azimut",
+            "Description": "Simple nylon bearing system with non-removable pouches. Allows you to carry a fairly impressive amount of ammunition at the expense of convenience.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "LBT 6094A Slick Plate Carrier (tan)",
+            "ShortName": "Slick",
+            "Description": "Simple plate carrier by LBT company. The most minimalistic design intended for use with chest rigs."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "LBT 6094A Slick Plate Carrier (olive)",
+            "ShortName": "Slick",
+            "Description": "Simple plate carrier by LBT company. The most minimalistic design intended for use with chest rigs."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Hazard4 Takedown sling backpack (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Single-strap sling backpack designed for carrying long-barreled weapons."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Can of thermite",
+            "ShortName": "Thermite",
+            "Description": "Thermite-based incendiary mixtures are a mixture of aluminum powder and iron oxide. These compounds have a very high combustion temperature and are capable of burning without the presence of oxygen. Termite has an extremely strong burning effect and is almost impossible to extinguish."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Ratchet wrench",
+            "ShortName": "Ratch.",
+            "Description": "Ratchets are an indispensable tool that every locksmith and mechanic at a service station should have for car maintenance. Allows you to work in a confined space. Has the ability to quickly change working heads. Golden instrument!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "TP-200 TNT brick",
+            "ShortName": "TP-200",
+            "Description": "TP-200 is intended for use as charges in the production of seismic surveys, intermediate detonators when initiating borehole explosive charges, crushing oversized items and performing special blasting operations."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Azimut SS Jhuk Chest Harness (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Simple nylon bearing system with non-removable pouches. Allows you to carry a fairly impressive amount of ammunition at the expense of convenience.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "CADPAT Army cap ",
+            "ShortName": "Cap",
+            "Description": "Military cap"
         }
     },
     "locations": {

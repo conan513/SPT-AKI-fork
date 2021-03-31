@@ -18,7 +18,7 @@ class NoteController
             "Text": body.note.Text
         });
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     static editNote(pmcData, body, sessionID)
@@ -28,13 +28,13 @@ class NoteController
             "Text": body.note.Text
         };
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     static deleteNote(pmcData, body, sessionID)
     {
         pmcData.Notes.Notes.splice(body.index, 1);
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 }
 

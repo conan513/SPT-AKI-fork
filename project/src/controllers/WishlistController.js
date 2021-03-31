@@ -22,13 +22,13 @@ class WishlistController
             // don't add the item
             if (pmcData.WishList[item] === body["templateId"])
             {
-                return item_f.eventHandler.getOutput();
+                return ItemEventRouter.getOutput();
             }
         }
 
         // add the item to the wishlist
         pmcData.WishList.push(body["templateId"]);
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     /* Removing item to wishlist
@@ -45,7 +45,7 @@ class WishlistController
             }
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 }
 

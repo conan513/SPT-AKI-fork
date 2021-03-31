@@ -8,6 +8,8 @@
 
 "use strict";
 
+const JsonUtil = require("./JsonUtil");
+
 class HttpResponse
 {
     clearString(s)
@@ -41,9 +43,7 @@ class HttpResponse
 
     emptyResponse()
     {
-        const data = "";
-        const errmsg = "";
-        return this.getBody(data, 0, errmsg);
+        return this.getBody("", 0, "");
     }
 
     nullResponse()

@@ -306,9 +306,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Штурман"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {
@@ -683,6 +684,7 @@
 				"SEC_TO_MORE_DIST_TO_RUN": 10,
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
+				"CAN_TAKE_ITEMS": false,
 				"HIT_DELAY_WHEN_PEACE": -1
 			},
 			"Boss": {
@@ -1157,6 +1159,7 @@
 				"SEC_TO_MORE_DIST_TO_RUN": 10,
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
+				"CAN_TAKE_ITEMS": false,
 				"HIT_DELAY_WHEN_PEACE": -1
 			},
 			"Boss": {
@@ -1631,6 +1634,7 @@
 				"SEC_TO_MORE_DIST_TO_RUN": 10,
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
+				"CAN_TAKE_ITEMS": false,
 				"HIT_DELAY_WHEN_PEACE": -1
 			},
 			"Boss": {
@@ -2105,6 +2109,7 @@
 				"SEC_TO_MORE_DIST_TO_RUN": 10,
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
+				"CAN_TAKE_ITEMS": false,
 				"HIT_DELAY_WHEN_PEACE": -1
 			},
 			"Boss": {

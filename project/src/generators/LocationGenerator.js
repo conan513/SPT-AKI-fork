@@ -10,11 +10,19 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const LocationConfig = require("../configs/LocationConfig.json");
+const RandomUtil = require("../utils/RandomUtil");
+const JsonUtil = require("../utils/JsonUtil");
+const HashUtil = require("../utils/HashUtil");
+const ContainerHelper = require("../helpers/ContainerHelper");
+const ItemHelper = require("../helpers/ItemHelper");
+
 class LocationGenerator
 {
     /**
      * @param {unknown[]} dynamic
-     * @param {CoOrds | []} lootPositions
+     * @param {Coords | []} lootPositions
      * @param {{ base: { GlobalLootChanceModifier: any; }; }} location
      */
     generateDynamicLoot(dynamic, lootPositions, location)
@@ -33,7 +41,7 @@ class LocationGenerator
 
         //Check if LootItem is overlapping
         let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
-        if (!location_f.config.allowLootOverlay && lootPositions.includes(position))
+        if (!LocationConfig.allowLootOverlay && lootPositions.includes(position))
         {
             //Clear selected loot
             dynamic[rndLootIndex].data.splice(rndLootTypeIndex, 1);
@@ -85,10 +93,10 @@ class LocationGenerator
             }
         }
 
-        const globalLootChanceModifier = database_f.server.tables.globals.config.GlobalLootChanceModifier;
+        const globalLootChanceModifier = DatabaseServer.tables.globals.config.GlobalLootChanceModifier;
         const locationLootChanceModifier = location.base.GlobalLootChanceModifier;
         const num = RandomUtil.getInt(0, 100);
-        const spawnChance = database_f.server.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
+        const spawnChance = DatabaseServer.tables.templates.items[data.Items[0]._tpl]._props.SpawnChance;
         const itemChance = Math.round(spawnChance * globalLootChanceModifier * locationLootChanceModifier);
 
         if (itemChance >= num)
@@ -101,7 +109,7 @@ class LocationGenerator
 
     generateContainerLoot(items)
     {
-        let container = JsonUtil.clone(database_f.server.tables.loot.statics[items[0]._tpl]);
+        let container = JsonUtil.clone(DatabaseServer.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
         let idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;

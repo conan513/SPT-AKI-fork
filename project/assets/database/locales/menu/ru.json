@@ -32,7 +32,7 @@
         "BATTLEYE_ANTICHEAT_GlobalBan": "Игрок был забанен",
         "BATTLEYE_ANTICHEAT_CorruptedData": "Запущена некорректная версия игры. Пожалуйста проверьте целостность файлов игры",
         "ASSEMBLE": "СОБРАТЬ",
-        "When you leave the raid you don’t get anything and also receive Left the Action exit status.": "Если вы отключитесь от рейда, вы потеряете лут и получите статус выхода Дезертир",
+        "When you leave the raid you don’t get anything and also receive Left the Action exit status.": "Если вы отключитесь от рейда, вы потеряете лут и получите статус выхода Дезертир.",
         "Production completed: {0}": "Производство завершено: {0}",
         "UI/leave_game_confirmation_caption": "Выход из игры",
         "UI/leave_game_confirmation_text": "Вы уверены что хотите выйти из игры?"

@@ -27,7 +27,6 @@ class Program
 
         // import classes
         require("./Lib");
-        require("./Bindings");
 
         // load and execute all packages
         App.load();

@@ -75,7 +75,7 @@
 	"MaxBotPerZone": 0,
 	"OpenZones": "BotZoneMain",
 	"OcculsionCullingEnabled": true,
-	"GlobalLootChanceModifier": 0.9,
+	"GlobalLootChanceModifier": 0.5,
 	"OldSpawn": true,
 	"NewSpawn": false,
 	"BotMax": 0,
@@ -3698,6 +3698,12 @@
 					"Radius": 7
 				}
 			}
+		}
+	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
 		}
 	],
 	"Id": "laboratory",

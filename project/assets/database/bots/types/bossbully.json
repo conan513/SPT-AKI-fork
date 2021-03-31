@@ -400,9 +400,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Решала"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {
@@ -769,6 +770,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -1234,6 +1236,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -1699,6 +1702,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -2164,6 +2168,7 @@
 				"HEAL_DELAY_SEC": 5,
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {

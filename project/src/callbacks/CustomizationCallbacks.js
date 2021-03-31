@@ -8,15 +8,17 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
 const CustomizationController = require("../controllers/CustomizationController.js");
+const HttpResponse = require("../utils/HttpResponse.js");
 
 class CustomizationCallbacks
 {
     static getSuits(url, info, sessionID)
     {
-        return https_f.response.getBody({
+        return HttpResponse.getBody({
             "_id": `pmc${sessionID}`,
-            "suites": save_f.server.profiles[sessionID].suits
+            "suites": SaveServer.profiles[sessionID].suits
         });
     }
 
@@ -25,7 +27,7 @@ class CustomizationCallbacks
         const splittedUrl = url.split("/");
         const traderID = splittedUrl[splittedUrl.length - 2];
 
-        return https_f.response.getBody(CustomizationController.getTraderSuits(traderID, sessionID));
+        return HttpResponse.getBody(CustomizationController.getTraderSuits(traderID, sessionID));
     }
 
     static wearClothing(pmcData, body, sessionID)

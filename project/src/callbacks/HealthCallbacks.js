@@ -8,7 +8,7 @@
 
 "use strict";
 
-const HealthController = require("../controllers/HealthController.js");
+const HttpResponse = require("../utils/HttpResponse.js");
 
 class HealthCallbacks
 {
@@ -20,7 +20,7 @@ class HealthCallbacks
     static syncHealth(url, info, sessionID)
     {
         HealthController.saveVitality(profile_f.controller.getPmcProfile(sessionID), info, sessionID);
-        return https_f.response.emptyResponse();
+        return HttpResponse.emptyResponse();
     }
 
     static offraidEat(pmcData, body, sessionID)

@@ -123,9 +123,6 @@ module.exports = {
     "/player/health/sync": {
         "aki": HealthCallbacks.syncHealth
     },
-    "/raid/map/name": {
-        "aki": InraidCallbacks.registerPlayer
-    },
     "/raid/profile/save": {
         "aki": InraidCallbacks.saveProgress
     },

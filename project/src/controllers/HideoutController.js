@@ -11,6 +11,16 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const SaveServer = require("../servers/SaveServer.js");
+const HideoutConfig = require("../configs/HideoutConfig.json");
+const HttpResponse = require("../utils/HttpResponse");
+const TimeUtil = require("../utils/TimeUtil");
+const Logger = require("../utils/Logger");
+const Helpers = require("../helpers/PlzRefactorMeHelper");
+const RandomUtil = require("../utils/RandomUtil");
+const HashUtil = require("../utils/HashUtil");
+
 const areaTypes = {
     VENTS: 0,
     SECURITY: 1,
@@ -59,7 +69,7 @@ class HideoutController
             if (!item.inventoryItem)
             {
                 Logger.error(`Failed to find item in inventory with id ${item.requestedItem.id}`);
-                return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+                return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
             }
 
             if (Helpers.isMoneyTpl(item.inventoryItem._tpl)
@@ -71,7 +81,7 @@ class HideoutController
             }
             else
             {
-                inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, item_f.eventHandler.getOutput(), sessionID);
+                inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput(), sessionID);
             }
         }
 
@@ -80,14 +90,14 @@ class HideoutController
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
         }
 
-        const hideoutData = database_f.server.tables.hideout.areas.find(area => area.type === body.areaType);
+        const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === body.areaType);
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
         }
 
         let ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
@@ -99,7 +109,7 @@ class HideoutController
             hideoutArea.constructing = true;
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     upgradeComplete(pmcData, body, sessionID)
@@ -108,7 +118,7 @@ class HideoutController
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
         }
 
         // Upgrade area
@@ -116,11 +126,11 @@ class HideoutController
         hideoutArea.completeTime = 0;
         hideoutArea.constructing = false;
 
-        const hideoutData = database_f.server.tables.hideout.areas.find(area => area.type === hideoutArea.type);
+        const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === hideoutArea.type);
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
         }
 
         // Apply bonuses
@@ -133,13 +143,13 @@ class HideoutController
             }
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     // Move items from hideout
     putItemsInAreaSlots(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         const items = Object.entries(body.items).map(kvp =>
         {
@@ -155,7 +165,7 @@ class HideoutController
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(output);
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         for (let item of items)
@@ -163,7 +173,7 @@ class HideoutController
             if (!item.inventoryItem)
             {
                 Logger.error(`Failed to find item in inventory with id ${item.requestedItem.id}`);
-                return https_f.response.appendErrorToOutput(output);
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             const slot_position = item.slot;
@@ -192,13 +202,13 @@ class HideoutController
 
     takeItemsFromAreaSlots(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(output);
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         if (hideoutArea.type === areaTypes.GENERATOR)
@@ -242,7 +252,7 @@ class HideoutController
             if (!hideoutArea.slots[0] || !hideoutArea.slots[0].item[0] || !hideoutArea.slots[0].item[0]._tpl)
             {
                 Logger.error(`Could not find item to take out of slot 0 for areaType ${hideoutArea.type}`);
-                return https_f.response.appendErrorToOutput(output);
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             let newReq = {
@@ -273,19 +283,19 @@ class HideoutController
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
         }
 
         hideoutArea.active = body.enabled;
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     singleProductionStart(pmcData, body, sessionID)
     {
         this.registerProduction(pmcData, body, sessionID);
 
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         for (let itemToDelete of body.items)
         {
@@ -297,7 +307,7 @@ class HideoutController
 
     scavCaseProductionStart(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         for (let requestedItem of body.items)
         {
@@ -305,7 +315,7 @@ class HideoutController
             if (!inventoryItem)
             {
                 Logger.error(`Could not find item requested by ScavCase with id ${requestedItem.id}`);
-                return https_f.response.appendErrorToOutput(output);
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             if (inventoryItem.upd
@@ -320,11 +330,11 @@ class HideoutController
             }
         }
 
-        const recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
+        const recipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (!recipe)
         {
             Logger.error(`Failed to find Scav Case recipe with id ${body.recipeId}`);
-            return https_f.response.appendErrorToOutput(output);
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         let rarityItemCounter = {};
@@ -345,9 +355,9 @@ class HideoutController
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = RandomUtil.getIntEx(Object.keys(database_f.server.tables.templates.items).length);
-                let randomKey = Object.keys(database_f.server.tables.templates.items)[random];
-                let tempItem = database_f.server.tables.templates.items[randomKey];
+                let random = RandomUtil.getIntEx(Object.keys(DatabaseServer.tables.templates.items).length);
+                let randomKey = Object.keys(DatabaseServer.tables.templates.items)[random];
+                let tempItem = DatabaseServer.tables.templates.items[randomKey];
 
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
@@ -380,18 +390,18 @@ class HideoutController
     continuousProductionStart(pmcData, body, sessionID)
     {
         this.registerProduction(pmcData, body, sessionID);
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 
     getBTC(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         const bitCoinCount = pmcData.Hideout.Production[BITCOIN_FARM].Products.length;
         if (!bitCoinCount)
         {
             Logger.error("No bitcoins are ready for pickup!");
-            return https_f.response.appendErrorToOutput(output);
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         let newBTC = {
@@ -412,14 +422,14 @@ class HideoutController
 
     takeProduction(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
 
         if (body.recipeId === BITCOIN_FARM)
         {
             return this.getBTC(pmcData, body, sessionID);
         }
 
-        let recipe = database_f.server.tables.hideout.production.find(r => r._id === body.recipeId);
+        let recipe = DatabaseServer.tables.hideout.production.find(r => r._id === body.recipeId);
         if (recipe)
         {
             // create item and throw it into profile
@@ -443,7 +453,7 @@ class HideoutController
             if (!kvp || !kvp[0])
             {
                 Logger.error(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
-                return https_f.response.appendErrorToOutput(output);
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             // delete the production in profile Hideout.Production if addItem passes validation
@@ -455,14 +465,14 @@ class HideoutController
             return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
-        recipe = database_f.server.tables.hideout.scavcase.find(r => r._id === body.recipeId);
+        recipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === body.recipeId);
         if (recipe)
         {
             const kvp = Object.entries(pmcData.Hideout.Production).find(kvp => kvp[1].RecipeId === body.recipeId);
             if (!kvp || !kvp[0])
             {
                 Logger.error(`Could not find production in pmcData with RecipeId ${body.recipeId}`);
-                return https_f.response.appendErrorToOutput(output);
+                return HttpResponse.appendErrorToOutput(output);
             }
             const prod = kvp[0];
 
@@ -488,16 +498,16 @@ class HideoutController
         }
 
         Logger.error(`Failed to locate any recipe with id ${body.recipeId}`);
-        return https_f.response.appendErrorToOutput(output);
+        return HttpResponse.appendErrorToOutput(output);
     }
 
     registerProduction(pmcData, body, sessionID)
     {
-        const recipe = database_f.server.tables.hideout.production.find(p => p._id === body.recipeId);
+        const recipe = DatabaseServer.tables.hideout.production.find(p => p._id === body.recipeId);
         if (!recipe)
         {
             Logger.error(`Failed to locate recipe with _id ${body.recipeId}`);
-            return https_f.response.appendErrorToOutput(item_f.eventHandler.getOutput());
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
         }
 
         pmcData.Hideout.Production[body.recipeId] = {
@@ -582,9 +592,9 @@ class HideoutController
 
     update()
     {
-        for (const sessionID in save_f.server.profiles)
+        for (const sessionID in SaveServer.profiles)
         {
-            if ("Hideout" in save_f.server.profiles[sessionID].characters.pmc)
+            if ("Hideout" in SaveServer.profiles[sessionID].characters.pmc)
             {
                 this.updatePlayerHideout(sessionID);
             }
@@ -593,7 +603,7 @@ class HideoutController
 
     updatePlayerHideout(sessionID)
     {
-        const recipes = database_f.server.tables.hideout.production;
+        const recipes = DatabaseServer.tables.hideout.production;
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
@@ -664,7 +674,7 @@ class HideoutController
         // update production time
         for (let prod in pmcData.Hideout.Production)
         {
-            const scavCaseRecipe = database_f.server.tables.hideout.scavcase.find(r => r._id === prod);
+            const scavCaseRecipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === prod);
             if (!pmcData.Hideout.Production[prod].inProgress)
             {
                 continue;
@@ -717,7 +727,7 @@ class HideoutController
     updateFuel(generatorArea, solarPower)
     {
         // 1 resource last 14 min 27 sec, 1/14.45/60 = 0.00115
-        let fuelDrainRate = 0.00115 * hideout_f.config.runInterval;
+        let fuelDrainRate = 0.00115 * HideoutConfig.runInterval;
         fuelDrainRate = solarPower === 1 ? fuelDrainRate / 2 : fuelDrainRate;
         let hasAnyFuelRemaining = false;
 
@@ -788,7 +798,7 @@ class HideoutController
         let filterDrainRate = 0.00333;
         let production_time = 0;
 
-        const recipes = database_f.server.tables.hideout.production;
+        const recipes = DatabaseServer.tables.hideout.production;
         for (const prod of recipes)
         {
             if (prod._id === WATER_COLLECTOR)
@@ -854,7 +864,7 @@ class HideoutController
     updateAirFilters(airFilterArea)
     {
         // 300 resources last 20 hrs, 300/20/60/60 = 0.00416
-        const filterDrainRate = 0.00416 * hideout_f.config.runInterval;
+        const filterDrainRate = 0.00416 * HideoutConfig.runInterval;
 
         for (let i = 0; i < airFilterArea.slots.length; i++)
         {

@@ -8,58 +8,61 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const MatchController = require("../controllers/MatchController.js");
+const HttpResponse = require("../utils/HttpResponse");
+const JsonUtil = require("../utils/JsonUtil");
 
 class MatchCallbacks
 {
     static updatePing(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static exitMatch(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static exitToMenu(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static startGroupSearch(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static stopGroupSearch(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static sendGroupInvite(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static acceptGroupInvite(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static cancelGroupInvite(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static putMetrics(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static getProfile(url, info, sessionID)
     {
-        return https_f.response.getBody(MatchController.getProfile(info));
+        return HttpResponse.getBody(MatchController.getProfile(info));
     }
 
     static serverAvailable(url, info, sessionID)
@@ -68,36 +71,36 @@ class MatchCallbacks
 
         if (output === false)
         {
-            return https_f.response.getBody(null, 420, "Please play as PMC and go through the offline settings screen before pressing ready.");
+            return HttpResponse.getBody(null, 420, "Please play as PMC and go through the offline settings screen before pressing ready.");
         }
 
-        return https_f.response.getBody(output);
+        return HttpResponse.getBody(output);
     }
 
     static joinMatch(url, info, sessionID)
     {
-        return https_f.response.getBody(MatchController.joinMatch(info, sessionID));
+        return HttpResponse.getBody(MatchController.joinMatch(info, sessionID));
     }
 
     static getMetrics(url, info, sessionID)
     {
-        return https_f.response.getBody(JsonUtil.serialize(database_f.server.tables.match.metrics));
+        return HttpResponse.getBody(JsonUtil.serialize(DatabaseServer.tables.match.metrics));
     }
 
     static getGroupStatus(url, info, sessionID)
     {
-        return https_f.response.getBody(MatchController.getGroupStatus(info));
+        return HttpResponse.getBody(MatchController.getGroupStatus(info));
     }
 
     static createGroup(url, info, sessionID)
     {
-        return https_f.response.getBody(MatchController.createGroup(sessionID, info));
+        return HttpResponse.getBody(MatchController.createGroup(sessionID, info));
     }
 
     static deleteGroup(url, info, sessionID)
     {
         MatchController.deleteGroup(info);
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 }
 

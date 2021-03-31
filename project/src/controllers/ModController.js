@@ -8,6 +8,8 @@
 
 "use strict";
 
+const JsonUtil = require("../utils/JsonUtil");
+const Logger = require("../utils/Logger");
 const VFS = require("../utils/VFS");
 
 class ModController

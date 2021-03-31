@@ -8,26 +8,29 @@
 
 "use strict";
 
+const HttpResponse = require("../utils/HttpResponse");
+const HttpConfig = require("../configs/HttpConfig.json");
+
 class GameCallbacks
 {
     static versionValidate(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static gameStart(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static gameLogout(url, info, sessionID)
     {
-        return https_f.response.nullResponse();
+        return HttpResponse.nullResponse();
     }
 
     static getGameConfig(url, info, sessionID)
     {
-        return https_f.response.getBody({
+        return HttpResponse.getBody({
             "queued": false,
             "banTime": 0,
             "hash": "BAN0",
@@ -49,17 +52,17 @@ class GameCallbacks
 
     static getServer(url, info, sessionID)
     {
-        return https_f.response.getBody([
+        return HttpResponse.getBody([
             {
-                "ip": https_f.config.ip,
-                "port": https_f.config.port
+                "ip": HttpConfig.ip,
+                "port": HttpConfig.port
             }
         ]);
     }
 
     static validateGameVersion(url, info, sessionID)
     {
-        return https_f.response.getBody({
+        return HttpResponse.getBody({
             "isvalid": true,
             "latestVersion": ""
         });
@@ -67,7 +70,7 @@ class GameCallbacks
 
     static gameKeepalive(url, info, sessionID)
     {
-        return https_f.response.getBody({
+        return HttpResponse.getBody({
             "msg": "OK"
         });
     }

@@ -12,7 +12,7 @@
 	"Area": 0,
 	"RequiredPlayerLevel": 0,
 	"MinPlayers": 8,
-	"MaxPlayers": 13,
+	"MaxPlayers": 12,
 	"exit_count": 2,
 	"exit_access_time": 60,
 	"exit_time": 1,
@@ -53,7 +53,7 @@
 			"time_min": 30,
 			"time_max": 60,
 			"slots_min": 2,
-			"slots_max": 6,
+			"slots_max": 4,
 			"SpawnPoints": "ZoneDormitory",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -65,7 +65,7 @@
 			"time_min": 30,
 			"time_max": 31,
 			"slots_min": 0,
-			"slots_max": 3,
+			"slots_max": 2,
 			"SpawnPoints": "ZoneGasStation",
 			"BotSide": "Savage",
 			"BotPreset": "hard",
@@ -82,7 +82,7 @@
 			"BotSide": "Savage",
 			"BotPreset": "normal",
 			"WildSpawnType": "assault",
-			"isPlayers": false
+			"isPlayers": true
 		},
 		{
 			"number": 5,
@@ -214,7 +214,7 @@
 			"BotSide": "Savage",
 			"BotPreset": "normal",
 			"WildSpawnType": "assault",
-			"isPlayers": false
+			"isPlayers": true
 		},
 		{
 			"number": 17,
@@ -232,8 +232,8 @@
 			"number": 0,
 			"time_min": -1,
 			"time_max": -1,
-			"slots_min": 2,
-			"slots_max": 4,
+			"slots_min": 0,
+			"slots_max": 0,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "easy",
@@ -244,7 +244,7 @@
 			"number": 0,
 			"time_min": 500,
 			"time_max": 750,
-			"slots_min": 1,
+			"slots_min": 2,
 			"slots_max": 5,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -262,13 +262,13 @@
 			"BotSide": "Savage",
 			"BotPreset": "hard",
 			"WildSpawnType": "assault",
-			"isPlayers": true
+			"isPlayers": false
 		},
 		{
 			"number": 0,
 			"time_min": 200,
 			"time_max": 400,
-			"slots_min": 1,
+			"slots_min": 2,
 			"slots_max": 4,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -298,14 +298,14 @@
 			"BotSide": "Savage",
 			"BotPreset": "hard",
 			"WildSpawnType": "assault",
-			"isPlayers": true
+			"isPlayers": false
 		},
 		{
 			"number": 0,
 			"time_min": 70,
 			"time_max": 120,
-			"slots_min": 0,
-			"slots_max": 2,
+			"slots_min": 2,
+			"slots_max": 3,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
 			"BotPreset": "normal",
@@ -316,7 +316,7 @@
 			"number": 0,
 			"time_min": 0,
 			"time_max": 20,
-			"slots_min": 1,
+			"slots_min": 2,
 			"slots_max": 5,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -328,7 +328,7 @@
 			"number": 0,
 			"time_min": 140,
 			"time_max": 180,
-			"slots_min": 0,
+			"slots_min": 2,
 			"slots_max": 4,
 			"SpawnPoints": "",
 			"BotSide": "Savage",
@@ -346,28 +346,28 @@
 	"doors": [],
 	"tmp_location_field_remove_me": 0,
 	"MinDistToExitPoint": 30,
-	"MaxDistToFreePoint": 550,
-	"MinDistToFreePoint": 110,
-	"MaxBotPerZone": 5,
+	"MaxDistToFreePoint": 300,
+	"MinDistToFreePoint": 80,
+	"MaxBotPerZone": 4,
 	"OpenZones": "ZoneBrige,ZoneCrossRoad,ZoneFactorySide,ZoneOldAZS,ZoneBlock,Post,ZoneTankSquare,ZoneCustoms",
 	"OcculsionCullingEnabled": false,
-	"GlobalLootChanceModifier": 1,
-	"OldSpawn": true,
-	"NewSpawn": false,
-	"BotMax": 0,
-	"BotStart": 0,
-	"BotStop": 0,
-	"BotMaxTimePlayer": 0,
-	"BotSpawnTimeOnMin": 0,
-	"BotSpawnTimeOnMax": 0,
-	"BotSpawnTimeOffMin": 0,
-	"BotSpawnTimeOffMax": 0,
-	"BotMaxPlayer": 0,
-	"BotEasy": 0,
-	"BotNormal": 0,
-	"BotHard": 0,
+	"GlobalLootChanceModifier": 0.8,
+	"OldSpawn": false,
+	"NewSpawn": true,
+	"BotMax": 13,
+	"BotStart": 20,
+	"BotStop": 2400,
+	"BotMaxTimePlayer": 2000,
+	"BotSpawnTimeOnMin": 160,
+	"BotSpawnTimeOnMax": 220,
+	"BotSpawnTimeOffMin": 30,
+	"BotSpawnTimeOffMax": 40,
+	"BotMaxPlayer": 7,
+	"BotEasy": 10,
+	"BotNormal": 50,
+	"BotHard": 40,
 	"BotImpossible": 0,
-	"BotAssault": 0,
+	"BotAssault": 100,
 	"BotMarksman": 0,
 	"DisabledScavExits": "",
 	"AccessKeys": [],
@@ -535,7 +535,7 @@
 			"BossEscortType": "sectantWarrior",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "3",
-			"Time": 1
+			"Time": -1
 		},
 		{
 			"BossName": "bossBully",
@@ -546,7 +546,7 @@
 			"BossEscortType": "followerBully",
 			"BossEscortDifficult": "normal",
 			"BossEscortAmount": "4",
-			"Time": 1
+			"Time": -1
 		}
 	],
 	"SpawnPointParams": [
@@ -574,7 +574,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 130
+					"Radius": 80
 				}
 			}
 		},
@@ -1057,7 +1057,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 120
+					"Radius": 80
 				}
 			}
 		},
@@ -1363,7 +1363,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 6,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -2085,7 +2085,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 140
+					"Radius": 80
 				}
 			}
 		},
@@ -3088,7 +3088,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 120
+					"Radius": 80
 				}
 			}
 		},
@@ -4106,7 +4106,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 6,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -4737,7 +4737,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 6,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -5634,7 +5634,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 104.09
+					"Radius": 80
 				}
 			}
 		},
@@ -5682,7 +5682,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 6,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -6063,7 +6063,7 @@
 						"y": 0,
 						"z": 0
 					},
-					"Radius": 120
+					"Radius": 80
 				}
 			}
 		},
@@ -6280,7 +6280,7 @@
 				"Bot"
 			],
 			"Infiltration": "",
-			"DelayToCanSpawnSec": 6,
+			"DelayToCanSpawnSec": 1800,
 			"ColliderParams": {
 				"_parent": "SpawnSphereParams",
 				"_props": {
@@ -6491,6 +6491,12 @@
 					"Radius": 50
 				}
 			}
+		}
+	],
+	"maxItemCountInLocation": [
+		{
+			"TemplateId": "",
+			"Value": 0
 		}
 	],
 	"Id": "bigmap",

@@ -9,11 +9,15 @@
 
 "use strict";
 
+const SaveServer = require("../servers/SaveServer.js");
+const HashUtil = require("../utils/HashUtil.js");
+const Helpers = require("../helpers/PlzRefactorMeHelper");
+
 class PresetBuildController
 {
     getUserBuilds(sessionID)
     {
-        return Object.values(save_f.server.profiles[sessionID].weaponbuilds);
+        return Object.values(SaveServer.profiles[sessionID].weaponbuilds);
     }
 
     /**
@@ -26,8 +30,8 @@ class PresetBuildController
         delete body.Action;
         body.id = HashUtil.generate();
 
-        let output = item_f.eventHandler.getOutput();
-        let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;
+        let output = ItemEventRouter.getOutput();
+        let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
@@ -35,7 +39,7 @@ class PresetBuildController
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
-        save_f.server.profiles[sessionID].weaponbuilds = savedBuilds;
+        SaveServer.profiles[sessionID].weaponbuilds = savedBuilds;
 
         output.builds.push(body);
         return output;
@@ -48,19 +52,19 @@ class PresetBuildController
      */
     removeBuild(pmcData, body, sessionID)
     {
-        let savedBuilds = save_f.server.profiles[sessionID].weaponbuilds;
+        let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
         for (let name in savedBuilds)
         {
             if (savedBuilds[name].id === body.id)
             {
                 delete savedBuilds[name];
-                save_f.server.profiles[sessionID].weaponbuilds = savedBuilds;
+                SaveServer.profiles[sessionID].weaponbuilds = savedBuilds;
                 break;
             }
         }
 
-        return item_f.eventHandler.getOutput();
+        return ItemEventRouter.getOutput();
     }
 }
 

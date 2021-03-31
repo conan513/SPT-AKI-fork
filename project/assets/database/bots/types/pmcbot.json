@@ -1813,7 +1813,7 @@
 			"SpecialLoot": []
 		}
 	},
-	"names": [
+	"firstName": [
 		"Акула",
 		"Балу",
 		"Гюрза",
@@ -1880,6 +1880,7 @@
 		"Ирбис",
 		"Сапсан"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {

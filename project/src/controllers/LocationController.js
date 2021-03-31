@@ -10,12 +10,18 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const LocationConfig = require("../configs/LocationConfig.json");
+const Logger = require("../utils/Logger");
+const JsonUtil = require("../utils/JsonUtil");
+const TimeUtil = require("../utils/TimeUtil");
+
 class LocationController
 {
     /* generates a random location preset to use for local session */
     generate(name)
     {
-        let location = database_f.server.tables.locations[name];
+        let location = DatabaseServer.tables.locations[name];
         let output = location.base;
         let ids = {};
 
@@ -76,7 +82,7 @@ class LocationController
         Logger.success("A total of " + count + " containers generated");
 
         // dyanmic loot
-        let max = location_f.config.limits[name];
+        let max = LocationConfig.limits[name];
         count = 0;
 
         // Loot position list for filtering the lootItem in the same position.
@@ -117,8 +123,8 @@ class LocationController
     /* get all locations without loot data */
     generateAll()
     {
-        let locations = database_f.server.tables.locations;
-        let base = database_f.server.tables.locations.base;
+        let locations = DatabaseServer.tables.locations;
+        let base = DatabaseServer.tables.locations.base;
         let data = {};
 
         // use right id's and strip loot

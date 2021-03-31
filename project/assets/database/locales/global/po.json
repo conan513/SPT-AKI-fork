@@ -1015,7 +1015,7 @@
         "SearchDescription": "Habilidade de busca rápida e eficaz em corpos",
         "FirstAidDescription": "Habilidade com Kit de primeiros socorros faz uso de medicamentos mais rápidos e mais efetivos.",
         "MeleeDescription": "Habilidades de manipulação armas corpo a corpo",
-        "EnduranceBreathElite": "Exaustão física não causa falta de fôlego",
+        "EnduranceBreathElite": "A respiração não depende de energia",
         "TroubleShootingDescription": "Habilidade de solucionar problemas facilita correção de falhas em armas.  ",
         "NightOpsDescription": "Operando durante a noite faz os movimentos serem mais fáceis, a experiência cresce mais que o usual. E, claro, isso reflete no preço de aparelhos de Visão Noturna.",
         "MiscDescription": "Habilidade de manuseio com Armas variadas",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Gerador industrial para garantir a operação autônoma das instalações de produção. Também conta com suporte para conectar tanques de combustíveis adicionais.",
         "hideout_area_2_stage_2_description": "Banheiro básico com um vaso de madeira do tipo \"Fossa\", um lavatório, ligado ao sistema de abastecimento de água. Tudo isso aumenta a higiene e a limpeza do abrigo.",
         "hideout_area_3_name": "Estoque",
-        "hideout_area_3_stage_2_description": "Inventário médio (10x36)",
+        "hideout_area_3_stage_2_description": "Inventário médio (10x38)",
         "hideout_area_0_stage_3_description": "Melhore o duto de ventilação com ventiladores elétricos para aumentar o fluxo de ar. Um completo sistema de circulação de ar é necessário para a produção avançada e pesquisas químicas.",
         "hideout_area_1_stage_2_description": "Um hall de entrada aprimorado com uma porta reforçada, um cabide, e outros itens domésticos. Não vai poder entrar no esconderijo com apenas um chute.",
         "hideout_area_4_name": "Gerador",
-        "hideout_area_3_stage_3_description": "Inventário grande (10x46)",
-        "hideout_area_3_stage_4_description": "Tamanho máximo do Inventário (10x66)",
+        "hideout_area_3_stage_3_description": "Inventário grande (10x48)",
+        "hideout_area_3_stage_4_description": "Tamanho máximo do Inventário (10x68)",
         "hideout_area_5_name": "Aquecimento",
         "hideout_area_2_stage_1_description": "Banheiro primitivo. Não há duvidas que é inconfortável. Apenas um balde e uma caixa pequena para manter o saneamento básico no alojamento.",
         "hideout_area_4_stage_1_description": "Um gerador simples capaz de alimentar os equipamentos básicos do esconderijo. O coração do seu refúgio. É necessário combustível para alimentar toda a rede elétrica.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Coletor de água",
         "hideout_area_5_stage_1_description": "Um barril simples com fogo para manter o calor. Uma maneira muito básica de aquecer. Perigoso por causa do monóxido de carbono liberado pela combustão.",
         "hideout_area_1_stage_3_description": "Um avançado sistema de segurança para abrigo, que inclui, além de um enorme porta de bunker, uma câmera de vigilância, um sistema de intercomunicação, extintores de incêndio, bem como vigas especiais para aumentar a resistência estrutural de paredes e tetos.",
-        "hideout_area_3_stage_1_description": "Inventário pequeno (10x26)",
+        "hideout_area_3_stage_1_description": "Inventário pequeno (10x28)",
         "hideout_area_5_stage_3_description": "Equipa todo o abrigo com aquecedores elétricos adicionais. Agora, junto com o forno a lenha, ninguém passará frio.",
         "hideout_area_2_stage_3_description": "Banheiro avançado, com um vaso sanitário seco, chuveiro e lixeiro. Tudo o que você precisa está conectado ao sistema de água corrente e oferece o melhor em higiene pessoal.",
         "hideout_area_9_stage_2_description": "Um lugar para relaxar, equipado com uma cama comum, criado mudo, e até uma TV velha. Cria um sentimento de conforto e gera memórias nostálgicas da vida anterior.",
@@ -2579,9 +2579,60 @@
         "heavybleedingdelta": "Chance de causar hemorragias",
         "lightbleedingdelta": "Chance de causar sangramentos",
         "choose face and voice": "ESCOLHA FACE E VOZ",
+        "TroubleFixing": "Aumentar velocidade de solução de problemas (em até 50%). 1% para cada nível de habilidade.",
+        "TroubleFixingAmmoElite": "Reduz a chance de mau funcionamento de um carregador em 50% depois de resolver mau funcionamento pela mesma razão",
+        "ZeroWeaponDeteriorationOnRepair": "Não equipar enquanto conserta",
+        "NetworkError/TooManyFriendRequestsHeader": "Excesso de solicitações",
+        "NetworkError/TooManyFriendRequestsMessage": "Tente novamente em {0} segundos",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Você não possui chats ainda.</b></size>\nConvide amigos para iniciar um ou entre no Chat Global.",
+        "TroubleFixingDurElite": "Reduz a chance de mau funcionamento baseado na durabilidade da arma em 50% depois de resolver mau funcionamento pela mesma razão",
+        "WeaponDurabilityLossOnShotReduce": "Desgaste de arma reduzido (em até 50%) ao disparar",
         "un-sec": "Northern UN roadblock",
-        "NetworkError/TooManyFriendRequestsHeader": "Erro",
-        "NetworkError/TooManyFriendRequestsMessage": "Você não pode enviar pedidos de amizade com muita frequência. Tente novamente em 10 minutos"
+        "BloodLoss": "Sangramento",
+        "REMOVES BLOODLOSS": "ESTANCAR SANGRAMENTO",
+        "\"Magazine checked: \"": "Carregador verificado:",
+        "DamageType_Bloodloss": "Sangramento",
+        "you can't transfer item while moving": "Você não pode transferir um item enquanto se move",
+        "place": "COLOCAR",
+        "This location is not available for scav": "Local indisponível para scav",
+        "Interchange": "Interchange",
+        "Matchend/ErrorUpdatingDataForHealing": "Falha ao carregar dados, verifique sua conexão. Tentar entrar na tela de tratamento novamente, ou ir direto ao menu principal?",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "O Mod {0} não pode ser instalado em arma rebatida",
+        "No action available": "Sem ação disponível",
+        "ProfileEvent/AssortmentLockRule": "Negociação <b>{0}</b> bloqueada.",
+        "ProfileEvent/ExamineItems": "Examinar <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Reset examinação do item <b>{0}</b>.",
+        "ProfileEvent/ProfileLockTimer": "Definir espera de Scav em <b>{0}</b> segundos.",
+        "ProfileEvent/ProfileUnlock": "Reset intervalo Scav.",
+        "ProfileEvent/UnlockTrader": "Comerciante <b>{0}</b> desbloqueado.",
+        "ProfileEvent/LockTrader": "Comerciante <b>{0}</b> bloqueado.",
+        "ProfileEvent/MasteringSkill": "Mudar o progresso da maestria de <b>{0}</b> para <b>{1}</b>.",
+        "Critical error": "Erro crítico",
+        "TroubleFixingMagElite": "Reduz a chance de mau funcionamento de uma munição em 50% depois de resolver mau funcionamento pela mesma razão",
+        "WeaponDeteriorationChanceReduce": "Reduz probabilidade de desgaste durante reparo (em até 60%)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Baixa latência",
+        "UI/Settings/NVidiaReflexMode/Off": "Desligado",
+        "UI/Settings/NVidiaReflexMode/On": "Ligado",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Ligado e ampliado",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex está ligado. Desligue-o para alterar esse parâmetro.",
+        "NVidia Reflex settings will be applied after restart.": "A configuração NVidia Reflex será aplicado após reinicialização.",
+        "FoundInRaid": "Encontrado em incursão",
+        "loudness": "VOLUME",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2817,7 +2868,7 @@
         "5abe61a886f7746ad512da7f": "Os discos contem mais dados do que esperava. A carga esta no resort, mas o mais importante é que chegou lá depois da tentativa de evacuação. Desde que o túnel Oeste foi destruído, os agentes do Terragroup, protegido pelo USEC, tentaram leva-lo de volta para o porto, mas as estradas já estavam bloqueadas com os T-90. Por conta disso, eles se apressaram para tentar arruma-la, como todo capitalista cauteloso, ha-ha. Sabemos que a carga consiste em duas partes. A primeira, na qual inclui barris azuis, esta localizado em algum lugar da Asa Leste. A segunda ainda é um mistério. Encontre esta carga.",
         "5abe61a886f7746ad512da83": "Você acertou em cheio ali, meu amigo. Meus parceiros estão muito interessados em que este caso pode nos trazer. Os capacetes inspecionaram o lugar que você marcou e descobriram que um pescador viveu lá por um tempo. Parece, no entanto, que ele está morto há um bom tempo e as pessoas nas câmeras são seus amigos. No entanto, é sabido que ele era amigo de uma certa pessoa chamada Artyom, que era frequentemente visto dirigindo um Daihyn amarelo. Seus negócios compartilhados eram de alguma forma relacionados com as forças armadas russas, agora você entende porque pode ser divertido? É provável que o carro do Artyom tenha ficado no Litoral após o conflito, é improvável que ele conseguiu fugir com ele. Use a descrição fornecida para encontrá-lo, anote o número da placa, e nós vamos usar isso para obter os detalhes sobre quem pode ser esse Artyom.",
         "5abe61a886f7746ad512da93": "Que atrocidade, dois corpos... não pode ser mera coincidência. Não é de se admirar que os documentos que você conseguiu encontrar eram sobre pesquisas sérias no campo da imunologia e pelo que podemos entender eles têm feito um progresso significativo na área. A julgar pela assinatura nos documentos, a pesquisa foi supervisionada pelo chefe do Serviço médico do resort. Uma pessoa um tanto idosa, encontrei-o algumas vezes no Dia do Trabalhador da Saúde. Mesmo sendo um venerável sábio, ele preferia o repouso no campo à agitação dos laboratórios e frequentemente passava o tempo na Woods, dirigindo por aí numa minivan branca. Testemunhando o sucesso, creio eu, pode ter o motivado a começar a experimentar em seres humanos, o primeiro sendo muito provavelmente ele mesmo, de acordo com a tradição médica. Cientistas são sempre assim. Encontre seu veículo e, se possível, suas amostras de sangue, o que seria ótimo.",
-        "5ac2430486f77412450b42c4": "Você não falhou com a escopeta, então você sabe o caminho das ferramentas. Não me poupou muito tempo ainda. Todas as tropas estão em combate, espero que não comece a entrar em pânico. No entanto, o plano continua o mesmo, acho que não por muito tempo. Ok, eu preciso trabalhar. E você, tente montar uma AKSU. Com guarda-mão B-11, carregador estendido de 60, compacta, no máximo 6 células, ergonomia acima de 56, recuo total menor que 400, alcance efetivo maior que 100. E, claro, o mais leve possível, de 3,5 kg ou menos. Sim, os índices aqui não tem nada a ver com isso. Eu espero que você tenha se lembrado de tudo. Vejo vocês em breve.",
+        "5ac2430486f77412450b42c4": "Você não falhou com a escopeta, então você sabe o caminho das ferramentas. Não me poupou muito tempo ainda. Todas as tropas estão em combate, espero que não comece a entrar em pânico. No entanto, o plano continua o mesmo, acho que não por muito tempo. Ok, eu preciso trabalhar. E você, tente montar uma AKSU. Com guarda-mão B-11, carregador estendido de 60, compacta, no máximo 6 células, ergonomia acima de 56, recuo total menor que 600, alcance efetivo maior que 100. E, claro, o mais leve possível, de 3,5 kg ou menos. Sim, os índices aqui não tem nada a ver com isso. Eu espero que você tenha se lembrado de tudo. Vejo vocês em breve.",
         "5abe61a886f7746ad512da99": "Oi pra você também. O que você precisa? trabalho? Rá! Você só quer trabalho oficial com cargas transparentes e seguros, ou aceita algo mais nebuloso também? Procura trabalho, olha pra ele! Que seja. Pensei em encomendar armaduras classe 6, mas consigo ver na sua cara de feliz, que não vai conseguir. Então, encontre umas TOZs e coletes vagabundos (aqueles brancos mesmo). Vou dar uma melhorada no meu pessoal um pouquinho. Se conseguir, beleza, podemos falar em emprego.",
         "5ac2430486f77412450b42c1": "Bom, nas mãos certas essa arma pode derrubar regimes e criar revoluções",
         "5abe61a886f7746ad512da92": "Obrigado por sua assistência com as vans. Conseguimos chegar a tempo, até mesmo os scavs não tiveram tempo para destruir. Enquanto pesquisávamos o motivo da queda do túnel, encontramos um executivo da Terragroup chamado Gelandewagen. Parece que a grande maioria dos diretores morreram tentando evacuar da cidade. Estou ciente que a pesquisa médica era uma prioridade da empresa, e tenho quase certeza, que não evacuaram os arquivos e materiais por falta de tempo. O que seja que estavam fazendo, acho que é valioso, tanto para nós e para a medicina em geral. Posso conseguir uma passagem para lá, até mais que uma. Eu me encontro regularmente com certos empregados da Terragroup para discutir assuntos de saúde pública, então estou bem familiar com a forma de trabalho deles. Um dos meus conhecidos, subordinado ao falecido diretor Gelandewagen, costumava viver no resort. Deixe eu ver aqui... está aqui, quarto 306. Procure lá por qualquer coisa que pode ter ficado para trás.",
@@ -2826,14 +2877,14 @@
         "5ac242f286f774138762ee03": "Sim, eu sou o Mecânico. Eu tenho um monte de trabalho a fazer. Chegando ao ponto, você quer ajudar? É uma vergonha há tão pouco tempo e o programador para o PLC100 não está funcionando. E essas ordens para iniciar também não. Seja como for, por que eu estou contando isso a você? Eu preciso de você para montar uma MP-133, eu não tenho tempo para isso, e algumas partes estão faltando também. Esta arma deve ter mais do que 47 de ergonomia, laser, carregador estendido, e menos de 950 de recuo total. E que seja compacta, também, não mais do que 4 células. Então conversamos.",
         "5abe61a886f7746ad512da95": "O sangue é uma boa fonte de informações. Não tão bom quanto a documentação detalhada, mas bom o suficiente. Faz um tempo desde a última vez que fiz uma pesquisa. Eu lembro que era sobre ajudar um virologista residente com sua tese. Parece que foi a muito tempo atrás. A propagação da Internet tornou muito mais fácil a troca de informações, até mesmo com colegas de outros países. Sinto falta desta oportunidade de peneirar o banco de dados, tenho quase certeza que teria as respostas para as perguntas que essa amostra de sangue me deixou. Onde se poderia possivelmente encontrar o acesso à rede de agora, você pergunta? Para resolver esse problema, fui orientado a entrar em contato com um sujeito usando o nome de Mecânico. Como esperado, ele tem acesso à Internet, e ainda relativamente rápida. Eu lhe pedi para pesquisar os artigos necessários para mim. Ele pediu por uma pequena taxa por seus serviços, mas na forma de pó propelente, seja lá qual for o motivo. Parece que ele está trabalhando com fornecimento de munições ou algo assim, eu não estava interessada o suficiente para prestar atenção. Mais importante, é que ele irá fornecer as informações de que precisamos. Consiga o que ele pede, e deixe no ponto especificado na Fábrica. Está lotada de Scavs durante o dia, por isso faça à noite.",
         "5ac2437986f774124836841b": "Ágil pra combate curto e silencioso ...",
-        "5ac2438186f77412450b42c8": "Eu já falei demais na última vez. Isso acontece quando eu estou sozinho com meus pensamentos por muito tempo. Um monte de coisas passam na minha cabeça, enquanto fico aqui calibrando as miras. Aquela M4 ficou esplêndida, pegaram muito rápido. Um Bear veio recentemente, atende pelo nome de Sniper ou algo assim. Ele precisa de um rifle sniper Lobaev Sabotador, com uma luneta e laser. Com o recuo inferior a 350, ergonomia acima de 20, e o peso abaixo de 6,6 kg. Ele disse que precisa para um tiro á 2000m. O cara é sério, então faça o seu melhor para fazer bem feito.",
+        "5ac2438186f77412450b42c8": "Eu já falei demais na última vez. Isso acontece quando eu estou sozinho com meus pensamentos por muito tempo. Um monte de coisas passam na minha cabeça, enquanto fico aqui calibrando as miras. Aquela M4 ficou esplêndida, pegaram muito rápido. Um Bear veio recentemente, atende pelo nome de Sniper ou algo assim. Ele precisa de um rifle sniper Lobaev Sabotador, com uma luneta e laser. Com o recuo inferior a 400, ergonomia acima de 20, e o peso abaixo de 6,6 kg. Ele disse que precisa para um tiro á 2000m. O cara é sério, então faça o seu melhor para fazer bem feito.",
         "5ac244f386f7741356335af6": "As vezes eu penso que foi bom que eu fiquei preso aqui em Tarkov. O mundo inteiro parece que está caindo no abismo, na cratera, no abismo frio e sombrio. Tudo perdeu o sentido. Pessoas, seus valores, seus pensamentos e objetivos. Eles não sabem mais porque serem felizes aproveitar a vida, trabalhar, ter filhos. Todo mundo está cansado da ilusão da escolha que são confrontados diariamente, ter que trabalhar e comprar o cigarro azul ou vermelho. Acontece em todo lugar, em cada canto do mundo. Mas aqui em Tarkov, somos honestos com nós mesmos. Nós vemos que tudo em uma forma exagerada, sem valores falsos, quando você não fica decidindo qual detergente é melhor pra tirar manchas, mas como se manter quente a noite e achar munição para se defender do próximo miserável que quiser te matar. Só assim, nessa sociedade honesta, as pessoas mostram quem realmente são. O que você acha? Ok, obrigado por me ouvir. Um pessoal pediu uma M4 toda tunada. Eles precisam um silenciador, carregador de 60 munições, ergonomia acima de 51 e a soma do recuo menor que 300. E cuide o peso, não mais que 3,8 kg, com alcance efetivo de 800 m ou mais.",
         "5ac3463486f7741d6118b985": "Como esperado, no meio do caos, itens valiosos podem estar em baixo do nariz e ninguém percebe",
         "5ac244ce86f7741356335af0": "Você é bom em se esconder? Não é bom o suficiente, eu acho, para que o Sniper não te encontre. Eu respeito o cara, qual é o nome mesmo..., Brendan eu acho. Interessante é que todos os heróis do passado, que nos causaram tanta admiração se foram todos. Não há heróis mais? Por que todo mundo se tornaram vazios. Por que agora com todo esse caos, pessoas como o Sniper se tornam heróis para nós? Por que temos ignorado esses guerreiros, e agora estamos procurando sua amizade? O que você acha? Bom, tenho outro pedido, Uma R11 RSASS. Com alcance efetivo acima de 1500. Pesando menos de 6.5kg. Também precisa de um silenciador, ergonomia maior de 21 e recuo total menos de 350.",
         "5ac345e886f7741d632339f3": "Alguém acaba de decidir derrubar o mercado descarregando uma grande quantidade de bitcoins. Tão espessa que a TARGox começou a aceitar lances 10 vezes mais baratos que o valor de mercado. A fila de lances continuou sendo constantemente reabastecida com lances ainda mais baratos. Consegui comprar algumas centenas por acaso. E hoje o preço voltou ao normal como se nada tivesse acontecido. Precisamos entrar em ação enquanto o mercado está sendo controlado assim. Você já conhece bem a Factory, existem algumas placas de controle lá. Para encontrá-los, procure as luzes de emergência vermelhas Pegue alguns conjuntos de ferramentas e repare os painéis enquanto trabalho no resfriamento.\n",
         "5ac345e886f7741d632339f0": "Você foi mais rápido que eu imaginava, nem terminei com a refrigeração ainda",
         "5ac244ce86f7741356335aed": "Amo 7.62, é um bom calibre",
-        "5ac2437986f774124836841e": "Quando eu era criança, as pessoas costumavam dizer que não é o destino que importa, mas a viagem em si. Mas e se o destino é sobreviver, tudo que você sabe, como você usa seus reflexos e munições você tem no carregador? Isto é se torna importante quando você está tentando sobreviver, você se apego a este mundo com os seus dentes. Eu preciso de um MP5. Com carregador estendido de 50 munições, silenciador, lanterna tática e alcance efetivo de 200. Ergonomia acima 45, e recuo total inferior a 150. Peso máximo de 3,8 kg. E decida por você mesmo o que é mais importante, a viagem ou o destino.",
+        "5ac2437986f774124836841e": "Quando eu era criança, as pessoas costumavam dizer que não é o destino que importa, mas sim a viagem. Mas e se o destino é sobreviver, tudo que você sabe, como você usa seus reflexos e munições você tem no carregador? Isto é se torna importante quando você está tentando sobreviver, você se apego a este mundo com os seus dentes. Eu preciso de um MP5. Com carregador estendido de 50 munições, silenciador, lanterna tática e alcance efetivo de 200. Ergonomia acima 45, e recuo total inferior a 250. Peso máximo de 3,8 kg. E decida por você mesmo o que é mais importante, a viagem ou o destino.",
         "5ac3461486f7741d6224abb8": "Deve ser o suficiente por enquanto",
         "5ac244f386f7741356335af3": "A arma da democracia... Obrigado.",
         "5ac3479686f774288030819b": "Pavel Yegorovich é um dos poucos que ficaram. Eu me pergunto se é porque ele é militar ou simplesmente não teve tempo para sair.",
@@ -2854,15 +2905,15 @@
         "5ac3479686f774288030819e": "Eu não gosto de fingir, embora todos nós fazemos. Às vezes, para sobreviver, e, às vezes, porque estamos com medo. Você sabe, eu não sou exatamente muito influente, especialmente com estranhos, mas você parece ser um cara legal. Se você conseguiu ganhar a minha confiança, eu acho que você vai se dar bem com qualquer um. Afinal, apenas relações pessoais vai nos ajudar sobreviver agora. Fale com Pavel Yegorovich, se ele confiar em você, talvez eu consiga um fornecimento de pólvora.",
         "5ac346ee86f7741d6224abcd": "Andei pensando no que conversamos da ultimas vez. Será que as pessoas ficaram mais bondosas com o desenvolver da civilização? Será que essas coisas andam lado a lado? Todo esse tempo, onde nós acreditamos que haja civilização, a vida ficou mais confortável, fácil… Acabamos nos preocupando menos sobre a nossa segurança ou algo para comer. É fácil ser humano quando nada te ameaça. Esta situação em Tarkov nos mostra como nós ficamos bondosos. Quando questões de sobrevivência vem a tona, parece que pessoas gentis não são mais mais comum do que em 500 anos atrás. Provavelmente menos que isto. O que você acha, você é uma dessas pessoas? Tá bom, não pense muito nisso, preciso que você faça algo para mim. Mas, você precisará ter uma boa memória para esta tarefa. Pratique a memorização de grandes volumes de informações. Vou entrar em contato depois.",
         "5ac3477a86f7742880308197": "Um dia nos livraremos da mão invisível, que costumava nos marcar com distintivos de funcionários e agora causou essa bagunça, e acho que isso nos leva a uma grande guerra. Pelo menos, todos os eventos atuais parecem pré-condições. Eu trabalhei aqui na fábrica de produtos químicos, como servente comum. Era um bom momento, todos pensavam assim, inclusive eu. Agora está cheia de escravos e \"bandidos\". Quero usar algumas instalações da factory. Você precisa descobrir quais saídas ainda podem ser usadas.",
-        "5ae327d286f7745d3a7704be": "Eu a chamava de Lusya, a rede neural, no caso. Então, quando eu ficava em silêncio, me fazia bem e ainda me lembrava de dormir um pouco, quando necessário, mas assim que eu começava a falar comigo mesmo, tentava me distrair, colocava uma música ou algo assim. No entanto, eu treinei com os filmes e frases deles, aparentemente, tal reação nos é apresentada em filmes como o mais apropriado, mas não para mim. Eu vou ter que pensar sobre quais estímulos são os melhores para imitar pessoas reais, em vez de uma sociedade e seus estereótipos. Mas estou divagando, faça uma AK-105 agora, com silenciador e carregador de 60 munições. Com os parâmetros: alcance efetivo acima de 800, ergonomia acima de 48, recuo total menor que 550, pesando menos de 4,8 kg. E compacta, como sempre, 8 células ou menos.",
+        "5ae327d286f7745d3a7704be": "Eu a chamava de Lusya, a rede neural, no caso. Então, quando eu ficava em silêncio, me fazia bem e ainda me lembrava de dormir um pouco, quando necessário, mas assim que eu começava a falar comigo mesmo, tentava me distrair, colocava uma música ou algo assim. No entanto, eu treinei com os filmes e frases deles, aparentemente, tal reação nos é apresentada em filmes como o mais apropriado, mas não para mim. Eu vou ter que pensar sobre quais estímulos são os melhores para imitar pessoas reais, em vez de uma sociedade e seus estereótipos. Mas estou divagando, faça uma AK-105 agora, com silenciador e carregador de 60 munições. Com os seguintes parâmetros: alcance efetivo acima de 800, ergonomia acima de 48, recuo total menor que 550, pesando menos de 4,8 kg. E compacta, como sempre, 8 células ou menos.",
         "5ae44bfe86f7744d733e560c": "Bem-vindo à equipe, mano.",
         "5ae327d286f7745d3a7704bb": "Parece que eu descobri como construir a rede! Bom, AK, tudo bem.",
         "5ae44bfe86f7744d733e560f": "Ótimo dia para se aventurar! Intensidade na pele, irmão, da onde você veio, do céu? do exercito? bom, que seja, não me importo. Eu não penso que sou contra PMCs ou até mesmo mercenários, é apenas a situação que temos em nossas mãos, nossa cidade é uma merda. Então decida, quer trabalhar comigo? Bem, primeiro temos que descobrir quem você é, te apresentar o lugar, sabe? Vamos começar com algumas negociações e ver aonde isso nos leva antes de começar a trabalhar.",
-        "5ae326bc86f7742a41359305": "No momento em que finalmente resolvi a conexão estável à Internet e a fonte de alimentação, o governo intensificou o jogo e começou a bloquear metade dos endereços IP, que tratavam da maior parte do fluxo de dados em Tarkov. Tudo isso porque o TerraGroup supostamente usa o provedor \"Ebambium\" para desestabilizar ainda mais a situação na cidade e causar o caos. Parece que essa tagarelice cultista sobre o Ragnarok, você não acha? A propósito sobre eles e suas armas - um deles, com uma tatuagem de raio no rosto, pediu uma escopeta Remington 870. Com um dispositivo tático, guarda-mão Magpul e empunhadura tática. Ergonomia acima de 58 e recuo total menos de 550.",
+        "5ae326bc86f7742a41359305": "No momento em que finalmente resolvi a conexão estável à Internet e a fonte de alimentação, o governo intensificou o jogo e começou a bloquear metade dos endereços IP, que tratavam da maior parte do fluxo de dados em Tarkov. Tudo isso porque o TerraGroup supostamente usa o provedor \"Ebambium\" para desestabilizar ainda mais a situação na cidade e causar o caos. Parece que essa tagarelice cultista sobre o Ragnarok, você não acha? A propósito sobre eles e suas armas - um deles, com uma tatuagem de raio no rosto, pediu uma escopeta Remington 870. Com um dispositivo tático, guarda-mão Magpul e empunhadura tática. Ergonomia de 58 ou mais e recuo total menos de 550.",
         "5ae3272086f77444fd36f5e3": "Assim como para um bom tênis, o mais importante é o conforto",
         "5ae44dd386f7744f1a7eb65d": "Você é sinistro, quase um sniper.",
         "5ae326bc86f7742a41359302": "Boa arma, bem construída",
-        "5ae3272086f77444fd36f5e6": "O que você acha, todo esse sofrimento que caiu sobre os habitantes da cidade é resultado das ações da sociedade, um processo controlado ou é apenas o inicio? O tempo todo, depois do cara do raio, fico pensando nisso. Mesmo assim eu concluí que mesmo que tenha uma mão invisível, nossa sociedade merecia isso. Permitimos através das nossas ações, comprando tênis ou até mesmo salada de beterraba, apoiar e permitir que esses que constroem laboratórios e negócios, usarem isso para nos jogar no abismo. OK, estou divagando de novo, de volta aos negócios. Consiga uma AKM com uma empunhadura Fortis Shift, um silenciador, e um carregador de 30 munições. Ergonomia acima de 45, e a soma do recuo menos de 350 e alcance efetivo a mais de 800 metros.",
+        "5ae3272086f77444fd36f5e6": "O que você acha, todo esse sofrimento que caiu sobre os habitantes da cidade é resultado das ações da sociedade, um processo controlado ou é apenas o inicio? O tempo todo, depois do cara do raio, fico pensando nisso. Mesmo assim eu concluí que mesmo que tenha uma mão invisível, nossa sociedade merecia isso. Permitimos através das nossas ações, comprando tênis ou até mesmo salada de beterraba, apoiar e permitir que esses que constroem laboratórios e negócios, usarem isso para jogar-nos no abismo. OK, estou divagando de novo, de volta aos negócios. Consiga uma AKM com uma empunhadura Fortis Shift, um silenciador, e um carregador de 30 munições. Ergonomia acima de 45, e a soma do recuo menos de 350 e alcance efetivo a mais de 800 metros.",
         "5ae3277d86f7745b4246b391": "Tenho duas redes neurais, uma com reconhecimento facial pelas câmeras de vigilância e as compara com o banco de dados, e a outra monitora o fluxo comercial de criptomoedas e reage com as negociações. Hoje decidi criar mais uma rede, que vai monitorar a temperatura, umidade, pressão e outros parâmetros do meu esconderijo, entre outras coisas, por exemplo que reaja ao meu estado de ânimo... Vamos ver quando eu terminar. Tem um pedido de uma AKS-74N com peças Zenit. A ergonomia deve ser superior a 55, o recuo inferior a 500 e ocupar não mais de 8 células. E o mais importante, empunhadura, coronha PT-3, Dust cover, Quebra-chamas da Zenit, Tudo Zenit! Talvez seja um presente para um ex-cidadão de São Petersburgo.",
         "5ae3280a86f77444fc552709": "Enquanto estava ocupado com a rede, comecei a pensar como somos diferentes, e quando que vamos poder trocar nossos cérebros de vida curta por um desses sistemas. O que você acha, algum dia vamos ter solução pra isso? Eu acho que sim, e logo, já não sabemos o que acontece dentro de uma rede neural, em um lado só há uma entrada de sinal e o resultado das ações no outro, como ela cria suas próprias regras, se emaranhando a si mesma. Quão diferente é de nós? Você gostaria de viver em um mundo que sua mente e imaginação limita suas ações? A verdade é que, eu acho, viver em tal mundo não pode ser melhor que o nosso, se não há nenhum objetivo, e de onde o objetivo pode vir se você é imortal e onipotente... Dessa vez preciso de uma AS VAL. Coronha GL Shock, dispositivo tático ANPEQ-15, Luneta noturna NSPU-M e um carregador de 30 munições. Ergonomia acima de 34 e recuo total menor que 250.",
         "5ae3277d86f7745b4246b38e": "Deixe na caixa, obrigado",
@@ -2904,7 +2955,7 @@
         "5af5886186f774153d712bb7": 123,
         "5b486ce586f7744882493785": "Espero que não tenha contado pra ninguém do porquê essa MPX foi criada.",
         "5b486ce586f7744882493788": "Estou ficando sem tempo, um cara foi parado pelo Dealmaker e agora quer resolver esse problema, ele está operando por algum lugar perto dos dormitórios com o pessoal da fábrica. Monte uma MPX, com empunhadura Skeletonized AR-15, supressor de flash Annihilator, laser tático LAS/TAC 2. Mira para alcance efetivo maior que 300, ergonomia acima de 52, pesando menos de 4 kg e com recuo total menor que 250. Só não conte pra ninguém sobre isso, o Dealmaker não vai ficar contente de saber, esses caras não são fáceis, todos eram militares antes de trabalhar no fábrica.",
-        "5b486d0e86f7744f4b12d792": "Quero tentar ensinar Lusya a contar a verdade por meio de mentiras. Se o resultado for pelo menos 90% preciso, será interessante ouvir todos os políticos e as baboseiras do Terragroup, que expatriaram seus ideais e objetivos nobres ainda ontem, garantindo benefícios de nossa zona econômica e um futuro brilhante pela frente. Quanto disso é mentira? Eu acho que tudo. Há uma solicitação para uma edição AKMN MOE. O guarda-mão, a coronha e a empunhadura devem ser MOE. Tudo em preto. Além disso, o quebra chamas deve ser o Rotor 43 e empunhadura tática Magpul M-LOK AFG, a soma do recuo menor que 300, a ergonomia acima de 47 e o peso de 5 kg ou menos com alcance efetivo de pelo menos 500.",
+        "5b486d0e86f7744f4b12d792": "Quero tentar ensinar Lusya a contar a verdade por meio de mentiras. Se o resultado for pelo menos 90% preciso, será interessante ouvir todos os políticos e as baboseiras do Terragroup, que expatriaram seus ideais e objetivos nobres ainda ontem, garantindo benefícios de nossa zona econômica e um futuro brilhante pela frente. Quanto disso é mentira? Eu acho que tudo. Há uma solicitação para uma edição AKMN MOE. O guarda-mão, a coronha e a empunhadura devem ser MOE. Tudo em preto. Além disso, o quebra chamas deve ser o Rotor 43 e empunhadura tática Magpul M-LOK AFG, a soma do recuo menor que 350, a ergonomia acima de 47 e o peso de 5 kg ou menos com alcance efetivo de pelo menos 500.",
         "5b486d3e86f7743780259fd1": "Ah, não vá falar nada pra ninguém sobre o Sni... Dima, acho que você já entendeu isso.",
         "5b486d3e86f7743780259fd4": "Parece que esse pedido do Sniper vai servir pra caçar os vilões por uma semana. Julgando pelo fato que me pediu uma mochila grande com muita ração militar, pederneira, baterias e água. Saiu daqui agora. Ele precisa de uma M1A, configurada com suporte Ultimak M8, luneta Nightforce 7-35-56, Mira reflex T1, dispositivo tático Holosun, ergonomia acima de 20, recuo total abaixo de 400 e pesando menos de 7.3 kg.",
         "5b486c9386f7744a08514b18": "Muito bem, deixe na caixa.",
@@ -2914,9 +2965,9 @@
         "5b486e6186f7744a08514b27": "Olá. Meu negocio é muito perigoso, é bom que você possa vir me ver quando quiser sem se deparar com problemas. Mas nem todos os meus clientes podem se permitir esse luxo, um deles já foi encontrado em uma poça de sangue no posto de gasolina. Parece que alguns deles estão sendo vigiados, os filhos da puta sabem que meus clientes tem dinheiro com eles. Portanto, os clientes não querem sair ao ar livre e atrair a atenção indesejada. Mas essa situação não deveria impedir e atrapalhar os negócios, certo?. Se as pessoas não podem vir até a mercadoria, a mercadoria vai até as pessoas. Pegue a folha com os pedidos, vá até a Interchange e certifique-se de esconder muito bem a mercadoria para que ninguém as encontre. Você deverá levar, capacete e headset e plantar em algum lugar da loja Avokado.\nEm quanto a mercadoria mas requintada, o colete á prova de balas Gzhel, enterre-os na pilha de lixo, perto do palco, que também esta na Interchange.",
         "5b486e6186f7744a08514b24": "Muito bem, irmão.",
         "5b486e2a86f7744a08514b1c": "Do fundo do meu coração, vou fazer a entrega.",
-        "5b486c9386f7744a08514b1b": "Muito tempo atrás, conheci o proprietário da Kiba Arms, fomos até a banya na ocasião, mesmo não gostando muito. Ele, no entanto, quase quebrou a perna tentando dar um mergulho do cais. O camarada sonhou o tempo todo em construir um lugar pra Airsoft. Parece que o seu desejo se tornou realidade em Tarkov, o maior e mais violento espaço pra combate no mundo, com uma diferença: aqui, você morre e perde tudo com uma unica bala perdida. Faça uma AK-102, com Silenciador Rotor 43, Empunhadura tática Magpul M-LOK AFG e uma lanterna tática 2U \"Kleh\". A ergonomia deve ser maior que 50, a soma do recuo dever ser menos de 500, e o alcance efetivo de 500m ou mais. Tenha certeza que não ocupa mais de 8 células.",
+        "5b486c9386f7744a08514b1b": "Muito tempo atrás, conheci o proprietário da Kiba Arms, fomos até a banya na ocasião, mesmo não gostando muito. Ele, no entanto, quase quebrou a perna tentando dar um mergulho do cais. O camarada sonhou o tempo todo em construir um lugar pra Airsoft. Parece que o seu desejo se tornou realidade em Tarkov, o maior e mais violento espaço pra combate no mundo, com uma diferença: aqui, você morre e perde tudo com uma única bala perdida. Faça uma AK-102, com Silenciador Rotor 43, Empunhadura tática Magpul M-LOK AFG e uma lanterna tática 2U \"Kleh\". A ergonomia deve ser maior que 50, a soma do recuo dever ser menos de 500, e o alcance efetivo de 500m ou mais. Tenha certeza que não ocupa mais de 8 células.",
         "5b486d0e86f7744f4b12d78f": "Obrigado, estou um pouco ocupado agora, falamos mais tarde.",
-        "5b486d8686f77450c05449c9": "Quanto vale a vida humana, o que você acha? Não muito, eu suponho. Mas o que é ainda mais surpreendente pra mim, é a arte contemporânea do mercado. O valor de obras de renomados autores cresce a cada ano. Eles são definitivamente talentosos, mas quanto mais você olha, mais parece que qualquer coisa pode ser arte. Pode ser uma pintura nobre, um mictório ou um monte de merda. Na verdade, na minha opinião, as maiores peças de arte são armas, começando com as brancas, que são reconhecidas universalmente como uma e podem ser achadas em vários museus, até uma velha AK ou M4, que são linda como estiverem. Mas armas só transcendem para uma verdadeira arte quando se tornam únicas, singulares, edição limitada, na mão de quem sabe usar, aquele que modifica para suas próprias necessidades, criando uma obra prima que merece ser mostrada toda sua beleza em um museu. Me traga uma obra prima, uma M4A1 com silenciador NT4 FDE, guarda-mão MK 10, uma mira térmica e um carregador de 60 munições. Ergonomia não pode ser menos de 48, e a soma do recuo menos de 250 e peso de no máximo 5 kg.",
+        "5b486d8686f77450c05449c9": "Quanto vale a vida humana, o que você acha? Não muito, eu suponho. Mas o que é ainda mais surpreendente pra mim, é a arte contemporânea do mercado. O valor de obras de renomados autores cresce a cada ano. Eles são definitivamente talentosos, mas quanto mais você olha, mais parece que qualquer coisa pode ser arte. Pode ser uma pintura nobre, um mictório ou um monte de merda. Na verdade, na minha opinião, as maiores peças de arte são armas, começando com as brancas, que são reconhecidas universalmente como uma e podem ser achadas em vários museus, até uma velha AK ou M4, que são linda como estiverem. Mas armas só transcendem para uma verdadeira arte quando se tornam únicas, singulares, edição limitada, na mão de quem sabe usar, aquele que modifica para suas próprias necessidades, criando uma obra prima que merece ser mostrada toda sua beleza em um museu. Me traga uma obra prima, uma M4A1 com silenciador NT4 FDE, guarda-mão MK 10, uma mira térmica REAP-IR e um carregador de 60 munições. Ergonomia não pode ser menos de 52, e a soma do recuo menos de 250 e peso de no máximo 5 kg.",
         "5b486ddf86f7744ba00f2234": "O mecânico me pediu, vou mandar pra ele hoje.",
         "5b48704286f7744a14343905": "Toda essa tecnologia não é comigo, a imagem é embaçada e o sinal é uma merda, mas já consegui identificar uns \"ratão gordo\". Obrigado pela ajuda!",
         "5b486e8e86f77448824937ad": "Uau! Impressionante, obrigado",
@@ -3023,7 +3074,7 @@
         "5d25dbd086f77443e625e383": "Vou te dizer. Se seu oponente é cego, não há nada que ele possa fazer contra você. Não interessa qual equipamento ele use contra você. Com você funciona da mesma forma. Apenas habilidade e confiança podem te ajudar a superar esse tipo de situação.",
         "5d25d4cb86f77443e55d2f76": "Você deve sempre manter o autocontrole. Em todas situações. Você perder o controle ou entre em pânico - você morre. E não importa o que aconteceu, se você pegou uma bala ou estava apenas bêbado.",
         "5d25fd4c86f77409de05bba9": "Eu li em um artigo, o olho humano pode se acostumar com a escuridão. Você sabe, eu fui checar, e eu quase quebrei minha perna em um para-brisa. Aparentemente, eu estou um pouco velho para tal metamorfose. Mas você, eu acho, vai estar no auge da vida. Visão noturna treinada - pode nos ajudar muito nessa tarefa difícil. Tome cuidado com isso.",
-        "5d25fd4c86f77409de05bba6": "Quantos mesmo você derrubou? mais de dez? e todos sem os \"dispositivos\"? então de fato a caçada da noite acabou.",
+        "5d25fd4c86f77409de05bba6": "Quantos mesmo você disse que eram? e todos sem um \"dispositivo\"? então de fato a caçada da noite acabou.",
         "5d26042386f77443ff46d19d": "Não consigo contar quantas coisas eu vi enquanto trabalhava como guarda florestal. Tantas pessoas diferentes costumavam se perder na Woods. Algumas delas conseguiam sair com vida, outras não. Você tem que ser muito foda pra sair vivo de lá.",
         "5d26042386f77443ff46d19a": "Como Suvorov costumava dizer? O que é difícil no treino vai se tornar fácil na batalha. Esta habilidade vai vir a calhar, confie em mim.",
         "5d260f8686f77469f04444b5": "Bom meu guerreiro, agora é hora de começar limpar Tarkov desse lixo todo. Você e eu viemos de longe e você ainda tem muito à aprender. Bem, vamos começar com a área da industria química? Um monte de coisas uteis podem ser produzidas lá, eu tenho trabalhado lá por mais de meio ano como chefe da segurança até que a Terragroup chegou. Desde então, coisa estranhas começaram acontecer lá, tô te falando, eles desistiram de fazer produtos de limpeza e se dedicaram a algo diferente, algo sombrio. E quando a ilegalidade começou, eles saíram, e os saqueadores começaram a desmanchar a fábrica, e lembro de cada detalhe como a palma da minha mão. Pra encurtar a história, isso tava errado. Então vá lá e ensine esses a lição. Se algo útil continuar lá, com certeza vai estar na área do escritório, você não tem como errar. Faça os zé lutinho se perderem lá, pelo menos por tempo.",
@@ -3059,7 +3110,7 @@
         "5d2f378786f774169b7e0069": "Olá, guerreiro! Como você está? Tudo bem? Escute, eu tenho uma trabalho incomum, o Mecânico me pediu que fizesse esse trabalho por conta da casa, e essa tão é tão complicada que é necessária eletrônicos avançados. E não há lugar na cidade onde essas coisas possam ser encontradas, caramba. Mas há rumores de que em algum lugar existe muito deste equipamento no laboratório Terragroup. Pode haver os detalhes que eu preciso. É muito perigoso enviar você para o laboratório agora, mas você deve me conseguir cartões de acesso. Você vai ajudar? Sim, os cartões devem ser novos, não os que você pode comprar dos vendedores.",
         "5d4bec6a86f7741e530d2c02": "Você realmente conseguiu! Caralho. Mantendo minha palavra. Aqui está sua recompensa.",
         "5d66912c86f774368f43a242": "Estes são uns belos de uns rifles! Eu acho que é hora de eu começar a modificar armas!",
-        "5d66912c86f774368f43a245": "Pode entrar. Quer um chá? Bem, de qualquer forma. Escuta, o negócio é o seguinte. Em breve eu vou estar recebendo alguns amigos meus. Eu quero ir caçar com eles, mas sem chance de eu levar eles pra caçar com estas escopetas MP. Eu quero que você nos consiga três rifles bons. Rifles que eu possa incluir na minha coleção pessoal depois dessa caçada. Não se preocupe com a recompensa. Não vou desapontá-lo. Eu vou te escrever um bilhete com os requerimentos dos rifles. O recuo deve ser menor que 600, ergonomia maior de 50, luneta March Tactical 3-24x42 FFP",
+        "5d66912c86f774368f43a245": "Entre. Quer um chá? Muito bem, o negócio é o seguinte. Em breve eu vou estar recebendo alguns amigos meus. Eu quero ir caçar com eles, mas sem chance de eu levar eles pra caçar com estas escopetas MP. Eu quero que você nos consiga uns rifles bons. Rifles que eu possa incluir na minha coleção pessoal depois dessa caçada. Você deve amar atirar a longa distância. Mas primeiro, tenha certeza que estejam calibrados. Temos o cliente pra isso, seu nome é Shturman. O desgraçado fica se movendo pela madeireira. Não se preocupe com a recompensa, não ira te desapontar. Eu vou te escrever um bilhete com os requerimentos dos rifles. (Remington M700 com luneta March Tactical 3-24x42 FFP)",
         "5d66914986f7743690020694": "Olha quem eu tenho aqui! E ai! Eu ouvi rumores que ainda tem bastante comida sobrando nos depósitos da antiga base militar. Eles falaram que bandidos começaram a pegar as comidas depois que os militares sairam. Me faz um favor, encontre os rastros deles, e onde os depósitos estão. E então eu vou garantir que a próxima visita dos bandidos vai ser um belo de um show.",
         "5d66914986f7743690020691": "Eles já levaram tudo? Merda, precisamos ser mais rápidos.",
         "5d6fb45f86f77449d825f9cc": "Então, você já decidiu? é apenas um par de injeções. Aqui e aqui. Ficar calmo, pelo menos um par de dias, relaxe mais e tome as vitaminas.",
@@ -3115,8 +3166,8 @@
         "5fd4c93f99cf630ebf4fabdf": "So, have you figured out what's what yet?  Here's the stuff, and keep your eyes open when you go out raiding. If you want to trade, come see me.",
         "5fdb3e50148b192e1a7463e2": "Isso significa que meu pessoal não conseguiu e os transportes foram saqueados... ainda por cima há um acampamento USEC por perto, é isso? Que merda. Mas obrigado pelo trabalho mesmo assim.",
         "5fdb3e50148b192e1a7463e5": "Saudações, soldado. Tenho um trabalho pra ti. Pra encurtar a história, perdi contato com um dos meus grupos, e já faz algum tempo. Quando a merda bateu no ventilador, mandei eles pra Woods pegar uma carga. Receio que eles sofreram uma emboscada, no ultimo contato, reportaram que os USECs estavam chegando neles. Vá ver se alguém sobreviveu. Eles tinham um BRDM, Bukhanka e um tipo de caminhão, não lembro exatamente o modelo. Eu acho que os USECs devem ter se estabelecido por perto também.",
-        "600303b71448362c785bc3b2": "Of course I heard the air in the Woods tremble. Shturman got what he deserved. Don't stand still, you can buy new rifles now.",
-        "600303b71448362c785bc3b5": "Greetings! Come on in. I got a job for you. I just got a shipment of imported guns. The big ones, long-range, .338 caliber. And you know I'm a fan of that stuff. And there's another long-range shooter called Shturman. Deal with him, he's been a huge problem for a while now. And I'll give you an opportunity to buy those overseas elephant guns. Now move, I'm waiting to hear from you."
+        "600303b71448362c785bc3b2": "Mas é claro que ouvi sobre o estouro na Woods. O Shturman teve o que mereceu. Não fique aí parado, agora você já pode comprar os rifles novos.",
+        "600303b71448362c785bc3b5": "Saudações! Chega mais. Tenho um trabalho pra você. Recém recebi um carregamento de armas importadas. As grandes, de longa distância, calibre .338. E fiquei sabendo que você é fã dessas coisas. E existe um outro atirador chamado Shturman. Se resolva com ele, ele tem sido um problemão já faz algum tempo, e vou te dar a oportunidade de comprar essas armas monstruosas do exterior. Agora vamos, quero noticias."
     },
     "quest": {
         "5936d90786f7742b1420ba5b": {
@@ -3171,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Evidencia de má reputação",
@@ -3187,7 +3238,7 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Casquinhas de sorvete",
@@ -3448,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Ostentação",
@@ -3461,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Mendigo Polikhim",
@@ -3634,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Compra de lealdade",
@@ -3870,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -3890,7 +3941,7 @@
                 "5a2806b386f77420062f0fbd": "Instale o sinalizador no local do ritual na Customs",
                 "5a2806e086f774291b084041": "Instale o primeiro sinalizador no local do ritual na Woods",
                 "5a2806f886f774513d3e69f5": "Instale o sinalizador no local do ritual na Shoreline",
-                "5fe0e9ed3f3a7d4169035e8e": "Instale o segundo sinalizador no local do ritual na Woods"
+                "5fe0e9ed3f3a7d4169035e8e": "Instale o sinalizador no segundo local do ritual na Woods"
             },
             "name": "O Culto. Parte 2",
             "note": "",
@@ -5395,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5715,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5731,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5775,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5791,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5819,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5833,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5937,7 +5988,7 @@
             "conditions": {
                 "5d7793fa86f7742fa901bc80": "",
                 "5d77940986f7742fa732bf0a": "",
-                "5fd8aa3206fb3a6b8154a2c3": "Get a Shturman kill with a Remington M700 with a scope"
+                "5fd8aa3206fb3a6b8154a2c3": "Mate o Shturman com uma Remington M700 com luneta"
             },
             "name": "Caçada",
             "note": "",
@@ -5945,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6352,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "Caminho do caçador. Sádico",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6386,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Colegas de trabalho. Pt.2",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -6523,7 +6574,7 @@
             "failMessageText": "5f08e8d3ec85fa71e9393f63",
             "startedMessageText": "5f08e8d3ec85fa71e9393f64",
             "description": "5f08e8d3ec85fa71e9393f65",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5f70abfae9f14826bf7c1c65": {
             "conditions": {
@@ -6624,7 +6675,7 @@
         },
         "600302d73b897b11364cd161": {
             "conditions": {
-                "600303250b79c6604058ce30": "Eliminate Shturman 25 times",
+                "600303250b79c6604058ce30": "Eliminar Shturman 25 vezes",
                 "600304b78dfec348e767018c": "",
                 "600304c38dfec348e767018e": ""
             },
@@ -7117,6 +7168,12 @@
         },
         "5fd251ee16cac650092f5d02": {
             "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
+            "Name": ""
         }
     },
     "handbook": {
@@ -7558,9 +7615,9 @@
             "Description": "O alcance produzido por uma mira Leupold híbrida compreende a mira óptica Mark 4 HAMR 4x24mm com mira reflex DeltaPoint instalada em cima dela. Foi desenvolvida carabina de precisão de médio alcance usando a mira 4x, sendo igualmente eficaz em lugares fechados graças ao uso de mira reflex compacta quando necessário."
         },
         "544a5caa4bdc2d1a388b4568": {
-            "Name": "Veste Tática Crye Precision AVS com armadura",
+            "Name": "Porta blindagem Crye Precision AVS",
             "ShortName": "AVS",
-            "Description": "Crye Precision AVS (Adaptive Vest System) é um sistema de plataforma altamente versátil que pode ser rapidamente transformado de uma engrenagem leve de baixa visibilidade em um colete totalmente blindado e carregado."
+            "Description": "Crye Precision AVS (Adaptive Vest System) é um porta blindagem leve de materiais combinados. Um dos porta blindagem mais confortáveis."
         },
         "544a5cde4bdc2d39388b456b": {
             "Name": "Mochila Flyye MBSS",
@@ -7632,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munição",
             "ShortName": "Munição",
-            "Description": "Munição",
-            "casingName": null
+            "Description": "Munição"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Modificação funcional",
@@ -13658,9 +13714,9 @@
             "RigLayoutName": "Comando"
         },
         "5b44cad286f77402a54ae7e5": {
-            "Name": "Colete tático blindado TacTec 5.11",
+            "Name": "Porta blindagem TacTec 5.11",
             "ShortName": "TacTec ",
-            "Description": "Colete tático com placas de armadura feitas de polietileno (classe 5) e diversos bolsos para uso com rifles de assalto.",
+            "Description": "Porta blindagem com placas de armadura feitas de polietileno (classe 5) e diversos bolsos para uso com rifles de assalto.",
             "RigLayoutName": "TacTec "
         },
         "5b44cd8b86f774503d30cba2": {
@@ -14223,9 +14279,9 @@
             "Description": "Coronha padrão e retrátil para a MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
+            "Name": "Mapa da Interchange",
             "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Description": "Planta detalhada da Interchange"
         },
         "5bead2e00db834001c062938": {
             "Name": "Ferramenta de trincheira MPL-50",
@@ -14918,9 +14974,9 @@
             "RigLayoutName": "ana m1"
         },
         "5c0e746986f7741453628fe5": {
-            "Name": "Colete tático Wartech TV-110",
+            "Name": "Porta blindagem Wartech TV-110",
             "ShortName": "TV-110",
-            "Description": "Colete tático com placas de armadura feito em aço balístico (classe 4) com proteção para as costas e peito epenas. Equipado com uma série de bolsos.",
+            "Description": "Porta blindagem com placas de armadura feito em aço balístico (classe 4) com proteção para as costas e peito epenas. Equipado com uma série de bolsos.",
             "RigLayoutName": "TV-110"
         },
         "5c0e774286f77468413cc5b2": {
@@ -17207,9 +17263,9 @@
             "RigLayoutName": "D3CRX"
         },
         "5d5d87f786f77427997cfaef": {
-            "Name": "Porta armadura Ars Arma A18 Skanda",
+            "Name": "Porta blindagem Ars Arma A18 Skanda",
             "ShortName": "A18",
-            "Description": "Colete tático com placas de armadura (classe 4) apenas com proteção no peito e nas costas. E é equipado com uma série de bolsos.",
+            "Description": "Porta blindagem com placas de armadura (classe 4) apenas com proteção no peito e nas costas. E é equipado com uma série de bolsos.",
             "RigLayoutName": "A18"
         },
         "5d5d8ca986f7742798716522": {
@@ -18181,9 +18237,9 @@
             "Description": "Cartão eletrônico reutilizável, pertencente, de acordo com o logo, à Corporação TerraGroup."
         },
         "5e4abb5086f77406975c9342": {
-            "Name": "Plate Carrier liso LBT 6094A",
+            "Name": "Porta blindagem liso LBT 6094A",
             "ShortName": "Liso",
-            "Description": "Plate carrier simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
+            "Description": "Porta blindagem simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
         },
         "5e4abc1f86f774069619fbaa": {
             "Name": "Colete tático Spiritus Systems Bank Robber",
@@ -19524,12 +19580,12 @@
         "5fc64ea372b0dd78d51159dc": {
             "Name": "Faca de Cultista",
             "ShortName": "Faca",
-            "Description": "A knife of a strange shape and with strange signs, taken from the сultists. Apparently, it is used as a ritual knife, but, it is not limited to this use for sure. It has technological changes in the design intended for the use of toxic substances - it is better not to touch the blade."
+            "Description": "Uma faca com um formato e marcas estranhas, tirado dos cultistas. Aparentemente, é usada em algum tipo de ritual, mas não é usada só pra isso, com certeza. Possui algumas customizações tecnológicas no design para uso com substâncias tóxicas - é melhor não tocar na lâmina."
         },
         "5fca138c2a7b221b2852a5c6": {
             "Name": "Antidote xTG-12",
             "ShortName": "xTG-12",
-            "Description": "Removes most of the known poisons and toxins used in the combat industry. Can be used to relieve the effects of natural poisons. Gives immunity to poisoning while the components are in the blood system. Can reduce health status."
+            "Description": "Remove a maioria dos venenos e toxinas conhecidas, utilizado industrialmente em combate. Pode ser usado para aliviar efeitos de venenos naturais. Oferece imunidade a envenenamento quando presente na corrente sanguínea. Pode prejudicar a saúde."
         },
         "5fca13ca637ee0341a484f46": {
             "Name": "Injetor de combate estimulante SJ9 TGLabs",
@@ -19653,6 +19709,326 @@
             "Name": "Balaclava Smoke",
             "ShortName": "Smoke",
             "Description": "A balaclava característica do famoso artista de hip-hop de Tarkov - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "Kit de primeiro socorro pessoal tático AFAK",
+            "ShortName": "AFAK",
+            "Description": "AFAK (kit de primeiros socorros adaptativo). Uma versão mais avançada do kit de primeiros socorros pessoal."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Torniquete hemostático CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (Torniquete de aplicação tática) impede a perda de sangue bloqueando a passagem por aplicação de pressão no membro afetado. Utiliza um sistema de tensão auto ajustável com uma fivela resistente a puxões."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Ração de água de emergência",
+            "ShortName": "RAE",
+            "Description": "Água potável para uso em caso de emergência e outras circunstâncias em que um suprimento de emergência de líquido seja necessário, pronta para ser armazenada por vários anos."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Dispositivo para realizar operações de resgate\" Taiga-1. Uma ferramenta de sobrevivência verdadeiramente versátil. É uma arma, uma pá, um machado e tudo o que você possa imaginar. Foi desenvolvido e produzido na URSS para várias agências."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "Um cartucho especial projetado para o Corpo de Fuzileiros Navais dos Estados Unidos. A bala tem a ponta aberta com uma frente com ponta de chumbo e uma base de cobre. O chumbo é para quebrar obstáculos e o cobre é para maior penetração na barreira.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "Um cartucho perfurante de blindagem SSA muito raro projetado para substituir o M995. A bala contém um núcleo de carboneto de tungstênio para máxima penetração em alvos rígidos.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "MAI AP",
+            "Description": "Cartuchos MAI perfurantes de 7.62x39 com um núcleo de carboneto exposto.",
+            "casingName": "7.62x39 mm MAI AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "Carregador de 16 munições calibre 9x19 para PL-15",
+            "ShortName": "9x19 PL15",
+            "Description": "Carregador padrão de 16 munições para PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "Ferrolho para pistola PL-15",
+            "ShortName": "Ferrolho PL15",
+            "Description": "Ferrolho padrão para pistola PL-15."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "Massa de mira padrão PL-15",
+            "ShortName": "MM PL15",
+            "Description": "Massa de mira de uso padrão para pistola PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "Massa de mira estendida PL-15",
+            "ShortName": "MME PL15",
+            "Description": "Massa de mira estendida para pistola PL-15 projetada para uso com um supressor de ruído."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "Alça de mira estendida PL-15",
+            "ShortName": "Sup. RS",
+            "Description": "Alça de mira estendida para pistola PL-15 projetada para uso com um supressor de ruído."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "Alça de mira padrão PL-15",
+            "ShortName": "AM PL15",
+            "Description": "Alçade mira de uso padrão para pistola PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Cano padrão para PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Cano de uso padrão para pistola PL-15."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Cano com rosca para PL-15",
+            "ShortName": "PL15 rosc.",
+            "Description": "Cano com costa para pistola PL15 9x19."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "Supressor de ruído PL-15 9x19mm",
+            "ShortName": "PL15 sup.",
+            "Description": "Supressor de ruído padrão para pistola PL-15."
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "Pistola PL-15 9x19",
+            "ShortName": "PL-15",
+            "Description": "Uma pistola russa de carregamento automático com calibre 9x19 mm, desenvolvida por uma equipe de designers da empresa Kalashnikov sob a liderança de Dmitry Lebedev para as necessidades das agências de aplicação da lei russas."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "Tubo de coronha STM Arms",
+            "ShortName": "Tubo STM",
+            "Description": "Tubo receptor extensor STM Arms, 4 posições, diâmetro de especificação militar compatível com qualquer carabina baseada no AR-15."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Coronha GL Core Fab Defense",
+            "ShortName": "GL Core",
+            "Description": "Coronha Telescópica feita por Fab Defense."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver para carabina STM-9 9x19",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver para a carabina STM-9. Equipado com um trilho para anexar dispositivos adicionais."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "Empunhadura Grip DLG-123 para compatíveis AR-15",
+            "ShortName": "DLG123",
+            "Description": "Empunhadura DLG-123, pode ser instalada em qualquer arma compatível com empunhaduras AR-15."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Magwell padrão para STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "Cano 10.5\" para STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 266mm."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "Cano 12\" para STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 304mm."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "Cano 14\" para STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 355mm."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "Cano 16\" para STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "Cano para STM-9 calibre 9x19mm, comprimento de 406mm."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "Alça do ferrolho ambidestro MASP para AR-15",
+            "ShortName": "Alça MASP",
+            "Description": "Alça do ferrolho MASP para AR-15 e compatíveis."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "Quebra-chamas STM-9 9x19",
+            "ShortName": "STM9 MB",
+            "Description": "Quebra-chamas STM-9 9x19 Regular."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Cinza",
+            "ShortName": "Magwell",
+            "Description": "Magwell padrão para STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "Carabina STM-9 Gen.2 9x19",
+            "ShortName": "STM-9",
+            "Description": "Uma carabina com calibre de pistola com excelente desempenho já \"fora da caixa\". Desenhado com a participação do medalhista mundial de bronze no Rifle Semi-Auto Vadim Mikhailov. Precisão, velocidade, conforto de recuo."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Fone de ouvido Opsmen Earmor M32",
+            "ShortName": "M32",
+            "Description": "O HEADSET EARMOR M32 MOD3 Eletronic Communication Hearing Protector é um protetor auditivo de comunicação eletrônica ativado, ideal para usos táticos."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "Óculos NPP KlASS Condor",
+            "ShortName": "Condor",
+            "Description": "Óculos balístico com lentes de alta resistência para impacto."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Colete de caça Umka М33-SET1",
+            "ShortName": "Umka",
+            "Description": "O colete Umka М33-SET1 é projetado para caçadores, viajantes, e profissionais rurais e oficiais de segurança."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Colete tático CSA",
+            "ShortName": "CSA",
+            "Description": "O mais simples colete tático, costurado às pressas com materiais duvidosos. Ele é projetado para airsoft. O uso militar deste modelo é possível, mas não recomendado."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Bolsa Hazard4 Takedown",
+            "ShortName": "Takedown",
+            "Description": "Bolsa com alça única projetada para carregar armas de cano longo."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Bolsa de alça Eberlestock G2 Gunslinger (dry earth)",
+            "ShortName": "Gunslinger",
+            "Description": "Mochila modular media militar com compartimento adicional para armas full-size."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "Guarda mão STM 9\" M-LOK para AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "Guarda-mão STM 9\" para AR-15 equipada com interface M-LOK para instalação de dispositivos adicionais e acessórios."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "Guarda mão STM 15\" M-LOK para AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "Guarda-mão STM 15\" para AR-15 equipada com interface M-LOK para instalação de dispositivos adicionais e acessórios."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "Guarda mão STM 12\" M-LOK para AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "Guarda-mão STM 12\" para AR-15 equipada com interface M-LOK para instalação de dispositivos adicionais e acessórios. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Boné Exército preto",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Boné Exército Coyote",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Boné Exército Flora",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Boné Exército deserto",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "Boné Exército UCP",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Máscara de gás GP-7",
+            "ShortName": "GP-7",
+            "Description": "Máscara de gás civil GP-7 é uma proteção individual dos órgãos respiratório, olhos e face."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Colete tático Azimut SS Jhuk (preto)",
+            "ShortName": "Azimut",
+            "Description": "Dispositivo de nylon simples com bolsos não removíveis. Permite que você carregue uma quantidade bastante impressionante de munição à custa da conveniência.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "Porta blindagem liso LBT (bronze)",
+            "ShortName": "Slick",
+            "Description": "Porta blindagem simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "Porta blindagem liso LBT (oliva)",
+            "ShortName": "Slick",
+            "Description": "Porta blindagem simples da empresa LBT. O design mais minimalista, feito para usar com veste tática."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Bolsa Hazard4 Takedown (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Bolsa com alça única projetada para carregar armas de cano longo."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Caixa de termita",
+            "ShortName": "Térmite",
+            "Description": "As misturas incendiárias à base de térmite são uma mistura de pó de alumínio e óxido de ferro. Esses compostos têm uma temperatura de combustão muito alta e são capazes de queimar sem a presença de oxigênio. O térmite tem um efeito de queima extremamente forte e é quase impossível de extinguir."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Chave catraca",
+            "ShortName": "Catraca.",
+            "Description": "As chaves catracas são uma das ferramentas indispensáveis para todo chaveiro e mecânico em uma estação de serviço de manutenção do carro. Permite que você trabalhe em um espaço confinado. Tem a capacidade de mudar rapidamente entre as cabeças. Instrumento de ouro!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Tijolo TNT TP-200",
+            "ShortName": "TP-200",
+            "Description": "TP-200 é destinado ao uso como cargas na produção de pesquisas sísmicas, detonadores intermediários ao iniciar cargas explosivas em poços, destruindo itens superdimensionados e executar operações especiais com detonação."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Colete tático Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Dispositivo de nylon simples com bolsos não removíveis. Permite que você carregue uma quantidade bastante impressionante de munição à custa da conveniência.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "Boné Exército CADPAT",
+            "ShortName": "Boné",
+            "Description": "Boné militar"
         }
     },
     "locations": {

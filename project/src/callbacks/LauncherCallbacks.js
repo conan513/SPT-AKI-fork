@@ -8,16 +8,19 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const LauncherController = require("../controllers/LauncherController.js");
+const HttpConfig = require("../configs/HttpConfig.json");
+const HttpResponse = require("../utils/HttpResponse");
 
 class LauncherCallbacks
 {
     static connect()
     {
-        return https_f.response.noBody({
+        return HttpResponse.noBody({
             "backendUrl": https_f.server.getBackendUrl(),
-            "name": https_f.config.name,
-            "editions": Object.keys(database_f.server.tables.templates.profiles)
+            "name": HttpConfig.name,
+            "editions": Object.keys(DatabaseServer.tables.templates.profiles)
         });
     }
 
@@ -36,7 +39,7 @@ class LauncherCallbacks
     static get(url, info, sessionID)
     {
         const output = LauncherController.find(LauncherController.login(info));
-        return https_f.response.noBody(output);
+        return HttpResponse.noBody(output);
     }
 
     static changeUsername(url, info, sessionID)

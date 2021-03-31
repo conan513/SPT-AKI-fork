@@ -8,13 +8,15 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
 const RepairConfig = require("../configs/RepairConfig.json");
+const Logger = require("../utils/Logger");
 
 class RepairController
 {
     repair(pmcData, body, sessionID)
     {
-        let output = item_f.eventHandler.getOutput();
+        let output = ItemEventRouter.getOutput();
         const trader = trader_f.controller.getTrader(body.tid, sessionID);
         const repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 
@@ -32,7 +34,7 @@ class RepairController
             }
 
             // get repair price and pay the money
-            const repairCost = Math.round((database_f.server.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * RepairConfig.priceMultiplier);
+            const repairCost = Math.round((DatabaseServer.tables.templates.items[itemToRepair._tpl]._props.RepairCost * repairItem.count * repairRate) * RepairConfig.priceMultiplier);
             const options = {
                 "scheme_items": [
                     {
@@ -43,6 +45,7 @@ class RepairController
                 "tid": body.tid
             };
 
+            // @ts-ignore
             if (!Helpers.payMoney(pmcData, options, sessionID))
             {
                 Logger.error("no money found");

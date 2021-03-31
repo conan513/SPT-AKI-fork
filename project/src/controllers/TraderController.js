@@ -10,11 +10,20 @@
 
 "use strict";
 
+const DatabaseServer = require("../servers/DatabaseServer");
+const TraderConfig = require("../configs/TraderConfig.json");
+const TimeUtil = require("../utils/TimeUtil");
+const Logger = require("../utils/Logger");
+const JsonUtil = require("../utils/JsonUtil");
+const HashUtil = require("../utils/HashUtil");
+const ItemHelper = require("../helpers/ItemHelper");
+const RandomUtil = require("../utils/RandomUtil");
+
 class TraderController
 {
     constructor()
     {
-        database_f.server.tables.traders = {};
+        DatabaseServer.tables.traders = {};
         this.fenceAssort = undefined;
     }
 
@@ -26,7 +35,7 @@ class TraderController
     getTrader(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let trader = database_f.server.tables.traders[traderID].base;
+        let trader = DatabaseServer.tables.traders[traderID].base;
 
         if (!(traderID in pmcData.TraderStandings))
         {
@@ -52,9 +61,9 @@ class TraderController
     {
         let traders = [];
 
-        for (let traderID in database_f.server.tables.traders)
+        for (let traderID in DatabaseServer.tables.traders)
         {
-            if (!database_f.server.tables.traders[traderID].base.working)
+            if (!DatabaseServer.tables.traders[traderID].base.working)
             {
                 continue;
             }
@@ -68,7 +77,7 @@ class TraderController
     lvlUp(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let loyaltyLevels = database_f.server.tables.traders[traderID].base.loyalty.loyaltyLevels;
+        let loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
         pmcData.Info.Level = Helpers.calculateLevel(pmcData);
@@ -90,17 +99,17 @@ class TraderController
 
         // set level
         pmcData.TraderStandings[traderID].currentLevel = targetLevel;
-        database_f.server.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
+        DatabaseServer.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
     updateTraders()
     {
         const time = TimeUtil.getTimestamp();
-        const update = trader_f.config.updateTime;
+        const update = TraderConfig.updateTime;
 
-        for (const traderID in database_f.server.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
-            const trader = database_f.server.tables.traders[traderID].base;
+            const trader = DatabaseServer.tables.traders[traderID].base;
 
             if (trader.supply_next_time > time)
             {
@@ -112,7 +121,7 @@ class TraderController
             const refresh = Math.floor(overdue / update) + 1;
 
             trader.supply_next_time = trader.supply_next_time + refresh * update;
-            database_f.server.tables.traders[traderID].base = trader;
+            DatabaseServer.tables.traders[traderID].base = trader;
         }
 
         return true;
@@ -123,7 +132,7 @@ class TraderController
         if (traderID === "579dc571d53a0658a154fbec")
         {
             const time = TimeUtil.getTimestamp();
-            const trader = database_f.server.tables.traders[traderID].base;
+            const trader = DatabaseServer.tables.traders[traderID].base;
 
             if (!this.fenceAssort || trader.supply_next_time < time)
             {
@@ -136,7 +145,7 @@ class TraderController
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
-        const traderData = JsonUtil.clone(database_f.server.tables.traders[traderID]);
+        const traderData = JsonUtil.clone(DatabaseServer.tables.traders[traderID]);
         let result = traderData.assort;
 
         // strip items (1 is min level, 4 is max level)
@@ -151,7 +160,7 @@ class TraderController
         // strip quest result
         if ("questassort" in traderData)
         {
-            const questassort = database_f.server.tables.traders[traderID].questassort;
+            const questassort = DatabaseServer.tables.traders[traderID].questassort;
 
             for (const itemID in result.loyal_level_items)
             {
@@ -178,8 +187,8 @@ class TraderController
     generateFenceAssort()
     {
         const fenceID = "579dc571d53a0658a154fbec";
-        const assort = database_f.server.tables.traders[fenceID].assort;
-        const itemPresets = database_f.server.tables.globals.ItemPresets;
+        const assort = DatabaseServer.tables.traders[fenceID].assort;
+        const itemPresets = DatabaseServer.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
         let result = {
             "items": [],
@@ -187,7 +196,7 @@ class TraderController
             "loyal_level_items": {}
         };
 
-        for (let i = 0; i < trader_f.config.fenceAssortSize; i++)
+        for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
             let price = Helpers.getTemplatePrice(itemID);
@@ -279,7 +288,7 @@ class TraderController
     getPurchasesData(traderID, sessionID)
     {
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let trader = database_f.server.tables.traders[traderID].base;
+        let trader = DatabaseServer.tables.traders[traderID].base;
         let currency = Helpers.getCurrency(trader.currency);
         let output = {};
 
@@ -301,7 +310,7 @@ class TraderController
             // find all child of the item (including itself) and sum the price
             for (let childItem of ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
-                let tempPrice = (database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice >= 1) ? database_f.server.tables.templates.items[childItem._tpl]._props.CreditsPrice : 1;
+                let tempPrice = DatabaseServer.tables.templates.handbook.Items.Find((i) => { return childItem._tpl === i.Id}).Price || 1;
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
                 price = price + (tempPrice * count);
             }

@@ -6,22 +6,19 @@
  * - Senko-san (Merijn Hendriks)
  */
 
+const Logger = require("../utils/Logger");
+
 class ItemEventRouter
 {
-    constructor()
-    {
-        /** @type {apiEventResponse} */
-        this.output;
-        this.onEvent = require("../bindings/ItemEvents");
-
-        this.resetOutput();
-    }
+    /** @type {apiEventResponse} */
+    static output = ItemEventRouter.getOutput();
+    static onEvent = require("../bindings/ItemEvents");
 
     /**
      * @param {{ data: any; }} info
      * @param {string} sessionID
      */
-    handleEvents(info, sessionID)
+    static handleEvents(info, sessionID)
     {
         let result = "";
 
@@ -29,11 +26,11 @@ class ItemEventRouter
         {
             const pmcData = profile_f.controller.getPmcProfile(sessionID);
 
-            if (this.onEvent[body.Action])
+            if (ItemEventRouter.onEvent[body.Action])
             {
-                for (const callback in this.onEvent[body.Action])
+                for (const callback in ItemEventRouter.onEvent[body.Action])
                 {
-                    result = this.onEvent[body.Action][callback](pmcData, body, sessionID, result);
+                    result = ItemEventRouter.onEvent[body.Action][callback](pmcData, body, sessionID, result);
                 }
             }
             else
@@ -42,34 +39,34 @@ class ItemEventRouter
             }
         }
 
-        this.resetOutput();
+        ItemEventRouter.resetOutput();
         return result;
     }
 
-    getOutput()
+    static getOutput()
     {
-        if (!this.output)
+        if (!ItemEventRouter.output)
         {
-            this.resetOutput();
+            ItemEventRouter.resetOutput();
         }
 
-        return this.output;
+        return ItemEventRouter.output;
     }
 
     /**
      * @param {apiEventResponse} data
      */
-    setOutput(data)
+    static setOutput(data)
     {
-        this.output = data;
+        ItemEventRouter.output = data;
     }
 
     /**
      * @memberof EventHandler
      */
-    resetOutput()
+    static resetOutput()
     {
-        this.output = {
+        ItemEventRouter.output = {
             "items": {
                 "new": [],
                 "change": [],
@@ -84,4 +81,4 @@ class ItemEventRouter
     }
 }
 
-module.exports = new ItemEventRouter();
+module.exports = ItemEventRouter;

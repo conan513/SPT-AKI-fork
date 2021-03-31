@@ -412,9 +412,10 @@
 			]
 		}
 	},
-	"names": [
+	"firstName": [
 		"Санитар"
 	],
+	"lastName": [],
 	"difficulty": {
 		"easy": {
 			"Lay": {
@@ -800,6 +801,7 @@
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
 				"MEDS_ONLY_SAFE_CONTAINER": false,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -1285,6 +1287,7 @@
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
 				"MEDS_ONLY_SAFE_CONTAINER": false,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -1770,6 +1773,7 @@
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
 				"MEDS_ONLY_SAFE_CONTAINER": false,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {
@@ -2255,6 +2259,7 @@
 				"HIT_DELAY_WHEN_HAVE_SMT": -1,
 				"HIT_DELAY_WHEN_PEACE": -1,
 				"MEDS_ONLY_SAFE_CONTAINER": false,
+				"CAN_TAKE_ITEMS": false,
 				"TALK_WITH_QUERY": true
 			},
 			"Boss": {

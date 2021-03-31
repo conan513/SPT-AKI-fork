@@ -848,7 +848,7 @@
         "specFound": "Nalezeny speciální zbraně",
         "3050Kills": "Zabito hráčů s úrovní 31-50",
         "placesLooted": "Míst prohledáno",
-        "modsFound": "Nalezeno modif.",
+        "modsFound": "Nalezeno modifikací",
         "overallAccr": "Celková přesnost",
         "bartitemsFound": "Nalezeno zboží na výměnu",
         "headshots": "Headshots",
@@ -1015,7 +1015,7 @@
         "SearchDescription": "Schopnost efektivního a rychlého prohledání těla",
         "FirstAidDescription": "Schopnost První pomoc urychluje použití a účinnost lékárniček.",
         "MeleeDescription": "Schopnost manipulace s chladnými zbraněmi",
-        "EnduranceBreathElite": "Fyzická námaha nezpůsobuje spánkové apnoe",
+        "EnduranceBreathElite": "Dýchání není závislé na energii",
         "TroubleShootingDescription": "Schopnost Řešení problémů usnadňuje opravu závad na zbrani v boji.  ",
         "NightOpsDescription": "Noční výsadek umožňuje snadnější přesun s tím také souvisí rychlejší nárůst zkušeností než obvykle. A samozřejmě to souvisí i s cenou nočního vidění.",
         "MiscDescription": "Schopnost manipulace s ruznorodými zbraněmi",
@@ -1726,7 +1726,7 @@
         "COPY METADATA": "ZKOPÍROVAT METADATA",
         "Recoil Back": "Horizontální zpětný ráz",
         "ChangeButton": "ZMĚNIT",
-        "handbook/enter entity name": "pojmenujte subjekt",
+        "handbook/enter entity name": "zadejte název předmětu",
         "Not enough place for item": "Na předmět není dostatek místa",
         "NicknameCanBeChangedAfter": "Změna přezdívky postavy bude možná po {0} UTC.",
         "You have already bought the maximum amount of this item in the current restock.": "Již jste koupili maximální množství této položky\nz aktuálně naskladněného množství.",
@@ -1920,12 +1920,12 @@
         "hideout_area_4_stage_3_description": "Průmyslový generátor pro zajištění autonomního provozu výrobních zařízení. Také poskytuje více dalších slotů pro instalaci palivových kanystrů.",
         "hideout_area_2_stage_2_description": "Základní koupelna s dřevěnou toaleta typu latríny, umyvadlo a připojení k vodovodu. Toto vše vám v krytu zajišťuje vyšší úroveň čistoty a hygieny.",
         "hideout_area_3_name": "Skrýš",
-        "hideout_area_3_stage_2_description": "Střední skrýš (10x36)",
+        "hideout_area_3_stage_2_description": "Střední skrýš (10x38)",
         "hideout_area_0_stage_3_description": "Montáž ventilačního potrubí s elektrickými ventilátory pro zvýšení proudění vzduchu. Kompletní systém cirkulace vzduchu, potřebný pro moderní výrobu a chemický výzkum.",
         "hideout_area_1_stage_2_description": "Vylepšená vstupní hala se zesílenými dveřmi, věšákem na šaty a dalšími předměty pro domácnost. Takové dveře už jedním kopem nevyrazíte.",
         "hideout_area_4_name": "Generátor",
-        "hideout_area_3_stage_3_description": "Velká skrýš (10x46)",
-        "hideout_area_3_stage_4_description": "Skrýš maximální velikosti (10x66)",
+        "hideout_area_3_stage_3_description": "Velká skrýš (10x48)",
+        "hideout_area_3_stage_4_description": "Skrýš maximální velikosti (10x68)",
         "hideout_area_5_name": "Vytápění",
         "hideout_area_2_stage_1_description": "Primitivní záchod. Nedá se mluvit o nějakém vybavenosti. K udržení základní hygieny je zde jen kbelík a bedna s kočolitem.",
         "hideout_area_4_stage_1_description": "Srdce vašeho útočiště. Jednoduchý palivový generátor, který vám může v krytu poskytnout elektrickou energii pro základní zařízení. K udržení výkonu celé rozvodné sítě je potřebné palivo.",
@@ -1935,7 +1935,7 @@
         "hideout_area_6_name": "Vodní kolektor",
         "hideout_area_5_stage_1_description": "Obyčejný barel s dřívím na otop. Velmi základní a nebezpečná možnost vytápění, protože hoření produkuje toxický oxid uhelnatý.",
         "hideout_area_1_stage_3_description": "Pokročilý bezpečnostní systém krytu, který zahrnuje, kromě pancéřových dveří, video kamer, intercom a hasičáků, také speciální betonové výztuhy, které zvyšují strukturální pevnost stěn a stropů.",
-        "hideout_area_3_stage_1_description": "Malá skrýš (10x26)",
+        "hideout_area_3_stage_1_description": "Malá skrýš (10x28)",
         "hideout_area_5_stage_3_description": "Vybavení celého krytu dalšími elektrickými přímotopy. Nyní, společně s litinovými kamny se už zimy bát nemusíte.",
         "hideout_area_2_stage_3_description": "Moderní koupelna s chemickým záchodem, sprchu a odpadkovým košem. Vše potřebné je napojeno na vodovod a poskytuje nejvyšší úroveň dostupné osobní hygieny.",
         "hideout_area_9_stage_2_description": "Místo k relaxaci, vybavené normální postelí, nočním stolkem a dokonce i starou TV. To vše vytváří pocit pohodlí a navazuje nostalgické vzpomínky na dřívější život.",
@@ -2579,9 +2579,60 @@
         "heavybleedingdelta": "Šance na způsobení těžkého krvácení",
         "lightbleedingdelta": "Šance na způsobení lehkého krvácení",
         "choose face and voice": "VYBRAT OBLIČEJ A HLAS",
+        "TroubleFixing": "Zvýšení rychlosti řešení problémů (až o 50%). 1% za každou úroveň dovednosti.",
+        "TroubleFixingAmmoElite": "Snižuje pravděpodobnost závad způsobených zásobníkem o 50% po opravě závady stejného původu",
+        "ZeroWeaponDeteriorationOnRepair": "Žádné opotřebení během opravy",
+        "NetworkError/TooManyFriendRequestsHeader": "Příliš mnoho žádostí",
+        "NetworkError/TooManyFriendRequestsMessage": "Zkuste to znovu za {0} sekund",
+        "UI/Chat/NoDialogsPlaceholder": "<b><size=150%>Zatím nemáte žádné dialogy.</b></size>\nPro vytvoření pozvěte přátele nebo se připojte ke globálnímu chatu.",
+        "TroubleFixingDurElite": "Snižuje pravděpodobnost závad způsobených životností zbraní o 50% po opravě závady stejného původu",
+        "WeaponDurabilityLossOnShotReduce": "Snížení opotřebení zbraně při střelbě (až o 50%)",
         "un-sec": "Severní zátaras UN",
-        "NetworkError/TooManyFriendRequestsHeader": "Chyba",
-        "NetworkError/TooManyFriendRequestsMessage": "Žádosti o přátelství nemůžete odesílat takto často. Zkuste to znovu za 10 minut"
+        "BloodLoss": "Ztráta krve",
+        "REMOVES BLOODLOSS": "ODSTRAŇUJE ZTRÁTU KRVE",
+        "\"Magazine checked: \"": "Zásobník zkontrolován:",
+        "DamageType_Bloodloss": "Ztráta krve",
+        "you can't transfer item while moving": "Předmět nelze přesunout, pokud se hýbete",
+        "place": "UMÍSTENÍ",
+        "This location is not available for scav": "Tato lokace není pro SCAVa dostupná",
+        "Interchange": "Interchange",
+        "Matchend/ErrorUpdatingDataForHealing": "Načtení dat se nezdařilo, zkontrolujte stav sítě. Zkuste znovu vstoupit na obrazovku pro léčbu, nebo ji přeskočte a přejděte do hlavního menu.",
+        "Inventory Errors/Mod {0} cannot be installed to folded weapon": "Modifikaci {0} nelze nainstalovat na sklopenou zbraň",
+        "No action available": "Žádné dostupné akce",
+        "ProfileEvent/AssortmentLockRule": "Obchodníkova nabídka <b>{0}</b> je uzamčena.",
+        "ProfileEvent/ExamineItems": "Prozkoumat předmět <b>{0}</b>.",
+        "ProfileEvent/ForgetItems": "Prozkoumání předmětu <b>{0}</b> bylo resetováno.",
+        "ProfileEvent/ProfileLockTimer": "Nastavit dostupnost Scava na <b>{0}</b> sekund.",
+        "ProfileEvent/ProfileUnlock": "Reset dostupnosti Scava.",
+        "ProfileEvent/UnlockTrader": "Odemčen obchodník <b>{0}</b>.",
+        "ProfileEvent/LockTrader": "Uzamčen obchodník <b>{0}</b>.",
+        "ProfileEvent/MasteringSkill": "Změna <b>{0}</b> zlepšení manipulace na <b>{1}</b>.",
+        "Critical error": "Kritická chyba",
+        "TroubleFixingMagElite": "Snižuje pravděpodobnost závad způsobených municí o 50% po opravě závady stejného původu",
+        "WeaponDeteriorationChanceReduce": "Snížená pravděpodobnost opotřebení během oprav (až o -60%)",
+        "Ui/Settings/NVidiaReflexType": "NVidia Reflex Low Latency",
+        "UI/Settings/NVidiaReflexMode/Off": "Vypnuto",
+        "UI/Settings/NVidiaReflexMode/On": "Zapnuto",
+        "UI/Settings/NVidiaReflexMode/OnAndBoost": "Zapnuto a vylepšeno",
+        "NVidia Reflex is on. Turn it off to change this parameter.": "NVidia Reflex je zapnut. Pokud chcete tyto parametry změnit, vypněte ho.",
+        "NVidia Reflex settings will be applied after restart.": "Nastavení NVidia Reflex bude použito po restartování.",
+        "FoundInRaid": "Nalezeno v raidu",
+        "loudness": "HLASITOST",
+        "Repair malfunction": "Fix malfunction",
+        "Malfunction: Misfire": "Malfunction: Misfire",
+        "Malfunction: Jam": "Malfunction: Failure to eject",
+        "Malfunction: HardSlide": "Malfunction: Bolt jammed",
+        "Malfunction: SoftSlide": "Malfunction: Bolt jammed",
+        "Malfunction: Feed": "Malfunction: Failure to feed",
+        "Trading/InsufficientNumberOfItemsInStock{}{}": "The trader did not have {0} items in stock. You bought last {1}.",
+        "Error": "Error",
+        "Warnings/Inventory/ExaminationFailed": "Item examination failed.",
+        "NothingToRepair": "Nothing to repair",
+        "InventoryErrors/MalfunctionError": "You must repair malfunctions first",
+        "SortingTable/TransferFromSortingTableError": "Error while transferring items. Please transfer items manually.",
+        "SortingTable/SellFromSortingTableConfirmation{0}": "Do you really want to sell items to a fence? It will bring you {0} rubles",
+        "Offer was sold or out of stock": "Offer was sold",
+        "Trading/NoSelectedItems": "No selected items"
     },
     "enum": [],
     "error": {
@@ -2734,7 +2785,7 @@
         "5ab0f32686f7745dd409f5ac": "To auto tam bylo, je to tak? Projedeme to databází, mám pocit, že nás čekají další fascinující objevy.",
         "5ab0f32686f7745dd409f59f": "Doufám, že jsi tuto záležitost nezmiňoval výš? Skvělé! Tady je odměna.",
         "5ab0f32686f7745dd409f5b2": "Skvělé, od teď se na mě můžeš vždy spolehnout.",
-        "5abe61a786f7746ad512da4e": "Zdravím, žoldáku. Nesháníte náhodou nějakou práci? Výborně. Není to těžký úkol pro muže vašeho formátu a určitě tím neproděláte. Vždycky Vám můžu poskytnout jídlo a pití, a co je nejdůležitější - komplexní kvalifikovanou lékařskou péči, téměř jakéhokoli druhu. A pro své věrné klienty, kterým nevadí pomoci mi v podnikání, nabízím zvýhodněné lhůty u zboží a služeb. Ale záleží na vás, do budoucna... Pokud dokážete, že je na Vás spolehnutí. Do té doby, mám tady jednoduchý úkol - potřebuji získat 5 záchranářských zdravotních souprav. Tady se jí říká Salewa, takové ty červené, víte? A na důkaz, že jste to zvládl, chci, abyste je otestoval v boji. Vždy je radost pracovat s někým, na koho se můžete spolehnout.",
+        "5abe61a786f7746ad512da4e": "Zdravím, žoldáku. Nesháníte náhodou nějakou práci? Výborně. Není to těžký úkol pro muže vašeho formátu a určitě tím neproděláte. Vždycky Vám můžu poskytnout jídlo a pití, a co je nejdůležitější - komplexní kvalifikovanou lékařskou péči, téměř jakéhokoli druhu. A pro své věrné klienty, kterým nevadí pomoci mi v podnikání, nabízím zvýhodněné lhůty u zboží a služeb. Ale záleží na vás, do budoucna... Pokud dokážete, že je na Vás spolehnutí. Do té doby, mám tady jednoduchý úkol - potřebuji získat záchranářské zdravotní soupravy. Tady se jim říká Salewa, takové ty červené, víte? A na důkaz, že jste to zvládl, chci, abyste je otestoval v boji. Vždy je radost pracovat s někým, na koho se můžete spolehnout.",
         "5ab0f32686f7745dd409f5aa": "Skvělá práce, pane.\n",
         "5ab0f32686f7745dd409f59b": "Skvělá práce, vše jde podle plánu.",
         "5ab0f32686f7745dd409f5af": "Se vším respektem k tobě, nevěřil jsem, že to zvládneš. Vypadá to, že ti budu říkat ostrostřelec.",
@@ -2817,23 +2868,23 @@
         "5abe61a886f7746ad512da7f": "Disky obsahovaly více informací než jsem čekal. Náklad je ve zdravotním středisku, ale nejdůležitější je, že se tam dostal až po pokusu o evakuaci. Potom co byl západní tunel zničen, zkusili zaměstnanci Terragroup s podporou USEC dostat náklad zpět do přístavu, ale vjezd už byl zatarasen T-90kou. Proto sjeli z cesty a jako správní kapitalisti ho někde urychleně uložili, ha-ha. Víme, že náklad měl dvě části. Ta první, která obsahovala modré sudy, je někde u východního křídla střediska. Kde je druhá část, nevíme. Najdi ji.",
         "5abe61a886f7746ad512da83": "Tak to jsi se trefil do černého, můj příteli. Moji partneři se velice zajímají o to, co nám tato záležitost může přinést. Modré přílby prohledaly místo, které jsi označil a zjistily, že nějaký rybář tam určitou dobu skutečně žil. Zdá se však, že je již dávno po smrti a lidé na kamerách jsou jeho přátelé. Nicméně, je známo, že se přátelil s určitou osobou jménem Artyom, který byl často viděn jak řídí žlutý Daihyn. Jejich společné podnikání bylo nějak spojeno s Ruskou armádou. Už chápeš, proč to může být zábavné? Je velká šance, že se mu s ním podařilo odjet a s největší pravděpodobností zůstalo Artyomovo auto po konfliktu na Shoreline. Využij uvedený popis, abys ho našel, zapiš si číslo registrační značky ať získáme více informací o tom, co je ten Artyom zač.",
         "5abe61a886f7746ad512da93": "Takové zvěrstvo, dva mrtví... To nemůže být jenom náhoda. Není divu, že dokumenty, které se vám podařilo najít se týkají nějakého zásadního výzkumu v oblasti Imunologie. Z toho lze vyvodit, že v tomto směru došlo zřejmě k nějakému významnému pokrok. Dle podpisu na dokumentech, soudím, že výzkum byl pod dohledem vedoucího Lékařské služby zdravotního střediska. Je to starší člověk, potkal jsem ho párkrát na Dni zdravotního personálu. Přestože byl ctihodným učencem, preferoval před shlukem laboratoří, odpočinek na venkově a často strávil čas v lesích, kam jezdil v bílém minivanu. Věřím, že to svědčí o úspěchu, pokud se odhodlal začít experimentovat na lidech. První by s největší pravděpodobností byl on sám, dle lékařské tradice. Vědci jsou vždy takoví. Najdi jeho vozidlo. A pokud se povede, najít jeho krevní vzorky, bude to skvělé.",
-        "5ac2430486f77412450b42c4": "S brokovnicí si nezklamal, možná si třeba najdeš cestu k poctivý práci. Ačkoli mi to moc času neušetřilo. Směnný obchod vzkvétá, snad to nerozpoutá paniku. Nicméně, plány zůstávají stejné. Myslím, že to dlouho nevydrží. Dobrá, musím do práce. A ty si zkus sehnat AKSU s taktickým předpažbí B-11, rozšířeným 60-ranným zásobníkem a kompaktní - maximálně přes 6 slotů. Ergonomie přes 56, zpětná ráz méně než 600, dohled mířidel 100 a víc. A samozřejmě, co nejlehčí 3.5 kg nebo méně. Ano, indexy s tím nemají co dělat. Doufám, že jsi si to všechno zapamatoval. Uvidíme se.",
+        "5ac2430486f77412450b42c4": "S brokovnicí si nezklamal, možná si ještě třeba najdeš cestu k poctivý práci. Ačkoli mi to moc času neušetřilo. Směnný obchod vzkvétá, snad to nerozpoutá paniku. Nicméně, plány zůstávají stejné. Myslím, že to dlouho nevydrží. Dobrá, musím do práce. A ty si zkus sehnat AKSU s taktickým předpažbí B-11, rozšířeným 60-ranným zásobníkem a kompaktní - maximálně přes 6 slotů. Ergonomie přes 56, zpětná ráz méně než 600, efektivnost mířidel 100 a víc. A samozřejmě, co nejlehčí 3.5 kg nebo méně. Ano, indexy s tím nemají co dělat. Doufám, že jsi si to všechno zapamatoval. Uvidíme se.",
         "5abe61a886f7746ad512da99": "Taky tě zdravím. Co potřebuješ? Práci? Ha! Chceš pouze základní, transparentní mzdu a benefity, nebo ti nevadí trochu si zašpinit ruce? Hledá prej práci, podívejte se na něj! Kdykoli. Myslel jsem, že bych ti objednal nějaký těžký balistiky 6. třídy, ale už vidím tvůj šťastnej obličej až to někde posereš. Takže, mi najdi TOZe a balistiky, takový ty posraný bílý. Chystám se, trochu vystrojit svoje nový lidi. A pokud se osvědčíš můžeme mluvit o dlouhodobější spolupráci.",
         "5ac2430486f77412450b42c1": "No, ve správných rukou může tato zbraň hroutit režimy a způsobovat revoluce",
         "5abe61a886f7746ad512da92": "Díky za pomoc s těmi dodávkami. Stihli jsme to právě v čas, dokonce je ještě předtím než je nestihli Scavové rozebrat. Při zkoumání následků pádu tunelu, jsme narazili na tělo vedoucího Terragroup, Gelandewagena. Zdá se, že část nejvyššího managementu společnosti tam zahynula, když se snažili evakuovat. Jsem si vědoma, že lékařský výzkum byl jednou z nejvyšších priorit společnosti a také jsem si téměř jista, že jelikož měli opravu naspěch nestihli odvézt všechny dokumenty a zásoby. Ať už tam dělali cokoliv, myslím, že to může být velmi užitečné jak pro nás, tak pro lékařskou vědu obecně. Může nám to také zajistit letenku z Tarkova, možná i více než jednu. Pravidelně jsem se setkávala s určitými zaměstnanci z Terragroup, probírali jsme problémy týkající se zdravotní péče a díky tomu jsem byla částečně obeznámena některými typy jejich činnosti. Jeden z mých známých, který byl mimochodem přímým podřízeným zesnulého Gelandewagenova vedení, žil někde v budově zdravotního střediska. Počkejte, podívám se po tom... tady to je, pokoj 306. Prohledejte ho, zda-li tam nemohlo něco zůstat.",
         "5abe61a886f7746ad512da8d": "Zdravím.\n\nZnáme se už dost dlouho a není důvod bychom měli mezi sebou spory. Jsem si jistá, že ti záleží na naší spolupráci stejně jako mě. Neboj se, nebudu tě do ničeho tlačit. Jsem teď v kontaktu s člověkem, který má velké zásoby zdravotního materiálu ze Západu. Je ochotný mi to prodat, ale jen za zahraniční měnu. Pokud mi s tím pomůžeš, tak si můžeme znovu říkat přátelé.",
         "5ac2438186f77412450b42c5": "Díky, předám to sni... Dimovi",
-        "5ac242f286f774138762ee03": "Ano, já jsem Mechanik. Mám tu spoustu práce. Pojďme rovnou k věci, chtěl jsi pomoct? Je škoda, že je tu tak málo času a programovací jednotka pro PLC100 je mimo provoz. A ty příkazy k bootování. To je fuk, Proč ti ty věci vůbec říkám? Sestav mi MP-133 s největší pravděpodobností na to nebudu mít čas a nějaké části tady ani nemám. Ať to má více jak 47 ergonomie, laserový zaměřovač, rozšířený zásobník a méně jak 950 zpětného rázu. A taky ať je kompaktní, ne větší než 4 sloty. Pak si promluvíme.",
+        "5ac242f286f774138762ee03": "Ano, já jsem Mechanik. Mám spoustu práce. Pojďme rovnou k věci, chtěl jsi pomoct? Je to škoda, tak málo času a programovací jednotka pro PLC100 je mimo provoz. A ty příkazy k bootování. To je fuk, proč ti to vůbec říkám? Potřebuju aby si mi sestavil MP-133. Nebudu na to mít čas a některé části ani nemám. Ať to má více než 47 ergonomie, laserový zaměřovač, rozšířený zásobník a méně jak 950 celkového zpětného rázu. A taky ať je kompaktní, ne větší než 4 sloty. Pak si promluvíme.",
         "5abe61a886f7746ad512da95": "Krev je dobrým zdrojem informací. Není tak dobrá jako správně zpracovaná dokumentace, ale stačí to. Už je to dlouho, co jsem naposledy dělala rozbor. Vzpomínám si, že se tenkrát jednalo o pomoc místnímu virologovi s jeho rigorózní prací. Připadá mi to jako by to bylo nedávno a přitom je to už tak dávno. Nyní s rozšířením internetového připojení je mnohem snazší vyměňovat si informace dokonce i s kolegy z jiných zemí. Tady a teď mi možnost projít si databázi Scopus velice chybí. Jsem si celkem jistá, že odpovědi na otázky, které vyvstávají ze zkoumání krevních vzorků tam jsou. Kde by mohl teď člověk získat přístup na web, ptáte se? K řešení tohoto problému, mi bylo doporučen obrátit se na člověka jménem Mechanik. Jak se ukázalo, ten přístup k Internetu má. A i relativně rychlé připojení. Požádala jsem ho, aby pro mne vyhledal potřebné články. Za své služby si řekl si o malý poplatek, ale v formě střelného prachu, ať už z jakéhokoli důvodu. Vypadá to, že se zabývá přebíjením munice, nebo něčím takovým. Nezajímalo mě to natolik, abych tomu věnovala čas. Nejdůležitější je, že nám poskytne informace, které potřebujeme. Obstarejte to, co žádá a nechte to na určeném místě ve Factory. Ve dne se to tam hemží Scavy, takže bude nejlepší udělat to v noci.",
         "5ac2437986f774124836841b": "Vhodné pro CQB a tiché ...",
-        "5ac2438186f77412450b42c8": "Minule jsem toho nakecal až moc. To se stává, když jsem nějakou dobu sám se svými myšlenkami. Spousta věcí se mi honí hlavou zatímco tu sedím a seřizuji mířidla. Ta M4 se ukázala být hodně dobrá. Během chvíle byla pryč. Nějaký Bear se tu nedávno stavil, jmenoval se Sniper nebo tak nějak. Potřebuje odstřelovací pušku Lobaev Saboteur s puškohledem a multi-laserovým zařízením. Se zpětným rázem méně než 400, ergonomií nad 20 a hmotností pod 6.6 kg. Řekl, že to potřebuje na dvoukilometrový zásah. Ten chlap je náročný, tak si dej záležet.",
-        "5ac244f386f7741356335af6": "Někdy si myslím, že je vlastně dobře, že jsem uvízl tady v Tarkově. Celý svět se řítí do propasti, chladné propasti zoufalství. Nic už nemá smysl. Lidé, jejich hodnoty, jejich sny i jejich úspěchy. Neví proč by se měli radovat, pracovat, mít děti. Všichni jsou už unavení z iluze možností, které jsou jim po celou dobu nabízeny, do volby práce až k výběru mezi červeným nebo modrým balíčkem cigaret. Děje se to všude, v každém koutě světa. Tady v Tarkově, jsme k sobě upřímní. Vše už tu vidíme trochu jinak, bez falešných hodnot. Když už se nezabýváš banalitami typu, jaký prací prášek je lepší na skvrny, ale hledáš způsob jak v noci nezmrznout, nebo kde najít munici na dalšího vandráka, který tě bude chtít zabít. Jen tehdy, v takové upřímné společnosti, lidé ukážou svou pravou tvář. Co myslíš? Dobrá, díky, že jsi mě vyslechl. Nějací lidi si objednali plně vybavenou M4. Potřebují jí s tlumičem, zásobníkem na 60 nábojů, ergonomií přes 51 a zpětným rázem pod 300. Jo a středně těžkou, ne víc jak 3.8 kg, s dohledem mířidel 800 nebo víc.",
+        "5ac2438186f77412450b42c8": "Minule jsem toho nakecal až moc. To se stává, když jsem nějakou dobu sám se svými myšlenkami. Spousta věcí se mi honí hlavou zatímco tu sedím a seřizuji mířidla. Ta M4 se ukázala být hodně dobrá. Během chvíli byla pryč. Nějaký Bear se tu nedávno stavil, jmenoval se Sniper nebo tak nějak. Potřebuje odstřelovací pušku Lobaev Saboteur s puškohledem a multi-laserovým zařízením se zpětným rázem méně než 400, ergonomií nad 20 a hmotností pod 6.6 kg. Řekl, že to potřebuje na dvoukilometrový zásah. Ten chlap je náročný, tak si dej záležet.",
+        "5ac244f386f7741356335af6": "Někdy si myslím, že je vlastně dobře, že jsem uvízl tady v Tarkově. Celý svět se řítí do propasti, chladné propasti zoufalství. Nic už nemá smysl. Lidé, jejich hodnoty, jejich sny i jejich úspěchy. Neví proč by se měli radovat, pracovat, mít děti. Všichni jsou už unavení z iluze možností, které jsou jim po celou dobu nabízeny. Od volby práce až k výběru mezi červeným nebo modrým balíčkem cigaret. Děje se to všude, v každém koutě světa. Tady v Tarkově, jsme k sobě upřímní. Vše už tu vidíme trochu jinak, bez falešných hodnot. Když už se nezabýváš banalitami typu, jaký prací prášek je lepší na skvrny, ale hledáš způsob jak v noci nezmrznout, nebo kde najít munici na dalšího vandráka, který tě bude chtít zabít. Jen tehdy, v takové upřímné společnosti, lidé ukážou svou pravou tvář. Co myslíš? Dobrá, díky, že jsi mě vyslechl. Nějací lidi si objednali plně vybavenou M4. Potřebují jí s tlumičem, zásobníkem na 60 nábojů, ergonomií přes 51 a zpětným rázem pod 300. Jo a středně těžkou, ne víc jak 3.8 kg s efektivností mířidel 800 m nebo víc.",
         "5ac3463486f7741d6118b985": "Jak se dalo očekávat. V tomhle chaosu, můžou být cennosti přímo pod nosem a lidé je stejně přehlídnou",
-        "5ac244ce86f7741356335af0": "Umíš se dobře schovávat? Hádám, že ne dost dobře, aby tě Sniper nenašel. Trochu s tím chlapem soucítím. Jak se jmenoval? Brendan myslím. Zajímavé je, že všichni naši hrdinové z minulosti, ke kterým jsme tolik vzhlíželi jsou pryč. Kam všichni zmizeli?\nProč se teď všichni odvrátili? Proč teď, v tomhle chaosu se pro nás stávají hrdiny takový lidé jako Sniper? Proč jsme dříve takové bojovníky přehlíželi a teď toužíme po jejich přízni? Co myslíš? Mám tu další zakázku, na R11 RSAS. S dohledem mířidel 1500 nebo víc. Hmotností 6.5 kg nebo méně. A taky potřebuje tlumič, ergonomii více než 21 a zpětný ráz méně než 350.",
+        "5ac244ce86f7741356335af0": "Umíš se dobře schovávat? Hádám, že ne dost dobře, aby tě Sniper nenašel. Trochu s tím chlapem soucítím. Jak se jmenoval? Brendan myslím. Zajímavé je, že všichni naši hrdinové z minulosti, ke kterým jsme tolik vzhlíželi jsou pryč. Kam všichni zmizeli?\nProč se teď všichni odvrátili? Proč teď, v tomhle chaosu se pro nás stávají hrdiny takový lidé jako Sniper? Proč jsme dříve takové bojovníky přehlíželi a teď toužíme po jejich přízni? Co myslíš? Mám tu další zakázku na R11 RSAS. S efektivností mířidel 1500 m nebo víc. Hmotností 6.5 kg nebo méně. A taky potřebuje tlumič, ergonomii více než 21 a zpětný ráz méně než 350.",
         "5ac345e886f7741d632339f3": "Někdo se rozhodl zničit trh emisí balíku bitcoinů. Bylo toho tolik, že TARGox začal přijímat nabídky 10x nižší než byla tržní cena. Nabídek bylo spousty. A čím více se jich objevilo, tím níže srážely cenu. Náhodou se mi taky povedlo pár stovek koupit. A dnes už se cena vrací zase k normálu, jako by se nic nestalo. Musíme to spustit hned, dokud je trh v tomhle stavu. Factory už znáte dobře, jsou tam rozvaděče. Abyste je našel, hledejte nouzová červená světla. Vezměte si s sebou pár sad nářadí a opravte je, já budu zatím pracovat na chlazení.\n",
         "5ac345e886f7741d632339f0": "Byl jsi rychlejší než bych čekal. Už jsem s tím chlazením skoro hotový\n",
         "5ac244ce86f7741356335aed": "Miluji 7.62, dobrá ráže",
-        "5ac2437986f774124836841e": "Když jsem byl dítě, lidé často říkávali, že cíl není to, na čem záleží, ale důležitá je samotná cesta. Ale co když cíl jsi ty sám, co ty víš, třeba jde o osobní rozvoj? O to správně využít své smysly a pamatovat si kolik nábojů máš v zásobníku, co myslíš? Na tomto opravdu záleží, pokud chceš přežít. Držet se na tomto světě zuby-nehty. Potřebuji MP5. S 50-raným rozšířeným zásobníkem, tlumičem, taktickou svítilnu s dohledem mířidel více jak 200. Ergonomie nad 45, Zpětný ráz menší jak 150. Maximální váha 3.8kg. Ale rozhodnutí je na tobě. Co je důležitější, cesta, nebo cíl?",
+        "5ac2437986f774124836841e": "Když jsem byl ještě dítě, lidé mi často říkali, že cíl není to jediné na čem záleží. Důležitá je cesta. Ale co když cíl jsi ty sám, co ty víš? Třeba jde o osobní rozvoj? O to správně využít své smysly a pamatovat si kolik nábojů máš v zásobníku, co myslíš? Na tom opravdu teď záleží, pokud chceš přežít. Drž se na tomto světě zuby-nehty. Potřebuji MP5. S 50-raným rozšířeným zásobníkem, tlumičem, taktickou svítilnu s efektivnost mířidel více jak 200 m. Ergonomie nad 45, Zpětný ráz menší jak 250. Maximální váha 3.8kg. Ale rozhodnutí je na tobě. Co je důležitější, cesta, nebo cíl?",
         "5ac3461486f7741d6224abb8": "To by mělo být pro začátek dostačující",
         "5ac244f386f7741356335af3": "Zbraň demokracie... Děkuji.",
         "5ac3479686f774288030819b": "Pavel Yegorovich je jedním z mála kdo zůstal. Zajímalo by mě, jestli to je protože je voják, nebo jestli prostě nestihl odejít.",
@@ -2854,17 +2905,17 @@
         "5ac3479686f774288030819e": "Nerad se přetvařuju, ačkoli to děláme všichni. Občas ve snaze přežití a někdy protože se prostě bojíme. Víš, nejsem zrovna moc výřečný, zejména když se jedná o cizí lidi, ale ty vypadáš jako fajn chlap. Když si získáš moji důvěru, myslím, že pak už dokážeš vyjít úplně s každým. Po tom všem co se tady děje, nám může pomoci přežít jenom to, že se můžeme spolehnout jeden na druhého. Mluvil jsem s Pavlem Yegorovichem, pokud ti věří, pravděpodobně mu budu moct zařídit dodávky střelného prachu.",
         "5ac346ee86f7741d6224abcd": "Přemýšlel jsem o těch věcech, o který jsme mluvili minule. Stali se opravdu lidé, s vývojem společnosti, laskavější? Opravdu jdou ruku v ruce? Po celou tu dobu, kdy jsme věřili, že tu je civilizace, život se stal pohodlnějším a snazším. Bylo stále méně starostí o bezpečnost nebo o shánění jídla. Je lehké být humánní, když tě nic netrápí. Odpověď na tyto otázky byla celou dobu přímo přede mnou. Situace v Tarkově nám ukázala o co jsme se stali laskavějšími. Jakmile se dostavily problémy ohledně přežití, ukázalo se, že lidé nejsou o nic lepší než třeba před 500 lety. Možná jsou dokonce horší. Co myslíš, jsi jedním z nich? Dobrá, nepřemýšlej nad tím. Potřebuji aby jsi pro mě něco udělal. Nicméně, budeš si toho muset, na tuhle práci zapamatovat celkem dost. Zlepši se v zapamatovávání většího množství informací. Později tě kontaktuji.",
         "5ac3477a86f7742880308197": "Jednoho dne se zbavíme té neviditelné ruky, která nás ocejchoval těmi firemními logy a teď způsobila tenhle bordel. Myslím si, že nás to vtáhne do obrovské války. Teda alespoň všechny dosavadní události tomu nasvědčují. Pracoval jsem tady v továrně na chemikálie jako obyčejný předák. Byly to dobré časy, každý si to myslel, včetně mě. Teď je plná Scavů a hemží se to tu lupiči a psanci. Chtěl bych využít některé prostory továrny, najdi východy, které bych mohl ještě použít.",
-        "5ae327d286f7745d3a7704be": "Nazval jsem jí Lusya, myslím tu neuronovou sít. Takže, když jsem potichu, nechává mě v klidu a dokonce mi připomíná, abych se trochu prospal, když je to nutné. Ale jakmile si začnu povídat sám se sebou, snaží se mě rozptýlit hudbu, nebo něčím takovým. Každopádně jsem jí trénoval na filmech a na frázích z filmů a zdá se, že typické reakce jaké jsou uváděny ve filmech jako nejvhodnější, mě osobně moc nevyhovují. Budu muset spíše přemýšlet nad tím, jaké podněty jsou nejlepší k napodobení skutečných lidí. Chování společnosti a její stereotypy nebyla nejlepší volba. Ale to jsem odbočil, nyní sestav AK-105 s tlumičem a 60-ranným zásobníkem. Parametry: dohledová vzdálenost přes 800, ergonomie vyšší než 48, zpětný ráz méně než 550, hmotnost 4,8 kg nebo méně. A kompaktní, jako vždy, 8 slotů, nebo tak nějak.",
+        "5ae327d286f7745d3a7704be": "Nazval jsem jí Lusya, myslím tu neuronovou síť. Takže, když jsem potichu, nechává mě v klidu a dokonce mi připomíná, abych se trochu prospal, když je to nutné. Ale jakmile si začnu povídat sám se sebou, snaží se mě rozptýlit hudbu, nebo něčím takovým. Každopádně jsem jí trénoval na filmech a na frázích z filmů a zdá se, že typické reakce jaké jsou uváděny ve filmech jako nejvhodnější, mě osobně moc nevyhovují. Budu muset spíše přemýšlet nad tím, jaké podněty jsou nejlepší k napodobení skutečných lidí. Chování společnosti a její stereotypy nebyla nejlepší volba. Ale to jsem odbočil, sestav nyní AK-105 s tlumičem a 60-ranným zásobníkem. Parametry: efektivnost mířidel přes 800, ergonomie vyšší než 48, zpětný ráz méně než 550, hmotnost 4,8 kg nebo méně. A kompaktní, jako vždy, 8 slotů, nebo tak nějak.",
         "5ae44bfe86f7744d733e560c": "Vítejte v týmu, střelče.",
         "5ae327d286f7745d3a7704bb": "Vypadá to, že jsem přišel na to, jak naprogramovat tu síť! Ano, AK, to udělá.",
         "5ae44bfe86f7744d733e560f": "Dobrý dobrodružný den! Solidní výstroj, bratře. Odkud je? Od Nike, nebo od vojáků? No, ať je to, jak je to, je mi to jedno. Nemyslím si, že bych byl proti PMC nebo dokonce proti žoldákům, je to prostě situací, kterou tady máme. V našem městě je to totální hovno, takže chápu, že jdeš za mnou. No, nejdřív musím zjistit co jsi zač a zvyknout si na tebe, víš? Předtím než se pustíme do pořádných zakázek, začněme s menším obchodování a pak uvidíme, jak to půjde.",
-        "5ae326bc86f7742a41359305": "Když už jsem konečně vyřešil stabilní připojení k Internetu a napájení, Vláda přistoupila ke hře \"na blokování\" a začala blokovat polovinu IP adres přes které jde většinu datových toků v Tarkově. A to jen proto, že TerraGroup údajně používá \"Ebambium\" ISP k rozpoutání chaosu a další destabilizaci situace ve městě. Zní to jako, cultistickej blábol o Ragnaroku, že si to myslíte? A mimochodem ještě k nim a jejich zbraním — stavil se tady jeden od nich. Měl na tváři vytetovanej blesk a sháněl se po brokovnici Remington 870. Má být vylepšená taktickým zařízením, Magpul předpažbím a taktickou pistolovou pažbičkou. Ergonomie nad 58 a zpětný ráz méně než 550.",
+        "5ae326bc86f7742a41359305": "Když už jsem konečně vyřešil stabilní připojení k Internetu a napájení, Vláda přistoupila ke hře \"na blokování\" a začala blokovat polovinu IP adres přes které jde většina datových toků v Tarkově. A to jen proto, že TerraGroup údajně používá \"Ebambium\" ISP k rozpoutání chaosu a další destabilizaci situace ve městě. Zní to jako, kultistickej blábol o Ragnaroku, že si to myslíš? A mimochodem ještě k nim a jejich zbraním — stavil se tady jeden od nich. Měl na tváři vytetovanej blesk a sháněl se po brokovnici Remington 870. Má být vylepšená taktickým zařízením, Magpul předpažbím a taktickou pistolovou pažbičkou. Ergonomie nad 58 a zpětný ráz méně než 550.",
         "5ae3272086f77444fd36f5e3": "Nejdůležitější, pohodlí, to je tady důležité jako tenisky",
         "5ae44dd386f7744f1a7eb65d": "Máte pekelně přesnou mušku, téměř jako odstřelovač.",
         "5ae326bc86f7742a41359302": "Dobrá zbraň, pevná konstrukce",
-        "5ae3272086f77444fd36f5e6": "Co myslíte, je všechno to utrpení, které postihlo obyvatelstvo našeho města výsledkem činnosti lidské společnosti, nebo jde řízený proces a toto je pouze začátek? Dlouhou dobu potom, co ten chlap s bleskem odešel, jsem o tom přemýšlel. Ačkoli je to jen můj názor, i kdyby za to mohla něčí neviditelná ruka, tato společnost si to zaslouží. Způsobili jsme si to sami. Podporovali jsme je třeba už i tím, že jsme si od nich kupovali třeba tenisky nebo dokonce řepný salát. Oni tady pak za naše peníze postavili laboratoře a podniky, které nás stahují hlouběji do propasti. Okay, zase jsem se zapomněl. Zpátky k podnikání. Přines mi AKM s taktickou rukojetí Fortis Shift, tlumičem a 30-ranným zásobníkem Magpul. Ergonomie přes 45, zpětný ráz menší než 350, dohled mířidel 800 metrů nebo více.",
-        "5ae3277d86f7745b4246b391": "Mám dvě neuronové sítě. Jedna přes kamery rozpozná tváře a porovnává je v databázích a druhá sleduje obchod s kryptoměnami a reaguje na změny kurzů. Dnes jsem se rozhodl vytvořit ještě jednu, která bude sledovat teplotu, vlhkost, tlak a další parametry tady z mého úkrytu, a mimo jiné — reagovat na mojí náladu. Pojďme se podívat, jak to vypadá, když jsem hotov. Je tady objednávka na AKS-74N s doplňky Zenit. Ergonomie by přes 55, zpětný ráz méně než 500 a neměla by být větší než 8 slotů. A co je nejdůležitější s taktickou rukojetí, pažbou PT-3, prachovým krytem a úsťovou brzdou od Zenit. Všechno Zenit. Možná je to dárek pro bývalého občana Saint-Petersburgu.",
-        "5ae3280a86f77444fc552709": "Když jsem zabýval tou síti, uvědomil jsem si, jak je naše myšlení odlišné. Pokud by jsme mohli nahradit naše nedokonalé mozky tímto druhem systému... Co myslíte, nastane jednou den, kdy to půjde? Myslím, že to bude velmi brzy. Zatím nevím, jaké procesy přesně probíhají uvnitř neuronové sítě, vidím pouze vstupní signál, výsledek její akce a jaký způsobem, pomocí vlastních vnitřních pravidel, bylo závěru dosaženo. Vytváří si již vlastní nervové spojení. Jak se to liší od nás? Nechtěl byste žít ve světě, kde jsou vaše možnosti omezeny pouze vaší představivostí? Po pravdě, myslím si, že žít v takovém světě může být daleko lepší, než žít v tom našem současném. Pokud nejste limitován... A jak můžete být limitován, když jste nesmrtelný a všemocný... Tentokrát potřebujeme AS VAL. Pažba GL Shock, taktické zařízení ANPEQ-15, puškohled s nočním viděním NSPU-M a 30-ranný zásobník. Ergonomie vyšší než 34 a zpětný ráz méně než 250.",
+        "5ae3272086f77444fd36f5e6": "Co myslíte, je všechno to utrpení, které postihlo obyvatelstvo našeho města výsledkem činnosti lidské společnosti, nebo jde řízený proces a toto je pouze začátek? Dlouhou dobu potom, co ten chlap s bleskem odešel, jsem o tom přemýšlel. Ačkoli je to jen můj názor, i kdyby za to mohla něčí neviditelná ruka, tato společnost si to zaslouží. Způsobili jsme si to sami, že jsem je podporovali tím, že jsme si od nich kupovali třeba tenisky nebo dokonce řepný salát. Oni tady pak za naše peníze postavili laboratoře a podniky, které nás stahují hlouběji do propasti. Okay, zase jsem se zapomněl. Zpátky k podnikání. Přineste mi AKM s taktickou rukojetí Fortis Shift, tlumičem a 30-ranným zásobníkem Magpul. Ergonomie přes 45, zpětný ráz menší než 350, efektivnost mířidel 800 metrů nebo více.",
+        "5ae3277d86f7745b4246b391": "Mám dvě neuronové sítě. Jedna přes kamery rozpozná tváře a porovnává je v databázích a druhá sleduje obchod s kryptoměnami a reaguje na změny kurzů. Dnes jsem se rozhodl vytvořit ještě jednu, která bude sledovat teplotu, vlhkost, tlak a další parametry tady mého úkrytu, a mimo jiné — reagovat na mojí náladu. Pojďme se podívat, jak to vypadá, když jsem hotov. Je tady objednávka na AKS-74N s doplňky Zenit. Ergonomie by přes 55, zpětný ráz méně než 500 a neměla by být větší než 8 slotů. A co je nejdůležitější s taktickou rukojetí, pažbou PT-3, krytem závěru a úsťovou brzdou od Zenit. Všechno Zenit. Možná je to dárek pro bývalého občana Saint-Petersburgu.",
+        "5ae3280a86f77444fc552709": "Když jsem zabýval tou sítí, uvědomil jsem si, jak je naše myšlení odlišné. Pokud by jsme mohli nahradit naše nedokonalé mozky tímto druhem systému... Co myslíte, nastane jednou den, kdy to půjde? Myslím, že to bude velmi brzy. Zatím nevím, jaké procesy přesně probíhají uvnitř neuronové sítě, vidím pouze vstupní signál, výsledek její reakcí a jaký způsobem, pomocí vlastních vnitřních pravidel, bylo závěru dosaženo. Vytváří si již vlastní nervové spojení. Jak se to liší od nás? Nechtěl byste žít ve světě, kde jsou vaše možnosti omezeny pouze vaší představivostí? Po pravdě, myslím si, že žít v takovém světě může být daleko lepší, než žít v tom našem současném. Pokud nejste limitován... A jak můžete být limitován, když jste nesmrtelný a všemocný... Tentokrát potřebujeme AS VAL. Pažba GL Shock, taktické zařízení ANPEQ-15, puškohled s nočním viděním NSPU-M a 30-ranný zásobník. Ergonomie vyšší než 34 a zpětný ráz méně než 250.",
         "5ae3277d86f7745b4246b38e": "Nechte to na té bedně, děkuji",
         "5ae3280a86f77444fc552706": "Vem si ten klíč, pravděpodobně se ti bude hodit v lokaci Interchange",
         "5ae44ffe86f774149f15f4ec": "Víš bratře, řeknu ti to takhle, oblečení - hadry budou mít vždy hodnotu. Válka nebo ne, lidé je budou stále kupovat. V OC Ultra bylo spoustu značkových prodejen. Takové ty značky, které lidé nosili, aby budili pozornost. Teď bych ty věci odtamtud využil. Naběhni tam a podívej se, jestli tam něco zbylo, pokud to není úplně zničený. Neprohabávej koše, chci pouze značkové věci.",
@@ -2903,8 +2954,8 @@
         "5af5886186f774153d712bb8": 123,
         "5af5886186f774153d712bb7": 123,
         "5b486ce586f7744882493785": "Doufám, že jste nikomu neřekl, pro koho je ta MPX sestavena.",
-        "5b486ce586f7744882493788": "Čas se krátí, zastavil se tady nějaký chlápek, který chtěl něco vyřešit s Dealmakerem, ten údajně operuje okolo ubytoven spolu s lidmi z továrny. Sestav mu nějaké MPX, se Skeletovou pažbičkou AR-15, tlumičem výšlehu Annihilator, a taktickou svítilnou Steiner LAS/TAC 2. Dohledová vzdálenost 300 nebo více, ergonomie vyšší než 52, hmotnost méně než 4 kg, zpětný ráz méně než 250. Jen nikomu neříkej o tom, proč to sestavuješ, Dealmaker by nebyl příliš nadšený, pokud by se o tom doslechl. A jeho lidi jsou docela partička, všichni sloužili u bezpečnostních složek, než začali pracovat v továrně.",
-        "5b486d0e86f7744f4b12d792": "Chci zkusit naučit Lusyu rozeznat pravdu od lži. Pokud bude výsledek přesný alespoň z 90%, bude zajímavé poslouchat všechny ty politiky a hlavouny z Terra Group, kteří v minulých dnech vysvětlovali své ideály a vznešené cíle a ujišťovali nás, jak výhodné to bude pro naší ekonomickou zónu a jak skvělou budoucnost před sebou máme. Kolik z toho byla absolutní lež? Myslím, že všechno. Mam tady žádost o AKMN ve stylu MOE, tzn. předpažbí, pažba a pistolová pažbička. Všechno musí být MOE. Celé v černém. Navíc, úsťová brzda Rotor 43 a taktický předpažbí Magpul M-LOK AFG, zpětný ráz nižší než 350, ergonomie vyšší než 47 a hmotnost 5 kg nebo méně s dohledovou vzdáleností 500.",
+        "5b486ce586f7744882493788": "Čas se krátí, zastavil se tady nějaký chlápek, který chtěl něco řešit s Dealmakerem, ten údajně operuje okolo ubytoven spolu s lidmi z továrny. Sestav mu nějaké MPX se skeletovou pažbičkou AR-15, tlumičem výšlehu Annihilator a taktickou svítilnou Steiner LAS/TAC 2. Efektivnost mířidel 300 m nebo více, ergonomie vyšší než 52, hmotnost méně než 4 kg, zpětný ráz méně než 250. Jen nikomu neříkej o tom, proč to sestavuješ. Dealmaker by nebyl příliš nadšený, pokud by se o tom doslechl. A jeho lidi jsou docela partička, všichni sloužili u bezpečnostních složek, než začali pracovat v továrně.",
+        "5b486d0e86f7744f4b12d792": "Chci zkusit naučit Lusyu rozeznat pravdu od lži. Pokud bude výsledek přesný alespoň z 90%, bude zajímavé poslouchat všechny ty politiky a hlavouny z Terra Group, kteří v minulých dnech vysvětlovali své ideály a vznešené cíle a ujišťovali nás, jak výhodné to bude pro naší ekonomickou zónu a jak skvělou budoucnost před sebou máme. Kolik z toho byla absolutní lež? Myslím, že všechno. Mam tady žádost o AKMN ve stylu MOE, tzn. předpažbí, pažba a pistolová pažbička. Všechno musí být MOE. Celé v černém. Navíc, úsťová brzda Rotor 43 a taktický předpažbí Magpul M-LOK AFG, zpětný ráz nižší než 350, ergonomie vyšší než 47 a hmotnost 5 kg nebo méně s efektivnost mířidel 500 m.",
         "5b486d3e86f7743780259fd1": "Mimochodem o Sni... Dima - nikomu ani slovo, ale myslím si, že už to pochopil.",
         "5b486d3e86f7743780259fd4": "Tohle je pro Snipera, zdá se, že se chystá vyrazit aspoň na týden někam do lesa střílet zloduchy. Soudě podle skutečnosti, že má batoh pořádně naložený MRE stravou, vodou a bateriemi. Zatím ho nechal tady u mě. Potřebuje M1A, vybavenou montáží Ultimak M8, puškohledem Nightforce 7-35-56, kolimátorem T1 a taktickým zařízením HOLOsun. Ergonomie vyšší než 20, zpětný ráz nižší než 400 a celková hmotnost 7.3 kg nebo méně.",
         "5b486c9386f7744a08514b18": "Dobře, nechte to na té bedně.",
@@ -2914,9 +2965,9 @@
         "5b486e6186f7744a08514b27": "Ahoj. Naše podnikání je docela nebezpečné, je dobré vidět, že přicházíte v celku. Ne všichni moji klienti si může dovolit takový luxus. Nedávno našli jednoho mého klienta v kaluži krve na čerpací stanici. Řekl bych, že spousta z nich bude sledována. Ty zmrdi dobře vědí, kdo má plný kapsy. Takže moji klienti se tu osobně moc neukazují, zbytečně to přilákává nežádoucí pozornost. Ale to by nemělo bránit podnikání, ne? Pokud si lidé nepřijdou pro zboží, zboží přijde k lidem. Sežeň ty věci a schovej je pro na Interchange. Přilbu a sluchátka s mikrofonem schovej někde v obchodě Avokado. Balistiku Gzhel zahrabej do hromady odpadků v blízkosti staveniště na Interchange.",
         "5b486e6186f7744a08514b24": "Dobrá práce, brácho.",
         "5b486e2a86f7744a08514b1c": "Z hloubi svého srdce. Doručím to.",
-        "5b486c9386f7744a08514b1b": "Jednou, už docela dávno, jsem se setkal s majitelem Kiba Arms. Dokonce jsme spolu pak zašli do veřejných lázní se saunou, ačkoli to není zrovna nic pro mě. Každopádně si tam zlomil nohu, když se pokusil skočit do vody. Veselý chlapík, snil o založení celoroční Airsoftové základny s bojištěm. Zdá se, že se mu to v Tarkově vyplnilo. Největší a nejlepší bojiště na světě, jen s malým rozdílem: tady zemřete a vše ztratíte díky jediné zbloudilé střele. Dejte dohromady AK-102, s tlumičem Rotor 43, taktickou rukojetí Magpul AFG OD a svítilnu Zenit 2U. Ergonomie by měla být více než 50, zpětný ráz nižší než 500, dohled mířidel 500 nebo více. A zajistěte, aby nebyla větší než přes 8 slotů.",
+        "5b486c9386f7744a08514b1b": "Jednou, už docela dávno, jsem se setkal s majitelem Kiba Arms. Dokonce jsme spolu pak zašli do veřejných lázní se saunou, ačkoli to není zrovna nic pro mě. Každopádně si tam zlomil nohu, když se pokusil skočit do vody, veselý chlapík. Snil o založení celoroční airsoftové základny s bojištěm. Zdá se, že se mu to v Tarkově vyplnilo. Největší a nejlepší bojiště na světě, jen s malým rozdílem: tady zemřete a vše ztratíte díky jediné zbloudilé střele. Dejte dohromady AK-102 s tlumičem Rotor 43, taktickou rukojetí Magpul AFG OD a svítilnu Zenit 2U. Ergonomie by měla být více než 50, zpětný ráz nižší než 500, efektivnost mířidel 500 m nebo více. A zajistěte, aby nebyla větší než přes 8 slotů.",
         "5b486d0e86f7744f4b12d78f": "Díky. Jsem teď trochu zaneprázdněn, uvidíme se později.",
-        "5b486d8686f77450c05449c9": "Jakou má lidský život cenu, co myslíte? Nic moc, řekl bych. Ale co je pro mě ještě více překvapivé je současný trh s uměním. Hodnota děl od renomovaných autorů roste každý rok. Jsou určitě talentovaní, ale čím víc se na to díváte, tím více se vám zdá, že umění může být cokoliv. Může být obraz Grotka, vyhozený pisoár nebo hromada odpadků. Nicméně, podle mého názoru, nejvíce úžasná umělecká díla jsou zbraně, počínaje chladnými - které, jako takové již jsou všeobecně jako umění uznávány a lze je nalézt v mnoha muzeích - staré AK nebo M4, které jsou krásné, takové jaké jsou. Ale zbraň představuje skutečné umění, jen když se stane unikátní. Kousek po kousku, v rukou někoho, kdo ví, jak jí upravit. Kdo jí modifikuje k obrazu svému, vytváří mistrovské dílo a takové zaslouží být vystaveno v nejlepších muzeích. Přineste mi jedeno takové mistrovské dílo. M4A1 s tlumičem NT4 FDE, dlouhým puškovým předpažbím MK 10, puškohledem s termovizí a 60-ranným zásobníkem. Ergonomie by měla být víc než 48, zpětný ráz méně než 250 a hmotnost 5 kg nebo méně.",
+        "5b486d8686f77450c05449c9": "Jakou má lidský život cenu, co myslíte? Nic moc, řekl bych. Ale co je pro mě ještě více překvapivé je současný trh s uměním. Hodnota děl od renomovaných autorů roste každý rok. Jsou určitě talentovaní, ale čím víc se na to díváte, tím více se vám zdá, že umění může být cokoliv. Může být obraz Grotka, vyhozený pisoár nebo hromada odpadků. Nicméně podle mého názoru nejvíce úžasná umělecká díla jsou zbraně, počínaje chladnými - které, jako takové již jsou všeobecně jako umění uznávány a lze je nalézt v mnoha muzeích - staré AK nebo M4, které jsou krásné, takové jaké jsou. Ale zbraň představuje skutečné umění, jen když se stane unikátní. Kousek po kousku, v rukou někoho, kdo ví, jak jí upravit. Kdo jí modifikuje k obrazu svému, vytváří mistrovské dílo a takové zaslouží být vystaveno v nejlepších muzeích. Přineste mi jedeno takové mistrovské dílo. M4A1 s tlumičem NT4 FDE, dlouhým puškovým předpažbím MK 10, puškohledem s termovizí REAP-IR a 60-ranným zásobníkem. Ergonomie by měla být víc než 52, zpětný ráz méně než 250 a hmotnost 5 kg nebo méně.",
         "5b486ddf86f7744ba00f2234": "Mechanik se po tom ptal, dnes mu to pošlu.",
         "5b48704286f7744a14343905": "Všechna tato technologie očividně není nic pro mě, obraz je rozmazaný a signál na prd, ale nějaký \"pěkně vyžraný krysy\" jsem už zahlédl. Díky, pomohlo mi to!",
         "5b486e8e86f77448824937ad": "Oooph. Působivé, díky",
@@ -3023,7 +3074,7 @@
         "5d25dbd086f77443e625e383": "Něco vám řeknu. Pokud je váš soupeř slepý - není způsob, jak by se mohl bránit. Bez ohledu na to, jaké vybavení má na sobě. Totéž platí i pro vás. Pouze dovednosti a sebejistota vám může pomoci dostat se z takovéto situaci.",
         "5d25d4cb86f77443e55d2f76": "Musíte se vždy zcela soustředit. V každé situaci. Ztratíte koncentraci nebo zpanikaříte - zemřete. A bez ohledu na událost - zda vás trefili nebo jste byl jen opilý.",
         "5d25fd4c86f77409de05bba9": "Četl jsem v jednom článku, že si lidské oko dokáže zvyknou na pobyt ve tmě. Tak jsem to šel vyzkoušet a skoro jsem si zlomil nohu ve větrolamu. Zdá se, že jsem trochu starý na takovou adaptační proměnu. Ale ty, řekl bych, jsi v nejlepších letech. Trénink nočního vidění - nám může velice pomoci, při plnění našeho obtížného úkolu. Zařiď to.",
-        "5d25fd4c86f77409de05bba6": "Kolik jsi to říkal, že jich tam bylo? Deset? A to všichni bez \"přístroje\"? A skutečně - měníš se v nočního lovce.",
+        "5d25fd4c86f77409de05bba6": "Kolik jsi to říkal, že jich tam bylo? A to všechny bez \"přístroje\"? Skutečně - měníš se v nočního lovce.",
         "5d26042386f77443ff46d19d": "Nejde ani spočítat, kolik svinstva jsem neviděl, když jsem pracoval jako hajný. Tolik různých lidí se v lese ztratilo. Někteří z nich to zvládli dostat se ven živý, no a někteří ne. Musíte být sakra tvrdohlavej mezek, když jste to přežil.",
         "5d26042386f77443ff46d19a": "Jak to říkával Suvorov? Těžko na cvičišti, lehko na bojišti. Tato schopnost se ti bude hodit, to mi věř.",
         "5d260f8686f77469f04444b5": "No bojovníku, nastal čas vyčistit Tarkov od svinstva. Ty a já máme za sebou dlouhou cestu, ale stále se máte hodně co učit. Takže pojďme začít v oblasti chemické továrny, ne? Vyrábělo se tam spoustu užitečných věcí. Pracoval jsem tam půl roku jako šéf bezpečnosti, než dorazila Terragroup. Ale od té doby se tam děly divné věci. Říkám ti, vykašlali se na výrobu čistících prostředků a začali s něčím úplně jiným - něčím horším. A když začaly nepokoje, odešli. Pak to tam začali rozebírat zloději. Pamatuji si, každý kout a skulinu. Dlouhý příběh, zkrátím to - všechno je špatně. Takže dej těm pořádnou zlodějům lekci. Pokud tam zůstalo ještě něco užitečného, bude to rozhodně v kancelářských prostorech, to nemůžeš přehlédnout. Zajisti, aby ty šmejdi, alespoň na chvíli, zapomněli kudy se tam chodí.",
@@ -3059,7 +3110,7 @@
         "5d2f378786f774169b7e0069": "Ahoj válečníku. Jak se máš? Daří se ti dobře? Poslouchej, mam tady jeden zvláštní úkol. Mechanik mě požádal, že si chce doma udělat jednu zvláštní věcičku. Tato „věcička“ je natolik hi-tech, že je na to potřeba pokročilá elektronika. A tady ve městě to neseženeme. Ale říká se, že někde v laboratořích Terragroup je tohohle vybavení spousta. Možná tam budou i detailní informace, které taky potřebujeme. Bohužel v laboratořích je to teď příliš o hubu, než abych tě tam poslal, ale mohl bys mi sehnat vstupní karty. Můžeš? Jo a ty karty by měly být nové, ne takové ty co koupíš od obchodníků.",
         "5d4bec6a86f7741e530d2c02": "Ty jsi to vážně udělal! No kurva, udělal. Tak to musím dodržet slovo. Tady je tvoje odměna.",
         "5d66912c86f774368f43a242": "To jsou pekelný pušky! Dobrá práce! Myslím, že je na čase, abych se taky dostal do tajů zbrojařiny!",
-        "5d66912c86f774368f43a245": "Pojď dál. Chceš čaj? Dobrá, tak nic. Poslouchej, mám tady kšeftík. Už brzy tady budu mít několik přátel. A chci s nimi jít na lov, ale v žádným případě je nemůžu vzít lovit s těma MP brokovnicema. Takže chci, abys nám sehnal tři pěkný pušky. Takové pušky, abych jsem si je pak mohl vystavit ve vitríně. O odměnu neměj strach. Ta tě nezklame. Napíšu ti seznam s požadavky na ty pušky. Zpětný ráz by měl být méně než 600, ergonomie více než 50 a osazené ať jsou zaměřovačem March Tactical 3-24x42 FFP",
+        "5d66912c86f774368f43a245": "Pojď dál. Chceš čaj? Dobrá, tak nic. Poslouchej, mám tady kšeftík. Už brzy tady budu mít několik přátel. A chci si nimi zajít na lov, ale v žádným případě je nemůžu vzít lovit s těma MP brokovnicema. Takže chci, abys nám sehnal tři slušný pušky. Takové pušky, abych jsem si je pak mohl vystavit ve vitríně. Střelbu na dálku musíš milovat. Nejprve se ale musíš ujistit, že je ta puška správně nastřelená. A na to tady máme toho pravého. Jmenuje se Shturman. Ten hnusnej parchant číhá v okolí pily ve Woods. O odměnu neměj strach. Ta tě nezklame. Napíšu ti seznam s požadavky na ty pušky. (Remington M700 s puškohledem March Tactical 3-24x42 FFP)",
         "5d66914986f7743690020694": "Podívejme se, koho tady máme! Dobrý den! Slyšel jsem nějaké zvěsti, že ve skladech staré vojenské základny zbylo ještě spoustu jídla. Říká se, že se tam začali potulovat zloději, kteří hledají co zbylo po Ruském letectvu. Udělejte mi laskavost, najděte jejich cestičky a místa, kde tyto sklady jsou. A pak vám zaručuji, že jejich příští návštěva bude pekelná show.",
         "5d66914986f7743690020691": "Oni to už všechno odnesli? Sakra, musíme být rychlejší.",
         "5d6fb45f86f77449d825f9cc": "Takže, jsi se rozhodl? Jen pár injekcí. Tady a tady. Buď alespoň pár dní v klidu. Víc odpočívej a jez vitamíny.",
@@ -3114,9 +3165,9 @@
         "5fd4c9229e4b2a58b34bbd2b": "You seem to have recently split off from your group, you'll catch a bullet if you don't keep your eyes open. I'll give you a little boost from me. I see you're a decent fellow, and we'll get even as soon as you get the hang of it. I'm always in need of workers for my missions. Oh, yeah, everybody calls me Prapor, let's get acquainted. ",
         "5fd4c93f99cf630ebf4fabdf": "So, have you figured out what's what yet?  Here's the stuff, and keep your eyes open when you go out raiding. If you want to trade, come see me.",
         "5fdb3e50148b192e1a7463e2": "To znamená, že to moji chlapi nezvládli a náklad z transportů byl rozkraden... Plus, je poblíž tábor USEC? To je na hovno. Ale i tak, díky, že jsi to vyřídil.",
-        "5fdb3e50148b192e1a7463e5": "Zdravím vás, vojáku. Mám pro vás práci. Dlouhý příběh, zkrátím ho. ztratil jsem kontakt s jednou ze svých skupin a je to už docela dávno. \"Když hovno zasáhlo ventilátor\", poslal jsem je do lesa, aby vyzvedli nějaký náklad. Obávám se, že byli přepadeni. Když jsem se s nimi naposledy spojil, hlásili, že se k nim blíží USEC. Zkontrolujte, zda někdo přežil. Měli BRDM, Bukhanku a nějaké nákladní auto, nepamatuji si přesně jaké. Myslím, že i USEC se museli usadit někde poblíž.",
-        "600303b71448362c785bc3b2": "Of course I heard the air in the Woods tremble. Shturman got what he deserved. Don't stand still, you can buy new rifles now.",
-        "600303b71448362c785bc3b5": "Greetings! Come on in. I got a job for you. I just got a shipment of imported guns. The big ones, long-range, .338 caliber. And you know I'm a fan of that stuff. And there's another long-range shooter called Shturman. Deal with him, he's been a huge problem for a while now. And I'll give you an opportunity to buy those overseas elephant guns. Now move, I'm waiting to hear from you."
+        "5fdb3e50148b192e1a7463e5": "Zdravím vás, vojáku. Mám pro vás práci. Dlouhý příběh, zkrátím ho. Ztratil jsem kontakt s jednou ze svých skupin a je to už docela dávno. \"Když hovno zasáhlo ventilátor\", poslal jsem je do lesa, aby vyzvedli nějaký náklad. Obávám se, že byli přepadeni. Když jsem se s nimi naposledy spojil, hlásili, že se k nim blíží USEC. Zkontrolujte, zda někdo přežil. Měli BRDM, Bukhanku a nějaké nákladní auto, nepamatuji si přesně jaké. Myslím, že i USEC se museli usadit někde poblíž.",
+        "600303b71448362c785bc3b2": "Samozřejmě jsem slyšel, jak se vzduch ve Woods třese. Shturman dostal, co si zasloužil. Nestůj tady, teď si můžeš koupit nové pušky.",
+        "600303b71448362c785bc3b5": "Zdravím! Pojď dál. Mám pro tebe práci. Právě jsem dostal zásilku zbraní z dovozu. Ty velký s velkým dostřelem, ráže .338. Ty víš, že jsem těchto věcí zapálenej. A mám tu dalšího ostrostřelce, jménem Shturman. Už nějakou dobu je to velký problém. Vyřiď to s nim a umožním ti koupit si ty zámořský kvéry na slony. A teď se hni. Počkám, až se mi ozveš."
     },
     "quest": {
         "5936d90786f7742b1420ba5b": {
@@ -3171,7 +3222,7 @@
             "failMessageText": "5c3f04bd86f7741b10261464",
             "startedMessageText": "5c3f04bd86f7741b10261465",
             "successMessageText": "5ab0f32686f7745dd409f565",
-            "location": "55f2d3fd4bdc2d5f408b4567"
+            "location": "any"
         },
         "5967530a86f77462ba22226b": {
             "name": "Důkaz špatně pověsti",
@@ -3187,15 +3238,15 @@
             "failMessageText": "5c3f08a786f7741b10261466",
             "startedMessageText": "5c3f08a786f7741b10261467",
             "successMessageText": "5ab0f32686f7745dd409f566",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59675d6c86f7740a842fc482": {
             "name": "Kornouty na zmrzlinu",
             "note": "",
             "conditions": {
-                "59675e1d86f77414b07f137d": "Předat tři 30-ranný zásobníky pro AK Praporovi",
+                "59675e1d86f77414b07f137d": "Předat tři 60-ranné zásobníky pro AK Praporovi",
                 "5967938c86f77468cf5f9f54": "Najít klíč od bunkru v pokoji zaměstnance Terragroup",
-                "5968ed3186f77420d2328013": "Najít během raidu tři 30-ranný zásobníky do AK",
+                "5968ed3186f77420d2328013": "Najít během raidu tři 60-ranné zásobníky do AK",
                 "5a3fbe3a86f77414422e0d9b": "Najdi správný bunker ve Woods"
             },
             "description": "5abe61a786f7746ad512da4a",
@@ -3448,7 +3499,7 @@
             "failMessageText": "5c76c85486f77465815ed4db",
             "startedMessageText": "5c76c85486f77465815ed4dc",
             "successMessageText": "5ab0f32686f7745dd409f57c",
-            "location": "various"
+            "location": "any"
         },
         "5979eee086f774311955e614": {
             "name": "Zlatý lup",
@@ -3461,7 +3512,7 @@
             "failMessageText": "5c76c8b086f774658340b143",
             "startedMessageText": "5c76c8b086f774658340b144",
             "successMessageText": "5ab0f32686f7745dd409f57d",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5979f8bb86f7743ec214c7a6": {
             "name": "Polikhimský tulák",
@@ -3634,7 +3685,7 @@
             "failMessageText": "5c46deb686f7742bbd07beb0",
             "startedMessageText": "5c46deb686f7742bbd07beb1",
             "successMessageText": "5ab0f32686f7745dd409f58e",
-            "location": "56f40101d2720b2a4d8b45d6"
+            "location": "any"
         },
         "59c93e8e86f7742a406989c4": {
             "name": "Vyplatit se",
@@ -3870,7 +3921,7 @@
             "failMessageText": "5c9b7c2586f7744aac5e21b7",
             "startedMessageText": "5c9b7c2586f7744aac5e21b8",
             "successMessageText": "5ab0f32686f7745dd409f5a2",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5a27b9de86f77464e5044585": {
             "conditions": {
@@ -5395,7 +5446,7 @@
             "failMessageText": "5c12350786f7745c8b0203f0",
             "startedMessageText": "5c12350786f7745c8b0203f1",
             "description": "5c12350786f7745c8b0203f2",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5c12452c86f7744b83469073": {
             "conditions": {
@@ -5560,7 +5611,7 @@
             "conditions": {
                 "5d24ba7886f77439c92d6baa": "Najít během raidu nebo vyrobit 3 potravinové balíčky Iskra",
                 "5d24bb4886f77439c92d6bad": "Najít během raidu 2 balíčky žitných krutónů Emelya",
-                "5d24bb7286f7741f7956be74": "Najít během raidu 2 konzervy dušeného hovězího masa",
+                "5d24bb7286f7741f7956be74": "Najít během raidu 2 konzervy vynikajícího dušeného hovězího",
                 "5d76276186f774454c5360bc": "",
                 "5d77d51c86f7742fa65b6608": ""
             },
@@ -5715,7 +5766,7 @@
             "failMessageText": "5d260f8686f77469f04444b3",
             "startedMessageText": "5d260f8686f77469f04444b4",
             "description": "5d260f8686f77469f04444b5",
-            "location": "any"
+            "location": "55f2d3fd4bdc2d5f408b4567"
         },
         "5d25e2c386f77443e7549029": {
             "conditions": {
@@ -5731,7 +5782,7 @@
             "failMessageText": "5d26f9f086f77469ee70ac2d",
             "startedMessageText": "5d26f9f086f77469ee70ac2e",
             "description": "5d26f9f086f77469ee70ac2f",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e2cc86f77443e47ae019": {
             "conditions": {
@@ -5775,7 +5826,7 @@
             "failMessageText": "5d270bbc86f77469f1599fe4",
             "startedMessageText": "5d270bbc86f77469f1599fe5",
             "description": "5d270bbc86f77469f1599fe6",
-            "location": "any"
+            "location": "5714dbc024597771384a510d"
         },
         "5d25e2ee86f77443e35162ea": {
             "conditions": {
@@ -5791,7 +5842,7 @@
             "failMessageText": "5d27245186f774483c7bdb14",
             "startedMessageText": "5d27245186f774483c7bdb15",
             "description": "5d27245186f774483c7bdb16",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e43786f7740a212217fa": {
             "conditions": {
@@ -5819,7 +5870,7 @@
             "failMessageText": "5d27323c86f77445722f1f99",
             "startedMessageText": "5d27323c86f77445722f1f9a",
             "description": "5d27323c86f77445722f1f9b",
-            "location": "any"
+            "location": "56f40101d2720b2a4d8b45d6"
         },
         "5d25e44f86f77443e625e385": {
             "conditions": {
@@ -5833,7 +5884,7 @@
             "failMessageText": "5d27366b86f77445710a8073",
             "startedMessageText": "5d27366b86f77445710a8074",
             "description": "5d27366b86f77445710a8075",
-            "location": "any"
+            "location": "5704e5fad2720bc05b8b4567"
         },
         "5d25e45e86f77408251c4bfa": {
             "conditions": {
@@ -5937,7 +5988,7 @@
             "conditions": {
                 "5d7793fa86f7742fa901bc80": "",
                 "5d77940986f7742fa732bf0a": "",
-                "5fd8aa3206fb3a6b8154a2c3": "Get a Shturman kill with a Remington M700 with a scope"
+                "5fd8aa3206fb3a6b8154a2c3": "Sejmout Shturmana s Remington M700 s puškohledem"
             },
             "name": "Lov",
             "note": "",
@@ -5945,7 +5996,7 @@
             "failMessageText": "5d66912c86f774368f43a243",
             "startedMessageText": "5d66912c86f774368f43a244",
             "description": "5d66912c86f774368f43a245",
-            "location": "any"
+            "location": "5704e3c2d2720bac5b8b4567"
         },
         "5d25e4d586f77443e625e388": {
             "name": "Reserv",
@@ -6352,7 +6403,7 @@
             "description": "5edab4e4218d181e29451439",
             "name": "Cesta lovce. Sadista",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edab736cc183c769d778bc2": {
             "conditions": {
@@ -6386,7 +6437,7 @@
             "description": "5edaba9ed143ed1d6378d129",
             "name": "Kolegové. Pt.2",
             "note": "",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5edabd13218d181e29451442": {
             "conditions": {
@@ -6523,7 +6574,7 @@
             "failMessageText": "5f08e8d3ec85fa71e9393f63",
             "startedMessageText": "5f08e8d3ec85fa71e9393f64",
             "description": "5f08e8d3ec85fa71e9393f65",
-            "location": "any"
+            "location": "5704e554d2720bac5b8b456e"
         },
         "5f70abfae9f14826bf7c1c65": {
             "conditions": {
@@ -6624,11 +6675,11 @@
         },
         "600302d73b897b11364cd161": {
             "conditions": {
-                "600303250b79c6604058ce30": "Eliminate Shturman 25 times",
+                "600303250b79c6604058ce30": "Odstranit Shturmana 25 krát",
                 "600304b78dfec348e767018c": "",
                 "600304c38dfec348e767018e": ""
             },
-            "name": "Hunter",
+            "name": "Lovec",
             "note": "",
             "successMessageText": "600303b71448362c785bc3b2",
             "failMessageText": "600303b71448362c785bc3b3",
@@ -7116,6 +7167,12 @@
             "Name": ""
         },
         "5fd251ee16cac650092f5d02": {
+            "Name": ""
+        },
+        "60479c3f420fac5ebc199f86": {
+            "Name": ""
+        },
+        "60479fb29c15b12b9a480fb0": {
             "Name": ""
         }
     },
@@ -7632,8 +7689,7 @@
         "5485a8684bdc2da71d8b4567": {
             "Name": "Munice",
             "ShortName": "Munice",
-            "Description": "Munice",
-            "casingName": null
+            "Description": "Munice"
         },
         "550aa4154bdc2dd8348b456b": {
             "Name": "Funkční modifikace",
@@ -8802,7 +8858,7 @@
             "Description": "Konzerv. sleď, pravděpodobně nejlehčí jídlo mezi konzervovanými rybami, je bohatý na vápník a hořčík."
         },
         "57347da92459774491567cf5": {
-            "Name": "Dušené hovězí v konzervě",
+            "Name": "Vynikající dušené hovězí v konzervě",
             "ShortName": "Tushonka",
             "Description": "Konzervované dušené hovězí, běžně označované jako tushonka. Může být skladováno roky. Díky tomu v nenahraditelnosti konkuruje při vojenských a turistických účelech kondenzovanému mléku."
         },
@@ -13646,7 +13702,7 @@
             "Description": "Dálkové ovládání na wi-fi kameru"
         },
         "5b44c6ae86f7742d1627baea": {
-            "Name": "Bojový batoh Ana taktické Beta 2 ",
+            "Name": "Bojový batoh Ana tactical Beta 2 ",
             "ShortName": "Beta2",
             "Description": "Lehký a prostorný batoh od Ana Tactical. Navržen pro použití v různorodých podmínkách a terénu."
         },
@@ -14222,9 +14278,9 @@
             "Description": "Standardní, zásuvná pažba pro MP7A2."
         },
         "5be4038986f774527d3fae60": {
-            "Name": "Interchange paper map",
+            "Name": "Interchange - papírová mapa ",
             "ShortName": "Interchange",
-            "Description": "Interchange detailed plan"
+            "Description": "Interchange - podrobná mapa"
         },
         "5bead2e00db834001c062938": {
             "Name": "Lopatka MPL-50",
@@ -19521,14 +19577,14 @@
             "Description": "Boční lišta pro UMP, která vám umožňuje instalaci dalších zařízení."
         },
         "5fc64ea372b0dd78d51159dc": {
-            "Name": "Cultist's knife",
-            "ShortName": "Knife",
-            "Description": "A knife of a strange shape and with strange signs, taken from the сultists. Apparently, it is used as a ritual knife, but, it is not limited to this use for sure. It has technological changes in the design intended for the use of toxic substances - it is better not to touch the blade."
+            "Name": "Nůž kultisty",
+            "ShortName": "Nůž",
+            "Description": "Nůž zvláštního tvaru s podivnými znaky, získaný od kultistů. Zdá se, že se používá jako rituální nůž, ale zcela jistě to není jeho jediné využití. Technologické změny designu umožňují použití toxických látek na čepeli - je lepší se ostří nedotýkat."
         },
         "5fca138c2a7b221b2852a5c6": {
-            "Name": "Antidote xTG-12",
+            "Name": "Protijed xTG-12",
             "ShortName": "xTG-12",
-            "Description": "Removes most of the known poisons and toxins used in the combat industry. Can be used to relieve the effects of natural poisons. Gives immunity to poisoning while the components are in the blood system. Can reduce health status."
+            "Description": "Odstraňuje většinou známých jedů a toxinů používaných ve vojenském průmyslu. Může být použit ke zmírnění účinků přírodních jedů. Po dobu přítomnosti v krevním oběhu, získáváte imunitu proti otravě, ale může se vám zhoršit zdravotní stav."
         },
         "5fca13ca637ee0341a484f46": {
             "Name": "Injektor bojového stimulantu SJ9 TGLabs",
@@ -19652,6 +19708,326 @@
             "Name": "Kukla Smoke",
             "ShortName": "Smoke",
             "Description": "Značková kukla slavného hiphopového umělce z Tarkova - Smoke."
+        },
+        "60098ad7c2240c0fe85c570a": {
+            "Name": "AFAK personal tactical first aid kit",
+            "ShortName": "AFAK",
+            "Description": "AFAK (Adaptive First Aid Kit). A more advanced version of the personal first aid kit."
+        },
+        "60098af40accd37ef2175f27": {
+            "Name": "Hemostatic tourniquet CAT",
+            "ShortName": "CAT",
+            "Description": "CAT (combat application tourniquet) prevents blood loss by blocking the blood outlet by applying pressure to the affected limb. It uses a self-adjusting tensioning system and a tug-resistant buckle."
+        },
+        "60098b1705871270cd5352a1": {
+            "Name": "Emergency water ration",
+            "ShortName": "EWR",
+            "Description": "Drinking water for use in case of emergency and other circumstances where an emergency supply of liquid is needed, ready to be stored for several years."
+        },
+        "601948682627df266209af05": {
+            "Name": "UVSR Taiga-1",
+            "ShortName": "Taiga-1",
+            "Description": "UVSR \"Device for carrying out rescue operations\" Taiga-1. A truly versatile survival tool. It is a weapon and a shovel and an axe and everything you can imagine. It was developed and produced in the USSR for various agencies."
+        },
+        "60194943740c5d77f6705eea": {
+            "Name": "5.56x45 mm Mk 318 Mod 0 (SOST)",
+            "ShortName": "SOST",
+            "Description": "A special cartridge designed for the United States Marine Corps. The bullet has an open nose with a lead tipped front and a copper base. Lead is for breaking down obstacles, and copper is for further penetration of the barrier.",
+            "casingName": "5.56x45 mm Mk 318 Mod 0"
+        },
+        "601949593ae8f707c4608daa": {
+            "Name": "5.56x45 mm SSA AP",
+            "ShortName": "SSA AP",
+            "Description": "A very rare SSA armor-piercing cartridge designed to replace the M995. The bullet contains a tungsten carbide core for maximum penetration of hard targets.",
+            "casingName": "5.56x45 mm SSA AP"
+        },
+        "601aa3d2b2bcb34913271e6d": {
+            "Name": "7.62x39 mm MAI AP",
+            "ShortName": "7.62 AP",
+            "Description": "MAI armor-piercing 7.62x39 cartridges with a exposed carbide core.",
+            "casingName": "7.62x39 mm AP"
+        },
+        "602286df23506e50807090c6": {
+            "Name": "PL-15 9x19 magazine, 16-round capacity",
+            "ShortName": "9x19 PL15",
+            "Description": "Standard-issue 16-round magazine for PL-15 9x19."
+        },
+        "60228924961b8d75ee233c32": {
+            "Name": "PL-15 pistol slide",
+            "ShortName": "PL15 Slide",
+            "Description": "Regular slide for PL-15 pistol."
+        },
+        "60228a76d62c9b14ed777a66": {
+            "Name": "PL-15 Standard Frontsight",
+            "ShortName": "PL15 FS",
+            "Description": "Regular front sight for PL-15."
+        },
+        "60228a850ddce744014caf69": {
+            "Name": "PL-15 extended front sight",
+            "ShortName": "PL15 FS",
+            "Description": "Extended PL-15 front sight designed for use with a sound suppressor."
+        },
+        "602293f023506e50807090cb": {
+            "Name": "PL-15 extended rear sight",
+            "ShortName": "Sup. RS",
+            "Description": "Extended PL-15 rear sight designed for use with a sound suppressor."
+        },
+        "60229948cacb6b0506369e27": {
+            "Name": "PL-15 Standard Rear-sight",
+            "ShortName": "PL15 RS",
+            "Description": "Regular rear-sight for PL-15."
+        },
+        "602a95edda11d6478d5a06da": {
+            "Name": "Regular barrel for PL-15 9x19",
+            "ShortName": "PL-15 9x19",
+            "Description": "Regular barrel for PL-15 pistol."
+        },
+        "602a95fe4e02ce1eaa358729": {
+            "Name": "Threaded barrel for PL-15",
+            "ShortName": "PL15 thr.",
+            "Description": "Threaded barrel for PL15 9x19 pistol."
+        },
+        "602a97060ddce744014caf6f": {
+            "Name": "PL-15 9x19mm sound suppressor",
+            "ShortName": "PL15 std.",
+            "Description": "Regular PL-15 sound suppressor. "
+        },
+        "602a9740da11d6478d5a06dc": {
+            "Name": "PL-15 9x19 pistol",
+            "ShortName": "PL-15",
+            "Description": "A Russian self-loading pistol chambered for 9x19mm, developed by a team of designers from the Kalashnikov concern under the leadership of Dmitry Lebedev for the needs of Russian law enforcement agencies."
+        },
+        "602e3f1254072b51b239f713": {
+            "Name": "STM Arms buffer tube",
+            "ShortName": "STM Tube",
+            "Description": "STM Arms Receiver Extension Buffer Tube, 4-position, Com-Spec diameter will fit any AR-15-based carbine."
+        },
+        "602e620f9b513876d4338d9a": {
+            "Name": "Fab Defence GL Core Stock",
+            "ShortName": "GL Core",
+            "Description": "Telescopic stock product by Fab Defence."
+        },
+        "602e63fb6335467b0c5ac94d": {
+            "Name": "Upper receiver for STM-9 9x19 carbine",
+            "ShortName": "STM-9 Upper",
+            "Description": "Upper receiver for STM-9 carbine. Equipped with a mount for attaching additional devices."
+        },
+        "602e71bd53a60014f9705bfa": {
+            "Name": "DLG-123 pistol grip for AR-15 based systems",
+            "ShortName": "DLG123",
+            "Description": "DLG-123 pistol grip can be installed at any weapon compatible with AR-15 grips."
+        },
+        "602f85fd9b513876d4338d9c": {
+            "Name": "Magwell STM-9",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "603372b4da11d6478d5a07ff": {
+            "Name": "10.5\" barrel for STM-9 9x19",
+            "ShortName": "10.5\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 266mm long."
+        },
+        "603372d154072b51b239f9e1": {
+            "Name": "12\" barrel for STM-9 9x19",
+            "ShortName": "12\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 304mm long."
+        },
+        "603372f153a60014f970616d": {
+            "Name": "14\" barrel for STM-9 9x19",
+            "ShortName": "14\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 355mm long."
+        },
+        "603373004e02ce1eaa358814": {
+            "Name": "16\" barrel for STM-9 9x19",
+            "ShortName": "16\" STM-9 9x19",
+            "Description": "A barrel for STM-9 9x19mm ammo, 406mm long."
+        },
+        "6033749e88382f4fab3fd2c5": {
+            "Name": "MASP Ambi battle charging handle for AR-15",
+            "ShortName": "MASP Charge",
+            "Description": "MASP Ambi battle charging handle for AR-15 and compatible systems."
+        },
+        "60337f5dce399e10262255d1": {
+            "Name": "STM-9 9x19 muzzle brake",
+            "ShortName": "STM9 MB",
+            "Description": "Regular STM-9 9x19 muzzle brake."
+        },
+        "60338ff388382f4fab3fd2c8": {
+            "Name": "Magwell STM-9 Grey",
+            "ShortName": "Magwell",
+            "Description": "Regular magwell for a STM-9."
+        },
+        "60339954d62c9b14ed777c06": {
+            "Name": "STM-9 Gen.2 9x19 carabine",
+            "ShortName": "STM-9",
+            "Description": "A PCC carbine with excellent performance already \"out of the box\". Designed with the participation of world bronze medalist in Semi-Auto Rifle Vadim Mikhailov. Accuracy, speed, comfort of recoil."
+        },
+        "6033a31e9ec839204e6a2f3e": {
+            "Name": "top_bear_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a35f80ae5e2f970ba6bb": {
+            "Name": "usec_top_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3d8ed2e0509b15f9031": {
+            "Name": "bear_lower_voin",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a3fee29c9f6c9b14e74e": {
+            "Name": "usec_lower_beltstaff",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033a430ed2e0509b15f9033": {
+            "Name": "wild_feet_scavelite_taclite",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6033fa48ffd42c541047f728": {
+            "Name": "Opsmen Earmor M32 headset",
+            "ShortName": "M32",
+            "Description": "EARMOR M32 je aktivní elektronické komunikační zařízení a ochrana sluchu současně. Ideální pro taktické použití."
+        },
+        "603409c80ca681766b6a0fb2": {
+            "Name": "Brýle NPP KlASS Condor",
+            "ShortName": "Condor",
+            "Description": "Odolné balistické střelecké brýle s nárazuvzdornými čočkami."
+        },
+        "6034cf5fffd42c541047f72e": {
+            "Name": "Lovecká vesta Umka М33-SET1",
+            "ShortName": "Umka",
+            "Description": "Vesta Umka M33-SET1 je vytvořena pro lovce, cestovatele, vojenské profesionály a bezpečnostní důstojníky."
+        },
+        "6034d0230ca681766b6a0fb5": {
+            "Name": "Taktická vesta CSA",
+            "ShortName": "CSA",
+            "Description": "Nejjednodušší hrudní postroj, ušitý narychlo z pochybných materiálů, určený pro airsoft. Vojenské použití tohoto modelu je možné, ale nedoporučuje se."
+        },
+        "6034d103ca006d2dca39b3f0": {
+            "Name": "Batoh pře rameno Hazard4 Takedown",
+            "ShortName": "Takedown",
+            "Description": "Jedno-popruhový batoh přes rameno designovaný pro nošení dlouhých zbraní."
+        },
+        "6034d2d697633951dc245ea6": {
+            "Name": "Batoh Eberlestock G2 Gunslinger II (suchá zemina)",
+            "ShortName": "Gunslinger",
+            "Description": "Modulární vojenský batoh střední velikosti s dodatečným rozšířením oddílů na zbraně běžného rozměru."
+        },
+        "6034e3cb0ddce744014cb870": {
+            "Name": "STM 9 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 9\"",
+            "Description": "STM 9 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3d953a60014f970617b": {
+            "Name": "STM 15 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 15\"",
+            "Description": "STM 15 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories."
+        },
+        "6034e3e20ddce744014cb878": {
+            "Name": "STM 12 inch M-LOK handguard for AR-15",
+            "ShortName": "STM 12\"",
+            "Description": "STM 12 inch M-LOK handguard for AR-15 equipped with a M-LOK interface for installation of additional devices and accessories. "
+        },
+        "603618feffd42c541047f771": {
+            "Name": "Vojenská čepice Black",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "603619720ca681766b6a0fc4": {
+            "Name": "Vojenská čepice Coyote",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60361a7497633951dc245eb4": {
+            "Name": "Vojenská čepice Flora",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60361b0b5a45383c122086a1": {
+            "Name": "Vojenská čepice Desert",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60361b5a9a15b10d96792291": {
+            "Name": "Vojenská čepice UCP",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
+        },
+        "60363c0c92ec1c31037959f5": {
+            "Name": "Plynová maska GP-7",
+            "ShortName": "GP-7",
+            "Description": "Civilní plynová maska GP-7 je filtrační prostředek individuální ochrany dýchacích orgánů, očí a pokožky obličeje."
+        },
+        "603648ff5a45383c122086ac": {
+            "Name": "Hrudní postroj Azimut SS Jhuk Chest Harness (černá)",
+            "ShortName": "Azimut",
+            "Description": "Jednoduchý, nylonový nosný systém s neodnímatelnými kapsami. Umožňuje nosit až pohádkově impozantní množství munice, bohužel na úkor pohodlí.",
+            "RigLayoutName": "Azimut"
+        },
+        "6038b228af2e28262649af14": {
+            "Name": "BEAR Rash Guard",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b24cd6505c1ec64a44a0": {
+            "Name": "USEC Sandstone",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6038b4b292ec1c3103795a0b": {
+            "Name": "Nosič plátů LBT 6094A (bronzová)",
+            "ShortName": "Slick",
+            "Description": "Jednoduchý nosič plátů od spol. LBT. Maximálně minimalistický design určený k použití s taktickou vestou."
+        },
+        "6038b4ca92ec1c3103795a0d": {
+            "Name": "Nosič plátů LBT 6094A (olivová)",
+            "ShortName": "Slick",
+            "Description": "Jednoduchý nosič plátů od spol. LBT. Maximálně minimalistický design určený k použití s taktickou vestou."
+        },
+        "6038d614d10cbf667352dd44": {
+            "Name": "Batoh přes rameno Hazard4 Takedown (multicam)",
+            "ShortName": "Takedown",
+            "Description": "Jedno-popruhový batoh přes rameno designovaný pro nošení dlouhých zbraní."
+        },
+        "60391a8b3364dc22b04d0ce5": {
+            "Name": "Termite",
+            "ShortName": "Termite",
+            "Description": "Zápalné směsi na bázi termitů jsou sloučeniny hliníkového prášku a oxidu železa. Tyto směsi mají velmi vysokou teplotu hoření a jsou schopné hořet i bez přítomnosti kyslíku. Termit má extrémně vysokou hořlavost a je téměř nemožné jej uhasit."
+        },
+        "60391afc25aff57af81f7085": {
+            "Name": "Ráčna",
+            "ShortName": "Ráčna",
+            "Description": "Ráčny jsou nepostradatelným nářadím, které by měl mít každý zámečník nebo mechanik v autoservisu. Umožňují práci ve stísněném prostoru a mají rychle vyměnitelné pracovní hlavy. Neocenitelné nářadí!"
+        },
+        "60391b0fb847c71012789415": {
+            "Name": "Cihla TP-200 TNT",
+            "ShortName": "TP-200",
+            "Description": "TP-200 je určen k použití v náložích při seismickém průzkumu, nebo jako meziproduktový detonátor při iniciaci výbušných náloží ve vrtech, dále k drcení nadrozměrných předmětů a k provádění speciálních trhacích prací."
+        },
+        "603d01a1b41c9b37c6592047": {
+            "Name": "BEAR VOIN",
+            "ShortName": "",
+            "Description": ""
+        },
+        "603d01b9d10cbf667352dd4a": {
+            "Name": "USEC Sage Warrior",
+            "ShortName": "",
+            "Description": ""
+        },
+        "6040dd4ddcf9592f401632d2": {
+            "Name": "Hrudní postroj Azimut SS Jhuk (SURPAT)",
+            "ShortName": "Azimut",
+            "Description": "Jednoduchý, nylonový nosný systém s neodnímatelnými kapsami. Umožňuje nosit až pohádkově impozantní množství munice, bohužel na úkor pohodlí.",
+            "RigLayoutName": "Azimut"
+        },
+        "6040de02647ad86262233012": {
+            "Name": "Vojenská čepice CADPAT ",
+            "ShortName": "Čepice",
+            "Description": "Vojenská čepice"
         }
     },
     "locations": {
@@ -19802,9 +20178,9 @@
         "5a7c2eca46aef81a7ca2145d": {
             "FullName": "Sergej Arsenyevich Samoylov",
             "FirstName": "Sergej Arsenyevich",
-            "Nickname": "Mechanic",
+            "Nickname": "Mechanik",
             "Location": "Chemička",
-            "Description": "Předák z chemičky. Před konfliktem a na jeho počátku upravoval a opravoval zbraně a prováděl údržbu složitých zařízení a technologií. Preferuje život s ústraní a diskrétní jednání. Pracovat s ním je výzvou, jelikož zadává různorodé a obtížné úkoly."
+            "Description": "Předák z chemičky. Před konfliktem a na jeho počátku upravoval a opravoval zbraně a prováděl údržbu složitých zařízení a technologií. Preferuje život v ústraní a diskrétní jednání. Pracovat s ním je výzvou, jelikož zadává různorodé a obtížné úkoly."
         },
         "5ac3b934156ae10c4430e83c": {
             "FullName": "Abramyan Arshavir Sarkisivich",

@@ -9,6 +9,9 @@
 
 "use strict";
 
+const HttpResponse = require("../utils/HttpResponse");
+const TimeUtil = require("../utils/TimeUtil");
+
 class ProfileCallbacks
 {
     static onLoad(sessionID)
@@ -19,17 +22,17 @@ class ProfileCallbacks
     static createProfile(url, info, sessionID)
     {
         profile_f.controller.createProfile(info, sessionID);
-        return https_f.response.getBody({"uid": `pmc${sessionID}`});
+        return HttpResponse.getBody({"uid": `pmc${sessionID}`});
     }
 
     static getProfileData(url, info, sessionID)
     {
-        return https_f.response.getBody(profile_f.controller.getCompleteProfile(sessionID));
+        return HttpResponse.getBody(profile_f.controller.getCompleteProfile(sessionID));
     }
 
     static regenerateScav(url, info, sessionID)
     {
-        return https_f.response.getBody([profile_f.controller.generateScav(sessionID)]);
+        return HttpResponse.getBody([profile_f.controller.generateScav(sessionID)]);
     }
 
     static changeNickname(url, info, sessionID)
@@ -38,15 +41,15 @@ class ProfileCallbacks
 
         if (output === "taken")
         {
-            return https_f.response.getBody(null, 255, "The nickname is already in use");
+            return HttpResponse.getBody(null, 255, "The nickname is already in use");
         }
 
         if (output === "tooshort")
         {
-            return https_f.response.getBody(null, 1, "The nickname is too short");
+            return HttpResponse.getBody(null, 1, "The nickname is too short");
         }
 
-        return https_f.response.getBody({
+        return HttpResponse.getBody({
             "status": 0,
             "nicknamechangedate": TimeUtil.getTimestamp()
         });
@@ -58,25 +61,25 @@ class ProfileCallbacks
 
         if (output === "taken")
         {
-            return https_f.response.getBody(null, 255, "The nickname is already in use");
+            return HttpResponse.getBody(null, 255, "The nickname is already in use");
         }
 
         if (output === "tooshort")
         {
-            return https_f.response.getBody(null, 256, "The nickname is too short");
+            return HttpResponse.getBody(null, 256, "The nickname is too short");
         }
 
-        return https_f.response.getBody({"status": "ok"});
+        return HttpResponse.getBody({"status": "ok"});
     }
 
     static getReservedNickname(url, info, sessionID)
     {
-        return https_f.response.getBody("SPTarkov");
+        return HttpResponse.getBody("SPTarkov");
     }
 
     static getProfileStatus(url, info, sessionID)
     {
-        return https_f.response.getBody([
+        return HttpResponse.getBody([
             {
                 "profileid": `scav${sessionID}`,
                 "status": "Free",
