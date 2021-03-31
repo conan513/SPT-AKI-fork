@@ -28,7 +28,6 @@ const config = {
         "isUsec": 50,
         "types": {
             "assault": 30,
-            "assaultGroup": 100,
             "pmcBot": 30
         }
     }
