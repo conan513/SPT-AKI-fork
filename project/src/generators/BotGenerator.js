@@ -446,7 +446,7 @@ class BotGenerator
 
     /** Generates extra magazines or bullets (if magazine is internal) and adds them to TacticalVest and Pockets.
     * Additionally, adds extra bullets to SecuredContainer */
-     static generateExtraMagazines(weaponMods, weaponTemplate, magCounts, ammoTpl)
+    static generateExtraMagazines(weaponMods, weaponTemplate, magCounts, ammoTpl)
     {
         let magazineTpl = "";
         const magazine = weaponMods.find(m => m.slotId === "mod_magazine");
@@ -742,7 +742,7 @@ class BotGenerator
 
     /** Adds an item with all its childern into specified equipmentSlots, wherever it fits.
      * Returns a `boolean` indicating success. */
-     static addItemWithChildrenToEquipmentSlot(equipmentSlots, parentId, parentTpl, itemWithChildren)
+    static addItemWithChildrenToEquipmentSlot(equipmentSlots, parentId, parentTpl, itemWithChildren)
     {
         for (const slot of equipmentSlots)
         {

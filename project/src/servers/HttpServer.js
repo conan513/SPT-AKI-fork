@@ -20,7 +20,6 @@ const JsonUtil = require("../utils/JsonUtil");
 const Logger = require("../utils/Logger");
 const HttpResponse = require("../utils/HttpResponse");
 const NotifierController = require("../controllers/NotifierController.js");
-const HttpServer = require("../servers/HttpServer.js");
 
 class HttpServer
 {

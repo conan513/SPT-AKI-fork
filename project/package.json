@@ -40,7 +40,14 @@
     },
     "babel": {
         "presets": [
-            "@babel/preset-env"
+            [
+                "@babel/env",
+                {
+                    "targets": {
+                        "node": "current"
+                    }
+                }
+            ]
         ],
         "plugins": [
             "@babel/plugin-proposal-class-properties"
@@ -48,10 +55,6 @@
     },
     "eslintConfig": {
         "parser": "@babel/eslint-parser",
-        "env": {
-            "browser": true,
-            "es2021": true
-        },
         "extends": "eslint:recommended",
         "parserOptions": {
             "ecmaVersion": 12,

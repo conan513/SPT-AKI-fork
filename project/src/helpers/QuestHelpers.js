@@ -31,7 +31,8 @@ class QuestHelpers
 
     static filterConditions(q, questType, furtherFilter = null)
     {
-        const filteredQuests = q.filter(c => {
+        const filteredQuests = q.filter(c =>
+        {
             if (c._parent === questType)
             {
                 if (furtherFilter)
