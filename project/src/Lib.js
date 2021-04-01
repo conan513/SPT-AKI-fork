@@ -4,12 +4,10 @@ globalThis.HashUtil = require("./utils/HashUtil.js");
 globalThis.HttpResponse = require("./utils/HttpResponse.js");
 globalThis.JsonUtil = require("./utils/JsonUtil.js");
 globalThis.Logger = require("./utils/Logger.js");
+globalThis.ModLoader = require("./utils/ModLoader.js");
 globalThis.RandomUtil = require("./utils/RandomUtil.js");
 globalThis.VFS = require("./utils/VFS.js");
 globalThis.TimeUtil = require("./utils/TimeUtil.js");
-
-// others
-globalThis.Mods = require("./controllers/ModController.js");
 
 // Helpers
 globalThis.ContainerHelper = require("./Helpers/ContainerHelper.js");
