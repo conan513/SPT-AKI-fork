@@ -1,5 +1,5 @@
 module.exports = {
-    "limits": {
+    "presetBatch": {
         "assault": 30,
         "assaultGroup": 30,
         "cursedAssault": 30,

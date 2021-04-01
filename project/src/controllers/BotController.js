@@ -21,7 +21,7 @@ class BotController
 {
     static getBotLimit(type)
     {
-        return BotConfig.limits[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
+        return BotConfig.presetBatch[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
     }
 
     static getBotDifficulty(type, difficulty)
