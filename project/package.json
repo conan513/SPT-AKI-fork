@@ -45,7 +45,9 @@
                 {
                     "targets": {
                         "node": "current"
-                    }
+                    },
+                    "useBuiltIns": "usage",
+                    "corejs": "3.10.0"
                 }
             ]
         ],
