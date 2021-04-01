@@ -24,7 +24,7 @@ const HttpResponse = require("../utils/HttpResponse");
 class InventoryController
 {
     /* Based on the item action, determine whose inventories we should be looking at for from and to. */
-    getOwnerInventoryItems(body, sessionID)
+    static getOwnerInventoryItems(body, sessionID)
     {
         let isSameInventory = false;
         let pmcItems = profile_f.controller.getPmcProfile(sessionID).Inventory.items;
@@ -75,18 +75,18 @@ class InventoryController
     * transfers items from one profile to another if fromOwner/toOwner is set in the body.
     * otherwise, move is contained within the same profile_f.
     * */
-    moveItem(pmcData, body, sessionID)
+    static moveItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        let items = this.getOwnerInventoryItems(body, sessionID);
+        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
         {
-            this.moveItemInternal(items.from, body);
+            InventoryController.moveItemInternal(items.from, body);
         }
         else
         {
-            this.moveItemToProfile(items.from, items.to, body);
+            InventoryController.moveItemToProfile(items.from, items.to, body);
         }
 
         return output;
@@ -97,9 +97,9 @@ class InventoryController
     * toProfileData: Profile of the destination.
     * body: Move request
     */
-    moveItemToProfile(fromItems, toItems, body)
+    static moveItemToProfile(fromItems, toItems, body)
     {
-        this.handleCartridges(fromItems, body);
+        InventoryController.handleCartridges(fromItems, body);
 
         let idsToMove = ItemHelper.findAndReturnChildrenByItems(fromItems, body.item);
 
@@ -138,9 +138,9 @@ class InventoryController
     * items: Items
     * body: Move request
     */
-    moveItemInternal(items, body)
+    static moveItemInternal(items, body)
     {
-        this.handleCartridges(items, body);
+        InventoryController.handleCartridges(items, body);
 
         for (let item of items)
         {
@@ -170,7 +170,7 @@ class InventoryController
     * items: Items
     * body: Move request
     */
-    handleCartridges(items, body)
+    static handleCartridges(items, body)
     {
         // -> Move item to diffrent place - counts with equiping filling magazine etc
         if (body.to.container === "cartridges")
@@ -190,7 +190,7 @@ class InventoryController
     }
 
     /* Remove item of itemId and all of its descendants from profile. */
-    removeItemFromProfile(profileData, itemId, output = null)
+    static removeItemFromProfile(profileData, itemId, output = null)
     {
         // get items to remove
         let ids_toremove = InventoryHelper.findAndReturnChildren(profileData, itemId);
@@ -217,7 +217,7 @@ class InventoryController
     * Remove Item
     * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
     */
-    removeItem(profileData, body, output, sessionID)
+    static removeItem(profileData, body, output, sessionID)
     {
         let toDo = [body];
 
@@ -228,25 +228,25 @@ class InventoryController
             return "";
         }
 
-        this.removeItemFromProfile(profileData, toDo[0], output);
+        InventoryController.removeItemFromProfile(profileData, toDo[0], output);
         return output;
     }
 
-    discardItem(pmcData, body, sessionID)
+    static discardItem(pmcData, body, sessionID)
     {
         insurance_f.controller.remove(pmcData, body.item, sessionID);
-        return this.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
+        return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
     }
 
     /* Split Item
     * spliting 1 item into 2 separate items ...
     * */
-    splitItem(pmcData, body, sessionID)
+    static splitItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
         let location = body.container.location;
 
-        let items = this.getOwnerInventoryItems(body, sessionID);
+        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (!("location" in body.container) && body.container.container === "cartridges")
         {
@@ -302,10 +302,10 @@ class InventoryController
      * Merge Item
      * merges 2 items into one, deletes item from `body.item` and adding number of stacks into `body.with`
      */
-    mergeItem(pmcData, body, sessionID)
+    static mergeItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        let items = this.getOwnerInventoryItems(body, sessionID);
+        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         for (let key in items.to)
         {
@@ -357,7 +357,7 @@ class InventoryController
     /* Transfer item
     * Used to take items from scav inventory into stash or to insert ammo into mags (shotgun ones) and reloading weapon by clicking "Reload"
     * */
-    transferItem(pmcData, body, sessionID)
+    static transferItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
         let itemFrom = null;
@@ -423,7 +423,7 @@ class InventoryController
     /* Swap Item
     * its used for "reload" if you have weapon in hands and magazine is somewhere else in rig or backpack in equipment
     * */
-    swapItem(pmcData, body, sessionID)
+    static swapItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -450,7 +450,7 @@ class InventoryController
     /* Give Item
     * its used for "add" item like gifts etc.
     * */
-    addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
+    static addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
     {
         const fenceID = "579dc571d53a0658a154fbec";
         let itemLib = [];
@@ -731,7 +731,7 @@ class InventoryController
         return output;
     }
 
-    foldItem(pmcData, body, sessionID)
+    static foldItem(pmcData, body, sessionID)
     {
         for (let item of pmcData.Inventory.items)
         {
@@ -745,7 +745,7 @@ class InventoryController
         return "";
     }
 
-    toggleItem(pmcData, body, sessionID)
+    static toggleItem(pmcData, body, sessionID)
     {
         for (let item of pmcData.Inventory.items)
         {
@@ -759,7 +759,7 @@ class InventoryController
         return "";
     }
 
-    tagItem(pmcData, body, sessionID)
+    static tagItem(pmcData, body, sessionID)
     {
         for (let item of pmcData.Inventory.items)
         {
@@ -792,7 +792,7 @@ class InventoryController
         return "";
     }
 
-    bindItem(pmcData, body, sessionID)
+    static bindItem(pmcData, body, sessionID)
     {
         for (let index in pmcData.Inventory.fastPanel)
         {
@@ -806,7 +806,7 @@ class InventoryController
         return ItemEventRouter.getOutput();
     }
 
-    examineItem(pmcData, body, sessionID)
+    static examineItem(pmcData, body, sessionID)
     {
         let itemID = "";
 
@@ -880,7 +880,7 @@ class InventoryController
         return ItemEventRouter.getOutput();
     }
 
-    readEncyclopedia(pmcData, body, sessionID)
+    static readEncyclopedia(pmcData, body, sessionID)
     {
         for (let id of body.ids)
         {
@@ -890,7 +890,7 @@ class InventoryController
         return ItemEventRouter.getOutput();
     }
 
-    sortInventory(pmcData, body, sessionID)
+    static sortInventory(pmcData, body, sessionID)
     {
         let items = pmcData.Inventory.items;
 
@@ -938,4 +938,4 @@ class InventoryController
     }
 }
 
-module.exports = new InventoryController();
+module.exports = InventoryController;

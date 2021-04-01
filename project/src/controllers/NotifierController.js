@@ -20,19 +20,16 @@ const HttpConfig = require("../configs/Httpconfig.js");
  */
 class NotifierController
 {
-    constructor()
-    {
-        /**
-         * The default notification sent when waiting times out.
-         */
-        this.defaultMessage = {
-            type: "ping",
-            eventId: "ping"
-        };
-    }
+    /**
+     * The default notification sent when waiting times out.
+     */
+    static defaultMessage = {
+        "type": "ping",
+        "eventId": "ping"
+    };
 
     /** Creates a new notification with the specified dialogueMessage object (default type is "new_message"). */
-    createNewMessageNotification(dialogueMessage, extraData = {})
+    static createNewMessageNotification(dialogueMessage, extraData = {})
     {
         return {
             "type": (dialogueMessage.type === 4) ? "RagfairOfferSold" : "new_message",
@@ -45,17 +42,17 @@ class NotifierController
         };
     }
 
-    getServer(sessionID)
+    static getServer(sessionID)
     {
         return `${https_f.server.getBackendUrl()}/notifierServer/get/${sessionID}`;
     }
 
-    getWebSocketServer(sessionID)
+    static getWebSocketServer(sessionID)
     {
         return `${https_f.server.getWebsocketUrl()}/notifierServer/getwebsocket/${sessionID}`;
     }
 
-    getChannel(sessionID)
+    static getChannel(sessionID)
     {
         return {
             "server": HttpConfig.ip,
@@ -67,4 +64,4 @@ class NotifierController
     }
 }
 
-module.exports = new NotifierController();
+module.exports = NotifierController;

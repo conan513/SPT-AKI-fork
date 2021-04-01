@@ -15,12 +15,12 @@ const Helpers = require("../helpers/PlzRefactorMeHelper");
 
 class PresetBuildController
 {
-    getUserBuilds(sessionID)
+    static getUserBuilds(sessionID)
     {
         return Object.values(SaveServer.profiles[sessionID].weaponbuilds);
     }
 
-    saveBuild(pmcData, body, sessionID)
+    static saveBuild(pmcData, body, sessionID)
     {
         delete body.Action;
         body.id = HashUtil.generate();
@@ -40,7 +40,7 @@ class PresetBuildController
         return output;
     }
 
-    removeBuild(pmcData, body, sessionID)
+    static removeBuild(pmcData, body, sessionID)
     {
         let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
@@ -58,4 +58,4 @@ class PresetBuildController
     }
 }
 
-module.exports = new PresetBuildController();
+module.exports = PresetBuildController;

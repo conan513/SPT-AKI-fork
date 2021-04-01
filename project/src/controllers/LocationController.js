@@ -19,7 +19,7 @@ const TimeUtil = require("../utils/TimeUtil");
 class LocationController
 {
     /* generates a random location preset to use for local session */
-    generate(name)
+    static generate(name)
     {
         let location = DatabaseServer.tables.locations[name];
         let output = location.base;
@@ -114,14 +114,14 @@ class LocationController
     }
 
     /* get a location with generated loot data */
-    get(location)
+    static get(location)
     {
         let name = location.toLowerCase().replace(" ", "");
-        return this.generate(name);
+        return LocationController.generate(name);
     }
 
     /* get all locations without loot data */
-    generateAll()
+    static generateAll()
     {
         let locations = DatabaseServer.tables.locations;
         let base = DatabaseServer.tables.locations.base;
@@ -146,4 +146,4 @@ class LocationController
     }
 }
 
-module.exports = new LocationController();
+module.exports = LocationController;

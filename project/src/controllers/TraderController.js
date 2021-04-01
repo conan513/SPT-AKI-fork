@@ -21,15 +21,12 @@ const RandomUtil = require("../utils/RandomUtil");
 
 class TraderController
 {
-    constructor()
-    {
-        DatabaseServer.tables.traders = {};
-        this.fenceAssort = undefined;
-    }
+    static fenceAssort = undefined;
 
     load()
     {
-        this.updateTraders();
+        DatabaseServer.tables.traders = {};
+        TraderController.updateTraders();
     }
 
     getTrader(traderID, sessionID)
@@ -40,7 +37,7 @@ class TraderController
         if (!(traderID in pmcData.TraderStandings))
         {
             profile_f.controller.resetTrader(sessionID, traderID);
-            this.lvlUp(traderID, sessionID);
+            TraderController.lvlUp(traderID, sessionID);
         }
 
         trader.loyalty.currentLevel = pmcData.TraderStandings[traderID].currentLevel;
@@ -68,7 +65,7 @@ class TraderController
                 continue;
             }
 
-            traders.push(this.getTrader(traderID, sessionID));
+            traders.push(TraderController.getTrader(traderID, sessionID));
         }
 
         return traders;
@@ -134,14 +131,14 @@ class TraderController
             const time = TimeUtil.getTimestamp();
             const trader = DatabaseServer.tables.traders[traderID].base;
 
-            if (!this.fenceAssort || trader.supply_next_time < time)
+            if (!TraderController.fenceAssort || trader.supply_next_time < time)
             {
                 Logger.warning("generating fence");
-                this.fenceAssort = this.generateFenceAssort();
+                TraderController.fenceAssort = TraderController.generateFenceAssort();
                 ragfair_f.server.generateTraderOffers(traderID);
             }
 
-            return this.fenceAssort;
+            return TraderController.fenceAssort;
         }
 
         const pmcData = profile_f.controller.getPmcProfile(sessionID);
@@ -153,7 +150,7 @@ class TraderController
         {
             if (result.loyal_level_items[itemID] > pmcData.TraderStandings[traderID].currentLevel)
             {
-                result = this.removeItemFromAssort(result, itemID);
+                result = TraderController.removeItemFromAssort(result, itemID);
             }
         }
 
@@ -166,17 +163,17 @@ class TraderController
             {
                 if (itemID in questassort.started && quest_f.controller.questStatus(pmcData, questassort.started[itemID]) !== "Started")
                 {
-                    result = this.removeItemFromAssort(result, itemID);
+                    result = TraderController.removeItemFromAssort(result, itemID);
                 }
 
                 if (itemID in questassort.success && quest_f.controller.questStatus(pmcData, questassort.success[itemID]) !== "Success")
                 {
-                    result = this.removeItemFromAssort(result, itemID);
+                    result = TraderController.removeItemFromAssort(result, itemID);
                 }
 
                 if (itemID in questassort.fail && quest_f.controller.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
                 {
-                    result = this.removeItemFromAssort(result, itemID);
+                    result = TraderController.removeItemFromAssort(result, itemID);
                 }
             }
         }
@@ -302,7 +299,7 @@ class TraderController
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
             || ItemHelper.isNotSellable(item._tpl)
-            || this.traderFilter(trader.sell_category, item._tpl) === false)
+            || TraderController.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }

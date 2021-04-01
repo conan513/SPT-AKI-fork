@@ -13,7 +13,7 @@ const Logger = require("../utils/Logger");
 
 class TradeController
 {
-    buyItem(pmcData, body, sessionID, foundInRaid, upd)
+    static buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
         const output = ItemEventRouter.getOutput();
         const newReq = {
@@ -42,7 +42,7 @@ class TradeController
     /**
      * Selling item to trader
      */
-    sellItem(pmcData, body, sessionID)
+    static sellItem(pmcData, body, sessionID)
     {
         let money = 0;
         let prices = trader_f.controller.getPurchasesData(body.tid, sessionID);
@@ -87,25 +87,25 @@ class TradeController
     }
 
     // separate is that selling or buying
-    confirmTrading(pmcData, body, sessionID, foundInRaid = false, upd = null)
+    static confirmTrading(pmcData, body, sessionID, foundInRaid = false, upd = null)
     {
         // buying
         if (body.type === "buy_from_trader")
         {
-            return this.buyItem(pmcData, body, sessionID, foundInRaid, upd);
+            return TradeController.buyItem(pmcData, body, sessionID, foundInRaid, upd);
         }
 
         // selling
         if (body.type === "sell_to_trader")
         {
-            return this.sellItem(pmcData, body, sessionID);
+            return TradeController.sellItem(pmcData, body, sessionID);
         }
 
         return "";
     }
 
     // Ragfair trading
-    confirmRagfairTrading(pmcData, body, sessionID)
+    static confirmRagfairTrading(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -131,11 +131,11 @@ class TradeController
                 ragfair_f.server.removeOfferStack(data._id, offer.count);
             }
 
-            output = this.confirmTrading(pmcData, body, sessionID, false, data.items[0].upd);
+            output = TradeController.confirmTrading(pmcData, body, sessionID, false, data.items[0].upd);
         }
 
         return output;
     }
 }
 
-module.exports = new TradeController();
+module.exports = TradeController;

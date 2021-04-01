@@ -13,12 +13,9 @@ const DatabaseServer = require("../servers/DatabaseServer");
 
 class PresetController
 {
-    constructor()
-    {
-        this.lookup = {};
-    }
+    static lookup = {};
 
-    initialize()
+    static initialize()
     {
         const presets = Object.values(DatabaseServer.tables.globals.ItemPresets);
         const reverse = {};
@@ -35,33 +32,33 @@ class PresetController
             reverse[tpl].push(p._id);
         }
 
-        this.lookup = reverse;
+        PresetController.lookup = reverse;
     }
 
-    isPreset(id)
+    static isPreset(id)
     {
         return id in DatabaseServer.tables.globals.ItemPresets;
     }
 
-    hasPreset(templateId)
+    static hasPreset(templateId)
     {
-        return templateId in this.lookup;
+        return templateId in PresetController.lookup;
     }
 
-    getPreset(id)
+    static getPreset(id)
     {
         return DatabaseServer.tables.globals.ItemPresets[id];
     }
 
-    getPresets(templateId)
+    static getPresets(templateId)
     {
-        if (!this.hasPreset(templateId))
+        if (!PresetController.hasPreset(templateId))
         {
             return [];
         }
 
         const presets = [];
-        const ids = this.lookup[templateId];
+        const ids = PresetController.lookup[templateId];
 
         for (const id of ids)
         {
@@ -71,14 +68,14 @@ class PresetController
         return presets;
     }
 
-    getStandardPreset(templateId)
+    static getStandardPreset(templateId)
     {
-        if (!this.hasPreset(templateId))
+        if (!PresetController.hasPreset(templateId))
         {
             return false;
         }
 
-        const allPresets = this.getPresets(templateId);
+        const allPresets = PresetController.getPresets(templateId);
 
         for (const p of allPresets)
         {
@@ -91,9 +88,9 @@ class PresetController
         return allPresets[0];
     }
 
-    getBaseItemTpl(presetId)
+    static getBaseItemTpl(presetId)
     {
-        if (this.isPreset(presetId))
+        if (PresetController.isPreset(presetId))
         {
             let preset = DatabaseServer.tables.globals.ItemPresets[presetId];
 
@@ -110,4 +107,4 @@ class PresetController
     }
 }
 
-module.exports = new PresetController();
+module.exports = PresetController;

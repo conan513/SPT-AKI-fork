@@ -14,7 +14,7 @@ const Logger = require("../utils/Logger");
 
 class RepairController
 {
-    repair(pmcData, body, sessionID)
+    static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
         const trader = trader_f.controller.getTrader(body.tid, sessionID);
@@ -73,4 +73,4 @@ class RepairController
     }
 }
 
-module.exports = new RepairController();
+module.exports = RepairController;
