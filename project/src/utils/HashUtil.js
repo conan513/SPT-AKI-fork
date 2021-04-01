@@ -15,7 +15,7 @@ const TimeUtil = require("./TimeUtil");
 
 class HashUtil
 {
-    generate()
+    static generate()
     {
         const shasum = crypto.createHash("sha1");
         const time = Math.random() * TimeUtil.getTimestamp();
@@ -25,4 +25,4 @@ class HashUtil
     }
 }
 
-module.exports = new HashUtil();
+module.exports = HashUtil;

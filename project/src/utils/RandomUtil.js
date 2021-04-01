@@ -10,42 +10,42 @@
 
 class RandomUtil
 {
-    getInt(min, max)
+    static getInt(min, max)
     {
         min = Math.ceil(min);
         max = Math.floor(max);
         return (max > min) ? Math.floor(Math.random() * (max - min + 1) + min) : min;
     }
 
-    getIntEx(max)
+    static getIntEx(max)
     {
         return (max > 1) ? Math.floor(Math.random() * (max - 2) + 1) : 1;
     }
 
-    getFloat(min, max)
+    static getFloat(min, max)
     {
         return Math.random() * (max - min) + min;
     }
 
-    getBool()
+    static getBool()
     {
         return Math.random() < 0.5;
     }
 
-    getArrayValue(arr)
+    static getArrayValue(arr)
     {
-        return arr[this.getInt(0, arr.length - 1)];
+        return arr[RandomUtil.getInt(0, arr.length - 1)];
     }
 
-    getKey(node)
+    static getKey(node)
     {
-        return this.getArrayValue(Object.keys(node));
+        return RandomUtil.getArrayValue(Object.keys(node));
     }
 
-    getKeyValue(node)
+    static getKeyValue(node)
     {
-        return node[this.getArrayValue(Object.keys(node))];
+        return node[RandomUtil.getKey(node)];
     }
 }
 
-module.exports = new RandomUtil();
+module.exports = RandomUtil;

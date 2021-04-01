@@ -10,7 +10,7 @@
 
 class JsonUtil
 {
-    serialize(data, prettify = false)
+    static serialize(data, prettify = false)
     {
         if (prettify)
         {
@@ -22,15 +22,15 @@ class JsonUtil
         }
     }
 
-    deserialize(string)
+    static deserialize(string)
     {
         return JSON.parse(string);
     }
 
-    clone(data)
+    static clone(data)
     {
         return JSON.parse(JSON.stringify(data));
     }
 }
 
-module.exports = new JsonUtil();
+module.exports = JsonUtil;

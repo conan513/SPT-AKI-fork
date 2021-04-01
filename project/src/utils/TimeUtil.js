@@ -10,7 +10,7 @@
 
 class TimeUtil
 {
-    formatTime(date)
+    static formatTime(date)
     {
         const hours = `0${date.getHours()}`.substr(-2);
         const minutes = `0${date.getMinutes()}`.substr(-2);
@@ -18,27 +18,27 @@ class TimeUtil
         return `${hours}-${minutes}-${seconds}`;
     }
 
-    formatDate(date)
+    static formatDate(date)
     {
         const day = `0${date.getDate()}`.substr(-2);
         const month = `0${date.getMonth() + 1}`.substr(-2);
         return `${date.getFullYear()}-${month}-${day}`;
     }
 
-    getDate()
+    static getDate()
     {
         return this.formatDate(new Date());
     }
 
-    getTime()
+    static getTime()
     {
         return this.formatTime(new Date());
     }
 
-    getTimestamp()
+    static getTimestamp()
     {
         return Math.floor(new Date().getTime() / 1000);
     }
 }
 
-module.exports = new TimeUtil();
+module.exports = TimeUtil;

@@ -19,6 +19,8 @@ class App
 
     static load()
     {
+        Logger.setupExceptions();
+
         // execute onLoad callbacks
         console.log("Server: executing startup callbacks...");
 
