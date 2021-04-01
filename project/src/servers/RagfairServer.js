@@ -44,7 +44,7 @@ class RagfairServer
     {
         for (const traderID in DatabaseServer.tables.traders)
         {
-            RagfairServer.toUpdate[traderID] = true;
+            RagfairServer.toUpdate[traderID] = RagfairConfig.static.traders[traderID] || false;
         }
     }
 
@@ -552,7 +552,6 @@ class RagfairServer
     {
         return userID in DatabaseServer.tables.traders;
     }
-
 
     static isPlayer(userID)
     {
