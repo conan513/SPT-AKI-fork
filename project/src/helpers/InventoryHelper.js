@@ -145,7 +145,7 @@ class InventoryHelper
     static getItemSize(itemtpl, itemID, InventoryItem)
     {
         // -> Prepares item Width and height returns [sizeX, sizeY]
-        return ContainerHelper.getSizeByInventoryItemHash(itemtpl, itemID, InventoryHelper.getInventoryItemHash(InventoryItem));
+        return InventoryHelper.getSizeByInventoryItemHash(itemtpl, itemID, InventoryHelper.getInventoryItemHash(InventoryItem));
     }
 
     // note from 2027: there IS a thing i didn't explore and that is Merges With Children
