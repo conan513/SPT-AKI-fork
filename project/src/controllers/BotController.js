@@ -66,7 +66,7 @@ class BotController
         bot.Customization.Body = RandomUtil.getArrayValue(node.appearance.body);
         bot.Customization.Feet = RandomUtil.getArrayValue(node.appearance.feet);
         bot.Customization.Hands = RandomUtil.getArrayValue(node.appearance.hands);
-        bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
+        bot.Inventory = BotGenerator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
         if (role === "usec" || role === "bear")
