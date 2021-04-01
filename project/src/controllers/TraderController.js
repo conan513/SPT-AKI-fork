@@ -8,7 +8,6 @@ class TraderController
 
     static load()
     {
-        DatabaseServer.tables.traders = {};
         TraderController.updateTraders();
     }
 

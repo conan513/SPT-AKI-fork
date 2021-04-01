@@ -11,23 +11,12 @@ globalThis.TimeUtil = require("./utils/TimeUtil.js");
 // others
 globalThis.Mods = require("./controllers/ModController.js");
 
-// servers
-globalThis.DatabaseServer = require("./servers/DatabaseServer.js");
-globalThis.HttpServer = require("./servers/HttpServer.js");
-globalThis.RagfairServer = require("./servers/RagfairServer.js");
-globalThis.SaveServer = require("./servers/SaveServer.js");
-
-// routers
-globalThis.HttpRouter = require("./routers/HttpRouter.js");
-globalThis.ImageRouter = require("./routers/ImageRouter.js");
-globalThis.ItemEventRouter = require("./routers/ItemEventRouter.js");
-
 // Helpers
-globalThis.ContainerHelper = require("./Helper/ContainerHelper.js");
-globalThis.InventoryHelper = require("./Helper/InventoryHelper.js");
-globalThis.ItemHelper = require("./Helper/ItemHelper.js");
-globalThis.PlzRefactorMeHelper = require("./Helper/PlzRefactorMeHelper.js");
-globalThis.QuestHelper = require("./Helper/QuestPlzRefactorMeHelper.js");
+globalThis.ContainerHelper = require("./Helpers/ContainerHelper.js");
+globalThis.InventoryHelper = require("./Helpers/InventoryHelper.js");
+globalThis.ItemHelper = require("./Helpers/ItemHelper.js");
+globalThis.PlzRefactorMeHelper = require("./Helpers/PlzRefactorMeHelper.js");
+globalThis.QuestHelper = require("./Helpers/QuestHelper.js");
 
 // generators
 globalThis.BotGenerator = require("./generators/BotGenerator.js");
@@ -105,4 +94,15 @@ globalThis.RepairController = require("./controllers/RepairController.js");
 globalThis.TradeController = require("./controllers/TradeController.js");
 globalThis.TraderController = require("./controllers/TraderController.js");
 globalThis.WeatherController = require("./controllers/WeatherController.js");
-globalThis.WishlistController = require("./controllers/WishlistControlle.js");
+globalThis.WishlistController = require("./controllers/WishlistController.js");
+
+// servers
+globalThis.DatabaseServer = require("./servers/DatabaseServer.js");
+globalThis.HttpServer = require("./servers/HttpServer.js");
+globalThis.RagfairServer = require("./servers/RagfairServer.js");
+globalThis.SaveServer = require("./servers/SaveServer.js");
+
+// routers
+globalThis.HttpRouter = require("./routers/HttpRouter.js");
+globalThis.ImageRouter = require("./routers/ImageRouter.js");
+globalThis.ItemEventRouter = require("./routers/ItemEventRouter.js");
