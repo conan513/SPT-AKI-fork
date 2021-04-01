@@ -1,5 +1,3 @@
-const config = {
+module.exports = {
     "enabled": false
 };
-
-module.exports = config;

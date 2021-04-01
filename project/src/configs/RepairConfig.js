@@ -1,5 +1,3 @@
-const config = {
+module.exports = {
     "priceMultiplier": 1
 };
-
-module.exports = config;

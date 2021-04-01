@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
     "acceleration": 7,
     "weather": {
         "clouds": {
@@ -39,5 +39,3 @@ const config = {
         }
     }
 };
-
-module.exports = config;

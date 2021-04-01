@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
     "MIAOnRaidEnd": false,
     "raidMenuSettings": {
         "aiAmount": "AsOnline",
@@ -12,5 +12,3 @@ const config = {
         "durability": true
     }
 };
-
-module.exports = config;

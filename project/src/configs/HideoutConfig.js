@@ -1,5 +1,3 @@
-const config = {
+module.exports = {
     "runInterval": 900
 };
-
-module.exports = config;

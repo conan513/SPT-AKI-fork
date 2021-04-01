@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
     "limits": {
         "assault": 30,
         "assaultGroup": 30,
@@ -32,5 +32,3 @@ const config = {
         }
     }
 };
-
-module.exports = config;

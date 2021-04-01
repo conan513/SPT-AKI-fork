@@ -1,5 +1,3 @@
-const config = {
+module.exports = {
     "redeemTime": 48
 };
-
-module.exports = config;

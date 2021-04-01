@@ -17,57 +17,51 @@ const Logger = require("../utils/Logger");
 
 class QuestHelpers
 {
-    constructor()
-    {
-        /* changing these will require a wipe */
-        this.status = {
-            Locked: 0,
-            AvailableForStart: 1,
-            Started: 2,
-            AvailableForFinish: 3,
-            Success: 4,
-            Fail: 5,
-            FailRestartable: 6,
-            MarkedAsFailed: 7
-        };
-    }
+    /* changing these will require a wipe */
+    static status = {
+        "Locked": 0,
+        "AvailableForStart": 1,
+        "Started": 2,
+        "AvailableForFinish": 3,
+        "Success": 4,
+        "Fail": 5,
+        "FailRestartable": 6,
+        "MarkedAsFailed": 7
+    };
 
-    filterConditions(q, questType, furtherFilter = null)
+    static filterConditions(q, questType, furtherFilter = null)
     {
-
-        const filteredQuests = q.filter(
-            c =>
+        const filteredQuests = q.filter(c => {
+            if (c._parent === questType)
             {
-                if (c._parent === questType)
+                if (furtherFilter)
                 {
-                    if (furtherFilter)
-                    {
-                        return furtherFilter(c);
-                    }
-
-                    return true;
+                    return furtherFilter(c);
                 }
 
-                return false;
-            });
+                return true;
+            }
+
+            return false;
+        });
 
         return filteredQuests;
     }
 
-    getQuestConditions(q, furtherFilter = null)
+    static getQuestConditions(q, furtherFilter = null)
     {
-        return this.filterConditions(q, "Quest", furtherFilter);
+        return QuestHelpers.filterConditions(q, "Quest", furtherFilter);
     }
 
-    getLevelConditions(q, furtherFilter = null)
+    static getLevelConditions(q, furtherFilter = null)
     {
-        return this.filterConditions(q, "Level", furtherFilter);
+        return QuestHelpers.filterConditions(q, "Level", furtherFilter);
     }
 
     /**
      * returns true is the condition is satisfied
      */
-    evaluateLevel(pmcProfile, cond)
+    static evaluateLevel(pmcProfile, cond)
     {
         let level = pmcProfile.Info.Level;
         if (cond._parent === "Level")
@@ -84,13 +78,12 @@ class QuestHelpers
     }
 
     /* debug functions */
-    getQuestLocale(questId)
+    static getQuestLocale(questId)
     {
-        const questLocale = DatabaseServer.tables.locales.global["en"].quest[questId];
-        return questLocale;
+        return DatabaseServer.tables.locales.global["en"].quest[questId];
     }
 
-    getDeltaQuests(before, after)
+    static getDeltaQuests(before, after)
     {
         let knownQuestsIds = [];
 
@@ -113,11 +106,11 @@ class QuestHelpers
      * Debug Routine for showing some information on the
      * quest list in question.
      */
-    dumpQuests(quests, label = null)
+    static dumpQuests(quests, label = null)
     {
         for (const quest of quests)
         {
-            const currentQuestLocale = this.getQuestLocale(quest._id);
+            const currentQuestLocale = QuestHelpers.getQuestLocale(quest._id);
 
             Logger.debug(`${currentQuestLocale.name} (${quest._id})`);
 
@@ -129,7 +122,7 @@ class QuestHelpers
                 {
                     if (cond._props.target !== void 0)
                     {
-                        const locale = this.getQuestLocale(cond._props.target);
+                        const locale = QuestHelpers.getQuestLocale(cond._props.target);
 
                         if (locale)
                         {
@@ -190,4 +183,5 @@ class QuestHelpers
         }
     }
 }
-module.exports = new QuestHelpers();
+
+module.exports = QuestHelpers;

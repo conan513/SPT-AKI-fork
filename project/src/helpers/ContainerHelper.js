@@ -12,11 +12,10 @@ const InventoryHelper = require("./InventoryHelper");
  */
 class ContainerHelper
 {
-
     /* Finds a slot for an item in a given 2D container map
      * Output: { success: boolean, x: number, y: number, rotation: boolean }
      */
-    findSlotForItem(container2D, itemWidth, itemHeight)
+    static findSlotForItem(container2D, itemWidth, itemHeight)
     {
         let rotation = false;
         let minVolume = (itemWidth < itemHeight ? itemWidth : itemHeight) - 1;
@@ -91,7 +90,7 @@ class ContainerHelper
         return { success: false, x: null, y: null, rotation: false };
     }
 
-    fillContainerMapWithItem(container2D, x, y, itemW, itemH, rotate)
+    static fillContainerMapWithItem(container2D, x, y, itemW, itemH, rotate)
     {
         let itemWidth = rotate ? itemH : itemW;
         let itemHeight = rotate ? itemW : itemH;
@@ -114,7 +113,7 @@ class ContainerHelper
         return container2D;
     }
 
-    getContainerMap(containerW, containerH, itemList, containerId)
+    static getContainerMap(containerW, containerH, itemList, containerId)
     {
         const container2D = Array(containerH).fill(0).map(() => Array(containerW).fill(0));
         const inventoryItemHash = InventoryHelper.getInventoryItemHash(itemList);
@@ -157,4 +156,4 @@ class ContainerHelper
     }
 }
 
-module.exports = new ContainerHelper();
+module.exports = ContainerHelper;

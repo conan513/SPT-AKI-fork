@@ -1,5 +1,3 @@
-const config = {
+module.exports = {
     "newItemsMarkedFound": false
 };
-
-module.exports = config;

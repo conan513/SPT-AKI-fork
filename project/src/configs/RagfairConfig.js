@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
     "player": {
         "sellChance": 25,
         "sellTimeHrs": 12,
@@ -49,5 +49,3 @@ const config = {
         }
     }
 };
-
-module.exports = config;
