@@ -201,19 +201,11 @@ class RagfairController
 
         for (const traderID in DatabaseServer.tables.traders)
         {
-            if (traderID !== "ragfair" && !RagfairConfig.static.traders[traderID])
+            if (!RagfairConfig.traders[traderID])
             {
-                // skip trader except ragfair when trader is disabled
                 continue;
             }
 
-            if (traderID === "ragfair" && !RagfairConfig.static.items)
-            {
-                // skip ragfair when unknown is disabled
-                continue;
-            }
-
-            // add assort to display
             result[traderID] = TraderController.getAssort(sessionID, traderID);
         }
 

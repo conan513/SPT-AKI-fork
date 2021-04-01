@@ -44,7 +44,7 @@ class RagfairServer
     {
         for (const traderID in DatabaseServer.tables.traders)
         {
-            RagfairServer.toUpdate[traderID] = RagfairConfig.static.traders[traderID] || false;
+            RagfairServer.toUpdate[traderID] = RagfairConfig.traders[traderID] || false;
         }
     }
 
@@ -157,12 +157,12 @@ class RagfairServer
             const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
 
             RagfairServer.createOffer(
-                HashUtil.generate(),           // userID
-                TimeUtil.getTimestamp(),       // time
-                items,                              // items
-                RagfairServer.getOfferRequirements(items),   // barter scheme
-                assort.loyal_level_items[item._id], // loyal level
-                isPreset);                          // sellAsOnePiece
+                HashUtil.generate(),                        // userID
+                TimeUtil.getTimestamp(),                    // time
+                items,                                      // items
+                RagfairServer.getOfferRequirements(items),  // barter scheme
+                assort.loyal_level_items[item._id],         // loyal level
+                isPreset);                                  // sellAsOnePiece
         }
     }
 

@@ -258,7 +258,7 @@ class InventoryHelper
     static getPlayerStashSize(sessionID)
     {
         //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
-        let stashTPL = ContainerHelper.getStashType(sessionID);
+        let stashTPL = InventoryHelper.getStashType(sessionID);
         let stashX = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
         let stashY = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
         return [stashX, stashY];
