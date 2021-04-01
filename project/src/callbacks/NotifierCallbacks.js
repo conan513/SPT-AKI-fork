@@ -11,20 +11,21 @@
 "use strict";
 
 const HttpResponse = require("../utils/HttpResponse");
+const NotifierController = require("../controllers/NotifierController.js");
 
 class NotifierCallbacks
 {
     static createNotifierChannel(url, info, sessionID)
     {
-        return HttpResponse.getBody(notifier_f.controller.getChannel(sessionID));
+        return HttpResponse.getBody(NotifierController.getChannel(sessionID));
     }
 
     static selectProfile(url, info, sessionID)
     {
         return HttpResponse.getBody({
             "status": "ok",
-            "notifier": notifier_f.controller.getChannel(sessionID),
-            "notifierServer": notifier_f.controller.getServer(sessionID)
+            "notifier": NotifierController.getChannel(sessionID),
+            "notifierServer": NotifierController.getServer(sessionID)
         });
     }
 }

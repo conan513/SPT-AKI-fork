@@ -12,6 +12,7 @@ const DatabaseServer = require("../servers/DatabaseServer");
 const HashUtil = require("../utils/HashUtil");
 const Logger = require("../utils/Logger");
 const ItemHelper = require("./ItemHelper");
+const ProfileController = require("../controllers/ProfileController.js");
 
 class InventoryHelper
 {
@@ -88,7 +89,7 @@ class InventoryHelper
 
     static getStashType(sessionID)
     {
-        const pmcData = profile_f.controller.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
 
         const stashObj = pmcData.Inventory.items.find(
             (item) => item._id === pmcData.Inventory.stash

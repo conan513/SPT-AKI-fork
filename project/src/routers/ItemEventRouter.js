@@ -7,6 +7,7 @@
  */
 
 const Logger = require("../utils/Logger");
+const ProfileController = require("../controllers/ProfileController.js");
 
 class ItemEventRouter
 {
@@ -19,7 +20,7 @@ class ItemEventRouter
 
         for (let body of info.data)
         {
-            const pmcData = profile_f.controller.getPmcProfile(sessionID);
+            const pmcData = ProfileController.getPmcProfile(sessionID);
 
             if (ItemEventRouter.onEvent[body.Action])
             {

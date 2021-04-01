@@ -15,6 +15,7 @@ const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
 const TimeUtil = require("../utils/TimeUtil");
 const LauncherController = require("./LauncherController.js");
+const BotController = require("../controllers/BotController.js");
 
 class ProfileController
 {
@@ -122,7 +123,7 @@ class ProfileController
     static resetTrader(sessionID, traderID)
     {
         const account = LauncherController.find(sessionID);
-        const pmcData = profile_f.controller.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
@@ -138,7 +139,7 @@ class ProfileController
     static generateScav(sessionID)
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
-        let scavData = bots_f.controller.generate({
+        let scavData = BotController.generate({
             "conditions": [
                 {
                     "Role": "playerScav",

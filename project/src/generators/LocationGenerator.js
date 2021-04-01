@@ -17,6 +17,7 @@ const JsonUtil = require("../utils/JsonUtil");
 const HashUtil = require("../utils/HashUtil");
 const ContainerHelper = require("../helpers/ContainerHelper");
 const ItemHelper = require("../helpers/ItemHelper");
+const PresetController = require("../controllers/PresetController.js");
 
 class LocationGenerator
 {
@@ -170,7 +171,7 @@ class LocationGenerator
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = JsonUtil.clone(preset_f.controller.getStandardPreset(item._id));
+                let preset = JsonUtil.clone(PresetController.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };

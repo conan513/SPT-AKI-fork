@@ -11,6 +11,7 @@
 const LauncherController = require("./LauncherController.js");
 const MatchConfig = require("../configs/Matchconfig.js");
 const TimeUtil = require("../utils/TimeUtil.js");
+const ProfileController = require("../controllers/ProfileController.js");
 
 class MatchController
 {
@@ -48,12 +49,12 @@ class MatchController
     {
         if (info.profileId.includes("pmcAID"))
         {
-            return profile_f.controller.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
+            return ProfileController.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
         }
 
         if (info.profileId.includes("scavAID"))
         {
-            return profile_f.controller.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
+            return ProfileController.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
         }
 
         return null;

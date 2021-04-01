@@ -19,6 +19,9 @@ const InventoryHelper = require("../helpers/InventoryHelper");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 const TimeUtil = require("../utils/TimeUtil");
 const ItemHelper = require("../helpers/ItemHelper");
+const DialogueController = require("../controllers/DialogueController.js");
+const ProfileController = require("../controllers/ProfileController.js");
+const TraderController = require("../controllers/TraderController.js");
 
 class InsuranceController
 {
@@ -220,19 +223,19 @@ class InsuranceController
     {
         for (let traderId in InsuranceController.insured[sessionID])
         {
-            let trader = trader_f.controller.getTrader(traderId, sessionID);
+            let trader = TraderController.getTrader(traderId, sessionID);
             let time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
             let dialogueTemplates = DatabaseServer.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceStart),
-                "type": dialogue_f.controller.getMessageTypeValue("npcTrader")
+                "type": DialogueController.getMessageTypeValue("npcTrader")
             };
 
-            dialogue_f.controller.addDialogueMessage(traderId, messageContent, sessionID);
+            DialogueController.addDialogueMessage(traderId, messageContent, sessionID);
 
             messageContent = {
                 "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceFound),
-                "type": dialogue_f.controller.getMessageTypeValue("insuranceReturn"),
+                "type": DialogueController.getMessageTypeValue("insuranceReturn"),
                 "maxStorageTime": trader.insurance.max_storage_time * 3600,
                 "systemData": {
                     "date": TimeUtil.getDate(),
@@ -321,7 +324,7 @@ class InsuranceController
                     insured.messageContent.templateId = RandomUtil.getArrayValue(insuranceFailedTemplates);
                 }
 
-                dialogue_f.controller.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
+                DialogueController.addDialogueMessage(insured.traderId, insured.messageContent, sessionID, insured.items);
                 insurance.splice(i, 1);
             }
 
@@ -409,7 +412,7 @@ class InsuranceController
     static cost(info, sessionID)
     {
         let output = {};
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let inventoryItemsHash = {};
 
         for (const item of pmcData.Inventory.items)

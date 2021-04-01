@@ -9,42 +9,43 @@
 "use strict";
 
 const HttpResponse = require("../utils/HttpResponse");
+const TraderController = require("../controllers/TraderController.js");
 
 class TraderCallbacks
 {
     static load()
     {
-        trader_f.controller.load();
+        TraderController.load();
     }
 
     static getTraderList(url, info, sessionID)
     {
-        return HttpResponse.getBody(trader_f.controller.getAllTraders(sessionID));
+        return HttpResponse.getBody(TraderController.getAllTraders(sessionID));
     }
 
     static getProfilePurchases(url, info, sessionID)
     {
         const traderID = url.substr(url.lastIndexOf("/") + 1);
-        return HttpResponse.getBody(trader_f.controller.getPurchasesData(traderID, sessionID));
+        return HttpResponse.getBody(TraderController.getPurchasesData(traderID, sessionID));
     }
 
     static getTrader(url, info, sessionID)
     {
         const traderID = url.replace("/client/trading/api/getTrader/", "");
-        trader_f.controller.updateTraders();
-        return HttpResponse.getBody(trader_f.controller.getTrader(traderID, sessionID));
+        TraderController.updateTraders();
+        return HttpResponse.getBody(TraderController.getTrader(traderID, sessionID));
     }
 
     static getAssort(url, info, sessionID)
     {
         const traderID = url.replace("/client/trading/api/getTraderAssort/", "");
-        trader_f.controller.updateTraders();
-        return HttpResponse.getBody(trader_f.controller.getAssort(sessionID, traderID));
+        TraderController.updateTraders();
+        return HttpResponse.getBody(TraderController.getAssort(sessionID, traderID));
     }
 
     static update()
     {
-        return trader_f.controller.updateTraders();
+        return TraderController.updateTraders();
     }
 }
 

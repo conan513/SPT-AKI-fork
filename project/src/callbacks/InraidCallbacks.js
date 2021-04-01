@@ -10,24 +10,25 @@
 
 const InraidConfig = require("../configs/Inraidconfig.js");
 const HttpResponse = require("../utils/HttpResponse");
+const InraidController = require("../controllers/InraidController.js");
 
 class InraidCallbacks
 {
     static onLoad(sessionID)
     {
-        return inraid_f.controller.onLoad(sessionID);
+        return InraidController.onLoad(sessionID);
     }
 
     static registerPlayer(url, info, sessionID)
     {
         const location = url.split("=")[1];
-        inraid_f.controller.addPlayer(sessionID, location);
+        InraidController.addPlayer(sessionID, location);
         return HttpResponse.nullResponse();
     }
 
     static saveProgress(url, info, sessionID)
     {
-        inraid_f.controller.saveProgress(info, sessionID);
+        InraidController.saveProgress(info, sessionID);
         return HttpResponse.nullResponse();
     }
 

@@ -20,6 +20,9 @@ const Logger = require("../utils/Logger");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 const RandomUtil = require("../utils/RandomUtil");
 const HashUtil = require("../utils/HashUtil");
+const ProfileController = require("../controllers/ProfileController.js");
+const InventoryController = require("../controllers/InventoryController.js");
+const PresetController = require("../controllers/PresetController.js");
 
 const areaTypes = {
     VENTS: 0,
@@ -81,7 +84,7 @@ class HideoutController
             }
             else
             {
-                inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput(), sessionID);
+                InventoryController.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput(), sessionID);
             }
         }
 
@@ -194,7 +197,7 @@ class HideoutController
                 hideoutArea.slots.splice(slot_position, 1, slot_to_add);
             }
 
-            output = inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
+            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
         }
 
         return output;
@@ -222,7 +225,7 @@ class HideoutController
                 "tid": "ragfair"
             };
 
-            output = inventory_f.controller.addItem(pmcData, newReq, output, sessionID, null);
+            output = InventoryController.addItem(pmcData, newReq, output, sessionID, null);
 
             // If addItem returned with errors, don't continue any further
             if (output.badRequest && output.badRequest.length > 0)
@@ -230,7 +233,7 @@ class HideoutController
                 return output;
             }
 
-            pmcData = profile_f.controller.getPmcProfile(sessionID);
+            pmcData = ProfileController.getPmcProfile(sessionID);
             output.items.new[0].upd = itemToMove.upd;
 
             const item = pmcData.Inventory.items.find(i => i._id === output.items.new[0]._id);
@@ -263,7 +266,7 @@ class HideoutController
                 "tid": "ragfair"
             };
 
-            output = inventory_f.controller.addItem(pmcData, newReq, output, sessionID, null);
+            output = InventoryController.addItem(pmcData, newReq, output, sessionID, null);
 
             // If addItem returned with errors, don't continue any further
             if (output.badRequest && output.badRequest.length > 0)
@@ -299,7 +302,7 @@ class HideoutController
 
         for (let itemToDelete of body.items)
         {
-            output = inventory_f.controller.removeItem(pmcData, itemToDelete.id, output, sessionID);
+            output = InventoryController.removeItem(pmcData, itemToDelete.id, output, sessionID);
         }
 
         return output;
@@ -326,7 +329,7 @@ class HideoutController
             }
             else
             {
-                output = inventory_f.controller.removeItem(pmcData, requestedItem.id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, requestedItem.id, output, sessionID);
             }
         }
 
@@ -417,7 +420,7 @@ class HideoutController
             pmcData.Hideout.Production[BITCOIN_FARM].Products = [];
         };
 
-        return inventory_f.controller.addItem(pmcData, newBTC, output, sessionID, callback, true);
+        return InventoryController.addItem(pmcData, newBTC, output, sessionID, callback, true);
     }
 
     static takeProduction(pmcData, body, sessionID)
@@ -436,9 +439,9 @@ class HideoutController
             let id = recipe.endProduct;
 
             // replace the base item with its main preset
-            if (preset_f.controller.hasPreset(id))
+            if (PresetController.hasPreset(id))
             {
-                id = preset_f.controller.getStandardPreset(id)._id;
+                id = PresetController.getStandardPreset(id)._id;
             }
 
             let newReq = {
@@ -462,7 +465,7 @@ class HideoutController
                 delete pmcData.Hideout.Production[kvp[0]];
             };
 
-            return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         recipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === body.recipeId);
@@ -494,7 +497,7 @@ class HideoutController
                 delete pmcData.Hideout.Production.ScavCase;
             };
 
-            return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         Logger.error(`Failed to locate any recipe with id ${body.recipeId}`);
@@ -578,7 +581,7 @@ class HideoutController
     static updatePlayerHideout(sessionID)
     {
         const recipes = DatabaseServer.tables.hideout.production;
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
         let WaterCollectorHasFilter = false;

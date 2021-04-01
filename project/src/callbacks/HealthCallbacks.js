@@ -9,6 +9,7 @@
 "use strict";
 
 const HttpResponse = require("../utils/HttpResponse.js");
+const ProfileController = require("../controllers/ProfileController.js");
 
 class HealthCallbacks
 {
@@ -19,7 +20,7 @@ class HealthCallbacks
 
     static syncHealth(url, info, sessionID)
     {
-        HealthController.saveVitality(profile_f.controller.getPmcProfile(sessionID), info, sessionID);
+        HealthController.saveVitality(ProfileController.getPmcProfile(sessionID), info, sessionID);
         return HttpResponse.emptyResponse();
     }
 

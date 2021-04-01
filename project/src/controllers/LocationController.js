@@ -15,6 +15,7 @@ const LocationConfig = require("../configs/Locationconfig.js");
 const Logger = require("../utils/Logger");
 const JsonUtil = require("../utils/JsonUtil");
 const TimeUtil = require("../utils/TimeUtil");
+const LocationGenerator = require("../generators/LocationGenerator.js");
 
 class LocationController
 {
@@ -75,7 +76,7 @@ class LocationController
 
             ids[data.Id] = true;
 
-            location_f.generator.generateContainerLoot(data.Items);
+            LocationGenerator.generateContainerLoot(data.Items);
             output.Loot.push(data);
             count++;
         }
@@ -91,7 +92,7 @@ class LocationController
 
         while (maxCount < max && dynamic.length > 0)
         {
-            const result = location_f.generator.generateDynamicLoot(dynamic, lootPositions, location);
+            const result = LocationGenerator.generateDynamicLoot(dynamic, lootPositions, location);
 
             if (result.status === "success")
             {

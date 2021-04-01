@@ -10,6 +10,11 @@
 "use strict";
 
 const Logger = require("../utils/Logger");
+const ProfileController = require("../controllers/ProfileController.js");
+const InventoryController = require("../controllers/InventoryController.js");
+const InsuranceController = require("../controllers/InsuranceController.js");
+const TraderController = require("../controllers/TraderController.js");
+const RagfairServer = require("../servers/RagfairServer.js");
 
 class TradeController
 {
@@ -36,7 +41,7 @@ class TradeController
             Logger.success("Bought item: " + body.item_id);
         };
 
-        return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
+        return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
     }
 
     /**
@@ -45,7 +50,7 @@ class TradeController
     static sellItem(pmcData, body, sessionID)
     {
         let money = 0;
-        let prices = trader_f.controller.getPurchasesData(body.tid, sessionID);
+        let prices = TraderController.getPurchasesData(body.tid, sessionID);
         let output = ItemEventRouter.getOutput();
 
         for (let sellItem of body.items)
@@ -67,8 +72,8 @@ class TradeController
                     Logger.info("Selling: " + checkID);
 
                     // remove item
-                    insurance_f.controller.remove(pmcData, checkID, sessionID);
-                    output = inventory_f.controller.removeItem(pmcData, checkID, output, sessionID);
+                    InsuranceController.remove(pmcData, checkID, sessionID);
+                    output = InventoryController.removeItem(pmcData, checkID, output, sessionID);
 
                     // add money to return to the player
                     if (output !== "")
@@ -111,10 +116,10 @@ class TradeController
 
         for (let offer of body.offers)
         {
-            let data = ragfair_f.server.getOffer(offer.id);
+            let data = RagfairServer.getOffer(offer.id);
             console.log(offer);
 
-            pmcData = profile_f.controller.getPmcProfile(sessionID);
+            pmcData = ProfileController.getPmcProfile(sessionID);
             body = {
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",
@@ -128,7 +133,7 @@ class TradeController
             if (data.user.memberType !== 4)
             {
                 // remove player item offer stack
-                ragfair_f.server.removeOfferStack(data._id, offer.count);
+                RagfairServer.removeOfferStack(data._id, offer.count);
             }
 
             output = TradeController.confirmTrading(pmcData, body, sessionID, false, data.items[0].upd);

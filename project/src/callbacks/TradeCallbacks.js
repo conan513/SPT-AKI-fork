@@ -9,16 +9,18 @@
 
 "use strict";
 
+const TradeController = require("../controllers/TradeController.js");
+
 class TradeCallbacks
 {
     static processTrade(pmcData, body, sessionID)
     {
-        return trade_f.controller.confirmTrading(pmcData, body, sessionID);
+        return TradeController.confirmTrading(pmcData, body, sessionID);
     }
 
     static processRagfairTrade(pmcData, body, sessionID)
     {
-        return trade_f.controller.confirmRagfairTrading(pmcData, body, sessionID);
+        return TradeController.confirmRagfairTrading(pmcData, body, sessionID);
     }
 }
 

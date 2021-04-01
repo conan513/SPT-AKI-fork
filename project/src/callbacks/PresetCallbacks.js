@@ -9,11 +9,13 @@
 
 "use strict";
 
+const PresetController = require("../controllers/PresetController.js");
+
 class PresetCallbacks
 {
     static load()
     {
-        preset_f.controller.initialize();
+        PresetController.initialize();
     }
 }
 

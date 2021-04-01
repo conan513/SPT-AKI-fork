@@ -9,6 +9,7 @@
 "use strict";
 
 const VFS = require("../utils/VFS");
+const HttpServer = require("../servers/HttpServer.js");
 
 class ImageRouter
 {
@@ -22,7 +23,7 @@ class ImageRouter
         // send image
         if (ImageRouter.onRoute[url])
         {
-            https_f.server.sendFile(resp, ImageRouter.onRoute[url]);
+            HttpServer.sendFile(resp, ImageRouter.onRoute[url]);
         }
     }
 

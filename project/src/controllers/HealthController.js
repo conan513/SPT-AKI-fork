@@ -15,6 +15,7 @@ const HealthConfig = require("../configs/Healthconfig.js");
 const ItemHelper = require("../helpers/ItemHelper.js");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 const TimeUtil = require("../utils/TimeUtil.js");
+const InventoryController = require("../controllers/InventoryController.js");
 
 class HealthController
 {
@@ -74,7 +75,7 @@ class HealthController
 
                 if (item.upd.MedKit.HpResource <= 0)
                 {
-                    inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
+                    InventoryController.removeItem(pmcData, body.item, output, sessionID);
                 }
             }
         }
@@ -113,7 +114,7 @@ class HealthController
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
+            output = InventoryController.removeItem(pmcData, body.item, output, sessionID);
         }
 
         return output;

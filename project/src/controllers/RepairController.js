@@ -11,13 +11,14 @@
 const DatabaseServer = require("../servers/DatabaseServer");
 const RepairConfig = require("../configs/Repairconfig.js");
 const Logger = require("../utils/Logger");
+const TraderController = require("../controllers/TraderController.js");
 
 class RepairController
 {
     static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        const trader = trader_f.controller.getTrader(body.tid, sessionID);
+        const trader = TraderController.getTrader(body.tid, sessionID);
         const repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 
         // find the item to repair

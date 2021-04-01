@@ -12,6 +12,7 @@
 const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
 const Logger = require("../utils/Logger");
+const ProfileController = require("../controllers/ProfileController.js");
 
 class CustomizationController
 {
@@ -40,7 +41,7 @@ class CustomizationController
 
     static getTraderSuits(traderID, sessionID)
     {
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let templates = DatabaseServer.tables.templates.customization;
         let suits = DatabaseServer.tables.traders[traderID].suits;
         let result = [];

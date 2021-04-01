@@ -10,6 +10,7 @@
 
 const HttpResponse = require("../utils/HttpResponse");
 const HttpConfig = require("../configs/Httpconfig.js");
+const HttpServer = require("../servers/HttpServer.js");
 
 class GameCallbacks
 {
@@ -41,10 +42,10 @@ class GameCallbacks
             "activeProfileId": `pmc${sessionID}`,
             "nickname": "user",
             "backend": {
-                "Trading": https_f.server.getBackendUrl(),
-                "Messaging": https_f.server.getBackendUrl(),
-                "Main": https_f.server.getBackendUrl(),
-                "RagFair": https_f.server.getBackendUrl(),
+                "Trading": HttpServer.getBackendUrl(),
+                "Messaging": HttpServer.getBackendUrl(),
+                "Main": HttpServer.getBackendUrl(),
+                "RagFair": HttpServer.getBackendUrl(),
             },
             "totalInGame": 1
         });

@@ -9,12 +9,13 @@
 "use strict";
 
 const ImageRouter = require("../routers/ImageRouter");
+const HttpServer = require("../servers/HttpServer.js");
 
 class HttpCallbacks
 {
     static load()
     {
-        https_f.server.load();
+        HttpServer.load();
     }
 
     static sendImage(sessionID, req, resp, body)

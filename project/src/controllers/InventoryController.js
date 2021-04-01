@@ -20,6 +20,12 @@ const JsonUtil = require("../utils/JsonUtil");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 const ContainerHelper = require("../helpers/ContainerHelper");
 const HttpResponse = require("../utils/HttpResponse");
+const DialogueController = require("../controllers/DialogueController.js");
+const ProfileController = require("../controllers/ProfileController.js");
+const InsuranceController = require("../controllers/InsuranceController.js");
+const TraderController = require("../controllers/TraderController.js");
+const PresetController = require("../controllers/PresetController.js");
+const RagfairServer = require("../servers/RagfairServer.js");
 
 class InventoryController
 {
@@ -27,8 +33,8 @@ class InventoryController
     static getOwnerInventoryItems(body, sessionID)
     {
         let isSameInventory = false;
-        let pmcItems = profile_f.controller.getPmcProfile(sessionID).Inventory.items;
-        let scavData = profile_f.controller.getScavProfile(sessionID);
+        let pmcItems = ProfileController.getPmcProfile(sessionID).Inventory.items;
+        let scavData = ProfileController.getScavProfile(sessionID);
         let fromInventoryItems = pmcItems;
         let fromType = "pmc";
 
@@ -41,7 +47,7 @@ class InventoryController
             }
             else if (body.fromOwner.type === "Mail")
             {
-                fromInventoryItems = dialogue_f.controller.getMessageItemContents(body.fromOwner.id, sessionID);
+                fromInventoryItems = DialogueController.getMessageItemContents(body.fromOwner.id, sessionID);
                 fromType = "mail";
             }
         }
@@ -234,7 +240,7 @@ class InventoryController
 
     static discardItem(pmcData, body, sessionID)
     {
-        insurance_f.controller.remove(pmcData, body.item, sessionID);
+        InsuranceController.remove(pmcData, body.item, sessionID);
         return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
     }
 
@@ -471,14 +477,14 @@ class InventoryController
             }
             else if (body.tid === fenceID)
             {
-                const fenceItem = trader_f.controller.fenceAssort.items;
+                const fenceItem = TraderController.fenceAssort.items;
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
                 itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
             }
             else
             {
                 // Only grab the relevant trader items and add unique values
-                const traderItems = trader_f.controller.getAssort(sessionID, body.tid).items;
+                const traderItems = TraderController.getAssort(sessionID, body.tid).items;
                 const relevantItems = ItemHelper.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
                 const toAdd = relevantItems.filter(traderItem => !itemLib.some(item => traderItem._id === item._id));
                 itemLib.push(...toAdd);
@@ -823,7 +829,7 @@ class InventoryController
             {
                 try
                 {
-                    const assort = ragfair_f.server.offers.find(traderOffer => traderOffer._id === body.item);
+                    const assort = RagfairServer.offers.find(traderOffer => traderOffer._id === body.item);
                     itemID = assort.items[0]._tpl;
                 }
                 catch
@@ -839,10 +845,10 @@ class InventoryController
             }
         }
 
-        if (preset_f.controller.isPreset(itemID))
+        if (PresetController.isPreset(itemID))
         {
             // item preset
-            itemID = preset_f.controller.getBaseItemTpl(itemID);
+            itemID = PresetController.getBaseItemTpl(itemID);
         }
 
         if (!itemID)

@@ -9,6 +9,7 @@
 "use strict";
 
 const CertController = require("../controllers/CertController");
+const HttpServer = require("../servers/HttpServer.js");
 
 class CertCallbacks
 {
@@ -29,7 +30,7 @@ class CertCallbacks
         const sendType = isAttachment ? "attachment" : "inline";
 
         resp.writeHead(200, "OK",         {
-            "Content-Type": https_f.server.mime["bin"],
+            "Content-Type": HttpServer.mime["bin"],
             "Content-Disposition": `${sendType}; filename=cert.pem`
         });
 

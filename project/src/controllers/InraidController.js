@@ -16,6 +16,10 @@ const DatabaseServer = require("../servers/DatabaseServer");
 const SaveServer = require("../servers/SaveServer.js");
 const InraidConfig = require("../configs/Inraidconfig.js");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
+const ProfileController = require("../controllers/ProfileController.js");
+const QuestController = require("../controllers/QuestController.js");
+const InventoryController = require("../controllers/InventoryController.js");
+const InsuranceController = require("../controllers/InsuranceController.js");
 
 class InraidController
 {
@@ -58,7 +62,7 @@ class InraidController
         {
             if (item._tpl === mapKey && item.slotId !== "Hideout")
             {
-                inventory_f.controller.removeItemFromProfile(offraidData.profile, item._id);
+                InventoryController.removeItemFromProfile(offraidData.profile, item._id);
                 break;
             }
         }
@@ -75,8 +79,8 @@ class InraidController
 
         let map = DatabaseServer.tables.locations[locationName].base;
         let insuranceEnabled = map.Insurance;
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
-        let scavData = profile_f.controller.getScavProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
+        let scavData = ProfileController.getScavProfile(sessionID);
         const isPlayerScav = offraidData.isPlayerScav;
         const isDead = (offraidData.exit !== "survived" && offraidData.exit !== "runner");
         const preRaidGear = (isPlayerScav) ? [] : InraidController.getPlayerGear(pmcData.Inventory.items);
@@ -115,7 +119,7 @@ class InraidController
         {
             scavData = InraidController.setInventory(scavData, offraidData.profile);
             HealthController.resetVitality(sessionID);
-            profile_f.controller.setScavProfile(sessionID, scavData);
+            ProfileController.setScavProfile(sessionID, scavData);
             return;
         }
         else
@@ -128,14 +132,14 @@ class InraidController
         // TODO: dump of prapor/therapist dialogues that are sent when you die in lab with insurance.
         if (insuranceEnabled)
         {
-            insurance_f.controller.storeLostGear(pmcData, offraidData, preRaidGear, sessionID);
+            InsuranceController.storeLostGear(pmcData, offraidData, preRaidGear, sessionID);
         }
 
         if (isDead)
         {
             if (insuranceEnabled)
             {
-                insurance_f.controller.storeDeadGear(pmcData, offraidData, preRaidGear, sessionID);
+                InsuranceController.storeDeadGear(pmcData, offraidData, preRaidGear, sessionID);
             }
 
             pmcData = InraidController.deleteInventory(pmcData, sessionID);
@@ -143,8 +147,8 @@ class InraidController
 
             for (const questItem of carriedQuestItems)
             {
-                const conditionId = quest_f.controller.getFindItemIdForQuestItem(questItem);
-                quest_f.controller.resetProfileQuestCondition(sessionID, conditionId);
+                const conditionId = QuestController.getFindItemIdForQuestItem(questItem);
+                QuestController.resetProfileQuestCondition(sessionID, conditionId);
             }
 
             //Delete carried quests items
@@ -153,7 +157,7 @@ class InraidController
 
         if (insuranceEnabled)
         {
-            insurance_f.controller.sendInsuredItems(pmcData, sessionID);
+            InsuranceController.sendInsuredItems(pmcData, sessionID);
         }
     }
 
@@ -178,8 +182,8 @@ class InraidController
         profileData.Stats.TotalSessionExperience = 0;
 
         // Remove the Lab card
-        inraid_f.controller.removeMapAccessKey(offraidData, sessionID);
-        inraid_f.controller.removePlayer(sessionID);
+        InraidController.removeMapAccessKey(offraidData, sessionID);
+        InraidController.removePlayer(sessionID);
 
         return profileData;
     }
@@ -249,9 +253,9 @@ class InraidController
 
     static setInventory(pmcData, profile)
     {
-        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
-        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
-        inventory_f.controller.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
+        InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
+        InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
+        InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
 
         for (let item of profile.Inventory.items)
         {
@@ -296,7 +300,7 @@ class InraidController
         // delete items
         for (let item of toDelete)
         {
-            inventory_f.controller.removeItemFromProfile(pmcData, item);
+            InventoryController.removeItemFromProfile(pmcData, item);
         }
 
         pmcData.Inventory.fastPanel = {};

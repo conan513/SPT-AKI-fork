@@ -15,6 +15,7 @@ const HashUtil = require("../utils/HashUtil");
 const RandomUtil = require("../utils/RandomUtil");
 const InventoryHelper = require("../helpers/InventoryHelper");
 const JsonUtil = require("../utils/JsonUtil");
+const BotGenerator = require("../generators/BotGenerator.js");
 
 class BotController
 {
@@ -257,4 +258,4 @@ class BotController
     }
 }
 
-module.exports = new BotController();
+module.exports = BotController;

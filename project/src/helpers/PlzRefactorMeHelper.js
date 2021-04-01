@@ -21,6 +21,8 @@ const Logger = require("../utils/Logger");
 const HashUtil = require("../utils/HashUtil");
 const ContainerHelper = require("./ContainerHelper");
 const ItemHelper = require("./ItemHelper");
+const InventoryController = require("../controllers/InventoryController.js");
+const TraderController = require("../controllers/TraderController.js");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// PLEASE REFACTOR THIS //////////////////////////////////////////////
@@ -217,7 +219,7 @@ class PlzRefactorMeHelper
     static payMoney(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        let trader = trader_f.controller.getTrader(body.tid, sessionID);
+        let trader = TraderController.getTrader(body.tid, sessionID);
         let currencyTpl = PlzRefactorMeHelper.getCurrency(trader.currency);
 
         // delete barter things(not a money) from inventory
@@ -231,7 +233,7 @@ class PlzRefactorMeHelper
                 {
                     if (!PlzRefactorMeHelper.isMoneyTpl(item._tpl))
                     {
-                        output = inventory_f.controller.removeItem(pmcData, item._id, output, sessionID);
+                        output = InventoryController.removeItem(pmcData, item._id, output, sessionID);
                         body.scheme_items[index].count = 0;
                     }
                     else
@@ -277,7 +279,7 @@ class PlzRefactorMeHelper
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = inventory_f.controller.removeItem(pmcData, moneyItem._id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, moneyItem._id, output, sessionID);
             }
             else
             {
@@ -297,7 +299,7 @@ class PlzRefactorMeHelper
         let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum += PlzRefactorMeHelper.fromRUB(PlzRefactorMeHelper.inRUB(barterPrice, currencyTpl), PlzRefactorMeHelper.getCurrency(trader.currency));
 
         pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
-        trader_f.controller.lvlUp(body.tid, sessionID);
+        TraderController.lvlUp(body.tid, sessionID);
         output.currentSalesSums[body.tid] = saleSum;
 
         // save changes
@@ -332,7 +334,7 @@ class PlzRefactorMeHelper
      */
     static getMoney(pmcData, amount, body, output, sessionID)
     {
-        let trader = trader_f.controller.getTrader(body.tid, sessionID);
+        let trader = TraderController.getTrader(body.tid, sessionID);
         let currency = PlzRefactorMeHelper.getCurrency(trader.currency);
         let calcAmount = PlzRefactorMeHelper.fromRUB(PlzRefactorMeHelper.inRUB(amount, currency), currency);
         let maxStackSize = DatabaseServer.tables.templates.items[currency]._props.StackMaxSize;
@@ -387,14 +389,14 @@ class PlzRefactorMeHelper
                 "tid": body.tid
             };
 
-            output = inventory_f.controller.addItem(pmcData, request, output, sessionID, null, false);
+            output = InventoryController.addItem(pmcData, request, output, sessionID, null, false);
         }
 
         // set current sale sum
         let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum + amount;
 
         pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
-        trader_f.controller.lvlUp(body.tid, sessionID);
+        TraderController.lvlUp(body.tid, sessionID);
         output.currentSalesSums[body.tid] = saleSum;
 
         return output;

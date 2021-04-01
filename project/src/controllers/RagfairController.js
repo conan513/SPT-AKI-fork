@@ -22,6 +22,12 @@ const TimeUtil = require("../utils/TimeUtil");
 const Helpers = require("../helpers/PlzRefactorMeHelper");
 const HashUtil = require("../utils/HashUtil");
 const HttpResponse = require("../utils/HttpResponse");
+const DialogueController = require("../controllers/DialogueController.js");
+const ProfileController = require("../controllers/ProfileController.js");
+const InventoryController = require("../controllers/InventoryController.js");
+const TraderController = require("../controllers/TraderController.js");
+const PresetController = require("../controllers/PresetController.js");
+const RagfairServer = require("../servers/RagfairServer.js");
 
 class RagfairController
 {
@@ -114,7 +120,7 @@ class RagfairController
         // get offer categories
         if (!info.linkedSearchId && !info.neededSearchId)
         {
-            result.categories = ragfair_f.server.categories;
+            result.categories = RagfairServer.categories;
         }
 
         result.offers = info.buildCount ? RagfairController.getOffersForBuild(info, itemsToAdd, assorts) :
@@ -140,7 +146,7 @@ class RagfairController
     static getValidOffers(info, itemsToAdd, assorts)
     {
         let offers = [];
-        for (const offer of ragfair_f.server.offers)
+        for (const offer of RagfairServer.offers)
         {
             if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer))
             {
@@ -155,7 +161,7 @@ class RagfairController
         let offersMap = new Map();
         let offers = [];
 
-        for (const offer of ragfair_f.server.offers)
+        for (const offer of RagfairServer.offers)
         {
             if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer))
             {
@@ -235,7 +241,7 @@ class RagfairController
             }
 
             // add assort to display
-            result[traderID] = trader_f.controller.getAssort(sessionID, traderID);
+            result[traderID] = TraderController.getAssort(sessionID, traderID);
         }
 
         return result;
@@ -282,13 +288,13 @@ class RagfairController
             return false;
         }
 
-        if (info.onlyFunctional && preset_f.controller.hasPreset(item._tpl) && offer.items.length === 1)
+        if (info.onlyFunctional && PresetController.hasPreset(item._tpl) && offer.items.length === 1)
         {
             // don't include non-functional items
             return false;
         }
 
-        if (info.buildCount && preset_f.controller.hasPreset(item._tpl) && offer.items.length > 1)
+        if (info.buildCount && PresetController.hasPreset(item._tpl) && offer.items.length > 1)
         {
             // don't include preset items
             return false;
@@ -566,7 +572,7 @@ class RagfairController
 
     static getProfileOffers(sessionID)
     {
-        const profile = profile_f.controller.getPmcProfile(sessionID);
+        const profile = ProfileController.getPmcProfile(sessionID);
 
         if (profile.RagfairInfo === undefined || profile.RagfairInfo.offers === undefined)
         {
@@ -599,7 +605,7 @@ class RagfairController
     static getItemPrice(info)
     {
         // get all items of tpl (sort by price)
-        let offers = ragfair_f.server.offers.filter((offer) =>
+        let offers = RagfairServer.offers.filter((offer) =>
         {
             return offer.items[0]._tpl === info.templateId;
         });
@@ -691,7 +697,7 @@ class RagfairController
             }
             else
             {
-                requirementsPriceInRub += ragfair_f.server.prices.dynamic[requestedItemTpl] * item.count;
+                requirementsPriceInRub += RagfairServer.prices.dynamic[requestedItemTpl] * item.count;
             }
         }
 
@@ -708,7 +714,7 @@ class RagfairController
             item = ItemHelper.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
             invItems.push(...ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-            offerPrice += ragfair_f.server.prices.dynamic[item._tpl] * itemStackCount;
+            offerPrice += RagfairServer.prices.dynamic[item._tpl] * itemStackCount;
         }
 
         if (info.sellInOnePiece)
@@ -727,7 +733,7 @@ class RagfairController
         for (const item of invItems)
         {
             const mult = (item.upd === undefined) || (item.upd.StackObjectsCount === undefined) ? 1 : item.upd.StackObjectsCount;
-            basePrice += ragfair_f.server.prices.dynamic[item._tpl] * mult;
+            basePrice += RagfairServer.prices.dynamic[item._tpl] * mult;
         }
 
         if (!basePrice)
@@ -745,7 +751,7 @@ class RagfairController
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
-            inventory_f.controller.removeItem(pmcData, itemToRemove, result, sessionID);
+            InventoryController.removeItem(pmcData, itemToRemove, result, sessionID);
         }
 
         // TODO: Subtract flea market fee from stash
@@ -940,7 +946,7 @@ class RagfairController
                 let outItems = [item];
                 if (requirement.onlyFunctional)
                 {
-                    let presetItems = ragfair_f.server.getPresetItemsByTpl(item);
+                    let presetItems = RagfairServer.getPresetItemsByTpl(item);
                     if (presetItems.length)
                     {
                         outItems = presetItems[0];
@@ -972,7 +978,7 @@ class RagfairController
             }
         };
 
-        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
+        DialogueController.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
 
         // TODO: On successful sale, increase rating by expected amount (taken from wiki?)
 
@@ -987,7 +993,7 @@ class RagfairController
             "maxStorageTime": QuestConfig.redeemTime * 3600
         };
 
-        dialogue_f.controller.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
+        DialogueController.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, items);
     }
 
     static createPlayerOffer(profile, requirements, items, sellInOnePiece, amountToSend)
@@ -1014,7 +1020,7 @@ class RagfairController
             };
         });
 
-        return ragfair_f.server.createOffer(
+        return RagfairServer.createOffer(
             profile.characters.pmc.aid,
             TimeUtil.getTimestamp(),
             formattedItems,

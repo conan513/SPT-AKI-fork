@@ -12,6 +12,7 @@
 const HttpConfig = require("../configs/Httpconfig.js");
 const HttpResponse = require("../utils/HttpResponse");
 const Logger = require("../utils/Logger");
+const HttpServer = require("../servers/HttpServer.js");
 
 class ModCallbacks
 {
@@ -28,7 +29,7 @@ class ModCallbacks
         const bundle = Mods.getBundle(key, true);
 
         // send bundle
-        https_f.server.sendFile(resp, bundle.path);
+        HttpServer.sendFile(resp, bundle.path);
     }
 
     static getBundles(url, info, sessionID)

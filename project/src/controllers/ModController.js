@@ -11,6 +11,7 @@
 const JsonUtil = require("../utils/JsonUtil");
 const Logger = require("../utils/Logger");
 const VFS = require("../utils/VFS");
+const HttpServer = require("../servers/HttpServer.js");
 
 class ModController
 {
@@ -120,7 +121,7 @@ class ModController
         {
             const bundle = {
                 "key": bundleInfo.key,
-                "path": `${https_f.server.getBackendUrl()}/files/bundle/${bundleInfo.key}`,
+                "path": `${HttpServer.getBackendUrl()}/files/bundle/${bundleInfo.key}`,
                 "filepath" : ("path" in bundleInfo)
                     ? bundleInfo.path
                     : `${process.cwd()}/${modpath}bundles/${bundleInfo.key}`.replace(/\\/g, "/"),

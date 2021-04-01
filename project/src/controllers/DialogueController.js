@@ -13,6 +13,7 @@
 const SaveServer = require("../servers/SaveServer.js");
 const HashUtil = require("../utils/HashUtil.js");
 const HttpResponse = require("../utils/HttpResponse.js");
+const HttpServer = require("../servers/HttpServer.js");
 
 class DialogueController
 {
@@ -144,8 +145,8 @@ class DialogueController
         dialogue.messages.push(message);
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
-        const notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
-        https_f.server.sendMessage(notificationMessage, sessionID);
+        const notificationMessage = NotifierController.createNewMessageNotification(message, extraData);
+        HttpServer.sendMessage(notificationMessage, sessionID);
     }
 
     /*

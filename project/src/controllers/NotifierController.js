@@ -11,6 +11,7 @@
 "use strict";
 
 const HttpConfig = require("../configs/Httpconfig.js");
+const HttpServer = require("../servers/HttpServer.js");
 
 /**
  * EFT-Notifier-Controller
@@ -44,12 +45,12 @@ class NotifierController
 
     static getServer(sessionID)
     {
-        return `${https_f.server.getBackendUrl()}/notifierServer/get/${sessionID}`;
+        return `${HttpServer.getBackendUrl()}/notifierServer/get/${sessionID}`;
     }
 
     static getWebSocketServer(sessionID)
     {
-        return `${https_f.server.getWebsocketUrl()}/notifierServer/getwebsocket/${sessionID}`;
+        return `${HttpServer.getWebsocketUrl()}/notifierServer/getwebsocket/${sessionID}`;
     }
 
     static getChannel(sessionID)
