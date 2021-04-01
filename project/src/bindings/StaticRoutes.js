@@ -1,24 +1,6 @@
-const BotCallbacks = require("../callbacks/BotCallbacks");
-const CertCallbacks = require("../callbacks/CertCallbacks");
-const CustomizationCallbacks = require("../callbacks/CustomizationCallbacks");
-const DataCallbacks = require("../callbacks/DataCallbacks");
-const DialogueCallbacks = require("../callbacks/DialogueCallbacks");
-const GameCallbacks = require("../callbacks/GameCallbacks");
-const HealthCallbacks = require("../callbacks/HealthCallbacks");
-const InraidCallbacks = require("../callbacks/InraidCallbacks");
-const InsuranceCallbacks = require("../callbacks/InsuranceCallbacks");
-const ItemEventCallbacks = require("../callbacks/ItemEventCallbacks");
-const LauncherCallbacks = require("../callbacks/LauncherCallbacks");
-const LocationCallbacks = require("../callbacks/LocationCallbacks");
-const MatchCallbacks = require("../callbacks/MatchCallbacks");
-const ModCallbacks = require("../callbacks/ModCallbacks");
-const NotifierCallbacks = require("../callbacks/NotifierCallbacks");
-const PresetBuildCallbacks = require("../callbacks/PresetBuildCallbacks");
-const ProfileCallbacks = require("../callbacks/ProfileCallbacks");
-const QuestCallbacks = require("../callbacks/QuestCallbacks");
-const RagfairCallbacks = require("../callbacks/RagfairCallbacks");
-const TraderCallbacks = require("../callbacks/TraderCallbacks");
-const WeatherCallbacks = require("../callbacks/WeatherCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "/client/game/bot/generate": {

@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const InraidConfig = require("../configs/Inraidconfig.js");
-const HttpResponse = require("../utils/HttpResponse");
-const InraidController = require("../controllers/InraidController.js");
+require("../Lib.js");
 
 class InraidCallbacks
 {

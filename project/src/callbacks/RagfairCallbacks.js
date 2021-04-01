@@ -1,20 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Terkoiz
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
-const RagfairServer = require("../servers/RagfairServer.js");
-const RagfairController = require("../controllers/RagfairController.js");
+require("../Lib.js");
 
 class RagfairCallbacks
 {

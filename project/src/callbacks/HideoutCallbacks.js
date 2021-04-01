@@ -1,15 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HideoutConfig = require("../configs/Hideoutconfig.js");
-const HideoutController = require("../controllers/HideoutController.js");
+require("../Lib.js");
 
 class HideoutCallbacks
 {

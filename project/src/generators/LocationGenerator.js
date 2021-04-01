@@ -1,23 +1,6 @@
-/* generator.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Craink
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const LocationConfig = require("../configs/Locationconfig.js");
-const RandomUtil = require("../utils/RandomUtil");
-const JsonUtil = require("../utils/JsonUtil");
-const HashUtil = require("../utils/HashUtil");
-const ContainerHelper = require("../helpers/ContainerHelper");
-const ItemHelper = require("../helpers/ItemHelper");
-const PresetController = require("../controllers/PresetController.js");
+require("../Lib.js");
 
 class LocationGenerator
 {

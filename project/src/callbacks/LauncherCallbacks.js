@@ -1,18 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const LauncherController = require("../controllers/LauncherController.js");
-const HttpConfig = require("../configs/Httpconfig.js");
-const HttpResponse = require("../utils/HttpResponse");
-const HttpServer = require("../servers/HttpServer.js");
+require("../Lib.js");
 
 class LauncherCallbacks
 {

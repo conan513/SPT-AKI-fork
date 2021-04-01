@@ -1,17 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HashUtil = require("../utils/HashUtil");
-const HttpResponse = require("../utils/HttpResponse");
-const TimeUtil = require("../utils/TimeUtil");
-const DialogueController = require("../controllers/DialogueController.js");
+require("../Lib.js");
 
 class DialogueCallbacks
 {

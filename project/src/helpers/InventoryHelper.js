@@ -1,18 +1,6 @@
-/**
- * InventoryHelper.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- */
+"use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const HashUtil = require("../utils/HashUtil");
-const Logger = require("../utils/Logger");
-const ItemHelper = require("./ItemHelper");
-const ProfileController = require("../controllers/ProfileController.js");
+require("../Lib.js");
 
 class InventoryHelper
 {

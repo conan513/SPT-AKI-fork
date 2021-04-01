@@ -1,24 +1,7 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Terkoiz
- */
-
 "use strict";
 
-const HttpConfig = require("../configs/Httpconfig.js");
-const HttpServer = require("../servers/HttpServer.js");
+require("../Lib.js");
 
-/**
- * EFT-Notifier-Controller
- *
- * Maintains a queue of notification messages which will be pushed upon request
- *  from client session.
- */
 class NotifierController
 {
     /**

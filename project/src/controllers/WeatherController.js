@@ -1,17 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- */
-
 "use strict";
 
-const WeatherConfig = require("../configs/Weatherconfig.js");
-const RandomUtil = require("../utils/RandomUtil");
-const TimeUtil = require("../utils/TimeUtil");
+require("../Lib.js");
 
 class WeatherController
 {

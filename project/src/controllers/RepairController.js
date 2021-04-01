@@ -1,17 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const RepairConfig = require("../configs/Repairconfig.js");
-const Logger = require("../utils/Logger");
-const TraderController = require("../controllers/TraderController.js");
+require("../Lib.js");
 
 class RepairController
 {
@@ -46,7 +35,7 @@ class RepairController
                 "tid": body.tid
             };
 
-            if (!Helpers.payMoney(pmcData, options, sessionID))
+            if (!PlzRefactorMeHelper.payMoney(pmcData, options, sessionID))
             {
                 Logger.error("no money found");
                 return "";

@@ -1,20 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- */
-
 "use strict";
 
-const Logger = require("../utils/Logger");
-const ProfileController = require("../controllers/ProfileController.js");
-const InventoryController = require("../controllers/InventoryController.js");
-const InsuranceController = require("../controllers/InsuranceController.js");
-const TraderController = require("../controllers/TraderController.js");
-const RagfairServer = require("../servers/RagfairServer.js");
+require("../Lib.js");
 
 class TradeController
 {
@@ -32,7 +18,7 @@ class TradeController
         };
         const callback = () =>
         {
-            if (!Helpers.payMoney(pmcData, body, sessionID))
+            if (!PlzRefactorMeHelper.payMoney(pmcData, body, sessionID))
             {
                 Logger.error("no money found");
                 throw "Transaction failed";
@@ -88,7 +74,7 @@ class TradeController
         }
 
         // get money the item]
-        return Helpers.getMoney(pmcData, money, body, output, sessionID);
+        return PlzRefactorMeHelper.getMoney(pmcData, money, body, output, sessionID);
     }
 
     // separate is that selling or buying

@@ -1,18 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- */
-
 "use strict";
 
-const VFS = require("./VFS");
-const DatabaseServer = require("../servers/DatabaseServer");
-const ImageRouter = require("../routers/ImageRouter");
-const JsonUtil = require("./JsonUtil");
+require("../Lib.js");
 
 class DatabaseImporter
 {

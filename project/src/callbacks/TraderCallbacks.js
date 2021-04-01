@@ -1,15 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const TraderController = require("../controllers/TraderController.js");
+require("../Lib.js");
 
 class TraderCallbacks
 {

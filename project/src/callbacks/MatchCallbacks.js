@@ -1,17 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const MatchController = require("../controllers/MatchController.js");
-const HttpResponse = require("../utils/HttpResponse");
-const JsonUtil = require("../utils/JsonUtil");
+require("../Lib.js");
 
 class MatchCallbacks
 {

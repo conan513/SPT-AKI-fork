@@ -1,21 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Craink
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const LocationConfig = require("../configs/Locationconfig.js");
-const Logger = require("../utils/Logger");
-const JsonUtil = require("../utils/JsonUtil");
-const TimeUtil = require("../utils/TimeUtil");
-const LocationGenerator = require("../generators/LocationGenerator.js");
+require("../Lib.js");
 
 class LocationController
 {

@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const InsuranceConfig = require("../configs/Insuranceconfig.js");
-const HttpResponse = require("../utils/HttpResponse");
-const InsuranceController = require("../controllers/InsuranceController.js");
+require("../Lib.js");
 
 class InsuranceCallbacks
 {

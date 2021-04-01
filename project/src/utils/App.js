@@ -1,24 +1,18 @@
-/* packager.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const Logger = require("./Logger");
-const TimeUtil = require("./TimeUtil");
+require("../Lib.js");
 
 class App
 {
-    static onLoad = require("../bindings/AppLoad");
-    static onUpdate = require("../bindings/AppUpdate");
+    static onLoad = {};
+    static onUpdate = {};
     static onUpdateLastRun = {};
 
     static load()
     {
+        App.onLoad = require("../bindings/AppLoad");
+        App.onUpdate = require("../bindings/AppUpdate");
+
         Logger.setupExceptions();
 
         // execute onLoad callbacks

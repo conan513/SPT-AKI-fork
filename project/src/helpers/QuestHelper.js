@@ -1,21 +1,8 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Emperor06
- * - Ginja
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
-class QuestHelpers
+class QuestHelper
 {
     /* changing these will require a wipe */
     static status = {
@@ -51,12 +38,12 @@ class QuestHelpers
 
     static getQuestConditions(q, furtherFilter = null)
     {
-        return QuestHelpers.filterConditions(q, "Quest", furtherFilter);
+        return QuestHelper.filterConditions(q, "Quest", furtherFilter);
     }
 
     static getLevelConditions(q, furtherFilter = null)
     {
-        return QuestHelpers.filterConditions(q, "Level", furtherFilter);
+        return QuestHelper.filterConditions(q, "Level", furtherFilter);
     }
 
     /**
@@ -111,7 +98,7 @@ class QuestHelpers
     {
         for (const quest of quests)
         {
-            const currentQuestLocale = QuestHelpers.getQuestLocale(quest._id);
+            const currentQuestLocale = QuestHelper.getQuestLocale(quest._id);
 
             Logger.debug(`${currentQuestLocale.name} (${quest._id})`);
 
@@ -123,7 +110,7 @@ class QuestHelpers
                 {
                     if (cond._props.target !== void 0)
                     {
-                        const locale = QuestHelpers.getQuestLocale(cond._props.target);
+                        const locale = QuestHelper.getQuestLocale(cond._props.target);
 
                         if (locale)
                         {
@@ -185,4 +172,4 @@ class QuestHelpers
     }
 }
 
-module.exports = QuestHelpers;
+module.exports = QuestHelper;

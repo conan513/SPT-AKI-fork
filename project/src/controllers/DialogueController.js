@@ -1,19 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Terkoiz
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const HashUtil = require("../utils/HashUtil.js");
-const HttpResponse = require("../utils/HttpResponse.js");
-const HttpServer = require("../servers/HttpServer.js");
+require("../Lib.js");
 
 class DialogueController
 {
@@ -112,7 +99,7 @@ class DialogueController
 
             items.stash = stashId;
             items.data = [];
-            rewards = Helpers.replaceIDs(null, rewards);
+            rewards = PlzRefactorMeHelper.replaceIDs(null, rewards);
 
             for (let reward of rewards)
             {

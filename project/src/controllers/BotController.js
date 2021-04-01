@@ -1,21 +1,6 @@
-/* BotController.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const BotConfig = require("../configs/Botconfig.js");
-const HashUtil = require("../utils/HashUtil");
-const RandomUtil = require("../utils/RandomUtil");
-const InventoryHelper = require("../helpers/InventoryHelper");
-const JsonUtil = require("../utils/JsonUtil");
-const BotGenerator = require("../generators/BotGenerator.js");
+require("../Lib.js");
 
 class BotController
 {

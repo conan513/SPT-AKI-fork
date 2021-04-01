@@ -1,18 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const Logger = require("../utils/Logger");
-const ProfileController = require("../controllers/ProfileController.js");
+require("../Lib.js");
 
 class CustomizationController
 {

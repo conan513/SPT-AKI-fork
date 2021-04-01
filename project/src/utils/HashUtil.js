@@ -1,17 +1,8 @@
-/* HashUtil.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- * - PoloYolo
- */
-
 "use strict";
 
+require("../Lib.js");
+
 const crypto = require("crypto");
-const TimeUtil = require("./TimeUtil");
 
 class HashUtil
 {

@@ -1,31 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Ginja
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const InventoryConfig = require("../configs/Inventoryconfig.js");
-const ItemHelper = require("../helpers/ItemHelper");
-const InventoryHelper = require("../helpers/InventoryHelper");
-const Logger = require("../utils/Logger");
-const HashUtil = require("../utils/HashUtil");
-const JsonUtil = require("../utils/JsonUtil");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const ContainerHelper = require("../helpers/ContainerHelper");
-const HttpResponse = require("../utils/HttpResponse");
-const DialogueController = require("../controllers/DialogueController.js");
-const ProfileController = require("../controllers/ProfileController.js");
-const InsuranceController = require("../controllers/InsuranceController.js");
-const TraderController = require("../controllers/TraderController.js");
-const PresetController = require("../controllers/PresetController.js");
-const RagfairServer = require("../servers/RagfairServer.js");
+require("../Lib.js");
 
 class InventoryController
 {
@@ -471,7 +446,7 @@ class InventoryController
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
             }
-            else if (Helpers.isMoneyTpl(baseItem.item_id))
+            else if (PlzRefactorMeHelper.isMoneyTpl(baseItem.item_id))
             {
                 itemLib.push({ _id: baseItem.item_id, _tpl: baseItem.item_id });
             }
@@ -534,7 +509,7 @@ class InventoryController
         }
 
         // Find an empty slot in stash for each of the items being added
-        let StashFS_2D = Helpers.getPlayerStashSlotMap(pmcData, sessionID);
+        let StashFS_2D = PlzRefactorMeHelper.getPlayerStashSlotMap(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
             let itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
@@ -912,7 +887,7 @@ class InventoryController
                 });
 
                 // fix currency StackObjectsCount when single stack
-                if (Helpers.isMoneyTpl(target._tpl))
+                if (PlzRefactorMeHelper.isMoneyTpl(target._tpl))
                 {
                     target.upd = (target.upd || {});
                     if (!target.upd.StackObjectsCount)

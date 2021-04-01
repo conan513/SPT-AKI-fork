@@ -1,15 +1,6 @@
-/* server.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const HashUtil = require("../utils/HashUtil.js");
+require("../Lib.js");
 
 class LauncherController
 {

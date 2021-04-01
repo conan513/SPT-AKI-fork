@@ -1,26 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const TraderConfig = require("../configs/Traderconfig.js");
-const TimeUtil = require("../utils/TimeUtil");
-const Logger = require("../utils/Logger");
-const JsonUtil = require("../utils/JsonUtil");
-const HashUtil = require("../utils/HashUtil");
-const ItemHelper = require("../helpers/ItemHelper");
-const RandomUtil = require("../utils/RandomUtil");
-const ProfileController = require("../controllers/ProfileController.js");
-const QuestController = require("../controllers/QuestController.js");
-const RagfairServer = require("../servers/RagfairServer.js");
+require("../Lib.js");
 
 class TraderController
 {
@@ -80,7 +60,7 @@ class TraderController
         let loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
-        pmcData.Info.Level = Helpers.calculateLevel(pmcData);
+        pmcData.Info.Level = PlzRefactorMeHelper.calculateLevel(pmcData);
 
         // level up traders
         let targetLevel = 0;
@@ -199,7 +179,7 @@ class TraderController
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
-            let price = Helpers.getTemplatePrice(itemID);
+            let price = PlzRefactorMeHelper.getTemplatePrice(itemID);
 
             if (price === 0 || price === 1 || price === 100)
             {
@@ -252,7 +232,7 @@ class TraderController
             // calculate preset price
             for (let it of items)
             {
-                rub += Helpers.getTemplatePrice(it._tpl);
+                rub += PlzRefactorMeHelper.getTemplatePrice(it._tpl);
             }
 
             result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
@@ -289,7 +269,7 @@ class TraderController
     {
         let pmcData = ProfileController.getPmcProfile(sessionID);
         let trader = DatabaseServer.tables.traders[traderID].base;
-        let currency = Helpers.getCurrency(trader.currency);
+        let currency = PlzRefactorMeHelper.getCurrency(trader.currency);
         let output = {};
 
         // get sellable items
@@ -332,7 +312,7 @@ class TraderController
             {
                 price -= (trader.discount / 100) * price;
             }
-            price = Helpers.fromRUB(price, currency);
+            price = PlzRefactorMeHelper.fromRUB(price, currency);
             price = (price > 0) ? price : 1;
 
             output[item._id] = [[{ "_tpl": currency, "count": price.toFixed(0) }]];
@@ -351,7 +331,7 @@ class TraderController
 
         for (let filter of traderFilters)
         {
-            for (let iaaaaa of Helpers.templatesWithParent(filter))
+            for (let iaaaaa of PlzRefactorMeHelper.templatesWithParent(filter))
             {
                 if (iaaaaa === tplToCheck)
                 {
@@ -359,9 +339,9 @@ class TraderController
                 }
             }
 
-            for (let subcateg of Helpers.childrenCategories(filter))
+            for (let subcateg of PlzRefactorMeHelper.childrenCategories(filter))
             {
-                for (let itemFromSubcateg of Helpers.templatesWithParent(subcateg))
+                for (let itemFromSubcateg of PlzRefactorMeHelper.templatesWithParent(subcateg))
                 {
                     if (itemFromSubcateg === tplToCheck)
                     {

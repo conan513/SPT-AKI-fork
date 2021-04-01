@@ -1,15 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Emperor06
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
+require("../Lib.js");
 
 class PresetController
 {

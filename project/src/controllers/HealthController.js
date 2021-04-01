@@ -1,21 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - BALIST0N
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const HealthConfig = require("../configs/Healthconfig.js");
-const ItemHelper = require("../helpers/ItemHelper.js");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const TimeUtil = require("../utils/TimeUtil.js");
-const InventoryController = require("../controllers/InventoryController.js");
+require("../Lib.js");
 
 class HealthController
 {
@@ -163,7 +148,7 @@ class HealthController
             "scheme_items": info.items
         };
 
-        Helpers.payMoney(pmcData, body, sessionID);
+        PlzRefactorMeHelper.payMoney(pmcData, body, sessionID);
 
         let BodyParts = info.difference.BodyParts;
         let healthInfo = { "IsAlive": true, "Health": {} };

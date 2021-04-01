@@ -1,28 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Terkoiz
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const HideoutConfig = require("../configs/Hideoutconfig.js");
-const HttpResponse = require("../utils/HttpResponse");
-const TimeUtil = require("../utils/TimeUtil");
-const Logger = require("../utils/Logger");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const RandomUtil = require("../utils/RandomUtil");
-const HashUtil = require("../utils/HashUtil");
-const ProfileController = require("../controllers/ProfileController.js");
-const InventoryController = require("../controllers/InventoryController.js");
-const PresetController = require("../controllers/PresetController.js");
+require("../Lib.js");
 
 const areaTypes = {
     VENTS: 0,
@@ -75,7 +53,7 @@ class HideoutController
                 return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
             }
 
-            if (Helpers.isMoneyTpl(item.inventoryItem._tpl)
+            if (PlzRefactorMeHelper.isMoneyTpl(item.inventoryItem._tpl)
                 && item.inventoryItem.upd
                 && item.inventoryItem.upd.StackObjectsCount
                 && item.inventoryItem.upd.StackObjectsCount > item.requestedItem.count)

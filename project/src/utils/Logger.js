@@ -1,13 +1,8 @@
-/* Logger.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
+"use strict";
+
+require("../Lib.js");
 
 const util = require("util");
-const VFS = require("./VFS");
 
 class Logger
 {

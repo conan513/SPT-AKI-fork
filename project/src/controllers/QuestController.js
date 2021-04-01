@@ -1,27 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Emperor06
- * - Ginja
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const QuestConfig = require("../configs/Questconfig.js");
-const TimeUtil = require("../utils/TimeUtil");
-const ItemHelper = require("../helpers/ItemHelper");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const JsonUtil = require("../utils/JsonUtil");
-const DialogueController = require("../controllers/DialogueController.js");
-const ProfileController = require("../controllers/ProfileController.js");
-const QuestHelpers = require("../helpers/QuestHelpers.js");
-const TraderController = require("../controllers/TraderController.js");
+require("../Lib.js");
 
 class QuestController
 {
@@ -41,18 +20,18 @@ class QuestController
             }
 
             // Don't add quests that have a level higher than the user's
-            const levels = QuestHelpers.getLevelConditions(quest.conditions.AvailableForStart);
+            const levels = QuestHelper.getLevelConditions(quest.conditions.AvailableForStart);
 
             if (levels.length)
             {
-                if (!QuestHelpers.evaluateLevel(profile, levels[0]))
+                if (!QuestHelper.evaluateLevel(profile, levels[0]))
                 {
                     continue;
                 }
             }
 
             // If the quest has no quest conditions then add to visible quest list
-            const conditions = QuestHelpers.getQuestConditions(quest.conditions.AvailableForStart);
+            const conditions = QuestHelper.getQuestConditions(quest.conditions.AvailableForStart);
 
             if (conditions.length === 0)
             {
@@ -76,19 +55,19 @@ class QuestController
                 }
 
                 // If previous is in user profile, check condition requirement and current status
-                if (previousQuest.status === Object.keys(QuestHelpers.status)[condition._props.status[0]])
+                if (previousQuest.status === Object.keys(QuestHelper.status)[condition._props.status[0]])
                 {
                     continue;
                 }
 
                 // Chemical fix: "Started" Status is catered for above. This will include it just if it's started.
-                if ((condition._props.status[0] === QuestHelpers.status.Started)
+                if ((condition._props.status[0] === QuestHelper.status.Started)
                 // but maybe this is better:
                 // && (previousQuest.status === "AvailableForFinish" || previousQuest.status ===  "Success")
                 )
                 {
-                    let statusName = Object.keys(QuestHelpers.status)[condition._props.status[0]];
-                    Logger.debug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${QuestHelpers.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
+                    let statusName = Object.keys(QuestHelper.status)[condition._props.status[0]];
+                    Logger.debug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${QuestHelper.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
                     continue;
                 }
                 canSend = false;
@@ -161,7 +140,7 @@ class QuestController
             }
 
             for (let i = 0; i < itemCount; i++)
-                rewardItems = rewardItems.concat(Helpers.replaceIDs(null, items));
+                rewardItems = rewardItems.concat(PlzRefactorMeHelper.replaceIDs(null, items));
         }
 
         return rewardItems;
@@ -334,7 +313,7 @@ class QuestController
 
         for (const checkFail of checkQuest)
         {
-            if (checkFail.conditions.Fail[0]._props.status[0] === QuestHelpers.status.Success)
+            if (checkFail.conditions.Fail[0]._props.status[0] === QuestHelper.status.Success)
             {
                 const checkQuestId = pmcData.Quests.find(qq => qq.qid === checkFail._id);
 
@@ -367,8 +346,8 @@ class QuestController
         DialogueController.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
         let completeQuestResponse = ItemEventRouter.getOutput();
-        completeQuestResponse.quests = QuestHelpers.getDeltaQuests(beforeQuests, QuestController.getClientQuests(sessionID));
-        QuestHelpers.dumpQuests(completeQuestResponse.quests);
+        completeQuestResponse.quests = QuestHelper.getDeltaQuests(beforeQuests, QuestController.getClientQuests(sessionID));
+        QuestHelper.dumpQuests(completeQuestResponse.quests);
         return completeQuestResponse;
     }
 
@@ -473,7 +452,7 @@ class QuestController
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === acceptedQuestId && c._props.status[0] === QuestHelpers.status.Started;
+                    return c._parent === "Quest" && c._props.target === acceptedQuestId && c._props.status[0] === QuestHelper.status.Started;
                 });
 
             if (!acceptedQuestCondition)
@@ -496,7 +475,7 @@ class QuestController
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
                 {
-                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === QuestHelpers.status.Fail;
+                    return c._parent === "Quest" && c._props.target === failedQuestId && c._props.status[0] === QuestHelper.status.Fail;
                 });
 
             if (!acceptedQuestCondition)
@@ -517,7 +496,7 @@ class QuestController
         {
             if (reward.type === "Item")
             {
-                if (Helpers.isMoneyTpl(reward.items[0]._tpl))
+                if (PlzRefactorMeHelper.isMoneyTpl(reward.items[0]._tpl))
                 {
                     reward.items[0].upd.StackObjectsCount += Math.round(reward.items[0].upd.StackObjectsCount * moneyBoost / 100);
                 }

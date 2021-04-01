@@ -1,17 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const LauncherController = require("./LauncherController.js");
-const MatchConfig = require("../configs/Matchconfig.js");
-const TimeUtil = require("../utils/TimeUtil.js");
-const ProfileController = require("../controllers/ProfileController.js");
+require("../Lib.js");
 
 class MatchController
 {

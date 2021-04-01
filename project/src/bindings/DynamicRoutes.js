@@ -1,11 +1,6 @@
-const BotCallbacks = require("../callbacks/BotCallbacks");
-const CustomizationCallbacks = require("../callbacks/CustomizationCallbacks");
-const DataCallbacks = require("../callbacks/DataCallbacks");
-const InraidCallbacks = require("../callbacks/InraidCallbacks");
-const HttpCallbacks = require("../callbacks/HttpCallbacks");
-const LocationCallbacks = require("../callbacks/LocationCallbacks");
-const ModCallbacks = require("../callbacks/ModCallbacks");
-const TraderCallbacks = require("../callbacks/TraderCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "/client/menu/locale/": {

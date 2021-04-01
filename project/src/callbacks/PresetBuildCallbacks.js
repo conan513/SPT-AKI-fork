@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const PresetBuildController = require("../controllers/PresetBuildController.js");
+require("../Lib.js");
 
 class PresetBuildCallbacks
 {

@@ -1,33 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Emperor06
- * - Terkoiz
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const QuestConfig = require("../configs/Questconfig.js");
-const RagfairConfig = require("../configs/Ragfairconfig.js");
-const Logger = require("../utils/Logger");
-const RandomUtil = require("../utils/RandomUtil");
-const ItemHelper = require("../helpers/ItemHelper");
-const TimeUtil = require("../utils/TimeUtil");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const HashUtil = require("../utils/HashUtil");
-const HttpResponse = require("../utils/HttpResponse");
-const DialogueController = require("../controllers/DialogueController.js");
-const ProfileController = require("../controllers/ProfileController.js");
-const InventoryController = require("../controllers/InventoryController.js");
-const TraderController = require("../controllers/TraderController.js");
-const PresetController = require("../controllers/PresetController.js");
-const RagfairServer = require("../servers/RagfairServer.js");
+require("../Lib.js");
 
 class RagfairController
 {
@@ -211,7 +184,7 @@ class RagfairController
 
             if (result.length)
             {
-                result = Helpers.arrayIntersect(result, handbook);
+                result = PlzRefactorMeHelper.arrayIntersect(result, handbook);
             }
             else
             {
@@ -317,17 +290,17 @@ class RagfairController
             }
         }
 
-        if (info.removeBartering && !Helpers.isMoneyTpl(money))
+        if (info.removeBartering && !PlzRefactorMeHelper.isMoneyTpl(money))
         {
             // don't include barter offers
             return false;
         }
 
-        if (info.currency > 0 && Helpers.isMoneyTpl(money))
+        if (info.currency > 0 && PlzRefactorMeHelper.isMoneyTpl(money))
         {
             const currencies = ["all", "RUB", "USD", "EUR"];
 
-            if (Helpers.getCurrencyTag(money) !== currencies[info.currency])
+            if (PlzRefactorMeHelper.getCurrencyTag(money) !== currencies[info.currency])
             {
                 // don't include item paid in wrong currency
                 return false;
@@ -387,11 +360,11 @@ class RagfairController
         // if its "mods" great-parent category, do double recursive loop
         if (handbookId === "5b5f71a686f77447ed5636ab")
         {
-            for (const categ of Helpers.childrenCategories(handbookId))
+            for (const categ of PlzRefactorMeHelper.childrenCategories(handbookId))
             {
-                for (const subcateg of Helpers.childrenCategories(categ))
+                for (const subcateg of PlzRefactorMeHelper.childrenCategories(categ))
                 {
-                    result = [...result, ...Helpers.templatesWithParent(subcateg)];
+                    result = [...result, ...PlzRefactorMeHelper.templatesWithParent(subcateg)];
                 }
             }
 
@@ -399,14 +372,14 @@ class RagfairController
         }
 
         // item is in any other category
-        if (Helpers.isCategory(handbookId))
+        if (PlzRefactorMeHelper.isCategory(handbookId))
         {
             // list all item of the category
-            result = Helpers.templatesWithParent(handbookId);
+            result = PlzRefactorMeHelper.templatesWithParent(handbookId);
 
-            for (const categ of Helpers.childrenCategories(handbookId))
+            for (const categ of PlzRefactorMeHelper.childrenCategories(handbookId))
             {
-                result = [...result, ...Helpers.templatesWithParent(categ)];
+                result = [...result, ...PlzRefactorMeHelper.templatesWithParent(categ)];
             }
 
             return result;
@@ -691,9 +664,9 @@ class RagfairController
         {
             let requestedItemTpl = item._tpl;
 
-            if (Helpers.isMoneyTpl(requestedItemTpl))
+            if (PlzRefactorMeHelper.isMoneyTpl(requestedItemTpl))
             {
-                requirementsPriceInRub += Helpers.inRUB(item.count, requestedItemTpl);
+                requirementsPriceInRub += PlzRefactorMeHelper.inRUB(item.count, requestedItemTpl);
             }
             else
             {

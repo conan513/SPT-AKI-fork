@@ -1,17 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Sock
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const NotifierController = require("../controllers/NotifierController.js");
+require("../Lib.js");
 
 class NotifierCallbacks
 {

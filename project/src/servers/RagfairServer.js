@@ -1,27 +1,6 @@
-/* server.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const RagfairConfig = require("../configs/Ragfairconfig.js");
-const ItemHelper = require("../helpers/ItemHelper");
-const JsonUtil = require("../utils/JsonUtil");
-const RandomUtil = require("../utils/RandomUtil");
-const HashUtil = require("../utils/HashUtil");
-const TimeUtil = require("../utils/TimeUtil");
-const Logger = require("../utils/Logger");
-const HttpResponse = require("../utils/HttpResponse");
-const ProfileController = require("../controllers/ProfileController.js");
-const TraderController = require("../controllers/TraderController.js");
-const PresetController = require("../controllers/PresetController.js");
-const RagfairController = require("../controllers/RagfairController.js");
+require("../Lib.js");
 
 class RagfairServer
 {
@@ -406,7 +385,7 @@ class RagfairServer
 
         for (const it of items)
         {
-            price += Helpers.fromRUB(RagfairServer.prices.dynamic[it._tpl], currency);
+            price += PlzRefactorMeHelper.fromRUB(RagfairServer.prices.dynamic[it._tpl], currency);
         }
 
         price = Math.round(price * RandomUtil.getFloat(RagfairConfig.dynamic.price.min, RagfairConfig.dynamic.price.max));
@@ -452,7 +431,7 @@ class RagfairServer
         // trader offers
         for (const itemID in items)
         {
-            RagfairServer.prices.trader[itemID] = Math.round(Helpers.getTemplatePrice(itemID));
+            RagfairServer.prices.trader[itemID] = Math.round(PlzRefactorMeHelper.getTemplatePrice(itemID));
         }
 
         // dynamic offers

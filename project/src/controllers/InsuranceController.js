@@ -1,27 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Emperor06
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const InsuranceConfig = require("../configs/Insuranceconfig.js");
-const Logger = require("../utils/Logger");
-const RandomUtil = require("../utils/RandomUtil");
-const InventoryHelper = require("../helpers/InventoryHelper");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const TimeUtil = require("../utils/TimeUtil");
-const ItemHelper = require("../helpers/ItemHelper");
-const DialogueController = require("../controllers/DialogueController.js");
-const ProfileController = require("../controllers/ProfileController.js");
-const TraderController = require("../controllers/TraderController.js");
+require("../Lib.js");
 
 class InsuranceController
 {
@@ -353,7 +332,7 @@ class InsuranceController
         }
 
         // pay the item	to profile
-        if (!Helpers.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        if (!PlzRefactorMeHelper.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
             Logger.error("no money found");
             return "";

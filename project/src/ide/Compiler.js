@@ -1,12 +1,3 @@
-/* build.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
-const VFS = require("../utils/VFS");
 const { compile } = require("nexe");
 const resourceHacker = require('@lorki97/node-resourcehacker');
 

@@ -1,6 +1,6 @@
-const CertCallbacks = require("../callbacks/CertCallbacks");
-const HttpCallbacks = require("../callbacks/HttpCallbacks");
-const ModCallbacks = require("../callbacks/ModCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "CERT_BIN": CertCallbacks.sendBinary,

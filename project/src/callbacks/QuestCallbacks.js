@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const QuestController = require("../controllers/QuestController.js");
+require("../Lib.js");
 
 class QuestCallbacks
 {

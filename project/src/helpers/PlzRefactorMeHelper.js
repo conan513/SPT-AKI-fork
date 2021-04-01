@@ -1,28 +1,6 @@
-/* helpfunctions.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Terkoiz
- * - Ginja
- * - Emperor06
- * - PoloYolo
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const RandomUtil = require("../utils/RandomUtil");
-const InventoryHelper = require("./InventoryHelper");
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
-const HashUtil = require("../utils/HashUtil");
-const ContainerHelper = require("./ContainerHelper");
-const ItemHelper = require("./ItemHelper");
-const InventoryController = require("../controllers/InventoryController.js");
-const TraderController = require("../controllers/TraderController.js");
+require("../Lib.js");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// PLEASE REFACTOR THIS //////////////////////////////////////////////

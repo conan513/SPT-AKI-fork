@@ -1,15 +1,7 @@
-const Logger = require("../utils/Logger");
-const InventoryHelper = require("./InventoryHelper");
+"use strict";
 
-/**
- * ContainerHelper.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- */
+require("../Lib.js");
+
 class ContainerHelper
 {
     /* Finds a slot for an item in a given 2D container map

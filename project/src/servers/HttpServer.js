@@ -1,25 +1,11 @@
-﻿/* HttpServer.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Apofis
- */
+﻿"use strict";
 
-"use strict";
+require("../Lib.js");
 
 const fs = require("fs");
 const zlib = require("zlib");
 const https = require("https");
 const WebSocket = require("ws");
-const HttpRouter = require("../routers/HttpRouter");
-const CertController = require("../controllers/CertController");
-const HttpConfig = require("../configs/Httpconfig.js");
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
-const HttpResponse = require("../utils/HttpResponse");
-const NotifierController = require("../controllers/NotifierController.js");
 
 class HttpServer
 {

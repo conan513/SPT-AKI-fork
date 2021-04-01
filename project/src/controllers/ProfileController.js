@@ -1,21 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Ereshkigal
- */
-
 "use strict";
 
-const InventoryHelper = require("../helpers/InventoryHelper");
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const TimeUtil = require("../utils/TimeUtil");
-const LauncherController = require("./LauncherController.js");
-const BotController = require("../controllers/BotController.js");
+require("../Lib.js");
 
 class ProfileController
 {

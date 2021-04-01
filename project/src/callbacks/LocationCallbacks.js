@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const JsonUtil = require("../utils/JsonUtil");
-const LocationController = require("../controllers/LocationController.js");
+require("../Lib.js");
 
 class LocationCallbacks
 {

@@ -1,25 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Emperor06
- * - Ereshkigal
- * - Basuro
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const InraidConfig = require("../configs/Inraidconfig.js");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const ProfileController = require("../controllers/ProfileController.js");
-const QuestController = require("../controllers/QuestController.js");
-const InventoryController = require("../controllers/InventoryController.js");
-const InsuranceController = require("../controllers/InsuranceController.js");
+require("../Lib.js");
 
 class InraidController
 {
@@ -112,7 +93,7 @@ class InraidController
             offraidData.profile = InraidController.removeFoundItems(offraidData.profile);
         }
 
-        offraidData.profile.Inventory.items = Helpers.replaceIDs(offraidData.profile, offraidData.profile.Inventory.items, offraidData.profile.Inventory.fastPanel);
+        offraidData.profile.Inventory.items = PlzRefactorMeHelper.replaceIDs(offraidData.profile, offraidData.profile.Inventory.items, offraidData.profile.Inventory.fastPanel);
 
         // set profile equipment to the raid equipment
         if (isPlayerScav)

@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
     "presetBatch": {
         "assault": 30,

@@ -1,18 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Craink
- */
-
 "use strict";
 
-const HttpConfig = require("../configs/Httpconfig.js");
-const HttpResponse = require("../utils/HttpResponse");
-const Logger = require("../utils/Logger");
-const HttpServer = require("../servers/HttpServer.js");
+require("../Lib.js");
 
 class ModCallbacks
 {
