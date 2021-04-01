@@ -1,6 +1,6 @@
 const semver = require("semver");
 
-const version = "v14.15.3";
+const version = "v12.18.2";
 
 if (semver.satisfies(process.version, version))
 {

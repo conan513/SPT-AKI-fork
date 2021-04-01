@@ -1,5 +1,6 @@
 const { compile } = require("nexe");
 const resourceHacker = require('@lorki97/node-resourcehacker');
+const VFS = require("../utils/VFS.js");
 
 require("./CheckVersion.js");
 
