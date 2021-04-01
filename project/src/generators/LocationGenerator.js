@@ -20,7 +20,7 @@ const ItemHelper = require("../helpers/ItemHelper");
 
 class LocationGenerator
 {
-    generateDynamicLoot(dynamic, lootPositions, location)
+    static generateDynamicLoot(dynamic, lootPositions, location)
     {
         let rndLootIndex = RandomUtil.getInt(0, dynamic.length - 1);
         let rndLoot = dynamic[rndLootIndex];
@@ -102,7 +102,7 @@ class LocationGenerator
         return { "status": "fail" };
     }
 
-    generateContainerLoot(items)
+    static generateContainerLoot(items)
     {
         let container = JsonUtil.clone(DatabaseServer.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
@@ -258,4 +258,4 @@ class LocationGenerator
     }
 }
 
-module.exports = new LocationGenerator();
+module.exports = LocationGenerator;

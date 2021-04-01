@@ -22,15 +22,12 @@ const ItemHelper = require("../helpers/ItemHelper");
 
 class InsuranceController
 {
-    constructor()
-    {
-        this.insured = {};
-        this.templatesById = {};
-    }
+    static insured = {};
+    static templatesById = {};
 
-    onLoad(sessionID)
+    static onLoad(sessionID)
     {
-        this.generateTemplatesById();
+        InsuranceController.generateTemplatesById();
         let profile = SaveServer.profiles[sessionID];
 
         if (!("insurance" in profile))
@@ -41,13 +38,13 @@ class InsuranceController
         return profile;
     }
 
-    resetInsurance(sessionID)
+    static resetInsurance(sessionID)
     {
-        this.insured[sessionID] = {};
+        InsuranceController.insured[sessionID] = {};
     }
 
     /* remove insurance from an item */
-    remove(pmcData, body, sessionID)
+    static remove(pmcData, body, sessionID)
     {
         let toDo = [body];
 
@@ -82,7 +79,7 @@ class InsuranceController
     }
 
     /* adds gear to store */
-    addGearToSend(pmcData, insuredItem, actualItem, sessionID)
+    static addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {
         // Don't process insurance for melee weapon, secure container, compass or armband.
         if (actualItem.slotId === "Scabbard" || actualItem.slotId === "SecuredContainer" || actualItem.slotId === "Compass" || actualItem.slotId === "ArmBand")
@@ -122,9 +119,9 @@ class InsuranceController
         }
 
         // Mark to add to insurance
-        this.insured[sessionID] = this.insured[sessionID] || {};
-        this.insured[sessionID][insuredItem.tid] = this.insured[sessionID][insuredItem.tid] || [];
-        this.insured[sessionID][insuredItem.tid].push(actualItem);
+        InsuranceController.insured[sessionID] = InsuranceController.insured[sessionID] || {};
+        InsuranceController.insured[sessionID][insuredItem.tid] = InsuranceController.insured[sessionID][insuredItem.tid] || [];
+        InsuranceController.insured[sessionID][insuredItem.tid].push(actualItem);
 
         pmcData.InsuredItems = pmcData.InsuredItems.filter((item) =>
         {
@@ -133,7 +130,7 @@ class InsuranceController
     }
 
     /* store lost pmc gear */
-    storeLostGear(pmcData, offraidData, preRaidGear, sessionID)
+    static storeLostGear(pmcData, offraidData, preRaidGear, sessionID)
     {
         const preRaidGearHash = {};
         const offRaidGearHash = {};
@@ -172,12 +169,12 @@ class InsuranceController
 
         for (let gear of gears)
         {
-            this.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
+            InsuranceController.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
         }
     }
 
     /* store insured items on pmc death */
-    storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
+    static storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
     {
         const preRaidGearHash = {};
         const securedContainerItemHash = {};
@@ -214,14 +211,14 @@ class InsuranceController
 
         for (let gear of gears)
         {
-            this.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
+            InsuranceController.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
         }
     }
 
     /* sends stored insured items as message */
-    sendInsuredItems(pmcData, sessionID)
+    static sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in this.insured[sessionID])
+        for (let traderId in InsuranceController.insured[sessionID])
         {
             let trader = trader_f.controller.getTrader(traderId, sessionID);
             let time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
@@ -244,9 +241,9 @@ class InsuranceController
                 }
             };
 
-            for (let insuredItem of this.insured[sessionID][traderId])
+            for (let insuredItem of InsuranceController.insured[sessionID][traderId])
             {
-                const isParentHere = this.insured[sessionID][traderId].find(isParent => isParent._id === insuredItem.parentId);
+                const isParentHere = InsuranceController.insured[sessionID][traderId].find(isParent => isParent._id === insuredItem.parentId);
                 if (!isParentHere)
                 {
                     insuredItem.slotId = "hideout";
@@ -258,14 +255,14 @@ class InsuranceController
                 "scheduledTime": time,
                 "traderId": traderId,
                 "messageContent": messageContent,
-                "items": this.insured[sessionID][traderId]
+                "items": InsuranceController.insured[sessionID][traderId]
             });
         }
 
-        this.resetInsurance(sessionID);
+        InsuranceController.resetInsurance(sessionID);
     }
 
-    processReturn()
+    static processReturn()
     {
         const time = TimeUtil.getTimestamp();
 
@@ -333,7 +330,7 @@ class InsuranceController
     }
 
     /* add insurance to an item */
-    insure(pmcData, body, sessionID)
+    static insure(pmcData, body, sessionID)
     {
         let itemsToPay = [];
         let inventoryItemsHash = {};
@@ -348,7 +345,7 @@ class InsuranceController
         {
             itemsToPay.push({
                 "id": inventoryItemsHash[key]._id,
-                "count": Math.round(this.getPremium(pmcData, inventoryItemsHash[key], body.tid))
+                "count": Math.round(InsuranceController.getPremium(pmcData, inventoryItemsHash[key], body.tid))
             });
         }
 
@@ -371,25 +368,25 @@ class InsuranceController
         return ItemEventRouter.getOutput();
     }
 
-    generateTemplatesById()
+    static generateTemplatesById()
     {
-        if (Object.keys(this.templatesById).length === 0)
+        if (Object.keys(InsuranceController.templatesById).length === 0)
         {
             for (const item of DatabaseServer.tables.templates.handbook.Items)
             {
-                this.templatesById[item.Id] = item;
+                InsuranceController.templatesById[item.Id] = item;
             }
         }
     }
 
     // TODO: Move to helper functions
-    getItemPrice(_tpl)
+    static getItemPrice(_tpl)
     {
         let price = 0;
 
-        if (this.templatesById[_tpl] !== undefined)
+        if (InsuranceController.templatesById[_tpl] !== undefined)
         {
-            let template = this.templatesById[_tpl];
+            let template = InsuranceController.templatesById[_tpl];
             price = template.Price;
         }
         else
@@ -401,15 +398,15 @@ class InsuranceController
         return price;
     }
 
-    getPremium(pmcData, inventoryItem, traderId)
+    static getPremium(pmcData, inventoryItem, traderId)
     {
-        let premium = this.getItemPrice(inventoryItem._tpl) * InsuranceConfig.priceMultiplier;
+        let premium = InsuranceController.getItemPrice(inventoryItem._tpl) * InsuranceConfig.priceMultiplier;
         premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
         return Math.round(premium);
     }
 
     /* calculates insurance cost */
-    cost(info, sessionID)
+    static cost(info, sessionID)
     {
         let output = {};
         let pmcData = profile_f.controller.getPmcProfile(sessionID);
@@ -426,7 +423,7 @@ class InsuranceController
 
             for (let key of info.items)
             {
-                items[inventoryItemsHash[key]._tpl] = Math.round(this.getPremium(pmcData, inventoryItemsHash[key], trader));
+                items[inventoryItemsHash[key]._tpl] = Math.round(InsuranceController.getPremium(pmcData, inventoryItemsHash[key], trader));
             }
 
             output[trader] = items;
@@ -436,4 +433,4 @@ class InsuranceController
     }
 }
 
-module.exports = new InsuranceController();
+module.exports = InsuranceController;
