@@ -23,7 +23,7 @@ class App
             App.onLoad[callback]();
         }
 
-        //setInterval(App.update, 1000);
+        setInterval(App.update, 1000);
     }
 
     static update()
