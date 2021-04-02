@@ -1,6 +1,16 @@
 {
 	"items": [
 		{
+			"_id": "CryAVS",
+			"_tpl": "544a5caa4bdc2d1a388b4568",
+			"parentId": "hideout",
+			"slotId": "hideout",
+			"upd": {
+				"UnlimitedCount": true,
+				"StackObjectsCount": 999999999
+			}
+		},
+		{
 			"_id": "AzimutBlack",
 			"_tpl": "603648ff5a45383c122086ac",
 			"parentId": "hideout",
@@ -1462,6 +1472,18 @@
 		}
 	],
 	"barter_scheme": {
+		"CryAVS":[
+			[
+				{
+					"count": 2,
+					"_tpl": "5734758f24597738025ee253"
+				},
+				{
+					"count": 2,
+					"_tpl": "5b3b713c5acfc4330140bd8d"
+				}
+			]
+		],
 		"AzimutBlack":[
 			[
 				{
@@ -1773,11 +1795,11 @@
 		"5ece83c101e14e770d58291a": [
 			[
 				{
-					"count": 5,
+					"count": 7,
 					"_tpl": "5d40412b86f7743cb332ac3a"
 				},
 				{
-					"count": 3,
+					"count": 5,
 					"_tpl": "5d4041f086f7743cac3f22a7"
 				}
 			]
@@ -2944,6 +2966,7 @@
 		"RysTHelmet": 4,
 		"RysTFaceShield": 4,
 		"HexGridArmor":3,
-		"AzimutBlack":2
+		"AzimutBlack":2,
+		"CryAVS":2
 	}
 }
