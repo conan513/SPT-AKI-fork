@@ -1,54 +1,39 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Terkoiz
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const HashUtil = require("../utils/HashUtil.js");
-const HttpResponse = require("../utils/HttpResponse.js");
+require("../Lib.js");
 
 class DialogueController
 {
-    constructor()
-    {
-        this.messageTypes = {
-            "npcTrader": 2,
-            "insuranceReturn": 8,
-            "questStart": 10,
-            "questFail": 11,
-            "questSuccess": 12
-        };
-    }
+    static messageTypes = {
+        "npcTrader": 2,
+        "insuranceReturn": 8,
+        "questStart": 10,
+        "questFail": 11,
+        "questSuccess": 12
+    };
 
     /* Set the content of the dialogue on the list tab. */
-    generateDialogueList(sessionID)
+    static generateDialogueList(sessionID)
     {
         let data = [];
 
         for (let dialogueId in SaveServer.profiles[sessionID].dialogues)
         {
-            data.push(this.getDialogueInfo(dialogueId, sessionID));
+            data.push(DialogueController.getDialogueInfo(dialogueId, sessionID));
         }
 
         return HttpResponse.getBody(data);
     }
 
     /* Get the content of a dialogue. */
-    getDialogueInfo(dialogueId, sessionID)
+    static getDialogueInfo(dialogueId, sessionID)
     {
         let dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
 
         return {
             "_id": dialogueId,
             "type": 2, // Type npcTrader.
-            "message": this.getMessagePreview(dialogue),
+            "message": DialogueController.getMessagePreview(dialogue),
             "new": dialogue.new,
             "attachmentsNew": dialogue.attachmentsNew,
             "pinned": dialogue.pinned
@@ -59,7 +44,7 @@ class DialogueController
 	* Set the content of the dialogue on the details panel, showing all the messages
 	* for the specified dialogue.
 	*/
-    generateDialogueView(dialogueId, sessionID)
+    static generateDialogueView(dialogueId, sessionID)
     {
         let dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
         dialogue.new = 0;
@@ -84,7 +69,7 @@ class DialogueController
     /*
 	* Add a templated message to the dialogue.
 	*/
-    addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
+    static addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
         let dialogueData = SaveServer.profiles[sessionID].dialogues;
         let isNewDialogue = !(dialogueID in dialogueData);
@@ -114,8 +99,7 @@ class DialogueController
 
             items.stash = stashId;
             items.data = [];
-            // @ts-ignore
-            rewards = Helpers.replaceIDs(null, rewards);
+            rewards = PlzRefactorMeHelper.replaceIDs(null, rewards);
 
             for (let reward of rewards)
             {
@@ -148,14 +132,14 @@ class DialogueController
         dialogue.messages.push(message);
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
-        const notificationMessage = notifier_f.controller.createNewMessageNotification(message, extraData);
-        https_f.server.sendMessage(notificationMessage, sessionID);
+        const notificationMessage = NotifierController.createNewMessageNotification(message, extraData);
+        HttpServer.sendMessage(notificationMessage, sessionID);
     }
 
     /*
 	* Get the preview contents of the last message in a dialogue.
 	*/
-    getMessagePreview(dialogue)
+    static getMessagePreview(dialogue)
     {
         // The last message of the dialogue should be shown on the preview.
         let message = dialogue.messages[dialogue.messages.length - 1];
@@ -171,7 +155,7 @@ class DialogueController
     /*
 	* Get the item contents for a particular message.
 	*/
-    getMessageItemContents(messageId, sessionID)
+    static getMessageItemContents(messageId, sessionID)
     {
         let dialogueData = SaveServer.profiles[sessionID].dialogues;
 
@@ -197,17 +181,17 @@ class DialogueController
         return [];
     }
 
-    removeDialogue(dialogueId, sessionID)
+    static removeDialogue(dialogueId, sessionID)
     {
         delete SaveServer.profiles[sessionID].dialogues[dialogueId];
     }
 
-    setDialoguePin(dialogueId, shouldPin, sessionID)
+    static setDialoguePin(dialogueId, shouldPin, sessionID)
     {
         SaveServer.profiles[sessionID].dialogues[dialogueId].pinned = shouldPin;
     }
 
-    setRead(dialogueIds, sessionID)
+    static setRead(dialogueIds, sessionID)
     {
         let dialogueData = SaveServer.profiles[sessionID].dialogues;
 
@@ -219,7 +203,7 @@ class DialogueController
 
     }
 
-    getAllAttachments(dialogueId, sessionID)
+    static getAllAttachments(dialogueId, sessionID)
     {
         let output = [];
         let timeNow = Date.now() / 1000;
@@ -236,16 +220,16 @@ class DialogueController
         return {"messages": output};
     }
 
-    update()
+    static update()
     {
         for (const sessionID in SaveServer.profiles)
         {
-            this.removeExpiredItems(sessionID);
+            DialogueController.removeExpiredItems(sessionID);
         }
     }
 
     // deletion of items that has been expired. triggers when updating traders.
-    removeExpiredItems(sessionID)
+    static removeExpiredItems(sessionID)
     {
         for (let dialogueId in SaveServer.profiles[sessionID].dialogues)
         {
@@ -262,10 +246,10 @@ class DialogueController
     /*
     * Return the int value associated with the messageType, for readability.
     */
-    getMessageTypeValue(messageType)
+    static getMessageTypeValue(messageType)
     {
-        return this.messageTypes[messageType];
+        return DialogueController.messageTypes[messageType];
     }
 }
 
-module.exports = new DialogueController();
+module.exports = DialogueController;

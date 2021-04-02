@@ -1,7 +1,6 @@
-const HealthCallbacks = require("../callbacks/HealthCallbacks");
-const InraidCallbacks = require("../callbacks/InraidCallbacks");
-const InsuranceCallbacks = require("../callbacks/InsuranceCallbacks");
-const ProfileCallbacks = require("../callbacks/ProfileCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "aki-health": HealthCallbacks.onLoad,

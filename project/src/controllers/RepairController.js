@@ -1,23 +1,13 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const RepairConfig = require("../configs/RepairConfig.json");
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
 class RepairController
 {
-    repair(pmcData, body, sessionID)
+    static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        const trader = trader_f.controller.getTrader(body.tid, sessionID);
+        const trader = TraderController.getTrader(body.tid, sessionID);
         const repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 
         // find the item to repair
@@ -45,8 +35,7 @@ class RepairController
                 "tid": body.tid
             };
 
-            // @ts-ignore
-            if (!Helpers.payMoney(pmcData, options, sessionID))
+            if (!PlzRefactorMeHelper.payMoney(pmcData, options, sessionID))
             {
                 Logger.error("no money found");
                 return "";
@@ -74,4 +63,4 @@ class RepairController
     }
 }
 
-module.exports = new RepairController();
+module.exports = RepairController;

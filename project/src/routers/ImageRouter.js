@@ -1,14 +1,6 @@
-/* image.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const VFS = require("../utils/VFS");
+require("../Lib.js");
 
 class ImageRouter
 {
@@ -22,7 +14,7 @@ class ImageRouter
         // send image
         if (ImageRouter.onRoute[url])
         {
-            https_f.server.sendFile(resp, ImageRouter.onRoute[url]);
+            HttpServer.sendFile(resp, ImageRouter.onRoute[url]);
         }
     }
 

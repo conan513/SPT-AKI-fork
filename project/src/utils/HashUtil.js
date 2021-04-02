@@ -1,27 +1,12 @@
-/* HashUtil.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- * - PoloYolo
- */
-
 "use strict";
 
+require("../Lib.js");
+
 const crypto = require("crypto");
-const TimeUtil = require("./TimeUtil");
 
 class HashUtil
 {
-    /**
-   *
-   *
-   * @return {string}
-   * @memberof HashUtil
-   */
-    generate()
+    static generate()
     {
         const shasum = crypto.createHash("sha1");
         const time = Math.random() * TimeUtil.getTimestamp();
@@ -31,4 +16,4 @@ class HashUtil
     }
 }
 
-module.exports = new HashUtil();
+module.exports = HashUtil;

@@ -1,4 +1,6 @@
-{
+"use strict";
+
+module.exports = {
     "acceleration": 7,
     "weather": {
         "clouds": {
@@ -38,4 +40,4 @@
             "max": 764
         }
     }
-}
+};

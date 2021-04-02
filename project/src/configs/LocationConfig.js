@@ -1,4 +1,6 @@
-{
+"use strict";
+
+module.exports = {
     "allowLootOverlay": false,
     "limits": {
         "bigmap": 1000,
@@ -18,4 +20,4 @@
         "terminal": 0,
         "town": 0
     }
-}
+};

@@ -1,11 +1,3 @@
-/* Program.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
 const process = require("process");
@@ -24,9 +16,6 @@ class Program
         watermark.setTitle();
         watermark.resetCursor();
         watermark.draw();
-
-        // import classes
-        require("./Lib");
 
         // load and execute all packages
         App.load();

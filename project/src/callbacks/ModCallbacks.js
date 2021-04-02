@@ -1,23 +1,12 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Craink
- */
-
 "use strict";
 
-const HttpConfig = require("../configs/HttpConfig.json");
-const HttpResponse = require("../utils/HttpResponse");
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
 class ModCallbacks
 {
     static load()
     {
-        Mods.load();
+        ModLoader.load();
     }
 
     static sendBundle(sessionID, req, resp, body)
@@ -25,16 +14,16 @@ class ModCallbacks
         Logger.info(`[BUNDLE]: ${req.url}`);
 
         const key = req.url.split("/bundle/")[1];
-        const bundle = Mods.getBundle(key, true);
+        const bundle = ModLoader.getBundle(key, true);
 
         // send bundle
-        https_f.server.sendFile(resp, bundle.path);
+        HttpServer.sendFile(resp, bundle.path);
     }
 
     static getBundles(url, info, sessionID)
     {
         const local = (HttpConfig.ip === "127.0.0.1" || HttpConfig.ip === "localhost");
-        return HttpResponse.noBody(Mods.getBundles(local));
+        return HttpResponse.noBody(ModLoader.getBundles(local));
     }
 
     static getBundle(url, info, sessionID)

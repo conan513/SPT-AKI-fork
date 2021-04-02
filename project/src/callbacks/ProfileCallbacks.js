@@ -1,43 +1,33 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const TimeUtil = require("../utils/TimeUtil");
+require("../Lib.js");
 
 class ProfileCallbacks
 {
     static onLoad(sessionID)
     {
-        return profile_f.controller.onLoad(sessionID);
+        return ProfileController.onLoad(sessionID);
     }
 
     static createProfile(url, info, sessionID)
     {
-        profile_f.controller.createProfile(info, sessionID);
+        ProfileController.createProfile(info, sessionID);
         return HttpResponse.getBody({"uid": `pmc${sessionID}`});
     }
 
     static getProfileData(url, info, sessionID)
     {
-        return HttpResponse.getBody(profile_f.controller.getCompleteProfile(sessionID));
+        return HttpResponse.getBody(ProfileController.getCompleteProfile(sessionID));
     }
 
     static regenerateScav(url, info, sessionID)
     {
-        return HttpResponse.getBody([profile_f.controller.generateScav(sessionID)]);
+        return HttpResponse.getBody([ProfileController.generateScav(sessionID)]);
     }
 
     static changeNickname(url, info, sessionID)
     {
-        const output = profile_f.controller.changeNickname(info, sessionID);
+        const output = ProfileController.changeNickname(info, sessionID);
 
         if (output === "taken")
         {
@@ -57,7 +47,7 @@ class ProfileCallbacks
 
     static validateNickname(url, info, sessionID)
     {
-        const output = profile_f.controller.validateNickname(info, sessionID);
+        const output = ProfileController.validateNickname(info, sessionID);
 
         if (output === "taken")
         {

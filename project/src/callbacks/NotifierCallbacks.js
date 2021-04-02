@@ -1,30 +1,20 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Sock
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
+require("../Lib.js");
 
 class NotifierCallbacks
 {
     static createNotifierChannel(url, info, sessionID)
     {
-        return HttpResponse.getBody(notifier_f.controller.getChannel(sessionID));
+        return HttpResponse.getBody(NotifierController.getChannel(sessionID));
     }
 
     static selectProfile(url, info, sessionID)
     {
         return HttpResponse.getBody({
             "status": "ok",
-            "notifier": notifier_f.controller.getChannel(sessionID),
-            "notifierServer": notifier_f.controller.getServer(sessionID)
+            "notifier": NotifierController.getChannel(sessionID),
+            "notifierServer": NotifierController.getServer(sessionID)
         });
     }
 }

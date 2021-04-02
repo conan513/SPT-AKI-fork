@@ -1,86 +1,55 @@
-//@ts-check
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Emperor06
- * - Ginja
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
-class QuestHelpers
+class QuestHelper
 {
-    constructor()
-    {
-        /* changing these will require a wipe */
-        this.status = {
-            Locked: 0,
-            AvailableForStart: 1,
-            Started: 2,
-            AvailableForFinish: 3,
-            Success: 4,
-            Fail: 5,
-            FailRestartable: 6,
-            MarkedAsFailed: 7
-        };
-    }
-    /**
-     * @param {QuestSuccessCriteria[]} q
-     * @param {string} questType
-     * @return {QuestSuccessCriteria[]}
-     */
-    filterConditions(q, questType, furtherFilter = null)
-    {
+    /* changing these will require a wipe */
+    static status = {
+        "Locked": 0,
+        "AvailableForStart": 1,
+        "Started": 2,
+        "AvailableForFinish": 3,
+        "Success": 4,
+        "Fail": 5,
+        "FailRestartable": 6,
+        "MarkedAsFailed": 7
+    };
 
-        const filteredQuests = q.filter(
-            c =>
+    static filterConditions(q, questType, furtherFilter = null)
+    {
+        const filteredQuests = q.filter(c =>
+        {
+            if (c._parent === questType)
             {
-                if (c._parent === questType)
+                if (furtherFilter)
                 {
-                    if (furtherFilter)
-                    {
-                        return furtherFilter(c);
-                    }
-                    return true;
+                    return furtherFilter(c);
                 }
-                return false;
-            });
+
+                return true;
+            }
+
+            return false;
+        });
+
         return filteredQuests;
     }
 
-    /**
-     * @param {QuestSuccessCriteria[]} q
-     */
-    getQuestConditions(q, furtherFilter = null)
+    static getQuestConditions(q, furtherFilter = null)
     {
-        return this.filterConditions(q, "Quest", furtherFilter);
+        return QuestHelper.filterConditions(q, "Quest", furtherFilter);
     }
 
-    /**
-     * @param {QuestSuccessCriteria[]} q
-     */
-    getLevelConditions(q, furtherFilter = null)
+    static getLevelConditions(q, furtherFilter = null)
     {
-        return this.filterConditions(q, "Level", furtherFilter);
+        return QuestHelper.filterConditions(q, "Level", furtherFilter);
     }
 
     /**
      * returns true is the condition is satisfied
-     *
-     * @param {*} pmcProfile
-     * @param {QuestSuccessCriteria} cond
-     * @return {*}
-     * @memberof Helpers
      */
-    evaluateLevel(pmcProfile, cond)
+    static evaluateLevel(pmcProfile, cond)
     {
         let level = pmcProfile.Info.Level;
         if (cond._parent === "Level")
@@ -97,29 +66,20 @@ class QuestHelpers
     }
 
     /* debug functions */
-
-    /**
-     * @param {string} questId
-     */
-    getQuestLocale(questId)
+    static getQuestLocale(questId)
     {
-        const questLocale = DatabaseServer.tables.locales.global["en"].quest[questId];
-        return questLocale;
+        return DatabaseServer.tables.locales.global["en"].quest[questId];
     }
 
-    /**
-     * @param {Quest[]} before
-     * @param {Quest[]} after
-     * @return {Quest[]}
-     */
-    getDeltaQuests(before, after)
+    static getDeltaQuests(before, after)
     {
-        /** @type {string[]} */
         let knownQuestsIds = [];
+
         before.forEach((q) =>
         {
             knownQuestsIds.push(q._id);
         });
+
         if (knownQuestsIds.length)
         {
             return after.filter((q) =>
@@ -133,18 +93,15 @@ class QuestHelpers
     /**
      * Debug Routine for showing some information on the
      * quest list in question.
-     *
-     * @param {Quest[]} quests
-     * @param {*} [label=null]
-     * @memberof Helpers
      */
-    dumpQuests(quests, label = null)
+    static dumpQuests(quests, label = null)
     {
-
         for (const quest of quests)
         {
-            const currentQuestLocale = this.getQuestLocale(quest._id);
+            const currentQuestLocale = QuestHelper.getQuestLocale(quest._id);
+
             Logger.debug(`${currentQuestLocale.name} (${quest._id})`);
+
             for (const cond of quest.conditions.AvailableForStart)
             {
                 let output = `- ${cond._parent} `;
@@ -153,11 +110,13 @@ class QuestHelpers
                 {
                     if (cond._props.target !== void 0)
                     {
-                        const locale = this.getQuestLocale(cond._props.target);
+                        const locale = QuestHelper.getQuestLocale(cond._props.target);
+
                         if (locale)
                         {
                             output += `linked to: ${locale.name} `;
                         }
+
                         output += `(${cond._props.target}) with status: `;
                     }
 
@@ -166,12 +125,16 @@ class QuestHelpers
                 {
                     output += `${cond._props.compareMethod} ${cond._props.value}`;
                 }
+
                 Logger.debug(output);
             }
+
             Logger.debug("AvailableForFinish info:");
+
             for (const cond of quest.conditions.AvailableForFinish)
             {
                 let output = `- ${cond._parent} `;
+
                 switch (cond._parent)
                 {
                     case "FindItem":
@@ -194,6 +157,7 @@ class QuestHelpers
                     case "HandoverItem":
                     case "PlaceBeacon":
                         break;
+
                     default:
                         output += `${cond._props.compareMethod} ${cond._props.value}`;
                         console.log(cond);
@@ -202,8 +166,10 @@ class QuestHelpers
 
                 Logger.debug(output);
             }
+
             Logger.debug("-- end\n");
         }
     }
 }
-module.exports = new QuestHelpers();
+
+module.exports = QuestHelper;

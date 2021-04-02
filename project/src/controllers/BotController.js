@@ -1,29 +1,15 @@
-/* BotController.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const BotConfig = require("../configs/BotConfig.json");
-const HashUtil = require("../utils/HashUtil");
-const RandomUtil = require("../utils/RandomUtil");
-const InventoryHelper = require("../helpers/InventoryHelper");
-const JsonUtil = require("../utils/JsonUtil");
+require("../Lib.js");
 
 class BotController
 {
-    getBotLimit(type)
+    static getBotLimit(type)
     {
-        return BotConfig.limits[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
+        return BotConfig.presetBatch[(type === "cursedAssault" || type === "assaultGroup") ? "assault" : type];
     }
 
-    getBotDifficulty(type, difficulty)
+    static getBotDifficulty(type, difficulty)
     {
         switch (type)
         {
@@ -39,7 +25,7 @@ class BotController
         return DatabaseServer.tables.bots.types[type].difficulty[difficulty];
     }
 
-    generateId(bot)
+    static generateId(bot)
     {
         const botId = HashUtil.generate();
 
@@ -48,33 +34,33 @@ class BotController
         return bot;
     }
 
-    generateBot(bot, role)
+    static generateBot(bot, role)
     {
         // generate bot
         const node = DatabaseServer.tables.bots.types[role.toLowerCase()];
-        const levelResult = this.generateRandomLevel(node.experience.level.min, node.experience.level.max);
+        const levelResult = BotController.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Nickname = `${RandomUtil.getArrayValue(node.firstName)} ${RandomUtil.getArrayValue(node.lastName) || ""}`;
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
         bot.Info.Voice = RandomUtil.getArrayValue(node.appearance.voice);
-        bot.Health = this.generateHealth(node.health);
-        bot.Skills = this.generateSkills(node.skills);
+        bot.Health = BotController.generateHealth(node.health);
+        bot.Skills = BotController.generateSkills(node.skills);
         bot.Customization.Head = RandomUtil.getArrayValue(node.appearance.head);
         bot.Customization.Body = RandomUtil.getArrayValue(node.appearance.body);
         bot.Customization.Feet = RandomUtil.getArrayValue(node.appearance.feet);
         bot.Customization.Hands = RandomUtil.getArrayValue(node.appearance.hands);
-        bot.Inventory = bots_f.generator.generateInventory(node.inventory, node.chances, node.generation);
+        bot.Inventory = BotGenerator.generateInventory(node.inventory, node.chances, node.generation);
 
         // add dogtag to PMC's
         if (role === "usec" || role === "bear")
         {
-            bot = this.generateDogtag(bot);
+            bot = BotController.generateDogtag(bot);
         }
 
         // generate new bot ID
-        bot = this.generateId(bot);
+        bot = BotController.generateId(bot);
 
         // generate new inventory ID
         bot = InventoryHelper.generateInventoryID(bot);
@@ -82,7 +68,7 @@ class BotController
         return bot;
     }
 
-    generate(info)
+    static generate(info)
     {
         let output = [];
 
@@ -98,7 +84,7 @@ class BotController
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
                 bot.Info.Settings.Role = role;
                 bot.Info.Side = (isPmc) ? pmcSide : "Savage";
-                bot = this.generateBot(bot, (isPmc) ? pmcSide.toLowerCase() : role.toLowerCase());
+                bot = BotController.generateBot(bot, (isPmc) ? pmcSide.toLowerCase() : role.toLowerCase());
 
                 output.unshift(bot);
             }
@@ -107,7 +93,7 @@ class BotController
         return output;
     }
 
-    generateRandomLevel(min, max)
+    static generateRandomLevel(min, max)
     {
         const expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
         const maxLevel = Math.min(max, expTable.length);
@@ -131,7 +117,7 @@ class BotController
     }
 
     /** Converts health object to the required format */
-    generateHealth(healthObj)
+    static generateHealth(healthObj)
     {
         return {
             "Hydration": {
@@ -193,7 +179,7 @@ class BotController
         };
     }
 
-    generateSkills(skillsObj)
+    static generateSkills(skillsObj)
     {
         let skills = [];
         let masteries = [];
@@ -229,7 +215,7 @@ class BotController
         };
     }
 
-    generateDogtag(bot)
+    static generateDogtag(bot)
     {
         bot.Inventory.items.push({
             _id: HashUtil.generate(),
@@ -257,4 +243,4 @@ class BotController
     }
 }
 
-module.exports = new BotController();
+module.exports = BotController;

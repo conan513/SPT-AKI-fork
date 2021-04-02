@@ -1,27 +1,10 @@
-/**
- * ItemHelper.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- */
+"use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const JsonUtil = require("../utils/JsonUtil");
+require("../Lib.js");
 
- /*
- * @class ItemHelper
- * @description Helpers related to Items
- */
 class ItemHelper
 {
-    /**
-     * Adds StackObjectsCount to an item, if it doesn't exist
-     * @param {itemTemplate} item
-     */
-    fixItemStackCount(item)
+    static fixItemStackCount(item)
     {
         if (item.upd === undefined)
         {
@@ -38,10 +21,8 @@ class ItemHelper
     }
 
     /* Gets item data from items.json
-    * input: Item Template ID
-    * output: [ItemFound?(true,false), itemData]
     * */
-    getItem(template)
+    static getItem(template)
     {
         // -> Gets item from <input: _tpl>
         if (template in DatabaseServer.tables.templates.items)
@@ -53,7 +34,7 @@ class ItemHelper
     }
 
     // get normalized value (0-1) based on item condition
-    getItemQualityPrice(item)
+    static getItemQualityPrice(item)
     {
         let result = 1;
 
@@ -65,7 +46,7 @@ class ItemHelper
             if (medkit)
             {
                 // meds
-                result = medkit.HpResource / this.getItem(item._tpl)[1]._props.MaxHpResource;
+                result = medkit.HpResource / ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
             }
 
             if (repairable)
@@ -84,20 +65,15 @@ class ItemHelper
         return result;
     }
 
-    /**
-     * @param {itemTemplate[]} items
-     * @param {string} itemID
-     */
-    findAndReturnChildrenByItems(items, itemID)
+    static findAndReturnChildrenByItems(items, itemID)
     {
-        /** @type {string[]} */
         let list = [];
 
         for (let childitem of items)
         {
             if (childitem.parentId === itemID)
             {
-                list.push.apply(list, this.findAndReturnChildrenByItems(items, childitem._id));
+                list.push.apply(list, ItemHelper.findAndReturnChildrenByItems(items, childitem._id));
             }
         }
 
@@ -107,10 +83,8 @@ class ItemHelper
 
     /**
      * A variant of findAndReturnChildren where the output is list of item objects instead of their ids.
-     * @param {itemTemplate[]} items Array of item objects, root item ID.
-     * @param {string} itemID Array of item objects containing root item and its children.
      */
-    findAndReturnChildrenAsItems(items, itemID)
+    static findAndReturnChildrenAsItems(items, itemID)
     {
         let list = [];
 
@@ -128,7 +102,7 @@ class ItemHelper
                 return childitem._id === item._id;
             }))
             {
-                list.push.apply(list, this.findAndReturnChildrenAsItems(items, childitem._id));
+                list.push.apply(list, ItemHelper.findAndReturnChildrenAsItems(items, childitem._id));
             }
         }
 
@@ -137,12 +111,9 @@ class ItemHelper
 
     /**
      * find childs of the item in a given assort (weapons pars for example, need recursive loop function)
-     * @param {string} itemIdToFind
-     * @param {itemTemplate[]} assort
      */
-    findAndReturnChildrenByAssort(itemIdToFind, assort)
+    static findAndReturnChildrenByAssort(itemIdToFind, assort)
     {
-        /** @type {itemTemplate[]} */
         let list = [];
 
         for (let itemFromAssort of assort)
@@ -153,7 +124,7 @@ class ItemHelper
             }))
             {
                 list.push(itemFromAssort);
-                list = list.concat(this.findAndReturnChildrenByAssort(itemFromAssort._id, assort));
+                list = list.concat(ItemHelper.findAndReturnChildrenByAssort(itemFromAssort._id, assort));
             }
         }
 
@@ -164,14 +135,13 @@ class ItemHelper
      * Is Dogtag
      * Checks if an item is a dogtag. Used under profile_f.js to modify preparePrice based
      * on the level of the dogtag
-     * @param {string} itemId
      */
-    isDogtag(itemId)
+    static isDogtag(itemId)
     {
         return itemId === "59f32bb586f774757e1e8442" || itemId === "59f32c3b86f77472a31742f0";
     }
 
-    isNotSellable(itemid)
+    static isNotSellable(itemid)
     {
         let items = [
             "544901bf4bdc2ddf018b456d", //wad of rubles
@@ -184,7 +154,7 @@ class ItemHelper
     }
 
     /* Gets the identifier for a child using slotId, locationX and locationY. */
-    getChildId(item)
+    static getChildId(item)
     {
         if (!("location" in item))
         {
@@ -193,17 +163,16 @@ class ItemHelper
 
         return item.slotId + "," + item.location.x + "," + item.location.y;
     }
-    isItemTplStackable(tpl)
+
+    static isItemTplStackable(tpl)
     {
         return DatabaseServer.tables.templates.items[tpl]._props.StackMaxSize > 1;
     }
 
     /**
      * split item stack if it exceeds StackMaxSize
-     * @param {itemTemplate} item
-     * @returns {itemTemplate[]} array of these items with StackObjectsCount <= StackMaxSize
      */
-    splitStack(item)
+    static splitStack(item)
     {
         if (!("upd" in item) || !("StackObjectsCount" in item.upd))
         {
@@ -212,7 +181,6 @@ class ItemHelper
 
         let maxStack = DatabaseServer.tables.templates.items[item._tpl]._props.StackMaxSize;
         let count = item.upd.StackObjectsCount;
-        /** @type {itemTemplate[]} */
         let stacks = [];
 
         // If the current count is already equal or less than the max
@@ -236,6 +204,6 @@ class ItemHelper
 
         return stacks;
     }
-
 }
-module.exports = new ItemHelper();
+
+module.exports = ItemHelper;

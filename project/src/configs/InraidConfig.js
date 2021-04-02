@@ -1,4 +1,6 @@
-{
+"use strict";
+
+module.exports = {
     "MIAOnRaidEnd": false,
     "raidMenuSettings": {
         "aiAmount": "AsOnline",
@@ -11,4 +13,4 @@
         "loot": true,
         "durability": true
     }
-}
+};

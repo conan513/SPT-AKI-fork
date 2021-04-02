@@ -1,11 +1,6 @@
-const DatabaseImporter = require("../utils/DatabaseImporter");
-const CertCallbacks = require("../callbacks/CertCallbacks");
-const HttpCallbacks = require("../callbacks/HttpCallbacks");
-const ModCallbacks = require("../callbacks/ModCallbacks");
-const PresetCallbacks = require("../callbacks/PresetCallbacks");
-const RagfairCallbacks = require("../callbacks/RagfairCallbacks");
-const SaveCallbacks = require("../callbacks/SaveCallbacks");
-const TraderCallbacks = require("../callbacks/TraderCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "aki-database": DatabaseImporter.load,

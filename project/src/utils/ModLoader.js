@@ -1,56 +1,43 @@
-/* loader.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
-const VFS = require("../utils/VFS");
+require("../Lib.js");
 
-class ModController
+class ModLoader
 {
-    constructor()
+    static basepath = "user/mods/";
+    static imported = {};
+    static bundles = {};
+    static onLoad = {};
+
+    static load()
     {
-        this.basepath = "user/mods/";
-        this.imported = {};
-        this.bundles = {};
-        this.onLoad = {};
+        ModLoader.importMods();
+        ModLoader.executeMods();
     }
 
-    load()
-    {
-        this.importMods();
-        this.executeMods();
-    }
-
-    importClass(name, filepath)
+    static importClass(name, filepath)
     {
         // import class
-        global[name] = require(`../../${filepath}`);
+        globalThis[name] = require(`../../${filepath}`);
     }
 
-    importMods()
+    static importMods()
     {
         // get mods
-        if (!VFS.exists(this.basepath))
+        if (!VFS.exists(ModLoader.basepath))
         {
             // no mods folder found
-            VFS.createDir(this.basepath);
+            VFS.createDir(ModLoader.basepath);
             return;
         }
 
         Logger.log("ModLoader: loading mods...");
-        const mods = VFS.getDirs(this.basepath);
+        const mods = VFS.getDirs(ModLoader.basepath);
 
         // validate mods
         for (const mod of mods)
         {
-            if (!this.validMod(mod))
+            if (!ModLoader.validMod(mod))
             {
                 Logger.error("Invalid mod encountered");
                 return;
@@ -60,51 +47,51 @@ class ModController
         // add mods
         for (const mod of mods)
         {
-            this.addMod(mod);
+            ModLoader.addMod(mod);
         }
     }
 
-    executeMods()
+    static executeMods()
     {
         // sort mods load order
-        const source = Object.keys(this.getLoadOrder(this.imported));
+        const source = Object.keys(ModLoader.getLoadOrder(ModLoader.imported));
 
         // import mod classes
         for (const mod of source)
         {
-            if ("main" in this.imported[mod])
+            if ("main" in ModLoader.imported[mod])
             {
-                this.importClass(mod, `${this.getModPath(mod)}${this.imported[mod].main}`);
+                ModLoader.importClass(mod, `${ModLoader.getModPath(mod)}${ModLoader.imported[mod].main}`);
             }
         }
 
         // load mods
-        for (const mod in this.onLoad)
+        for (const mod in ModLoader.onLoad)
         {
-            this.onLoad[mod]();
+            ModLoader.onLoad[mod]();
         }
     }
 
-    getModPath(mod)
+    static getModPath(mod)
     {
-        return `${this.basepath}${mod}/`;
+        return `${ModLoader.basepath}${mod}/`;
     }
 
-    getBundles(local)
+    static getBundles(local)
     {
         const result = [];
 
-        for (const bundle in this.bundles)
+        for (const bundle in ModLoader.bundles)
         {
-            result.push(this.getBundle(bundle, local));
+            result.push(ModLoader.getBundle(bundle, local));
         }
 
         return result;
     }
 
-    getBundle(key, local)
+    static getBundle(key, local)
     {
-        const bundle = JsonUtil.clone(this.bundles[key]);
+        const bundle = JsonUtil.clone(ModLoader.bundles[key]);
 
         if (local)
         {
@@ -115,7 +102,7 @@ class ModController
         return bundle;
     }
 
-    addBundles(modpath)
+    static addBundles(modpath)
     {
         const manifest = JsonUtil.deserialize(VFS.readFile(`${modpath}bundles.json`)).manifest;
 
@@ -123,42 +110,42 @@ class ModController
         {
             const bundle = {
                 "key": bundleInfo.key,
-                "path": `${https_f.server.getBackendUrl()}/files/bundle/${bundleInfo.key}`,
+                "path": `${HttpServer.getBackendUrl()}/files/bundle/${bundleInfo.key}`,
                 "filepath" : ("path" in bundleInfo)
                     ? bundleInfo.path
                     : `${process.cwd()}/${modpath}bundles/${bundleInfo.key}`.replace(/\\/g, "/"),
                 "dependencyKeys": ("dependencyKeys" in bundleInfo) ? bundleInfo.dependencyKeys : []
             };
 
-            this.bundles[bundleInfo.key] = bundle;
+            ModLoader.bundles[bundleInfo.key] = bundle;
         }
     }
 
-    addMod(mod)
+    static addMod(mod)
     {
-        const modpath = this.getModPath(mod);
+        const modpath = ModLoader.getModPath(mod);
 
         // add mod to imported list
-        this.imported[mod] = JsonUtil.deserialize(VFS.readFile(`${modpath}/package.json`));
+        ModLoader.imported[mod] = JsonUtil.deserialize(VFS.readFile(`${modpath}/package.json`));
 
         // add mod bundles
         if (VFS.exists(`${modpath}bundles.json`))
         {
-            this.addBundles(modpath);
+            ModLoader.addBundles(modpath);
         }
     }
 
-    validMod(mod)
+    static validMod(mod)
     {
         // check if config exists
-        if (!VFS.exists(`${this.getModPath(mod)}/package.json`))
+        if (!VFS.exists(`${ModLoader.getModPath(mod)}/package.json`))
         {
             console.log(`Mod ${mod} is missing package.json`);
             return false;
         }
 
         // validate mod
-        const config = JsonUtil.deserialize(VFS.readFile(`${this.getModPath(mod)}/package.json`));
+        const config = JsonUtil.deserialize(VFS.readFile(`${ModLoader.getModPath(mod)}/package.json`));
         const checks = ["name", "author", "version", "license"];
         let issue = false;
 
@@ -180,7 +167,7 @@ class ModController
             }
 
 
-            if (!VFS.exists(`${this.getModPath(mod)}/${config.main}`))
+            if (!VFS.exists(`${ModLoader.getModPath(mod)}/${config.main}`))
             {
                 console.log(`Mod ${mod} package.json main property points to non-existing file`);
                 issue = true;
@@ -190,7 +177,7 @@ class ModController
         return !issue;
     }
 
-    getLoadOrderRecursive(mod, result, visited)
+    static getLoadOrderRecursive(mod, result, visited)
     {
         // validate package
         if (mod in result)
@@ -215,14 +202,14 @@ class ModController
         }
 
         // check dependencies
-        const config = this.imported[mod];
+        const config = ModLoader.imported[mod];
         const dependencies = ("dependencies" in config) ? config.dependencies : [];
 
         visited[mod] = config.version;
 
         for (const dependency in dependencies)
         {
-            this.getLoadOrderRecursive(dependency, result, visited);
+            ModLoader.getLoadOrderRecursive(dependency, result, visited);
         }
 
         delete visited[mod];
@@ -231,7 +218,7 @@ class ModController
         result[mod] = config.version;
     }
 
-    getLoadOrder(mods)
+    static getLoadOrder(mods)
     {
         let result = {};
         let visited = {};
@@ -243,11 +230,11 @@ class ModController
                 continue;
             }
 
-            this.getLoadOrderRecursive(mod, result, visited);
+            ModLoader.getLoadOrderRecursive(mod, result, visited);
         }
 
         return result;
     }
 }
 
-module.exports = new ModController();
+module.exports = ModLoader;

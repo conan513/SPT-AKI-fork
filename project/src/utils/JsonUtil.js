@@ -1,16 +1,10 @@
-/* json.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
+
+require("../Lib.js");
 
 class JsonUtil
 {
-    serialize(data, prettify = false)
+    static serialize(data, prettify = false)
     {
         if (prettify)
         {
@@ -22,15 +16,15 @@ class JsonUtil
         }
     }
 
-    deserialize(string)
+    static deserialize(string)
     {
         return JSON.parse(string);
     }
 
-    clone(data)
+    static clone(data)
     {
         return JSON.parse(JSON.stringify(data));
     }
 }
 
-module.exports = new JsonUtil();
+module.exports = JsonUtil;

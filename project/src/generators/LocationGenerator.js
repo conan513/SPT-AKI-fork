@@ -1,31 +1,10 @@
-/* generator.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Craink
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const LocationConfig = require("../configs/LocationConfig.json");
-const RandomUtil = require("../utils/RandomUtil");
-const JsonUtil = require("../utils/JsonUtil");
-const HashUtil = require("../utils/HashUtil");
-const ContainerHelper = require("../helpers/ContainerHelper");
-const ItemHelper = require("../helpers/ItemHelper");
+require("../Lib.js");
 
 class LocationGenerator
 {
-    /**
-     * @param {unknown[]} dynamic
-     * @param {Coords | []} lootPositions
-     * @param {{ base: { GlobalLootChanceModifier: any; }; }} location
-     */
-    generateDynamicLoot(dynamic, lootPositions, location)
+    static generateDynamicLoot(dynamic, lootPositions, location)
     {
         let rndLootIndex = RandomUtil.getInt(0, dynamic.length - 1);
         let rndLoot = dynamic[rndLootIndex];
@@ -107,7 +86,7 @@ class LocationGenerator
         return { "status": "fail" };
     }
 
-    generateContainerLoot(items)
+    static generateContainerLoot(items)
     {
         let container = JsonUtil.clone(DatabaseServer.tables.loot.statics[items[0]._tpl]);
         let parentId = items[0]._id;
@@ -175,7 +154,7 @@ class LocationGenerator
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = JsonUtil.clone(preset_f.controller.getStandardPreset(item._id));
+                let preset = JsonUtil.clone(PresetController.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };
@@ -263,4 +242,4 @@ class LocationGenerator
     }
 }
 
-module.exports = new LocationGenerator();
+module.exports = LocationGenerator;

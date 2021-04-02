@@ -1,5 +1,7 @@
-{
-    "limits": {
+"use strict";
+
+module.exports = {
+    "presetBatch": {
         "assault": 30,
         "assaultGroup": 30,
         "cursedAssault": 30,
@@ -28,8 +30,7 @@
         "isUsec": 50,
         "types": {
             "assault": 30,
-            "assaultGroup": 100,
             "pmcBot": 30
         }
     }
-}
+};

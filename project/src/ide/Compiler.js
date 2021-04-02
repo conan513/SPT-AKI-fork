@@ -1,14 +1,6 @@
-/* build.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
-const VFS = require("../utils/VFS");
 const { compile } = require("nexe");
 const resourceHacker = require('@lorki97/node-resourcehacker');
+const VFS = require("../utils/VFS.js");
 
 require("./CheckVersion.js");
 
@@ -16,7 +8,7 @@ class Compiler
 {
     static buildOptions = {
         "tmp": {
-            "dir": "build/out/",
+            "dir": "obj/",
             "exe": "Server-Tmp.exe"
         },
         "build": {
@@ -24,7 +16,7 @@ class Compiler
             "exe": "Server.exe"
         },
         "icon": "assets/images/icon.ico",
-        "entry": "src/ide/ReleaseEntry.js"
+        "entry": "obj/ide/ReleaseEntry.js"
     };
     static nexeOptions = {
         "input": Compiler.buildOptions.entry,

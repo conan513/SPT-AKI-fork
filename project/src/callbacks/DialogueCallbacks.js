@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HashUtil = require("../utils/HashUtil");
-const HttpResponse = require("../utils/HttpResponse");
-const TimeUtil = require("../utils/TimeUtil");
+require("../Lib.js");
 
 class DialogueCallbacks
 {
@@ -47,46 +37,46 @@ class DialogueCallbacks
 
     static getMailDialogList(url, info, sessionID)
     {
-        return dialogue_f.controller.generateDialogueList(sessionID);
+        return DialogueController.generateDialogueList(sessionID);
     }
 
     static getMailDialogView(url, info, sessionID)
     {
-        return dialogue_f.controller.generateDialogueView(info.dialogId, sessionID);
+        return DialogueController.generateDialogueView(info.dialogId, sessionID);
     }
 
     static getMailDialogInfo(url, info, sessionID)
     {
-        return HttpResponse.getBody(dialogue_f.controller.getDialogueInfo(info.dialogId, sessionID));
+        return HttpResponse.getBody(DialogueController.getDialogueInfo(info.dialogId, sessionID));
     }
 
     static removeDialog(url, info, sessionID)
     {
-        dialogue_f.controller.removeDialogue(info.dialogId, sessionID);
+        DialogueController.removeDialogue(info.dialogId, sessionID);
         return HttpResponse.emptyArrayResponse();
     }
 
     static pinDialog(url, info, sessionID)
     {
-        dialogue_f.controller.setDialoguePin(info.dialogId, true, sessionID);
+        DialogueController.setDialoguePin(info.dialogId, true, sessionID);
         return HttpResponse.emptyArrayResponse();
     }
 
     static unpinDialog(url, info, sessionID)
     {
-        dialogue_f.controller.setDialoguePin(info.dialogId, false, sessionID);
+        DialogueController.setDialoguePin(info.dialogId, false, sessionID);
         return HttpResponse.emptyArrayResponse();
     }
 
     static setRead(url, info, sessionID)
     {
-        dialogue_f.controller.setRead(info.dialogs, sessionID);
+        DialogueController.setRead(info.dialogs, sessionID);
         return HttpResponse.emptyArrayResponse();
     }
 
     static getAllAttachments(url, info, sessionID)
     {
-        return HttpResponse.getBody(dialogue_f.controller.getAllAttachments(info.dialogId, sessionID));
+        return HttpResponse.getBody(DialogueController.getAllAttachments(info.dialogId, sessionID));
     }
 
     static listOutbox(url, info, sessionID)
@@ -106,7 +96,7 @@ class DialogueCallbacks
 
     static update()
     {
-        dialogue_f.controller.update();
+        DialogueController.update();
     }
 }
 

@@ -1,30 +1,19 @@
-/* events.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
+"use strict";
 
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
 class ItemEventRouter
 {
-    /** @type {apiEventResponse} */
     static output = ItemEventRouter.getOutput();
     static onEvent = require("../bindings/ItemEvents");
 
-    /**
-     * @param {{ data: any; }} info
-     * @param {string} sessionID
-     */
     static handleEvents(info, sessionID)
     {
         let result = "";
 
         for (let body of info.data)
         {
-            const pmcData = profile_f.controller.getPmcProfile(sessionID);
+            const pmcData = ProfileController.getPmcProfile(sessionID);
 
             if (ItemEventRouter.onEvent[body.Action])
             {
@@ -53,17 +42,11 @@ class ItemEventRouter
         return ItemEventRouter.output;
     }
 
-    /**
-     * @param {apiEventResponse} data
-     */
     static setOutput(data)
     {
         ItemEventRouter.output = data;
     }
 
-    /**
-     * @memberof EventHandler
-     */
     static resetOutput()
     {
         ItemEventRouter.output = {

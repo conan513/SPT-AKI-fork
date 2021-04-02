@@ -1,20 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - BALIST0N
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const HealthConfig = require("../configs/HealthConfig.json");
-const ItemHelper = require("../helpers/ItemHelper.js");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const TimeUtil = require("../utils/TimeUtil.js");
+require("../Lib.js");
 
 class HealthController
 {
@@ -74,7 +60,7 @@ class HealthController
 
                 if (item.upd.MedKit.HpResource <= 0)
                 {
-                    inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
+                    InventoryController.removeItem(pmcData, body.item, output, sessionID);
                 }
             }
         }
@@ -113,7 +99,7 @@ class HealthController
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = inventory_f.controller.removeItem(pmcData, body.item, output, sessionID);
+            output = InventoryController.removeItem(pmcData, body.item, output, sessionID);
         }
 
         return output;
@@ -162,7 +148,7 @@ class HealthController
             "scheme_items": info.items
         };
 
-        Helpers.payMoney(pmcData, body, sessionID);
+        PlzRefactorMeHelper.payMoney(pmcData, body, sessionID);
 
         let BodyParts = info.difference.BodyParts;
         let healthInfo = { "IsAlive": true, "Health": {} };

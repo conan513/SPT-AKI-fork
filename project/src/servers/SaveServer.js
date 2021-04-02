@@ -1,21 +1,10 @@
-//@ts-check
-/* server.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san
- */
-
 "use strict";
 
-const JsonUtil = require("../utils/JsonUtil");
-const VFS = require("../utils/VFS");
+require("../Lib.js");
 
 class SaveServer
 {
     static filepath = "user/profiles/";
-    /** @type {UserProfileDictionary} */
     static profiles = {};
     static onLoad = require("../bindings/SaveLoad");
     static onSave = {};
@@ -49,9 +38,6 @@ class SaveServer
         }
     }
 
-    /**
-     * @param {string} sessionID
-     */
     static loadProfile(sessionID)
     {
         const file = `${SaveServer.filepath}${sessionID}.json`;
@@ -69,10 +55,6 @@ class SaveServer
         }
     }
 
-    /**
-     * Save User's Profile
-     * @param {string} sessionID
-     */
     static saveProfile(sessionID)
     {
         const file = `${SaveServer.filepath}${sessionID}.json`;

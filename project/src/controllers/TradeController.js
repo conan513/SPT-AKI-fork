@@ -1,26 +1,10 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- */
-
 "use strict";
 
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
 class TradeController
 {
-    /**
-     * @param {UserPMCProfile} pmcData
-     * @param {{ item_id?: any; count?: any; tid: any; Action?: any; scheme_items?: any; }} body
-     * @param {string} sessionID
-     * @param {boolean} foundInRaid
-     * @param {any} upd
-     */
-    buyItem(pmcData, body, sessionID, foundInRaid, upd)
+    static buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
         const output = ItemEventRouter.getOutput();
         const newReq = {
@@ -34,7 +18,7 @@ class TradeController
         };
         const callback = () =>
         {
-            if (!Helpers.payMoney(pmcData, body, sessionID))
+            if (!PlzRefactorMeHelper.payMoney(pmcData, body, sessionID))
             {
                 Logger.error("no money found");
                 throw "Transaction failed";
@@ -43,19 +27,16 @@ class TradeController
             Logger.success("Bought item: " + body.item_id);
         };
 
-        return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
+        return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
     }
 
     /**
      * Selling item to trader
-     * @param {UserPMCProfile} pmcData
-     * @param {{ tid: any; items?: any; }} body
-     * @param {any} sessionID
      */
-    sellItem(pmcData, body, sessionID)
+    static sellItem(pmcData, body, sessionID)
     {
         let money = 0;
-        let prices = trader_f.controller.getPurchasesData(body.tid, sessionID);
+        let prices = TraderController.getPurchasesData(body.tid, sessionID);
         let output = ItemEventRouter.getOutput();
 
         for (let sellItem of body.items)
@@ -77,8 +58,8 @@ class TradeController
                     Logger.info("Selling: " + checkID);
 
                     // remove item
-                    insurance_f.controller.remove(pmcData, checkID, sessionID);
-                    output = inventory_f.controller.removeItem(pmcData, checkID, output, sessionID);
+                    InsuranceController.remove(pmcData, checkID, sessionID);
+                    output = InventoryController.removeItem(pmcData, checkID, output, sessionID);
 
                     // add money to return to the player
                     if (output !== "")
@@ -93,38 +74,38 @@ class TradeController
         }
 
         // get money the item]
-        return Helpers.getMoney(pmcData, money, body, output, sessionID);
+        return PlzRefactorMeHelper.getMoney(pmcData, money, body, output, sessionID);
     }
 
     // separate is that selling or buying
-    confirmTrading(pmcData, body, sessionID, foundInRaid = false, upd = null)
+    static confirmTrading(pmcData, body, sessionID, foundInRaid = false, upd = null)
     {
         // buying
         if (body.type === "buy_from_trader")
         {
-            return this.buyItem(pmcData, body, sessionID, foundInRaid, upd);
+            return TradeController.buyItem(pmcData, body, sessionID, foundInRaid, upd);
         }
 
         // selling
         if (body.type === "sell_to_trader")
         {
-            return this.sellItem(pmcData, body, sessionID);
+            return TradeController.sellItem(pmcData, body, sessionID);
         }
 
         return "";
     }
 
     // Ragfair trading
-    confirmRagfairTrading(pmcData, body, sessionID)
+    static confirmRagfairTrading(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
         for (let offer of body.offers)
         {
-            let data = ragfair_f.server.getOffer(offer.id);
+            let data = RagfairServer.getOffer(offer.id);
             console.log(offer);
 
-            pmcData = profile_f.controller.getPmcProfile(sessionID);
+            pmcData = ProfileController.getPmcProfile(sessionID);
             body = {
                 "Action": "TradingConfirm",
                 "type": "buy_from_trader",
@@ -138,14 +119,14 @@ class TradeController
             if (data.user.memberType !== 4)
             {
                 // remove player item offer stack
-                ragfair_f.server.removeOfferStack(data._id, offer.count);
+                RagfairServer.removeOfferStack(data._id, offer.count);
             }
 
-            output = this.confirmTrading(pmcData, body, sessionID, false, data.items[0].upd);
+            output = TradeController.confirmTrading(pmcData, body, sessionID, false, data.items[0].upd);
         }
 
         return output;
     }
 }
 
-module.exports = new TradeController();
+module.exports = TradeController;

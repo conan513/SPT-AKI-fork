@@ -1,14 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const CertController = require("../controllers/CertController");
+require("../Lib.js");
 
 class CertCallbacks
 {
@@ -29,7 +21,7 @@ class CertCallbacks
         const sendType = isAttachment ? "attachment" : "inline";
 
         resp.writeHead(200, "OK",         {
-            "Content-Type": https_f.server.mime["bin"],
+            "Content-Type": HttpServer.mime["bin"],
             "Content-Disposition": `${sendType}; filename=cert.pem`
         });
 

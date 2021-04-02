@@ -1,14 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse.js");
+require("../Lib.js");
 
 class HealthCallbacks
 {
@@ -19,7 +11,7 @@ class HealthCallbacks
 
     static syncHealth(url, info, sessionID)
     {
-        HealthController.saveVitality(profile_f.controller.getPmcProfile(sessionID), info, sessionID);
+        HealthController.saveVitality(ProfileController.getPmcProfile(sessionID), info, sessionID);
         return HttpResponse.emptyResponse();
     }
 

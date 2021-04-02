@@ -1,16 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const LauncherController = require("./LauncherController.js");
-const MatchConfig = require("../configs/MatchConfig.json");
-const TimeUtil = require("../utils/TimeUtil.js");
+require("../Lib.js");
 
 class MatchController
 {
@@ -48,12 +38,12 @@ class MatchController
     {
         if (info.profileId.includes("pmcAID"))
         {
-            return profile_f.controller.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
+            return ProfileController.getCompleteProfile(info.profileId.replace("pmcAID", "AID"));
         }
 
         if (info.profileId.includes("scavAID"))
         {
-            return profile_f.controller.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
+            return ProfileController.getCompleteProfile(info.profileId.replace("scavAID", "AID"));
         }
 
         return null;

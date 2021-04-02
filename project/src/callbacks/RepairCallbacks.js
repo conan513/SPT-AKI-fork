@@ -1,14 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const RepairController = require("../controllers/RepairController.js");
+require("../Lib.js");
 
 class RepairCallbacks
 {

@@ -1,15 +1,6 @@
-const CustomizationCallbacks = require("../callbacks/CustomizationCallbacks");
-const HealthCallbacks = require("../callbacks/HealthCallbacks");
-const HideoutCallbacks = require("../callbacks/HideoutCallbacks");
-const InsuranceCallbacks = require("../callbacks/InsuranceCallbacks");
-const InventoryCallbacks = require("../callbacks/InventoryCallbacks");
-const NoteCallbacks = require("../callbacks/NoteCallbacks");
-const PresetBuildCallbacks = require("../callbacks/PresetBuildCallbacks");
-const QuestCallbacks = require("../callbacks/QuestCallbacks");
-const RagfairCallbacks = require("../callbacks/RagfairCallbacks");
-const RepairCallbacks = require("../callbacks/RepairCallbacks");
-const TradeCallbacks = require("../callbacks/TradeCallbacks");
-const WishlistCallbacks = require("../callbacks/WishlistCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "CustomizationWear": {

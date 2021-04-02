@@ -1,25 +1,11 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Craink
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const LocationConfig = require("../configs/LocationConfig.json");
-const Logger = require("../utils/Logger");
-const JsonUtil = require("../utils/JsonUtil");
-const TimeUtil = require("../utils/TimeUtil");
+require("../Lib.js");
 
 class LocationController
 {
     /* generates a random location preset to use for local session */
-    generate(name)
+    static generate(name)
     {
         let location = DatabaseServer.tables.locations[name];
         let output = location.base;
@@ -75,7 +61,7 @@ class LocationController
 
             ids[data.Id] = true;
 
-            location_f.generator.generateContainerLoot(data.Items);
+            LocationGenerator.generateContainerLoot(data.Items);
             output.Loot.push(data);
             count++;
         }
@@ -91,7 +77,7 @@ class LocationController
 
         while (maxCount < max && dynamic.length > 0)
         {
-            const result = location_f.generator.generateDynamicLoot(dynamic, lootPositions, location);
+            const result = LocationGenerator.generateDynamicLoot(dynamic, lootPositions, location);
 
             if (result.status === "success")
             {
@@ -114,14 +100,14 @@ class LocationController
     }
 
     /* get a location with generated loot data */
-    get(location)
+    static get(location)
     {
         let name = location.toLowerCase().replace(" ", "");
-        return this.generate(name);
+        return LocationController.generate(name);
     }
 
     /* get all locations without loot data */
-    generateAll()
+    static generateAll()
     {
         let locations = DatabaseServer.tables.locations;
         let base = DatabaseServer.tables.locations.base;
@@ -146,4 +132,4 @@ class LocationController
     }
 }
 
-module.exports = new LocationController();
+module.exports = LocationController;

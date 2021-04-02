@@ -1,32 +1,13 @@
-/**
- * InventoryHelper.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Terkoiz
- */
+"use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const HashUtil = require("../utils/HashUtil");
-const Logger = require("../utils/Logger");
-const ItemHelper = require("./ItemHelper");
+require("../Lib.js");
 
-/*
- * @class InventoryHelper
- * @description Helpers related to Inventory
- */
 class InventoryHelper
 {
-    /**
-   * @param {itemTemplate[]} items
-   */
-    getSecureContainer(items)
+    static getSecureContainer(items)
     {
-    // Player Slots we care about
+        // Player Slots we care about
         const inventorySlots = ["SecuredContainer"];
-        /** @type {itemTemplate[]} */
         let inventoryItems = [];
 
         // Get an array of root player items
@@ -66,7 +47,7 @@ class InventoryHelper
         return inventoryItems;
     }
 
-    removeSecureContainer(profile)
+    static removeSecureContainer(profile)
     {
         let items = profile.Inventory.items;
 
@@ -94,13 +75,9 @@ class InventoryHelper
         return profile;
     }
 
-    /**
-   * @param {hash} sessionID
-   */
-    getStashType(sessionID)
+    static getStashType(sessionID)
     {
-    /** @type {UserPMCProfile} */
-        const pmcData = profile_f.controller.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
 
         const stashObj = pmcData.Inventory.items.find(
             (item) => item._id === pmcData.Inventory.stash
@@ -113,10 +90,8 @@ class InventoryHelper
 
         return stashObj._tpl;
     }
-    /**
-   * @param {UserPMCProfile} profile
-   */
-    generateInventoryID(profile)
+
+    static generateInventoryID(profile)
     {
         let itemsByParentHash = {};
         let inventoryItemHash = {};
@@ -162,33 +137,20 @@ class InventoryHelper
 
         return profile;
     }
+
     /* Calculate Size of item inputed
-   * inputs Item template ID, Item Id, InventoryItem (item from inventory having _id and _tpl)
-   * outputs [width, height]
-   * */
-    /**
-   * @param {itemTemplate} itemtpl
-   * @param {string} itemID
-   * @param {itemTemplate[]} InventoryItem
-   */
-    getItemSize(itemtpl, itemID, InventoryItem)
+     * inputs Item template ID, Item Id, InventoryItem (item from inventory having _id and _tpl)
+     * outputs [width, height]
+     */
+    static getItemSize(itemtpl, itemID, InventoryItem)
     {
-    // -> Prepares item Width and height returns [sizeX, sizeY]
-        return this.getSizeByInventoryItemHash(
-            itemtpl,
-            itemID,
-            this.getInventoryItemHash(InventoryItem)
-        );
+        // -> Prepares item Width and height returns [sizeX, sizeY]
+        return InventoryHelper.getSizeByInventoryItemHash(itemtpl, itemID, InventoryHelper.getInventoryItemHash(InventoryItem));
     }
 
     // note from 2027: there IS a thing i didn't explore and that is Merges With Children
     // -> Prepares item Width and height returns [sizeX, sizeY]
-    /**
-   * @param {itemTemplate} itemtpl
-   * @param {string} itemID
-   * @param {{ byItemId: any; byParentId: any; }} inventoryItemHash
-   */
-    getSizeByInventoryItemHash(itemtpl, itemID, inventoryItemHash)
+    static getSizeByInventoryItemHash(itemtpl, itemID, inventoryItemHash)
     {
         let toDo = [itemID];
         let tmpItem = ItemHelper.getItem(itemtpl)[1];
@@ -212,17 +174,10 @@ class InventoryHelper
             "566168634bdc2d144c8b456c",
             "5795f317245977243854e041",
         ];
-        let rootFolded =
-      rootItem.upd &&
-      rootItem.upd.Foldable &&
-      rootItem.upd.Foldable.Folded === true;
+        let rootFolded = rootItem.upd && rootItem.upd.Foldable && rootItem.upd.Foldable.Folded === true;
 
         //The item itself is collapsible
-        if (
-            FoldableWeapon &&
-      (FoldedSlot === undefined || FoldedSlot === "") &&
-      rootFolded
-        )
+        if (FoldableWeapon && (FoldedSlot === undefined || FoldedSlot === "") && rootFolded)
         {
             outX -= tmpItem._props.SizeReduceRight;
         }
@@ -246,16 +201,9 @@ class InventoryHelper
                         // If the barrel is folded the space in the barrel is not counted
                         let itm = ItemHelper.getItem(item._tpl)[1];
                         let childFoldable = itm._props.Foldable;
-                        let childFolded =
-              item.upd &&
-              item.upd.Foldable &&
-              item.upd.Foldable.Folded === true;
+                        let childFolded = item.upd && item.upd.Foldable && item.upd.Foldable.Folded === true;
 
-                        if (
-                            FoldableWeapon &&
-              FoldedSlot === item.slotId &&
-              (rootFolded || childFolded)
-                        )
+                        if (FoldableWeapon && FoldedSlot === item.slotId && (rootFolded || childFolded))
                         {
                             continue;
                         }
@@ -274,22 +222,10 @@ class InventoryHelper
                         }
                         else
                         {
-                            SizeUp =
-                SizeUp < itm._props.ExtraSizeUp
-                    ? itm._props.ExtraSizeUp
-                    : SizeUp;
-                            SizeDown =
-                SizeDown < itm._props.ExtraSizeDown
-                    ? itm._props.ExtraSizeDown
-                    : SizeDown;
-                            SizeLeft =
-                SizeLeft < itm._props.ExtraSizeLeft
-                    ? itm._props.ExtraSizeLeft
-                    : SizeLeft;
-                            SizeRight =
-                SizeRight < itm._props.ExtraSizeRight
-                    ? itm._props.ExtraSizeRight
-                    : SizeRight;
+                            SizeUp = SizeUp < itm._props.ExtraSizeUp ? itm._props.ExtraSizeUp : SizeUp;
+                            SizeDown = SizeDown < itm._props.ExtraSizeDown ? itm._props.ExtraSizeDown : SizeDown;
+                            SizeLeft = SizeLeft < itm._props.ExtraSizeLeft ? itm._props.ExtraSizeLeft : SizeLeft;
+                            SizeRight = SizeRight < itm._props.ExtraSizeRight ? itm._props.ExtraSizeRight : SizeRight;
                         }
                     }
                 }
@@ -310,49 +246,29 @@ class InventoryHelper
    * List is backward first item is the furthest child and last item is main item
    * returns all child items ids in array, includes itself and children
    * */
-    /**
-   * @param {UserPMCProfile} pmcData
-   * @param {string} itemID
-   */
-    findAndReturnChildren(pmcData, itemID)
+    static findAndReturnChildren(pmcData, itemID)
     {
-        return ItemHelper.findAndReturnChildrenByItems(
-            pmcData.Inventory.items,
-            itemID
-        );
+        return ItemHelper.findAndReturnChildrenByItems(pmcData.Inventory.items, itemID);
     }
 
     /* Get Player Stash Proper Size
    * input: null
    * output: [stashSizeWidth, stashSizeHeight]
    * */
-    getPlayerStashSize(sessionID)
+    static getPlayerStashSize(sessionID)
     {
-    //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
-        let stashTPL = this.getStashType(sessionID);
-        let stashX =
-      DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props
-          .cellsH !== 0
-          ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]
-              ._props.cellsH
-          : 10;
-        let stashY =
-      DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props
-          .cellsV !== 0
-          ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]
-              ._props.cellsV
-          : 66;
+        //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
+        let stashTPL = InventoryHelper.getStashType(sessionID);
+        let stashX = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
+        let stashY = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
         return [stashX, stashY];
     }
 
-    /**
-   * @param {itemTemplate[]} InventoryItem
-   */
-    getInventoryItemHash(InventoryItem)
+    static getInventoryItemHash(InventoryItem)
     {
         let inventoryItemHash = {
-            byItemId: {},
-            byParentId: {},
+            "byItemId": {},
+            "byParentId": {},
         };
 
         for (let i = 0; i < InventoryItem.length; i++)
@@ -369,8 +285,10 @@ class InventoryHelper
             {
                 inventoryItemHash.byParentId[item.parentId] = [];
             }
+
             inventoryItemHash.byParentId[item.parentId].push(item);
         }
+
         return inventoryItemHash;
     }
 
@@ -378,20 +296,14 @@ class InventoryHelper
    * Recursively checks if the given item is
    * inside the stash, that is it has the stash as
    * ancestor with slotId=hideout
-   *
-   * @param {UserPMCProfile} pmcData
-   * @param {itemTemplate} item
    */
-    isItemInStash(pmcData, item)
+    static isItemInStash(pmcData, item)
     {
         let container = item;
 
         while ("parentId" in container)
         {
-            if (
-                container.parentId === pmcData.Inventory.stash &&
-        container.slotId === "hideout"
-            )
+            if (container.parentId === pmcData.Inventory.stash && container.slotId === "hideout")
             {
                 return true;
             }
@@ -409,4 +321,5 @@ class InventoryHelper
         return false;
     }
 }
-module.exports = new InventoryHelper();
+
+module.exports = InventoryHelper;
