@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "LBTMedBackpack",
+            "_tpl": "5e4abc6786f77406812bd572",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "ExpeditionaryFuel",
             "_tpl": "5d1b371186f774253763a656",
             "parentId": "hideout",
@@ -692,6 +702,26 @@
         }
     ],
     "barter_scheme": {
+        "LBTMedBackpack":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "590c695186f7741e566b64a2"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5755383e24597772cb798966"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5d02797c86f774203f38e30a"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "5d1b3a5d86f774252167ba22"
+                }
+            ]
+        ],
         "ExpeditionaryFuel":[
             [
                 {
@@ -1431,6 +1461,7 @@
         "06LWater":1,
         "AdrenalineInjector":2,
         "EnglishTea":2,
-        "ExpeditionaryFuel":2
+        "ExpeditionaryFuel":2,
+        "LBTMedBackpack":3
     }
 }
