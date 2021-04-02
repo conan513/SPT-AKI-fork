@@ -1,6 +1,16 @@
 {
     "items": [
 		{
+            "_id": "BerkutBarter",
+            "_tpl": "5ca20d5986f774331e7c9602",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+		{
             "_id": "6B3TM_Barter",
             "_tpl": "5d5d646386f7742797261fd9",
             "parentId": "hideout",
@@ -1442,6 +1452,14 @@
         }
     ],
     "barter_scheme": {
+		"BerkutBarter":[
+			[
+				{
+                    "count": 1,
+                    "_tpl": "5c0d2727d174af02a012cf58"
+                }
+			]
+		],
 		"6B3TM_Barter":[
 			[
 				{
@@ -2876,7 +2894,7 @@
         "5ece83c201e14e770d5829ce": 2,
         "5ece83c201e14e770d5829d0": 4,
         "5ece83c201e14e770d5829d2": 2,
-        "5ece83c201e14e770d5829d4": 2,
+        "5ece83c201e14e770d5829d4": 1,
         "5ece83c201e14e770d5829d6": 2,
         "5ece83c201e14e770d5829d8": 2,
         "5ece83c201e14e770d5829da": 2,
@@ -2906,6 +2924,7 @@
         "HexGridArmor": 3,
         "AzimutBlack": 2,
         "CryAVS": 2,
-		"6B3TM_Barter":2
+		"6B3TM_Barter":2,
+		"BerkutBarter":1
     }
 }
