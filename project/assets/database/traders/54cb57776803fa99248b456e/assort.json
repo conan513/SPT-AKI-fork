@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "ExpeditionaryFuel",
+            "_tpl": "5d1b371186f774253763a656",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "EnglishTea",
             "_tpl": "5bc9be8fd4351e00334cae6e",
             "parentId": "hideout",
@@ -682,6 +692,18 @@
         }
     ],
     "barter_scheme": {
+        "ExpeditionaryFuel":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5d1b33a686f7742523398398"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "544fb62a4bdc2dfb738b4568"
+                }
+            ]
+        ],
         "EnglishTea":[
             [
                 {
@@ -1396,6 +1418,7 @@
         "HumpbackSalmon": 1,
         "06LWater":1,
         "AdrenalineInjector":2,
-        "EnglishTea":2
+        "EnglishTea":2,
+        "ExpeditionaryFuel":2
     }
 }
