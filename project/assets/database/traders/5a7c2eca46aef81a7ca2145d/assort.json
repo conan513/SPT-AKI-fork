@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "ElitePliers_Barter",
+            "_tpl": "5af04b6486f774195a3ebb49",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
             "_id": "UMP45_Mech_Trade",
             "_tpl": "5fc3e272f8b6a877a729eac5",
             "parentId": "hideout",
@@ -6273,6 +6283,23 @@
         }
     ],
     "barter_scheme": {
+        "ElitePliers_Barter":
+        [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590c2b4386f77425357b6123"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d40425986f7743185265461"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d1b31ce86f7742523398394"
+                }
+            ]
+        ],
         "UMP45_Mech_Trade":[
             [
                 {
@@ -10094,6 +10121,7 @@
         "5e0ac74b9d594972a112a9ed": 3,
         "45ACP_Silencer": 2,
         "zevTech": 3,
-        "UMP45_Mech_Trade":1
+        "UMP45_Mech_Trade":1,
+        "ElitePliers_Barter": 1
     }
 }
