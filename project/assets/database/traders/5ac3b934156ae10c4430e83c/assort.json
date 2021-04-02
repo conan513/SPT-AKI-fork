@@ -1,5 +1,15 @@
 {
     "items": [
+		{
+            "_id": "6B3TM_Barter",
+            "_tpl": "5d5d646386f7742797261fd9",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
         {
             "_id": "CryAVS",
             "_tpl": "544a5caa4bdc2d1a388b4568",
@@ -1432,6 +1442,14 @@
         }
     ],
     "barter_scheme": {
+		"6B3TM_Barter":[
+			[
+				{
+                    "count": 4,
+                    "_tpl": "5d5d646386f7742797261fd9"
+                }
+			]
+		],
         "CryAVS": [
             [
                 {
@@ -2887,6 +2905,7 @@
         "RysTFaceShield": 4,
         "HexGridArmor": 3,
         "AzimutBlack": 2,
-        "CryAVS": 2
+        "CryAVS": 2,
+		"6B3TM_Barter":2
     }
 }
