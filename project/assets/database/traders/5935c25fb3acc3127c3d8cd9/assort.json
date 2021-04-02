@@ -7306,9 +7306,15 @@
         "5f004c0b1b27f811e5317c92": [
             [
                 {
-                    "count": 20,
+                    "count": 8,
                     "level": 15,
-                    "side": "Any",
+                    "side": "Bear",
+                    "_tpl": "59f32bb586f774757e1e8442"
+                },
+                {
+                    "count": 8,
+                    "level": 15,
+                    "side": "Usec",
                     "_tpl": "59f32c3b86f77472a31742f0"
                 }
             ]
