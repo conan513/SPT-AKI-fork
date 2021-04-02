@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "BlackKeycard",
+            "_tpl": "5c1d0f4986f7744bb01837fa",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "Badger_Ordnance",
             "_tpl": "56ea7165d2720b6e518b4583",
             "parentId": "hideout",
@@ -6313,6 +6323,23 @@
         }
     ],
     "barter_scheme": {
+        "BlackKeycard":
+        [
+            [
+                {
+                    "count": 4,
+                    "_tpl": "5d03794386f77420415576f5"
+                },
+                {
+                    "count": 6,
+                    "_tpl": "5e2aee0a86f774755a234b62"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5c052fb986f7746b2101e909"
+                }
+            ]
+        ],
         "Badger_Ordnance":[
             [
                 {
@@ -10170,6 +10197,7 @@
         "ElitePliers_Barter": 1,
         "SGMT_Mag_Barter": 2,
         "SpecterDRFDE": 2,
-        "Badger_Ordnance": 1
+        "Badger_Ordnance": 1,
+        "BlackKeycard":3
     }
 }
