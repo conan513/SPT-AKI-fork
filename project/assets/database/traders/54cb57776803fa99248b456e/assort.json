@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "06LWater",
+            "_tpl": "5448fee04bdc2dbc018b4567",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "HumpbackSalmon",
             "_tpl": "57347d5f245977448b40fa81",
             "parentId": "hideout",
@@ -652,6 +662,14 @@
         }
     ],
     "barter_scheme": {
+        "06LWater":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "59e361e886f774176c10a2a5"
+                }
+            ]
+        ],
         "HumpbackSalmon": [
             [
                 {
@@ -799,16 +817,12 @@
         "5eeca649bfed7142cb3105c8": [
             [
                 {
-                    "count": 10,
-                    "_tpl": "56742c284bdc2d98058b456d"
+                    "count": 1,
+                    "_tpl": "590a3efd86f77437d351a25b"
                 },
                 {
-                    "count": 2,
-                    "_tpl": "5c13cef886f774072e618e82"
-                },
-                {
-                    "count": 2,
-                    "_tpl": "5d4041f086f7743cac3f22a7"
+                    "count": 1,
+                    "_tpl": "590a3d9c86f774385926e510"
                 }
             ]
         ],
@@ -1343,6 +1357,7 @@
         "5eeca649bfed7142cb310628": 3,
         "5eeca649bfed7142cb31062a": 2,
         "adrenaline": 4,
-        "HumpbackSalmon": 1
+        "HumpbackSalmon": 1,
+        "06LWater":1
     }
 }
