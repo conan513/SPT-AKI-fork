@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "AdrenalineInjector",
+            "_tpl": "5c10c8fd86f7743d7d706df3",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "06LWater",
             "_tpl": "5448fee04bdc2dbc018b4567",
             "parentId": "hideout",
@@ -662,6 +672,18 @@
         }
     ],
     "barter_scheme": {
+        "AdrenalineInjector":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590a3d9c86f774385926e510"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d1b3f2d86f774253763b735"
+                }
+            ]
+        ],
         "06LWater":[
             [
                 {
@@ -1354,6 +1376,7 @@
         "5eeca649bfed7142cb31062a": 2,
         "adrenaline": 4,
         "HumpbackSalmon": 1,
-        "06LWater":1
+        "06LWater":1,
+        "AdrenalineInjector":2
     }
 }
