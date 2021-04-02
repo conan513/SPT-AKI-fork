@@ -27139,7 +27139,7 @@
 					"_props": {
 						"target": "Sniper",
 						"compareMethod": ">=",
-						"value": "9",
+						"value": "7",
 						"index": 0,
 						"parentId": "",
 						"id": "5c0be2b486f7747bcb347d58"
