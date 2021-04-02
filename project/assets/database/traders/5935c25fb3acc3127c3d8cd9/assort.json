@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "Mag30MP9",
+            "_tpl": "5de8eac42a78646d96665d91",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "Ump45Mag_barter",
             "_tpl": "5fc3e466187fea44d52eda90",
             "parentId": "hideout",
@@ -5429,7 +5439,15 @@
         }
     ],
     "barter_scheme": {
-        "Ump45Mag_barter":[
+        "Mag30MP9": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590a3efd86f77437d351a25b"
+                }
+            ]
+        ],
+        "Ump45Mag_barter": [
             [
                 {
                     "count": 1,
@@ -8629,6 +8647,7 @@
         "ds150Stock": 2,
         "SRD": 3,
         "RFB_TS": 1,
-        "Ump45Mag_barter":1
+        "Ump45Mag_barter": 1,
+        "Mag30MP9": 2
     }
 }
