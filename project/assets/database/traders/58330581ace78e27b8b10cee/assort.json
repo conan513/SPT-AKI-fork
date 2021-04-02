@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "ZenitRP1",
+            "_tpl": "5648ac824bdc2ded0b8b457d",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
             "_id": "M32Headset",
             "_tpl": "6033fa48ffd42c541047f728",
             "parentId": "hideout",
@@ -2676,10 +2686,24 @@
         }
     ],
     "barter_scheme": {
-        "M32Headset":[
+        "ZenitRP1": [
             [
-                { "count": 19550,
-                    "_tpl": "5449016a4bdc2d6f028b456f"}
+                {
+                    "count": 1,
+                    "_tpl": "5734781f24597737e04bf32a"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5c06779c86f77426e00dd782"
+                }
+            ]
+        ],
+        "M32Headset": [
+            [
+                {
+                    "count": 19550,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
             ]
         ],
         "SigSRD": [
@@ -4415,6 +4439,7 @@
         "Silencer12K": 2,
         "EotechVudu1-6": 3,
         "SigSRD": 3,
-        "M32Headset":1
+        "M32Headset": 1,
+        "ZenitRP1":1
     }
 }
