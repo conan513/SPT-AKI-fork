@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "SpecterDRFDE",
+            "_tpl": "57aca93d2459771f2c7e26db",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "SGMT_Mag_Barter",
             "_tpl": "5a718f958dc32e00094b97e7",
             "parentId": "hideout",
@@ -6293,6 +6303,14 @@
         }
     ],
     "barter_scheme": {
+        "SpecterDRFDE":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "590c392f86f77444754deb29"
+                }
+            ]
+        ],
         "SGMT_Mag_Barter":[
             [
                 {
@@ -10141,6 +10159,7 @@
         "zevTech": 3,
         "UMP45_Mech_Trade":1,
         "ElitePliers_Barter": 1,
-        "SGMT_Mag_Barter": 2
+        "SGMT_Mag_Barter": 2,
+        "SpecterDRFDE":2
     }
 }
