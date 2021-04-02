@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "EnglishTea",
+            "_tpl": "5bc9be8fd4351e00334cae6e",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "AdrenalineInjector",
             "_tpl": "5c10c8fd86f7743d7d706df3",
             "parentId": "hideout",
@@ -672,6 +682,14 @@
         }
     ],
     "barter_scheme": {
+        "EnglishTea":[
+            [
+                {
+                    "count": 4,
+                    "_tpl": "575062b524597720a31c09a1"
+                }
+            ]
+        ],
         "AdrenalineInjector":[
             [
                 {
@@ -1377,6 +1395,7 @@
         "adrenaline": 4,
         "HumpbackSalmon": 1,
         "06LWater":1,
-        "AdrenalineInjector":2
+        "AdrenalineInjector":2,
+        "EnglishTea":2
     }
 }
