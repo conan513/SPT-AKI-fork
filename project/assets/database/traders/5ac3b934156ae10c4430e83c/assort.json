@@ -1,6 +1,26 @@
 {
     "items": [
 		{
+            "_id": "6B15Barter",
+            "_tpl": "5c0e446786f7742013381639",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+		{
+            "_id": "CSAChestRig",
+            "_tpl": "6034d0230ca681766b6a0fb5",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+		{
             "_id": "BerkutBarter",
             "_tpl": "5ca20d5986f774331e7c9602",
             "parentId": "hideout",
@@ -1452,6 +1472,22 @@
         }
     ],
     "barter_scheme": {
+		"6B15Barter":[
+			[
+				{
+                    "count": 3,
+                    "_tpl": "5c0e446786f7742013381639"
+                }
+			]
+		],
+		"CSAChestRig":[
+			[
+				{
+                    "count": 20979,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+			]
+		],
 		"BerkutBarter":[
 			[
 				{
@@ -2925,6 +2961,8 @@
         "AzimutBlack": 2,
         "CryAVS": 2,
 		"6B3TM_Barter":2,
-		"BerkutBarter":1
+		"BerkutBarter":1,
+		"CSAChestRig":1,
+		"6B15Barter":2
     }
 }
