@@ -101,16 +101,6 @@
 			}
 		},
 		{
-			"_id": "5ece83c001e14e770d5828ec",
-			"_tpl": "5b44cad286f77402a54ae7e5",
-			"parentId": "hideout",
-			"slotId": "hideout",
-			"upd": {
-				"UnlimitedCount": true,
-				"StackObjectsCount": 999999999
-			}
-		},
-		{
 			"_id": "5ece83c001e14e770d5828ee",
 			"_tpl": "56e335e4d2720b6c058b456d",
 			"parentId": "hideout",
@@ -1586,18 +1576,6 @@
 				}
 			]
 		],
-		"5ece83c001e14e770d5828ec": [
-			[
-				{
-					"count": 4,
-					"_tpl": "5b3b713c5acfc4330140bd8d"
-				},
-				{
-					"count": 8,
-					"_tpl": "573474f924597738002c6174"
-				}
-			]
-		],
 		"5ece83c001e14e770d5828ee": [
 			[
 				{
@@ -1783,7 +1761,7 @@
 		"5ece83c101e14e770d582918": [
 			[
 				{
-					"count": 4,
+					"count": 5,
 					"_tpl": "5b432c305acfc40019478128"
 				},
 				{
@@ -2319,7 +2297,7 @@
 					"_tpl": "590de7e986f7741b096e5f32"
 				},
 				{
-					"count": 6,
+					"count": 10,
 					"_tpl": "573474f924597738002c6174"
 				}
 			]
@@ -2819,7 +2797,6 @@
 		"5d34df2788a4504526796d3d": 4,
 		"5e0ac74b9d594972a112a89a": 3,
 		"5e3c0b7e7dfe975b6f2b0730": 2,
-		"5ece83c001e14e770d5828ec": 2,
 		"5ece83c001e14e770d5828ee": 2,
 		"5ece83c001e14e770d5828f0": 4,
 		"5ece83c101e14e770d5828f2": 2,
