@@ -6568,7 +6568,7 @@
         "5eeca63bbfed7142cb30fa6c": [
             [
                 {
-                    "count": 1,
+                    "count": 2,
                     "_tpl": "5c1267ee86f77416ec610f72"
                 }
             ]
@@ -9496,11 +9496,7 @@
         "5eeca63ebfed7142cb30fe63": [
             [
                 {
-                    "count": 1,
-                    "_tpl": "59faff1d86f7746c51718c9c"
-                },
-                {
-                    "count": 1,
+                    "count": 7,
                     "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
