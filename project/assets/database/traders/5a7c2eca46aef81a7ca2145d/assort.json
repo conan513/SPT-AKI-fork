@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "Badger_Ordnance",
+            "_tpl": "56ea7165d2720b6e518b4583",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "SpecterDRFDE",
             "_tpl": "57aca93d2459771f2c7e26db",
             "parentId": "hideout",
@@ -6303,7 +6313,15 @@
         }
     ],
     "barter_scheme": {
-        "SpecterDRFDE":[
+        "Badger_Ordnance":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "573476f124597737e04bf328"
+                }
+            ]
+        ],
+        "SpecterDRFDE": [
             [
                 {
                     "count": 2,
@@ -6311,7 +6329,7 @@
                 }
             ]
         ],
-        "SGMT_Mag_Barter":[
+        "SGMT_Mag_Barter": [
             [
                 {
                     "count": 2,
@@ -6319,8 +6337,7 @@
                 }
             ]
         ],
-        "ElitePliers_Barter":
-        [
+        "ElitePliers_Barter": [
             [
                 {
                     "count": 1,
@@ -6336,7 +6353,7 @@
                 }
             ]
         ],
-        "UMP45_Mech_Trade":[
+        "UMP45_Mech_Trade": [
             [
                 {
                     "count": 1,
@@ -10157,9 +10174,10 @@
         "5e0ac74b9d594972a112a9ed": 3,
         "45ACP_Silencer": 2,
         "zevTech": 3,
-        "UMP45_Mech_Trade":1,
+        "UMP45_Mech_Trade": 1,
         "ElitePliers_Barter": 1,
         "SGMT_Mag_Barter": 2,
-        "SpecterDRFDE":2
+        "SpecterDRFDE": 2,
+        "Badger_Ordnance": 1
     }
 }
