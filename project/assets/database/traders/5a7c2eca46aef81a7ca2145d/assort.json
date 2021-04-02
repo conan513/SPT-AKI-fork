@@ -6323,8 +6323,7 @@
         }
     ],
     "barter_scheme": {
-        "BlackKeycard":
-        [
+        "BlackKeycard": [
             [
                 {
                     "count": 4,
@@ -6340,7 +6339,7 @@
                 }
             ]
         ],
-        "Badger_Ordnance":[
+        "Badger_Ordnance": [
             [
                 {
                     "count": 1,
@@ -10214,6 +10213,6 @@
         "SGMT_Mag_Barter": 2,
         "SpecterDRFDE": 2,
         "Badger_Ordnance": 1,
-        "BlackKeycard":3
+        "BlackKeycard": 3
     }
 }
