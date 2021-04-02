@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "SGMT_Mag_Barter",
+            "_tpl": "5a718f958dc32e00094b97e7",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "ElitePliers_Barter",
             "_tpl": "5af04b6486f774195a3ebb49",
             "parentId": "hideout",
@@ -6283,6 +6293,14 @@
         }
     ],
     "barter_scheme": {
+        "SGMT_Mag_Barter":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5e2af22086f7746d3f3c33fa"
+                }
+            ]
+        ],
         "ElitePliers_Barter":
         [
             [
@@ -10126,6 +10144,7 @@
         "45ACP_Silencer": 2,
         "zevTech": 3,
         "UMP45_Mech_Trade":1,
-        "ElitePliers_Barter": 1
+        "ElitePliers_Barter": 1,
+        "SGMT_Mag_Barter": 2
     }
 }
