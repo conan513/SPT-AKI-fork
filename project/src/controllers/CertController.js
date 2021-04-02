@@ -1,21 +1,9 @@
-/* CertController.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Emperor06
- * - Terkoiz
- */
-
 "use strict";
+
+require("../Lib.js");
 
 const selfsigned = require("selfsigned");
 const sudo = require("sudo-prompt");
-const VFS = require("../utils/VFS");
-const HttpConfig = require("../configs/Httpconfig.js");
-const Logger = require("../utils/Logger");
 
 class CertController
 {
@@ -86,7 +74,7 @@ class CertController
         {
             Logger.info("You are running on linux, you will have to install the cert manually.");
             Logger.info(`copy ${CertController.certFile} to your windows PC and run \n\t  certutil.exe -f -addstore Root <path to cert.pem>`);
-            Logger.info(`Cert can also be downloaded from ${https_f.server.getBackendUrl()}${certs_f.callbacks.endPoint}`);
+            Logger.info(`Cert can also be downloaded from ${HttpServer.getBackendUrl()}${certs_f.callbacks.endPoint}`);
 
         }
         else

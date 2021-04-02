@@ -1,62 +1,46 @@
-﻿/* HttpServer.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Apofis
- */
+﻿"use strict";
 
-"use strict";
+require("../Lib.js");
 
 const fs = require("fs");
 const zlib = require("zlib");
 const https = require("https");
 const WebSocket = require("ws");
-const HttpRouter = require("../routers/HttpRouter");
-const CertController = require("../controllers/CertController");
-const HttpConfig = require("../configs/Httpconfig.js");
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
-const HttpResponse = require("../utils/HttpResponse");
 
 class HttpServer
 {
-    constructor()
-    {
-        this.buffers = {};
-        this.onReceive = {};
-        this.onRespond = require("../bindings/ServerRespond");
-        this.webSockets = {};
-        this.mime = {
-            "css": "text/css",
-            "bin": "application/octet-stream",
-            "html": "text/html",
-            "jpg": "image/jpeg",
-            "js": "text/javascript",
-            "json": "application/json",
-            "png": "image/png",
-            "svg": "image/svg+xml",
-            "txt": "text/plain",
-        };
-    }
+    static buffers = {};
+    static onReceive = {};
+    static onRespond = require("../bindings/ServerRespond");
+    static webSockets = {};
+    static mime = {
+        "css": "text/css",
+        "bin": "application/octet-stream",
+        "html": "text/html",
+        "jpg": "image/jpeg",
+        "js": "text/javascript",
+        "json": "application/json",
+        "png": "image/png",
+        "svg": "image/svg+xml",
+        "txt": "text/plain",
+    };
 
-    buildUrl()
+    static buildUrl()
     {
         return `${HttpConfig.ip}:${HttpConfig.port}`;
     }
 
-    getBackendUrl()
+    static getBackendUrl()
     {
-        return `https://${this.buildUrl()}`;
+        return `https://${HttpServer.buildUrl()}`;
     }
 
-    getWebsocketUrl()
+    static getWebsocketUrl()
     {
-        return `wss://${this.buildUrl()}`;
+        return `wss://${HttpServer.buildUrl()}`;
     }
 
-    getCookies(req)
+    static getCookies(req)
     {
         let found = {};
         let cookies = req.headers.cookie;
@@ -74,37 +58,37 @@ class HttpServer
         return found;
     }
 
-    resetBuffer(sessionID)
+    static resetBuffer(sessionID)
     {
-        this.buffers[sessionID] = undefined;
+        HttpServer.buffers[sessionID] = undefined;
     }
 
-    putInBuffer(sessionID, data, bufLength)
+    static putInBuffer(sessionID, data, bufLength)
     {
-        if (this.buffers[sessionID] === undefined || this.buffers[sessionID].allocated !== bufLength)
+        if (HttpServer.buffers[sessionID] === undefined || HttpServer.buffers[sessionID].allocated !== bufLength)
         {
-            this.buffers[sessionID] = {
+            HttpServer.buffers[sessionID] = {
                 written: 0,
                 allocated: bufLength,
                 buffer: Buffer.alloc(bufLength)
             };
         }
 
-        let buf = this.buffers[sessionID];
+        let buf = HttpServer.buffers[sessionID];
 
         data.copy(buf.buffer, buf.written, 0);
         buf.written += data.length;
         return buf.written === buf.allocated;
     }
 
-    getFromBuffer(sessionID)
+    static getFromBuffer(sessionID)
     {
-        return this.buffers[sessionID].buffer;
+        return HttpServer.buffers[sessionID].buffer;
     }
 
-    sendZlibJson(resp, output, sessionID)
+    static sendZlibJson(resp, output, sessionID)
     {
-        resp.writeHead(200, "OK", {"Content-Type": this.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : `PHPSESSID=${sessionID}`});
+        resp.writeHead(200, "OK", {"Content-Type": HttpServer.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : `PHPSESSID=${sessionID}`});
 
         zlib.deflate(output, function (err, buf)
         {
@@ -112,19 +96,19 @@ class HttpServer
         });
     }
 
-    sendTextJson(resp, output)
+    static sendTextJson(resp, output)
     {
-        resp.writeHead(200, "OK", {"Content-Type": this.mime["json"]});
+        resp.writeHead(200, "OK", {"Content-Type": HttpServer.mime["json"]});
         resp.end(output);
     }
 
-    sendMessage(output, sessionID)
+    static sendMessage(output, sessionID)
     {
         try
         {
-            if (this.webSockets[sessionID] !== undefined && this.webSockets[sessionID].readyState === WebSocket.OPEN)
+            if (HttpServer.webSockets[sessionID] !== undefined && HttpServer.webSockets[sessionID].readyState === WebSocket.OPEN)
             {
-                this.webSockets[sessionID].send(JSON.stringify(output));
+                HttpServer.webSockets[sessionID].send(JSON.stringify(output));
             }
             else
             {
@@ -137,10 +121,10 @@ class HttpServer
         }
     }
 
-    sendFile(resp, file)
+    static sendFile(resp, file)
     {
         let pathSlic = file.split("/");
-        let type = this.mime[pathSlic[pathSlic.length - 1].split(".")[1]] || this.mime["txt"];
+        let type = HttpServer.mime[pathSlic[pathSlic.length - 1].split(".")[1]] || HttpServer.mime["txt"];
         let fileStream = fs.createReadStream(file);
 
         fileStream.on("open", function ()
@@ -150,7 +134,7 @@ class HttpServer
         });
     }
 
-    sendResponse(sessionID, req, resp, body)
+    static sendResponse(sessionID, req, resp, body)
     {
         // get response
         const text = (body) ? body.toString() : "{}";
@@ -166,33 +150,33 @@ class HttpServer
         }
 
         // execute data received callback
-        for (const callback in this.onReceive)
+        for (const callback in HttpServer.onReceive)
         {
-            this.onReceive[callback](sessionID, req, resp, info, output);
+            HttpServer.onReceive[callback](sessionID, req, resp, info, output);
         }
 
         // send response
-        if (output in this.onRespond)
+        if (output in HttpServer.onRespond)
         {
-            this.onRespond[output](sessionID, req, resp, info);
+            HttpServer.onRespond[output](sessionID, req, resp, info);
         }
         else
         {
-            this.sendZlibJson(resp, output, sessionID);
+            HttpServer.sendZlibJson(resp, output, sessionID);
         }
     }
 
-    handleRequest(req, resp)
+    static handleRequest(req, resp)
     {
         const IP = req.connection.remoteAddress.replace("::ffff:", "");
-        const sessionID = this.getCookies(req)["PHPSESSID"];
+        const sessionID = HttpServer.getCookies(req)["PHPSESSID"];
 
         Logger.log(`[${sessionID}][${IP}] ${req.url}`);
 
         // request without data
         if (req.method === "GET")
         {
-            this.sendResponse(sessionID, req, resp, "");
+            HttpServer.sendResponse(sessionID, req, resp, "");
         }
 
         // request with data
@@ -202,7 +186,7 @@ class HttpServer
             {
                 zlib.inflate(data, (err, body) =>
                 {
-                    https_f.server.sendResponse(sessionID, req, resp, body);
+                    HttpServer.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
@@ -216,7 +200,7 @@ class HttpServer
                 {
                     const requestLength = parseInt(req.headers["content-length"]);
 
-                    if (!this.putInBuffer(req.headers.sessionid, data, requestLength))
+                    if (!HttpServer.putInBuffer(req.headers.sessionid, data, requestLength))
                     {
                         resp.writeContinue();
                     }
@@ -225,8 +209,8 @@ class HttpServer
 
             req.on("end", () =>
             {
-                const data = this.getFromBuffer(sessionID);
-                this.resetBuffer(sessionID);
+                const data = HttpServer.getFromBuffer(sessionID);
+                HttpServer.resetBuffer(sessionID);
 
                 zlib.inflate(data, (err, body) =>
                 {
@@ -235,23 +219,23 @@ class HttpServer
                         // fallback uncompressed data
                         body = data;
                     }
-                    https_f.server.sendResponse(sessionID, req, resp, body);
+                    HttpServer.sendResponse(sessionID, req, resp, body);
                 });
             });
         }
     }
 
-    load()
+    static load()
     {
         /* create server */
         const httpss = https.createServer(CertController.getCerts(), (req, res) =>
         {
-            this.handleRequest(req, res);
+            HttpServer.handleRequest(req, res);
         });
 
         httpss.listen(HttpConfig.port, HttpConfig.ip, () =>
         {
-            Logger.success(`Started webserver at ${this.getBackendUrl()}`);
+            Logger.success(`Started webserver at ${HttpServer.getBackendUrl()}`);
         });
 
         httpss.on("error", (e) =>
@@ -277,10 +261,10 @@ class HttpServer
             Logger.success("Started websocket");
         });
 
-        wss.addListener("connection", this.wsOnConnection.bind(this));
+        wss.addListener("connection", HttpServer.wsOnConnection.bind(this));
     }
 
-    wsOnConnection(ws, req)
+    static wsOnConnection(ws, req)
     {
         // Strip request and break it into sections
         let splitUrl = req.url.replace(/\?.*$/, "").split("/");
@@ -294,7 +278,7 @@ class HttpServer
             Logger.info(`Received message ${msg} from user ${sessionID}`);
         });
 
-        this.webSockets[sessionID] = ws;
+        HttpServer.webSockets[sessionID] = ws;
 
         let pingHandler = setInterval(() =>
         {
@@ -302,16 +286,16 @@ class HttpServer
 
             if (ws.readyState === WebSocket.OPEN)
             {
-                ws.send(JSON.stringify(notifier_f.controller.defaultMessage));
+                ws.send(JSON.stringify(NotifierController.defaultMessage));
             }
             else
             {
                 Logger.debug("[WS] Socket lost, deleting handle");
                 clearInterval(pingHandler);
-                delete this.webSockets[sessionID];
+                delete HttpServer.webSockets[sessionID];
             }
         }, 90000);
     }
 }
 
-module.exports = new HttpServer();
+module.exports = HttpServer;

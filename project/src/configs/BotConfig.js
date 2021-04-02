@@ -1,5 +1,7 @@
-const config = {
-    "limits": {
+"use strict";
+
+module.exports = {
+    "presetBatch": {
         "assault": 30,
         "assaultGroup": 30,
         "cursedAssault": 30,
@@ -32,5 +34,3 @@ const config = {
         }
     }
 };
-
-module.exports = config;

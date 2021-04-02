@@ -1,24 +1,10 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Ereshkigal
- */
-
 "use strict";
 
-const InventoryHelper = require("../helpers/InventoryHelper");
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const TimeUtil = require("../utils/TimeUtil");
-const LauncherController = require("./LauncherController.js");
+require("../Lib.js");
 
 class ProfileController
 {
-    onLoad(sessionID)
+    static onLoad(sessionID)
     {
         let profile = SaveServer.profiles[sessionID];
 
@@ -33,7 +19,7 @@ class ProfileController
         return profile;
     }
 
-    getPmcProfile(sessionID)
+    static getPmcProfile(sessionID)
     {
         if (SaveServer.profiles[sessionID] === undefined || SaveServer.profiles[sessionID].characters.pmc === undefined)
         {
@@ -43,30 +29,30 @@ class ProfileController
         return SaveServer.profiles[sessionID].characters.pmc;
     }
 
-    getScavProfile(sessionID)
+    static getScavProfile(sessionID)
     {
         return SaveServer.profiles[sessionID].characters.scav;
     }
 
-    setScavProfile(sessionID, scavData)
+    static setScavProfile(sessionID, scavData)
     {
         SaveServer.profiles[sessionID].characters.scav = scavData;
     }
 
-    getCompleteProfile(sessionID)
+    static getCompleteProfile(sessionID)
     {
         let output = [];
 
         if (!LauncherController.isWiped(sessionID))
         {
-            output.push(this.getPmcProfile(sessionID));
-            output.push(this.getScavProfile(sessionID));
+            output.push(ProfileController.getPmcProfile(sessionID));
+            output.push(ProfileController.getScavProfile(sessionID));
         }
 
         return output;
     }
 
-    createProfile(info, sessionID)
+    static createProfile(info, sessionID)
     {
         const account = LauncherController.find(sessionID);
         const profile = DatabaseServer.tables.templates.profiles[account.edition][info.side.toLowerCase()];
@@ -103,11 +89,11 @@ class ProfileController
         };
 
         // pmc profile needs to exist first
-        SaveServer.profiles[sessionID].characters.scav = this.generateScav(sessionID);
+        SaveServer.profiles[sessionID].characters.scav = ProfileController.generateScav(sessionID);
 
         for (let traderID in DatabaseServer.tables.traders)
         {
-            this.resetTrader(sessionID, traderID);
+            ProfileController.resetTrader(sessionID, traderID);
         }
 
         // store minimal profile and reload it
@@ -119,10 +105,10 @@ class ProfileController
         SaveServer.saveProfile(sessionID);
     }
 
-    resetTrader(sessionID, traderID)
+    static resetTrader(sessionID, traderID)
     {
         const account = LauncherController.find(sessionID);
-        const pmcData = profile_f.controller.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
@@ -135,10 +121,10 @@ class ProfileController
         };
     }
 
-    generateScav(sessionID)
+    static generateScav(sessionID)
     {
-        const pmcData = this.getPmcProfile(sessionID);
-        let scavData = bots_f.controller.generate({
+        const pmcData = ProfileController.getPmcProfile(sessionID);
+        let scavData = BotController.generate({
             "conditions": [
                 {
                     "Role": "playerScav",
@@ -157,14 +143,14 @@ class ProfileController
         scavData = InventoryHelper.removeSecureContainer(scavData);
 
         // set cooldown timer
-        scavData = this.setScavCooldownTimer(scavData, pmcData);
+        scavData = ProfileController.setScavCooldownTimer(scavData, pmcData);
 
         // add scav to the profile
-        this.setScavProfile(sessionID, scavData);
+        ProfileController.setScavProfile(sessionID, scavData);
         return scavData;
     }
 
-    setScavCooldownTimer(profile, pmcData)
+    static setScavCooldownTimer(profile, pmcData)
     {
         // Set cooldown time.
         // Make sure to apply ScavCooldownTimer bonus from Hideout if the player has it.
@@ -186,7 +172,7 @@ class ProfileController
         return profile;
     }
 
-    isNicknameTaken(info, sessionID)
+    static isNicknameTaken(info, sessionID)
     {
         for (const id in SaveServer.profiles)
         {
@@ -206,14 +192,14 @@ class ProfileController
         return false;
     }
 
-    validateNickname(info, sessionID)
+    static validateNickname(info, sessionID)
     {
         if (info.nickname.length < 3)
         {
             return "tooshort";
         }
 
-        if (this.isNicknameTaken(info, sessionID))
+        if (ProfileController.isNicknameTaken(info, sessionID))
         {
             return "taken";
         }
@@ -221,13 +207,13 @@ class ProfileController
         return "OK";
     }
 
-    changeNickname(info, sessionID)
+    static changeNickname(info, sessionID)
     {
-        let output = this.validateNickname(info, sessionID);
+        let output = ProfileController.validateNickname(info, sessionID);
 
         if (output === "OK")
         {
-            let pmcData = this.getPmcProfile(sessionID);
+            let pmcData = ProfileController.getPmcProfile(sessionID);
 
             pmcData.Info.Nickname = info.nickname;
             pmcData.Info.LowerNickname = info.nickname.toLowerCase();
@@ -236,7 +222,7 @@ class ProfileController
         return output;
     }
 
-    getProfileByPmcId(pmcId)
+    static getProfileByPmcId(pmcId)
     {
         for (const sessionID in SaveServer.profiles)
         {
@@ -249,4 +235,4 @@ class ProfileController
     }
 }
 
-module.exports = new ProfileController();
+module.exports = ProfileController;

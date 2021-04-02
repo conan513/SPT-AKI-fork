@@ -1,18 +1,10 @@
-/* response.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const JsonUtil = require("./JsonUtil");
+require("../Lib.js");
 
 class HttpResponse
 {
-    clearString(s)
+    static clearString(s)
     {
         return s.replace(/[\b]/g, "")
             .replace(/[\f]/g, "")
@@ -22,17 +14,17 @@ class HttpResponse
             .replace(/[\\]/g, "");
     }
 
-    noBody(data)
+    static noBody(data)
     {
         return this.clearString(JsonUtil.serialize(data));
     }
 
-    getBody(data, err = 0, errmsg = null)
+    static getBody(data, err = 0, errmsg = null)
     {
         return this.clearString(this.getUnclearedBody(data, err, errmsg));
     }
 
-    getUnclearedBody(data, err = 0, errmsg = null)
+    static getUnclearedBody(data, err = 0, errmsg = null)
     {
         return JsonUtil.serialize({
             "err": err,
@@ -41,22 +33,22 @@ class HttpResponse
         });
     }
 
-    emptyResponse()
+    static emptyResponse()
     {
         return this.getBody("", 0, "");
     }
 
-    nullResponse()
+    static nullResponse()
     {
         return this.getBody(null);
     }
 
-    emptyArrayResponse()
+    static emptyArrayResponse()
     {
         return this.getBody([]);
     }
 
-    appendErrorToOutput(output, message = "An unknown error occurred", title = "Error")
+    static appendErrorToOutput(output, message = "An unknown error occurred", title = "Error")
     {
         output.badRequest = [{
             "index": 0,
@@ -68,4 +60,4 @@ class HttpResponse
     }
 }
 
-module.exports = new HttpResponse();
+module.exports = HttpResponse;

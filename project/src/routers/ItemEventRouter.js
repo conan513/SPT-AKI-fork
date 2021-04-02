@@ -1,12 +1,6 @@
-/* events.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
+"use strict";
 
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
 class ItemEventRouter
 {
@@ -19,7 +13,7 @@ class ItemEventRouter
 
         for (let body of info.data)
         {
-            const pmcData = profile_f.controller.getPmcProfile(sessionID);
+            const pmcData = ProfileController.getPmcProfile(sessionID);
 
             if (ItemEventRouter.onEvent[body.Action])
             {

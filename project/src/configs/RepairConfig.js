@@ -1,5 +1,5 @@
-const config = {
+"use strict";
+
+module.exports = {
     "priceMultiplier": 1
 };
-
-module.exports = config;

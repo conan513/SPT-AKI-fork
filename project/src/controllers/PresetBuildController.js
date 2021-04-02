@@ -1,26 +1,15 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const HashUtil = require("../utils/HashUtil.js");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
+require("../Lib.js");
 
 class PresetBuildController
 {
-    getUserBuilds(sessionID)
+    static getUserBuilds(sessionID)
     {
         return Object.values(SaveServer.profiles[sessionID].weaponbuilds);
     }
 
-    saveBuild(pmcData, body, sessionID)
+    static saveBuild(pmcData, body, sessionID)
     {
         delete body.Action;
         body.id = HashUtil.generate();
@@ -30,7 +19,7 @@ class PresetBuildController
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
-        body.items = Helpers.replaceIDs(pmcData, body.items, false);
+        body.items = PlzRefactorMeHelper.replaceIDs(pmcData, body.items, false);
         body.root = body.items[0]._id;
 
         savedBuilds[body.name] = body;
@@ -40,7 +29,7 @@ class PresetBuildController
         return output;
     }
 
-    removeBuild(pmcData, body, sessionID)
+    static removeBuild(pmcData, body, sessionID)
     {
         let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
@@ -58,4 +47,4 @@ class PresetBuildController
     }
 }
 
-module.exports = new PresetBuildController();
+module.exports = PresetBuildController;

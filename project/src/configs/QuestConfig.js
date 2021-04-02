@@ -1,5 +1,5 @@
-const config = {
+"use strict";
+
+module.exports = {
     "redeemTime": 48
 };
-
-module.exports = config;

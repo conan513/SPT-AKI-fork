@@ -1,4 +1,6 @@
-const config = {
+"use strict";
+
+module.exports = {
     "allowLootOverlay": false,
     "limits": {
         "bigmap": 1000,
@@ -19,5 +21,3 @@ const config = {
         "town": 0
     }
 };
-
-module.exports = config;

@@ -1,19 +1,12 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- */
-
 "use strict";
+
+require("../Lib.js");
 
 class PresetCallbacks
 {
     static load()
     {
-        preset_f.controller.initialize();
+        PresetController.initialize();
     }
 }
 

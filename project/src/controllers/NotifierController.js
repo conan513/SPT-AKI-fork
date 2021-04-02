@@ -1,38 +1,19 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- * - Terkoiz
- */
-
 "use strict";
 
-const HttpConfig = require("../configs/Httpconfig.js");
+require("../Lib.js");
 
-/**
- * EFT-Notifier-Controller
- *
- * Maintains a queue of notification messages which will be pushed upon request
- *  from client session.
- */
 class NotifierController
 {
-    constructor()
-    {
-        /**
-         * The default notification sent when waiting times out.
-         */
-        this.defaultMessage = {
-            type: "ping",
-            eventId: "ping"
-        };
-    }
+    /**
+     * The default notification sent when waiting times out.
+     */
+    static defaultMessage = {
+        "type": "ping",
+        "eventId": "ping"
+    };
 
     /** Creates a new notification with the specified dialogueMessage object (default type is "new_message"). */
-    createNewMessageNotification(dialogueMessage, extraData = {})
+    static createNewMessageNotification(dialogueMessage, extraData = {})
     {
         return {
             "type": (dialogueMessage.type === 4) ? "RagfairOfferSold" : "new_message",
@@ -45,17 +26,17 @@ class NotifierController
         };
     }
 
-    getServer(sessionID)
+    static getServer(sessionID)
     {
-        return `${https_f.server.getBackendUrl()}/notifierServer/get/${sessionID}`;
+        return `${HttpServer.getBackendUrl()}/notifierServer/get/${sessionID}`;
     }
 
-    getWebSocketServer(sessionID)
+    static getWebSocketServer(sessionID)
     {
-        return `${https_f.server.getWebsocketUrl()}/notifierServer/getwebsocket/${sessionID}`;
+        return `${HttpServer.getWebsocketUrl()}/notifierServer/getwebsocket/${sessionID}`;
     }
 
-    getChannel(sessionID)
+    static getChannel(sessionID)
     {
         return {
             "server": HttpConfig.ip,
@@ -67,4 +48,4 @@ class NotifierController
     }
 }
 
-module.exports = new NotifierController();
+module.exports = NotifierController;

@@ -1,34 +1,15 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Ginja
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const InventoryConfig = require("../configs/Inventoryconfig.js");
-const ItemHelper = require("../helpers/ItemHelper");
-const InventoryHelper = require("../helpers/InventoryHelper");
-const Logger = require("../utils/Logger");
-const HashUtil = require("../utils/HashUtil");
-const JsonUtil = require("../utils/JsonUtil");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const ContainerHelper = require("../helpers/ContainerHelper");
-const HttpResponse = require("../utils/HttpResponse");
+require("../Lib.js");
 
 class InventoryController
 {
     /* Based on the item action, determine whose inventories we should be looking at for from and to. */
-    getOwnerInventoryItems(body, sessionID)
+    static getOwnerInventoryItems(body, sessionID)
     {
         let isSameInventory = false;
-        let pmcItems = profile_f.controller.getPmcProfile(sessionID).Inventory.items;
-        let scavData = profile_f.controller.getScavProfile(sessionID);
+        let pmcItems = ProfileController.getPmcProfile(sessionID).Inventory.items;
+        let scavData = ProfileController.getScavProfile(sessionID);
         let fromInventoryItems = pmcItems;
         let fromType = "pmc";
 
@@ -41,7 +22,7 @@ class InventoryController
             }
             else if (body.fromOwner.type === "Mail")
             {
-                fromInventoryItems = dialogue_f.controller.getMessageItemContents(body.fromOwner.id, sessionID);
+                fromInventoryItems = DialogueController.getMessageItemContents(body.fromOwner.id, sessionID);
                 fromType = "mail";
             }
         }
@@ -75,18 +56,18 @@ class InventoryController
     * transfers items from one profile to another if fromOwner/toOwner is set in the body.
     * otherwise, move is contained within the same profile_f.
     * */
-    moveItem(pmcData, body, sessionID)
+    static moveItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        let items = this.getOwnerInventoryItems(body, sessionID);
+        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
         {
-            this.moveItemInternal(items.from, body);
+            InventoryController.moveItemInternal(items.from, body);
         }
         else
         {
-            this.moveItemToProfile(items.from, items.to, body);
+            InventoryController.moveItemToProfile(items.from, items.to, body);
         }
 
         return output;
@@ -97,9 +78,9 @@ class InventoryController
     * toProfileData: Profile of the destination.
     * body: Move request
     */
-    moveItemToProfile(fromItems, toItems, body)
+    static moveItemToProfile(fromItems, toItems, body)
     {
-        this.handleCartridges(fromItems, body);
+        InventoryController.handleCartridges(fromItems, body);
 
         let idsToMove = ItemHelper.findAndReturnChildrenByItems(fromItems, body.item);
 
@@ -138,9 +119,9 @@ class InventoryController
     * items: Items
     * body: Move request
     */
-    moveItemInternal(items, body)
+    static moveItemInternal(items, body)
     {
-        this.handleCartridges(items, body);
+        InventoryController.handleCartridges(items, body);
 
         for (let item of items)
         {
@@ -170,7 +151,7 @@ class InventoryController
     * items: Items
     * body: Move request
     */
-    handleCartridges(items, body)
+    static handleCartridges(items, body)
     {
         // -> Move item to diffrent place - counts with equiping filling magazine etc
         if (body.to.container === "cartridges")
@@ -190,7 +171,7 @@ class InventoryController
     }
 
     /* Remove item of itemId and all of its descendants from profile. */
-    removeItemFromProfile(profileData, itemId, output = null)
+    static removeItemFromProfile(profileData, itemId, output = null)
     {
         // get items to remove
         let ids_toremove = InventoryHelper.findAndReturnChildren(profileData, itemId);
@@ -217,7 +198,7 @@ class InventoryController
     * Remove Item
     * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
     */
-    removeItem(profileData, body, output, sessionID)
+    static removeItem(profileData, body, output, sessionID)
     {
         let toDo = [body];
 
@@ -228,25 +209,25 @@ class InventoryController
             return "";
         }
 
-        this.removeItemFromProfile(profileData, toDo[0], output);
+        InventoryController.removeItemFromProfile(profileData, toDo[0], output);
         return output;
     }
 
-    discardItem(pmcData, body, sessionID)
+    static discardItem(pmcData, body, sessionID)
     {
-        insurance_f.controller.remove(pmcData, body.item, sessionID);
-        return this.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
+        InsuranceController.remove(pmcData, body.item, sessionID);
+        return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
     }
 
     /* Split Item
     * spliting 1 item into 2 separate items ...
     * */
-    splitItem(pmcData, body, sessionID)
+    static splitItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
         let location = body.container.location;
 
-        let items = this.getOwnerInventoryItems(body, sessionID);
+        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (!("location" in body.container) && body.container.container === "cartridges")
         {
@@ -302,10 +283,10 @@ class InventoryController
      * Merge Item
      * merges 2 items into one, deletes item from `body.item` and adding number of stacks into `body.with`
      */
-    mergeItem(pmcData, body, sessionID)
+    static mergeItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        let items = this.getOwnerInventoryItems(body, sessionID);
+        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         for (let key in items.to)
         {
@@ -357,7 +338,7 @@ class InventoryController
     /* Transfer item
     * Used to take items from scav inventory into stash or to insert ammo into mags (shotgun ones) and reloading weapon by clicking "Reload"
     * */
-    transferItem(pmcData, body, sessionID)
+    static transferItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
         let itemFrom = null;
@@ -423,7 +404,7 @@ class InventoryController
     /* Swap Item
     * its used for "reload" if you have weapon in hands and magazine is somewhere else in rig or backpack in equipment
     * */
-    swapItem(pmcData, body, sessionID)
+    static swapItem(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -450,7 +431,7 @@ class InventoryController
     /* Give Item
     * its used for "add" item like gifts etc.
     * */
-    addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
+    static addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
     {
         const fenceID = "579dc571d53a0658a154fbec";
         let itemLib = [];
@@ -465,20 +446,20 @@ class InventoryController
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
             }
-            else if (Helpers.isMoneyTpl(baseItem.item_id))
+            else if (PlzRefactorMeHelper.isMoneyTpl(baseItem.item_id))
             {
                 itemLib.push({ _id: baseItem.item_id, _tpl: baseItem.item_id });
             }
             else if (body.tid === fenceID)
             {
-                const fenceItem = trader_f.controller.fenceAssort.items;
+                const fenceItem = TraderController.fenceAssort.items;
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
                 itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
             }
             else
             {
                 // Only grab the relevant trader items and add unique values
-                const traderItems = trader_f.controller.getAssort(sessionID, body.tid).items;
+                const traderItems = TraderController.getAssort(sessionID, body.tid).items;
                 const relevantItems = ItemHelper.findAndReturnChildrenAsItems(traderItems, baseItem.item_id);
                 const toAdd = relevantItems.filter(traderItem => !itemLib.some(item => traderItem._id === item._id));
                 itemLib.push(...toAdd);
@@ -528,7 +509,7 @@ class InventoryController
         }
 
         // Find an empty slot in stash for each of the items being added
-        let StashFS_2D = Helpers.getPlayerStashSlotMap(pmcData, sessionID);
+        let StashFS_2D = PlzRefactorMeHelper.getPlayerStashSlotMap(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
             let itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
@@ -731,7 +712,7 @@ class InventoryController
         return output;
     }
 
-    foldItem(pmcData, body, sessionID)
+    static foldItem(pmcData, body, sessionID)
     {
         for (let item of pmcData.Inventory.items)
         {
@@ -745,7 +726,7 @@ class InventoryController
         return "";
     }
 
-    toggleItem(pmcData, body, sessionID)
+    static toggleItem(pmcData, body, sessionID)
     {
         for (let item of pmcData.Inventory.items)
         {
@@ -759,7 +740,7 @@ class InventoryController
         return "";
     }
 
-    tagItem(pmcData, body, sessionID)
+    static tagItem(pmcData, body, sessionID)
     {
         for (let item of pmcData.Inventory.items)
         {
@@ -792,7 +773,7 @@ class InventoryController
         return "";
     }
 
-    bindItem(pmcData, body, sessionID)
+    static bindItem(pmcData, body, sessionID)
     {
         for (let index in pmcData.Inventory.fastPanel)
         {
@@ -806,7 +787,7 @@ class InventoryController
         return ItemEventRouter.getOutput();
     }
 
-    examineItem(pmcData, body, sessionID)
+    static examineItem(pmcData, body, sessionID)
     {
         let itemID = "";
 
@@ -823,7 +804,7 @@ class InventoryController
             {
                 try
                 {
-                    const assort = ragfair_f.server.offers.find(traderOffer => traderOffer._id === body.item);
+                    const assort = RagfairServer.offers.find(traderOffer => traderOffer._id === body.item);
                     itemID = assort.items[0]._tpl;
                 }
                 catch
@@ -839,10 +820,10 @@ class InventoryController
             }
         }
 
-        if (preset_f.controller.isPreset(itemID))
+        if (PresetController.isPreset(itemID))
         {
             // item preset
-            itemID = preset_f.controller.getBaseItemTpl(itemID);
+            itemID = PresetController.getBaseItemTpl(itemID);
         }
 
         if (!itemID)
@@ -880,7 +861,7 @@ class InventoryController
         return ItemEventRouter.getOutput();
     }
 
-    readEncyclopedia(pmcData, body, sessionID)
+    static readEncyclopedia(pmcData, body, sessionID)
     {
         for (let id of body.ids)
         {
@@ -890,7 +871,7 @@ class InventoryController
         return ItemEventRouter.getOutput();
     }
 
-    sortInventory(pmcData, body, sessionID)
+    static sortInventory(pmcData, body, sessionID)
     {
         let items = pmcData.Inventory.items;
 
@@ -906,7 +887,7 @@ class InventoryController
                 });
 
                 // fix currency StackObjectsCount when single stack
-                if (Helpers.isMoneyTpl(target._tpl))
+                if (PlzRefactorMeHelper.isMoneyTpl(target._tpl))
                 {
                     target.upd = (target.upd || {});
                     if (!target.upd.StackObjectsCount)
@@ -938,4 +919,4 @@ class InventoryController
     }
 }
 
-module.exports = new InventoryController();
+module.exports = InventoryController;

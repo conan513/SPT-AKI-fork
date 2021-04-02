@@ -1,6 +1,6 @@
-const config = {
+"use strict";
+
+module.exports = {
     "updateTime": 3600,
     "fenceAssortSize": 60
 };
-
-module.exports = config;

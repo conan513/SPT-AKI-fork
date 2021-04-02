@@ -1,15 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - PoloYolo
- */
-
 "use strict";
 
-const WishlistController = require("../controllers/WishlistController");
+require("../Lib.js");
 
 class WishlistCallbacks
 {

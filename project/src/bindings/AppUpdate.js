@@ -1,9 +1,6 @@
-const DialogueCallbacks = require("../callbacks/DialogueCallbacks");
-const HideoutCallbacks = require("../callbacks/HideoutCallbacks");
-const InsuranceCallbacks = require("../callbacks/InsuranceCallbacks");
-const RagfairCallbacks = require("../callbacks/RagfairCallbacks");
-const SaveCallbacks = require("../callbacks/SaveCallbacks");
-const TraderCallbacks = require("../callbacks/TraderCallbacks");
+"use strict";
+
+require("../Lib.js");
 
 module.exports = {
     "aki-dialogue": DialogueCallbacks.update,

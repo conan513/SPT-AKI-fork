@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const SaveServer = require("../servers/SaveServer.js");
-const CustomizationController = require("../controllers/CustomizationController.js");
-const HttpResponse = require("../utils/HttpResponse.js");
+require("../Lib.js");
 
 class CustomizationCallbacks
 {

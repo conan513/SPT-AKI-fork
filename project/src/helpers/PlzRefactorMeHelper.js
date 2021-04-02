@@ -1,26 +1,6 @@
-/* helpfunctions.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Terkoiz
- * - Ginja
- * - Emperor06
- * - PoloYolo
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const RandomUtil = require("../utils/RandomUtil");
-const InventoryHelper = require("./InventoryHelper");
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
-const HashUtil = require("../utils/HashUtil");
-const ContainerHelper = require("./ContainerHelper");
-const ItemHelper = require("./ItemHelper");
+require("../Lib.js");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////// PLEASE REFACTOR THIS //////////////////////////////////////////////
@@ -29,7 +9,7 @@ const ItemHelper = require("./ItemHelper");
 
 class PlzRefactorMeHelper
 {
-    calculateLevel(pmcData)
+    static calculateLevel(pmcData)
     {
         let exp = 0;
 
@@ -47,7 +27,7 @@ class PlzRefactorMeHelper
         return pmcData.Info.Level;
     }
 
-    getRandomExperience()
+    static getRandomExperience()
     {
         let exp = 0;
         let expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
@@ -72,9 +52,9 @@ class PlzRefactorMeHelper
     /**
      * A reverse lookup for templates
      */
-    tplLookup()
+    static tplLookup()
     {
-        if (this.tplLookup.lookup === undefined)
+        if (PlzRefactorMeHelper.tplLookup.lookup === undefined)
         {
             const lookup = {
                 "items": {
@@ -106,38 +86,38 @@ class PlzRefactorMeHelper
                 }
             }
 
-            this.tplLookup.lookup = lookup;
+            PlzRefactorMeHelper.tplLookup.lookup = lookup;
         }
 
-        return this.tplLookup.lookup;
+        return PlzRefactorMeHelper.tplLookup.lookup;
     }
 
-    getTemplatePrice(x)
+    static getTemplatePrice(x)
     {
-        return (x in this.tplLookup().items.byId) ? this.tplLookup().items.byId[x] : 1;
+        return (x in PlzRefactorMeHelper.tplLookup().items.byId) ? PlzRefactorMeHelper.tplLookup().items.byId[x] : 1;
     }
 
     /* all items in template with the given parent category */
-    templatesWithParent(x)
+    static templatesWithParent(x)
     {
-        return (x in this.tplLookup().items.byParent) ? this.tplLookup().items.byParent[x] : [];
+        return (x in PlzRefactorMeHelper.tplLookup().items.byParent) ? PlzRefactorMeHelper.tplLookup().items.byParent[x] : [];
     }
 
-    isCategory(x)
+    static isCategory(x)
     {
-        return x in this.tplLookup().categories.byId;
+        return x in PlzRefactorMeHelper.tplLookup().categories.byId;
     }
 
-    childrenCategories(x)
+    static childrenCategories(x)
     {
-        return (x in this.tplLookup().categories.byParent) ? this.tplLookup().categories.byParent[x] : [];
+        return (x in PlzRefactorMeHelper.tplLookup().categories.byParent) ? PlzRefactorMeHelper.tplLookup().categories.byParent[x] : [];
     }
 
     /* Made a 2d array table with 0 - free slot and 1 - used slot
     * input: PlayerData
     * output: table[y][x]
     * */
-    getPlayerStashSlotMap(pmcData, sessionID)
+    static getPlayerStashSlotMap(pmcData, sessionID)
     {
         const PlayerStashSize = InventoryHelper.getPlayerStashSize(sessionID);
         return ContainerHelper.getContainerMap(PlayerStashSize[0], PlayerStashSize[1], pmcData.Inventory.items, pmcData.Inventory.stash);
@@ -146,7 +126,7 @@ class PlzRefactorMeHelper
     /**
      * Check whether tpl is Money
      */
-    isMoneyTpl(tpl)
+    static isMoneyTpl(tpl)
     {
         return ["569668774bdc2da2298b4568", "5696686a4bdc2da3298b456a", "5449016a4bdc2d6f028b456f"].includes(tpl);
     }
@@ -155,7 +135,7 @@ class PlzRefactorMeHelper
     * input: currency(tag)
     * output: template ID
     * */
-    getCurrency(currency)
+    static getCurrency(currency)
     {
         switch (currency)
         {
@@ -174,7 +154,7 @@ class PlzRefactorMeHelper
     * input: currency(tag)
     * output: template ID
     * */
-    getCurrencyTag(currency)
+    static getCurrencyTag(currency)
     {
         switch (currency)
         {
@@ -193,17 +173,17 @@ class PlzRefactorMeHelper
     * input:  value, currency tpl
     * output: value after conversion
     */
-    inRUB(value, currency)
+    static inRUB(value, currency)
     {
-        return Math.round(value * this.getTemplatePrice(currency));
+        return Math.round(value * PlzRefactorMeHelper.getTemplatePrice(currency));
     }
 
     /**
      * Gets Ruble to Currency conversion Value
      */
-    fromRUB(value, currency)
+    static fromRUB(value, currency)
     {
-        let price = this.getTemplatePrice(currency);
+        let price = PlzRefactorMeHelper.getTemplatePrice(currency);
         if (!price)
         {
             return 0;
@@ -214,11 +194,11 @@ class PlzRefactorMeHelper
     /**
      * take money and insert items into return to server request
      */
-    payMoney(pmcData, body, sessionID)
+    static payMoney(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
-        let trader = trader_f.controller.getTrader(body.tid, sessionID);
-        let currencyTpl = this.getCurrency(trader.currency);
+        let trader = TraderController.getTrader(body.tid, sessionID);
+        let currencyTpl = PlzRefactorMeHelper.getCurrency(trader.currency);
 
         // delete barter things(not a money) from inventory
         if (body.Action === "TradingConfirm")
@@ -229,9 +209,9 @@ class PlzRefactorMeHelper
 
                 if (item !== undefined)
                 {
-                    if (!this.isMoneyTpl(item._tpl))
+                    if (!PlzRefactorMeHelper.isMoneyTpl(item._tpl))
                     {
-                        output = inventory_f.controller.removeItem(pmcData, item._id, output, sessionID);
+                        output = InventoryController.removeItem(pmcData, item._id, output, sessionID);
                         body.scheme_items[index].count = 0;
                     }
                     else
@@ -244,7 +224,7 @@ class PlzRefactorMeHelper
         }
 
         // find all items with currency _tpl id
-        const moneyItems = this.findBarterItems("tpl", pmcData, currencyTpl);
+        const moneyItems = PlzRefactorMeHelper.findBarterItems("tpl", pmcData, currencyTpl);
 
         // prepare a price for barter
         let barterPrice = 0;
@@ -277,7 +257,7 @@ class PlzRefactorMeHelper
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = inventory_f.controller.removeItem(pmcData, moneyItem._id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, moneyItem._id, output, sessionID);
             }
             else
             {
@@ -294,10 +274,10 @@ class PlzRefactorMeHelper
 
         // set current sale sum
         // convert barterPrice itemTpl into RUB then convert RUB into trader currency
-        let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum += this.fromRUB(this.inRUB(barterPrice, currencyTpl), this.getCurrency(trader.currency));
+        let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum += PlzRefactorMeHelper.fromRUB(PlzRefactorMeHelper.inRUB(barterPrice, currencyTpl), PlzRefactorMeHelper.getCurrency(trader.currency));
 
         pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
-        trader_f.controller.lvlUp(body.tid, sessionID);
+        TraderController.lvlUp(body.tid, sessionID);
         output.currentSalesSums[body.tid] = saleSum;
 
         // save changes
@@ -309,7 +289,7 @@ class PlzRefactorMeHelper
     /**
      * Find Barter items in the inventory
      */
-    findBarterItems(by, pmcData, barter_itemID)
+    static findBarterItems(by, pmcData, barter_itemID)
     { // find required items to take after buying (handles multiple items)
         const barterIDs = typeof barter_itemID === "string" ? [barter_itemID] : barter_itemID;
         let itemsArray = [];
@@ -330,11 +310,11 @@ class PlzRefactorMeHelper
     /**
      * receive money back after selling
      */
-    getMoney(pmcData, amount, body, output, sessionID)
+    static getMoney(pmcData, amount, body, output, sessionID)
     {
-        let trader = trader_f.controller.getTrader(body.tid, sessionID);
-        let currency = this.getCurrency(trader.currency);
-        let calcAmount = this.fromRUB(this.inRUB(amount, currency), currency);
+        let trader = TraderController.getTrader(body.tid, sessionID);
+        let currency = PlzRefactorMeHelper.getCurrency(trader.currency);
+        let calcAmount = PlzRefactorMeHelper.fromRUB(PlzRefactorMeHelper.inRUB(amount, currency), currency);
         let maxStackSize = DatabaseServer.tables.templates.items[currency]._props.StackMaxSize;
         let skip = false;
 
@@ -387,25 +367,20 @@ class PlzRefactorMeHelper
                 "tid": body.tid
             };
 
-            output = inventory_f.controller.addItem(pmcData, request, output, sessionID, null, false);
+            output = InventoryController.addItem(pmcData, request, output, sessionID, null, false);
         }
 
         // set current sale sum
         let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum + amount;
 
         pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
-        trader_f.controller.lvlUp(body.tid, sessionID);
+        TraderController.lvlUp(body.tid, sessionID);
         output.currentSalesSums[body.tid] = saleSum;
 
         return output;
     }
 
-
-
-
-
-
-    replaceIDs(pmcData, items, fastPanel = null)
+    static replaceIDs(pmcData, items, fastPanel = null)
     {
         // replace bsg shit long ID with proper one
         let string_inventory = JsonUtil.serialize(items);
@@ -517,11 +492,10 @@ class PlzRefactorMeHelper
         return items;
     }
 
-    arrayIntersect(a, b)
+    static arrayIntersect(a, b)
     {
         return a.filter(x => b.includes(x));
     }
-
 }
 
-module.exports = new PlzRefactorMeHelper();
+module.exports = PlzRefactorMeHelper;

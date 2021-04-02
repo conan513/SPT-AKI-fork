@@ -1,14 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
+require("../Lib.js");
 
 class BotCallbacks
 {
@@ -16,7 +8,7 @@ class BotCallbacks
     {
         const splittedUrl = url.split("/");
         const type = splittedUrl[splittedUrl.length - 1];
-        return HttpResponse.noBody(bots_f.controller.getBotLimit(type));
+        return HttpResponse.noBody(BotController.getBotLimit(type));
     }
 
     static getBotDifficulty(url, info, sessionID)
@@ -24,12 +16,12 @@ class BotCallbacks
         const splittedUrl = url.split("/");
         const type = splittedUrl[splittedUrl.length - 2].toLowerCase();
         const difficulty = splittedUrl[splittedUrl.length - 1];
-        return HttpResponse.noBody(bots_f.controller.getBotDifficulty(type, difficulty));
+        return HttpResponse.noBody(BotController.getBotDifficulty(type, difficulty));
     }
 
     static generateBots(url, info, sessionID)
     {
-        return HttpResponse.getBody(bots_f.controller.generate(info));
+        return HttpResponse.getBody(BotController.generate(info));
     }
 }
 

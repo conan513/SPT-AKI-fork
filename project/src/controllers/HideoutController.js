@@ -1,25 +1,6 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Terkoiz
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const SaveServer = require("../servers/SaveServer.js");
-const HideoutConfig = require("../configs/Hideoutconfig.js");
-const HttpResponse = require("../utils/HttpResponse");
-const TimeUtil = require("../utils/TimeUtil");
-const Logger = require("../utils/Logger");
-const Helpers = require("../helpers/PlzRefactorMeHelper");
-const RandomUtil = require("../utils/RandomUtil");
-const HashUtil = require("../utils/HashUtil");
+require("../Lib.js");
 
 const areaTypes = {
     VENTS: 0,
@@ -52,7 +33,7 @@ const WATER_COLLECTOR = "5d5589c1f934db045e6c5492";
 
 class HideoutController
 {
-    upgrade(pmcData, body, sessionID)
+    static upgrade(pmcData, body, sessionID)
     {
         const items = body.items.map(reqItem =>
         {
@@ -72,7 +53,7 @@ class HideoutController
                 return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
             }
 
-            if (Helpers.isMoneyTpl(item.inventoryItem._tpl)
+            if (PlzRefactorMeHelper.isMoneyTpl(item.inventoryItem._tpl)
                 && item.inventoryItem.upd
                 && item.inventoryItem.upd.StackObjectsCount
                 && item.inventoryItem.upd.StackObjectsCount > item.requestedItem.count)
@@ -81,7 +62,7 @@ class HideoutController
             }
             else
             {
-                inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput(), sessionID);
+                InventoryController.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput(), sessionID);
             }
         }
 
@@ -112,7 +93,7 @@ class HideoutController
         return ItemEventRouter.getOutput();
     }
 
-    upgradeComplete(pmcData, body, sessionID)
+    static upgradeComplete(pmcData, body, sessionID)
     {
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
@@ -139,7 +120,7 @@ class HideoutController
         {
             for (let bonus of bonuses)
             {
-                this.applyPlayerUpgradesBonuses(pmcData, bonus);
+                HideoutController.applyPlayerUpgradesBonuses(pmcData, bonus);
             }
         }
 
@@ -147,7 +128,7 @@ class HideoutController
     }
 
     // Move items from hideout
-    putItemsInAreaSlots(pmcData, body, sessionID)
+    static putItemsInAreaSlots(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -194,13 +175,13 @@ class HideoutController
                 hideoutArea.slots.splice(slot_position, 1, slot_to_add);
             }
 
-            output = inventory_f.controller.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
+            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
         }
 
         return output;
     }
 
-    takeItemsFromAreaSlots(pmcData, body, sessionID)
+    static takeItemsFromAreaSlots(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -222,7 +203,7 @@ class HideoutController
                 "tid": "ragfair"
             };
 
-            output = inventory_f.controller.addItem(pmcData, newReq, output, sessionID, null);
+            output = InventoryController.addItem(pmcData, newReq, output, sessionID, null);
 
             // If addItem returned with errors, don't continue any further
             if (output.badRequest && output.badRequest.length > 0)
@@ -230,7 +211,7 @@ class HideoutController
                 return output;
             }
 
-            pmcData = profile_f.controller.getPmcProfile(sessionID);
+            pmcData = ProfileController.getPmcProfile(sessionID);
             output.items.new[0].upd = itemToMove.upd;
 
             const item = pmcData.Inventory.items.find(i => i._id === output.items.new[0]._id);
@@ -263,7 +244,7 @@ class HideoutController
                 "tid": "ragfair"
             };
 
-            output = inventory_f.controller.addItem(pmcData, newReq, output, sessionID, null);
+            output = InventoryController.addItem(pmcData, newReq, output, sessionID, null);
 
             // If addItem returned with errors, don't continue any further
             if (output.badRequest && output.badRequest.length > 0)
@@ -277,7 +258,7 @@ class HideoutController
         return output;
     }
 
-    toggleArea(pmcData, body, sessionID)
+    static toggleArea(pmcData, body, sessionID)
     {
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
         if (!hideoutArea)
@@ -291,21 +272,21 @@ class HideoutController
         return ItemEventRouter.getOutput();
     }
 
-    singleProductionStart(pmcData, body, sessionID)
+    static singleProductionStart(pmcData, body, sessionID)
     {
-        this.registerProduction(pmcData, body, sessionID);
+        HideoutController.registerProduction(pmcData, body, sessionID);
 
         let output = ItemEventRouter.getOutput();
 
         for (let itemToDelete of body.items)
         {
-            output = inventory_f.controller.removeItem(pmcData, itemToDelete.id, output, sessionID);
+            output = InventoryController.removeItem(pmcData, itemToDelete.id, output, sessionID);
         }
 
         return output;
     }
 
-    scavCaseProductionStart(pmcData, body, sessionID)
+    static scavCaseProductionStart(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -326,7 +307,7 @@ class HideoutController
             }
             else
             {
-                output = inventory_f.controller.removeItem(pmcData, requestedItem.id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, requestedItem.id, output, sessionID);
             }
         }
 
@@ -387,13 +368,13 @@ class HideoutController
         return output;
     }
 
-    continuousProductionStart(pmcData, body, sessionID)
+    static continuousProductionStart(pmcData, body, sessionID)
     {
-        this.registerProduction(pmcData, body, sessionID);
+        HideoutController.registerProduction(pmcData, body, sessionID);
         return ItemEventRouter.getOutput();
     }
 
-    getBTC(pmcData, body, sessionID)
+    static getBTC(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
@@ -417,16 +398,16 @@ class HideoutController
             pmcData.Hideout.Production[BITCOIN_FARM].Products = [];
         };
 
-        return inventory_f.controller.addItem(pmcData, newBTC, output, sessionID, callback, true);
+        return InventoryController.addItem(pmcData, newBTC, output, sessionID, callback, true);
     }
 
-    takeProduction(pmcData, body, sessionID)
+    static takeProduction(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput();
 
         if (body.recipeId === BITCOIN_FARM)
         {
-            return this.getBTC(pmcData, body, sessionID);
+            return HideoutController.getBTC(pmcData, body, sessionID);
         }
 
         let recipe = DatabaseServer.tables.hideout.production.find(r => r._id === body.recipeId);
@@ -436,9 +417,9 @@ class HideoutController
             let id = recipe.endProduct;
 
             // replace the base item with its main preset
-            if (preset_f.controller.hasPreset(id))
+            if (PresetController.hasPreset(id))
             {
-                id = preset_f.controller.getStandardPreset(id)._id;
+                id = PresetController.getStandardPreset(id)._id;
             }
 
             let newReq = {
@@ -462,7 +443,7 @@ class HideoutController
                 delete pmcData.Hideout.Production[kvp[0]];
             };
 
-            return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         recipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === body.recipeId);
@@ -494,14 +475,14 @@ class HideoutController
                 delete pmcData.Hideout.Production.ScavCase;
             };
 
-            return inventory_f.controller.addItem(pmcData, newReq, output, sessionID, callback, true);
+            return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, true);
         }
 
         Logger.error(`Failed to locate any recipe with id ${body.recipeId}`);
         return HttpResponse.appendErrorToOutput(output);
     }
 
-    registerProduction(pmcData, body, sessionID)
+    static registerProduction(pmcData, body, sessionID)
     {
         const recipe = DatabaseServer.tables.hideout.production.find(p => p._id === body.recipeId);
         if (!recipe)
@@ -525,7 +506,7 @@ class HideoutController
     // ...
     // with that I mean manual implementation
     // RIP, GL whoever is going to do this
-    applyPlayerUpgradesBonuses(pmcData, bonus)
+    static applyPlayerUpgradesBonuses(pmcData, bonus)
     {
         switch (bonus.type)
         {
@@ -545,44 +526,18 @@ class HideoutController
                 break;
 
             case "EnergyRegeneration":
-                break;
-
             case "HydrationRegeneration":
-                break;
-
             case "HealthRegeneration":
-                break;
-
             case "DebuffEndDelay":
-                break;
-
             case "ScavCooldownTimer":
-                break;
-
             case "QuestMoneyReward":
-                break;
-
             case "InsuranceReturnTime":
-                break;
-
             case "ExperienceRate":
-                break;
-
             case "SkillGroupLevelingBoost":
-                break;
-
             case "RagfairCommission":
-                break;
-
             case "AdditionalSlots":
-                break;
-
             case "UnlockWeaponModification":
-                break;
-
             case "TextBonus":
-                break;
-
             case "FuelConsumption":
                 break;
         }
@@ -590,21 +545,21 @@ class HideoutController
         pmcData.Bonuses.push(bonus);
     }
 
-    update()
+    static update()
     {
         for (const sessionID in SaveServer.profiles)
         {
             if ("Hideout" in SaveServer.profiles[sessionID].characters.pmc)
             {
-                this.updatePlayerHideout(sessionID);
+                HideoutController.updatePlayerHideout(sessionID);
             }
         }
     }
 
-    updatePlayerHideout(sessionID)
+    static updatePlayerHideout(sessionID)
     {
         const recipes = DatabaseServer.tables.hideout.production;
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
         let WaterCollectorHasFilter = false;
@@ -621,7 +576,7 @@ class HideoutController
 
                     if (isGeneratorOn)
                     {
-                        area = this.updateFuel(area, solarPowerLevel);
+                        area = HideoutController.updateFuel(area, solarPowerLevel);
                     }
                     break;
 
@@ -631,14 +586,14 @@ class HideoutController
                         const prod = pmcData.Hideout.Production[WATER_COLLECTOR];
                         if (prod)
                         {
-                            area = this.updateWaterFilters(area, prod, isGeneratorOn);
+                            area = HideoutController.updateWaterFilters(area, prod, isGeneratorOn);
                         }
                         else
                         {
                             // continuousProductionStart()
                             // seem to not trigger consistently
                             const recipe = { "recipeId": WATER_COLLECTOR };
-                            this.registerProduction(pmcData, recipe, sessionID);
+                            HideoutController.registerProduction(pmcData, recipe, sessionID);
                         }
 
                         for (let slot of area.slots)
@@ -655,7 +610,7 @@ class HideoutController
                 case areaTypes.AIR_FILTERING:
                     if (isGeneratorOn)
                     {
-                        area = this.updateAirFilters(area);
+                        area = HideoutController.updateAirFilters(area);
                     }
                     break;
 
@@ -704,7 +659,7 @@ class HideoutController
 
             if (prod === BITCOIN_FARM)
             {
-                pmcData.Hideout.Production[prod] = this.updateBitcoinFarm(pmcData.Hideout.Production[prod], btcFarmCGs, isGeneratorOn);
+                pmcData.Hideout.Production[prod] = HideoutController.updateBitcoinFarm(pmcData.Hideout.Production[prod], btcFarmCGs, isGeneratorOn);
                 continue;
             }
 
@@ -724,7 +679,7 @@ class HideoutController
         }
     }
 
-    updateFuel(generatorArea, solarPower)
+    static updateFuel(generatorArea, solarPower)
     {
         // 1 resource last 14 min 27 sec, 1/14.45/60 = 0.00115
         let fuelDrainRate = 0.00115 * HideoutConfig.runInterval;
@@ -791,7 +746,7 @@ class HideoutController
         return generatorArea;
     }
 
-    updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
+    static updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
     {
         let time_elapsed = (TimeUtil.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
@@ -861,7 +816,7 @@ class HideoutController
         return waterFilterArea;
     }
 
-    updateAirFilters(airFilterArea)
+    static updateAirFilters(airFilterArea)
     {
         // 300 resources last 20 hrs, 300/20/60/60 = 0.00416
         const filterDrainRate = 0.00416 * HideoutConfig.runInterval;
@@ -908,7 +863,7 @@ class HideoutController
         return airFilterArea;
     }
 
-    updateBitcoinFarm(btcProd, btcFarmCGs, isGeneratorOn)
+    static updateBitcoinFarm(btcProd, btcFarmCGs, isGeneratorOn)
     {
         const time_elapsed = 4 * (TimeUtil.getTimestamp() - btcProd.StartTime);
 
@@ -948,4 +903,4 @@ class HideoutController
     }
 }
 
-module.exports = new HideoutController();
+module.exports = HideoutController;

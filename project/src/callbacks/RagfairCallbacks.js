@@ -1,60 +1,48 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- * - Terkoiz
- */
-
 "use strict";
 
-const HttpResponse = require("../utils/HttpResponse");
-const JsonUtil = require("../utils/JsonUtil");
-const Logger = require("../utils/Logger");
+require("../Lib.js");
 
 class RagfairCallbacks
 {
     static load()
     {
-        ragfair_f.server.load();
+        RagfairServer.load();
     }
 
     static search(url, info, sessionID)
     {
-        return HttpResponse.getBody(ragfair_f.controller.getOffers(sessionID, info));
+        return HttpResponse.getBody(RagfairController.getOffers(sessionID, info));
     }
 
     static getMarketPrice(url, info, sessionID)
     {
-        return HttpResponse.getBody(ragfair_f.controller.getItemPrice(info));
+        return HttpResponse.getBody(RagfairController.getItemPrice(info));
     }
 
     static getItemPrices(url, info, sessionID)
     {
-        return HttpResponse.getBody(ragfair_f.server.prices.dynamic);
+        return HttpResponse.getBody(RagfairServer.prices.dynamic);
     }
 
     static addOffer(pmcData, info, sessionID)
     {
-        return ragfair_f.controller.addPlayerOffer(pmcData, info, sessionID);
+        return RagfairController.addPlayerOffer(pmcData, info, sessionID);
     }
 
     static removeOffer(pmcData, info, sessionID)
     {
-        return ragfair_f.controller.removeOffer(info.offerId, sessionID);
+        return RagfairController.removeOffer(info.offerId, sessionID);
     }
 
     static extendOffer(pmcData, info, sessionID)
     {
         Logger.info(JsonUtil.serialize(info)); // TODO: Remove this once finished
-        return ragfair_f.controller.extendOffer(info, sessionID);
+        return RagfairController.extendOffer(info, sessionID);
     }
 
     static update(timeSinceLastRun)
     {
-        ragfair_f.server.update();
+        RagfairServer.update();
         return true;
     }
 
@@ -66,7 +54,7 @@ class RagfairCallbacks
 
         if (timeSinceLastRun > runInterval)
         {
-            ragfair_f.controller.update();
+            RagfairController.update();
             return true;
         }
     }

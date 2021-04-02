@@ -1,21 +1,21 @@
-const config = {
+"use strict";
+
+module.exports = {
     "player": {
         "sellChance": 25,
         "sellTimeHrs": 12,
         "enableFees": false
     },
-    "static": {
-        "items": false,
-        "traders": {
-            "54cb50c76803fa8b248b4571": true,
-            "54cb57776803fa99248b456e": true,
-            "579dc571d53a0658a154fbec": true,
-            "58330581ace78e27b8b10cee": true,
-            "5935c25fb3acc3127c3d8cd9": true,
-            "5a7c2eca46aef81a7ca2145d": true,
-            "5ac3b934156ae10c4430e83c": true,
-            "5c0647fdd443bc2504c2d371": true
-        }
+    "traders": {
+        "54cb50c76803fa8b248b4571": true,
+        "54cb57776803fa99248b456e": true,
+        "579dc571d53a0658a154fbec": false,
+        "58330581ace78e27b8b10cee": true,
+        "5935c25fb3acc3127c3d8cd9": true,
+        "5a7c2eca46aef81a7ca2145d": true,
+        "5ac3b934156ae10c4430e83c": true,
+        "5c0647fdd443bc2504c2d371": true,
+        "ragfair": false
     },
     "dynamic": {
         "enabled": true,
@@ -49,5 +49,3 @@ const config = {
         }
     }
 };
-
-module.exports = config;

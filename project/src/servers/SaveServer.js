@@ -1,15 +1,6 @@
-/* server.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san
- */
-
 "use strict";
 
-const JsonUtil = require("../utils/JsonUtil");
-const VFS = require("../utils/VFS");
+require("../Lib.js");
 
 class SaveServer
 {

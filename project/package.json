@@ -19,8 +19,8 @@
     "scripts": {
         "build:types": "./node_modules/.bin/babel src -d obj",
         "build:exe": "npm run build:types && node obj/ide/Compiler.js",
-        "test:debug": "npm run build:types && node obj/ide/DebugEntry.js",
-        "test:release": "npm run build:types && node obj/ide/ReleaseEntry.js",
+        "test:debug": "npm run build:types && node --trace-warnings obj/ide/DebugEntry.js",
+        "test:release": "npm run build:types && node --trace-warnings obj/ide/ReleaseEntry.js",
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {
@@ -40,18 +40,28 @@
     },
     "babel": {
         "presets": [
-            "@babel/preset-env"
+            [
+                "@babel/env",
+                {
+                    "targets": {
+                        "node": "current"
+                    },
+                    "useBuiltIns": "usage",
+                    "corejs": "3.10.0"
+                }
+            ]
         ],
         "plugins": [
-            "@babel/plugin-proposal-class-properties"
+            [
+                "@babel/plugin-proposal-class-properties",
+                {
+                    "loose": true
+                }
+            ]
         ]
     },
     "eslintConfig": {
         "parser": "@babel/eslint-parser",
-        "env": {
-            "browser": true,
-            "es2021": true
-        },
         "extends": "eslint:recommended",
         "parserOptions": {
             "ecmaVersion": 12,

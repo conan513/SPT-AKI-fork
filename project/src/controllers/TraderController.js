@@ -1,46 +1,25 @@
-/* controller.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - BALIST0N
- * - Ereshkigal
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const TraderConfig = require("../configs/Traderconfig.js");
-const TimeUtil = require("../utils/TimeUtil");
-const Logger = require("../utils/Logger");
-const JsonUtil = require("../utils/JsonUtil");
-const HashUtil = require("../utils/HashUtil");
-const ItemHelper = require("../helpers/ItemHelper");
-const RandomUtil = require("../utils/RandomUtil");
+require("../Lib.js");
 
 class TraderController
 {
-    constructor()
+    static fenceAssort = undefined;
+
+    static load()
     {
-        DatabaseServer.tables.traders = {};
-        this.fenceAssort = undefined;
+        TraderController.updateTraders();
     }
 
-    load()
+    static getTrader(traderID, sessionID)
     {
-        this.updateTraders();
-    }
-
-    getTrader(traderID, sessionID)
-    {
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let trader = DatabaseServer.tables.traders[traderID].base;
 
         if (!(traderID in pmcData.TraderStandings))
         {
-            profile_f.controller.resetTrader(sessionID, traderID);
-            this.lvlUp(traderID, sessionID);
+            ProfileController.resetTrader(sessionID, traderID);
+            TraderController.lvlUp(traderID, sessionID);
         }
 
         trader.loyalty.currentLevel = pmcData.TraderStandings[traderID].currentLevel;
@@ -51,13 +30,13 @@ class TraderController
         return trader;
     }
 
-    changeTraderDisplay(traderID, status, sessionID)
+    static changeTraderDisplay(traderID, status, sessionID)
     {
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         pmcData.TraderStandings[traderID].display = status;
     }
 
-    getAllTraders(sessionID)
+    static getAllTraders(sessionID)
     {
         let traders = [];
 
@@ -68,19 +47,19 @@ class TraderController
                 continue;
             }
 
-            traders.push(this.getTrader(traderID, sessionID));
+            traders.push(TraderController.getTrader(traderID, sessionID));
         }
 
         return traders;
     }
 
-    lvlUp(traderID, sessionID)
+    static lvlUp(traderID, sessionID)
     {
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
-        pmcData.Info.Level = Helpers.calculateLevel(pmcData);
+        pmcData.Info.Level = PlzRefactorMeHelper.calculateLevel(pmcData);
 
         // level up traders
         let targetLevel = 0;
@@ -102,7 +81,7 @@ class TraderController
         DatabaseServer.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
     }
 
-    updateTraders()
+    static updateTraders()
     {
         const time = TimeUtil.getTimestamp();
         const update = TraderConfig.updateTime;
@@ -127,24 +106,24 @@ class TraderController
         return true;
     }
 
-    getAssort(sessionID, traderID)
+    static getAssort(sessionID, traderID)
     {
         if (traderID === "579dc571d53a0658a154fbec")
         {
             const time = TimeUtil.getTimestamp();
             const trader = DatabaseServer.tables.traders[traderID].base;
 
-            if (!this.fenceAssort || trader.supply_next_time < time)
+            if (!TraderController.fenceAssort || trader.supply_next_time < time)
             {
                 Logger.warning("generating fence");
-                this.fenceAssort = this.generateFenceAssort();
-                ragfair_f.server.generateTraderOffers(traderID);
+                TraderController.fenceAssort = TraderController.generateFenceAssort();
+                RagfairServer.generateTraderOffers(traderID);
             }
 
-            return this.fenceAssort;
+            return TraderController.fenceAssort;
         }
 
-        const pmcData = profile_f.controller.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         const traderData = JsonUtil.clone(DatabaseServer.tables.traders[traderID]);
         let result = traderData.assort;
 
@@ -153,7 +132,7 @@ class TraderController
         {
             if (result.loyal_level_items[itemID] > pmcData.TraderStandings[traderID].currentLevel)
             {
-                result = this.removeItemFromAssort(result, itemID);
+                result = TraderController.removeItemFromAssort(result, itemID);
             }
         }
 
@@ -164,19 +143,19 @@ class TraderController
 
             for (const itemID in result.loyal_level_items)
             {
-                if (itemID in questassort.started && quest_f.controller.questStatus(pmcData, questassort.started[itemID]) !== "Started")
+                if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
                 {
-                    result = this.removeItemFromAssort(result, itemID);
+                    result = TraderController.removeItemFromAssort(result, itemID);
                 }
 
-                if (itemID in questassort.success && quest_f.controller.questStatus(pmcData, questassort.success[itemID]) !== "Success")
+                if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
                 {
-                    result = this.removeItemFromAssort(result, itemID);
+                    result = TraderController.removeItemFromAssort(result, itemID);
                 }
 
-                if (itemID in questassort.fail && quest_f.controller.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
+                if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
                 {
-                    result = this.removeItemFromAssort(result, itemID);
+                    result = TraderController.removeItemFromAssort(result, itemID);
                 }
             }
         }
@@ -184,7 +163,7 @@ class TraderController
         return result;
     }
 
-    generateFenceAssort()
+    static generateFenceAssort()
     {
         const fenceID = "579dc571d53a0658a154fbec";
         const assort = DatabaseServer.tables.traders[fenceID].assort;
@@ -199,7 +178,7 @@ class TraderController
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
-            let price = Helpers.getTemplatePrice(itemID);
+            let price = PlzRefactorMeHelper.getTemplatePrice(itemID);
 
             if (price === 0 || price === 1 || price === 100)
             {
@@ -252,7 +231,7 @@ class TraderController
             // calculate preset price
             for (let it of items)
             {
-                rub += Helpers.getTemplatePrice(it._tpl);
+                rub += PlzRefactorMeHelper.getTemplatePrice(it._tpl);
             }
 
             result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
@@ -264,7 +243,7 @@ class TraderController
     }
 
     // delete assort keys
-    removeItemFromAssort(assort, itemID)
+    static removeItemFromAssort(assort, itemID)
     {
         let ids_toremove = ItemHelper.findAndReturnChildrenByItems(assort.items, itemID);
 
@@ -285,11 +264,11 @@ class TraderController
         return assort;
     }
 
-    getPurchasesData(traderID, sessionID)
+    static getPurchasesData(traderID, sessionID)
     {
-        let pmcData = profile_f.controller.getPmcProfile(sessionID);
+        let pmcData = ProfileController.getPmcProfile(sessionID);
         let trader = DatabaseServer.tables.traders[traderID].base;
-        let currency = Helpers.getCurrency(trader.currency);
+        let currency = PlzRefactorMeHelper.getCurrency(trader.currency);
         let output = {};
 
         // get sellable items
@@ -302,7 +281,7 @@ class TraderController
             || item._id === pmcData.Inventory.questRaidItems
             || item._id === pmcData.Inventory.questStashItems
             || ItemHelper.isNotSellable(item._tpl)
-            || this.traderFilter(trader.sell_category, item._tpl) === false)
+            || TraderController.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
@@ -332,7 +311,7 @@ class TraderController
             {
                 price -= (trader.discount / 100) * price;
             }
-            price = Helpers.fromRUB(price, currency);
+            price = PlzRefactorMeHelper.fromRUB(price, currency);
             price = (price > 0) ? price : 1;
 
             output[item._id] = [[{ "_tpl": currency, "count": price.toFixed(0) }]];
@@ -346,12 +325,12 @@ class TraderController
         input : array of allowed categories, itemTpl of inventory
         output : boolean
     */
-    traderFilter(traderFilters, tplToCheck)
+    static traderFilter(traderFilters, tplToCheck)
     {
 
         for (let filter of traderFilters)
         {
-            for (let iaaaaa of Helpers.templatesWithParent(filter))
+            for (let iaaaaa of PlzRefactorMeHelper.templatesWithParent(filter))
             {
                 if (iaaaaa === tplToCheck)
                 {
@@ -359,9 +338,9 @@ class TraderController
                 }
             }
 
-            for (let subcateg of Helpers.childrenCategories(filter))
+            for (let subcateg of PlzRefactorMeHelper.childrenCategories(filter))
             {
-                for (let itemFromSubcateg of Helpers.templatesWithParent(subcateg))
+                for (let itemFromSubcateg of PlzRefactorMeHelper.templatesWithParent(subcateg))
                 {
                     if (itemFromSubcateg === tplToCheck)
                     {
@@ -375,4 +354,4 @@ class TraderController
     }
 }
 
-module.exports = new TraderController();
+module.exports = TraderController;

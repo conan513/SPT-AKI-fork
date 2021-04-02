@@ -1,5 +1,5 @@
-const config = {
+"use strict";
+
+module.exports = {
     "newItemsMarkedFound": false
 };
-
-module.exports = config;

@@ -1,5 +1,5 @@
-const config = {
+"use strict";
+
+module.exports = {
     "runInterval": 900
 };
-
-module.exports = config;

@@ -1,16 +1,6 @@
-/* callbacks.js
- * license: NCSA
- * copyright: Senko's Pub
- * website: https://www.guilded.gg/senkospub
- * authors:
- * - Senko-san (Merijn Hendriks)
- * - Ginja
- */
-
 "use strict";
 
-const DatabaseServer = require("../servers/DatabaseServer");
-const HttpResponse = require("../utils/HttpResponse");
+require("../Lib.js");
 
 class DataCallbacks
 {
