@@ -2740,7 +2740,7 @@
         }
     ],
     "barter_scheme": {
-        "DLG123":[
+        "DLG123": [
             [
                 {
                     "count": 1898,
@@ -2748,7 +2748,7 @@
                 }
             ]
         ],
-        "Zhuk3Barter":[
+        "Zhuk3Barter": [
             [
                 {
                     "count": 1,
@@ -4537,6 +4537,6 @@
         "ZenitRP1": 1,
         "868b2ae6073dc28b55692ff5": 1,
         "Zhuk3Barter": 1,
-        "DLG123":1
+        "DLG123": 1
     }
 }

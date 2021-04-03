@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "HemoTourniquet",
+            "_tpl": "60098af40accd37ef2175f27",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "DayPackBackpackBarter",
             "_tpl": "5e9dcf5986f7746c417435b3",
             "parentId": "hideout",
@@ -5459,6 +5469,14 @@
         }
     ],
     "barter_scheme": {
+        "HemoTourniquet": [
+            [
+                {
+                    "count": 20,
+                    "_tpl": "5696686a4bdc2da3298b456a"
+                }
+            ]
+        ],
         "DayPackBackpackBarter": [
             [
                 {
@@ -8716,6 +8734,7 @@
         "Ump45Mag_barter": 1,
         "Mag30MP9": 2,
         "Bravo4Barter": 2,
-        "DayPackBackpackBarter": 1
+        "DayPackBackpackBarter": 1,
+        "HemoTourniquet": 1
     }
 }
