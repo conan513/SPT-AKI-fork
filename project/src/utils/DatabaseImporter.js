@@ -45,6 +45,7 @@ class DatabaseImporter
             "/files/CONTENT/banners/",
             "/files/handbook/",
             "/files/Hideout/",
+            "/files/launcher/",
             "/files/quest/icon/",
             "/files/trader/avatar/",
         ];
