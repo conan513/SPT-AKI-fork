@@ -144,6 +144,9 @@ module.exports = {
     "/launcher/profile/change/wipe": {
         "aki": LauncherCallbacks.wipe
     },
+    "/launcher/profile/info": {
+        "aki": LauncherCallbacks.getMiniProfile
+    },
     "/client/locations": {
         "aki": LocationCallbacks.getLocationData
     },
