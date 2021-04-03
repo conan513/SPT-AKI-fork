@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "30mmMount",
+            "_tpl": "57c69dd424597774c03b7bbc",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "KibaArmsSPRM",
             "_tpl": "55d48a634bdc2d8b2f8b456a",
             "parentId": "hideout",
@@ -2667,6 +2677,18 @@
         }
     ],
     "barter_scheme": {
+        "30mmMount":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5c13cef886f774072e618e82"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "59148f8286f7741b951ea113"
+                }
+            ]
+        ],
         "KibaArmsSPRM":[
             [
                 {
@@ -4485,6 +4507,7 @@
         "5d34df2788a4504526796dbf": 4,
         "5d34df2788a4504526796dc0": 4,
         "М33SET1":1,
-        "KibaArmsSPRM":1
+        "KibaArmsSPRM":1,
+        "30mmMount": 1
     }
 }
