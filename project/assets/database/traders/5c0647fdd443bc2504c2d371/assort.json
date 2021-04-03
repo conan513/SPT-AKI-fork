@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "MarkedKeyBarter",
+            "_tpl": "5780cf7f2459777de4559322",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "SugarPack",
             "_tpl": "59e3577886f774176a362503",
             "parentId": "hideout",
@@ -2548,6 +2558,22 @@
         }
     ],
     "barter_scheme": {
+        "MarkedKeyBarter":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5d80c62a86f7744036212b3f"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5ede7a8229445733cb4c18e2"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d80c60f86f77440373c4ece"
+                }
+            ]
+        ],
         "SugarPack":[
             [
                 {
@@ -4388,6 +4414,7 @@
         "М33SET1": 1,
         "KibaArmsSPRM": 1,
         "30mmMount": 1,
-        "SugarPack":2
+        "SugarPack":2,
+        "MarkedKeyBarter":3
     }
 }
