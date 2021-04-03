@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "T7FortArmor",
+            "_tpl": "545cdb794bdc2d3a198b456a",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
             "_id": "SphereS",
             "_tpl": "5aa7d193e5b5b000171d063f",
             "parentId": "hideout",
@@ -4617,6 +4627,18 @@
         }
     ],
     "barter_scheme": {
+        "T7FortArmor": [
+            [
+                {
+                    "count": 3,
+                    "_tpl": "60391a8b3364dc22b04d0ce5"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "60391b0fb847c71012789415"
+                }
+            ]
+        ],
         "SphereS": [
             [
                 {
@@ -7127,6 +7149,7 @@
         "BNTIKorundBarter": 3,
         "6B231_Barter": 1,
         "ScoutVest": 1,
-        "SphereS": 1
+        "SphereS": 1,
+        "T7FortArmor": 4
     }
 }
