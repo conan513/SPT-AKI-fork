@@ -181,7 +181,6 @@ class RagfairServer
 
         // get properties
         items = RagfairServer.getItemCondition(userID, items);
-        price = (RagfairServer.isPlayer(userID) || RagfairServer.isTrader(userID)) ? price : Math.round(price * ItemHelper.getItemQualityPrice(items[0]));
 
         // user.id = profile.characters.pmc._id??
         let offer = {
@@ -385,7 +384,7 @@ class RagfairServer
 
         for (const it of items)
         {
-            price += PlzRefactorMeHelper.fromRUB(RagfairServer.prices.dynamic[it._tpl], currency);
+            price += PlzRefactorMeHelper.fromRUB(RagfairServer.prices.dynamic[it._tpl], currency) * ItemHelper.getItemQualityPrice(it);
         }
 
         price = Math.round(price * RandomUtil.getFloat(RagfairConfig.dynamic.price.min, RagfairConfig.dynamic.price.max));
@@ -417,7 +416,7 @@ class RagfairServer
 
         for (const item of barterScheme)
         {
-            price += (RagfairServer.isTrader(userID)) ? (RagfairServer.prices.trader[item._tpl] * item.count) : (RagfairServer.prices.dynamic[item._tpl] * item.count);
+            price += (RagfairServer.prices.trader[item._tpl] * item.count);
         }
 
         return Math.round(price);
