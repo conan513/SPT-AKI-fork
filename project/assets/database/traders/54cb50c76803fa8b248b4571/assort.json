@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "6BFragGlasses",
+            "_tpl": "5b432be65acfc433000ed01f",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
             "_id": "T7FortArmor",
             "_tpl": "545cdb794bdc2d3a198b456a",
             "parentId": "hideout",
@@ -4627,6 +4637,14 @@
         }
     ],
     "barter_scheme": {
+        "6BFragGlasses":[
+            [
+                {
+                    "count": 2893,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "T7FortArmor": [
             [
                 {
@@ -7150,6 +7168,7 @@
         "6B231_Barter": 1,
         "ScoutVest": 1,
         "SphereS": 1,
-        "T7FortArmor": 4
+        "T7FortArmor": 4,
+        "6BFragGlasses": 1
     }
 }
