@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "6B231_Barter",
+            "_tpl": "5c0e5bab86f77461f55ed1f3",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "BNTIKorundBarter",
             "_tpl": "5f5f41476bdad616ad46d631",
             "parentId": "hideout",
@@ -4587,6 +4597,14 @@
         }
     ],
     "barter_scheme": {
+        "6B231_Barter":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "59fafb5d86f774067a6f2084"
+                }
+            ]
+        ],
         "BNTIKorundBarter": [
             [
                 {
@@ -7062,6 +7080,7 @@
         "ValdayBarter": 2,
         "MetalFuelTank": 2,
         "72df9cc65cf082729fc1176d": 3,
-        "BNTIKorundBarter": 3
+        "BNTIKorundBarter": 3,
+        "6B231_Barter":1
     }
 }
