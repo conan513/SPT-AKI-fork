@@ -1,13 +1,23 @@
 {
     "items": [
         {
+            "_id": "ScoutVest",
+            "_tpl": "5929a2a086f7744f4b234d43",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
+            }
+        },
+        {
             "_id": "6B231_Barter",
             "_tpl": "5c0e5bab86f77461f55ed1f3",
             "parentId": "hideout",
             "slotId": "hideout",
             "upd": {
-                "UnlimitedCount": true,
-                "StackObjectsCount": 999999999
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
             }
         },
         {
@@ -16,8 +26,8 @@
             "parentId": "hideout",
             "slotId": "hideout",
             "upd": {
-                "UnlimitedCount": true,
-                "StackObjectsCount": 999999999
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
             }
         },
         {
@@ -33,7 +43,7 @@
                 "FireMode": {
                     "FireMode": "single"
                 },
-                "StackObjectsCount": 200000
+                "StackObjectsCount": 20000
             }
         },
         {
@@ -4597,7 +4607,19 @@
         }
     ],
     "barter_scheme": {
-        "6B231_Barter":[
+        "ScoutVest": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "575146b724597720a27126d5"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "57347d90245977448f7b7f65"
+                }
+            ]
+        ],
+        "6B231_Barter": [
             [
                 {
                     "count": 1,
@@ -7081,6 +7103,7 @@
         "MetalFuelTank": 2,
         "72df9cc65cf082729fc1176d": 3,
         "BNTIKorundBarter": 3,
-        "6B231_Barter":1
+        "6B231_Barter": 1,
+        "ScoutVest": 1
     }
 }
