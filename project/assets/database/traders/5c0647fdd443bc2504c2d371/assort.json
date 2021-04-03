@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "SugarPack",
+            "_tpl": "59e3577886f774176a362503",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "30mmMount",
             "_tpl": "57c69dd424597774c03b7bbc",
             "parentId": "hideout",
@@ -2538,6 +2548,14 @@
         }
     ],
     "barter_scheme": {
+        "SugarPack":[
+            [
+                {
+                    "count": 5,
+                    "_tpl": "5751487e245977207e26a315"
+                } 
+            ]
+        ],
         "30mmMount": [
             [
                 {
@@ -4369,6 +4387,7 @@
         "5d34df2788a4504526796dc0": 4,
         "М33SET1": 1,
         "KibaArmsSPRM": 1,
-        "30mmMount": 1
+        "30mmMount": 1,
+        "SugarPack":2
     }
 }
