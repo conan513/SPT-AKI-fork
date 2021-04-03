@@ -1,6 +1,32 @@
 {
     "items": [
         {
+            "_id": "72df9cc65cf082729fc1176d",
+            "_tpl": "602a9740da11d6478d5a06dc",
+            "upd": {
+                "Repairable": {
+                    "MaxDurability": 100,
+                    "Durability": 100
+                },
+                "FireMode": {
+                    "FireMode": "single"
+                },
+                "StackObjectsCount": 200000
+            }
+        },
+        {
+            "_id": "59cba01f58552bc7926cce33",
+            "_tpl": "602a95edda11d6478d5a06da",
+            "parentId": "72df9cc65cf082729fc1176d",
+            "slotId": "mod_barrel"
+        },
+        {
+            "_id": "91278daf4f6add438f23e2c7",
+            "_tpl": "60228924961b8d75ee233c32",
+            "parentId": "72df9cc65cf082729fc1176d",
+            "slotId": "mod_reciever"
+        }
+        {
             "_id": "MetalFuelTank",
             "_tpl": "5d1b36a186f7742523398433",
             "parentId": "hideout",
@@ -4549,6 +4575,14 @@
         }
     ],
     "barter_scheme": {
+        "72df9cc65cf082729fc1176d":[
+            [
+                {
+                    "count":7850,
+                    "_tpl":"5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "MetalFuelTank":[[
             {
                 "count": 2,
@@ -5548,7 +5582,7 @@
                     "_tpl": "5c0fa877d174af02a012e1cf"
                 },
                 {
-                    "count": 2,
+                    "count": 1,
                     "_tpl": "590c595c86f7747884343ad7"
                 }
             ]
@@ -6684,7 +6718,7 @@
         "5eeca647bfed7142cb3105a4": [
             [
                 {
-                    "count": 8,
+                    "count": 9,
                     "level": 25,
                     "side": "Usec",
                     "_tpl": "59f32c3b86f77472a31742f0"
@@ -7002,6 +7036,7 @@
         "7n12_bp_pack": 4,
         "5e0ac74b9d594972a112aa0a": 4,
         "ValdayBarter": 2,
-        "MetalFuelTank": 2
+        "MetalFuelTank": 2,
+        "72df9cc65cf082729fc1176d":3
     }
 }

@@ -1,6 +1,66 @@
 {
     "items": [
         {
+            "_id": "LBTMedBackpack",
+            "_tpl": "5e4abc6786f77406812bd572",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "ExpeditionaryFuel",
+            "_tpl": "5d1b371186f774253763a656",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "EnglishTea",
+            "_tpl": "5bc9be8fd4351e00334cae6e",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "AdrenalineInjector",
+            "_tpl": "5c10c8fd86f7743d7d706df3",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "06LWater",
+            "_tpl": "5448fee04bdc2dbc018b4567",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "HumpbackSalmon",
+            "_tpl": "57347d5f245977448b40fa81",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "adrenaline",
             "_tpl": "5c10c8fd86f7743d7d706df3",
             "parentId": "hideout",
@@ -502,7 +562,7 @@
         },
         {
             "_id": "5eeca649bfed7142cb310610",
-            "_tpl": "5751487e245977207e26a315",
+            "_tpl": "57347d3d245977448f7b7f61",
             "parentId": "hideout",
             "slotId": "hideout",
             "upd": {
@@ -642,6 +702,74 @@
         }
     ],
     "barter_scheme": {
+        "LBTMedBackpack":[
+            [
+                {
+                    "count": 2,
+                    "_tpl": "590c695186f7741e566b64a2"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5755383e24597772cb798966"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5d02797c86f774203f38e30a"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "5d1b3a5d86f774252167ba22"
+                }
+            ]
+        ],
+        "ExpeditionaryFuel":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5d1b33a686f7742523398398"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "544fb62a4bdc2dfb738b4568"
+                }
+            ]
+        ],
+        "EnglishTea":[
+            [
+                {
+                    "count": 4,
+                    "_tpl": "575062b524597720a31c09a1"
+                }
+            ]
+        ],
+        "AdrenalineInjector":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590a3d9c86f774385926e510"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d1b3f2d86f774253763b735"
+                }
+            ]
+        ],
+        "06LWater":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "59e361e886f774176c10a2a5"
+                }
+            ]
+        ],
+        "HumpbackSalmon": [
+            [
+                {
+                    "count": 2,
+                    "_tpl": "57347c93245977448d35f6e3"
+                }
+            ]
+        ],
         "adrenaline": [
             [
                 {
@@ -695,6 +823,10 @@
                 {
                     "count": 6,
                     "_tpl": "5d1b3a5d86f774252167ba22"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5d1b3f2d86f774253763b735"
                 }
             ]
         ],
@@ -709,7 +841,7 @@
                     "_tpl": "59e3639286f7741777737013"
                 },
                 {
-                    "count": 5,
+                    "count": 4,
                     "_tpl": "573478bc24597738002c6175"
                 }
             ]
@@ -781,16 +913,12 @@
         "5eeca649bfed7142cb3105c8": [
             [
                 {
-                    "count": 10,
-                    "_tpl": "56742c284bdc2d98058b456d"
+                    "count": 1,
+                    "_tpl": "590a3efd86f77437d351a25b"
                 },
                 {
-                    "count": 2,
-                    "_tpl": "5c13cef886f774072e618e82"
-                },
-                {
-                    "count": 2,
-                    "_tpl": "5d4041f086f7743cac3f22a7"
+                    "count": 1,
+                    "_tpl": "590a3d9c86f774385926e510"
                 }
             ]
         ],
@@ -838,10 +966,6 @@
             [
                 {
                     "count": 1,
-                    "_tpl": "59e3577886f774176a362503"
-                },
-                {
-                    "count": 1,
                     "_tpl": "59e35abd86f7741778269d82"
                 }
             ]
@@ -849,7 +973,7 @@
         "5eeca649bfed7142cb3105d6": [
             [
                 {
-                    "count": 2,
+                    "count": 1,
                     "_tpl": "57347b8b24597737dd42e192"
                 }
             ]
@@ -901,7 +1025,7 @@
                     "_tpl": "5af0534a86f7743b6f354284"
                 },
                 {
-                    "count": 10,
+                    "count": 15,
                     "_tpl": "5d1b3a5d86f774252167ba22"
                 }
             ]
@@ -1005,16 +1129,20 @@
         "5eeca649bfed7142cb3105fa": [
             [
                 {
-                    "count": 10,
+                    "count": 15,
                     "_tpl": "5c052e6986f7746b207bc3c9"
                 },
                 {
-                    "count": 10,
+                    "count": 15,
                     "_tpl": "5c0530ee86f774697952d952"
                 },
                 {
-                    "count": 10,
+                    "count": 15,
                     "_tpl": "5af0548586f7743a532b7e99"
+                },
+                {
+                    "count": 15,
+                    "_tpl": "57347c93245977448d35f6e3"
                 }
             ]
         ],
@@ -1037,12 +1165,16 @@
         "5eeca649bfed7142cb310600": [
             [
                 {
-                    "count": 2,
+                    "count": 1,
                     "_tpl": "5d1b3f2d86f774253763b735"
                 },
                 {
                     "count": 1,
-                    "_tpl": "590a3d9c86f774385926e510"
+                    "_tpl": "59e361e886f774176c10a2a5"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "59e35abd86f7741778269d82"
                 }
             ]
         ],
@@ -1097,11 +1229,11 @@
         "5eeca649bfed7142cb31060c": [
             [
                 {
-                    "count": 4,
+                    "count": 3,
                     "_tpl": "56742c284bdc2d98058b456d"
                 },
                 {
-                    "count": 4,
+                    "count": 2,
                     "_tpl": "57347b8b24597737dd42e192"
                 }
             ]
@@ -1109,7 +1241,7 @@
         "5eeca649bfed7142cb31060e": [
             [
                 {
-                    "count": 5,
+                    "count": 3,
                     "_tpl": "5d40412b86f7743cb332ac3a"
                 }
             ]
@@ -1118,7 +1250,7 @@
             [
                 {
                     "count": 1,
-                    "_tpl": "57347d3d245977448f7b7f61"
+                    "_tpl": "5751487e245977207e26a315"
                 }
             ]
         ],
@@ -1165,7 +1297,7 @@
                     "_tpl": "5b4335ba86f7744d2837a264"
                 },
                 {
-                    "count": 1,
+                    "count": 3,
                     "_tpl": "5d1b3a5d86f774252167ba22"
                 }
             ]
@@ -1173,11 +1305,11 @@
         "5eeca649bfed7142cb31061c": [
             [
                 {
-                    "count": 6,
+                    "count": 4,
                     "_tpl": "5d1b33a686f7742523398398"
                 },
                 {
-                    "count": 5,
+                    "count": 4,
                     "_tpl": "5d1b385e86f774252167b98a"
                 }
             ]
@@ -1217,8 +1349,8 @@
         "5eeca649bfed7142cb310624": [
             [
                 {
-                    "count": 140,
-                    "level": 15,
+                    "count": 150,
+                    "level": 17,
                     "side": "Any",
                     "_tpl": "59f32c3b86f77472a31742f0"
                 }
@@ -1253,7 +1385,7 @@
         "5eeca649bfed7142cb31062a": [
             [
                 {
-                    "count": 10,
+                    "count": 8,
                     "_tpl": "5e2af02c86f7746d420957d4"
                 }
             ]
@@ -1302,14 +1434,14 @@
         "5eeca649bfed7142cb3105fa": 4,
         "5eeca649bfed7142cb3105fc": 2,
         "5eeca649bfed7142cb3105fe": 4,
-        "5eeca649bfed7142cb310600": 2,
+        "5eeca649bfed7142cb310600": 3,
         "5eeca649bfed7142cb310602": 4,
         "5eeca649bfed7142cb310604": 3,
         "5eeca649bfed7142cb310606": 2,
         "5eeca649bfed7142cb310608": 3,
         "5eeca649bfed7142cb31060a": 4,
         "5eeca649bfed7142cb31060c": 1,
-        "5eeca649bfed7142cb31060e": 4,
+        "5eeca649bfed7142cb31060e": 3,
         "5eeca649bfed7142cb310610": 2,
         "5eeca649bfed7142cb310612": 1,
         "5eeca649bfed7142cb310614": 1,
@@ -1324,6 +1456,12 @@
         "5eeca649bfed7142cb310626": 2,
         "5eeca649bfed7142cb310628": 3,
         "5eeca649bfed7142cb31062a": 2,
-        "adrenaline": 4
+        "adrenaline": 4,
+        "HumpbackSalmon": 1,
+        "06LWater":1,
+        "AdrenalineInjector":2,
+        "EnglishTea":2,
+        "ExpeditionaryFuel":2,
+        "LBTMedBackpack":3
     }
 }

@@ -1,6 +1,36 @@
 {
     "items": [
         {
+            "_id": "Bravo4Barter",
+            "_tpl": "57adff4f24597737f373b6e6",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "Mag30MP9",
+            "_tpl": "5de8eac42a78646d96665d91",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "Ump45Mag_barter",
+            "_tpl": "5fc3e466187fea44d52eda90",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "RFB_TS",
             "_tpl": "5f2aa43ba9b91d26f20ae6d2",
             "parentId": "hideout",
@@ -5419,6 +5449,38 @@
         }
     ],
     "barter_scheme": {
+        "Bravo4Barter": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5d403f9186f7743cac3f229b"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "590c37d286f77443be3d7827"
+                }
+            ]
+        ],
+        "Mag30MP9": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590a3efd86f77437d351a25b"
+                }
+            ]
+        ],
+        "Ump45Mag_barter": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "573476d324597737da2adc13"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "56742c284bdc2d98058b456d"
+                }
+            ]
+        ],
         "RFB_TS": [
             [
                 {
@@ -5488,6 +5550,10 @@
                 {
                     "count": 1,
                     "_tpl": "590c595c86f7747884343ad7"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5e2aedd986f7746d404f3aa4"
                 }
             ]
         ],
@@ -5710,7 +5776,7 @@
         "5f004be51b27f811e5317a55": [
             [
                 {
-                    "count": 3,
+                    "count": 6,
                     "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
@@ -6086,16 +6152,20 @@
         "5f004bed1b27f811e5317ad1": [
             [
                 {
-                    "count": 3,
-                    "_tpl": "5d03775b86f774203e7e0c4b"
-                },
-                {
-                    "count": 5,
-                    "_tpl": "5d0376a486f7747d8050965c"
-                },
-                {
                     "count": 1,
-                    "_tpl": "5c0530ee86f774697952d952"
+                    "_tpl": "5d03794386f77420415576f5"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "5d0377ce86f774186372f689"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5c05308086f7746b2101e90b"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "5d0375ff86f774186372f685"
                 }
             ]
         ],
@@ -6310,7 +6380,7 @@
         "5f004bf21b27f811e5317b11": [
             [
                 {
-                    "count": 8,
+                    "count": 10,
                     "_tpl": "5909e99886f7740c983b9984"
                 }
             ]
@@ -6890,6 +6960,10 @@
                 {
                     "count": 3,
                     "_tpl": "5d403f9186f7743cac3f229b"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d40407c86f774318526545a"
                 }
             ]
         ],
@@ -7041,7 +7115,11 @@
             [
                 {
                     "count": 1,
-                    "_tpl": "5c1265fc86f7743f896a21c2"
+                    "_tpl": "5bc9b720d4351e450201234b"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "573477e124597737dd42e191"
                 }
             ]
         ],
@@ -7114,6 +7192,10 @@
                 {
                     "count": 2,
                     "_tpl": "590a3b0486f7743954552bdb"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5672cb724bdc2dc2088b456b"
                 }
             ]
         ],
@@ -7228,9 +7310,15 @@
         "5f004c0b1b27f811e5317c92": [
             [
                 {
-                    "count": 20,
+                    "count": 8,
                     "level": 15,
-                    "side": "Any",
+                    "side": "Bear",
+                    "_tpl": "59f32bb586f774757e1e8442"
+                },
+                {
+                    "count": 8,
+                    "level": 15,
+                    "side": "Usec",
                     "_tpl": "59f32c3b86f77472a31742f0"
                 }
             ]
@@ -7927,7 +8015,7 @@
             [
                 {
                     "count": 1,
-                    "_tpl": "5d235b4d86f7742e017bc88a"
+                    "_tpl": "5d03784a86f774203e7e0c4d"
                 }
             ]
         ],
@@ -7974,11 +8062,11 @@
         "5f004c1b1b27f811e5317d84": [
             [
                 {
-                    "count": 2,
+                    "count": 4,
                     "_tpl": "590c645c86f77412b01304d9"
                 },
                 {
-                    "count": 2,
+                    "count": 4,
                     "_tpl": "590c651286f7741e566b6461"
                 }
             ]
@@ -8270,7 +8358,7 @@
         "5f004be51b27f811e5317a42": 2,
         "5f004be51b27f811e5317a51": 2,
         "5f004be51b27f811e5317a53": 3,
-        "5f004be51b27f811e5317a55": 4,
+        "5f004be51b27f811e5317a55": 3,
         "5f004be61b27f811e5317a64": 1,
         "5f004be61b27f811e5317a66": 4,
         "5f004be61b27f811e5317a68": 2,
@@ -8407,7 +8495,7 @@
         "5f004bff1b27f811e5317bb9": 2,
         "5f004bff1b27f811e5317bbb": 3,
         "5f004bff1b27f811e5317bbd": 2,
-        "5f004bff1b27f811e5317bbf": 2,
+        "5f004bff1b27f811e5317bbf": 1,
         "5f004bff1b27f811e5317bcc": 3,
         "5f004c001b27f811e5317bce": 2,
         "5f004c001b27f811e5317bdd": 1,
@@ -8550,7 +8638,7 @@
         "5f004c191b27f811e5317d6d": 3,
         "5f004c191b27f811e5317d6f": 3,
         "5f004c191b27f811e5317d71": 1,
-        "5f004c191b27f811e5317d73": 3,
+        "5f004c191b27f811e5317d73": 2,
         "5f004c1a1b27f811e5317d7a": 3,
         "5f004c1a1b27f811e5317d7c": 3,
         "5f004c1a1b27f811e5317d7e": 2,
@@ -8602,6 +8690,9 @@
         "5d34df2788a4504526796d60": 2,
         "ds150Stock": 2,
         "SRD": 3,
-        "RFB_TS": 1
+        "RFB_TS": 1,
+        "Ump45Mag_barter": 1,
+        "Mag30MP9": 2,
+        "Bravo4Barter": 2
     }
 }

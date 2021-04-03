@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "М33SET1",
+            "_tpl": "6034cf5fffd42c541047f72e",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 200000
+            }
+        },
+        {
             "_id": "5d34df2788a4504526796dc0",
             "_tpl": "5bae13bad4351e00320204af",
             "parentId": "hideout",
@@ -2647,6 +2657,14 @@
         }
     ],
     "barter_scheme": {
+        "М33SET1": [
+            [
+                {
+                    "count": 35000,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "5d34df2788a4504526796dc0": [
             [
                 {
@@ -4443,6 +4461,7 @@
         "5e230f11fabc1e7f3745a4b2": 4,
         "5d34df2788a4504526796dba": 3,
         "5d34df2788a4504526796dbf": 4,
-        "5d34df2788a4504526796dc0": 4
+        "5d34df2788a4504526796dc0": 4,
+        "М33SET1":1
     }
 }

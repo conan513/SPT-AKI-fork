@@ -1,6 +1,58 @@
 {
     "items": [
         {
+            "_id": "868b2ae6073dc28b55692ff5",
+            "_tpl": "56dee2bdd2720bc8328b4567",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 200000
+            }
+        },
+        {
+            "_id": "69a7d35ce6f149fc8c598a24",
+            "_tpl": "56deec93d2720bec348b4568",
+            "parentId": "868b2ae6073dc28b55692ff5",
+            "slotId": "mod_barrel"
+        },
+        {
+            "_id": "a015b882c54e39463c833e7e",
+            "_tpl": "56deed6ed2720b4c698b4583",
+            "parentId": "868b2ae6073dc28b55692ff5",
+            "slotId": "mod_handguard"
+        },
+        {
+            "_id": "e95df0226e8da868e6419b01",
+            "_tpl": "56deee15d2720bee328b4567",
+            "parentId": "868b2ae6073dc28b55692ff5",
+            "slotId": "mod_magazine"
+        },
+        {
+            "_id": "f20de0d77a31ddda456f420c",
+            "_tpl": "56083be64bdc2d20478b456f",
+            "parentId": "868b2ae6073dc28b55692ff5",
+            "slotId": "mod_stock"
+        },
+        {
+            "_id": "ZenitRP1",
+            "_tpl": "5648ac824bdc2ded0b8b457d",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
+            "_id": "M32Headset",
+            "_tpl": "6033fa48ffd42c541047f728",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
             "_id": "SigSRD",
             "_tpl": "5fbe760793164a5b6278efc8",
             "parentId": "hideout",
@@ -2666,6 +2718,42 @@
         }
     ],
     "barter_scheme": {
+        "868b2ae6073dc28b55692ff5": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "591ae8f986f77406f854be45"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "59136f6f86f774447a1ed173"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5913651986f774432f15d132"
+                }
+            ]
+        ],
+        "ZenitRP1": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5734781f24597737e04bf32a"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5c06779c86f77426e00dd782"
+                }
+            ]
+        ],
+        "M32Headset": [
+            [
+                {
+                    "count": 19550,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "SigSRD": [
             [
                 {
@@ -2689,7 +2777,7 @@
                     "_tpl": "56742c324bdc2d150f8b456d"
                 },
                 {
-                    "count": 2,
+                    "count": 1,
                     "_tpl": "5bc9b720d4351e450201234b"
                 }
             ]
@@ -2725,8 +2813,12 @@
         "9mm_rip_box": [
             [
                 {
-                    "count": 2,
-                    "_tpl": "573474f924597738002c6174"
+                    "count": 1,
+                    "_tpl": "5734770f24597738025ee254"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "573476f124597737e04bf328"
                 }
             ]
         ],
@@ -3739,7 +3831,7 @@
                     "_tpl": "59faf7ca86f7740dbe19f6c2"
                 },
                 {
-                    "count": 4,
+                    "count": 6,
                     "_tpl": "5d235a5986f77443f6329bc6"
                 }
             ]
@@ -3747,7 +3839,7 @@
         "5eeca635bfed7142cb30f7b6": [
             [
                 {
-                    "count": 6,
+                    "count": 1,
                     "_tpl": "5672cb304bdc2dc2088b456a"
                 }
             ]
@@ -4143,7 +4235,7 @@
                     "_tpl": "5d40407c86f774318526545a"
                 },
                 {
-                    "count": 5,
+                    "count": 6,
                     "_tpl": "544fb6cc4bdc2d34748b456e"
                 }
             ]
@@ -4267,7 +4359,7 @@
         "5eeca635bfed7142cb30f71a": 3,
         "5eeca635bfed7142cb30f71c": 1,
         "5eeca635bfed7142cb30f71e": 3,
-        "5eeca635bfed7142cb30f720": 4,
+        "5eeca635bfed7142cb30f720": 3,
         "5eeca635bfed7142cb30f728": 3,
         "5eeca635bfed7142cb30f72a": 3,
         "5eeca635bfed7142cb30f72c": 1,
@@ -4398,6 +4490,9 @@
         "SigMCX_Barter": 2,
         "Silencer12K": 2,
         "EotechVudu1-6": 3,
-        "SigSRD": 3
+        "SigSRD": 3,
+        "M32Headset": 1,
+        "ZenitRP1": 1,
+        "868b2ae6073dc28b55692ff5": 1
     }
 }

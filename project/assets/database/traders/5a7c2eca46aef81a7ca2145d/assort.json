@@ -1,6 +1,56 @@
 {
     "items": [
         {
+            "_id": "BlackKeycard",
+            "_tpl": "5c1d0f4986f7744bb01837fa",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "Badger_Ordnance",
+            "_tpl": "56ea7165d2720b6e518b4583",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "SpecterDRFDE",
+            "_tpl": "57aca93d2459771f2c7e26db",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "SGMT_Mag_Barter",
+            "_tpl": "5a718f958dc32e00094b97e7",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "ElitePliers_Barter",
+            "_tpl": "5af04b6486f774195a3ebb49",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
             "_id": "UMP45_Mech_Trade",
             "_tpl": "5fc3e272f8b6a877a729eac5",
             "parentId": "hideout",
@@ -6273,7 +6323,63 @@
         }
     ],
     "barter_scheme": {
-        "UMP45_Mech_Trade":[
+        "BlackKeycard": [
+            [
+                {
+                    "count": 4,
+                    "_tpl": "5d03794386f77420415576f5"
+                },
+                {
+                    "count": 6,
+                    "_tpl": "5e2aee0a86f774755a234b62"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5c052fb986f7746b2101e909"
+                }
+            ]
+        ],
+        "Badger_Ordnance": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "573476f124597737e04bf328"
+                }
+            ]
+        ],
+        "SpecterDRFDE": [
+            [
+                {
+                    "count": 2,
+                    "_tpl": "590c392f86f77444754deb29"
+                }
+            ]
+        ],
+        "SGMT_Mag_Barter": [
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5e2af22086f7746d3f3c33fa"
+                }
+            ]
+        ],
+        "ElitePliers_Barter": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590c2b4386f77425357b6123"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d40425986f7743185265461"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d1b31ce86f7742523398394"
+                }
+            ]
+        ],
+        "UMP45_Mech_Trade": [
             [
                 {
                     "count": 1,
@@ -6488,7 +6594,7 @@
         "5eeca63bbfed7142cb30fa6c": [
             [
                 {
-                    "count": 1,
+                    "count": 2,
                     "_tpl": "5c1267ee86f77416ec610f72"
                 }
             ]
@@ -6628,8 +6734,8 @@
         "5eeca63bbfed7142cb30fac7": [
             [
                 {
-                    "count": 1,
-                    "_tpl": "59faff1d86f7746c51718c9c"
+                    "count": 8,
+                    "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
         ],
@@ -7164,7 +7270,7 @@
         "5eeca63bbfed7142cb30fb91": [
             [
                 {
-                    "count": 4,
+                    "count": 3,
                     "_tpl": "5c06779c86f77426e00dd782"
                 }
             ]
@@ -7352,7 +7458,7 @@
         "5eeca63cbfed7142cb30fbe4": [
             [
                 {
-                    "count": 17,
+                    "count": 18,
                     "_tpl": "573476f124597737e04bf328"
                 }
             ]
@@ -7368,8 +7474,12 @@
         "5eeca63cbfed7142cb30fbef": [
             [
                 {
-                    "count": 38,
+                    "count": 20,
                     "_tpl": "59faff1d86f7746c51718c9c"
+                },
+                {
+                    "count": 20,
+                    "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
         ],
@@ -7680,7 +7790,7 @@
         "5eeca63cbfed7142cb30fc58": [
             [
                 {
-                    "count": 4,
+                    "count": 3,
                     "_tpl": "573476d324597737da2adc13"
                 },
                 {
@@ -7780,11 +7890,11 @@
         "5eeca63cbfed7142cb30fc70": [
             [
                 {
-                    "count": 1,
+                    "count": 2,
                     "_tpl": "56742c324bdc2d150f8b456d"
                 },
                 {
-                    "count": 2,
+                    "count": 3,
                     "_tpl": "5d1b309586f77425227d1676"
                 }
             ]
@@ -7920,8 +8030,12 @@
         "5eeca63cbfed7142cb30fc8e": [
             [
                 {
+                    "count": 6,
+                    "_tpl": "5d1b304286f774253763a528"
+                },
+                {
                     "count": 1,
-                    "_tpl": "59faff1d86f7746c51718c9c"
+                    "_tpl": "5d1b2ffd86f77425243e8d17"
                 }
             ]
         ],
@@ -8024,8 +8138,8 @@
         "5eeca63cbfed7142cb30fcc7": [
             [
                 {
-                    "count": 5,
-                    "_tpl": "590c5a7286f7747884343aea"
+                    "count": 2,
+                    "_tpl": "60391a8b3364dc22b04d0ce5"
                 },
                 {
                     "count": 2,
@@ -8092,7 +8206,7 @@
         "5eeca63cbfed7142cb30fcd7": [
             [
                 {
-                    "count": 3,
+                    "count": 2,
                     "_tpl": "573474f924597738002c6174"
                 }
             ]
@@ -8344,8 +8458,8 @@
         "5eeca63dbfed7142cb30fd30": [
             [
                 {
-                    "count": 2,
-                    "_tpl": "57347c2e24597744902c94a1"
+                    "count": 1,
+                    "_tpl": "590c5c9f86f77477c91c36e7"
                 }
             ]
         ],
@@ -8378,10 +8492,6 @@
                 {
                     "count": 4,
                     "_tpl": "57347baf24597738002c6178"
-                },
-                {
-                    "count": 1,
-                    "_tpl": "57347cd0245977445a2d6ff1"
                 }
             ]
         ],
@@ -8396,7 +8506,7 @@
         "5eeca63dbfed7142cb30fd3c": [
             [
                 {
-                    "count": 2,
+                    "count": 1,
                     "_tpl": "590a386e86f77429692b27ab"
                 }
             ]
@@ -8484,7 +8594,7 @@
         "5eeca63dbfed7142cb30fd54": [
             [
                 {
-                    "count": 3,
+                    "count": 1,
                     "_tpl": "5d03775b86f774203e7e0c4b"
                 }
             ]
@@ -8612,8 +8722,8 @@
         "5eeca63dbfed7142cb30fd74": [
             [
                 {
-                    "count": 2,
-                    "_tpl": "59faff1d86f7746c51718c9c"
+                    "count": 7,
+                    "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
         ],
@@ -8812,11 +8922,7 @@
         "5eeca63dbfed7142cb30fda6": [
             [
                 {
-                    "count": 1,
-                    "_tpl": "57347baf24597738002c6178"
-                },
-                {
-                    "count": 1,
+                    "count": 2,
                     "_tpl": "5734779624597737e04bf329"
                 }
             ]
@@ -8824,7 +8930,7 @@
         "5eeca63dbfed7142cb30fda8": [
             [
                 {
-                    "count": 15,
+                    "count": 6,
                     "_tpl": "57347cd0245977445a2d6ff1"
                 }
             ]
@@ -9024,8 +9130,8 @@
         "5eeca63dbfed7142cb30fdda": [
             [
                 {
-                    "count": 1,
-                    "_tpl": "5d0378d486f77420421a5ff4"
+                    "count": 3,
+                    "_tpl": "5d1c819a86f774771b0acd6c"
                 }
             ]
         ],
@@ -9176,7 +9282,7 @@
         "5eeca63ebfed7142cb30fe05": [
             [
                 {
-                    "count": 5,
+                    "count": 6,
                     "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
@@ -9304,7 +9410,7 @@
         "5eeca63ebfed7142cb30fe31": [
             [
                 {
-                    "count": 3,
+                    "count": 2,
                     "_tpl": "5d1b309586f77425227d1676"
                 }
             ]
@@ -9369,7 +9475,11 @@
             [
                 {
                     "count": 4,
-                    "_tpl": "59faff1d86f7746c51718c9c"
+                    "_tpl": "5c052fb986f7746b2101e909"
+                },
+                {
+                    "count": 2,
+                    "_tpl": "5c05308086f7746b2101e90b"
                 }
             ]
         ],
@@ -9420,11 +9530,7 @@
         "5eeca63ebfed7142cb30fe63": [
             [
                 {
-                    "count": 1,
-                    "_tpl": "59faff1d86f7746c51718c9c"
-                },
-                {
-                    "count": 1,
+                    "count": 7,
                     "_tpl": "5d235b4d86f7742e017bc88a"
                 }
             ]
@@ -9472,7 +9578,7 @@
                     "_tpl": "5d03784a86f774203e7e0c4d"
                 },
                 {
-                    "count": 5,
+                    "count": 3,
                     "_tpl": "5d0376a486f7747d8050965c"
                 }
             ]
@@ -9498,6 +9604,10 @@
                 {
                     "count": 10,
                     "_tpl": "5e2af22086f7746d3f3c33fa"
+                },
+                {
+                    "count": 4,
+                    "_tpl": "5e2af29386f7746d4159f077"
                 }
             ]
         ],
@@ -9612,8 +9722,12 @@
                     "_tpl": "5d0377ce86f774186372f689"
                 },
                 {
-                    "count": 6,
+                    "count": 3,
                     "_tpl": "5d0376a486f7747d8050965c"
+                },
+                {
+                    "count": 4,
+                    "_tpl": "5d0378d486f77420421a5ff4"
                 }
             ]
         ],
@@ -9628,7 +9742,7 @@
         "5eeca63ebfed7142cb30feb1": [
             [
                 {
-                    "count": 4,
+                    "count": 1,
                     "_tpl": "5734779624597737e04bf329"
                 }
             ]
@@ -10094,6 +10208,11 @@
         "5e0ac74b9d594972a112a9ed": 3,
         "45ACP_Silencer": 2,
         "zevTech": 3,
-        "UMP45_Mech_Trade":1
+        "UMP45_Mech_Trade": 1,
+        "ElitePliers_Barter": 1,
+        "SGMT_Mag_Barter": 2,
+        "SpecterDRFDE": 2,
+        "Badger_Ordnance": 1,
+        "BlackKeycard": 3
     }
 }
