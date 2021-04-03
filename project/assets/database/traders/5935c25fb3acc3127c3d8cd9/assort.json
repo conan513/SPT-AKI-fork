@@ -5459,7 +5459,7 @@
         }
     ],
     "barter_scheme": {
-        "DayPackBackpackBarter":[
+        "DayPackBackpackBarter": [
             [
                 {
                     "count": 1,
@@ -8716,6 +8716,6 @@
         "Ump45Mag_barter": 1,
         "Mag30MP9": 2,
         "Bravo4Barter": 2,
-        "DayPackBackpackBarter":1
+        "DayPackBackpackBarter": 1
     }
 }
