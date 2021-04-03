@@ -248,7 +248,7 @@ class ProfileController
         const profile = SaveServer.profiles[sessionID].characters.pmc;
         const lvlcap = DatabaseServer.tables.globals.config.exp.level.exp_table.length;
         const currlvl = profile.Info.Level;
-        const nextlvl = (currlvl >= lvlcap) ? currlvl + 1 : lvlcap - 1;
+        const nextlvl = (currlvl >= lvlcap) ? currlvl + 1 : lvlcap;
         const prev = BotController.generateRandomLevel(currlvl, currlvl);
         const next = BotController.generateRandomLevel(nextlvl, nextlvl);
 
