@@ -1,6 +1,16 @@
 {
     "items": [
         {
+            "_id": "DLG123",
+            "_tpl": "602e71bd53a60014f9705bfa",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 200000
+            }
+        },
+        {
             "_id": "Zhuk3Barter",
             "_tpl": "5c0e5edb86f77461f55ed1f7",
             "parentId": "hideout",
@@ -2730,6 +2740,14 @@
         }
     ],
     "barter_scheme": {
+        "DLG123":[
+            [
+                {
+                    "count": 1898,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "Zhuk3Barter":[
             [
                 {
@@ -4518,6 +4536,7 @@
         "M32Headset": 1,
         "ZenitRP1": 1,
         "868b2ae6073dc28b55692ff5": 1,
-        "Zhuk3Barter": 1
+        "Zhuk3Barter": 1,
+        "DLG123":1
     }
 }
