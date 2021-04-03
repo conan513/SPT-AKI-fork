@@ -60,6 +60,8 @@ class DatabaseImporter
                 ImageRouter.onRoute[`${routes[i]}${filename}`] = `${filepath}${dirs[i]}/${file}`;
             }
         }
+
+        ImageRouter.onRoute["/favicon.ico"] = `${filepath}icon.json`;
     }
 }
 
