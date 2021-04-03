@@ -1,6 +1,46 @@
 {
     "items": [
         {
+            "_id": "MarkedKeyBarter",
+            "_tpl": "5780cf7f2459777de4559322",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "SugarPack",
+            "_tpl": "59e3577886f774176a362503",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "30mmMount",
+            "_tpl": "57c69dd424597774c03b7bbc",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "KibaArmsSPRM",
+            "_tpl": "55d48a634bdc2d8b2f8b456a",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "М33SET1",
             "_tpl": "6034cf5fffd42c541047f72e",
             "parentId": "hideout",
@@ -2337,145 +2377,6 @@
             "slotId": "mod_magazine"
         },
         {
-            "_id": "5eeca639bfed7142cb30f9ff",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges"
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa00",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 1
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa01",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 2
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa02",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 3
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa03",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 4
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa04",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 5
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa05",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 6
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa06",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 7
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa07",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 8
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa08",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 9
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa09",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 10
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa0a",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 11
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa0b",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 12
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa0c",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 13
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa0d",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 14
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa0e",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 15
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa0f",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 16
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa10",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 17
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa11",
-            "_tpl": "5d6e6891a4b9361bd473feea",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 18
-        },
-        {
-            "_id": "5eeca639bfed7142cb30fa12",
-            "_tpl": "5d6e68c4a4b9361b93413f79",
-            "parentId": "5eeca639bfed7142cb30f9fe",
-            "slotId": "cartridges",
-            "location": 19
-        },
-        {
             "_id": "5eeca639bfed7142cb30fa14",
             "_tpl": "5448ba0b4bdc2d02308b456c",
             "parentId": "hideout",
@@ -2657,10 +2558,58 @@
         }
     ],
     "barter_scheme": {
+        "MarkedKeyBarter":[
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5d80c62a86f7744036212b3f"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5ede7a8229445733cb4c18e2"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d80c60f86f77440373c4ece"
+                }
+            ]
+        ],
+        "SugarPack":[
+            [
+                {
+                    "count": 5,
+                    "_tpl": "5751487e245977207e26a315"
+                } 
+            ]
+        ],
+        "30mmMount": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "5c13cef886f774072e618e82"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "59148f8286f7741b951ea113"
+                }
+            ]
+        ],
+        "KibaArmsSPRM": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "57347b8b24597737dd42e192"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "573475fb24597737fb1379e1"
+                }
+            ]
+        ],
         "М33SET1": [
             [
                 {
-                    "count": 35000,
+                    "count": 26985,
                     "_tpl": "5449016a4bdc2d6f028b456f"
                 }
             ]
@@ -2876,7 +2825,7 @@
         "5eeca638bfed7142cb30f883": [
             [
                 {
-                    "count": 3,
+                    "count": 2,
                     "_tpl": "590c5d4b86f774784e1b9c45"
                 }
             ]
@@ -2892,8 +2841,8 @@
         "5eeca638bfed7142cb30f887": [
             [
                 {
-                    "count": 4282.98,
-                    "_tpl": "5449016a4bdc2d6f028b456f"
+                    "count": 1,
+                    "_tpl": "544fb6cc4bdc2d34748b456e"
                 }
             ]
         ],
@@ -3700,11 +3649,11 @@
         "5eeca638bfed7142cb30f965": [
             [
                 {
-                    "count": 8,
+                    "count": 10,
                     "_tpl": "59e3577886f774176a362503"
                 },
                 {
-                    "count": 5,
+                    "count": 6,
                     "_tpl": "5c0fa877d174af02a012e1cf"
                 }
             ]
@@ -3752,7 +3701,7 @@
         "5eeca638bfed7142cb30f977": [
             [
                 {
-                    "count": 10,
+                    "count": 12,
                     "_tpl": "5c12688486f77426843c7d32"
                 },
                 {
@@ -3760,11 +3709,11 @@
                     "_tpl": "57347c1124597737fb1379e3"
                 },
                 {
-                    "count": 10,
+                    "count": 15,
                     "_tpl": "5734795124597738002c6176"
                 },
                 {
-                    "count": 12,
+                    "count": 15,
                     "_tpl": "590c31c586f774245e3141b2"
                 }
             ]
@@ -3837,7 +3786,7 @@
             [
                 {
                     "count": 1,
-                    "_tpl": "5c0fa877d174af02a012e1cf"
+                    "_tpl": "575062b524597720a31c09a1"
                 }
             ]
         ],
@@ -3852,7 +3801,7 @@
         "5eeca639bfed7142cb30f98d": [
             [
                 {
-                    "count": 5,
+                    "count": 2,
                     "_tpl": "57347d5f245977448b40fa81"
                 }
             ]
@@ -4072,7 +4021,7 @@
         "5eeca639bfed7142cb30f9eb": [
             [
                 {
-                    "count": 15,
+                    "count": 12,
                     "_tpl": "57347b8b24597737dd42e192"
                 },
                 {
@@ -4100,15 +4049,15 @@
         "5eeca639bfed7142cb30f9ef": [
             [
                 {
-                    "count": 5,
+                    "count": 10,
                     "_tpl": "5bc9c29cd4351e003562b8a3"
                 },
                 {
-                    "count": 4,
+                    "count": 10,
                     "_tpl": "5c0fa877d174af02a012e1cf"
                 },
                 {
-                    "count": 6,
+                    "count": 10,
                     "_tpl": "57347d8724597744596b4e76"
                 }
             ]
@@ -4140,7 +4089,7 @@
         "5eeca639bfed7142cb30fa18": [
             [
                 {
-                    "count": 5,
+                    "count": 1,
                     "_tpl": "5e2af2bc86f7746d3f3c33fc"
                 }
             ]
@@ -4176,11 +4125,11 @@
                     "_tpl": "590c639286f774151567fa95"
                 },
                 {
-                    "count": 5,
+                    "count": 4,
                     "_tpl": "5d40407c86f774318526545a"
                 },
                 {
-                    "count": 3,
+                    "count": 2,
                     "_tpl": "57347d7224597744596b4e72"
                 }
             ]
@@ -4462,6 +4411,10 @@
         "5d34df2788a4504526796dba": 3,
         "5d34df2788a4504526796dbf": 4,
         "5d34df2788a4504526796dc0": 4,
-        "М33SET1":1
+        "М33SET1": 1,
+        "KibaArmsSPRM": 1,
+        "30mmMount": 1,
+        "SugarPack":2,
+        "MarkedKeyBarter":3
     }
 }

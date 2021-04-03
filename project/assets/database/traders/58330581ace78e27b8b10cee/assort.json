@@ -1,8 +1,30 @@
 {
     "items": [
         {
+            "_id": "DLG123",
+            "_tpl": "602e71bd53a60014f9705bfa",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 200000
+            }
+        },
+        {
+            "_id": "Zhuk3Barter",
+            "_tpl": "5c0e5edb86f77461f55ed1f7",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 200000
+            }
+        },
+        {
             "_id": "868b2ae6073dc28b55692ff5",
             "_tpl": "56dee2bdd2720bc8328b4567",
+            "parentId": "hideout",
+            "slotId": "hideout",
             "upd": {
                 "UnlimitedCount": false,
                 "StackObjectsCount": 200000
@@ -2718,6 +2740,26 @@
         }
     ],
     "barter_scheme": {
+        "DLG123": [
+            [
+                {
+                    "count": 1898,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "Zhuk3Barter": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "59e3658a86f7741776641ac4"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5b4329075acfc400153b78ff"
+                }
+            ]
+        ],
         "868b2ae6073dc28b55692ff5": [
             [
                 {
@@ -4493,6 +4535,8 @@
         "SigSRD": 3,
         "M32Headset": 1,
         "ZenitRP1": 1,
-        "868b2ae6073dc28b55692ff5": 1
+        "868b2ae6073dc28b55692ff5": 1,
+        "Zhuk3Barter": 1,
+        "DLG123": 1
     }
 }

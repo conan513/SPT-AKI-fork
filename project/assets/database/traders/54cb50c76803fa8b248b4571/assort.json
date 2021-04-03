@@ -1,8 +1,70 @@
 {
     "items": [
         {
+            "_id": "6BFragGlasses",
+            "_tpl": "5b432be65acfc433000ed01f",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
+            "_id": "T7FortArmor",
+            "_tpl": "545cdb794bdc2d3a198b456a",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999
+            }
+        },
+        {
+            "_id": "SphereS",
+            "_tpl": "5aa7d193e5b5b000171d063f",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
+            }
+        },
+        {
+            "_id": "ScoutVest",
+            "_tpl": "5929a2a086f7744f4b234d43",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
+            }
+        },
+        {
+            "_id": "6B231_Barter",
+            "_tpl": "5c0e5bab86f77461f55ed1f3",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
+            }
+        },
+        {
+            "_id": "BNTIKorundBarter",
+            "_tpl": "5f5f41476bdad616ad46d631",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 2000
+            }
+        },
+        {
             "_id": "72df9cc65cf082729fc1176d",
             "_tpl": "602a9740da11d6478d5a06dc",
+            "parentId": "hideout",
+            "slotId": "hideout",
             "upd": {
                 "Repairable": {
                     "MaxDurability": 100,
@@ -11,7 +73,7 @@
                 "FireMode": {
                     "FireMode": "single"
                 },
-                "StackObjectsCount": 200000
+                "StackObjectsCount": 20000
             }
         },
         {
@@ -4575,29 +4637,93 @@
         }
     ],
     "barter_scheme": {
-        "72df9cc65cf082729fc1176d":[
+        "6BFragGlasses":[
             [
                 {
-                    "count":7850,
-                    "_tpl":"5449016a4bdc2d6f028b456f"
+                    "count": 2893,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
                 }
             ]
         ],
-        "MetalFuelTank":[[
-            {
-                "count": 2,
-                "_tpl": "59fafb5d86f774067a6f2084"
-            },{
-                "count": 1,
-                "_tpl": "5b43575a86f77424f443fe62"
-            }
-        ]],
-        "ValdayBarter":[
+        "T7FortArmor": [
+            [
+                {
+                    "count": 3,
+                    "_tpl": "60391a8b3364dc22b04d0ce5"
+                },
+                {
+                    "count": 3,
+                    "_tpl": "60391b0fb847c71012789415"
+                }
+            ]
+        ],
+        "SphereS": [
+            [
+                {
+                    "count": 2,
+                    "_tpl": "5673de654bdc2d180f8b456d"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5d40407c86f774318526545a"
+                }
+            ]
+        ],
+        "ScoutVest": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "575146b724597720a27126d5"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "57347d90245977448f7b7f65"
+                }
+            ]
+        ],
+        "6B231_Barter": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "59fafb5d86f774067a6f2084"
+                }
+            ]
+        ],
+        "BNTIKorundBarter": [
+            [
+                {
+                    "count": 4,
+                    "_tpl": "590c645c86f77412b01304d9"
+                }
+            ]
+        ],
+        "72df9cc65cf082729fc1176d": [
+            [
+                {
+                    "count": 7850,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "MetalFuelTank": [
+            [
+                {
+                    "count": 2,
+                    "_tpl": "59fafb5d86f774067a6f2084"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5b43575a86f77424f443fe62"
+                }
+            ]
+        ],
+        "ValdayBarter": [
             [
                 {
                     "count": 2,
                     "_tpl": "5d40407c86f774318526545a"
-                },{
+                },
+                {
                     "count": 1,
                     "_tpl": "590c5f0d86f77413997acfab"
                 }
@@ -6771,7 +6897,7 @@
         ]
     },
     "loyal_level_items": {
-        "BNTIKorund": 3,
+        "BNTIKorund": 4,
         "7n31Boolet": 3,
         "5eeca645bfed7142cb310286": 2,
         "5eeca645bfed7142cb310290": 2,
@@ -7037,6 +7163,12 @@
         "5e0ac74b9d594972a112aa0a": 4,
         "ValdayBarter": 2,
         "MetalFuelTank": 2,
-        "72df9cc65cf082729fc1176d":3
+        "72df9cc65cf082729fc1176d": 3,
+        "BNTIKorundBarter": 3,
+        "6B231_Barter": 1,
+        "ScoutVest": 1,
+        "SphereS": 1,
+        "T7FortArmor": 4,
+        "6BFragGlasses": 1
     }
 }

@@ -1,6 +1,26 @@
 {
     "items": [
         {
+            "_id": "HemoTourniquet",
+            "_tpl": "60098af40accd37ef2175f27",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
+            "_id": "DayPackBackpackBarter",
+            "_tpl": "5e9dcf5986f7746c417435b3",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 999999999
+            }
+        },
+        {
             "_id": "Bravo4Barter",
             "_tpl": "57adff4f24597737f373b6e6",
             "parentId": "hideout",
@@ -5449,6 +5469,26 @@
         }
     ],
     "barter_scheme": {
+        "HemoTourniquet": [
+            [
+                {
+                    "count": 20,
+                    "_tpl": "5696686a4bdc2da3298b456a"
+                }
+            ]
+        ],
+        "DayPackBackpackBarter": [
+            [
+                {
+                    "count": 1,
+                    "_tpl": "590a386e86f77429692b27ab"
+                },
+                {
+                    "count": 1,
+                    "_tpl": "5734781f24597737e04bf32a"
+                }
+            ]
+        ],
         "Bravo4Barter": [
             [
                 {
@@ -8446,7 +8486,7 @@
         "5f004bf41b27f811e5317b34": 4,
         "5f004bf41b27f811e5317b36": 3,
         "5f004bf41b27f811e5317b38": 4,
-        "5f004bf41b27f811e5317b3a": 3,
+        "5f004bf41b27f811e5317b3a": 2,
         "5f004bf51b27f811e5317b3c": 4,
         "5f004bf51b27f811e5317b3e": 4,
         "5f004bf51b27f811e5317b40": 3,
@@ -8693,6 +8733,8 @@
         "RFB_TS": 1,
         "Ump45Mag_barter": 1,
         "Mag30MP9": 2,
-        "Bravo4Barter": 2
+        "Bravo4Barter": 2,
+        "DayPackBackpackBarter": 1,
+        "HemoTourniquet": 1
     }
 }
