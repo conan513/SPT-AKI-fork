@@ -119,6 +119,9 @@ class ProfileController
             "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels,
             "display": DatabaseServer.tables.traders[traderID].base.display
         };
+
+        // Why doesn't this work?
+        // TraderController.lvlUp(sessionID, traderID);
     }
 
     static generateScav(sessionID)
