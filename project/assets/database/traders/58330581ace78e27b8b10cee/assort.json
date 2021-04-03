@@ -1,6 +1,176 @@
 {
     "items": [
         {
+            "_id": "STM9InchHandGuard",
+            "_tpl": "6034e3cb0ddce744014cb870",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "STM15InchHandGuard",
+            "_tpl": "6034e3d953a60014f970617b",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "STM12InchHandGuard",
+            "_tpl": "6034e3e20ddce744014cb878",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "16InchBarrel",
+            "_tpl": "603373004e02ce1eaa358814",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "14InchBarrel",
+            "_tpl": "603372f153a60014f970616d",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "12InchBarrel",
+            "_tpl": "603372d154072b51b239f9e1",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "10dot5InchBarrel",
+            "_tpl": "603372b4da11d6478d5a07ff",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "MagwellGreySTM9",
+            "_tpl": "60338ff388382f4fab3fd2c8",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "STM9Muzzle",
+            "_tpl": "60337f5dce399e10262255d1",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "MagwellSTM9",
+            "_tpl": "602f85fd9b513876d4338d9c",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": true,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "73ea8d89bec493b1b7e0b2a6",
+            "_tpl": "60339954d62c9b14ed777c06",
+            "parentId": "hideout",
+            "slotId": "hideout",
+            "upd": {
+                "UnlimitedCount": false,
+                "StackObjectsCount": 20000
+            }
+        },
+        {
+            "_id": "50d28fde0d7176e96569b1a8",
+            "_tpl": "602e71bd53a60014f9705bfa",
+            "parentId": "73ea8d89bec493b1b7e0b2a6",
+            "slotId": "mod_pistol_grip"
+        },
+        {
+            "_id": "742793787ef2359917a8083e",
+            "_tpl": "5a7ad2e851dfba0016153692",
+            "parentId": "73ea8d89bec493b1b7e0b2a6",
+            "slotId": "mod_magazine"
+        },
+        {
+            "_id": "e9a78f3b1bbda55e23b30f1d",
+            "_tpl": "602e63fb6335467b0c5ac94d",
+            "parentId": "73ea8d89bec493b1b7e0b2a6",
+            "slotId": "mod_reciever"
+        },
+        {
+            "_id": "36e266d32cc76dbb10ad980a",
+            "_tpl": "602e3f1254072b51b239f713",
+            "parentId": "73ea8d89bec493b1b7e0b2a6",
+            "slotId": "mod_stock_001"
+        },
+        {
+            "_id": "bce29723f148c951fd609ed1",
+            "_tpl": "55d44fd14bdc2d962f8b456e",
+            "parentId": "73ea8d89bec493b1b7e0b2a6",
+            "slotId": "mod_charge"
+        },
+        {
+            "_id": "c573bb9afa4826b47fffa6f8",
+            "_tpl": "60338ff388382f4fab3fd2c8",
+            "parentId": "73ea8d89bec493b1b7e0b2a6",
+            "slotId": "mod_tactical_000"
+        },
+        {
+            "_id": "3818a4acb07c0b5f5867d0cc",
+            "_tpl": "603372b4da11d6478d5a07ff",
+            "parentId": "e9a78f3b1bbda55e23b30f1d",
+            "slotId": "mod_barrel"
+        },
+        {
+            "_id": "009365ccfa9743c6d82ed35f",
+            "_tpl": "6034e3cb0ddce744014cb870",
+            "parentId": "e9a78f3b1bbda55e23b30f1d",
+            "slotId": "mod_handguard"
+        },
+        {
+            "_id": "667e1826c6463c4b4a1db6a7",
+            "_tpl": "602e620f9b513876d4338d9a",
+            "parentId": "36e266d32cc76dbb10ad980a",
+            "slotId": "mod_stock_000"
+        },
+        {
+            "_id": "afa10af9d9da0210bb702596",
+            "_tpl": "60337f5dce399e10262255d1",
+            "parentId": "3818a4acb07c0b5f5867d0cc",
+            "slotId": "mod_muzzle"
+        },
+        {
             "_id": "DLG123",
             "_tpl": "602e71bd53a60014f9705bfa",
             "parentId": "hideout",
@@ -2740,6 +2910,94 @@
         }
     ],
     "barter_scheme": {
+        "STM9InchHandGuard": [
+            [
+                {
+                    "count": 12075,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "STM15InchHandGuard": [
+            [
+                {
+                    "count": 17250,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "STM12InchHandGuard": [
+            [
+                {
+                    "count": 14375,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "16InchBarrel": [
+            [
+                {
+                    "count": 14375,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "14InchBarrel": [
+            [
+                {
+                    "count": 11500,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "12InchBarrel": [
+            [
+                {
+                    "count": 8625,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "10dot5InchBarrel": [
+            [
+                {
+                    "count": 8050,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "MagwellGreySTM9": [
+            [
+                {
+                    "count": 1813,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "STM9Muzzle": [
+            [
+                {
+                    "count": 2194,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "MagwellSTM9": [
+            [
+                {
+                    "count": 1468,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
+        "73ea8d89bec493b1b7e0b2a6": [
+            [
+                {
+                    "count": 44121,
+                    "_tpl": "5449016a4bdc2d6f028b456f"
+                }
+            ]
+        ],
         "DLG123": [
             [
                 {
@@ -4537,6 +4795,17 @@
         "ZenitRP1": 1,
         "868b2ae6073dc28b55692ff5": 1,
         "Zhuk3Barter": 1,
-        "DLG123": 1
+        "DLG123": 1,
+        "73ea8d89bec493b1b7e0b2a6": 2,
+        "MagwellSTM9": 3,
+        "STM9Muzzle": 3,
+        "MagwellGreySTM9": 3,
+        "10dot5InchBarrel": 3,
+        "12InchBarrel": 3,
+        "14InchBarrel": 3,
+        "16InchBarrel": 4,
+        "STM12InchHandGuard": 3,
+        "STM15InchHandGuard": 4,
+        "STM9InchHandGuard": 3
     }
 }
