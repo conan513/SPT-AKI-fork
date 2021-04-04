@@ -240,7 +240,8 @@ class ProfileController
 
     static getMiniProfile(sessionID)
     {
-        if (!ProfileController.getPmcProfile(sessionID))
+        // make sure character completed creation
+        if (!("Level") in SaveServer.profiles[sessionID].characters.pmc.Info)
         {
             return undefined;
         }
