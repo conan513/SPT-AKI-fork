@@ -261,9 +261,16 @@ class ProfileController
     static getMiniProfile(sessionID)
     {
         // make sure character completed creation
-        if (!("Level") in SaveServer.profiles[sessionID].characters.pmc.Info)
+        if (!ProfileController.getPmcProfile(sessionID) || !("Level") in SaveServer.profiles[sessionID].characters.pmc.Info)
         {
-            return undefined;
+            return {
+                "nickname": "",
+                "side": "",
+                "currlvl": 0,
+                "currexp": 0,
+                "prevexp": 0,
+                "nextlvl": 0
+            }
         }
 
         const profile = SaveServer.profiles[sessionID].characters.pmc;
