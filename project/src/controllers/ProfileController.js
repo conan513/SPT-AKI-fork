@@ -279,7 +279,6 @@ class ProfileController
             "nextlvl": ProfileController.getExperience(nextlvl)
         };
 
-        console.log(result);
         return result;
     }
 }
