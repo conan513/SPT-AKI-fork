@@ -261,7 +261,7 @@ class ProfileController
     static getMiniProfile(sessionID)
     {
         // make sure character completed creation
-        if (!ProfileController.getPmcProfile(sessionID) || !("Level" in SaveServer.profiles[sessionID].characters.pmc.Info))
+        if (!("Info" in SaveServer.profiles[sessionID].characters.pmc) || !("Level" in SaveServer.profiles[sessionID].characters.pmc.Info))
         {
             return {
                 "nickname": "",
