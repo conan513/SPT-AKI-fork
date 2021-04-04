@@ -48,6 +48,11 @@ class LauncherCallbacks
         const output = LauncherController.wipe(info);
         return (!output) ? "FAILED" : "OK";
     }
+
+    static getMiniProfile(url, info, sessionID)
+    {
+        return HttpResponse.noBody(ProfileController.getMiniProfile(sessionID));
+    }
 }
 
 module.exports = LauncherCallbacks;

@@ -234,7 +234,32 @@ class ProfileController
                 return SaveServer.profiles[sessionID].characters.pmc;
             }
         }
+
         return undefined;
+    }
+
+    static getMiniProfile(sessionID)
+    {
+        if (!ProfileController.getPmcProfile(sessionID))
+        {
+            return undefined;
+        }
+
+        const profile = SaveServer.profiles[sessionID].characters.pmc;
+        const lvlcap = DatabaseServer.tables.globals.config.exp.level.exp_table.length;
+        const currlvl = profile.Info.Level;
+        const nextlvl = (currlvl >= lvlcap) ? currlvl + 1 : lvlcap;
+        const prev = BotController.generateRandomLevel(currlvl, currlvl);
+        const next = BotController.generateRandomLevel(nextlvl, nextlvl);
+
+        return {
+            "nickname": profile.Info.Nickname,
+            "side": profile.Info.Side,
+            "currlvl": profile.Info.Level,
+            "currexp": profile.Info.Experience,
+            "prevexp": prev.exp,
+            "nextlvl": next.exp,
+        };
     }
 }
 

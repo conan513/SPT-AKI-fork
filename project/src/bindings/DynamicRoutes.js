@@ -24,6 +24,9 @@ module.exports = {
     ".png": {
         "aki": HttpCallbacks.getImage
     },
+    ".ico": {
+        "aki": HttpCallbacks.getImage
+    },
     "/client/location/getLocalloot": {
         "aki": LocationCallbacks.getLocation
     },
