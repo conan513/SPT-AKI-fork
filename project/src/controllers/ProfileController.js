@@ -238,6 +238,26 @@ class ProfileController
         return undefined;
     }
 
+    static getExperience(level)
+    {
+        const expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
+        const maxLevel = expTable.length
+        let exp = 0;
+
+        if (level >= maxLevel)
+        {
+            // make sure to not go out of bounds
+            level = maxLevel;
+        }
+
+        for (let i = 0; i < level - 1; i++)
+        {
+            exp += expTable[i].exp;
+        }
+
+        return exp;
+    }
+
     static getMiniProfile(sessionID)
     {
         // make sure character completed creation
@@ -249,18 +269,18 @@ class ProfileController
         const profile = SaveServer.profiles[sessionID].characters.pmc;
         const lvlcap = DatabaseServer.tables.globals.config.exp.level.exp_table.length;
         const currlvl = profile.Info.Level;
-        const nextlvl = (currlvl >= lvlcap) ? currlvl + 1 : lvlcap;
-        const prev = BotController.generateRandomLevel(currlvl, currlvl);
-        const next = BotController.generateRandomLevel(nextlvl, nextlvl);
-
-        return {
+        const nextlvl = (currlvl >= lvlcap) ? currlvl + 1 : lvlcap - 1;
+        const result = {
             "nickname": profile.Info.Nickname,
             "side": profile.Info.Side,
             "currlvl": profile.Info.Level,
             "currexp": profile.Info.Experience,
-            "prevexp": prev.exp,
-            "nextlvl": next.exp,
+            "prevexp": ProfileController.getExperience(currlvl),
+            "nextlvl": ProfileController.getExperience(nextlvl)
         };
+
+        console.log(result);
+        return result;
     }
 }
 
