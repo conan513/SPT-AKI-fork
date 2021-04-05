@@ -281,7 +281,7 @@ class ProfileController
             "side": profile.Info.Side,
             "currlvl": profile.Info.Level,
             "currexp": profile.Info.Experience,
-            "prevexp": (currlvl === 0) ? 0 : ProfileController.getExperience(currlvl) - 1,
+            "prevexp": (currlvl === 0) ? 0 : ProfileController.getExperience(currlvl - 1),
             "nextlvl": ProfileController.getExperience((currlvl >= lvlcap) ? currlvl : lvlcap - 1)
         };
 
