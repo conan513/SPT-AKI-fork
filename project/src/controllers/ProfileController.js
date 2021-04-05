@@ -264,8 +264,8 @@ class ProfileController
         if (!("Info" in SaveServer.profiles[sessionID].characters.pmc) || !("Level" in SaveServer.profiles[sessionID].characters.pmc.Info))
         {
             return {
-                "nickname": "",
-                "side": "",
+                "nickname": "unknown",
+                "side": "unknown",
                 "currlvl": 0,
                 "currexp": 0,
                 "prevexp": 0,
