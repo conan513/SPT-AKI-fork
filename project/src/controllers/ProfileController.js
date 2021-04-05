@@ -241,16 +241,15 @@ class ProfileController
     static getExperience(level)
     {
         const expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
-        const maxLevel = expTable.length
         let exp = 0;
 
-        if (level >= maxLevel)
+        if (level >= expTable.length)
         {
             // make sure to not go out of bounds
-            level = maxLevel;
+            level = expTable.length - 1;
         }
 
-        for (let i = 0; i < level - 1; i++)
+        for (let i = 0; i < level; i++)
         {
             exp += expTable[i].exp;
         }
@@ -274,15 +273,14 @@ class ProfileController
         }
 
         const profile = SaveServer.profiles[sessionID].characters.pmc;
-        const lvlcap = DatabaseServer.tables.globals.config.exp.level.exp_table.length;
         const currlvl = profile.Info.Level;
         const result = {
             "nickname": profile.Info.Nickname,
             "side": profile.Info.Side,
             "currlvl": profile.Info.Level,
             "currexp": profile.Info.Experience,
-            "prevexp": (currlvl === 0) ? 0 : ProfileController.getExperience(currlvl - 1),
-            "nextlvl": ProfileController.getExperience((currlvl >= lvlcap) ? currlvl : lvlcap - 1)
+            "prevexp": (currlvl === 0) ? 0 : ProfileController.getExperience(currlvl),
+            "nextlvl": ProfileController.getExperience(currlvl + 1)
         };
 
         return result;
