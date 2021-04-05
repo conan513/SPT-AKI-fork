@@ -110,10 +110,14 @@ class QuestController
 
         let itemCount = 1;
 
-        // separate base item and mods, fix stacks
-
         for (let item of reward.items)
         {
+            // reward items are granted Found in Raid
+            if(!item.upd) 
+                item.upd = {};
+            item.upd.SpawnedInSession = true;
+
+            // separate base item and mods, fix stacks
             if (item._id === reward.target)
             {
                 if ((item.parentId !== undefined) && (item.parentId === "hideout") && (item.upd !== undefined) && (item.upd.StackObjectsCount !== undefined) && (item.upd.StackObjectsCount > 1))
