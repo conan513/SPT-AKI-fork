@@ -5,7 +5,7 @@ require("../Lib.js");
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "A8 BLEEDINGEDGE";
+    static version = "B1";
     static url = "https://www.guilded.gg/senkospub";
     static colors = {
         "front": "\x1b[33m",    // gold
@@ -14,9 +14,6 @@ class Watermark
     static text = [
         `${Watermark.project} ${Watermark.version}`,
         `${Watermark.url}`,
-        "",
-        "NO SUPPORT FOR THIS BUILD",
-        "USE AT YOUR OWN RISK"
     ];
 
     /** Set window title */
