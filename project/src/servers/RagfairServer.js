@@ -176,9 +176,6 @@ class RagfairServer
             price = RagfairServer.getBarterPrice(userID, barterScheme);
         }
 
-        // remove properties
-        delete items[0].upd.UnlimitedCount;
-
         // get properties
         items = RagfairServer.getItemCondition(userID, items);
 
