@@ -579,7 +579,12 @@ class InventoryController
             // or in case people want all items to be marked as found in raid
             if (foundInRaid || InventoryConfig.newItemsMarkedFound)
             {
-                upd["SpawnedInSession"] = true;
+                upd.SpawnedInSession = true;
+            }
+
+            if (upd.UnlimitedCount)
+            {
+                delete upd.UnlimitedCount;
             }
 
             output.items.new.push({
