@@ -265,9 +265,10 @@ class ProfileController
     static getMiniProfile(sessionID)
     {
         const maxlvl = ProfileController.getMaxLevel();
+        const profile = SaveServer.profiles[sessionID].characters.pmc;
 
         // make sure character completed creation
-        if (!("Info" in SaveServer.profiles[sessionID].characters.pmc) || !("Level" in SaveServer.profiles[sessionID].characters.pmc.Info))
+        if (!("Info" in profile) || !("Level" in profile.Info))
         {
             return {
                 "nickname": "unknown",
@@ -280,7 +281,6 @@ class ProfileController
             }
         }
 
-        const profile = SaveServer.profiles[sessionID].characters.pmc;
         const currlvl = profile.Info.Level;
         const nextlvl = ProfileController.getExperience(currlvl + 1)
         const result = {
