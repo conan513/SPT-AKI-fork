@@ -129,7 +129,7 @@ class RagfairServer
             const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
-            const price = RagfairServer.getBarterPrice(traderID, barterScheme);
+            const price = RagfairServer.getBarterPrice(barterScheme);
 
             // create offer
             RagfairServer.createOffer(traderID, time, items, barterScheme, loyalLevel, price);
@@ -150,12 +150,12 @@ class RagfairServer
         {
             // get base item and stack
             let item = RandomUtil.getArrayValue(assortItems);
-            
+
             // create offer
             item.upd.StackObjectsCount = (PresetController.isPreset(item._id)) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
             const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const userID = HashUtil.generate();
-            const price = RagfairServer.getBarterPrice(userID, barterScheme);
+            const price = RagfairServer.getBarterPrice(barterScheme);
 
             RagfairServer.createOffer(
                 userID,                                     // userID
@@ -403,7 +403,7 @@ class RagfairServer
         ];
     }
 
-    static getBarterPrice(userID, barterScheme)
+    static getBarterPrice(barterScheme)
     {
         let price = 0;
 
