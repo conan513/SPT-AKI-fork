@@ -126,13 +126,13 @@ class RagfairServer
                 continue;
             }
 
-            const isPreset = PresetController.isPreset(item._id);
-            const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
+            const price = RagfairServer.getBarterPrice(traderID, barterScheme);
 
             // create offer
-            RagfairServer.createOffer(traderID, time, items, barterScheme, loyalLevel);
+            RagfairServer.createOffer(traderID, time, items, barterScheme, loyalLevel, price);
         }
     }
 
@@ -150,32 +150,28 @@ class RagfairServer
         {
             // get base item and stack
             let item = RandomUtil.getArrayValue(assortItems);
-            const isPreset = PresetController.isPreset(item._id);
-
-            item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
-
+            
             // create offer
-            const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            item.upd.StackObjectsCount = (PresetController.isPreset(item._id)) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
+            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const userID = HashUtil.generate();
+            const price = RagfairServer.getBarterPrice(userID, barterScheme);
 
             RagfairServer.createOffer(
-                HashUtil.generate(),                        // userID
+                userID,                                     // userID
                 TimeUtil.getTimestamp(),                    // time
                 items,                                      // items
                 RagfairServer.getOfferRequirements(items),  // barter scheme
                 assort.loyal_level_items[item._id],         // loyal level
+                price,                                      // price
                 isPreset);                                  // sellAsOnePiece
         }
     }
 
-    static createOffer(userID, time, items, barterScheme, loyalLevel, sellInOnePiece = false, price = null)
+    static createOffer(userID, time, items, barterScheme, loyalLevel, price, sellInOnePiece = false)
     {
         const isTrader = RagfairServer.isTrader(userID);
         const trader = DatabaseServer.tables.traders[(isTrader) ? userID : "ragfair"].base;
-
-        if (price === null)
-        {
-            price = RagfairServer.getBarterPrice(userID, barterScheme);
-        }
 
         // get properties
         items = RagfairServer.getItemCondition(userID, items);

@@ -991,8 +991,8 @@ class RagfairController
             formattedItems,
             formattedRequirements,
             loyalLevel,
-            sellInOnePiece,
-            amountToSend
+            amountToSend,
+            sellInOnePiece
         );
     }
 
