@@ -287,7 +287,7 @@ class ProfileController
             "currexp": profile.Info.Experience,
             "prevexp": (currlvl === 0) ? 0 : ProfileController.getExperience(currlvl),
             "nextlvl": nextlvl,
-            "maxlvl": (currlvl >= ProfileController.getMaxLevel() && profile.Info.Experience >= nextlvl)
+            "maxlvl": ProfileController.getMaxLevel()
         };
 
         console.log(result);
