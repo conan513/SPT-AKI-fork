@@ -126,7 +126,7 @@ class RagfairServer
                 continue;
             }
 
-            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
 
