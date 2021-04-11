@@ -293,7 +293,6 @@ class ProfileController
             "maxlvl": maxlvl
         };
 
-        console.log(result);
         return result;
     }
 }
