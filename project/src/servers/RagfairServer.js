@@ -150,18 +150,21 @@ class RagfairServer
         {
             // get base item and stack
             let item = RandomUtil.getArrayValue(assortItems);
+            const isPreset = PresetController.isPreset(item._id);
 
             // create offer
-            item.upd.StackObjectsCount = (PresetController.isPreset(item._id)) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
-            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
+            
             const userID = HashUtil.generate();
+            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const barterScheme = RagfairServer.getOfferRequirements(items);
             const price = RagfairServer.getBarterPrice(barterScheme);
 
             RagfairServer.createOffer(
                 userID,                                     // userID
                 TimeUtil.getTimestamp(),                    // time
                 items,                                      // items
-                RagfairServer.getOfferRequirements(items),  // barter scheme
+                barterScheme,                               // barter scheme
                 assort.loyal_level_items[item._id],         // loyal level
                 price,                                      // price
                 isPreset);                                  // sellAsOnePiece
