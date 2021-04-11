@@ -179,7 +179,6 @@ class RagfairServer
         // get properties
         items = RagfairServer.getItemCondition(userID, items);
 
-        // user.id = profile.characters.pmc._id??
         let offer = {
             "_id": (isTrader) ? items[0]._id : HashUtil.generate(),
             "intId": 0,
