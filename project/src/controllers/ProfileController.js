@@ -257,6 +257,11 @@ class ProfileController
         return exp;
     }
 
+    static getMaxLevel()
+    {
+        return DatabaseServer.tables.globals.config.exp.level.exp_table.length - 1;
+    }
+
     static getMiniProfile(sessionID)
     {
         // make sure character completed creation
@@ -274,15 +279,18 @@ class ProfileController
 
         const profile = SaveServer.profiles[sessionID].characters.pmc;
         const currlvl = profile.Info.Level;
+        const nextlvl = ProfileController.getExperience(currlvl + 1)
         const result = {
             "nickname": profile.Info.Nickname,
             "side": profile.Info.Side,
             "currlvl": profile.Info.Level,
             "currexp": profile.Info.Experience,
             "prevexp": (currlvl === 0) ? 0 : ProfileController.getExperience(currlvl),
-            "nextlvl": ProfileController.getExperience(currlvl + 1)
+            "nextlvl": nextlvl,
+            "maxlvl": (currlvl >= ProfileController.getMaxLevel() && profile.Info.Experience >= nextlvl)
         };
 
+        console.log(result);
         return result;
     }
 }
