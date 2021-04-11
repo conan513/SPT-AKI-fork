@@ -10,10 +10,11 @@ class App
 
     static load()
     {
+        Logger.initialize();
+
+        // bind callbacks
         App.onLoad = require("../bindings/AppLoad");
         App.onUpdate = require("../bindings/AppUpdate");
-
-        Logger.setupExceptions();
 
         // execute onLoad callbacks
         console.log("Server: executing startup callbacks...");

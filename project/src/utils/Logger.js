@@ -31,8 +31,13 @@ class Logger
         }
     };
 
-    static setupExceptions()
+    static initialize()
     {
+        if (VFS.exists(Logger.filepath))
+        {
+            VFS.writeFile(Logger.filepath, "");
+        }
+
         process.on("uncaughtException", (error, promise) =>
         {
             Logger.error("Trace:");
