@@ -650,13 +650,19 @@ class InventoryController
 
                         let SlotID = itemLib[tmpKey].slotId;
 
-                        //if it is from ItemPreset, load preset's upd data too.
+                        // if it is from ItemPreset, load preset's upd data too.
                         if (itemToAdd.isPreset)
                         {
                             upd = {"StackObjectsCount": itemToAdd.count};
+
                             for (let updID in itemLib[tmpKey].upd)
                             {
                                 upd[updID] = itemLib[tmpKey].upd[updID];
+                            }
+
+                            if (foundInRaid || InventoryConfig.newItemsMarkedFound)
+                            {
+                                upd.SpawnedInSession = true;
                             }
                         }
 
@@ -683,6 +689,7 @@ class InventoryController
                         else
                         {
                             let itemLocation = {};
+
                             if (itemLib[tmpKey]["location"] !== undefined)
                             {
                                 itemLocation["location"] = itemLib[tmpKey]["location"];
