@@ -5,7 +5,7 @@ require("../Lib.js");
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "B3";
+    static version = "B4";
     static url = "https://www.guilded.gg/senkospub";
     static colors = {
         "front": "\x1b[33m",    // gold
