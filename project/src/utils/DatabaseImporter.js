@@ -61,7 +61,7 @@ class DatabaseImporter
             }
         }
 
-        ImageRouter.onRoute["/favicon.ico"] = `${filepath}icon.json`;
+        ImageRouter.onRoute["/favicon.ico"] = `${filepath}icon.ico`;
     }
 }
 

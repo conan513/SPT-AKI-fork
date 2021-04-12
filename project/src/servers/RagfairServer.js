@@ -451,14 +451,16 @@ class RagfairServer
     static getPresetItemsByTpl(item)
     {
         let presets = [];
+
         for (const itemId in DatabaseServer.tables.globals.ItemPresets)
         {
             if (DatabaseServer.tables.globals.ItemPresets[itemId]._items[0]._tpl === item._tpl)
             {
-                let preset = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[itemId]._items);
+                const preset = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[itemId]._items);
                 presets.push(RagfairServer.reparentPresets(item, preset));
             }
         }
+
         return presets;
     }
 
