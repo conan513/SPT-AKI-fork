@@ -133,6 +133,7 @@ class DialogueController
 
         const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
         const notificationMessage = NotifierController.createNewMessageNotification(message, extraData);
+        console.log(notificationMessage);
         HttpServer.sendMessage(notificationMessage, sessionID);
     }
 

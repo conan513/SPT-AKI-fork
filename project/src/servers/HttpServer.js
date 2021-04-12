@@ -109,15 +109,16 @@ class HttpServer
             if (HttpServer.webSockets[sessionID] !== undefined && HttpServer.webSockets[sessionID].readyState === WebSocket.OPEN)
             {
                 HttpServer.webSockets[sessionID].send(JSON.stringify(output));
+                Logger.debug("WS: message sent");
             }
             else
             {
-                Logger.debug(`Socket not ready for ${sessionID}, message not sent`);
+                Logger.debug(`WS: Socket not ready for ${sessionID}, message not sent`);
             }
         }
         catch (err)
         {
-            Logger.error(`sendMessage failed, with error: ${err}`);
+            Logger.error(`WS: sendMessage failed, with error: ${err}`);
         }
     }
 

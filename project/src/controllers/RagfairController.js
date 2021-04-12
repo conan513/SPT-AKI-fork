@@ -516,7 +516,6 @@ class RagfairController
         for (const sessionID in SaveServer.profiles)
         {
             const profileOffers = RagfairController.getProfileOffers(sessionID);
-            const timestamp = TimeUtil.getTimestamp();
 
             if (!profileOffers || !profileOffers.length)
             {
@@ -681,6 +680,7 @@ class RagfairController
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
                 return HttpResponse.appendErrorToOutput(result);
             }
+
             item = ItemHelper.fixItemStackCount(item);
             itemStackCount += item.upd.StackObjectsCount;
             invItems.push(...ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
@@ -791,6 +791,7 @@ class RagfairController
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
+
         if (differenceInMins > 1)
         {
             let newEndTime = 71 + TimeUtil.getTimestamp();
@@ -862,6 +863,7 @@ class RagfairController
             {
                 // How many are we buying?
                 boughtAmount = RandomUtil.getInt(1, parent.length);
+
                 if (boughtAmount < parent.length)
                 {
                     for (let i = 0; i < boughtAmount; i++)
@@ -888,6 +890,7 @@ class RagfairController
                 else
                 {
                     boughtAmount = RandomUtil.getInt(1, offer.items[0].upd.StackObjectsCount);
+
                     if (boughtAmount < offer.items[0].upd.StackObjectsCount)
                     {
                         offer.items[0].upd.StackObjectsCount -= boughtAmount;
@@ -911,17 +914,21 @@ class RagfairController
             };
 
             let stacks = ItemHelper.splitStack(requestedItem);
+            
             stacks.forEach(item =>
             {
                 let outItems = [item];
+
                 if (requirement.onlyFunctional)
                 {
                     let presetItems = RagfairServer.getPresetItemsByTpl(item);
+
                     if (presetItems.length)
                     {
                         outItems = presetItems[0];
                     }
                 }
+
                 itemsToSend = [...itemsToSend, ...outItems];
             });
         }
@@ -933,10 +940,12 @@ class RagfairController
             "buyerNickname": RagfairServer.getNickname(HashUtil.generate()),
             "itemCount": boughtAmount
         };
+
         let messageText = messageTpl.replace(/{\w+}/g, (matched) =>
         {
             return tplVars[matched.replace(/{|}/g, "")];
         });
+
         const messageContent = {
             "text": messageText.replace(/"/g, ""),
             "type": 4, // EMessageType.FleamarketMessage
