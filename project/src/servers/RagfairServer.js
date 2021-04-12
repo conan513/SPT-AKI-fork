@@ -126,7 +126,8 @@ class RagfairServer
                 continue;
             }
 
-            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const isPreset = PresetController.isPreset(item._id);
+            const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = assort.barter_scheme[item._id][0];
             const loyalLevel = assort.loyal_level_items[item._id];
             const price = RagfairServer.getBarterPrice(barterScheme);
@@ -156,7 +157,7 @@ class RagfairServer
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
             
             const userID = HashUtil.generate();
-            const items = [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
+            const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = RagfairServer.getOfferRequirements(items);
             const price = RagfairServer.getBarterPrice(barterScheme);
 

@@ -925,7 +925,7 @@ class RagfairController
         let messageTpl = DatabaseServer.tables.locales.global["en"].mail[RagfairController.TPL_GOODS_SOLD];
         let tplVars = {
             "soldItem": DatabaseServer.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
-            "buyerNickname": RagfairController.fetchRandomPmcName(),
+            "buyerNickname": RagfairServer.getNickname(HashUtil.generate()),
             "itemCount": boughtAmount
         };
         let messageText = messageTpl.replace(/{\w+}/g, (matched) =>
@@ -994,12 +994,6 @@ class RagfairController
             amountToSend,
             sellInOnePiece
         );
-    }
-
-    static fetchRandomPmcName()
-    {
-        const type = RandomUtil.getInt(0, 1) === 0 ? "usec" : "bear";
-        return RandomUtil.getArrayValue(DatabaseServer.tables.bots.types[type].names);
     }
 }
 
