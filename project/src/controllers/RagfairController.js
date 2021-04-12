@@ -574,6 +574,7 @@ class RagfairController
         {
             return offer.items[0]._tpl === info.templateId;
         });
+        
         offers = RagfairController.sortOffers(offers, 5);
 
         // average
@@ -599,15 +600,18 @@ class RagfairController
     {
         let mergeItems = {};
         let mergedStacks = [];
+
         items.forEach(item =>
         {
             item = ItemHelper.fixItemStackCount(item);
+
             if (ItemHelper.isItemTplStackable(item._tpl) && item.parentId === "hideout")
             {
                 if (mergeItems[item._tpl] === undefined)
                 {
                     mergeItems[item._tpl] = 0;
                 }
+
                 mergeItems[item._tpl] += item.upd.StackObjectsCount;
             }
             else
@@ -615,14 +619,15 @@ class RagfairController
                 mergedStacks.push(item);
             }
         });
+
         if (Object.keys(mergeItems).length)
         {
             for (const tpl in mergeItems)
             {
                 mergedStacks.push({
-                    _id: HashUtil.generate(),
-                    _tpl: tpl,
-                    upd: {
+                    "_id": HashUtil.generate(),
+                    "_tpl": tpl,
+                    "upd": {
                         StackObjectsCount: mergeItems[tpl]
                     }
                 });

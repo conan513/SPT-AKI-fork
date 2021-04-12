@@ -431,7 +431,14 @@ class RagfairServer
         }
 
         // dynamic offers
-        RagfairServer.prices.dynamic = (RagfairConfig.dynamic.liveprices) ? {...RagfairServer.prices.trader, ...prices} : RagfairServer.prices.trader;
+        let dynamic = (RagfairConfig.dynamic.liveprices) ? { ...RagfairServer.prices.trader, ...prices } : RagfairServer.prices.trader;
+
+        for (const itemID in dynamic)
+        {
+            dynamic[itemID] = dynamic[itemID] || 1;
+        }
+
+        RagfairServer.prices.dynamic = dynamic;
     }
 
     static getOffer(offerID)
