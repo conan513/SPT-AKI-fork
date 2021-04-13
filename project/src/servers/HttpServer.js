@@ -102,11 +102,11 @@ class HttpServer
         resp.end(output);
     }
 
-    static sendMessage(output, sessionID)
+    static sendMessage(sessionID, output)
     {
         try
         {
-            if (HttpServer.webSockets[sessionID] !== undefined && HttpServer.webSockets[sessionID].readyState === WebSocket.OPEN)
+            if (HttpServer.isConnectionWebSocket(sessionID))
             {
                 HttpServer.webSockets[sessionID].send(JSON.stringify(output));
                 Logger.debug("WS: message sent");
@@ -133,6 +133,11 @@ class HttpServer
             resp.setHeader("Content-Type", type);
             fileStream.pipe(resp);
         });
+    }
+
+    static isConnectionWebSocket(sessionID)
+    {
+        return HttpServer.webSockets[sessionID] !== undefined && HttpServer.webSockets[sessionID].readyState === WebSocket.OPEN;
     }
 
     static sendResponse(sessionID, req, resp, body)

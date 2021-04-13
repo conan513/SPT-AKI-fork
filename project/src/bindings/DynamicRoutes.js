@@ -44,5 +44,17 @@ module.exports = {
     },
     "/client/trading/api/getTraderAssort/": {
         "aki": TraderCallbacks.getAssort
+    },
+    "/?last_id": {
+        "aki": NotifierCallbacks.notify
+    },
+    "/notifierServer": {
+        "aki": NotifierCallbacks.notify
+    },
+    "/push/notifier/get/": {
+        "aki": NotifierCallbacks.getNotifier
+    },
+    "/push/notifier/getwebsocket/": {
+        "aki": NotifierCallbacks.getNotifier
     }
 };
