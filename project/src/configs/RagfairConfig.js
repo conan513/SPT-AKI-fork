@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-    "player": {
+    "sell": {
         "sellChance": 25,
         "sellTimeHrs": 12,
         "enableFees": false

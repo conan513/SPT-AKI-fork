@@ -524,7 +524,7 @@ class RagfairController
 
             for (const [index, offer] of profileOffers.entries())
             {
-                if (RandomUtil.getInt(0, 99) < RagfairConfig.player.sellChance)
+                if (RandomUtil.getInt(0, 99) < RagfairConfig.sell.sellChance)
                 {
                     // item sold
                     RagfairController.completeOffer(sessionID, offer, index);
@@ -725,7 +725,7 @@ class RagfairController
         }
 
         // TODO: Subtract flea market fee from stash
-        if (RagfairConfig.player.enableFees)
+        if (RagfairConfig.sell.enableFees)
         {
             let tax = RagfairController.calculateTax(info, offerPrice, requirementsPriceInRub);
             Logger.info(`Tax Calculated to be: ${tax}`);
@@ -806,7 +806,6 @@ class RagfairController
         let offerId = info.offerId;
         let secondsToAdd = info.renewalTime * 60 * 60;
 
-        // TODO: Subtract money and change offer endTime
         const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === offerId);
 

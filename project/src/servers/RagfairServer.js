@@ -261,7 +261,7 @@ class RagfairServer
         if (RagfairServer.isPlayer(userID))
         {
             // player offer
-            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.player.sellTimeHrs * 3600);
+            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.sell.sellTimeHrs * 3600);
         }
 
         if (RagfairServer.isTrader(userID))
