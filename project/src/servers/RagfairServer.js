@@ -504,9 +504,10 @@ class RagfairServer
 
     static returnPlayerOffer(offer)
     {
-        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
         const profile = ProfileController.getProfileByPmcId(offer.user.id);
         const index = profile.RagfairInfo.offers.findIndex(o => o._id === offer._id);
+
+        profile.RagfairInfo.rating -= RagfairConfig.reputation.loss;
 
         if (index === -1)
         {
