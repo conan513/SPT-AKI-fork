@@ -539,7 +539,7 @@ class RagfairController
 					}
 					
 					// Increase rating
-					SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.rating += RagfairConfig.reputation.gain * offer.summaryCost / totalItemsCount * boughtAmount;
+					SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.rating += RagfairConfig.sell.reputation.gain * offer.summaryCost / totalItemsCount * boughtAmount;
 					RagfairController.completeOffer(sessionID, offer, index, boughtAmount);
 					offer.sellResult.splice(0, 1);
 				}
@@ -653,8 +653,8 @@ class RagfairController
 
     static calculateSellChance(baseChance, offerPrice, requirementsPriceInRub)
 	{
-        const multiplier = (requirementsPriceInRub > offerPrice) ? RagfairConfig.chance.overpriced
-                         : (requirementsPriceInRub < offerPrice) ? RagfairConfig.chance.underpriced
+        const multiplier = (requirementsPriceInRub > offerPrice) ? RagfairConfig.sell.chance.overpriced
+                         : (requirementsPriceInRub < offerPrice) ? RagfairConfig.sell.chance.underpriced
                          : 1;
 		return Math.round(baseChance * (offerPrice / requirementsPriceInRub * multiplier));
 	}
@@ -676,7 +676,7 @@ class RagfairController
 			{
 				const boughtAmount = RandomUtil.getInt(1, remainingCount);
 
-				sellTime += Math.max(Math.round(chance / 100 * RagfairConfig.time.max * 60), RagfairConfig.time.min * 60);
+				sellTime += Math.max(Math.round(chance / 100 * RagfairConfig.sell.time.max * 60), RagfairConfig.sell.time.min * 60);
 				result.push({
 					"sellTime": sellTime,
 					"amount": boughtAmount
@@ -743,7 +743,7 @@ class RagfairController
 			const qualityMultiplier = ItemHelper.getItemQualityPrice(item);
 
             offerPrice += RagfairServer.prices.dynamic[item._tpl] * item.upd.StackObjectsCount * qualityMultiplier;
-			sellChance = RagfairConfig.sell.base * qualityMultiplier;
+			sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;
         }
 
         if (info.sellInOnePiece)
@@ -774,8 +774,8 @@ class RagfairController
         // Preparations are done, create the offer
         const offer = RagfairController.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, RagfairController.mergeStackable(invItems), info.sellInOnePiece, requirementsPriceInRub);
 		
-		sellChance = SellToFleaMarket.calculateSellChance(sellChance, offerPrice / itemStackCount, requirementsPriceInRub);
-		offer.sellResult = SellToFleaMarket.rollForSale(sellChance, info.sellInOnePiece ? 1 : itemStackCount);
+		sellChance = RagfairController.calculateSellChance(sellChance, offerPrice / itemStackCount, requirementsPriceInRub);
+		offer.sellResult = RagfairController.rollForSale(sellChance, info.sellInOnePiece ? 1 : itemStackCount);
         SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
         result.ragFairOffers.push(offer);
 
@@ -912,7 +912,7 @@ class RagfairController
 			}
         }
 
-        offers[index].endTime += secondsToAdd;
+        offers[index].endTime += Math.round(secondsToAdd);
         return ItemEventRouter.getOutput();
     }
 
@@ -1037,7 +1037,6 @@ class RagfairController
         {
             return tplVars[matched.replace(/{|}/g, "")];
         });
-
         const messageContent = {
             "text": messageText.replace(/"/g, ""),
             "type": 4, // EMessageType.FleamarketMessage
@@ -1070,6 +1069,7 @@ class RagfairController
         const formattedItems = items.map(item =>
         {
             let isChild = items.find(it => it._id === item.parentId);
+            
             return {
                 "_id": item._id,
                 "_tpl": item._tpl,
