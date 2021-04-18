@@ -6,7 +6,7 @@ module.exports = {
         "chance": {
             "base": 50,
             "overprices": 0.25,
-            "underpriced": 1.5
+            "underpriced": 2
         },
         "time": {
             "base": 120,
