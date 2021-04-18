@@ -9,7 +9,7 @@ module.exports = {
             "underpriced": 1.5
         },
         "time": {
-            "base": 720,
+            "base": 120,
             "max": 120,
             "min": 15
         },
