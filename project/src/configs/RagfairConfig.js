@@ -2,9 +2,21 @@
 
 module.exports = {
     "sell": {
-        "sellChance": 25,
-        "sellTimeHrs": 12,
-        "enableFees": false
+        "fees": true,
+        "chance": {
+            "base": 50,
+            "overprices": 0.25,
+            "underpriced": 2
+        },
+        "time": {
+            "base": 120,
+            "max": 120,
+            "min": 15
+        },
+        "reputation": {
+            "gain": 0.01,
+            "loss": 0.01
+        }
     },
     "traders": {
         "54cb50c76803fa8b248b4571": true,

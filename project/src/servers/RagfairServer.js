@@ -261,7 +261,7 @@ class RagfairServer
         if (RagfairServer.isPlayer(userID))
         {
             // player offer
-            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.sell.sellTimeHrs * 3600);
+            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.sell.time.base * 60);
         }
 
         if (RagfairServer.isTrader(userID))
@@ -504,9 +504,10 @@ class RagfairServer
 
     static returnPlayerOffer(offer)
     {
-        // TODO: Upon cancellation (or expiry), take away expected amount of flea rating
         const profile = ProfileController.getProfileByPmcId(offer.user.id);
         const index = profile.RagfairInfo.offers.findIndex(o => o._id === offer._id);
+
+        profile.RagfairInfo.rating -= RagfairConfig.sell.reputation.loss;
 
         if (index === -1)
         {
