@@ -45,6 +45,11 @@ class Logger
         });
     }
 
+    static write(data)
+    {
+        VFS.writeFile(Logger.filepath, `${data}\n`, true);
+    }
+
     static log(data, front = "", back = "")
     {
         // set colors
@@ -61,7 +66,7 @@ class Logger
         }
 
         // save logged message
-        VFS.writeFile(Logger.filepath, `${util.format(data)}\n`, true);
+        Logger.write(util.format(data));
     }
 
     static error(data)

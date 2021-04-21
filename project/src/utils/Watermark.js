@@ -5,12 +5,8 @@ require("../Lib.js");
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "B5";
+    static version = "1.0.0";
     static url = "https://www.guilded.gg/senkospub";
-    static colors = {
-        "front": "\x1b[33m",    // gold
-        "back": "\x1b[40m"      // black
-    };
     static text = [
         `${Watermark.project} ${Watermark.version}`,
         `${Watermark.url}`,
@@ -68,7 +64,7 @@ class Watermark
         // draw the watermark
         for (const text of result)
         {
-            console.log(`${Watermark.colors.front + Watermark.colors.back}${text}\x1b[0m`);
+            Logger.log(text, "yellow");
         }
     }
 }
