@@ -672,11 +672,12 @@ class RagfairController
 
 		while (remainingCount > 0 && sellTime < endTime)
 		{
+            sellTime += Math.max(Math.round(chance / 100 * RagfairConfig.sell.time.max * 60), RagfairConfig.sell.time.min * 60);
+
 			if (RandomUtil.getInt(0, 99) < sellChance)
 			{
 				const boughtAmount = RandomUtil.getInt(1, remainingCount);
 
-				sellTime += Math.max(Math.round(chance / 100 * RagfairConfig.sell.time.max * 60), RagfairConfig.sell.time.min * 60);
 				result.push({
 					"sellTime": sellTime,
 					"amount": boughtAmount
