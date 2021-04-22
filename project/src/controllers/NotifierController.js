@@ -125,17 +125,25 @@ class NotifierController
         });
     }
 
-    /** Creates a new notification with the specified dialogueMessage object (default type is "new_message"). */
-    static createNewMessageNotification(dialogueMessage, extraData = {})
+    /** Creates a new notification with the specified dialogueMessage object. */
+    static createNewMessageNotification(dialogueMessage)
     {
         return {
-            "type": (dialogueMessage.type === 4) ? "RagfairOfferSold" : "new_message",
+            "type": "new_message",
             "eventId": dialogueMessage._id,
-            "data" : {
-                "dialogId": dialogueMessage.uid,
-                "message": dialogueMessage,
-                ...extraData
-            }
+            "dialogId": dialogueMessage.uid,
+            "message": dialogueMessage
+        };
+    }
+
+    /** Creates a new notification that displays the "Your offer was sold!" prompt and removes sold offer from "My Offers" on clientside */
+    static createRagfairOfferSoldNotification(dialogueMessage, ragfairData)
+    {
+        return {
+            "type": "RagfairOfferSold",
+            "eventId": dialogueMessage._id,
+            "dialogId": dialogueMessage.uid,
+            ...ragfairData
         };
     }
 
