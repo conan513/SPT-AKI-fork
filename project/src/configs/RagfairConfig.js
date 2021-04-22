@@ -14,8 +14,8 @@ module.exports = {
             "min": 15
         },
         "reputation": {
-            "gain": 0.01,
-            "loss": 0.01
+            "gain": 0.0000002,
+            "loss": 0.0000002
         }
     },
     "traders": {
