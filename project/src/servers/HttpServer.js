@@ -24,6 +24,7 @@ class HttpServer
         "svg": "image/svg+xml",
         "txt": "text/plain",
     };
+    static websocketPingHandler = null;
 
     static buildUrl()
     {
@@ -286,7 +287,12 @@ class HttpServer
 
         HttpServer.webSockets[sessionID] = ws;
 
-        let pingHandler = setInterval(() =>
+        if (HttpServer.websocketPingHandler)
+        {
+            clearInterval(HttpServer.websocketPingHandler);
+        }
+
+        HttpServer.websocketPingHandler = setInterval(() =>
         {
             Logger.debug(`[WS] Pinging player: ${sessionID}`);
 
@@ -297,7 +303,7 @@ class HttpServer
             else
             {
                 Logger.debug("[WS] Socket lost, deleting handle");
-                clearInterval(pingHandler);
+                clearInterval(HttpServer.websocketPingHandler);
                 delete HttpServer.webSockets[sessionID];
             }
         }, 90000);
