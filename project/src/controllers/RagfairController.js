@@ -789,17 +789,19 @@ class RagfairController
         // Subtract flea market fee from stash
         if (RagfairConfig.sell.fees)
         {
-            const tax = RagfairController.calculateTax(info, offerPrice / itemStackCount, requirementsPriceInRub, itemStackCount);
+            const tax = agfairController.calculateTax(info, offerPrice / itemStackCount, requirementsPriceInRub, itemStackCount);
 
             Logger.info(`Tax Calculated to be: ${tax}`);
 			
 			const request = {
 				"tid": "ragfair",
 				"Action": "TradingConfirm",
-				"scheme_items": [{
-					"id": PlzRefactorMeHelper.getCurrency("RUB"),
-					"count": tax
-				}]
+				"scheme_items": [
+                    {
+					    "id": PlzRefactorMeHelper.getCurrency("RUB"),
+					    "count": Math.round(tax)
+				    }
+                ]
 			};
 			
 			if (!PlzRefactorMeHelper.payMoney(pmcData, request, sessionID))
@@ -901,10 +903,12 @@ class RagfairController
 			const request = {
 				"tid": "ragfair",
 				"Action": "TradingConfirm",
-				"scheme_items": [{
-					"id": PlzRefactorMeHelper.getCurrency("RUB"),
-					"count": tax
-				}]
+				"scheme_items": [
+                    {
+					    "id": PlzRefactorMeHelper.getCurrency("RUB"),
+					    "count": Math.round(tax)
+				    }
+                ]
 			};
 			
 			if (!PlzRefactorMeHelper.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
