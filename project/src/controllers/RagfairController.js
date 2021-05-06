@@ -789,7 +789,7 @@ class RagfairController
         // Subtract flea market fee from stash
         if (RagfairConfig.sell.fees)
         {
-            const tax = agfairController.calculateTax(info, offerPrice / itemStackCount, requirementsPriceInRub, itemStackCount);
+            const tax = RagfairController.calculateTax(info, offerPrice / itemStackCount, requirementsPriceInRub, itemStackCount);
 
             Logger.info(`Tax Calculated to be: ${tax}`);
 			
