@@ -11,8 +11,7 @@ class InraidCallbacks
 
     static registerPlayer(url, info, sessionID)
     {
-        const location = url.split("=")[1].replace("&variantId", "");
-        InraidController.addPlayer(sessionID, location);
+        InraidController.addPlayer(sessionID, info.locationId);
         return HttpResponse.nullResponse();
     }
 

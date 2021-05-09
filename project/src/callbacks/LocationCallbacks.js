@@ -11,8 +11,7 @@ class LocationCallbacks
 
     static getLocation(url, info, sessionID)
     {
-        const location = url.split("=")[1].replace("&variantId", "");
-        return HttpResponse.getBody(LocationController.get(location));
+        return HttpResponse.getBody(LocationController.get(info.locationId));
     }
 }
 
