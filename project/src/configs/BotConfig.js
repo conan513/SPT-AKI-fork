@@ -30,6 +30,7 @@ module.exports = {
         "isUsec": 50,
         "types": {
             "assault": 30,
+            "cursedassault": 30,
             "pmcBot": 30
         }
     }
