@@ -10,8 +10,8 @@ module.exports = {
         },
         "time": {
             "base": 15,
-            "max": 5,
-            "min": 15
+            "min": 5,
+            "max": 15
         },
         "reputation": {
             "gain": 0.0000002,
