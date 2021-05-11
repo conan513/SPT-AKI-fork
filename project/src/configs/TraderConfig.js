@@ -2,5 +2,5 @@
 
 module.exports = {
     "updateTime": 3600,
-    "fenceAssortSize": 60
+    "fenceAssortSize": 100
 };

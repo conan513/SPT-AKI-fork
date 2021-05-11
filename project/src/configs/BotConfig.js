@@ -29,9 +29,8 @@ module.exports = {
     "pmc": {
         "isUsec": 50,
         "types": {
-            "assault": 30,
-            "cursedassault": 30,
-            "pmcBot": 30
+            "assault": 35,
+            "cursedassault": 35
         }
     }
 };
