@@ -562,6 +562,28 @@
 		}
 	},
 	{
+		"_id": "5df8ea2d86f77412640e2ea6",
+		"tid": "5ac3b934156ae10c4430e83c",
+		"suiteId": "5cdea42e7d6c8b0474535dad",
+		"isActive": true,
+		"requirements": {
+			"loyaltyLevel": 3,
+			"profileLevel": 48,
+			"standing": 0,
+			"skillRequirements": [],
+			"questRequirements": [
+				"5dc53acb86f77469c740c893"
+			],
+			"itemRequirements": [
+				{
+					"count": 4000000,
+					"_tpl": "5449016a4bdc2d6f028b456f",
+					"onlyFunctional": true
+				}
+			]
+		}
+	},
+	{
 		"_id": "5d1f67b386f7744b381c7976",
 		"tid": "5ac3b934156ae10c4430e83c",
 		"suiteId": "5d1f623e86f7744bce0ef705",
