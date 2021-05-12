@@ -20027,6 +20027,16 @@
 			"Name": "Кепка армейская CADPAT",
 			"ShortName": "Кепка",
 			"Description": "Кепка армейского образца"
+		},
+		"607f201b3c672b3b3a24a800": {
+			"Name": "Балаклава Twitch Rivals 2021",
+			"ShortName": "TR2021",
+			"Description": "Особая балаклава, выполненная в цветах Twitch Rivals."
+		},
+		"607f20859ee58b18e41ecd90": {
+			"Name": "Бронежилет PACA Soft Armor (Rivals Edition)",
+			"ShortName": "PACA RE",
+			"Description": "Лёгкая броня, защищающая только жизненно важные части тела, но весьма надёжная, с броней 2 класса защиты. Специальная версия от Twitch Rivals 2021."
 		}
 	},
 	"locations": {

@@ -20028,6 +20028,16 @@
 			"Name": "Tocado militar CADPAT",
 			"ShortName": "Tocado",
 			"Description": "Un tocado militar con patrón CADPAT (Canadian Disruptive Pattern; \"Patrón Disruptivo Canadiense\")."
+		},
+		"607f201b3c672b3b3a24a800": {
+			"Name": "Twitch Rivals 2021 balaclava",
+			"ShortName": "TR2021",
+			"Description": "Custom balaclava in Twitch Rivals colors."
+		},
+		"607f20859ee58b18e41ecd90": {
+			"Name": "PACA Soft Armor (Rivals Edition)",
+			"ShortName": "PACA RE",
+			"Description": "Light but durable and reliable body armor protecting only the vital areas, fitted with II class armor. Twitch Rivals 2021 special edition.\n"
 		}
 	},
 	"locations": {
