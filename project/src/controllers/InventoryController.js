@@ -726,6 +726,12 @@ class InventoryController
 
     static foldItem(pmcData, body, sessionID)
     {
+        // Fix for folding weapons while on they're in the Scav inventory
+        if (body.fromOwner && body.fromOwner.type === "Profile" && body.fromOwner.id !== pmcData._id)
+        {
+            pmcData = ProfileController.getScavProfile(sessionID);
+        }
+
         for (let item of pmcData.Inventory.items)
         {
             if (item._id && item._id === body.item)
@@ -740,6 +746,12 @@ class InventoryController
 
     static toggleItem(pmcData, body, sessionID)
     {
+        // Fix for toggling items while on they're in the Scav inventory
+        if (body.fromOwner && body.fromOwner.type === "Profile" && body.fromOwner.id !== pmcData._id)
+        {
+            pmcData = ProfileController.getScavProfile(sessionID);
+        }
+
         for (let item of pmcData.Inventory.items)
         {
             if (item._id && item._id === body.item)

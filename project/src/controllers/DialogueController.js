@@ -120,6 +120,7 @@ class DialogueController
             "uid": dialogueID,
             "type": messageContent.type,
             "dt": Date.now() / 1000,
+            "localDateTime": Date.now() / 1000,
             "templateId": messageContent.templateId,
             "text": messageContent.text,
             "hasRewards": rewards.length > 0,
@@ -131,8 +132,15 @@ class DialogueController
 
         dialogue.messages.push(message);
 
-        const extraData = (messageContent.type === 4 && messageContent.ragfair) ? messageContent.ragfair : {};
-        const notificationMessage = NotifierController.createNewMessageNotification(message, extraData);
+        // Offer Sold notifications are now separate from the main notification
+        if (messageContent.type === 4 && messageContent.ragfair)
+        {
+            const offerSoldMessage = NotifierController.createRagfairOfferSoldNotification(message, messageContent.ragfair);
+            NotifierController.sendMessage(sessionID, offerSoldMessage);
+            message.type = 13; // Should prevent getting the same notification popup twice
+        }
+
+        const notificationMessage = NotifierController.createNewMessageNotification(message);
         NotifierController.sendMessage(sessionID, notificationMessage);
     }
 

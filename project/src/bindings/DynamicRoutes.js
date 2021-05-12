@@ -28,10 +28,8 @@ module.exports = {
         "aki": HttpCallbacks.getImage
     },
     "/client/location/getLocalloot": {
-        "aki": LocationCallbacks.getLocation
-    },
-    "/raid/map/name": {
-        "aki": InraidCallbacks.registerPlayer
+        "aki-name": InraidCallbacks.registerPlayer,
+        "aki-loot": LocationCallbacks.getLocation
     },
     ".bundle": {
         "aki": ModCallbacks.getBundle

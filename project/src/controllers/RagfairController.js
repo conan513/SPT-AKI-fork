@@ -653,7 +653,7 @@ class RagfairController
 
     static calculateSellChance(baseChance, offerPrice, requirementsPriceInRub)
 	{
-        const multiplier = (requirementsPriceInRub > offerPrice) ? RagfairConfig.sell.chance.overpriced
+        const multiplier = (requirementsPriceInRub > offerPrice) ? RagfairConfig.sell.chance.overprices
                          : (requirementsPriceInRub < offerPrice) ? RagfairConfig.sell.chance.underpriced
                          : 1;
 		return Math.round(baseChance * (offerPrice / requirementsPriceInRub * multiplier));
@@ -796,10 +796,12 @@ class RagfairController
 			const request = {
 				"tid": "ragfair",
 				"Action": "TradingConfirm",
-				"scheme_items": [{
-					"id": PlzRefactorMeHelper.getCurrency("RUB"),
-					"count": tax
-				}]
+				"scheme_items": [
+                    {
+					    "id": PlzRefactorMeHelper.getCurrency("RUB"),
+					    "count": Math.round(tax)
+				    }
+                ]
 			};
 			
 			if (!PlzRefactorMeHelper.payMoney(pmcData, request, sessionID))
@@ -901,10 +903,12 @@ class RagfairController
 			const request = {
 				"tid": "ragfair",
 				"Action": "TradingConfirm",
-				"scheme_items": [{
-					"id": PlzRefactorMeHelper.getCurrency("RUB"),
-					"count": tax
-				}]
+				"scheme_items": [
+                    {
+					    "id": PlzRefactorMeHelper.getCurrency("RUB"),
+					    "count": Math.round(tax)
+				    }
+                ]
 			};
 			
 			if (!PlzRefactorMeHelper.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
@@ -1031,7 +1035,7 @@ class RagfairController
         const messageTpl = DatabaseServer.tables.locales.global["en"].mail[RagfairController.TPL_GOODS_SOLD];
         const tplVars = {
             "soldItem": DatabaseServer.tables.locales.global["en"].templates[itemTpl].Name || itemTpl,
-            "buyerNickname": RagfairController.fetchRandomPmcName(),
+            "buyerNickname": RagfairServer.getNickname(HashUtil.generate()),
             "itemCount": boughtAmount
         };
         const messageText = messageTpl.replace(/{\w+}/g, (matched) =>
@@ -1043,7 +1047,7 @@ class RagfairController
             "type": 4, // EMessageType.FleamarketMessage
             "maxStorageTime": QuestConfig.redeemTime * 3600,
             "ragfair": {
-                "offerId": offerId,
+                "offerId": offer._id,
                 "count": boughtAmount,
                 "handbookId": itemTpl
             }
