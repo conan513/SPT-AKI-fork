@@ -17,10 +17,10 @@
     "repository": "https://dev.offline-tarkov.com/SPT-AKI/Server",
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
-        "build:types": "./node_modules/.bin/babel src -d obj",
-        "build:exe": "npm run build:types && node obj/ide/Compiler.js",
-        "test:debug": "npm run build:types && node --trace-warnings obj/ide/DebugEntry.js",
-        "test:release": "npm run build:types && node --trace-warnings obj/ide/ReleaseEntry.js",
+        "build:types": "./node_modules/.bin/babel src --out-dir obj",
+        "build:exe": "npm run build:types && node src/ide/Compiler.js",
+        "test:debug": "node --trace-warnings src/ide/DebugEntry.js",
+        "test:release": "node --trace-warnings src/ide/ReleaseEntry.js",
         "lint": "eslint --fix ./**/*.js"
     },
     "dependencies": {
