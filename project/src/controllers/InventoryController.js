@@ -828,8 +828,9 @@ class InventoryController
             {
                 try
                 {
-                    const assort = RagfairServer.offers.find(traderOffer => traderOffer._id === body.item);
-                    itemID = assort.items[0]._tpl;
+                    const traderItems = DatabaseServer.tables.traders[body.fromOwner.id].assort.items;
+                    const examinedItem = traderItems.find(item => item._id === body.item);
+                    itemID = examinedItem._tpl;
                 }
                 catch
                 {
