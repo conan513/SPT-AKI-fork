@@ -27,6 +27,9 @@ class SaveServer
         {
             SaveServer.loadProfile(VFS.stripExtension(file));
         }
+
+        RagfairServer.addPlayerOffers();
+        RagfairServer.update();
     }
 
     static save()

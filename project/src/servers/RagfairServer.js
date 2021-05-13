@@ -16,7 +16,6 @@ class RagfairServer
     {
         RagfairServer.getItemPrices();
         RagfairServer.addTraders();
-        RagfairServer.addPlayerOffers();
         RagfairServer.update();
     }
 
@@ -261,7 +260,7 @@ class RagfairServer
         if (RagfairServer.isPlayer(userID))
         {
             // player offer
-            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.sell.time.base * 60);
+            return TimeUtil.getTimestamp() + Math.round(12 * 3600);
         }
 
         if (RagfairServer.isTrader(userID))
