@@ -49,70 +49,6 @@ class PlzRefactorMeHelper
         return exp;
     }
 
-    /**
-     * A reverse lookup for templates
-     */
-    static tplLookup()
-    {
-        if (PlzRefactorMeHelper.tplLookup.lookup === undefined)
-        {
-            const lookup = {
-                "items": {
-                    "byId": {},
-                    "byParent": {}
-                },
-                "categories": {
-                    "byId": {},
-                    "byParent": {}
-                }
-            };
-
-            for (let x of DatabaseServer.tables.templates.handbook.Items)
-            {
-                lookup.items.byId[x.Id] = x.Price;
-                lookup.items.byParent[x.ParentId] || (lookup.items.byParent[x.ParentId] = []);
-                lookup.items.byParent[x.ParentId].push(x.Id);
-            }
-
-            for (let x of DatabaseServer.tables.templates.handbook.Categories)
-            {
-                lookup.categories.byId[x.Id] = x.ParentId ? x.ParentId : null;
-
-                if (x.ParentId)
-                {
-                    // root as no parent
-                    lookup.categories.byParent[x.ParentId] || (lookup.categories.byParent[x.ParentId] = []);
-                    lookup.categories.byParent[x.ParentId].push(x.Id);
-                }
-            }
-
-            PlzRefactorMeHelper.tplLookup.lookup = lookup;
-        }
-
-        return PlzRefactorMeHelper.tplLookup.lookup;
-    }
-
-    static getTemplatePrice(x)
-    {
-        return (x in PlzRefactorMeHelper.tplLookup().items.byId) ? PlzRefactorMeHelper.tplLookup().items.byId[x] : 1;
-    }
-
-    /* all items in template with the given parent category */
-    static templatesWithParent(x)
-    {
-        return (x in PlzRefactorMeHelper.tplLookup().items.byParent) ? PlzRefactorMeHelper.tplLookup().items.byParent[x] : [];
-    }
-
-    static isCategory(x)
-    {
-        return x in PlzRefactorMeHelper.tplLookup().categories.byId;
-    }
-
-    static childrenCategories(x)
-    {
-        return (x in PlzRefactorMeHelper.tplLookup().categories.byParent) ? PlzRefactorMeHelper.tplLookup().categories.byParent[x] : [];
-    }
-
     /* Made a 2d array table with 0 - free slot and 1 - used slot
     * input: PlayerData
     * output: table[y][x]
@@ -160,10 +96,13 @@ class PlzRefactorMeHelper
         {
             case "569668774bdc2da2298b4568":
                 return "EUR";
+
             case "5696686a4bdc2da3298b456a":
                 return "USD";
+
             case "5449016a4bdc2d6f028b456f":
                 return "RUB";
+
             default:
                 return "";
         }
@@ -175,7 +114,7 @@ class PlzRefactorMeHelper
     */
     static inRUB(value, currency)
     {
-        return Math.round(value * PlzRefactorMeHelper.getTemplatePrice(currency));
+        return Math.round(value * HandbookController.getTemplatePrice(currency));
     }
 
     /**
@@ -183,11 +122,13 @@ class PlzRefactorMeHelper
      */
     static fromRUB(value, currency)
     {
-        let price = PlzRefactorMeHelper.getTemplatePrice(currency);
+        let price = HandbookController.getTemplatePrice(currency);
+
         if (!price)
         {
             return 0;
         }
+
         return Math.round(value / price);
     }
 

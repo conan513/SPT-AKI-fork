@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-    "MIAOnRaidEnd": false,
+    "MIAOnRaidEnd": true,
     "raidMenuSettings": {
         "aiAmount": "AsOnline",
         "aiDifficulty": "AsOnline",

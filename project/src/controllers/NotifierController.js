@@ -47,7 +47,7 @@ class NotifierController
     {
         return NotifierController.get(sessionID).length > 0;
     }
- 
+
     /**
      * Pop first message from queue.
      */
@@ -61,9 +61,9 @@ class NotifierController
      */
     static sendMessage(sessionID, notificationMessage)
     {
-        if (HttpServer.isConnectionWebSocket(sessionID)) 
+        if (HttpServer.isConnectionWebSocket(sessionID))
         {
-            HttpServer.sendMessage(sessionID, notificationMessage);            
+            HttpServer.sendMessage(sessionID, notificationMessage);
         }
         else
         {

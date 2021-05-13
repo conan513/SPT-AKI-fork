@@ -2,35 +2,36 @@
 
 module.exports = {
     "presetBatch": {
-        "assault": 30,
-        "assaultGroup": 30,
-        "cursedAssault": 30,
+        "assault": 120,
+        "assaultGroup": 120,
+        "cursedAssault": 120,
         "marksman": 30,
-        "pmcBot": 30,
-        "bossTest": 30,
-        "bossBully": 30,
-        "bossGluhar": 30,
-        "bossKilla": 30,
-        "bossKojaniy": 30,
-        "bossSanitar": 30,
-        "followerTest": 30,
-        "followerBully": 30,
-        "followerGluharAssault": 30,
-        "followerGluharScout": 30,
-        "followerGluharSecurity": 30,
-        "followerGluharSnipe": 30,
-        "followerKojaniy": 30,
-        "followerSanitar": 30,
-        "playerScav": 30,
-        "sectantWarrior": 30,
-        "sectantPriest": 30,
-        "test": 30
+        "pmcBot": 120,
+        "bossTest": 1,
+        "bossBully": 1,
+        "bossGluhar": 1,
+        "bossKilla": 1,
+        "bossKojaniy": 1,
+        "bossSanitar": 1,
+        "followerTest": 4,
+        "followerBully": 4,
+        "followerGluharAssault": 2,
+        "followerGluharScout": 2,
+        "followerGluharSecurity": 2,
+        "followerGluharSnipe": 2,
+        "followerKojaniy": 2,
+        "followerSanitar": 2,
+        "playerScav": 1,
+        "sectantWarrior": 5,
+        "sectantPriest": 1,
+        "test": 120
     },
     "pmc": {
         "isUsec": 50,
         "types": {
-            "assault": 30,
-            "pmcBot": 30
+            "assault": 35,
+            "cursedassault": 35,
+            "pmcBot": 35
         }
     }
 };

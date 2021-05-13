@@ -4,6 +4,7 @@ require("../Lib.js");
 
 module.exports = {
     "aki-database": DatabaseImporter.load,
+    "aki-handbook": HandbookCallbacks.load,
     "aki-certs": CertCallbacks.load,
     "aki-https": HttpCallbacks.load,
     "aki-mods": ModCallbacks.load,

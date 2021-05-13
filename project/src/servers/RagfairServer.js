@@ -16,7 +16,6 @@ class RagfairServer
     {
         RagfairServer.getItemPrices();
         RagfairServer.addTraders();
-        RagfairServer.addPlayerOffers();
         RagfairServer.update();
     }
 
@@ -155,7 +154,7 @@ class RagfairServer
 
             // create offer
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
-            
+
             const userID = HashUtil.generate();
             const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = RagfairServer.getOfferRequirements(items);
@@ -261,7 +260,7 @@ class RagfairServer
         if (RagfairServer.isPlayer(userID))
         {
             // player offer
-            return TimeUtil.getTimestamp() + Math.round(RagfairConfig.sell.time.base * 60);
+            return TimeUtil.getTimestamp() + Math.round(12 * 3600);
         }
 
         if (RagfairServer.isTrader(userID))
@@ -427,7 +426,7 @@ class RagfairServer
         // trader offers
         for (const itemID in items)
         {
-            RagfairServer.prices.trader[itemID] = Math.round(PlzRefactorMeHelper.getTemplatePrice(itemID));
+            RagfairServer.prices.trader[itemID] = Math.round(HandbookController.getTemplatePrice(itemID));
         }
 
         // dynamic offers

@@ -5,13 +5,13 @@ module.exports = {
         "fees": true,
         "chance": {
             "base": 50,
-            "overprices": 0.25,
+            "overprices": 0.5,
             "underpriced": 2
         },
         "time": {
-            "base": 120,
-            "max": 120,
-            "min": 15
+            "base": 15,
+            "min": 5,
+            "max": 15
         },
         "reputation": {
             "gain": 0.0000002,
@@ -40,10 +40,10 @@ module.exports = {
         },
         "endTime": {
             "min": 15,
-            "max": 120
+            "max": 30
         },
         "condition": {
-            "min": 0.1,
+            "min": 0.5,
             "max": 1
         },
         "stack": {
