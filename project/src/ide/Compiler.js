@@ -32,8 +32,11 @@ class Compiler
         {
             const rceditExe = process.arch === 'x64' ? 'rcedit-x64.exe' : 'rcedit.exe'
             const rcedit = path.resolve(__dirname, '../../node_modules/rcedit/bin/', rceditExe)
-            const filepath = JSON.stringify(compiler.getNodeExecutableLocation(compiler.target));
-            process.execSync(`${rcedit} ${filepath} --set-icon ${Compiler.buildOptions.icon}`)
+            const filepath = compiler.getNodeExecutableLocation(compiler.target);
+            const command = `${rcedit} ${filepath} --set-icon ${Compiler.buildOptions.icon}`;
+
+            console.log(`\n- Setting icon`);
+            process.execSync(command);
         }
 
         return next();
