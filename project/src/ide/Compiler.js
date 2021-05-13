@@ -51,7 +51,7 @@ class Compiler
         }
     }
 
-    static exeCompile()
+    static build()
     {
         return compile(Compiler.nexeOptions);
     }
@@ -70,15 +70,11 @@ class Compiler
         VFS.copyDir("assets/", `${Compiler.buildOptions.build.dir}Aki_Data/Server/`);
     }
 
-    static run()
+    static async run()
     {
-        // todo: find a solution that's not this
-        // I fucking hate promises and callbacks like this
         Compiler.preBuild();
-        Compiler.exeCompile().then(() =>
-        {
-            Compiler.postBuild();
-        });
+        await Compiler.build();
+        Compiler.postBuild();
     }
 }
 
