@@ -644,22 +644,22 @@ class RagfairController
     static calculateSellChance(baseChance, offerPrice, requirementsPriceInRub)
     {
         const multiplier = (requirementsPriceInRub > offerPrice) ? RagfairConfig.sell.chance.overprices
-            : (requirementsPriceInRub < offerPrice) ? RagfairConfig.sell.chance.underpriced
-                : 1;
+                         : (requirementsPriceInRub < offerPrice) ? RagfairConfig.sell.chance.underpriced
+                         : 1;
         return Math.round(baseChance * (offerPrice / requirementsPriceInRub * multiplier));
     }
 
     static rollForSale(sellChance, count)
     {
         const startTime = TimeUtil.getTimestamp();
-        const endTime = startTime + 12 * 3600;
+        const endTime = startTime + 43200;
         const chance = 100 - Math.min(Math.max(sellChance, 0), 100);
         let sellTime = startTime;
         let remainingCount = count;
         let result = [];
 
         // Avoid rolling for NaN sellChance
-        sellChance = +sellChance || RagfairConfig.sell.chance.base;
+        sellChance = sellChance || RagfairConfig.sell.chance.base;
 
         Logger.info(`Rolling for sell ${count} items (chance: ${sellChance})`);
 
