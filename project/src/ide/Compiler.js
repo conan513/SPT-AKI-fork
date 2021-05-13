@@ -1,5 +1,5 @@
 const { compile } = require("nexe");
-const resourceHacker = require('@lorki97/node-resourcehacker');
+const rcedit = require("rcedit");
 const VFS = require("../utils/VFS.js");
 
 require("./CheckVersion.js");
@@ -23,13 +23,8 @@ class Compiler
         "output": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
         "build": false
     };
-    static resourceHackerOptions = {
-        "operation": "addoverwrite",
-        "input": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
-        "output": `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`,
-        "resource": Compiler.buildOptions.icon,
-        "resourceType": "ICONGROUP",
-        "resourceName": "MAINICON",
+    static rceditOptions = {
+        "icon": Compiler.buildOptions.icon
     };
 
     static preBuild()
@@ -41,18 +36,23 @@ class Compiler
         }
     }
 
-    static nexeCompile()
+    static exeCompile()
     {
         return compile(Compiler.nexeOptions);
     }
 
-    static replaceIcon(callback)
+    static replaceIcon()
     {
-        resourceHacker(Compiler.resourceHackerOptions, callback);
+        console.log("Editing icon...");
+        const exePath = `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`;
+        return rcedit(exePath, Compiler.rceditOptions);
     }
 
     static postBuild()
     {
+        VFS.copyFile(`${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
+                     `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`);
+
         if (VFS.exists(Compiler.buildOptions.tmp.dir))
         {
             VFS.removeDir(Compiler.buildOptions.tmp.dir);
@@ -66,9 +66,12 @@ class Compiler
         // todo: find a solution that's not this
         // I fucking hate promises and callbacks like this
         Compiler.preBuild();
-        Compiler.nexeCompile().then(() =>
+        Compiler.exeCompile().then(() =>
         {
-            Compiler.replaceIcon(Compiler.postBuild)
+            Compiler.replaceIcon().then(() =>
+            {
+                Compiler.postBuild();
+            })
         });
     }
 }
