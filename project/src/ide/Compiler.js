@@ -50,6 +50,8 @@ class Compiler
 
     static postBuild()
     {
+        VFS.createDir(Compiler.buildOptions.build.dir);
+
         VFS.copyFile(`${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
                      `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`);
 
