@@ -96,7 +96,7 @@ class PlzRefactorMeHelper
         {
             case "569668774bdc2da2298b4568":
                 return "EUR";
-                
+
             case "5696686a4bdc2da3298b456a":
                 return "USD";
 

@@ -21,7 +21,7 @@ class Program
         watermark.setTitle();
         watermark.resetCursor();
         watermark.draw();
-        
+
         // easter egg
         Logger.write("");
         Logger.write("Thanks everyone for enjoying our work and for your amazing support thorough the years!");

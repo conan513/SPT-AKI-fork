@@ -154,7 +154,7 @@ class RagfairServer
 
             // create offer
             item.upd.StackObjectsCount = (isPreset) ? 1 : Math.round(RandomUtil.getInt(config.stack.min, config.stack.max));
-            
+
             const userID = HashUtil.generate();
             const items = (isPreset) ? RagfairServer.getPresetItems(item) : [...[item], ...ItemHelper.findAndReturnChildrenByAssort(item._id, assort.items)];
             const barterScheme = RagfairServer.getOfferRequirements(items);

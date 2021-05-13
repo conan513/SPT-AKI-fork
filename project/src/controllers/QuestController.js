@@ -113,8 +113,11 @@ class QuestController
         for (let item of reward.items)
         {
             // reward items are granted Found in Raid
-            if(!item.upd) 
+            if (!item.upd)
+            {
                 item.upd = {};
+            }
+
             item.upd.SpawnedInSession = true;
 
             // separate base item and mods, fix stacks

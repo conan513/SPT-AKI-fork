@@ -7,7 +7,7 @@ class LookupItem
     constructor()
     {
         this.byId = {},
-        this.byParent = {}
+        this.byParent = {};
     }
 }
 

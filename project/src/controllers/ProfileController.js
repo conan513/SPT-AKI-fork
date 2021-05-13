@@ -278,11 +278,11 @@ class ProfileController
                 "prevexp": 0,
                 "nextlvl": 0,
                 "maxlvl": maxlvl
-            }
+            };
         }
 
         const currlvl = profile.Info.Level;
-        const nextlvl = ProfileController.getExperience(currlvl + 1)
+        const nextlvl = ProfileController.getExperience(currlvl + 1);
         const result = {
             "nickname": profile.Info.Nickname,
             "side": profile.Info.Side,
