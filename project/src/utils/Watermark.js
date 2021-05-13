@@ -5,7 +5,7 @@ require("../Lib.js");
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "1.2.0";
+    static version = "1.3.0";
     static url = "https://www.guilded.gg/senkospub";
     static text = [
         `${Watermark.project} ${Watermark.version}`,
