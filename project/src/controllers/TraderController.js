@@ -178,7 +178,7 @@ class TraderController
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
-            let price = PlzRefactorMeHelper.getTemplatePrice(itemID);
+            let price = HandbookController.getTemplatePrice(itemID);
 
             if (price === 0 || price === 1 || price === 100)
             {
@@ -231,7 +231,7 @@ class TraderController
             // calculate preset price
             for (let it of items)
             {
-                rub += PlzRefactorMeHelper.getTemplatePrice(it._tpl);
+                rub += HandbookController.getTemplatePrice(it._tpl);
             }
 
             result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
@@ -330,7 +330,7 @@ class TraderController
 
         for (let filter of traderFilters)
         {
-            for (let iaaaaa of PlzRefactorMeHelper.templatesWithParent(filter))
+            for (let iaaaaa of HandbookController.templatesWithParent(filter))
             {
                 if (iaaaaa === tplToCheck)
                 {
@@ -338,9 +338,9 @@ class TraderController
                 }
             }
 
-            for (let subcateg of PlzRefactorMeHelper.childrenCategories(filter))
+            for (let subcateg of HandbookController.childrenCategories(filter))
             {
-                for (let itemFromSubcateg of PlzRefactorMeHelper.templatesWithParent(subcateg))
+                for (let itemFromSubcateg of HandbookController.templatesWithParent(subcateg))
                 {
                     if (itemFromSubcateg === tplToCheck)
                     {

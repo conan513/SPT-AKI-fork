@@ -427,7 +427,7 @@ class RagfairServer
         // trader offers
         for (const itemID in items)
         {
-            RagfairServer.prices.trader[itemID] = Math.round(PlzRefactorMeHelper.getTemplatePrice(itemID));
+            RagfairServer.prices.trader[itemID] = Math.round(HandbookController.getTemplatePrice(itemID));
         }
 
         // dynamic offers

@@ -352,11 +352,11 @@ class RagfairController
         // if its "mods" great-parent category, do double recursive loop
         if (handbookId === "5b5f71a686f77447ed5636ab")
         {
-            for (const categ of PlzRefactorMeHelper.childrenCategories(handbookId))
+            for (const categ of HandbookController.childrenCategories(handbookId))
             {
-                for (const subcateg of PlzRefactorMeHelper.childrenCategories(categ))
+                for (const subcateg of HandbookController.childrenCategories(categ))
                 {
-                    result = [...result, ...PlzRefactorMeHelper.templatesWithParent(subcateg)];
+                    result = [...result, ...HandbookController.templatesWithParent(subcateg)];
                 }
             }
 
@@ -364,14 +364,14 @@ class RagfairController
         }
 
         // item is in any other category
-        if (PlzRefactorMeHelper.isCategory(handbookId))
+        if (HandbookController.isCategory(handbookId))
         {
             // list all item of the category
-            result = PlzRefactorMeHelper.templatesWithParent(handbookId);
+            result = HandbookController.templatesWithParent(handbookId);
 
-            for (const categ of PlzRefactorMeHelper.childrenCategories(handbookId))
+            for (const categ of HandbookController.childrenCategories(handbookId))
             {
-                result = [...result, ...PlzRefactorMeHelper.templatesWithParent(categ)];
+                result = [...result, ...HandbookController.templatesWithParent(categ)];
             }
 
             return result;
