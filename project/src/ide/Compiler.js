@@ -1,5 +1,6 @@
 const { compile } = require("nexe");
-const rcedit = require("rcedit");
+const path = require("path");
+const process = require("child_process");
 const VFS = require("../utils/VFS.js");
 
 require("./CheckVersion.js");
@@ -21,11 +22,22 @@ class Compiler
     static nexeOptions = {
         "input": Compiler.buildOptions.entry,
         "output": `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
-        "build": false
+        "build": false,
+        "plugins": [Compiler.rcedit]
     };
-    static rceditOptions = {
-        "icon": Compiler.buildOptions.icon
-    };
+
+    static async rcedit(compiler, next)
+    {
+        if (!compiler.options.build)
+        {
+            const rceditExe = process.arch === 'x64' ? 'rcedit-x64.exe' : 'rcedit.exe'
+            const rcedit = path.resolve(__dirname, '../../node_modules/rcedit/bin/', rceditExe)
+            const filepath = JSON.stringify(compiler.getNodeExecutableLocation(compiler.target));
+            process.execSync(`${rcedit} ${filepath} --set-icon ${Compiler.buildOptions.icon}`)
+        }
+
+        return next();
+    }
 
     static preBuild()
     {
@@ -41,17 +53,9 @@ class Compiler
         return compile(Compiler.nexeOptions);
     }
 
-    static replaceIcon()
-    {
-        console.log("Editing icon...");
-        const exePath = `${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`;
-        return rcedit(exePath, Compiler.rceditOptions);
-    }
-
     static postBuild()
     {
         VFS.createDir(Compiler.buildOptions.build.dir);
-
         VFS.copyFile(`${Compiler.buildOptions.tmp.dir}${Compiler.buildOptions.tmp.exe}`,
                      `${Compiler.buildOptions.build.dir}${Compiler.buildOptions.build.exe}`);
 
@@ -70,10 +74,7 @@ class Compiler
         Compiler.preBuild();
         Compiler.exeCompile().then(() =>
         {
-            Compiler.replaceIcon().then(() =>
-            {
-                Compiler.postBuild();
-            })
+            Compiler.postBuild();
         });
     }
 }
