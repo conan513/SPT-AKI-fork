@@ -86,7 +86,15 @@ class CertController
                 name: "Server"
             }, (error, stdout, stderr) =>
             {
-                if (error) throw error;
+                if (error)
+                {
+                    Logger.log("------------------------------------------------------------------------------------------");
+                    Logger.error("Certificate installation failed. You will most likely run into issues in-game!");
+                    Logger.error("Please run the following command in cmd with admin privileges:");
+                    Logger.log(`certutil.exe -f -addstore Root "${process.cwd()}\\${CertController.certFile.replace(/\//g, "\\")}"`);
+                    Logger.log("------------------------------------------------------------------------------------------");
+                    throw error;
+                }
             });
 
             Logger.info("Added self-signed x509 certificate");

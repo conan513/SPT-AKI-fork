@@ -766,28 +766,19 @@ class InventoryController
 
     static tagItem(pmcData, body, sessionID)
     {
+        const cleanedTag = body.TagName.replace(/[^\w\d\s]/g, "");
+
         for (let item of pmcData.Inventory.items)
         {
             if (item._id === body.item)
             {
                 if ("upd" in item)
                 {
-                    item.upd.Tag = {"Color": body.TagColor, "Name": body.TagName};
+                    item.upd.Tag = {"Color": body.TagColor, "Name": cleanedTag};
                 }
                 else
                 {
-                    //if object doesn't have upd create and add it
-                    let myobject = {
-                        "_id": item._id,
-                        "_tpl": item._tpl,
-                        "parentId": item.parentId,
-                        "slotId": item.slotId,
-                        "location": item.location,
-                        "upd": {"Tag": {"Color": body.TagColor, "Name": body.TagName}}
-                    };
-
-                    // merge myobject into item -- overwrite same properties and add missings
-                    Object.assign(item, myobject);
+                    item.upd = {"Tag": {"Color": body.TagColor, "Name": cleanedTag}};
                 }
 
                 return ItemEventRouter.getOutput();

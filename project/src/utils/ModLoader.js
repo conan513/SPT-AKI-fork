@@ -203,6 +203,13 @@ class ModLoader
 
         // check dependencies
         const config = ModLoader.imported[mod];
+
+        if (typeof config === "undefined")
+        {
+            Logger.error(`Missing required mod dependency: ${mod}`);
+            throw "Error parsing mod load order";
+        }
+
         const dependencies = ("dependencies" in config) ? config.dependencies : [];
 
         visited[mod] = config.version;
