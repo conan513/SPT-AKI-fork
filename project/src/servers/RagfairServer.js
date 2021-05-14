@@ -514,16 +514,13 @@ class RagfairServer
             return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
         }
 
-        let itemsToReturn = [];
+        if (offer.items[0].upd.StackObjectsCount > offer.items[0].upd.OriginalStackObjectsCount)
+		{
+			offer.items[0].upd.StackObjectsCount = offer.items[0].upd.OriginalStackObjectsCount;
+		}
+		delete offer.items[0].upd.OriginalStackObjectsCount;
 
-        offer.items.forEach(item =>
-        {
-            item = ItemHelper.fixItemStackCount(item);
-            item.upd.SpawnedInSession = true;
-            itemsToReturn = [...itemsToReturn, ...ItemHelper.splitStack(item)];
-        });
-
-        RagfairController.returnItems(profile.aid, itemsToReturn);
+        RagfairController.returnItems(profile.aid, offer.items);
         profile.RagfairInfo.offers.splice(index, 1);
 
         return ItemEventRouter.getOutput();
