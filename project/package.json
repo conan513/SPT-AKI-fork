@@ -21,7 +21,7 @@
         "test:debug": "node --trace-warnings src/ide/DebugEntry.js",
         "test:release": "node --trace-warnings src/ide/ReleaseEntry.js",
         "build:types": "npx babel src --out-dir obj",
-        "build:bundle": "npx browserify --bare obj/ide/ReleaseEntry.js > obj/bundle.js",
+        "build:bundle": "npx browserify --node obj/ide/ReleaseEntry.js > obj/bundle.js",
         "build:minify": "npx minify obj/bundle.js --out-file obj/bundle.js",
         "build:exe": "node src/ide/Compiler.js",
         "build": "npm run build:types && npm run build:bundle && npm run build:exe"
@@ -42,7 +42,9 @@
         "browserify": "^17.0.0",
         "babel-minify": "^0.5.1",
         "nexe": "^3.3.7",
-        "rcedit": "^3.0.0"
+        "rcedit": "^3.0.0",
+        "utf-8-validate": "^5.0.5",
+        "bufferutil": "4.0.3"
     },
     "babel": {
         "presets": [
