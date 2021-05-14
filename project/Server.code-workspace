@@ -49,7 +49,7 @@
 			{
 				"label": "build",
 				"type": "npm",
-				"script": "build:exe",
+				"script": "build",
 				"group": {
 					"kind": "build",
 					"isDefault": true

@@ -1,4 +1,4 @@
-const { compile } = require("nexe");
+const nexe = require("nexe");
 const path = require("path");
 const process = require("child_process");
 const VFS = require("../utils/VFS.js");
@@ -7,6 +7,7 @@ require("./CheckVersion.js");
 
 class Compiler
 {
+    static pkgjson = JsonUtil.deserialize(VFS.readFile("package.json"));
     static buildOptions = {
         "tmp": {
             "dir": "obj/",
@@ -17,7 +18,7 @@ class Compiler
             "exe": "Server.exe"
         },
         "icon": "assets/images/icon.ico",
-        "entry": "obj/ide/ReleaseEntry.js"
+        "entry": "obj/bundle.js"
     };
     static nexeOptions = {
         "input": Compiler.buildOptions.entry,
@@ -51,9 +52,9 @@ class Compiler
         }
     }
 
-    static build()
+    static async build()
     {
-        return compile(Compiler.nexeOptions);
+        return nexe.compile(Compiler.nexeOptions);
     }
 
     static postBuild()

@@ -2,7 +2,6 @@
 
 require("./Lib.js");
 
-const process = require("process");
 const watermark = require("./utils/Watermark");
 const App = require("./utils/App");
 

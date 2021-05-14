@@ -4,9 +4,9 @@ Modding framework for Escape From Tarkov
 
 ## Requirements
 
-- VSCodium
-- NodeJS 12.18.2
 - Escape From Tarkov 0.12.10
+- NodeJS 14.15.3
+- VSCodium
 
 ## Setup
 
