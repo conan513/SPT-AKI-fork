@@ -89,6 +89,18 @@
             "slotId": "mod_reciever"
         },
         {
+            "_id": "93abeb46b203469297a85bc1",
+            "_tpl": "60229948cacb6b0506369e27",
+            "parentId": "60228a76d62c9b14ed777a66",
+            "slotId": "mod_sight_front"
+        },
+                {
+            "_id": "99c744c08b05455960e63476",
+            "_tpl": "60228924961b8d75ee233c32",
+            "parentId": "91278daf4f6add438f23e2c7",
+            "slotId": "mod_sight_rear"
+        },
+        {
             "_id": "MetalFuelTank",
             "_tpl": "5d1b36a186f7742523398433",
             "parentId": "hideout",
