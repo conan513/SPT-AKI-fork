@@ -3,7 +3,6 @@
 require("../Lib.js");
 
 const forge = require("node-forge");
-const sudo = require("sudo-prompt");
 const os = require("os");
 const Shell = require("node-powershell");
 
@@ -93,48 +92,30 @@ class CertController
         }
         else if (os.platform() === "win32" && os.type().startsWith("Windows") && os.release().startsWith("10"))
         {
-            // Windows 10 only - should be more reliable than sudo-prompt
             Logger.info("Installing cert in trust store. You will be asked for admin privileges for a PowerShell process.");
             CertController.RunPowershellCommandAsAdmin(`certutil.exe -f -addstore Root '${process.cwd()}/${CertController.certFile}'`)
                 .then(
                     () => Logger.info("Added self-signed x509 certificate"),
                     (error) =>
                     {
-                        onCertError();
+                        Logger.log("------------------------------------------------------------------------------------------");
+                        Logger.error("Certificate installation failed. You will most likely run into issues in-game!");
+                        Logger.error("Please run the following command in cmd with admin privileges:");
+                        Logger.log(`certutil.exe -f -addstore Root "${process.cwd()}\\${CertController.certFile.replace(/\//g, "\\")}"`);
+                        Logger.log("------------------------------------------------------------------------------------------");
                         throw error;
                     });
         }
         else
         {
-            Logger.info("Installing cert in trust store. You will be asked for admin privileges.");
-
-            // Use CERTMGR.MSC to remove this Trust Store Certificate manually
-            sudo.exec(`certutil.exe -f -addstore Root ${CertController.certFile}`, {
-                name: "Server"
-            }, (error, stdout, stderr) =>
-            {
-                if (error)
-                {
-                    onCertError();
-                    throw error;
-                }
-            });
-
-            Logger.info("Added self-signed x509 certificate");
+            Logger.error("You're running the server on a platform that's not supported - certificate installation must be done manually.");
+            Logger.info("For Windows systems, you can run the following command in cmd with admin priviledges:");
+            Logger.info(`certutil.exe -f -addstore Root "${process.cwd()}\\${CertController.certFile.replace(/\//g, "\\")}"`);
         }
 
         CertController.certs = {
             "cert": forge.pki.certificateToPem(cert),
             "key": forge.pki.privateKeyToPem(keys.privateKey)
-        };
-
-        const onCertError = () =>
-        {
-            Logger.log("------------------------------------------------------------------------------------------");
-            Logger.error("Certificate installation failed. You will most likely run into issues in-game!");
-            Logger.error("Please run the following command in cmd with admin privileges:");
-            Logger.log(`certutil.exe -f -addstore Root "${process.cwd()}\\${CertController.certFile.replace(/\//g, "\\")}"`);
-            Logger.log("------------------------------------------------------------------------------------------");
         };
     }
 
