@@ -13,7 +13,7 @@ class TraderController
 
     static getTrader(traderID, sessionID)
     {
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         let trader = DatabaseServer.tables.traders[traderID].base;
 
         if (!(traderID in pmcData.TraderStandings))
@@ -22,10 +22,11 @@ class TraderController
             TraderController.lvlUp(traderID, sessionID);
         }
 
-        trader.loyalty.currentLevel = pmcData.TraderStandings[traderID].currentLevel;
-        trader.loyalty.currentStanding = pmcData.TraderStandings[traderID].currentStanding.toFixed(3);
-        trader.loyalty.currentSalesSum = pmcData.TraderStandings[traderID].currentSalesSum;
-        trader.display = pmcData.TraderStandings[traderID].display;
+        const standing = pmcData.TraderStandings[traderID];
+        trader.loyalty.currentLevel = standing.currentLevel;
+        trader.loyalty.currentStanding = standing.currentStanding.toFixed(3);
+        trader.loyalty.currentSalesSum = standing.currentSalesSum;
+        trader.display = standing.display;
 
         return trader;
     }
@@ -40,7 +41,7 @@ class TraderController
     {
         let traders = [];
 
-        for (let traderID in DatabaseServer.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
             if (!DatabaseServer.tables.traders[traderID].base.working)
             {
@@ -55,8 +56,8 @@ class TraderController
 
     static lvlUp(traderID, sessionID)
     {
+        const loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels;
         let pmcData = ProfileController.getPmcProfile(sessionID);
-        let loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels;
 
         // level up player
         pmcData.Info.Level = PlzRefactorMeHelper.calculateLevel(pmcData);
@@ -64,11 +65,13 @@ class TraderController
         // level up traders
         let targetLevel = 0;
 
-        for (let level in loyaltyLevels)
+        for (const level in loyaltyLevels)
         {
-            if ((loyaltyLevels[level].minLevel <= pmcData.Info.Level
-                && loyaltyLevels[level].minSalesSum <= pmcData.TraderStandings[traderID].currentSalesSum
-                && loyaltyLevels[level].minStanding <= pmcData.TraderStandings[traderID].currentStanding)
+            const loyalty = loyaltyLevels[level];
+
+            if ((loyalty.minLevel <= pmcData.Info.Level
+                && loyalty.minSalesSum <= pmcData.TraderStandings[traderID].currentSalesSum
+                && loyalty.minStanding <= pmcData.TraderStandings[traderID].currentStanding)
                 && targetLevel < 4)
             {
                 // level reached
@@ -106,58 +109,73 @@ class TraderController
         return true;
     }
 
-    static getAssort(sessionID, traderID)
+    static stripLoyaltyAssort(sessionId, traderId, assort)
     {
-        if (traderID === "579dc571d53a0658a154fbec")
+        const pmcData = ProfileController.getPmcProfile(sessionId);
+
+        for (const itemId in assort.loyal_level_items)
+        {
+            if (assort.loyal_level_items[itemId] > pmcData.TraderStandings[traderId].currentLevel)
+            {
+                assort = TraderController.removeItemFromAssort(assort, itemId);
+            }
+        }
+
+        return assort;
+    }
+
+    static stripQuestAssort(traderId, assort)
+    {
+        const questassort = DatabaseServer.tables.traders[traderId].questassort;
+
+        for (const itemID in assort.loyal_level_items)
+        {
+            if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
+            {
+                assort = TraderController.removeItemFromAssort(assort, itemID);
+            }
+
+            if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
+            {
+                assort = TraderController.removeItemFromAssort(assort, itemID);
+            }
+
+            if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
+            {
+                assort = TraderController.removeItemFromAssort(assort, itemID);
+            }
+        }
+
+        return assort;
+    }
+
+    static getAssort(sessionID, traderId)
+    {
+        if (traderId === "579dc571d53a0658a154fbec")
         {
             const time = TimeUtil.getTimestamp();
-            const trader = DatabaseServer.tables.traders[traderID].base;
+            const trader = DatabaseServer.tables.traders[traderId].base;
 
             if (!TraderController.fenceAssort || trader.supply_next_time < time)
             {
                 Logger.warning("generating fence");
                 TraderController.fenceAssort = TraderController.generateFenceAssort();
-                RagfairServer.generateTraderOffers(traderID);
+                RagfairServer.generateTraderOffers(traderId);
             }
 
             return TraderController.fenceAssort;
         }
 
-        const pmcData = ProfileController.getPmcProfile(sessionID);
-        const traderData = JsonUtil.clone(DatabaseServer.tables.traders[traderID]);
+        const traderData = JsonUtil.clone(DatabaseServer.tables.traders[traderId]);
         let result = traderData.assort;
 
         // strip items (1 is min level, 4 is max level)
-        for (const itemID in result.loyal_level_items)
-        {
-            if (result.loyal_level_items[itemID] > pmcData.TraderStandings[traderID].currentLevel)
-            {
-                result = TraderController.removeItemFromAssort(result, itemID);
-            }
-        }
+        result = TraderController.stripLoyaltyAssort(sessionID, traderId, result);  
 
         // strip quest result
         if ("questassort" in traderData)
         {
-            const questassort = DatabaseServer.tables.traders[traderID].questassort;
-
-            for (const itemID in result.loyal_level_items)
-            {
-                if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
-                {
-                    result = TraderController.removeItemFromAssort(result, itemID);
-                }
-
-                if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
-                {
-                    result = TraderController.removeItemFromAssort(result, itemID);
-                }
-
-                if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
-                {
-                    result = TraderController.removeItemFromAssort(result, itemID);
-                }
-            }
+            result = TraderController.stripQuestAssort(traderId, result);
         }
 
         return result;
@@ -191,17 +209,19 @@ class TraderController
             if (!(itemID in itemPresets))
             {
                 const toPush = JsonUtil.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
+
                 toPush._id = HashUtil.generate();
                 result.items.push(toPush);
                 result.barter_scheme[toPush._id] = assort.barter_scheme[itemID];
                 result.loyal_level_items[toPush._id] = assort.loyal_level_items[itemID];
+                
                 continue;
             }
 
             // it's itemPreset
-            let rub = 0;
+            const ItemRootOldId = itemPresets[itemID]._parent;
             let items = JsonUtil.clone(itemPresets[itemID]._items);
-            let ItemRootOldId = itemPresets[itemID]._parent;
+            let rub = 0;
 
             items[0]._id = HashUtil.generate();
 
@@ -229,7 +249,7 @@ class TraderController
             result.items.push.apply(result.items, items);
 
             // calculate preset price
-            for (let it of items)
+            for (const it of items)
             {
                 rub += HandbookController.getTemplatePrice(it._tpl);
             }
@@ -245,7 +265,7 @@ class TraderController
     // delete assort keys
     static removeItemFromAssort(assort, itemID)
     {
-        let ids_toremove = ItemHelper.findAndReturnChildrenByItems(assort.items, itemID);
+        const ids_toremove = ItemHelper.findAndReturnChildrenByItems(assort.items, itemID);
 
         delete assort.barter_scheme[itemID];
         delete assort.loyal_level_items[itemID];
@@ -266,33 +286,34 @@ class TraderController
 
     static getPurchasesData(traderID, sessionID)
     {
-        let pmcData = ProfileController.getPmcProfile(sessionID);
-        let trader = DatabaseServer.tables.traders[traderID].base;
-        let currency = PlzRefactorMeHelper.getCurrency(trader.currency);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
+        const trader = DatabaseServer.tables.traders[traderID].base;
+        const currency = PlzRefactorMeHelper.getCurrency(trader.currency);
         let output = {};
 
         // get sellable items
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             let price = 0;
 
             if (item._id === pmcData.Inventory.equipment
-            || item._id === pmcData.Inventory.stash
-            || item._id === pmcData.Inventory.questRaidItems
-            || item._id === pmcData.Inventory.questStashItems
-            || ItemHelper.isNotSellable(item._tpl)
-            || TraderController.traderFilter(trader.sell_category, item._tpl) === false)
+                || item._id === pmcData.Inventory.stash
+                || item._id === pmcData.Inventory.questRaidItems
+                || item._id === pmcData.Inventory.questStashItems
+                || ItemHelper.isNotSellable(item._tpl)
+                || TraderController.traderFilter(trader.sell_category, item._tpl) === false)
             {
                 continue;
             }
 
             // find all child of the item (including itself) and sum the price
-            for (let childItem of ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
+            for (const childItem of ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
                 let tempPrice = DatabaseServer.tables.templates.handbook.Items.find((i) =>
                 {
                     return childItem._tpl === i.Id;
                 }).Price || 1;
+
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
                 price = price + (tempPrice * count);
             }
@@ -311,10 +332,10 @@ class TraderController
             {
                 price -= (trader.discount / 100) * price;
             }
+
             price = PlzRefactorMeHelper.fromRUB(price, currency);
             price = (price > 0) ? price : 1;
-
-            output[item._id] = [[{ "_tpl": currency, "count": price.toFixed(0) }]];
+            output[item._id] = [[{ "count": price.toFixed(0), "_tpl": currency }]];
         }
 
         return output;
@@ -327,7 +348,6 @@ class TraderController
     */
     static traderFilter(traderFilters, tplToCheck)
     {
-
         for (let filter of traderFilters)
         {
             for (let iaaaaa of HandbookController.templatesWithParent(filter))
