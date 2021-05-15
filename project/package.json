@@ -27,8 +27,8 @@
         "build": "npm run build:types && npm run build:bundle && npm run build:exe"
     },
     "dependencies": {
-        "selfsigned": "1.10.11",
-        "sudo-prompt": "9.2.1",
+        "node-forge": "0.10.0",
+        "node-powershell": "4.0.0",
         "ws": "7.4.5"
     },
     "devDependencies": {
