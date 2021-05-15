@@ -72,6 +72,9 @@ class ModLoader
         {
             ModLoader.onLoad[mod]();
         }
+
+        // update the handbook lookup with modded items
+        HandbookController.load();
     }
 
     static getModPath(mod)
