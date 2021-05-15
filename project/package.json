@@ -1,6 +1,6 @@
 {
     "name": "aki-server",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "main": "src/ide/ReleaseEntry.js",
     "author": "SPT-AKI",
     "contributors": [
