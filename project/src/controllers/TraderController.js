@@ -124,9 +124,10 @@ class TraderController
         return assort;
     }
 
-    static stripQuestAssort(traderId, assort)
+    static stripQuestAssort(sessionId, traderId, assort)
     {
         const questassort = DatabaseServer.tables.traders[traderId].questassort;
+        const pmcData = ProfileController.getPmcProfile(sessionId);
 
         for (const itemID in assort.loyal_level_items)
         {
@@ -170,12 +171,12 @@ class TraderController
         let result = traderData.assort;
 
         // strip items (1 is min level, 4 is max level)
-        result = TraderController.stripLoyaltyAssort(sessionID, traderId, result);  
+        result = TraderController.stripLoyaltyAssort(sessionID, traderId, result);
 
         // strip quest result
         if ("questassort" in traderData)
         {
-            result = TraderController.stripQuestAssort(traderId, result);
+            result = TraderController.stripQuestAssort(sessionID, traderId, result);
         }
 
         return result;
