@@ -11,7 +11,7 @@ class ModLoader
 
     static load()
     {
-        ModLoader.basepath = (globalThis.G_RELEASE_CONFIGURATION) ? `../user/mods/` : "user/mods/";
+        ModLoader.basepath = "user/mods/";
         ModLoader.importMods();
         ModLoader.executeMods();
     }
