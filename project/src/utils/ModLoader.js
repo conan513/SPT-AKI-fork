@@ -4,13 +4,14 @@ require("../Lib.js");
 
 class ModLoader
 {
-    static basepath = "user/mods/";
+    static basepath = "";
     static imported = {};
     static bundles = {};
     static onLoad = {};
 
     static load()
     {
+        ModLoader.basepath = "user/mods/";
         ModLoader.importMods();
         ModLoader.executeMods();
     }
@@ -18,7 +19,8 @@ class ModLoader
     static importClass(name, filepath)
     {
         // import class
-        globalThis[name] = require(`../../${filepath}`);
+        const modpath = (globalThis.G_RELEASE_CONFIGURATION) ? `../${filepath}` : `../../${filepath}`;
+        globalThis[name] = require(modpath);
     }
 
     static importMods()

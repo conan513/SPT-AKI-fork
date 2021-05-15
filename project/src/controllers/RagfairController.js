@@ -540,6 +540,8 @@ class RagfairController
 
                     // Increase rating
                     SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.rating += RagfairConfig.sell.reputation.gain * offer.summaryCost / totalItemsCount * boughtAmount;
+					SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.isRatingGrowing = true;
+
                     RagfairController.completeOffer(sessionID, offer, index, boughtAmount);
                     offer.sellResult.splice(0, 1);
                 }
@@ -608,37 +610,27 @@ class RagfairController
     }
 
     /**
-     * Merges Stackable Items
+     * Merges Root Items
      * Ragfair allows abnormally large stacks.
      */
     static mergeStackable(items)
     {
-        let rootItem = undefined;
-        let others = [];
+        let list = JsonUtil.clone(items);
+		let rootItem = ItemHelper.fixItemStackCount(list[0]);
+		rootItem.upd.OriginalStackObjectsCount = rootItem.upd.StackObjectsCount;
 
-        items.forEach(item =>
+        list.forEach(item =>
         {
             item = ItemHelper.fixItemStackCount(item);
-            let isRoot = items.find(it => it._id !== item.parentId);
+			let isChild = list.find(it => it._id === item.parentId);
 
-            if (isRoot)
+            if (!isChild && item._id != rootItem._id)
             {
-                if (rootItem === undefined)
-                {
-                    rootItem = item;
-                }
-                else
-                {
-                    rootItem.upd.StackObjectsCount += item.upd.StackObjectsCount;
-                }
-            }
-            else
-            {
-                others.push(item);
+				rootItem.upd.StackObjectsCount += item.upd.StackObjectsCount;
             }
         });
 
-        return [...[rootItem], ...others];
+        return list;
     }
 
     static calculateSellChance(baseChance, offerPrice, requirementsPriceInRub)
@@ -941,57 +933,37 @@ class RagfairController
         const itemTpl = parent[0]._tpl;
         let itemsToSend = [];
 
-        if (offer.sellInOnePiece)
+        if (offer.sellInOnePiece || boughtAmount === offer.items[0].upd.StackObjectsCount)
         {
-            for (let item of offer.items)
-            {
-                item = ItemHelper.fixItemStackCount(item);
-            }
-
             RagfairController.deleteOfferByOfferId(sessionID, offerId);
         }
         else
         {
-            // Is this multiple items or one stack of same item?
-            if (offer.items.length > 1)
-            {
-                if (boughtAmount < parent.length)
-                {
-                    for (let i = 0; i < boughtAmount; i++)
-                    {
-                        const toDelete = ItemHelper.findAndReturnChildrenByItems(offer.items, parent[i]._id);
+			offer.items[0].upd.StackObjectsCount -= boughtAmount;
+			let rootItems = offer.items.filter(i => i.parentId === "hideout");
+			rootItems.splice(0, 1);
 
-                        for (const toDeleteId of toDelete)
-                        {
-                            offer.items.splice(offer.items.findIndex(item => item._id === toDeleteId), 1);
-                        }
-                    }
-                }
-                else
-                {
-                    RagfairController.deleteOfferByOfferId(sessionID, offerId);
-                }
-            }
-            else
-            {
-                if (offer.items[0].upd.StackObjectsCount === undefined || offer.items[0].upd.StackObjectsCount === 1)
-                {
-                    RagfairController.deleteOfferByOfferId(sessionID, offerId);
-                }
-                else
-                {
-                    boughtAmount = RandomUtil.getInt(1, offer.items[0].upd.StackObjectsCount);
+			let removeCount = boughtAmount;
+			let idsToRemove = [];
 
-                    if (boughtAmount < offer.items[0].upd.StackObjectsCount)
-                    {
-                        offer.items[0].upd.StackObjectsCount -= boughtAmount;
-                    }
-                    else
-                    {
-                        RagfairController.deleteOfferByOfferId(sessionID, offerId);
-                    }
-                }
-            }
+			while(removeCount > 0 && rootItems.length > 0)
+			{
+				let lastItem = rootItems[rootItems.length - 1];
+				if (lastItem.upd.StackObjectsCount > removeCount)
+				{
+					lastItem.upd.StackObjectsCount -= removeCount;
+					removeCount = 0;
+				} else {
+					removeCount -= lastItem.upd.StackObjectsCount;
+					idsToRemove = lastItem._id;
+					rootItems.splice(rootItems.length - 1, 1);
+				}
+			}
+
+			if (idsToRemove.length > 0)
+			{
+				offer.items = offer.items.filter(i => !idsToRemove.includes(i._id) && !idsToRemove.includes(i.parentId))
+			}
         }
 
         // assemble the payment items
