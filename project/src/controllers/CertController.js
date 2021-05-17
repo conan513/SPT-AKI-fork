@@ -55,7 +55,8 @@ class CertController
                     return {};
                 }
 
-                return { "cert": cert, "key": key };
+                return { "cert": cert,
+                    "key": key };
             }
             catch (e)
             {
@@ -71,8 +72,14 @@ class CertController
         const keys = forge.pki.rsa.generateKeyPair(2048);
         const cert = forge.pki.createCertificate();
         const attrs = [
-            { "name": "commonName", "value": HttpConfig.ip },
-            { "name": "organizationName", "value": "SPT-AKI" },
+            {
+                "name": "commonName",
+                "value": HttpConfig.ip
+            },
+            {
+                "name": "organizationName",
+                "value": "SPT-AKI"
+            },
         ];
 
         cert.publicKey = keys.publicKey;
@@ -105,7 +112,8 @@ class CertController
 
         VFS.writeFile(CertController.certFile, forge.pki.certificateToPem(cert));
         VFS.writeFile(CertController.keyFile, forge.pki.privateKeyToPem(keys.privateKey));
-        Logger.info(`Generated self-signed x509 certificate ${forge.pki.getPublicKeyFingerprint(cert.publicKey, { "encoding": "hex", "delimiter": ":" })}`);
+        Logger.info(`Generated self-signed x509 certificate ${forge.pki.getPublicKeyFingerprint(cert.publicKey, { "encoding": "hex",
+            "delimiter": ":" })}`);
 
         if (os.platform() === "linux")
         {
