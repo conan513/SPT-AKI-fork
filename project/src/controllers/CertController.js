@@ -55,8 +55,10 @@ class CertController
                     return {};
                 }
 
-                return { "cert": cert,
-                    "key": key };
+                return {
+                    "cert": cert,
+                    "key": key
+                };
             }
             catch (e)
             {
