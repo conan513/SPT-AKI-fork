@@ -70,15 +70,32 @@ class CertController
     {
         const keys = forge.pki.rsa.generateKeyPair(2048);
         const cert = forge.pki.createCertificate();
-        const attrs = [{ name: "commonName", value: HttpConfig.ip }];
+        const attrs = [
+            { name: "commonName", value: HttpConfig.ip },
+            { name: "organizationName", value: "SPT-AKI" },
+        ];
 
         cert.publicKey = keys.publicKey;
         cert.validity.notBefore = new Date();
         cert.validity.notAfter = new Date();
-        cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 1);
+        cert.validity.notAfter.setFullYear(cert.validity.notBefore.getFullYear() + 10);
         cert.setSubject(attrs);
         cert.setIssuer(attrs);
-        cert.sign(keys.privateKey);
+
+        cert.setExtensions([{
+            name: "subjectAltName",
+            altNames: [{
+                type: 2, // DNS
+                value: "localhost"
+            }, {
+                type: 7, // IP
+                ip: HttpConfig.ip
+            }]
+        }, {
+            name: "subjectKeyIdentifier"
+        }]);
+
+        cert.sign(keys.privateKey, forge.md.sha256.create());
 
         VFS.writeFile(CertController.certFile, forge.pki.certificateToPem(cert));
         VFS.writeFile(CertController.keyFile, forge.pki.privateKeyToPem(keys.privateKey));
