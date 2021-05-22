@@ -49,16 +49,11 @@
 			{
 				"label": "build",
 				"type": "npm",
-				"script": "build",
+				"script": "build:release",
 				"group": {
 					"kind": "build",
 					"isDefault": true
 				}
-			},
-			{
-				"label": "lint",
-				"type": "npm",
-				"script": "lint"
 			}
 		]
 	},

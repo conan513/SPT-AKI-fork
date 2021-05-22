@@ -17,6 +17,7 @@ class Program
         Logger.initialize();
 
         // show watermark
+        watermark.initialize();
         watermark.setTitle();
         watermark.resetCursor();
         watermark.draw();

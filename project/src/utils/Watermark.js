@@ -7,10 +7,31 @@ class Watermark
     static project = "SPT-AKI";
     static version = "1.4.0";
     static url = "https://www.guilded.gg/senkospub";
-    static text = [
-        `${Watermark.project} ${Watermark.version}`,
-        `${Watermark.url}`,
-    ];
+    static text = [];
+
+    static initialize()
+    {
+        if (globalThis.G_DEBUG_CONFIGURATION)
+        {
+            Watermark.version = `${Watermark.version}-BLEEDINGEDGE`;
+        }
+
+        Watermark.text = [
+            `${Watermark.project} ${Watermark.version}`,
+            `${Watermark.url}`,
+        ];
+
+        if (globalThis.G_DEBUG_CONFIGURATION)
+        {
+            const text = [
+                "",
+                "NO SUPPORT FOR THIS BUILD",
+                "USE AT YOUR OWN RISK"
+            ];
+
+            Watermark.text = [...Watermark.text, ...text];
+        }
+    }
 
     /** Set window title */
     static setTitle()
