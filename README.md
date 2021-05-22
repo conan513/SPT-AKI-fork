@@ -16,7 +16,10 @@ Modding framework for Escape From Tarkov
 
 ## Build
 
-VSCodium > Terminal > Run Build Task...
+**Mode** | **Location**
+-------- | ----------------------------------------------------------
+release  | VSCodium > Terminal > Run Build Task...
+debug    | VSCodium > Terminal > Run Task... > NPM > npm: build:debug
 
 ## Test
 

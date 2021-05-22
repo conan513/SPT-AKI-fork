@@ -18,13 +18,15 @@
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "lint": "eslint --fix ./**/*.js",
-        "test:debug": "node --trace-warnings src/ide/DebugEntry.js",
+        "test:debug": "node --trace-warnings src/ide/TestEntry.js",
         "test:release": "node --trace-warnings src/ide/ReleaseEntry.js",
         "build:types": "npx babel src --out-dir obj",
-        "build:bundle": "npx browserify --node obj/ide/ReleaseEntry.js > obj/bundle.js",
+        "build:bundle-release": "npx browserify --node obj/ide/ReleaseEntry.js > obj/bundle.js",
+        "build:bundle-debug": "npx browserify --node obj/ide/DebugEntry.js > obj/bundle.js",
         "build:minify": "npx minify obj/bundle.js --out-file obj/bundle.js",
         "build:exe": "node src/ide/Compiler.js",
-        "build": "npm run build:types && npm run build:bundle && npm run build:exe"
+        "build:release": "npm run build:types && npm run build:bundle-release && npm run build:exe",
+        "build:debug": "npm run build:types && npm run build:bundle-debug && npm run build:exe"
     },
     "dependencies": {
         "node-forge": "0.10.0",
