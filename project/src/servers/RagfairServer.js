@@ -507,6 +507,7 @@ class RagfairServer
         const index = profile.RagfairInfo.offers.findIndex(o => o._id === offer._id);
 
         profile.RagfairInfo.rating -= RagfairConfig.sell.reputation.loss;
+        profile.RagfairInfo.isRatingGrowing = false;
 
         if (index === -1)
         {
