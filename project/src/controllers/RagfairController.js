@@ -578,7 +578,7 @@ class RagfairController
         let index = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.findIndex(o => o._id === offerId);
         SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
 
-        index = SRagfairServer.offers.findIndex(o => o._id === offerId);
+        index = RagfairServer.offers.findIndex(o => o._id === offerId);
         RagfairServer.offers.splice(index, 1);
     }
 
