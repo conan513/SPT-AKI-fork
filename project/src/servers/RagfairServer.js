@@ -523,6 +523,7 @@ class RagfairServer
 
         RagfairController.returnItems(profile.aid, offer.items);
         profile.RagfairInfo.offers.splice(index, 1);
+        RagfairServer.offers.splice(RagfairServer.offers.findIndex(o => o._id === offer._id), 1);
 
         return ItemEventRouter.getOutput();
     }

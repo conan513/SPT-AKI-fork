@@ -542,7 +542,7 @@ class RagfairController
                     SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.rating += RagfairConfig.sell.reputation.gain * offer.summaryCost / totalItemsCount * boughtAmount;
 					SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.isRatingGrowing = true;
 
-                    RagfairController.completeOffer(sessionID, offer, index, boughtAmount);
+                    RagfairController.completeOffer(sessionID, offer, boughtAmount);
                     offer.sellResult.splice(0, 1);
                 }
             }
@@ -918,14 +918,14 @@ class RagfairController
         return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
     }
 
-    static completeOffer(sessionID, offer, offerId, boughtAmount)
+    static completeOffer(sessionID, offer, boughtAmount)
     {
         const itemTpl = offer.items[0]._tpl;
         let itemsToSend = [];
 
         if (offer.sellInOnePiece || boughtAmount === offer.items[0].upd.StackObjectsCount)
         {
-            RagfairController.deleteOfferByOfferId(sessionID, offerId);
+            RagfairController.deleteOfferByOfferId(sessionID, offer._id);
         }
         else
         {
