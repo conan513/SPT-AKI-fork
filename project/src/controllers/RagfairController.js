@@ -621,7 +621,7 @@ class RagfairController
         let list = [];
 		let rootItem = null;
 
-        items.forEach(item =>
+        for (let item of items)
         {
             item = ItemHelper.fixItemStackCount(item);
 			let isChild = items.find(it => it._id === item.parentId);
@@ -639,7 +639,7 @@ class RagfairController
             } else {
                 list.push(item);
             }
-        });
+        }
 
         return [...[rootItem], ...list];
     }
@@ -939,11 +939,14 @@ class RagfairController
 			while(removeCount > 0 && rootItems.length > 0)
 			{
 				let lastItem = rootItems[rootItems.length - 1];
+                
 				if (lastItem.upd.StackObjectsCount > removeCount)
 				{
 					lastItem.upd.StackObjectsCount -= removeCount;
 					removeCount = 0;
-				} else {
+				}
+                else
+                {
 					removeCount -= lastItem.upd.StackObjectsCount;
 					idsToRemove.push(lastItem._id);
 					rootItems.splice(rootItems.length - 1, 1);
@@ -951,17 +954,21 @@ class RagfairController
             }
 
             let foundNewItems = true;
+
             while (foundNewItems)
             {
                 foundNewItems = false;
-                idsToRemove.forEach(id => {
+
+                for (let id of idsToRemove)
+                {
                     let newIds = offer.items.filter(i => !idsToRemove.includes(i._id) && idsToRemove.includes(i.parentId));
+
                     if (newIds.length > 0)
                     {
                         foundNewItems = true;
                         idsToRemove = [...idsToRemove, ...newIds];
                     }
-                });
+                }
             }
 
 			if (idsToRemove.length > 0)

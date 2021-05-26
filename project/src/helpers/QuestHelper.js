@@ -75,10 +75,10 @@ class QuestHelper
     {
         let knownQuestsIds = [];
 
-        before.forEach((q) =>
+        for (let q of before)
         {
             knownQuestsIds.push(q._id);
-        });
+        }
 
         if (knownQuestsIds.length)
         {
