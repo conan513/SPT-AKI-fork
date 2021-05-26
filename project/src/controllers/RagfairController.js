@@ -542,7 +542,7 @@ class RagfairController
                     SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.rating += RagfairConfig.sell.reputation.gain * offer.summaryCost / totalItemsCount * boughtAmount;
 					SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.isRatingGrowing = true;
 
-                    RagfairController.completeOffer(sessionID, offer, index, boughtAmount);
+                    RagfairController.completeOffer(sessionID, offer, boughtAmount);
                     offer.sellResult.splice(0, 1);
                 }
             }
@@ -575,8 +575,11 @@ class RagfairController
 
     static deleteOfferByOfferId(sessionID, offerId)
     {
-        const index = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.findIndex(o => o._id === offerId);
+        let index = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.findIndex(o => o._id === offerId);
         SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.splice(index, 1);
+
+        index = RagfairServer.offers.findIndex(o => o._id === offerId);
+        RagfairServer.offers.splice(index, 1);
     }
 
     static updateOfferItemsByIndex(sessionID, index, newValues)
@@ -615,22 +618,30 @@ class RagfairController
      */
     static mergeStackable(items)
     {
-        let list = JsonUtil.clone(items);
-		let rootItem = ItemHelper.fixItemStackCount(list[0]);
-		rootItem.upd.OriginalStackObjectsCount = rootItem.upd.StackObjectsCount;
+        let list = [];
+		let rootItem = null;
 
-        list.forEach(item =>
+        items.forEach(item =>
         {
             item = ItemHelper.fixItemStackCount(item);
-			let isChild = list.find(it => it._id === item.parentId);
+			let isChild = items.find(it => it._id === item.parentId);
 
-            if (!isChild && item._id != rootItem._id)
+            if (!isChild)
             {
-				rootItem.upd.StackObjectsCount += item.upd.StackObjectsCount;
+                if (!rootItem)
+                {
+                    rootItem = JsonUtil.clone(item);
+                    rootItem.upd.OriginalStackObjectsCount = rootItem.upd.StackObjectsCount;
+                } else {
+                    rootItem.upd.StackObjectsCount += item.upd.StackObjectsCount;
+                    list.push(item);
+                }
+            } else {
+                list.push(item);
             }
         });
 
-        return list;
+        return [...[rootItem], ...list];
     }
 
     static calculateSellChance(baseChance, offerPrice, requirementsPriceInRub)
@@ -679,10 +690,7 @@ class RagfairController
     {
         const result = ItemEventRouter.getOutput();
         let requirementsPriceInRub = 0;
-        let offerPrice = 0;
-        let itemStackCount = 0;
         let invItems = [];
-        let basePrice = 0;
 
         if (!info || !info.items || info.items.length === 0)
         {
@@ -709,8 +717,6 @@ class RagfairController
             }
         }
 
-        let sellChance = RagfairConfig.sell.base;
-
         // Count how many items are being sold and multiply the requested amount accordingly
         for (const itemId of info.items)
         {
@@ -723,53 +729,29 @@ class RagfairController
             }
 
             item = ItemHelper.fixItemStackCount(item);
-            itemStackCount += item.upd.StackObjectsCount;
             invItems.push(...ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, itemId));
-
-            const qualityMultiplier = ItemHelper.getItemQualityPrice(item);
-
-            offerPrice += RagfairServer.prices.dynamic[item._tpl] * item.upd.StackObjectsCount * qualityMultiplier;
-            sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;
         }
 
-        if (info.sellInOnePiece)
-        {
-            itemStackCount = 1;
-        }
-
-        // offerPrice = offerPrice * itemStackCount;
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
             return HttpResponse.appendErrorToOutput(result);
         }
 
-        for (const item of invItems)
-        {
-            const mult = (item.upd === undefined) || (item.upd.StackObjectsCount === undefined) ? 1 : item.upd.StackObjectsCount;
-            basePrice += RagfairServer.prices.dynamic[item._tpl] * mult;
-        }
-
-        if (!basePrice)
-        {
-            // Don't want to accidentally divide by 0
-            Logger.error("Failed to count base price for offer");
-            return HttpResponse.appendErrorToOutput(result);
-        }
-
         // Preparations are done, create the offer
         const offer = RagfairController.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, RagfairController.mergeStackable(invItems), info.sellInOnePiece, requirementsPriceInRub);
+        const rootItem = offer.items[0];
+        const qualityMultiplier = ItemHelper.getItemQualityPrice(rootItem);
+        const offerPrice = RagfairServer.prices.dynamic[rootItem._tpl] * rootItem.upd.StackObjectsCount * qualityMultiplier;
+        let sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;
+        let itemStackCount = offer.items[0].upd.StackObjectsCount;
+        if (info.sellInOnePiece)
+        {
+            itemStackCount = 1;
+        }
 
         sellChance = RagfairController.calculateSellChance(sellChance, offerPrice / itemStackCount, requirementsPriceInRub);
         offer.sellResult = RagfairController.rollForSale(sellChance, info.sellInOnePiece ? 1 : itemStackCount);
-        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
-        result.ragFairOffers.push(offer);
-
-        // Remove items from inventory after creating offer
-        for (const itemToRemove of info.items)
-        {
-            InventoryController.removeItem(pmcData, itemToRemove, result, sessionID);
-        }
 
         // Subtract flea market fee from stash
         if (RagfairConfig.sell.fees)
@@ -793,6 +775,15 @@ class RagfairController
             {
                 return HttpResponse.appendErrorToOutput(result, "Transaction failed: Couldn't pay commission fee");
             }
+        }
+
+        SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
+        result.ragFairOffers.push(offer);
+
+        // Remove items from inventory after creating offer
+        for (const itemToRemove of info.items)
+        {
+            InventoryController.removeItem(pmcData, itemToRemove, result, sessionID);
         }
 
         return result;
@@ -927,15 +918,14 @@ class RagfairController
         return moneyAmount.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
     }
 
-    static completeOffer(sessionID, offer, offerId, boughtAmount)
+    static completeOffer(sessionID, offer, boughtAmount)
     {
-        const parent = offer.items.filter(offerItem => offerItem.parentId === "hideout");
-        const itemTpl = parent[0]._tpl;
+        const itemTpl = offer.items[0]._tpl;
         let itemsToSend = [];
 
         if (offer.sellInOnePiece || boughtAmount === offer.items[0].upd.StackObjectsCount)
         {
-            RagfairController.deleteOfferByOfferId(sessionID, offerId);
+            RagfairController.deleteOfferByOfferId(sessionID, offer._id);
         }
         else
         {
@@ -944,7 +934,7 @@ class RagfairController
 			rootItems.splice(0, 1);
 
 			let removeCount = boughtAmount;
-			let idsToRemove = [];
+            let idsToRemove = [];
 
 			while(removeCount > 0 && rootItems.length > 0)
 			{
@@ -955,14 +945,28 @@ class RagfairController
 					removeCount = 0;
 				} else {
 					removeCount -= lastItem.upd.StackObjectsCount;
-					idsToRemove = lastItem._id;
+					idsToRemove.push(lastItem._id);
 					rootItems.splice(rootItems.length - 1, 1);
 				}
-			}
+            }
+
+            let foundNewItems = true;
+            while (foundNewItems)
+            {
+                foundNewItems = false;
+                idsToRemove.forEach(id => {
+                    let newIds = offer.items.filter(i => !idsToRemove.includes(i._id) && idsToRemove.includes(i.parentId));
+                    if (newIds.length > 0)
+                    {
+                        foundNewItems = true;
+                        idsToRemove = [...idsToRemove, ...newIds];
+                    }
+                });
+            }
 
 			if (idsToRemove.length > 0)
 			{
-				offer.items = offer.items.filter(i => !idsToRemove.includes(i._id) && !idsToRemove.includes(i.parentId))
+				offer.items = offer.items.filter(i => !idsToRemove.includes(i._id));
 			}
         }
 
