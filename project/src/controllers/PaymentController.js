@@ -263,3 +263,5 @@ class PaymentController
         return output;
     }
 }
+
+module.exports = PaymentController;
