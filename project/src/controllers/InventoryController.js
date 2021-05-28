@@ -446,7 +446,7 @@ class InventoryController
                 baseItem.isPreset = true;
                 baseItem.item_id = presetItems[0]._id;
             }
-            else if (PlzRefactorMeHelper.isMoneyTpl(baseItem.item_id))
+            else if (PaymentController.isMoneyTpl(baseItem.item_id))
             {
                 itemLib.push({ _id: baseItem.item_id, _tpl: baseItem.item_id });
             }
@@ -903,7 +903,7 @@ class InventoryController
                 });
 
                 // fix currency StackObjectsCount when single stack
-                if (PlzRefactorMeHelper.isMoneyTpl(target._tpl))
+                if (PaymentController.isMoneyTpl(target._tpl))
                 {
                     target.upd = (target.upd || {});
                     if (!target.upd.StackObjectsCount)

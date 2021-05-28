@@ -53,7 +53,7 @@ class HideoutController
                 return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput());
             }
 
-            if (PlzRefactorMeHelper.isMoneyTpl(item.inventoryItem._tpl)
+            if (PaymentController.isMoneyTpl(item.inventoryItem._tpl)
                 && item.inventoryItem.upd
                 && item.inventoryItem.upd.StackObjectsCount
                 && item.inventoryItem.upd.StackObjectsCount > item.requestedItem.count)

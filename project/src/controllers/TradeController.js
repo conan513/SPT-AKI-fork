@@ -18,7 +18,7 @@ class TradeController
         };
         const callback = () =>
         {
-            if (!PlzRefactorMeHelper.payMoney(pmcData, body, sessionID))
+            if (!PaymentController.payMoney(pmcData, body, sessionID))
             {
                 Logger.error("no money found");
                 throw "Transaction failed";
@@ -74,7 +74,7 @@ class TradeController
         }
 
         // get money the item]
-        return PlzRefactorMeHelper.getMoney(pmcData, money, body, output, sessionID);
+        return PaymentController.getMoney(pmcData, money, body, output, sessionID);
     }
 
     // separate is that selling or buying

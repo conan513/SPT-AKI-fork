@@ -282,17 +282,17 @@ class RagfairController
             }
         }
 
-        if (info.removeBartering && !PlzRefactorMeHelper.isMoneyTpl(money))
+        if (info.removeBartering && !PaymentController.isMoneyTpl(money))
         {
             // don't include barter offers
             return false;
         }
 
-        if (info.currency > 0 && PlzRefactorMeHelper.isMoneyTpl(money))
+        if (info.currency > 0 && PaymentController.isMoneyTpl(money))
         {
             const currencies = ["all", "RUB", "USD", "EUR"];
 
-            if (PlzRefactorMeHelper.getCurrencyTag(money) !== currencies[info.currency])
+            if (PaymentController.getCurrencyTag(money) !== currencies[info.currency])
             {
                 // don't include item paid in wrong currency
                 return false;
@@ -707,9 +707,9 @@ class RagfairController
         {
             const requestedItemTpl = item._tpl;
 
-            if (PlzRefactorMeHelper.isMoneyTpl(requestedItemTpl))
+            if (PaymentController.isMoneyTpl(requestedItemTpl))
             {
-                requirementsPriceInRub += PlzRefactorMeHelper.inRUB(item.count, requestedItemTpl);
+                requirementsPriceInRub += PaymentController.inRUB(item.count, requestedItemTpl);
             }
             else
             {
@@ -765,13 +765,13 @@ class RagfairController
                 "Action": "TradingConfirm",
                 "scheme_items": [
                     {
-                        "id": PlzRefactorMeHelper.getCurrency("RUB"),
+                        "id": PaymentController.getCurrency("RUB"),
                         "count": Math.round(tax)
                     }
                 ]
             };
 
-            if (!PlzRefactorMeHelper.payMoney(pmcData, request, sessionID))
+            if (!PaymentController.payMoney(pmcData, request, sessionID))
             {
                 return HttpResponse.appendErrorToOutput(result, "Transaction failed: Couldn't pay commission fee");
             }
@@ -881,13 +881,13 @@ class RagfairController
                 "Action": "TradingConfirm",
                 "scheme_items": [
                     {
-                        "id": PlzRefactorMeHelper.getCurrency("RUB"),
+                        "id": PaymentController.getCurrency("RUB"),
                         "count": Math.round(tax)
                     }
                 ]
             };
 
-            if (!PlzRefactorMeHelper.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
+            if (!PaymentController.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
             {
                 return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Transaction failed: Couldn't pay commission fee");
             }

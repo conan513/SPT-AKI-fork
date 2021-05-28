@@ -35,7 +35,7 @@ class RepairController
                 "tid": body.tid
             };
 
-            if (!PlzRefactorMeHelper.payMoney(pmcData, options, sessionID))
+            if (!PaymentController.payMoney(pmcData, options, sessionID))
             {
                 Logger.error("no money found");
                 return "";

@@ -503,7 +503,7 @@ class QuestController
         {
             if (reward.type === "Item")
             {
-                if (PlzRefactorMeHelper.isMoneyTpl(reward.items[0]._tpl))
+                if (PaymentController.isMoneyTpl(reward.items[0]._tpl))
                 {
                     reward.items[0].upd.StackObjectsCount += Math.round(reward.items[0].upd.StackObjectsCount * moneyBoost / 100);
                 }
