@@ -332,7 +332,7 @@ class InsuranceController
         }
 
         // pay the item	to profile
-        if (!PlzRefactorMeHelper.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        if (!PaymentController.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
         {
             Logger.error("no money found");
             return "";

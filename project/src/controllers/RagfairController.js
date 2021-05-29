@@ -282,17 +282,17 @@ class RagfairController
             }
         }
 
-        if (info.removeBartering && !PlzRefactorMeHelper.isMoneyTpl(money))
+        if (info.removeBartering && !PaymentController.isMoneyTpl(money))
         {
             // don't include barter offers
             return false;
         }
 
-        if (info.currency > 0 && PlzRefactorMeHelper.isMoneyTpl(money))
+        if (info.currency > 0 && PaymentController.isMoneyTpl(money))
         {
             const currencies = ["all", "RUB", "USD", "EUR"];
 
-            if (PlzRefactorMeHelper.getCurrencyTag(money) !== currencies[info.currency])
+            if (PaymentController.getCurrencyTag(money) !== currencies[info.currency])
             {
                 // don't include item paid in wrong currency
                 return false;
@@ -540,7 +540,7 @@ class RagfairController
 
                     // Increase rating
                     SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.rating += RagfairConfig.sell.reputation.gain * offer.summaryCost / totalItemsCount * boughtAmount;
-					SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.isRatingGrowing = true;
+                    SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.isRatingGrowing = true;
 
                     RagfairController.completeOffer(sessionID, offer, boughtAmount);
                     offer.sellResult.splice(0, 1);
@@ -619,12 +619,12 @@ class RagfairController
     static mergeStackable(items)
     {
         let list = [];
-		let rootItem = null;
+        let rootItem = null;
 
         for (let item of items)
         {
             item = ItemHelper.fixItemStackCount(item);
-			let isChild = items.find(it => it._id === item.parentId);
+            let isChild = items.find(it => it._id === item.parentId);
 
             if (!isChild)
             {
@@ -632,11 +632,15 @@ class RagfairController
                 {
                     rootItem = JsonUtil.clone(item);
                     rootItem.upd.OriginalStackObjectsCount = rootItem.upd.StackObjectsCount;
-                } else {
+                }
+                else
+                {
                     rootItem.upd.StackObjectsCount += item.upd.StackObjectsCount;
                     list.push(item);
                 }
-            } else {
+            }
+            else
+            {
                 list.push(item);
             }
         }
@@ -647,8 +651,8 @@ class RagfairController
     static calculateSellChance(baseChance, offerPrice, requirementsPriceInRub)
     {
         const multiplier = (requirementsPriceInRub > offerPrice) ? RagfairConfig.sell.chance.overprices
-                         : (requirementsPriceInRub < offerPrice) ? RagfairConfig.sell.chance.underpriced
-                         : 1;
+            : (requirementsPriceInRub < offerPrice) ? RagfairConfig.sell.chance.underpriced
+                : 1;
         return Math.round(baseChance * (offerPrice / requirementsPriceInRub * multiplier));
     }
 
@@ -707,9 +711,9 @@ class RagfairController
         {
             const requestedItemTpl = item._tpl;
 
-            if (PlzRefactorMeHelper.isMoneyTpl(requestedItemTpl))
+            if (PaymentController.isMoneyTpl(requestedItemTpl))
             {
-                requirementsPriceInRub += PlzRefactorMeHelper.inRUB(item.count, requestedItemTpl);
+                requirementsPriceInRub += PaymentController.inRUB(item.count, requestedItemTpl);
             }
             else
             {
@@ -765,13 +769,13 @@ class RagfairController
                 "Action": "TradingConfirm",
                 "scheme_items": [
                     {
-                        "id": PlzRefactorMeHelper.getCurrency("RUB"),
+                        "id": PaymentController.getCurrency("RUB"),
                         "count": Math.round(tax)
                     }
                 ]
             };
 
-            if (!PlzRefactorMeHelper.payMoney(pmcData, request, sessionID))
+            if (!PaymentController.payMoney(pmcData, request, sessionID))
             {
                 return HttpResponse.appendErrorToOutput(result, "Transaction failed: Couldn't pay commission fee");
             }
@@ -881,13 +885,13 @@ class RagfairController
                 "Action": "TradingConfirm",
                 "scheme_items": [
                     {
-                        "id": PlzRefactorMeHelper.getCurrency("RUB"),
+                        "id": PaymentController.getCurrency("RUB"),
                         "count": Math.round(tax)
                     }
                 ]
             };
 
-            if (!PlzRefactorMeHelper.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
+            if (!PaymentController.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
             {
                 return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Transaction failed: Couldn't pay commission fee");
             }
@@ -929,28 +933,28 @@ class RagfairController
         }
         else
         {
-			offer.items[0].upd.StackObjectsCount -= boughtAmount;
-			let rootItems = offer.items.filter(i => i.parentId === "hideout");
-			rootItems.splice(0, 1);
+            offer.items[0].upd.StackObjectsCount -= boughtAmount;
+            let rootItems = offer.items.filter(i => i.parentId === "hideout");
+            rootItems.splice(0, 1);
 
-			let removeCount = boughtAmount;
+            let removeCount = boughtAmount;
             let idsToRemove = [];
 
-			while(removeCount > 0 && rootItems.length > 0)
-			{
-				let lastItem = rootItems[rootItems.length - 1];
-                
-				if (lastItem.upd.StackObjectsCount > removeCount)
-				{
-					lastItem.upd.StackObjectsCount -= removeCount;
-					removeCount = 0;
-				}
+            while (removeCount > 0 && rootItems.length > 0)
+            {
+                let lastItem = rootItems[rootItems.length - 1];
+
+                if (lastItem.upd.StackObjectsCount > removeCount)
+                {
+                    lastItem.upd.StackObjectsCount -= removeCount;
+                    removeCount = 0;
+                }
                 else
                 {
-					removeCount -= lastItem.upd.StackObjectsCount;
-					idsToRemove.push(lastItem._id);
-					rootItems.splice(rootItems.length - 1, 1);
-				}
+                    removeCount -= lastItem.upd.StackObjectsCount;
+                    idsToRemove.push(lastItem._id);
+                    rootItems.splice(rootItems.length - 1, 1);
+                }
             }
 
             let foundNewItems = true;
@@ -971,10 +975,10 @@ class RagfairController
                 }
             }
 
-			if (idsToRemove.length > 0)
-			{
-				offer.items = offer.items.filter(i => !idsToRemove.includes(i._id));
-			}
+            if (idsToRemove.length > 0)
+            {
+                offer.items = offer.items.filter(i => !idsToRemove.includes(i._id));
+            }
         }
 
         // assemble the payment items

@@ -95,6 +95,7 @@ globalThis.TradeController = require("./controllers/TradeController.js");
 globalThis.TraderController = require("./controllers/TraderController.js");
 globalThis.WeatherController = require("./controllers/WeatherController.js");
 globalThis.WishlistController = require("./controllers/WishlistController.js");
+globalThis.PaymentController = require("./controllers/PaymentController");
 
 // servers
 globalThis.DatabaseServer = require("./servers/DatabaseServer.js");

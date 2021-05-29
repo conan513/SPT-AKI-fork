@@ -148,7 +148,7 @@ class HealthController
             "scheme_items": info.items
         };
 
-        PlzRefactorMeHelper.payMoney(pmcData, body, sessionID);
+        PaymentController.payMoney(pmcData, body, sessionID);
 
         let BodyParts = info.difference.BodyParts;
         let healthInfo = { "IsAlive": true, "Health": {} };

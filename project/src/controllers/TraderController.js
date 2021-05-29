@@ -289,7 +289,7 @@ class TraderController
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
         const trader = DatabaseServer.tables.traders[traderID].base;
-        const currency = PlzRefactorMeHelper.getCurrency(trader.currency);
+        const currency = PaymentController.getCurrency(trader.currency);
         let output = {};
 
         // get sellable items
@@ -334,7 +334,7 @@ class TraderController
                 price -= (trader.discount / 100) * price;
             }
 
-            price = PlzRefactorMeHelper.fromRUB(price, currency);
+            price = PaymentController.fromRUB(price, currency);
             price = (price > 0) ? price : 1;
             output[item._id] = [[{ "count": price.toFixed(0), "_tpl": currency }]];
         }

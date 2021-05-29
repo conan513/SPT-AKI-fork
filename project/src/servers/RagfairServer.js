@@ -380,7 +380,7 @@ class RagfairServer
 
         for (const it of items)
         {
-            price += PlzRefactorMeHelper.fromRUB(RagfairServer.prices.dynamic[it._tpl], currency) * ItemHelper.getItemQualityPrice(it);
+            price += PaymentController.fromRUB(RagfairServer.prices.dynamic[it._tpl], currency) * ItemHelper.getItemQualityPrice(it);
         }
 
         price = Math.round(price * RandomUtil.getFloat(RagfairConfig.dynamic.price.min, RagfairConfig.dynamic.price.max));
