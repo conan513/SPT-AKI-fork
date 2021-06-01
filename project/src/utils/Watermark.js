@@ -31,7 +31,9 @@ class Watermark
             const text = [
                 "",
                 "NO SUPPORT FOR THIS BUILD",
-                "USE AT YOUR OWN RISK"
+                "USE AT YOUR OWN RISK",
+                "当前版本无可用技术支持",
+                "请自行承担使用风险"
             ];
 
             Watermark.text = [...Watermark.text, ...text];
