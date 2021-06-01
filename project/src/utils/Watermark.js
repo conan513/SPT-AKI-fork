@@ -6,7 +6,14 @@ class Watermark
 {
     static project = "SPT-AKI";
     static version = "1.4.0";
-    static url = "https://www.guilded.gg/senkospub";
+    static description = [
+        "https://www.guilded.gg/senkospub",
+        "https://sns.oddba.ch",
+        "",
+        "This mod is free of charge,",
+        "commercial use is prohibited.",
+        "本mod为免费Mod，禁止商用.",
+    ];
     static text = [];
 
     static initialize()
@@ -16,10 +23,8 @@ class Watermark
             Watermark.version = `${Watermark.version}-BLEEDINGEDGE`;
         }
 
-        Watermark.text = [
-            `${Watermark.project} ${Watermark.version}`,
-            `${Watermark.url}`,
-        ];
+        Watermark.text = [`${Watermark.project} ${Watermark.version}`];
+        Watermark.text = [...Watermark.text, ...Watermark.description];
 
         if (globalThis.G_DEBUG_CONFIGURATION)
         {
