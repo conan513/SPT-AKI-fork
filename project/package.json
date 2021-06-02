@@ -31,7 +31,7 @@
     "dependencies": {
         "node-forge": "0.10.0",
         "node-powershell": "4.0.0",
-        "ws": "7.4.5"
+        "ws": "^7.4.6"
     },
     "devDependencies": {
         "@babel/core": "7.14.2",
