@@ -6,8 +6,8 @@ class ModLoader
 {
     static basepath = "";
     static imported = {};
-    static bundles = {};
     static onLoad = {};
+    static onLoadAfter = {};
 
     static load()
     {
@@ -82,50 +82,6 @@ class ModLoader
         return `${ModLoader.basepath}${mod}/`;
     }
 
-    static getBundles(local)
-    {
-        const result = [];
-
-        for (const bundle in ModLoader.bundles)
-        {
-            result.push(ModLoader.getBundle(bundle, local));
-        }
-
-        return result;
-    }
-
-    static getBundle(key, local)
-    {
-        const bundle = JsonUtil.clone(ModLoader.bundles[key]);
-
-        if (local)
-        {
-            bundle.path = bundle.filepath;
-        }
-
-        delete bundle.filepath;
-        return bundle;
-    }
-
-    static addBundles(modpath)
-    {
-        const manifest = JsonUtil.deserialize(VFS.readFile(`${modpath}bundles.json`)).manifest;
-
-        for (const bundleInfo of manifest)
-        {
-            const bundle = {
-                "key": bundleInfo.key,
-                "path": `${HttpServer.getBackendUrl()}/files/bundle/${bundleInfo.key}`,
-                "filepath" : ("path" in bundleInfo)
-                    ? bundleInfo.path
-                    : `${process.cwd()}/${modpath}bundles/${bundleInfo.key}`.replace(/\\/g, "/"),
-                "dependencyKeys": ("dependencyKeys" in bundleInfo) ? bundleInfo.dependencyKeys : []
-            };
-
-            ModLoader.bundles[bundleInfo.key] = bundle;
-        }
-    }
-
     static addMod(mod)
     {
         const modpath = ModLoader.getModPath(mod);
@@ -136,7 +92,7 @@ class ModLoader
         // add mod bundles
         if (VFS.exists(`${modpath}bundles.json`))
         {
-            ModLoader.addBundles(modpath);
+            BundleLoader.addBundles(modpath);
         }
     }
 

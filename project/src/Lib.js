@@ -4,12 +4,15 @@ globalThis.HashUtil = require("./utils/HashUtil.js");
 globalThis.HttpResponse = require("./utils/HttpResponse.js");
 globalThis.JsonUtil = require("./utils/JsonUtil.js");
 globalThis.Logger = require("./utils/Logger.js");
-globalThis.ModLoader = require("./utils/ModLoader.js");
 globalThis.RandomUtil = require("./utils/RandomUtil.js");
 globalThis.VFS = require("./utils/VFS.js");
 globalThis.TimeUtil = require("./utils/TimeUtil.js");
 
-// Helpers
+// loaders
+globalThis.BundleLoader = require("./loaders/BundleLoader.js");
+globalThis.ModLoader = require("./loaders/ModLoader.js");
+
+// helpers
 globalThis.ContainerHelper = require("./Helpers/ContainerHelper.js");
 globalThis.InventoryHelper = require("./Helpers/InventoryHelper.js");
 globalThis.ItemHelper = require("./Helpers/ItemHelper.js");
@@ -38,6 +41,7 @@ globalThis.WeatherConfig = require("./configs/Weatherconfig.js");
 
 // callbacks
 globalThis.BotCallbacks = require("./callbacks/BotCallbacks.js");
+globalThis.BundleCallbacks = require("./callbacks/BundleCallbacks.js");
 globalThis.CertController = require("./controllers/CertController.js");
 globalThis.CertCallbacks = require("./callbacks/CertCallbacks.js");
 globalThis.CustomizationCallbacks = require("./callbacks/CustomizationCallbacks.js");
