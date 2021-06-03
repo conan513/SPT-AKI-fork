@@ -32,7 +32,6 @@ class PaymentController
         }
     }
 
-
     /**
     * Gets currency TAG from TPL
     * @param {string} currency

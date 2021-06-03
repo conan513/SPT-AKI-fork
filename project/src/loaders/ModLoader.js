@@ -56,7 +56,17 @@ class ModLoader
     static executeMods()
     {
         // sort mods load order
-        const source = Object.keys(ModLoader.getLoadOrder(ModLoader.imported));
+        let source = [];
+
+        // if loadorder.json exists: load it, otherwise generate load order
+        if (VFS.exists(`${ModLoader.basepath}loadorder.json`))
+        {
+            source = JsonUtil.deserialize(VFS.readFile(`${ModLoader.basepath}loadorder.json`));
+        }
+        else
+        {
+            source = Object.keys(ModLoader.getLoadOrder(ModLoader.imported));
+        }
 
         // import mod classes
         for (const mod of source)
