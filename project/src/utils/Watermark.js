@@ -5,7 +5,7 @@ require("../Lib.js");
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "1.4.0";
+    static version = "1.4.1";
     static text = [];
 
     static initialize()
