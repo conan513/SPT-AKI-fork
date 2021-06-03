@@ -240,6 +240,9 @@ class HttpServer
             HttpServer.handleRequest(req, res);
         });
 
+        HttpConfig.ip = DatabaseServer.tables.server.ip;
+        HttpConfig.port = DatabaseServer.tables.server.port;
+
         httpss.listen(HttpConfig.port, HttpConfig.ip, () =>
         {
             Logger.success(`Started webserver at ${HttpServer.getBackendUrl()}`);
@@ -265,7 +268,7 @@ class HttpServer
 
         wss.addListener("listening", () =>
         {
-            Logger.success("Started websocket");
+            Logger.success(`Started websocket at ${HttpServer.getWebsocketUrl()}`);
         });
 
         wss.addListener("connection", HttpServer.wsOnConnection.bind(this));

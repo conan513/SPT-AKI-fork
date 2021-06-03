@@ -202,7 +202,7 @@ module.exports = {
         "aki": MatchCallbacks.getMetrics
     },
     "/singleplayer/bundles": {
-        "aki": ModCallbacks.getBundles
+        "aki": BundleCallbacks.getBundles
     },
     "/client/notifier/channel/create": {
         "aki": NotifierCallbacks.createNotifierChannel

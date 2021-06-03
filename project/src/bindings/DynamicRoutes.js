@@ -32,7 +32,7 @@ module.exports = {
         "aki-loot": LocationCallbacks.getLocation
     },
     ".bundle": {
-        "aki": ModCallbacks.getBundle
+        "aki": BundleCallbacks.getBundle
     },
     "/client/trading/api/getUserAssortPrice/trader/": {
         "aki": TraderCallbacks.getProfilePurchases

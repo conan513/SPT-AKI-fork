@@ -8,7 +8,7 @@ class LauncherCallbacks
     {
         return HttpResponse.noBody({
             "backendUrl": HttpServer.getBackendUrl(),
-            "name": HttpConfig.name,
+            "name": "SPT-AKI Server",
             "editions": Object.keys(DatabaseServer.tables.templates.profiles)
         });
     }
