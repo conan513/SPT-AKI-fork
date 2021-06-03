@@ -12,14 +12,18 @@ class Watermark
     {
         const description = [
             "https://www.guilded.gg/senkospub",
+            "https://sns.oddba.cn",
             "",
             "This work is free of charge",
-            "Commercial use is prohibited"
+            "Commercial use is prohibited",
+            "本作品完全免费，禁止商用"
         ];
         const warning = [
             "",
             "NO SUPPORT FOR THIS BUILD",
-            "USE AT YOUR OWN RISK"
+            "USE AT YOUR OWN RISK",
+            "当前版本无可用技术支持",
+            "请自行承担使用风险"
         ];
 
         if (globalThis.G_DEBUG_CONFIGURATION)
@@ -54,7 +58,7 @@ class Watermark
         let result = [];
 
         // calculate size
-        const longestLength = Watermark.text.reduce((a, b) =>
+        let longestLength = Watermark.text.reduce((a, b) =>
         {
             return a.length > b.length ? a : b;
         }).length;
@@ -70,9 +74,9 @@ class Watermark
         // get watermark to draw
         result.push(`┌─${line}─┐`);
 
-        for (const text of Watermark.text)
+        for (let text of Watermark.text)
         {
-            const spacingSize = longestLength - text.length;
+            let spacingSize = longestLength - Watermark.realLength(text);
             let spacingText = text;
 
             for (let i = 0; i < spacingSize; ++i)
@@ -86,10 +90,16 @@ class Watermark
         result.push(`└─${line}─┘`);
 
         // draw the watermark
-        for (const text of result)
+        for (let text of result)
         {
             Logger.log(text, "yellow");
         }
+    }
+
+    /** Calculate text length */
+    static realLength(str)
+    {
+        return str.replace(/[^\x00-\xff]/g,"**").length;
     }
 }
 
