@@ -83,7 +83,7 @@ class ModLoader
             ModLoader.onLoad[mod]();
         }
 
-        for (const mod in ModLoader.onLoad)
+        for (const mod in ModLoader.onPostLoad)
         {
             ModLoader.onPostLoad[mod]();
         }
