@@ -9,7 +9,7 @@ class BundleCallbacks
         Logger.info(`[BUNDLE]: ${req.url}`);
 
         const key = req.url.split("/bundle/")[1];
-        const bundle = ModLoader.getBundle(key, true);
+        const bundle = BundleLoader.getBundle(key, true);
 
         // send bundle
         HttpServer.sendFile(resp, bundle.path);
@@ -18,7 +18,7 @@ class BundleCallbacks
     static getBundles(url, info, sessionID)
     {
         const local = (HttpConfig.ip === "127.0.0.1" || HttpConfig.ip === "localhost");
-        return HttpResponse.noBody(ModLoader.getBundles(local));
+        return HttpResponse.noBody(BundleLoader.getBundles(local));
     }
 
     static getBundle(url, info, sessionID)
