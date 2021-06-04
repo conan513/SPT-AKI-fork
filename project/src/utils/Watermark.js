@@ -4,59 +4,49 @@ require("../Lib.js");
 
 class WatermarkLocale
 {
-    static osLocale = require("os-locale").sync();
-    static en = {
-        "description": [
-            "https://www.guilded.gg/senkospub",
-            "",
-            "This work is free of charge",
-            "Commercial use is prohibited"
-        ],
-        "warning": [
-            "",
-            "NO SUPPORT FOR THIS BUILD",
-            "USE AT YOUR OWN RISK"
-        ]
+    static locales = {
+        "en-US": {
+            "description": [
+                "https://www.guilded.gg/senkospub",
+                "",
+                "This work is free of charge",
+                "Commercial use is prohibited"
+            ],
+            "warning": [
+                "",
+                "NO SUPPORT FOR THIS BUILD",
+                "USE AT YOUR OWN RISK"
+            ]
+        },
+        "zh-CN": {
+            "description": [
+                "https://sns.oddba.cn",
+                "",
+                "本作品完全免费，禁止用于商业用途"
+            ],
+            "warning": [
+                "",
+                "当前版本无可用技术支持",
+                "请自行承担使用风险"
+            ]
+        }
     };
-    static cn = {
-        "description": [
-            "https://sns.oddba.cn",
-            "",
-            "本作品完全免费，禁止用于商业用途"
-        ],
-        "warning": [
-            "",
-            "当前版本无可用技术支持",
-            "请自行承担使用风险"
-        ]
-    };
+
+    static getLocale()
+    {
+        return require("os-locale").sync() || "en-US";
+    }
 
     static getDescription()
     {
-        switch (WatermarkLocale.osLocale)
-        {
-            case "zh-CN":
-                WatermarkLocale.cn.description;
-                break;
-
-            case "en-US":
-            default:
-                return WatermarkLocale.en.description;
-        }
+        const locale = WatermarkLocale.getLocale();
+        return WatermarkLocale.locales[locale].description;
     }
 
     static getWarning()
     {
-        switch(WatermarkLocale.osLocale)
-        {
-            case "zh-CN":
-                WatermarkLocale.cn.warning;
-                break;
-
-            case "en-US":
-            default:
-                return WatermarkLocale.en.warning;
-        }
+        const locale = WatermarkLocale.getLocale();
+        return WatermarkLocale.locales[locale].warning;
     }
 }
 
