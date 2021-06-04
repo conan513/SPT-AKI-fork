@@ -20,7 +20,6 @@ class WatermarkLocale
     };
     static cn = {
         "description": [
-            "https://www.guilded.gg/senkospub",
             "https://sns.oddba.cn",
             "",
             "本作品完全免费，禁止用于商业用途"
@@ -34,7 +33,7 @@ class WatermarkLocale
 
     static getDescription()
     {
-        switch(WatermarkLocale.osLocale)
+        switch (WatermarkLocale.osLocale)
         {
             case "zh-CN":
                 WatermarkLocale.cn.description;
