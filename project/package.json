@@ -1,6 +1,6 @@
 {
     "name": "aki-server",
-    "version": "1.4.0",
+    "version": "1.4.3",
     "main": "src/ide/ReleaseEntry.js",
     "author": "SPT-AKI",
     "contributors": [
@@ -14,7 +14,7 @@
         "Emperor06"
     ],
     "license": "NCSA",
-    "repository": "https://dev.offline-tarkov.com/SPT-AKI/Server",
+    "repository": "https://dev.sp-tarkov.com/SPT-AKI/Server",
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "lint": "eslint --fix ./**/*.js",
