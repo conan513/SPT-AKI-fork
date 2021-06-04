@@ -2,6 +2,65 @@
 
 require("../Lib.js");
 
+class WatermarkLocale
+{
+    static osLocale = require("os-locale").sync();
+    static en = {
+        "description": [
+            "https://www.guilded.gg/senkospub",
+            "",
+            "This work is free of charge",
+            "Commercial use is prohibited"
+        ],
+        "warning": [
+            "",
+            "NO SUPPORT FOR THIS BUILD",
+            "USE AT YOUR OWN RISK"
+        ]
+    };
+    static cn = {
+        "description": [
+            "https://www.guilded.gg/senkospub",
+            "https://sns.oddba.cn",
+            "",
+            "本作品完全免费，禁止用于商业用途"
+        ],
+        "warning": [
+            "",
+            "当前版本无可用技术支持",
+            "请自行承担使用风险"
+        ]
+    };
+
+    static getDescription()
+    {
+        switch(WatermarkLocale.osLocale)
+        {
+            case "zh-CN":
+                WatermarkLocale.cn.description;
+                break;
+
+            case "en-US":
+            default:
+                return WatermarkLocale.en.description;
+        }
+    }
+
+    static getWarning()
+    {
+        switch(WatermarkLocale.osLocale)
+        {
+            case "zh-CN":
+                WatermarkLocale.cn.warning;
+                break;
+
+            case "en-US":
+            default:
+                return WatermarkLocale.en.warning;
+        }
+    }
+}
+
 class Watermark
 {
     static project = "SPT-AKI";
@@ -10,50 +69,8 @@ class Watermark
 
     static initialize()
     {
-        const osLocale = require('os-locale').sync();
-        let description;
-        let warning;
-        switch(osLocale){
-            case "en-US":
-                description = [
-                    "https://www.guilded.gg/senkospub",
-                    "",
-                    "This work is free of charge",
-                    "Commercial use is prohibited"
-                ];
-                warning = [
-                    "",
-                    "NO SUPPORT FOR THIS BUILD",
-                    "USE AT YOUR OWN RISK"
-                ];
-                break;
-            case "zh-CN":
-                description = [
-                    "https://www.guilded.gg/senkospub",
-                    "https://sns.oddba.cn",
-                    "",
-                    "本作品完全免费，禁止用于商业用途"
-                ];
-                warning = [
-                    "",
-                    "当前版本无可用技术支持",
-                    "请自行承担使用风险"
-                ];
-                break;
-            default:
-                description = [
-                    "https://www.guilded.gg/senkospub",
-                    "",
-                    "This work is free of charge",
-                    "Commercial use is prohibited"
-                ];
-                warning = [
-                    "",
-                    "NO SUPPORT FOR THIS BUILD",
-                    "USE AT YOUR OWN RISK"
-                ];
-                break;
-        }
+        const description = WatermarkLocale.getDescription();
+        const warning = WatermarkLocale.getWarning();
 
         if (globalThis.G_DEBUG_CONFIGURATION)
         {
@@ -126,17 +143,24 @@ class Watermark
     }
 
     /** Caculate text length */
-    static textLength(str){
-        let tmpStrArr = str.split("");
-        let strLength = 0;
-        for (let char of tmpStrArr)
+    static textLength(s)
+    {
+        const arr = s.split("");
+        let result = 0;
+
+        for (const char of arr)
         {
             if (encodeURI(char).split(/%..|./).length - 1 > 1)
-                strLength += 2;
+            {
+                result += 2;
+            }
             else
-                strLength++;
+            {
+                result++;
+            }
         }
-        return strLength;
+
+        return result;
     }
 }
 
