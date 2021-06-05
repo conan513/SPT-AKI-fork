@@ -14,6 +14,7 @@ globalThis.ContainerHelper = require("./Helpers/ContainerHelper.js");
 globalThis.InventoryHelper = require("./Helpers/InventoryHelper.js");
 globalThis.ItemHelper = require("./Helpers/ItemHelper.js");
 globalThis.QuestHelper = require("./Helpers/QuestHelper.js");
+globalThis.UtilityHelper = require("./helpers/UtilityHelper.js");
 
 // generators
 globalThis.BotGenerator = require("./generators/BotGenerator.js");
