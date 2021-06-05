@@ -184,7 +184,7 @@ class RagfairController
 
             if (result.length)
             {
-                result = PlzRefactorMeHelper.arrayIntersect(result, handbook);
+                result = UtilityHelper.arrayIntersect(result, handbook);
             }
             else
             {

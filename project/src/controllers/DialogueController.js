@@ -99,7 +99,7 @@ class DialogueController
 
             items.stash = stashId;
             items.data = [];
-            rewards = PlzRefactorMeHelper.replaceIDs(null, rewards);
+            rewards = ItemHelper.replaceIDs(null, rewards);
 
             for (let reward of rewards)
             {

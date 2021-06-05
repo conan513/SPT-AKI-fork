@@ -60,7 +60,7 @@ class TraderController
         let pmcData = ProfileController.getPmcProfile(sessionID);
 
         // level up player
-        pmcData.Info.Level = PlzRefactorMeHelper.calculateLevel(pmcData);
+        pmcData.Info.Level = PlayerController.calculateLevel(pmcData);
 
         // level up traders
         let targetLevel = 0;
@@ -215,7 +215,7 @@ class TraderController
                 result.items.push(toPush);
                 result.barter_scheme[toPush._id] = assort.barter_scheme[itemID];
                 result.loyal_level_items[toPush._id] = assort.loyal_level_items[itemID];
-                
+
                 continue;
             }
 
