@@ -509,7 +509,7 @@ class InventoryController
         }
 
         // Find an empty slot in stash for each of the items being added
-        let StashFS_2D = PlzRefactorMeHelper.getPlayerStashSlotMap(pmcData, sessionID);
+        let StashFS_2D = PlayerController.getStashSlotMap(pmcData, sessionID);
         for (let itemToAdd of itemsToAdd)
         {
             let itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);

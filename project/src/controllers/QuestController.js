@@ -147,7 +147,7 @@ class QuestController
             }
 
             for (let i = 0; i < itemCount; i++)
-                rewardItems = rewardItems.concat(PlzRefactorMeHelper.replaceIDs(null, items));
+                rewardItems = rewardItems.concat(ItemHelper.replaceIDs(null, items));
         }
 
         return rewardItems;

@@ -1,5 +1,7 @@
 "use strict";
 
+const UtilityHelper = require("../helpers/UtilityHelper.js");
+
 require("../Lib.js");
 
 class RagfairController
@@ -184,7 +186,7 @@ class RagfairController
 
             if (result.length)
             {
-                result = PlzRefactorMeHelper.arrayIntersect(result, handbook);
+                result = UtilityHelper.arrayIntersect(result, handbook);
             }
             else
             {

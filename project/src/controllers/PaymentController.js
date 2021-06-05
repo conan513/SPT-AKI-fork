@@ -122,7 +122,7 @@ class PaymentController
         }
 
         // find all items with currency _tpl id
-        const moneyItems = PlzRefactorMeHelper.findBarterItems("tpl", pmcData, currencyTpl);
+        const moneyItems = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
 
         // prepare a price for barter
         let barterPrice = 0;
