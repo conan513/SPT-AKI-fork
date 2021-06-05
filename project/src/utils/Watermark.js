@@ -34,7 +34,8 @@ class WatermarkLocale
 
     static getLocale()
     {
-        return require("os-locale").sync() || "en-US";
+        const locale = require("os-locale").sync();
+        return (!Watermark.locales[locale]) ? "en-US" : locale;
     }
 
     static getDescription()
