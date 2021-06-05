@@ -204,6 +204,149 @@ class ItemHelper
 
         return stacks;
     }
+
+    /**
+     * Find Barter items in the inventory
+     * @param {string} by
+     * @param {Object} pmcData
+     * @param {string} barter_itemID
+     * @returns Array
+     */
+    static findBarterItems(by, pmcData, barter_itemID)
+    { // find required items to take after buying (handles multiple items)
+        const barterIDs = typeof barter_itemID === "string" ? [barter_itemID] : barter_itemID;
+        let itemsArray = [];
+
+        for (const barterID of barterIDs)
+        {
+            let mapResult = pmcData.Inventory.items.filter(item =>
+            {
+                return by === "tpl" ? (item._tpl === barterID) : (item._id === barterID);
+            });
+
+            itemsArray = Object.assign(itemsArray, mapResult);
+        }
+
+        return itemsArray;
+    }
+
+    /**
+     * @param {Object} pmcData
+     * @param {Array} items
+     * @param {Object} fastPanel
+     * @returns Array
+     */
+    static replaceIDs(pmcData, items, fastPanel = null)
+    {
+        // replace bsg shit long ID with proper one
+        let string_inventory = JsonUtil.serialize(items);
+
+        for (let item of items)
+        {
+            let insuredItem = false;
+
+            if (pmcData !== null)
+            {
+                // insured items shouldn't be renamed
+                // only works for pmcs.
+                for (let insurance of pmcData.InsuredItems)
+                {
+                    if (insurance.itemId === item._id)
+                    {
+                        insuredItem = true;
+                    }
+                }
+
+                // do not replace important ID's
+                if (item._id === pmcData.Inventory.equipment
+                    || item._id === pmcData.Inventory.questRaidItems
+                    || item._id === pmcData.Inventory.questStashItems
+                    || insuredItem)
+                {
+                    continue;
+                }
+            }
+
+            // replace id
+            let old_id = item._id;
+            let new_id = HashUtil.generate();
+
+            string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
+            // Also replace in quick slot if the old ID exists.
+            if (fastPanel !== null)
+            {
+                for (let itemSlot in fastPanel)
+                {
+                    if (fastPanel[itemSlot] === old_id)
+                    {
+                        fastPanel[itemSlot] = fastPanel[itemSlot].replace(new RegExp(old_id, "g"), new_id);
+                    }
+                }
+            }
+        }
+
+        items = JsonUtil.deserialize(string_inventory);
+
+        // fix duplicate id's
+        let dupes = {};
+        let newParents = {};
+        let childrenMapping = {};
+        let oldToNewIds = {};
+
+        // Finding duplicate IDs involves scanning the item three times.
+        // First scan - Check which ids are duplicated.
+        // Second scan - Map parents to items.
+        // Third scan - Resolve IDs.
+        for (let item of items)
+        {
+            dupes[item._id] = (dupes[item._id] || 0) + 1;
+        }
+
+        for (let item of items)
+        {
+            // register the parents
+            if (dupes[item._id] > 1)
+            {
+                let newId = HashUtil.generate();
+
+                newParents[item.parentId] = newParents[item.parentId] || [];
+                newParents[item.parentId].push(item);
+                oldToNewIds[item._id] = oldToNewIds[item._id] || [];
+                oldToNewIds[item._id].push(newId);
+            }
+        }
+
+        for (let item of items)
+        {
+            if (dupes[item._id] > 1)
+            {
+                let oldId = item._id;
+                let newId = oldToNewIds[oldId].splice(0, 1)[0];
+                item._id = newId;
+
+                // Extract one of the children that's also duplicated.
+                if (oldId in newParents && newParents[oldId].length > 0)
+                {
+                    childrenMapping[newId] = {};
+                    for (let childIndex in newParents[oldId])
+                    {
+                        // Make sure we haven't already assigned another duplicate child of
+                        // same slot and location to this parent.
+                        let childId = ItemHelper.getChildId(newParents[oldId][childIndex]);
+
+                        if (!(childId in childrenMapping[newId]))
+                        {
+                            childrenMapping[newId][childId] = 1;
+                            newParents[oldId][childIndex].parentId = newId;
+                            newParents[oldId].splice(childIndex, 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        return items;
+    }
 }
 
 module.exports = ItemHelper;
