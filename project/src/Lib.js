@@ -13,7 +13,6 @@ globalThis.TimeUtil = require("./utils/TimeUtil.js");
 globalThis.ContainerHelper = require("./Helpers/ContainerHelper.js");
 globalThis.InventoryHelper = require("./Helpers/InventoryHelper.js");
 globalThis.ItemHelper = require("./Helpers/ItemHelper.js");
-globalThis.PlzRefactorMeHelper = require("./Helpers/PlzRefactorMeHelper.js");
 globalThis.QuestHelper = require("./Helpers/QuestHelper.js");
 
 // generators
@@ -96,6 +95,7 @@ globalThis.TraderController = require("./controllers/TraderController.js");
 globalThis.WeatherController = require("./controllers/WeatherController.js");
 globalThis.WishlistController = require("./controllers/WishlistController.js");
 globalThis.PaymentController = require("./controllers/PaymentController");
+globalThis.PlayerController = require("./controllers/PlayerController.js");
 
 // servers
 globalThis.DatabaseServer = require("./servers/DatabaseServer.js");
