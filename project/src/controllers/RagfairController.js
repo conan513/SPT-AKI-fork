@@ -1,7 +1,5 @@
 "use strict";
 
-const UtilityHelper = require("../helpers/UtilityHelper.js");
-
 require("../Lib.js");
 
 class RagfairController
