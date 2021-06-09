@@ -4,6 +4,8 @@ require("../Lib.js");
 
 const fs = require("fs");
 const path = require("path");
+const atomicWrite = require("write-file-atomic");
+const lockfile = require("proper-lockfile");
 
 class VFS
 {
@@ -20,6 +22,16 @@ class VFS
     static copyFile(filepath, target)
     {
         fs.copyFileSync(filepath, target);
+    }
+
+    static lockFileSync(filepath)
+    {
+        lockfile.lockSync(filepath);
+    }
+
+    static unlockFileSync(filepath)
+    {
+        lockfile.unlockSync(filepath);
     }
 
     static createDir(filepath)
@@ -53,7 +65,7 @@ class VFS
         return fs.readFileSync(filepath);
     }
 
-    static writeFile(filepath, data = "", append = false)
+    static writeFile(filepath, data = "", append = false, atomic = true)
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
 
@@ -62,7 +74,34 @@ class VFS
             VFS.createDir(filepath);
         }
 
-        fs.writeFileSync(filepath, data, options);
+        // We should synchronously lock our file, since we want to wait for our write to finish before releasing it.
+        lockfile.lockSync(filepath);
+
+        if (atomic)
+        {
+            (async() =>
+            {
+                try
+                {
+                    await atomicWrite(filepath, data, options);
+                }
+                catch (e)
+                {
+                    Logger.error(`There was an issue writing to the file ${filepath}. ${e}`);
+                    lockfile.unlockSync(filepath);
+                }
+            })();
+        }
+        else
+        {
+            fs.writeFileSync(filepath, data, options);
+        }
+
+        // We check the lock before releasing it to prevent errors when the file is already unlocked.
+        if (lockfile.checkSync(filepath))
+        {
+            lockfile.unlockSync(filepath);
+        }
     }
 
     static getFiles(filepath)
