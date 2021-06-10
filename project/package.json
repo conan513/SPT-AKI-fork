@@ -28,11 +28,11 @@
         "build:debug": "npm run build:types && npm run build:bundle-debug && npm run build:exe"
     },
     "dependencies": {
+        "atomically": "^1.7.0",
         "node-forge": "0.10.0",
         "node-powershell": "4.0.0",
         "os-locale": "^5.0.0",
         "proper-lockfile": "^4.1.2",
-        "write-file-atomic": "^3.0.3",
         "ws": "^7.4.6"
     },
     "devDependencies": {
