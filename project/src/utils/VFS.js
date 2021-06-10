@@ -72,6 +72,7 @@ class VFS
         if (!VFS.exists(filepath))
         {
             VFS.createDir(filepath);
+            fs.writeFileSync(filepath, "", options);
         }
 
         // We should synchronously lock our file, since we want to wait for our write to finish before releasing it.
