@@ -4,7 +4,7 @@ require("../Lib.js");
 
 const fs = require("fs");
 const path = require("path");
-const atomicWrite = require("write-file-atomic");
+const { writeFile } = require("atomically");
 const lockfile = require("proper-lockfile");
 
 class VFS
@@ -84,7 +84,7 @@ class VFS
             {
                 try
                 {
-                    await atomicWrite(filepath, data, options);
+                    await writeFile(filepath, data, options);
                 }
                 catch (e)
                 {
