@@ -23,7 +23,6 @@
         "build:types": "npx babel src --out-dir obj",
         "build:bundle-release": "npx browserify --node obj/ide/ReleaseEntry.js > obj/bundle.js",
         "build:bundle-debug": "npx browserify --node obj/ide/DebugEntry.js > obj/bundle.js",
-        "build:minify": "npx minify obj/bundle.js --out-file obj/bundle.js",
         "build:exe": "node src/ide/Compiler.js",
         "build:release": "npm run build:types && npm run build:bundle-release && npm run build:exe",
         "build:debug": "npm run build:types && npm run build:bundle-debug && npm run build:exe"
@@ -43,7 +42,6 @@
         "@babel/plugin-proposal-class-properties": "^7.13.0",
         "@babel/plugin-proposal-private-methods": "^7.13.0",
         "@babel/preset-env": "^7.14.2",
-        "babel-minify": "^0.5.1",
         "browserify": "^17.0.0",
         "bufferutil": "4.0.3",
         "eslint": "^7.26.0",
