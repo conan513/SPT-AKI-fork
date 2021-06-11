@@ -29,6 +29,11 @@ class VFS
         lockfile.lockSync(filepath);
     }
 
+    static checkFileSync(filepath)
+    {
+        return lockfile.checkSync(filepath);
+    }
+
     static unlockFileSync(filepath)
     {
         lockfile.unlockSync(filepath);
@@ -69,14 +74,15 @@ class VFS
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
 
+        // Create the file if it does not exist. No need to use flag "a" since it empty after creation.
         if (!VFS.exists(filepath))
         {
             VFS.createDir(filepath);
-            fs.writeFileSync(filepath, "", options);
+            fs.writeFileSync(filepath, "");
         }
 
         // We should synchronously lock our file, since we want to wait for our write to finish before releasing it.
-        lockfile.lockSync(filepath);
+        VFS.lockFileSync(filepath);
 
         if (atomic)
         {
@@ -89,7 +95,7 @@ class VFS
                 catch (e)
                 {
                     Logger.error(`There was an issue writing to the file ${filepath}. ${e}`);
-                    lockfile.unlockSync(filepath);
+                    VFS.unlockFileSync(filepath);
                 }
             })();
         }
@@ -99,9 +105,9 @@ class VFS
         }
 
         // We check the lock before releasing it to prevent errors when the file is already unlocked.
-        if (lockfile.checkSync(filepath))
+        if (VFS.checkFileSync(filepath))
         {
-            lockfile.unlockSync(filepath);
+            VFS.unlockFileSync(filepath);
         }
     }
 
