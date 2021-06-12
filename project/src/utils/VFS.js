@@ -24,21 +24,6 @@ class VFS
         fs.copyFileSync(filepath, target);
     }
 
-    static lockFileSync(filepath)
-    {
-        lockfile.lockSync(filepath);
-    }
-
-    static checkFileSync(filepath)
-    {
-        return lockfile.checkSync(filepath);
-    }
-
-    static unlockFileSync(filepath)
-    {
-        lockfile.unlockSync(filepath);
-    }
-
     static createDir(filepath)
     {
         fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { "recursive": true });
@@ -70,7 +55,7 @@ class VFS
         return fs.readFileSync(filepath);
     }
 
-    static writeFile(filepath, data = "", append = false, atomic = true)
+    static writeFile(filepath, data = "", append = false)
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
 
@@ -82,32 +67,25 @@ class VFS
         }
 
         // We should synchronously lock our file, since we want to wait for our write to finish before releasing it.
-        VFS.lockFileSync(filepath);
+        lockfile.lockSync(filepath);
 
-        if (atomic)
+        (async() =>
         {
-            (async() =>
+            try
             {
-                try
-                {
-                    await writeFile(filepath, data, options);
-                }
-                catch (e)
-                {
-                    Logger.error(`There was an issue writing to the file ${filepath}. ${e}`);
-                    VFS.unlockFileSync(filepath);
-                }
-            })();
-        }
-        else
-        {
-            fs.writeFileSync(filepath, data, options);
-        }
+                await writeFile(filepath, data, options);
+            }
+            catch (e)
+            {
+                Logger.error(`There was an issue writing to the file ${filepath}. ${e}`);
+                lockfile.unlockSync(filepath);
+            }
+        })();
 
         // We check the lock before releasing it to prevent errors when the file is already unlocked.
-        if (VFS.checkFileSync(filepath))
+        if (lockfile.checkSync(filepath))
         {
-            VFS.unlockFileSync(filepath);
+            lockfile.unlockSync(filepath);
         }
     }
 
