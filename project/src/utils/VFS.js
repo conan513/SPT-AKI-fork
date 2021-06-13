@@ -62,11 +62,12 @@ class VFS
         if (!VFS.exists(filepath))
         {
             VFS.createDir(filepath);
+            fs.writeFileSync(filepath, "");
         }
 
-        VFS.lockFileSync(filepath);
+        lockfile.lockSync(filepath);
 
-        if (atomic && !append)
+        if (!append)
         {
             atomicW.writeFileSync(filepath, data);
         }
@@ -75,9 +76,9 @@ class VFS
             fs.writeFileSync(filepath, data, options);
         }
 
-        if (VFS.checkFileSync(filepath))
+        if (lockfile.checkSync(filepath))
         {
-            VFS.unlockFileSync(filepath);
+            lockfile.unlockSync(filepath);
         }
     }
 
