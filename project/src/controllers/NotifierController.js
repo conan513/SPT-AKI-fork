@@ -160,9 +160,9 @@ class NotifierController
     static getChannel(sessionID)
     {
         return {
-            "server": HttpConfig.ip,
+            "server": HttpServer.buildUrl(),
             "channel_id": sessionID,
-            "url": NotifierController.getServer(sessionID),
+            "url": "",
             "notifierServer": NotifierController.getServer(sessionID),
             "ws": NotifierController.getWebSocketServer(sessionID)
         };
