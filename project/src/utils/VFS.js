@@ -4,7 +4,7 @@ require("../Lib.js");
 
 const fs = require("fs");
 const path = require("path");
-const { writeFile } = require("atomically");
+const atomicW = require("atomically");
 const lockfile = require("proper-lockfile");
 
 class VFS
@@ -74,37 +74,23 @@ class VFS
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
 
-        // Create the file if it does not exist. No need to use flag "a" since it empty after creation.
         if (!VFS.exists(filepath))
         {
             VFS.createDir(filepath);
             fs.writeFileSync(filepath, "");
         }
 
-        // We should synchronously lock our file, since we want to wait for our write to finish before releasing it.
         VFS.lockFileSync(filepath);
 
         if (atomic)
         {
-            (async() =>
-            {
-                try
-                {
-                    await writeFile(filepath, data, options);
-                }
-                catch (e)
-                {
-                    Logger.error(`There was an issue writing to the file ${filepath}. ${e}`);
-                    VFS.unlockFileSync(filepath);
-                }
-            })();
+            atomicW.writeFileSync(filepath, data, options);
         }
         else
         {
             fs.writeFileSync(filepath, data, options);
         }
 
-        // We check the lock before releasing it to prevent errors when the file is already unlocked.
         if (VFS.checkFileSync(filepath))
         {
             VFS.unlockFileSync(filepath);
