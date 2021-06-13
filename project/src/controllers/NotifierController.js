@@ -162,9 +162,9 @@ class NotifierController
         return {
             "server": HttpConfig.ip,
             "channel_id": sessionID,
-            "url": this.getServer(sessionID),
-            "notifierServer": this.getServer(sessionID),
-            "ws": this.getWebSocketServer(sessionID)
+            "url": NotifierController.getServer(sessionID),
+            "notifierServer": NotifierController.getServer(sessionID),
+            "ws": NotifierController.getWebSocketServer(sessionID)
         };
     }
 }
