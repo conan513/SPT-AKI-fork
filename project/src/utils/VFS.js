@@ -82,9 +82,9 @@ class VFS
 
         VFS.lockFileSync(filepath);
 
-        if (atomic)
+        if (atomic && !append)
         {
-            atomicW.writeFileSync(filepath, data, options);
+            atomicW.writeFileSync(filepath, data);
         }
         else
         {
