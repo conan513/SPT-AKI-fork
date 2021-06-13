@@ -4,7 +4,7 @@ require("../Lib.js");
 
 const fs = require("fs");
 const path = require("path");
-const { writeFile } = require("atomically");
+const atomicW = require("atomically");
 const lockfile = require("proper-lockfile");
 
 class VFS
@@ -64,7 +64,21 @@ class VFS
             VFS.createDir(filepath);
         }
 
-        fs.writeFileSync(filepath, data, options);
+        VFS.lockFileSync(filepath);
+
+        if (atomic && !append)
+        {
+            atomicW.writeFileSync(filepath, data);
+        }
+        else
+        {
+            fs.writeFileSync(filepath, data, options);
+        }
+
+        if (VFS.checkFileSync(filepath))
+        {
+            VFS.unlockFileSync(filepath);
+        }
     }
 
     static getFiles(filepath)
