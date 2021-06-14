@@ -313,7 +313,9 @@ class TraderController
                 let tempPrice = DatabaseServer.tables.templates.handbook.Items.find((i) =>
                 {
                     return childItem._tpl === i.Id;
-                }).Price || 1;
+                });
+
+                tempPrice = tempPrice ? tempPrice.Price : 1;
 
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
                 price = price + (tempPrice * count);
