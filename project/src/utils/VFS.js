@@ -29,6 +29,21 @@ class VFS
         fs.mkdirSync(filepath.substr(0, filepath.lastIndexOf("/")), { "recursive": true });
     }
 
+    static lockFileSync(filepath)
+    {
+        lockfile.lockSync(filepath);
+    }
+
+    static checkFileSync(filepath)
+    {
+        return lockfile.checkSync(filepath);
+    }
+
+    static unlockFileSync(filepath)
+    {
+        lockfile.unlockSync(filepath);
+    }
+
     static copyDir(filepath, target)
     {
         const files = this.getFiles(filepath);
@@ -55,7 +70,7 @@ class VFS
         return fs.readFileSync(filepath);
     }
 
-    static writeFile(filepath, data = "", append = false)
+    static writeFile(filepath, data = "", append = false, atomic = true)
     {
         const options = (append) ? { "flag": "a" } : { "flag": "w" };
 
@@ -65,9 +80,9 @@ class VFS
             fs.writeFileSync(filepath, "");
         }
 
-        lockfile.lockSync(filepath);
+        VFS.lockFileSync(filepath);
 
-        if (!append)
+        if (!append && atomic)
         {
             atomicW.writeFileSync(filepath, data);
         }
@@ -76,9 +91,9 @@ class VFS
             fs.writeFileSync(filepath, data, options);
         }
 
-        if (lockfile.checkSync(filepath))
+        if (VFS.checkFileSync(filepath))
         {
-            lockfile.unlockSync(filepath);
+            VFS.unlockFileSync(filepath);
         }
     }
 
