@@ -1862,6 +1862,19 @@
 		}
 	],
 	"maxItemCountInLocation": [],
+	"BossLocationSpawn": [
+		{
+			"BossName": "bossKilla",
+			"BossChance": 20,
+			"BossZone": "BotZone",
+			"BossPlayer": false,
+			"BossDifficult": "normal",
+			"BossEscortType": "followerBully",
+			"BossEscortDifficult": "normal",
+			"BossEscortAmount": "0",
+			"Time": -1
+		}
+	],
 	"Id": "factory4_night",
 	"_Id": "59fc81d786f774390775787e",
 	"Loot": [],
@@ -1922,6 +1935,5 @@
 				"rcid": ""
 			}
 		}
-	],
-	"BossLocationSpawn": []
+	]
 }
