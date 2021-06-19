@@ -310,16 +310,13 @@ class TraderController
             // find all child of the item (including itself) and sum the price
             for (const childItem of ItemHelper.findAndReturnChildrenAsItems(pmcData.Inventory.items, item._id))
             {
-                let tempPrice = DatabaseServer.tables.templates.handbook.Items.find((i) =>
+                const handbookItem = DatabaseServer.tables.templates.handbook.Items.find((i) =>
                 {
                     return childItem._tpl === i.Id;
                 });
+                const count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
 
-                // Make sure our item template exists, and throw an error if it doesn't.
-                tempPrice = tempPrice ? tempPrice.Price : Logger.error(`Could not find item template for ${childItem._tpl}.`) ; tempPrice = 1;
-
-                let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
-                price = price + (tempPrice * count);
+                price += (!handbookItem) ? 1 : (handbookItem.Price * count);
             }
 
             // dogtag calculation
