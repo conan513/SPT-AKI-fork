@@ -313,7 +313,10 @@ class TraderController
                 let tempPrice = DatabaseServer.tables.templates.handbook.Items.find((i) =>
                 {
                     return childItem._tpl === i.Id;
-                }).Price || 1;
+                });
+
+                // Make sure our item template exists, and throw an error if it doesn't.
+                tempPrice = tempPrice ? tempPrice.Price : Logger.error(`Could not find item template for ${childItem._tpl}.`) ; tempPrice = 1;
 
                 let count = ("upd" in childItem && "StackObjectsCount" in childItem.upd) ? childItem.upd.StackObjectsCount : 1;
                 price = price + (tempPrice * count);
