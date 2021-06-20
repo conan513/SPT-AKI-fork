@@ -54,7 +54,7 @@ class WatermarkLocale
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "1.5.0";
+    static version = "1.5.1";
     static text = [];
 
     static initialize()
