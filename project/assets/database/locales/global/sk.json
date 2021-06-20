@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "To znamená, že to moji chlapi nezvládli a náklad z transportu bol rozkradnutý... Plus, je neďaleko tábor USEC? To je na hovno. Ale i tak, ďakujem, že si si sa o to postaral.",
 		"5fdb3e50148b192e1a7463e5": "Zdravím Vás, vojak. Mám pre vás prácu. Dlhý príbeh, skrátim to. Stratil som kontakt s jednou zo svojich skupín a je to už pomerne dávno. \"Keď hovno padlo do ventilátoru\", poslal som ich do lesa, aby vyzdvihli jednu zásielku. Obavám sa, že boli prepadnutý. Keď som sa s nimi naposledy spojil, hlásili, že se k nim blíži USEC. Skontrolujte, či niekto prežil. Mali BRDM, Bukhanku a nejaké nákladné auto, nepamätám si presne aké. Myslím, že USEC sa museli usadiť niekde nablízku.",
 		"600303b71448362c785bc3b2": "Samozrejme som počul, ako sa vzduch vo Woods trasie. Shturman dostal, co si zaslúžil. Nestoj tu, od teraz si môžeš kúpiť nové pušky.",
-		"600303b71448362c785bc3b5": "Zdravím! Poď ďalej. Mám pre teba prácu. Práve som dostal zásielku zbraní z dovozu. Tie veľké s veľkým dostrelom, ráže .338. Ty vieš, že som do týchto veci totálne zažratí. A mám tu ďalšieho ostrostrelca, volá sa Shturman. Už nejakú dobu predstavuje veľký problém. Vybav to s nim a umožním ti kúpiť si tie zámorské pušky na slony. A teraz padaj. Budem čakať na tvoju správu."
+		"600303b71448362c785bc3b5": "Zdravím! Poď ďalej. Mám pre teba prácu. Práve som dostal zásielku zbraní z dovozu. Tie veľké s veľkým dostrelom, ráže .338. Ty vieš, že som do týchto veci totálne zažratí. A mám tu ďalšieho ostrostrelca, volá sa Shturman. Už nejakú dobu predstavuje veľký problém. Vybav to s nim a umožním ti kúpiť si tie zámorské pušky na slony. A teraz padaj. Budem čakať na tvoju správu.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

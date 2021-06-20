@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "Ez azt jelenti hogy a srácaimnak nem sikerült és a kocsikat kifosztották... plusz van egy USEC tábor a közelben, azt mondod? Ez szívás. De mindegy is, köszönöm a munkát.",
 		"5fdb3e50148b192e1a7463e5": "Üdv katona! Van egy munkám a számodra. Rövidre fogva, elveszettem a kapcsolatot az egyik csapatommal, ez már egy jó ideje történt. Amikor beütött a szar, elküldtem őket az erdőbe hogy felszedjenek egy csomagot. De attól tartok rajtuk ütöttek, utoljára amikor sikerül elérnem őket azt mondták hogy egy USEC osztag közeledik feléjük. Nézd meg nekem hogy túlélte e valaki. Volt náluk egy UAZ és valami féle teherautó, nem emlékszem pontosan milyen. Azt gondolom hogy az USEC osztag is valamerre arra verhetett tábort.",
 		"600303b71448362c785bc3b2": "Természetesen, éreztem ahogy a levegő is beleremegett abba ami Woodson történt. Shturman azt kapta amit megérdemelt. Ne csak állj ott nekem, gyere, most már vehetsz tőlem új puskákat.",
-		"600303b71448362c785bc3b5": "Üdvözlet! Gyere be. Van egy munkám a számodra. Most kaptam egy szállítmány import fegyvert. Nagyokat, nagy hatótávolsággal, .338-as kaliberrel. Te pedig tudod hogy nagy rajongója vagyok az ilyen cuccoknak. De ott van Shturman barátunk, aki szeret nagy távolságokra lövöldözni. Intézd el a faszit, túl sok bajt okoz hosszú ideje már. Ha megteszed, akkor megadom neked a lehetőséget hogy megvásárold tőlem ezeket az elefánt lyukasztgató fegyvereket. Na de, mozgás, nemsokára szeretnék hallani felőled."
+		"600303b71448362c785bc3b5": "Üdvözlet! Gyere be. Van egy munkám a számodra. Most kaptam egy szállítmány import fegyvert. Nagyokat, nagy hatótávolsággal, .338-as kaliberrel. Te pedig tudod hogy nagy rajongója vagyok az ilyen cuccoknak. De ott van Shturman barátunk, aki szeret nagy távolságokra lövöldözni. Intézd el a faszit, túl sok bajt okoz hosszú ideje már. Ha megteszed, akkor megadom neked a lehetőséget hogy megvásárold tőlem ezeket az elefánt lyukasztgató fegyvereket. Na de, mozgás, nemsokára szeretnék hallani felőled.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

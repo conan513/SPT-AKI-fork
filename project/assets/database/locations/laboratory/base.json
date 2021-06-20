@@ -94,9 +94,7 @@
 	"BotAssault": 0,
 	"BotMarksman": 0,
 	"DisabledScavExits": "",
-	"AccessKeys": [
-		"5c94bbff86f7747ee735c08f"
-	],
+	"AccessKeys": [],
 	"UnixDateTime": 1601470460,
 	"users_gather_seconds": 0,
 	"users_spawn_seconds_n": 120,
@@ -227,227 +225,280 @@
 	"BossLocationSpawn": [
 		{
 			"BossName": "pmcBot",
-			"BossChance": 50,
+			"BossChance": 30,
 			"BossZone": "BotZoneFloor1",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "2,2,3",
+			"BossEscortAmount": "2,2",
 			"Time": 900,
 			"TriggerId": "",
 			"TriggerName": "",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 35,
+			"BossChance": 15,
 			"BossZone": "BotZoneFloor2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,2,2,1,1,2",
+			"BossEscortAmount": "1,1,2,2,1,1",
 			"Time": 300,
 			"TriggerId": "",
 			"TriggerName": "",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 50,
+			"BossChance": 30,
 			"BossZone": "BotZoneBasement",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": 450,
 			"TriggerId": "autoId_00008_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 50,
+			"BossChance": 30,
 			"BossZone": "BotZoneBasement",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": 800,
 			"TriggerId": "autoId_00010_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 45,
+			"BossChance": 25,
 			"BossZone": "BotZoneBasement",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00007_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 50,
+			"BossChance": 30,
 			"BossZone": "BotZoneFloor2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00007_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 40,
+			"BossChance": 20,
 			"BossZone": "BotZoneFloor1",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": 600,
 			"TriggerId": "autoId_00632_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 35,
+			"BossChance": 15,
 			"BossZone": "BotZoneFloor2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": 600,
 			"TriggerId": "autoId_00632_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 35,
+			"BossChance": 15,
 			"BossZone": "BotZoneFloor1",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00012_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 35,
+			"BossChance": 15,
 			"BossZone": "BotZoneFloor2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2,3",
+			"BossEscortAmount": "1,1,1,1,2,2,2,1,1,1,1,2,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00012_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 40,
+			"BossChance": 20,
 			"BossZone": "BotZoneFloor1",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2,3",
+			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2",
 			"Time": 1200,
 			"TriggerId": "autoId_00014_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 40,
+			"BossChance": 20,
 			"BossZone": "BotZoneFloor2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2,3",
+			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2",
 			"Time": 1200,
 			"TriggerId": "autoId_00014_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 40,
+			"BossChance": 20,
 			"BossZone": "BotZoneFloor1",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2,3",
+			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00009_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 40,
+			"BossChance": 20,
 			"BossZone": "BotZoneFloor2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2,3",
+			"BossEscortAmount": "1,1,2,2,1,1,2,2,2,2,1,1,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00009_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 0
+			"Delay": 0,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 45,
+			"BossChance": 25,
 			"BossZone": "BotZoneGate2",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,2,2,3,2,2,3",
+			"BossEscortAmount": "1,2,2,3,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00014_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 8
+			"Delay": 8,
+			"Supports": null
 		},
 		{
 			"BossName": "pmcBot",
-			"BossChance": 50,
+			"BossChance": 30,
 			"BossZone": "BotZoneGate1",
 			"BossPlayer": false,
 			"BossDifficult": "normal",
 			"BossEscortType": "pmcBot",
 			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "1,2,2,3,2,2,3",
+			"BossEscortAmount": "1,2,2,3,2,2",
 			"Time": -1,
 			"TriggerId": "autoId_00632_EXFIL",
 			"TriggerName": "interactObject",
-			"Delay": 8
+			"Delay": 8,
+			"Supports": null
+		},
+		{
+			"BossName": "bossGluhar",
+			"BossChance": 100,
+			"BossZone": "BotZoneFloor1,BotZoneFloor2,BotZoneBasement",
+			"BossPlayer": false,
+			"BossDifficult": "normal",
+			"BossEscortType": "followerGluharAssault",
+			"BossEscortDifficult": "normal",
+			"BossEscortAmount": "0",
+			"Time": -1,
+			"TriggerId": "",
+			"TriggerName": "",
+			"Delay": 0,
+			"Supports": [
+				{
+					"BossEscortType": "followerGluharAssault",
+					"BossEscortDifficult": [
+						"normal"
+					],
+					"BossEscortAmount": "3"
+				},
+				{
+					"BossEscortType": "followerGluharSecurity",
+					"BossEscortDifficult": [
+						"normal"
+					],
+					"BossEscortAmount": "3"
+				},
+				{
+					"BossEscortType": "followerGluharScout",
+					"BossEscortDifficult": [
+						"normal"
+					],
+					"BossEscortAmount": "2"
+				}
+			]
 		}
 	],
 	"SpawnPointParams": [

@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "Supongo que eso significa que mis muchachos no lo lograron y los transportes fueron saqueados... ¿Dices que además de eso, los USEC tienen un campamento cerca? Bueno, eso apesta. Aun así, gracias por hacerlo.",
 		"5fdb3e50148b192e1a7463e5": "Hola, soldado, tengo un trabajo para ti. Para resumirlo, pedí contacto con uno de mis grupos, fue hace bastante tiempo. Envié a este grupo a recoger unas cosas, justo cuando comenzó todo este cagadero. Y me temo que los emboscaron, la última vez que logré ponerme en contacto con ellos, reportaron que los USEC les pisaban los talones. Revisa si alguno sobrevivió. Ellos llevaban un vehículo blindado BRDM, una furgoneta Bukhanka y una especie de camión, no recuerdo exactamente de qué tipo. Creo que los USEC debieron haber hecho un campamento en algún lugar cercano.",
 		"600303b71448362c785bc3b2": "Por supuesto que escuché el escándalo en el Bosque. Shturman obtuvo lo que putas se merecía. No te quedes ahí parado como si nada, ¡Ahora puedes comprar fusiles nuevos!.",
-		"600303b71448362c785bc3b5": "¡Hola! adelante, pasa. Tengo un trabajo para ti. Acabo de recibir un cargamento de armas importadas. Son grandes y de largo alcance, de calibre .338 Lapua Magnum. Tú sabes que soy fan de estas cosas. Y hay otro tirador de largo alcance por estos lugares, llamado Shturman. Encárgate de él, no ha sido más que un gran problema. Si lo haces, te daré la oportunidad de que puedas comprar estas gigantescas armas importadas. Así que muévete de una vez, estoy ansioso de recibir noticias."
+		"600303b71448362c785bc3b5": "¡Hola! adelante, pasa. Tengo un trabajo para ti. Acabo de recibir un cargamento de armas importadas. Son grandes y de largo alcance, de calibre .338 Lapua Magnum. Tú sabes que soy fan de estas cosas. Y hay otro tirador de largo alcance por estos lugares, llamado Shturman. Encárgate de él, no ha sido más que un gran problema. Si lo haces, te daré la oportunidad de que puedas comprar estas gigantescas armas importadas. Así que muévete de una vez, estoy ansioso de recibir noticias.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

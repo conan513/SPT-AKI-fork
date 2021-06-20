@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "Isso significa que meu pessoal não conseguiu e os transportes foram saqueados... ainda por cima há um acampamento USEC por perto, é isso? Que merda. Mas obrigado pelo trabalho mesmo assim.",
 		"5fdb3e50148b192e1a7463e5": "Saudações, soldado. Tenho um trabalho pra ti. Pra encurtar a história, perdi contato com um dos meus grupos, e já faz algum tempo. Quando a merda bateu no ventilador, mandei eles pra Woods pegar uma carga. Receio que eles sofreram uma emboscada, no ultimo contato, reportaram que os USECs estavam chegando neles. Vá ver se alguém sobreviveu. Eles tinham um BRDM, Bukhanka e um tipo de caminhão, não lembro exatamente o modelo. Eu acho que os USECs devem ter se estabelecido por perto também.",
 		"600303b71448362c785bc3b2": "Mas é claro que ouvi sobre o estouro na Woods. O Shturman teve o que mereceu. Não fique aí parado, agora você já pode comprar os rifles novos.",
-		"600303b71448362c785bc3b5": "Saudações! Chega mais. Tenho um trabalho pra você. Recém recebi um carregamento de armas importadas. As grandes, de longa distância, calibre .338. E fiquei sabendo que você é fã dessas coisas. E existe um outro atirador chamado Shturman. Se resolva com ele, ele tem sido um problemão já faz algum tempo, e vou te dar a oportunidade de comprar essas armas monstruosas do exterior. Agora vamos, quero noticias."
+		"600303b71448362c785bc3b5": "Saudações! Chega mais. Tenho um trabalho pra você. Recém recebi um carregamento de armas importadas. As grandes, de longa distância, calibre .338. E fiquei sabendo que você é fã dessas coisas. E existe um outro atirador chamado Shturman. Se resolva com ele, ele tem sido um problemão já faz algum tempo, e vou te dar a oportunidade de comprar essas armas monstruosas do exterior. Agora vamos, quero noticias.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

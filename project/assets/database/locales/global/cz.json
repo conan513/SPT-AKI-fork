@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "To znamená, že to moji chlapi nezvládli a náklad z transportů byl rozkraden... Plus, je poblíž tábor USEC? To je na hovno. Ale i tak, díky, že jsi to vyřídil.",
 		"5fdb3e50148b192e1a7463e5": "Zdravím vás, vojáku. Mám pro vás práci. Dlouhý příběh, zkrátím ho. Ztratil jsem kontakt s jednou ze svých skupin a je to už docela dávno. \"Když hovno zasáhlo ventilátor\", poslal jsem je do lesa, aby vyzvedli nějaký náklad. Obávám se, že byli přepadeni. Když jsem se s nimi naposledy spojil, hlásili, že se k nim blíží USEC. Zkontrolujte, zda někdo přežil. Měli BRDM, Bukhanku a nějaké nákladní auto, nepamatuji si přesně jaké. Myslím, že i USEC se museli usadit někde poblíž.",
 		"600303b71448362c785bc3b2": "Samozřejmě jsem slyšel, jak se vzduch ve Woods třese. Shturman dostal, co si zasloužil. Nestůj tady, teď si můžeš koupit nové pušky.",
-		"600303b71448362c785bc3b5": "Zdravím! Pojď dál. Mám pro tebe práci. Právě jsem dostal zásilku zbraní z dovozu. Ty velký s velkým dostřelem, ráže .338. Ty víš, že jsem těchto věcí zapálenej. A mám tu dalšího ostrostřelce, jménem Shturman. Už nějakou dobu je to velký problém. Vyřiď to s nim a umožním ti koupit si ty zámořský kvéry na slony. A teď se hni. Počkám, až se mi ozveš."
+		"600303b71448362c785bc3b5": "Zdravím! Pojď dál. Mám pro tebe práci. Právě jsem dostal zásilku zbraní z dovozu. Ty velký s velkým dostřelem, ráže .338. Ty víš, že jsem těchto věcí zapálenej. A mám tu dalšího ostrostřelce, jménem Shturman. Už nějakou dobu je to velký problém. Vyřiď to s nim a umožním ti koupit si ty zámořský kvéry na slony. A teď se hni. Počkám, až se mi ozveš.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

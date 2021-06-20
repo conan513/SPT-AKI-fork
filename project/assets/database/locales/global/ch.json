@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "这意思是我的人完蛋了，货还被抢了...你说附近还有个USEC营地？真是恶心。但是还是得谢谢你啊。",
 		"5fdb3e50148b192e1a7463e5": "欢迎，士兵，我这里有份工作给你。长话短说，一段时间之前，我和我的一伙人失去了联系。当那狗屎灾难发生的时候，我派他们去森林捡货去了，恐怕他们遭遇了埋伏。我和他们最后一次通话的时候，他们报告说有一伙USEC接近了他们。去查查看，还有没有人活着。他们有辆BRDM，是Bukhanka或者类似的卡车，但我记不清具体是那种的了。我想USEC肯定也在附近的某个地方扎营了。",
 		"600303b71448362c785bc3b2": "当然，我已经感觉到了森林的动荡气氛，Shturman得到了他应有的下场。别光站在那啊，你现在可以买我的新步枪了。",
-		"600303b71448362c785bc3b5": "欢迎！快进来！我有个活给你。我这刚到了一批进口武器，很大的那种，远程狙击用，点338口径。你知道，我是这东西的粉丝。这还有另一位狙击手叫Shturman，做掉他，他已经是个大麻烦了，之后我会给你买这些大炮仗的机会。现在去吧，我等着听你的好消息。"
+		"600303b71448362c785bc3b5": "欢迎！快进来！我有个活给你。我这刚到了一批进口武器，很大的那种，远程狙击用，点338口径。你知道，我是这东西的粉丝。这还有另一位狙击手叫Shturman，做掉他，他已经是个大麻烦了，之后我会给你买这些大炮仗的机会。现在去吧，我等着听你的好消息。",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

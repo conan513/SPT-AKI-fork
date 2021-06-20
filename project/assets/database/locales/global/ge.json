@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "Das bedeutet dann wohl, dass meine Jungs es nicht geschafft haben und die Transporter schon geplündert worden sind ... Und dann auch noch ein Camp der USECs in der Nähe? Scheiße. Aber trotzdem Danke für deine Arbeit.",
 		"5fdb3e50148b192e1a7463e5": "Grüße Soldat. Ich habe Arbeit für dich. Kommen wir direkt zum Punkt, ich habe den Kontakt zu einer meiner Gruppen verloren und das schon vor geraumer Zeit. Als es hier los ging, habe ich sie in die Wälder geschickt, um ein bisschen Zeug zu sammeln. Ich denke, dass sie in einen Hinterhalt geraten sind. Als ich das letzte Mal Kontakt zu ihnen hatte, haben sie von USECs berichtet, die sich ihrer Position näherten. Überprüfe ob es Überlebende gibt. Sie hatten ein BRDM, Bukhansa und irgendeinen Truck, aber frag mich nicht wo genau. Ich denke, dass die USECs sich dort irgendwo niedergelassen haben.",
 		"600303b71448362c785bc3b2": "Natürlich hörte ich die Luft in den Wäldern zischen. Shturman bekam, was er verdient. Steh nicht rum, du kannst jetzt neue Gewehre kaufen.",
-		"600303b71448362c785bc3b5": "Grüße! Komm rein, ich habe einen Job für dich. Ich habe gerade erst eine Lieferung importierter Waffen erhalten. Die großen, für weite Entfernungen vom Kaliber .338. Du weißt ich bin ein Freund von solchen Dingen. Es gibt diesen anderen Distanzschützen der Shturman genannt wird. Kümmer dich um ihn, er stellt seit einer Weile ein riesigen Problem dar. Danach gebe ich dir die Möglichkeit diese Übersee Elefantentöter zu kaufen. Und jetzt setz dich in Bewegung, ich warte hier auf dich."
+		"600303b71448362c785bc3b5": "Grüße! Komm rein, ich habe einen Job für dich. Ich habe gerade erst eine Lieferung importierter Waffen erhalten. Die großen, für weite Entfernungen vom Kaliber .338. Du weißt ich bin ein Freund von solchen Dingen. Es gibt diesen anderen Distanzschützen der Shturman genannt wird. Kümmer dich um ihn, er stellt seit einer Weile ein riesigen Problem dar. Danach gebe ich dir die Möglichkeit diese Übersee Elefantentöter zu kaufen. Und jetzt setz dich in Bewegung, ich warte hier auf dich.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

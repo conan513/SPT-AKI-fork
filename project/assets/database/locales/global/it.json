@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "Significa che i miei ragazzi non ce l'hanno fatta e i convogli sono stati saccheggiati... In più dici un campo USEC nelle vicinanze? Che fregatura. Ma grazie per il lavoro.",
 		"5fdb3e50148b192e1a7463e5": "Saluti, soldato. Ho un lavoro per te. Per farla breve, ho perso il contatto con uno dei miei gruppi, ed è stato un po' di tempo fa. Quando é successo il casino, li ho mandati nel bosco a prendere un carico. Temo che abbiano subito un'imboscata, l'ultima volta che li ho visti, hanno riferito che gli USEC si stavano avvicinando. Controlla se qualcuno è sopravvissuto. Avevano un BRDM, Bukhanka e un camion di qualche tipo, non ricordo esattamente che tipo. Penso che anche gli USEC si siano sistemati lì vicino.",
 		"600303b71448362c785bc3b2": "Naturalmente ho sentito l'aria nel bosco tremare. Shturman ha ottenuto quello che meritava. Non stare impalato, ora puoi acquistare nuovi fucili.",
-		"600303b71448362c785bc3b5": "Saluti! Entra. Ho un lavoro per te. Ho appena ricevuto una spedizione di armi importate. Quelle grandi, a lungo raggio, calibro .338. E sai che sono un fan di quella roba. C'è un altro cecchino chiamato Shturman. Tratta con lui, è stato un grosso problema fino adesso. E ti darò l'opportunità di comprare quelle pistole elefante d'oltremare. Ora muoviti, aspetto tue notizie."
+		"600303b71448362c785bc3b5": "Saluti! Entra. Ho un lavoro per te. Ho appena ricevuto una spedizione di armi importate. Quelle grandi, a lungo raggio, calibro .338. E sai che sono un fan di quella roba. C'è un altro cecchino chiamato Shturman. Tratta con lui, è stato un grosso problema fino adesso. E ti darò l'opportunità di comprare quelle pistole elefante d'oltremare. Ora muoviti, aspetto tue notizie.",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {

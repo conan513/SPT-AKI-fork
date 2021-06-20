@@ -3167,7 +3167,9 @@
 		"5fdb3e50148b192e1a7463e2": "俺の部下がしくじって荷物を奪われちまったってのか…おまけに、近くにはUSECのキャンプがあるって？そいつは最悪だな。まあ何にせよ、ありがとうよ。",
 		"5fdb3e50148b192e1a7463e5": "よう、兵隊。仕事があるんだ。手短に言うとだな、俺の部下の一隊と連絡が取れなくなっているんだ。それもかなり前からな。ちょっと厄介なことがあってWoodsへ荷物を取りに行かせてたんだが、待ち伏せに合ったんじゃないかと思ってる。最後の連絡じゃUSECが近づいてるって話だったからな。生き残りが居ないか確認してきてくれ。奴らはBRDMとブハンカ、それとトラックに乗ってたはずだが、どんな車種だったか正確には覚えていない。おそらくはUSECもその近くに陣取っているはずだ。",
 		"600303b71448362c785bc3b2": "ああ、Woods中の空気が震えているのが聞こえたよ。Shturmanは当然の報いを受けたな。さあ、そこに突っ立っていないで、新しいライフルを買っていいんだぞ。",
-		"600303b71448362c785bc3b5": "ようこそ！入ってくれ、お前さんに頼みたいことがあるんだ。輸入品の銃が届いてな。長距離用で.338口径の大きな代物だ。私がそういうものが好きだとお前さんなら分かるだろう？他にも長距離射撃を得意とする奴がいてな。Shturmanというのだが…奴を始末してきてほしい。このところずっと私の悩みの種だったんだ。それができたのなら、お前さんにこのエレファントガンを売ってやろう。さあ、行ってこい。報告を待っているぞ。"
+		"600303b71448362c785bc3b5": "ようこそ！入ってくれ、お前さんに頼みたいことがあるんだ。輸入品の銃が届いてな。長距離用で.338口径の大きな代物だ。私がそういうものが好きだとお前さんなら分かるだろう？他にも長距離射撃を得意とする奴がいてな。Shturmanというのだが…奴を始末してきてほしい。このところずっと私の悩みの種だったんだ。それができたのなら、お前さんにこのエレファントガンを売ってやろう。さあ、行ってこい。報告を待っているぞ。",
+		"60c79e46132a9c2bee40ca49": "Well done. I hope you didn't mess up too bad. Otherwise, how would you have gotten out of there? You're a ninja, aren't you?",
+		"60c79e46132a9c2bee40ca4c": "Hey, there's an emergency for you. I got a tip that all the local gangsters are gathering. Well we all ain't saints now. In short, folks say the bosses will all gather to talk business. At Reserve base. But the information is not accurate. Go there, observe, check out the situation. And then let me know what's all the commotion about. If you make it out alive, of course."
 	},
 	"quest": {
 		"5936d90786f7742b1420ba5b": {
@@ -6686,6 +6688,18 @@
 			"startedMessageText": "600303b71448362c785bc3b4",
 			"description": "600303b71448362c785bc3b5",
 			"location": "5704e3c2d2720bac5b8b4567"
+		},
+		"60c7976cec3f5464e21e1d10": {
+			"conditions": {
+				"60c79b73132a9c2bee40ca47": "Observe a boss meeting and extract from location with \"Survived\" status"
+			},
+			"name": "The Bosses gathering",
+			"note": "",
+			"successMessageText": "60c79e46132a9c2bee40ca49",
+			"failMessageText": "60c79e46132a9c2bee40ca4a",
+			"startedMessageText": "60c79e46132a9c2bee40ca4b",
+			"description": "60c79e46132a9c2bee40ca4c",
+			"location": "5704e5fad2720bc05b8b4567"
 		}
 	},
 	"preset": {
