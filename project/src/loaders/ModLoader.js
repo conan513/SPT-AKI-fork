@@ -7,7 +7,6 @@ class ModLoader
     static basepath = "";
     static imported = {};
     static onLoad = {};
-    static onPostLoad = {};
 
     static load()
     {
@@ -81,11 +80,6 @@ class ModLoader
         for (const mod in ModLoader.onLoad)
         {
             ModLoader.onLoad[mod]();
-        }
-
-        for (const mod in ModLoader.onPostLoad)
-        {
-            ModLoader.onPostLoad[mod]();
         }
 
         // update the handbook lookup with modded items
