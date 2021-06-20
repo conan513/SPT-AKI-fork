@@ -94,7 +94,9 @@
 	"BotAssault": 0,
 	"BotMarksman": 0,
 	"DisabledScavExits": "",
-	"AccessKeys": [],
+	"AccessKeys": [
+		"5c94bbff86f7747ee735c08f"
+	],
 	"UnixDateTime": 1601470460,
 	"users_gather_seconds": 0,
 	"users_spawn_seconds_n": 120,

@@ -1867,19 +1867,7 @@
 			"Value": 0
 		}
 	],
-	"BossLocationSpawn": [
-		{
-			"BossName": "bossKilla",
-			"BossChance": 20,
-			"BossZone": "BotZone",
-			"BossPlayer": false,
-			"BossDifficult": "normal",
-			"BossEscortType": "followerBully",
-			"BossEscortDifficult": "normal",
-			"BossEscortAmount": "0",
-			"Time": -1
-		}
-	],
+	"BossLocationSpawn": [],
 	"Id": "factory4_day",
 	"_Id": "55f2d3fd4bdc2d5f408b4567",
 	"Loot": [],
