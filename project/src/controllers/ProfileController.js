@@ -117,7 +117,7 @@ class ProfileController
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
             "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyaltyLevels,
-            "display": DatabaseServer.tables.traders[traderID].base.display
+            "unlocked": DatabaseServer.tables.traders[traderID].base.unlockedByDefault
         };
     }
 

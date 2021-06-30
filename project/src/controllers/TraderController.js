@@ -22,16 +22,14 @@ class TraderController
             TraderController.lvlUp(traderID, sessionID);
         }
 
-        const standing = pmcData.TraderStandings[traderID];
-        trader.unlockedByDefault = standing.display;
-
+        trader.unlockedByDefault = pmcData.TraderStandings[traderID].unlocked;
         return trader;
     }
 
     static changeTraderDisplay(traderID, status, sessionID)
     {
         let pmcData = ProfileController.getPmcProfile(sessionID);
-        pmcData.TraderStandings[traderID].display = status;
+        pmcData.TraderStandings[traderID].unlocked = status;
     }
 
     static getAllTraders(sessionID)

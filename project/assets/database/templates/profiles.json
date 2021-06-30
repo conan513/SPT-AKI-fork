@@ -24,9 +24,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -2757,9 +2756,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -5697,9 +5695,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -9033,9 +9030,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -12478,9 +12474,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -16325,9 +16320,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -20315,9 +20309,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
@@ -24778,9 +24771,8 @@
 						"BotDifficulty": "easy",
 						"Experience": -1
 					},
-					"NeedWipe": false,
-					"GlobalWipe": false,
 					"NicknameChangeDate": 0,
+					"IsStreamerModeAvailable": false,
 					"Bans": []
 				},
 				"Customization": {
