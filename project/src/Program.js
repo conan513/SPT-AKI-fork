@@ -24,8 +24,8 @@ class Program
 
         // easter egg
         Logger.write("");
-        Logger.write("Thanks everyone for enjoying our work and for your amazing support thorough the years!");
-        Logger.write("We couldn't have done it without you.");
+        Logger.write("Thanks Kiryu Coco for all the fun times and memories!");
+        Logger.write("This release will be dedicated to you.");
         Logger.write("- Senko-san");
         Logger.write("");
 
