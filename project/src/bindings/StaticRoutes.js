@@ -255,7 +255,7 @@ module.exports = {
     "/client/items/prices": {
         "aki": RagfairCallbacks.getItemPrices
     },
-    "/client/trading/api/traderSettingss": {
+    "/client/trading/api/traderSettings": {
         "aki": TraderCallbacks.getTraderSettings
     },
     "/client/weather": {
