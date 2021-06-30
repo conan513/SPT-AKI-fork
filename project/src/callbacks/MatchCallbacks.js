@@ -91,6 +91,16 @@ class MatchCallbacks
         MatchController.deleteGroup(info);
         return HttpResponse.nullResponse();
     }
+
+    static startOfflineRaid(url, info, sessionID)
+    {
+        return HttpResponse.nullResponse();
+    }
+
+    static endOfflineRaid(url, info, sessionID)
+    {
+        return HttpResponse.nullResponse();
+    }
 }
 
 module.exports = MatchCallbacks;

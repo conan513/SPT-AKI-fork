@@ -195,6 +195,12 @@ module.exports = {
     "/client/match/group/invite/cancel": {
         "aki": MatchCallbacks.cancelGroupInvite
     },
+    "/client/match/offline/start": {
+        "aki": MatchCallbacks.startOfflineRaid
+    },
+    "/client/match/offline/end": {
+        "aki": MatchCallbacks.endOfflineRaid
+    },
     "/client/putMetrics": {
         "aki": MatchCallbacks.putMetrics
     },
