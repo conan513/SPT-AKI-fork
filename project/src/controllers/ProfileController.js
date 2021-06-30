@@ -116,12 +116,9 @@ class ProfileController
             "currentSalesSum": traderWipe.initialSalesSum,
             "currentStanding": traderWipe.initialStanding,
             "NextLoyalty": null,
-            "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels,
+            "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyaltyLevels,
             "display": DatabaseServer.tables.traders[traderID].base.display
         };
-
-        // Why doesn't this work?
-        // TraderController.lvlUp(sessionID, traderID);
     }
 
     static generateScav(sessionID)
