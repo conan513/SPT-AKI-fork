@@ -12,6 +12,9 @@ module.exports = {
     "/client/trading/customization/storage": {
         "aki": CustomizationCallbacks.getSuits
     },
+    "/client/settings": {
+        "aki": DataCallbacks.getSettings
+    },
     "/client/globals": {
         "aki": DataCallbacks.getGlobals
     },
