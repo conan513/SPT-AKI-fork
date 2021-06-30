@@ -7,6 +7,8 @@ class DatabaseImporter
     static load()
     {
         const filepath = (globalThis.G_RELEASE_CONFIGURATION) ? "Aki_Data/Server/" : "./assets/";
+
+        Logger.info("Importing database...");
         DatabaseServer.tables = DatabaseImporter.loadRecursive(`${filepath}database/`);
         DatabaseImporter.loadImages(`${filepath}images/`);
     }
