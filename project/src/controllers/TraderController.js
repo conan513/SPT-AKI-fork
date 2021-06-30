@@ -23,10 +23,7 @@ class TraderController
         }
 
         const standing = pmcData.TraderStandings[traderID];
-        trader.loyalty.currentLevel = standing.currentLevel;
-        trader.loyalty.currentStanding = standing.currentStanding.toFixed(3);
-        trader.loyalty.currentSalesSum = standing.currentSalesSum;
-        trader.display = standing.display;
+        trader.unlockedByDefault = standing.display;
 
         return trader;
     }
