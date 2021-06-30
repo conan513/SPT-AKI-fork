@@ -2,6 +2,8 @@
 
 require("../Lib.js");
 
+const fixJson = require("json-fixer");
+
 class JsonUtil
 {
     static serialize(data, prettify = false)
@@ -16,9 +18,17 @@ class JsonUtil
         }
     }
 
-    static deserialize(string)
+    static deserialize(s)
     {
-        return JSON.parse(string);
+        const { data, changed } = fixJson(`${s}`);
+
+        if (changed)
+        {
+            Logger.error("Detected faulty json, please fix your json file using VSCodium");
+            return data;
+        }
+
+        return JSON.parse(s);
     }
 
     static clone(data)
