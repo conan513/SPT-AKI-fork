@@ -51,7 +51,7 @@ class TraderController
 
     static lvlUp(traderID, sessionID)
     {
-        const loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyalty.loyaltyLevels;
+        const loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyaltyLevels;
         let pmcData = ProfileController.getPmcProfile(sessionID);
 
         // level up player
@@ -65,8 +65,8 @@ class TraderController
             const loyalty = loyaltyLevels[level];
 
             if ((loyalty.minLevel <= pmcData.Info.Level
-                && loyalty.minSalesSum <= pmcData.TraderStandings[traderID].currentSalesSum
-                && loyalty.minStanding <= pmcData.TraderStandings[traderID].currentStanding)
+                && loyalty.minSalesSum <= pmcData.TraderStandings[traderID].salesSum
+                && loyalty.minStanding <= pmcData.TraderStandings[traderID].standing)
                 && targetLevel < 4)
             {
                 // level reached
@@ -75,8 +75,7 @@ class TraderController
         }
 
         // set level
-        pmcData.TraderStandings[traderID].currentLevel = targetLevel;
-        DatabaseServer.tables.traders[traderID].base.loyalty.currentLevel = targetLevel;
+        pmcData.TraderStandings[traderID].loyaltyLevel = targetLevel;
     }
 
     static updateTraders()
@@ -110,7 +109,7 @@ class TraderController
 
         for (const itemId in assort.loyal_level_items)
         {
-            if (assort.loyal_level_items[itemId] > pmcData.TraderStandings[traderId].currentLevel)
+            if (assort.loyal_level_items[itemId] > pmcData.TraderStandings[traderId].loyaltyLevel)
             {
                 assort = TraderController.removeItemFromAssort(assort, itemId);
             }

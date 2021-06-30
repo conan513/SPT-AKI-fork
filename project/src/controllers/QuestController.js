@@ -235,11 +235,11 @@ class QuestController
 
                 case "TraderStanding":
                     pmcData = ProfileController.getPmcProfile(sessionID);
-                    pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
+                    pmcData.TraderStandings[reward.target].standing += parseFloat(reward.value);
 
-                    if (pmcData.TraderStandings[reward.target].currentStanding < 0)
+                    if (pmcData.TraderStandings[reward.target].standing < 0)
                     {
-                        pmcData.TraderStandings[reward.target].currentStanding = 0;
+                        pmcData.TraderStandings[reward.target].standing = 0;
                     }
 
                     TraderController.lvlUp(reward.target, sessionID);

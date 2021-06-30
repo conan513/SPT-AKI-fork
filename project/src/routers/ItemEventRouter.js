@@ -59,7 +59,7 @@ class ItemEventRouter
             "quests": [],
             "ragFairOffers": [],
             "builds": [],
-            "currentSalesSums": {}
+            "salesSums": {}
         };
     }
 }

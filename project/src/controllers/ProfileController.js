@@ -112,11 +112,10 @@ class ProfileController
         const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
         pmcData.TraderStandings[traderID] = {
-            "currentLevel": 1,
-            "currentSalesSum": traderWipe.initialSalesSum,
-            "currentStanding": traderWipe.initialStanding,
-            "NextLoyalty": null,
-            "loyaltyLevels": DatabaseServer.tables.traders[traderID].base.loyaltyLevels,
+            "loyaltyLevel": 1,
+            "salesSum": traderWipe.initialSalesSum,
+            "standing": traderWipe.initialStanding,
+            "nextResupply": DatabaseServer.tables.traders[traderID].base.nextResupply,
             "unlocked": DatabaseServer.tables.traders[traderID].base.unlockedByDefault
         };
     }

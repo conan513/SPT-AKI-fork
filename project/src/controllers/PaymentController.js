@@ -171,11 +171,11 @@ class PaymentController
 
         // set current sale sum
         // convert barterPrice itemTpl into RUB then convert RUB into trader currency
-        let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
+        let saleSum = pmcData.TraderStandings[body.tid].salesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
 
-        pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
+        pmcData.TraderStandings[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        output.currentSalesSums[body.tid] = saleSum;
+        output.salesSums[body.tid] = saleSum;
 
         // save changes
         Logger.success("Items taken. Status OK.");
@@ -253,11 +253,11 @@ class PaymentController
         }
 
         // set current sale sum
-        let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum + amount;
+        let saleSum = pmcData.TraderStandings[body.tid].salesSum + amount;
 
-        pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
+        pmcData.TraderStandings[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        output.currentSalesSums[body.tid] = saleSum;
+        output.salesSums[body.tid] = saleSum;
 
         return output;
     }
