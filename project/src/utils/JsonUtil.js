@@ -25,10 +25,9 @@ class JsonUtil
         if (changed)
         {
             Logger.error("Detected faulty json, please fix your json file using VSCodium");
-            return data;
         }
 
-        return JSON.parse(s);
+        return data;
     }
 
     static clone(data)
