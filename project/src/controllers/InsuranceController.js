@@ -347,7 +347,7 @@ class InsuranceController
             });
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static generateTemplatesById()

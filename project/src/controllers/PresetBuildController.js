@@ -14,7 +14,7 @@ class PresetBuildController
         delete body.Action;
         body.id = HashUtil.generate();
 
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
@@ -25,7 +25,7 @@ class PresetBuildController
         savedBuilds[body.name] = body;
         SaveServer.profiles[sessionID].weaponbuilds = savedBuilds;
 
-        output.builds.push(body);
+        output.profileChanges[sessionID].builds.push(body);
         return output;
     }
 
@@ -43,7 +43,7 @@ class PresetBuildController
             }
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 }
 

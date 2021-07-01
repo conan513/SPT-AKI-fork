@@ -93,7 +93,7 @@ class PaymentController
      */
     static payMoney(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let trader = TraderController.getTrader(body.tid, sessionID);
         let currencyTpl = PaymentController.getCurrency(trader.currency);
 
@@ -160,7 +160,7 @@ class PaymentController
             {
                 moneyItem.upd.StackObjectsCount -= leftToPay;
                 leftToPay = 0;
-                output.items.change.push(moneyItem);
+                output.profileChanges[sessionID].items.change.push(moneyItem);
             }
 
             if (leftToPay === 0)
@@ -175,7 +175,7 @@ class PaymentController
 
         pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        output.salesSums[body.tid] = saleSum;
+        Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: { "salesSum": saleSum } });
 
         // save changes
         Logger.success("Items taken. Status OK.");
@@ -229,7 +229,7 @@ class PaymentController
                     item.upd.StackObjectsCount = item.upd.StackObjectsCount + calcAmount;
                 }
 
-                output.items.change.push(item);
+                output.profileChanges[sessionID].items.change.push(item);
 
                 if (skip)
                 {
@@ -257,7 +257,7 @@ class PaymentController
 
         pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        output.salesSums[body.tid] = saleSum;
+        Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: { "salesSum": saleSum } });
 
         return output;
     }

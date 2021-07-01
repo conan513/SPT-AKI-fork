@@ -4,7 +4,7 @@ require("../Lib.js");
 
 class ItemEventRouter
 {
-    static output = ItemEventRouter.getOutput();
+    static output = null;
     static onEvent = require("../bindings/ItemEvents");
 
     static handleEvents(info, sessionID)
@@ -28,15 +28,15 @@ class ItemEventRouter
             }
         }
 
-        ItemEventRouter.resetOutput();
+        ItemEventRouter.resetOutput(sessionID);
         return result;
     }
 
-    static getOutput()
+    static getOutput(sessionID)
     {
         if (!ItemEventRouter.output)
         {
-            ItemEventRouter.resetOutput();
+            ItemEventRouter.resetOutput(sessionID);
         }
 
         return ItemEventRouter.output;
@@ -47,19 +47,30 @@ class ItemEventRouter
         ItemEventRouter.output = data;
     }
 
-    static resetOutput()
+    static resetOutput(sessionID)
     {
+        if (!sessionID)
+        {
+            throw "SessionID is required";
+        }
+
         ItemEventRouter.output = {
-            "items": {
-                "new": [],
-                "change": [],
-                "del": []
+            "profileChanges": {
+                [sessionID]: {
+                    "items": {
+                        "new": [],
+                        "change": [],
+                        "del": []
+                    },
+                    "quests": [],
+                    "ragFairOffers": [],
+                    "builds": [],
+                    "traderRelations": {},
+                    "production": {},
+                    "experience": 0
+                }
             },
-            "badRequest": [],
-            "quests": [],
-            "ragFairOffers": [],
-            "builds": [],
-            "salesSums": {}
+            "warnings": []
         };
     }
 }

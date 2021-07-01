@@ -6,7 +6,7 @@ class RepairController
 {
     static repair(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         const trader = TraderController.getTrader(body.tid, sessionID);
         const repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
 
@@ -56,7 +56,7 @@ class RepairController
                 itemToRepair.upd.FaceShield.Hits = 0;
             }
 
-            output.items.change.push(itemToRepair);
+            output.profileChanges[sessionID].items.change.push(itemToRepair);
         }
 
         return output;
