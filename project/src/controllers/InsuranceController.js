@@ -383,7 +383,8 @@ class InsuranceController
     static getPremium(pmcData, inventoryItem, traderId)
     {
         let premium = InsuranceController.getItemPrice(inventoryItem._tpl) * InsuranceConfig.priceMultiplier;
-        premium -= premium * (pmcData.TraderStandings[traderId].standing > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].standing);
+        let traderInfo = ProfileController.getTraderInfo(pmcData, traderId);
+        premium -= premium * (traderinfo.standing > 0.5 ? 0.5 : traderInfo.standing);
         return Math.round(premium);
     }
 

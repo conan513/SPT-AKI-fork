@@ -105,19 +105,25 @@ class ProfileController
         SaveServer.saveProfile(sessionID);
     }
 
-    static resetTrader(sessionID, traderID)
+    static resetTrader(sessionID, traderId)
     {
         const account = LauncherController.find(sessionID);
         const pmcData = ProfileController.getPmcProfile(sessionID);
         const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
-        pmcData.TraderStandings[traderID] = {
+        pmcData.TradersInfo.push({
+            "traderId": traderId,
             "loyaltyLevel": 1,
             "salesSum": traderWipe.initialSalesSum,
             "standing": traderWipe.initialStanding,
-            "nextResupply": DatabaseServer.tables.traders[traderID].base.nextResupply,
-            "unlocked": DatabaseServer.tables.traders[traderID].base.unlockedByDefault
-        };
+            "nextResupply": DatabaseServer.tables.traders[traderId].base.nextResupply,
+            "unlocked": DatabaseServer.tables.traders[traderId].base.unlockedByDefault
+        });
+    }
+
+    static getTraderInfo(pmcData, traderId)
+    {
+        return pmcData.TradersInfo.find(item => item.traderId === traderId);
     }
 
     static generateScav(sessionID)
