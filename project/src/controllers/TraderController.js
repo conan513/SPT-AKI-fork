@@ -16,20 +16,20 @@ class TraderController
         const pmcData = ProfileController.getPmcProfile(sessionID);
         let trader = DatabaseServer.tables.traders[traderID].base;
 
-        if (!(traderID in pmcData.TraderStandings))
+        if (!(traderID in pmcData.TradersInfo))
         {
             ProfileController.resetTrader(sessionID, traderID);
             TraderController.lvlUp(traderID, sessionID);
         }
 
-        trader.unlockedByDefault = pmcData.TraderStandings[traderID].unlocked;
+        trader.unlockedByDefault = pmcData.TradersInfo[traderID].unlocked;
         return trader;
     }
 
     static changeTraderDisplay(traderID, status, sessionID)
     {
         let pmcData = ProfileController.getPmcProfile(sessionID);
-        pmcData.TraderStandings[traderID].unlocked = status;
+        pmcData.TradersInfo[traderID].unlocked = status;
     }
 
     static getAllTraders(sessionID)
@@ -65,8 +65,8 @@ class TraderController
             const loyalty = loyaltyLevels[level];
 
             if ((loyalty.minLevel <= pmcData.Info.Level
-                && loyalty.minSalesSum <= pmcData.TraderStandings[traderID].salesSum
-                && loyalty.minStanding <= pmcData.TraderStandings[traderID].standing)
+                && loyalty.minSalesSum <= pmcData.TradersInfo[traderID].salesSum
+                && loyalty.minStanding <= pmcData.TradersInfo[traderID].standing)
                 && targetLevel < 4)
             {
                 // level reached
@@ -75,7 +75,7 @@ class TraderController
         }
 
         // set level
-        pmcData.TraderStandings[traderID].loyaltyLevel = targetLevel;
+        pmcData.TradersInfo[traderID].loyaltyLevel = targetLevel;
     }
 
     static updateTraders()
@@ -109,7 +109,7 @@ class TraderController
 
         for (const itemId in assort.loyal_level_items)
         {
-            if (assort.loyal_level_items[itemId] > pmcData.TraderStandings[traderId].loyaltyLevel)
+            if (assort.loyal_level_items[itemId] > pmcData.TradersInfo[traderId].loyaltyLevel)
             {
                 assort = TraderController.removeItemFromAssort(assort, itemId);
             }

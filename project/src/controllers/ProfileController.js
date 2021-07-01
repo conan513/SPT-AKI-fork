@@ -111,7 +111,7 @@ class ProfileController
         const pmcData = ProfileController.getPmcProfile(sessionID);
         const traderWipe = DatabaseServer.tables.templates.profiles[account.edition][pmcData.Info.Side.toLowerCase()].trader;
 
-        pmcData.TraderStandings[traderID] = {
+        pmcData.TradersInfo[traderID] = {
             "loyaltyLevel": 1,
             "salesSum": traderWipe.initialSalesSum,
             "standing": traderWipe.initialStanding,
