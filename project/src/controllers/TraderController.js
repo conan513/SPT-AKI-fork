@@ -15,23 +15,21 @@ class TraderController
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
         let trader = DatabaseServer.tables.traders[traderID].base;
-        let traderInfo = ProfileController.getTraderInfo(pmcData, traderID);
 
-        if (!traderInfo)
+        if (!(traderID in pmcData.TraderStandings))
         {
             ProfileController.resetTrader(sessionID, traderID);
             TraderController.lvlUp(traderID, sessionID);
         }
 
-        trader.unlockedByDefault = traderInfo.unlocked;
+        trader.unlockedByDefault = pmcData.TraderStandings[traderID].unlocked;
         return trader;
     }
 
     static changeTraderDisplay(traderID, status, sessionID)
     {
         let pmcData = ProfileController.getPmcProfile(sessionID);
-        let traderInfo = ProfileController.getTraderInfo(pmcData, traderID);
-        traderInfo[traderID].unlocked = status;
+        pmcData.TraderStandings[traderID].unlocked = status;
     }
 
     static getAllTraders(sessionID)
@@ -55,7 +53,6 @@ class TraderController
     {
         const loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyaltyLevels;
         let pmcData = ProfileController.getPmcProfile(sessionID);
-        let traderInfo = ProfileController.getTraderInfo(pmcData, traderID);
 
         // level up player
         pmcData.Info.Level = PlayerController.calculateLevel(pmcData);
@@ -68,8 +65,8 @@ class TraderController
             const loyalty = loyaltyLevels[level];
 
             if ((loyalty.minLevel <= pmcData.Info.Level
-                && loyalty.minSalesSum <= traderInfo.salesSum
-                && loyalty.minStanding <= traderInfo.standing)
+                && loyalty.minSalesSum <= pmcData.TraderStandings[traderID].salesSum
+                && loyalty.minStanding <= pmcData.TraderStandings[traderID].standing)
                 && targetLevel < 4)
             {
                 // level reached
@@ -78,7 +75,7 @@ class TraderController
         }
 
         // set level
-        traderInfo.loyaltyLevel = targetLevel;
+        pmcData.TraderStandings[traderID].loyaltyLevel = targetLevel;
     }
 
     static updateTraders()
@@ -109,11 +106,10 @@ class TraderController
     static stripLoyaltyAssort(sessionId, traderId, assort)
     {
         const pmcData = ProfileController.getPmcProfile(sessionId);
-        let traderInfo = ProfileController.getTraderInfo(pmcData, traderID);
 
         for (const itemId in assort.loyal_level_items)
         {
-            if (assort.loyal_level_items[itemId] > traderInfo.loyaltyLevel)
+            if (assort.loyal_level_items[itemId] > pmcData.TraderStandings[traderId].loyaltyLevel)
             {
                 assort = TraderController.removeItemFromAssort(assort, itemId);
             }
