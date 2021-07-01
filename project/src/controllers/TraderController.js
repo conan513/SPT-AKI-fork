@@ -38,7 +38,7 @@ class TraderController
 
         for (const traderID in DatabaseServer.tables.traders)
         {
-            if (!DatabaseServer.tables.traders[traderID].base.working)
+            if (DatabaseServer.tables.traders[traderID].base._id === "ragfair")
             {
                 continue;
             }
