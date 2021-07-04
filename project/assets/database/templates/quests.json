@@ -1,4 +1,203 @@
 {
+	"60896e28e4a85c72ef3fa301": {
+        "_id": "60896e28e4a85c72ef3fa301",
+        "traderId": "54cb57776803fa99248b456e",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
+        "type": "PickUp",
+        "isKey": false,
+        "restartable": false,
+        "instantComplete": false,
+        "secretQuest": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "target": "GrizzlyReward",
+                    "value": "1",
+                    "id": "Grizzllyyyy",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "GrizzlyReward",
+                            "_tpl": "590c657e86f77412b013051d",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "Ibuprofen",
+                    "value": "1",
+                    "id": "PAINKILLERS",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "Ibuprofen",
+                            "_tpl": "5af0548586f7743a532b7e99",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "calokB",
+                    "value": "5",
+                    "id": "Hemostatic",
+                    "type": "Item",
+                    "index": 2,
+                    "items": [
+                        {
+                            "_id": "calokB",
+                            "_tpl": "5e8488fa988a8701445df1e4",
+                            "upd": {
+                                "StackObjectsCount": 5
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "Rouuuubles",
+                    "value": "30000",
+                    "id": "RublesAss2",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "Rouuuubles",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 30000
+                            }
+                        }
+                    ]
+                },
+                {
+					"value": "7200",
+					"id": "5c989b9d86f7745aa234628c",
+					"type": "Experience",
+					"index": 4
+				},
+				{
+					"target": "54cb57776803fa99248b456e",
+					"value": "0.03",
+					"type": "TraderStanding",
+					"index": 5,
+					"id": "TraderStandingAdding"
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "15",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60bf738b4c8a3800da06e717"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5969f9e986f7741dde183a50",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": "60bf738e81c6e80e702ccc0e"
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"608c22a003292f4ba43f8a1a"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+						"onlyFoundInRaid": true,
+						"id": "6091698a30bb620b3239874c"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"608c22a003292f4ba43f8a1a"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+						"id": "609169cfeca522371e5725c5",
+						"onlyFoundInRaid": true,
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "6091698a30bb620b3239874c",
+									"id": "HidedConditionUntilValidated"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"60a3b5b05f84d429b732e934"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 2,
+						"parentId": "",
+						"onlyFoundInRaid": true,
+						"id": "60ae12ffb809a474875907aa"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"60a3b5b05f84d429b732e934"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 3,
+						"parentId": "",
+						"id": "60ae134cabb9675f0062cf6e",
+						"onlyFoundInRaid": true,
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60ae12ffb809a474875907aa",
+									"id": "HidedConditionUntilValidated2"
+								}
+							}
+						]
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"600302d73b897b11364cd161": {
 		"_id": "600302d73b897b11364cd161",
 		"traderId": "5c0647fdd443bc2504c2d371",
