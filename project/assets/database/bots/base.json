@@ -1,9 +1,9 @@
 {
-	"_id": "60d58d34ecba59663d525521",
+	"_id": "60dc8576337fdf54e60e164c",
 	"aid": 0,
 	"savage": null,
 	"Info": {
-		"Nickname": "Пахан Чебур",
+		"Nickname": "Павлик Кучерявый",
 		"LowerNickname": "",
 		"Side": "Savage",
 		"Voice": "Scav_4",
@@ -17,21 +17,24 @@
 		"SavageLockTime": 0,
 		"LastTimePlayedAsSavage": 0,
 		"Settings": {
-			"Role": "marksman",
-			"BotDifficulty": "hard",
-			"Experience": -1
+			"Role": "assault",
+			"BotDifficulty": "normal",
+			"Experience": -1,
+			"StandingForKill": -0.02,
+			"AggressorBonus": 0.01
 		},
-		"NeedWipe": false,
-		"GlobalWipe": false,
 		"NicknameChangeDate": 0,
+		"NeedWipeOptions": [],
+		"lastCompletedWipe": null,
 		"BannedState": false,
-		"BannedUntil": 0
+		"BannedUntil": 0,
+		"IsStreamerModeAvailable": false
 	},
 	"Customization": {
-		"Head": "5cc2e4d014c02e000d0115f8",
-		"Body": "5fd22d311add82653b5a704c",
-		"Feet": "5cde9fb87d6c8b0474535da9",
-		"Hands": "5fd7901bdd870108a754c0e6"
+		"Head": "5f68c4c217d579077152a252",
+		"Body": "5df8a10486f77412672a1e3a",
+		"Feet": "5f5e410c6bdad616ad46d60b",
+		"Hands": "5df8eac086f77412640e2ea7"
 	},
 	"Health": {},
 	"Inventory": {},
