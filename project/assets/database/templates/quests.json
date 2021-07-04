@@ -1,4 +1,104 @@
 {
+	"60896888e4a85c72ef3fa300": {
+        "_id": "60896888e4a85c72ef3fa300",
+        "traderId": "5a7c2eca46aef81a7ca2145d",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/5a29221d86f77457303da9fa.png",
+        "type": "Exploration",
+        "isKey": false,
+        "restartable": false,
+        "instantComplete": false,
+        "secretQuest": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "target": "SurplusRoubles",
+                    "value": "40000",
+                    "id": "PlaceHolder1",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "SurplusRoubles",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 40000
+                            }
+                        }
+                    ]
+                },
+                {
+					"value": "7500",
+					"id": "5c989b9d86f7745aa234628c",
+					"type": "Experience",
+					"index": 1
+				},
+				{
+					"target": "5a7c2eca46aef81a7ca2145d",
+					"value": "0.02",
+					"type": "TraderStanding",
+					"index": 2,
+					"id": "PlaceHolder2"
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60bf74f481c6e80e702ccc0f"
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"609267a2bb3f46069c3e6c7d"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+						"id": "60929ad46342771d851b827a"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"609267a2bb3f46069c3e6c7d"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+						"id": "60929afc35915c62b44fd05c",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60929ad46342771d851b827a",
+									"id": "T90Panel"
+								}
+							}
+						]
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"60896b7bfa70fc097863b8f5": {
         "_id": "60896b7bfa70fc097863b8f5",
         "traderId": "54cb50c76803fa8b248b4571",
