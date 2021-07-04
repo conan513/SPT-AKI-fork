@@ -1,9 +1,153 @@
 {
+	"6089732b59b92115597ad789": {
+        "_id": "6089732b59b92115597ad789",
+        "traderId": "5a7c2eca46aef81a7ca2145d",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/6089732b59b92115597ad789.png",
+        "type": "Exploration",
+        "isKey": false,
+        "restartable": false,
+        "instantComplete": false,
+        "secretQuest": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "target": "eLamp",
+                    "value": "1",
+                    "id": "EnergySavingLamp",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "eLamp",
+                            "_tpl": "590a3cd386f77436f20848cb",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "uLamp",
+                    "value": "2",
+                    "id": "VioletLamp",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "uLamp",
+                            "_tpl": "590a3d9c86f774385926e510",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "SurplusRoubles",
+                    "value": "40000",
+                    "id": "SurplusGoodRoubles",
+                    "type": "Item",
+                    "index": 2,
+                    "items": [
+                        {
+                            "_id": "SurplusRoubles",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 40000
+                            }
+                        }
+                    ]
+                },
+                {
+					"value": "7500",
+					"id": "5c989b9d86f7745aa234628c",
+					"type": "Experience",
+					"index": 3
+				},
+				{
+					"target": "5a7c2eca46aef81a7ca2145d",
+					"value": "0.02",
+					"type": "TraderStanding",
+					"index": 4,
+					"id": "SurplusGoodStanding"
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60bf7364c53a5709996b40bf"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5ac3477486f7741d651d6885",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": "60bf73682837926f405dd792"
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"60c080eb991ac167ad1c3ad4"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+						"id": "6092942fb0f07c6ea1246e3a"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"60c080eb991ac167ad1c3ad4"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+						"id": "6092947635915c62b44fd05b",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "6092942fb0f07c6ea1246e3a",
+									"id": "MBTHidedValidated"
+								}
+							}
+						]
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"60896e28e4a85c72ef3fa301": {
         "_id": "60896e28e4a85c72ef3fa301",
         "traderId": "54cb57776803fa99248b456e",
         "location": "5704e5fad2720bc05b8b4567",
-        "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
+        "image": "/files/quest/icon/59c2742286f77475ec568d92.png",
         "type": "PickUp",
         "isKey": false,
         "restartable": false,
