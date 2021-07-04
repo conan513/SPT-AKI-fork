@@ -1,4 +1,186 @@
 {
+	"60896b7bfa70fc097863b8f5": {
+        "_id": "60896b7bfa70fc097863b8f5",
+        "traderId": "54cb50c76803fa8b248b4571",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/60896b7bfa70fc097863b8f5.png",
+        "type": "Exploration",
+        "isKey": false,
+        "restartable": false,
+        "instantComplete": false,
+        "secretQuest": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "target": "SurplusRoubles",
+                    "value": "40000",
+                    "id": "PlaceHolder1",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "SurplusRoubles",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 40000
+                            }
+                        }
+                    ]
+                },
+                {
+					"value": "7500",
+					"id": "5c989b9d86f7745aa234628c",
+					"type": "Experience",
+					"index": 1
+				},
+				{
+					"target": "54cb50c76803fa8b248b4571",
+					"value": "0.02",
+					"type": "TraderStanding",
+					"index": 2,
+					"id": "PlaceHolder2"
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60bf74bb2837926f405dd793"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "60896bca6ee58f38c417d4f2",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": "60bf74c1d4526a054d42e11f"
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"60915994c49cf53e4772cc38"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+						"id": "60916aeac49cf53e4772cc3c"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"60915994c49cf53e4772cc38"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+						"id": "60916b41b89a3c264d7296f9",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "6092942fb0f07c6ea1246e3a",
+									"id": "MilitaryDoc1"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"60a3b6359c427533db36cf84"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 2,
+						"parentId": "",
+						"id": "60ae0dfe2d6a8320983d19ba"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"60a3b6359c427533db36cf84"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 3,
+						"parentId": "",
+						"id": "60ae0f0586046842a754e21e",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "6092942fb0f07c6ea1246e3a",
+									"id": "MilitaryDoc2"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"60a3b65c27adf161da7b6e14"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 4,
+						"parentId": "",
+						"id": "60ae0e2c79e83a2cf96f35ce"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"60a3b65c27adf161da7b6e14"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 5,
+						"parentId": "",
+						"id": "60ae0f17b809a4748759078c",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60ae0e2c79e83a2cf96f35ce",
+									"id": "MilitaryDoc3"
+								}
+							}
+						]
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"6089732b59b92115597ad789": {
         "_id": "6089732b59b92115597ad789",
         "traderId": "5a7c2eca46aef81a7ca2145d",
