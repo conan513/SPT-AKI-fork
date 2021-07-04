@@ -1,4 +1,133 @@
 {
+	"60c0c018f7afb4354815096a": {
+        "_id": "60c0c018f7afb4354815096a",
+        "traderId": "5c0647fdd443bc2504c2d371",
+        "location": "55f2d3fd4bdc2d5f408b4567",
+        "image": "/files/quest/icon/5c7eb06188a4504aae56deb7.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "instantComplete": false,
+        "secretQuest": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "target": "SurplusRoubles",
+                    "value": "40000",
+                    "id": "PlaceHolder1",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "SurplusRoubles",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 40000
+                            }
+                        }
+                    ]
+                },
+                {
+					"value": "7500",
+					"id": "5c989b9d86f7745aa234628c",
+					"type": "Experience",
+					"index": 1
+				},
+				{
+					"target": "5c0647fdd443bc2504c2d371",
+					"value": "0.02",
+					"type": "TraderStanding",
+					"index": 2,
+					"id": "PlaceHolder2"
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60cfa4cd646f74055e276545"
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "CounterTagillaKillID",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bossTagilla"
+										],
+										"id": "TagillaKill"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60c0d187938d68438757cda2"
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"60a7acf20c5cb24b01346648"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60cfa590f81cc57f471718cc"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"60a7acf20c5cb24b01346648"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60cfa5a85f9e6175514de2e3",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60cfa590f81cc57f471718cc",
+									"id": "BossCapHided"
+								}
+							}
+						]
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"60896888e4a85c72ef3fa300": {
         "_id": "60896888e4a85c72ef3fa300",
         "traderId": "5a7c2eca46aef81a7ca2145d",
