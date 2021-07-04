@@ -14,15 +14,21 @@ class TraderController
     static getTrader(traderID, sessionID)
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
-        let trader = DatabaseServer.tables.traders[traderID].base;
+        const trader = DatabaseServer.tables.traders[traderID].base;
+
+        if (!("TradersInfo" in pmcData))
+        {
+            // pmc profile wiped
+            return trader;
+        }
 
         if (!(traderID in pmcData.TradersInfo))
         {
+            // trader doesn't exist in profile
             ProfileController.resetTrader(sessionID, traderID);
             TraderController.lvlUp(traderID, sessionID);
         }
 
-        trader.unlockedByDefault = pmcData.TradersInfo[traderID].unlocked;
         return trader;
     }
 
