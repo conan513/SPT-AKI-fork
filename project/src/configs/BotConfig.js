@@ -13,6 +13,7 @@ module.exports = {
         "bossKilla": 1,
         "bossKojaniy": 1,
         "bossSanitar": 1,
+        "bossTagilla": 1,
         "followerTest": 4,
         "followerBully": 4,
         "followerGluharAssault": 2,
@@ -30,7 +31,7 @@ module.exports = {
         "isUsec": 50,
         "types": {
             "assault": 35,
-            "cursedassault": 35,
+            "cursedAssault": 35,
             "pmcBot": 35
         }
     }

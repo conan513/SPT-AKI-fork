@@ -36,7 +36,7 @@ class HealthController
 
     static offraidHeal(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
 
         // update medkit used (hpresource)
         for (let item of pmcData.Inventory.items)
@@ -60,7 +60,7 @@ class HealthController
 
                 if (item.upd.MedKit.HpResource <= 0)
                 {
-                    InventoryController.removeItem(pmcData, body.item, output, sessionID);
+                    InventoryController.removeItem(pmcData, body.item, sessionID);
                 }
             }
         }
@@ -70,7 +70,7 @@ class HealthController
 
     static offraidEat(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let resourceLeft;
         let maxResource;
 
@@ -99,7 +99,7 @@ class HealthController
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = InventoryController.removeItem(pmcData, body.item, output, sessionID);
+            output = InventoryController.removeItem(pmcData, body.item, sessionID, output);
         }
 
         return output;
@@ -171,7 +171,7 @@ class HealthController
         healthInfo.Temperature = pmcData.Health.Temperature.Current;
 
         HealthController.saveVitality(pmcData, healthInfo, sessionID);
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static addEffect(pmcData, sessionID, info)

@@ -4,6 +4,11 @@ require("../Lib.js");
 
 class DataCallbacks
 {
+    static getSettings(url, info, sessionID)
+    {
+        return HttpResponse.getBody(DatabaseServer.tables.settings);
+    }
+
     static getGlobals(url, info, sessionID)
     {
         DatabaseServer.tables.globals.time = Date.now() / 1000;

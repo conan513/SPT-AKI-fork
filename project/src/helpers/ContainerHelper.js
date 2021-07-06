@@ -2,8 +2,55 @@
 
 require("../Lib.js");
 
+class FindSlotResult
+{
+    constructor(success = false, x = null, y = null, rotation = false)
+    {
+        this.success = success,
+        this.x = x;
+        this.y = y;
+        this.rotation = rotation;
+    }
+}
+
 class ContainerHelper
 {
+    static locateSlot(container2D, containerX, containerY, x, y, itemW, itemH)
+    {
+        let foundSlot = true;
+
+        for (let itemY = 0; itemY < itemH; itemY++)
+        {
+            if (foundSlot && y + itemH - 1 > containerY - 1)
+            {
+                foundSlot = false;
+                break;
+            }
+
+            for (let itemX = 0; itemX < itemW; itemX++)
+            {
+                if (foundSlot && x + itemW - 1 > containerX - 1)
+                {
+                    foundSlot = false;
+                    break;
+                }
+
+                if (container2D[y + itemY][x + itemX] !== 0)
+                {
+                    foundSlot = false;
+                    break;
+                }
+            }
+
+            if (!foundSlot)
+            {
+                break;
+            }
+        }
+
+        return foundSlot;
+    }
+
     /* Finds a slot for an item in a given 2D container map
      * Output: { success: boolean, x: number, y: number, rotation: boolean }
      */
@@ -16,53 +63,19 @@ class ContainerHelper
         let limitY = containerY - minVolume;
         let limitX = containerX - minVolume;
 
-        let locateSlot = (x, y, itemW, itemH) =>
-        {
-            let foundSlot = true;
-            for (let itemY = 0; itemY < itemH; itemY++)
-            {
-                if (foundSlot && y + itemH - 1 > containerY - 1)
-                {
-                    foundSlot = false;
-                    break;
-                }
-
-                for (let itemX = 0; itemX < itemW; itemX++)
-                {
-                    if (foundSlot && x + itemW - 1 > containerX - 1)
-                    {
-                        foundSlot = false;
-                        break;
-                    }
-
-                    if (container2D[y + itemY][x + itemX] !== 0)
-                    {
-                        foundSlot = false;
-                        break;
-                    }
-                }
-
-                if (!foundSlot)
-                {
-                    break;
-                }
-            }
-
-            return foundSlot;
-        };
-
         for (let y = 0; y < limitY; y++)
         {
             for (let x = 0; x < limitX; x++)
             {
-                let foundSlot = locateSlot(x, y, itemWidth, itemHeight);
+                let foundSlot = ContainerHelper.locateSlot(container2D, containerX, containerY, x, y, itemWidth, itemHeight);
 
-                /**Try to rotate if there is enough room for the item
+                /**
+                 * Try to rotate if there is enough room for the item
                  * Only occupies one grid of items, no rotation required
                  * */
                 if (!foundSlot && itemWidth * itemHeight > 1)
                 {
-                    foundSlot = locateSlot(x, y, itemHeight, itemWidth);
+                    foundSlot = ContainerHelper.locateSlot(container2D, containerX, containerY, x, y, itemHeight, itemWidth);
 
                     if (foundSlot)
                     {
@@ -75,11 +88,11 @@ class ContainerHelper
                     continue;
                 }
 
-                return { success: true, x, y, rotation };
+                return new FindSlotResult(true, x, y, rotation);
             }
         }
 
-        return { success: false, x: null, y: null, rotation: false };
+        return new FindSlotResult();
     }
 
     static fillContainerMapWithItem(container2D, x, y, itemW, itemH, rotate)
@@ -109,8 +122,8 @@ class ContainerHelper
     {
         const container2D = Array(containerH).fill(0).map(() => Array(containerW).fill(0));
         const inventoryItemHash = InventoryHelper.getInventoryItemHash(itemList);
-
         const containerItemHash = inventoryItemHash.byParentId[containerId];
+
         if (!containerItemHash)
         {
             // No items in the container

@@ -12,6 +12,9 @@ module.exports = {
     "/client/trading/customization/storage": {
         "aki": CustomizationCallbacks.getSuits
     },
+    "/client/settings": {
+        "aki": DataCallbacks.getSettings
+    },
     "/client/globals": {
         "aki": DataCallbacks.getGlobals
     },
@@ -255,8 +258,8 @@ module.exports = {
     "/client/items/prices": {
         "aki": RagfairCallbacks.getItemPrices
     },
-    "/client/trading/api/getTradersList": {
-        "aki": TraderCallbacks.getTraderList
+    "/client/trading/api/traderSettings": {
+        "aki": TraderCallbacks.getTraderSettings
     },
     "/client/weather": {
         "aki": WeatherCallbacks.getWeather

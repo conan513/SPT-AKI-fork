@@ -347,7 +347,7 @@ class InsuranceController
             });
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static generateTemplatesById()
@@ -383,7 +383,7 @@ class InsuranceController
     static getPremium(pmcData, inventoryItem, traderId)
     {
         let premium = InsuranceController.getItemPrice(inventoryItem._tpl) * InsuranceConfig.priceMultiplier;
-        premium -= premium * (pmcData.TraderStandings[traderId].currentStanding > 0.5 ? 0.5 : pmcData.TraderStandings[traderId].currentStanding);
+        premium -= premium * (pmcData.TradersInfo[traderId].standing > 0.5 ? 0.5 : pmcData.TradersInfo[traderId].standing);
         return Math.round(premium);
     }
 

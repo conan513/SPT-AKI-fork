@@ -701,7 +701,6 @@ class BotGenerator
                 const itemIndex = BotGenerator.getBiasedRandomNumber(0, pool.length - 1, pool.length - 1, 3);
                 const itemTemplate = pool[itemIndex];
                 const id = HashUtil.generate();
-
                 const itemsToAdd = [{
                     "_id": id,
                     "_tpl": itemTemplate._id,
@@ -732,12 +731,14 @@ class BotGenerator
         for (const slot of equipmentSlots)
         {
             const container = BotGenerator.inventory.items.find(i => i.slotId === slot);
+
             if (!container)
             {
                 continue;
             }
 
             const containerTemplate = DatabaseServer.tables.templates.items[container._tpl];
+
             if (!containerTemplate)
             {
                 Logger.error(`Could not find container template with tpl ${container._tpl}`);
@@ -754,6 +755,11 @@ class BotGenerator
 
             for (const slot of containerTemplate._props.Grids)
             {
+                if (slot._props.cellsH === 0 || slot._props.cellsV === 0)
+                {
+                    continue;
+                }
+
                 const containerItems = BotGenerator.inventory.items.filter(i => i.parentId === container._id && i.slotId === slot._name);
                 const slotMap = ContainerHelper.getContainerMap(slot._props.cellsH, slot._props.cellsV, containerItems, container._id);
                 const findSlotResult = ContainerHelper.findSlotForItem(slotMap, itemSize[0], itemSize[1]);
@@ -761,6 +767,7 @@ class BotGenerator
                 if (findSlotResult.success)
                 {
                     const parentItem = itemWithChildren.find(i => i._id === parentId);
+
                     parentItem.parentId = container._id;
                     parentItem.slotId = slot._name;
                     parentItem.location = {
@@ -768,6 +775,7 @@ class BotGenerator
                         "y": findSlotResult.y,
                         "r": findSlotResult.rotation ? 1 : 0
                     };
+
                     BotGenerator.inventory.items.push(...itemWithChildren);
                     return true;
                 }
@@ -889,25 +897,25 @@ class ExhaustableArray
 {
     constructor(itemPool)
     {
-        BotGenerator.pool = JsonUtil.clone(itemPool);
+        this.pool = JsonUtil.clone(itemPool);
     }
 
     getRandomValue()
     {
-        if (!BotGenerator.pool || !BotGenerator.pool.length)
+        if (!this.pool || !this.pool.length)
         {
             return null;
         }
 
-        const index = RandomUtil.getInt(0, BotGenerator.pool.length - 1);
-        const toReturn = JsonUtil.clone(BotGenerator.pool[index]);
-        BotGenerator.pool.splice(index, 1);
+        const index = RandomUtil.getInt(0, this.pool.length - 1);
+        const toReturn = JsonUtil.clone(this.pool[index]);
+        this.pool.splice(index, 1);
         return toReturn;
     }
 
     hasValues()
     {
-        if (BotGenerator.pool && BotGenerator.pool.length)
+        if (this.pool && this.pool.length)
         {
             return true;
         }

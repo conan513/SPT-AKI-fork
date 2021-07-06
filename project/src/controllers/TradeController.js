@@ -6,7 +6,7 @@ class TradeController
 {
     static buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
-        const output = ItemEventRouter.getOutput();
+        const output = ItemEventRouter.getOutput(sessionID);
         const newReq = {
             "items": [
                 {
@@ -37,7 +37,7 @@ class TradeController
     {
         let money = 0;
         let prices = TraderController.getPurchasesData(body.tid, sessionID);
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
 
         for (let sellItem of body.items)
         {
@@ -59,7 +59,7 @@ class TradeController
 
                     // remove item
                     InsuranceController.remove(pmcData, checkID, sessionID);
-                    output = InventoryController.removeItem(pmcData, checkID, output, sessionID);
+                    output = InventoryController.removeItem(pmcData, checkID, sessionID, output);
 
                     // add money to return to the player
                     if (output !== "")
@@ -98,7 +98,7 @@ class TradeController
     // Ragfair trading
     static confirmRagfairTrading(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
 
         for (let offer of body.offers)
         {

@@ -512,20 +512,20 @@ class RagfairServer
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offer._id}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID), "Offer not found in profile");
         }
 
         if (offer.items[0].upd.StackObjectsCount > offer.items[0].upd.OriginalStackObjectsCount)
-		{
-			offer.items[0].upd.StackObjectsCount = offer.items[0].upd.OriginalStackObjectsCount;
-		}
-		delete offer.items[0].upd.OriginalStackObjectsCount;
+        {
+            offer.items[0].upd.StackObjectsCount = offer.items[0].upd.OriginalStackObjectsCount;
+        }
+        delete offer.items[0].upd.OriginalStackObjectsCount;
 
         RagfairController.returnItems(profile.aid, offer.items);
         profile.RagfairInfo.offers.splice(index, 1);
         RagfairServer.offers.splice(RagfairServer.offers.findIndex(o => o._id === offer._id), 1);
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static removeOfferStack(offerID, amount)

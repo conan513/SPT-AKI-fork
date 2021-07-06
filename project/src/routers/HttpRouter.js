@@ -44,6 +44,12 @@ class HttpRouter
             }
         }
 
+        // TODO: Temporary hack to change ItemEventRouter response sessionID binding to what client expects
+        if (output.includes("\"profileChanges\":{"))
+        {
+            output = output.replace(sessionID, `pmc${sessionID}`);
+        }
+
         return output;
     }
 }

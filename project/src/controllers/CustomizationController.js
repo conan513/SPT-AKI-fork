@@ -24,7 +24,7 @@ class CustomizationController
             }
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static getTraderSuits(traderID, sessionID)
@@ -70,7 +70,7 @@ class CustomizationController
 
     static buyClothing(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
 
         // find suit offer
         const offers = CustomizationController.getAllTraderSuits(sessionID);
@@ -108,14 +108,14 @@ class CustomizationController
 
                 if (sellItem.del === true)
                 {
-                    output.items.del.push(item);
+                    output.profileChanges[sessionID].items.del.push(item);
                     pmcData.Inventory.items.splice(itemID, 1);
                 }
 
                 if (item.upd.StackObjectsCount > sellItem.count)
                 {
                     pmcData.Inventory.items[itemID].upd.StackObjectsCount -= sellItem.count;
-                    output.items.change.push({
+                    output.profileChanges[sessionID].items.change.push({
                         "_id": item._id,
                         "_tpl": item._tpl,
                         "parentId": item.parentId,

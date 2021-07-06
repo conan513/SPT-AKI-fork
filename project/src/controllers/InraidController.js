@@ -43,7 +43,7 @@ class InraidController
         {
             if (item._tpl === mapKey && item.slotId !== "Hideout")
             {
-                InventoryController.removeItemFromProfile(offraidData.profile, item._id);
+                InventoryController.removeItem(offraidData.profile, item._id, sessionID);
                 break;
             }
         }
@@ -98,14 +98,14 @@ class InraidController
         // set profile equipment to the raid equipment
         if (isPlayerScav)
         {
-            scavData = InraidController.setInventory(scavData, offraidData.profile);
+            scavData = InraidController.setInventory(sessionID, scavData, offraidData.profile);
             HealthController.resetVitality(sessionID);
             ProfileController.setScavProfile(sessionID, scavData);
             return;
         }
         else
         {
-            pmcData = InraidController.setInventory(pmcData, offraidData.profile);
+            pmcData = InraidController.setInventory(sessionID, pmcData, offraidData.profile);
             HealthController.saveVitality(pmcData, offraidData.health, sessionID);
         }
 
@@ -232,11 +232,11 @@ class InraidController
         return profile;
     }
 
-    static setInventory(pmcData, profile)
+    static setInventory(sessionID, pmcData, profile)
     {
-        InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.equipment);
-        InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questRaidItems);
-        InventoryController.removeItemFromProfile(pmcData, pmcData.Inventory.questStashItems);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.equipment, sessionID);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems, sessionID);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems, sessionID);
 
         for (let item of profile.Inventory.items)
         {
@@ -281,7 +281,7 @@ class InraidController
         // delete items
         for (let item of toDelete)
         {
-            InventoryController.removeItemFromProfile(pmcData, item);
+            InventoryController.removeItem(pmcData, item, sessionID);
         }
 
         pmcData.Inventory.fastPanel = {};

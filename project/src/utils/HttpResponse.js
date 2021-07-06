@@ -50,7 +50,7 @@ class HttpResponse
 
     static appendErrorToOutput(output, message = "An unknown error occurred", title = "Error")
     {
-        output.badRequest = [{
+        output.warnings = [{
             "index": 0,
             "err": title,
             "errmsg": message

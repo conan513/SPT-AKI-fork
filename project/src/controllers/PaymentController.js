@@ -93,7 +93,7 @@ class PaymentController
      */
     static payMoney(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let trader = TraderController.getTrader(body.tid, sessionID);
         let currencyTpl = PaymentController.getCurrency(trader.currency);
 
@@ -108,7 +108,7 @@ class PaymentController
                 {
                     if (!PaymentController.isMoneyTpl(item._tpl))
                     {
-                        output = InventoryController.removeItem(pmcData, item._id, output, sessionID);
+                        output = InventoryController.removeItem(pmcData, item._id, sessionID, output);
                         body.scheme_items[index].count = 0;
                     }
                     else
@@ -154,13 +154,13 @@ class PaymentController
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = InventoryController.removeItem(pmcData, moneyItem._id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, moneyItem._id, sessionID);
             }
             else
             {
                 moneyItem.upd.StackObjectsCount -= leftToPay;
                 leftToPay = 0;
-                output.items.change.push(moneyItem);
+                output.profileChanges[sessionID].items.change.push(moneyItem);
             }
 
             if (leftToPay === 0)
@@ -171,11 +171,11 @@ class PaymentController
 
         // set current sale sum
         // convert barterPrice itemTpl into RUB then convert RUB into trader currency
-        let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
+        let saleSum = pmcData.TradersInfo[body.tid].salesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
 
-        pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
+        pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        output.currentSalesSums[body.tid] = saleSum;
+        Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: { "salesSum": saleSum } });
 
         // save changes
         Logger.success("Items taken. Status OK.");
@@ -229,7 +229,7 @@ class PaymentController
                     item.upd.StackObjectsCount = item.upd.StackObjectsCount + calcAmount;
                 }
 
-                output.items.change.push(item);
+                output.profileChanges[sessionID].items.change.push(item);
 
                 if (skip)
                 {
@@ -253,11 +253,11 @@ class PaymentController
         }
 
         // set current sale sum
-        let saleSum = pmcData.TraderStandings[body.tid].currentSalesSum + amount;
+        let saleSum = pmcData.TradersInfo[body.tid].salesSum + amount;
 
-        pmcData.TraderStandings[body.tid].currentSalesSum = saleSum;
+        pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        output.currentSalesSums[body.tid] = saleSum;
+        Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: { "salesSum": saleSum } });
 
         return output;
     }

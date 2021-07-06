@@ -58,7 +58,7 @@ class InventoryController
     * */
     static moveItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
@@ -170,53 +170,37 @@ class InventoryController
         }
     }
 
-    /* Remove item of itemId and all of its descendants from profile. */
-    static removeItemFromProfile(profileData, itemId, output = null)
-    {
-        // get items to remove
-        let ids_toremove = InventoryHelper.findAndReturnChildren(profileData, itemId);
-
-        //remove one by one all related items and itself
-        for (let i in ids_toremove)
-        {
-            if (output !== null)
-            {
-                output.items.del.push({"_id": ids_toremove[i]});
-            }
-
-            for (let a in profileData.Inventory.items)
-            {
-                if (profileData.Inventory.items[a]._id === ids_toremove[i])
-                {
-                    profileData.Inventory.items.splice(a, 1);
-                }
-            }
-        }
-    }
-
     /*
     * Remove Item
     * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
     */
-    static removeItem(profileData, body, output, sessionID)
+    static removeItem(pmcData, itemId, sessionID, output = undefined)
     {
-        let toDo = [body];
+        let items = pmcData.Inventory.items;
+        const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
 
-        //Find the item and all of it's relates
-        if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
+        output = output || ItemEventRouter.getOutput(sessionID);
+
+        for (const id of ids)
         {
-            Logger.error("item id is not valid");
-            return "";
+            InsuranceController.remove(pmcData, id, sessionID);
+            output.profileChanges[sessionID].items.del.push({"_id": id});
+
+            for (const item of items)
+            {
+                if (item._id === id)
+                {
+                    items.splice(item, 1);
+                }
+            }
         }
 
-        InventoryController.removeItemFromProfile(profileData, toDo[0], output);
         return output;
     }
 
     static discardItem(pmcData, body, sessionID)
     {
-        InsuranceController.remove(pmcData, body.item, sessionID);
-        return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
+        return InventoryController.removeItem(pmcData, body.item, sessionID);
     }
 
     /* Split Item
@@ -224,7 +208,7 @@ class InventoryController
     * */
     static splitItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let location = body.container.location;
 
         let items = InventoryController.getOwnerInventoryItems(body, sessionID);
@@ -252,19 +236,16 @@ class InventoryController
             {
                 item.upd.StackObjectsCount -= body.count;
 
-                let newItem = HashUtil.generate();
+                const newItemId = HashUtil.generate();
 
-                output.items.new.push({
-                    "_id": newItem,
+                output.profileChanges[sessionID].items.new.push({
+                    "_id": newItemId,
                     "_tpl": item._tpl,
-                    "parentId": body.container.id,
-                    "slotId": body.container.container,
-                    "location": location,
                     "upd": {"StackObjectsCount": body.count}
                 });
 
                 items.to.push({
-                    "_id": newItem,
+                    "_id": newItemId,
                     "_tpl": item._tpl,
                     "parentId": body.container.id,
                     "slotId": body.container.container,
@@ -285,7 +266,7 @@ class InventoryController
      */
     static mergeItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         for (let key in items.to)
@@ -324,7 +305,7 @@ class InventoryController
                         }
 
                         items.to[key].upd.StackObjectsCount = stackItem0 + stackItem1;
-                        output.items.del.push({"_id": items.from[key2]._id});
+                        output.profileChanges[sessionID].items.del.push({"_id": items.from[key2]._id});
                         items.from.splice(key2, 1);
                         return output;
                     }
@@ -340,7 +321,7 @@ class InventoryController
     * */
     static transferItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let itemFrom = null;
         let itemTo = null;
 
@@ -406,7 +387,7 @@ class InventoryController
     * */
     static swapItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
 
         for (let iterItem of pmcData.Inventory.items)
         {
@@ -587,7 +568,7 @@ class InventoryController
                 delete upd.UnlimitedCount;
             }
 
-            output.items.new.push({
+            output.profileChanges[sessionID].items.new.push({
                 "_id": newItem,
                 "_tpl": itemToAdd.itemRef._tpl,
                 "parentId": pmcData.Inventory.stash,
@@ -634,7 +615,7 @@ class InventoryController
                     maxCount -= ammoStackMaxSize;
                 }
 
-                for (const item of [output.items.new, pmcData.Inventory.items])
+                for (const item of [output.profileChanges[sessionID].items.new, pmcData.Inventory.items])
                 {
                     item.push.apply(item, ammos);
                 }
@@ -668,7 +649,7 @@ class InventoryController
 
                         if (SlotID === "hideout")
                         {
-                            output.items.new.push({
+                            output.profileChanges[sessionID].items.new.push({
                                 "_id": newItem,
                                 "_tpl": itemLib[tmpKey]._tpl,
                                 "parentId": toDo[0][1],
@@ -695,7 +676,7 @@ class InventoryController
                                 itemLocation["location"] = itemLib[tmpKey]["location"];
                             }
 
-                            output.items.new.push({
+                            output.profileChanges[sessionID].items.new.push({
                                 "_id": newItem,
                                 "_tpl": itemLib[tmpKey]._tpl,
                                 "parentId": toDo[0][1],
@@ -737,7 +718,7 @@ class InventoryController
             if (item._id && item._id === body.item)
             {
                 item.upd.Foldable = {"Folded": body.value};
-                return ItemEventRouter.getOutput();
+                return ItemEventRouter.getOutput(sessionID);
             }
         }
 
@@ -757,7 +738,7 @@ class InventoryController
             if (item._id && item._id === body.item)
             {
                 item.upd.Togglable = {"On": body.value};
-                return ItemEventRouter.getOutput();
+                return ItemEventRouter.getOutput(sessionID);
             }
         }
 
@@ -781,7 +762,7 @@ class InventoryController
                     item.upd = {"Tag": {"Color": body.TagColor, "Name": cleanedTag}};
                 }
 
-                return ItemEventRouter.getOutput();
+                return ItemEventRouter.getOutput(sessionID);
             }
         }
 
@@ -799,7 +780,7 @@ class InventoryController
         }
 
         pmcData.Inventory.fastPanel[body.index] = body.item;
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static examineItem(pmcData, body, sessionID)
@@ -874,7 +855,7 @@ class InventoryController
             pmcData.Encyclopedia[itemID] = true;
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static readEncyclopedia(pmcData, body, sessionID)
@@ -884,7 +865,7 @@ class InventoryController
             pmcData.Encyclopedia[id] = true;
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static sortInventory(pmcData, body, sessionID)
@@ -931,7 +912,7 @@ class InventoryController
         }
 
         pmcData.Inventory.items = items;
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 }
 

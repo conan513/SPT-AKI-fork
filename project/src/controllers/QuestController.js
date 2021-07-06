@@ -235,11 +235,11 @@ class QuestController
 
                 case "TraderStanding":
                     pmcData = ProfileController.getPmcProfile(sessionID);
-                    pmcData.TraderStandings[reward.target].currentStanding += parseFloat(reward.value);
+                    pmcData.TradersInfo[reward.target].standing += parseFloat(reward.value);
 
-                    if (pmcData.TraderStandings[reward.target].currentStanding < 0)
+                    if (pmcData.TradersInfo[reward.target].standing < 0)
                     {
-                        pmcData.TraderStandings[reward.target].currentStanding = 0;
+                        pmcData.TradersInfo[reward.target].standing = 0;
                     }
 
                     TraderController.lvlUp(reward.target, sessionID);
@@ -302,8 +302,8 @@ class QuestController
 
         DialogueController.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
 
-        let acceptQuestResponse = ItemEventRouter.getOutput();
-        acceptQuestResponse.quests = QuestController.acceptedUnlocked(body.qid, sessionID);
+        let acceptQuestResponse = ItemEventRouter.getOutput(sessionID);
+        acceptQuestResponse.profileChanges[sessionID].quests = QuestController.acceptedUnlocked(body.qid, sessionID);
         return acceptQuestResponse;
     }
 
@@ -352,9 +352,9 @@ class QuestController
 
         DialogueController.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let completeQuestResponse = ItemEventRouter.getOutput();
-        completeQuestResponse.quests = QuestHelper.getDeltaQuests(beforeQuests, QuestController.getClientQuests(sessionID));
-        QuestHelper.dumpQuests(completeQuestResponse.quests);
+        let completeQuestResponse = ItemEventRouter.getOutput(sessionID);
+        completeQuestResponse.profileChanges[sessionID].quests = QuestHelper.getDeltaQuests(beforeQuests, QuestController.getClientQuests(sessionID));
+        QuestHelper.dumpQuests(completeQuestResponse.profileChanges[sessionID].quests);
         return completeQuestResponse;
     }
 
@@ -373,8 +373,8 @@ class QuestController
 
         DialogueController.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let failedQuestResponse = ItemEventRouter.getOutput();
-        failedQuestResponse.quests = QuestController.failedUnlocked(body.qid, sessionID);
+        let failedQuestResponse = ItemEventRouter.getOutput(sessionID);
+        failedQuestResponse.profileChanges[sessionID].quests = QuestController.failedUnlocked(body.qid, sessionID);
 
         return failedQuestResponse;
     }
@@ -383,7 +383,7 @@ class QuestController
     {
         const quest = DatabaseServer.tables.templates.quests[body.qid];
         const types = ["HandoverItem", "WeaponAssembly"];
-        let output = ItemEventRouter.getOutput();
+        let output = ItemEventRouter.getOutput(sessionID);
         let handoverMode = true;
         let value = 0;
         let counter = 0;
@@ -426,7 +426,7 @@ class QuestController
                 let index = pmcData.Inventory.items.length;
 
                 // important: don't tell the client to remove the attachments, it will handle it
-                output.items.del.push({ "_id": itemHandover.id });
+                output.profileChanges[sessionID].items.del.push({ "_id": itemHandover.id });
 
                 // important: loop backward when removing items from the array we're looping on
                 while (index-- > 0)
@@ -527,7 +527,7 @@ class QuestController
 
                     item.upd.StackObjectsCount = value;
 
-                    output.items.change.push({
+                    output.profileChanges[sessionID].items.change.push({
                         "_id": item._id,
                         "_tpl": item._tpl,
                         "parentId": item.parentId,
@@ -538,7 +538,7 @@ class QuestController
                 }
                 else
                 {
-                    output.items.del.push({ "_id": id });
+                    output.profileChanges[sessionID].items.del.push({ "_id": id });
                     pmcData.Inventory.items.splice(inventoryItem, 1);
                 }
 

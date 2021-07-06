@@ -9,7 +9,7 @@ class TraderCallbacks
         TraderController.load();
     }
 
-    static getTraderList(url, info, sessionID)
+    static getTraderSettings(url, info, sessionID)
     {
         return HttpResponse.getBody(TraderController.getAllTraders(sessionID));
     }

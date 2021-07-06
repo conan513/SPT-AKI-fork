@@ -692,7 +692,7 @@ class RagfairController
 
     static addPlayerOffer(pmcData, info, sessionID)
     {
-        const result = ItemEventRouter.getOutput();
+        const result = ItemEventRouter.getOutput(sessionID);
         let requirementsPriceInRub = 0;
         let invItems = [];
 
@@ -782,12 +782,12 @@ class RagfairController
         }
 
         SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
-        result.ragFairOffers.push(offer);
+        result.profileChanges[sessionID].ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
-            InventoryController.removeItem(pmcData, itemToRemove, result, sessionID);
+            InventoryController.removeItem(pmcData, itemToRemove, sessionID, result);
         }
 
         return result;
@@ -846,7 +846,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${offerId}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID), "Offer not found in profile");
         }
 
         let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
@@ -857,7 +857,7 @@ class RagfairController
             offers[index].endTime = Math.round(newEndTime);
         }
 
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static extendOffer(info, sessionID)
@@ -869,7 +869,7 @@ class RagfairController
         if (index === -1)
         {
             Logger.warning(`Could not find offer to remove with offerId -> ${info.offerId}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Offer not found in profile");
+            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID), "Offer not found in profile");
         }
 
         // MOD: Pay flea market fee
@@ -893,12 +893,12 @@ class RagfairController
 
             if (!PaymentController.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
             {
-                return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(), "Transaction failed: Couldn't pay commission fee");
+                return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID), "Transaction failed: Couldn't pay commission fee");
             }
         }
 
         offers[index].endTime += Math.round(secondsToAdd);
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static getCurrencySymbol(currencyTpl)
@@ -1034,7 +1034,7 @@ class RagfairController
         };
 
         DialogueController.addDialogueMessage("5ac3b934156ae10c4430e83c", messageContent, sessionID, itemsToSend);
-        return ItemEventRouter.getOutput();
+        return ItemEventRouter.getOutput(sessionID);
     }
 
     static returnItems(sessionID, items)
