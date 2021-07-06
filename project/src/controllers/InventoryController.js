@@ -170,53 +170,35 @@ class InventoryController
         }
     }
 
-    /* Remove item of itemId and all of its descendants from profile. */
-    static removeItemFromProfile(profileData, itemId, output = null)
-    {
-        // get items to remove
-        let ids_toremove = InventoryHelper.findAndReturnChildren(profileData, itemId);
-
-        //remove one by one all related items and itself
-        for (let i in ids_toremove)
-        {
-            if (output !== null)
-            {
-                output.profileChanges[sessionID].items.del.push({"_id": ids_toremove[i]});
-            }
-
-            for (let a in profileData.Inventory.items)
-            {
-                if (profileData.Inventory.items[a]._id === ids_toremove[i])
-                {
-                    profileData.Inventory.items.splice(a, 1);
-                }
-            }
-        }
-    }
-
     /*
     * Remove Item
     * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
     */
-    static removeItem(profileData, body, output, sessionID)
+    static removeItem(pmcData, itemId, sessionID)
     {
-        let toDo = [body];
+        let output = ItemEventRouter.getOutput(sessionID);
+        let ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
 
-        //Find the item and all of it's relates
-        if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
+        for (let id of ids)
         {
-            Logger.error("item id is not valid");
-            return "";
+            InsuranceController.remove(pmcData, id, sessionID);
+            output.profileChanges[sessionID].items.del.push({"_id": id});
+
+            for (let a in pmcData.Inventory.items)
+            {
+                if (pmcData.Inventory.items[a]._id === id)
+                {
+                    pmcData.Inventory.items.splice(a, 1);
+                }
+            }
         }
 
-        InventoryController.removeItemFromProfile(profileData, toDo[0], output);
         return output;
     }
 
     static discardItem(pmcData, body, sessionID)
     {
-        InsuranceController.remove(pmcData, body.item, sessionID);
-        return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput(sessionID), sessionID);
+        return InventoryController.removeItem(pmcData, body.item, sessionID);
     }
 
     /* Split Item
