@@ -2,7 +2,7 @@
 
 require("../Lib.js");
 
-class FindContainerResult
+class FindSlotResult
 {
     constructor(success = false, x = null, y = null, rotation = false)
     {
@@ -88,11 +88,11 @@ class ContainerHelper
                     continue;
                 }
 
-                return new FindContainerResult(true, x, y, rotation);
+                return new FindSlotResult(true, x, y, rotation);
             }
         }
 
-        return new FindContainerResult();
+        return new FindSlotResult();
     }
 
     static fillContainerMapWithItem(container2D, x, y, itemW, itemH, rotate)
