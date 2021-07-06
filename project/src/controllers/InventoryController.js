@@ -177,14 +177,14 @@ class InventoryController
     static removeItem(pmcData, itemId, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
-        let ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
+        const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
 
-        for (let id of ids)
+        for (const id of ids)
         {
             InsuranceController.remove(pmcData, id, sessionID);
             output.profileChanges[sessionID].items.del.push({"_id": id});
 
-            for (let a in pmcData.Inventory.items)
+            for (const a in pmcData.Inventory.items)
             {
                 if (pmcData.Inventory.items[a]._id === id)
                 {
