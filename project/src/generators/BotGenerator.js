@@ -731,14 +731,14 @@ class BotGenerator
         for (const slot of equipmentSlots)
         {
             const container = BotGenerator.inventory.items.find(i => i.slotId === slot);
-            
+
             if (!container)
             {
                 continue;
             }
 
             const containerTemplate = DatabaseServer.tables.templates.items[container._tpl];
-            
+
             if (!containerTemplate)
             {
                 Logger.error(`Could not find container template with tpl ${container._tpl}`);
@@ -757,7 +757,7 @@ class BotGenerator
             {
                 if (slot._props.cellsH === 0 || slot._props.cellsV === 0)
                 {
-					continue;
+                    continue;
                 }
 
                 const containerItems = BotGenerator.inventory.items.filter(i => i.parentId === container._id && i.slotId === slot._name);
@@ -767,7 +767,7 @@ class BotGenerator
                 if (findSlotResult.success)
                 {
                     const parentItem = itemWithChildren.find(i => i._id === parentId);
-                    
+
                     parentItem.parentId = container._id;
                     parentItem.slotId = slot._name;
                     parentItem.location = {

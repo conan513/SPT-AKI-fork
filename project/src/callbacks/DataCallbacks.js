@@ -6,7 +6,7 @@ class DataCallbacks
 {
     static getSettings(url, info, sessionID)
     {
-        return HttpResponse.getBody(DatabaseServer.tables.settings);  
+        return HttpResponse.getBody(DatabaseServer.tables.settings);
     }
 
     static getGlobals(url, info, sessionID)
