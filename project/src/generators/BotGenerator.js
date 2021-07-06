@@ -897,25 +897,25 @@ class ExhaustableArray
 {
     constructor(itemPool)
     {
-        BotGenerator.pool = JsonUtil.clone(itemPool);
+        this.pool = JsonUtil.clone(itemPool);
     }
 
     getRandomValue()
     {
-        if (!BotGenerator.pool || !BotGenerator.pool.length)
+        if (!this.pool || !this.pool.length)
         {
             return null;
         }
 
-        const index = RandomUtil.getInt(0, BotGenerator.pool.length - 1);
-        const toReturn = JsonUtil.clone(BotGenerator.pool[index]);
-        BotGenerator.pool.splice(index, 1);
+        const index = RandomUtil.getInt(0, this.pool.length - 1);
+        const toReturn = JsonUtil.clone(this.pool[index]);
+        this.pool.splice(index, 1);
         return toReturn;
     }
 
     hasValues()
     {
-        if (BotGenerator.pool && BotGenerator.pool.length)
+        if (this.pool && this.pool.length)
         {
             return true;
         }
