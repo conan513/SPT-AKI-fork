@@ -59,7 +59,7 @@ class TradeController
 
                     // remove item
                     InsuranceController.remove(pmcData, checkID, sessionID);
-                    output = InventoryController.removeItem(pmcData, checkID, output, sessionID);
+                    output = InventoryController.removeItem(pmcData, checkID, sessionID, output);
 
                     // add money to return to the player
                     if (output !== "")

@@ -108,7 +108,7 @@ class PaymentController
                 {
                     if (!PaymentController.isMoneyTpl(item._tpl))
                     {
-                        output = InventoryController.removeItem(pmcData, item._id, output, sessionID);
+                        output = InventoryController.removeItem(pmcData, item._id, sessionID, output);
                         body.scheme_items[index].count = 0;
                     }
                     else
@@ -154,7 +154,7 @@ class PaymentController
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = InventoryController.removeItem(pmcData, moneyItem._id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, moneyItem._id, sessionID);
             }
             else
             {

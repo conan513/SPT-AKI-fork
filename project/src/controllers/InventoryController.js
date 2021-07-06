@@ -174,11 +174,12 @@ class InventoryController
     * Remove Item
     * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
     */
-    static removeItem(pmcData, itemId, sessionID)
-    {
-        let output = ItemEventRouter.getOutput(sessionID);
+    static removeItem(pmcData, itemId, sessionID, output = undefined)
+    {        
         let items = pmcData.Inventory.items;
         const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
+
+        output = output || ItemEventRouter.getOutput(sessionID);
 
         for (const id of ids)
         {
