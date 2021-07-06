@@ -252,19 +252,16 @@ class InventoryController
             {
                 item.upd.StackObjectsCount -= body.count;
 
-                let newItem = HashUtil.generate();
+                const newItemId = HashUtil.generate();
 
                 output.profileChanges[sessionID].items.new.push({
-                    "_id": newItem,
+                    "_id": newItemId,
                     "_tpl": item._tpl,
-                    "parentId": body.container.id,
-                    "slotId": body.container.container,
-                    "location": location,
                     "upd": {"StackObjectsCount": body.count}
                 });
 
                 items.to.push({
-                    "_id": newItem,
+                    "_id": newItemId,
                     "_tpl": item._tpl,
                     "parentId": body.container.id,
                     "slotId": body.container.container,
