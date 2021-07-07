@@ -242,8 +242,9 @@ class InraidController
         {
             pmcData.Inventory.items.push(item);
         }
-        pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
 
+        pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
+        pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, pmcData.Inventory.items, pmcData.Inventory.fastPanel);
         return pmcData;
     }
 
