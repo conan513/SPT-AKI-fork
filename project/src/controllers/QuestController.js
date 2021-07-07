@@ -401,7 +401,7 @@ class QuestController
 
         if (handoverMode && value === 0)
         {
-            Logger.error("Quest handover error: condition not found or incorrect value. qid=" + body.qid + ", condition=" + body.conditionId);
+            Logger.error(`Quest handover error: condition not found or incorrect value. qid=${body.qid}, condition=${body.conditionId}`);
             return output;
         }
 

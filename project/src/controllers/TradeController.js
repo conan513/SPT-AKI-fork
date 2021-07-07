@@ -24,7 +24,7 @@ class TradeController
                 throw "Transaction failed";
             }
 
-            Logger.success("Bought item: " + body.item_id);
+            Logger.success(`Bought item: ${body.item_id}`);
         };
 
         return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
