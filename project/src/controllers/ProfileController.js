@@ -129,7 +129,7 @@ class ProfileController
         let scavData = BotController.generate({
             "conditions": [
                 {
-                    "Role": "assault",
+                    "Role": "playerScav",
                     "Limit": 1,
                     "Difficulty": "normal"
                 }
