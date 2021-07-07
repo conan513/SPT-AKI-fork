@@ -24,42 +24,7 @@ class InsuranceController
     {
         InsuranceController.insured[sessionID] = {};
     }
-
-    /* remove insurance from an item */
-    static remove(pmcData, body, sessionID)
-    {
-        let toDo = [body];
-
-        //Find the item and all of it's relates
-        if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
-        {
-            Logger.error("item id is not valid");
-            return;
-        }
-
-        // get all ids related to this item, +including this item itself
-        let ids_toremove = InventoryHelper.findAndReturnChildren(pmcData, toDo[0]);
-
-        for (let i in ids_toremove)
-        {
-            // remove one by one all related items and itself
-            for (let a in pmcData.Inventory.items)
-            {
-                // find correct item by id and delete it
-                if (pmcData.Inventory.items[a]._id === ids_toremove[i])
-                {
-                    for (let insurance in pmcData.InsuredItems)
-                    {
-                        if (pmcData.InsuredItems[insurance].itemId === ids_toremove[i])
-                        {
-                            pmcData.InsuredItems.splice(insurance, 1);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+    
     /* adds gear to store */
     static addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {

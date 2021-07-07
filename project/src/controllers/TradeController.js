@@ -55,11 +55,10 @@ class TradeController
                 // item found
                 if (item._id === checkID)
                 {
-                    Logger.info("Selling: " + checkID);
+                    Logger.info(`Selling: ${checkID}`);
 
                     // remove item
-                    InsuranceController.remove(pmcData, checkID, sessionID);
-                    output = InventoryController.removeItem(pmcData, checkID, output, sessionID);
+                    output = InventoryController.removeItem(pmcData, checkID, output);
 
                     // add money to return to the player
                     if (output !== "")

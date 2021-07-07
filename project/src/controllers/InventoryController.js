@@ -166,29 +166,41 @@ class InventoryController
                 }
             }
 
-            body.to.location = tmp_counter;//wrong location for first cartrige
+            // wrong location for first cartrige
+            body.to.location = tmp_counter;
         }
     }
 
-    /* Remove item of itemId and all of its descendants from profile. */
-    static removeItemFromProfile(profileData, itemId, output = null)
+    /*
+    * Remove Item
+    * Deep tree item deletion, also removes insurance
+    */
+    static removeItem(pmcData, itemId, output = undefined)
     {
-        // get items to remove
-        let ids_toremove = InventoryHelper.findAndReturnChildren(profileData, itemId);
+        const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
+        let items = pmcData.Inventory.items;
+        let insurance = pmcData.InsuredItems;
+
+        output = output || ItemEventRouter.getOutput(sessionID);
 
         //remove one by one all related items and itself
         for (let i in ids_toremove)
         {
-            if (output !== null)
+            output.items.del.push({"_id": ids_toremove[i]});
+
+            for (const i in items)
             {
-                output.items.del.push({"_id": ids_toremove[i]});
+                if (items[i]._id === id)
+                {
+                    items.splice(i, 1);
+                }
             }
 
-            for (let a in profileData.Inventory.items)
+            for (let i in insurance)
             {
-                if (profileData.Inventory.items[a]._id === ids_toremove[i])
+                if (insurance[i].itemId === id)
                 {
-                    profileData.Inventory.items.splice(a, 1);
+                    insurance.splice(i, 1);
                 }
             }
         }
