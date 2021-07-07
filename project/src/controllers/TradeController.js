@@ -24,7 +24,7 @@ class TradeController
                 throw "Transaction failed";
             }
 
-            Logger.success("Bought item: " + body.item_id);
+            Logger.success(`Bought item: ${body.item_id}`);
         };
 
         return InventoryController.addItem(pmcData, newReq, output, sessionID, callback, foundInRaid, upd);
@@ -55,7 +55,7 @@ class TradeController
                 // item found
                 if (item._id === checkID)
                 {
-                    Logger.info("Selling: " + checkID);
+                    Logger.info(`Selling: ${checkID}`);
 
                     // remove item
                     output = InventoryController.removeItem(pmcData, checkID, sessionID, output);

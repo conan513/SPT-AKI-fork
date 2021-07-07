@@ -161,7 +161,7 @@ class ItemHelper
             return item.slotId;
         }
 
-        return item.slotId + "," + item.location.x + "," + item.location.y;
+        return `${item.slotId},${item.location.x},${item.location.y}`;
     }
 
     static isItemTplStackable(tpl)

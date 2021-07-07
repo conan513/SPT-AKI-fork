@@ -65,7 +65,7 @@ class LocationController
             output.Loot.push(data);
             count++;
         }
-        Logger.success("A total of " + count + " containers generated");
+        Logger.success(`A total of ${count} containers generated`);
 
         // dyanmic loot
         let max = LocationConfig.limits[name];
@@ -94,8 +94,8 @@ class LocationController
         }
 
         // done generating
-        Logger.success("A total of " + count + " items spawned");
-        Logger.success("Generated location " + name);
+        Logger.success(`A total of ${count} items spawned`);
+        Logger.success(`Generated location ${name}`);
         return output;
     }
 

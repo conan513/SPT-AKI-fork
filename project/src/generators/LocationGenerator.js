@@ -19,7 +19,7 @@ class LocationGenerator
         let data = rndLoot.data[rndLootTypeIndex];
 
         //Check if LootItem is overlapping
-        let position = data.Position.x + "," + data.Position.y + "," + data.Position.z;
+        let position = `${data.Position.x},${data.Position.y},${data.Position.z}`;
         if (!LocationConfig.allowLootOverlay && lootPositions.includes(position))
         {
             //Clear selected loot

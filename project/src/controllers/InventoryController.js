@@ -500,6 +500,7 @@ class InventoryController
 
         // Find an empty slot in stash for each of the items being added
         let StashFS_2D = PlayerController.getStashSlotMap(pmcData, sessionID);
+
         for (let itemToAdd of itemsToAdd)
         {
             let itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
@@ -518,7 +519,7 @@ class InventoryController
                 }
                 catch (err)
                 {
-                    Logger.error("fillContainerMapWithItem returned with an error" + typeof err === "string" ? ` -> ${err}` : "");
+                    Logger.error(`fillContainerMapWithItem returned with an error${typeof err === "string" ? ` -> ${err}` : ""}`);
                     return HttpResponse.appendErrorToOutput(output, "Not enough stash space");
                 }
 
@@ -815,7 +816,7 @@ class InventoryController
                 }
                 catch
                 {
-                    console.log("No id with " + body.item + " found.");
+                    console.log(`No id with ${body.item} found.`);
                 }
             }
 
