@@ -153,9 +153,9 @@ class InraidController
         profileData.Quests = offraidData.profile.Quests;
 
         // remove old skill fatigue
-        for (let skill in profileData.Skills.Common)
+        for (let skill of profileData.Skills.Common)
         {
-            profileData.Skills.Common[skill].PointsEarnedDuringSession = 0.0;
+            skill.PointsEarnedDuringSession = 0.0;
         }
 
         // add experience points
@@ -173,43 +173,23 @@ class InraidController
     static markFoundItems(pmcData, profile, isPlayerScav)
     {
         // mark items found in raid
-        for (let offraidItem of profile.Inventory.items)
+        for (let item of profile.Inventory.items)
         {
-            let found = false;
-
             // mark new items for PMC, mark all items for scavs
             if (!isPlayerScav)
             {
-                // check if the item exists
-                for (let item of pmcData.Inventory.items)
-                {
-                    if (offraidItem._id === item._id)
-                    {
-                        found = true;
-                        break;
-                    }
-                }
+                const found = pmcData.Inventory.items.find((itemData) => item._id === itemData._id);
 
-                if (found)
+                if (found && "upd" in item && "SpawnedInSession" in item.upd)
                 {
                     // if the item exists and is taken inside the raid, remove the taken in raid status
-                    if ("upd" in offraidItem && "SpawnedInSession" in offraidItem.upd)
-                    {
-                        delete offraidItem.upd.SpawnedInSession;
-                    }
-
-                    continue;
+                    delete item.upd.SpawnedInSession;
                 }
-            }
-
-            // mark item found in raid
-            if ("upd" in offraidItem)
-            {
-                offraidItem.upd.SpawnedInSession = true;
             }
             else
             {
-                offraidItem.upd = {"SpawnedInSession": true};
+                const base = {"upd": {"SpawnedInSession": true}};
+                item = { ...item, ...base };
             }
         }
 
@@ -218,12 +198,12 @@ class InraidController
 
     static removeFoundItems(profile)
     {
-        for (let offraidItem of profile.Inventory.items)
+        for (let item of profile.Inventory.items)
         {
             // Remove the FIR status if the player died and the item marked FIR
-            if ("upd" in offraidItem && "SpawnedInSession" in offraidItem.upd)
+            if ("upd" in item && "SpawnedInSession" in item.upd)
             {
-                delete offraidItem.upd.SpawnedInSession;
+                delete item.upd.SpawnedInSession;
             }
 
             continue;
@@ -238,12 +218,8 @@ class InraidController
         InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems, sessionID);
 
-        for (let item of profile.Inventory.items)
-        {
-            pmcData.Inventory.items.push(item);
-        }
         pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
-
+        pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, profile.Inventory.items, pmcData.Inventory.fastPanel);
         return pmcData;
     }
 

@@ -65,9 +65,9 @@ class ProfileController
         }
 
         // pmc
-        pmcData._id = "pmc" + sessionID;
+        pmcData._id = `pmc${sessionID}`;
         pmcData.aid = sessionID;
-        pmcData.savage = "scav" + sessionID;
+        pmcData.savage = `scav${sessionID}`;
         pmcData.Info.Nickname = info.nickname;
         pmcData.Info.LowerNickname = info.nickname.toLowerCase();
         pmcData.Info.RegistrationDate = TimeUtil.getTimestamp();
@@ -75,6 +75,9 @@ class ProfileController
         pmcData.Customization.Head = info.headId;
         pmcData.Health.UpdateTime = TimeUtil.getTimestamp();
         pmcData.Quests = [];
+
+        // change item id's to be unique
+        pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, pmcData.Inventory.items, pmcData.Inventory.fastPanel);
 
         // create profile
         SaveServer.profiles[sessionID] = {
@@ -126,7 +129,7 @@ class ProfileController
         let scavData = BotController.generate({
             "conditions": [
                 {
-                    "Role": "playerScav",
+                    "Role": "assault",
                     "Limit": 1,
                     "Difficulty": "normal"
                 }

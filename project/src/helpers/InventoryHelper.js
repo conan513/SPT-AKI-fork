@@ -93,6 +93,7 @@ class InventoryHelper
 
     static generateInventoryID(profile)
     {
+        const defaultInventory = "55d7217a4bdc2d86028b456d";
         let itemsByParentHash = {};
         let inventoryItemHash = {};
         let inventoryId = "";
@@ -102,7 +103,7 @@ class InventoryHelper
         {
             inventoryItemHash[item._id] = item;
 
-            if (item._tpl === "55d7217a4bdc2d86028b456d")
+            if (item._tpl === defaultInventory)
             {
                 inventoryId = item._id;
                 continue;

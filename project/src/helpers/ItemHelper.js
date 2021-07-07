@@ -259,9 +259,11 @@ class ItemHelper
 
                 // do not replace important ID's
                 if (item._id === pmcData.Inventory.equipment
-                    || item._id === pmcData.Inventory.questRaidItems
-                    || item._id === pmcData.Inventory.questStashItems
-                    || insuredItem)
+                || item._id === pmcData.Inventory.questRaidItems
+                || item._id === pmcData.Inventory.questStashItems
+                || item._id === pmcData.Inventory.sortingTable
+                || item._id === pmcData.Inventory.stash
+                || insuredItem)
                 {
                     continue;
                 }
@@ -272,6 +274,7 @@ class ItemHelper
             let new_id = HashUtil.generate();
 
             string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
+
             // Also replace in quick slot if the old ID exists.
             if (fastPanel !== null)
             {
