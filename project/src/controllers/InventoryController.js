@@ -166,31 +166,40 @@ class InventoryController
                 }
             }
 
-            body.to.location = tmp_counter;//wrong location for first cartrige
+            // wrong location for first cartrige
+            body.to.location = tmp_counter;
         }
     }
 
     /*
     * Remove Item
-    * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
+    * Deep tree item deletion, also removes insurance
     */
     static removeItem(pmcData, itemId, sessionID, output = undefined)
     {
-        let items = pmcData.Inventory.items;
         const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
+        let items = pmcData.Inventory.items;
+        let insurance = pmcData.InsuredItems;
 
         output = output || ItemEventRouter.getOutput(sessionID);
 
         for (const id of ids)
         {
-            InsuranceController.remove(pmcData, id, sessionID);
             output.profileChanges[sessionID].items.del.push({"_id": id});
 
-            for (const item of items)
+            for (const i in items)
             {
-                if (item._id === id)
+                if (items[i]._id === id)
                 {
-                    items.splice(item, 1);
+                    items.splice(i, 1);
+                }
+            }
+
+            for (let i in insurance)
+            {
+                if (insurance[i].itemId === id)
+                {
+                    insurance.splice(i, 1);
                 }
             }
         }

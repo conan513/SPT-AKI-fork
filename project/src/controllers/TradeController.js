@@ -58,7 +58,6 @@ class TradeController
                     Logger.info("Selling: " + checkID);
 
                     // remove item
-                    InsuranceController.remove(pmcData, checkID, sessionID);
                     output = InventoryController.removeItem(pmcData, checkID, sessionID, output);
 
                     // add money to return to the player
