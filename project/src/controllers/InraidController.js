@@ -144,6 +144,12 @@ class InraidController
 
     static setBaseStats(profileData, offraidData, sessionID)
     {
+        // remove old skill fatigue
+        for (let skill of offraidData.profile.Skills.Common)
+        {
+            skill.PointsEarnedDuringSession = 0.0;
+        }
+
         // set profile data
         profileData.Info.Level = offraidData.profile.Info.Level;
         profileData.Skills = offraidData.profile.Skills;
@@ -151,12 +157,6 @@ class InraidController
         profileData.Encyclopedia = offraidData.profile.Encyclopedia;
         profileData.ConditionCounters = offraidData.profile.ConditionCounters;
         profileData.Quests = offraidData.profile.Quests;
-
-        // remove old skill fatigue
-        for (let skill of profileData.Skills.Common)
-        {
-            skill.PointsEarnedDuringSession = 0.0;
-        }
 
         // add experience points
         profileData.Info.Experience += profileData.Stats.TotalSessionExperience;
