@@ -129,12 +129,18 @@ class ProfileController
         let scavData = BotController.generate({
             "conditions": [
                 {
-                    "Role": "playerScav",
+                    "Role": "assault",
                     "Limit": 1,
                     "Difficulty": "normal"
                 }
             ]
         })[0];
+
+        if (scavData.Info.Side === "Bear" || scavData.Info.Side === "Usec")
+        {
+            // generated PMC, regenerate
+            scavData = ProfileController.generateScav(sessionID);
+        }
 
         // add proper metadata
         scavData._id = pmcData.savage;
