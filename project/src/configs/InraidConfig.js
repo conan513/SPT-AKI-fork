@@ -11,6 +11,7 @@ module.exports = {
     },
     "save": {
         "loot": true,
-        "durability": true
+        "durability": true,
+        "standingForKillingPmc": 0.01
     }
 };
