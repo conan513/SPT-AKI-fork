@@ -114,6 +114,7 @@ class InraidController
             for (const victimNumber in victims)
             {
                 const victim = victims[victimNumber];
+
                 if (victim.Side === "Usec" || victim.Side === "Bear")
                 {
                     fenceChange += InraidConfig.save.standingForKillingPmc;
@@ -148,6 +149,7 @@ class InraidController
             }
 
             pmcData = InraidController.deleteInventory(pmcData, sessionID);
+            
             let carriedQuestItems = offraidData.profile.Stats.CarriedQuestItems;
 
             for (const questItem of carriedQuestItems)
