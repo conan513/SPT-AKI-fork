@@ -373,6 +373,19 @@ class TraderController
 
         return false;
     }
+
+    static getFenceInfo(pmcData)
+    {
+        const fenceSettings = DatabaseServer.tables.globals.config.FenceSettings;
+        const pmcFenceInfo = pmcData.TradersInfo[fenceSettings.FenceId];
+
+        if (!pmcFenceInfo)
+        {
+            return fenceSettings.Levels["0"];
+        }
+
+        return fenceSettings.Levels[pmcFenceInfo.standing.toString()];
+    }
 }
 
 module.exports = TraderController;

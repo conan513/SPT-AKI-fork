@@ -176,6 +176,9 @@ class ProfileController
             }
         }
 
+        const fenceInfo = TraderController.getFenceInfo(pmcData);
+        modifier *= fenceInfo.SavageCooldownModifier;
+
         scavLockDuration *= modifier;
         profile.Info.SavageLockTime = (Date.now() / 1000) + scavLockDuration;
         return profile;
