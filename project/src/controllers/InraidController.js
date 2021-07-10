@@ -120,7 +120,7 @@ class InraidController
                     fenceChange += InraidConfig.save.standingForKillingPmc;
                 }
             }
-            
+
             fenceStanding = Math.min(Math.max(fenceStanding + fenceChange, -7), 6);
             pmcData.TradersInfo[fenceID].standing = fenceStanding;
             TraderController.lvlUp(fenceID, sessionID);
@@ -149,7 +149,7 @@ class InraidController
             }
 
             pmcData = InraidController.deleteInventory(pmcData, sessionID);
-            
+
             let carriedQuestItems = offraidData.profile.Stats.CarriedQuestItems;
 
             for (const questItem of carriedQuestItems)
