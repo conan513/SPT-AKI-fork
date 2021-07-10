@@ -8,7 +8,8 @@ class RepairController
     {
         let output = ItemEventRouter.getOutput(sessionID);
         const trader = TraderController.getTrader(body.tid, sessionID);
-        const repairRate = (trader.repair.price_rate === 0) ? 1 : (trader.repair.price_rate / 100 + 1);
+        const coef = TraderController.getLoyaltyLevel(body.tid, pmcData).repair_price_coef;
+        const repairRate = (coef === 0) ? 1 : (coef / 100 + 1);
 
         // find the item to repair
         for (let repairItem of body.repairItems)
