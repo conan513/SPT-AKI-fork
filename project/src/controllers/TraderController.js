@@ -377,8 +377,14 @@ class TraderController
     static getFenceInfo(pmcData)
     {
         const fenceSettings = DatabaseServer.tables.globals.config.FenceSettings;
-        const fenceStanding = pmcData.TradersInfo[fenceSettings.FenceId].standing;
-        return fenceSettings.Levels[fenceStanding.toString()];
+        const pmcFenceInfo = pmcData.TradersInfo[fenceSettings.FenceId];
+
+        if (!pmcFenceInfo)
+        {
+            return fenceSettings.Levels["0"];
+        }
+
+        return fenceSettings.Levels[pmcFenceInfo.standing.toString()];
     }
 }
 
