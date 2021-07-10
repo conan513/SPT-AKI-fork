@@ -215,7 +215,6 @@ class TraderController
                 result.items.push(toPush);
                 result.barter_scheme[toPush._id] = assort.barter_scheme[itemID];
                 result.loyal_level_items[toPush._id] = assort.loyal_level_items[itemID];
-
                 continue;
             }
 
@@ -256,7 +255,6 @@ class TraderController
             }
 
             result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
-            result.barter_scheme[items[0]._id][0][0].count = rub;
             result.loyal_level_items[items[0]._id] = assort.loyal_level_items[itemID];
         }
 
@@ -289,6 +287,7 @@ class TraderController
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
         const trader = DatabaseServer.tables.traders[traderID].base;
+        const buy_price_coef = TraderController.getLoyaltyLevel(traderID, pmcData).buy_price_coef;
         const currency = PaymentController.getCurrency(trader.currency);
         let output = {};
 
@@ -329,9 +328,11 @@ class TraderController
             price *= ItemHelper.getItemQualityPrice(item);
 
             // get real price
-            if (trader.discount > 0)
+            let discount = trader.discount + buy_price_coef;
+
+            if (discount > 0)
             {
-                price -= (trader.discount / 100) * price;
+                price -= (discount / 100) * price;
             }
 
             price = PaymentController.fromRUB(price, currency);
@@ -372,6 +373,19 @@ class TraderController
         }
 
         return false;
+    }
+
+    static getLoyaltyLevel(traderID, pmcData)
+    {
+        const trader = DatabaseServer.tables.traders[traderID].base;
+        let loyaltyLevel = pmcData.TraderStandings[traderID].currentLevel;
+
+        if (!loyaltyLevel)
+        {
+            loyaltyLevel = 1;
+        }
+
+        return trader.loyalty.loyaltyLevels[`${loyaltyLevel - 1}`];
     }
 }
 
