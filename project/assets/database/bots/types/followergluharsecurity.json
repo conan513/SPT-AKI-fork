@@ -33,6 +33,7 @@
 			"max": 500
 		}
 	},
+	"standingForKill": -0.07,
 	"health": {
 		"Hydration": {
 			"min": 100,

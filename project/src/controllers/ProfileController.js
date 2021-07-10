@@ -146,6 +146,7 @@ class ProfileController
         scavData._id = pmcData.savage;
         scavData.aid = sessionID;
         scavData.Info.Settings = {};
+        scavData.TradersInfo = JsonUtil.clone(pmcData.TradersInfo);
 
         // remove secure container
         scavData = InventoryHelper.removeSecureContainer(scavData);

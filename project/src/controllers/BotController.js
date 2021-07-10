@@ -44,6 +44,7 @@ class BotController
         bot.Info.experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
+        bot.Info.Settings.StandingForKill = node.standingForKill;
         bot.Info.Voice = RandomUtil.getArrayValue(node.appearance.voice);
         bot.Health = BotController.generateHealth(node.health);
         bot.Skills = BotController.generateSkills(node.skills);

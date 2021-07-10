@@ -101,6 +101,28 @@ class InraidController
             scavData = InraidController.setInventory(sessionID, scavData, offraidData.profile);
             HealthController.resetVitality(sessionID);
             ProfileController.setScavProfile(sessionID, scavData);
+
+            // Scav karma
+            // Client deals with negative karma
+            const fenceID = "579dc571d53a0658a154fbec";
+            let fenceStanding = pmcData.TradersInfo[fenceID].standing;
+            let fenceChange = Number(offraidData.profile.TradersInfo[fenceID].standing);
+
+            // Add positive karma for PMC kills
+            const victims = offraidData.profile.Stats.Victims;
+            for (const victimNumber in victims)
+            {
+                const victim = victims[victimNumber];
+                if (victim.Side == "Usec" || victim.Side == "Bear")
+                {
+                    fenceChange += InraidConfig.save.standingForKillingPmc;
+                }
+            }
+            fenceStanding = Math.min(Math.max(fenceStanding + fenceChange, -7), 6);
+            pmcData.TradersInfo[fenceID].standing = fenceStanding;
+            TraderController.lvlUp(fenceID, sessionID);
+            pmcData.TradersInfo[fenceID].loyaltyLevel = Math.max(pmcData.TradersInfo[fenceID].loyaltyLevel, 1);
+
             return;
         }
         else
