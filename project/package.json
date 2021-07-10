@@ -18,6 +18,7 @@
     "description": "Modding framework for Escape From Tarkov",
     "scripts": {
         "lint": "eslint --fix ./**/*.js",
+        "lint:verify": "eslint \"./src/**/*.js\"",
         "test:debug": "node --trace-warnings src/ide/TestEntry.js",
         "test:release": "node --trace-warnings src/ide/ReleaseEntry.js",
         "build:types": "npx babel src --out-dir obj",
