@@ -24,7 +24,7 @@ class InsuranceController
     {
         InsuranceController.insured[sessionID] = {};
     }
-    
+
     /* adds gear to store */
     static addGearToSend(pmcData, insuredItem, actualItem, sessionID)
     {

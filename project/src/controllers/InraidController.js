@@ -110,14 +110,16 @@ class InraidController
 
             // Add positive karma for PMC kills
             const victims = offraidData.profile.Stats.Victims;
+
             for (const victimNumber in victims)
             {
                 const victim = victims[victimNumber];
-                if (victim.Side == "Usec" || victim.Side == "Bear")
+                if (victim.Side === "Usec" || victim.Side === "Bear")
                 {
                     fenceChange += InraidConfig.save.standingForKillingPmc;
                 }
             }
+            
             fenceStanding = Math.min(Math.max(fenceStanding + fenceChange, -7), 6);
             pmcData.TradersInfo[fenceID].standing = fenceStanding;
             TraderController.lvlUp(fenceID, sessionID);
