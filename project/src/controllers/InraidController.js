@@ -240,6 +240,7 @@ class InraidController
 
     static setInventory(sessionID, pmcData, profile)
     {
+        const insured = JsonUtil.clone(pmcData.InsuredItems);
         InventoryController.removeItem(pmcData, pmcData.Inventory.equipment, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems, sessionID);
@@ -249,6 +250,7 @@ class InraidController
             pmcData.Inventory.items.push(item);
         }
 
+        pmcData.InsuredItems = insured;
         pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
         pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, pmcData.Inventory.items, pmcData.Inventory.fastPanel);
         return pmcData;

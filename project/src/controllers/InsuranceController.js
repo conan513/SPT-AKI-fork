@@ -348,7 +348,13 @@ class InsuranceController
     static getPremium(pmcData, inventoryItem, traderId)
     {
         let premium = InsuranceController.getItemPrice(inventoryItem._tpl) * InsuranceConfig.priceMultiplier;
-        premium -= premium * (pmcData.TradersInfo[traderId].standing > 0.5 ? 0.5 : pmcData.TradersInfo[traderId].standing);
+        const coef = TraderController.getLoyaltyLevel(traderId, pmcData).insurance_price_coef;
+
+        if (coef > 0)
+        {
+            premium *= (1 - TraderController.getLoyaltyLevel(traderId, pmcData).insurance_price_coef / 100);
+        }
+
         return Math.round(premium);
     }
 

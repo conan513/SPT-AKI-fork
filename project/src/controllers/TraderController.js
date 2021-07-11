@@ -160,7 +160,7 @@ class TraderController
             if (!TraderController.fenceAssort || trader.supply_next_time < time)
             {
                 Logger.warning("generating fence");
-                TraderController.fenceAssort = TraderController.generateFenceAssort();
+                TraderController.fenceAssort = TraderController.generateFenceAssort(sessionID);
                 RagfairServer.generateTraderOffers(traderId);
             }
 
@@ -182,9 +182,10 @@ class TraderController
         return result;
     }
 
-    static generateFenceAssort()
+    static generateFenceAssort(sessionID)
     {
         const fenceID = "579dc571d53a0658a154fbec";
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         const assort = DatabaseServer.tables.traders[fenceID].assort;
         const itemPresets = DatabaseServer.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
@@ -215,6 +216,11 @@ class TraderController
                 result.items.push(toPush);
                 result.barter_scheme[toPush._id] = assort.barter_scheme[itemID];
                 result.loyal_level_items[toPush._id] = assort.loyal_level_items[itemID];
+
+                if (assort.barter_scheme[itemID])
+                {
+                    result.barter_scheme[toPush._id][0][0].count *= TraderController.getFenceInfo(pmcData).PriceModifier;
+                }
 
                 continue;
             }
@@ -256,8 +262,12 @@ class TraderController
             }
 
             result.barter_scheme[items[0]._id] = assort.barter_scheme[itemID];
-            result.barter_scheme[items[0]._id][0][0].count = rub;
             result.loyal_level_items[items[0]._id] = assort.loyal_level_items[itemID];
+
+            if (assort.barter_scheme[itemID])
+            {
+                result.barter_scheme[items[0]._id][0][0].count = rub * TraderController.getFenceInfo(pmcData).PriceModifier;
+            }
         }
 
         return result;
@@ -289,6 +299,8 @@ class TraderController
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
         const trader = DatabaseServer.tables.traders[traderID].base;
+        const buy_price_coef = TraderController.getLoyaltyLevel(traderID, pmcData).buy_price_coef;
+        const fenceInfo = TraderController.getFenceInfo(pmcData);
         const currency = PaymentController.getCurrency(trader.currency);
         let output = {};
 
@@ -329,9 +341,17 @@ class TraderController
             price *= ItemHelper.getItemQualityPrice(item);
 
             // get real price
-            if (trader.discount > 0)
+            let discount = trader.discount + buy_price_coef;
+
+            // Scav karma
+            if (traderID === DatabaseServer.tables.globals.config.FenceSettings.FenceId)
             {
-                price -= (trader.discount / 100) * price;
+                discount *= fenceInfo.PriceModifier;
+            }
+
+            if (discount > 0)
+            {
+                price -= (discount / 100) * price;
             }
 
             price = PaymentController.fromRUB(price, currency);
@@ -384,7 +404,20 @@ class TraderController
             return fenceSettings.Levels["0"];
         }
 
-        return fenceSettings.Levels[pmcFenceInfo.standing.toString()];
+        return fenceSettings.Levels[Math.floor(pmcFenceInfo.standing).toString()];
+    }
+
+    static getLoyaltyLevel(traderID, pmcData)
+    {
+        const trader = DatabaseServer.tables.traders[traderID].base;
+        let loyaltyLevel = pmcData.TradersInfo[traderID].loyaltyLevel;
+
+        if (!loyaltyLevel)
+        {
+            loyaltyLevel = 1;
+        }
+
+        return trader.loyaltyLevels[loyaltyLevel - 1];
     }
 }
 
