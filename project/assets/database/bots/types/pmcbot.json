@@ -26,14 +26,14 @@
 	"experience": {
 		"level": {
 			"min": 0,
-			"max": 0
+			"max": 1
 		},
 		"reward": {
 			"min": 500,
 			"max": 500
-		}
+		},
+		"standingForKill": 0
 	},
-	"standingForKill": 0.1,
 	"health": {
 		"Hydration": {
 			"min": 100,
@@ -198,7 +198,10 @@
 				"5f36a0e5fbf956000b716b65",
 				"5a17f98cfcdbcb0980087290"
 			],
-			"Scabbard": []
+			"Scabbard": [],
+			"Pockets": [
+				"557ffd194bdc2d28148b457f"
+			]
 		},
 		"mods": {
 			"5a7828548dc32e5a9c28b516": {
@@ -1212,7 +1215,24 @@
 				"5c5970672e221602b21d7855",
 				"56dff061d2720bb5668b4567"
 			],
-			"Pockets": [],
+			"Pockets": [
+				"5c0d591486f7744c505b416f",
+				"5710c24ad2720bc3458b45a3",
+				"557ffd194bdc2d28148b457f",
+				"5e32f56fcb6d5863cc5e5ee4",
+				"5a0c27731526d80618476ac4",
+				"5e81f423763d9f754677bf2e",
+				"5f3e77b26cda304dcc634057",
+				"573719762459775a626ccbc1",
+				"5a17fb03fcdbcbcae668728f",
+				"544fb3f34bdc2d03748b456a",
+				"5448be9a4bdc2dfd2f8b456a",
+				"58dd3ad986f77403051cba8f",
+				"5df8f535bb49d91fb446d6b0",
+				"56d59d3ad2720bdb418b4577",
+				"5a718b548dc32e000d46d262",
+				"560d5e524bdc2d25448b4571"
+			],
 			"Backpack": [
 				"5ab8ebf186f7742d8b372e80",
 				"60194943740c5d77f6705eea",
@@ -1788,7 +1808,8 @@
 			"FirstPrimaryWeapon": 100,
 			"SecondPrimaryWeapon": 0,
 			"Holster": 18,
-			"Scabbard": 0
+			"Scabbard": 0,
+			"Pockets": 100
 		},
 		"mods": {
 			"mod_muzzle": 67,

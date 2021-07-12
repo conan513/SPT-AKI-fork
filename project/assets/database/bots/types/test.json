@@ -14,9 +14,9 @@
 		"reward": {
 			"min": 0,
 			"max": 0
-		}
+		},
+		"standingForKill": 0
 	},
-	"standingForKill": -0.02,
 	"health": {
 		"Hydration": {
 			"min": 0,
@@ -77,7 +77,8 @@
 			"FirstPrimaryWeapon": [],
 			"SecondPrimaryWeapon": [],
 			"Holster": [],
-			"Scabbard": []
+			"Scabbard": [],
+			"Pockets": []
 		},
 		"mods": {},
 		"items": {

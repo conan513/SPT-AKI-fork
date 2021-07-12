@@ -19,14 +19,14 @@
 	"experience": {
 		"level": {
 			"min": 0,
-			"max": 0
+			"max": 1
 		},
 		"reward": {
 			"min": 1000,
 			"max": 1000
-		}
+		},
+		"standingForKill": -0.2
 	},
-	"standingForKill": -0.2,
 	"health": {
 		"Hydration": {
 			"min": 100,
@@ -142,7 +142,10 @@
 			"Holster": [
 				"5a17f98cfcdbcb0980087290"
 			],
-			"Scabbard": []
+			"Scabbard": [],
+			"Pockets": [
+				"5af99e9186f7747c447120b8"
+			]
 		},
 		"mods": {
 			"57f3c6bd24597738e730fa2f": {
@@ -196,7 +199,14 @@
 		},
 		"items": {
 			"TacticalVest": [],
-			"Pockets": [],
+			"Pockets": [
+				"57372140245977611f70ee91",
+				"57d1519e24597714373db79d",
+				"573719762459775a626ccbc1",
+				"5a17fb03fcdbcbcae668728f",
+				"5710c24ad2720bc3458b45a3",
+				"5af99e9186f7747c447120b8"
+			],
 			"Backpack": [
 				"5d02778e86f774203e7dedbe",
 				"590c657e86f77412b013051d",
@@ -719,7 +729,8 @@
 			"FirstPrimaryWeapon": 100,
 			"SecondPrimaryWeapon": 0,
 			"Holster": 100,
-			"Scabbard": 0
+			"Scabbard": 0,
+			"Pockets": 100
 		},
 		"mods": {
 			"mod_pistol_grip": 100,
