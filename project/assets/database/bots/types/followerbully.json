@@ -115,6 +115,9 @@
 			],
 			"Pockets": [
 				"557ffd194bdc2d28148b457f"
+			],
+			"SecuredContainer": [
+				"5c0a794586f77461c458f892"
 			]
 		},
 		"mods": {
@@ -285,7 +288,11 @@
 				"544a5cde4bdc2d39388b456b",
 				"573474f924597738002c6174"
 			],
-			"SecuredContainer": []
+			"SecuredContainer": [
+				"56dff061d2720bb5668b4567",
+				"5c0a794586f77461c458f892",
+				"5f0596629e22f464da6bbdd9"
+			]
 		}
 	},
 	"firstName": [
@@ -781,7 +788,8 @@
 			"SecondPrimaryWeapon": 0,
 			"Holster": 0,
 			"Scabbard": 25,
-			"Pockets": 100
+			"Pockets": 100,
+			"SecuredContainer": 100
 		},
 		"mods": {
 			"mod_tactical_002": 100,

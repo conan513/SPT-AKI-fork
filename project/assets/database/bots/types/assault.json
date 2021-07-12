@@ -237,6 +237,9 @@
 			],
 			"Pockets": [
 				"557ffd194bdc2d28148b457f"
+			],
+			"SecuredContainer": [
+				"5c0a794586f77461c458f892"
 			]
 		},
 		"mods": {
@@ -1378,7 +1381,32 @@
 				"5e8488fa988a8701445df1e4",
 				"5bc09a30d4351e00367fb7c8"
 			],
-			"SecuredContainer": []
+			"SecuredContainer": [
+				"5d6e6806a4b936088465b17e",
+				"5c0a794586f77461c458f892",
+				"5d6e67fba4b9361bc73bc779",
+				"573719762459775a626ccbc1",
+				"5d6e689ca4b9361bc8618956",
+				"5a38ebd9c4a282000d722a5b",
+				"560d5e524bdc2d25448b4571",
+				"56dff3afd2720bba668b4567",
+				"59e6542b86f77411dc52a77a",
+				"54527a984bdc2d4e668b4567",
+				"5d6e6869a4b9361c140bcfde",
+				"56d59d3ad2720bdb418b4577",
+				"5656d7c34bdc2d9d198b4587",
+				"5d6e6772a4b936088465b17c",
+				"5887431f2459777e1612938f",
+				"5f0596629e22f464da6bbdd9",
+				"5e023e6e34d52a55c3304f71",
+				"56dff4a2d2720bbd668b456a",
+				"56dff061d2720bb5668b4567",
+				"58820d1224597753c90aeb13",
+				"5735ff5c245977640e39ba7e",
+				"59e6658b86f77411d949b250",
+				"5d6e69c7a4b9360b6c0d54e4",
+				"5736026a245977644601dc61"
+			]
 		}
 	},
 	"firstName": [
@@ -3572,7 +3600,8 @@
 			"SecondPrimaryWeapon": 0,
 			"Holster": 5,
 			"Scabbard": 72,
-			"Pockets": 100
+			"Pockets": 100,
+			"SecuredContainer": 100
 		},
 		"mods": {
 			"mod_muzzle": 18,

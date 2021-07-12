@@ -134,6 +134,9 @@
 			"Scabbard": [],
 			"Pockets": [
 				"557ffd194bdc2d28148b457f"
+			],
+			"SecuredContainer": [
+				"5c0a794586f77461c458f892"
 			]
 		},
 		"mods": {
@@ -216,7 +219,12 @@
 				"5ed515e03a40a50460332579",
 				"5ed5166ad380ab312177c100"
 			],
-			"SecuredContainer": []
+			"SecuredContainer": [
+				"5e99711486f7744bfc4af328",
+				"5e99735686f7744bfc4af32c",
+				"5d6e68d1a4b93622fe60e845",
+				"5c0a794586f77461c458f892"
+			]
 		}
 	},
 	"firstName": [
@@ -723,7 +731,8 @@
 			"SecondPrimaryWeapon": 0,
 			"Holster": 0,
 			"Scabbard": 0,
-			"Pockets": 100
+			"Pockets": 100,
+			"SecuredContainer": 100
 		},
 		"mods": {
 			"mod_muzzle": 100,

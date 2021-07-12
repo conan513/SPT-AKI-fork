@@ -120,6 +120,9 @@
 			"Scabbard": [],
 			"Pockets": [
 				"557ffd194bdc2d28148b457f"
+			],
+			"SecuredContainer": [
+				"5c0a794586f77461c458f892"
 			]
 		},
 		"mods": {
@@ -306,7 +309,12 @@
 				"576a5ed62459771e9c2096cb"
 			],
 			"Backpack": [],
-			"SecuredContainer": []
+			"SecuredContainer": [
+				"5c3df7d588a4501f290594e5",
+				"5c0a794586f77461c458f892",
+				"56dff061d2720bb5668b4567",
+				"59e4cf5286f7741778269d8a"
+			]
 		}
 	},
 	"firstName": [
@@ -837,7 +845,8 @@
 			"SecondPrimaryWeapon": 0,
 			"Holster": 100,
 			"Scabbard": 0,
-			"Pockets": 100
+			"Pockets": 100,
+			"SecuredContainer": 100
 		},
 		"mods": {
 			"mod_pistol_grip": 100,

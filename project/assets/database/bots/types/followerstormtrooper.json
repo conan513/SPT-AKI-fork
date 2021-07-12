@@ -78,7 +78,8 @@
 			"SecondPrimaryWeapon": [],
 			"Holster": [],
 			"Scabbard": [],
-			"Pockets": []
+			"Pockets": [],
+			"SecuredContainer": []
 		},
 		"mods": {},
 		"items": {
