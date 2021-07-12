@@ -23,11 +23,11 @@ class Program
         watermark.draw();
 
         // easter egg
-        Logger.write("");
-        Logger.write("Thanks Kiryu Coco for all the fun times and memories!");
-        Logger.write("This release will be dedicated to you.");
-        Logger.write("- Senko-san");
-        Logger.write("");
+        //Logger.write("");
+        //Logger.write("Thanks Kiryu Coco for all the fun times and memories!");
+        //Logger.write("This release will be dedicated to you.");
+        //Logger.write("- Senko-san");
+        //Logger.write("");
 
         // load and execute all packages
         App.load();
