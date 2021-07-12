@@ -1,6 +1,6 @@
 ﻿# NCSA Open Source License  
 
-Copyright (c) 2020 Merijn Hendriks. All rights reserved.  
+Copyright (c) 2021 Merijn Hendriks. All rights reserved.  
 
 Developed by: Merijn Hendriks  
               SPT-AKI
