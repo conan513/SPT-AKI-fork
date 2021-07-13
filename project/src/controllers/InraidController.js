@@ -240,19 +240,20 @@ class InraidController
 
     static setInventory(sessionID, pmcData, profile)
     {
+        // store insurance (as removeItem removes insurance also)
         const insured = JsonUtil.clone(pmcData.InsuredItems);
+
+        // remove possible equipped items from before the raid
         InventoryController.removeItem(pmcData, pmcData.Inventory.equipment, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.sortingTable, sessionID);
 
-        for (let item of profile.Inventory.items)
-        {
-            pmcData.Inventory.items.push(item);
-        }
-
-        pmcData.InsuredItems = insured;
+        // add the new items
+        pmcData.Inventory.items = [...profile.Inventory.items, ...pmcData.Inventory.items];
         pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
+        pmcData.InsuredItems = insured;
+        
         return pmcData;
     }
 
