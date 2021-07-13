@@ -60,7 +60,7 @@ class HealthController
 
                 if (item.upd.MedKit.HpResource <= 0)
                 {
-                    InventoryController.removeItem(pmcData, body.item, sessionID);
+                    InventoryController.removeItem(pmcData, body.item, sessionID, output);
                 }
             }
         }

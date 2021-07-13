@@ -35,6 +35,7 @@ class HideoutController
 {
     static upgrade(pmcData, body, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         const items = body.items.map(reqItem =>
         {
             const item = pmcData.Inventory.items.find(invItem => invItem._id === reqItem.id);
@@ -50,7 +51,7 @@ class HideoutController
             if (!item.inventoryItem)
             {
                 Logger.error(`Failed to find item in inventory with id ${item.requestedItem.id}`);
-                return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             if (PaymentController.isMoneyTpl(item.inventoryItem._tpl)
@@ -62,26 +63,29 @@ class HideoutController
             }
             else
             {
-                InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID);
+                InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID, output);
             }
         }
 
         // Construction time management
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
+        
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === body.areaType);
+        
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         let ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
+
         if (ctime > 0)
         {
             let timestamp = TimeUtil.getTimestamp();
@@ -90,16 +94,18 @@ class HideoutController
             hideoutArea.constructing = true;
         }
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static upgradeComplete(pmcData, body, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
+        
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         // Upgrade area
@@ -108,14 +114,16 @@ class HideoutController
         hideoutArea.constructing = false;
 
         const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === hideoutArea.type);
+        
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         // Apply bonuses
         let bonuses = hideoutData.stages[hideoutArea.level].bonuses;
+
         if (bonuses.length > 0)
         {
             for (let bonus of bonuses)
@@ -124,7 +132,7 @@ class HideoutController
             }
         }
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     // Move items from hideout
@@ -175,7 +183,7 @@ class HideoutController
                 hideoutArea.slots.splice(slot_position, 1, slot_to_add);
             }
 
-            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID);
+            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID, output);
         }
 
         return output;
@@ -260,16 +268,18 @@ class HideoutController
 
     static toggleArea(pmcData, body, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
+       
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         hideoutArea.active = body.enabled;
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static singleProductionStart(pmcData, body, sessionID)
@@ -280,7 +290,7 @@ class HideoutController
 
         for (let itemToDelete of body.items)
         {
-            output = InventoryController.removeItem(pmcData, itemToDelete.id, sessionID);
+            output = InventoryController.removeItem(pmcData, itemToDelete.id, sessionID, output);
         }
 
         return output;

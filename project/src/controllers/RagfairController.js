@@ -692,19 +692,19 @@ class RagfairController
 
     static addPlayerOffer(pmcData, info, sessionID)
     {
-        const result = ItemEventRouter.getOutput(sessionID);
+        let output = ItemEventRouter.getOutput(sessionID);
         let requirementsPriceInRub = 0;
         let invItems = [];
 
         if (!info || !info.items || info.items.length === 0)
         {
             Logger.error("Invalid addOffer request");
-            return HttpResponse.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         if (!info.requirements)
         {
-            return HttpResponse.appendErrorToOutput(result, "How did you place the offer with no requirements?");
+            return HttpResponse.appendErrorToOutput(output, "How did you place the offer with no requirements?");
         }
 
         for (const item of info.requirements)
@@ -729,7 +729,7 @@ class RagfairController
             if (item === undefined)
             {
                 Logger.error(`Failed to find item with _id: ${itemId} in inventory!`);
-                return HttpResponse.appendErrorToOutput(result);
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             item = ItemHelper.fixItemStackCount(item);
@@ -739,28 +739,25 @@ class RagfairController
         if (!invItems || !invItems.length)
         {
             Logger.error("Could not find any requested items in the inventory");
-            return HttpResponse.appendErrorToOutput(result);
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         // Preparations are done, create the offer
-        const offer = RagfairController.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, RagfairController.mergeStackable(invItems), info.sellInOnePiece, requirementsPriceInRub);
+        let offer = RagfairController.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, RagfairController.mergeStackable(invItems), info.sellInOnePiece, requirementsPriceInRub);
         const rootItem = offer.items[0];
         const qualityMultiplier = ItemHelper.getItemQualityPrice(rootItem);
         const offerPrice = RagfairServer.prices.dynamic[rootItem._tpl] * rootItem.upd.StackObjectsCount * qualityMultiplier;
-        let sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;
-        let itemStackCount = offer.items[0].upd.StackObjectsCount;
-        if (info.sellInOnePiece)
-        {
-            itemStackCount = 1;
-        }
+        const itemStackCount = (!info.sellInOnePiece) ? offer.items[0].upd.StackObjectsCount : 1;
+        const offerValue = offerPrice / itemStackCount;
+        let sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;    
 
-        sellChance = RagfairController.calculateSellChance(sellChance, offerPrice / itemStackCount, requirementsPriceInRub);
-        offer.sellResult = RagfairController.rollForSale(sellChance, info.sellInOnePiece ? 1 : itemStackCount);
+        sellChance = RagfairController.calculateSellChance(sellChance, offerValue, requirementsPriceInRub);
+        offer.sellResult = RagfairController.rollForSale(sellChance, itemStackCount);
 
         // Subtract flea market fee from stash
         if (RagfairConfig.sell.fees)
         {
-            const tax = RagfairController.calculateTax(info, offerPrice / itemStackCount, requirementsPriceInRub, itemStackCount);
+            const tax = RagfairController.calculateTax(info, offerValue, requirementsPriceInRub, itemStackCount);
 
             Logger.info(`Tax Calculated to be: ${tax}`);
 
@@ -777,20 +774,20 @@ class RagfairController
 
             if (!PaymentController.payMoney(pmcData, request, sessionID))
             {
-                return HttpResponse.appendErrorToOutput(result, "Transaction failed: Couldn't pay commission fee");
+                return HttpResponse.appendErrorToOutput(output, "Transaction failed: Couldn't pay commission fee");
             }
         }
 
         SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers.push(offer);
-        result.profileChanges[sessionID].ragFairOffers.push(offer);
+        output.profileChanges[sessionID].ragFairOffers.push(offer);
 
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
-            InventoryController.removeItem(pmcData, itemToRemove, sessionID, result);
+            InventoryController.removeItem(pmcData, itemToRemove, sessionID, output);
         }
 
-        return result;
+        return output;
     }
 
     /*

@@ -181,11 +181,12 @@ class InventoryController
         let items = pmcData.Inventory.items;
         let insurance = pmcData.InsuredItems;
 
-        output = output || ItemEventRouter.getOutput(sessionID);
-
         for (const id of ids)
         {
-            output.profileChanges[sessionID].items.del.push({"_id": id});
+            if (output)
+            {
+                output.profileChanges[sessionID].items.del.push({"_id": id});
+            }
 
             for (const i in items)
             {
@@ -209,7 +210,7 @@ class InventoryController
 
     static discardItem(pmcData, body, sessionID)
     {
-        return InventoryController.removeItem(pmcData, body.item, sessionID);
+        return InventoryController.removeItem(pmcData, body.item, sessionID, ItemEventRouter.getOutput(sessionID));
     }
 
     /* Split Item

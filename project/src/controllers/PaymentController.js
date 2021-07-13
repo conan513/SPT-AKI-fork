@@ -154,7 +154,7 @@ class PaymentController
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
-                output = InventoryController.removeItem(pmcData, moneyItem._id, sessionID);
+                output = InventoryController.removeItem(pmcData, moneyItem._id, sessionID, output);
             }
             else
             {
