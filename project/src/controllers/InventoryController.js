@@ -211,7 +211,7 @@ class InventoryController
     static discardItem(pmcData, body, sessionID)
     {
         InsuranceController.remove(pmcData, body.item, sessionID);
-        return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput(), sessionID);
+        return InventoryController.removeItem(pmcData, body.item, ItemEventRouter.getOutput());
     }
 
     /* Split Item

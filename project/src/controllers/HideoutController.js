@@ -62,7 +62,7 @@ class HideoutController
             }
             else
             {
-                InventoryController.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput(), sessionID);
+                InventoryController.removeItem(pmcData, item.inventoryItem._id, ItemEventRouter.getOutput());
             }
         }
 
@@ -175,7 +175,7 @@ class HideoutController
                 hideoutArea.slots.splice(slot_position, 1, slot_to_add);
             }
 
-            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, output, sessionID);
+            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, output);
         }
 
         return output;
@@ -280,7 +280,7 @@ class HideoutController
 
         for (let itemToDelete of body.items)
         {
-            output = InventoryController.removeItem(pmcData, itemToDelete.id, output, sessionID);
+            output = InventoryController.removeItem(pmcData, itemToDelete.id, output);
         }
 
         return output;
@@ -307,7 +307,7 @@ class HideoutController
             }
             else
             {
-                output = InventoryController.removeItem(pmcData, requestedItem.id, output, sessionID);
+                output = InventoryController.removeItem(pmcData, requestedItem.id, output);
             }
         }
 

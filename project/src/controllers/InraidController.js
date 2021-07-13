@@ -236,9 +236,9 @@ class InraidController
     {
         const insured = JsonUtil.clone(pmcData.InsuredItems);
 
-        InventoryController.removeItem(pmcData, pmcData.Inventory.equipment, sessionID);
-        InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems, sessionID);
-        InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems, sessionID);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.equipment);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems);
 
         pmcData.Inventory.items = [...profile.Inventory.items, ...pmcData.Inventory.items];
         pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
@@ -247,7 +247,7 @@ class InraidController
         return pmcData;
     }
 
-    static deleteInventory(pmcData, sessionID)
+    static deleteInventory(pmcData)
     {
         let toDelete = [];
 

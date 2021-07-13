@@ -60,7 +60,7 @@ class HealthController
 
                 if (item.upd.MedKit.HpResource <= 0)
                 {
-                    InventoryController.removeItem(pmcData, body.item, output, sessionID);
+                    InventoryController.removeItem(pmcData, body.item, output);
                 }
             }
         }
@@ -99,7 +99,7 @@ class HealthController
 
         if (maxResource === 1 || resourceLeft < 1)
         {
-            output = InventoryController.removeItem(pmcData, body.item, output, sessionID);
+            output = InventoryController.removeItem(pmcData, body.item, output);
         }
 
         return output;

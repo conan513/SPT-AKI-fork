@@ -787,7 +787,7 @@ class RagfairController
         // Remove items from inventory after creating offer
         for (const itemToRemove of info.items)
         {
-            InventoryController.removeItem(pmcData, itemToRemove, result, sessionID);
+            InventoryController.removeItem(pmcData, itemToRemove, result);
         }
 
         return result;
