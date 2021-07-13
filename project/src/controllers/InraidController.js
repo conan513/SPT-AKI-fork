@@ -244,6 +244,7 @@ class InraidController
         InventoryController.removeItem(pmcData, pmcData.Inventory.equipment, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questRaidItems, sessionID);
         InventoryController.removeItem(pmcData, pmcData.Inventory.questStashItems, sessionID);
+        InventoryController.removeItem(pmcData, pmcData.Inventory.sortingTable, sessionID);
 
         for (let item of profile.Inventory.items)
         {
@@ -252,7 +253,6 @@ class InraidController
 
         pmcData.InsuredItems = insured;
         pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
-        pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, pmcData.Inventory.items, pmcData.Inventory.fastPanel);
         return pmcData;
     }
 
