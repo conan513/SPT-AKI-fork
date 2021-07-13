@@ -43,7 +43,7 @@ class InraidController
         {
             if (item._tpl === mapKey && item.slotId !== "Hideout")
             {
-                InventoryController.removeItemFromProfile(offraidData.profile, item._id);
+                InventoryController.removeItem(offraidData.profile, item._id);
                 break;
             }
         }
@@ -284,7 +284,7 @@ class InraidController
         // delete items
         for (let item of toDelete)
         {
-            InventoryController.removeItemFromProfile(pmcData, item);
+            InventoryController.removeItem(pmcData, item);
         }
 
         pmcData.Inventory.fastPanel = {};

@@ -184,9 +184,9 @@ class InventoryController
         output = output || ItemEventRouter.getOutput(sessionID);
 
         //remove one by one all related items and itself
-        for (let i in ids_toremove)
+        for (let i in ids)
         {
-            output.items.del.push({"_id": ids_toremove[i]});
+            output.items.del.push({"_id": ids[i]});
 
             for (const i in items)
             {
@@ -204,24 +204,7 @@ class InventoryController
                 }
             }
         }
-    }
 
-    /*
-    * Remove Item
-    * Deep tree item deletion / Delets main item and all sub items with sub items ... and so on.
-    */
-    static removeItem(profileData, body, output, sessionID)
-    {
-        let toDo = [body];
-
-        //Find the item and all of it's relates
-        if (toDo[0] === undefined || toDo[0] === null || toDo[0] === "undefined")
-        {
-            Logger.error("item id is not valid");
-            return "";
-        }
-
-        InventoryController.removeItemFromProfile(profileData, toDo[0], output);
         return output;
     }
 
