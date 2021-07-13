@@ -68,17 +68,13 @@ class InraidController
 
         SaveServer.profiles[sessionID].inraid.character = (isPlayerScav) ? "scav" : "pmc";
 
-        if (!isPlayerScav)
+        if (isPlayerScav)
         {
-            pmcData = InraidController.setBaseStats(pmcData, offraidData, sessionID);
-
-            // For some reason, offraidData seems to drop the latest insured items.
-            // It makes more sense to use profileData's insured items as the source of truth.
-            offraidData.profile.InsuredItems = pmcData.InsuredItems;
+            scavData = InraidController.setBaseStats(scavData, offraidData, sessionID);
         }
         else
         {
-            scavData = InraidController.setBaseStats(scavData, offraidData, sessionID);
+            pmcData = InraidController.setBaseStats(pmcData, offraidData, sessionID);
         }
 
         // Check for exit status

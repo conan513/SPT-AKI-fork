@@ -222,6 +222,12 @@ class HealthController
             }
             else
             {
+                // set body part
+                if (target > pmcData.Health.BodyParts[item].Health.Maximum)
+                {
+                    target = pmcData.Health.BodyParts[item].Health.Maximum;
+                }
+
                 if (target === 0)
                 {
                     // blacked body part
