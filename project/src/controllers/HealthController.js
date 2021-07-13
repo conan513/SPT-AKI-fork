@@ -71,30 +71,33 @@ class HealthController
     static offraidEat(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
-        let resourceLeft;
-        let maxResource;
+        let resourceLeft = 0;
+        let maxResource = 0;
 
         for (let item of pmcData.Inventory.items)
         {
-            if (item._id === body.item)
+            if (item._id !== body.item)
             {
-                let itemProps = ItemHelper.getItem(item._tpl)[1]._props;
-                maxResource = itemProps.MaxResource;
-
-                if (maxResource > 1)
-                {
-                    if (item.upd.FoodDrink !== undefined)
-                    {
-                        item.upd.FoodDrink.HpPercent -= body.count;
-                    }
-                    else
-                    {
-                        item.upd.FoodDrink = {"HpPercent" : maxResource - body.count};
-                    }
-
-                    resourceLeft = item.upd.FoodDrink.HpPercent;
-                }
+                continue;
             }
+
+            maxResource = ItemHelper.getItem(item._tpl)[1]._props.MaxResource;
+
+            if (maxResource > 1)
+            {
+                if (item.upd.FoodDrink === undefined)
+                {
+                    item.upd.FoodDrink = {"HpPercent" : maxResource - body.count};
+                }
+                else
+                {
+                    item.upd.FoodDrink.HpPercent -= body.count;
+                }
+
+                resourceLeft = item.upd.FoodDrink.HpPercent;
+            }
+
+            break;
         }
 
         if (maxResource === 1 || resourceLeft < 1)
