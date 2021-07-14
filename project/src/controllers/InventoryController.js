@@ -177,6 +177,9 @@ class InventoryController
     */
     static removeItem(pmcData, itemId, sessionID, output = undefined)
     {
+        if(!itemId){
+            return output;
+        }
         const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
         let items = pmcData.Inventory.items;
         let insurance = pmcData.InsuredItems;
