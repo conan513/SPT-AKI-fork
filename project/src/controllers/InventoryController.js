@@ -181,14 +181,14 @@ class InventoryController
         let items = pmcData.Inventory.items;
         let insurance = pmcData.InsuredItems;
 
+        if (output)
+        {
+            // client only needs to know the root item is deleted
+            output.profileChanges[sessionID].items.del.push({"_id": itemId});
+        }
+
         for (const id of ids)
         {
-            if (output)
-            {
-                // client only needs to know the root item is deleted
-                output.profileChanges[sessionID].items.del.push({"_id": itemId});
-            }
-
             for (const i in items)
             {
                 if (items[i]._id === id)
