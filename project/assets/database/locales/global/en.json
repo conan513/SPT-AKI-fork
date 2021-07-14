@@ -3306,7 +3306,7 @@
 			"conditions": {
 				"5968975586f7740e7266d974": "Hand over the letter from messenger to the Therapist."
 			},
-			"location": "any"
+			"location": "55f2d3fd4bdc2d5f408b4567"
 		},
 		"59675d6c86f7740a842fc482": {
 			"name": "Ice cream cones",
@@ -3676,7 +3676,7 @@
 				"596a10d886f7741ddf17dbf0": "Hand over folder 0052 to Skier.",
 				"596a117386f7741ddf17dbf1": "Supply plans - success."
 			},
-			"location": "any"
+			"location": "5704e3c2d2720bac5b8b4567"
 		},
 		"597a0e5786f77426d66c0636": {
 			"name": "Chemical, p. 3",
@@ -4863,7 +4863,7 @@
 			"failMessageText": "5ae9e4fc86f77443f2500fe2",
 			"startedMessageText": "5ae9e4fc86f77443f2500fe3",
 			"description": "5ae9e4fc86f77443f2500fe4",
-			"location": "any"
+			"location": "5714dbc024597771384a510d"
 		},
 		"5ae449b386f77446d8741719": {
 			"conditions": {
