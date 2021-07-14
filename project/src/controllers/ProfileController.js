@@ -134,8 +134,9 @@ class ProfileController
                     "Difficulty": "normal"
                 }
             ]
-        })[0];
+        }, true)[0];
 
+        // This should no longer occur - can probably be removed
         if (scavData.Info.Side === "Bear" || scavData.Info.Side === "Usec")
         {
             // generated PMC, regenerate

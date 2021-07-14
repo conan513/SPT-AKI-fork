@@ -69,7 +69,7 @@ class BotController
         return bot;
     }
 
-    static generate(info)
+    static generate(info, playerScav = false)
     {
         let output = [];
 
@@ -79,7 +79,7 @@ class BotController
             {
                 const pmcSide = (RandomUtil.getInt(0, 99) < BotConfig.pmc.isUsec) ? "Usec" : "Bear";
                 const role = condition.Role;
-                const isPmc = (role in BotConfig.pmc.types && RandomUtil.getInt(0, 99) < BotConfig.pmc.types[role]);
+                const isPmc = playerScav ? false : (role in BotConfig.pmc.types && RandomUtil.getInt(0, 99) < BotConfig.pmc.types[role]);
                 let bot = JsonUtil.clone(DatabaseServer.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;

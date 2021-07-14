@@ -249,7 +249,7 @@ class InraidController
         pmcData.Inventory.items = [...profile.Inventory.items, ...pmcData.Inventory.items];
         pmcData.Inventory.fastPanel = profile.Inventory.fastPanel;
         pmcData.InsuredItems = insured;
-        
+
         return pmcData;
     }
 

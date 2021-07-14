@@ -266,7 +266,7 @@ class RagfairServer
         if (RagfairServer.isTrader(userID))
         {
             // trader offer
-            return DatabaseServer.tables.traders[userID].base.supply_next_time;
+            return DatabaseServer.tables.traders[userID].base.nextResupply;
         }
 
         // generated offer

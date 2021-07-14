@@ -98,6 +98,9 @@ class BotGenerator
         const questStashItemsId = HashUtil.generate();
         const questStashItemsTpl = "5963866b86f7747bfa1c4462";
 
+        const sortingTableId = HashUtil.generate();
+        const sortingTableTpl = "602543c13fee350cd564d032";
+
         return {
             "items": [
                 {
@@ -115,12 +118,17 @@ class BotGenerator
                 {
                     "_id": questStashItemsId,
                     "_tpl": questStashItemsTpl
+                },
+                {
+                    "_id": sortingTableId,
+                    "_tpl": sortingTableTpl
                 }
             ],
             "equipment": equipmentId,
             "stash": stashId,
             "questRaidItems": questRaidItemsId,
             "questStashItems": questStashItemsId,
+            "sortingTable": sortingTableId,
             "fastPanel": {}
         };
     }

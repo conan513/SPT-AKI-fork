@@ -93,16 +93,16 @@ class TraderController
         {
             const trader = DatabaseServer.tables.traders[traderID].base;
 
-            if (trader.supply_next_time > time)
+            if (trader.nextResupply > time)
             {
                 continue;
             }
 
             // get resupply time
-            const overdue = (time - trader.supply_next_time);
+            const overdue = (time - trader.nextResupply);
             const refresh = Math.floor(overdue / update) + 1;
 
-            trader.supply_next_time = trader.supply_next_time + refresh * update;
+            trader.nextResupply = trader.nextResupply + refresh * update;
             DatabaseServer.tables.traders[traderID].base = trader;
         }
 
@@ -157,7 +157,7 @@ class TraderController
             const time = TimeUtil.getTimestamp();
             const trader = DatabaseServer.tables.traders[traderId].base;
 
-            if (!TraderController.fenceAssort || trader.supply_next_time < time)
+            if (!TraderController.fenceAssort || trader.nextResupply < time)
             {
                 Logger.warning("generating fence");
                 TraderController.fenceAssort = TraderController.generateFenceAssort(sessionID);
