@@ -893,23 +893,31 @@ class InventoryController
             for (const target of body.changedItems)
             {
                 // remove unsorted items
+                let info = {};
                 items = items.filter((item) =>
                 {
+                    if(item._id === target._id){
+						info = JsonUtil.clone(item);
+					}
                     return item._id !== target._id;
                 });
-
+                if(typeof(info._tpl)!=='string'){
+					info = target;
+				}else if(typeof(target.location)!=='undefined'){
+					info.location = target.location;
+				}
                 // fix currency StackObjectsCount when single stack
-                if (PaymentController.isMoneyTpl(target._tpl))
+                if (PaymentController.isMoneyTpl(info._tpl))
                 {
-                    target.upd = (target.upd || {});
-                    if (!target.upd.StackObjectsCount)
+                    info.upd = (info.upd || {});
+                    if (!info.upd.StackObjectsCount)
                     {
-                        target.upd.StackObjectsCount = 1;
+                        info.upd.StackObjectsCount = 1;
                     }
                 }
 
                 // add sorted items
-                items.push(target);
+                items.push(info);
             }
         }
 
