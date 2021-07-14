@@ -185,7 +185,8 @@ class InventoryController
         {
             if (output)
             {
-                output.profileChanges[sessionID].items.del.push({"_id": id});
+                // client only needs to know the root item is deleted
+                output.profileChanges[sessionID].items.del.push({"_id": itemId});
             }
 
             for (const i in items)
