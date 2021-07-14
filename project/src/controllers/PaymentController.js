@@ -175,7 +175,7 @@ class PaymentController
 
         pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
-        Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: { "salesSum": saleSum } });
+        Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: pmcData.TradersInfo[body.tid] });
 
         // save changes
         Logger.success("Items taken. Status OK.");
