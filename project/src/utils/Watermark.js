@@ -96,7 +96,9 @@ class Watermark
         // calculate size
         let longestLength = Watermark.text.reduce((a, b) =>
         {
-            return a.length > b.length ? a : b;
+            let a2 = String(a).replace(/[\u0391-\uFFE5]/g,"ab");
+			let b2 = String(b).replace(/[\u0391-\uFFE5]/g,"ab");
+            return a2.length > b2.length ? a2 : b2;
         }).length;
 
         // get top-bottom line
@@ -135,22 +137,7 @@ class Watermark
     /** Caculate text length */
     static textLength(s)
     {
-        const arr = s.split("");
-        let result = 0;
-
-        for (const char of arr)
-        {
-            if (encodeURI(char).split(/%..|./).length - 1 > 1)
-            {
-                result += 2;
-            }
-            else
-            {
-                result++;
-            }
-        }
-
-        return result;
+        return String(s).replace(/[\u0391-\uFFE5]/g,"ab").length;
     }
 }
 
