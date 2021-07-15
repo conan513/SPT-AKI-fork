@@ -41,7 +41,7 @@ class BotController
         const levelResult = BotController.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Nickname = `${RandomUtil.getArrayValue(node.firstName)} ${RandomUtil.getArrayValue(node.lastName) || ""}`;
-        bot.Info.experience = levelResult.exp;
+        bot.Info.Experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
         bot.Info.Settings.StandingForKill = node.experience.standingForKill;
