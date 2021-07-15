@@ -177,9 +177,11 @@ class InventoryController
     */
     static removeItem(pmcData, itemId, sessionID, output = undefined)
     {
-        if(!itemId){
+        if (!itemId)
+        {
             return output;
         }
+
         const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
         let items = pmcData.Inventory.items;
         let insurance = pmcData.InsuredItems;
@@ -896,16 +898,21 @@ class InventoryController
                 let info = {};
                 items = items.filter((item) =>
                 {
-                    if(item._id === target._id){
-						info = JsonUtil.clone(item);
-					}
+                    if (item._id === target._id)
+                    {
+                        info = JsonUtil.clone(item);
+                    }
                     return item._id !== target._id;
                 });
-                if(typeof(info._tpl)!=='string'){
-					info = target;
-				}else if(typeof(target.location)!=='undefined'){
-					info.location = target.location;
-				}
+                if (typeof(info._tpl) !== "string")
+                {
+                    info = target;
+                }
+                else if (typeof(target.location) !== "undefined")
+                {
+                    info.location = target.location;
+                }
+
                 // fix currency StackObjectsCount when single stack
                 if (PaymentController.isMoneyTpl(info._tpl))
                 {

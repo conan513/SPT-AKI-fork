@@ -69,7 +69,7 @@ class HideoutController
 
         // Construction time management
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
-        
+
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
@@ -77,7 +77,7 @@ class HideoutController
         }
 
         const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === body.areaType);
-        
+
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
@@ -101,7 +101,7 @@ class HideoutController
     {
         let output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
-        
+
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
@@ -114,7 +114,7 @@ class HideoutController
         hideoutArea.constructing = false;
 
         const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === hideoutArea.type);
-        
+
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
@@ -270,7 +270,7 @@ class HideoutController
     {
         let output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
-       
+
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);

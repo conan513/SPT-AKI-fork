@@ -749,7 +749,7 @@ class RagfairController
         const offerPrice = RagfairServer.prices.dynamic[rootItem._tpl] * rootItem.upd.StackObjectsCount * qualityMultiplier;
         const itemStackCount = (!info.sellInOnePiece) ? offer.items[0].upd.StackObjectsCount : 1;
         const offerValue = offerPrice / itemStackCount;
-        let sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;    
+        let sellChance = RagfairConfig.sell.chance.base * qualityMultiplier;
 
         sellChance = RagfairController.calculateSellChance(sellChance, offerValue, requirementsPriceInRub);
         offer.sellResult = RagfairController.rollForSale(sellChance, itemStackCount);

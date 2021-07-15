@@ -54,7 +54,7 @@ class WatermarkLocale
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "2.0.0-A4";
+    static version = "2.0.0-A5";
     static text = [];
 
     static initialize()
@@ -96,8 +96,8 @@ class Watermark
         // calculate size
         let longestLength = Watermark.text.reduce((a, b) =>
         {
-            let a2 = String(a).replace(/[\u0391-\uFFE5]/g,"ab");
-			let b2 = String(b).replace(/[\u0391-\uFFE5]/g,"ab");
+            let a2 = String(a).replace(/[\u0391-\uFFE5]/g, "ab");
+            let b2 = String(b).replace(/[\u0391-\uFFE5]/g, "ab");
             return a2.length > b2.length ? a2 : b2;
         }).length;
 
@@ -137,7 +137,7 @@ class Watermark
     /** Caculate text length */
     static textLength(s)
     {
-        return String(s).replace(/[\u0391-\uFFE5]/g,"ab").length;
+        return String(s).replace(/[\u0391-\uFFE5]/g, "ab").length;
     }
 }
 
