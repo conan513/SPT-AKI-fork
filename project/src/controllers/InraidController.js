@@ -210,7 +210,7 @@ class InraidController
             }
             else
             {
-                const base = {"upd": {"SpawnedInSession": true}};
+                const base = { "upd": { "SpawnedInSession": true } };
                 item = { ...item, ...base };
             }
         }
@@ -261,12 +261,12 @@ class InraidController
         {
             // remove normal item
             if (item.parentId === pmcData.Inventory.equipment
-            && item.slotId !== "SecuredContainer"
-            && item.slotId !== "Scabbard"
-            && item.slotId !== "Pockets"
-            && item.slotId !== "Compass"
-            && item.slotId !== "ArmBand"
-            || item.parentId === pmcData.Inventory.questRaidItems)
+                && item.slotId !== "SecuredContainer"
+                && item.slotId !== "Scabbard"
+                && item.slotId !== "Pockets"
+                && item.slotId !== "Compass"
+                && item.slotId !== "ArmBand"
+                || item.parentId === pmcData.Inventory.questRaidItems)
             {
                 toDelete.push(item._id);
             }
