@@ -6,7 +6,7 @@ class InventoryController
 {
     /**
      * Based on the item action, determine whose inventories we should be looking at for from and to.
-     * 
+     *
      * @param {Object} body - request Body
      * @param {string} sessionID - Session id
      * @returns response as JSON object
@@ -62,11 +62,11 @@ class InventoryController
     * change location of item with parentId and slotId
     * transfers items from one profile to another if fromOwner/toOwner is set in the body.
     * otherwise, move is contained within the same profile_f.
-    * 
-    * @param {Object} pmcData 
-    * @param {Object} body 
-    * @param {string} sessionID 
-    * @returns 
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns
     */
     static moveItem(pmcData, body, sessionID)
     {
@@ -89,10 +89,10 @@ class InventoryController
     * fromProfileData: Profile of the source.
     * toProfileData: Profile of the destination.
     * body: Move request
-    * 
+    *
     * @param {Array} fromItems
-    * @param {Array} toItems 
-    * @param {Object} body 
+    * @param {Array} toItems
+    * @param {Object} body
     */
     static moveItemToProfile(fromItems, toItems, body)
     {
@@ -132,9 +132,9 @@ class InventoryController
 
     /**
     * Internal helper function to move item within the same profile_f.
-    * 
-    * @param {Object} items - Items to move 
-    * @param {Object} body - Request body 
+    *
+    * @param {Object} items - Items to move
+    * @param {Object} body - Request body
     * @returns response
     */
     static moveItemInternal(items, body)
@@ -166,7 +166,7 @@ class InventoryController
 
     /**
     * Internal helper function to handle cartridges in inventory if any of them exist.
-    * 
+    *
     * @param {Object} Items - Cartridges in question
     * @param {Object} body  - Body of the Move request
     */
@@ -190,9 +190,9 @@ class InventoryController
     }
 
     /**
-    * Remove Item from Profile 
+    * Remove Item from Profile
     * Deep tree item deletion, also removes items from insurance list
-    * 
+    *
     * @param {Object} pmcData   - PMC Profile data as JSON Object
     * @param {string} itemId    - ID of the inventory Item to be removed
     * @param {string} sessionID - Session ID
@@ -218,8 +218,8 @@ class InventoryController
 
         for (const child of children)
         {
-            // We expect that each inventory item and each insured item has unique "_id", respective "itemId". 
-            // Therefore we want to use a NON-Greedy function and escape the iteration as soon as we find requested item. 
+            // We expect that each inventory item and each insured item has unique "_id", respective "itemId".
+            // Therefore we want to use a NON-Greedy function and escape the iteration as soon as we find requested item.
             const inventoryIndex = inventoryItems.findIndex(item => item._id === child);
             if (inventoryIndex > -1)
             {
@@ -238,7 +238,7 @@ class InventoryController
     /**
      * Implements functionality "Discard" from Main menu (Stash etc.)
      * Removes item from PMC Profile
-     * 
+     *
      * @param {Object} pmcData - PMC Data portion of Profile Object
      * @param {Object} body - rquest body
      * @param {string} sessionID - session it
@@ -252,11 +252,11 @@ class InventoryController
     /**
     * Split Item
     * spliting 1 item-stack into 2 separate items ...
-    * 
-    * @param {Object} pmcData 
-    * @param {Object} body 
-    * @param {string} sessionID 
-    * @returns 
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns
     */
     static splitItem(pmcData, body, sessionID)
     {
@@ -311,7 +311,7 @@ class InventoryController
     /**
      * Merge Item
      * merges 2 items into one, deletes item from `body.item` and adding number of stacks into `body.with`
-     * 
+     *
      * @param {Object} pmcData      - PMC Part of profile
      * @param {Object} body         - Request Body
      * @param {string} sessionID    - Session ID
@@ -372,11 +372,11 @@ class InventoryController
     /**
     * Transfer item
     * Used to take items from scav inventory into stash or to insert ammo into mags (shotgun ones) and reloading weapon by clicking "Reload"
-    * 
-    * @param {Object} pmcData 
-    * @param {Object} body 
-    * @param {string} sessionID 
-    * @returns 
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns
     */
     static transferItem(pmcData, body, sessionID)
     {
@@ -444,10 +444,10 @@ class InventoryController
     /**
     * Swap Item
     * its used for "reload" if you have weapon in hands and magazine is somewhere else in rig or backpack in equipment
-    * 
-    * @param {Object} pmcData 
-    * @param {Object} body 
-    * @param {string} sessionID 
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
     * @returns response object
     */
     static swapItem(pmcData, body, sessionID)
@@ -476,15 +476,15 @@ class InventoryController
     /**
     * Give Item
     * its used for "add" item like gifts etc.
-    * 
+    *
     * @param {Object} pmcData   - PMC Part of profile as JSON object
     * @param {Object} body      - request body
     * @param {Object} output    - response body
-    * @param {string} sessionID     - Session ID 
-    * @param {function} callback    - callback function 
-    * @param {bool} [foundInRaid=false] - Found in Raid tag for given item 
+    * @param {string} sessionID     - Session ID
+    * @param {function} callback    - callback function
+    * @param {bool} [foundInRaid=false] - Found in Raid tag for given item
     * @param {*} addUpd     - @Incomplete: ???
-    * @returns 
+    * @returns
     */
     static addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
     {
@@ -780,11 +780,11 @@ class InventoryController
 
     /**
      * Handles folding of Weapons
-     * 
-     * @param {Object} pmcData 
-     * @param {Object} body 
-     * @param {string} sessionID 
-     * @returns 
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
      */
     static foldItem(pmcData, body, sessionID)
     {
@@ -808,11 +808,11 @@ class InventoryController
 
     /**
      * Toggles "Toggleable" items like night vision goggles and face shields.
-     * 
-     * @param {Object} pmcData 
-     * @param {Object} body 
-     * @param {string} sessionID 
-     * @returns 
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
      */
     static toggleItem(pmcData, body, sessionID)
     {
@@ -835,11 +835,11 @@ class InventoryController
 
     /**
      * Handles Tagging of items (primary Containers).
-     * 
-     * @param {Object} pmcData 
-     * @param {Object} body 
-     * @param {string} sessionID 
-     * @returns 
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
      */
     static tagItem(pmcData, body, sessionID)
     {
@@ -864,12 +864,12 @@ class InventoryController
     }
 
     /**
-     * @Incomplete: ??? 
-     * 
-     * @param {Object} pmcData 
-     * @param {Object} body 
-     * @param {string} sessionID 
-     * @returns 
+     * @Incomplete: ???
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
      */
     static bindItem(pmcData, body, sessionID)
     {
@@ -887,11 +887,11 @@ class InventoryController
 
     /**
      * Handles examining of the item
-     * 
-     * @param {Object} pmcData 
-     * @param {Object} body 
-     * @param {string} sessionID 
-     * @returns 
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
      */
     static examineItem(pmcData, body, sessionID)
     {
@@ -980,11 +980,11 @@ class InventoryController
 
     /**
      * Handles sorting of Inventory.
-     * 
-     * @param {Object} pmcData 
-     * @param {Object} body 
-     * @param {string} sessionID 
-     * @returns 
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
      */
     static sortInventory(pmcData, body, sessionID)
     {
