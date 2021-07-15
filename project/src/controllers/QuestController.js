@@ -355,6 +355,7 @@ class QuestController
         let completeQuestResponse = ItemEventRouter.getOutput(sessionID);
         completeQuestResponse.profileChanges[sessionID].quests = QuestHelper.getDeltaQuests(beforeQuests, QuestController.getClientQuests(sessionID));
         QuestHelper.dumpQuests(completeQuestResponse.profileChanges[sessionID].quests);
+        Object.assign(completeQuestResponse.profileChanges[sessionID].traderRelations, pmcData.TradersInfo);
         return completeQuestResponse;
     }
 
