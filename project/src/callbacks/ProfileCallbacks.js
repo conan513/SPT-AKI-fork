@@ -12,7 +12,7 @@ class ProfileCallbacks
     static createProfile(url, info, sessionID)
     {
         ProfileController.createProfile(info, sessionID);
-        return HttpResponse.getBody({"uid": `pmc${sessionID}`});
+        return HttpResponse.getBody({ "uid": `pmc${sessionID}` });
     }
 
     static getProfileData(url, info, sessionID)
@@ -59,7 +59,7 @@ class ProfileCallbacks
             return HttpResponse.getBody(null, 256, "The nickname is too short");
         }
 
-        return HttpResponse.getBody({"status": "ok"});
+        return HttpResponse.getBody({ "status": "ok" });
     }
 
     static getReservedNickname(url, info, sessionID)

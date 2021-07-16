@@ -114,7 +114,7 @@ class BotController
             exp += RandomUtil.getInt(0, expTable[level].exp - 1);
         }
 
-        return {level, exp};
+        return { level, exp };
     }
 
     /** Converts health object to the required format */

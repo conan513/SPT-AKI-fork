@@ -55,7 +55,7 @@ class HealthController
                 else
                 {
                     const maxhp = ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
-                    item.upd.MedKit = {"HpResource": maxhp - body.count};
+                    item.upd.MedKit = { "HpResource": maxhp - body.count };
                 }
 
                 if (item.upd.MedKit.HpResource <= 0)
@@ -87,7 +87,7 @@ class HealthController
             {
                 if (item.upd.FoodDrink === undefined)
                 {
-                    item.upd.FoodDrink = {"HpPercent" : maxResource - body.count};
+                    item.upd.FoodDrink = { "HpPercent" : maxResource - body.count };
                 }
                 else
                 {
@@ -262,7 +262,7 @@ class HealthController
                 switch (effect)
                 {
                     case "Fracture":
-                        HealthController.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "Fracture"});
+                        HealthController.addEffect(pmcData, sessionID, { bodyPart: bodyPart, effectType: "Fracture" });
                         break;
                 }
             }

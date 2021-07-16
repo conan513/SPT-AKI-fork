@@ -121,7 +121,7 @@ class CustomizationController
                         "parentId": item.parentId,
                         "slotId": item.slotId,
                         "location": item.location,
-                        "upd": {"StackObjectsCount": item.upd.StackObjectsCount}
+                        "upd": { "StackObjectsCount": item.upd.StackObjectsCount }
                     });
                 }
             }

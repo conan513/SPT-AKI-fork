@@ -89,7 +89,7 @@ class HttpServer
 
     static sendZlibJson(resp, output, sessionID)
     {
-        resp.writeHead(200, "OK", {"Content-Type": HttpServer.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : `PHPSESSID=${sessionID}`});
+        resp.writeHead(200, "OK", { "Content-Type": HttpServer.mime["json"], "content-encoding" : "deflate", "Set-Cookie" : `PHPSESSID=${sessionID}` });
 
         zlib.deflate(output, function (err, buf)
         {
@@ -99,7 +99,7 @@ class HttpServer
 
     static sendTextJson(resp, output)
     {
-        resp.writeHead(200, "OK", {"Content-Type": HttpServer.mime["json"]});
+        resp.writeHead(200, "OK", { "Content-Type": HttpServer.mime["json"] });
         resp.end(output);
     }
 
