@@ -206,7 +206,7 @@ class InventoryController
             return output;
         }
 
-        const children = InventoryHelper.findAndReturnChildren(pmcData, itemId);
+        const childIds = InventoryHelper.findAndReturnChildren(pmcData, itemId);
         const inventoryItems = pmcData.Inventory.items;
         const insuredItems = pmcData.InsuredItems;
 
@@ -216,17 +216,17 @@ class InventoryController
             output.profileChanges[sessionID].items.del.push({ "_id": itemId });
         }
 
-        for (const child of children)
+        for (const childId of childIds)
         {
             // We expect that each inventory item and each insured item has unique "_id", respective "itemId".
             // Therefore we want to use a NON-Greedy function and escape the iteration as soon as we find requested item.
-            const inventoryIndex = inventoryItems.findIndex(item => item._id === child);
+            const inventoryIndex = inventoryItems.findIndex(item => item._id === childId);
             if (inventoryIndex > -1)
             {
                 inventoryItems.splice(inventoryIndex, 1);
             }
 
-            const insuredIndex = insuredItems.findIndex(item => item.itemId === child);
+            const insuredIndex = insuredItems.findIndex(item => item.itemId === childId);
             if (insuredIndex > -1)
             {
                 insuredItems.splice(insuredIndex, 1);
