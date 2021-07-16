@@ -155,7 +155,10 @@
             ],
             "object-curly-spacing": [
                 "error",
-                "always"
+                "always",
+                {
+                    "arraysInObjects": false
+                }
             ]
         }
     }

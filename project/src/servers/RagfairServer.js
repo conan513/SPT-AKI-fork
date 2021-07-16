@@ -114,7 +114,7 @@ class RagfairServer
 
         if (traderID === "579dc571d53a0658a154fbec")
         {
-            assort = TraderController.fenceAssort || { "items": [] };
+            assort = TraderController.fenceAssort || { "items": []};
         }
 
         for (const item of assort.items)
