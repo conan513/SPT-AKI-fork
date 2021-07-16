@@ -152,6 +152,13 @@
                     "prev": "expression",
                     "next": "block-like"
                 }
+            ],
+            "object-curly-spacing": [
+                "error",
+                "always",
+                {
+                    "arraysInObjects": false
+                }
             ]
         }
     }
