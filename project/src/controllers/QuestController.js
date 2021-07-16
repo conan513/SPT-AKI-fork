@@ -61,10 +61,10 @@ class QuestController
                 }
 
                 // Chemical fix: "Started" Status is catered for above. This will include it just if it's started.
-                if ((condition._props.status[0] === QuestHelper.status.Started)
                 // but maybe this is better:
+                // if ((condition._props.status[0] === QuestHelper.status.Started)
                 // && (previousQuest.status === "AvailableForFinish" || previousQuest.status ===  "Success")
-                )
+                if ((condition._props.status[0] === QuestHelper.status.Started))
                 {
                     let statusName = Object.keys(QuestHelper.status)[condition._props.status[0]];
                     Logger.debug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${QuestHelper.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
@@ -413,8 +413,7 @@ class QuestController
             counter += amount;
             if (itemHandover.count - amount > 0)
             {
-                QuestController.changeItemStack(pmcData, itemHandover.id, itemHandover.count - amount, output);
-
+                QuestController.changeItemStack(pmcData, itemHandover.id, itemHandover.count - amount, sessionID, output);
                 if (counter === value)
                 {
                     break;
@@ -516,35 +515,35 @@ class QuestController
 
     /* Sets the item stack to value, or delete the item if value <= 0 */
     // TODO maybe merge this function and the one from customization
-    static changeItemStack(pmcData, id, value, output)
+    static changeItemStack(pmcData, id, value, sessionID, output)
     {
-        for (let inventoryItem in pmcData.Inventory.items)
+        const inventoryItemIndex = pmcData.Inventory.items.search(item => item._id === id);
+        if (inventoryItemIndex < 0)
         {
-            if (pmcData.Inventory.items[inventoryItem]._id === id)
-            {
-                if (value > 0)
-                {
-                    let item = pmcData.Inventory.items[inventoryItem];
+            Logger.error(`changeItemStack: Item with _id = ${id} not found in inventory`);
+            return;
+        }
 
-                    item.upd.StackObjectsCount = value;
+        if (value > 0)
+        {
+            const item = pmcData.Inventory.items[inventoryItemIndex];
+            item.upd.StackObjectsCount = value;
 
-                    output.profileChanges[sessionID].items.change.push({
-                        "_id": item._id,
-                        "_tpl": item._tpl,
-                        "parentId": item.parentId,
-                        "slotId": item.slotId,
-                        "location": item.location,
-                        "upd": { "StackObjectsCount": item.upd.StackObjectsCount }
-                    });
-                }
-                else
-                {
-                    output.profileChanges[sessionID].items.del.push({ "_id": id });
-                    pmcData.Inventory.items.splice(inventoryItem, 1);
-                }
-
-                break;
-            }
+            output.profileChanges[sessionID].items.change.push({
+                "_id": item._id,
+                "_tpl": item._tpl,
+                "parentId": item.parentId,
+                "slotId": item.slotId,
+                "location": item.location,
+                "upd": { "StackObjectsCount": item.upd.StackObjectsCount }
+            });
+        }
+        else
+        {
+            // this case is probably dead Code right now, since the only calling function
+            // checks explicitely for Value > 0.
+            output.profileChanges[sessionID].items.del.push({ "_id": id });
+            pmcData.Inventory.items.splice(inventoryItemIndex, 1);
         }
     }
 
