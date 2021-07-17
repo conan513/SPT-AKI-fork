@@ -973,31 +973,32 @@
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf0dda86f77423c05cace2"
 				},
 				{
-					"target": "5ede35491f4c4572b608fde4",
+					"target": "57ee35422459776d4e721588",
 					"value": "1",
 					"id": "5a417e6f86f7746d6109d6b1",
 					"type": "Item",
 					"index": 2,
 					"items": [
 						{
-							"_id": "5ede35491f4c4572b608fde4",
-							"_tpl": "5448bd6b4bdc2dfc2f8b4569",
-							"parentId": "hideout",
-							"slotId": "hideout",
-							"upd": {
-								"StackObjectsCount": 1
-							}
+							"_id": "57ee35422459776d4e721588",
+							"_tpl": "57d14d2524597714373db789"
 						},
 						{
-							"_id": "5ede35491f4c4572b608fde5",
-							"_tpl": "5448c12b4bdc2d02308b456f",
-							"parentId": "5ede35491f4c4572b608fde4",
+							"_id": "57ee35422459776d4e721589",
+							"_tpl": "57d152ec245977144076ccdf",
+							"parentId": "57ee35422459776d4e721588",
+							"slotId": "mod_pistol_grip"
+						},
+						{
+							"_id": "57ee35422459776d4e72158a",
+							"_tpl": "57d1519e24597714373db79d",
+							"parentId": "57ee35422459776d4e721588",
 							"slotId": "mod_magazine"
 						}
 					]
@@ -1007,13 +1008,13 @@
 					"value": "3",
 					"id": "5a2e7d9e86f7741a972d4ee4",
 					"type": "Item",
-					"index": 3,
+					"index": 90,
 					"items": [
 						{
 							"_id": "5ede35491f4c4572b608fde6",
-							"_tpl": "5448c12b4bdc2d02308b456f",
+							"_tpl": "573719762459775a626ccbc1",
 							"upd": {
-								"StackObjectsCount": 3
+								"StackObjectsCount": 90
 							}
 						}
 					]
