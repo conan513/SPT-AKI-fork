@@ -233,7 +233,7 @@
         "traderId": "54cb50c76803fa8b248b4571",
         "location": "5704e5fad2720bc05b8b4567",
         "image": "/files/quest/icon/60896b7bfa70fc097863b8f5.png",
-        "type": "Exploration",
+        "type": "PickUp",
         "isKey": false,
         "restartable": false,
         "instantComplete": false,
@@ -2382,21 +2382,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6000",
+					"value": "5900",
 					"id": "5c94f17186f77455192fa424",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf107786f77423c13fb05a"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a83c",
-					"value": "19000",
+					"value": "40000",
 					"type": "Item",
 					"index": 2,
 					"id": "5a2e87a686f7741a95102608",
@@ -2405,7 +2405,7 @@
 							"_id": "5e0ac74b9d594972a112a83c",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 19000
+								"StackObjectsCount": 40000
 							}
 						}
 					]
@@ -2419,7 +2419,23 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a83d",
-							"_tpl": "544a5cde4bdc2d39388b456b",
+							"_tpl": "5b44c6ae86f7742d1627baea",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "6b2ArmorReward",
+					"value": "1",
+					"id": "6b2Armor",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "6b2ArmorReward",
+							"_tpl": "5df8a2ca86f7740bfe6df777",
 							"upd": {
 								"StackObjectsCount": 1
 							}
