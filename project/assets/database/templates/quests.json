@@ -2998,7 +2998,7 @@
 		"type": "Discover",
 		"isKey": false,
 		"restartable": false,
-		"min_level": 0,
+		"min_level": 5,
 		"canShowNotificationsInGame": true,
 		"instantComplete": false,
 		"secretQuest": false,
@@ -3023,14 +3023,14 @@
 			],
 			"Success": [
 				{
-					"value": "3800",
+					"value": "22800",
 					"id": "5c94f00286f77455192fa423",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.03",
 					"id": "5bcf0ecd86f7742ce2243a35",
 					"type": "TraderStanding",
 					"index": 1
@@ -3081,11 +3081,27 @@
 					]
 				},
 				{
+					"target": "rewardMS200",
+					"value": "2",
+					"id": "reward_MS200",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "rewardMS200",
+							"_tpl": "5991b51486f77447b112d44f",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
 					"target": "5c0647fdd443bc2504c2d371",
 					"value": "-0.01",
 					"id": "5d72501386f7740aff6e375a",
 					"type": "TraderStanding",
-					"index": 5
+					"index": 6
 				}
 			],
 			"Fail": []
