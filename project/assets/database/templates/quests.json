@@ -244,34 +244,73 @@
             "Started": [],
             "Success": [
                 {
-                    "target": "SurplusRoubles",
-                    "value": "40000",
-                    "id": "PlaceHolder1",
+                    "target": "DocumentRoubles",
+                    "value": "45000",
+                    "id": "DocumentRoubleReward",
                     "type": "Item",
                     "index": 0,
                     "items": [
                         {
-                            "_id": "SurplusRoubles",
+                            "_id": "DocumentRoubles",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 40000
+                                "StackObjectsCount": 45000
                             }
                         }
                     ]
                 },
                 {
-					"value": "7500",
+					"value": "7800",
 					"id": "5c989b9d86f7745aa234628c",
 					"type": "Experience",
 					"index": 1
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.02",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 2,
-					"id": "PlaceHolder2"
-				}
+					"id": "DocumentTraderStanding"
+				},
+				{
+                    "target": "NSPUMScope",
+                    "value": "1",
+                    "id": "NSPUM",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "NSPUMScope",
+                            "_tpl": "5a7c74b3e899ef0014332c29"
+                        }
+                    ]
+                },
+				{
+                    "target": "Zenit2PKlesh",
+                    "value": "1",
+                    "id": "PKlesh",
+                    "type": "Item",
+                    "index": 4,
+                    "items": [
+                        {
+                            "_id": "Zenit2PKlesh",
+                            "_tpl": "560d657b4bdc2da74d8b4572"
+                        }
+                    ]
+                },
+				{
+                    "target": "PBSSilencer",
+                    "value": "1",
+                    "id": "PBS",
+                    "type": "Item",
+                    "index": 5,
+                    "items": [
+                        {
+                            "_id": "PBSSilencer",
+                            "_tpl": "5a0d63621526d8dba31fe3bf"
+                        }
+                    ]
+                }
             ],
             "Fail": []
         },
