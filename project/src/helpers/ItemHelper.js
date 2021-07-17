@@ -236,25 +236,20 @@ class ItemHelper
      * @param {Object} fastPanel
      * @returns Array
      */
-    static replaceIDs(pmcData, items, fastPanel = null)
+    static replaceIDs(pmcData, items, insuredItems = null, fastPanel = null)
     {
         // replace bsg shit long ID with proper one
         let string_inventory = JsonUtil.serialize(items);
 
         for (let item of items)
         {
-            let insuredItem = false;
-
             if (pmcData !== null)
             {
                 // insured items shouldn't be renamed
                 // only works for pmcs.
-                for (let insurance of pmcData.InsuredItems)
+                if (insuredItems && insuredItems.find(insuredItem => insuredItem.itemId === item._id))
                 {
-                    if (insurance.itemId === item._id)
-                    {
-                        insuredItem = true;
-                    }
+                    continue;
                 }
 
                 // do not replace important ID's
@@ -262,8 +257,7 @@ class ItemHelper
                 || item._id === pmcData.Inventory.questRaidItems
                 || item._id === pmcData.Inventory.questStashItems
                 || item._id === pmcData.Inventory.sortingTable
-                || item._id === pmcData.Inventory.stash
-                || insuredItem)
+                || item._id === pmcData.Inventory.stash)
                 {
                     continue;
                 }
