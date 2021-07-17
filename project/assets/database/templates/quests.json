@@ -19874,14 +19874,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "2000",
+					"value": "2800",
 					"id": "5c950b2886f7743285178ad8",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5bcf1d0c86f7746a464c566d",
 					"type": "TraderStanding",
 					"index": 1
@@ -19912,6 +19912,22 @@
 						{
 							"_id": "BestCompassOfTheWorld",
 							"_tpl": "5f4f9eb969cdc30ff33f09db",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "HeyBSGWhyGivinWoodsMap",
+					"value": "1",
+					"id": "Helpmeplz",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "HeyBSGWhyGivinWoodsMap",
+							"_tpl": "5900b89686f7744e704a8747",
 							"upd": {
 								"StackObjectsCount": 1
 							}
