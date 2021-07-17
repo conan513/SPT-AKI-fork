@@ -3958,14 +3958,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "12400",
+					"value": "11700",
 					"id": "5c94f22986f77455185027e8",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf13db86f77423bf711c2f"
@@ -4043,10 +4043,24 @@
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.05",
+					"value": "0.02",
 					"id": "5a2fb2b886f774769635db14",
 					"type": "TraderStanding",
 					"index": 4
+				},
+				{
+					"target": "762x54RBTgzhReward",
+					"id": "762x54RBTgzh",
+					"type": "AssortmentUnlock",
+					"index": 5,
+					"loyaltyLevel": 4,
+					"traderId": "54cb50c76803fa8b248b4571",
+					"items": [
+						{
+							"_id": "762x54RBTgzhReward",
+							"_tpl": "5e023d34e8a400319a28ed44"
+						}
+					]
 				}
 			],
 			"Fail": []
