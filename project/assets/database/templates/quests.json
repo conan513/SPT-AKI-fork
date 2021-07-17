@@ -6251,90 +6251,75 @@
 			"Success": [
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.03",
 					"id": "5ef095274f604154e7127f86",
 					"type": "TraderStanding",
 					"index": 0
 				},
 				{
-					"target": "5efdf349de1a6d39c53579b4",
+					"target": "5acf7e7986f774401e19c399",
 					"value": "1",
 					"id": "5ee75456cab4c209e92d1f74",
 					"type": "Item",
 					"index": 1,
 					"items": [
 						{
-							"_id": "5efdf349de1a6d39c53579b4",
-							"_tpl": "5644bd2b4bdc2d3b4c8b4572",
-							"parentId": "hideout",
-							"slotId": "hideout",
-							"upd": {
-								"StackObjectsCount": 1
-							}
+							"_id": "5acf7e7986f774401e19c399",
+							"_tpl": "5ac66d9b5acfc4001633997a"
 						},
 						{
-							"_id": "5efdf349de1a6d39c53579b5",
+							"_id": "5ac739405acfc400154e275e",
 							"_tpl": "59c6633186f7740cf0493bb9",
-							"parentId": "5efdf349de1a6d39c53579b4",
+							"parentId": "5acf7e7986f774401e19c399",
 							"slotId": "mod_gas_block"
 						},
 						{
-							"_id": "5efdf349de1a6d39c53579b6",
-							"_tpl": "5649aa744bdc2ded0b8b457e",
-							"parentId": "5efdf349de1a6d39c53579b4",
-							"slotId": "mod_muzzle"
-						},
-						{
-							"_id": "5efdf349de1a6d39c53579b7",
-							"_tpl": "5649ad3f4bdc2df8348b4585",
-							"parentId": "5efdf349de1a6d39c53579b4",
-							"slotId": "mod_pistol_grip"
-						},
-						{
-							"_id": "5efdf349de1a6d39c53579b8",
-							"_tpl": "5649af094bdc2df8348b4586",
-							"parentId": "5efdf349de1a6d39c53579b4",
-							"slotId": "mod_reciever"
-						},
-						{
-							"_id": "5efdf349de1a6d39c53579b9",
-							"_tpl": "5649b0544bdc2d1b2b8b458a",
-							"parentId": "5efdf349de1a6d39c53579b4",
-							"slotId": "mod_sight_rear"
-						},
-						{
-							"_id": "5efdf349de1a6d39c53579ba",
-							"_tpl": "5649b1c04bdc2d16268b457c",
-							"parentId": "5efdf349de1a6d39c53579b4",
-							"slotId": "mod_stock"
-						},
-						{
-							"_id": "5efdf349de1a6d39c53579bb",
-							"_tpl": "564ca99c4bdc2d16268b4589",
-							"parentId": "5efdf349de1a6d39c53579b4",
-							"slotId": "mod_magazine"
-						},
-						{
-							"_id": "5efdf349de1a6d39c53579bc",
-							"_tpl": "5648b0744bdc2d363b8b4578",
-							"parentId": "5efdf349de1a6d39c53579b5",
+							"_id": "5acf7e7986f774401e19c39f",
+							"_tpl": "5648b1504bdc2d9d488b4584",
+							"parentId": "5ac739405acfc400154e275e",
 							"slotId": "mod_handguard"
 						},
 						{
-							"_id": "5efdf349de1a6d39c53579bd",
-							"_tpl": "56dfef82d2720bbd668b4567",
-							"parentId": "5efdf349de1a6d39c53579bb",
-							"slotId": "cartridges",
-							"location": 0,
-							"upd": {
-								"StackObjectsCount": 30
-							}
+							"_id": "5acf7e7986f774401e19c39a",
+							"_tpl": "5ac72e945acfc43f3b691116",
+							"parentId": "5acf7e7986f774401e19c399",
+							"slotId": "mod_muzzle"
+						},
+						{
+							"_id": "5acf7e7986f774401e19c39b",
+							"_tpl": "5649ade84bdc2d1b2b8b4587",
+							"parentId": "5acf7e7986f774401e19c399",
+							"slotId": "mod_pistol_grip"
+						},
+						{
+							"_id": "5ac739405acfc400154e2761",
+							"_tpl": "5ac50da15acfc4001718d287",
+							"parentId": "5acf7e7986f774401e19c399",
+							"slotId": "mod_reciever"
+						},
+						{
+							"_id": "5acf7e7986f774401e19c39c",
+							"_tpl": "5ac733a45acfc400192630e2",
+							"parentId": "5acf7e7986f774401e19c399",
+							"slotId": "mod_sight_rear"
+						},
+						{
+							"_id": "5acf7e7986f774401e19c39d",
+							"_tpl": "5ac50c185acfc400163398d4",
+							"parentId": "5acf7e7986f774401e19c399",
+							"slotId": "mod_stock"
+						},
+						{
+							"_id": "5acf7e7986f774401e19c39e",
+							"_tpl": "55d480c04bdc2d1d4e8b456a",
+							"parentId": "5acf7e7986f774401e19c399",
+							"slotId": "mod_magazine"
 						}
 					]
 				},
 				{
 					"target": "5efdf349de1a6d39c53579be",
-					"value": "120",
+					"value": "30",
 					"id": "5ee75c49a39f2440c2318154",
 					"type": "Item",
 					"index": 2,
@@ -6343,7 +6328,7 @@
 							"_id": "5efdf349de1a6d39c53579be",
 							"_tpl": "56dff061d2720bb5668b4567",
 							"upd": {
-								"StackObjectsCount": 120
+								"StackObjectsCount": 30
 							}
 						}
 					]
@@ -6365,10 +6350,26 @@
 					]
 				},
 				{
-					"value": "6000",
+					"value": "5700",
 					"id": "5ef094c7e223bd229b7eb537",
 					"type": "Experience",
 					"index": 4
+				},
+				{
+					"target": "IgolnickRewards",
+					"value": "60",
+					"id": "RewardIgolnik",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "IgolnickRewards",
+							"_tpl": "5c0d5e4486f77478390952fe",
+							"upd": {
+								"StackObjectsCount": 60
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
