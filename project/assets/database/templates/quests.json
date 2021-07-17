@@ -3324,14 +3324,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10800",
+					"value": "10200",
 					"id": "5c94f1ee86f7743285178ac2",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf133586f77423bf711c2d"
