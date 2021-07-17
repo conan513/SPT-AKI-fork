@@ -2568,21 +2568,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6100",
+					"value": "5900",
 					"id": "5c94f1ca86f77455185027e7",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf109986f77423be21610a"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a840",
-					"value": "52000",
+					"value": "75000",
 					"type": "Item",
 					"index": 2,
 					"id": "5a3fa63c86f7747150762486",
@@ -2591,7 +2591,7 @@
 							"_id": "5e0ac74b9d594972a112a840",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 52000
+								"StackObjectsCount": 75000
 							}
 						}
 					]
@@ -2630,6 +2630,19 @@
 					"id": "5d6e70f786f7743b5f001112",
 					"type": "TraderStanding",
 					"index": 5
+				},
+				{
+					"target": "GeigerCounterReward",
+					"value": "1",
+					"type": "Item",
+					"index": 6,
+					"id": "GeigerCounter",
+					"items": [
+						{
+							"_id": "GeigerCounterReward",
+							"_tpl": "5672cb724bdc2dc2088b456b"
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -2650,7 +2663,7 @@
 				{
 					"_parent": "Quest",
 					"_props": {
-						"target": "59675ea386f77414b32bded2",
+						"target": "59675d6c86f7740a842fc482",
 						"status": [
 							4
 						],
