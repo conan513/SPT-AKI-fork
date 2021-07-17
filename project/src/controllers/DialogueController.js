@@ -63,7 +63,7 @@ class DialogueController
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return HttpResponse.getBody({"messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages});
+        return HttpResponse.getBody({ "messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages });
     }
 
     /*
@@ -225,7 +225,7 @@ class DialogueController
         }
 
         SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
-        return {"messages": output};
+        return { "messages": output };
     }
 
     static update()

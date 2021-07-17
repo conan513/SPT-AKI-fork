@@ -77,7 +77,7 @@ class ProfileController
         pmcData.Quests = [];
 
         // change item id's to be unique
-        pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, pmcData.Inventory.items, pmcData.Inventory.fastPanel);
+        pmcData.Inventory.items = ItemHelper.replaceIDs(pmcData, pmcData.Inventory.items, null, pmcData.Inventory.fastPanel);
 
         // create profile
         SaveServer.profiles[sessionID] = {

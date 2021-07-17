@@ -873,7 +873,7 @@ class RagfairController
         if (RagfairConfig.sell.fees)
         {
             const count = offers[index].sellInOnePiece ? 1 : offers[index].items.reduce((sum, item) => sum += item.upd.StackObjectsCount, 0);
-            const tax = RagfairController.calculateTax({"sellInOnePiece": offers[index].sellInOnePiece}, offers[index].itemsCost / count, offers[index].requirementsCost, count) * 0.1 * info.renewalTime;
+            const tax = RagfairController.calculateTax({ "sellInOnePiece": offers[index].sellInOnePiece }, offers[index].itemsCost / count, offers[index].requirementsCost, count) * 0.1 * info.renewalTime;
 
             Logger.info(`Tax Calculated to be: ${tax}`);
 
