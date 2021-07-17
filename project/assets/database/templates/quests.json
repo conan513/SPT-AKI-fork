@@ -38898,5 +38898,219 @@
 				}
 			]
 		}
-	}
+	},
+	"60896bca6ee58f38c417d4f2": {
+        "_id": "60896bca6ee58f38c417d4f2",
+        "traderId": "54cb50c76803fa8b248b4571",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/60896bca6ee58f38c417d4f2.jpg",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 0,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "8500",
+                    "id": "BouhExpReward",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "5e02be602a251a095227110f",
+                    "value": "4000",
+                    "id": "RoublesRewarrrd",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "5e02be602a251a095227110f",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 4000
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "5ac670435acfc43f67248a8d",
+                    "value": "1",
+                    "id": "AK103",
+                    "type": "Item",
+                    "index": 2,
+                    "items": [
+                        {
+                            "_id": "5ac670435acfc43f67248a8d",
+                            "_tpl": "5ac66d2e5acfc43b321d4b53"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e18",
+                            "_tpl": "59c6633186f7740cf0493bb9",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_gas_block"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e1f",
+                            "_tpl": "5648b1504bdc2d9d488b4584",
+                            "parentId": "5acf7e2b86f7740874790e18",
+                            "slotId": "mod_handguard"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e19",
+                            "_tpl": "5ac72e7d5acfc40016339a02",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_muzzle"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e1a",
+                            "_tpl": "5649ade84bdc2d1b2b8b4587",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_pistol_grip"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e1b",
+                            "_tpl": "5ac50da15acfc4001718d287",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_reciever"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e1c",
+                            "_tpl": "5ac72e475acfc400180ae6fe",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_sight_rear"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e1d",
+                            "_tpl": "5ac50c185acfc400163398d4",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_stock"
+                        },
+                        {
+                            "_id": "5acf7e2b86f7740874790e1e",
+                            "_tpl": "5ac66bea5acfc43b321d4aec",
+                            "parentId": "5ac670435acfc43f67248a8d",
+                            "slotId": "mod_magazine"
+                        }
+                    ]
+                },
+                {
+                    "target": "ak103MagReward",
+                    "value": "3",
+                    "id": "ak103Mag",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "ak103MagReward",
+                            "_tpl": "5ac66bea5acfc43b321d4aec",
+                            "upd": {
+                                "StackObjectsCount": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "PSgzhReward",
+                    "value": "150",
+                    "id": "PSgzh",
+                    "type": "Item",
+                    "index": 4,
+                    "items": [
+                        {
+                            "_id": "PSgzhReward",
+                            "_tpl": "5656d7c34bdc2d9d198b4587",
+                            "upd": {
+                                "StackObjectsCount": 150
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "54cb50c76803fa8b248b4571",
+                    "value": "0.03",
+                    "id": "GivePraporRep",
+                    "type": "TraderStanding",
+                    "index": 5
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5ede567cfa6dc072ce15d6e3",
+                        "status": [
+                            4
+                        ],
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60bf748cbf90bf6b431e8965"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "59675d6c86f7740a842fc482",
+                        "status": [
+                            4
+                        ],
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60bf7490db5461623517069e"
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "5",
+                        "type": "Elimination",
+                        "counter": {
+                            "id": "FirstID",
+                            "conditions": [
+                                {
+                                    "_parent": "InZone",
+                                    "_props": {
+                                        "zoneIds": [
+                                            "huntsman_013"
+                                        ],
+                                        "id": "InZoneID"
+                                    }
+                                },
+                                {
+                                    "_parent": "Kills",
+                                    "_props": {
+                                        "target": "pmcBot",
+                                        "compareMethod": ">=",
+                                        "value": "1",
+                                        "id": "KillsID"
+                                    }
+                                },
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "rezervbase"
+                                        ],
+                                        "id": "LocationKillID"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "608bffeee0cc9c2d4d2ccb29"
+                    }
+                }
+            ],
+            "Fail": []
+        }
+    }
 }
