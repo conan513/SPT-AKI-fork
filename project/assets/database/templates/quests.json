@@ -1356,7 +1356,7 @@
 		"type": "Elimination",
 		"isKey": false,
 		"restartable": false,
-		"min_level": 1,
+		"min_level": 3,
 		"canShowNotificationsInGame": true,
 		"instantComplete": false,
 		"secretQuest": false,
@@ -1364,14 +1364,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "2500",
+					"value": "2000",
 					"id": "5c94efd386f77455192fa422",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.10",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf0e1d86f77423c05cad6b"
