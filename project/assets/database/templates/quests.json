@@ -2079,7 +2079,7 @@
 		"type": "PickUp",
 		"isKey": false,
 		"restartable": false,
-		"min_level": 1,
+		"min_level": 9,
 		"canShowNotificationsInGame": true,
 		"instantComplete": false,
 		"secretQuest": false,
@@ -2087,14 +2087,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "5400",
+					"value": "5200",
 					"id": "5c94f15a86f774551757f043",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.08",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf0ff686f77423c25c50a3"
@@ -2211,7 +2211,7 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a83a",
-							"_tpl": "56dfef82d2720bbd668b4567",
+							"_tpl": "56dff2ced2720bb4668b4567",
 							"upd": {
 								"StackObjectsCount": 200
 							}
