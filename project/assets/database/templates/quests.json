@@ -17695,14 +17695,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "9300",
+					"value": "7700",
 					"id": "5c950a4786f7745516178634",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf1be686f7746a472ad84b",
 					"type": "TraderStanding",
 					"index": 1
@@ -17719,6 +17719,22 @@
 							"_tpl": "5696686a4bdc2da3298b456a",
 							"upd": {
 								"StackObjectsCount": 1100
+							}
+						}
+					]
+				},
+				{
+					"target": "SpaTour4CarBattery",
+					"value": "1",
+					"id": "SpaTour4Battery",
+					"type": "Item",
+					"index": 2,
+					"items": [
+						{
+							"_id": "SpaTour4CarBattery",
+							"_tpl": "5733279d245977289b77ec24",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
