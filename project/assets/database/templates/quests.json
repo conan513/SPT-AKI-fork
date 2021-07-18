@@ -6911,6 +6911,245 @@
             "Fail": []
         }
     },
+	"608974af4b05530f55550c21": {
+        "_id": "608974af4b05530f55550c21",
+        "traderId": "5ac3b934156ae10c4430e83c",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/608974af4b05530f55550c21.png",
+        "type": "Completion",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "8200",
+                    "id": "InventoryCheckExp",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "RoublesInventoryCheck",
+                    "value": "30000",
+                    "id": "InventoryCheckMoney",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "RoublesInventoryCheck",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 30000
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "5ac3b934156ae10c4430e83c",
+                    "value": "0.03",
+                    "id": "InventoryCheckStanding",
+                    "type": "TraderStanding",
+                    "index": 2
+                },
+                {
+                    "target": "ZSHHelmetInventoryCheck",
+                    "value": "1",
+                    "id": "InventoryCheckZSHHelmet",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "ZSHHelmetInventoryCheck",
+                            "_tpl": "5aa7e454e5b5b0214e506fa2"
+                        }
+                        
+                    ]
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "5acf3bcb86f77418403493b7"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "608974d01a66564e74191fc0",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "InventoryCheckVisitPlace",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "608bd0a053b9dd01a116f474"
+                    }
+                },
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "InventoryCheckVisitPlace2",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY2"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 1,
+                        "parentId": "",
+                        "id": "608bd0c20637f21f9934b6e4"
+                    }
+                },
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "InventoryCheckVisitPlace3",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY3"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 2,
+                        "parentId": "",
+                        "id": "608bd136c61c4b541b381da3"
+                    }
+                },
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "InventoryCheckVisitPlace4",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY4"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 3,
+                        "parentId": "",
+                        "id": "608bd149f597ad0a33574d74"
+                    }
+                },
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "InventoryCheckVisitPlace5",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY5"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 4,
+                        "parentId": "",
+                        "id": "608bd2465e0ef91ab810f98a"
+                    }
+                },
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Completion",
+						"counter": {
+							"id": "InventoryCheckVisitSurviveCondition",
+							"conditions": [
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "InventoryCheckVisitExistStatus"
+									}
+								},
+                                {
+									"_parent": "Location",
+									"_props": {
+										"target": [
+											"RezervBase"
+										],
+										"id": "InventoryCheckVisitLocationExtract"
+									}
+								}
+							]
+						},
+						"index": 5,
+						"parentId": "",
+						"id": "608c187853b9dd01a116f480"
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"5ede567cfa6dc072ce15d6e3": {
 		"_id": "5ede567cfa6dc072ce15d6e3",
 		"traderId": "54cb50c76803fa8b248b4571",
