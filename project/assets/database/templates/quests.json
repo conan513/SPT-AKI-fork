@@ -39275,7 +39275,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "12000",
+					"value": "14800",
 					"id": "5d84db3f86f77414e4530d88",
 					"type": "Experience",
 					"index": 0
@@ -39305,7 +39305,7 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.3",
+					"value": "0.02",
 					"id": "5d8caf5b86f7744450412667",
 					"type": "TraderStanding",
 					"index": 3
@@ -39334,6 +39334,22 @@
 						{
 							"_id": "5e02be602a251a0952272224",
 							"_tpl": "590c657e86f77412b013051d",
+							"upd": {
+								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "AmbulanceGoldenStar",
+					"value": "3",
+					"id": "GoldenStarBalmAmbulance",
+					"type": "Item",
+					"index": 6,
+					"items": [
+						{
+							"_id": "AmbulanceGoldenStar",
+							"_tpl": "5751a89d24597722aa0e8db0",
 							"upd": {
 								"StackObjectsCount": 3
 							}
