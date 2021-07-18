@@ -14976,21 +14976,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "14100",
+					"value": "13000",
 					"id": "5c94ff7b86f774551757f04c",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.10",
+					"value": "0.05",
 					"id": "5bcf1f1286f774378e266919",
 					"type": "TraderStanding",
 					"index": 1
 				},
 				{
 					"target": "5e0ac74b9d594972a112a9cc",
-					"value": "37000",
+					"value": "40000",
 					"id": "5b48734386f77449bc7bc992",
 					"type": "Item",
 					"index": 2,
@@ -14999,7 +14999,7 @@
 							"_id": "5e0ac74b9d594972a112a9cc",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 37000
+								"StackObjectsCount": 40000
 							}
 						}
 					]
@@ -15021,11 +15021,27 @@
 					]
 				},
 				{
+					"target": "TrijiconSRS02Reward",
+					"value": "2",
+					"id": "Vitamins1SRS02",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "TrijiconSRS02Reward",
+							"_tpl": "5d2da1e948f035477b1ce2ba",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
 					"target": "5c0647fdd443bc2504c2d371",
 					"value": "-0.01",
 					"id": "5d6e724586f7743d5c7de898",
 					"type": "TraderStanding",
-					"index": 4
+					"index": 5
 				}
 			],
 			"Fail": []
