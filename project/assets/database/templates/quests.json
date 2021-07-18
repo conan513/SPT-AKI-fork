@@ -26132,7 +26132,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "11100",
+					"value": "8600",
 					"id": "5c950d4486f774592a470256",
 					"type": "Experience",
 					"index": 0
@@ -26155,7 +26155,7 @@
 				},
 				{
 					"target": "5a7c2eca46aef81a7ca2145d",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5acb8d4a86f77475bb19d90b",
 					"type": "TraderStanding",
 					"index": 2
