@@ -54,8 +54,9 @@ class WatermarkLocale
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "2.0.0-A6";
+    static version = "2.0.0-A7";
     static text = [];
+    static versionLabel = "";
 
     static initialize()
     {
@@ -67,7 +68,8 @@ class Watermark
             Watermark.version = `${Watermark.version}-BLEEDINGEDGE`;
         }
 
-        Watermark.text = [`${Watermark.project} ${Watermark.version}`];
+        Watermark.versionLabel = `${Watermark.project} ${Watermark.version}`;
+        Watermark.text = [Watermark.versionLabel];
         Watermark.text = [...Watermark.text, ...description];
 
         if (globalThis.G_DEBUG_CONFIGURATION)
@@ -79,7 +81,7 @@ class Watermark
     /** Set window title */
     static setTitle()
     {
-        process.title = `${Watermark.project} ${Watermark.version}`;
+        process.title = Watermark.versionLabel;
     }
 
     /** Reset console cursor to top */
