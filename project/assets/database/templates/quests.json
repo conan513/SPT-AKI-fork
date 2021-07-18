@@ -36241,14 +36241,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "4000",
+					"value": "3900",
 					"id": "5d77d47886f7742fa732bf24",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5e0ac74b9d594972a112a9f8",
-					"value": "35000",
+					"value": "50000",
 					"id": "5d6562a186f77474ef100f50",
 					"type": "Item",
 					"index": 1,
@@ -36257,17 +36257,33 @@
 							"_id": "5e0ac74b9d594972a112a9f8",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 35000
+								"StackObjectsCount": 50000
 							}
 						}
 					]
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.04",
+					"value": "0.01",
 					"id": "5d76278a86f774452401f6b7",
 					"type": "TraderStanding",
 					"index": 2
+				},
+				{
+					"target": "SurvLAcquaintance",
+					"value": "1",
+					"id": "AcquaintanceSurvL",
+					"type": "Item",
+					"index": 1,
+					"items": [
+						{
+							"_id": "SurvLAcquaintance",
+							"_tpl": "5e2af37686f774755a234b65",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
