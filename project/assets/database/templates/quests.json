@@ -32536,7 +32536,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "12900",
+					"value": "15800",
 					"id": "5c95116686f774592a47025a",
 					"type": "Experience",
 					"index": 0
@@ -32559,7 +32559,7 @@
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf117086f77423c25c50a6",
 					"type": "TraderStanding",
 					"index": 2
@@ -32577,6 +32577,20 @@
 							"upd": {
 								"StackObjectsCount": 1
 							}
+						}
+					]
+				},
+				{
+					"target": "NoFussNeededBlackUlach",
+					"id": "UlachBlackNoFussUnlock",
+					"type": "AssortmentUnlock",
+					"index": 4,
+					"loyaltyLevel": 3,
+					"traderId": "5ac3b934156ae10c4430e83c",
+					"items": [
+						{
+							"_id": "NoFussNeededBlackUlach",
+							"_tpl": "5b40e1525acfc4771e1c6611"
 						}
 					]
 				}
