@@ -5847,10 +5847,39 @@
 			"Started": [],
 			"Success": [
 				{
+					"value": "14800",
+					"id": "5c94f37886f77455185027eb",
+					"type": "Experience",
+					"index": 0
+				},
+				{
+					"target": "54cb50c76803fa8b248b4571",
+					"value": "0.02",
+					"id": "5c2246fc88a45016e847fdf3",
+					"type": "TraderStanding",
+					"index": 1
+				},
+				{
+					"target": "5e0ac74b9d594972a112aa11",
+					"value": "150000",
+					"id": "5d761fc086f774454d58840c",
+					"type": "Item",
+					"index": 2,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112aa11",
+							"_tpl": "5449016a4bdc2d6f028b456f",
+							"upd": {
+								"StackObjectsCount": 150000
+							}
+						}
+					]
+				},
+				{
 					"target": "5e0ac74b9d594972a112aa0a",
 					"id": "5d761fa486f774452073df6d",
 					"type": "AssortmentUnlock",
-					"index": 0,
+					"index": 3,
 					"loyaltyLevel": 4,
 					"traderId": "54cb50c76803fa8b248b4571",
 					"items": [
@@ -5902,23 +5931,7 @@
 							"slotId": "mod_scope"
 						}
 					]
-				},
-				{
-					"target": "5e0ac74b9d594972a112aa11",
-					"value": "150000",
-					"id": "5d761fc086f774454d58840c",
-					"type": "Item",
-					"index": 1,
-					"items": [
-						{
-							"_id": "5e0ac74b9d594972a112aa11",
-							"_tpl": "5449016a4bdc2d6f028b456f",
-							"upd": {
-								"StackObjectsCount": 150000
-							}
-						}
-					]
-				}
+				}				
 			],
 			"Fail": []
 		},
@@ -5931,6 +5944,16 @@
 						"status": [
 							4
 						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				},
+				{
+					"_parent": "Level",
+					"_props": {
+						"compareMethod": ">=",
+						"value": "25",
 						"index": 0,
 						"parentId": "",
 						"id": ""
