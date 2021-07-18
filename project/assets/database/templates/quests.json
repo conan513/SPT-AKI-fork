@@ -40871,21 +40871,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "13800",
+					"value": "16300",
 					"id": "5d667d6a86f774368f43a1f9",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.2",
+					"value": "0.04",
 					"id": "5d777e9286f774319c488826",
 					"type": "TraderStanding",
 					"index": 1
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "-0.2",
+					"value": "-0.02",
 					"id": "TheRapstNegative",
 					"type": "TraderStanding",
 					"index": 2
@@ -40924,7 +40924,7 @@
 				},
 				{
 					"target": "RewardAmmo",
-					"value": "200",
+					"value": "100",
 					"id": "5da9f5e386f77443dd3e5a8a",
 					"type": "Item",
 					"index": 5,
@@ -40933,7 +40933,7 @@
 							"_id": "RewardAmmo",
 							"_tpl": "5d6e68a8a4b9360b6c0d54e2",
 							"upd": {
-								"StackObjectsCount": 200
+								"StackObjectsCount": 100
 							}
 						}
 					]
