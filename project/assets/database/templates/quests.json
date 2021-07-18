@@ -18739,14 +18739,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "7300",
+					"value": "6600",
 					"id": "5c9509da86f7743285178ad7",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf1b4a86f774378e266913",
 					"type": "TraderStanding",
 					"index": 1
