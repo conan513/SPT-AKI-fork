@@ -2750,21 +2750,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "7000",
+					"value": "5900",
 					"id": "5c94f03586f7745516178624",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.10",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf103486f77423c25c50a4"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a88e",
-					"value": "17000",
+					"value": "50000",
 					"id": "5a2e867186f7741a95102607",
 					"type": "Item",
 					"index": 2,
@@ -2773,14 +2773,14 @@
 							"_id": "5e0ac74b9d594972a112a88e",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 17000
+								"StackObjectsCount": 50000
 							}
 						}
 					]
 				},
 				{
 					"target": "5e0ac74b9d594972a112a88f",
-					"value": "4",
+					"value": "3",
 					"id": "5a2e868686f7741a943575b9",
 					"type": "Item",
 					"index": 3,
@@ -2789,7 +2789,39 @@
 							"_id": "5e0ac74b9d594972a112a88f",
 							"_tpl": "5710c24ad2720bc3458b45a3",
 							"upd": {
-								"StackObjectsCount": 4
+								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "RDGSmoke",
+					"value": "3",
+					"id": "RDG2B",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "RDGSmoke",
+							"_tpl": "5a2a57cfc4a2826c6e06d44a",
+							"upd": {
+								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "ZaryaReward",
+					"value": "1",
+					"id": "ZariaStun",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "ZaryaReward",
+							"_tpl": "5a0c27731526d80618476ac4",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
@@ -2807,18 +2839,6 @@
 							2
 						],
 						"index": 0,
-						"parentId": "",
-						"id": ""
-					}
-				},
-				{
-					"_parent": "Quest",
-					"_props": {
-						"target": "5979eee086f774311955e614",
-						"status": [
-							4
-						],
-						"index": 1,
 						"parentId": "",
 						"id": ""
 					}
