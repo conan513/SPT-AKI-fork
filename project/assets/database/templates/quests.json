@@ -38159,14 +38159,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "18000",
+					"value": "5900",
 					"id": "5d6679a786f774369120c2b0",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5e12b4878441bd0e2c0fa876",
-					"value": "55000",
+					"value": "50000",
 					"id": "5d6678cf86f774266f07fca3",
 					"type": "Item",
 					"index": 1,
@@ -38175,53 +38175,56 @@
 							"_id": "5e12b4878441bd0e2c0fa876",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 55000
+								"StackObjectsCount": 50000
 							}
 						}
 					]
 				},
 				{
-					"target": "5e12b4878441bd0e2c0fa877",
+					"target": "5f6771214ef1ca4f4e1b8a07",
 					"value": "1",
 					"id": "5d66799c86f774369002066f",
 					"type": "Item",
 					"index": 2,
 					"items": [
 						{
-							"_id": "5e12b4878441bd0e2c0fa877",
-							"_tpl": "5bfea6e90db834001b7347f3",
+							"_id": "5f6771214ef1ca4f4e1b8a07",
+							"_tpl": "5e848cc2988a8701445df1e8",
 							"upd": {
 								"FireMode": {
 									"FireMode": "single"
-								},
-								"StackObjectsCount": 1
-							},
-							"parentId": "hideout",
-							"slotId": "hideout"
+								}
+							}
 						},
 						{
-							"_id": "5e12b4878441bd0e2c0fa878",
-							"_tpl": "5bfea7ad0db834001c38f1ee",
-							"parentId": "5e12b4878441bd0e2c0fa877",
+							"_id": "5f6771214ef1ca4f4e1b8a08",
+							"_tpl": "5e848d2eea0a7c419c2f9bfd",
+							"parentId": "5f6771214ef1ca4f4e1b8a07",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "5f6771214ef1ca4f4e1b8a09",
+							"_tpl": "5e848d51e4dbc5266a4ec63b",
+							"parentId": "5f6771214ef1ca4f4e1b8a07",
+							"slotId": "mod_handguard"
+						},
+						{
+							"_id": "5f6771214ef1ca4f4e1b8a0a",
+							"_tpl": "5f647d9f8499b57dc40ddb93",
+							"parentId": "5f6771214ef1ca4f4e1b8a07",
 							"slotId": "mod_magazine"
 						},
 						{
-							"_id": "5e12b4878441bd0e2c0fa879",
-							"_tpl": "5bfeb32b0db834001a6694d9",
-							"parentId": "5e12b4878441bd0e2c0fa877",
+							"_id": "5f6771214ef1ca4f4e1b8a0b",
+							"_tpl": "5e848db4681bea2ada00daa9",
+							"parentId": "5f6771214ef1ca4f4e1b8a07",
 							"slotId": "mod_stock"
-						},
-						{
-							"_id": "5e12b4878441bd0e2c0fa87a",
-							"_tpl": "5bfebc320db8340019668d79",
-							"parentId": "5e12b4878441bd0e2c0fa877",
-							"slotId": "mod_barrel"
 						}
 					]
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5d77691f86f7742fa732bf04",
 					"type": "TraderStanding",
 					"index": 3
