@@ -37274,14 +37274,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "11000",
+					"value": "5900",
 					"id": "5d6671e086f774368e1b7860",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5e02be602a251a095227110a",
-					"value": "50000",
+					"value": "75000",
 					"id": "5d66722b86f7743690020664",
 					"type": "Item",
 					"index": 1,
@@ -37290,17 +37290,24 @@
 							"_id": "5e02be602a251a095227110a",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 50000
+								"StackObjectsCount": 75000
 							}
 						}
 					]
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5d76325a86f77402b60854fa",
 					"type": "TraderStanding",
 					"index": 2
+				},
+				{
+					"target": "StressResistance",
+					"value": "1",
+					"id": "ColdBloodedSkillReward",
+					"type": "Skill",
+					"index": 3
 				}
 			],
 			"Fail": []
