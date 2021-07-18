@@ -16943,14 +16943,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "8900",
+					"value": "7400",
 					"id": "5c950a1586f77455192fa43b",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf1ba286f7746a472ad849",
 					"type": "TraderStanding",
 					"index": 1
@@ -17072,6 +17072,38 @@
 							"slotId": "mod_mount_002"
 						}
 					]
+				},
+				{
+					"target": "MPX30RoundSpaTour",
+					"value": "3",
+					"id": "SpaTour1MPXMag",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "MPX30RoundSpaTour",
+							"_tpl": "5894a05586f774094708ef75",
+							"upd": {
+								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "SpaTour1Ammo",
+					"value": "90",
+					"id": "SpaTour1RIP",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "SpaTour1Ammo",
+							"_tpl": "5c0d56a986f774449d5de529",
+							"upd": {
+								"StackObjectsCount": 90
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -17122,7 +17154,7 @@
 											"56dee2bdd2720bc8328b4567",
 											"5580223e4bdc2d1c128b457f",
 											"5a7828548dc32e5a9c28b516",
-											"5e870397991fd70db46995c8"
+											"5e870397991fd70db46995c8","606dae0ab0e443224b421bb7"
 										],
 										"bodyPart": [
 											"Head"
