@@ -4869,28 +4869,28 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "20600",
+					"value": "19400",
 					"id": "5c94f31186f7745516178627",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.12",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf14ac86f7742ce2243a44"
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.15",
+					"value": "0.05",
 					"id": "5a4bb08f88a45042d81131fc",
 					"type": "TraderStanding",
 					"index": 2
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.06",
+					"value": "0.01",
 					"id": "5a4cc6b288a450121c30645b",
 					"type": "TraderStanding",
 					"index": 3
