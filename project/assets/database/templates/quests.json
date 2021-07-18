@@ -6285,7 +6285,7 @@
 			"Success": [
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.08",
+					"value": "0.04",
 					"id": "5ef095274f604154e7127f86",
 					"type": "TraderStanding",
 					"index": 0
@@ -6307,10 +6307,42 @@
 					]
 				},
 				{
-					"value": "12600",
+					"value": "12300",
 					"id": "5ef094c7e223bd229b7eb537",
 					"type": "Experience",
 					"index": 2
+				},
+				{
+					"target": "ColleagesSJ1",
+					"value": "2",
+					"id": "SJ1Colleagues",
+					"type": "Item",
+					"index": 1,
+					"items": [
+						{
+							"_id": "ColleagesSJ1",
+							"_tpl": "5c0e531286f7747fa54205c2",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "ColleagesSJ6",
+					"value": "2",
+					"id": "SJ6Colleagues",
+					"type": "Item",
+					"index": 1,
+					"items": [
+						{
+							"_id": "ColleagesSJ6",
+							"_tpl": "5c0e531d86f7747fa23f4d42",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -6321,7 +6353,7 @@
 					"_parent": "Level",
 					"_props": {
 						"compareMethod": ">=",
-						"value": "36",
+						"value": "21",
 						"index": 0,
 						"parentId": "",
 						"id": "5eda1a67ef0ad2643e73af31"
