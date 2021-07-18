@@ -5270,7 +5270,7 @@
 			],
 			"Success": [
 				{
-					"value": "31000",
+					"value": "18200",
 					"id": "5c94f3d886f774551757f047",
 					"type": "Experience",
 					"index": 0
@@ -5325,7 +5325,7 @@
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.12",
+					"value": "0.02",
 					"id": "5c19150686f77401b0084a45",
 					"type": "TraderStanding",
 					"index": 4
