@@ -23651,7 +23651,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6500",
+					"value": "5400",
 					"id": "5c950c7586f774551757f066",
 					"type": "Experience",
 					"index": 0
@@ -23674,71 +23674,71 @@
 				},
 				{
 					"target": "5a7c2eca46aef81a7ca2145d",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5bcf26c686f7746a486b85ee",
 					"type": "TraderStanding",
 					"index": 2
 				},
 				{
-					"target": "5ede35491f4c4572b608fdfc",
+					"target": "5e0359bd86f7746b243db877",
 					"value": "1",
 					"id": "5ace117586f774217b103d71",
 					"type": "Item",
 					"index": 3,
 					"items": [
 						{
-							"_id": "5ede35491f4c4572b608fdfc",
-							"_tpl": "5a7ae0c351dfba0017554310",
-							"parentId": "hideout",
-							"slotId": "hideout",
+							"_id": "5e0359bd86f7746b243db877",
+							"_tpl": "5de652c31b7e3716273428be",
 							"upd": {
-								"StackObjectsCount": 1
+								"FireMode": {
+									"FireMode": "single"
+								}
 							}
 						},
 						{
-							"_id": "5ede35491f4c4572b608fdfd",
-							"_tpl": "5a6b5f868dc32e000a311389",
-							"parentId": "5ede35491f4c4572b608fdfc",
-							"slotId": "mod_barrel"
-						},
-						{
-							"_id": "5ede35491f4c4572b608fdfe",
-							"_tpl": "5a6f5e048dc32e00094b97da",
-							"parentId": "5ede35491f4c4572b608fdfc",
-							"slotId": "mod_reciever"
-						},
-						{
-							"_id": "5ede35491f4c4572b608fdff",
-							"_tpl": "5a718b548dc32e000d46d262",
-							"parentId": "5ede35491f4c4572b608fdfc",
+							"_id": "5e0359bd86f7746b243db878",
+							"_tpl": "5de653abf76fdc1ce94a5a2a",
+							"parentId": "5e0359bd86f7746b243db877",
 							"slotId": "mod_magazine"
 						},
 						{
-							"_id": "5ede35491f4c4572b608fe00",
-							"_tpl": "5a6f5d528dc32e00094b97d9",
-							"parentId": "5ede35491f4c4572b608fdfe",
-							"slotId": "mod_sight_rear"
+							"_id": "5e0359bd86f7746b243db879",
+							"_tpl": "5de655be4a9f347bc92edb88",
+							"parentId": "5e0359bd86f7746b243db877",
+							"slotId": "mod_stock"
 						},
 						{
-							"_id": "5ede35491f4c4572b608fe01",
-							"_tpl": "5a6f58f68dc32e000a311390",
-							"parentId": "5ede35491f4c4572b608fdfe",
-							"slotId": "mod_sight_front"
+							"_id": "5e0359bd86f7746b243db87a",
+							"_tpl": "5de65547883dde217541644b",
+							"parentId": "5e0359bd86f7746b243db877",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "5e0359bd86f7746b243db87b",
+							"_tpl": "5de6556a205ddc616a6bc4f7",
+							"parentId": "5e0359bd86f7746b243db87a",
+							"slotId": "mod_muzzle"
+						},
+						{
+							"_id": "5e0359bd86f7746b243db87c",
+							"_tpl": "5de6558e9f98ac2bc65950fc",
+							"parentId": "5e0359bd86f7746b243db877",
+							"slotId": "mod_mount"
 						}
 					]
 				},
 				{
 					"target": "5ede35491f4c4572b608fe02",
-					"value": "50",
+					"value": "20",
 					"id": "5acb802f86f7746bb831a26f",
 					"type": "Item",
 					"index": 4,
 					"items": [
 						{
 							"_id": "5ede35491f4c4572b608fe02",
-							"_tpl": "56d59d3ad2720bdb418b4577",
+							"_tpl": "5f0596629e22f464da6bbdd9",
 							"upd": {
-								"StackObjectsCount": 50
+								"StackObjectsCount": 20
 							}
 						}
 					]
