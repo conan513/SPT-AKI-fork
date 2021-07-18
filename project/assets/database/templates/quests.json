@@ -14902,14 +14902,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "9200",
+					"value": "6300",
 					"id": "5c94ff6b86f774551617862c",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.12",
+					"value": "0.05",
 					"id": "5a27d38386f7743e0e35e17d",
 					"type": "TraderStanding",
 					"index": 1
@@ -15347,14 +15347,14 @@
 			],
 			"Success": [
 				{
-					"value": "15900",
+					"value": "14000",
 					"id": "5c94ff9f86f7743285178acf",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.10",
+					"value": "0.05",
 					"id": "5bcf1f9286f7746a464c566f",
 					"type": "TraderStanding",
 					"index": 1
@@ -15387,6 +15387,38 @@
 							"_tpl": "5b04473a5acfc40018632f70",
 							"upd": {
 								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "CNCWarriorAK",
+					"value": "4",
+					"id": "informedCNCWarrior",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "CNCWarriorAK",
+							"_tpl": "5e21ca18e4d47f0da15e77dd",
+							"upd": {
+								"StackObjectsCount": 4
+							}
+						}
+					]
+				},
+				{
+					"target": "EOTechVudu",
+					"value": "1",
+					"id": "InformedVudu",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "EOTechVudu",
+							"_tpl": "5b3b99475acfc432ff4dcbee",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
