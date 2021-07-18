@@ -17198,14 +17198,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "7500",
+					"value": "6300",
 					"id": "5c950a2786f774551757f063",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.06",
+					"value": "0.02",
 					"id": "5bcf1bbd86f7746a486b842d",
 					"type": "TraderStanding",
 					"index": 1
@@ -17237,6 +17237,22 @@
 						{
 							"_id": "5d34df2788a4504526796bed",
 							"_tpl": "58d3db5386f77426186285a0"
+						}
+					]
+				},
+				{
+					"target": "SpaTour2Bitcoin",
+					"value": "1",
+					"id": "BitCoinSpaTour2",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "SpaTour2Bitcoin",
+							"_tpl": "59faff1d86f7746c51718c9c",
+							"upd": {
+								"StackObjectsCount": 1
+							}
 						}
 					]
 				}
