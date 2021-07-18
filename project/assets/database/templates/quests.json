@@ -20020,14 +20020,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10400",
+					"value": "8200",
 					"id": "5c950ace86f774551528def6",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf1c8786f7746a464c566c",
 					"type": "TraderStanding",
 					"index": 1
@@ -20060,6 +20060,95 @@
 							"_tpl": "567143bf4bdc2d1a0f8b4567",
 							"upd": {
 								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "5eb2968186f7746d1f1a4fdf",
+					"value": "2",
+					"id": "CargoX1M1911",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "5eb2968186f7746d1f1a4fdf",
+							"_tpl": "5e81c3cbac2bb513793cdc75",
+							"upd": {
+								"StackObjectsCount": 2,
+								"FireMode": {
+									"FireMode": "single"
+								}
+							}
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe0",
+							"_tpl": "5e81c519cb2b95385c177551",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe1",
+							"_tpl": "5e81c6bf763d9f754677beff",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_pistol_grip"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe2",
+							"_tpl": "5e81edc13397a21db957f6a1",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_reciever"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe3",
+							"_tpl": "5e81ee4dcb2b95385c177582",
+							"parentId": "5eb2968186f7746d1f1a4fe2",
+							"slotId": "mod_sight_rear"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe4",
+							"_tpl": "5e81ee213397a21db957f6a6",
+							"parentId": "5eb2968186f7746d1f1a4fe2",
+							"slotId": "mod_sight_front"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe5",
+							"_tpl": "5e81c4ca763d9f754677befa",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_magazine"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe6",
+							"_tpl": "5e81c6a2ac2bb513793cdc7f",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_trigger"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe7",
+							"_tpl": "5e81c550763d9f754677befd",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_hammer"
+						},
+						{
+							"_id": "5eb2968186f7746d1f1a4fe8",
+							"_tpl": "5e81c539cb2b95385c177553",
+							"parentId": "5eb2968186f7746d1f1a4fdf",
+							"slotId": "mod_catch"
+						}
+					]
+				},
+				{
+					"target": "1M45A1MagCargoX",
+					"value": "6",
+					"id": "CargoXPart1M45A1Mag",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "1M45A1MagCargoX",
+							"_tpl": "5f3e77b26cda304dcc634057",
+							"upd": {
+								"StackObjectsCount": 6
 							}
 						}
 					]
