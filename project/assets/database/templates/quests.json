@@ -10754,20 +10754,20 @@
 			"Success": [
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.2",
+					"value": "0.04",
 					"id": "5ef095274f604154e7127f86",
 					"type": "TraderStanding",
 					"index": 0
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "-0.2",
+					"value": "-0.04",
 					"id": "5ef095274f604154e7127f86",
 					"type": "TraderStanding",
 					"index": 1
 				},
 				{
-					"value": "13800",
+					"value": "15800",
 					"id": "5ef094c7e223bd229b7eb537",
 					"type": "Experience",
 					"index": 2
