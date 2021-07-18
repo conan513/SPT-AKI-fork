@@ -5999,7 +5999,7 @@
 			"Success": [
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.1",
+					"value": "0.04",
 					"id": "5ef095274f604154e7127f86",
 					"type": "TraderStanding",
 					"index": 0
@@ -6107,7 +6107,7 @@
 					]
 				},
 				{
-					"value": "12600",
+					"value": "18100",
 					"id": "5ef094c7e223bd229b7eb537",
 					"type": "Experience",
 					"index": 5
