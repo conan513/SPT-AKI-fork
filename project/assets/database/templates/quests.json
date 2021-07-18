@@ -29912,6 +29912,173 @@
 			"Fail": []
 		}
 	},
+	"6089736efa70fc097863b8f6": {
+        "_id": "6089736efa70fc097863b8f6",
+        "traderId": "5a7c2eca46aef81a7ca2145d",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/6089736efa70fc097863b8f6.jpg",
+        "type": "Discover",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "8200",
+                    "id": "BackDoorExp",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "EurosBackDoor",
+                    "value": "1000",
+                    "id": "BackDoorMoney",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "EurosBackDoor",
+                            "_tpl": "569668774bdc2da2298b4568",
+                            "upd": {
+                                "StackObjectsCount": 1000
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "5a7c2eca46aef81a7ca2145d",
+                    "value": "0.02",
+                    "id": "BackDoorStanding",
+                    "type": "TraderStanding",
+                    "index": 2
+                },
+                {
+                    "target": "5a3a860686f7746c1e64bb2e",
+                    "value": "1",
+                    "id": "BackDoorSV98",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "5a3a860686f7746c1e64bb2e",
+                            "_tpl": "55801eed4bdc2d89578b4588"
+                        },
+                        {
+                            "_id": "5a3a860686f7746c1e64bb2f",
+                            "_tpl": "559ba5b34bdc2d1f1a8b4582",
+                            "parentId": "5a3a860686f7746c1e64bb2e",
+                            "slotId": "mod_magazine"
+                        },
+                        {
+                            "_id": "5a3a860686f7746c1e64bb30",
+                            "_tpl": "56083e1b4bdc2dc8488b4572",
+                            "parentId": "5a3a860686f7746c1e64bb2e",
+                            "slotId": "mod_sight_rear"
+                        },
+                        {
+                            "_id": "5a3a860686f7746c1e64bb31",
+                            "_tpl": "56083eab4bdc2d26448b456a",
+                            "parentId": "5a3a860686f7746c1e64bb2e",
+                            "slotId": "mod_tactical"
+                        },
+                        {
+                            "_id": "5a3a860686f7746c1e64bb32",
+                            "_tpl": "560e620e4bdc2d724b8b456b",
+                            "parentId": "5a3a860686f7746c1e64bb2e",
+                            "slotId": "mod_muzzle"
+                        },
+                        {
+                            "_id": "5a3a860686f7746c1e64bb33",
+                            "_tpl": "56ea8222d2720b69698b4567",
+                            "parentId": "5a3a860686f7746c1e64bb2e",
+                            "slotId": "mod_bipod"
+                        }
+                    ]
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "5acf3bcb86f77418403493b7"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "6089732b59b92115597ad789",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "BackDoorVisitPlace",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "BackDoorVisitPlaceMarkerNOTWORKY"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "608a94101a66564e74191fc3"
+                    }
+                },
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Completion",
+						"counter": {
+							"id": "5c92184386f7746afa2e783f",
+							"conditions": [
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "608a94ae1a66564e74191fc6"
+									}
+								}
+							]
+						},
+						"index": 1,
+						"parentId": "",
+						"id": "5f04983ffbed7a08077b4367"
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"5ae448a386f7744d3730fff0": {
 		"_id": "5ae448a386f7744d3730fff0",
 		"traderId": "5ac3b934156ae10c4430e83c",
