@@ -29309,7 +29309,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "19500",
+					"value": "17200",
 					"id": "5c950e9686f77455192fa44a",
 					"type": "Experience",
 					"index": 0
@@ -29332,7 +29332,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a9f3",
-					"value": "3",
+					"value": "2",
 					"id": "5c18bfa086f774397f043e31",
 					"type": "Item",
 					"index": 2,
@@ -29341,14 +29341,14 @@
 							"_id": "5e0ac74b9d594972a112a9f3",
 							"_tpl": "59faff1d86f7746c51718c9c",
 							"upd": {
-								"StackObjectsCount": 3
+								"StackObjectsCount": 2
 							}
 						}
 					]
 				},
 				{
 					"target": "5a7c2eca46aef81a7ca2145d",
-					"value": "0.06",
+					"value": "0.02",
 					"id": "5c18bfca86f77467bf065207",
 					"type": "TraderStanding",
 					"index": 3
