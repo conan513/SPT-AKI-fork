@@ -37717,7 +37717,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "14000",
+					"value": "5900",
 					"id": "5d66732b86f774368e1b7867",
 					"type": "Experience",
 					"index": 0
@@ -37740,14 +37740,14 @@
 				},
 				{
 					"target": "Vitality",
-					"value": "2",
+					"value": "200",
 					"id": "5d66735486f774368e1b7868",
 					"type": "Skill",
 					"index": 2
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5d78cf5086f77437fa1ccd82",
 					"type": "TraderStanding",
 					"index": 3
