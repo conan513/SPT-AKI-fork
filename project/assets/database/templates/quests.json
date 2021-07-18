@@ -24917,7 +24917,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6800",
+					"value": "5500",
 					"id": "5c950cee86f77455192fa443",
 					"type": "Experience",
 					"index": 0
@@ -24946,68 +24946,68 @@
 					"index": 2
 				},
 				{
-					"target": "5e0ac74b9d594972a112a925",
+					"target": "5d32cdef86f774403c15985a",
 					"value": "1",
 					"id": "5ad0ab7286f774547c14e283",
 					"type": "Item",
 					"index": 3,
 					"items": [
 						{
-							"_id": "5e0ac74b9d594972a112a925",
-							"_tpl": "57c44b372459772d2b39b8ce",
-							"parentId": "hideout",
-							"slotId": "hideout",
+							"_id": "5d32cdef86f774403c15985a",
+							"_tpl": "5cadfbf7ae92152ac412eeef",
 							"upd": {
-								"StackObjectsCount": 1
+								"FireMode": {
+									"FireMode": "single"
+								}
 							}
 						},
 						{
-							"_id": "5841482e2459775a050cdda2",
-							"_tpl": "57c44dd02459772d2e0ae249",
-							"parentId": "5e0ac74b9d594972a112a925",
+							"_id": "5d32cdef86f774403c15985b",
+							"_tpl": "5caf17c9ae92150b30006be1",
+							"parentId": "5d32cdef86f774403c15985a",
 							"slotId": "mod_muzzle"
 						},
 						{
-							"_id": "5841482e2459775a050cdda7",
-							"_tpl": "57c44e7b2459772d28133248",
-							"parentId": "5841482e2459775a050cdda2",
-							"slotId": "mod_sight_rear"
-						},
-						{
-							"_id": "5841482e2459775a050cdda3",
-							"_tpl": "57c44f4f2459772d2c627113",
-							"parentId": "5e0ac74b9d594972a112a925",
-							"slotId": "mod_reciever"
-						},
-						{
-							"_id": "5841482e2459775a050cdda4",
-							"_tpl": "57838f9f2459774a150289a0",
-							"parentId": "5e0ac74b9d594972a112a925",
+							"_id": "5d32cdef86f774403c15985c",
+							"_tpl": "5caf1041ae92157c28402e3f",
+							"parentId": "5d32cdef86f774403c15985a",
 							"slotId": "mod_magazine"
 						},
 						{
-							"_id": "5841482e2459775a050cdda5",
-							"_tpl": "57c44fa82459772d2d75e415",
-							"parentId": "5e0ac74b9d594972a112a925",
-							"slotId": "mod_pistol_grip"
+							"_id": "5d32cdef86f774403c15985d",
+							"_tpl": "5caf16a2ae92152ac412efbc",
+							"parentId": "5d32cdef86f774403c15985a",
+							"slotId": "mod_sight_front"
 						},
 						{
-							"_id": "5841482e2459775a050cdda6",
-							"_tpl": "57c450252459772d28133253",
-							"parentId": "5e0ac74b9d594972a112a925",
-							"slotId": "mod_stock"
+							"_id": "5d32cdef86f774403c15985e",
+							"_tpl": "5cdaa99dd7f00c002412d0b2",
+							"parentId": "5d32cdef86f774403c15985a",
+							"slotId": "mod_handguard"
+						},
+						{
+							"_id": "5d32cdef86f774403c15985f",
+							"_tpl": "5cda9bcfd7f00c0c0b53e900",
+							"parentId": "5d32cdef86f774403c15985e",
+							"slotId": "mod_foregrip"
+						},
+						{
+							"_id": "5d32cdef86f774403c159860",
+							"_tpl": "5caf1691ae92152ac412efb9",
+							"parentId": "5d32cdef86f774403c15985a",
+							"slotId": "mod_scope"
 						}
 					]
 				},
 				{
-					"target": "newReward",
+					"target": "FarmingNixxorLens",
 					"value": "1",
-					"id": "nixxorLens",
+					"id": "nixxorLensFarming2",
 					"type": "Item",
 					"index": 4,
 					"items": [
 						{
-							"_id": "newReward",
+							"_id": "FarmingNixxorLens",
 							"_tpl": "5d1b2ffd86f77425243e8d17",
 							"upd": {
 								"StackObjectsCount": 1
