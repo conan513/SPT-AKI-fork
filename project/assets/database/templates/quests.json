@@ -24351,7 +24351,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 20,
+							"value": 35,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
