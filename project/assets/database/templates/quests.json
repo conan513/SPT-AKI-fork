@@ -24725,7 +24725,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "8000",
+					"value": "6600",
 					"id": "5c950ce386f774551757f069",
 					"type": "Experience",
 					"index": 0
@@ -24748,10 +24748,42 @@
 				},
 				{
 					"target": "5a7c2eca46aef81a7ca2145d",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5bcf28a186f774378e266a40",
 					"type": "TraderStanding",
 					"index": 2
+				},
+				{
+					"target": "Farming1Bulbs",
+					"value": "2",
+					"id": "FarmingPart1Bulb",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "Farming1Bulbs",
+							"_tpl": "5d1b392c86f77425243e98fe",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "Farming1Helix",
+					"value": "2",
+					"id": "FarmingPart1Helix",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "Farming1Helix",
+							"_tpl": "5d1c774f86f7746d6620f8db",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
