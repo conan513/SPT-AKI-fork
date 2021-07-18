@@ -21382,14 +21382,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10000",
+					"value": "8300",
 					"id": "5c950b5986f774551757f065",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.06",
+					"value": "0.03",
 					"id": "5bcf1d4a86f7746a49593332",
 					"type": "TraderStanding",
 					"index": 1
@@ -21407,6 +21407,71 @@
 							"upd": {
 								"StackObjectsCount": 1600
 							}
+						}
+					]
+				},
+				{
+					"target": "ShorelineMapWetjob4",
+					"value": "1",
+					"id": "ShorelineMap",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "ShorelineMapWetjob4",
+							"_tpl": "5696686a4bdc2da3298b456a",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "5e035eb586f774756048ec19",
+					"id": "DTMDR308",
+					"type": "AssortmentUnlock",
+					"index": 4,
+					"loyaltyLevel": 4,
+					"traderId": "5935c25fb3acc3127c3d8cd9",
+					"items": [
+						{
+							"_id": "5e035eb586f774756048ec19",
+							"_tpl": "5dcbd56fdbd3d91b3e5468d5",
+							"upd": {
+								"FireMode": {
+									"FireMode": "single"
+								}
+							}
+						},
+						{
+							"_id": "5e035eb586f774756048ec1a",
+							"_tpl": "5dcbd6dddbd3d91b3e5468de",
+							"parentId": "5e035eb586f774756048ec19",
+							"slotId": "mod_pistol_grip"
+						},
+						{
+							"_id": "5e035eb586f774756048ec1b",
+							"_tpl": "5a3501acc4a282000d72293a",
+							"parentId": "5e035eb586f774756048ec19",
+							"slotId": "mod_magazine"
+						},
+						{
+							"_id": "5e035eb586f774756048ec1c",
+							"_tpl": "5dcbd6b46ec07c0c4347a564",
+							"parentId": "5e035eb586f774756048ec19",
+							"slotId": "mod_handguard"
+						},
+						{
+							"_id": "5e035eb586f774756048ec1d",
+							"_tpl": "5dcbe9431e1f4616d354987e",
+							"parentId": "5e035eb586f774756048ec19",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "5e035eb586f774756048ec1e",
+							"_tpl": "5dcbe965e4ed22586443a79d",
+							"parentId": "5e035eb586f774756048ec1d",
+							"slotId": "mod_muzzle"
 						}
 					]
 				}
