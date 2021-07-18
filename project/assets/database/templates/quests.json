@@ -8366,14 +8366,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6500",
+					"value": "4800",
 					"id": "5c95063986f77455185027f4",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.07",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf13fb86f77423c25c50b0"
