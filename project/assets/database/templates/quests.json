@@ -21560,14 +21560,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10200",
+					"value": "8400",
 					"id": "5c950b6a86f7743285178ad9",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.06",
+					"value": "0.03",
 					"id": "5bcf1d5b86f7746a49593333",
 					"type": "TraderStanding",
 					"index": 1
@@ -21659,6 +21659,22 @@
 							"_tpl": "5a34fbadc4a28200741e230a",
 							"parentId": "5d34df2788a4504526796b94",
 							"slotId": "mod_gas_block"
+						}
+					]
+				},
+				{
+					"target": "AFAKUnlockFromWetJob5",
+					"id": "WetJob5AFAK",
+					"type": "AssortmentUnlock",
+					"index": 4,
+					"loyaltyLevel": 4,
+					"traderId": "5935c25fb3acc3127c3d8cd9",
+					"items": [
+						{
+							"_id": "AFAKUnlockFromWetJob5",
+							"_tpl": "60098ad7c2240c0fe85c570a",
+							"parentId": "hideout",
+							"slotId": "hideout"
 						}
 					]
 				}
