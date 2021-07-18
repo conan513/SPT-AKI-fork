@@ -35791,14 +35791,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "20300",
+					"value": "13100",
 					"id": "5c950f5086f774551528def8",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.05",
+					"value": "0.02",
 					"id": "5bcf255886f7746a464c5680",
 					"type": "TraderStanding",
 					"index": 1
