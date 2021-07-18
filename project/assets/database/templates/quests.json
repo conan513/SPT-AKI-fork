@@ -9639,7 +9639,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "9400",
+					"value": "5900",
 					"id": "5c95071786f7743285178ad3",
 					"type": "Experience",
 					"index": 0
@@ -9678,7 +9678,7 @@
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.04",
 					"id": "5bcf180886f7746a49593323",
 					"type": "TraderStanding",
 					"index": 3
@@ -9696,7 +9696,23 @@
 							"_tpl": "544fb3f34bdc2d03748b456a"
 						}
 					]
-				}
+				},
+				{
+					"target": "HealthCareAdrenaline",
+					"value": "2",
+					"id": "CarePrivacyPart3Adrenaline",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "HealthCareAdrenaline",
+							"_tpl": "5c10c8fd86f7743d7d706df3",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
 			],
 			"Fail": []
 		},
