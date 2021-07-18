@@ -32938,7 +32938,7 @@
 				},
 				{
 					"target": "5d34df2788a4504526796cfa",
-					"value": "250000",
+					"value": "235000",
 					"id": "5ae9e5ed86f7742cfd3cb562",
 					"type": "Item",
 					"index": 1,
@@ -32947,7 +32947,7 @@
 							"_id": "5d34df2788a4504526796cfa",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 250000
+								"StackObjectsCount": 235000
 							}
 						}
 					]
@@ -32996,6 +32996,18 @@
 							4
 						],
 						"index": 1,
+						"parentId": "",
+						"id": ""
+					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5ae4498786f7744bde357695",
+						"status": [
+							4
+						],
+						"index": 2,
 						"parentId": "",
 						"id": ""
 					}
