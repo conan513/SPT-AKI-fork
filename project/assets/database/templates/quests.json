@@ -24665,7 +24665,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 300,
+							"value": 250,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
