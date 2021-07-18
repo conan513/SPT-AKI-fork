@@ -39429,7 +39429,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10000",
+					"value": "11800",
 					"id": "5d667ecf86f774368f43a1fd",
 					"type": "Experience",
 					"index": 0
@@ -39456,6 +39456,38 @@
 					"id": "5d77856186f774319c48882a",
 					"type": "TraderStanding",
 					"index": 2
+				},
+				{
+					"target": "EmelyaRyeCroutonsCourtesy",
+					"value": "5",
+					"id": "CourtesyEmelyaRye",
+					"type": "Item",
+					"index": 1,
+					"items": [
+						{
+							"_id": "EmelyaRyeCroutonsCourtesy",
+							"_tpl": "5751487e245977207e26a315",
+							"upd": {
+								"StackObjectsCount": 5
+							}
+						}
+					]
+				},
+				{
+					"target": "MilkCourtesyVisit",
+					"value": "5",
+					"id": "CourtesyMilk",
+					"type": "Item",
+					"index": 1,
+					"items": [
+						{
+							"_id": "MilkCourtesyVisit",
+							"_tpl": "575146b724597720a27126d5",
+							"upd": {
+								"StackObjectsCount": 5
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -39473,7 +39505,17 @@
 						"parentId": "",
 						"id": ""
 					}
-				}
+				},
+				{
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "20",
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
 			],
 			"AvailableForFinish": [
 				{
