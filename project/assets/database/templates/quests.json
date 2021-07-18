@@ -23185,14 +23185,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "13200",
+					"value": "15300",
 					"id": "5d84db3f86f77414e4530d88",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.12",
+					"value": "0.04",
 					"id": "5d8caf5b86f7744450412667",
 					"type": "TraderStanding",
 					"index": 1
@@ -23307,6 +23307,34 @@
 							}
 						}
 					]
+				},
+				{
+					"target": "OPSCOREFASTSamples",
+					"id": "OPSCoreFaceshieldUnlockSamples",
+					"type": "AssortmentUnlock",
+					"index": 5,
+					"loyaltyLevel": 4,
+					"traderId": "5935c25fb3acc3127c3d8cd9",
+					"items": [
+						{
+							"_id": "OPSCOREFASTSamples",
+							"_tpl": "5a16b7e1fcdbcb00165aa6c9"
+						}
+					]
+				},
+				{
+					"target": "EXFILBlackSample",
+					"id": "WendyBlackHelmetSamples",
+					"type": "AssortmentUnlock",
+					"index": 6,
+					"loyaltyLevel": 4,
+					"traderId": "5935c25fb3acc3127c3d8cd9",
+					"items": [
+						{
+							"_id": "EXFILBlackSample",
+							"_tpl": "5e00c1ad86f774747333222c"
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -23331,18 +23359,6 @@
 							4
 						],
 						"index": 1,
-						"parentId": "",
-						"id": ""
-					}
-				},
-				{
-					"_parent": "Quest",
-					"_props": {
-						"target": "5edab736cc183c769d778bc2",
-						"status": [
-							4
-						],
-						"index": 2,
 						"parentId": "",
 						"id": ""
 					}
