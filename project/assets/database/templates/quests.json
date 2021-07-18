@@ -36818,7 +36818,7 @@
 					]
 				},
 				{
-					"value": "9000",
+					"value": "5700",
 					"id": "5d6654b986f77427d529a113",
 					"type": "Experience",
 					"index": 1
@@ -36841,7 +36841,7 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.03",
+					"value": "0.02",
 					"id": "5d762a0286f774454c5360c0",
 					"type": "TraderStanding",
 					"index": 3
