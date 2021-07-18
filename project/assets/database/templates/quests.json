@@ -7800,14 +7800,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "4600",
+					"value": "45000",
 					"id": "5c95060286f77455185027f3",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf139c86f77423c25c50ae"
@@ -7830,7 +7830,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a850",
-					"value": "10",
+					"value": "2",
 					"id": "5a3fac7186f77406e94524a0",
 					"type": "Item",
 					"index": 3,
@@ -7839,7 +7839,7 @@
 							"_id": "5e0ac74b9d594972a112a850",
 							"_tpl": "544fb37f4bdc2dee738b4567",
 							"upd": {
-								"StackObjectsCount": 10
+								"StackObjectsCount": 2
 							}
 						}
 					]
@@ -7859,7 +7859,39 @@
 							}
 						}
 					]
-				}
+				},
+				{
+					"target": "medsPileReward",
+					"value": "2",
+					"id": "PileofMeds",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "medsPileReward",
+							"_tpl": "5d1b3a5d86f774252167ba22",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "TubeofSilicone",
+					"value": "1",
+					"id": "SiliconeTube",
+					"type": "Item",
+					"index": 6,
+					"items": [
+						{
+							"_id": "TubeofSilicone",
+							"_tpl": "5d1b39a386f774252339976f",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
 			],
 			"Fail": []
 		},
