@@ -120,6 +120,9 @@ module.exports = {
     "/singleplayer/settings/raid/menu": {
         "aki": InraidCallbacks.getRaidMenuSettings
     },
+    "/singleplayer/settings/version": {
+        "aki": GameCallbacks.getVersion
+    },
     "/client/insurance/items/list/cost": {
         "aki": InsuranceCallbacks.getInsuranceCost
     },
