@@ -32761,7 +32761,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "19800",
+					"value": "17500",
 					"id": "5c95118086f7743285178ae1",
 					"type": "Experience",
 					"index": 0
@@ -32784,7 +32784,7 @@
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.09",
+					"value": "0.03",
 					"id": "5bcf11a686f7742ce2243a3b",
 					"type": "TraderStanding",
 					"index": 2
@@ -32802,6 +32802,20 @@
 							"upd": {
 								"StackObjectsCount": 2
 							}
+						}
+					]
+				},
+				{
+					"target": "SalesNightUlachTan",
+					"id": "ULACTanUnlockSalesNight",
+					"type": "AssortmentUnlock",
+					"index": 3,
+					"loyaltyLevel": 3,
+					"traderId": "5ac3b934156ae10c4430e83c",
+					"items": [
+						{
+							"_id": "SalesNightUlachTan",
+							"_tpl": "5b40e2bc5acfc40016388216"
 						}
 					]
 				}
