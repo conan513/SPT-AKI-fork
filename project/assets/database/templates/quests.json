@@ -33198,14 +33198,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "23000",
+					"value": "19900",
 					"id": "5c9511ef86f7745516178643",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.09",
+					"value": "0.03",
 					"id": "5bcf121386f77423c25c50aa",
 					"type": "TraderStanding",
 					"index": 1
