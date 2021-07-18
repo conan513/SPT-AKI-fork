@@ -32614,14 +32614,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "16300",
+					"value": "14400",
 					"id": "5c95117286f774551528defb",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5e0ac74b9d594972a112a994",
-					"value": "80000",
+					"value": "120000",
 					"id": "5ae9e3af86f7746b6a466a8b",
 					"type": "Item",
 					"index": 1,
@@ -32630,14 +32630,14 @@
 							"_id": "5e0ac74b9d594972a112a994",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 80000
+								"StackObjectsCount": 120000
 							}
 						}
 					]
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf118986f77423c05cad71",
 					"type": "TraderStanding",
 					"index": 2
