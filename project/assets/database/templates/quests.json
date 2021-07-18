@@ -33379,14 +33379,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "25000",
+					"value": "20300",
 					"id": "5c9511fd86f7745516178644",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.09",
+					"value": "0.04",
 					"id": "5bcf122c86f7742ce2243a3e",
 					"type": "TraderStanding",
 					"index": 1
