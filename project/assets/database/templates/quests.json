@@ -13573,84 +13573,103 @@
 			],
 			"Success": [
 				{
-					"value": "4600",
+					"value": "4500",
 					"id": "5c94fea786f77455185027f0",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.10",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf1cd986f774378e266915"
 				},
 				{
-					"target": "5e0ac74b9d594972a112a884",
+					"target": "496d65000311d83486bd2e73",
 					"value": "1",
 					"id": "59a9255d86f77474225c4cef",
 					"type": "Item",
 					"index": 2,
 					"items": [
 						{
-							"_id": "5e0ac74b9d594972a112a884",
-							"_tpl": "57c44b372459772d2b39b8ce",
-							"parentId": "hideout",
-							"slotId": "hideout",
-							"upd": {
-								"StackObjectsCount": 1
-							}
+							"_id": "496d65000311d83486bd2e73",
+							"_tpl": "60339954d62c9b14ed777c06"
 						},
 						{
-							"_id": "5e0ac74b9d594972a112a885",
-							"_tpl": "57c44dd02459772d2e0ae249",
-							"parentId": "5e0ac74b9d594972a112a884",
-							"slotId": "mod_muzzle"
-						},
-						{
-							"_id": "5e0ac74b9d594972a112a886",
-							"_tpl": "57c44f4f2459772d2c627113",
-							"parentId": "5e0ac74b9d594972a112a884",
-							"slotId": "mod_reciever"
-						},
-						{
-							"_id": "5e0ac74b9d594972a112a887",
-							"_tpl": "57838f9f2459774a150289a0",
-							"parentId": "5e0ac74b9d594972a112a884",
-							"slotId": "mod_magazine"
-						},
-						{
-							"_id": "5e0ac74b9d594972a112a888",
-							"_tpl": "57c44fa82459772d2d75e415",
-							"parentId": "5e0ac74b9d594972a112a884",
+							"_id": "50d28fde0d7176e96569b1a8",
+							"_tpl": "602e71bd53a60014f9705bfa",
+							"parentId": "496d65000311d83486bd2e73",
 							"slotId": "mod_pistol_grip"
 						},
 						{
-							"_id": "5e0ac74b9d594972a112a889",
-							"_tpl": "57c450252459772d28133253",
-							"parentId": "5e0ac74b9d594972a112a884",
-							"slotId": "mod_stock"
+							"_id": "742793787ef2359917a8083e",
+							"_tpl": "5a7ad2e851dfba0016153692",
+							"parentId": "496d65000311d83486bd2e73",
+							"slotId": "mod_magazine"
 						},
 						{
-							"_id": "5e0ac74b9d594972a112a88a",
-							"_tpl": "57c44e7b2459772d28133248",
-							"parentId": "5e0ac74b9d594972a112a885",
-							"slotId": "mod_sight_rear"
+							"_id": "e9a78f3b1bbda55e23b30f1d",
+							"_tpl": "602e63fb6335467b0c5ac94d",
+							"parentId": "496d65000311d83486bd2e73",
+							"slotId": "mod_reciever"
+						},
+						{
+							"_id": "36e266d32cc76dbb10ad980a",
+							"_tpl": "602e3f1254072b51b239f713",
+							"parentId": "496d65000311d83486bd2e73",
+							"slotId": "mod_stock_001"
+						},
+						{
+							"_id": "bce29723f148c951fd609ed1",
+							"_tpl": "55d44fd14bdc2d962f8b456e",
+							"parentId": "496d65000311d83486bd2e73",
+							"slotId": "mod_charge"
+						},
+						{
+							"_id": "c573bb9afa4826b47fffa6f8",
+							"_tpl": "60338ff388382f4fab3fd2c8",
+							"parentId": "496d65000311d83486bd2e73",
+							"slotId": "mod_tactical_000"
+						},
+						{
+							"_id": "3818a4acb07c0b5f5867d0cc",
+							"_tpl": "603372b4da11d6478d5a07ff",
+							"parentId": "e9a78f3b1bbda55e23b30f1d",
+							"slotId": "mod_barrel"
+						},
+						{
+							"_id": "009365ccfa9743c6d82ed35f",
+							"_tpl": "6034e3cb0ddce744014cb870",
+							"parentId": "e9a78f3b1bbda55e23b30f1d",
+							"slotId": "mod_handguard"
+						},
+						{
+							"_id": "667e1826c6463c4b4a1db6a7",
+							"_tpl": "602e620f9b513876d4338d9a",
+							"parentId": "36e266d32cc76dbb10ad980a",
+							"slotId": "mod_stock_000"
+						},
+						{
+							"_id": "afa10af9d9da0210bb702596",
+							"_tpl": "60337f5dce399e10262255d1",
+							"parentId": "3818a4acb07c0b5f5867d0cc",
+							"slotId": "mod_muzzle"
 						}
 					]
 				},
 				{
 					"target": "5e0ac74b9d594972a112a88b",
-					"value": "3",
+					"value": "2",
 					"type": "Item",
 					"index": 3,
 					"id": "597afde186f7741ce2755ed2",
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a88b",
-							"_tpl": "57838f9f2459774a150289a0",
+							"_tpl": "5a7ad2e851dfba0016153692",
 							"upd": {
-								"StackObjectsCount": 3
+								"StackObjectsCount": 2
 							}
 						}
 					]
@@ -13682,6 +13701,22 @@
 						{
 							"_id": "5e3c0b7c7dfe975b6f2b05dc",
 							"_tpl": "584984812459776a704a82a6"
+						}
+					]
+				},
+				{
+					"target": "9mmpstGZG",
+					"value": "120",
+					"id": "9mmpstGoldenSwag",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "9mmpstGZG",
+							"_tpl": "56d59d3ad2720bdb418b4577",
+							"upd": {
+								"StackObjectsCount": 120
+							}
 						}
 					]
 				}
