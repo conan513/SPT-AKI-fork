@@ -39688,14 +39688,14 @@
 					]
 				},
 				{
-					"value": "11000",
+					"value": "11400",
 					"id": "5d667f8986f774131e206b51",
 					"type": "Experience",
 					"index": 1
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.04",
+					"value": "0.02",
 					"id": "5d7785f786f7742fa732bf08",
 					"type": "TraderStanding",
 					"index": 2
@@ -39731,7 +39731,19 @@
 						"parentId": "",
 						"id": "5d77a29b86f7742fa65b6600"
 					}
-				}
+				},
+				{
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5979ed3886f77431307dc512",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
 			],
 			"AvailableForFinish": [
 				{
