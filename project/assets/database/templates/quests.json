@@ -39048,7 +39048,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "30000",
+					"value": "8900",
 					"id": "5d667d6a86f774368f43a1f9",
 					"type": "Experience",
 					"index": 0
@@ -39071,7 +39071,7 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.05",
+					"value": "0.02",
 					"id": "5d777e9286f774319c488826",
 					"type": "TraderStanding",
 					"index": 2
@@ -39116,7 +39116,7 @@
 				{
 					"_parent": "Quest",
 					"_props": {
-						"target": "5d25e2ee86f77443e35162ea",
+						"target": "60c0c018f7afb4354815096a",
 						"status": [
 							4
 						],
