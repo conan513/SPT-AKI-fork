@@ -12565,14 +12565,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "4600",
+					"value": "4500",
 					"id": "5c94ff4786f774551528deea",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.3",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "597afde186f7741ce2755eb5"
@@ -12597,7 +12597,7 @@
 			"Fail": [
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "-0.3",
+					"value": "-0.04",
 					"type": "TraderStanding",
 					"index": 0,
 					"id": "597afde186f7741ce2755eb7"
