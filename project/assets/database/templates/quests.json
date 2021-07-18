@@ -9855,7 +9855,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10200",
+					"value": "6000",
 					"id": "5c95073c86f77455192fa432",
 					"type": "Experience",
 					"index": 0
@@ -9894,11 +9894,27 @@
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.04",
 					"id": "5bcf181f86f774378e266912",
 					"type": "TraderStanding",
 					"index": 3
-				}
+				},
+				{
+					"target": "PrivacyPart4SalineBag",
+					"value": "2",
+					"id": "SalineBadPrivacy4",
+					"type": "Item",
+					"index": 1,
+					"items": [
+						{
+							"_id": "PrivacyPart4SalineBag",
+							"_tpl": "59e3606886f77417674759a5",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
 			],
 			"Fail": []
 		},
