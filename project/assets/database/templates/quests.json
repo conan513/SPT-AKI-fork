@@ -14201,14 +14201,14 @@
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.08",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf1d5b86f774378e266917"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a896",
-					"value": "2",
+					"value": "1",
 					"id": "5a2e79ea86f77406357faa72",
 					"type": "Item",
 					"index": 2,
@@ -14217,14 +14217,14 @@
 							"_id": "5e0ac74b9d594972a112a896",
 							"_tpl": "576fd4ec2459777f0b518431",
 							"upd": {
-								"StackObjectsCount": 2
+								"StackObjectsCount": 1
 							}
 						}
 					]
 				},
 				{
 					"target": "5e0ac74b9d594972a112a897",
-					"value": "17000",
+					"value": "22000",
 					"id": "5a2e7a0486f77406357faa73",
 					"type": "Item",
 					"index": 3,
@@ -14233,7 +14233,7 @@
 							"_id": "5e0ac74b9d594972a112a897",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 17000
+								"StackObjectsCount": 22000
 							}
 						}
 					]
@@ -14244,6 +14244,22 @@
 					"id": "5d6e71cc86f77410d46d1e43",
 					"type": "TraderStanding",
 					"index": 4
+				},
+				{
+					"target": "ChemicalZaryaReward",
+					"value": "4",
+					"id": "Chemical4Zarya",
+					"type": "Item",
+					"index": 2,
+					"items": [
+						{
+							"_id": "ChemicalZaryaReward",
+							"_tpl": "5a0c27731526d80618476ac4",
+							"upd": {
+								"StackObjectsCount": 4
+							}
+						}
+					]
 				}
 			],
 			"Fail": []
