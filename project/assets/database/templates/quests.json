@@ -31193,7 +31193,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "10200",
+					"value": "8400",
 					"id": "5c9510a786f7743285178ae0",
 					"type": "Experience",
 					"index": 0
@@ -31216,7 +31216,7 @@
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf0f9786f77423c13fb057",
 					"type": "TraderStanding",
 					"index": 2
@@ -31231,6 +31231,22 @@
 						{
 							"_id": "5e0ac74b9d594972a112a985",
 							"_tpl": "5ab8e79e86f7742d8b372e78",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "DressedToKillPowerFilter",
+					"value": "1",
+					"id": "PowerFilterDressedtoKill",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "DressedToKillPowerFilter",
+							"_tpl": "5d0378d486f77420421a5ff4",
 							"upd": {
 								"StackObjectsCount": 1
 							}
