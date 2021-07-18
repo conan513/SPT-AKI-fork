@@ -37098,7 +37098,7 @@
 					]
 				},
 				{
-					"value": "12000",
+					"value": "7000",
 					"id": "5d66712886f774368d281a91",
 					"type": "Experience",
 					"index": 1
@@ -37134,6 +37134,13 @@
 							}
 						}
 					]
+				},
+				{
+					"target": "5c0647fdd443bc2504c2d371",
+					"value": "0.02",
+					"id": "ToughGuyStanding",
+					"type": "TraderStanding",
+					"index": 4
 				}
 			],
 			"Fail": []
