@@ -35155,7 +35155,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "19200",
+					"value": "12400",
 					"id": "5c950f1486f774551617863c",
 					"type": "Experience",
 					"index": 0
@@ -35209,6 +35209,22 @@
 							"_tpl": "5bc5a372d4351e44f824d17f",
 							"upd": {
 								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "UmkaM33TarkovShooter2",
+					"value": "1",
+					"id": "TarkovShooter2Umka",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "5e0ac74b9d594972a112a9db",
+							"_tpl": "6034cf5fffd42c541047f72e",
+							"upd": {
+								"StackObjectsCount": 2
 							}
 						}
 					]
@@ -35297,7 +35313,7 @@
 										],
 										"distance": {
 											"compareMethod": ">=",
-											"value": 60
+											"value": 40
 										},
 										"bodyPart": [
 											"Head"
