@@ -13144,28 +13144,28 @@
 			"Success": [
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.12",
+					"value": "0.05",
 					"type": "TraderStanding",
 					"index": 0,
 					"id": "5bcf1c4886f7746a4959332d"
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "-0.12",
+					"value": "-0.05",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bd188d986f774758c5c2813"
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "-0.05",
+					"value": "-0.02",
 					"type": "TraderStanding",
 					"index": 2,
 					"id": "5a4ba2ad88a4504dd35e8494"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a871",
-					"value": "65000",
+					"value": "70000",
 					"type": "Item",
 					"index": 3,
 					"id": "5a2e5d0b86f77452ee40c4b2",
@@ -13174,13 +13174,13 @@
 							"_id": "5e0ac74b9d594972a112a871",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 65000
+								"StackObjectsCount": 70000
 							}
 						}
 					]
 				},
 				{
-					"value": "4700",
+					"value": "5300",
 					"id": "5c94fe7886f77455185027ef",
 					"type": "Experience",
 					"index": 4
