@@ -2898,14 +2898,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "8200",
+					"value": "8100",
 					"id": "5c94f18c86f7745516178625",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.10",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf122686f77423c13fb05d"
@@ -2935,7 +2935,7 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a89d",
-							"_tpl": "5648a7494bdc2d9d488b4583",
+							"_tpl": "5df8a2ca86f7740bfe6df777",
 							"upd": {
 								"StackObjectsCount": 1
 							}
@@ -2969,7 +2969,7 @@
 			"Fail": [
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "-0.15",
+					"value": "-0.25",
 					"type": "TraderStanding",
 					"index": 0,
 					"id": "5a2e88f486f77460372f9b62"
