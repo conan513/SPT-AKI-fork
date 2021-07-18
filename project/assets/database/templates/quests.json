@@ -29623,7 +29623,7 @@
 			"Success": [
 				{
 					"target": "5e0ac74b9d594972a112a9f7",
-					"value": "15000",
+					"value": "30000",
 					"id": "5d65671086f77476de799fde",
 					"type": "Item",
 					"index": 0,
@@ -29632,7 +29632,7 @@
 							"_id": "5e0ac74b9d594972a112a9f7",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 15000
+								"StackObjectsCount": 30000
 							}
 						}
 					]
@@ -29645,7 +29645,7 @@
 				},
 				{
 					"target": "5a7c2eca46aef81a7ca2145d",
-					"value": "0.05",
+					"value": "0.03",
 					"id": "5d7620bc86f774454d58840d",
 					"type": "TraderStanding",
 					"index": 2
@@ -29667,6 +29667,18 @@
 						"compareMethod": ">=",
 						"value": "2",
 						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				},
+				{
+					"_parent": "Quest",
+					"_props": {
+						"target": "5ac23c6186f7741247042bad",
+						"status": [
+							2
+						],
+						"index": 1,
 						"parentId": "",
 						"id": ""
 					}
