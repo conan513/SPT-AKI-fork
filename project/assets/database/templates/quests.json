@@ -33814,10 +33814,24 @@
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.09",
+					"value": "0.04",
 					"id": "5c19243786f77401b3750a84",
 					"type": "TraderStanding",
 					"index": 4
+				},
+				{
+					"target": "BloodOfWarThorCarrier",
+					"id": "ThorIntegratedArmorUnlockBloodOfWar",
+					"type": "AssortmentUnlock",
+					"index": 5,
+					"loyaltyLevel": 4,
+					"traderId": "5ac3b934156ae10c4430e83c",
+					"items": [
+						{
+							"_id": "BloodOfWarThorCarrier",
+							"_tpl": "60a283193cb70855c43a381d"
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -33832,6 +33846,16 @@
 							4
 						],
 						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				},
+				{
+					"_parent": "Level",
+					"_props": {
+						"compareMethod": ">=",
+						"value": "30",
+						"index": 1,
 						"parentId": "",
 						"id": ""
 					}
