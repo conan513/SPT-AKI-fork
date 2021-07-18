@@ -16692,21 +16692,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "13200",
+					"value": "12900",
 					"id": "5c94f00286f77455192fa423",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.1",
+					"value": "0.05",
 					"id": "5bcf0ecd86f7742ce2243a35",
 					"type": "TraderStanding",
 					"index": 1
 				},
 				{
 					"target": "5e0ac74b9d594972a112a8a0",
-					"value": "90000",
+					"value": "150000",
 					"id": "5a2e81c486f7741a972d4ee7",
 					"type": "Item",
 					"index": 2,
@@ -16715,62 +16715,106 @@
 							"_id": "5e0ac74b9d594972a112a8a0",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 90000
+								"StackObjectsCount": 150000
 							}
 						}
 					]
 				},
 				{
 					"target": "5d34df2788a4504526795d81",
-					"value": "2",
+					"value": "1",
 					"id": "5c17cf0086f77430a323d853",
 					"type": "Item",
 					"index": 3,
 					"items": [
 						{
-							"_id": "5d34df2788a4504526795d81",
-							"_tpl": "588892092459774ac91d4b11",
+							"_id": "5926e79e86f77441d85235ec",
+							"_tpl": "5926bb2186f7744b1c6c6e60",
 							"parentId": "hideout",
-							"slotId": "hideout",
-							"upd": {
-								"StackObjectsCount": 2
-							}
+							"slotId": "hideout"
 						},
 						{
-							"_id": "5d34df2788a4504526795d82",
-							"_tpl": "5888988e24597752fe43a6fa",
-							"parentId": "5d34df2788a4504526795d81",
+							"_id": "5926f17986f77459a267c978",
+							"_tpl": "5926c3b286f774640d189b6b",
+							"parentId": "5926e79e86f77441d85235ec",
 							"slotId": "mod_magazine"
 						},
 						{
-							"_id": "5d34df2788a4504526795d83",
-							"_tpl": "5888945a2459774bf43ba385",
-							"parentId": "5d34df2788a4504526795d81",
-							"slotId": "mod_barrel"
+							"_id": "5928193186f7744bc02c315a",
+							"_tpl": "58864a4f2459770fcc257101",
+							"parentId": "5926f17986f77459a267c978",
+							"slotId": "cartridges",
+							"upd": {
+								"StackObjectsCount": 30
+							}
 						},
 						{
-							"_id": "5d34df2788a4504526795d84",
-							"_tpl": "57c55f172459772d27602381",
-							"parentId": "5d34df2788a4504526795d81",
-							"slotId": "mod_pistol_grip"
+							"_id": "5926f17986f77459a267c96d",
+							"_tpl": "5926c0df86f77462f647f764",
+							"parentId": "5926e79e86f77441d85235ec",
+							"slotId": "mod_reciever"
 						},
 						{
-							"_id": "5d34df2788a4504526795d85",
-							"_tpl": "58889d0c2459775bc215d981",
-							"parentId": "5d34df2788a4504526795d81",
+							"_id": "5926f17986f77459a267c973",
+							"_tpl": "5926c36d86f77467a92a8629",
+							"parentId": "5926f17986f77459a267c96d",
+							"slotId": "mod_handguard"
+						},
+						{
+							"_id": "5926f17986f77459a267c974",
+							"_tpl": "5926d2be86f774134d668e4e",
+							"parentId": "5926f17986f77459a267c96d",
+							"slotId": "mod_sight_rear"
+						},
+						{
+							"_id": "5926f17986f77459a267c975",
+							"_tpl": "5926d3c686f77410de68ebc8",
+							"parentId": "5926f17986f77459a267c96d",
 							"slotId": "mod_stock"
 						},
 						{
-							"_id": "5d34df2788a4504526795d86",
-							"_tpl": "58889c7324597754281f9439",
-							"parentId": "5d34df2788a4504526795d83",
+							"_id": "5926f17986f77459a267c976",
+							"_tpl": "5926e16e86f7742f5a0f7ecb",
+							"parentId": "5926f17986f77459a267c96d",
 							"slotId": "mod_muzzle"
 						},
 						{
-							"_id": "5d34df2788a4504526795d87",
-							"_tpl": "5888961624597754281f93f3",
-							"parentId": "5d34df2788a4504526795d83",
-							"slotId": "mod_bipod"
+							"_id": "5926f17986f77459a267c96e",
+							"_tpl": "5926c32286f774616e42de99",
+							"parentId": "5926e79e86f77441d85235ec",
+							"slotId": "mod_charge"
+						}
+					]
+				},
+				{
+					"target": "RiggedMP5Mag",
+					"value": "3",
+					"id": "RiggedGameMP5Mag",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "RiggedMP5Mag",
+							"_tpl": "5926c3b286f774640d189b6b",
+							"upd": {
+								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "RiggerGameLugerCCI",
+					"value": "120",
+					"id": "RiggedGameLuger",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "RiggerGameLugerCCI",
+							"_tpl": "5a3c16fe86f77452b62de32a",
+							"upd": {
+								"StackObjectsCount": 120
+							}
 						}
 					]
 				}
