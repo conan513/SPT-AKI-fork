@@ -12896,7 +12896,7 @@
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.08",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf1b6b86f7746a472ad847"
@@ -12995,6 +12995,22 @@
 							"_tpl": "59d625f086f774661516605d",
 							"upd": {
 								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "TKMAPMAmmo",
+					"value": "20",
+					"id": "TKMAPM",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "TKMAPMAmmo",
+							"_tpl": "5f0596629e22f464da6bbdd9",
+							"upd": {
+								"StackObjectsCount": 20
 							}
 						}
 					]
