@@ -17981,21 +17981,21 @@
 			],
 			"Success": [
 				{
-					"value": "5400",
+					"value": "4800",
 					"id": "5c9509b786f774551528def2",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.06",
+					"value": "0.02",
 					"id": "5bcf1af486f7746a472ad844",
 					"type": "TraderStanding",
 					"index": 1
 				},
 				{
 					"target": "5e0ac74b9d594972a112a8c5",
-					"value": "800",
+					"value": "700",
 					"id": "5a27d67b86f7741d1c25d39f",
 					"type": "Item",
 					"index": 2,
@@ -18004,7 +18004,7 @@
 							"_id": "5e0ac74b9d594972a112a8c5",
 							"_tpl": "5696686a4bdc2da3298b456a",
 							"upd": {
-								"StackObjectsCount": 800
+								"StackObjectsCount": 700
 							}
 						}
 					]
@@ -18018,7 +18018,7 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a8c6",
-							"_tpl": "5645bc214bdc2d363b8b4571",
+							"_tpl": "5aa7d03ae5b5b00016327db5",
 							"upd": {
 								"StackObjectsCount": 1
 							}
@@ -18030,12 +18030,12 @@
 					"id": "5ac66af386f77405cd5462c5",
 					"type": "AssortmentUnlock",
 					"index": 4,
-					"loyaltyLevel": 1,
+					"loyaltyLevel": 2,
 					"traderId": "5935c25fb3acc3127c3d8cd9",
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a8c7",
-							"_tpl": "58d399e486f77442e0016fe7"
+							"_tpl": "5b3116595acfc40019476364"
 						}
 					]
 				}
