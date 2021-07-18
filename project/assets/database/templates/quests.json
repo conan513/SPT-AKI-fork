@@ -24449,7 +24449,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a920",
-					"value": "3",
+					"value": "2",
 					"id": "5acb82ec86f7744e652e362c",
 					"type": "Item",
 					"index": 3,
@@ -24458,7 +24458,7 @@
 							"_id": "5e0ac74b9d594972a112a920",
 							"_tpl": "59faff1d86f7746c51718c9c",
 							"upd": {
-								"StackObjectsCount": 3
+								"StackObjectsCount": 2
 							}
 						}
 					]
