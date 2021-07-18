@@ -7465,21 +7465,21 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "3400",
+					"value": "3300",
 					"id": "5c9505dd86f77455192fa430",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf134f86f77423c25c50ad"
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "-0.08",
+					"value": "-0.02",
 					"type": "TraderStanding",
 					"index": 2,
 					"id": "5a2fb67486f77432ea548a86"
@@ -7502,7 +7502,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a84b",
-					"value": "8",
+					"value": "6",
 					"id": "5a2fb6a086f77476953ee326",
 					"type": "Item",
 					"index": 4,
@@ -7511,7 +7511,23 @@
 							"_id": "5e0ac74b9d594972a112a84b",
 							"_tpl": "5448fee04bdc2dbc018b4567",
 							"upd": {
-								"StackObjectsCount": 8
+								"StackObjectsCount": 6
+							}
+						}
+					]
+				},
+				{
+					"target": "WaterFilterReward",
+					"value": "1",
+					"id": "WaterFilter",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "WaterFilterReward",
+							"_tpl": "5d1b385e86f774252167b98a",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
