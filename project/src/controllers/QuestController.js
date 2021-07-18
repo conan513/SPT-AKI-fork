@@ -517,7 +517,7 @@ class QuestController
     // TODO maybe merge this function and the one from customization
     static changeItemStack(pmcData, id, value, sessionID, output)
     {
-        const inventoryItemIndex = pmcData.Inventory.items.search(item => item._id === id);
+        const inventoryItemIndex = pmcData.Inventory.items.findIndex(item => item._id === id);
         if (inventoryItemIndex < 0)
         {
             Logger.error(`changeItemStack: Item with _id = ${id} not found in inventory`);
