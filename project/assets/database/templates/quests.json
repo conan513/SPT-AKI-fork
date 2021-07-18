@@ -14001,14 +14001,14 @@
 			],
 			"Success": [
 				{
-					"value": "4900",
+					"value": "4800",
 					"id": "5c94fecb86f774592a47024a",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.08",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf1d4886f774378e266916"
@@ -14056,6 +14056,22 @@
 						{
 							"_id": "5e064f5ceb009468d90badca",
 							"_tpl": "5a966f51a2750c00156aacf6"
+						}
+					]
+				},
+				{
+					"target": "tntBricksChemical",
+					"value": "2",
+					"type": "Item",
+					"index": 2,
+					"id": "ChemicalPart2TNT",
+					"items": [
+						{
+							"_id": "tntBricksChemical",
+							"_tpl": "60391b0fb847c71012789415",
+							"upd": {
+								"StackObjectsCount": 2
+							}
 						}
 					]
 				}
