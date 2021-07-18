@@ -29254,7 +29254,7 @@
 				},
 				{
 					"target": "Perception",
-					"value": "100",
+					"value": "200",
 					"id": "5c18c2ab86f774186730fed1",
 					"type": "Skill",
 					"index": 4
@@ -29283,7 +29283,7 @@
 					"_props": {
 						"target": "Sniper",
 						"compareMethod": ">=",
-						"value": "7",
+						"value": "9",
 						"index": 0,
 						"parentId": "",
 						"id": "5c0be2b486f7747bcb347d58"
