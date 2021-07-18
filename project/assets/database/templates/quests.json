@@ -22372,7 +22372,7 @@
 			],
 			"Success": [
 				{
-					"value": "32400",
+					"value": "25500",
 					"id": "5c950bac86f77455185027f7",
 					"type": "Experience",
 					"index": 0
@@ -22442,7 +22442,7 @@
 				},
 				{
 					"target": "5d34df2788a4504526796d58",
-					"value": "150",
+					"value": "30",
 					"id": "5c1a272d86f7743e4346c3f8",
 					"type": "Item",
 					"index": 2,
@@ -22451,7 +22451,7 @@
 							"_id": "5d34df2788a4504526796d58",
 							"_tpl": "5a6086ea4f39f99cd479502f",
 							"upd": {
-								"StackObjectsCount": 150
+								"StackObjectsCount": 30
 							}
 						}
 					]
@@ -22474,10 +22474,24 @@
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.12",
+					"value": "0.04",
 					"id": "5c1fd64786f7743c7b261f7a",
 					"type": "TraderStanding",
 					"index": 4
+				},
+				{
+					"target": "CQCOspreyMK4PlatePeacekeeping",
+					"id": "OspreyMK4PeacekeepingMission",
+					"type": "AssortmentUnlock",
+					"index": 4,
+					"loyaltyLevel": 4,
+					"traderId": "5935c25fb3acc3127c3d8cd9",
+					"items": [
+						{
+							"_id": "CQCOspreyMK4PlatePeacekeeping",
+							"_tpl": "60a3c68c37ea821725773ef5"
+						}
+					]
 				}
 			],
 			"Fail": []
