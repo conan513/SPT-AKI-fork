@@ -36992,7 +36992,7 @@
 				},
 				{
 					"target": "StressResistance",
-					"value": "1",
+					"value": "100",
 					"id": "WoundedBeastSkillReward",
 					"type": "Skill",
 					"index": 2
@@ -37304,7 +37304,7 @@
 				},
 				{
 					"target": "StressResistance",
-					"value": "1",
+					"value": "100",
 					"id": "ColdBloodedSkillReward",
 					"type": "Skill",
 					"index": 3
