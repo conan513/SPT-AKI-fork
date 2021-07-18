@@ -6741,6 +6741,176 @@
 			"Fail": []
 		}
 	},
+	"608974d01a66564e74191fc0": {
+        "_id": "608974d01a66564e74191fc0",
+        "traderId": "5ac3b934156ae10c4430e83c",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/608974d01a66564e74191fc0.png",
+        "type": "Completion",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 1,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "8200",
+                    "id": "FuelMatterExp",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "EurosFuelMatter",
+                    "value": "30000",
+                    "id": "FuelMatterMoney",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "EurosFuelMatter",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 30000
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "5ac3b934156ae10c4430e83c",
+                    "value": "0.03",
+                    "id": "FuelMatterStanding",
+                    "type": "TraderStanding",
+                    "index": 2
+                },
+                {
+                    "target": "5LPropaneTankFuelMatter",
+                    "value": "1",
+                    "id": "FuelMatterPropane",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "5LPropaneTankFuelMatter",
+                            "_tpl": "59fafb5d86f774067a6f2084"
+                        }
+                        
+                    ]
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "1",
+                        "index": 0,
+                        "parentId": "",
+                        "id": "5acf3bcb86f77418403493b7"
+                    }
+                },
+                {
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5ae448a386f7744d3730fff0",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "FuelMatterVisitPlace",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "FuelMatterVisitPlaceMarkerNOTWORKY"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60a4dc7e4e734e57d07fb335"
+                    }
+                },
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "1",
+                        "type": "Exploration",
+                        "counter": {
+                            "id": "FuelMatterVisitPlace2",
+                            "conditions": [
+                                {
+                                    "_parent": "VisitPlace",
+                                    "_props": {
+                                        "target": "place_pacemaker_SCOUT_01",
+                                        "value": "1",
+                                        "id": "FuelMatterVisitPlaceMarkerNOTWORKY2"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 1,
+                        "parentId": "",
+                        "id": "60b90232ec7c6f5eb510c195"
+                    }
+                },
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Completion",
+						"counter": {
+							"id": "FuelMatterSurviveCondition",
+							"conditions": [
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "FuelMatterExistStatus"
+									}
+								},
+                                {
+									"_parent": "Location",
+									"_props": {
+										"target": [
+											"RezervBase"
+										],
+										"id": "FuelMatterLocationExtract"
+									}
+								}
+							]
+						},
+						"index": 2,
+						"parentId": "",
+						"id": "608bfe32c61c4b541b381da9"
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
 	"5ede567cfa6dc072ce15d6e3": {
 		"_id": "5ede567cfa6dc072ce15d6e3",
 		"traderId": "54cb50c76803fa8b248b4571",
