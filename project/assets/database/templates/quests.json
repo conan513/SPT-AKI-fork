@@ -21939,7 +21939,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "22200",
+					"value": "21000",
 					"id": "5c950b9486f774551528def7",
 					"type": "Experience",
 					"index": 0
@@ -22097,10 +22097,24 @@
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.09",
+					"value": "0.04",
 					"id": "5c192bb286f77401b0085c9b",
 					"type": "TraderStanding",
 					"index": 6
+				},
+				{
+					"target": "AirframeTanLendlEASE2",
+					"id": "CryePrecisionsAirframeTanLendLease2",
+					"type": "AssortmentUnlock",
+					"index": 4,
+					"loyaltyLevel": 4,
+					"traderId": "5935c25fb3acc3127c3d8cd9",
+					"items": [
+						{
+							"_id": "AirframeTanLendlEASE2",
+							"_tpl": "5c17a7ed2e2216152142459c"
+						}
+					]
 				}
 			],
 			"Fail": []
@@ -22171,7 +22185,7 @@
 						"target": [
 							"5c052f6886f7746b1e3db148"
 						],
-						"value": "2",
+						"value": "1",
 						"minDurability": 0,
 						"maxDurability": 0,
 						"dogtagLevel": 0,
@@ -22188,7 +22202,7 @@
 						"target": [
 							"5c052f6886f7746b1e3db148"
 						],
-						"value": "2",
+						"value": "1",
 						"minDurability": 0,
 						"maxDurability": 0,
 						"dogtagLevel": 0,
