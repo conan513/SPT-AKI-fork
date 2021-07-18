@@ -17891,7 +17891,7 @@
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.06",
+					"value": "0.02",
 					"id": "5bcf1c0086f7746a486b842f",
 					"type": "TraderStanding",
 					"index": 1
@@ -17914,16 +17914,16 @@
 				},
 				{
 					"target": "5d34df2788a4504526796b78",
-					"value": "4",
+					"value": "1",
 					"id": "5a280f0286f7747a274b5c38",
 					"type": "Item",
 					"index": 3,
 					"items": [
 						{
 							"_id": "5d34df2788a4504526796b78",
-							"_tpl": "590c678286f77426c9660122",
+							"_tpl": "5d80c66d86f774405611c7d6",
 							"upd": {
-								"StackObjectsCount": 4
+								"StackObjectsCount": 1
 							}
 						}
 					]
