@@ -7891,7 +7891,7 @@
 							}
 						}
 					]
-				},
+				}
 			],
 			"Fail": []
 		},
@@ -7974,14 +7974,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "5900",
+					"value": "5700",
 					"id": "5c95061786f77455192fa431",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf13cb86f77423c05cad7a"
@@ -8004,7 +8004,7 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a852",
-					"value": "4",
+					"value": "1",
 					"id": "5a2fb90286f77432ea548a89",
 					"type": "Item",
 					"index": 3,
@@ -8013,7 +8013,23 @@
 							"_id": "5e0ac74b9d594972a112a852",
 							"_tpl": "590c678286f77426c9660122",
 							"upd": {
-								"StackObjectsCount": 4
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "PileOfMeds",
+					"value": "1",
+					"id": "PharmacistMedsReward",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "PileOfMeds",
+							"_tpl": "5d1b3a5d86f774252167ba22",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
@@ -8022,7 +8038,7 @@
 					"target": "5e3c0b7e7dfe975b6f2b0730",
 					"id": "5ac6631186f774056b28e6f0",
 					"type": "AssortmentUnlock",
-					"index": 4,
+					"index": 5,
 					"loyaltyLevel": 2,
 					"traderId": "5ac3b934156ae10c4430e83c",
 					"items": [
