@@ -5068,17 +5068,24 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "18900",
+					"value": "18200",
 					"id": "5c94f34186f77455185027e9",
 					"type": "Experience",
 					"index": 0
+				},
+				{
+					"target": "54cb50c76803fa8b248b4571",
+					"value": "0.02",
+					"type": "TraderStanding",
+					"index": 1,
+					"id": "InsomniaStandingReward"
 				},
 				{
 					"target": "5d34df2788a4504526796d5a",
 					"value": "85000",
 					"id": "5c17c4d986f77430a64c6a14",
 					"type": "Item",
-					"index": 1,
+					"index": 2,
 					"items": [
 						{
 							"_id": "5d34df2788a4504526796d5a",
@@ -5094,27 +5101,11 @@
 					"value": "3",
 					"id": "5c17c4ae86f77430a70d1982",
 					"type": "Item",
-					"index": 2,
+					"index": 3,
 					"items": [
 						{
 							"_id": "5d34df2788a4504526796d5b",
 							"_tpl": "5c0696830db834001d23f5da",
-							"upd": {
-								"StackObjectsCount": 3
-							}
-						}
-					]
-				},
-				{
-					"target": "5d34df2788a4504526796d5c",
-					"value": "3",
-					"id": "5c17c4ca86f77418e53fc532",
-					"type": "Item",
-					"index": 3,
-					"items": [
-						{
-							"_id": "5d34df2788a4504526796d5c",
-							"_tpl": "560d657b4bdc2da74d8b4572",
 							"upd": {
 								"StackObjectsCount": 3
 							}
