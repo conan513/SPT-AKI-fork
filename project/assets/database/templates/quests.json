@@ -37564,7 +37564,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "13000",
+					"value": "5900",
 					"id": "5d6672cc86f774266f07fc9c",
 					"type": "Experience",
 					"index": 0
@@ -37603,10 +37603,17 @@
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.03",
+					"value": "0.02",
 					"id": "5d77cf1e86f7742fa857dd74",
 					"type": "TraderStanding",
 					"index": 3
+				},
+				{
+					"target": "Perception",
+					"value": "50",
+					"id": "EagleOwlSkillReward",
+					"type": "Skill",
+					"index": 4
 				}
 			],
 			"Fail": []
