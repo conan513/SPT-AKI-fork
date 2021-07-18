@@ -18193,14 +18193,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "6600",
+					"value": "5900",
 					"id": "5c9509c586f7745516178632",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf1b0886f7746a486b8428",
 					"type": "TraderStanding",
 					"index": 1
@@ -18230,7 +18230,7 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a8c9",
-							"_tpl": "592c2d1a86f7746dbe2af32a",
+							"_tpl": "5f5f41f56760b4138443b352",
 							"upd": {
 								"StackObjectsCount": 1
 							}
@@ -18246,7 +18246,7 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a8ca",
-							"_tpl": "544a37c44bdc2d25388b4567",
+							"_tpl": "58d3db5386f77426186285a0",
 							"upd": {
 								"StackObjectsCount": 2
 							}
