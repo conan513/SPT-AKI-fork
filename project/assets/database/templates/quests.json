@@ -7308,7 +7308,7 @@
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf12ae86f77423c25c50ac"
@@ -7654,21 +7654,21 @@
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf136186f77423be21610d"
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "-0.08",
+					"value": "-0.02",
 					"type": "TraderStanding",
 					"index": 2,
 					"id": "5a2fb72c86f7747694379ad8"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a84c",
-					"value": "15000",
+					"value": "20000",
 					"type": "Item",
 					"index": 3,
 					"id": "5a2fb73786f774769635db18",
@@ -7677,7 +7677,7 @@
 							"_id": "5e0ac74b9d594972a112a84c",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 15000
+								"StackObjectsCount": 20000
 							}
 						}
 					]
@@ -7691,9 +7691,25 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a84d",
-							"_tpl": "5751a25924597722c463c472",
+							"_tpl": "5e831507ea0a7c419c2f9bd9",
 							"upd": {
 								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+				{
+					"target": "AluSplintReward",
+					"value": "1",
+					"id": "AluSplint",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "AluSplintReward",
+							"_tpl": "5af0454c86f7746bf20992e8",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
@@ -7702,7 +7718,7 @@
 					"target": "5e3c0b947dfe975b6f2b1544",
 					"id": "5ac661fc86f774056c780955",
 					"type": "AssortmentUnlock",
-					"index": 5,
+					"index": 6,
 					"loyaltyLevel": 2,
 					"traderId": "54cb57776803fa99248b456e",
 					"items": [
