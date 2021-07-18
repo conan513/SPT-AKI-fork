@@ -26476,7 +26476,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "9200",
+					"value": "6800",
 					"id": "5c950d6086f774592a470257",
 					"type": "Experience",
 					"index": 0
@@ -26506,16 +26506,16 @@
 				},
 				{
 					"target": "5e0ac74b9d594972a112a94d",
-					"value": "2",
+					"value": "1",
 					"id": "5ace325e86f774310f36963c",
 					"type": "Item",
 					"index": 3,
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a94d",
-							"_tpl": "59faff1d86f7746c51718c9c",
+							"_tpl": "57347ca924597744596b4e71",
 							"upd": {
-								"StackObjectsCount": 2
+								"StackObjectsCount": 1
 							}
 						}
 					]
