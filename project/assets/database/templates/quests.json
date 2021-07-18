@@ -36985,10 +36985,17 @@
 					]
 				},
 				{
-					"value": "10000",
+					"value": "5800",
 					"id": "5d66562b86f774272e5d1492",
 					"type": "Experience",
 					"index": 1
+				},
+				{
+					"target": "StressResistance",
+					"value": "1",
+					"id": "WoundedBeastSkillReward",
+					"type": "Skill",
+					"index": 2
 				}
 			],
 			"Fail": []
