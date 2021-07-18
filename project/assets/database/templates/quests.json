@@ -4600,7 +4600,7 @@
 		"type": "PickUp",
 		"isKey": false,
 		"restartable": false,
-		"min_level": 1,
+		"min_level": 20,
 		"canShowNotificationsInGame": true,
 		"instantComplete": false,
 		"secretQuest": false,
@@ -4608,14 +4608,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "19300",
+					"value": "18200",
 					"id": "5c94f29186f77455192fa425",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb50c76803fa8b248b4571",
-					"value": "0.12",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf148f86f77423c05cad7e"
