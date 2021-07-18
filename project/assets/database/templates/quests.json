@@ -7108,14 +7108,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "4200",
+					"value": "3500",
 					"id": "5c95064c86f774592a470250",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.06",
+					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf141286f77423bf711c31"
