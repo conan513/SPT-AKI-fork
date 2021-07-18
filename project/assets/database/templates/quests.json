@@ -14362,14 +14362,14 @@
 			],
 			"Success": [
 				{
-					"value": "6600",
+					"value": "6500",
 					"id": "5c94ff2986f77455192fa42c",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.10",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf1d9b86f774378e266918"
@@ -14431,7 +14431,7 @@
 			"Fail": [
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "-0.3",
+					"value": "-0.25",
 					"type": "TraderStanding",
 					"index": 0,
 					"id": "5a2e7bbd86f7741a972d4ee2"
