@@ -28754,7 +28754,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 48,
+							"value": 44,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -28762,7 +28762,7 @@
 							"compareMethod": ">="
 						},
 						"recoil": {
-							"value": 250,
+							"value": 230,
 							"compareMethod": "<="
 						},
 						"muzzleVelocity": {
