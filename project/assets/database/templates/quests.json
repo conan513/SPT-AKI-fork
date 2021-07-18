@@ -22816,6 +22816,16 @@
 						"parentId": "",
 						"id": ""
 					}
+				},
+				{
+					"_parent": "Level",
+					"_props": {
+						"compareMethod": ">=",
+						"value": "40",
+						"index": 1,
+						"parentId": "",
+						"id": ""
+					}
 				}
 			],
 			"AvailableForFinish": [
