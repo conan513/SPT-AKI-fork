@@ -8457,14 +8457,14 @@
 				},
 				{
 					"target": "54cb57776803fa99248b456e",
-					"value": "0.09",
+					"value": "0.03",
 					"type": "TraderStanding",
 					"index": 1,
 					"id": "5bcf12d386f77423c05cad76"
 				},
 				{
 					"target": "5e0ac74b9d594972a112a859",
-					"value": "18000",
+					"value": "30000",
 					"type": "Item",
 					"index": 2,
 					"id": "5a2fb63686f774769839eb55",
@@ -8473,7 +8473,23 @@
 							"_id": "5e0ac74b9d594972a112a859",
 							"_tpl": "5449016a4bdc2d6f028b456f",
 							"upd": {
-								"StackObjectsCount": 18000
+								"StackObjectsCount": 30000
+							}
+						}
+					]
+				},
+				{
+					"target": "PropitalReward",
+					"value": "1",
+					"type": "Item",
+					"index": 3,
+					"id": "Propital",
+					"items": [
+						{
+							"_id": "PropitalReward",
+							"_tpl": "5c0e530286f7747fa1419862",
+							"upd": {
+								"StackObjectsCount": 1
 							}
 						}
 					]
