@@ -15767,14 +15767,14 @@
 			],
 			"Success": [
 				{
-					"value": "22000",
+					"value": "19100",
 					"id": "5c94ffbf86f774551528deeb",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "58330581ace78e27b8b10cee",
-					"value": "0.12",
+					"value": "0.05",
 					"id": "5bcf1fcc86f7746a49593337",
 					"type": "TraderStanding",
 					"index": 1
@@ -15807,6 +15807,22 @@
 							"_tpl": "59faf7ca86f7740dbe19f6c2",
 							"upd": {
 								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+				{
+					"target": "ChummingGPCoinReward",
+					"value": "2",
+					"id": "ChummingGPCoin",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "ChummingGPCoinReward",
+							"_tpl": "5d235b4d86f7742e017bc88a",
+							"upd": {
+								"StackObjectsCount": 2
 							}
 						}
 					]
