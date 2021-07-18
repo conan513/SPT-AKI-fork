@@ -808,15 +808,15 @@
 			"Started": [],
 			"Success": [
 				{
-					"target": "UnknownReward",
+					"target": "HunterWeaponCase",
 					"value": "1",
-					"id": "TBDReward",
+					"id": "WeaponCaseHunter",
 					"type": "Item",
 					"unknown": true,
 					"index": 0,
 					"items": [
 						{
-							"_id": "UnknownReward",
+							"_id": "HunterWeaponCase",
 							"_tpl": "59fb023c86f7746d0d4b423c",
 							"upd": {
 								"StackObjectsCount": 1
@@ -945,15 +945,14 @@
 					}
 				},
 				{
-					"_parent": "Quest",
+					"_parent": "TraderLoyalty",
 					"_props": {
-						"target": "5d25e2ee86f77443e35162ea",
-						"status": [
-							4
-						],
-						"index": 1,
+						"target": "5c0647fdd443bc2504c2d371",
+						"compareMethod": "=",
+						"value": "4",
+						"index": 0,
 						"parentId": "",
-						"id": ""
+						"id": "5ae9c38e86f7743515398707"
 					}
 				}
 			],
