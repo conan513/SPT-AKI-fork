@@ -34050,7 +34050,7 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "29600",
+					"value": "25900",
 					"id": "5c95123286f77455185027fd",
 					"type": "Experience",
 					"index": 0
@@ -34073,7 +34073,7 @@
 				},
 				{
 					"target": "5d34df2788a4504526796de7",
-					"value": "2",
+					"value": "1",
 					"id": "5c1925b786f77401b1301f3c",
 					"type": "Item",
 					"index": 2,
@@ -34082,14 +34082,14 @@
 							"_id": "5d34df2788a4504526796de7",
 							"_tpl": "5e4ac41886f77406a511c9a8",
 							"upd": {
-								"StackObjectsCount": 2
+								"StackObjectsCount": 1
 							}
 						}
 					]
 				},
 				{
 					"target": "5d34df2788a4504526796de8",
-					"value": "2",
+					"value": "1",
 					"id": "5c1925ce86f77401b0085c8b",
 					"type": "Item",
 					"index": 3,
@@ -34098,14 +34098,14 @@
 							"_id": "5d34df2788a4504526796de8",
 							"_tpl": "5aa7e276e5b5b000171d0647",
 							"upd": {
-								"StackObjectsCount": 2
+								"StackObjectsCount": 1
 							}
 						}
 					]
 				},
 				{
 					"target": "5d34df2788a4504526796de9",
-					"value": "2",
+					"value": "1",
 					"id": "5c1925df86f77401b1301f3d",
 					"type": "Item",
 					"index": 4,
@@ -34114,17 +34114,31 @@
 							"_id": "5d34df2788a4504526796de9",
 							"_tpl": "5aa7e373e5b5b000137b76f0",
 							"upd": {
-								"StackObjectsCount": 2
+								"StackObjectsCount": 1
 							}
 						}
 					]
 				},
 				{
 					"target": "5ac3b934156ae10c4430e83c",
-					"value": "0.12",
+					"value": "0.05",
 					"id": "5c1925f286f77401b3750a88",
 					"type": "TraderStanding",
 					"index": 5
+				},
+				{
+					"target": "LivingHighCrime2ArmaA18",
+					"id": "ARSArmaA18LivingHigh",
+					"type": "AssortmentUnlock",
+					"index": 6,
+					"loyaltyLevel": 4,
+					"traderId": "5ac3b934156ae10c4430e83c",
+					"items": [
+						{
+							"_id": "LivingHighCrime2ArmaA18",
+							"_tpl": "5ab8e79e86f7742d8b372e78"
+						}
+					]
 				}
 			],
 			"Fail": []
