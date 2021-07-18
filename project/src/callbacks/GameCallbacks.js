@@ -1,5 +1,7 @@
 "use strict";
 
+const Watermark = require("../utils/Watermark.js");
+
 require("../Lib.js");
 
 class GameCallbacks
@@ -63,6 +65,13 @@ class GameCallbacks
     {
         return HttpResponse.getBody({
             "msg": "OK"
+        });
+    }
+
+    static getVersion(url, info, sessionID)
+    {
+        return HttpResponse.noBody({
+            "Version": Watermark.versionLabel
         });
     }
 }
