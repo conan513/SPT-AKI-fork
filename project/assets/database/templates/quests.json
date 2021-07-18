@@ -20730,14 +20730,14 @@
 			"Started": [],
 			"Success": [
 				{
-					"value": "11700",
+					"value": "9700",
 					"id": "5c950b2886f7743285178ad8",
 					"type": "Experience",
 					"index": 0
 				},
 				{
 					"target": "5935c25fb3acc3127c3d8cd9",
-					"value": "0.07",
+					"value": "0.03",
 					"id": "5bcf1d0c86f7746a464c566d",
 					"type": "TraderStanding",
 					"index": 1
@@ -20769,6 +20769,54 @@
 						{
 							"_id": "5d34df2788a4504526796bef",
 							"_tpl": "59c1383d86f774290a37e0ca"
+						}
+					]
+				},
+				{
+					"target": "WetJob2Ushanka",
+					"value": "2",
+					"id": "UshankaWetJob2",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "WetJob2Ushanka",
+							"_tpl": "59e7708286f7742cbd762753",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "WetJob2HalfMasks",
+					"value": "2",
+					"id": "HalfMaskWetJob2",
+					"type": "Item",
+					"index": 5,
+					"items": [
+						{
+							"_id": "WetJob2HalfMasks",
+							"_tpl": "572b7fa524597762b747ce82",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+				{
+					"target": "WetJob2Eberlestock",
+					"value": "1",
+					"id": "Wetjob2f5",
+					"type": "Item",
+					"index": 6,
+					"items": [
+						{
+							"_id": "WetJob2Eberlestock",
+							"_tpl": "5f5e467b0bc58666c37e7821",
+							"upd": {
+								"StackObjectsCount": 1
+							}
 						}
 					]
 				}
