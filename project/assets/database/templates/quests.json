@@ -9712,7 +9712,7 @@
 							}
 						}
 					]
-				},
+				}
 			],
 			"Fail": []
 		},
@@ -9914,7 +9914,7 @@
 							}
 						}
 					]
-				},
+				}
 			],
 			"Fail": []
 		},
@@ -10316,6 +10316,16 @@
 						"status": [
 							4
 						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				},
+				{
+					"_parent": "Level",
+					"_props": {
+						"compareMethod": ">=",
+						"value": "30",
 						"index": 0,
 						"parentId": "",
 						"id": ""
