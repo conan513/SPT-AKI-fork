@@ -15,34 +15,50 @@
             "Started": [],
             "Success": [
                 {
-                    "target": "SurplusRoubles",
-                    "value": "40000",
-                    "id": "PlaceHolder1",
+                    "target": "TaguilaRoubles",
+                    "value": "500000",
+                    "id": "TagillaRewardsRoubles",
                     "type": "Item",
                     "index": 0,
                     "items": [
                         {
-                            "_id": "SurplusRoubles",
+                            "_id": "TaguilaRoubles",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 40000
+                                "StackObjectsCount": 500000
                             }
                         }
                     ]
                 },
                 {
-					"value": "7500",
-					"id": "5c989b9d86f7745aa234628c",
+					"value": "8500",
+					"id": "TagillaExperience",
 					"type": "Experience",
 					"index": 1
 				},
 				{
 					"target": "5c0647fdd443bc2504c2d371",
-					"value": "0.02",
+					"value": "0.04",
 					"type": "TraderStanding",
 					"index": 2,
-					"id": "PlaceHolder2"
-				}
+					"id": "TagillaStanding"
+				},
+				{
+                    "target": "TagillaKeyReward",
+                    "value": "1",
+                    "id": "TagillaFactoryKey",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "TagillaKeyReward",
+                            "_tpl": "5448ba0b4bdc2d02308b456c",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                }
             ],
             "Fail": []
         },
@@ -56,6 +72,18 @@
                         "index": 0,
                         "parentId": "",
                         "id": "60cfa4cd646f74055e276545"
+                    }
+                },
+				{
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "5d25e2ee86f77443e35162ea",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
                     }
                 }
             ],
@@ -130,7 +158,7 @@
     },
 	"60896888e4a85c72ef3fa300": {
         "_id": "60896888e4a85c72ef3fa300",
-        "traderId": "5a7c2eca46aef81a7ca2145d",
+        "traderId": "5935c25fb3acc3127c3d8cd9",
         "location": "5704e5fad2720bc05b8b4567",
         "image": "/files/quest/icon/5a29221d86f77457303da9fa.png",
         "type": "Exploration",
@@ -144,34 +172,50 @@
             "Started": [],
             "Success": [
                 {
-                    "target": "SurplusRoubles",
-                    "value": "40000",
-                    "id": "PlaceHolder1",
+                    "target": "ExperienceExchangeDollars",
+                    "value": "800",
+                    "id": "ExperienceDollars",
                     "type": "Item",
                     "index": 0,
                     "items": [
                         {
-                            "_id": "SurplusRoubles",
-                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "_id": "ExperienceExchangeDollars",
+                            "_tpl": "5696686a4bdc2da3298b456a",
                             "upd": {
-                                "StackObjectsCount": 40000
+                                "StackObjectsCount": 800
                             }
                         }
                     ]
                 },
                 {
-					"value": "7500",
+					"value": "7200",
 					"id": "5c989b9d86f7745aa234628c",
 					"type": "Experience",
 					"index": 1
 				},
 				{
-					"target": "5a7c2eca46aef81a7ca2145d",
+					"target": "5935c25fb3acc3127c3d8cd9",
 					"value": "0.02",
 					"type": "TraderStanding",
 					"index": 2,
-					"id": "PlaceHolder2"
-				}
+					"id": "ExperienceStanding"
+				},
+				{
+                    "target": "ExperienceExchangeR37F",
+                    "value": "200",
+                    "id": "ExperienceDAmmo",
+                    "type": "Item",
+                    "index": 0,
+                    "items": [
+                        {
+                            "_id": "ExperienceExchangeR37F",
+                            "_tpl": "5cc86832d7f00c000d3a6e6c",
+                            "upd": {
+                                "StackObjectsCount": 200
+                            }
+                        }
+                    ]
+                }
             ],
             "Fail": []
         },
@@ -185,6 +229,18 @@
                         "index": 0,
                         "parentId": "",
                         "id": "60bf74f481c6e80e702ccc0f"
+                    }
+                },
+				{
+                    "_parent": "Quest",
+                    "_props": {
+                        "target": "6086c852c945025d41566124",
+                        "status": [
+                            4
+                        ],
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
                     }
                 }
             ],
@@ -29950,10 +30006,24 @@
 					"items": [
 						{
 							"_id": "5e0ac74b9d594972a112a9f7",
-							"_tpl": "57347ca924597744596b4e71",
+							"_tpl": "5d0377ce86f774186372f689",
 							"upd": {
 								"StackObjectsCount": 1
 							}
+						}
+					]
+				},
+				{
+					"target": "ImportTACXUnlock",
+					"id": "ImportAmmoLMTACX",
+					"type": "AssortmentUnlock",
+					"index": 5,
+					"loyaltyLevel": 4,
+					"traderId": "5a7c2eca46aef81a7ca2145d",
+					"items": [
+						{
+							"_id": "ImportTACXUnlock",
+							"_tpl": "5ab8e79e86f7742d8b372e78"
 						}
 					]
 				}
