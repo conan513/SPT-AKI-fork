@@ -236,7 +236,8 @@ class BotController
                     "KillerProfileId": "Unknown",
                     "KillerName": "Unknown",
                     "WeaponName": "Unknown"
-                }
+                },
+                "SpawnedInSession": true
             }
         });
 
