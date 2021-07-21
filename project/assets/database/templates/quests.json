@@ -11596,7 +11596,7 @@
 		"traderId": "5935c25fb3acc3127c3d8cd9",
 		"location": "5b0fc42d86f7744a585f9105",
 		"image": "/files/quest/icon/5a27c50f86f7740b3d65e16a.jpg",
-		"type": "Completion",
+		"type": "PickUp",
 		"isKey": false,
 		"restartable": false,
 		"instantComplete": false,
