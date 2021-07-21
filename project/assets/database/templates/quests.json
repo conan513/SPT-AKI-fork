@@ -48,7 +48,7 @@
                     "value": "1",
                     "id": "TagillaFactoryKey",
                     "type": "Item",
-                    "index": 0,
+                    "index": 3,
                     "items": [
                         {
                             "_id": "TagillaKeyReward",
@@ -123,7 +123,7 @@
 						],
 						"value": "1",
 						"minDurability": 0,
-						"index": 0,
+						"index": 1,
 						"parentId": "",
                         "onlyFoundInRaid": true,
 						"id": "60cfa590f81cc57f471718cc"
@@ -137,7 +137,7 @@
 						],
 						"value": "1",
 						"minDurability": 0,
-						"index": 1,
+						"index": 2,
 						"parentId": "",
                         "onlyFoundInRaid": true,
 						"id": "60cfa5a85f9e6175514de2e3",
@@ -205,7 +205,7 @@
                     "value": "200",
                     "id": "ExperienceDAmmo",
                     "type": "Item",
-                    "index": 0,
+                    "index": 3,
                     "items": [
                         {
                             "_id": "ExperienceExchangeR37F",
@@ -1006,7 +1006,7 @@
 						"target": "5c0647fdd443bc2504c2d371",
 						"compareMethod": "=",
 						"value": "4",
-						"index": 0,
+						"index": 1,
 						"parentId": "",
 						"id": "5ae9c38e86f7743515398707"
 					}
@@ -41271,7 +41271,7 @@
                         "status": [
                             4
                         ],
-                        "index": 0,
+                        "index": 1,
                         "parentId": "",
                         "id": "60bf7490db5461623517069e"
                     }
