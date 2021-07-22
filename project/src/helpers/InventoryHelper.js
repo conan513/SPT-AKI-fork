@@ -4,24 +4,24 @@ require("../Lib.js");
 
 class InventoryHelper
 {
-    static getSecureContainer(items)
+    static getSecureContainerItems(items)
     {
         // Player Slots we care about
         const inventorySlots = ["SecuredContainer"];
         let inventoryItems = [];
 
-        // Get an array of root player items
+        // @Cleanup: Remove this after testing.
+        let inventoryItems1 = [];
         for (let item of items)
         {
             if (inventorySlots.includes(item.slotId))
             {
-                inventoryItems.push(item);
+                inventoryItems1.push(item);
             }
         }
 
         // Loop through these items and get all of their children
         let newItems = inventoryItems;
-
         while (newItems.length > 0)
         {
             let foundItems = [];
@@ -36,14 +36,12 @@ class InventoryHelper
                     }
                 }
             }
-
             // Add these new found items to our list of inventory items
             inventoryItems = [...inventoryItems, ...foundItems];
 
             // Now find the children of these items
             newItems = foundItems;
         }
-
         return inventoryItems;
     }
 
@@ -52,7 +50,7 @@ class InventoryHelper
         let items = profile.Inventory.items;
 
         // Remove secured container
-        for (let item of items)
+        for (const item of items)
         {
             if (item.slotId === "SecuredContainer")
             {
@@ -66,7 +64,6 @@ class InventoryHelper
                         items.splice(n, 1);
                     }
                 }
-
                 break;
             }
         }
@@ -78,14 +75,12 @@ class InventoryHelper
     static getStashType(sessionID)
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
-
         const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
         {
             Logger.error("No stash found");
             return "";
         }
-
         return stashObj._tpl;
     }
 
@@ -284,10 +279,8 @@ class InventoryHelper
             {
                 inventoryItemHash.byParentId[item.parentId] = [];
             }
-
             inventoryItemHash.byParentId[item.parentId].push(item);
         }
-
         return inventoryItemHash;
     }
 
@@ -307,16 +300,12 @@ class InventoryHelper
                 return true;
             }
 
-            container = pmcData.Inventory.items.find(
-                (i) => i._id === container.parentId
-            );
-
+            container = pmcData.Inventory.items.find(i => i._id === container.parentId);
             if (!container)
             {
                 break;
             }
         }
-
         return false;
     }
 }

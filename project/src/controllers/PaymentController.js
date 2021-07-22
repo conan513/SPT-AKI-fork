@@ -120,11 +120,10 @@ class PaymentController
         }
 
         // find all items with currency _tpl id
-        const moneyItemsTemp = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
+        const moneyItems = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
 
         // only pay with money which is not in secured container.
-        //@Incomplete: We also need to check if using ONLY stash is possible.
-        const moneyItems = moneyItemsTemp.filter(item => item.slotId !== "SecuredContainer");
+        // const moneyItems = moneyItemsTemp.filter(item => item.slotId = "hideout");
 
         // prepare a price for barter
         let barterPrice = 0;
@@ -173,7 +172,7 @@ class PaymentController
 
         // set current sale sum
         // convert barterPrice itemTpl into RUB then convert RUB into trader currency
-        let saleSum = pmcData.TradersInfo[body.tid].salesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
+        const saleSum = pmcData.TradersInfo[body.tid].salesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
 
         pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);
