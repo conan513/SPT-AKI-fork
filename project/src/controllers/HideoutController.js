@@ -371,7 +371,7 @@ class HideoutController
             "RecipeId": body.recipeId,
             "Products": [],
             "SkipTime": 0,
-            "ProductionTime": 0,
+            "ProductionTime": recipe.productionTime,
             "StartTimestamp": TimeUtil.getTimestamp()
         };
 
