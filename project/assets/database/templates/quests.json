@@ -11596,7 +11596,7 @@
 		"traderId": "5935c25fb3acc3127c3d8cd9",
 		"location": "5b0fc42d86f7744a585f9105",
 		"image": "/files/quest/icon/5a27c50f86f7740b3d65e16a.jpg",
-		"type": "Completion",
+		"type": "PickUp",
 		"isKey": false,
 		"restartable": false,
 		"instantComplete": false,
@@ -11785,38 +11785,6 @@
 			],
 			"AvailableForFinish": [
 				{
-					"_parent": "FindItem",
-					"_props": {
-						"target": [
-							"5eff135be0d3331e9d282b7b"
-						],
-						"value": "1",
-						"minDurability": 0,
-						"maxDurability": 0,
-						"dogtagLevel": 0,
-						"onlyFoundInRaid": true,
-						"index": 0,
-						"parentId": "",
-						"id": "5eff5674befb6436ce3bbaf7"
-					}
-				},
-				{
-					"_parent": "HandoverItem",
-					"_props": {
-						"target": [
-							"5eff135be0d3331e9d282b7b"
-						],
-						"value": "1",
-						"minDurability": 0,
-						"maxDurability": 0,
-						"dogtagLevel": 0,
-						"onlyFoundInRaid": true,
-						"index": 1,
-						"parentId": "",
-						"id": "5edac8483c809a44ef12b4d2"
-					}
-				},
-				{
 					"_parent": "CounterCreator",
 					"_props": {
 						"value": "1",
@@ -11834,10 +11802,34 @@
 								}
 							]
 						},
-						"index": 2,
+						"index": 0,
 						"parentId": "",
 						"id": "5eec9d054110547f1f545c99",
 						"visibilityConditions": []
+					}
+				},
+				{
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5eff135be0d3331e9d282b7b"
+						],
+						"value": "1",
+						"index": 1,
+						"parentId": "",
+						"id": "5eff5674befb6436ce3bbaf7"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5eff135be0d3331e9d282b7b"
+						],
+						"value": "1",
+						"index": 2,
+						"parentId": "",
+						"id": "5edac8483c809a44ef12b4d2"
 					}
 				}
 			],
