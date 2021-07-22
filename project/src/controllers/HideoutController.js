@@ -69,7 +69,6 @@ class HideoutController
 
         // Construction time management
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
-
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
@@ -673,6 +672,7 @@ class HideoutController
                 continue;
             }
 
+            //other recipes
             const recipe = recipes.find(r => r._id === prod);
             if (!recipe)
             {

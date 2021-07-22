@@ -12,6 +12,7 @@ class HealthController
             "health": {
                 "Hydration": 0,
                 "Energy": 0,
+                "Temperature": 0,
                 "Head": 0,
                 "Chest": 0,
                 "Stomach": 0,
@@ -87,7 +88,7 @@ class HealthController
             {
                 if (item.upd.FoodDrink === undefined)
                 {
-                    item.upd.FoodDrink = { "HpPercent" : maxResource - body.count };
+                    item.upd.FoodDrink = { "HpPercent": maxResource - body.count };
                 }
                 else
                 {

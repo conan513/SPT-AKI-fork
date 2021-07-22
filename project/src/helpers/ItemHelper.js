@@ -226,7 +226,6 @@ class ItemHelper
 
             itemsArray = Object.assign(itemsArray, mapResult);
         }
-
         return itemsArray;
     }
 
@@ -254,10 +253,10 @@ class ItemHelper
 
                 // do not replace important ID's
                 if (item._id === pmcData.Inventory.equipment
-                || item._id === pmcData.Inventory.questRaidItems
-                || item._id === pmcData.Inventory.questStashItems
-                || item._id === pmcData.Inventory.sortingTable
-                || item._id === pmcData.Inventory.stash)
+                    || item._id === pmcData.Inventory.questRaidItems
+                    || item._id === pmcData.Inventory.questStashItems
+                    || item._id === pmcData.Inventory.sortingTable
+                    || item._id === pmcData.Inventory.stash)
                 {
                     continue;
                 }

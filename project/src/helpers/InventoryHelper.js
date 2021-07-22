@@ -79,9 +79,7 @@ class InventoryHelper
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
 
-        const stashObj = pmcData.Inventory.items.find(
-            (item) => item._id === pmcData.Inventory.stash
-        );
+        const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
         {
             Logger.error("No stash found");

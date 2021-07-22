@@ -103,7 +103,6 @@ class PaymentController
             for (let index in body.scheme_items)
             {
                 let item = pmcData.Inventory.items.find(i => i._id === body.scheme_items[index].id);
-
                 if (item !== undefined)
                 {
                     if (!PaymentController.isMoneyTpl(item._tpl))
@@ -121,7 +120,11 @@ class PaymentController
         }
 
         // find all items with currency _tpl id
-        const moneyItems = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
+        const moneyItemsTemp = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
+
+        // only pay with money which is not in secured container.
+        //@Incomplete: We also need to check if using ONLY stash is possible.
+        const moneyItems = moneyItemsTemp.filter(item => item.slotId !== "SecuredContainer");
 
         // prepare a price for barter
         let barterPrice = 0;
@@ -150,7 +153,6 @@ class PaymentController
         for (let moneyItem of moneyItems)
         {
             let itemAmount = moneyItem.upd.StackObjectsCount;
-
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
