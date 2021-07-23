@@ -10,16 +10,6 @@ class InventoryHelper
         const inventorySlots = ["SecuredContainer"];
         let inventoryItems = [];
 
-        // @Cleanup: Remove this after testing.
-        let inventoryItems1 = [];
-        for (let item of items)
-        {
-            if (inventorySlots.includes(item.slotId))
-            {
-                inventoryItems1.push(item);
-            }
-        }
-
         // Loop through these items and get all of their children
         let newItems = inventoryItems;
         while (newItems.length > 0)

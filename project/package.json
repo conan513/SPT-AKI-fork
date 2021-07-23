@@ -30,12 +30,12 @@
     },
     "dependencies": {
         "atomically": "^1.7.0",
+        "json-fixer": "1.6.10",
         "node-forge": "0.10.0",
         "node-powershell": "4.0.0",
         "os-locale": "^5.0.0",
         "proper-lockfile": "^4.1.2",
-        "ws": "^7.4.6",
-        "json-fixer": "1.6.10"
+        "ws": "^7.4.6"
     },
     "devDependencies": {
         "@babel/cli": "^7.13.16",
