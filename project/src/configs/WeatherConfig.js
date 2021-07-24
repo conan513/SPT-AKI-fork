@@ -28,8 +28,8 @@ module.exports = {
             "max": 1
         },
         "fog": {
-            "min": 0.002,
-            "max": 0.15
+            "min": 0.001,
+            "max": 0.03
         },
         "temp": {
             "min": 0,
