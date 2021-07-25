@@ -225,20 +225,9 @@ class InraidController
         for (let offraidItem of profile.Inventory.items)
         {
             // Remove the FIR status if the player died and the item marked FIR
-            if ("upd" in offraidItem && "SpawnedInSession" in offraidItem.upd)
+            if ("upd" in offraidItem && "SpawnedInSession" in offraidItem.upd && !items[offraidItem._tpl]._props.QuestItem)
             {
                 delete offraidItem.upd.SpawnedInSession;
-            }
-            else if (items[offraidItem._tpl]._props.QuestItem === true)
-            {
-                if ("upd" in offraidItem)
-                {
-                    offraidItem.upd.SpawnedInSession = true;
-                }
-                else
-                {
-                    offraidItem.upd = { "SpawnedInSession": true };
-                }
             }
 
             continue;
