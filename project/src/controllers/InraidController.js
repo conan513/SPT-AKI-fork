@@ -220,12 +220,14 @@ class InraidController
 
     static removeFoundItems(profile)
     {
-        for (let item of profile.Inventory.items)
+        const items = DatabaseServer.tables.templates.items;
+
+        for (let offraidItem of profile.Inventory.items)
         {
             // Remove the FIR status if the player died and the item marked FIR
-            if ("upd" in item && "SpawnedInSession" in item.upd)
+            if ("upd" in offraidItem && "SpawnedInSession" in offraidItem.upd && !items[offraidItem._tpl]._props.QuestItem)
             {
-                delete item.upd.SpawnedInSession;
+                delete offraidItem.upd.SpawnedInSession;
             }
 
             continue;
