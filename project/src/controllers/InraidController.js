@@ -101,8 +101,7 @@ class InraidController
             // Scav karma
             // Client deals with negative karma
             const fenceID = "579dc571d53a0658a154fbec";
-            let fenceStanding = pmcData.TradersInfo[fenceID].standing;
-            let fenceChange = Number(offraidData.profile.TradersInfo[fenceID].standing);
+            let fenceStanding = Number(offraidData.profile.TradersInfo[fenceID].standing);
 
             // Add positive karma for PMC kills
             const victims = offraidData.profile.Stats.Victims;
@@ -113,12 +112,11 @@ class InraidController
 
                 if (victim.Side === "Usec" || victim.Side === "Bear")
                 {
-                    fenceChange += InraidConfig.save.standingForKillingPmc;
+                    fenceStanding += DatabaseServer.tables.bots.types[victim.Side.toLowerCase()].standingForKill;
                 }
             }
 
-            fenceStanding = Math.min(Math.max(fenceStanding + fenceChange, -7), 6);
-            pmcData.TradersInfo[fenceID].standing = fenceStanding;
+            pmcData.TradersInfo[fenceID].standing = Math.min(Math.max(fenceStanding, -7), 6);
             TraderController.lvlUp(fenceID, sessionID);
             pmcData.TradersInfo[fenceID].loyaltyLevel = Math.max(pmcData.TradersInfo[fenceID].loyaltyLevel, 1);
 
@@ -194,24 +192,30 @@ class InraidController
     /* adds SpawnedInSession property to items found in a raid */
     static markFoundItems(pmcData, profile, isPlayerScav)
     {
-        // mark items found in raid
         for (let item of profile.Inventory.items)
         {
-            // mark new items for PMC, mark all items for scavs
             if (!isPlayerScav)
             {
-                const found = pmcData.Inventory.items.find((itemData) => item._id === itemData._id);
+                const existsInProfile = pmcData.Inventory.items.find((itemData) => item._id === itemData._id);
 
-                if (found && "upd" in item && "SpawnedInSession" in item.upd)
+                if (existsInProfile)
                 {
-                    // if the item exists and is taken inside the raid, remove the taken in raid status
-                    delete item.upd.SpawnedInSession;
+                    if ("upd" in item && "SpawnedInSession" in item.upd)
+                    {
+                        // if the item exists and is taken inside the raid, remove the taken in raid status
+                        delete item.upd.SpawnedInSession;
+                    }
+                    continue;
                 }
+            }
+
+            if ("upd" in item)
+            {
+                item.upd.SpawnedInSession = true;
             }
             else
             {
-                const base = { "upd": { "SpawnedInSession": true } };
-                item = { ...item, ...base };
+                item.upd = { "SpawnedInSession": true };
             }
         }
 
