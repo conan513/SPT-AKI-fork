@@ -103,7 +103,6 @@ class PaymentController
             for (let index in body.scheme_items)
             {
                 let item = pmcData.Inventory.items.find(i => i._id === body.scheme_items[index].id);
-
                 if (item !== undefined)
                 {
                     if (!PaymentController.isMoneyTpl(item._tpl))
@@ -122,6 +121,9 @@ class PaymentController
 
         // find all items with currency _tpl id
         const moneyItems = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
+
+        // only pay with money which is not in secured container.
+        // const moneyItems = moneyItemsTemp.filter(item => item.slotId = "hideout");
 
         // prepare a price for barter
         let barterPrice = 0;
@@ -150,7 +152,6 @@ class PaymentController
         for (let moneyItem of moneyItems)
         {
             let itemAmount = moneyItem.upd.StackObjectsCount;
-
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
@@ -171,7 +172,7 @@ class PaymentController
 
         // set current sale sum
         // convert barterPrice itemTpl into RUB then convert RUB into trader currency
-        let saleSum = pmcData.TradersInfo[body.tid].salesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
+        const saleSum = pmcData.TradersInfo[body.tid].salesSum += PaymentController.fromRUB(PaymentController.inRUB(barterPrice, currencyTpl), PaymentController.getCurrency(trader.currency));
 
         pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);

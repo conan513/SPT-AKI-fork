@@ -178,29 +178,24 @@ class QuestController
         let intelCenterBonus = 0;//percentage of money reward
 
         //find if player has money reward boost
-        for (const area of pmcData.Hideout.Areas)
+        const area = pmcData.Hideout.Areas.find(area => area.type === 11);
+        if (area)
         {
-            if (area.type === 11)
+            if (area.level === 1)
             {
-                if (area.level === 1)
-                {
-                    intelCenterBonus = 5;
-                }
+                intelCenterBonus = 5;
+            }
 
-                if (area.level > 1)
-                {
-                    intelCenterBonus = 15;
-                }
+            if (area.level > 1)
+            {
+                intelCenterBonus = 15;
             }
         }
 
-        for (const quest in pmcData.Quests)
+        const pmcQuest = pmcData.Quests.find(quest => quest.qid === body.qid);
+        if (pmcQuest)
         {
-            if (pmcData.Quests[quest].qid === body.qid)
-            {
-                pmcData.Quests[quest].status = state;
-                break;
-            }
+            pmcQuest.status = state;
         }
 
         // give reward
@@ -250,7 +245,6 @@ class QuestController
                     break;
             }
         }
-
         return QuestController.getQuestRewardItems(quest, state);
     }
 
@@ -258,11 +252,7 @@ class QuestController
     {
         const time = TimeUtil.getTimestamp();
         const state = "Started";
-        let quest = pmcData.Quests.find((q) =>
-        {
-            return q.qid === body.qid;
-        });
-
+        let quest = pmcData.Quests.find(q => q.qid === body.qid);
         if (quest)
         {
             // If the quest already exists, update its status

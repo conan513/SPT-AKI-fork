@@ -69,7 +69,6 @@ class HideoutController
 
         // Construction time management
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
-
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
@@ -372,7 +371,8 @@ class HideoutController
             "RecipeId": body.recipeId,
             "Products": [],
             "SkipTime": 0,
-            "StartTime": TimeUtil.getTimestamp()
+            "ProductionTime": recipe.productionTime,
+            "StartTimestamp": TimeUtil.getTimestamp()
         };
 
         return output;
@@ -507,7 +507,8 @@ class HideoutController
             "RecipeId": body.recipeId,
             "Products": [],
             "SkipTime": 0,
-            "StartTime": TimeUtil.getTimestamp()
+            "ProductionTime": recipe.productionTime,
+            "StartTimestamp": TimeUtil.getTimestamp()
         };
     }
 
@@ -647,14 +648,14 @@ class HideoutController
 
             if (scavCaseRecipe)
             {
-                const time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                const time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTimestamp) - pmcData.Hideout.Production[prod].Progress;
                 pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 continue;
             }
 
             if (prod === WATER_COLLECTOR)
             {
-                let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTimestamp) - pmcData.Hideout.Production[prod].Progress;
                 if (!isGeneratorOn)
                 {
                     time_elapsed = Math.floor(time_elapsed * 0.2);
@@ -662,6 +663,7 @@ class HideoutController
 
                 if (WaterCollectorHasFilter)
                 {
+
                     pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 }
                 continue;
@@ -673,6 +675,7 @@ class HideoutController
                 continue;
             }
 
+            //other recipes
             const recipe = recipes.find(r => r._id === prod);
             if (!recipe)
             {
@@ -680,7 +683,7 @@ class HideoutController
                 continue;
             }
 
-            let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+            let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTimestamp) - pmcData.Hideout.Production[prod].Progress;
             if (recipe.continuous && !isGeneratorOn)
             {
                 time_elapsed = Math.floor(time_elapsed * 0.2);
@@ -758,7 +761,7 @@ class HideoutController
 
     static updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
     {
-        let time_elapsed = (TimeUtil.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
+        let time_elapsed = (TimeUtil.getTimestamp() - pwProd.StartTimestamp) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
         let filterDrainRate = 0.00333;
         let production_time = 0;
@@ -875,7 +878,7 @@ class HideoutController
 
     static updateBitcoinFarm(btcProd, btcFarmCGs, isGeneratorOn)
     {
-        const time_elapsed = 4 * (TimeUtil.getTimestamp() - btcProd.StartTime);
+        const time_elapsed = 4 * (TimeUtil.getTimestamp() - btcProd.StartTimestamp);
 
         if (isGeneratorOn)
         {
@@ -908,7 +911,7 @@ class HideoutController
             }
         }
 
-        btcProd.StartTime = TimeUtil.getTimestamp();
+        btcProd.StartTimestamp = TimeUtil.getTimestamp();
         return btcProd;
     }
 }

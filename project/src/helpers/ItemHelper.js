@@ -97,15 +97,11 @@ class ItemHelper
                 continue;
             }
 
-            if (childitem.parentId === itemID && !list.find((item) =>
-            {
-                return childitem._id === item._id;
-            }))
+            if (childitem.parentId === itemID && !list.find(item => childitem._id === item._id))
             {
                 list.push.apply(list, ItemHelper.findAndReturnChildrenAsItems(items, childitem._id));
             }
         }
-
         return list;
     }
 
@@ -118,10 +114,7 @@ class ItemHelper
 
         for (let itemFromAssort of assort)
         {
-            if (itemFromAssort.parentId === itemIdToFind && !list.find((item) =>
-            {
-                return itemFromAssort._id === item._id;
-            }))
+            if (itemFromAssort.parentId === itemIdToFind && !list.find(item => itemFromAssort._id === item._id))
             {
                 list.push(itemFromAssort);
                 list = list.concat(ItemHelper.findAndReturnChildrenByAssort(itemFromAssort._id, assort));
@@ -147,7 +140,7 @@ class ItemHelper
             "544901bf4bdc2ddf018b456d", //wad of rubles
             "5449016a4bdc2d6f028b456f", // rubles
             "569668774bdc2da2298b4568", // euros
-            "5696686a4bdc2da3298b456a" // dolars
+            "5696686a4bdc2da3298b456a"  // dollars
         ];
 
         return items.includes(itemid);
@@ -160,7 +153,6 @@ class ItemHelper
         {
             return item.slotId;
         }
-
         return `${item.slotId},${item.location.x},${item.location.y}`;
     }
 
@@ -219,14 +211,12 @@ class ItemHelper
 
         for (const barterID of barterIDs)
         {
-            let mapResult = pmcData.Inventory.items.filter(item =>
+            const filterResult = pmcData.Inventory.items.filter(item =>
             {
                 return by === "tpl" ? (item._tpl === barterID) : (item._id === barterID);
             });
-
-            itemsArray = Object.assign(itemsArray, mapResult);
+            itemsArray = Object.assign(itemsArray, filterResult);
         }
-
         return itemsArray;
     }
 
@@ -254,10 +244,10 @@ class ItemHelper
 
                 // do not replace important ID's
                 if (item._id === pmcData.Inventory.equipment
-                || item._id === pmcData.Inventory.questRaidItems
-                || item._id === pmcData.Inventory.questStashItems
-                || item._id === pmcData.Inventory.sortingTable
-                || item._id === pmcData.Inventory.stash)
+                    || item._id === pmcData.Inventory.questRaidItems
+                    || item._id === pmcData.Inventory.questStashItems
+                    || item._id === pmcData.Inventory.sortingTable
+                    || item._id === pmcData.Inventory.stash)
                 {
                     continue;
                 }

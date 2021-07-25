@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "atomically": "^1.7.0",
+        "json-fixer": "1.6.10",
         "node-forge": "0.10.0",
         "node-powershell": "4.0.0",
         "os-locale": "^5.0.0",

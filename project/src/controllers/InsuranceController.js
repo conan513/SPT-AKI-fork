@@ -128,7 +128,7 @@ class InsuranceController
         const pmcItemsHash = {};
 
         let gears = [];
-        let securedContainerItems = InventoryHelper.getSecureContainer(offraidData.profile.Inventory.items);
+        const securedContainerItems = InventoryHelper.getSecureContainerItems(offraidData.profile.Inventory.items);
 
         for (const item of preRaidGear)
         {
@@ -148,9 +148,9 @@ class InsuranceController
         for (let insuredItem of pmcData.InsuredItems)
         {
             if (preRaidGearHash[insuredItem.itemId]
-            && !(securedContainerItemHash[insuredItem.itemId])
-            && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined")
-            && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
+                && !(securedContainerItemHash[insuredItem.itemId])
+                && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined")
+                && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
             {
                 gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsHash[insuredItem.itemId], "sessionID": sessionID });
             }
