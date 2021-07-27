@@ -6,33 +6,21 @@ class InventoryHelper
 {
     static getSecureContainerItems(items)
     {
-        // Player Slots we care about
-        const inventorySlots = ["SecuredContainer"];
-        let inventoryItems = [];
+        let newItems = items;
+        let foundItems = [];
 
-        // Loop through these items and get all of their children
-        let newItems = inventoryItems;
-        while (newItems.length > 0)
+        for (let item of newItems)
         {
-            let foundItems = [];
-
-            for (let item of newItems)
+            for (let newItem of items)
             {
-                for (let newItem of items)
+                if (newItem.parentId === item._id)
                 {
-                    if (newItem.parentId === item._id)
-                    {
-                        foundItems.push(newItem);
-                    }
+                    foundItems.push(newItem);
                 }
             }
-            // Add these new found items to our list of inventory items
-            inventoryItems = [...inventoryItems, ...foundItems];
-
-            // Now find the children of these items
-            newItems = foundItems;
         }
-        return inventoryItems;
+
+        return foundItems;
     }
 
     static removeSecureContainer(profile)
