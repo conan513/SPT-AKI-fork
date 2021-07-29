@@ -6,21 +6,20 @@ class InventoryHelper
 {
     static getSecureContainerItems(items)
     {
-        let newItems = items;
-        let foundItems = [];
+        let secureContainerLoot = [];
 
-        for (let item of newItems)
+        let secureContainer = items.find(x => x.slotId === "SecuredContainer");
+
+        // No container found, drop out
+        if(secureContainer == null)
         {
-            for (let newItem of items)
-            {
-                if (newItem.parentId === item._id)
-                {
-                    foundItems.push(newItem);
-                }
-            }
+            return secureContainerLoot;
         }
 
-        return foundItems;
+        // Get items that have the secure container as a parent
+        secureContainerLoot = items.filter(x => x.parentId === secureContainer._id);
+
+        return secureContainerLoot;
     }
 
     static removeSecureContainer(profile)
