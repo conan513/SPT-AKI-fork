@@ -6,20 +6,28 @@ class InventoryHelper
 {
     static getSecureContainerItems(items)
     {
-        let secureContainerLoot = [];
-
         let secureContainer = items.find(x => x.slotId === "SecuredContainer");
 
         // No container found, drop out
         if (secureContainer === null)
         {
-            return secureContainerLoot;
+            return [];
         }
 
         // Get items that have the secure container as a parent
-        secureContainerLoot = items.filter(x => x.parentId === secureContainer._id);
+        let secureContainerLoot = items.filter(x => x.parentId === secureContainer._id);
 
-        return secureContainerLoot;
+        // Find items inside container items inside the secure container
+        let itemsInsideContainers = items.filter(function(item) {
+            return secureContainerLoot.some(function(containerItem) {
+                return item.parentId === containerItem._id;
+            });
+        });
+
+        // Merge root SC items + items inside containers
+        let mergedLoot = secureContainerLoot.concat(itemsInsideContainers);
+
+        return mergedLoot;
     }
 
     static removeSecureContainer(profile)
