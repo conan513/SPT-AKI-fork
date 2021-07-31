@@ -18,8 +18,10 @@ class InventoryHelper
         let secureContainerLoot = items.filter(x => x.parentId === secureContainer._id);
 
         // Find items inside container items inside the secure container
-        let itemsInsideContainers = items.filter(function(item) {
-            return secureContainerLoot.some(function(containerItem) {
+        let itemsInsideContainers = items.filter(function(item)
+        {
+            return secureContainerLoot.some(function(containerItem)
+            {
                 return item.parentId === containerItem._id;
             });
         });
