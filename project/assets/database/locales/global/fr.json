@@ -2696,13 +2696,13 @@
 	"error": {
 		"Offer not found": "Désolé, l'offre a déjà été conclue",
 		"Unknown error": "Erreur inconnue",
-		"Attempted transaction with items missing from the stash": "Tentative de transaction avec des objets manquant dans la réserve",
 		"The trader is out of cash": "Le marchand est en faillite",
+		"Attempted transaction with items missing from the stash": "Tentative de transaction avec des objets manquant dans la réserve",
 		"Trader does not deal in this type of items": "Le marchand ne fourni pas ce genre d'articles",
-		"Bad user loyalty level": "Mauvais niveau de loyauté",
 		"Transaction error. The cost of goods has already changed.": "Erreur de transaction. Le coût des biens a déjà changé.",
 		"The item is already sold": "L'article est déjà vendu",
 		"Not enough space in stash": "Pas assez de place dans la réserve",
+		"Bad user loyalty level": "Mauvais niveau de loyauté",
 		"You have already bought the maximum amount of this item in the current restock": "Vous avez atteint la limite d'achat pour cet article au cours de ce re-stockage",
 		"The trader is out of stock": "Le marchand est en rupture de stock",
 		"230 - MAX LOGIN COUNT": "Vous avez atteint la limite de tentative. Veuillez réessayer plus tard",
@@ -6998,35 +6998,29 @@
 		}
 	},
 	"preset": {
-		"59e8d2b386f77445830dd299": {
-			"Name": "Urbana"
-		},
 		"58dffca786f774083a256ab1": {
 			"Name": "MPX d'origine"
+		},
+		"59e8d2b386f77445830dd299": {
+			"Name": "Urbana"
 		},
 		"57f3bde7245977396961682f": {
 			"Name": "AKS74U"
 		},
-		"58dffc5d86f77407c744a847": {
-			"Name": "Saboteur"
+		"5a13df5286f774032f5454a0": {
+			"Name": "Saiga-9 d'origine"
 		},
 		"584148f2245977598f1ad387": {
 			"Name": "MP-133 d'origine"
 		},
-		"58dffd4586f77408a27629b2": {
-			"Name": "Silencé"
-		},
-		"5a13df5286f774032f5454a0": {
-			"Name": "Saiga-9 d'origine"
-		},
 		"59430c2086f77404814536fc": {
 			"Name": "M4 DEVGRU"
 		},
-		"5841488a24597759eb357a3f": {
-			"Name": "M4A1 d'origine"
+		"58dffc5d86f77407c744a847": {
+			"Name": "Saboteur"
 		},
-		"58414907245977598f1ad38d": {
-			"Name": "MP-153 d'origine"
+		"58dffd4586f77408a27629b2": {
+			"Name": "Silencé"
 		},
 		"57a39d6c24597752f450ba71": {
 			"Name": "MR153"
@@ -7034,32 +7028,32 @@
 		"59411abb86f77478f702b5d2": {
 			"Name": "RDS"
 		},
+		"5841488a24597759eb357a3f": {
+			"Name": "M4A1 d'origine"
+		},
+		"58414907245977598f1ad38d": {
+			"Name": "MP-153 d'origine"
+		},
 		"5841499024597759f825ff3e": {
 			"Name": "PM (t) d'origine"
 		},
-		"58dffd3486f77409f40f81d6": {
-			"Name": "SKS, juste SKS"
+		"57a39d8c24597752f575f70f": {
+			"Name": "MR133"
 		},
-		"584149c42459775a77263510": {
-			"Name": "PP-91 Kedr d'origine"
+		"59dcdbb386f77417b03f350d": {
+			"Name": "SKS-OP d'origine"
 		},
 		"5841482e2459775a050cdda9": {
 			"Name": "AS VAL d'origine"
 		},
+		"5a88acfb86f77457fd2c0d8f": {
+			"Name": "Glock d'usine"
+		},
+		"584149c42459775a77263510": {
+			"Name": "PP-91 Kedr d'origine"
+		},
 		"584148a524597759eb357a44": {
 			"Name": "MP-443 d'origine"
-		},
-		"584149452459775992479702": {
-			"Name": "PB d'origine"
-		},
-		"5a88ad7b86f77479aa7226af": {
-			"Name": "Tac 3"
-		},
-		"584149242459775a7726350a": {
-			"Name": "P226R d'origine"
-		},
-		"57a39d8c24597752f575f70f": {
-			"Name": "MR133"
 		},
 		"58414a16245977599247970a": {
 			"Name": "SV-98 d'origine"
@@ -7067,11 +7061,17 @@
 		"5a43a86d86f7746c9d7395e8": {
 			"Name": "Tactique"
 		},
-		"5a88acfb86f77457fd2c0d8f": {
-			"Name": "Glock d'usine"
+		"5a88ad7b86f77479aa7226af": {
+			"Name": "Tac 3"
 		},
-		"59dcdbb386f77417b03f350d": {
-			"Name": "SKS-OP d'origine"
+		"584149452459775992479702": {
+			"Name": "PB d'origine"
+		},
+		"58dffd3486f77409f40f81d6": {
+			"Name": "SKS, juste SKS"
+		},
+		"584149242459775a7726350a": {
+			"Name": "P226R d'origine"
 		},
 		"57a39d75245977598b14f3a3": {
 			"Name": "PB"
@@ -7079,14 +7079,14 @@
 		"57a39d8324597752f63fac43": {
 			"Name": "PM"
 		},
-		"59411aa786f7747aeb37f9a5": {
-			"Name": "MP5 d'origine"
+		"584147ed2459775a77263501": {
+			"Name": "AKS-74UN d'origine"
 		},
 		"5a327f6386f77479010da870": {
 			"Name": "SR1M d'origine"
 		},
-		"584147ed2459775a77263501": {
-			"Name": "AKS-74UN d'origine"
+		"59411aa786f7747aeb37f9a5": {
+			"Name": "MP5 d'origine"
 		},
 		"57a39d7c24597752f8541718": {
 			"Name": "TT"
@@ -7094,8 +7094,8 @@
 		"5a8ae21486f774377b73cf5d": {
 			"Name": "T-OPS"
 		},
-		"58dffce486f77409f40f8162": {
-			"Name": "SKS d'origine"
+		"57a39d9d245977598b14f3b0": {
+			"Name": "M4"
 		},
 		"58414a2724597759b344da4d": {
 			"Name": "TT d'origine"
@@ -7103,35 +7103,29 @@
 		"584149ea2459775a6c55e940": {
 			"Name": "PP-91-01 Kedr-B d'origine"
 		},
-		"584149ad2459775a7726350e": {
-			"Name": "PP-9 Klin d'origine"
-		},
-		"5a88b1f686f774159949926e": {
-			"Name": "Spartan"
-		},
-		"57fb5a6d766bef92daf44bd7": {
-			"Name": "SV98"
-		},
-		"57a39d9d245977598b14f3b0": {
-			"Name": "M4"
+		"5a327f7c86f77475187e509a": {
+			"Name": "Tactical 2"
 		},
 		"5a327f7286f7747668661419": {
 			"Name": "Tactical 1"
 		},
-		"5a327f7c86f77475187e509a": {
-			"Name": "Tactical 2"
+		"57fb5a6d766bef92daf44bd7": {
+			"Name": "SV98"
+		},
+		"58dffce486f77409f40f8162": {
+			"Name": "SKS d'origine"
+		},
+		"5a88b1f686f774159949926e": {
+			"Name": "Spartan"
+		},
+		"584149ad2459775a7726350e": {
+			"Name": "PP-9 Klin d'origine"
 		},
 		"58414967245977598f1ad391": {
 			"Name": "PM d'origine"
 		},
-		"5a88afdc86f7746de12fcc20": {
-			"Name": "Alpha Wolf"
-		},
-		"5a8ae43686f774377b73cfb3": {
-			"Name": "MQB"
-		},
-		"5a88b0f686f77416370eca3e": {
-			"Name": "Hex"
+		"59b81f7386f77421ac688a0a": {
+			"Name": "VITYAZ-SN d'origine"
 		},
 		"5a8ae36686f774377d6ce226": {
 			"Name": "Space Trooper"
@@ -7139,82 +7133,88 @@
 		"57fb59c2766bef92daf44bd4": {
 			"Name": "VSS"
 		},
-		"59b81f7386f77421ac688a0a": {
-			"Name": "VITYAZ-SN d'origine"
-		},
-		"5a8c436686f7740f394d10b5": {
-			"Name": "Tac HC"
-		},
-		"5a8ae54786f7743b5e013ba0": {
-			"Name": "Tactique"
+		"5a8ae43686f774377b73cfb3": {
+			"Name": "MQB"
 		},
 		"5a3a859786f7747e2305e8bf": {
 			"Name": "Toz-106 d'origine"
 		},
+		"5a88afdc86f7746de12fcc20": {
+			"Name": "Alpha Wolf"
+		},
+		"5a8ae54786f7743b5e013ba0": {
+			"Name": "Tactique"
+		},
 		"584147982459775a6c55e931": {
 			"Name": "AKS-74UB d'origine"
+		},
+		"5a88b0f686f77416370eca3e": {
+			"Name": "Hex"
 		},
 		"58414a052459775a2b6d9f1e": {
 			"Name": "Saiga 12 v10 d'origine"
 		},
-		"5a88b06b86f7746de12fcc2e": {
-			"Name": "glock_ps9_double_dimond"
-		},
-		"5a88af5086f77411a871682c": {
-			"Name": "Tac 2"
-		},
-		"59430b9b86f77403c27945fd": {
-			"Name": "Magpul"
-		},
-		"58414a3f2459775a77263531": {
-			"Name": "VSS Vintorez d'origine"
+		"5a8c436686f7740f394d10b5": {
+			"Name": "Tac HC"
 		},
 		"5a8ae73886f7747b2e6e1416": {
 			"Name": "SOPMOD II"
 		},
-		"5a88ae4a86f77457fd2c0dae": {
-			"Name": "Viper"
+		"58414a3f2459775a77263531": {
+			"Name": "VSS Vintorez d'origine"
+		},
+		"5a88b06b86f7746de12fcc2e": {
+			"Name": "glock_ps9_double_dimond"
 		},
 		"5a3b898486f77467720a2f29": {
 			"Name": "PVS-14"
 		},
+		"579b2068d53a0658a154fbe8": {
+			"Name": "AK74 Bois"
+		},
+		"5a88af5086f77411a871682c": {
+			"Name": "Tac 2"
+		},
 		"5a327f9086f77475187e50a9": {
 			"Name": "2k17 NY"
 		},
-		"579b2068d53a0658a154fbe8": {
-			"Name": "AK74 Bois"
+		"59430b9b86f77403c27945fd": {
+			"Name": "Magpul"
+		},
+		"5a88ae4a86f77457fd2c0dae": {
+			"Name": "Viper"
 		},
 		"59ef24b986f77439987b8762": {
 			"Name": "translation_pending"
 		},
-		"5a88aed086f77476cd391963": {
-			"Name": "Fischer"
-		},
 		"57a39d5024597772b41c2a07": {
 			"Name": "saiga"
+		},
+		"5a88aed086f77476cd391963": {
+			"Name": "Fischer"
 		},
 		"5a8ae65f86f774377a23ed55": {
 			"Name": "Zenit"
 		},
-		"5a327f4a86f774766866140b": {
-			"Name": "translation_pending"
-		},
 		"579b1eb1d53a0658a154fbe6": {
 			"Name": "AK74 Polymère"
 		},
-		"5a325c3686f7744273716c5b": {
+		"5841474424597759ba49be91": {
 			"Name": "translation_pending"
 		},
 		"59ef247086f77439967a900a": {
 			"Name": "translation_pending"
 		},
-		"5a43a85186f7746c914b947a": {
-			"Name": "Zenit"
-		},
-		"5841474424597759ba49be91": {
+		"5a327f4a86f774766866140b": {
 			"Name": "translation_pending"
 		},
 		"59e8d2ab86f77407f03fc9c2": {
+			"Name": "translation_pending"
+		},
+		"5a43a85186f7746c914b947a": {
+			"Name": "Zenit"
+		},
+		"5a325c3686f7744273716c5b": {
 			"Name": "translation_pending"
 		},
 		"5a32808386f774764a3226d9": {
@@ -7235,19 +7235,19 @@
 		"5ac4accf86f774181345c3d7": {
 			"Name": "APS d'origine"
 		},
-		"5ac4ac9486f774181345c3d2": {
-			"Name": "APB d'origine"
+		"5acf7e2b86f7740874790e20": {
+			"Name": "translation_pending"
 		},
 		"5acf7dd986f774486e1281bf": {
 			"Name": "translation_pending"
 		},
-		"5acf7e2b86f7740874790e20": {
+		"5ac4ac9486f774181345c3d2": {
+			"Name": "APB d'origine"
+		},
+		"5acf7e7986f774401e19c3a0": {
 			"Name": "translation_pending"
 		},
 		"5ac4abf986f7747d117c67aa": {
-			"Name": "translation_pending"
-		},
-		"5acf7e7986f774401e19c3a0": {
 			"Name": "translation_pending"
 		},
 		"5acf7e4c86f774499a3f3bdd": {
@@ -7256,14 +7256,14 @@
 		"5acf7dfc86f774401e19c390": {
 			"Name": "translation_pending"
 		},
+		"5ac4ad7586f7747d14551da3": {
+			"Name": "M870 d'origine"
+		},
 		"5ac4ad3686f774181345c3da": {
 			"Name": "M1A d'origine"
 		},
 		"5acf7db286f7743a9c7092e3": {
 			"Name": "translation_pending"
-		},
-		"5ac4ad7586f7747d14551da3": {
-			"Name": "M870 d'origine"
 		},
 		"5b02be8586f77469b52d03cc": {
 			"Name": "translation_pending"
@@ -7280,19 +7280,19 @@
 		"5af08d1c86f774223a7aa1b4": {
 			"Name": "Breacher"
 		},
-		"5b05929186f774218854222a": {
-			"Name": "translation_pending"
-		},
 		"5af08cc686f77424a61595f2": {
 			"Name": "SOPMOD1"
+		},
+		"5b05929186f774218854222a": {
+			"Name": "translation_pending"
 		},
 		"5b2a19c186f77465d00f1f45": {
 			"Name": "translation_pending"
 		},
-		"5b2a197486f7742bae56f2c7": {
+		"5b2a199a86f77425da37d5f2": {
 			"Name": "translation_pending"
 		},
-		"5b2a199a86f77425da37d5f2": {
+		"5b2a197486f7742bae56f2c7": {
 			"Name": "translation_pending"
 		},
 		"5b2a27a086f774138422495d": {
@@ -7301,11 +7301,11 @@
 		"5b34ae2a86f774559624f17c": {
 			"Name": "translation_pending"
 		},
-		"5b44abe986f774283e2e3512": {
-			"Name": "TT doré"
-		},
 		"5b439b5686f77428bd137424": {
 			"Name": "SA-58 OSW"
+		},
+		"5b44abe986f774283e2e3512": {
+			"Name": "TT doré"
 		},
 		"5b4476d286f774279043d9ab": {
 			"Name": "translation_pending"
@@ -7331,11 +7331,11 @@
 		"5ba3a3dfd4351e0032020190": {
 			"Name": "(AKMP)"
 		},
-		"5ba3a14cd4351e003202017f": {
-			"Name": "(AKMSB 6P4M)"
-		},
 		"5ba3a4d1d4351e4502010622": {
 			"Name": "(AKMN2 6P1N2)"
+		},
+		"5ba3a14cd4351e003202017f": {
+			"Name": "(AKMSB 6P4M)"
 		},
 		"5ba3a078d4351e00334c96ca": {
 			"Name": "(AKMB)"
@@ -7391,10 +7391,10 @@
 		"5c123fe086f7742a60324263": {
 			"Name": "2k18 NY"
 		},
-		"5accd88b86f774112d7173bb": {
+		"5c98bd7386f7740cfb15654e": {
 			"Name": null
 		},
-		"5c98bd7386f7740cfb15654e": {
+		"5accd88b86f774112d7173bb": {
 			"Name": null
 		},
 		"5ade143e86f7745ee356674e": {
@@ -7412,11 +7412,11 @@
 		"5d23424c86f7740d5e50ce65": {
 			"Name": "SBRT"
 		},
-		"5d23404b86f7740d62079098": {
-			"Name": "SBR"
-		},
 		"5d2340e986f77461496241bc": {
 			"Name": "CWDG"
+		},
+		"5d23404b86f7740d62079098": {
+			"Name": "SBR"
 		},
 		"5d383f5d86f7742a15793872": {
 			"Name": "PRO"
@@ -7424,11 +7424,11 @@
 		"5d383ee786f7742a15793860": {
 			"Name": "ARCH"
 		},
-		"5d383e1a86f7742a1468ce63": {
-			"Name": "AICS"
-		},
 		"5d38517786f7742a1468cf6a": {
 			"Name": "MRS"
+		},
+		"5d383e1a86f7742a1468ce63": {
+			"Name": "AICS"
 		},
 		"5dd800bde492226366631317": {
 			"Name": "T-SAW"
@@ -7466,10 +7466,10 @@
 		"5fd25119dd870108a754a163": {
 			"Name": ""
 		},
-		"5fd251a31189a17bcc172662": {
+		"5fd2517dbdd50d684f73a474": {
 			"Name": ""
 		},
-		"5fd2517dbdd50d684f73a474": {
+		"5fd251a31189a17bcc172662": {
 			"Name": ""
 		},
 		"5fd251c90d9c95034825edb5": {
@@ -7487,11 +7487,11 @@
 		"60b7c28ee53e4c5c8945dd73": {
 			"Name": ""
 		},
-		"60b7d76e2a3c79100f1979de": {
-			"Name": ""
-		},
 		"60b7c2bd95047637182d90a4": {
 			"Name": "Ultima"
+		},
+		"60b7d76e2a3c79100f1979de": {
+			"Name": ""
 		},
 		"5ade141a86f77433a66ae764": {
 			"Name": ""
@@ -7596,70 +7596,70 @@
 		"5fe8c7b76c0ea413171b4271": "Season V"
 	},
 	"customization": {
-		"5cc084dd14c02e000b0550a3": {
-			"Name": "Vasilyev",
-			"ShortName": "Vasilyev",
-			"Description": "Vasilyev"
-		},
-		"5cde96047d6c8b20b577f016": {
-			"Name": "Taylor",
-			"ShortName": "Taylor",
-			"Description": "Taylor"
-		},
 		"5fc1221a95572123ae7384a2": {
 			"Name": "Aleksandr",
 			"ShortName": " Aleksandr",
 			"Description": " Aleksandr"
-		},
-		"5fc1223595572123ae7384a3": {
-			"Name": "Michael",
-			"ShortName": "Michael",
-			"Description": "Michael"
-		},
-		"5fc50bddb4965a7a2f48c5af": {
-			"Name": "Mikhail",
-			"ShortName": "Mikhail",
-			"Description": "Mikhail"
-		},
-		"5fc614da00efd824885865c2": {
-			"Name": "Sergei",
-			"ShortName": "Sergei",
-			"Description": "Sergei"
-		},
-		"5fc614f40b735e7b024c76e9": {
-			"Name": "Chris",
-			"ShortName": "Chris",
-			"Description": "Chris"
-		},
-		"5fc615110b735e7b024c76ea": {
-			"Name": "Josh",
-			"ShortName": "Josh",
-			"Description": "Josh"
 		},
 		"5fc615710b735e7b024c76ed": {
 			"Name": "Boss sanitar",
 			"ShortName": " ",
 			"Description": " "
 		},
+		"5cde96047d6c8b20b577f016": {
+			"Name": "Taylor",
+			"ShortName": "Taylor",
+			"Description": "Taylor"
+		},
 		"5fdb4139e4ed5b5ea251e4ed": {
 			"Name": "Hudson",
 			"ShortName": "Hudson",
 			"Description": "Hudson"
 		},
-		"5fdb50bb2b730a787b3f78cf": {
-			"Name": "Kulikov",
-			"ShortName": "Kulikov",
-			"Description": "Kulikov"
+		"5fc614f40b735e7b024c76e9": {
+			"Name": "Chris",
+			"ShortName": "Chris",
+			"Description": "Chris"
+		},
+		"5fc50bddb4965a7a2f48c5af": {
+			"Name": "Mikhail",
+			"ShortName": "Mikhail",
+			"Description": "Mikhail"
 		},
 		"5fdb5950f5264a66150d1c6e": {
 			"Name": "Foreman",
 			"ShortName": "Foreman",
 			"Description": "Foreman"
 		},
+		"5cc084dd14c02e000b0550a3": {
+			"Name": "Vasilyev",
+			"ShortName": "Vasilyev",
+			"Description": "Vasilyev"
+		},
+		"5fc1223595572123ae7384a3": {
+			"Name": "Michael",
+			"ShortName": "Michael",
+			"Description": "Michael"
+		},
+		"5fc614da00efd824885865c2": {
+			"Name": "Sergei",
+			"ShortName": "Sergei",
+			"Description": "Sergei"
+		},
 		"5fdb7571e4ed5b5ea251e529": {
 			"Name": "Volkov",
 			"ShortName": "Volkov",
 			"Description": "Volkov"
+		},
+		"5fdb50bb2b730a787b3f78cf": {
+			"Name": "Kulikov",
+			"ShortName": "Kulikov",
+			"Description": "Kulikov"
+		},
+		"5fc615110b735e7b024c76ea": {
+			"Name": "Josh",
+			"ShortName": "Josh",
+			"Description": "Josh"
 		}
 	},
 	"templates": {
@@ -20699,65 +20699,65 @@
 		}
 	},
 	"locations": {
-		"55f2d3fd4bdc2d5f408b4567": {
-			"Name": "Usine",
-			"Description": "La zone industrielle et les installations de l’usine chimique n°16 furent louées illégalement à la société TerraGroup. Avec l'avènement des Contract Wars, les locaux de l’usine sont devenus la scène de nombreux affrontements entre la USEC et le BEAR qui ont déterminés le contrôle de la zone industriel de Tarkov.\n\nPlus tard, à la suite du chaos, les installations de l'usine sont devenues un refuge pour les civils , les Scavs et les militaires, y compris les restes éparpillés des opérateurs de la USEC et du BEAR."
-		},
-		"56db0b3bd2720bb0678b4567": {
-			"Name": "Arène",
-			"Description": "Une arène de fortune pour les combats de gladiateurs, aménagée dans le centre commercial Equator-2 par les restes de la population locale."
-		},
-		"56f40101d2720b2a4d8b45d6": {
-			"Name": "Douanes",
-			"Description": "Une large zone du parc industriel adjacente à l'Usine. Cette zone comprend un terminal douanier, des installations destinées au stockage des carburants, des bureaux, des dortoirs ainsi qu'une variété d'autres infrastructures."
-		},
-		"5704e3c2d2720bac5b8b4567": {
-			"Name": "Bois",
-			"Description": "La réserve naturelle de priozersky a récemment fait son entrée dans la liste des réserves sauvages protégées par le District fédéral du Nord-Ouest."
-		},
 		"5704e47ed2720bb35b8b4568": {
 			"Name": "Ville",
 			"Description": "Verkhneye est une petite ville en bord de mer, un lieu exceptionnel privilégié par les habitant locaux pour le jardinage et les loisirs de plein air."
 		},
-		"5704e4dad2720bb55b8b4567": {
-			"Name": "Phare",
-			"Description": "Le phare de Cap Dalniy était un important point stratégique de la ville. Au début du conflit, la USEC l'a utilisé comme zone d'atterrissage, attirant ainsi l'attention des troupes du BEAR qui visaient à réduire leur présence hostile à zéro."
-		},
-		"5704e554d2720bac5b8b456e": {
-			"Name": "Littoral",
-			"Description": "Le Littoral forme une grande partie de la périphérie de Tarkov et est adjacent à la zone portuaire.\n\nSon territoire comprend un village partiellement abandonné, des logements modernes et des terrains privés, des champs, une grande plage avec un port de plaisance, une station-service, une station météorologique, une station émettrice de réseau cellulaire et bien plus encore.\nSon principal centre d'intérêt est la grande station thermale \"Côte d'Azur\", composée de plusieurs bâtiments et de sa propre centrale hydroélectrique. La station était autrefois utilisée comme hébergement temporaire pour le personnel de TerraGroup et ses sociétés liées en préparation de leur extraction par le port de Tarkov"
+		"55f2d3fd4bdc2d5f408b4567": {
+			"Name": "Usine",
+			"Description": "La zone industrielle et les installations de l’usine chimique n°16 furent louées illégalement à la société TerraGroup. Avec l'avènement des Contract Wars, les locaux de l’usine sont devenus la scène de nombreux affrontements entre la USEC et le BEAR qui ont déterminés le contrôle de la zone industriel de Tarkov.\n\nPlus tard, à la suite du chaos, les installations de l'usine sont devenues un refuge pour les civils , les Scavs et les militaires, y compris les restes éparpillés des opérateurs de la USEC et du BEAR."
 		},
 		"5704e5a4d2720bb45b8b4567": {
 			"Name": "Terminal",
 			"Description": "Un large pan de la zone portuaire, qui serait, selon la rumeur, le point d'extraction de secours d'Emercom. "
 		},
+		"5704e4dad2720bb55b8b4567": {
+			"Name": "Phare",
+			"Description": "Le phare de Cap Dalniy était un important point stratégique de la ville. Au début du conflit, la USEC l'a utilisé comme zone d'atterrissage, attirant ainsi l'attention des troupes du BEAR qui visaient à réduire leur présence hostile à zéro."
+		},
 		"5704e5fad2720bc05b8b4567": {
 			"Name": "Base militaire",
 			"Description": "La base secrète de l'Agence Fédérale de la Réserve d'État qui, selon les légendes urbaines, contiendrait suffisamment de provisions pour tenir des années : Nourriture, médicaments et autres ressources, assez pour survivre à une guerre nucléaire totale."
+		},
+		"56f40101d2720b2a4d8b45d6": {
+			"Name": "Douanes",
+			"Description": "Une large zone du parc industriel adjacente à l'Usine. Cette zone comprend un terminal douanier, des installations destinées au stockage des carburants, des bureaux, des dortoirs ainsi qu'une variété d'autres infrastructures."
 		},
 		"5704e64ad2720bb55b8b456e": {
 			"Name": "Secteur privé",
 			"Description": "Secteur résidentiel privé, constitué de cottages appartenant à la haute bourgeoisie de Tarkov. Au cours des premières semaines du chaos naissant, il servait de camp pour les réfugiés, avant de devenir un repaire réputé de Scavs."
 		},
-		"5714dbc024597771384a510d": {
-			"Name": "Échangeur",
-			"Description": "L'échangeur de l'autoroute sud-est est un point critique du réseau de transport de la ville. Il s'agit essentiellement d'un nœud stratégique reliant l'infrastructure portuaire à la périphérie industrielle de Tarkov. Au centre de l'échangeur se trouve le centre commercial ULTRA qui fut utilisé comme base principale pour les opérations d'évacuation de l'EMERCOM."
+		"5704e3c2d2720bac5b8b4567": {
+			"Name": "Bois",
+			"Description": "La réserve naturelle de priozersky a récemment fait son entrée dans la liste des réserves sauvages protégées par le District fédéral du Nord-Ouest."
 		},
 		"5714dc342459777137212e0b": {
 			"Name": "Banlieue",
 			"Description": "La banlieue et les zones résidentielles de Tarkov comprenant les connexions et infrastructures nécessaires pour une vie longue et heureuse."
 		},
-		"5714dc692459777137212e12": {
-			"Name": "Rues de Tarkov",
-			"Description": "Le centre-ville de Tarkov avec ses banques, ses centres commerciaux, ses hôtels et toutes les autres choses dont une ville moderne et dynamique pourrait avoir besoin."
+		"5714dbc024597771384a510d": {
+			"Name": "Échangeur",
+			"Description": "L'échangeur de l'autoroute sud-est est un point critique du réseau de transport de la ville. Il s'agit essentiellement d'un nœud stratégique reliant l'infrastructure portuaire à la périphérie industrielle de Tarkov. Au centre de l'échangeur se trouve le centre commercial ULTRA qui fut utilisé comme base principale pour les opérations d'évacuation de l'EMERCOM."
 		},
 		"599319c986f7740dca3070a6": {
+			"Name": "Arène",
+			"Description": "Une arène de fortune pour les combats de gladiateurs, aménagée dans le centre commercial Equator-2 par les restes de la population locale."
+		},
+		"5704e554d2720bac5b8b456e": {
+			"Name": "Littoral",
+			"Description": "Le Littoral forme une grande partie de la périphérie de Tarkov et est adjacent à la zone portuaire.\n\nSon territoire comprend un village partiellement abandonné, des logements modernes et des terrains privés, des champs, une grande plage avec un port de plaisance, une station-service, une station météorologique, une station émettrice de réseau cellulaire et bien plus encore.\nSon principal centre d'intérêt est la grande station thermale \"Côte d'Azur\", composée de plusieurs bâtiments et de sa propre centrale hydroélectrique. La station était autrefois utilisée comme hébergement temporaire pour le personnel de TerraGroup et ses sociétés liées en préparation de leur extraction par le port de Tarkov"
+		},
+		"56db0b3bd2720bb0678b4567": {
 			"Name": "Arène",
 			"Description": "Une arène de fortune pour les combats de gladiateurs, aménagée dans le centre commercial Equator-2 par les restes de la population locale."
 		},
 		"59fc81d786f774390775787e": {
 			"Name": "Usine",
 			"Description": "La zone industrielle et les installations de l’usine chimique n°16 furent louées illégalement à la société TerraGroup. Pendant les Contract Wars, les locaux de l’usine sont devenus la scène de nombreux affrontements entre la USEC et le BEAR qui ont determiné le contrôle sur le district industriel de Tarkov.\n\nPlus tard, dans le sillage du chaos, les locaux de l’usine devinrent un refuge pour les civils survivants, les Scavs et toutes sortes de militaires et forces armées errants, y compris les restes dispersés de la USEC et du BEAR"
+		},
+		"5714dc692459777137212e12": {
+			"Name": "Rues de Tarkov",
+			"Description": "Le centre-ville de Tarkov avec ses banques, ses centres commerciaux, ses hôtels et toutes les autres choses dont une ville moderne et dynamique pourrait avoir besoin."
 		},
 		"5b0fc42d86f7744a585f9105": {
 			"Name": "Labo",
