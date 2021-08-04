@@ -25113,7 +25113,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 51,
+							"value": 48,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -27591,7 +27591,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 45,
+							"value": 42,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -28080,7 +28080,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 48,
+							"value": 43,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -28786,7 +28786,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 47,
+							"value": 44,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
@@ -29254,7 +29254,7 @@
 							"compareMethod": ">="
 						},
 						"ergonomics": {
-							"value": 44,
+							"value": 40,
 							"compareMethod": ">="
 						},
 						"baseAccuracy": {
