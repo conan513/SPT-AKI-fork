@@ -295,6 +295,26 @@ class HideoutController
         return output;
     }
 
+    /**
+     * This convinience function intialies new Production Object
+     * with all the constants.
+     * @param {*} recipeId
+     * @param {*} productionTime
+     * @returns object
+     */
+    static initProduction(recipeId, productionTime)
+    {
+        return {
+            "Progress": 0,
+            "inProgress": true,
+            "RecipeId": recipeId,
+            "Products": [],
+            "SkipTime": 0,
+            "ProductionTime": productionTime,
+            "StartTimestamp": TimeUtil.getTimestamp()
+        };
+    }
+
     static scavCaseProductionStart(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
@@ -365,15 +385,10 @@ class HideoutController
             "Products": products
         };
 
-        pmcData.Hideout.Production[body.recipeId] = {
-            "Progress": 0,
-            "inProgress": true,
-            "RecipeId": body.recipeId,
-            "Products": [],
-            "SkipTime": 0,
-            "ProductionTime": recipe.productionTime,
-            "StartTimestamp": TimeUtil.getTimestamp()
-        };
+        // @Important: Here we need to be very exact:
+        // - normal recipe: Production time value is stored in attribute "productionType" with small "p"
+        // - scav case recipe: Production time value is stored in attribute "ProductionType" with capital "P"
+        pmcData.Hideout.Production[body.recipeId] = HideoutController.initProduction(body.recipeId, recipe.ProductionTime);
 
         return output;
     }
@@ -501,15 +516,10 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
         }
 
-        pmcData.Hideout.Production[body.recipeId] = {
-            "Progress": 0,
-            "inProgress": true,
-            "RecipeId": body.recipeId,
-            "Products": [],
-            "SkipTime": 0,
-            "ProductionTime": recipe.productionTime,
-            "StartTimestamp": TimeUtil.getTimestamp()
-        };
+        // @Important: Here we need to be very exact:
+        // - normal recipe: Production time value is stored in attribute "productionType" with small "p"
+        // - scav case recipe: Production time value is stored in attribute "ProductionType" with capital "P"
+        pmcData.Hideout.Production[body.recipeId] = HideoutController.initProduction(body.recipeId, recipe.productionTime);
     }
 
     // BALIST0N, I got bad news for you
