@@ -14,22 +14,10 @@ class InventoryHelper
             return [];
         }
 
-        // Get items that have the secure container as a parent
-        let secureContainerLoot = items.filter(x => x.parentId === secureContainer._id);
+        var itemsInSecureContainer = ItemHelper.findAndReturnChildrenByItems(items, secureContainer._id);
 
-        // Find items inside container items inside the secure container
-        let itemsInsideContainers = items.filter(function(item)
-        {
-            return secureContainerLoot.some(function(containerItem)
-            {
-                return item.parentId === containerItem._id;
-            });
-        });
-
-        // Merge root SC items + items inside containers
-        let mergedLoot = secureContainerLoot.concat(itemsInsideContainers);
-
-        return mergedLoot;
+        // Return all items returned and exclude the secure container item itself
+        return itemsInSecureContainer.filter(x => x !== secureContainer._id);
     }
 
     static removeSecureContainer(profile)
