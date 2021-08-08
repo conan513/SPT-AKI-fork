@@ -26,10 +26,8 @@ class QuestHelper
                 {
                     return furtherFilter(c);
                 }
-
                 return true;
             }
-
             return false;
         });
 
