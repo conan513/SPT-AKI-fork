@@ -20,3 +20,8 @@
 
 ## **Do you use any mods ?**
 <If you answer yes to this, your report will be closed as we don't support any modded request.>
+
+## **Upload the following logs to your report**
+<Server\user\logs\server.log>
+<Client\Logs\log_[date]_[time]_[version] error.log>
+<Client\Logs\log_[date]_[time]_[version] traces.log>
