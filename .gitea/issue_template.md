@@ -1,27 +1,29 @@
 ## **General information**:
 
-### Server: <Server version or server commit hash>
+*(A quick description of the issue)*  
+  
+**Expected result**:</br>
+*(What you expect to happen)*  
+  
+**Actual result**:</br>
+*(What is actually happening)*  
+  
+## **How to reproduce**:
+1. ...
+2. ...
+3. ...
+  
+## **Log files**:
 
-### Launcher: <Launcher version or launcher commit hash>
+Server: *(found in `/user/logs/server.log`)*  
+Modules: *(found in `/user/logs/modules.log`)*  
+Client: *(found in `/Logs/log_<date>_<version>/<date>_<version> traces.log`)*
 
-### Modules: <Modules version or assembly commit hash>
+## Screenshots:
+*(Optional, only add them if you think it has value)*
 
-### Client: <Game version>
-
-
-## **The issue**:
-<Write what goes wrong and what you expect to happen.>
-<Make sure you reproduced the issue on a fresh newly started profile without any mods.>
-
-## **How to reproduce**
-1. <step 1>
-2. <step 2>
-3. <etc>
-
-## **Do you use any mods ?**
-<If you answer yes to this, your report will be closed as we don't support any modded request.>
-
-## **Upload the following logs to your report**
-<Server\user\logs\server.log>
-<Client\Logs\log_[date]_[time]_[version] error.log>
-<Client\Logs\log_[date]_[time]_[version] traces.log>
+## Notes
+***DO NOT INCLUDE THIS SECTION IN THE REPORT***  
+- You must be able to replicate the issue with a fresh profile, while running <ins>no</ins> mods.  
+- You must upload <ins>all</ins> the required logfiles, even if you think they are useless.
+- Failure to comply with any of the requirements will result in your issue being closed without further investigation.
