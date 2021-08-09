@@ -121,11 +121,11 @@ class PaymentController
 
         // prepare a price for barter
         let barterPrice = 0;
-        barterPrice = body.scheme_items.reduce((accumulator, item) => accumulator + item.count);
+        barterPrice = body.scheme_items.reduce((accumulator, item) => accumulator + item.count, 0);
 
         // prepare the amount of money in the profile
         let amountMoney = 0;
-        amountMoney = moneyItems.reduce((accumulator, item) => accumulator + item.upd.StackObjectsCount);
+        amountMoney = moneyItems.reduce((accumulator, item) => accumulator + item.upd.StackObjectsCount, 0);
 
         // if no money in inventory or amount is not enough we return false
         if (moneyItems.length <= 0 || amountMoney < barterPrice)
