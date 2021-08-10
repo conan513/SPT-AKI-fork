@@ -41443,6 +41443,7 @@
                     "id": "TheChoiceRoubles",
                     "type": "Item",
                     "index": 3,
+					"unknown": true,
                     "items": [
                         {
                             "_id": "RoublesTheChoice",
@@ -41489,6 +41490,261 @@
 						"parentId": "",
                         "onlyFoundInRaid": false,
 						"id": "60effdac12fec20321367038"
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
+	"60effd818b669d08a35bfad5": {
+        "_id": "60effd818b669d08a35bfad5",
+        "traderId": "54cb57776803fa99248b456e",
+        "location": "any",
+        "image": "/files/quest/icon/5d6948e186f774238a38d8a7.png",
+        "type": "PickUp",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "137000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "Immunity",
+					"value": "100",
+					"id": "CrisisImmunitySkill",
+					"type": "Skill",
+					"index": 1
+				},
+                {
+					"target": "Vitality",
+					"value": "100",
+					"id": "CrisisVitalitySkill",
+					"type": "Skill",
+					"index": 2
+				},
+                {
+                    "target": "MedCaseCrisis",
+                    "value": "1",
+                    "id": "CrisisMedCase",
+                    "type": "Item",
+                    "index": 3,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "MedCaseCrisis",
+                            "_tpl": "5909d4c186f7746ad34e805a",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "AFAKCrisis",
+                    "value": "5",
+                    "id": "CrisisAFAK",
+                    "type": "Item",
+                    "index": 4,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "AFAKCrisis",
+                            "_tpl": "60098ad7c2240c0fe85c570a",
+                            "upd": {
+                                "StackObjectsCount": 5
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "SJ6Crisis",
+                    "value": "5",
+                    "id": "CrisisSJ6",
+                    "type": "Item",
+                    "index": 5,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "SJ6Crisis",
+                            "_tpl": "5c0e531d86f7747fa23f4d42",
+                            "upd": {
+                                "StackObjectsCount": 5
+                            }
+                        }
+                    ]
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "55",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5c052e6986f7746b207bc3c9"
+						],
+						"value": "5",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e8658571035f300c301ac6"
+					}
+				},
+                {
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5c052e6986f7746b207bc3c9"
+						],
+						"value": "5",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e866c50cef122b414a156c",
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60e8658571035f300c301ac6",
+									"id": "CrisisDefibCondition"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5af0534a86f7743b6f354284"
+						],
+						"value": "5",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e865a60cef122b414a156a"
+					}
+				},
+                {
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5af0534a86f7743b6f354284"
+						],
+						"value": "5",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e866f926b88043510e0adf",
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60e865a60cef122b414a156a",
+									"id": "CrisisOhptalmoscopeCondition"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5c0530ee86f774697952d952"
+						],
+						"value": "5",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e866175d67b234af3d392a"
+					}
+				},
+                {
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5c0530ee86f774697952d952"
+						],
+						"value": "5",
+						"minDurability": 0,
+						"index": 2,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e867265d67b234af3d392c",
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60e866175d67b234af3d392a",
+									"id": "CrisisLEDXCondition"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5d1b3a5d86f774252167ba22"
+						],
+						"value": "20",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60f028ca86abc00cdc03ab89"
+					}
+				},
+                {
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5d1b3a5d86f774252167ba22"
+						],
+						"value": "20",
+						"minDurability": 0,
+						"index": 3,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60f028f85caf08029e0d6277",
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60f028ca86abc00cdc03ab89",
+									"id": "CrisisPileOfMedsCondition"
+								}
+							}
+						]
 					}
 				}
             ],
