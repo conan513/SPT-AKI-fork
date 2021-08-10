@@ -41750,5 +41750,117 @@
             ],
             "Fail": []
         }
+    },
+	"60e71d23c1bfa3050473b8e6": {
+        "_id": "60e71d23c1bfa3050473b8e6",
+        "traderId": "5a7c2eca46aef81a7ca2145d",
+        "location": "any",
+        "image": "/files/quest/icon/5a27cafa86f77424e20615d6.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "93000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "Perception",
+					"value": "100",
+					"id": "CalibrationPerceptionSkill",
+					"type": "Skill",
+					"index": 1
+				},
+
+                {
+                    "target": "MagCaseCalibration",
+                    "value": "1",
+                    "id": "CalibrationMagCase",
+                    "type": "Item",
+                    "index": 2,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "MagCaseCalibration",
+                            "_tpl": "5c127c4486f7745625356c13",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "ThermiteCalibration",
+                    "value": "5",
+                    "id": "CalibrationThermite",
+                    "type": "Item",
+                    "index": 3,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "ThermiteCalibration",
+                            "_tpl": "60391a8b3364dc22b04d0ce5",
+                            "upd": {
+                                "StackObjectsCount": 5
+                            }
+                        }
+                    ]
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "47",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "20",
+						"type": "Elimination",
+						"counter": {
+							"id": "CalibrationKillCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"distance": {
+											"compareMethod": ">=",
+											"value": 100
+										},
+										"id": "CalibrationKillDistanceCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e740b8b567ff641b129573"
+					}
+				}
+            ],
+            "Fail": []
+        }
     }
 }
