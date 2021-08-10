@@ -41954,5 +41954,360 @@
             ],
             "Fail": []
         }
+    },
+	"60e71b62a0beca400d69efc4": {
+        "_id": "60e71b62a0beca400d69efc4",
+        "traderId": "54cb50c76803fa8b248b4571",
+        "location": "any",
+        "image": "/files/quest/icon/5979e80986f77437584fb8b2.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": true,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "977000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "Pistol",
+					"value": "1000",
+					"id": "EscortPistolSkill",
+					"type": "Skill",
+					"index": 1
+				},
+                {
+					"target": "Strength",
+					"value": "1000",
+					"id": "EscortStrengthSkill",
+					"type": "Skill",
+					"index": 2
+				},
+                {
+					"target": "Melee",
+					"value": "2000",
+					"id": "EscortMeleeSkill",
+					"type": "Skill",
+					"index": 2
+				},
+                {
+					"target": "ZabraloEscort",
+					"value": "5",
+					"id": "EscortZabraloArmor",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "ZabraloEscort",
+							"_tpl": "545cdb794bdc2d3a198b456a",
+							"upd": {
+								"StackObjectsCount": 5
+							}
+						}
+					]
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "60",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterFactory",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionFactory"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "factory4_day"
+                                        ],
+                                        "id": "EscortKillLocationFactory"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec07bcd7b7cb55e94c1760"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterCustoms",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionCustoms"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "bigmap"
+                                        ],
+                                        "id": "EscortKillLocationCustoms"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec08fafd1bf4491c4e4550"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterShoreline",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionShoreline"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "shoreline"
+                                        ],
+                                        "id": "EscortKillLocationShoreline"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec09f05d67b234af3d392f"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterRezerv",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionRezerv"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "rezervbase"
+                                        ],
+                                        "id": "EscortLocationConditionRezerv"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec0a9571035f300c301acb"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterWoods",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionrWoods"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "woods"
+                                        ],
+                                        "id": "EscortLocationConditionWoods"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec0ad2ad25e3185465bbd0"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterInterchange",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionInterchange"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "interchange"
+                                        ],
+                                        "id": "EscortLocationConditionInterchange"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec0af8a664b027ab1441af"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "4",
+						"type": "Elimination",
+						"counter": {
+							"id": "EscortKillCounterLabs",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "AnyPmc",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "EscortKillConditionLabs"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "laboratory"
+                                        ],
+                                        "id": "EscortLocationConditionLabs"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec0b1871035f300c301acd"
+					}
+				}
+            ],
+            "Fail": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Completion",
+						"counter": {
+							"id": "EscortFailCounter",
+							"conditions": [
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+                                            "Killed",
+											"Left",
+                                            "MissingInAction",
+                                            "Runner"
+										],
+										"id": "EscortExitStatusFail"
+									}
+								},
+                                {
+									"_parent": "Location",
+									"_props": {
+										"target": [
+											"Shoreline",
+											"Woods",
+											"bigmap",
+											"factory4_day",
+											"factory4_night",
+											"laboratory",
+											"Interchange",
+											"RezervBase"
+										],
+										"id": "EscortLocationFail"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60ec2b04bc9a8b34cd453b81",
+						"visibilityConditions": []
+					}
+				}
+            ]
+        }
     }
 }
