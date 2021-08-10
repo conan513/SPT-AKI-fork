@@ -41971,7 +41971,7 @@
             "Started": [],
             "Success": [
                 {
-                    "value": "977000",
+                    "value": "177000",
                     "id": "5d667d6a86f774368f43a1f9",
                     "type": "Experience",
                     "index": 0
@@ -42003,6 +42003,7 @@
 					"id": "EscortZabraloArmor",
 					"type": "Item",
 					"index": 3,
+					"unknown": true,
 					"items": [
 						{
 							"_id": "ZabraloEscort",
@@ -42308,6 +42309,207 @@
 					}
 				}
             ]
+        }
+    },
+	"60e71dc67fcf9c556f325056": {
+        "_id": "60e71dc67fcf9c556f325056",
+        "traderId": "5ac3b934156ae10c4430e83c",
+        "location": "any",
+        "image": "/files/quest/icon/59c1285d86f77415042983dd.png",
+        "type": "PickUp",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "107000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "Attention",
+					"value": "100",
+					"id": "EscortPistolSkill",
+					"type": "Skill",
+					"index": 1
+				},
+                {
+					"target": "Crafting",
+					"value": "50",
+					"id": "EscortStrengthSkill",
+					"type": "Skill",
+					"index": 2
+				},
+                {
+					"target": "BooseParacord",
+					"value": "3",
+					"id": "ParacordBooze",
+					"type": "Item",
+					"index": 3,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "BooseParacord",
+							"_tpl": "5c12688486f77426843c7d32",
+							"upd": {
+								"StackObjectsCount": 3
+							}
+						}
+					]
+				},
+                {
+					"target": "PlexiBooze",
+					"value": "10",
+					"id": "BoozePlexiglass",
+					"type": "Item",
+					"index": 3,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "PlexiBooze",
+							"_tpl": "59e366c186f7741778269d85",
+							"upd": {
+								"StackObjectsCount": 10
+							}
+						}
+					]
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "40",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5d40407c86f774318526545a"
+						],
+						"value": "10",
+						"minDurability": 0,
+						"index": 1,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e73333465ea8368012cc5b"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5d40407c86f774318526545a"
+						],
+						"value": "10",
+						"minDurability": 0,
+						"index": 2,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60cfa5a85f9e6175514de2e3",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60e73333465ea8368012cc5b",
+									"id": "BoozeVodkaCondition"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5d403f9186f7743cac3f229b"
+						],
+						"value": "10",
+						"minDurability": 0,
+						"index": 3,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60e733590367e10a450f7805"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5d403f9186f7743cac3f229b"
+						],
+						"value": "10",
+						"minDurability": 0,
+						"index": 4,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60cfa5a85f9e6175514de2e3",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60e733590367e10a450f7805",
+									"id": "BoozeWhiskeyCondition"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "FindItem",
+					"_props": {
+						"target": [
+							"5d1b33a686f7742523398398"
+						],
+						"value": "3",
+						"minDurability": 0,
+						"index": 5,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60f028268b669d08a35bfad8"
+					}
+				},
+				{
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"5d1b33a686f7742523398398"
+						],
+						"value": "3",
+						"minDurability": 0,
+						"index": 6,
+						"parentId": "",
+                        "onlyFoundInRaid": true,
+						"id": "60cfa5a85f9e6175514de2e3",
+						"visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60f028268b669d08a35bfad8",
+									"id": "BoozePurifiedWaterCondition"
+								}
+							}
+						]
+					}
+				}
+            ],
+            "Fail": []
         }
     }
 }
