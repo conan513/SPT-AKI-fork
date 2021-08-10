@@ -41323,7 +41323,7 @@
         "_id": "60e71bb4e456d449cd47ca75",
         "traderId": "54cb50c76803fa8b248b4571",
         "location": "any",
-        "image": "/files/quest/icon/5a27cafa86f77424e20615d6.jpg",
+        "image": "/files/quest/icon/5a27cafa86f77424e20615d6.png",
         "type": "Completion",
         "isKey": false,
         "restartable": false,
@@ -41398,6 +41398,99 @@
                         "id": "60e8650e5d67b234af3d3926"
                     }
                 }
+            ],
+            "Fail": []
+        }
+    },
+	"60effd818b669d08a35bfad5": {
+        "_id": "60effd818b669d08a35bfad5",
+        "traderId": "579dc571d53a0658a154fbec",
+        "location": "any",
+        "image": "/files/quest/icon/5c7eb06188a4504aae56deb7.png",
+        "type": "Completion",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 68,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "84000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "HideoutManagement",
+					"value": "1000",
+					"id": "TheChoiceHIdeoutSkill",
+					"type": "Skill",
+					"index": 1
+				},
+                {
+					"target": "Crafting",
+					"value": "1000",
+					"id": "TheChoiceCraftingSkill",
+					"type": "Skill",
+					"index": 2
+				},
+                {
+                    "target": "RoublesTheChoice",
+                    "value": "5000000",
+                    "id": "TheChoiceRoubles",
+                    "type": "Item",
+                    "index": 3,
+                    "items": [
+                        {
+                            "_id": "RoublesTheChoice",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 5000000
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "579dc571d53a0658a154fbec",
+                    "value": "2.2",
+                    "id": "TheChoiceFenceStanding",
+                    "type": "TraderStanding",
+                    "index": 4
+                }
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "68",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "HandoverItem",
+					"_props": {
+						"target": [
+							"59db794186f77448bc595262"
+						],
+						"value": "1",
+						"minDurability": 0,
+						"index": 0,
+						"parentId": "",
+                        "onlyFoundInRaid": false,
+						"id": "60effdac12fec20321367038"
+					}
+				}
             ],
             "Fail": []
         }
