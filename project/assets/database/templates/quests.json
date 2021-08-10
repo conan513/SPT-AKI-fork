@@ -41318,5 +41318,88 @@
             ],
             "Fail": []
         }
+    },
+	"60e71bb4e456d449cd47ca75": {
+        "_id": "60e71bb4e456d449cd47ca75",
+        "traderId": "54cb50c76803fa8b248b4571",
+        "location": "any",
+        "image": "/files/quest/icon/5a27cafa86f77424e20615d6.jpg",
+        "type": "Completion",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 0,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "84000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "AimDrills",
+					"value": "100",
+					"id": "IntimidatorAimDrillSkills",
+					"type": "Skill",
+					"index": 1
+				},
+                {
+					"target": "Assault",
+					"value": "50",
+					"id": "IntimidatorAssaultRifleSkills",
+					"type": "Skill",
+					"index": 2
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "45",
+                        "index": 1,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "40",
+                        "type": "Elimination",
+                        "counter": {
+                            "id": "5d27369586f774457411b263",
+                            "conditions": [
+                                {
+                                    "_parent": "Kills",
+                                    "_props": {
+                                        "target": "Savage",
+                                        "compareMethod": ">=",
+                                        "value": "1",
+                                        "bodyPart": [
+											"Head"
+										],
+                                        "id": "KillAllTheseScavsBoy"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60e8650e5d67b234af3d3926"
+                    }
+                }
+            ],
+            "Fail": []
+        }
     }
 }
