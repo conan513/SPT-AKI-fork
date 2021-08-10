@@ -41496,8 +41496,8 @@
             "Fail": []
         }
     },
-	"60effd818b669d08a35bfad5": {
-        "_id": "60effd818b669d08a35bfad5",
+	"60e71c48c1bfa3050473b8e5": {
+        "_id": "60e71c48c1bfa3050473b8e5",
         "traderId": "54cb57776803fa99248b456e",
         "location": "any",
         "image": "/files/quest/icon/5d6948e186f774238a38d8a7.png",
@@ -41857,6 +41857,98 @@
 						"index": 0,
 						"parentId": "",
 						"id": "60e740b8b567ff641b129573"
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
+	"60e71c9ad54b755a3b53eb66": {
+        "_id": "60e71c9ad54b755a3b53eb66",
+        "traderId": "5935c25fb3acc3127c3d8cd9",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/5d69483686f77414077d1cca.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "84000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "DMR",
+					"value": "100",
+					"id": "MutualInterestDMRSkill",
+					"type": "Skill",
+					"index": 1
+				},
+                {
+					"target": "SMG",
+					"value": "100",
+					"id": "MutualInterestSMGSkill",
+					"type": "Skill",
+					"index": 2
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "40",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "50",
+						"type": "Elimination",
+						"counter": {
+							"id": "MutualInterestKillCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+                                        "savageRole": [
+											"pmcBot"
+										],
+										"id": "MutualInterestKillCondition"
+									}
+								},
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "rezervbase"
+                                        ],
+                                        "id": "MutualInterestLocationCondition"
+                                    }
+                                }
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e745d6479eef59b01b0bdc"
 					}
 				}
             ],
