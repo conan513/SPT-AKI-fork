@@ -24,20 +24,20 @@ globalThis.BotGenerator = require("./generators/BotGenerator.js");
 globalThis.LocationGenerator = require("./generators/LocationGenerator.js");
 
 // configs
-globalThis.BotConfig = require("./configs/Botconfig.js");
-globalThis.HealthConfig = require("./configs/Healthconfig.js");
-globalThis.HideoutConfig = require("./configs/Hideoutconfig.js");
-globalThis.HttpConfig = require("./configs/Httpconfig.js");
-globalThis.InraidConfig = require("./configs/Inraidconfig.js");
-globalThis.InsuranceConfig = require("./configs/Insuranceconfig.js");
-globalThis.InventoryConfig = require("./configs/Inventoryconfig.js");
-globalThis.LocationConfig = require("./configs/Locationconfig.js");
-globalThis.MatchConfig = require("./configs/Matchconfig.js");
-globalThis.QuestConfig = require("./configs/Questconfig.js");
-globalThis.RagfairConfig = require("./configs/Ragfairconfig.js");
-globalThis.RepairConfig = require("./configs/Repairconfig.js");
-globalThis.TraderConfig = require("./configs/Traderconfig.js");
-globalThis.WeatherConfig = require("./configs/Weatherconfig.js");
+globalThis.BotConfig = require("./configs/BotConfig.js");
+globalThis.HealthConfig = require("./configs/HealthConfig.js");
+globalThis.HideoutConfig = require("./configs/HideoutConfig.js");
+globalThis.HttpConfig = require("./configs/HttpConfig.js");
+globalThis.InraidConfig = require("./configs/InraidConfig.js");
+globalThis.InsuranceConfig = require("./configs/InsuranceConfig.js");
+globalThis.InventoryConfig = require("./configs/InventoryConfig.js");
+globalThis.LocationConfig = require("./configs/LocationConfig.js");
+globalThis.MatchConfig = require("./configs/MatchConfig.js");
+globalThis.QuestConfig = require("./configs/QuestConfig.js");
+globalThis.RagfairConfig = require("./configs/RagfairConfig.js");
+globalThis.RepairConfig = require("./configs/RepairConfig.js");
+globalThis.TraderConfig = require("./configs/TraderConfig.js");
+globalThis.WeatherConfig = require("./configs/WeatherConfig.js");
 
 // callbacks
 globalThis.BotCallbacks = require("./callbacks/BotCallbacks.js");

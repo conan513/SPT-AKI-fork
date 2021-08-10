@@ -6,7 +6,7 @@ class FindSlotResult
 {
     constructor(success = false, x = null, y = null, rotation = false)
     {
-        this.success = success,
+        this.success = success;
         this.x = x;
         this.y = y;
         this.rotation = rotation;

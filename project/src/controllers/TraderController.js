@@ -112,15 +112,21 @@ class TraderController
     static stripLoyaltyAssort(sessionId, traderId, assort)
     {
         const pmcData = ProfileController.getPmcProfile(sessionId);
-
-        for (const itemId in assort.loyal_level_items)
+        // assort does not always contain loyal_level_items
+        if (!assort.loyal_level_items)
         {
-            if (assort.loyal_level_items[itemId] > pmcData.TradersInfo[traderId].loyaltyLevel)
+            Logger.warning(`stripQuestAssort: Assort for Trader ${traderId} does't contain "loyal_level_items"`);
+        }
+        else
+        {
+            for (const itemId in assort.loyal_level_items)
             {
-                assort = TraderController.removeItemFromAssort(assort, itemId);
+                if (assort.loyal_level_items[itemId] > pmcData.TradersInfo[traderId].loyaltyLevel)
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemId);
+                }
             }
         }
-
         return assort;
     }
 
@@ -128,25 +134,32 @@ class TraderController
     {
         const questassort = DatabaseServer.tables.traders[traderId].questassort;
         const pmcData = ProfileController.getPmcProfile(sessionId);
-
-        for (const itemID in assort.loyal_level_items)
+        // assort does not always contain loyal_level_items
+        if (!assort.loyal_level_items)
         {
-            if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
-            {
-                assort = TraderController.removeItemFromAssort(assort, itemID);
-            }
+            Logger.warning(`stripQuestAssort: Assort for Trader ${traderId} does't contain "loyal_level_items"`);
+        }
+        else
+        {
 
-            if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
+            for (const itemID in assort.loyal_level_items)
             {
-                assort = TraderController.removeItemFromAssort(assort, itemID);
-            }
+                if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemID);
+                }
 
-            if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
-            {
-                assort = TraderController.removeItemFromAssort(assort, itemID);
+                if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemID);
+                }
+
+                if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemID);
+                }
             }
         }
-
         return assort;
     }
 

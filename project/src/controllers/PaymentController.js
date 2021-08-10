@@ -61,9 +61,9 @@ class PaymentController
     * @param {number} currency
     * @returns number
     */
-    static inRUB(value, currency)
+    static inRUB(value, currencyFrom)
     {
-        return Math.round(value * HandbookController.getTemplatePrice(currency));
+        return Math.round(value * (HandbookController.getTemplatePrice(currencyFrom) || 0));
     }
 
     /**
@@ -72,16 +72,10 @@ class PaymentController
      * @param {number} currency
      * @returns number
      */
-    static fromRUB(value, currency)
+    static fromRUB(value, currencyTo)
     {
-        let price = HandbookController.getTemplatePrice(currency);
-
-        if (!price)
-        {
-            return 0;
-        }
-
-        return Math.round(value / price);
+        let price = HandbookController.getTemplatePrice(currencyTo);
+        return price ? Math.round(value / price) : 0;
     }
 
     /**
@@ -127,19 +121,11 @@ class PaymentController
 
         // prepare a price for barter
         let barterPrice = 0;
-
-        for (let item of body.scheme_items)
-        {
-            barterPrice += item.count;
-        }
+        barterPrice = body.scheme_items.reduce((accumulator, item) => accumulator + item.count);
 
         // prepare the amount of money in the profile
         let amountMoney = 0;
-
-        for (let item of moneyItems)
-        {
-            amountMoney += item.upd.StackObjectsCount;
-        }
+        amountMoney = moneyItems.reduce((accumulator, item) => accumulator + item.upd.StackObjectsCount);
 
         // if no money in inventory or amount is not enough we return false
         if (moneyItems.length <= 0 || amountMoney < barterPrice)

@@ -6,8 +6,8 @@ class BundleInfo
 {
     constructor(modpath, bundle)
     {
-        this.key = bundle.key,
-        this.path = `${HttpServer.getBackendUrl()}/files/bundle/${bundle.key}`,
+        this.key = bundle.key;
+        this.path = `${HttpServer.getBackendUrl()}/files/bundle/${bundle.key}`;
         this.filepath = bundle.path || `${process.cwd()}/${modpath}bundles/${bundle.key}`.replace(/\\/g, "/");
         this.dependencyKeys = bundle.dependencyKeys || [];
     }
