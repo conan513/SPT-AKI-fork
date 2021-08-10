@@ -42511,5 +42511,123 @@
             ],
             "Fail": []
         }
+    },
+	"60e71dc0a94be721b065bbfc": {
+        "_id": "60e71dc0a94be721b065bbfc",
+        "traderId": "5ac3b934156ae10c4430e83c",
+        "location": "5714dbc024597771384a510d",
+        "image": "/files/quest/icon/5ae4a76086f774455f7d62d2.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "84000",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "6SH118LongLine",
+					"value": "1",
+					"id": "LongLine6SH118",
+					"type": "Item",
+					"index": 1,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "6SH118LongLine",
+							"_tpl": "5df8a4d786f77412672a1e3b",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				},
+                {
+					"target": "RYSTLongLine",
+					"value": "1",
+					"id": "LongLineRYST",
+					"type": "Item",
+					"index": 2,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "RYSTLongLine",
+							"_tpl": "5f60c74e3b85f6263c145586",
+							"upd": {
+								"StackObjectsCount": 1
+							}
+						}
+					]
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "40",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "30",
+                        "type": "Elimination",
+                        "counter": {
+                            "id": "FirstID",
+                            "conditions": [
+                                {
+                                    "_parent": "InZone",
+                                    "_props": {
+                                        "zoneIds": [
+                                            "JOPA(1)"
+                                        ],
+                                        "id": "LongLineZoneConditionID"
+                                    }
+                                },
+                                {
+                                    "_parent": "Kills",
+                                    "_props": {
+                                        "target": "AnyPmc",
+                                        "compareMethod": ">=",
+                                        "value": "1",
+                                        "id": "LongLineKillConditionID"
+                                    }
+                                },
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "interchange"
+                                        ],
+                                        "id": "LongLineLocationConditionID"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60e73ee8b567ff641b129570"
+                    }
+                }
+            ],
+            "Fail": []
+        }
     }
 }
