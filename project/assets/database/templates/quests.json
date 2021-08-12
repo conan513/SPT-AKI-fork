@@ -41110,7 +41110,7 @@
                 },
                 {
                     "target": "5e02be602a251a095227110f",
-                    "value": "4000",
+                    "value": "40000",
                     "id": "RoublesRewarrrd",
                     "type": "Item",
                     "index": 1,
@@ -41119,7 +41119,7 @@
                             "_id": "5e02be602a251a095227110f",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 4000
+                                "StackObjectsCount": 40000
                             }
                         }
                     ]
@@ -41229,6 +41229,16 @@
         },
         "conditions": {
             "AvailableForStart": [
+				{
+					"_parent": "Level",
+					"_props": {
+						"compareMethod": ">=",
+						"value": "12",
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				},
                 {
                     "_parent": "Quest",
                     "_props": {
@@ -41236,7 +41246,7 @@
                         "status": [
                             4
                         ],
-                        "index": 0,
+                        "index": 1,
                         "parentId": "",
                         "id": "60bf748cbf90bf6b431e8965"
                     }
@@ -41248,7 +41258,7 @@
                         "status": [
                             4
                         ],
-                        "index": 1,
+                        "index": 2,
                         "parentId": "",
                         "id": "60bf7490db5461623517069e"
                     }
@@ -41866,6 +41876,24 @@
                     "type": "Experience",
                     "index": 0
                 },
+				{
+					"target": "MutualInterestEuros",
+					"value": "1",
+					"id": "EurosMutualInterest",
+					"type": "Item",
+                    "unknown": true,
+					"index": 1,
+					"items": [
+						{
+                            "_id": "MutualInterestEuros",
+                            "_tpl": "569668774bdc2da2298b4568",
+							"upd": {
+                                "StackObjectsCount": 3000
+                            }
+                            
+                        }
+					]
+				},
                 {
 					"target": "DMR",
 					"value": "100",
