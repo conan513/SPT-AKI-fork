@@ -6956,7 +6956,7 @@
         "type": "Completion",
         "isKey": false,
         "restartable": false,
-        "min_level": 1,
+        "min_level": 0,
         "canShowNotificationsInGame": true,
         "instantComplete": false,
         "secretQuest": false,
@@ -6964,7 +6964,7 @@
             "Started": [],
             "Success": [
                 {
-                    "value": "8200",
+                    "value": "10000",
                     "id": "InventoryCheckExp",
                     "type": "Experience",
                     "index": 0
@@ -7012,16 +7012,6 @@
         "conditions": {
             "AvailableForStart": [
                 {
-                    "_parent": "Level",
-                    "_props": {
-                        "compareMethod": ">=",
-                        "value": "1",
-                        "index": 0,
-                        "parentId": "",
-                        "id": "5acf3bcb86f77418403493b7"
-                    }
-                },
-                {
                     "_parent": "Quest",
                     "_props": {
                         "target": "608974d01a66564e74191fc0",
@@ -7036,144 +7026,150 @@
             ],
             "AvailableForFinish": [
                 {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "InventoryCheckVisitPlace",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 0,
-                        "parentId": "",
-                        "id": "608bd0a053b9dd01a116f474"
-                    }
-                },
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "InvCheckFirstArsenalCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "baraholshik_arsenal_area_1",
+										"value": "1",
+										"id": "InvCheckFirstArsenalCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "608bd0a053b9dd01a116f474",
+						"visibilityConditions": []
+					}
+				},
                 {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "InventoryCheckVisitPlace2",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY2"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 1,
-                        "parentId": "",
-                        "id": "608bd0c20637f21f9934b6e4"
-                    }
-                },
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "InvCheckSecondArsenalCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "baraholshik_arsenal_area_3",
+										"value": "1",
+										"id": "InvCheckSecondArsenalCondition"
+									}
+								}
+							]
+						},
+						"index": 1,
+						"parentId": "",
+						"id": "608bd0c20637f21f9934b6e4",
+						"visibilityConditions": []
+					}
+				},
                 {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "InventoryCheckVisitPlace3",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY3"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 2,
-                        "parentId": "",
-                        "id": "608bd136c61c4b541b381da3"
-                    }
-                },
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "InvCheckThirdArsenalCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "baraholshik_arsenal_area_4",
+										"value": "1",
+										"id": "InvCheckThirdArsenalCondition"
+									}
+								}
+							]
+						},
+						"index": 2,
+						"parentId": "",
+						"id": "608bd136c61c4b541b381da3",
+						"visibilityConditions": []
+					}
+				},
                 {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "InventoryCheckVisitPlace4",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY4"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 3,
-                        "parentId": "",
-                        "id": "608bd149f597ad0a33574d74"
-                    }
-                },
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "InvCheckFourthArsenalCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "baraholshik_arsenal_area_5",
+										"value": "1",
+										"id": "InvCheckFourthArsenalCondition"
+									}
+								}
+							]
+						},
+						"index": 3,
+						"parentId": "",
+						"id": "608bd149f597ad0a33574d74",
+						"visibilityConditions": []
+					}
+				},
                 {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "InventoryCheckVisitPlace5",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "InventoryCheckVisitPlaceMarkerNOTWORKY5"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 4,
-                        "parentId": "",
-                        "id": "608bd2465e0ef91ab810f98a"
-                    }
-                },
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "InvCheckFDutyCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "baraholshik_dejurniy_area_2",
+										"value": "1",
+										"id": "InvCheckDutyCondition"
+									}
+								}
+							]
+						},
+						"index": 4,
+						"parentId": "",
+						"id": "608bd2465e0ef91ab810f98a",
+						"visibilityConditions": []
+					}
+				},
                 {
 					"_parent": "CounterCreator",
 					"_props": {
 						"value": "1",
 						"type": "Completion",
 						"counter": {
-							"id": "InventoryCheckVisitSurviveCondition",
+							"id": "InvCheckCompletionCounter",
 							"conditions": [
 								{
 									"_parent": "ExitStatus",
 									"_props": {
 										"status": [
-											"Survived"
+											"Survived",
+											"Runner"
 										],
-										"id": "InventoryCheckVisitExistStatus"
+										"id": "InvCheckExistStatus"
 									}
 								},
-                                {
+								{
 									"_parent": "Location",
 									"_props": {
 										"target": [
-											"RezervBase"
+											"rezervbase"
 										],
-										"id": "InventoryCheckVisitLocationExtract"
+										"id": "InvCheckLocation"
 									}
 								}
 							]
