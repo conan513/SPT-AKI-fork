@@ -6884,51 +6884,33 @@
             ],
             "AvailableForFinish": [
                 {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "FuelMatterVisitPlace",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "FuelMatterVisitPlaceMarkerNOTWORKY"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 0,
-                        "parentId": "",
-                        "id": "60a4dc7e4e734e57d07fb335"
-                    }
-                },
-                {
-                    "_parent": "CounterCreator",
-                    "_props": {
-                        "value": "1",
-                        "type": "Exploration",
-                        "counter": {
-                            "id": "FuelMatterVisitPlace2",
-                            "conditions": [
-                                {
-                                    "_parent": "VisitPlace",
-                                    "_props": {
-                                        "target": "place_pacemaker_SCOUT_01",
-                                        "value": "1",
-                                        "id": "FuelMatterVisitPlaceMarkerNOTWORKY2"
-                                    }
-                                }
-                            ]
-                        },
-                        "index": 1,
-                        "parentId": "",
-                        "id": "60b90232ec7c6f5eb510c195"
-                    }
-                },
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "baraholshik_fuel_area_2",
+						"value": "1",
+						"index": 0,
+						"parentId": "",
+						"id": "60a4dc7e4e734e57d07fb335",
+						"plantTime": 30
+					}
+				},
+				{
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "baraholshik_fuel_area_3",
+						"value": "1",
+						"index": 1,
+						"parentId": "",
+						"id": "60b90232ec7c6f5eb510c195",
+						"plantTime": 30
+					}
+				},
                 {
 					"_parent": "CounterCreator",
 					"_props": {
@@ -42662,14 +42644,14 @@
 					"value": "0.03",
 					"id": "5ef095274f604154e7127f86",
 					"type": "TraderStanding",
-					"index": 0
+					"index": 1
 				},
                 {
 					"target": "RevisionDollars",
 					"value": "800",
 					"id": "DollarsRevision",
 					"type": "Item",
-					"index": 1,
+					"index": 2,
                     "unknown": true,
 					"items": [
 						{
@@ -42686,7 +42668,7 @@
 					"value": "15",
 					"id": "RevisionWarmagePack",
 					"type": "Item",
-					"index": 2,
+					"index": 3,
                     "unknown": true,
 					"items": [
 						{
@@ -42749,7 +42731,7 @@
 						],
 						"zoneId": "tadeush_bmp2_area_mark_13",
 						"value": "1",
-						"index": 2,
+						"index": 1,
 						"parentId": "6087d553d79a2b4e943482bf",
 						"id": "6086c8ed1b0bb8063d5babb7",
 						"plantTime": 30,
@@ -42782,7 +42764,7 @@
 								}
 							]
 						},
-						"index": 0,
+						"index": 2,
 						"parentId": "",
 						"id": "60882695949eb1096c454fcd",
 						"visibilityConditions": []
@@ -42796,7 +42778,7 @@
 						],
 						"zoneId": "tadeush_bmp2_area_mark_12",
 						"value": "1",
-						"index": 2,
+						"index": 3,
 						"parentId": "60882695949eb1096c454fcd",
 						"id": "608826d0a3994358a0751cfc",
 						"plantTime": 30,
@@ -42829,7 +42811,7 @@
 								}
 							]
 						},
-						"index": 0,
+						"index": 4,
 						"parentId": "",
 						"id": "608826f3949eb1096c454fd0",
 						"visibilityConditions": []
@@ -42843,7 +42825,7 @@
 						],
 						"zoneId": "tadeush_bmp2_area_mark_11",
 						"value": "1",
-						"index": 2,
+						"index": 5,
 						"parentId": "608826f3949eb1096c454fd0",
 						"id": "60882714c18cfa2a4e2afe59",
 						"plantTime": 30,
@@ -42876,7 +42858,7 @@
 								}
 							]
 						},
-						"index": 0,
+						"index": 6,
 						"parentId": "",
 						"id": "6088274a82e40b3c727fd164",
 						"visibilityConditions": []
@@ -42890,7 +42872,7 @@
 						],
 						"zoneId": "tadeush_bmp2_area_mark_2",
 						"value": "1",
-						"index": 2,
+						"index": 7,
 						"parentId": "6088274a82e40b3c727fd164",
 						"id": "60882779d241f77b8a49785d",
 						"plantTime": 30,
@@ -42923,7 +42905,7 @@
 								}
 							]
 						},
-						"index": 0,
+						"index": 8,
 						"parentId": "",
 						"id": "5eec9d054110547f1f545c99",
 						"visibilityConditions": []
@@ -42937,7 +42919,7 @@
 						],
 						"zoneId": "tadeush_stryker_area_mark_3",
 						"value": "1",
-						"index": 2,
+						"index": 9,
 						"parentId": "5eec9d054110547f1f545c99",
 						"id": "608925d455f4ac386d7e7fc4",
 						"plantTime": 30,
@@ -42971,7 +42953,7 @@
 								}
 							]
 						},
-						"index": 0,
+						"index": 10,
 						"parentId": "",
 						"id": "60892590fa70fc097863b8e5",
 						"visibilityConditions": []
@@ -42995,7 +42977,7 @@
 								}
 							]
 						},
-						"index": 0,
+						"index": 11,
 						"parentId": "",
 						"id": "608930aa1124f748c94b801e",
 						"visibilityConditions": []
