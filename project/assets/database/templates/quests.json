@@ -41406,7 +41406,7 @@
             "Started": [],
             "Success": [
                 {
-                    "value": "84000",
+                    "value": "777777",
                     "id": "5d667d6a86f774368f43a1f9",
                     "type": "Experience",
                     "index": 0
@@ -41977,28 +41977,28 @@
             "Started": [],
             "Success": [
                 {
-                    "value": "177000",
+                    "value": "760000",
                     "id": "5d667d6a86f774368f43a1f9",
                     "type": "Experience",
                     "index": 0
                 },
                 {
 					"target": "Pistol",
-					"value": "1000",
+					"value": "500",
 					"id": "EscortPistolSkill",
 					"type": "Skill",
 					"index": 1
 				},
                 {
 					"target": "Strength",
-					"value": "1000",
+					"value": "500",
 					"id": "EscortStrengthSkill",
 					"type": "Skill",
 					"index": 2
 				},
                 {
 					"target": "Melee",
-					"value": "2000",
+					"value": "1000",
 					"id": "EscortMeleeSkill",
 					"type": "Skill",
 					"index": 2
@@ -43025,7 +43025,7 @@
             "Started": [],
             "Success": [
                 {
-                    "value": "900",
+                    "value": "9000",
                     "id": "5d667d6a86f774368f43a1f9",
                     "type": "Experience",
                     "index": 0
@@ -43228,10 +43228,10 @@
 				},
                 {
 					"target": "NailsPestControl",
-					"value": "4",
+					"value": "6",
 					"id": "PestControlNails",
 					"type": "Item",
-					"index": 4,
+					"index": 5,
 					"items": [
 						{
 							"_id": "NailsPestControl",
@@ -43247,7 +43247,7 @@
 					"value": "2",
 					"id": "PestControlThermite",
 					"type": "Item",
-					"index": 4,
+					"index": 6,
 					"items": [
 						{
 							"_id": "ThermitePestControl",
