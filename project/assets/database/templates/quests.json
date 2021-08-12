@@ -43679,6 +43679,15 @@
 										],
 										"id": "TagillaKillRelentless"
 									}
+								},
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "RelentlessFTagillaExit"
+									}
 								}
 							]
 						},
@@ -43706,10 +43715,19 @@
 										],
 										"id": "RelentlessKillaKill"
 									}
+								},
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "RelentlessFKillaExit"
+									}
 								}
 							]
 						},
-						"index": 0,
+						"index": 1,
 						"parentId": "",
 						"id": "60e725d8b567ff641b129555"
 					}
@@ -43733,10 +43751,19 @@
 										],
 										"id": "RelentlessReshalaKill"
 									}
+								},
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "RelentlessFReshalaExit"
+									}
 								}
 							]
 						},
-						"index": 0,
+						"index": 2,
 						"parentId": "",
 						"id": "60e72604a6e322250215f066"
 					}
@@ -43760,10 +43787,19 @@
 										],
 										"id": "RelentlessShturmanKill"
 									}
+								},
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "RelentlessFShturmanExit"
+									}
 								}
 							]
 						},
-						"index": 0,
+						"index": 3,
 						"parentId": "",
 						"id": "60e7261382576b5f4f21c495"
 					}
@@ -43787,10 +43823,19 @@
 										],
 										"id": "RelentlessGluharKill"
 									}
+								},
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "RelentlessFGluharExit"
+									}
 								}
 							]
 						},
-						"index": 0,
+						"index": 4,
 						"parentId": "",
 						"id": "60e7261eb567ff641b129557"
 					}
@@ -43814,10 +43859,19 @@
 										],
 										"id": "RelentlessSanitarKill"
 									}
+								},
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Survived"
+										],
+										"id": "RelentlessFSanitarExit"
+									}
 								}
 							]
 						},
-						"index": 0,
+						"index": 5,
 						"parentId": "",
 						"id": "60e72629465ea8368012cc47"
 					}
