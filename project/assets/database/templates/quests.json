@@ -42986,5 +42986,147 @@
             ],
             "Fail": []
         }
+    },
+	"6089743983426423753cd58a": {
+        "_id": "6089743983426423753cd58a",
+        "traderId": "58330581ace78e27b8b10cee",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/6089743983426423753cd58a.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 0,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "900",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "58330581ace78e27b8b10cee",
+					"value": "0.04",
+					"id": "5ef095274f604154e7127f86",
+					"type": "TraderStanding",
+					"index": 1
+				},
+                {
+					"target": "RoublesSafeCorridor",
+					"value": "35000",
+					"id": "SafeCorridorRoubles",
+					"type": "Item",
+					"index": 2,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "RoublesSafeCorridor",
+							"_tpl": "5449016a4bdc2d6f028b456f",
+							"upd": {
+								"StackObjectsCount": 35000
+							}
+						}
+					]
+				},
+                {
+					"target": "SafeCorridorBP",
+					"value": "2",
+					"id": "BPSafeCorridor",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "SafeCorridorBP",
+							"_tpl": "5737292724597765e5728562",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+                {
+					"target": "ExpeditionnarySafeCorridor",
+					"value": "2",
+					"id": "SafeCorridorExpeditionnary",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "ExpeditionnarySafeCorridor",
+							"_tpl": "5d1b371186f774253763a656",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+					"_parent": "Quest",
+					"_props": {
+						"target": "597a0f5686f774273b74f676",
+						"status": [
+							4
+						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				}
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "10",
+						"type": "Elimination",
+						"counter": {
+							"id": "SafeCorridorCounter",
+							"conditions": [
+								{
+									"_parent": "InZone",
+									"_props": {
+										"zoneIds": [
+											"lijnik_storage_area_1"
+										],
+										"id": "SafeCorridorZoneCondition"
+									}
+								},
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "SafeCorridorKillCondition"
+									}
+								},
+								{
+									"_parent": "Location",
+									"_props": {
+										"target": [
+											"rezervbase"
+										],
+										"id": "SafeCorridorLocationCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "608ab22755f4ac386d7e7fdc"
+					}
+				}
+            ],
+            "Fail": []
+        }
     }
 }
