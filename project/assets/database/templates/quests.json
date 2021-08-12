@@ -42592,11 +42592,17 @@
                         "counter": {
                             "id": "FirstID",
                             "conditions": [
-                                {
+								{
                                     "_parent": "InZone",
                                     "_props": {
                                         "zoneIds": [
-                                            "JOPA(1)"
+                                            "place_merch_022_01",
+                                            "place_merch_022_02",
+                                            "place_merch_022_03",
+                                            "place_merch_022_04",
+                                            "place_merch_022_05",
+                                            "place_merch_022_06",
+											"place_merch_022_07"
                                         ],
                                         "id": "LongLineZoneConditionID"
                                     }
@@ -42626,6 +42632,375 @@
                         "id": "60e73ee8b567ff641b129570"
                     }
                 }
+            ],
+            "Fail": []
+        }
+    },
+	"6086c852c945025d41566124": {
+        "_id": "6086c852c945025d41566124",
+        "traderId": "5935c25fb3acc3127c3d8cd9",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/5a29221d86f77457303da9fa.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 55,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "7300",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "5935c25fb3acc3127c3d8cd9",
+					"value": "0.03",
+					"id": "5ef095274f604154e7127f86",
+					"type": "TraderStanding",
+					"index": 0
+				},
+                {
+					"target": "RevisionDollars",
+					"value": "800",
+					"id": "DollarsRevision",
+					"type": "Item",
+					"index": 1,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "RevisionDollars",
+							"_tpl": "5696686a4bdc2da3298b456a",
+							"upd": {
+								"StackObjectsCount": 800
+							}
+						}
+					]
+				},
+                {
+					"target": "WarmagePackRevision",
+					"value": "15",
+					"id": "RevisionWarmagePack",
+					"type": "Item",
+					"index": 2,
+                    "unknown": true,
+					"items": [
+						{
+							"_id": "WarmagePackRevision",
+							"_tpl": "5c11279ad174af029d64592b",
+							"upd": {
+								"StackObjectsCount": 15
+							}
+						}
+					]
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+					"_parent": "Quest",
+					"_props": {
+						"target": "5a27b80086f774429a5d7e20",
+						"status": [
+							4
+						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				}
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionFirstBMPCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_bmp2_area_check_13",
+										"value": "1",
+										"id": "RevisionFirstBMPCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "6087d553d79a2b4e943482bf",
+						"visibilityConditions": []
+					}
+				},
+                {
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "tadeush_bmp2_area_mark_13",
+						"value": "1",
+						"index": 2,
+						"parentId": "6087d553d79a2b4e943482bf",
+						"id": "6086c8ed1b0bb8063d5babb7",
+						"plantTime": 30,
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "6087d553d79a2b4e943482bf",
+									"id": "RevisionMarkFirstBMP"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionSecondBMPCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_bmp2_area_check_12",
+										"value": "1",
+										"id": "RevisionSecondBMPCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60882695949eb1096c454fcd",
+						"visibilityConditions": []
+					}
+				},
+                {
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "tadeush_bmp2_area_mark_12",
+						"value": "1",
+						"index": 2,
+						"parentId": "60882695949eb1096c454fcd",
+						"id": "608826d0a3994358a0751cfc",
+						"plantTime": 30,
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "60882695949eb1096c454fcd",
+									"id": "RevisionMarkSecondBMP"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionThirdBMPCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_bmp2_area_check_11",
+										"value": "1",
+										"id": "RevisionThirdBMPCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "608826f3949eb1096c454fd0",
+						"visibilityConditions": []
+					}
+				},
+                {
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "tadeush_bmp2_area_mark_11",
+						"value": "1",
+						"index": 2,
+						"parentId": "608826f3949eb1096c454fd0",
+						"id": "60882714c18cfa2a4e2afe59",
+						"plantTime": 30,
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "608826f3949eb1096c454fd0",
+									"id": "RevisionMarkThirdBMP"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionFourthBMPCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_bmp2_area_check_2",
+										"value": "1",
+										"id": "RevisionFourthBMPCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "6088274a82e40b3c727fd164",
+						"visibilityConditions": []
+					}
+				},
+                {
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "tadeush_bmp2_area_mark_2",
+						"value": "1",
+						"index": 2,
+						"parentId": "6088274a82e40b3c727fd164",
+						"id": "60882779d241f77b8a49785d",
+						"plantTime": 30,
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "6088274a82e40b3c727fd164",
+									"id": "RevisionMarkFourthBMP"
+								}
+							}
+						]
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionFirstStrykerCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_stryker_area_check_3",
+										"value": "1",
+										"id": "RevisionFirstStrykerCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "5eec9d054110547f1f545c99",
+						"visibilityConditions": []
+					}
+				},
+                {
+					"_parent": "PlaceBeacon",
+					"_props": {
+						"target": [
+							"5991b51486f77447b112d44f"
+						],
+						"zoneId": "tadeush_stryker_area_mark_3",
+						"value": "1",
+						"index": 2,
+						"parentId": "5eec9d054110547f1f545c99",
+						"id": "608925d455f4ac386d7e7fc4",
+						"plantTime": 30,
+                        "visibilityConditions": [
+							{
+								"_parent": "CompleteCondition",
+								"_props": {
+									"target": "5eec9d054110547f1f545c99",
+									"id": "RevisionMarkFirstStryker"
+								}
+							}
+						]
+					}
+				},
+                
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionSecondStrykerCounter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_stryker_area_check_4",
+										"value": "1",
+										"id": "RevisionSecondStrykerCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60892590fa70fc097863b8e5",
+						"visibilityConditions": []
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RevisionT90Counter",
+							"conditions": [
+								{
+									"_parent": "VisitPlace",
+									"_props": {
+										"target": "tadeush_t90_area_check_1",
+										"value": "1",
+										"id": "RevisionT90Condition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "608930aa1124f748c94b801e",
+						"visibilityConditions": []
+					}
+				}
             ],
             "Fail": []
         }
