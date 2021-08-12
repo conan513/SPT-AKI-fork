@@ -42652,7 +42652,6 @@
 					"id": "DollarsRevision",
 					"type": "Item",
 					"index": 2,
-                    "unknown": true,
 					"items": [
 						{
 							"_id": "RevisionDollars",
@@ -42669,7 +42668,6 @@
 					"id": "RevisionWarmagePack",
 					"type": "Item",
 					"index": 3,
-                    "unknown": true,
 					"items": [
 						{
 							"_id": "WarmagePackRevision",
@@ -43021,7 +43019,6 @@
 					"id": "SafeCorridorRoubles",
 					"type": "Item",
 					"index": 2,
-                    "unknown": true,
 					"items": [
 						{
 							"_id": "RoublesSafeCorridor",
@@ -43116,6 +43113,180 @@
 											"rezervbase"
 										],
 										"id": "SafeCorridorLocationCondition"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "608ab22755f4ac386d7e7fdc"
+					}
+				}
+            ],
+            "Fail": []
+        }
+    },
+	"608a768d82e40b3c727fd17d": {
+        "_id": "608a768d82e40b3c727fd17d",
+        "traderId": "5c0647fdd443bc2504c2d371",
+        "location": "5704e5fad2720bc05b8b4567",
+        "image": "/files/quest/icon/608a768d82e40b3c727fd17d.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 0,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "7400",
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+					"target": "5c0647fdd443bc2504c2d371",
+					"value": "0.02",
+					"id": "5ef095274f604154e7127f86",
+					"type": "TraderStanding",
+					"index": 1
+				},
+                {
+					"target": "RoublesPestControl",
+					"value": "20000",
+					"id": "PestControlRoubles",
+					"type": "Item",
+					"index": 2,
+					"items": [
+						{
+							"_id": "RoublesPestControl",
+							"_tpl": "5449016a4bdc2d6f028b456f",
+							"upd": {
+								"StackObjectsCount": 20000
+							}
+						}
+					]
+				},
+                {
+					"target": "PestControlAntiRoach",
+					"value": "2",
+					"id": "AntiRoachPestControl",
+					"type": "Item",
+					"index": 3,
+					"items": [
+						{
+							"_id": "PestControlAntiRoach",
+							"_tpl": "59e3596386f774176c10a2a2",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				},
+                {
+					"target": "EaglePestControl",
+					"value": "6",
+					"id": "PestControlEagle",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "EaglePestControl",
+							"_tpl": "5d6fc78386f77449d825f9dc",
+							"upd": {
+								"StackObjectsCount": 6
+							}
+						}
+					]
+				},
+                {
+					"target": "NailsPestControl",
+					"value": "4",
+					"id": "PestControlNails",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "NailsPestControl",
+							"_tpl": "590c31c586f774245e3141b2",
+							"upd": {
+								"StackObjectsCount": 4
+							}
+						}
+					]
+				},
+                {
+					"target": "ThermitePestControl",
+					"value": "2",
+					"id": "PestControlThermite",
+					"type": "Item",
+					"index": 4,
+					"items": [
+						{
+							"_id": "ThermitePestControl",
+							"_tpl": "60391a8b3364dc22b04d0ce5",
+							"upd": {
+								"StackObjectsCount": 2
+							}
+						}
+					]
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+					"_parent": "Quest",
+					"_props": {
+						"target": "5d25e2ee86f77443e35162ea",
+						"status": [
+							4
+						],
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				}
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "10",
+						"type": "Elimination",
+						"counter": {
+							"id": "PestControlCounter",
+							"conditions": [
+								{
+									"_parent": "InZone",
+									"_props": {
+										"zoneIds": [
+											"eger_barracks_area_2",
+                                            "eger_barracks_area_1"
+										],
+										"id": "PestControlZoneCondition"
+									}
+								},
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"id": "PestControlKillCondition"
+									}
+								},
+								{
+									"_parent": "Location",
+									"_props": {
+										"target": [
+											"rezervbase"
+										],
+										"id": "PestControlLocationCondition"
 									}
 								}
 							]
