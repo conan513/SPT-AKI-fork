@@ -44017,5 +44017,158 @@
             ],
             "Fail": []
         }
+    },
+	"60e729cf5698ee7b05057439": {
+        "_id": "60e729cf5698ee7b05057439",
+        "traderId": "58330581ace78e27b8b10cee",
+        "location": "5704e3c2d2720bac5b8b4567",
+        "image": "/files/quest/icon/5d67b41686f774368e1b78df.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": false,
+        "min_level": 50,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "107000",
+                    "id": "SwiftOneCheckExp",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "LapuaAPSwiftOne",
+                    "value": "20",
+                    "id": "SwiftOneLapuaAP",
+                    "type": "Item",
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "LapuaAPSwiftOne",
+                            "_tpl": "5fc382a9d724d907e2077dab",
+                            "upd": {
+                                "StackObjectsCount": 20
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "MAIAPSwiftOne",
+                    "value": "60",
+                    "id": "SwiftOneMAIAP",
+                    "type": "Item",
+                    "index": 2,
+                    "items": [
+                        {
+                            "_id": "MAIAPSwiftOne",
+                            "_tpl": "601aa3d2b2bcb34913271e6d",
+                            "upd": {
+                                "StackObjectsCount": 60
+                            }
+                        }
+                    ]
+                },
+                {
+					"target": "StressResistance",
+					"value": "100",
+					"id": "SwiftOneStressSkillReward",
+					"type": "Skill",
+					"index": 3
+				},
+                {
+					"target": "Endurance",
+					"value": "100",
+					"id": "SwiftOneEnduranceSkillReward",
+					"type": "Skill",
+					"index": 4
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "value": "50",
+                        "index": 0,
+                        "parentId": "",
+                        "id": ""
+                    }
+                }
+            ],
+            "AvailableForFinish": [
+                {
+                    "_parent": "CounterCreator",
+                    "_props": {
+                        "value": "20",
+                        "type": "Elimination",
+                        "counter": {
+                            "id": "SwiftOneCounter",
+                            "conditions": [
+                                {
+                                    "_parent": "Kills",
+                                    "_props": {
+                                        "target": "AnyPmc",
+                                        "compareMethod": ">=",
+                                        "value": "1",
+                                        "id": "SwiftOneKillCOndition"
+                                    }
+                                },
+                                {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "target": [
+                                            "woods"
+                                        ],
+                                        "id": "SwiftOneLocationCondition"
+                                    }
+                                },
+                                {
+                                    "_parent": "Equipment",
+                                    "_props": {
+                                        "equipmentExclusive": [
+                                            [
+                                                "5a341c4686f77469e155819e"
+                                            ],
+                                            [
+                                                "5a341c4086f77401f2541505"
+                                            ],
+                                            [
+                                                "57bef4c42459772e8d35a53b"
+                                            ],
+                                            [
+                                                "5448e5284bdc2dcb718b4567"
+                                            ],
+                                            [
+                                                "5448e54d4bdc2dcc718b4568"
+                                            ],
+                                            [
+                                                "5b3f15d486f77432d0509248"
+                                            ],
+                                            [
+                                                "5448e5724bdc2ddf718b4568"
+                                            ],
+                                            [
+                                                "5645bcc04bdc2d363b8b4572"
+                                            ]
+                                        ],
+                                        "id": "SwiftOneEquipementExclusive"
+                                    }
+                                }
+                            ]
+                        },
+                        "index": 0,
+                        "parentId": "",
+                        "id": "60e729cf5698ee7b0505743c"
+                    }
+                }
+            ],
+            "Fail": []
+        }
     }
 }
