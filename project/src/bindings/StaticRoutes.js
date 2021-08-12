@@ -234,6 +234,9 @@ module.exports = {
     "/client/game/profile/savage/regenerate": {
         "aki": ProfileCallbacks.regenerateScav
     },
+    "/client/game/profile/voice/change": {
+        "aki": ProfileCallbacks.changeVoice
+    },
     "/client/game/profile/nickname/change": {
         "aki": ProfileCallbacks.changeNickname
     },
