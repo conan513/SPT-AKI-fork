@@ -43554,5 +43554,319 @@
             ],
             "Fail": []
         }
+    },
+	"60e71e8ed54b755a3b53eb67": {
+        "_id": "60e71e8ed54b755a3b53eb67",
+        "traderId": "5c0647fdd443bc2504c2d371",
+        "location": "any",
+        "image": "/files/quest/icon/608974af4b05530f55550c21.png",
+        "type": "Elimination",
+        "isKey": false,
+        "restartable": true,
+        "min_level": 0,
+        "canShowNotificationsInGame": true,
+        "instantComplete": false,
+        "secretQuest": false,
+        "rewards": {
+            "Started": [],
+            "Success": [
+                {
+                    "value": "280000",
+                    "id": "InventoryCheckExp",
+                    "type": "Experience",
+                    "index": 0
+                },
+                {
+                    "target": "FLIRrelentless",
+                    "value": "1",
+                    "id": "RelentlessFLIR",
+                    "type": "Item",
+                    "unknown": true,
+                    "index": 1,
+                    "items": [
+                        {
+                            "_id": "FLIRrelentless",
+                            "_tpl": "5d1b5e94d7ad1a2b865a96b0",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "target": "ExpeditionnaryRelentless",
+                    "value": "5",
+                    "id": "RelentlessExpeditionnary",
+                    "type": "Item",
+                    "index": 2,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "ExpeditionnaryRelentless",
+                            "_tpl": "5d1b371186f774253763a656",
+                            "upd": {
+                                "StackObjectsCount": 5
+                            }
+                        }
+                        
+                    ]
+                },
+                {
+                    "target": "GPRelentless",
+                    "value": "20",
+                    "id": "RelentlessGP",
+                    "type": "Item",
+                    "index": 3,
+                    "unknown": true,
+                    "items": [
+                        {
+                            "_id": "GPRelentless",
+                            "_tpl": "5d235b4d86f7742e017bc88a",
+                            "upd": {
+                                "StackObjectsCount": 20
+                            }
+                        }
+                        
+                    ]
+                },
+                {
+					"target": "Crafting",
+					"value": "200",
+					"id": "RelentlessCraftingSkill",
+					"type": "Skill",
+					"index": 4
+				},
+                {
+					"target": "Immunity",
+					"value": "100",
+					"id": "RelentlessImmunitySkill",
+					"type": "Skill",
+					"index": 5
+				}
+            ],
+            "Fail": []
+        },
+        "conditions": {
+            "AvailableForStart": [
+                {
+					"_parent": "Level",
+					"_props": {
+						"compareMethod": ">=",
+						"value": "40",
+						"index": 0,
+						"parentId": "",
+						"id": ""
+					}
+				}
+            ],
+            "AvailableForFinish": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "TagillaConditionRelentless",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bosstagilla"
+										],
+										"id": "TagillaKillRelentless"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e7259e465ea8368012cc45"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "KillaRelentlessCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bosskilla"
+										],
+										"id": "RelentlessKillaKill"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e725d8b567ff641b129555"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "RelentlessReshalaCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bossbully"
+										],
+										"id": "RelentlessReshalaKill"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e72604a6e322250215f066"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "RelentlessShturmanCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bosskojaniy"
+										],
+										"id": "RelentlessShturmanKill"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e7261382576b5f4f21c495"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "RelentlessGluharCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bossgluhar"
+										],
+										"id": "RelentlessGluharKill"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e7261eb567ff641b129557"
+					}
+				},
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Elimination",
+						"counter": {
+							"id": "RelentlessSanitarCounter",
+							"conditions": [
+								{
+									"_parent": "Kills",
+									"_props": {
+										"target": "Savage",
+										"compareMethod": ">=",
+										"value": "1",
+										"savageRole": [
+											"bossSanitar"
+										],
+										"id": "RelentlessSanitarKill"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e72629465ea8368012cc47"
+					}
+				}
+            ],
+            "Fail": [
+                {
+					"_parent": "CounterCreator",
+					"_props": {
+						"value": "1",
+						"type": "Exploration",
+						"counter": {
+							"id": "RelentlessFailCounters",
+							"conditions": [
+								{
+									"_parent": "ExitStatus",
+									"_props": {
+										"status": [
+											"Killed",
+											"Left",
+											"MissingInAction"
+										],
+										"id": "RelentlessFailCondition1"
+									}
+								},
+								{
+									"_parent": "Location",
+									"_props": {
+										"target": [
+											"Shoreline",
+											"Woods",
+											"bigmap",
+											"factory4_day",
+											"factory4_night",
+											"laboratory",
+											"Interchange",
+											"RezervBase"
+										],
+										"id": "RelentlessFailCondition2"
+									}
+								}
+							]
+						},
+						"index": 0,
+						"parentId": "",
+						"id": "60e7249bd1a062318d3d2244"
+					}
+				}
+            ]
+        }
     }
 }
