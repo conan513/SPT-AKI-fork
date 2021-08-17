@@ -9,7 +9,7 @@ class InventoryHelper
         let secureContainer = items.find(x => x.slotId === "SecuredContainer");
 
         // No container found, drop out
-        if (secureContainer === undefined)
+        if (!secureContainer)
         {
             return [];
         }
