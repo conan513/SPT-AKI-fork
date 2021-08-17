@@ -503,8 +503,9 @@ class RagfairServer
 
     static returnPlayerOffer(offer)
     {
-        const sessionID = String(offer.user.id);
-        const profile = ProfileController.getProfileByPmcId(sessionID);
+        const pmcID = String(offer.user.id);
+        const profile = ProfileController.getProfileByPmcId(pmcID);
+        const sessionID = profile.aid;
         const index = profile.RagfairInfo.offers.findIndex(o => o._id === offer._id);
 
         profile.RagfairInfo.rating -= RagfairConfig.sell.reputation.loss;

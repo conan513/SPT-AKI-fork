@@ -38,7 +38,7 @@ class NotifierController
     /**
      * Add message to queue
      */
-    static add(message, sessionID)
+    static add(sessionID, message)
     {
         NotifierController.get(sessionID).push(message);
     }
@@ -162,7 +162,7 @@ class NotifierController
         return {
             "server": HttpServer.buildUrl(),
             "channel_id": sessionID,
-            "url": "",
+            "url": NotifierController.getServer(sessionID),
             "notifierServer": NotifierController.getServer(sessionID),
             "ws": NotifierController.getWebSocketServer(sessionID)
         };

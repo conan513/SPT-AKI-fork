@@ -962,7 +962,7 @@ class RagfairController
 
                 for (let id of idsToRemove)
                 {
-                    let newIds = offer.items.filter(i => !idsToRemove.includes(i._id) && idsToRemove.includes(i.parentId));
+                    let newIds = offer.items.filter(i => !idsToRemove.includes(i._id) && idsToRemove.includes(i.parentId)).map(i => i._id);
 
                     if (newIds.length > 0)
                     {
