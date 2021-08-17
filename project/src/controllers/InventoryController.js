@@ -1035,7 +1035,7 @@ class InventoryController
                         info.upd.StackObjectsCount = 1;
                     }
                 }
-                
+
                 // add sorted items
                 items.push(info);
             }
@@ -1094,7 +1094,8 @@ class InventoryController
             }
 
             // remove marker
-            const markers = item.upd.Map.Markers.filter((marker) => {
+            const markers = item.upd.Map.Markers.filter((marker) =>
+            {
                 return marker.X !== body.X && marker.Y !== body.Y;
             });
             item.upd.Map.Markers = markers;
@@ -1103,7 +1104,7 @@ class InventoryController
             let output = ItemEventRouter.getOutput(sessionID);
             output.profileChanges[sessionID].items.change.push(item);
             return output;
-        }        
+        }
     }
 
     static editMapMarker(pmcData, body, sessionID)
@@ -1129,7 +1130,7 @@ class InventoryController
             let output = ItemEventRouter.getOutput(sessionID);
             output.profileChanges[sessionID].items.change.push(item);
             return output;
-        }        
+        }
     }
 }
 
