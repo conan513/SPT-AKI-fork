@@ -1058,28 +1058,78 @@ class InventoryController
         return ItemEventRouter.getOutput(sessionID);
     }
 
-    static addMapMarker(pmcData, body, sessionID)
+    static createMapMarker(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
-
         for (let item of pmcData.Inventory.items)
         {
             if (item._id !== body.item)
             {
-                // not the map item we look for
                 continue;
             }
 
+            // add marker
             if (!item.upd.Map)
             {
-                item.upd.Map = { "Markers": [] };
+                item.upd.Map = {
+                    "Markers": []
+                };
             }
 
             item.upd.Map.Markers.push(body.mapMarker);
-            output.profileChanges[sessionID].items.change.push(item);
-        }
 
-        return output;
+            // sync with client
+            let output = ItemEventRouter.getOutput(sessionID);
+            output.profileChanges[sessionID].items.change.push(item);
+            return output;
+        }
+    }
+
+    static deleteMapMarker(pmcData, body, sessionID)
+    {
+        for (let item of pmcData.Inventory.items)
+        {
+            if (item._id !== body.item)
+            {
+                continue;
+            }
+
+            // remove marker
+            const markers = item.upd.Map.Markers.filter((marker) => {
+                return marker.X !== body.X && marker.Y !== body.Y;
+            });
+            item.upd.Map.Markers = markers;
+
+            // sync with client
+            let output = ItemEventRouter.getOutput(sessionID);
+            output.profileChanges[sessionID].items.change.push(item);
+            return output;
+        }        
+    }
+
+    static editMapMarker(pmcData, body, sessionID)
+    {
+        for (let item of pmcData.Inventory.items)
+        {
+            if (item._id !== body.item)
+            {
+                continue;
+            }
+
+            // edit marker
+            for (let marker of item.upd.Map.Markers)
+            {
+                if (marker.X === body.X && marker.Y === body.Y)
+                {
+                    marker = body.mapMarker;
+                    break;
+                }
+            }
+
+            // sync with client
+            let output = ItemEventRouter.getOutput(sessionID);
+            output.profileChanges[sessionID].items.change.push(item);
+            return output;
+        }        
     }
 }
 
