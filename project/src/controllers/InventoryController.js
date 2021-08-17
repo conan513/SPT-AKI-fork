@@ -1035,6 +1035,7 @@ class InventoryController
                         info.upd.StackObjectsCount = 1;
                     }
                 }
+                
                 // add sorted items
                 items.push(info);
             }
