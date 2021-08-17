@@ -7,7 +7,6 @@ class RepairController
     static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
-        const trader = TraderController.getTrader(body.tid, sessionID);
         const coef = TraderController.getLoyaltyLevel(body.tid, pmcData).repair_price_coef;
         const repairRate = (coef === 0) ? 1 : (coef / 100 + 1);
 
@@ -51,13 +50,26 @@ class RepairController
                 "MaxDurability": (repairable.MaxDurability > durability) ? durability : repairable.MaxDurability
             };
 
-            //repairing mask cracks
+            // repairing mask cracks
             if ("FaceShield" in itemToRepair.upd && itemToRepair.upd.FaceShield.Hits > 0)
             {
                 itemToRepair.upd.FaceShield.Hits = 0;
             }
 
             output.profileChanges[sessionID].items.change.push(itemToRepair);
+
+            // add skill points for repairing weapons
+            if (PresetController.isPreset(itemToRepair))
+            {
+                for (let skill of pmcData.Skills.Common)
+                {
+                    if (skill.Id === "WeaponTreatment")
+                    {
+                        skill.Progress += parseInt(DatabaseServer.tables.globals.SkillsSettings.WeaponTreatment.SkillPointsPerRepair);
+                        break;
+                    }
+                }
+            }
         }
 
         return output;
