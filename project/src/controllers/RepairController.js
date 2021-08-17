@@ -4,6 +4,19 @@ require("../Lib.js");
 
 class RepairController
 {
+    static isWeaponTemplate(tpl)
+    {
+        const weaponHandbookId = "5b5f78dc86f77409407a7f8e";
+        let weaponTpls = [];
+
+        for (const category of HandbookController.childrenCategories(weaponHandbookId))
+        {
+            weaponTpls = [ ...weaponTpls, ...HandbookController.templatesWithParent(category) ];
+        }
+
+        return weaponTpls.includes(tpl);
+    }
+
     static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
@@ -59,13 +72,13 @@ class RepairController
             output.profileChanges[sessionID].items.change.push(itemToRepair);
 
             // add skill points for repairing weapons
-            if (PresetController.isPreset(itemToRepair))
+            if (RepairController.isWeaponTemplate(itemToRepair._tpl))
             {
                 for (let skill of pmcData.Skills.Common)
                 {
                     if (skill.Id === "WeaponTreatment")
                     {
-                        skill.Progress += parseInt(DatabaseServer.tables.globals.SkillsSettings.WeaponTreatment.SkillPointsPerRepair);
+                        skill.Progress += parseInt(DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair);
                         break;
                     }
                 }
