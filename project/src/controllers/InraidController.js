@@ -120,6 +120,12 @@ class InraidController
             TraderController.lvlUp(fenceID, sessionID);
             pmcData.TradersInfo[fenceID].loyaltyLevel = Math.max(pmcData.TradersInfo[fenceID].loyaltyLevel, 1);
 
+            // scav died, regen scav loadout and set timer
+            if (isDead)
+            {
+                ProfileController.generateScav(sessionID);
+            }
+
             return;
         }
         else
