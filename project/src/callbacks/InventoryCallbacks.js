@@ -68,6 +68,11 @@ class InventoryCallbacks
     {
         return InventoryController.sortInventory(pmcData, body, sessionID);
     }
+
+    static addMapMarker(pmcData, body, sessionID)
+    {
+        return InventoryController.addMapMarker(pmcData, body, sessionID);
+    }
 }
 
 module.exports = InventoryCallbacks;

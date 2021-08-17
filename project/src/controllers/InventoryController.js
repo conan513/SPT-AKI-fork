@@ -276,6 +276,7 @@ class InventoryController
                     tmp_counter++;
                 }
             }
+
             location = tmp_counter;//wrong location for first cartrige
         }
 
@@ -302,9 +303,11 @@ class InventoryController
                     "location": location,
                     "upd": { "StackObjectsCount": body.count }
                 });
+
                 return output;
             }
         }
+
         return "";
     }
 
@@ -665,6 +668,7 @@ class InventoryController
             // Damaged ammo box are not loaded.
             const itemInfo = ItemHelper.getItem(itemToAdd.itemRef._tpl)[1];
             let ammoBoxInfo = itemInfo._props.StackSlots;
+
             if (ammoBoxInfo !== undefined && itemInfo._name.indexOf("_damaged") < 0)
             {
                 // Cartridge info seems to be an array of size 1 for some reason... (See AmmoBox constructor in client code)
@@ -769,12 +773,15 @@ class InventoryController
                                 "upd": upd
                             });
                         }
+
                         toDo.push([itemLib[tmpKey]._id, newItem]);
                     }
                 }
+
                 toDo.splice(0, 1);
             }
         }
+
         return output;
     }
 
@@ -830,6 +837,7 @@ class InventoryController
                 return ItemEventRouter.getOutput(sessionID);
             }
         }
+
         return "";
     }
 
@@ -857,9 +865,11 @@ class InventoryController
                 {
                     item.upd = { "Tag": { "Color": body.TagColor, "Name": cleanedTag } };
                 }
+
                 return ItemEventRouter.getOutput(sessionID);
             }
         }
+
         return "";
     }
 
@@ -997,6 +1007,7 @@ class InventoryController
             {
                 // remove unsorted items
                 let info = {};
+
                 items = items.filter((item) =>
                 {
                     if (item._id === target._id)
@@ -1005,6 +1016,7 @@ class InventoryController
                     }
                     return item._id !== target._id;
                 });
+
                 if (typeof (info._tpl) !== "string")
                 {
                     info = target;
@@ -1043,6 +1055,30 @@ class InventoryController
 
         pmcData.Inventory.items = items;
         return ItemEventRouter.getOutput(sessionID);
+    }
+
+    static addMapMarker(pmcData, body, sessionID)
+    {
+        let output = ItemEventRouter.getOutput(sessionID);
+
+        for (let item of pmcData.Inventory.items)
+        {
+            if (item._id !== body.item)
+            {
+                // not the map item we look for
+                continue;
+            }
+
+            if (!item.upd.Map)
+            {
+                item.upd.Map = { "Markers": [] };
+            }
+
+            item.upd.Map.Markers.push(body.mapMarker);
+            output.profileChanges[sessionID].items.change.push(item);
+        }
+
+        return output;
     }
 }
 
