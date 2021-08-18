@@ -137,5 +137,11 @@ module.exports = {
     },
     "CreateMapMarker": {
         "aki": InventoryCallbacks.createMapMarker
+    },
+    "DeleteMapMarker": {
+        "aki": InventoryCallbacks.deleteMapMarker
+    },
+    "EditMapMarker": {
+        "aki": InventoryCallbacks.editMapMarker
     }
 };
