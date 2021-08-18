@@ -235,6 +235,12 @@ class ProfileController
         return output;
     }
 
+    static changeVoice(info, sessionID)
+    {
+        const pmcData = ProfileController.getPmcProfile(sessionID);
+        pmcData.Info.Voice = info.voice;
+    }
+
     static getProfileByPmcId(pmcId)
     {
         for (const sessionID in SaveServer.profiles)

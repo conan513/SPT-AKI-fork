@@ -25,6 +25,12 @@ class ProfileCallbacks
         return HttpResponse.getBody([ProfileController.generateScav(sessionID)]);
     }
 
+    static changeVoice(url, info, sessionID)
+    {
+        ProfileController.changeVoice(info, sessionID);
+        return HttpResponse.nullResponse();
+    }
+
     static changeNickname(url, info, sessionID)
     {
         const output = ProfileController.changeNickname(info, sessionID);
