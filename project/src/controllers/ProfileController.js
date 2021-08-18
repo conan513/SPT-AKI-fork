@@ -237,7 +237,7 @@ class ProfileController
 
     static changeVoice(info, sessionID)
     {
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         pmcData.Info.Voice = info.voice;
     }
 
