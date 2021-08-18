@@ -147,7 +147,9 @@ class QuestController
             }
 
             for (let i = 0; i < itemCount; i++)
+            {
                 rewardItems = rewardItems.concat(ItemHelper.replaceIDs(null, items));
+            }
         }
 
         return rewardItems;
@@ -175,9 +177,10 @@ class QuestController
 
     static applyQuestReward(pmcData, body, state, sessionID)
     {
-        let intelCenterBonus = 0;//percentage of money reward
+        let output = ItemEventRouter.getOutput(sessionID);
+        let intelCenterBonus = 0; // percentage of money reward
 
-        //find if player has money reward boost
+        // find if player has money reward boost
         const area = pmcData.Hideout.Areas.find(area => area.type === 11);
         if (area)
         {
@@ -213,11 +216,14 @@ class QuestController
                 case "Skill":
                     pmcData = ProfileController.getPmcProfile(sessionID);
 
-                    for (let skill of pmcData.Skills.Common)
+                    for (let i in pmcData.Skills.Common)
                     {
+                        let skill = pmcData.Skills.Common[i];
+
                         if (skill.Id === reward.target)
                         {
                             skill.Progress += parseInt(reward.value);
+                            output.profileChanges[sessionID].skills.Common[i].Progress = skill.Progress;
                             break;
                         }
                     }
@@ -226,6 +232,7 @@ class QuestController
                 case "Experience":
                     pmcData = ProfileController.getPmcProfile(sessionID);
                     pmcData.Info.Experience += parseInt(reward.value);
+                    output.profileChanges[sessionID].experience = pmcData.Info.Experience;
                     break;
 
                 case "TraderStanding":
@@ -245,6 +252,7 @@ class QuestController
                     break;
             }
         }
+
         return QuestController.getQuestRewardItems(quest, state);
     }
 
