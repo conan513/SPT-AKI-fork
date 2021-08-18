@@ -134,5 +134,14 @@ module.exports = {
     },
     "RemoveFromWishList": {
         "aki": WishlistCallbacks.removeFromWishlist
+    },
+    "CreateMapMarker": {
+        "aki": InventoryCallbacks.createMapMarker
+    },
+    "DeleteMapMarker": {
+        "aki": InventoryCallbacks.deleteMapMarker
+    },
+    "EditMapMarker": {
+        "aki": InventoryCallbacks.editMapMarker
     }
 };

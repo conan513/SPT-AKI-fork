@@ -68,6 +68,21 @@ class InventoryCallbacks
     {
         return InventoryController.sortInventory(pmcData, body, sessionID);
     }
+
+    static createMapMarker(pmcData, body, sessionID)
+    {
+        return InventoryController.createMapMarker(pmcData, body, sessionID);
+    }
+
+    static deleteMapMarker(pmcData, body, sessionID)
+    {
+        return InventoryController.deleteMapMarker(pmcData, body, sessionID);
+    }
+
+    static editMapMarker(pmcData, body, sessionID)
+    {
+        return InventoryController.editMapMarker(pmcData, body, sessionID);
+    }
 }
 
 module.exports = InventoryCallbacks;
