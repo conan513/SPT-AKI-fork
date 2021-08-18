@@ -276,6 +276,7 @@ class InventoryController
                     tmp_counter++;
                 }
             }
+
             location = tmp_counter;//wrong location for first cartrige
         }
 
@@ -302,9 +303,11 @@ class InventoryController
                     "location": location,
                     "upd": { "StackObjectsCount": body.count }
                 });
+
                 return output;
             }
         }
+
         return "";
     }
 
@@ -665,6 +668,7 @@ class InventoryController
             // Damaged ammo box are not loaded.
             const itemInfo = ItemHelper.getItem(itemToAdd.itemRef._tpl)[1];
             let ammoBoxInfo = itemInfo._props.StackSlots;
+
             if (ammoBoxInfo !== undefined && itemInfo._name.indexOf("_damaged") < 0)
             {
                 // Cartridge info seems to be an array of size 1 for some reason... (See AmmoBox constructor in client code)
@@ -769,12 +773,15 @@ class InventoryController
                                 "upd": upd
                             });
                         }
+
                         toDo.push([itemLib[tmpKey]._id, newItem]);
                     }
                 }
+
                 toDo.splice(0, 1);
             }
         }
+
         return output;
     }
 
@@ -830,6 +837,7 @@ class InventoryController
                 return ItemEventRouter.getOutput(sessionID);
             }
         }
+
         return "";
     }
 
@@ -857,9 +865,11 @@ class InventoryController
                 {
                     item.upd = { "Tag": { "Color": body.TagColor, "Name": cleanedTag } };
                 }
+
                 return ItemEventRouter.getOutput(sessionID);
             }
         }
+
         return "";
     }
 
@@ -997,6 +1007,7 @@ class InventoryController
             {
                 // remove unsorted items
                 let info = {};
+
                 items = items.filter((item) =>
                 {
                     if (item._id === target._id)
@@ -1005,6 +1016,7 @@ class InventoryController
                     }
                     return item._id !== target._id;
                 });
+
                 if (typeof (info._tpl) !== "string")
                 {
                     info = target;
@@ -1023,6 +1035,7 @@ class InventoryController
                         info.upd.StackObjectsCount = 1;
                     }
                 }
+
                 // add sorted items
                 items.push(info);
             }
@@ -1043,6 +1056,51 @@ class InventoryController
 
         pmcData.Inventory.items = items;
         return ItemEventRouter.getOutput(sessionID);
+    }
+
+    static createMapMarker(pmcData, body, sessionID)
+    {
+        const item = pmcData.Inventory.items.find(i => i._id === body.item);
+
+        // add marker
+        item.upd.Map = item.upd.Map || { "Markers": [] };
+        item.upd.Map.Markers.push(body.mapMarker);
+
+        // sync with client
+        let output = ItemEventRouter.getOutput(sessionID);
+        output.profileChanges[sessionID].items.change.push(item);
+        return output;
+    }
+
+    static deleteMapMarker(pmcData, body, sessionID)
+    {
+        const item = pmcData.Inventory.items.find(i => i._id === body.item);
+
+        // remove marker
+        const markers = item.upd.Map.Markers.filter((marker) =>
+        {
+            return marker.X !== body.X && marker.Y !== body.Y;
+        });
+        item.upd.Map.Markers = markers;
+
+        // sync with client
+        let output = ItemEventRouter.getOutput(sessionID);
+        output.profileChanges[sessionID].items.change.push(item);
+        return output;
+    }
+
+    static editMapMarker(pmcData, body, sessionID)
+    {
+        const item = pmcData.Inventory.items.find(i => i._id === body.item);
+
+        // edit marker
+        const index = item.upd.Map.Markers.findIndex(m => m.X === body.X && m.Y === body.Y);
+        item.upd.Map.Markers[index] = body.mapMarker;
+
+        // sync with client
+        let output = ItemEventRouter.getOutput(sessionID);
+        output.profileChanges[sessionID].items.change.push(item);
+        return output;
     }
 }
 
