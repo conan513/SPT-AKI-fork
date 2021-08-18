@@ -214,19 +214,10 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
+                    const index = pmcData.Skills.Common.findIndex(s => s.Id === reward.target);
                     pmcData = ProfileController.getPmcProfile(sessionID);
-
-                    for (let i in pmcData.Skills.Common)
-                    {
-                        let skill = pmcData.Skills.Common[i];
-
-                        if (skill.Id === reward.target)
-                        {
-                            skill.Progress += parseInt(reward.value);
-                            output.profileChanges[sessionID].skills.Common[i].Progress = skill.Progress;
-                            break;
-                        }
-                    }
+                    pmcData.Skills.Common[index].Progress += parseInt(reward.value);
+                    output.profileChanges[sessionID].skills.Common[index].Progress = pmcData.Skills.Common[index].Progress;
                     break;
 
                 case "Experience":
