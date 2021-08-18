@@ -74,11 +74,23 @@ class RepairController
             // add skill points for repairing weapons
             if (RepairController.isWeaponTemplate(itemToRepair._tpl))
             {
-                for (let skill of pmcData.Skills.Common)
+                const progress = DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair;
+
+                for (let i in pmcData.Skills.Common)
                 {
+                    let skill = pmcData.Skills.Common[i];
+
                     if (skill.Id === "WeaponTreatment")
                     {
-                        skill.Progress += parseInt(DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair);
+                        // update profile
+                        skill.Progress += parseInt(progress);
+                        skill.LastAccess = TimeUtil.getTimestamp();
+
+                        // sync client
+                        let outputSkill = output.profileChanges[sessionID].skills.Common[i];
+                        outputSkill.Progress = skill.Progress;
+                        outputSkill.LastAccess = skill.LastAccess;
+
                         break;
                     }
                 }

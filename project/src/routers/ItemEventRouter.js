@@ -53,18 +53,7 @@ class ItemEventRouter
 
     static resetOutput(sessionID)
     {
-        if (!sessionID)
-        {
-            throw "SessionID is required";
-        }
-
         const pmcData = ProfileController.getPmcProfile(sessionID);
-        let skills = JsonUtil.clone(pmcData.Skills.Common);
-
-        for (let skill of skills)
-        {
-            skill.Progress = 0;
-        }
 
         ItemEventRouter.output.profileChanges[sessionID] = {
             "_id": sessionID,
@@ -79,7 +68,7 @@ class ItemEventRouter
             },
             "production": {},
             "skills": {
-                "Common": skills,
+                "Common": JsonUtil.clone(pmcData.Skills.Common),
                 "Mastering": [],
                 "Points": 0
             },
