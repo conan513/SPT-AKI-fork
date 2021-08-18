@@ -43,7 +43,7 @@ class ItemEventRouter
             ItemEventRouter.resetOutput(sessionID);
         }
 
-        return ItemEventRouter.profileChanges;
+        return ItemEventRouter.output;
     }
 
     static setOutput(data)
