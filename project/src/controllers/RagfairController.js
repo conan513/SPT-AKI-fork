@@ -850,7 +850,7 @@ class RagfairController
 
         if (differenceInMins > 1)
         {
-            let newEndTime = 71 + TimeUtil.getTimestamp();
+            let newEndTime = 11 + TimeUtil.getTimestamp();
             offers[index].endTime = Math.round(newEndTime);
         }
 
