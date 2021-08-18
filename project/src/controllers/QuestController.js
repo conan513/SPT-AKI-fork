@@ -177,7 +177,6 @@ class QuestController
 
     static applyQuestReward(pmcData, body, state, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
         let intelCenterBonus = 0; // percentage of money reward
 
         // find if player has money reward boost
@@ -206,7 +205,7 @@ class QuestController
 
         if (intelCenterBonus > 0)
         {
-            quest = QuestController.applyMoneyBoost(quest, intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
+            quest = QuestController.applyMoneyBoost(quest, intelCenterBonus);    // money = money + (money * intelCenterBonus / 100)
         }
 
         for (const reward of quest.rewards[state])
@@ -214,10 +213,7 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
-                    const index = pmcData.Skills.Common.findIndex(s => s.Id === reward.target);
-                    pmcData = ProfileController.getPmcProfile(sessionID);
-                    pmcData.Skills.Common[index].Progress += parseInt(reward.value);
-                    output.profileChanges[sessionID].skills.Common[index].Progress = pmcData.Skills.Common[index].Progress;
+                    QuestHelper.rewardSkillPoints(pmcData, ItemEventRouter.getOutput(sessionID), reward.target, reward.value);
                     break;
 
                 case "Experience":
