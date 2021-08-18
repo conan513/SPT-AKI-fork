@@ -6,15 +6,11 @@ class RepairController
 {
     static isWeaponTemplate(tpl)
     {
-        const weaponHandbookId = "5b5f78dc86f77409407a7f8e";
-        let weaponTpls = [];
-
-        for (const category of HandbookController.childrenCategories(weaponHandbookId))
-        {
-            weaponTpls = [ ...weaponTpls, ...HandbookController.templatesWithParent(category) ];
-        }
-
-        return weaponTpls.includes(tpl);
+        const itemTemplates = DatabaseServer.tables.templates.items;
+        const baseItem = itemTemplates[tpl];
+        const baseNode = itemTemplates[baseItem._parent];
+        const parentNode = itemTemplates[baseNode._parent];
+        return parentNode._id === "5422acb9af1c889c16000029";
     }
 
     static repair(pmcData, body, sessionID)
