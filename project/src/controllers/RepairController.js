@@ -71,13 +71,13 @@ class RepairController
             if (RepairController.isWeaponTemplate(itemToRepair._tpl))
             {
                 const progress = DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair;
-                const index = pmcData.Skills.Common.findIndex(s => s.Id === reward.target);
+                const index = pmcData.Skills.Common.findIndex(s => s.Id === "WeaponTreatment");
                 const profileSkill = pmcData.Skills.Common[index];
                 const clientSkill = output.profileChanges[sessionID].skills.Common[index];
 
                 profileSkill.Progress += parseInt(progress);
                 profileSkill.LastAccess = TimeUtil.getTimestamp();
-                clientSkill.Progress = skill.Progress;
+                clientSkill.Progress = profileSkill.Progress;
                 clientSkill.LastAccess = profileSkill.LastAccess;
             }
         }
