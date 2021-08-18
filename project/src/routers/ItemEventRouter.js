@@ -25,7 +25,7 @@ class ItemEventRouter
             else
             {
                 Logger.error(`[UNHANDLED EVENT] ${body.Action}`);
-                console.log(body);
+                Logger.write(body);
             }
         }
 
