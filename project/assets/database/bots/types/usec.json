@@ -475,8 +475,13 @@
 				"5c1a1cc52e221602b3136e3d",
 				"557ff21e4bdc2d89578b4586",
 				"5aa2b9aee5b5b00015693121"
+			"ArmBand": [
+				"5b3f3af486f774679e752c1f",
+				"5b3f3b0186f774021a2afef7",
+				"5b3f3ade86f7746b6b790d8e",
+				"5b3f3b0e86f7746752107cda",
+				"5b3f16c486f7747c327f55f7"
 			],
-			"ArmBand": [],
 			"TacticalVest": [
 				"544a5caa4bdc2d1a388b4568",
 				"5c0e9f2c86f77432297fe0a3",
@@ -4338,7 +4343,7 @@
 			"FaceCover": 53,
 			"ArmorVest": 41,
 			"Eyewear": 49,
-			"ArmBand": 0,
+			"ArmBand": 25,
 			"TacticalVest": 100,
 			"Backpack": 80,
 			"FirstPrimaryWeapon": 99,
