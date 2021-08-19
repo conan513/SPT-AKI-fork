@@ -429,7 +429,14 @@
 				"5ca20ee186f774799474abc2",
 				"5645bc214bdc2d363b8b4571"
 			],
-			"Earpiece": [],
+			"Earpiece": [
+				"5645bcc04bdc2d363b8b4572",
+				"5aa2ba71e5b5b000137b758f",
+				"6033fa48ffd42c541047f728",
+				"5c165d832e2216398b5a7e36",
+				"5f60cd6cf2bcbb675b00dac6",
+				"5e4d34ca86f774264f758330"
+			],
 			"FaceCover": [
 				"572b7fa524597762b747ce82",
 				"5bd06f5d86f77427101ad47c",
@@ -4468,13 +4475,13 @@
 	"chances": {
 		"equipment": {
 			"Headwear": 74,
-			"Earpiece": 0,
+			"Earpiece": 50,
 			"FaceCover": 52,
 			"ArmorVest": 39,
 			"Eyewear": 51,
 			"ArmBand": 0,
 			"TacticalVest": 100,
-			"Backpack": 45,
+			"Backpack": 80,
 			"FirstPrimaryWeapon": 99,
 			"SecondPrimaryWeapon": 0,
 			"Holster": 20,
