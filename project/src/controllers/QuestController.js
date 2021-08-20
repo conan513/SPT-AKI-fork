@@ -177,6 +177,7 @@ class QuestController
 
     static applyQuestReward(pmcData, body, state, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         let intelCenterBonus = 0; // percentage of money reward
 
         // find if player has money reward boost
@@ -213,7 +214,7 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
-                    QuestHelper.rewardSkillPoints(pmcData, ItemEventRouter.getOutput(sessionID), reward.target, reward.value);
+                    QuestHelper.rewardSkillPoints(pmcData, output, reward.target, reward.value);
                     break;
 
                 case "Experience":

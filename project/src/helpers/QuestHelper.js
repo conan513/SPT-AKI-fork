@@ -91,6 +91,13 @@ class QuestHelper
     static rewardSkillPoints(pmcData, output, skillName, progress)
     {
         const index = pmcData.Skills.Common.findIndex(s => s.Id === skillName);
+
+        if (index === -1)
+        {
+            Logger.error(`Skill ${skillName} not found!`);
+            return;
+        }
+
         const profileSkill = pmcData.Skills.Common[index];
         const clientSkill = output.profileChanges[sessionID].skills.Common[index];
 
