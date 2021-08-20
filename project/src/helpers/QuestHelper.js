@@ -88,7 +88,7 @@ class QuestHelper
         return after;
     }
 
-    static rewardSkillPoints(pmcData, output, skillName, progress)
+    static rewardSkillPoints(sessionID, pmcData, output, skillName, progress)
     {
         const index = pmcData.Skills.Common.findIndex(s => s.Id === skillName);
 

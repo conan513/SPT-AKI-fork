@@ -71,7 +71,7 @@ class RepairController
             if (RepairController.isWeaponTemplate(itemToRepair._tpl))
             {
                 const progress = DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair;
-                QuestHelper.rewardSkillPoints(pmcData, output, "WeaponTreatment", progress);
+                QuestHelper.rewardSkillPoints(sessionID, pmcData, output, "WeaponTreatment", progress);
             }
         }
 

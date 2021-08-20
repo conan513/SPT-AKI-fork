@@ -214,7 +214,7 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
-                    QuestHelper.rewardSkillPoints(pmcData, output, reward.target, reward.value);
+                    QuestHelper.rewardSkillPoints(sessionID, pmcData, output, reward.target, reward.value);
                     break;
 
                 case "Experience":
