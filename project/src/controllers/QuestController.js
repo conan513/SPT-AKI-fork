@@ -147,7 +147,9 @@ class QuestController
             }
 
             for (let i = 0; i < itemCount; i++)
+            {
                 rewardItems = rewardItems.concat(ItemHelper.replaceIDs(null, items));
+            }
         }
 
         return rewardItems;
@@ -175,9 +177,10 @@ class QuestController
 
     static applyQuestReward(pmcData, body, state, sessionID)
     {
-        let intelCenterBonus = 0;//percentage of money reward
+        let output = ItemEventRouter.getOutput(sessionID);
+        let intelCenterBonus = 0; // percentage of money reward
 
-        //find if player has money reward boost
+        // find if player has money reward boost
         const area = pmcData.Hideout.Areas.find(area => area.type === 11);
         if (area)
         {
@@ -203,7 +206,7 @@ class QuestController
 
         if (intelCenterBonus > 0)
         {
-            quest = QuestController.applyMoneyBoost(quest, intelCenterBonus);    //money = money + (money*intelCenterBonus/100)
+            quest = QuestController.applyMoneyBoost(quest, intelCenterBonus);    // money = money + (money * intelCenterBonus / 100)
         }
 
         for (const reward of quest.rewards[state])
@@ -211,21 +214,13 @@ class QuestController
             switch (reward.type)
             {
                 case "Skill":
-                    pmcData = ProfileController.getPmcProfile(sessionID);
-
-                    for (let skill of pmcData.Skills.Common)
-                    {
-                        if (skill.Id === reward.target)
-                        {
-                            skill.Progress += parseInt(reward.value);
-                            break;
-                        }
-                    }
+                    QuestHelper.rewardSkillPoints(sessionID, pmcData, output, reward.target, reward.value);
                     break;
 
                 case "Experience":
                     pmcData = ProfileController.getPmcProfile(sessionID);
                     pmcData.Info.Experience += parseInt(reward.value);
+                    output.profileChanges[sessionID].experience = pmcData.Info.Experience;
                     break;
 
                 case "TraderStanding":
@@ -245,6 +240,7 @@ class QuestController
                     break;
             }
         }
+
         return QuestController.getQuestRewardItems(quest, state);
     }
 

@@ -4,10 +4,18 @@ require("../Lib.js");
 
 class RepairController
 {
+    static isWeaponTemplate(tpl)
+    {
+        const itemTemplates = DatabaseServer.tables.templates.items;
+        const baseItem = itemTemplates[tpl];
+        const baseNode = itemTemplates[baseItem._parent];
+        const parentNode = itemTemplates[baseNode._parent];
+        return parentNode._id === "5422acb9af1c889c16000029";
+    }
+
     static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
-        const trader = TraderController.getTrader(body.tid, sessionID);
         const coef = TraderController.getLoyaltyLevel(body.tid, pmcData).repair_price_coef;
         const repairRate = (coef === 0) ? 1 : (coef / 100 + 1);
 
@@ -51,13 +59,20 @@ class RepairController
                 "MaxDurability": (repairable.MaxDurability > durability) ? durability : repairable.MaxDurability
             };
 
-            //repairing mask cracks
+            // repairing mask cracks
             if ("FaceShield" in itemToRepair.upd && itemToRepair.upd.FaceShield.Hits > 0)
             {
                 itemToRepair.upd.FaceShield.Hits = 0;
             }
 
             output.profileChanges[sessionID].items.change.push(itemToRepair);
+
+            // add skill points for repairing weapons
+            if (RepairController.isWeaponTemplate(itemToRepair._tpl))
+            {
+                const progress = DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair;
+                QuestHelper.rewardSkillPoints(sessionID, pmcData, output, "WeaponTreatment", progress);
+            }
         }
 
         return output;

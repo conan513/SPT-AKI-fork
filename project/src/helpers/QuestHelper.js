@@ -88,6 +88,25 @@ class QuestHelper
         return after;
     }
 
+    static rewardSkillPoints(sessionID, pmcData, output, skillName, progress)
+    {
+        const index = pmcData.Skills.Common.findIndex(s => s.Id === skillName);
+
+        if (index === -1)
+        {
+            Logger.error(`Skill ${skillName} not found!`);
+            return;
+        }
+
+        const profileSkill = pmcData.Skills.Common[index];
+        const clientSkill = output.profileChanges[sessionID].skills.Common[index];
+
+        profileSkill.Progress += parseInt(progress);
+        profileSkill.LastAccess = TimeUtil.getTimestamp();
+        clientSkill.Progress = profileSkill.Progress;
+        clientSkill.LastAccess = profileSkill.LastAccess;
+    }
+
     /**
      * Debug Routine for showing some information on the
      * quest list in question.
