@@ -7,7 +7,7 @@ class WatermarkLocale
     static locales = {
         "en-US": {
             "description": [
-                "https://www.guilded.gg/senkospub",
+                "https://discord.com/invite/f58U3MsF",
                 "",
                 "This work is free of charge",
                 "Commercial use is prohibited"
@@ -54,7 +54,7 @@ class WatermarkLocale
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "2.0.0-A8";
+    static version = "2.0.0-A9";
     static text = [];
     static versionLabel = "";
 
