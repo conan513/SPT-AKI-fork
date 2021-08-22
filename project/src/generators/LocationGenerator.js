@@ -192,6 +192,11 @@ class LocationGenerator
                 "location": { "x": result.x, "y": result.y, "r": rot }
             };
 
+            if (items.some(x => x._id === containerItem._id))
+            {
+                // Item ID collision detected, regenerating to random ID
+                containerItem._id = HashUtil.generate();
+            }
 
             if (item._parent !== "543be5dd4bdc2deb348b4569")
             {
