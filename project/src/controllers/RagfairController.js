@@ -773,7 +773,7 @@ class RagfairController
             };
 
             output = PaymentController.payMoney(pmcData, request, sessionID, output);
-            if (output.warnings.count > 0)
+            if (output.warnings.length > 0)
             {
                 return HttpResponse.appendErrorToOutput(output, "Couldn't pay commission fee", "Transaction failed");
             }
@@ -891,7 +891,7 @@ class RagfairController
             };
 
             output = PaymentController.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID, output);
-            if (output.warnings.count > 0)
+            if (output.warnings.length > 0)
             {
                 return HttpResponse.appendErrorToOutput(output, "Couldn't pay commission fee", "Transaction failed");
             }

@@ -19,9 +19,9 @@ class TradeController
         const callback = () =>
         {
             output = PaymentController.payMoney(pmcData, body, sessionID, output);
-            if (output.warnings.count > 0)
+            if (output.warnings.length > 0)
             {
-                return output;
+                throw "Transaction failed";
             }
 
             Logger.success(`Bought item: ${body.item_id}`);

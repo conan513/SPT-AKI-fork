@@ -154,7 +154,7 @@ class HealthController
         };
 
         output = PaymentController.payMoney(pmcData, body, sessionID, output);
-        if (output.warnings.count > 0)
+        if (output.warnings.length > 0)
         {
             return output;
         }

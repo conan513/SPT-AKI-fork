@@ -299,7 +299,7 @@ class InsuranceController
 
         // pay for the item insurance
         output = PaymentController.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID, output);
-        if (output.warnings.count > 0)
+        if (output.warnings.length > 0)
         {
             return output;
         }
