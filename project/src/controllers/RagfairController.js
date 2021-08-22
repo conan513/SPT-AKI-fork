@@ -218,7 +218,7 @@ class RagfairController
         const item = offer.items[0];
         const money = offer.requirements[0]._tpl;
 
-        if (pmcProfile.Info.Level < 20 && offer.user.memberType == 0)
+        if (pmcProfile.Info.Level < 20 && offer.user.memberType === 0)
         {
             // Skip item if player is < level 20 and item is from a dynamically generated source
             return false;
