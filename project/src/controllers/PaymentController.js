@@ -83,11 +83,10 @@ class PaymentController
      * @param {Object} pmcData
      * @param {Object} body
      * @param {string} sessionID
-     * @returns boolean
+     * @returns Object
      */
-    static payMoney(pmcData, body, sessionID)
+    static payMoney(pmcData, body, sessionID, output)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
         let trader = TraderController.getTrader(body.tid, sessionID);
         let currencyTpl = PaymentController.getCurrency(trader.currency);
 
@@ -114,7 +113,7 @@ class PaymentController
         }
 
         // find all items with currency _tpl id
-        const moneyItems = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
+        const moneyItemsInInventory = ItemHelper.findBarterItems("tpl", pmcData, currencyTpl);
 
         // only pay with money which is not in secured container.
         // const moneyItems = moneyItemsTemp.filter(item => item.slotId = "hideout");
@@ -125,17 +124,19 @@ class PaymentController
 
         // prepare the amount of money in the profile
         let amountMoney = 0;
-        amountMoney = moneyItems.reduce((accumulator, item) => accumulator + item.upd.StackObjectsCount, 0);
+        amountMoney = moneyItemsInInventory.reduce((accumulator, item) => accumulator + item.upd.StackObjectsCount, 0);
 
         // if no money in inventory or amount is not enough we return false
-        if (moneyItems.length <= 0 || amountMoney < barterPrice)
+        if (moneyItemsInInventory.length <= 0 || amountMoney < barterPrice)
         {
-            return false;
+            Logger.error(`Profile did not have enough money for transaction: needed ${barterPrice}, had ${amountMoney}`);
+            output = HttpResponse.appendErrorToOutput(output, "Not enough money to complete transaction", "Transaction Error");
+            return output;
         }
 
         let leftToPay = barterPrice;
 
-        for (let moneyItem of moneyItems)
+        for (let moneyItem of moneyItemsInInventory)
         {
             let itemAmount = moneyItem.upd.StackObjectsCount;
             if (leftToPay >= itemAmount)
@@ -164,10 +165,8 @@ class PaymentController
         TraderController.lvlUp(body.tid, sessionID);
         Object.assign(output.profileChanges[sessionID].traderRelations, { [body.tid]: pmcData.TradersInfo[body.tid] });
 
-        // save changes
         Logger.success("Items taken. Status OK.");
-        ItemEventRouter.setOutput(output);
-        return true;
+        return output;
     }
 
     /**

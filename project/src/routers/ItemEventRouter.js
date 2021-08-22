@@ -12,6 +12,7 @@ class ItemEventRouter
 
     static handleEvents(info, sessionID)
     {
+        ItemEventRouter.resetOutput(sessionID);
         let result = {};
 
         for (let body of info.data)
@@ -32,7 +33,6 @@ class ItemEventRouter
             }
         }
 
-        ItemEventRouter.resetOutput(sessionID);
         return result;
     }
 
@@ -44,11 +44,6 @@ class ItemEventRouter
         }
 
         return ItemEventRouter.output;
-    }
-
-    static setOutput(data)
-    {
-        ItemEventRouter.output = data;
     }
 
     static resetOutput(sessionID)

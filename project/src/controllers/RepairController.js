@@ -44,10 +44,10 @@ class RepairController
                 "tid": body.tid
             };
 
-            if (!PaymentController.payMoney(pmcData, options, sessionID))
+            output = PaymentController.payMoney(pmcData, options, sessionID, output);
+            if (output.warnings.count > 0)
             {
-                Logger.error("no money found");
-                return "";
+                return output;
             }
 
             // change item durability

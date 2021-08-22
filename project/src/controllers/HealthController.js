@@ -146,13 +146,18 @@ class HealthController
 
     static healthTreatment(pmcData, info, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         const body = {
             "Action": "RestoreHealth",
             "tid": "54cb57776803fa99248b456e",
             "scheme_items": info.items
         };
 
-        PaymentController.payMoney(pmcData, body, sessionID);
+        output = PaymentController.payMoney(pmcData, body, sessionID, output);
+        if (output.warnings.count > 0)
+        {
+            return output;
+        }
 
         let BodyParts = info.difference.BodyParts;
         let healthInfo = { "IsAlive": true, "Health": {} };
@@ -175,7 +180,7 @@ class HealthController
         healthInfo.Temperature = pmcData.Health.Temperature.Current;
 
         HealthController.saveVitality(pmcData, healthInfo, sessionID);
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static addEffect(pmcData, sessionID, info)

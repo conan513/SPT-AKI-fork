@@ -6,7 +6,7 @@ class TradeController
 {
     static buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
-        const output = ItemEventRouter.getOutput(sessionID);
+        let output = ItemEventRouter.getOutput(sessionID);
         const newReq = {
             "items": [
                 {
@@ -18,10 +18,10 @@ class TradeController
         };
         const callback = () =>
         {
-            if (!PaymentController.payMoney(pmcData, body, sessionID))
+            output = PaymentController.payMoney(pmcData, body, sessionID, output);
+            if (output.warnings.count > 0)
             {
-                Logger.error("no money found");
-                throw "Transaction failed";
+                return output;
             }
 
             Logger.success(`Bought item: ${body.item_id}`);

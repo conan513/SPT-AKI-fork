@@ -279,6 +279,7 @@ class InsuranceController
     /* add insurance to an item */
     static insure(pmcData, body, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         let itemsToPay = [];
         let inventoryItemsHash = {};
 
@@ -296,11 +297,11 @@ class InsuranceController
             });
         }
 
-        // pay the item	to profile
-        if (!PaymentController.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        // pay for the item insurance
+        output = PaymentController.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID, output);
+        if (output.warnings.count > 0)
         {
-            Logger.error("no money found");
-            return "";
+            return output;
         }
 
         // add items to InsuredItems list once money has been paid
@@ -312,7 +313,7 @@ class InsuranceController
             });
         }
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static generateTemplatesById()

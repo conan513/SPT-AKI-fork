@@ -772,9 +772,10 @@ class RagfairController
                 ]
             };
 
-            if (!PaymentController.payMoney(pmcData, request, sessionID))
+            output = PaymentController.payMoney(pmcData, request, sessionID, output);
+            if (output.warnings.count > 0)
             {
-                return HttpResponse.appendErrorToOutput(output, "Transaction failed: Couldn't pay commission fee");
+                return HttpResponse.appendErrorToOutput(output, "Couldn't pay commission fee", "Transaction failed");
             }
         }
 
@@ -859,6 +860,7 @@ class RagfairController
 
     static extendOffer(info, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         const offers = SaveServer.profiles[sessionID].characters.pmc.RagfairInfo.offers;
         const index = offers.findIndex(offer => offer._id === info.offerId);
         const secondsToAdd = info.renewalTime * 3600;
@@ -888,9 +890,10 @@ class RagfairController
                 ]
             };
 
-            if (!PaymentController.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID))
+            output = PaymentController.payMoney(SaveServer.profiles[sessionID].characters.pmc, request, sessionID, output);
+            if (output.warnings.count > 0)
             {
-                return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID), "Transaction failed: Couldn't pay commission fee");
+                return HttpResponse.appendErrorToOutput(output, "Couldn't pay commission fee", "Transaction failed");
             }
         }
 
