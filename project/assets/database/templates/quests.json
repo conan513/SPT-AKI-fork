@@ -41830,7 +41830,7 @@
 								{
 									"_parent": "Kills",
 									"_props": {
-										"target": "Savage",
+										"target": "AnyPmc",
 										"compareMethod": ">=",
 										"value": "1",
 										"distance": {
