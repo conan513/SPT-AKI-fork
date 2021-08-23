@@ -50,6 +50,7 @@ class ItemEventRouter
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
 
+        ItemEventRouter.output.warnings = [];
         ItemEventRouter.output.profileChanges[sessionID] = {
             "_id": sessionID,
             "experience": 0,
