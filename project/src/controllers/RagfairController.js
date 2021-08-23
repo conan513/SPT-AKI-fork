@@ -96,8 +96,9 @@ class RagfairController
             result.categories = RagfairServer.categories;
         }
 
-        result.offers = info.buildCount ? RagfairController.getOffersForBuild(info, itemsToAdd, assorts) :
-            RagfairController.getValidOffers(info, itemsToAdd, assorts);
+        const pmcProfile = ProfileController.getPmcProfile(sessionID);
+        result.offers = info.buildCount ? RagfairController.getOffersForBuild(info, itemsToAdd, assorts, pmcProfile) :
+            RagfairController.getValidOffers(info, itemsToAdd, assorts, pmcProfile);
 
         // set offer indexes
         let counter = 0;
@@ -116,12 +117,12 @@ class RagfairController
         return result;
     }
 
-    static getValidOffers(info, itemsToAdd, assorts)
+    static getValidOffers(info, itemsToAdd, assorts, pmcProfile)
     {
         let offers = [];
         for (const offer of RagfairServer.offers)
         {
-            if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer, pmcProfile))
             {
                 offers.push(offer);
             }
@@ -129,14 +130,14 @@ class RagfairController
         return offers;
     }
 
-    static getOffersForBuild(info, itemsToAdd, assorts)
+    static getOffersForBuild(info, itemsToAdd, assorts, pmcProfile)
     {
         let offersMap = new Map();
         let offers = [];
 
         for (const offer of RagfairServer.offers)
         {
-            if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer))
+            if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer, pmcProfile))
             {
                 let key = offer.items[0]._tpl;
                 if (!offersMap.has(key))
@@ -212,10 +213,16 @@ class RagfairController
         return result;
     }
 
-    static isDisplayableOffer(info, itemsToAdd, assorts, offer)
+    static isDisplayableOffer(info, itemsToAdd, assorts, offer, pmcProfile)
     {
         const item = offer.items[0];
         const money = offer.requirements[0]._tpl;
+
+        if (pmcProfile.Info.Level < DatabaseServer.tables.globals.config.RagFair.minUserLevel && offer.user.memberType === 0)
+        {
+            // Skip item if player is < global unlock level (default is 20) and item is from a dynamically generated source
+            return false;
+        }
 
         if (!itemsToAdd.includes(item._tpl))
         {
