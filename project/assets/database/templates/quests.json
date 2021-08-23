@@ -7167,7 +7167,7 @@
 									"_parent": "Location",
 									"_props": {
 										"target": [
-											"rezervbase"
+											"RezervBase"
 										],
 										"id": "InvCheckLocation"
 									}
@@ -42124,7 +42124,7 @@
                                     "_parent": "Location",
                                     "_props": {
                                         "target": [
-                                            "shoreline"
+                                            "Shoreline"
                                         ],
                                         "id": "EscortKillLocationShoreline"
                                     }
@@ -42157,7 +42157,7 @@
                                     "_parent": "Location",
                                     "_props": {
                                         "target": [
-                                            "rezervbase"
+                                            "RezervBase"
                                         ],
                                         "id": "EscortLocationConditionRezerv"
                                     }
@@ -42190,7 +42190,7 @@
                                     "_parent": "Location",
                                     "_props": {
                                         "target": [
-                                            "woods"
+                                            "Woods"
                                         ],
                                         "id": "EscortLocationConditionWoods"
                                     }
@@ -42223,7 +42223,7 @@
                                     "_parent": "Location",
                                     "_props": {
                                         "target": [
-                                            "interchange"
+                                            "Interchange"
                                         ],
                                         "id": "EscortLocationConditionInterchange"
                                     }
@@ -42626,7 +42626,7 @@
                                     "_parent": "Location",
                                     "_props": {
                                         "target": [
-                                            "interchange"
+                                            "Interchange"
                                         ],
                                         "id": "LongLineLocationConditionID"
                                     }
@@ -43496,7 +43496,7 @@
 									"_parent": "Location",
 									"_props": {
 										"target": [
-											"woods"
+											"Woods"
 										],
 										"id": "OutpostsLocationCondition2"
 									}
@@ -43539,7 +43539,7 @@
 									"_parent": "Location",
 									"_props": {
 										"target": [
-											"shoreline"
+											"Shoreline"
 										],
 										"id": "OutpostsLocationCondition3"
 									}
@@ -44125,7 +44125,7 @@
                                     "_parent": "Location",
                                     "_props": {
                                         "target": [
-                                            "woods"
+                                            "Woods"
                                         ],
                                         "id": "SwiftOneLocationCondition"
                                     }
