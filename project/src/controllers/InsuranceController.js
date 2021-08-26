@@ -121,44 +121,38 @@ class InsuranceController
     }
 
     /* store insured items on pmc death */
-    static storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
+    static storeInsuredItemsForReturn(pmcData, offraidData, preRaidGear, sessionID)
     {
-        const preRaidGearHash = {};
-        const securedContainerItemHash = {};
-        const pmcItemsHash = {};
+        const preRaidGearDictionary = {};
+        const pmcItemsDictionary = {};
+        const itemsToReturn = [];
 
-        let gears = [];
-        const securedContainerItems = InventoryHelper.getSecureContainerItems(offraidData.profile.Inventory.items);
+        const securedContainerItemArray = InventoryHelper.getSecureContainerItems(offraidData.profile.Inventory.items);
 
         for (const item of preRaidGear)
         {
-            preRaidGearHash[item._id] = item;
-        }
-
-        for (const item of securedContainerItems)
-        {
-            securedContainerItemHash[item._id] = item;
+            preRaidGearDictionary[item._id] = item;
         }
 
         for (const item of pmcData.Inventory.items)
         {
-            pmcItemsHash[item._id] = item;
+            pmcItemsDictionary[item._id] = item;
         }
 
-        for (let insuredItem of pmcData.InsuredItems)
+        for (const insuredItem of pmcData.InsuredItems)
         {
-            if (preRaidGearHash[insuredItem.itemId]
-                && !(securedContainerItemHash[insuredItem.itemId])
-                && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined")
-                && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
+            if (preRaidGearDictionary[insuredItem.itemId]
+                && !(securedContainerItemArray.includes(insuredItem.itemId))
+                && !(typeof pmcItemsDictionary[insuredItem.itemId] === "undefined")
+                && !(pmcItemsDictionary[insuredItem.itemId].slotId === "SecuredContainer"))
             {
-                gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsHash[insuredItem.itemId], "sessionID": sessionID });
+                itemsToReturn.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsDictionary[insuredItem.itemId], "sessionID": sessionID });
             }
         }
 
-        for (let gear of gears)
+        for (const item of itemsToReturn)
         {
-            InsuranceController.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
+            InsuranceController.addGearToSend(item.pmcData, item.insuredItem, item.item, item.sessionID);
         }
     }
 

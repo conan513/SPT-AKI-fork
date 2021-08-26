@@ -9,9 +9,7 @@
 *(What is actually happening)*  
   
 ## **How to reproduce**:
-1. ...
-2. ...
-3. ...
+1. 
   
 ## **Log files**:
 
@@ -22,9 +20,10 @@ Client: *(found in `/Logs/log_<date>_<version>/<date>_<version> traces.log`)*
 ## Screenshots:
 *(Optional, only add them if you think it has value)*
 
-## Notes
+## Notes - READ THESE!
 ***DO NOT INCLUDE THIS SECTION IN THE REPORT***  
 - Do not include any of the text written in parentheses and italics in your report *(example text - do not include me in the report!)*
+- If you uploaded and attached the log files to the issue report, instead of using the codepaste, please remove the "Log Files" section aswell.
 - You must be able to replicate the issue with a fresh profile, while running <ins>no</ins> mods.  
 - You must upload <ins>all</ins> the required logfiles, even if you think they are useless.
-- Failure to comply with any of the requirements will result in your issue being closed without further investigation.
+- Failure to comply with any of the requirements may result in your issue being closed without further investigation.
