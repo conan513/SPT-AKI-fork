@@ -145,7 +145,7 @@ class InraidController
         {
             if (insuranceEnabled)
             {
-                InsuranceController.storeDeadGear(pmcData, offraidData, preRaidGear, sessionID);
+                InsuranceController.storeInsuredItemsForReturn(pmcData, offraidData, preRaidGear, sessionID);
             }
 
             pmcData = InraidController.deleteInventory(pmcData, sessionID);
