@@ -84,7 +84,7 @@ class LocationGenerator
             return { "status": "success", "data": data, "position": position };
         }
 
-        return { "status": "fail", "reason": "failedspawnchancecheck" }; // item spawn chance was lower than random number
+        return { "status": "error", "reason": "failedspawnchancecheck" }; // item spawn chance was lower than random number
     }
 
     static generateContainerLoot(items)
