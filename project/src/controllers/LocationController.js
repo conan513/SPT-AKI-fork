@@ -68,33 +68,37 @@ class LocationController
         Logger.success(`A total of ${count} containers generated`);
 
         // dyanmic loot
-        let max = LocationConfig.limits[name];
-        count = 0;
+        let maxAttemptsAtPlacingLootAllowedCount = LocationConfig.limits[name];
+        let placedLootCount = 0;
 
         // Loot position list for filtering the lootItem in the same position.
         let lootPositions = [];
-        let maxCount = 0;
+        let failedAttemptsToPlaceLootCount = 0;
 
-        while (maxCount < max && dynamic.length > 0)
+        while (failedAttemptsToPlaceLootCount < maxAttemptsAtPlacingLootAllowedCount && dynamic.length > 0)
         {
             const result = LocationGenerator.generateDynamicLoot(dynamic, lootPositions, location);
 
             if (result.status === "success")
             {
-                count += 1;
+                placedLootCount += 1;
                 lootPositions.push(result.position);
                 output.Loot.push(result.data);
             }
             else if (result.status === "error")
             {
-                continue;
+                if(result.reason === "duplicatelocation")
+                {
+                    // Increment error count
+                    failedAttemptsToPlaceLootCount++;
+                }
             }
 
-            maxCount++;
+                continue;
         }
 
         // done generating
-        Logger.success(`A total of ${count} items spawned`);
+        Logger.success(`A total of ${placedLootCount} dynamic items spawned`);
         Logger.success(`Generated location ${name}`);
         return output;
     }
