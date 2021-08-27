@@ -11,8 +11,9 @@ class LocationGenerator
 
         if (!rndLoot.data)
         {
+            // remove item from array and return error
             dynamic.splice(rndLootIndex, 1);
-            return { "result": "error" };
+            return { "result": "error", "reason": "baddata" };
         }
 
         let rndLootTypeIndex = RandomUtil.getInt(0, rndLoot.data.length - 1);
@@ -30,7 +31,7 @@ class LocationGenerator
                 dynamic.splice(rndLootIndex, 1);
             }
 
-            return { "status": "error" };
+            return { "status": "error", "reason": "duplicatelocation" };
         }
 
         //random loot Id
@@ -83,7 +84,7 @@ class LocationGenerator
             return { "status": "success", "data": data, "position": position };
         }
 
-        return { "status": "fail" };
+        return { "status": "error", "reason": "failedspawnchancecheck" }; // item spawn chance was lower than random number
     }
 
     static generateContainerLoot(items)
