@@ -47,7 +47,7 @@ class LocationGenerator
             let loot = data.Items[i];
             lootItemsHash[loot._id] = loot;
 
-            if (!("parentId" in loot)) // no parentid property, skip to next item
+            if (!("parentId" in loot))
                 continue;
 
             if (lootItemsByParentId[loot.parentId] === undefined)

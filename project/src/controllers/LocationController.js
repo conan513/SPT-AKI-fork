@@ -75,26 +75,21 @@ class LocationController
         let lootPositions = [];
         let failedAttemptsToPlaceLootCount = 0;
 
-        while (failedAttemptsToPlaceLootCount < maxAttemptsAtPlacingLootAllowedCount && dynamic.length > 0)
+        while ((failedAttemptsToPlaceLootCount + placedLootCount) < maxAttemptsAtPlacingLootAllowedCount && dynamic.length > 0)
         {
             const result = LocationGenerator.generateDynamicLoot(dynamic, lootPositions, location);
 
             if (result.status === "success")
             {
-                placedLootCount += 1;
+                placedLootCount ++;
                 lootPositions.push(result.position);
                 output.Loot.push(result.data);
             }
-            else if (result.status === "error")
+            else if (result.status === "error" && result.reason === "duplicatelocation")
             {
-                if (result.reason === "duplicatelocation")
-                {
-                    // Increment error count
-                    failedAttemptsToPlaceLootCount++;
-                }
+                // Increment error count
+                failedAttemptsToPlaceLootCount++;
             }
-
-            continue;
         }
 
         // done generating
