@@ -87,14 +87,14 @@ class LocationController
             }
             else if (result.status === "error")
             {
-                if(result.reason === "duplicatelocation")
+                if (result.reason === "duplicatelocation")
                 {
                     // Increment error count
                     failedAttemptsToPlaceLootCount++;
                 }
             }
 
-                continue;
+            continue;
         }
 
         // done generating
