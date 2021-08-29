@@ -141,8 +141,7 @@
 			],
 			"SecuredContainer": [
 				"5c0a794586f77461c458f892"
-			],
-			"SpecialLoot": []
+			]
 		},
 		"mods": {
 			"5648b4534bdc2d3d1c8b4580": {
@@ -466,7 +465,8 @@
 				"54527a984bdc2d4e668b4567",
 				"5c0d5e4486f77478390952fe",
 				"59e6906286f7746c9f75e847"
-			]
+			],
+			"SpecialLoot": []
 		}
 	},
 	"firstName": [

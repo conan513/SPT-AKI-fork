@@ -79,15 +79,15 @@
 			"Holster": [],
 			"Scabbard": [],
 			"Pockets": [],
-			"SecuredContainer": [],
-			"SpecialLoot": []
+			"SecuredContainer": []
 		},
 		"mods": {},
 		"items": {
 			"TacticalVest": [],
 			"Pockets": [],
 			"Backpack": [],
-			"SecuredContainer": []
+			"SecuredContainer": [],
+			"SpecialLoot": []
 		}
 	},
 	"firstName": [],
