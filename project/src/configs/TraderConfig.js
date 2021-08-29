@@ -3,6 +3,7 @@
 module.exports = {
     "updateTime": 3600,
     "fenceAssortSize": 100,
+    "maxPresetsCount": 5,
     "fenceItemIgnoreList": [
         "5661632d4bdc2d903d8b456b", // stackable
         "5485a8684bdc2da71d8b4567", // ammo

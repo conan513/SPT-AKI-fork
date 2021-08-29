@@ -208,6 +208,7 @@ class TraderController
             "loyal_level_items": {}
         };
 
+        let presetCount = 0;
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
@@ -251,6 +252,11 @@ class TraderController
             }
 
             // it's itemPreset
+            if(presetCount > TraderConfig.maxPresetsCount)
+            {
+                continue;
+            }
+
             const ItemRootOldId = itemPresets[itemID]._parent;
             let items = JsonUtil.clone(itemPresets[itemID]._items);
             let rub = 0;
@@ -293,6 +299,8 @@ class TraderController
             {
                 result.barter_scheme[items[0]._id][0][0].count = rub * TraderController.getFenceInfo(pmcData).PriceModifier;
             }
+
+            presetCount++;
         }
 
         return result;
