@@ -226,9 +226,9 @@ class TraderController
             if (!itemIsPreset)
             {
                 // Skip items that are on fence ignore list
-                if(TraderConfig.fenceItemIgnoreList.length > 0)
+                if (TraderConfig.fenceItemIgnoreList.length > 0)
                 {
-                    if(ItemHelper.doesItemParentsIdMatch(itemID, TraderConfig.fenceItemIgnoreList)) // check blacklist against items parents
+                    if (ItemHelper.doesItemParentsIdMatch(itemID, TraderConfig.fenceItemIgnoreList)) // check blacklist against items parents
                     {
                         i--;
                         Logger.debug("ignored item");
@@ -252,7 +252,7 @@ class TraderController
             }
 
             // it's itemPreset
-            if(presetCount > TraderConfig.maxPresetsCount)
+            if (presetCount > TraderConfig.maxPresetsCount)
             {
                 continue;
             }

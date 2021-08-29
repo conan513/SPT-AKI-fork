@@ -341,29 +341,29 @@ class ItemHelper
      * @param {Array} itemIdsToCheck
      * @returns boolean
      */
-     static doesItemParentsIdMatch(itemId, itemIdsToCheck)
-     {
-         const itemDetails = this.getItem(itemId);
- 
-         // not an item, drop out
-         if(itemDetails[0] === false)
-         {
-             return false;
-         }
- 
-         // no parent to check
-         if(!itemDetails[1]._parent)
-         {
-             return false;
-         }
- 
-         if (TraderConfig.fenceItemIgnoreList.includes(itemDetails[1]._parent))
-         {
-             return true;
-         }
- 
-         return this.doesItemParentsIdMatch(itemDetails[1]._parent, itemIdsToCheck);
-     }
+    static doesItemParentsIdMatch(itemId, itemIdsToCheck)
+    {
+        const itemDetails = this.getItem(itemId);
+
+        // not an item, drop out
+        if (itemDetails[0] === false)
+        {
+            return false;
+        }
+
+        // no parent to check
+        if (!itemDetails[1]._parent)
+        {
+            return false;
+        }
+
+        if (TraderConfig.fenceItemIgnoreList.includes(itemDetails[1]._parent))
+        {
+            return true;
+        }
+
+        return this.doesItemParentsIdMatch(itemDetails[1]._parent, itemIdsToCheck);
+    }
 }
 
 module.exports = ItemHelper;
