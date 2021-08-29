@@ -212,17 +212,29 @@ class TraderController
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
             let price = HandbookController.getTemplatePrice(itemID);
+            const itemIsPreset = PresetController.isPreset(itemID);
 
-            if (price === 0 || price === 1 || price === 100)
+            if (price === 0 || (price === 1 && !itemIsPreset) || price === 100)
             {
                 // don't allow "special" items
                 i--;
                 continue;
             }
 
-            // it's the item
-            if (!(itemID in itemPresets))
+            // it's an item
+            if (!itemIsPreset)
             {
+                // Skip items that are on fence ignore list
+                if(TraderConfig.fenceItemIgnoreList.length > 0)
+                {
+                    if(ItemHelper.doesItemParentsIdMatch(itemID, TraderConfig.fenceItemIgnoreList)) // check blacklist against items parents
+                    {
+                        i--;
+                        Logger.debug("ignored item");
+                        continue;
+                    }
+                }
+
                 const toPush = JsonUtil.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
 
                 toPush._id = HashUtil.generate();
