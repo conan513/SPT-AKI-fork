@@ -514,7 +514,7 @@ class InventoryController
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
 
                 // handle when item being bought is preset
-                if(item.upd.presetId)
+                if (item.upd.presetId)
                 {
                     const presetItems = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[item.upd.presetId]._items);
                     itemLib.push(...presetItems);
