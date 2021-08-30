@@ -512,7 +512,19 @@ class InventoryController
             {
                 const fenceItem = TraderController.fenceAssort.items;
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
-                itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
+
+                // handle when item being bought is preset
+                if(item.upd.presetId)
+                {
+                    const presetItems = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[item.upd.presetId]._items);
+                    itemLib.push(...presetItems);
+                    baseItem.isPreset = true;
+                    baseItem.item_id = presetItems[0]._id;
+                }
+                else
+                {
+                    itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
+                }
             }
             else
             {

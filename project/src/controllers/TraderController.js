@@ -275,7 +275,8 @@ class TraderController
                     mod.slotId = "hideout";
                     mod.upd = {
                         "UnlimitedCount": true,
-                        "StackObjectsCount": 999999999
+                        "StackObjectsCount": 999999999,
+                        "presetId": itemID
                     };
                 }
                 else if (mod.parentId === ItemRootOldId)
