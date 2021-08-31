@@ -344,25 +344,29 @@ class ItemHelper
     static doesItemParentsIdMatch(itemId, itemIdsToCheck)
     {
         const itemDetails = this.getItem(itemId);
+        const itemExists = itemDetails[0];
+        const item = itemDetails[1];
 
         // not an item, drop out
-        if (itemDetails[0] === false)
+        if (!itemExists)
         {
             return false;
         }
 
         // no parent to check
-        if (!itemDetails[1]._parent)
+        if (!item._parent)
         {
             return false;
         }
 
-        if (TraderConfig.fenceItemIgnoreList.includes(itemDetails[1]._parent))
+        // Does the items parent type exist in blacklist
+        if (TraderConfig.fenceItemIgnoreList.includes(item._parent))
         {
             return true;
         }
 
-        return this.doesItemParentsIdMatch(itemDetails[1]._parent, itemIdsToCheck);
+        // check items parent with same method
+        return this.doesItemParentsIdMatch(item._parent, itemIdsToCheck);
     }
 }
 
