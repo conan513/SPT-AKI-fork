@@ -208,21 +208,34 @@ class TraderController
             "loyal_level_items": {}
         };
 
+        let presetCount = 0;
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
             let itemID = names[RandomUtil.getInt(0, names.length - 1)];
             let price = HandbookController.getTemplatePrice(itemID);
+            const itemIsPreset = PresetController.isPreset(itemID);
 
-            if (price === 0 || price === 1 || price === 100)
+            if (price === 0 || (price === 1 && !itemIsPreset) || price === 100)
             {
                 // don't allow "special" items
                 i--;
                 continue;
             }
 
-            // it's the item
-            if (!(itemID in itemPresets))
+            // it's an item
+            if (!itemIsPreset)
             {
+                // Skip items that are on fence ignore list
+                if (TraderConfig.fenceItemIgnoreList.length > 0)
+                {
+                    if (ItemHelper.doesItemParentsIdMatch(itemID, TraderConfig.fenceItemIgnoreList)) // check blacklist against items parents
+                    {
+                        i--;
+                        Logger.debug("ignored item");
+                        continue;
+                    }
+                }
+
                 const toPush = JsonUtil.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
 
                 toPush._id = HashUtil.generate();
@@ -239,6 +252,11 @@ class TraderController
             }
 
             // it's itemPreset
+            if (presetCount > TraderConfig.maxPresetsCount)
+            {
+                continue;
+            }
+
             const ItemRootOldId = itemPresets[itemID]._parent;
             let items = JsonUtil.clone(itemPresets[itemID]._items);
             let rub = 0;
@@ -256,8 +274,9 @@ class TraderController
                     mod.parentId = "hideout";
                     mod.slotId = "hideout";
                     mod.upd = {
-                        "UnlimitedCount": true,
-                        "StackObjectsCount": 999999999
+                        "UnlimitedCount": false,
+                        "StackObjectsCount": 1,
+                        "presetId": itemID
                     };
                 }
                 else if (mod.parentId === ItemRootOldId)
@@ -281,6 +300,8 @@ class TraderController
             {
                 result.barter_scheme[items[0]._id][0][0].count = rub * TraderController.getFenceInfo(pmcData).PriceModifier;
             }
+
+            presetCount++;
         }
 
         return result;

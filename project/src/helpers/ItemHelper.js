@@ -334,6 +334,40 @@ class ItemHelper
 
         return items;
     }
+
+    /**
+     * Recursivly loop down through an items hierarchy to see if any of the ids match the supplied list, return true if any do
+     * @param {string} itemId
+     * @param {Array} itemIdsToCheck
+     * @returns boolean
+     */
+    static doesItemParentsIdMatch(itemId, itemIdsToCheck)
+    {
+        const itemDetails = this.getItem(itemId);
+        const itemExists = itemDetails[0];
+        const item = itemDetails[1];
+
+        // not an item, drop out
+        if (!itemExists)
+        {
+            return false;
+        }
+
+        // no parent to check
+        if (!item._parent)
+        {
+            return false;
+        }
+
+        // Does the items parent type exist in blacklist
+        if (TraderConfig.fenceItemIgnoreList.includes(item._parent))
+        {
+            return true;
+        }
+
+        // check items parent with same method
+        return this.doesItemParentsIdMatch(item._parent, itemIdsToCheck);
+    }
 }
 
 module.exports = ItemHelper;
