@@ -42929,7 +42929,7 @@
 						},
 						"index": 8,
 						"parentId": "",
-						"id": "5eec9d054110547f1f545c99",
+						"id": "60892585b90d6f39cb74b114",
 						"visibilityConditions": []
 					}
 				},
@@ -42942,14 +42942,14 @@
 						"zoneId": "tadeush_stryker_area_mark_3",
 						"value": "1",
 						"index": 9,
-						"parentId": "5eec9d054110547f1f545c99",
+						"parentId": "60892585b90d6f39cb74b114",
 						"id": "608925d455f4ac386d7e7fc4",
 						"plantTime": 30,
                         "visibilityConditions": [
 							{
 								"_parent": "CompleteCondition",
 								"_props": {
-									"target": "5eec9d054110547f1f545c99",
+									"target": "60892585b90d6f39cb74b114",
 									"id": "RevisionMarkFirstStryker"
 								}
 							}
