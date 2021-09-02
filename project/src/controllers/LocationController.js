@@ -101,7 +101,7 @@ class LocationController
 
         // done generating
         Logger.success(`A total of ${placedLootCount} dynamic items spawned`);
-        Logger.success(`A total of ${failedSpawnChanceCheck} dynamic items failed the spawn check`);
+        Logger.debug(`A total of ${failedSpawnChanceCheck} dynamic items failed the spawn check`);
         Logger.success(`Generated location ${name}`);
         return output;
     }
