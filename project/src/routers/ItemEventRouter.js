@@ -29,7 +29,7 @@ class ItemEventRouter
             else
             {
                 Logger.error(`[UNHANDLED EVENT] ${body.Action}`);
-                Logger.write(body);
+                Logger.writeToLogFile(body);
             }
         }
 
