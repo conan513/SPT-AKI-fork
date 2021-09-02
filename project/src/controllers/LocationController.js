@@ -74,8 +74,9 @@ class LocationController
         // Loot position list for filtering the lootItem in the same position.
         let lootPositions = [];
         let failedAttemptsToPlaceLootCount = 0;
+        let failedSpawnChanceCheck = 0;
 
-        while ((failedAttemptsToPlaceLootCount + placedLootCount) < maxAttemptsAtPlacingLootAllowedCount && dynamic.length > 0)
+        while ((failedAttemptsToPlaceLootCount + placedLootCount + failedSpawnChanceCheck) < maxAttemptsAtPlacingLootAllowedCount && dynamic.length > 0)
         {
             const result = LocationGenerator.generateDynamicLoot(dynamic, lootPositions, location);
 
@@ -85,15 +86,22 @@ class LocationController
                 lootPositions.push(result.position);
                 output.Loot.push(result.data);
             }
-            else if (result.status === "error" && result.reason === "duplicatelocation")
+            else if (result.status === "error")
             {
-                // Increment error count
-                failedAttemptsToPlaceLootCount++;
+                if (result.reason === "duplicatelocation")
+                {
+                    failedAttemptsToPlaceLootCount++;
+                }
+                else if (result.reason === "failedspawnchancecheck")
+                {
+                    failedSpawnChanceCheck++;
+                }
             }
         }
 
         // done generating
         Logger.success(`A total of ${placedLootCount} dynamic items spawned`);
+        Logger.success(`A total of ${failedSpawnChanceCheck} dynamic items failed the spawn check`);
         Logger.success(`Generated location ${name}`);
         return output;
     }
