@@ -231,7 +231,7 @@ class TraderController
                     if (ItemHelper.doesItemParentsIdMatch(itemID, TraderConfig.fenceItemIgnoreList)) // check blacklist against items parents
                     {
                         i--;
-                        Logger.debug("ignored item");
+                        Logger.debug(`Fence: ignored item ${itemID}`);
                         continue;
                     }
                 }
