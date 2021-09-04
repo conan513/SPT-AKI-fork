@@ -40,30 +40,32 @@ class HealthController
         let output = ItemEventRouter.getOutput(sessionID);
 
         // update medkit used (hpresource)
-        for (let item of pmcData.Inventory.items)
+        const inventoryItem = pmcData.Inventory.items.find(item => item._id === body.item);
+        if (!inventoryItem)
         {
-            if (item._id === body.item)
-            {
-                if (!("upd" in item))
-                {
-                    item.upd = {};
-                }
+            Logger.error(`offraidHeal: Item ${item._id} not found`);
+            // For now we just return nothing
+            return;
+        }
 
-                if ("MedKit" in item.upd)
-                {
-                    item.upd.MedKit.HpResource -= body.count;
-                }
-                else
-                {
-                    const maxhp = ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
-                    item.upd.MedKit = { "HpResource": maxhp - body.count };
-                }
+        if (!("upd" in item))
+        {
+            item.upd = {};
+        }
 
-                if (item.upd.MedKit.HpResource <= 0)
-                {
-                    InventoryController.removeItem(pmcData, body.item, sessionID, output);
-                }
-            }
+        if ("MedKit" in item.upd)
+        {
+            item.upd.MedKit.HpResource -= body.count;
+        }
+        else
+        {
+            const maxhp = ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
+            item.upd.MedKit = { "HpResource": maxhp - body.count };
+        }
+
+        if (item.upd.MedKit.HpResource <= 0)
+        {
+            InventoryController.removeItem(pmcData, body.item, sessionID, output);
         }
 
         return output;

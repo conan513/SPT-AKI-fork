@@ -122,6 +122,13 @@ class PaymentController
         let barterPrice = 0;
         barterPrice = body.scheme_items.reduce((accumulator, item) => accumulator + item.count, 0);
 
+        // Nothing to do here, since we dont need to pay money.
+        if (barterPrice === 0)
+        {
+            Logger.success("Price is 0 no payment needed");
+            return output;
+        }
+
         // prepare the amount of money in the profile
         let amountMoney = 0;
         amountMoney = moneyItemsInInventory.reduce((accumulator, item) => accumulator + item.upd.StackObjectsCount, 0);
