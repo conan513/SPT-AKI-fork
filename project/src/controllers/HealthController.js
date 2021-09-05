@@ -43,27 +43,27 @@ class HealthController
         const inventoryItem = pmcData.Inventory.items.find(item => item._id === body.item);
         if (!inventoryItem)
         {
-            Logger.error(`offraidHeal: Item ${item._id} not found`);
+            Logger.error(`offraidHeal: Item ${inventoryItem._id} not found`);
             // For now we just return nothing
             return;
         }
 
-        if (!("upd" in item))
+        if (!("upd" in inventoryItem))
         {
-            item.upd = {};
+            inventoryItem.upd = {};
         }
 
-        if ("MedKit" in item.upd)
+        if ("MedKit" in inventoryItem.upd)
         {
-            item.upd.MedKit.HpResource -= body.count;
+            inventoryItem.upd.MedKit.HpResource -= body.count;
         }
         else
         {
-            const maxhp = ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
-            item.upd.MedKit = { "HpResource": maxhp - body.count };
+            const maxhp = ItemHelper.getItem(inventoryItem._tpl)[1]._props.MaxHpResource;
+            inventoryItem.upd.MedKit = { "HpResource": maxhp - body.count };
         }
 
-        if (item.upd.MedKit.HpResource <= 0)
+        if (inventoryItem.upd.MedKit.HpResource <= 0)
         {
             InventoryController.removeItem(pmcData, body.item, sessionID, output);
         }
