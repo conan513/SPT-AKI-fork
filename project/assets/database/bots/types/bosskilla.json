@@ -2372,8 +2372,8 @@
         "max": 3
       },
       "magazines": {
-        "min": 2,
-        "max": 4
+        "min": 3,
+        "max": 3
       },
       "grenades": {
         "min": 0,
