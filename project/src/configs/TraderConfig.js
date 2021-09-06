@@ -5,10 +5,10 @@ module.exports = {
     "fenceAssortSize": 100,
     "maxPresetsCount": 5,
     "fenceItemIgnoreList": [
-		"58ac60eb86f77401897560ff", // Dev balaclava
-		"59e8936686f77467ce798647", // Test balaclava
-		"56e294cdd2720b603a8b4575", // Mystery Ranch Terraplane backpack
-		
+        "58ac60eb86f77401897560ff", // Dev balaclava
+        "59e8936686f77467ce798647", // Test balaclava
+        "56e294cdd2720b603a8b4575", // Mystery Ranch Terraplane backpack
+
         "5661632d4bdc2d903d8b456b", // stackable
         "5448ecbe4bdc2d60728b4568", // info quest items
         "543be5e94bdc2df1348b4568", // keys
