@@ -353,6 +353,12 @@ class ItemHelper
             return false;
         }
 
+        // Does templateId match any values in blacklist
+        if (TraderConfig.fenceItemIgnoreList.includes(item._id))
+        {
+            return true;
+        }
+
         // no parent to check
         if (!item._parent)
         {
