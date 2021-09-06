@@ -17169,7 +17169,7 @@
 					]
 				},
 				{
-					"target": "5d34df2788a4504526795d81",
+					"target": "5926e79e86f77441d85235ec",
 					"value": "1",
 					"id": "5c17cf0086f77430a323d853",
 					"type": "Item",
@@ -19031,7 +19031,7 @@
 					]
 				},
 				{
-					"target": "5e0ac74b9d594972a112a8d6",
+					"target": "5926f17986f77459a267c972",
 					"id": "5b42250e86f774370c7284a9",
 					"type": "AssortmentUnlock",
 					"index": 5,
@@ -35260,7 +35260,7 @@
 					"index": 5,
 					"items": [
 						{
-							"_id": "5e0ac74b9d594972a112a9db",
+							"_id": "UmkaM33TarkovShooter2",
 							"_tpl": "6034cf5fffd42c541047f72e",
 							"upd": {
 								"StackObjectsCount": 2
