@@ -402,7 +402,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5704e3c2d2720bac5b8b4567",
-        "min_level": 3,
+        "min_level": 1,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -437,7 +437,7 @@
                     "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a81d",
-                            "_tpl": "57dc2fa62459775949412633",
+                            "_tpl": "583990e32459771419544dd2",
                             "parentId": "hideout",
                             "slotId": "hideout",
                             "upd": {
@@ -445,7 +445,7 @@
                             }
                         }, {
                             "_id": "5e0ac74b9d594972a112a81e",
-                            "_tpl": "57e3dba62459770f0c32322b",
+                            "_tpl": "5649ad3f4bdc2df8348b4585",
                             "parentId": "5e0ac74b9d594972a112a81d",
                             "slotId": "mod_pistol_grip"
                         }, {
