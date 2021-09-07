@@ -105,15 +105,15 @@
                     "index": 90,
                     "items": [{
                             "_id": "5ede35491f4c4572b608fde6",
-                            "_tpl": "573719762459775a626ccbc1",
+                            "_tpl": "56d59d3ad2720bdb418b4577",
                             "upd": {
-                                "StackObjectsCount": 90
+                                "StackObjectsCount": 60
                             }
                         }
                     ],
                     "target": "5ede35491f4c4572b608fde6",
                     "type": "Item",
-                    "value": "3"
+                    "value": "60"
                 }, {
                     "id": "5a2e7e2b86f7741a943575b5",
                     "index": 4,
