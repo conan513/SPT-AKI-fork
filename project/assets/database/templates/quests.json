@@ -851,7 +851,7 @@
         "image": "/files/quest/icon/596a108786f7741ddc2d31b1.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "56f40101d2720b2a4d8b45d6",
+        "location": "any",
         "min_level": 1,
         "restartable": false,
         "rewards": {
@@ -932,7 +932,7 @@
                     "index": 5,
                     "items": [{
                             "_id": "pmPstgzhReward",
-                            "_tpl": "5737201124597760fc4431f1",
+                            "_tpl": "57371f2b24597761224311f1",
                             "upd": {
                                 "StackObjectsCount": 120
                             }
