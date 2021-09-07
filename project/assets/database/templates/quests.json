@@ -602,7 +602,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "55f2d3fd4bdc2d5f408b4567",
-        "min_level": 5,
+        "min_level": 1,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -696,7 +696,7 @@
                     ],
                     "target": "5e0ac74b9d594972a112a830",
                     "type": "Item",
-                    "value": "3"
+                    "value": "4"
                 }, {
                     "id": "BuckshotReward",
                     "index": 5,
@@ -704,13 +704,13 @@
                             "_id": "BuckshotLmao",
                             "_tpl": "560d5e524bdc2d25448b4571",
                             "upd": {
-                                "StackObjectsCount": 90
+                                "StackObjectsCount": 40
                             }
                         }
                     ],
                     "target": "BuckshotLmao",
                     "type": "Item",
-                    "value": "90"
+                    "value": "40"
                 }, {
                     "id": "5ac6502386f77405cd54625d",
                     "index": 6,
