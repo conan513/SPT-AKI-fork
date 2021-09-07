@@ -1043,7 +1043,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5704e3c2d2720bac5b8b4567",
-        "min_level": 9,
+        "min_level": 1,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -1061,7 +1061,7 @@
                     "value": "0.02"
                 }, {
                     "id": "5a2e86e986f7741b57301c49",
-                    "index": 2,
+                    "index": 5,
                     "items": [{
                             "_id": "5c0d1ec986f77439512a1a80",
                             "_tpl": "5beed0f50db834001c062b12",
@@ -1135,7 +1135,7 @@
                     "value": "1"
                 }, {
                     "id": "5a2e86f986f7741a972d4ee8",
-                    "index": 3,
+                    "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a839",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -1149,7 +1149,7 @@
                     "value": "17000"
                 }, {
                     "id": "5a2e871f86f7741a9612d1f7",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a83a",
                             "_tpl": "56dff2ced2720bb4668b4567",
@@ -1163,7 +1163,7 @@
                     "value": "200"
                 }, {
                     "id": "5ac651a986f774066f04bcf7",
-                    "index": 5,
+                    "index": 4,
                     "items": [{
                             "_id": "5e3c0b8e7dfe975b6f2b1235",
                             "_tpl": "55d482194bdc2d1d4e8b456b"
