@@ -15985,13 +15985,13 @@
                     "id": "5c950dec86f774551757f06a",
                     "index": 0,
                     "type": "Experience",
-                    "value": "18600"
+                    "value": "18400"
                 }, {
                     "id": "5bcf282086f7746a45695b11",
                     "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.03"
                 }, {
                     "id": "5ae99bc386f774391242a7ac",
                     "index": 2,
@@ -16004,6 +16004,20 @@
                         }
                     ],
                     "target": "5e0ac74b9d594972a112a97d",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "60cc78692b555f16df5c41ba",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc654",
+                            "_tpl": "5d1b327086f7742525194449",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc654",
                     "type": "Item",
                     "value": "1"
                 }
