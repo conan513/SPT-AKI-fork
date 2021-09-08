@@ -70,8 +70,8 @@ class SaveServer
         }
 
         let JsonProfile = JsonUtil.serialize(SaveServer.profiles[sessionID], true);
-        let fmd5 = HashUtil.Md5(JsonProfile);
-        if(typeof(SaveServer.SaveMd5[sessionID]) !== "string" || SaveServer.SaveMd5[sessionID] !== fmd5)
+        let fmd5 = HashUtil.generateMd5ForData(JsonProfile);
+        if (typeof(SaveServer.SaveMd5[sessionID]) !== "string" || SaveServer.SaveMd5[sessionID] !== fmd5)
         {
             SaveServer.SaveMd5[sessionID] = String(fmd5);
             // save profile
