@@ -602,21 +602,30 @@ class RagfairController
             return offer.items[0]._tpl === info.templateId;
         });
 
-        offers = RagfairController.sortOffers(offers, 5);
-
-        // average
-        let avg = 0;
-
-        for (const offer of offers)
+        if (typeof(offers) === "object" && offers.length > 0)
         {
-            avg += offer.itemsCost;
+            offers = RagfairController.sortOffers(offers, 5);
+            // average
+            let avg = 0;
+            for (const offer of offers)
+            {
+                avg += offer.itemsCost;
+            }
+            return {
+                "avg": parseInt(avg / offers.length),
+                "min": parseInt(offers[0].itemsCost),
+                "max": parseInt(offers[offers.length - 1].itemsCost)
+            };
         }
-
-        return {
-            "avg": avg / offers.length,
-            "min": offers[0].itemsCost,
-            "max": offers[offers.length - 1].itemsCost
-        };
+        else
+        {
+            const tplPrice = parseInt(DatabaseServer.tables.templates.prices[info.templateId]);
+            return {
+                "avg": tplPrice,
+                "min": tplPrice,
+                "max": tplPrice
+            };
+        }
     }
 
     /**
