@@ -2415,7 +2415,7 @@
                     "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a852",
-                            "_tpl": "590c678286f77426c9660122",
+                            "_tpl": "60098ad7c2240c0fe85c570a",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -2431,13 +2431,13 @@
                             "_id": "PileOfMeds",
                             "_tpl": "5d1b3a5d86f774252167ba22",
                             "upd": {
-                                "StackObjectsCount": 1
+                                "StackObjectsCount": 3
                             }
                         }
                     ],
                     "target": "PileOfMeds",
                     "type": "Item",
-                    "value": "1"
+                    "value": "3"
                 }, {
                     "id": "5ac6631186f774056b28e6f0",
                     "index": 5,
