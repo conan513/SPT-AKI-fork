@@ -602,7 +602,7 @@ class RagfairController
             return offer.items[0]._tpl === info.templateId;
         });
 
-        if(typeof(offers) === "object" && offers.length > 0)
+        if (typeof(offers) === "object" && offers.length > 0)
         {
             offers = RagfairController.sortOffers(offers, 5);
             // average
