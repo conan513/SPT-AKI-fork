@@ -12748,7 +12748,7 @@
                     "id": "5c950c8b86f774551757f067",
                     "index": 0,
                     "type": "Experience",
-                    "value": "8000"
+                    "value": "7900"
                 }, {
                     "id": "5acb80e686f7744e66123c96",
                     "index": 1,
@@ -12768,7 +12768,7 @@
                     "index": 2,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.05"
+                    "value": "0.03"
                 }, {
                     "id": "5acb819786f7744e640f36b9",
                     "index": 3,
