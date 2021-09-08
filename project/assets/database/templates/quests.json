@@ -5282,6 +5282,12 @@
                                         "id": "5c92189286f7746af93240ab",
                                         "status": ["Survived", "Runner"]
                                     }
+                                }, {
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "id": "604240ceabf6800310035513",
+                                        "target": ["bigmap"]
+                                    }
                                 }
                             ],
                             "id": "5c92184386f7746afa2e783f"
@@ -5320,7 +5326,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "56f40101d2720b2a4d8b45d6",
-        "min_level": 5,
+        "min_level": 0,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -5356,18 +5362,18 @@
                     "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a89f",
-                            "_tpl": "5448be9a4bdc2dfd2f8b456a",
+                            "_tpl": "5d1b371186f774253763a656",
                             "upd": {
-                                "StackObjectsCount": 3
+                                "StackObjectsCount": 1
                             }
                         }
                     ],
                     "target": "5e0ac74b9d594972a112a89f",
                     "type": "Item",
-                    "value": "3"
+                    "value": "1"
                 }, {
                     "id": "5a2e81c486f7741a972d4ee7",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a8a0",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -5380,19 +5386,8 @@
                     "type": "Item",
                     "value": "30000"
                 }, {
-                    "id": "reward_1",
-                    "index": 4,
-                    "items": [{
-                            "_id": "reward",
-                            "_tpl": "5d1b371186f774253763a656"
-                        }
-                    ],
-                    "target": "reward",
-                    "type": "Item",
-                    "value": "1"
-                }, {
                     "id": "reward_MS200",
-                    "index": 5,
+                    "index": 3,
                     "items": [{
                             "_id": "rewardMS200",
                             "_tpl": "5991b51486f77447b112d44f",
@@ -5406,7 +5401,7 @@
                     "value": "2"
                 }, {
                     "id": "5d72501386f7740aff6e375a",
-                    "index": 6,
+                    "index": 5,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "-0.01"
