@@ -4491,7 +4491,7 @@
                     "value": "3"
                 }, {
                     "id": "5a2e797e86f7741a95102602",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a894",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -4505,7 +4505,7 @@
                     "value": "15000"
                 }, {
                     "id": "5ac668d386f774066f04bd58",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e064f5ceb009468d90badca",
                             "_tpl": "5a966f51a2750c00156aacf6"
@@ -4517,7 +4517,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "ChemicalPart2TNT",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "tntBricksChemical",
                             "_tpl": "60391b0fb847c71012789415",
