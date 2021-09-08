@@ -619,11 +619,11 @@ class RagfairController
         }
         else
         {
-            const avg = parseInt(DatabaseServer.tables.templates.prices[info.templateId]);
+            const tplPrice = parseInt(DatabaseServer.tables.templates.prices[info.templateId]);
             return {
-                "avg": avg,
-                "min": avg,
-                "max": avg
+                "avg": tplPrice,
+                "min": tplPrice,
+                "max": tplPrice
             };
         }
     }
