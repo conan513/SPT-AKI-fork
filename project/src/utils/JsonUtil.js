@@ -40,12 +40,11 @@ class JsonUtil
         }
         catch (e)
         {
-			const Pos = e.message.split(" ").pop();
-            Logger.error(`JSON File Error: ${url} => Pos: ${Pos}`);
-        }
-		
-		const { data, changed } = fixJson(`${s}`);
-		return data;
+            let Pos = e.message.split(" ").pop();
+             Logger.error(`JSON File Error: ${url} => Pos: ${Pos}`);
+        }          
+        let { data, changed } = fixJson(`${s}`);
+        return data;
     }
 
     static clone(data)
