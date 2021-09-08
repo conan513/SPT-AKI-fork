@@ -17201,13 +17201,13 @@
                     "index": 2,
                     "target": "5ac3b934156ae10c4430e83c",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.02"
                 }, {
                     "id": "5ae9b70686f7742291104038",
                     "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a98a",
-                            "_tpl": "5aa7d193e5b5b000171d063f",
+                            "_tpl": "5e4abb5086f77406975c9342",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -17221,7 +17221,7 @@
                     "index": 4,
                     "items": [{
                             "_id": "reward",
-                            "_tpl": "5e4abb5086f77406975c9342",
+                            "_tpl": "5aa7d193e5b5b000171d063f",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
