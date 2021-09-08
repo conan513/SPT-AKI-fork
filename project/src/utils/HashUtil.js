@@ -14,8 +14,8 @@ class HashUtil
         shasum.update(time.toString());
         return shasum.digest("hex").substring(0, 24);
     }
-    
-    static Md5(data)
+
+    static generateMd5ForData(data)
     {
         const shasum = crypto.createHash("md5");
         shasum.update(data);
