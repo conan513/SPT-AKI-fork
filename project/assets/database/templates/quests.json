@@ -1368,7 +1368,7 @@
         "image": "/files/quest/icon/5967611386f7741dfe4f46fb.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "55f2d3fd4bdc2d5f408b4567",
+        "location": "any",
         "min_level": 1,
         "restartable": false,
         "rewards": {
