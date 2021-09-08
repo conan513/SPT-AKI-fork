@@ -102,7 +102,7 @@
                     "value": "1"
                 }, {
                     "id": "5a2e7d9e86f7741a972d4ee4",
-                    "index": 90,
+                    "index": 3,
                     "items": [{
                             "_id": "5ede35491f4c4572b608fde6",
                             "_tpl": "56d59d3ad2720bdb418b4577",
@@ -1368,7 +1368,7 @@
         "image": "/files/quest/icon/5967611386f7741dfe4f46fb.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "55f2d3fd4bdc2d5f408b4567",
+        "location": "any",
         "min_level": 1,
         "restartable": false,
         "rewards": {
@@ -1530,7 +1530,7 @@
                     "value": "75000"
                 }, {
                     "id": "5ac653ed86f77405d4729344",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e3c0b8d7dfe975b6f2b1039",
                             "_tpl": "57ffb0e42459777d047111c5"
@@ -1542,7 +1542,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "5ac65d3186f774056634a202",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e3c0b8d7dfe975b6f2b10ab",
                             "_tpl": "59c0ec5b86f77435b128bfca"
@@ -1550,11 +1550,11 @@
                     ],
                     "loyaltyLevel": 2,
                     "target": "5e3c0b8d7dfe975b6f2b10ab",
-                    "traderId": "54cb50c76803fa8b248b4571",
+                    "traderId": "58330581ace78e27b8b10cee",
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "5d6e70f786f7743b5f001112",
-                    "index": 5,
+                    "index": 6,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "-0.01"
@@ -1727,7 +1727,7 @@
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
                         "parentId": "",
-                        "resetOnSessionEnd": true,
+                        "resetOnSessionEnd": false,
                         "target": ["590a3efd86f77437d351a25b"],
                         "value": "1"
                     }
@@ -1966,13 +1966,13 @@
                             "_id": "5e0ac74b9d594972a112a84b",
                             "_tpl": "5448fee04bdc2dbc018b4567",
                             "upd": {
-                                "StackObjectsCount": 6
+                                "StackObjectsCount": 5
                             }
                         }
                     ],
                     "target": "5e0ac74b9d594972a112a84b",
                     "type": "Item",
-                    "value": "6"
+                    "value": "5"
                 }, {
                     "id": "WaterFilter",
                     "index": 5,
@@ -2219,7 +2219,7 @@
                     "value": "17000"
                 }, {
                     "id": "5a3fac7186f77406e94524a0",
-                    "index": 3,
+                    "index": 5,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a850",
                             "_tpl": "544fb37f4bdc2dee738b4567",
@@ -2233,7 +2233,7 @@
                     "value": "2"
                 }, {
                     "id": "reward",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "syringue",
                             "_tpl": "5d1b3f2d86f774253763b735",
@@ -2247,7 +2247,7 @@
                     "value": "5"
                 }, {
                     "id": "PileofMeds",
-                    "index": 5,
+                    "index": 6,
                     "items": [{
                             "_id": "medsPileReward",
                             "_tpl": "5d1b3a5d86f774252167ba22",
@@ -2261,7 +2261,7 @@
                     "value": "2"
                 }, {
                     "id": "SiliconeTube",
-                    "index": 6,
+                    "index": 4,
                     "items": [{
                             "_id": "TubeofSilicone",
                             "_tpl": "5d1b39a386f774252339976f",
@@ -2415,7 +2415,7 @@
                     "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a852",
-                            "_tpl": "590c678286f77426c9660122",
+                            "_tpl": "60098ad7c2240c0fe85c570a",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -2431,13 +2431,13 @@
                             "_id": "PileOfMeds",
                             "_tpl": "5d1b3a5d86f774252167ba22",
                             "upd": {
-                                "StackObjectsCount": 1
+                                "StackObjectsCount": 3
                             }
                         }
                     ],
                     "target": "PileOfMeds",
                     "type": "Item",
-                    "value": "1"
+                    "value": "3"
                 }, {
                     "id": "5ac6631186f774056b28e6f0",
                     "index": 5,
@@ -2584,7 +2584,7 @@
                     "value": "0.04"
                 }, {
                     "id": "5a2fb93986f7742eb03f362b",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a854",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -2658,7 +2658,7 @@
         "image": "/files/quest/icon/59c274ae86f77475060a9341.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "5704e3c2d2720bac5b8b4567",
+        "location": "any",
         "min_level": 1,
         "restartable": false,
         "rewards": {
@@ -2813,7 +2813,7 @@
                     "value": "2"
                 }, {
                     "id": "5a2fbaa686f77476953ee33d",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a859",
                             "_tpl": "5af0484c86f7740f02001f7f",
@@ -3076,7 +3076,7 @@
                     "value": "1"
                 }, {
                     "id": "CarRepairAdrenaline",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "AdrenalineCarRepair",
                             "_tpl": "5c10c8fd86f7743d7d706df3",
@@ -3742,7 +3742,7 @@
         "image": "/files/quest/icon/5979ed4c86f7742f55674442.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "various",
+        "location": "any",
         "min_level": 1,
         "restartable": false,
         "rewards": {
@@ -3792,6 +3792,11 @@
                             "_tpl": "587e0531245977466077a0f7",
                             "parentId": "5e0ac74b9d594972a112a87d",
                             "slotId": "mod_stock"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc483",
+                            "_tpl": "5d023784d7ad1a049d4aa7f2",
+                            "parentId": "5e0ac74b9d594972a112a87d",
+                            "slotId": "mod_pistol_grip"
                         }, {
                             "_id": "5e0ac74b9d594972a112a87f",
                             "_tpl": "574db213245977459a2f3f5d",
@@ -3967,12 +3972,12 @@
                             "slotId": "mod_stock_001"
                         }, {
                             "_id": "bce29723f148c951fd609ed1",
-                            "_tpl": "55d44fd14bdc2d962f8b456e",
+                            "_tpl": "6033749e88382f4fab3fd2c5",
                             "parentId": "496d65000311d83486bd2e73",
                             "slotId": "mod_charge"
                         }, {
                             "_id": "c573bb9afa4826b47fffa6f8",
-                            "_tpl": "60338ff388382f4fab3fd2c8",
+                            "_tpl": "602f85fd9b513876d4338d9c",
                             "parentId": "496d65000311d83486bd2e73",
                             "slotId": "mod_tactical_000"
                         }, {
@@ -4002,7 +4007,7 @@
                     "value": "1"
                 }, {
                     "id": "597afde186f7741ce2755ed2",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a88b",
                             "_tpl": "5a7ad2e851dfba0016153692",
@@ -4016,7 +4021,7 @@
                     "value": "2"
                 }, {
                     "id": "5a2e628686f7741d1e5b9016",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a88c",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -4030,22 +4035,22 @@
                     "value": "17000"
                 }, {
                     "id": "5ac667f686f77403df401d1d",
-                    "index": 5,
+                    "index": 6,
                     "items": [{
                             "_id": "5e3c0b7c7dfe975b6f2b05dc",
                             "_tpl": "584984812459776a704a82a6"
                         }
                     ],
-                    "loyaltyLevel": 2,
+                    "loyaltyLevel": 1,
                     "target": "5e3c0b7c7dfe975b6f2b05dc",
                     "traderId": "58330581ace78e27b8b10cee",
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "9mmpstGoldenSwag",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "9mmpstGZG",
-                            "_tpl": "56d59d3ad2720bdb418b4577",
+                            "_tpl": "5c3df7d588a4501f290594e5",
                             "upd": {
                                 "StackObjectsCount": 120
                             }
@@ -4158,7 +4163,7 @@
                     "value": "3"
                 }, {
                     "id": "RDG2B",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "RDGSmoke",
                             "_tpl": "5a2a57cfc4a2826c6e06d44a",
@@ -4172,7 +4177,7 @@
                     "value": "3"
                 }, {
                     "id": "ZariaStun",
-                    "index": 3,
+                    "index": 5,
                     "items": [{
                             "_id": "ZaryaReward",
                             "_tpl": "5a0c27731526d80618476ac4",
@@ -4321,7 +4326,7 @@
                     "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a890",
-                            "_tpl": "5648a7494bdc2d9d488b4583",
+                            "_tpl": "5d5e9c74a4b9364855191c40",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -4486,7 +4491,7 @@
                     "value": "3"
                 }, {
                     "id": "5a2e797e86f7741a95102602",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a894",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -4500,7 +4505,7 @@
                     "value": "15000"
                 }, {
                     "id": "5ac668d386f774066f04bd58",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e064f5ceb009468d90badca",
                             "_tpl": "5a966f51a2750c00156aacf6"
@@ -4512,7 +4517,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "ChemicalPart2TNT",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "tntBricksChemical",
                             "_tpl": "60391b0fb847c71012789415",
@@ -4623,7 +4628,7 @@
                     "value": "1"
                 }, {
                     "id": "5a2e7a0486f77406357faa73",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a897",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -4637,13 +4642,13 @@
                     "value": "22000"
                 }, {
                     "id": "5d6e71cc86f77410d46d1e43",
-                    "index": 4,
+                    "index": 5,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "-0.01"
                 }, {
                     "id": "Chemical4Zarya",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "ChemicalZaryaReward",
                             "_tpl": "5a0c27731526d80618476ac4",
