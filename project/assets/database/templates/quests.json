@@ -8981,7 +8981,7 @@
                     "id": "5c9509e686f774551528def4",
                     "index": 0,
                     "type": "Experience",
-                    "value": "7400"
+                    "value": "6700"
                 }, {
                     "id": "5bcf1b5e86f7746a49593327",
                     "index": 1,
@@ -9003,8 +9003,22 @@
                     "type": "Item",
                     "value": "800"
                 }, {
-                    "id": "5ac66c4f86f77403df401d38",
+                    "id": "60cc6a1faf2e5506c3782299",
                     "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc53e",
+                            "_tpl": "5d1c819a86f774771b0acd6c",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc53e",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "5ac66c4f86f77403df401d38",
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a8e3",
                             "_tpl": "593d493f86f7745e6b2ceb22"
