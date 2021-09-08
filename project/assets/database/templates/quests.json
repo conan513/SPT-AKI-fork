@@ -15266,15 +15266,13 @@
                     "index": 2,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.03"
                 }, {
                     "id": "5ae994b686f774436e49323a",
                     "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a951",
                             "_tpl": "5a7ae0c351dfba0017554310",
-                            "parentId": "hideout",
-                            "slotId": "hideout",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
