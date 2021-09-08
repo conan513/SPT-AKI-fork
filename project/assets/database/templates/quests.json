@@ -12110,7 +12110,7 @@
                     "value": "6000"
                 }, {
                     "id": "5a68871286f77430c15bc4c9",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5d34df2788a4504526796c90",
                             "_tpl": "590c657e86f77412b013051d",
@@ -12124,7 +12124,7 @@
                     "value": "2"
                 }, {
                     "id": "5a68872c86f77472c17ca5cf",
-                    "index": 2,
+                    "index": 4,
                     "items": [{
                             "_id": "5d34df2788a4504526796c91",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -12138,13 +12138,13 @@
                     "value": "29000"
                 }, {
                     "id": "5bcf181f86f774378e266912",
-                    "index": 3,
+                    "index": 1,
                     "target": "54cb57776803fa99248b456e",
                     "type": "TraderStanding",
                     "value": "0.04"
                 }, {
                     "id": "SalineBadPrivacy4",
-                    "index": 1,
+                    "index": 3,
                     "items": [{
                             "_id": "PrivacyPart4SalineBag",
                             "_tpl": "59e3606886f77417674759a5",
