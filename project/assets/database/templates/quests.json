@@ -7777,7 +7777,7 @@
                     "value": "1100"
                 }, {
                     "id": "SpaTour4Battery",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "SpaTour4CarBattery",
                             "_tpl": "5733279d245977289b77ec24",
