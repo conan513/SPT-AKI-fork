@@ -7494,7 +7494,7 @@
                     "id": "5c950a3a86f774551528def5",
                     "index": 0,
                     "type": "Experience",
-                    "value": "9100"
+                    "value": "7600"
                 }, {
                     "id": "5bcf1bcd86f7746a4959332b",
                     "index": 1,
@@ -7520,61 +7520,68 @@
                     "index": 3,
                     "items": [{
                             "_id": "5d34df2788a4504526796b83",
-                            "_tpl": "5926bb2186f7744b1c6c6e60",
+                            "_tpl": "5fc3f2d5900b1d5091531e57",
                             "parentId": "hideout",
                             "slotId": "hideout",
                             "upd": {
-                                "StackObjectsCount": 2
+                                "FireMode": {
+                                    "FireMode": "single"
+                                },
+                                "Foldable": {
+                                    "Folded": false
+                                },
+                                "StackObjectsCount": 1
                             }
                         }, {
                             "_id": "5d34df2788a4504526796b84",
-                            "_tpl": "5926c3b286f774640d189b6b",
+                            "_tpl": "5a718b548dc32e000d46d262",
                             "parentId": "5d34df2788a4504526796b83",
                             "slotId": "mod_magazine"
                         }, {
                             "_id": "5d34df2788a4504526796b85",
-                            "_tpl": "5926c0df86f77462f647f764",
+                            "_tpl": "5fb6567747ce63734e3fa1dc",
                             "parentId": "5d34df2788a4504526796b83",
-                            "slotId": "mod_reciever"
+                            "slotId": "mod_sight_front"
                         }, {
                             "_id": "5d34df2788a4504526796b86",
-                            "_tpl": "5926c32286f774616e42de99",
+                            "_tpl": "5fb6564947ce63734e3fa1da",
                             "parentId": "5d34df2788a4504526796b83",
-                            "slotId": "mod_charge"
-                        }, {
-                            "_id": "5d34df2788a4504526796b87",
-                            "_tpl": "58864a4f2459770fcc257101",
-                            "location": 0,
-                            "parentId": "5d34df2788a4504526796b84",
-                            "slotId": "cartridges",
-                            "upd": {
-                                "StackObjectsCount": 30
-                            }
-                        }, {
-                            "_id": "5d34df2788a4504526796b88",
-                            "_tpl": "5926c36d86f77467a92a8629",
-                            "parentId": "5d34df2788a4504526796b85",
-                            "slotId": "mod_handguard"
-                        }, {
-                            "_id": "5d34df2788a4504526796b89",
-                            "_tpl": "5926d2be86f774134d668e4e",
-                            "parentId": "5d34df2788a4504526796b85",
                             "slotId": "mod_sight_rear"
                         }, {
-                            "_id": "5d34df2788a4504526796b8a",
-                            "_tpl": "5926d3c686f77410de68ebc8",
-                            "parentId": "5d34df2788a4504526796b85",
+                            "_id": "5d34df2788a4504526796b87",
+                            "_tpl": "5fb6558ad6f0b2136f2d7eb7",
+                            "parentId": "5d34df2788a4504526796b84",
                             "slotId": "mod_stock"
                         }, {
-                            "_id": "5d34df2788a4504526796b8b",
-                            "_tpl": "5926e16e86f7742f5a0f7ecb",
+                            "_id": "5d34df2788a4504526796b88",
+                            "_tpl": "5fbbc366ca32ed67276c1557",
+                            "parentId": "5d34df2788a4504526796b85",
+                            "slotId": "mod_barrel"
+                        }, {
+                            "_id": "5d34df2788a4504526796b89",
+                            "_tpl": "5fbbc34106bde7524f03cbe9",
                             "parentId": "5d34df2788a4504526796b85",
                             "slotId": "mod_muzzle"
+                        }, {
+                            "_id": "5d34df2788a4504526796b8a",
+                            "_tpl": "5fbb976df9986c4cff3fe5f2",
+                            "parentId": "5d34df2788a4504526796b85",
+                            "slotId": "mod_mount"
+                        }, {
+                            "_id": "5d34df2788a4504526796b8b",
+                            "_tpl": "5fce0f9b55375d18a253eff2",
+                            "parentId": "5d34df2788a4504526796b85",
+                            "slotId": "mod_mount_001"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc516",
+                            "_tpl": "5fce0f9b55375d18a253eff2",
+                            "parentId": "5d34df2788a4504526796b85",
+                            "slotId": "mod_mount_002"
                         }
                     ],
                     "target": "5d34df2788a4504526796b83",
                     "type": "Item",
-                    "value": "2"
+                    "value": "1"
                 }, {
                     "id": "5a280a8686f7741b16366329",
                     "index": 4,
@@ -7590,19 +7597,33 @@
                     "type": "Item",
                     "value": "5"
                 }, {
-                    "id": "5a280a2c86f77458182b5bd6",
+                    "id": "60cc6cb17c496e588343a6c3",
                     "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc518",
+                            "_tpl": "5a718b548dc32e000d46d262",
+                            "upd": {
+                                "StackObjectsCount": 4
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc518",
+                    "type": "Item",
+                    "value": "4"
+                }, {
+                    "id": "5a280a2c86f77458182b5bd6",
+                    "index": 6,
                     "items": [{
                             "_id": "5d34df2788a4504526796b8c",
                             "_tpl": "590c2e1186f77425357b6124",
                             "upd": {
-                                "StackObjectsCount": 1
+                                "StackObjectsCount": 2
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796b8c",
                     "type": "Item",
-                    "value": "1"
+                    "value": "2"
                 }
             ]
         },
