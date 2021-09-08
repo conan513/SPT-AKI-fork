@@ -16594,6 +16594,34 @@
         "canShowNotificationsInGame": true,
         "conditions": {
             "AvailableForFinish": [{
+                    "_parent": "FindItem",
+                    "_props": {
+                        "dogtagLevel": 0,
+                        "id": "5fd89799c54dc00f463272d3",
+                        "index": 0,
+                        "maxDurability": 0,
+                        "minDurability": 0,
+                        "onlyFoundInRaid": true,
+                        "parentId": "",
+                        "resetOnSessionEnd": false,
+                        "target": ["5aa2b9ede5b5b000137b758b"],
+                        "value": "2"
+                    }
+                }, {
+                    "_parent": "FindItem",
+                    "_props": {
+                        "dogtagLevel": 0,
+                        "id": "5fd89729a8c881276c560433",
+                        "index": 1,
+                        "maxDurability": 0,
+                        "minDurability": 0,
+                        "onlyFoundInRaid": true,
+                        "parentId": "",
+                        "resetOnSessionEnd": false,
+                        "target": ["59e7708286f7742cbd762753"],
+                        "value": "2"
+                    }
+                }, {
                     "_parent": "HandoverItem",
                     "_props": {
                         "dogtagLevel": 0,
@@ -16611,7 +16639,7 @@
                     "_props": {
                         "dogtagLevel": 0,
                         "id": "5ae454a086f7742be909a81a",
-                        "index": 4,
+                        "index": 3,
                         "maxDurability": 0,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -16685,7 +16713,7 @@
                     "value": "1"
                 }, {
                     "id": "PowerFilterDressedtoKill",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "DressedToKillPowerFilter",
                             "_tpl": "5d0378d486f77420421a5ff4",
