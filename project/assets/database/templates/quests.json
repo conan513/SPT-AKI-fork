@@ -17333,41 +17333,55 @@
                     "id": "5c95110486f774551528def9",
                     "index": 0,
                     "type": "Experience",
-                    "value": "18700"
+                    "value": "17500"
+                }, {
+                    "id": "5bcf103486f77423be216108",
+                    "index": 1,
+                    "target": "5ac3b934156ae10c4430e83c",
+                    "type": "TraderStanding",
+                    "value": "0.03"
                 }, {
                     "id": "5ae9b9de86f77427153c67dc",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a98b",
-                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "_tpl": "5aa7e3abe5b5b000171d064d",
                             "upd": {
-                                "StackObjectsCount": 10000
+                                "StackObjectsCount": 1
                             }
                         }
                     ],
                     "target": "5e0ac74b9d594972a112a98b",
                     "type": "Item",
-                    "value": "10000"
-                }, {
-                    "id": "5bcf103486f77423be216108",
-                    "index": 2,
-                    "target": "5ac3b934156ae10c4430e83c",
-                    "type": "TraderStanding",
-                    "value": "0.09"
-                }, {
-                    "id": "5ae9c30186f7747f2861b9dd",
+                    "value": "1"
+		}, {
+                    "id": "60cc8438af2e5506c37822dc",
                     "index": 3,
                     "items": [{
-                            "_id": "5e0ac74b9d594972a112a98c",
-                            "_tpl": "5aa7e3abe5b5b000171d064d",
+                            "_id": "6131fda2738f614b2f2bc66d",
+                            "_tpl": "5c0919b50db834001b7ce3b9",
                             "upd": {
-                                "StackObjectsCount": 2
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc66d",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "5ae9c30186f7747f2861b9dd",
+                    "index": 4,
+                    "items": [{
+                            "_id": "5e0ac74b9d594972a112a98c",
+                            "_tpl": "5aa7e373e5b5b000137b76f0",
+                            "upd": {
+                                "StackObjectsCount": 1
                             }
                         }
                     ],
                     "target": "5e0ac74b9d594972a112a98c",
                     "type": "Item",
-                    "value": "2"
+                    "value": "1"
                 }
             ]
         },
