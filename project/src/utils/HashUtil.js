@@ -17,9 +17,9 @@ class HashUtil
 
     static generateMd5ForData(data)
     {
-        const shasum = crypto.createHash("md5");
-        shasum.update(data);
-        return shasum.digest("hex");
+        const md5sum = crypto.createHash("md5");
+        md5sum.update(data);
+        return md5sum.digest("hex");
     }
 }
 
