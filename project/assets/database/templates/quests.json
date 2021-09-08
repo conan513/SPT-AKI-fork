@@ -10364,7 +10364,7 @@
                     "value": "1300"
                 }, {
                     "id": "5ac66eb986f77403de1f5d09",
-                    "index": 3,
+                    "index": 6,
                     "items": [{
                             "_id": "5d34df2788a4504526796bef",
                             "_tpl": "59c1383d86f774290a37e0ca"
@@ -10376,7 +10376,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "UshankaWetJob2",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "WetJob2Ushanka",
                             "_tpl": "59e7708286f7742cbd762753",
@@ -10390,7 +10390,7 @@
                     "value": "2"
                 }, {
                     "id": "HalfMaskWetJob2",
-                    "index": 5,
+                    "index": 4,
                     "items": [{
                             "_id": "WetJob2HalfMasks",
                             "_tpl": "572b7fa524597762b747ce82",
@@ -10404,7 +10404,7 @@
                     "value": "2"
                 }, {
                     "id": "Wetjob2f5",
-                    "index": 6,
+                    "index": 5,
                     "items": [{
                             "_id": "WetJob2Eberlestock",
                             "_tpl": "5f5e467b0bc58666c37e7821",
