@@ -12909,7 +12909,7 @@
                         "value": "1",
                         "weight": {
                             "compareMethod": "<=",
-                            "value": 6.6
+                            "value": 6.3
                         },
                         "width": {
                             "compareMethod": ">=",
@@ -12953,7 +12953,7 @@
                     "id": "5c950ca486f774551757f068",
                     "index": 0,
                     "type": "Experience",
-                    "value": "13900"
+                    "value": "13700"
                 }, {
                     "id": "5acb826b86f77456255bad89",
                     "index": 1,
@@ -12973,7 +12973,49 @@
                     "index": 2,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.03"
+                }, {
+                    "id": "60cc76cb7c496e588343a6d8",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc5ec",
+                            "_tpl": "59e35ef086f7741777737012",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc5ec",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc76e4e3d0247e625dab6c",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc5ed",
+                            "_tpl": "59e35de086f7741778269d84",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc5ed",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "60cc76f93e4e974efa345d21",
+                    "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc5ee",
+                            "_tpl": "5d1b36a186f7742523398433",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc5ee",
+                    "type": "Item",
+                    "value": "1"
                 }
             ]
         },
