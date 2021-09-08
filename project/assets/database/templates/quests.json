@@ -15365,7 +15365,7 @@
                         "index": 0,
                         "magazineCapacity": {
                             "compareMethod": ">=",
-                            "value": 30
+                            "value": 0
                         },
                         "muzzleVelocity": {
                             "compareMethod": ">=",
@@ -15424,7 +15424,7 @@
                     "id": "5c950da286f7745516178639",
                     "index": 0,
                     "type": "Experience",
-                    "value": "16200"
+                    "value": "16000"
                 }, {
                     "id": "5ae9964b86f77439b61d2571",
                     "index": 1,
@@ -15444,7 +15444,7 @@
                     "index": 2,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.03"
                 }, {
                     "id": "5ae9966686f77439bf37d95a",
                     "index": 3,
