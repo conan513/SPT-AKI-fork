@@ -10130,8 +10130,8 @@
                                         "id": "5a281d9686f7743fe44eac8b",
                                         "target": "Savage",
                                         "value": "1",
-                                        "weapon": ["5447a9cd4bdc2dbd208b4567", "5c07c60e0db834002330051f"],
-                                        "weaponModsInclusive": [["55d614004bdc2d86028b4568"], ["59bffbb386f77435b379b9c2"], ["55d6190f4bdc2d87028b4567"], ["5c7955c22e221644f31bfd5e"], ["57da93632459771cb65bf83f"], ["57dbb57e2459774673234890"], ["5a9fbb84a2750c00137fa685"], ["5a34fe59c4a282000b1521a2"], ["5d44064fa4b9361e4f6eb8b5"], ["5cff9e84d7ad1a049e54ed55"], ["5ea17bbc09aa976f2e7a51cd"]]
+                                        "weapon": ["5c07c60e0db834002330051f", "5447a9cd4bdc2dbd208b4567"],
+                                        "weaponModsInclusive": [["55d614004bdc2d86028b4568"], ["59bffbb386f77435b379b9c2"], ["55d6190f4bdc2d87028b4567"], ["5c7955c22e221644f31bfd5e"], ["57da93632459771cb65bf83f"], ["57dbb57e2459774673234890"], ["5a9fbb84a2750c00137fa685"], ["5a34fe59c4a282000b1521a2"], ["5cff9e5ed7ad1a09407397d4"], ["5ea172e498dacb342978818e"], ["5ea17bbc09aa976f2e7a51cd"], ["5d44064fa4b9361e4f6eb8b5"], ["60926df0132d4d12c81fd9df"]]
                                     }
                                 }, {
                                     "_parent": "Location",
@@ -10186,7 +10186,7 @@
                     "id": "5c950b1786f77455192fa43d",
                     "index": 0,
                     "type": "Experience",
-                    "value": "13000"
+                    "value": "11400"
                 }, {
                     "id": "5bcf1cf286f7746a49593330",
                     "index": 1,
@@ -10200,19 +10200,33 @@
                             "_id": "5d34df2788a4504526796bd3",
                             "_tpl": "5696686a4bdc2da3298b456a",
                             "upd": {
-                                "StackObjectsCount": 1200
+                                "StackObjectsCount": 1100
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796bd3",
                     "type": "Item",
-                    "value": "1200"
+                    "value": "1100"
                 }, {
                     "id": "5bcf1c7586f7746a464c566d",
                     "index": 3,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "-0.01"
+                }, {
+                    "id": "60cc6f5f8f570e28f148114b",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc578",
+                            "_tpl": "5b4391a586f7745321235ab2",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc578",
+                    "type": "Item",
+                    "value": "2"
                 }
             ]
         },
