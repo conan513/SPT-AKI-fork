@@ -14539,6 +14539,20 @@
                     "target": "5e0ac74b9d594972a112a93f",
                     "type": "Item",
                     "value": "1"
+                }, {
+                    "id": "60cc7e6f179f8541b8469275",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc616",
+                            "_tpl": "5d6e6806a4b936088465b17e",
+                            "upd": {
+                                "StackObjectsCount": 40
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc616",
+                    "type": "Item",
+                    "value": "40"
                 }
             ]
         },
