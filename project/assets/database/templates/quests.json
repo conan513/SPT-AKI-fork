@@ -14775,7 +14775,7 @@
                     "id": "5c950d5386f77455192fa445",
                     "index": 0,
                     "type": "Experience",
-                    "value": "9000"
+                    "value": "6700"
                 }, {
                     "id": "5acb7b7a86f7747a5a561a40",
                     "index": 1,
@@ -14802,8 +14802,6 @@
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a947",
                             "_tpl": "5b1fa9b25acfc40018633c01",
-                            "parentId": "hideout",
-                            "slotId": "hideout",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
