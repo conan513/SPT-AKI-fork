@@ -12538,8 +12538,6 @@
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a905",
                             "_tpl": "57dc2fa62459775949412633",
-                            "parentId": "hideout",
-                            "slotId": "hideout",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -12614,11 +12612,39 @@
                     "type": "Item",
                     "value": "60000"
                 }, {
-                    "id": "5bcf26dd86f7746a45695b0b",
+                    "id": "60cc754798b49270603645d0",
                     "index": 2,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc5da",
+                            "_tpl": "5c06782b86f77426df5407d2",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc5da",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc759b6a2a1958fc523200",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc5db",
+                            "_tpl": "5c06779c86f77426e00dd782",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc5db",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "5bcf26dd86f7746a45695b0b",
+                    "index": 4,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.04"
+                    "value": "0.02"
                 }
             ]
         },
