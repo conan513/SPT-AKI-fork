@@ -4163,7 +4163,7 @@
                     "value": "3"
                 }, {
                     "id": "RDG2B",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "RDGSmoke",
                             "_tpl": "5a2a57cfc4a2826c6e06d44a",
@@ -4177,7 +4177,7 @@
                     "value": "3"
                 }, {
                     "id": "ZariaStun",
-                    "index": 3,
+                    "index": 5,
                     "items": [{
                             "_id": "ZaryaReward",
                             "_tpl": "5a0c27731526d80618476ac4",
