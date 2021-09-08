@@ -8746,7 +8746,7 @@
                     "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a8e0",
-                            "_tpl": "544a3a774bdc2d3a388b4567",
+                            "_tpl": "57aca93d2459771f2c7e26db",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -8760,7 +8760,7 @@
                     "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a8e1",
-                            "_tpl": "57aca93d2459771f2c7e26db",
+                            "_tpl": "544a3a774bdc2d3a388b4567",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
