@@ -16178,6 +16178,20 @@
                     "target": "5ac3b934156ae10c4430e83c",
                     "type": "TraderStanding",
                     "value": "0.02"
+                }, {
+                    "id": "60cc813e77dc197c774254d6",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc658",
+                            "_tpl": "59e7643b86f7742cbf2c109a",
+                            "upd": {
+                                "StackObjectsCount": 3
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc658",
+                    "type": "Item",
+                    "value": "3"
                 }
             ]
         },
