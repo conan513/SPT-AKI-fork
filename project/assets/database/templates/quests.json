@@ -6723,7 +6723,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 20,
+        "min_level": 1,
         "restartable": false,
         "rewards": {
             "Fail": [],
