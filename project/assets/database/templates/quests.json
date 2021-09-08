@@ -3742,7 +3742,7 @@
         "image": "/files/quest/icon/5979ed4c86f7742f55674442.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "various",
+        "location": "any",
         "min_level": 1,
         "restartable": false,
         "rewards": {
@@ -3792,6 +3792,11 @@
                             "_tpl": "587e0531245977466077a0f7",
                             "parentId": "5e0ac74b9d594972a112a87d",
                             "slotId": "mod_stock"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc483",
+                            "_tpl": "5d023784d7ad1a049d4aa7f2",
+                            "parentId": "5e0ac74b9d594972a112a87d",
+                            "slotId": "mod_pistol_grip"
                         }, {
                             "_id": "5e0ac74b9d594972a112a87f",
                             "_tpl": "574db213245977459a2f3f5d",
