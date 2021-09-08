@@ -13928,8 +13928,6 @@
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a931",
                             "_tpl": "5a7ae0c351dfba0017554310",
-                            "parentId": "hideout",
-                            "slotId": "hideout",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -13972,6 +13970,21 @@
                     ],
                     "target": "5e0ac74b9d594972a112a931",
                     "type": "Item",
+                    "value": "1"
+		}, {
+                    "id": "60cc7b1865e4664318606b02",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc60a",
+                            "_tpl": "5d1b39a386f774252339976f",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc60a",
+                    "type": "Item",
+                    "unknown": true,
                     "value": "1"
                 }
             ]
