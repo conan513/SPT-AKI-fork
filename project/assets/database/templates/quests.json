@@ -11275,7 +11275,7 @@
                         "index": 1,
                         "maxDurability": 0,
                         "minDurability": 0,
-                        "onlyFoundInRaid": true,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["59f32c3b86f77472a31742f0"],
                         "value": "7"
@@ -11288,7 +11288,7 @@
                         "index": 2,
                         "maxDurability": 0,
                         "minDurability": 0,
-                        "onlyFoundInRaid": true,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["59f32c3b86f77472a31742f0"],
                         "value": "7",
@@ -11358,8 +11358,6 @@
                     "items": [{
                             "_id": "5c10fcb186f774533e5529ad",
                             "_tpl": "5c07c60e0db834002330051f",
-                            "parentId": "hideout",
-                            "slotId": "hideout",
                             "upd": {
                                 "FireMode": {
                                     "FireMode": "single"
@@ -11432,7 +11430,7 @@
                     "value": "1"
                 }, {
                     "id": "m855a1",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "m855a1Reward",
                             "_tpl": "54527ac44bdc2d36668b4567",
