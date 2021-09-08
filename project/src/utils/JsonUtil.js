@@ -41,8 +41,8 @@ class JsonUtil
         catch (e)
         {
             let Pos = e.message.split(" ").pop();
-             Logger.error(`JSON File Error: ${url} => Pos: ${Pos}`);
-        }          
+            Logger.error(`JSON File Error: ${url} => Pos: ${Pos}`);
+        }
         let { data, changed } = fixJson(`${s}`);
         return data;
     }
