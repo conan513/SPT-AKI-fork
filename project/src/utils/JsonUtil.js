@@ -30,23 +30,6 @@ class JsonUtil
         return data;
     }
 
-    static getData(url)
-    {
-        let s = "{}";
-        try
-        {
-            s = VFS.readFile(url);
-            return JSON.parse(s);
-        }
-        catch (e)
-        {
-            let Pos = e.message.split(" ").pop();
-            Logger.error(`JSON File Error: ${url} => Pos: ${Pos}`);
-        }
-        let { data, changed } = fixJson(`${s}`);
-        return data;
-    }
-
     static clone(data)
     {
         return JSON.parse(JSON.stringify(data));
