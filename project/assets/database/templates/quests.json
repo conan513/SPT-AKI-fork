@@ -12232,7 +12232,7 @@
                     "value": "7300"
                 }, {
                     "id": "5ac665d286f77405d472939f",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5d34df2788a4504526796c92",
                             "_tpl": "5aafbcd986f7745e590fff23",
@@ -12246,7 +12246,7 @@
                     "value": "1"
                 }, {
                     "id": "5a6887c686f77472c17ca5ed",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "5d34df2788a4504526796c93",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -12260,7 +12260,7 @@
                     "value": "35000"
                 }, {
                     "id": "5bcf183686f7746a45695a64",
-                    "index": 3,
+                    "index": 1,
                     "target": "54cb57776803fa99248b456e",
                     "type": "TraderStanding",
                     "value": "0.04"
