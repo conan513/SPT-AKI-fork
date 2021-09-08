@@ -12000,7 +12000,7 @@
                     "value": "5900"
                 }, {
                     "id": "5ac6658a86f77403df401d13",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5d34df2788a4504526796c8d",
                             "_tpl": "544fb3f34bdc2d03748b456a",
@@ -12014,7 +12014,7 @@
                     "value": "2"
                 }, {
                     "id": "5a68869386f7745fa7410407",
-                    "index": 2,
+                    "index": 4,
                     "items": [{
                             "_id": "5d34df2788a4504526796c8e",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -12028,13 +12028,13 @@
                     "value": "26000"
                 }, {
                     "id": "5bcf180886f7746a49593323",
-                    "index": 3,
+                    "index": 1,
                     "target": "54cb57776803fa99248b456e",
                     "type": "TraderStanding",
                     "value": "0.04"
                 }, {
                     "id": "5ac6659886f774066f04bd4d",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e3c0b947dfe975b6f2b1566",
                             "_tpl": "544fb3f34bdc2d03748b456a"
@@ -12046,7 +12046,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "CarePrivacyPart3Adrenaline",
-                    "index": 5,
+                    "index": 3,
                     "items": [{
                             "_id": "HealthCareAdrenaline",
                             "_tpl": "5c10c8fd86f7743d7d706df3",
