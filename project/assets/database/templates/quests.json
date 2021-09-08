@@ -13499,6 +13499,7 @@
                         "dogtagLevel": 0,
                         "id": "5ac505c386f7740be0424d19",
                         "index": 2,
+                        "maxDurability": 0,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
                         "parentId": "",
@@ -13511,6 +13512,7 @@
                         "dogtagLevel": 0,
                         "id": "5ac505e186f7740bdf2ceabe",
                         "index": 3,
+                        "maxDurability": 0,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
                         "parentId": "",
@@ -13602,7 +13604,7 @@
                     "index": 2,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.03"
+                    "value": "0.02"
                 }, {
                     "id": "5ad0ab7286f774547c14e283",
                     "index": 3,
