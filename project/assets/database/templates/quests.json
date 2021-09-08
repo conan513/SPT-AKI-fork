@@ -1530,7 +1530,7 @@
                     "value": "75000"
                 }, {
                     "id": "5ac653ed86f77405d4729344",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5e3c0b8d7dfe975b6f2b1039",
                             "_tpl": "57ffb0e42459777d047111c5"
@@ -1542,7 +1542,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "5ac65d3186f774056634a202",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e3c0b8d7dfe975b6f2b10ab",
                             "_tpl": "59c0ec5b86f77435b128bfca"
@@ -1550,11 +1550,11 @@
                     ],
                     "loyaltyLevel": 2,
                     "target": "5e3c0b8d7dfe975b6f2b10ab",
-                    "traderId": "54cb50c76803fa8b248b4571",
+                    "traderId": "58330581ace78e27b8b10cee",
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "5d6e70f786f7743b5f001112",
-                    "index": 5,
+                    "index": 6,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "-0.01"
