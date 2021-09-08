@@ -10958,16 +10958,30 @@
                             "_id": "5d34df2788a4504526796b8e",
                             "_tpl": "5696686a4bdc2da3298b456a",
                             "upd": {
-                                "StackObjectsCount": 1600
+                                "StackObjectsCount": 1700
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796b8e",
                     "type": "Item",
-                    "value": "1600"
+                    "value": "1700"
+                }, {
+                    "id": "60cc712ba7d63f18200a24d9",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc595",
+                            "_tpl": "5c0e655586f774045612eeb2",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc595",
+                    "type": "Item",
+                    "value": "1"
                 }, {
                     "id": "5ac66f1c86f77405cd5462db",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5d34df2788a4504526796b8f",
                             "_tpl": "5a367e5dc4a282000e49738f",
@@ -11030,12 +11044,10 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "WetJob5AFAK",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "AFAKUnlockFromWetJob5",
-                            "_tpl": "60098ad7c2240c0fe85c570a",
-                            "parentId": "hideout",
-                            "slotId": "hideout"
+                            "_tpl": "60098ad7c2240c0fe85c570a"
                         }
                     ],
                     "loyaltyLevel": 4,
