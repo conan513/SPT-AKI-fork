@@ -36889,7 +36889,7 @@
                     "index": 3,
                     "items": [{
                             "_id": "MedCaseCrisis",
-                            "_tpl": "5909d4c186f7746ad34e805a",
+                            "_tpl": "5aafbcd986f7745e590fff23",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -37708,6 +37708,84 @@
         "traderId": "5c0647fdd443bc2504c2d371",
         "type": "Elimination"
     },
+    "60effd818b669d08a35bfad5": {
+        "_id": "60effd818b669d08a35bfad5",
+        "canShowNotificationsInGame": true,
+        "conditions": {
+            "AvailableForFinish": [{
+                    "_parent": "HandoverItem",
+                    "_props": {
+                        "id": "60effdac12fec20321367038",
+                        "index": 0,
+                        "minDurability": 0,
+                        "onlyFoundInRaid": false,
+                        "parentId": "",
+                        "target": ["59db794186f77448bc595262"],
+                        "value": "1"
+                    }
+                }
+            ],
+            "AvailableForStart": [{
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "61014aa1e10c48364e47a913",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "68"
+                    }
+                }
+            ],
+            "Fail": []
+        },
+        "image": "/files/quest/icon/5c7eb06188a4504aae56deb7.png",
+        "instantComplete": false,
+        "isKey": false,
+        "location": "any",
+        "min_level": 68,
+        "restartable": false,
+        "rewards": {
+            "Fail": [],
+            "Started": [],
+            "Success": [{
+                    "id": "5d667d6a86f774368f43a1f9",
+                    "index": 0,
+                    "type": "Experience",
+                    "value": "777777"
+                }, {
+                    "id": "610289cc683d6b506f258f98",
+                    "index": 1,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc8c0",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 1000000
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc8c0",
+                    "type": "Item",
+                    "unknown": true,
+                    "value": "1000000"
+                }, {
+                    "id": "TheChoiceHIdeoutSkill",
+                    "index": 2,
+                    "target": "HideoutManagement",
+                    "type": "Skill",
+                    "value": "200"
+                }, {
+                    "id": "61029c6c4617d376021dd1a6",
+                    "index": 3,
+                    "target": "579dc571d53a0658a154fbec",
+                    "type": "TraderStanding",
+                    "value": "1.1"
+                }
+            ]
+        },
+        "secretQuest": false,
+        "traderId": "579dc571d53a0658a154fbec",
+        "type": "Loyalty"
+    },
     "60e729cf5698ee7b05057439": {
         "_id": "60e729cf5698ee7b05057439",
         "canShowNotificationsInGame": true,
@@ -37823,89 +37901,5 @@
         "secretQuest": false,
         "traderId": "58330581ace78e27b8b10cee",
         "type": "Elimination"
-    },
-    "60effd818b669d08a35bfad5": {
-        "_id": "60effd818b669d08a35bfad5",
-        "canShowNotificationsInGame": true,
-        "conditions": {
-            "AvailableForFinish": [{
-                    "_parent": "HandoverItem",
-                    "_props": {
-                        "id": "60effdac12fec20321367038",
-                        "index": 0,
-                        "minDurability": 0,
-                        "onlyFoundInRaid": false,
-                        "parentId": "",
-                        "target": ["59db794186f77448bc595262"],
-                        "value": "1"
-                    }
-                }
-            ],
-            "AvailableForStart": [{
-                    "_parent": "Level",
-                    "_props": {
-                        "compareMethod": ">=",
-                        "id": "",
-                        "index": 0,
-                        "parentId": "",
-                        "value": "68"
-                    }
-                }
-            ],
-            "Fail": []
-        },
-        "image": "/files/quest/icon/5c7eb06188a4504aae56deb7.png",
-        "instantComplete": false,
-        "isKey": false,
-        "location": "any",
-        "min_level": 68,
-        "restartable": false,
-        "rewards": {
-            "Fail": [],
-            "Started": [],
-            "Success": [{
-                    "id": "5d667d6a86f774368f43a1f9",
-                    "index": 0,
-                    "type": "Experience",
-                    "value": "777777"
-                }, {
-                    "id": "TheChoiceHIdeoutSkill",
-                    "index": 1,
-                    "target": "HideoutManagement",
-                    "type": "Skill",
-                    "value": "1000"
-                }, {
-                    "id": "TheChoiceCraftingSkill",
-                    "index": 2,
-                    "target": "Crafting",
-                    "type": "Skill",
-                    "value": "1000"
-                }, {
-                    "id": "TheChoiceRoubles",
-                    "index": 3,
-                    "items": [{
-                            "_id": "RoublesTheChoice",
-                            "_tpl": "5449016a4bdc2d6f028b456f",
-                            "upd": {
-                                "StackObjectsCount": 5000000
-                            }
-                        }
-                    ],
-                    "target": "RoublesTheChoice",
-                    "type": "Item",
-                    "unknown": true,
-                    "value": "5000000"
-                }, {
-                    "id": "TheChoiceFenceStanding",
-                    "index": 4,
-                    "target": "579dc571d53a0658a154fbec",
-                    "type": "TraderStanding",
-                    "value": "2.2"
-                }
-            ]
-        },
-        "secretQuest": false,
-        "traderId": "579dc571d53a0658a154fbec",
-        "type": "Completion"
     }
 }
