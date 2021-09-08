@@ -2219,7 +2219,7 @@
                     "value": "17000"
                 }, {
                     "id": "5a3fac7186f77406e94524a0",
-                    "index": 3,
+                    "index": 5,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a850",
                             "_tpl": "544fb37f4bdc2dee738b4567",
@@ -2233,7 +2233,7 @@
                     "value": "2"
                 }, {
                     "id": "reward",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "syringue",
                             "_tpl": "5d1b3f2d86f774253763b735",
@@ -2247,7 +2247,7 @@
                     "value": "5"
                 }, {
                     "id": "PileofMeds",
-                    "index": 5,
+                    "index": 6,
                     "items": [{
                             "_id": "medsPileReward",
                             "_tpl": "5d1b3a5d86f774252167ba22",
@@ -2261,7 +2261,7 @@
                     "value": "2"
                 }, {
                     "id": "SiliconeTube",
-                    "index": 6,
+                    "index": 4,
                     "items": [{
                             "_id": "TubeofSilicone",
                             "_tpl": "5d1b39a386f774252339976f",
