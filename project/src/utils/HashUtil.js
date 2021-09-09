@@ -14,6 +14,13 @@ class HashUtil
         shasum.update(time.toString());
         return shasum.digest("hex").substring(0, 24);
     }
+
+    static generateMd5ForData(data)
+    {
+        const md5sum = crypto.createHash("md5");
+        md5sum.update(data);
+        return md5sum.digest("hex");
+    }
 }
 
 module.exports = HashUtil;
