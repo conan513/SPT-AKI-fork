@@ -18331,13 +18331,13 @@
                     "value": "2"
                 }, {
                     "id": "ULACTanUnlockSalesNight",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "SalesNightUlachTan",
                             "_tpl": "5b40e2bc5acfc40016388216"
                         }
                     ],
-                    "loyaltyLevel": 3,
+                    "loyaltyLevel": 4,
                     "target": "SalesNightUlachTan",
                     "traderId": "5ac3b934156ae10c4430e83c",
                     "type": "AssortmentUnlock"
