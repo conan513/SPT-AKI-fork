@@ -19148,13 +19148,13 @@
                     "id": "5c950e3686f77455192fa449",
                     "index": 0,
                     "type": "Experience",
-                    "value": "22600"
+                    "value": "22300"
                 }, {
                     "id": "5b4876f586f7744d06237e5c",
                     "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.05"
+                    "value": "0.03"
                 }, {
                     "id": "5b48772b86f7744d06237e61",
                     "index": 2,
