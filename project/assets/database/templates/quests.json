@@ -18998,13 +18998,13 @@
                     "id": "5c950e2286f774551757f06b",
                     "index": 0,
                     "type": "Experience",
-                    "value": "20800"
+                    "value": "20500"
                 }, {
                     "id": "5b4876bc86f77447c5418006",
                     "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.05"
+                    "value": "0.03"
                 }, {
                     "id": "5b4876c786f7746eb62fc13a",
                     "index": 2,
