@@ -15724,7 +15724,7 @@
                         },
                         "hasItemFromCategory": ["550aa4cd4bdc2dd8348b456c"],
                         "height": {
-                            "compareMethod": "<=",
+                            "compareMethod": ">=",
                             "value": 2
                         },
                         "id": "5ae445f386f7744e87761331",
@@ -15749,7 +15749,7 @@
                             "value": 4.8
                         },
                         "width": {
-                            "compareMethod": "<=",
+                            "compareMethod": ">=",
                             "value": 4
                         }
                     }
@@ -15790,13 +15790,13 @@
                     "id": "5c950dc486f77455192fa447",
                     "index": 0,
                     "type": "Experience",
-                    "value": "17500"
+                    "value": "17300"
                 }, {
                     "id": "5bcf280b86f7746a464c568d",
                     "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.03"
                 }, {
                     "id": "5ae99ad486f7742b26761566",
                     "index": 2,
@@ -15878,6 +15878,18 @@
                     ],
                     "loyaltyLevel": 3,
                     "target": "5e0ac74b9d594972a112a971",
+                    "traderId": "5a7c2eca46aef81a7ca2145d",
+                    "type": "AssortmentUnlock"
+                }, {
+                    "id": "60b8f60b93a8b605b63e18b1",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc652",
+                            "_tpl": "5cc86832d7f00c000d3a6e6c"
+                        }
+                    ],
+                    "loyaltyLevel": 4,
+                    "target": "6131fda2738f614b2f2bc652",
                     "traderId": "5a7c2eca46aef81a7ca2145d",
                     "type": "AssortmentUnlock"
                 }
