@@ -6302,7 +6302,7 @@
                                         "id": "59674d5586f77446b62354e7",
                                         "target": "Savage",
                                         "value": "1",
-                                        "weapon": ["576165642459773c7a400233", "54491c4f4bdc2db1078b4568", "56dee2bdd2720bc8328b4567", "5580223e4bdc2d1c128b457f", "5a7828548dc32e5a9c28b516", "606dae0ab0e443224b421bb7"]
+                                        "weapon": ["576165642459773c7a400233", "54491c4f4bdc2db1078b4568", "5a7828548dc32e5a9c28b516", "5e870397991fd70db46995c8", "56dee2bdd2720bc8328b4567", "5580223e4bdc2d1c128b457f", "606dae0ab0e443224b421bb7"]
                                     }
                                 }, {
                                     "_parent": "Location",
@@ -6341,7 +6341,7 @@
                                 }, {
                                     "_parent": "Equipment",
                                     "_props": {
-                                        "equipmentInclusive": [["572b7adb24597762ae139821", "572b7f1624597762ae139822"], ["572b7adb24597762ae139821", "5b432f3d5acfc4704b4a1dfb"], ["572b7adb24597762ae139821", "5ab8f4ff86f77431c60d91ba"], ["572b7adb24597762ae139821", "5ab8f39486f7745cd93a1cca"]],
+                                        "equipmentInclusive": [["572b7adb24597762ae139821", "572b7f1624597762ae139822"], ["572b7adb24597762ae139821", "5b432f3d5acfc4704b4a1dfb"], ["572b7adb24597762ae139821", "5fd8d28367cb5e077335170f"], ["572b7adb24597762ae139821", "5ab8f4ff86f77431c60d91ba"], ["572b7adb24597762ae139821", "5ab8f39486f7745cd93a1cca"]],
                                         "id": "5c922b6486f77438522e0c35"
                                     }
                                 }
