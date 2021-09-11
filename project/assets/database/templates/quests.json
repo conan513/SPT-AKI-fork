@@ -25412,7 +25412,7 @@
                                         "id": "5c12360186f7745ac71d1fb4",
                                         "target": "AnyPmc",
                                         "value": "1",
-                                        "weapon": ["54491c4f4bdc2db1078b4568", "56dee2bdd2720bc8328b4567"]
+                                        "weapon": ["54491c4f4bdc2db1078b4568", "56dee2bdd2720bc8328b4567", "606dae0ab0e443224b421bb7"]
                                     }
                                 }, {
                                     "_parent": "Equipment",
@@ -25464,7 +25464,7 @@
                     "id": "5c94fffe86f774551757f04d",
                     "index": 0,
                     "type": "Experience",
-                    "value": "29300"
+                    "value": "21900"
                 }, {
                     "id": "5c17bfb886f77430a64c69f1",
                     "index": 1,
@@ -25472,13 +25472,13 @@
                             "_id": "5d34df2788a4504526796cfc",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 100000
+                                "StackObjectsCount": 150000
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796cfc",
                     "type": "Item",
-                    "value": "100000"
+                    "value": "150000"
                 }, {
                     "id": "5c1bb2ef86f7745f97490443",
                     "index": 2,
@@ -25496,7 +25496,97 @@
                     "index": 3,
                     "target": "58330581ace78e27b8b10cee",
                     "type": "TraderStanding",
-                    "value": "0.07"
+                    "value": "0.05"
+                }, {
+                    "id": "60cb626d77dc197c77424fb8",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc779",
+                            "_tpl": "5f36a0e5fbf956000b716b65",
+                            "upd": {
+                                "FireMode": {
+                                    "FireMode": "single"
+                                },
+                                "StackObjectsCount": 2
+                            }
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc77a",
+                            "_tpl": "5f3e7801153b8571434a924c",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_barrel"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc77b",
+                            "_tpl": "5f3e778efcd9b651187d7201",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_pistol_grip"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc77c",
+                            "_tpl": "5f3e7823ddc4f03b010e2045",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_reciever"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc77d",
+                            "_tpl": "5f3e7897ddc4f03b010e204a",
+                            "parentId": "6131fda2738f614b2f2bc77c",
+                            "slotId": "mod_sight_rear"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc77e",
+                            "_tpl": "5f3e78a7fbf956000b716b8e",
+                            "parentId": "6131fda2738f614b2f2bc77c",
+                            "slotId": "mod_sight_front"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc77f",
+                            "_tpl": "5f3e77b26cda304dcc634057",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_magazine"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc780",
+                            "_tpl": "5f3e772a670e2a7b01739a52",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_trigger"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc781",
+                            "_tpl": "5f3e76d86cda304dcc634054",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_hammer"
+                        }, {
+                            "_id": "6131fda2738f614b2f2bc782",
+                            "_tpl": "5f3e777688ca2d00ad199d25",
+                            "parentId": "6131fda2738f614b2f2bc779",
+                            "slotId": "mod_catch"
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc779",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cb6268179f8541b8469224",
+                    "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc783",
+                            "_tpl": "5f3e77b26cda304dcc634057",
+                            "upd": {
+                                "StackObjectsCount": 3
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc783",
+                    "type": "Item",
+                    "value": "3"
+                }, {
+                    "id": "60cb62907c496e588343a1c7",
+                    "index": 6,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc784",
+                            "_tpl": "5efb0fc6aeb21837e749c801",
+                            "upd": {
+                                "StackObjectsCount": 60
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc784",
+                    "type": "Item",
+                    "value": "60"
                 }
             ]
         },
