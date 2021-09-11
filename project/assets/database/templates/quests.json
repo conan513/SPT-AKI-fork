@@ -23376,10 +23376,16 @@
                     "id": "5c95079086f774551757f062",
                     "index": 0,
                     "type": "Experience",
-                    "value": "20100"
+                    "value": "30600"
                 }, {
-                    "id": "5c18d39d86f77467c259d521",
+                    "id": "5c18d3fd86f774397f043e97",
                     "index": 1,
+                    "target": "54cb57776803fa99248b456e",
+                    "type": "TraderStanding",
+                    "value": "0.05"
+		}, {
+                    "id": "5c18d39d86f77467c259d521",
+                    "index": 2,
                     "items": [{
                             "_id": "5d34df2788a4504526796df4",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -23393,7 +23399,7 @@
                     "value": "130000"
                 }, {
                     "id": "5c18d3c986f774186730ff0b",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "5d34df2788a4504526796df5",
                             "_tpl": "5a13f46386f7741dd7384b04",
@@ -23407,7 +23413,7 @@
                     "value": "1"
                 }, {
                     "id": "5c18d3da86f77467bf065312",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5d34df2788a4504526796df6",
                             "_tpl": "5c0a840b86f7742ffa4f2482",
@@ -23419,12 +23425,6 @@
                     "target": "5d34df2788a4504526796df6",
                     "type": "Item",
                     "value": "1"
-                }, {
-                    "id": "5c18d3fd86f774397f043e97",
-                    "index": 4,
-                    "target": "54cb57776803fa99248b456e",
-                    "type": "TraderStanding",
-                    "value": "0.11"
                 }
             ]
         },
