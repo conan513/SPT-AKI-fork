@@ -29483,7 +29483,7 @@
                     "_props": {
                         "dogtagLevel": 0,
                         "id": "5ec1504183b69d213d3c2ee8",
-                        "index": 0,
+                        "index": 2,
                         "maxDurability": 0,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -29496,7 +29496,7 @@
                     "_props": {
                         "dogtagLevel": 0,
                         "id": "5d27446f86f77475a86565a3",
-                        "index": 1,
+                        "index": 0,
                         "maxDurability": 0,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -29509,7 +29509,7 @@
                     "_props": {
                         "dogtagLevel": 0,
                         "id": "5ec1538a92e95f77ac7a2529",
-                        "index": 2,
+                        "index": 1,
                         "maxDurability": 0,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -29593,7 +29593,7 @@
                             "_tpl": "5d02797c86f774203f38e30a"
                         }
                     ],
-                    "loyaltyLevel": 4,
+                    "loyaltyLevel": 3,
                     "target": "5e02be602a251a0952271115",
                     "traderId": "5c0647fdd443bc2504c2d371",
                     "type": "AssortmentUnlock"
