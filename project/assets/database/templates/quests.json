@@ -36281,12 +36281,6 @@
                                         "target": "Savage",
                                         "value": "1"
                                     }
-                                }, {
-                                    "_parent": "Location",
-                                    "_props": {
-                                        "id": "PestControlLocationCondition",
-                                        "target": ["rezervbase"]
-                                    }
                                 }
                             ],
                             "id": "PestControlCounter"
@@ -36300,23 +36294,23 @@
                 }
             ],
             "AvailableForStart": [{
-                    "_parent": "Quest",
+                    "_parent": "Level",
                     "_props": {
-                        "id": "",
+                        "compareMethod": ">=",
+                        "id": "60bf7557a2ae0728ec716f33",
                         "index": 0,
                         "parentId": "",
-                        "status": [4],
-                        "target": "5d25e2ee86f77443e35162ea"
+                        "value": "10"
                     }
                 }
             ],
             "Fail": []
         },
-        "image": "/files/quest/icon/608a768d82e40b3c727fd17d.png",
+        "image": "/files/quest/icon/60c373b71d348838124696ea.jpg",
         "instantComplete": false,
         "isKey": false,
         "location": "5704e5fad2720bc05b8b4567",
-        "min_level": 0,
+        "min_level": 10,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -36334,7 +36328,7 @@
                     "value": "0.02"
                 }, {
                     "id": "PestControlRoubles",
-                    "index": 2,
+                    "index": 6,
                     "items": [{
                             "_id": "RoublesPestControl",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -36348,7 +36342,7 @@
                     "value": "20000"
                 }, {
                     "id": "AntiRoachPestControl",
-                    "index": 3,
+                    "index": 2,
                     "items": [{
                             "_id": "PestControlAntiRoach",
                             "_tpl": "59e3596386f774176c10a2a2",
@@ -36362,7 +36356,7 @@
                     "value": "2"
                 }, {
                     "id": "PestControlEagle",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "EaglePestControl",
                             "_tpl": "5d6fc78386f77449d825f9dc",
@@ -36376,7 +36370,7 @@
                     "value": "6"
                 }, {
                     "id": "PestControlNails",
-                    "index": 5,
+                    "index": 4,
                     "items": [{
                             "_id": "NailsPestControl",
                             "_tpl": "590c31c586f774245e3141b2",
@@ -36387,10 +36381,10 @@
                     ],
                     "target": "NailsPestControl",
                     "type": "Item",
-                    "value": "6"
+                    "value": "4"
                 }, {
                     "id": "PestControlThermite",
-                    "index": 6,
+                    "index": 5,
                     "items": [{
                             "_id": "ThermitePestControl",
                             "_tpl": "60391a8b3364dc22b04d0ce5",
