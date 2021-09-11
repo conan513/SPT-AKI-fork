@@ -17880,7 +17880,7 @@
                     "id": "5c95114586f774551757f06e",
                     "index": 0,
                     "type": "Experience",
-                    "value": "12700"
+                    "value": "15600"
                 }, {
                     "id": "5ae9c2b386f774092466fd39",
                     "index": 1,
@@ -17888,33 +17888,33 @@
                             "_id": "5d34df2788a4504526796cc6",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 30000
+                                "StackObjectsCount": 60000
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796cc6",
                     "type": "Item",
-                    "value": "30000"
+                    "value": "60000"
                 }, {
                     "id": "5bcf115a86f7742ce2243a39",
                     "index": 2,
                     "target": "5ac3b934156ae10c4430e83c",
                     "type": "TraderStanding",
-                    "value": "0.07"
+                    "value": "0.03"
                 }, {
                     "id": "5ae9c2ce86f7747bf975f002",
                     "index": 3,
                     "items": [{
                             "_id": "5d34df2788a4504526796cc7",
-                            "_tpl": "5aa7e373e5b5b000137b76f0",
+                            "_tpl": "5d5d87f786f77427997cfaef",
                             "upd": {
-                                "StackObjectsCount": 2
+                                "StackObjectsCount": 1
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796cc7",
                     "type": "Item",
-                    "value": "2"
+                    "value": "1"
                 }
             ]
         },
