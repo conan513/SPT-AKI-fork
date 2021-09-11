@@ -18820,13 +18820,13 @@
                     "id": "5c950e0c86f7743285178adb",
                     "index": 0,
                     "type": "Experience",
-                    "value": "19000"
+                    "value": "18700"
                 }, {
                     "id": "5b48768286f77449bc7bc9bf",
                     "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.05"
+                    "value": "0.03"
                 }, {
                     "id": "5b48768d86f7744a14343aea",
                     "index": 2,
@@ -18856,8 +18856,36 @@
                     "type": "Item",
                     "value": "1"
                 }, {
-                    "id": "5b48e6b086f774517c2e6442",
+                    "id": "60cc791f8f570e28f1481161",
                     "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc69b",
+                            "_tpl": "5cebec00d7f00c065c53522a",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc69b",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "60cc794565e4664318606af9",
+                    "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc69c",
+                            "_tpl": "5c6592372e221600133e47d7",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc69c",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "5b48e6b086f774517c2e6442",
+                    "index": 6,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9a4",
                             "_tpl": "5b07db875acfc40dc528a5f6"
