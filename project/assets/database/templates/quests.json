@@ -32882,73 +32882,7 @@
                     "target": "RewardDollars",
                     "type": "Item",
                     "value": "4000"
-                }, {
-                    "id": "5d84db5486f77430da397b76",
-                    "index": 4,
-                    "items": [{
-                            "_id": "RewardSA58",
-                            "_tpl": "5b0bbe4e5acfc40dc528a72d"
-                        }, {
-                            "_id": "5b439b5686f77428bd137433",
-                            "_tpl": "5b099b965acfc400186331e6",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_pistol_grip"
-                        }, {
-                            "_id": "5b439b5686f77428bd137434",
-                            "_tpl": "5b099ac65acfc400186331e1",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_magazine"
-                        }, {
-                            "_id": "5b439b5686f77428bd137435",
-                            "_tpl": "5b099a9d5acfc47a8607efe7",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_handguard"
-                        }, {
-                            "_id": "5b439b5686f77428bd137436",
-                            "_tpl": "5b099a765acfc47a8607efe3",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_barrel"
-                        }, {
-                            "_id": "5b439b5686f77428bd137437",
-                            "_tpl": "5b099b7d5acfc400186331e4",
-                            "parentId": "5b439b5686f77428bd137436",
-                            "slotId": "mod_muzzle"
-                        }, {
-                            "_id": "5b439b5686f77428bd137438",
-                            "_tpl": "5b0bc22d5acfc47a8607f085",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_sight_rear"
-                        }, {
-                            "_id": "5b439b5686f77428bd137439",
-                            "_tpl": "5b099bb25acfc400186331e8",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_reciever"
-                        }, {
-                            "_id": "5b439b5686f77428bd13743a",
-                            "_tpl": "5b099bf25acfc4001637e683",
-                            "parentId": "RewardSA58",
-                            "slotId": "mod_stock"
-                        }, {
-                            "_id": "5b439b5686f77428bd13743b",
-                            "_tpl": "5649be884bdc2d79388b4577",
-                            "parentId": "5b439b5686f77428bd13743a",
-                            "slotId": "mod_stock_000"
-                        }, {
-                            "_id": "5b439b5686f77428bd13743c",
-                            "_tpl": "56eabf3bd2720b75698b4569",
-                            "parentId": "5b439b5686f77428bd13743b",
-                            "slotId": "mod_stock_000"
-                        }, {
-                            "_id": "5b439b5686f77428bd13743d",
-                            "_tpl": "58d2912286f7744e27117493",
-                            "parentId": "5b439b5686f77428bd13743c",
-                            "slotId": "mod_stock"
-                        }
-                    ],
-                    "target": "RewardSA58",
-                    "type": "Item",
-                    "value": "1"
-                }, {
+                   }, {
                     "id": "5d84db5486f77430da397b76",
                     "index": 3,
                     "items": [{
@@ -32960,6 +32894,57 @@
                         }
                     ],
                     "target": "RewardAmmoCase",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "5d84db5486f77430da397b76",
+                    "index": 4,
+                    "items": [{
+                            "_id": "RewardSA58",
+                            "_tpl": "5b0bbe4e5acfc40dc528a72d"
+                        }, {
+                            "_id": "5b439b5686f77428bd137433",
+                            "_tpl": "5b7d678a5acfc4001a5c4022",
+                            "parentId": "RewardSA58",
+                            "slotId": "mod_pistol_grip"
+                        }, {
+                            "_id": "5b439b5686f77428bd137434",
+                            "_tpl": "5b7bef5d5acfc43bca7067a3",
+                            "parentId": "RewardSA58",
+                            "slotId": "mod_magazine"
+                        }, {
+                            "_id": "5b439b5686f77428bd137435",
+                            "_tpl": "5b7d671b5acfc43d82528ddd",
+                            "parentId": "RewardSA58",
+                            "slotId": "mod_handguard"
+                        }, {
+                            "_id": "5b439b5686f77428bd137436",
+                            "_tpl": "5b7be1265acfc400161d0798",
+                            "parentId": "RewardSA58",
+                            "slotId": "mod_barrel"
+                        }, {
+                            "_id": "5b439b5686f77428bd137437",
+                            "_tpl": "5b7d68af5acfc400170e30c3",
+                            "parentId": "5b439b5686f77428bd137436",
+                            "slotId": "mod_muzzle"
+                        }, {
+                            "_id": "5b439b5686f77428bd137438",
+                            "_tpl": "5b0bc22d5acfc47a8607f085",
+                            "parentId": "RewardSA58",
+                            "slotId": "mod_sight_rear"
+                        }, {
+                            "_id": "5b439b5686f77428bd137439",
+                            "_tpl": "5b7d6c105acfc40015109a5f",
+                            "parentId": "RewardSA58",
+                            "slotId": "mod_reciever"
+                        }, {
+                            "_id": "5b439b5686f77428bd13743d",
+                            "_tpl": "5b7d63cf5acfc4001876c8df",
+                            "parentId": "5b439b5686f77428bd13743c",
+                            "slotId": "mod_stock"
+                        }
+                    ],
+                    "target": "RewardSA58",
                     "type": "Item",
                     "value": "1"
                 }, {
