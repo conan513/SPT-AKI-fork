@@ -19323,13 +19323,13 @@
                     "id": "5c950e4d86f774551617863a",
                     "index": 0,
                     "type": "Experience",
-                    "value": "28500"
+                    "value": "32800"
                 }, {
                     "id": "5b48777586f77443394a8956",
                     "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
-                    "value": "0.06"
+                    "value": "0.04"
                 }, {
                     "id": "5b4f0d2786f7742abd44cd44",
                     "index": 2,
@@ -19450,6 +19450,18 @@
                     "target": "5e0ac74b9d594972a112a9b2",
                     "type": "Item",
                     "value": "1"
+                }, {
+                    "id": "60b8f63947780a0bac0dba1b",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc6be",
+                            "_tpl": "5a1eaa87fcdbcb001865f75e"
+                        }
+                    ],
+                    "loyaltyLevel": 4,
+                    "target": "6131fda2738f614b2f2bc6be",
+                    "traderId": "5a7c2eca46aef81a7ca2145d",
+                    "type": "AssortmentUnlock"
                 }
             ]
         },
