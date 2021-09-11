@@ -18420,7 +18420,7 @@
         "image": "/files/quest/icon/5ae4a74386f7744748710d72.jpg",
         "instantComplete": false,
         "isKey": false,
-        "location": "5714dbc024597771384a510d",
+        "location": "any",
         "min_level": 0,
         "restartable": false,
         "rewards": {
@@ -18438,22 +18438,36 @@
                             "_id": "5d34df2788a4504526796cfa",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 235000
+                                "StackObjectsCount": 250000
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796cfa",
                     "type": "Item",
-                    "value": "235000"
+                    "value": "250000"
                 }, {
                     "id": "5bcf11be86f77423c25c50a8",
                     "index": 2,
                     "target": "5ac3b934156ae10c4430e83c",
                     "type": "TraderStanding",
-                    "value": "0.09"
+                    "value": "0.03"
+                }, {
+                    "id": "60cc98541bdece56c249cbdb",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc687",
+                            "_tpl": "5be4038986f774527d3fae60",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc687",
+                    "type": "Item",
+                    "value": "1"
                 }, {
                     "id": "5af0816386f774376c4da1f7",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5d34df2788a4504526796cfb",
                             "_tpl": "5ab8e79e86f7742d8b372e78"
@@ -18461,6 +18475,18 @@
                     ],
                     "loyaltyLevel": 3,
                     "target": "5d34df2788a4504526796cfb",
+                    "traderId": "5ac3b934156ae10c4430e83c",
+                    "type": "AssortmentUnlock"
+                }, {
+                    "id": "60b90fa17bdcb1576b1226c8",
+                    "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc689",
+                            "_tpl": "5ca21c6986f77479963115a7"
+                        }
+                    ],
+                    "loyaltyLevel": 4,
+                    "target": "6131fda2738f614b2f2bc689",
                     "traderId": "5ac3b934156ae10c4430e83c",
                     "type": "AssortmentUnlock"
                 }
