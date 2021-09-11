@@ -19745,22 +19745,8 @@
                     "type": "TraderStanding",
                     "value": "0.03"
                 }, {
-                    "id": "5b48a60286f7744b1229f6e5",
-                    "index": 2,
-                    "items": [{
-                            "_id": "5e0ac74b9d594972a112a9c7",
-                            "_tpl": "5449016a4bdc2d6f028b456f",
-                            "upd": {
-                                "StackObjectsCount": 75000
-                            }
-                        }
-                    ],
-                    "target": "5e0ac74b9d594972a112a9c7",
-                    "type": "Item",
-                    "value": "75000"
-                }, {
                     "id": "5b48a61586f774036c1b7b35",
-                    "index": 3,
+                    "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9c8",
                             "_tpl": "5734758f24597738025ee253",
@@ -19774,7 +19760,7 @@
                     "value": "3"
                 }, {
                     "id": "5b48a62986f77479ec66a4d1",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9c9",
                             "_tpl": "5ca20ee186f774799474abc2",
