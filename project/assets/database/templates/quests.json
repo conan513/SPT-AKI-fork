@@ -21584,7 +21584,7 @@
             ],
             "Fail": []
         },
-        "image": "/files/quest/icon/5bc9fab686f7742a90020769.jpg",
+        "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
         "instantComplete": false,
         "isKey": false,
         "location": "any",
@@ -21605,7 +21605,7 @@
                             "_id": "5d34df2788a4504526796cc8",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 57000
+                                "StackObjectsCount": 80000
                             }
                         }
                     ],
