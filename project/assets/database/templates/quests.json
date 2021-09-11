@@ -31754,7 +31754,7 @@
                                     "_parent": "ExitStatus",
                                     "_props": {
                                         "id": "5c13983086f7747878361a4e",
-                                        "status": ["Survived"]
+                                        "status": ["Survived", "Runner"]
                                     }
                                 }, {
                                     "_parent": "Location",
@@ -31769,9 +31769,28 @@
                         "id": "5f0389268580cc37797e0026",
                         "index": 3,
                         "parentId": "",
-                        "type": "Exploration",
+                        "type": "Completion",
                         "value": "1",
-                        "visibilityConditions": []
+                        "visibilityConditions": [{
+                                "_parent": "CompleteCondition",
+                                "_props": {
+                                    "id": "5f06e52d4ab52901d036b505",
+                                    "target": "5eda1d6ec586607c09662d54"
+                                }
+                            }, {
+                                "_parent": "CompleteCondition",
+                                "_props": {
+                                    "id": "5f06e532d57aeb6e0925300c",
+                                    "target": "5eda1da9a58a4c49c74165ee"
+                                }
+                            }, {
+                                "_parent": "CompleteCondition",
+                                "_props": {
+                                    "id": "5f06e536fdc0320a0850e310",
+                                    "target": "5eda1dd3317f6066993c1744"
+                                }
+                            }
+                        ]
                     }
                 }
             ],
@@ -31807,11 +31826,30 @@
             "Fail": [],
             "Started": [],
             "Success": [{
+                    "id": "60c8a4e483161b326c471106",
+                    "index": 0,
+                    "type": "Experience",
+                    "value": "18100"
+                }, {
                     "id": "5ef095274f604154e7127f86",
                     "index": 1,
                     "target": "54cb50c76803fa8b248b4571",
                     "type": "TraderStanding",
                     "value": "0.04"
+                }, {
+                    "id": "5ee7577ac226ea55a345b55d",
+                    "index": 2,
+                    "items": [{
+                            "_id": "5efdf349de1a6d39c53579bf",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 50000
+                            }
+                        }
+                    ],
+                    "target": "5efdf349de1a6d39c53579bf",
+                    "type": "Item",
+                    "value": "50000"
                 }, {
                     "id": "5ee75456cab4c209e92d1f74",
                     "index": 3,
@@ -31886,26 +31924,12 @@
                     "target": "5efdf349de1a6d39c53579be",
                     "type": "Item",
                     "value": "100"
-                }, {
-                    "id": "5ee7577ac226ea55a345b55d",
-                    "index": 2,
-                    "items": [{
-                            "_id": "5efdf349de1a6d39c53579bf",
-                            "_tpl": "5449016a4bdc2d6f028b456f",
-                            "upd": {
-                                "StackObjectsCount": 50000
-                            }
-                        }
-                    ],
-                    "target": "5efdf349de1a6d39c53579bf",
-                    "type": "Item",
-                    "value": "50000"
                 }
             ]
         },
         "secretQuest": false,
         "traderId": "54cb50c76803fa8b248b4571",
-        "type": "Completion"
+        "type": "Discover"
     },
     "5edab4b1218d181e29451435": {
         "_id": "5edab4b1218d181e29451435",
