@@ -31900,11 +31900,6 @@
                     "target": "5efdf349de1a6d39c53579bf",
                     "type": "Item",
                     "value": "50000"
-                }, {
-                    "id": "5ef094c7e223bd229b7eb537",
-                    "index": 0,
-                    "type": "Experience",
-                    "value": "18100"
                 }
             ]
         },
@@ -32272,7 +32267,7 @@
                         "index": 0,
                         "maxDurability": 0,
                         "minDurability": 0,
-                        "onlyFoundInRaid": true,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["5efdafc1e70b5e33f86de058"],
                         "value": "1"
@@ -32285,7 +32280,7 @@
                         "index": 1,
                         "maxDurability": 0,
                         "minDurability": 0,
-                        "onlyFoundInRaid": true,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["5efdafc1e70b5e33f86de058"],
                         "value": "1"
@@ -32298,8 +32293,9 @@
                         "index": 2,
                         "maxDurability": 0,
                         "minDurability": 0,
-                        "onlyFoundInRaid": true,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
+                        "resetOnSessionEnd": false,
                         "target": ["5efdaf6de6a30218ed211a48"],
                         "value": "1"
                     }
@@ -32311,7 +32307,7 @@
                         "index": 3,
                         "maxDurability": 0,
                         "minDurability": 0,
-                        "onlyFoundInRaid": true,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["5efdaf6de6a30218ed211a48"],
                         "value": "1"
@@ -32335,7 +32331,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5704e554d2720bac5b8b456e",
-        "min_level": 0,
+        "min_level": 21,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -32344,10 +32340,16 @@
                     "id": "5d84db3f86f77414e4530d88",
                     "index": 0,
                     "type": "Experience",
-                    "value": "13200"
+                    "value": "12400"
+                }, {
+                    "id": "5d8caf5b86f7744450412667",
+                    "index": 1,
+                    "target": "54cb57776803fa99248b456e",
+                    "type": "TraderStanding",
+                    "value": "0.04"
                 }, {
                     "id": "5d84db5486f77430da397b76",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5e02be602a251a0952271114",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -32360,17 +32362,39 @@
                     "type": "Item",
                     "value": "60000"
                 }, {
-                    "id": "5d8caf5b86f7744450412667",
-                    "index": 2,
-                    "target": "54cb57776803fa99248b456e",
-                    "type": "TraderStanding",
-                    "value": "0.12"
+                    "id": "60cb731d65e4664318606ac7",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc832",
+                            "_tpl": "5d02797c86f774203f38e30a",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc832",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "60cb73357c496e588343a1ea",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc833",
+                            "_tpl": "5ed515ece452db0eb56fc028",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc833",
+                    "type": "Item",
+                    "value": "1"
                 }
             ]
         },
         "secretQuest": false,
         "traderId": "54cb57776803fa99248b456e",
-        "type": "Completion"
+        "type": "PickUp"
     },
     "5edabd13218d181e29451442": {
         "_id": "5edabd13218d181e29451442",
