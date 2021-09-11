@@ -21250,9 +21250,9 @@
                                             "value": 40
                                         },
                                         "id": "5bd983f286f7740ab2382707",
-                                        "target": "Savage",
+                                        "target": "Any",
                                         "value": "1",
-                                        "weapon": ["5bfd297f0db834001a669119", "5ae08f0a5acfc408fb1398a1", "55801eed4bdc2d89578b4588", "588892092459774ac91d4b11", "5df24cf80dee1b22f862e9bc", "5bfea6e90db834001b7347f3", "5de652c31b7e3716273428be"]
+                                        "weapon": ["55801eed4bdc2d89578b4588", "5de652c31b7e3716273428be", "588892092459774ac91d4b11", "5ae08f0a5acfc408fb1398a1", "5df24cf80dee1b22f862e9bc", "5bfea6e90db834001b7347f3", "5bfd297f0db834001a669119"]
                                     }
                                 }
                             ],
@@ -21278,9 +21278,9 @@
                                             "value": 40
                                         },
                                         "id": "5bd9948586f774035c4877f4",
-                                        "target": "Savage",
+                                        "target": "Any",
                                         "value": "1",
-                                        "weapon": ["5bfd297f0db834001a669119", "5ae08f0a5acfc408fb1398a1", "55801eed4bdc2d89578b4588", "588892092459774ac91d4b11", "5df24cf80dee1b22f862e9bc", "5bfea6e90db834001b7347f3"]
+                                        "weapon": ["55801eed4bdc2d89578b4588", "5de652c31b7e3716273428be", "588892092459774ac91d4b11", "5ae08f0a5acfc408fb1398a1", "5df24cf80dee1b22f862e9bc", "5bfea6e90db834001b7347f3", "5bfd297f0db834001a669119"]
                                     }
                                 }
                             ],
@@ -21340,7 +21340,7 @@
                     "index": 2,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
-                    "value": "0.05"
+                    "value": "0.02"
                 }, {
                     "id": "5bcf222b86f774378e26691b",
                     "index": 3,
@@ -21380,7 +21380,7 @@
                     ],
                     "target": "UmkaM33TarkovShooter2",
                     "type": "Item",
-                    "value": "1"
+                    "value": "2"
                 }
             ]
         },
