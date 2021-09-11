@@ -27353,14 +27353,8 @@
                     "type": "Item",
                     "value": "2"
                 }, {
-                    "id": "5d7629cd86f774454c5360bf",
-                    "index": 3,
-                    "target": "5c0647fdd443bc2504c2d371",
-                    "type": "TraderStanding",
-                    "value": "0.02"
-                }, {
                     "id": "reward",
-                    "index": 5,
+                    "index": 3,
                     "items": [{
                             "_id": "metaltank",
                             "_tpl": "5d1b36a186f7742523398433",
@@ -27372,6 +27366,12 @@
                     "target": "metaltank",
                     "type": "Item",
                     "value": "1"
+                }, {
+                    "id": "5d7629cd86f774454c5360bf",
+                    "index": 4,
+                    "target": "5c0647fdd443bc2504c2d371",
+                    "type": "TraderStanding",
+                    "value": "0.01"
                 }
             ]
         },
