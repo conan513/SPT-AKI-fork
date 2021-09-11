@@ -32852,7 +32852,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 0,
+        "min_level": 21,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -32884,7 +32884,7 @@
                     "value": "4000"
                 }, {
                     "id": "5d84db5486f77430da397b76",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "RewardSA58",
                             "_tpl": "5b0bbe4e5acfc40dc528a72d"
@@ -32950,7 +32950,7 @@
                     "value": "1"
                 }, {
                     "id": "5d84db5486f77430da397b76",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "RewardAmmoCase",
                             "_tpl": "5aafbde786f774389d0cbc0f",
@@ -32991,7 +32991,7 @@
         },
         "secretQuest": false,
         "traderId": "5935c25fb3acc3127c3d8cd9",
-        "type": "Completion"
+        "type": "PickUp"
     },
     "5edac34d0bb72a50635c2bfa": {
         "_id": "5edac34d0bb72a50635c2bfa",
