@@ -30679,8 +30679,22 @@
                     "type": "Item",
                     "value": "1"
                 }, {
-                    "id": "5d78b81e86f77461b27a2387",
+                    "id": "60ccacd55f9e6175514de2de",
                     "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc80f",
+                            "_tpl": "5d1b309586f77425227d1676",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc80f",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "5d78b81e86f77461b27a2387",
+                    "index": 6,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "0.02"
