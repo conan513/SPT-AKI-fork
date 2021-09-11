@@ -18136,6 +18136,90 @@
                     "target": "5ac3b934156ae10c4430e83c",
                     "type": "TraderStanding",
                     "value": "0.03"
+                }, {
+                    "id": "60cc978198b49270603645fd",
+                    "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc67d",
+                            "_tpl": "5b3f16c486f7747c327f55f7",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc67d",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc97969f89812e5b6aa879",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc67e",
+                            "_tpl": "5b3f3b0e86f7746752107cda",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc67e",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc97a5b2736c24b2118b99",
+                    "index": 5,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc67f",
+                            "_tpl": "5b3f3b0186f774021a2afef7",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc67f",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc97b1646f74055e27652a",
+                    "index": 6,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc680",
+                            "_tpl": "5b3f3ade86f7746b6b790d8e",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc680",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc97c0f81cc57f47171897",
+                    "index": 7,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc681",
+                            "_tpl": "5b3f3af486f774679e752c1f",
+                            "upd": {
+                                "StackObjectsCount": 2
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc681",
+                    "type": "Item",
+                    "value": "2"
+                }, {
+                    "id": "60cc97cfa7d63f18200a250c",
+                    "index": 8,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc682",
+                            "_tpl": "5b4327aa5acfc400175496e0",
+                            "upd": {
+                                "StackObjectsCount": 4
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc682",
+                    "type": "Item",
+                    "value": "4"
                 }
             ]
         },
