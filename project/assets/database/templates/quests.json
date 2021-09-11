@@ -30795,33 +30795,8 @@
             "Fail": [],
             "Started": [],
             "Success": [{
-                    "id": "5c94f37886f77455185027eb",
-                    "index": 0,
-                    "type": "Experience",
-                    "value": "14800"
-                }, {
-                    "id": "5c2246fc88a45016e847fdf3",
-                    "index": 1,
-                    "target": "54cb50c76803fa8b248b4571",
-                    "type": "TraderStanding",
-                    "value": "0.02"
-                }, {
-                    "id": "5d761fc086f774454d58840c",
-                    "index": 2,
-                    "items": [{
-                            "_id": "5e0ac74b9d594972a112aa11",
-                            "_tpl": "5449016a4bdc2d6f028b456f",
-                            "upd": {
-                                "StackObjectsCount": 150000
-                            }
-                        }
-                    ],
-                    "target": "5e0ac74b9d594972a112aa11",
-                    "type": "Item",
-                    "value": "150000"
-                }, {
                     "id": "5d761fa486f774452073df6d",
-                    "index": 3,
+                    "index": 0,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112aa0a",
                             "_tpl": "5cadfbf7ae92152ac412eeef",
@@ -30868,6 +30843,31 @@
                     "target": "5e0ac74b9d594972a112aa0a",
                     "traderId": "54cb50c76803fa8b248b4571",
                     "type": "AssortmentUnlock"
+                }, {
+                    "id": "5c94f37886f77455185027eb",
+                    "index": 1,
+                    "type": "Experience",
+                    "value": "14800"
+                }, {
+                    "id": "5c2246fc88a45016e847fdf3",
+                    "index": 2,
+                    "target": "54cb50c76803fa8b248b4571",
+                    "type": "TraderStanding",
+                    "value": "0.02"
+                }, {
+                    "id": "5d761fc086f774454d58840c",
+                    "index": 3,
+                    "items": [{
+                            "_id": "5e0ac74b9d594972a112aa11",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 150000
+                            }
+                        }
+                    ],
+                    "target": "5e0ac74b9d594972a112aa11",
+                    "type": "Item",
+                    "value": "150000"
                 }
             ]
         },
