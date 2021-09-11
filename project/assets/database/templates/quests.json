@@ -21407,7 +21407,7 @@
                                         "id": "5bc4800d86f774194f27ac45",
                                         "target": "AnyPmc",
                                         "value": "1",
-                                        "weapon": ["5bfd297f0db834001a669119", "5ae08f0a5acfc408fb1398a1", "55801eed4bdc2d89578b4588", "588892092459774ac91d4b11", "5df24cf80dee1b22f862e9bc", "5bfea6e90db834001b7347f3", "5de652c31b7e3716273428be"]
+                                        "weapon": ["5bfd297f0db834001a669119", "5ae08f0a5acfc408fb1398a1", "55801eed4bdc2d89578b4588", "588892092459774ac91d4b11", "5bfea6e90db834001b7347f3", "5de652c31b7e3716273428be", "5df24cf80dee1b22f862e9bc"]
                                     }
                                 }
                             ],
@@ -21434,7 +21434,7 @@
             ],
             "Fail": []
         },
-        "image": "/files/quest/icon/5bc9fab686f7742a90020769.jpg",
+        "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
         "instantComplete": false,
         "isKey": false,
         "location": "any",
@@ -21449,28 +21449,14 @@
                     "type": "Experience",
                     "value": "10500"
                 }, {
-                    "id": "5bc47e1986f7741b81600bf5",
-                    "index": 1,
-                    "items": [{
-                            "_id": "5e0ac74b9d594972a112a9dc",
-                            "_tpl": "5aa2b9ede5b5b000137b758b",
-                            "upd": {
-                                "StackObjectsCount": 1
-                            }
-                        }
-                    ],
-                    "target": "5e0ac74b9d594972a112a9dc",
-                    "type": "Item",
-                    "value": "1"
-                }, {
                     "id": "5db9a651c3626a43191d802a",
-                    "index": 2,
+                    "index": 1,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
                     "value": "0.02"
                 }, {
                     "id": "5bcf22a386f7746a45695afa",
-                    "index": 3,
+                    "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9dd",
                             "_tpl": "5bbdb83fd4351e44f824c44b"
@@ -21482,7 +21468,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "5bcf22b986f7746a45695afb",
-                    "index": 4,
+                    "index": 3,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9de",
                             "_tpl": "5bbde409d4351e003562b036"
@@ -21492,6 +21478,20 @@
                     "target": "5e0ac74b9d594972a112a9de",
                     "traderId": "5c0647fdd443bc2504c2d371",
                     "type": "AssortmentUnlock"
+                }, {
+                    "id": "5bc47e1986f7741b81600bf5",
+                    "index": 4,
+                    "items": [{
+                            "_id": "5e0ac74b9d594972a112a9dc",
+                            "_tpl": "5aa2b9ede5b5b000137b758b",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "5e0ac74b9d594972a112a9dc",
+                    "type": "Item",
+                    "value": "1"
                 }, {
                     "id": "5bcf2bbb86f774722d789e56",
                     "index": 5,
@@ -21520,6 +21520,34 @@
                     "target": "5e0ac74b9d594972a112a9e0",
                     "type": "Item",
                     "value": "1"
+                }, {
+                    "id": "60cc9baf9f89812e5b6aa881",
+                    "index": 7,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc6ff",
+                            "_tpl": "5ab8f39486f7745cd93a1cca",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc6ff",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "60cc9c54a7d63f18200a2516",
+                    "index": 8,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc700",
+                            "_tpl": "5449016a4bdc2d6f028b456f",
+                            "upd": {
+                                "StackObjectsCount": 70000
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc700",
+                    "type": "Item",
+                    "value": "70000"
                 }
             ]
         },
