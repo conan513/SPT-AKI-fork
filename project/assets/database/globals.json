@@ -858,7 +858,7 @@
 		"GlobalItemPriceModifier": 1,
 		"TradingUnlimitedItems": false,
 		"MaxLoyaltyLevelForAll": false,
-		"GlobalLootChanceModifier": 0.18,
+		"GlobalLootChanceModifier": 0.22,
 		"TimeBeforeDeploy": 20,
 		"TimeBeforeDeployLocal": 10,
 		"LoadTimeSpeedProgress": 1,
@@ -2954,37 +2954,44 @@
 					"Head": {
 						"Minimum": 0,
 						"Maximum": 35,
-						"Default": 35
+						"Default": 35,
+						"OverDamageReceivedMultiplier": 1
 					},
 					"Chest": {
 						"Minimum": 0,
 						"Maximum": 85,
-						"Default": 85
+						"Default": 85,
+						"OverDamageReceivedMultiplier": 1
 					},
 					"Stomach": {
 						"Minimum": 0,
 						"Maximum": 70,
-						"Default": 70
+						"Default": 70,
+						"OverDamageReceivedMultiplier": 1
 					},
 					"LeftArm": {
 						"Minimum": 0,
 						"Maximum": 60,
-						"Default": 60
+						"Default": 60,
+						"OverDamageReceivedMultiplier": 1
 					},
 					"RightArm": {
 						"Minimum": 0,
 						"Maximum": 60,
-						"Default": 60
+						"Default": 60,
+						"OverDamageReceivedMultiplier": 1
 					},
 					"LeftLeg": {
 						"Minimum": 0,
 						"Maximum": 65,
-						"Default": 65
+						"Default": 65,
+						"OverDamageReceivedMultiplier": 1
 					},
 					"RightLeg": {
 						"Minimum": 0,
 						"Maximum": 65,
-						"Default": 65
+						"Default": 65,
+						"OverDamageReceivedMultiplier": 1
 					}
 				},
 				"HealthFactors": {
