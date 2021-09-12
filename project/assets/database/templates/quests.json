@@ -22950,7 +22950,7 @@
                     "id": "5c95002886f7743285178ad0",
                     "index": 0,
                     "type": "Experience",
-                    "value": "20000"
+                    "value": "25100"
                 }, {
                     "id": "5c17c12786f77430a70d197d",
                     "index": 1,
@@ -22982,7 +22982,21 @@
                     "index": 3,
                     "target": "58330581ace78e27b8b10cee",
                     "type": "TraderStanding",
-                    "value": "0.08"
+                    "value": "0.05"
+                }, {
+                    "id": "60cb62e7179f8541b8469226",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc71f",
+                            "_tpl": "5d40407c86f774318526545a",
+                            "upd": {
+                                "StackObjectsCount": 3
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc71f",
+                    "type": "Item",
+                    "value": "3"
                 }
             ]
         },
