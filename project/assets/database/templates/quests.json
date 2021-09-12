@@ -21882,13 +21882,13 @@
                             "_id": "5d34df2788a4504526796d9b",
                             "_tpl": "5449016a4bdc2d6f028b456f",
                             "upd": {
-                                "StackObjectsCount": 50000
+                                "StackObjectsCount": 85000
                             }
                         }
                     ],
                     "target": "5d34df2788a4504526796d9b",
                     "type": "Item",
-                    "value": "50000"
+                    "value": "85000"
                 }, {
                     "id": "5bcf259a86f7746a45695b05",
                     "index": 3,
@@ -21904,8 +21904,22 @@
                     "type": "Item",
                     "value": "1"
                 }, {
-                    "id": "5bcf25a586f7746a464c5682",
+                    "id": "60cc9d1e20a6283a506aeb40",
                     "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc70c",
+                            "_tpl": "5ab8f20c86f7745cdb629fb2",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc70c",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "5bcf25a586f7746a464c5682",
+                    "index": 5,
                     "items": [{
                             "_id": "5d34df2788a4504526796d9d",
                             "_tpl": "5bbdb870d4351e00367fb67d"
