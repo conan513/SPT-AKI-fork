@@ -1094,6 +1094,11 @@
                             "parentId": "5c0d1ec986f77439512a1a83",
                             "slotId": "mod_sight_rear"
                         }, {
+                            "_id": "6131fda2738f614b2f2bc421",
+                            "_tpl": "5bed625c0db834001c062946",
+                            "parentId": "5c0d1ec986f77439512a1a80",
+                            "slotId": "mod_magazine"
+                        }, {
                             "_id": "5c0d1ec986f77439512a1a85",
                             "_tpl": "5beec8b20db834001961942a",
                             "parentId": "5c0d1ec986f77439512a1a80",
