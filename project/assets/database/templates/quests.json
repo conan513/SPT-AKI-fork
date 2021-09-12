@@ -1565,7 +1565,7 @@
                     "value": "-0.01"
                 }, {
                     "id": "GeigerCounter",
-                    "index": 6,
+                    "index": 3,
                     "items": [{
                             "_id": "GeigerCounterReward",
                             "_tpl": "5672cb724bdc2dc2088b456b"
