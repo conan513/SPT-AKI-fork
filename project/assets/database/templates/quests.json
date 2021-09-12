@@ -36357,7 +36357,7 @@
                     "index": 2,
                     "items": [{
                             "_id": "5LPropaneTankFuelMatter",
-                            "_tpl": "59fafb5d86f774067a6f2084"
+                            "_tpl": "59fafb5d86f774067a6f2084",
 				"upd": {
                                 "StackObjectsCount": 2
                             }
