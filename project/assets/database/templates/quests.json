@@ -34080,16 +34080,18 @@
                             "conditions": [{
                                     "_parent": "VisitPlace",
                                     "_props": {
-                                        "id": "ChemiClosetPlace",
+                                        "id": "5f048aaeefefac7f7227de43",
                                         "target": "place_meh_sanitar_room",
                                         "value": "1"
                                     }
                                 }
                             ],
-                            "id": "ChemisClosetCounter"
+                            "id": "5f0488c590eea473df674001"
                         },
+                        "doNotResetIfCounterCompleted": true,
                         "id": "5f0488c590eea473df674002",
                         "index": 0,
+                        "oneSessionOnly": true,
                         "parentId": "",
                         "type": "Exploration",
                         "value": "1"
@@ -34099,20 +34101,29 @@
                     "_props": {
                         "counter": {
                             "conditions": [{
+                                    "_parent": "Location",
+                                    "_props": {
+                                        "id": "5f04985a69ef785df740a8cc",
+                                        "target": ["Shoreline"]
+                                    }
+                                }, {
                                     "_parent": "ExitStatus",
                                     "_props": {
-                                        "id": "5c92189286f7746af93240ab",
+                                        "id": "5f0498629b667032c8402576",
                                         "status": ["Survived", "Runner"]
                                     }
                                 }
                             ],
-                            "id": "5c92184386f7746afa2e783f"
+                            "id": "5f04983ffbed7a08077b4366"
                         },
+                        "doNotResetIfCounterCompleted": true,
                         "id": "5f04983ffbed7a08077b4367",
                         "index": 1,
+                        "oneSessionOnly": true,
                         "parentId": "",
                         "type": "Completion",
-                        "value": "1"
+                        "value": "1",
+                        "visibilityConditions": []
                     }
                 }
             ],
@@ -34120,28 +34131,10 @@
                     "_parent": "Level",
                     "_props": {
                         "compareMethod": ">=",
-                        "id": "5eda1a67ef0ad2643e73af31",
+                        "id": "5f0da368ee0d8b5aa14a625f",
                         "index": 0,
                         "parentId": "",
-                        "value": "36"
-                    }
-                }, {
-                    "_parent": "Quest",
-                    "_props": {
-                        "id": "",
-                        "index": 1,
-                        "parentId": "",
-                        "status": [4],
-                        "target": "5edab736cc183c769d778bc2"
-                    }
-                }, {
-                    "_parent": "Quest",
-                    "_props": {
-                        "id": "",
-                        "index": 2,
-                        "parentId": "",
-                        "status": [4],
-                        "target": "5eda19f0edce541157209cee"
+                        "value": "22"
                     }
                 }
             ],
@@ -34151,74 +34144,74 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5704e554d2720bac5b8b456e",
-        "min_level": 10,
+        "min_level": 0,
         "restartable": false,
         "rewards": {
             "Fail": [],
             "Started": [],
             "Success": [{
-                    "id": "5ef095274f604154e7127f86",
+                    "id": "60cc80a32b555f16df5c41d2",
                     "index": 0,
+                    "type": "Experience",
+                    "value": "13400"
+                }, {
+                    "id": "60cc80a865e4664318606b4a",
+                    "index": 1,
                     "target": "5a7c2eca46aef81a7ca2145d",
                     "type": "TraderStanding",
                     "value": "0.05"
                 }, {
-                    "id": "5ee7577ac226ea55a345b55d",
-                    "index": 1,
+                    "id": "5f0daf7e51786b3b79461a27",
+                    "index": 2,
                     "items": [{
-                            "_id": "5efdf349de1a6d39c53579bf",
+                            "_id": "6131fda2738f614b2f2bc87a",
                             "_tpl": "569668774bdc2da2298b4568",
                             "upd": {
                                 "StackObjectsCount": 1000
                             }
                         }
                     ],
-                    "target": "5efdf349de1a6d39c53579bf",
+                    "target": "6131fda2738f614b2f2bc87a",
                     "type": "Item",
                     "value": "1000"
                 }, {
-                    "id": "5ee7577ac226ea55a345b55d",
-                    "index": 2,
-                    "items": [{
-                            "_id": "5efdf349de1a6d39c53579bf",
-                            "_tpl": "57347ca924597744596b4e71",
-                            "upd": {
-                                "StackObjectsCount": 1
-                            }
-                        }
-                    ],
-                    "target": "5efdf349de1a6d39c53579bf",
-                    "type": "Item",
-                    "value": "1"
-                }, {
-                    "id": "5ee7577ac226ea55a345b55d",
+                    "id": "5f0dc302dc8d3538213c1223",
                     "index": 3,
                     "items": [{
-                            "_id": "5efdf349de1a6d39c53579bf",
+                            "_id": "6131fda2738f614b2f2bc87b",
                             "_tpl": "59bffbb386f77435b379b9c2",
                             "upd": {
                                 "StackObjectsCount": 2
                             }
                         }
                     ],
-                    "target": "5efdf349de1a6d39c53579bf",
+                    "target": "6131fda2738f614b2f2bc87b",
                     "type": "Item",
                     "value": "2"
                 }, {
-                    "id": "5ef094c7e223bd229b7eb537",
+                    "id": "5f0dc33f115bb00d142caaa9",
                     "index": 4,
-                    "type": "Experience",
-                    "value": "13400"
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc87c",
+                            "_tpl": "57347ca924597744596b4e71",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc87c",
+                    "type": "Item",
+                    "value": "1"
                 }, {
-                    "id": "ClosetAssortUnlockThiccWeaponCase",
+                    "id": "60b8f67681c51328c56d7715",
                     "index": 5,
                     "items": [{
-                            "_id": "ThiccWeaponCaseUnlockChemistry",
-                            "_tpl": "5ab8e79e86f7742d8b372e78"
+                            "_id": "6131fda2738f614b2f2bc87d",
+                            "_tpl": "5b6d9ce188a4501afc1b2b25"
                         }
                     ],
                     "loyaltyLevel": 4,
-                    "target": "ThiccWeaponCaseUnlockChemistry",
+                    "target": "6131fda2738f614b2f2bc87d",
                     "traderId": "5a7c2eca46aef81a7ca2145d",
                     "type": "AssortmentUnlock"
                 }
@@ -34226,7 +34219,7 @@
         },
         "secretQuest": false,
         "traderId": "5a7c2eca46aef81a7ca2145d",
-        "type": "Completion"
+        "type": "Exploration"
     },
     "5fd9fad9c1ce6b1a3b486d00": {
         "_id": "5fd9fad9c1ce6b1a3b486d00",
