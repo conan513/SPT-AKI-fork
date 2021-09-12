@@ -3110,7 +3110,7 @@
                         "dogtagLevel": 0,
                         "id": "597867e986f7741b265c6bd3",
                         "index": 1,
-                        "maxDurability": 0,
+                        "maxDurability": 100,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
                         "parentId": "",
@@ -3182,8 +3182,59 @@
                     "type": "Item",
                     "value": "60000"
                 }, {
-                    "id": "5ac6666c86f774056634a229",
+                    "id": "5ab8d47586f7745c5f49d558",
                     "index": 3,
+                    "items": [{
+                            "_id": "5ede35491f4c4572b608fdf2",
+                            "_tpl": "59f9cabd86f7743a10721f46"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf3",
+                            "_tpl": "5998517986f7746017232f7e",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_pistol_grip"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf4",
+                            "_tpl": "599851db86f77467372f0a18",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_stock"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf5",
+                            "_tpl": "5998529a86f774647f44f421",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_magazine"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf6",
+                            "_tpl": "5998598e86f7740b3f498a86",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_muzzle"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf7",
+                            "_tpl": "59985a8086f77414ec448d1a",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_reciever"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf8",
+                            "_tpl": "599860e986f7743bb57573a6",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_sight_rear"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdf9",
+                            "_tpl": "59ccd11386f77428f24a488f",
+                            "parentId": "5ede35491f4c4572b608fdf2",
+                            "slotId": "mod_gas_block"
+                        }, {
+                            "_id": "5ede35491f4c4572b608fdfa",
+                            "_tpl": "5648b1504bdc2d9d488b4584",
+                            "parentId": "5ede35491f4c4572b608fdf9",
+                            "slotId": "mod_handguard"
+                        }
+                    ],
+                    "target": "5ede35491f4c4572b608fdf2",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "5ac6666c86f774056634a229",
+                    "index": 4,
                     "items": [{
                             "_id": "5ede35491f4c4572b608fdf2",
                             "_tpl": "59f9cabd86f7743a10721f46",
@@ -3235,57 +3286,6 @@
                     "target": "5ede35491f4c4572b608fdf2",
                     "traderId": "58330581ace78e27b8b10cee",
                     "type": "AssortmentUnlock"
-                }, {
-                    "id": "5ab8d47586f7745c5f49d558",
-                    "index": 4,
-                    "items": [{
-                            "_id": "5ede35491f4c4572b608fdf2",
-                            "_tpl": "59f9cabd86f7743a10721f46"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf3",
-                            "_tpl": "5998517986f7746017232f7e",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_pistol_grip"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf4",
-                            "_tpl": "599851db86f77467372f0a18",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_stock"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf5",
-                            "_tpl": "5998529a86f774647f44f421",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_magazine"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf6",
-                            "_tpl": "5998598e86f7740b3f498a86",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_muzzle"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf7",
-                            "_tpl": "59985a8086f77414ec448d1a",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_reciever"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf8",
-                            "_tpl": "599860e986f7743bb57573a6",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_sight_rear"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdf9",
-                            "_tpl": "59ccd11386f77428f24a488f",
-                            "parentId": "5ede35491f4c4572b608fdf2",
-                            "slotId": "mod_gas_block"
-                        }, {
-                            "_id": "5ede35491f4c4572b608fdfa",
-                            "_tpl": "5648b1504bdc2d9d488b4584",
-                            "parentId": "5ede35491f4c4572b608fdf9",
-                            "slotId": "mod_handguard"
-                        }
-                    ],
-                    "target": "5ede35491f4c4572b608fdf2",
-                    "type": "Item",
-                    "value": "1"
                 }
             ]
         },
