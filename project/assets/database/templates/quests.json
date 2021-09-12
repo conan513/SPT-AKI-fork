@@ -17068,7 +17068,7 @@
                     "value": "8500"
                 }, {
                     "id": "5ae9b67e86f774357a6dad3e",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a988",
                             "_tpl": "5733279d245977289b77ec24",
@@ -17082,7 +17082,7 @@
                     "value": "1"
                 }, {
                     "id": "5bcf0fec86f7742ce2243a37",
-                    "index": 2,
+                    "index": 1,
                     "target": "5ac3b934156ae10c4430e83c",
                     "type": "TraderStanding",
                     "value": "0.03"
