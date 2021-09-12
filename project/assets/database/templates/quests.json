@@ -37095,7 +37095,7 @@
                             }
                         }, {
                             "_id": "5d32cdef86f774403c15985b",
-                            "_tpl": "5caf17c9ae92150b30006be1",
+                            "_tpl": "5caf187cae92157c28402e43",
                             "parentId": "5d32cdef86f774403c15985a",
                             "slotId": "mod_muzzle"
                         }, {
@@ -37113,11 +37113,6 @@
                             "_tpl": "5cdaa99dd7f00c002412d0b2",
                             "parentId": "5d32cdef86f774403c15985a",
                             "slotId": "mod_handguard"
-                        }, {
-                            "_id": "5d32cdef86f774403c15985f",
-                            "_tpl": "5cda9bcfd7f00c0c0b53e900",
-                            "parentId": "5d32cdef86f774403c15985e",
-                            "slotId": "mod_foregrip"
                         }, {
                             "_id": "5d32cdef86f774403c159860",
                             "_tpl": "5caf1691ae92152ac412efb9",
