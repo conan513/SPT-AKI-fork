@@ -37127,7 +37127,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 0,
+        "min_level": 45,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -37154,7 +37154,7 @@
         },
         "secretQuest": false,
         "traderId": "54cb50c76803fa8b248b4571",
-        "type": "Completion"
+        "type": "Elimination"
     },
     "60e71c11d54b755a3b53eb65": {
         "_id": "60e71c11d54b755a3b53eb65",
