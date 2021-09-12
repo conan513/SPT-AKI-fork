@@ -32130,7 +32130,7 @@
                         "id": "5edab7d3cc183c769d778bc5",
                         "index": 0,
                         "parentId": "",
-                        "type": "Exploration",
+                        "type": "Discover",
                         "value": "1"
                     }
                 }, {
@@ -32141,7 +32141,7 @@
                                     "_parent": "VisitPlace",
                                     "_props": {
                                         "id": "Coll1Place1",
-                                        "target": "ter_023_area_2_1",
+                                        "target": "ter_023_area_3_1",
                                         "value": "1"
                                     }
                                 }
@@ -32151,9 +32151,8 @@
                         "id": "5edab8e216d985118871ba18",
                         "index": 1,
                         "parentId": "",
-                        "type": "Exploration",
-                        "value": "1",
-                        "visibilityConditions": []
+                        "type": "Discover",
+                        "value": "1"
                     }
                 }, {
                     "_parent": "CounterCreator",
@@ -32163,7 +32162,7 @@
                                     "_parent": "VisitPlace",
                                     "_props": {
                                         "id": "Coll1Place2",
-                                        "target": "ter_023_area_3_1",
+                                        "target": "ter_023_area_2_1",
                                         "value": "1"
                                     }
                                 }
@@ -32173,9 +32172,8 @@
                         "id": "5edab8890880da21347b3826",
                         "index": 2,
                         "parentId": "",
-                        "type": "Exploration",
-                        "value": "1",
-                        "visibilityConditions": []
+                        "type": "Discover",
+                        "value": "1"
                     }
                 }, {
                     "_parent": "CounterCreator",
@@ -32232,7 +32230,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5704e554d2720bac5b8b456e",
-        "min_level": 10,
+        "min_level": 19,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -32245,7 +32243,7 @@
                     "value": "0.04"
                 }, {
                     "id": "5ee7577ac226ea55a345b55d",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5efdf349de1a6d39c53579bf",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -32259,12 +32257,12 @@
                     "value": "45000"
                 }, {
                     "id": "5ef094c7e223bd229b7eb537",
-                    "index": 2,
+                    "index": 0,
                     "type": "Experience",
                     "value": "12300"
                 }, {
                     "id": "SJ1Colleagues",
-                    "index": 1,
+                    "index": 3,
                     "items": [{
                             "_id": "ColleagesSJ1",
                             "_tpl": "5c0e531286f7747fa54205c2",
@@ -32278,7 +32276,7 @@
                     "value": "2"
                 }, {
                     "id": "SJ6Colleagues",
-                    "index": 1,
+                    "index": 4,
                     "items": [{
                             "_id": "ColleagesSJ6",
                             "_tpl": "5c0e531d86f7747fa23f4d42",
@@ -32295,7 +32293,7 @@
         },
         "secretQuest": false,
         "traderId": "54cb57776803fa99248b456e",
-        "type": "Completion"
+        "type": "Discover"
     },
     "5edaba7c0c502106f869bc02": {
         "_id": "5edaba7c0c502106f869bc02",
