@@ -20301,7 +20301,8 @@
                         "parentId": "",
                         "target": ["5b4335ba86f7744d2837a264"],
                         "value": "3"
-                    }, {
+					}
+                }, {
                     "_parent": "HandoverItem",
                     "_props": {
                         "dogtagLevel": 0,
@@ -20314,7 +20315,6 @@
                         "target": ["5b4335ba86f7744d2837a264"],
                         "value": "3"
                     }
-                }
                 }
             ],
             "AvailableForStart": [{
@@ -38291,7 +38291,7 @@
                                 }, {
                                     "_parent": "Equipment",
                                     "_props": {
-                                        "equipmentExclusive": [["5a341c4686f77469e155819e"], ["5a341c4086f77401f2541505"], ["57bef4c42459772e8d35a53b"], ["5448e5284bdc2dcb718b4567"], ["5448e54d4bdc2dcc718b4568"], ["5b3f15d486f77432d0509248"], ["5448e5724bdc2ddf718b4568"], ["5645bcc04bdc2d363b8b4572"]],
+                                        "equipmentExclusive": [["545cdb794bdc2d3a198b456a"], ["5ab8e79e86f7742d8b372e78"], ["5ab8e4ed86f7742d8e50c7fa"], ["5c0e53c886f7747fa54205c7"], ["5c0e51be86f774598e797894"], ["5c0e541586f7747fa54205c9"], ["5c0e5bab86f77461f55ed1f3"], ["5c0e57ba86f7747fa141986d"], ["5b44cd8b86f774503d30cba2"], ["5b44cf1486f77431723e3d05"], ["5b44d0de86f774503d30cba8"], ["5b44d22286f774172b0c9de8"], ["5ca2151486f774244a3b8d30"], ["5ca21c6986f77479963115a7"], ["5c0e655586f774045612eeb2"], ["5c0e5edb86f77461f55ed1f7"], ["5c0e625a86f7742d77340f62"], ["59e7635f86f7742cbf2c1095"], ["5648a7494bdc2d9d488b4583"], ["5ab8dced86f774646209ec87"], ["5c0e446786f7742013381639"], ["5c0e3eb886f7742015526062"], ["5b44cad286f77402a54ae7e5"], ["5c0e746986f7741453628fe5"], ["544a5caa4bdc2d1a388b4568"], ["5d5d646386f7742797261fd9"], ["5e9dacf986f774054d6b89f4"], ["5e4ac41886f77406a511c9a8"], ["5e4abb5086f77406975c9342"], ["5fd4c474dd870108a754b241"], ["5f5f41476bdad616ad46d631"], ["5df8a2ca86f7740bfe6df777"], ["5c0e722886f7740458316a57"], ["6038b4ca92ec1c3103795a0d"], ["6038b4b292ec1c3103795a0b"], ["60a3c70cde5f453f634816a3"], ["60a3c68c37ea821725773ef5"], ["60a283193cb70855c43a381d"], ["609e860ebd219504d8507525"], ["609e8540d5c319764c2bc2e9"], ["5645bc214bdc2d363b8b4571"], ["5aa7cfc0e5b5b00015693143"], ["5aa7e276e5b5b000171d0647"], ["5df8a58286f77412631087ed"], ["59e7711e86f7746cae05fbe1"], ["5d5e7d28a4b936645d161203"], ["5d5e9c74a4b9364855191c40"], ["5a154d5cfcdbcb001a3b00da"], ["5ac8d6885acfc400180ae7b0"], ["5a7c4850e899ef00150be885"], ["5aa7d193e5b5b000171d063f"], ["5aa7d03ae5b5b00016327db5"], ["5aa7e454e5b5b0214e506fa2"], ["5aa7e4a4e5b5b000137b76f2"], ["5b4329f05acfc47a86086aa1"], ["5b40e3f35acfc40016388218"], ["5b40e4035acfc47a87740943"], ["5b432d215acfc4771e1c6624"], ["5b40e1525acfc4771e1c6611"], ["5b40e2bc5acfc40016388216"], ["5c17a7ed2e2216152142459c"], ["5ea17ca01412a1425304d1c0"], ["5f60b34a41e30a4ab12a6947"], ["5ea05cf85ad9772e6624305d"], ["5d6d3716a4b9361bc8618872"], ["5c091a4e0db834001d5addc8"], ["5c0e874186f7745dc7616606"], ["5c0d2727d174af02a012cf58"], ["5f60c74e3b85f6263c145586"], ["5c08f87c0db8340019124324"], ["5c06c6a80db834001b735491"], ["5e4bfc1586f774264f7582d3"], ["5e00c1ad86f774747333222c"], ["5e01ef6886f77445f643baa4"], ["5ca20ee186f774799474abc2"]],
                                         "id": "SwiftOneEquipementExclusive"
                                     }
                                 }
@@ -38335,7 +38335,7 @@
                     "value": "107000"
                 }, {
                     "id": "SwiftOneLapuaAP",
-                    "index": 1,
+                    "index": 3,
                     "items": [{
                             "_id": "LapuaAPSwiftOne",
                             "_tpl": "5fc382a9d724d907e2077dab",
@@ -38350,7 +38350,7 @@
                     "value": "20"
                 }, {
                     "id": "SwiftOneMAIAP",
-                    "index": 2,
+                    "index": 4,
                     "items": [{
                             "_id": "MAIAPSwiftOne",
                             "_tpl": "601aa3d2b2bcb34913271e6d",
@@ -38365,13 +38365,13 @@
                     "value": "60"
                 }, {
                     "id": "SwiftOneStressSkillReward",
-                    "index": 3,
+                    "index": 1,
                     "target": "StressResistance",
                     "type": "Skill",
                     "value": "100"
-                }, {
+                }, {\
                     "id": "SwiftOneEnduranceSkillReward",
-                    "index": 4,
+                    "index": 2,
                     "target": "Endurance",
                     "type": "Skill",
                     "value": "100"
@@ -38379,7 +38379,7 @@
             ]
         },
         "secretQuest": false,
-        "traderId": "58330581ace78e27b8b10cee",
+        "traderId": "5c0647fdd443bc2504c2d371",
         "type": "Elimination"
     }
 }
