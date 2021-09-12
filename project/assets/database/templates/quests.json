@@ -37609,7 +37609,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 55,
+        "min_level": 47,
         "restartable": false,
         "rewards": {
             "Fail": [],
