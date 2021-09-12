@@ -38156,7 +38156,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 0,
+        "min_level": 65,
         "restartable": true,
         "rewards": {
             "Fail": [],
@@ -38168,7 +38168,7 @@
                     "value": "280000"
                 }, {
                     "id": "RelentlessFLIR",
-                    "index": 1,
+                    "index": 3,
                     "items": [{
                             "_id": "FLIRrelentless",
                             "_tpl": "5d1b5e94d7ad1a2b865a96b0",
@@ -38183,7 +38183,7 @@
                     "value": "1"
                 }, {
                     "id": "RelentlessExpeditionnary",
-                    "index": 2,
+                    "index": 4,
                     "items": [{
                             "_id": "ExpeditionnaryRelentless",
                             "_tpl": "5d1b371186f774253763a656",
@@ -38198,7 +38198,7 @@
                     "value": "5"
                 }, {
                     "id": "RelentlessGP",
-                    "index": 3,
+                    "index": 5,
                     "items": [{
                             "_id": "GPRelentless",
                             "_tpl": "5d235b4d86f7742e017bc88a",
@@ -38213,13 +38213,13 @@
                     "value": "20"
                 }, {
                     "id": "RelentlessCraftingSkill",
-                    "index": 4,
+                    "index": 1,
                     "target": "Crafting",
                     "type": "Skill",
                     "value": "200"
                 }, {
                     "id": "RelentlessImmunitySkill",
-                    "index": 5,
+                    "index": 2,
                     "target": "Immunity",
                     "type": "Skill",
                     "value": "100"
