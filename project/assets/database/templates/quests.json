@@ -32048,8 +32048,10 @@
                             ],
                             "id": "5d27369586f774457411b263"
                         },
+                        "doNotResetIfCounterCompleted": false,
                         "id": "5edab5a6cecc0069284c0ec2",
                         "index": 0,
+                        "oneSessionOnly": false,
                         "parentId": "",
                         "type": "Elimination",
                         "value": "1"
@@ -32088,7 +32090,8 @@
             "Fail": [{
                     "_parent": "Quest",
                     "_props": {
-                        "id": "",
+                        "availableAfter": 0,
+                        "id": "5edac4fb16d985118871ba2d",
                         "index": 0,
                         "parentId": "",
                         "status": [4],
@@ -32101,7 +32104,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5704e554d2720bac5b8b456e",
-        "min_level": 0,
+        "min_level": 22,
         "restartable": false,
         "rewards": {
             "Fail": [],
@@ -32116,7 +32119,7 @@
                     "index": 1,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
-                    "value": "0.04"
+                    "value": "0.02"
                 }, {
                     "id": "TheRapstNegative",
                     "index": 2,
@@ -32142,7 +32145,7 @@
                     "index": 4,
                     "items": [{
                             "_id": "RewardFLIR",
-                            "_tpl": "5d1b5e94d7ad1a2b865a96b0",
+                            "_tpl": "5a1eaa87fcdbcb001865f75e",
                             "upd": {
                                 "StackObjectsCount": 1
                             }
@@ -32184,7 +32187,7 @@
         },
         "secretQuest": false,
         "traderId": "5c0647fdd443bc2504c2d371",
-        "type": "Completion"
+        "type": "Elimination"
     },
     "5edab736cc183c769d778bc2": {
         "_id": "5edab736cc183c769d778bc2",
