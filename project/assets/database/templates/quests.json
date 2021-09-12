@@ -22234,7 +22234,7 @@
                         "maxDurability": 0,
                         "minDurability": 0,
                         "parentId": "",
-                        "plantTime": 40,
+                        "plantTime": 15,
                         "target": ["55801eed4bdc2d89578b4588"],
                         "value": "1",
                         "zoneId": "Q019_3"
@@ -22248,7 +22248,7 @@
                         "maxDurability": 0,
                         "minDurability": 0,
                         "parentId": "",
-                        "plantTime": 40,
+                        "plantTime": 15,
                         "target": ["59faf7ca86f7740dbe19f6c2"],
                         "value": "1",
                         "zoneId": "Q019_3"
@@ -22262,7 +22262,7 @@
                         "maxDurability": 0,
                         "minDurability": 0,
                         "parentId": "",
-                        "plantTime": 40,
+                        "plantTime": 15,
                         "target": ["5c12301c86f77419522ba7e4"],
                         "value": "1",
                         "zoneId": "Q019_3"
@@ -22272,7 +22272,8 @@
             "AvailableForStart": [{
                     "_parent": "Quest",
                     "_props": {
-                        "id": "",
+                        "availableAfter": 0,
+                        "id": "5c1fa91586f7740de474cb36",
                         "index": 0,
                         "parentId": "",
                         "status": [4],
@@ -22324,7 +22325,7 @@
                     "id": "5c94ffd386f77455185027f2",
                     "index": 0,
                     "type": "Experience",
-                    "value": "29700"
+                    "value": "29900"
                 }, {
                     "id": "5c17b9a586f77430a41a0953",
                     "index": 1,
@@ -22357,6 +22358,21 @@
                     "target": "58330581ace78e27b8b10cee",
                     "type": "TraderStanding",
                     "value": "0.07"
+                }, {
+                    "id": "60cb61a27c496e588343a1c1",
+                    "index": 4,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc714",
+                            "_tpl": "5696686a4bdc2da3298b456a",
+                            "upd": {
+                                "StackObjectsCount": 1000
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc714",
+                    "type": "Item",
+                    "unknown": true,
+                    "value": "1000"
                 }
             ]
         },
