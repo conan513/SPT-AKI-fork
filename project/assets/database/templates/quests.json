@@ -37650,12 +37650,6 @@
                                         "target": "AnyPmc",
                                         "value": "1"
                                     }
-                                }, {
-                                    "_parent": "Location",
-                                    "_props": {
-                                        "id": "LongLineLocationConditionID",
-                                        "target": ["Interchange"]
-                                    }
                                 }
                             ],
                             "id": "FirstID"
@@ -37664,7 +37658,7 @@
                         "index": 0,
                         "parentId": "",
                         "type": "Elimination",
-                        "value": "30"
+                        "value": 30
                     }
                 }
             ],
@@ -37675,7 +37669,7 @@
                         "id": "",
                         "index": 0,
                         "parentId": "",
-                        "value": "40"
+                        "value": "45"
                     }
                 }
             ],
@@ -37685,7 +37679,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5714dbc024597771384a510d",
-        "min_level": 55,
+        "min_level": 45,
         "restartable": false,
         "rewards": {
             "Fail": [],
