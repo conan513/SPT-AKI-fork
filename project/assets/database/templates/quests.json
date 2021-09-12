@@ -33651,13 +33651,13 @@
             "Started": [],
             "Success": [{
                     "id": "5ef095274f604154e7127f86",
-                    "index": 0,
+                    "index": 1,
                     "target": "54cb50c76803fa8b248b4571",
                     "type": "TraderStanding",
                     "value": "0.03"
                 }, {
                     "id": "5ee75456cab4c209e92d1f74",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5acf7e7986f774401e19c399",
                             "_tpl": "5ac66d9b5acfc4001633997a"
@@ -33708,7 +33708,7 @@
                     "value": "1"
                 }, {
                     "id": "5ee75c49a39f2440c2318154",
-                    "index": 2,
+                    "index": 4,
                     "items": [{
                             "_id": "5efdf349de1a6d39c53579be",
                             "_tpl": "56dff061d2720bb5668b4567",
@@ -33722,7 +33722,7 @@
                     "value": "30"
                 }, {
                     "id": "5ee7577ac226ea55a345b55d",
-                    "index": 3,
+                    "index": 5,
                     "items": [{
                             "_id": "5efdf349de1a6d39c53579bf",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -33736,12 +33736,12 @@
                     "value": "20000"
                 }, {
                     "id": "5ef094c7e223bd229b7eb537",
-                    "index": 4,
+                    "index": 0,
                     "type": "Experience",
                     "value": "5700"
                 }, {
                     "id": "RewardIgolnik",
-                    "index": 5,
+                    "index": 3,
                     "items": [{
                             "_id": "IgolnickRewards",
                             "_tpl": "5c0d5e4486f77478390952fe",
