@@ -38369,7 +38369,7 @@
                     "target": "StressResistance",
                     "type": "Skill",
                     "value": "100"
-                }, {\
+                }, {
                     "id": "SwiftOneEnduranceSkillReward",
                     "index": 2,
                     "target": "Endurance",
