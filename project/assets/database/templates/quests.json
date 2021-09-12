@@ -33355,7 +33355,10 @@
                     "_parent": "FindItem",
                     "_props": {
                         "id": "5eff5674befb6436ce3bbaf7",
-                        "index": 1,
+                        "index": 2,
+                        "maxDurability": 0,
+                        "minDurability": 0,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["5eff135be0d3331e9d282b7b"],
                         "value": "1"
@@ -33364,7 +33367,10 @@
                     "_parent": "HandoverItem",
                     "_props": {
                         "id": "5edac8483c809a44ef12b4d2",
-                        "index": 2,
+                        "index": 3,
+                        "maxDurability": 0,
+                        "minDurability": 0,
+                        "onlyFoundInRaid": false,
                         "parentId": "",
                         "target": ["5eff135be0d3331e9d282b7b"],
                         "value": "1"
@@ -33378,7 +33384,7 @@
                         "id": "5eda1a67ef0ad2643e73af31",
                         "index": 0,
                         "parentId": "",
-                        "value": "20"
+                        "value": "23"
                     }
                 }, {
                     "_parent": "Quest",
@@ -33406,20 +33412,20 @@
         "instantComplete": false,
         "isKey": false,
         "location": "5b0fc42d86f7744a585f9105",
-        "min_level": 10,
+        "min_level": 23,
         "restartable": false,
         "rewards": {
             "Fail": [],
             "Started": [],
             "Success": [{
                     "id": "5ef095274f604154e7127f86",
-                    "index": 0,
+                    "index": 1,
                     "target": "5935c25fb3acc3127c3d8cd9",
                     "type": "TraderStanding",
                     "value": "0.04"
                 }, {
                     "id": "5ee7577ac226ea55a345b55d",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5efdf349de1a6d39c53579bf",
                             "_tpl": "5696686a4bdc2da3298b456a",
@@ -33433,7 +33439,7 @@
                     "value": "5000"
                 }, {
                     "id": "5ef094c7e223bd229b7eb537",
-                    "index": 2,
+                    "index": 0,
                     "type": "Experience",
                     "value": "17000"
                 }, {
@@ -33445,7 +33451,8 @@
                             "upd": {
                                 "FireMode": {
                                     "FireMode": "single"
-                                }
+                                },
+                                "StackObjectsCount": 4
                             }
                         }, {
                             "_id": "5e035eb586f774756048ec1a",
