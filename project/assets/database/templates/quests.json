@@ -23852,7 +23852,7 @@
                                         "id": "5c0d1a47d09282029e2fffb7",
                                         "target": "AnyPmc",
                                         "value": "1",
-                                        "weapon": ["5710c24ad2720bc3458b45a3", "58d3db5386f77426186285a0", "5448be9a4bdc2dfd2f8b456a", "5e32f56fcb6d5863cc5e5ee4", "5e340dcdcb6d5863cc5e5efb"]
+                                        "weapon": ["5a2a57cfc4a2826c6e06d44a", "5a0c27731526d80618476ac4", "58d3db5386f77426186285a0", "5e340dcdcb6d5863cc5e5efb", "5e32f56fcb6d5863cc5e5ee4", "5448be9a4bdc2dfd2f8b456a", "5710c24ad2720bc3458b45a3"]
                                     }
                                 }
                             ],
@@ -23905,6 +23905,12 @@
                 }, {
                     "id": "5c17c35386f77430a41a095c",
                     "index": 1,
+                    "target": "54cb50c76803fa8b248b4571",
+                    "type": "TraderStanding",
+                    "value": "0.02"
+                }, {
+                    "id": "60cb50e32b555f16df5c4103",
+                    "index": 2,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9ee",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -23918,7 +23924,7 @@
                     "value": "75000"
                 }, {
                     "id": "5c17c36f86f77430a70d1980",
-                    "index": 2,
+                    "index": 4,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9ef",
                             "_tpl": "5710c24ad2720bc3458b45a3",
@@ -23946,7 +23952,7 @@
                     "value": "240"
                 }, {
                     "id": "5c17c40786f77430a41a095e",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5e0ac74b9d594972a112a9f1",
                             "_tpl": "5c1260dc86f7746b106e8748"
@@ -23958,7 +23964,7 @@
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "PSB12Assort",
-                    "index": 5,
+                    "index": 6,
                     "items": [{
                             "_id": "PS12B",
                             "_tpl": "5cadf6eeae921500134b2799"
@@ -38110,10 +38116,10 @@
                     "_parent": "Level",
                     "_props": {
                         "compareMethod": ">=",
-                        "id": "",
+                        "id": "61014a3143d55d251d68e4fd",
                         "index": 0,
                         "parentId": "",
-                        "value": "40"
+                        "value": "65"
                     }
                 }
             ],
