@@ -36358,11 +36358,14 @@
                     "items": [{
                             "_id": "5LPropaneTankFuelMatter",
                             "_tpl": "59fafb5d86f774067a6f2084"
+				"upd": {
+                                "StackObjectsCount": 2
+                            }
                         }
                     ],
                     "target": "5LPropaneTankFuelMatter",
                     "type": "Item",
-                    "value": "1"
+                    "value": "2"
                 }
             ]
         },
