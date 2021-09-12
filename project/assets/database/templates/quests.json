@@ -37206,6 +37206,13 @@
                     "target": "DollarsNightSweep",
                     "type": "Item",
                     "value": "6000"
+                }, {
+                    "id": "610298da9386cf6f25373c4d",
+                    "index": 2,
+                    "target": "Shotgun",
+                    "type": "Skill",
+                    "unknown": true,
+                    "value": "200"
                 }
             ]
         },
