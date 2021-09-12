@@ -33943,13 +33943,13 @@
             "Started": [],
             "Success": [{
                     "id": "5ef0953fe223bd229b7eb538",
-                    "index": 0,
+                    "index": 1,
                     "target": "54cb50c76803fa8b248b4571",
                     "type": "TraderStanding",
                     "value": "0.03"
                 }, {
                     "id": "5ee75425c226ea55a345b559",
-                    "index": 1,
+                    "index": 2,
                     "items": [{
                             "_id": "5f0b41caaf0d0c44eb511394",
                             "_tpl": "5839a40f24597726f856b511",
@@ -33991,7 +33991,6 @@
                         }, {
                             "_id": "5f0b41caaf0d0c44eb51139b",
                             "_tpl": "56dfef82d2720bbd668b4567",
-                            "location": 0,
                             "parentId": "5f0b41caaf0d0c44eb511397",
                             "slotId": "cartridges",
                             "upd": {
@@ -34009,7 +34008,7 @@
                     "value": "1"
                 }, {
                     "id": "5ee75c74cab4c209e92d2409",
-                    "index": 2,
+                    "index": 3,
                     "items": [{
                             "_id": "5f0b41caaf0d0c44eb51139d",
                             "_tpl": "56dff026d2720bb8668b4567",
@@ -34023,7 +34022,7 @@
                     "value": "120"
                 }, {
                     "id": "5ef09545f12be47a8d1af49f",
-                    "index": 3,
+                    "index": 4,
                     "items": [{
                             "_id": "5f0b41caaf0d0c44eb51139e",
                             "_tpl": "5449016a4bdc2d6f028b456f",
@@ -34037,7 +34036,7 @@
                     "value": "25000"
                 }, {
                     "id": "5ef094d6e0ccb42381062aff",
-                    "index": 4,
+                    "index": 0,
                     "type": "Experience",
                     "value": "9200"
                 }, {
@@ -34056,7 +34055,7 @@
                     "index": 6,
                     "items": [{
                             "_id": "AKTSBuffer",
-                            "_tpl": "5cf518cfd7f00c065b422214"
+                            "_tpl": "5cf50fc5d7f00c056c53f83c"
                         }
                     ],
                     "target": "AKTSBuffer",
