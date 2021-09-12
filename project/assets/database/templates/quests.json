@@ -21941,8 +21941,8 @@
                                         "id": "5bc488ca86f77460ec12a0d0",
                                         "target": "AnyPmc",
                                         "value": "1",
-                                        "weapon": ["5bfd297f0db834001a669119", "5ae08f0a5acfc408fb1398a1", "55801eed4bdc2d89578b4588", "588892092459774ac91d4b11", "5df24cf80dee1b22f862e9bc", "5bfea6e90db834001b7347f3", "5de652c31b7e3716273428be"],
-                                        "weaponModsInclusive": [["5b86a0e586f7745b600ccb23"], ["59bffbb386f77435b379b9c2"], ["5c4eecc32e221602b412b440"], ["5e208b9842457a4a7a33d074"], ["59fb257e86f7742981561852"], ["5a34fe59c4a282000b1521a2"], ["5c7955c22e221644f31bfd5e"], ["5dfa3cd1b33c0951220c079b"]]
+                                        "weapon": ["55801eed4bdc2d89578b4588", "5de652c31b7e3716273428be", "588892092459774ac91d4b11", "5bfd297f0db834001a669119", "5bfea6e90db834001b7347f3", "5ae08f0a5acfc408fb1398a1", "5df24cf80dee1b22f862e9bc"],
+                                        "weaponModsInclusive": [["5b86a0e586f7745b600ccb23"], ["59bffbb386f77435b379b9c2"], ["593d489686f7745c6255d58a"], ["5a0d63621526d8dba31fe3bf"], ["59fb257e86f7742981561852"], ["5a9fbacda2750c00141e080f"], ["5a34fe59c4a282000b1521a2"], ["5c7955c22e221644f31bfd5e"], ["5cff9e84d7ad1a049e54ed55"], ["5d44064fa4b9361e4f6eb8b5"], ["5e208b9842457a4a7a33d074"], ["59fb257e86f7742981561852"], ["5dfa3d2b0dee1b22f862eade"], ["5c4eecc32e221602b412b440"], ["5888945a2459774bf43ba385"], ["5a9fbb74a2750c0032157181"], ["5fbe7618d6fa9c00c571bb6c"], ["5fbe760793164a5b6278efc8"]]
                                     }
                                 }
                             ],
@@ -21988,7 +21988,7 @@
                     "index": 1,
                     "target": "5c0647fdd443bc2504c2d371",
                     "type": "TraderStanding",
-                    "value": "0.04"
+                    "value": "0.02"
                 }, {
                     "id": "5bcf25e886f774378e266a35",
                     "index": 2,
@@ -22004,20 +22004,34 @@
                     "type": "Item",
                     "value": "1"
                 }, {
-                    "id": "5bcf25f486f7746a472ad9f5",
+                    "id": "60cc9d6f65e4664318606b66",
                     "index": 3,
+                    "items": [{
+                            "_id": "6131fda2738f614b2f2bc70f",
+                            "_tpl": "5b86a0e586f7745b600ccb23",
+                            "upd": {
+                                "StackObjectsCount": 1
+                            }
+                        }
+                    ],
+                    "target": "6131fda2738f614b2f2bc70f",
+                    "type": "Item",
+                    "value": "1"
+                }, {
+                    "id": "5bcf25f486f7746a472ad9f5",
+                    "index": 4,
                     "items": [{
                             "_id": "5d34df2788a4504526796dba",
                             "_tpl": "5bc5a35cd4351e450201232f"
                         }
                     ],
-                    "loyaltyLevel": 4,
+                    "loyaltyLevel": 3,
                     "target": "5d34df2788a4504526796dba",
                     "traderId": "5c0647fdd443bc2504c2d371",
                     "type": "AssortmentUnlock"
                 }, {
                     "id": "5bcf261286f7746a464c5684",
-                    "index": 4,
+                    "index": 5,
                     "items": [{
                             "_id": "5d34df2788a4504526796dbb",
                             "_tpl": "5449016a4bdc2d6f028b456f",
