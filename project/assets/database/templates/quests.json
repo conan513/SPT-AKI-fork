@@ -36897,7 +36897,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 55,
+        "min_level": 60,
         "restartable": true,
         "rewards": {
             "Fail": [],
@@ -36906,7 +36906,7 @@
                     "id": "5d667d6a86f774368f43a1f9",
                     "index": 0,
                     "type": "Experience",
-                    "value": "760000"
+                    "value": "1770000"
                 }, {
                     "id": "EscortPistolSkill",
                     "index": 1,
@@ -36932,14 +36932,14 @@
                             "_id": "ZabraloEscort",
                             "_tpl": "545cdb794bdc2d3a198b456a",
                             "upd": {
-                                "StackObjectsCount": 5
+                                "StackObjectsCount": 1
                             }
                         }
                     ],
                     "target": "ZabraloEscort",
                     "type": "Item",
                     "unknown": true,
-                    "value": "5"
+                    "value": "1"
                 }
             ]
         },
