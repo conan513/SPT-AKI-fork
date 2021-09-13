@@ -668,7 +668,7 @@
         "EXAMINING": "EXAMINING",
         "EXFIL": "EXFIL",
         "EXFILTRATION_WAIT_ARRIVAL": "Wait for the train",
-        "EXFILTRATION_WAIT_DEPARTURE": "Wait for the train departure",
+        "EXFILTRATION_WAIT_DEPARTURE": "Wait for the train to depart",
         "EXFIL_ARMOR_TIP": "You can't climb in body armor",
         "EXFIL_BUNKER_D2": "D-2",
         "EXFIL_BUNKER_D2_BUTTON": "PRESS THE BUTTON",
@@ -1944,7 +1944,7 @@
         "Subtitles": "Subtitles",
         "Summary": "Summary",
         "Surgery": "Surgery",
-        "SurgeryDescription": "The ability to perform field surgery may save your life in critical situations. The better you learn this skill, the faster and better you will perform operations.",
+        "SurgeryDescription": "The ability to perform field surgery may save your life in critical situations. The faster you learn this skill, the quicker and better you will perform operations.",
         "SurgeryReducePenalty": "Reduced HP penalty for surgery [(-{0:0%})]",
         "SurgerySpeed": "Increased speed of surgery [(+{0:0%})]",
         "Survival Rate Short": "SR: <color=#C3C5BBFF>{0}%</color>",
@@ -3570,7 +3570,11 @@
         "60f05df686abc00cdc03ab8b": "A brave decision, mercenary.",
         "60f05df686abc00cdc03ab8e": "Greetings, mercenary. As I see, you are not wasting your time and have achieved a lot on your way. Sometimes in life, you know, we have to lose something to achieve something bigger in the end? Not everyone is ready for this. Many aren't willing to take risks in their entire life, they are afraid, they don't believe in themselves. What about you, are you ready for this yourself? Are you ready to sacrifice something of value to achieve a bigger goal?",
         "61111f51e3e05a6eae2d291f": "Don't have time for long talks. I need my people to hang out with others freely for some time. If you cooperate with them, you'll have much more of my respect than usual. Let's leave everything you've done in the past and start from scratch regarding your extracts. Keep in touch.",
-        "6114dc0bd22701024d4a03d8": "The recent business is done. Evacuated everything we needed without any issues, my respect to you for that. There were some morons who tried playing tough guys, but they didn't cause much trouble. A pity we couldn't interrogate them. If you know anything about them - let me know. And thanks again for the cooperation and all that, now we're back to the usual respect you get for helping my people."
+        "6114dc0bd22701024d4a03d8": "The recent business is done. Evacuated everything we needed without any issues, my respect to you for that. There were some morons who tried playing tough guys, but they didn't cause much trouble. A pity we couldn't interrogate them. If you know anything about them - let me know. And thanks again for the cooperation and all that, now we're back to the usual respect you get for helping my people.",
+        "61332c9ad65e4f47f310206d": "So listen up, I'm only telling you this because we got along well, the past places with the stuff - are no more relevant. My people removed and stashed almost all the valuables. So keep in mind, look for it elsewhere on the locations.",
+        "6137099c24c23f7c7c74f446": "Said and done, that's the way I like it! Don't get lost. I'll get in touch again if I need something again.",
+        "6137099c24c23f7c7c74f447": "I thought we had a deal: don't touch my people! But I see you want to go your own way. Well, I won't get in the way.",
+        "6137099c24c23f7c7c74f449": "These times it's important to appreciate the right people. I told my men to purge their ranks. The trustworthy ones have to stick together and help each other out. But if there's even a slight suspicion that someone's a rat - you get 'em smoked on the spot. While there's all this commotion going on around, it's the perfect time to show your loyalty. Clear the areas from stray servicemen and tourists, but don't touch my people. You do that, and we'll keep working together."
     },
     "preset": {
         "579b1eb1d53a0658a154fbe6": {
@@ -8066,6 +8070,19 @@
             "note": "",
             "startedMessageText": "60f05df686abc00cdc03ab8d",
             "successMessageText": "60f05df686abc00cdc03ab8b"
+        },
+        "613708a7f8333a5d15594368": {
+            "conditions": {
+                "613708c98cf26538cd20d59e": "Eliminate PMC operatives in a single raid",
+                "6137090327da62585838d495": "Do not kill scavs until the task is complete"
+            },
+            "description": "6137099c24c23f7c7c74f449",
+            "failMessageText": "6137099c24c23f7c7c74f447",
+            "location": "any",
+            "name": "Action test",
+            "note": "",
+            "startedMessageText": "6137099c24c23f7c7c74f448",
+            "successMessageText": "6137099c24c23f7c7c74f446"
         }
     },
     "season": {
