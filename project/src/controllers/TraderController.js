@@ -446,7 +446,7 @@ class TraderController
         const trader = DatabaseServer.tables.traders[traderID].base;
         let loyaltyLevel = pmcData.TradersInfo[traderID].loyaltyLevel;
 
-        if (!loyaltyLevel)
+        if (!loyaltyLevel || loyaltyLevel < 1)
         {
             loyaltyLevel = 1;
         }
