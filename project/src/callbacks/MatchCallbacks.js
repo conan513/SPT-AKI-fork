@@ -56,7 +56,7 @@ class MatchCallbacks
 
     static serverAvailable(url, info, sessionID)
     {
-        let output = MatchController.getEnabled();
+        const output = MatchController.getEnabled();
 
         if (output === false)
         {

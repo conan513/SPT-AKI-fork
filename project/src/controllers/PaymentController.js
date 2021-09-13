@@ -74,7 +74,7 @@ class PaymentController
      */
     static fromRUB(value, currencyTo)
     {
-        let price = HandbookController.getTemplatePrice(currencyTo);
+        const price = HandbookController.getTemplatePrice(currencyTo);
         return price ? Math.round(value / price) : 0;
     }
 
@@ -87,15 +87,15 @@ class PaymentController
      */
     static payMoney(pmcData, body, sessionID, output)
     {
-        let trader = TraderController.getTrader(body.tid, sessionID);
+        const trader = TraderController.getTrader(body.tid, sessionID);
         let currencyTpl = PaymentController.getCurrency(trader.currency);
 
         // delete barter things(not a money) from inventory
         if (body.Action === "TradingConfirm")
         {
-            for (let index in body.scheme_items)
+            for (const index in body.scheme_items)
             {
-                let item = pmcData.Inventory.items.find(i => i._id === body.scheme_items[index].id);
+                const item = pmcData.Inventory.items.find(i => i._id === body.scheme_items[index].id);
                 if (item !== undefined)
                 {
                     if (!PaymentController.isMoneyTpl(item._tpl))
@@ -143,9 +143,9 @@ class PaymentController
 
         let leftToPay = barterPrice;
 
-        for (let moneyItem of moneyItemsInInventory)
+        for (const moneyItem of moneyItemsInInventory)
         {
-            let itemAmount = moneyItem.upd.StackObjectsCount;
+            const itemAmount = moneyItem.upd.StackObjectsCount;
             if (leftToPay >= itemAmount)
             {
                 leftToPay -= itemAmount;
@@ -187,13 +187,13 @@ class PaymentController
      */
     static getMoney(pmcData, amount, body, output, sessionID)
     {
-        let trader = TraderController.getTrader(body.tid, sessionID);
-        let currency = PaymentController.getCurrency(trader.currency);
+        const trader = TraderController.getTrader(body.tid, sessionID);
+        const currency = PaymentController.getCurrency(trader.currency);
         let calcAmount = PaymentController.fromRUB(PaymentController.inRUB(amount, currency), currency);
-        let maxStackSize = DatabaseServer.tables.templates.items[currency]._props.StackMaxSize;
+        const maxStackSize = DatabaseServer.tables.templates.items[currency]._props.StackMaxSize;
         let skip = false;
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             // item is not currency
             if (item._tpl !== currency)
@@ -246,7 +246,7 @@ class PaymentController
         }
 
         // set current sale sum
-        let saleSum = pmcData.TradersInfo[body.tid].salesSum + amount;
+        const saleSum = pmcData.TradersInfo[body.tid].salesSum + amount;
 
         pmcData.TradersInfo[body.tid].salesSum = saleSum;
         TraderController.lvlUp(body.tid, sessionID);

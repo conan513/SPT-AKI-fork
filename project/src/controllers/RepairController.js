@@ -20,9 +20,9 @@ class RepairController
         const repairRate = (coef === 0) ? 1 : (coef / 100 + 1);
 
         // find the item to repair
-        for (let repairItem of body.repairItems)
+        for (const repairItem of body.repairItems)
         {
-            let itemToRepair = pmcData.Inventory.items.find((item) =>
+            const itemToRepair = pmcData.Inventory.items.find((item) =>
             {
                 return item._id === repairItem._id;
             });
@@ -52,7 +52,7 @@ class RepairController
 
             // change item durability
             const repairable = itemToRepair.upd.Repairable;
-            let durability = repairable.Durability + repairItem.count;
+            const durability = repairable.Durability + repairItem.count;
 
             itemToRepair.upd.Repairable = {
                 "Durability": (repairable.MaxDurability > durability) ? durability : repairable.MaxDurability,

@@ -43,14 +43,14 @@ class HttpServer
 
     static getCookies(req)
     {
-        let found = {};
-        let cookies = req.headers.cookie;
+        const found = {};
+        const cookies = req.headers.cookie;
 
         if (cookies)
         {
-            for (let cookie of cookies.split(";"))
+            for (const cookie of cookies.split(";"))
             {
-                let parts = cookie.split("=");
+                const parts = cookie.split("=");
 
                 found[parts.shift().trim()] = decodeURI(parts.join("="));
             }
@@ -75,7 +75,7 @@ class HttpServer
             };
         }
 
-        let buf = HttpServer.buffers[sessionID];
+        const buf = HttpServer.buffers[sessionID];
 
         data.copy(buf.buffer, buf.written, 0);
         buf.written += data.length;
@@ -125,9 +125,9 @@ class HttpServer
 
     static sendFile(resp, file)
     {
-        let pathSlic = file.split("/");
-        let type = HttpServer.mime[pathSlic[pathSlic.length - 1].split(".")[1]] || HttpServer.mime["txt"];
-        let fileStream = fs.createReadStream(file);
+        const pathSlic = file.split("/");
+        const type = HttpServer.mime[pathSlic[pathSlic.length - 1].split(".")[1]] || HttpServer.mime["txt"];
+        const fileStream = fs.createReadStream(file);
 
         fileStream.on("open", function ()
         {
@@ -277,8 +277,8 @@ class HttpServer
     static wsOnConnection(ws, req)
     {
         // Strip request and break it into sections
-        let splitUrl = req.url.replace(/\?.*$/, "").split("/");
-        let sessionID = splitUrl.pop();
+        const splitUrl = req.url.replace(/\?.*$/, "").split("/");
+        const sessionID = splitUrl.pop();
 
         Logger.info(`[WS] Player: ${sessionID} has connected`);
 

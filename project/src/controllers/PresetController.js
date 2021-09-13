@@ -13,7 +13,7 @@ class PresetController
 
         for (const p of presets)
         {
-            let tpl = p._items[0]._tpl;
+            const tpl = p._items[0]._tpl;
 
             if (!(tpl in reverse))
             {
@@ -83,9 +83,9 @@ class PresetController
     {
         if (PresetController.isPreset(presetId))
         {
-            let preset = DatabaseServer.tables.globals.ItemPresets[presetId];
+            const preset = DatabaseServer.tables.globals.ItemPresets[presetId];
 
-            for (let item of preset._items)
+            for (const item of preset._items)
             {
                 if (preset._parent === item._id)
                 {

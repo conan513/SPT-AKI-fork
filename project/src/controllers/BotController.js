@@ -71,7 +71,7 @@ class BotController
 
     static generate(info, playerScav = false)
     {
-        let output = [];
+        const output = [];
 
         for (const condition of info.conditions)
         {
@@ -101,7 +101,7 @@ class BotController
 
         // Get random level based on the exp table.
         let exp = 0;
-        let level = RandomUtil.getInt(min, maxLevel);
+        const level = RandomUtil.getInt(min, maxLevel);
 
         for (let i = 0; i < level; i++)
         {
@@ -182,8 +182,8 @@ class BotController
 
     static generateSkills(skillsObj)
     {
-        let skills = [];
-        let masteries = [];
+        const skills = [];
+        const masteries = [];
 
         // skills
         if (skillsObj.Common)

@@ -6,8 +6,8 @@ class LocationGenerator
 {
     static generateDynamicLoot(dynamic, lootPositions, location)
     {
-        let rndLootIndex = RandomUtil.getInt(0, dynamic.length - 1);
-        let rndLoot = dynamic[rndLootIndex];
+        const rndLootIndex = RandomUtil.getInt(0, dynamic.length - 1);
+        const rndLoot = dynamic[rndLootIndex];
 
         if (!rndLoot.data)
         {
@@ -16,11 +16,11 @@ class LocationGenerator
             return { "result": "error", "reason": "baddata" };
         }
 
-        let rndLootTypeIndex = RandomUtil.getInt(0, rndLoot.data.length - 1);
-        let data = rndLoot.data[rndLootTypeIndex];
+        const rndLootTypeIndex = RandomUtil.getInt(0, rndLoot.data.length - 1);
+        const data = rndLoot.data[rndLootTypeIndex];
 
         //Check if LootItem is overlapping
-        let position = `${data.Position.x},${data.Position.y},${data.Position.z}`;
+        const position = `${data.Position.x},${data.Position.y},${data.Position.z}`;
         if (!LocationConfig.allowLootOverlay && lootPositions.includes(position))
         {
             //Clear selected loot
@@ -38,13 +38,13 @@ class LocationGenerator
         data.Id = HashUtil.generate();
 
         //create lootItem list
-        let lootItemsHash = {};
-        let lootItemsByParentId = {};
+        const lootItemsHash = {};
+        const lootItemsByParentId = {};
 
         for (const i in data.Items)
         {
             // Check for the item spawnchance
-            let loot = data.Items[i];
+            const loot = data.Items[i];
             lootItemsHash[loot._id] = loot;
 
             if (!("parentId" in loot))
@@ -58,7 +58,7 @@ class LocationGenerator
         //reset itemId and childrenItemId
         for (const itemId of Object.keys(lootItemsHash))
         {
-            let newId = HashUtil.generate();
+            const newId = HashUtil.generate();
             lootItemsHash[itemId]._id = newId;
 
             if (itemId === data.Root)
@@ -89,9 +89,9 @@ class LocationGenerator
 
     static generateContainerLoot(items)
     {
-        let container = JsonUtil.clone(DatabaseServer.tables.loot.statics[items[0]._tpl]);
-        let parentId = items[0]._id;
-        let idPrefix = parentId.substring(0, parentId.length - 4);
+        const container = JsonUtil.clone(DatabaseServer.tables.loot.statics[items[0]._tpl]);
+        const parentId = items[0]._id;
+        const idPrefix = parentId.substring(0, parentId.length - 4);
         let idSuffix = parseInt(parentId.substring(parentId.length - 4), 16) + 1;
         let container2D = Array(container.height).fill(0).map(() => Array(container.width).fill(0));
         let minCount = container.minCount;
@@ -108,7 +108,7 @@ class LocationGenerator
 
         for (let i = minCount; i < container.maxCount; i++)
         {
-            let roll = RandomUtil.getInt(0, 100);
+            const roll = RandomUtil.getInt(0, 100);
 
             if (roll < container.chance)
             {
@@ -123,11 +123,11 @@ class LocationGenerator
             let rolledIndex = 0;
             let result = { success: false };
             let maxAttempts = 20;
-            let maxProbability = container.items[container.items.length - 1].cumulativeChance;
+            const maxProbability = container.items[container.items.length - 1].cumulativeChance;
 
             while (!result.success && maxAttempts)
             {
-                let roll = RandomUtil.getInt(0, maxProbability);
+                const roll = RandomUtil.getInt(0, maxProbability);
                 rolledIndex = container.items.findIndex(itm => itm.cumulativeChance >= roll);
                 const rolled = container.items[rolledIndex];
                 item = JsonUtil.clone(ItemHelper.getItem(rolled.id)[1]);
@@ -150,24 +150,24 @@ class LocationGenerator
 
             container2D = ContainerHelper.fillContainerMapWithItem(
                 container2D, result.x, result.y, item._props.Width, item._props.Height, result.rotation);
-            let rot = result.rotation ? 1 : 0;
+            const rot = result.rotation ? 1 : 0;
 
             if (item._props.presetId)
             {
                 // Process gun preset into container items
-                let preset = JsonUtil.clone(PresetController.getStandardPreset(item._id));
+                const preset = JsonUtil.clone(PresetController.getStandardPreset(item._id));
                 preset._items[0].parentId = parentId;
                 preset._items[0].slotId = "main";
                 preset._items[0].location = { "x": result.x, "y": result.y, "r": rot };
 
-                for (let p in preset._items)
+                for (const p in preset._items)
                 {
                     items.push(preset._items[p]);
 
                     if (preset._items[p].slotId === "mod_magazine")
                     {
-                        let mag = ItemHelper.getItem(preset._items[p]._tpl)[1];
-                        let cartridges = {
+                        const mag = ItemHelper.getItem(preset._items[p]._tpl)[1];
+                        const cartridges = {
                             "_id": idPrefix + idSuffix.toString(16),
                             "_tpl": item._props.defAmmo,
                             "parentId": preset._items[p]._id,
@@ -209,7 +209,7 @@ class LocationGenerator
             if (item._parent === "543be5dd4bdc2deb348b4569" || item._parent === "5485a8684bdc2da71d8b4567")
             {
                 // Money or Ammo stack
-                let stackCount = RandomUtil.getInt(item._props.StackMinRandom, item._props.StackMaxRandom);
+                const stackCount = RandomUtil.getInt(item._props.StackMinRandom, item._props.StackMaxRandom);
                 containerItem.upd = { "StackObjectsCount": stackCount };
             }
             else if (item._parent === "543be5cb4bdc2deb348b4568")

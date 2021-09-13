@@ -162,7 +162,8 @@
             "object-curly-spacing": [
                 "error",
                 "always"
-            ]
+            ],
+            "prefer-const": "error"
         }
     }
 }

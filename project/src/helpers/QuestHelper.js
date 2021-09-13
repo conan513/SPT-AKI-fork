@@ -49,7 +49,7 @@ class QuestHelper
      */
     static evaluateLevel(pmcProfile, cond)
     {
-        let level = pmcProfile.Info.Level;
+        const level = pmcProfile.Info.Level;
         if (cond._parent === "Level")
         {
             switch (cond._props.compareMethod)
@@ -71,9 +71,9 @@ class QuestHelper
 
     static getDeltaQuests(before, after)
     {
-        let knownQuestsIds = [];
+        const knownQuestsIds = [];
 
-        for (let q of before)
+        for (const q of before)
         {
             knownQuestsIds.push(q._id);
         }

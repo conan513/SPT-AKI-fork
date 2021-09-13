@@ -149,7 +149,7 @@ class RagfairServer
         while (RagfairServer.offers.length < count)
         {
             // get base item and stack
-            let item = RandomUtil.getArrayValue(assortItems);
+            const item = RandomUtil.getArrayValue(assortItems);
             const isPreset = PresetController.isPreset(item._id);
 
             // create offer
@@ -179,7 +179,7 @@ class RagfairServer
         // get properties
         items = RagfairServer.getItemCondition(userID, items);
 
-        let offer = {
+        const offer = {
             "_id": (isTrader) ? items[0]._id : HashUtil.generate(),
             "intId": 0,
             "user": {
@@ -311,7 +311,7 @@ class RagfairServer
 
     static getItemCondition(userID, items)
     {
-        let item = RagfairServer.addMissingCondition(items[0]);
+        const item = RagfairServer.addMissingCondition(items[0]);
 
         if (!RagfairServer.isPlayer(userID) && !RagfairServer.isTrader(userID))
         {
@@ -361,9 +361,9 @@ class RagfairServer
     static getDynamicOfferCurrency()
     {
         const currencies = RagfairConfig.dynamic.currencies;
-        let bias = [];
+        const bias = [];
 
-        for (let item in currencies)
+        for (const item in currencies)
         {
             for (let i = 0; i < currencies[item]; i++)
             {
@@ -430,7 +430,7 @@ class RagfairServer
         }
 
         // dynamic offers
-        let dynamic = (RagfairConfig.dynamic.liveprices) ? { ...RagfairServer.prices.trader, ...prices } : RagfairServer.prices.trader;
+        const dynamic = (RagfairConfig.dynamic.liveprices) ? { ...RagfairServer.prices.trader, ...prices } : RagfairServer.prices.trader;
 
         for (const itemID in dynamic)
         {
@@ -456,7 +456,7 @@ class RagfairServer
 
     static getPresetItemsByTpl(item)
     {
-        let presets = [];
+        const presets = [];
 
         for (const itemId in DatabaseServer.tables.globals.ItemPresets)
         {
@@ -473,11 +473,11 @@ class RagfairServer
     static reparentPresets(item, preset)
     {
         const oldRootId = preset[0]._id;
-        let idMappings = {};
+        const idMappings = {};
 
         idMappings[oldRootId] = item._id;
 
-        for (let mod of preset)
+        for (const mod of preset)
         {
             if (idMappings[mod._id] === undefined)
             {

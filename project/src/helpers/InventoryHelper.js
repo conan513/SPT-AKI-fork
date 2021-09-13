@@ -6,7 +6,7 @@ class InventoryHelper
 {
     static getSecureContainerItems(items)
     {
-        let secureContainer = items.find(x => x.slotId === "SecuredContainer");
+        const secureContainer = items.find(x => x.slotId === "SecuredContainer");
 
         // No container found, drop out
         if (!secureContainer)
@@ -22,14 +22,14 @@ class InventoryHelper
 
     static removeSecureContainer(profile)
     {
-        let items = profile.Inventory.items;
+        const items = profile.Inventory.items;
 
         // Remove secured container
         for (const item of items)
         {
             if (item.slotId === "SecuredContainer")
             {
-                let toRemove = ItemHelper.findAndReturnChildrenByItems(items, item._id);
+                const toRemove = ItemHelper.findAndReturnChildrenByItems(items, item._id);
                 let n = items.length;
 
                 while (n-- > 0)
@@ -62,12 +62,12 @@ class InventoryHelper
     static generateInventoryID(profile)
     {
         const defaultInventory = "55d7217a4bdc2d86028b456d";
-        let itemsByParentHash = {};
-        let inventoryItemHash = {};
+        const itemsByParentHash = {};
+        const inventoryItemHash = {};
         let inventoryId = "";
 
         // Generate inventoryItem list
-        for (let item of profile.Inventory.items)
+        for (const item of profile.Inventory.items)
         {
             inventoryItemHash[item._id] = item;
 
@@ -98,7 +98,7 @@ class InventoryHelper
         // update inventoryItem id
         if (inventoryId in itemsByParentHash)
         {
-            for (let item of itemsByParentHash[inventoryId])
+            for (const item of itemsByParentHash[inventoryId])
             {
                 item.parentId = newInventoryId;
             }
@@ -121,11 +121,11 @@ class InventoryHelper
     // -> Prepares item Width and height returns [sizeX, sizeY]
     static getSizeByInventoryItemHash(itemtpl, itemID, inventoryItemHash)
     {
-        let toDo = [itemID];
-        let tmpItem = ItemHelper.getItem(itemtpl)[1];
-        let rootItem = inventoryItemHash.byItemId[itemID];
-        let FoldableWeapon = tmpItem._props.Foldable || false;
-        let FoldedSlot = tmpItem._props.FoldedSlot;
+        const toDo = [itemID];
+        const tmpItem = ItemHelper.getItem(itemtpl)[1];
+        const rootItem = inventoryItemHash.byItemId[itemID];
+        const FoldableWeapon = tmpItem._props.Foldable || false;
+        const FoldedSlot = tmpItem._props.FoldedSlot;
 
         let SizeUp = 0;
         let SizeDown = 0;
@@ -137,13 +137,13 @@ class InventoryHelper
         let ForcedLeft = 0;
         let ForcedRight = 0;
         let outX = tmpItem._props.Width;
-        let outY = tmpItem._props.Height;
-        let skipThisItems = [
+        const outY = tmpItem._props.Height;
+        const skipThisItems = [
             "5448e53e4bdc2d60728b4567",
             "566168634bdc2d144c8b456c",
             "5795f317245977243854e041",
         ];
-        let rootFolded = rootItem.upd && rootItem.upd.Foldable && rootItem.upd.Foldable.Folded === true;
+        const rootFolded = rootItem.upd && rootItem.upd.Foldable && rootItem.upd.Foldable.Folded === true;
 
         //The item itself is collapsible
         if (FoldableWeapon && (FoldedSlot === undefined || FoldedSlot === "") && rootFolded)
@@ -157,7 +157,7 @@ class InventoryHelper
             {
                 if (toDo[0] in inventoryItemHash.byParentId)
                 {
-                    for (let item of inventoryItemHash.byParentId[toDo[0]])
+                    for (const item of inventoryItemHash.byParentId[toDo[0]])
                     {
                         //Filtering child items outside of mod slots, such as those inside containers, without counting their ExtraSize attribute
                         if (item.slotId.indexOf("mod_") < 0)
@@ -168,9 +168,9 @@ class InventoryHelper
                         toDo.push(item._id);
 
                         // If the barrel is folded the space in the barrel is not counted
-                        let itm = ItemHelper.getItem(item._tpl)[1];
-                        let childFoldable = itm._props.Foldable;
-                        let childFolded = item.upd && item.upd.Foldable && item.upd.Foldable.Folded === true;
+                        const itm = ItemHelper.getItem(item._tpl)[1];
+                        const childFoldable = itm._props.Foldable;
+                        const childFolded = item.upd && item.upd.Foldable && item.upd.Foldable.Folded === true;
 
                         if (FoldableWeapon && FoldedSlot === item.slotId && (rootFolded || childFolded))
                         {
@@ -227,22 +227,22 @@ class InventoryHelper
     static getPlayerStashSize(sessionID)
     {
         //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
-        let stashTPL = InventoryHelper.getStashType(sessionID);
-        let stashX = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
-        let stashY = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
+        const stashTPL = InventoryHelper.getStashType(sessionID);
+        const stashX = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
+        const stashY = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
         return [stashX, stashY];
     }
 
     static getInventoryItemHash(InventoryItem)
     {
-        let inventoryItemHash = {
+        const inventoryItemHash = {
             "byItemId": {},
             "byParentId": {},
         };
 
         for (let i = 0; i < InventoryItem.length; i++)
         {
-            let item = InventoryItem[i];
+            const item = InventoryItem[i];
             inventoryItemHash.byItemId[item._id] = item;
 
             if (!("parentId" in item))

@@ -6,7 +6,7 @@ class HealthController
 {
     static resetVitality(sessionID)
     {
-        let profile = SaveServer.profiles[sessionID];
+        const profile = SaveServer.profiles[sessionID];
 
         profile.vitality = {
             "health": {
@@ -37,7 +37,7 @@ class HealthController
 
     static offraidHeal(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         // update medkit used (hpresource)
         const inventoryItem = pmcData.Inventory.items.find(item => item._id === body.item);
@@ -77,7 +77,7 @@ class HealthController
         let resourceLeft = 0;
         let maxResource = 0;
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             if (item._id !== body.item)
             {
@@ -115,8 +115,8 @@ class HealthController
     static saveVitality(pmcData, info, sessionID)
     {
         const BodyPartsList = info.Health;
-        let nodeHealth = SaveServer.profiles[sessionID].vitality.health;
-        let nodeEffects = SaveServer.profiles[sessionID].vitality.effects;
+        const nodeHealth = SaveServer.profiles[sessionID].vitality.health;
+        const nodeEffects = SaveServer.profiles[sessionID].vitality.effects;
 
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
@@ -161,8 +161,8 @@ class HealthController
             return output;
         }
 
-        let BodyParts = info.difference.BodyParts;
-        let healthInfo = { "IsAlive": true, "Health": {} };
+        const BodyParts = info.difference.BodyParts;
+        const healthInfo = { "IsAlive": true, "Health": {} };
 
         for (const key in BodyParts)
         {
@@ -187,7 +187,7 @@ class HealthController
 
     static addEffect(pmcData, sessionID, info)
     {
-        let bodyPart = pmcData.Health.BodyParts[info.bodyPart];
+        const bodyPart = pmcData.Health.BodyParts[info.bodyPart];
 
         if (!bodyPart.Effects)
         {
@@ -215,7 +215,7 @@ class HealthController
             return;
         }
 
-        let nodeHealth = SaveServer.profiles[sessionID].vitality.health;
+        const nodeHealth = SaveServer.profiles[sessionID].vitality.health;
 
         for (const item in nodeHealth)
         {
@@ -279,7 +279,7 @@ class HealthController
 
     static isEmpty(map)
     {
-        for (let key in map)
+        for (const key in map)
         {
             if (key in map)
             {

@@ -6,7 +6,7 @@ class InraidController
 {
     static onLoad(sessionID)
     {
-        let profile = SaveServer.profiles[sessionID];
+        const profile = SaveServer.profiles[sessionID];
 
         if (!("inraid" in profile))
         {
@@ -39,7 +39,7 @@ class InraidController
             return;
         }
 
-        for (let item of offraidData.profile.Inventory.items)
+        for (const item of offraidData.profile.Inventory.items)
         {
             if (item._tpl === mapKey && item.slotId !== "Hideout")
             {
@@ -56,10 +56,10 @@ class InraidController
             return;
         }
 
-        let locationName = SaveServer.profiles[sessionID].inraid.location.toLowerCase();
+        const locationName = SaveServer.profiles[sessionID].inraid.location.toLowerCase();
 
-        let map = DatabaseServer.tables.locations[locationName].base;
-        let insuranceEnabled = map.Insurance;
+        const map = DatabaseServer.tables.locations[locationName].base;
+        const insuranceEnabled = map.Insurance;
         let pmcData = ProfileController.getPmcProfile(sessionID);
         let scavData = ProfileController.getScavProfile(sessionID);
         const isPlayerScav = offraidData.isPlayerScav;
@@ -171,7 +171,7 @@ class InraidController
     static setBaseStats(profileData, offraidData, sessionID)
     {
         // remove old skill fatigue
-        for (let skill of offraidData.profile.Skills.Common)
+        for (const skill of offraidData.profile.Skills.Common)
         {
             skill.PointsEarnedDuringSession = 0.0;
         }
@@ -198,7 +198,7 @@ class InraidController
     /* adds SpawnedInSession property to items found in a raid */
     static markFoundItems(pmcData, profile, isPlayerScav)
     {
-        for (let item of profile.Inventory.items)
+        for (const item of profile.Inventory.items)
         {
             if (!isPlayerScav)
             {
@@ -267,9 +267,9 @@ class InraidController
 
     static deleteInventory(pmcData, sessionID)
     {
-        let toDelete = [];
+        const toDelete = [];
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             // remove normal item
             if (item.parentId === pmcData.Inventory.equipment
@@ -286,7 +286,7 @@ class InraidController
             // remove pocket insides
             if (item.slotId === "Pockets")
             {
-                for (let pocket of pmcData.Inventory.items)
+                for (const pocket of pmcData.Inventory.items)
                 {
                     if (pocket.parentId === item._id)
                     {
@@ -297,7 +297,7 @@ class InraidController
         }
 
         // delete items
-        for (let item of toDelete)
+        for (const item of toDelete)
         {
             InventoryController.removeItem(pmcData, item, sessionID);
         }
@@ -333,7 +333,7 @@ class InraidController
         let inventoryItems = [];
 
         // Get an array of root player items
-        for (let item of items)
+        for (const item of items)
         {
             if (inventorySlots.includes(item.slotId))
             {
@@ -345,12 +345,12 @@ class InraidController
         let newItems = inventoryItems;
         while (newItems.length > 0)
         {
-            let foundItems = [];
+            const foundItems = [];
 
-            for (let item of newItems)
+            for (const item of newItems)
             {
                 // Find children of this item
-                for (let newItem of items)
+                for (const newItem of items)
                 {
                     if (newItem.parentId === item._id)
                     {

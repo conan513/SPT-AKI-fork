@@ -23,7 +23,7 @@ class SaveServer
         });
 
         // load profiles
-        for (let file of files)
+        for (const file of files)
         {
             SaveServer.loadProfile(VFS.stripExtension(file));
         }

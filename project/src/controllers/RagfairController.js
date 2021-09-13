@@ -76,7 +76,7 @@ class RagfairController
     {
         const itemsToAdd = RagfairController.filterCategories(sessionID, info);
         const assorts = RagfairController.getDisplayableAssorts(sessionID);
-        let result = {
+        const result = {
             "categories": {},
             "offers": [],
             "offersCount": info.limit,
@@ -103,7 +103,7 @@ class RagfairController
         // set offer indexes
         let counter = 0;
 
-        for (let offer of result.offers)
+        for (const offer of result.offers)
         {
             offer.intId = ++counter;
         }
@@ -119,7 +119,7 @@ class RagfairController
 
     static getValidOffers(info, itemsToAdd, assorts, pmcProfile)
     {
-        let offers = [];
+        const offers = [];
         for (const offer of RagfairServer.offers)
         {
             if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer, pmcProfile))
@@ -132,14 +132,14 @@ class RagfairController
 
     static getOffersForBuild(info, itemsToAdd, assorts, pmcProfile)
     {
-        let offersMap = new Map();
-        let offers = [];
+        const offersMap = new Map();
+        const offers = [];
 
         for (const offer of RagfairServer.offers)
         {
             if (RagfairController.isDisplayableOffer(info, itemsToAdd, assorts, offer, pmcProfile))
             {
-                let key = offer.items[0]._tpl;
+                const key = offer.items[0]._tpl;
                 if (!offersMap.has(key))
                 {
                     offersMap.set(key, []);
@@ -149,9 +149,9 @@ class RagfairController
             }
         }
 
-        for (let tmpOffers of offersMap.values())
+        for (const tmpOffers of offersMap.values())
         {
-            let offer = RagfairController.sortOffers(tmpOffers, 5, 0)[0];
+            const offer = RagfairController.sortOffers(tmpOffers, 5, 0)[0];
             offers.push(offer);
         }
 
@@ -198,7 +198,7 @@ class RagfairController
 
     static getDisplayableAssorts(sessionID)
     {
-        let result = {};
+        const result = {};
 
         for (const traderID in DatabaseServer.tables.traders)
         {
@@ -405,7 +405,7 @@ class RagfairController
 
     static getNeededSearchList(neededSearchId)
     {
-        let result = [];
+        const result = [];
 
         for (const item of Object.values(DatabaseServer.tables.templates.items))
         {
@@ -423,7 +423,7 @@ class RagfairController
     /* Because of presets, categories are not always 1 */
     static countCategories(result)
     {
-        let categories = {};
+        const categories = {};
 
         for (const offer of result.offers)
         {
@@ -479,7 +479,7 @@ class RagfairController
     /* Scans a given slot type for filters and returns them as a Set */
     static getFilters(item, slot)
     {
-        let result = new Set();
+        const result = new Set();
 
         if (!(slot in item._props && item._props[slot].length))
         {
@@ -625,13 +625,13 @@ class RagfairController
      */
     static mergeStackable(items)
     {
-        let list = [];
+        const list = [];
         let rootItem = null;
 
         for (let item of items)
         {
             item = ItemHelper.fixItemStackCount(item);
-            let isChild = items.find(it => it._id === item.parentId);
+            const isChild = items.find(it => it._id === item.parentId);
 
             if (!isChild)
             {
@@ -670,7 +670,7 @@ class RagfairController
         const chance = 100 - Math.min(Math.max(sellChance, 0), 100);
         let sellTime = startTime;
         let remainingCount = count;
-        let result = [];
+        const result = [];
 
         // Avoid rolling for NaN sellChance
         sellChance = sellChance || RagfairConfig.sell.chance.base;
@@ -701,7 +701,7 @@ class RagfairController
     {
         let output = ItemEventRouter.getOutput(sessionID);
         let requirementsPriceInRub = 0;
-        let invItems = [];
+        const invItems = [];
 
         if (!info || !info.items || info.items.length === 0)
         {
@@ -750,7 +750,7 @@ class RagfairController
         }
 
         // Preparations are done, create the offer
-        let offer = RagfairController.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, RagfairController.mergeStackable(invItems), info.sellInOnePiece, requirementsPriceInRub);
+        const offer = RagfairController.createPlayerOffer(SaveServer.profiles[sessionID], info.requirements, RagfairController.mergeStackable(invItems), info.sellInOnePiece, requirementsPriceInRub);
         const rootItem = offer.items[0];
         const qualityMultiplier = ItemHelper.getItemQualityPrice(rootItem);
         const offerPrice = RagfairServer.prices.dynamic[rootItem._tpl] * rootItem.upd.StackObjectsCount * qualityMultiplier;
@@ -817,13 +817,13 @@ class RagfairController
     */
     static calculateTax(info, offerValue, requirementsValue, quantity)
     {
-        let Ti = 0.05;
-        let Tr = 0.05;
-        let VO = Math.round(offerValue);
-        let VR = Math.round(requirementsValue);
+        const Ti = 0.05;
+        const Tr = 0.05;
+        const VO = Math.round(offerValue);
+        const VR = Math.round(requirementsValue);
         let PO = Math.log10(VO / VR);
         let PR = Math.log10(VR / VO);
-        let Q = info.sellInOnePiece ? 1 : quantity;
+        const Q = info.sellInOnePiece ? 1 : quantity;
 
         if (VR < VO)
         {
@@ -854,11 +854,11 @@ class RagfairController
             return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID), "Offer not found in profile");
         }
 
-        let differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
+        const differenceInMins = (offers[index].endTime - TimeUtil.getTimestamp()) / 6000;
 
         if (differenceInMins > 1)
         {
-            let newEndTime = 11 + TimeUtil.getTimestamp();
+            const newEndTime = 11 + TimeUtil.getTimestamp();
             offers[index].endTime = Math.round(newEndTime);
         }
 
@@ -941,7 +941,7 @@ class RagfairController
         else
         {
             offer.items[0].upd.StackObjectsCount -= boughtAmount;
-            let rootItems = offer.items.filter(i => i.parentId === "hideout");
+            const rootItems = offer.items.filter(i => i.parentId === "hideout");
             rootItems.splice(0, 1);
 
             let removeCount = boughtAmount;
@@ -949,7 +949,7 @@ class RagfairController
 
             while (removeCount > 0 && rootItems.length > 0)
             {
-                let lastItem = rootItems[rootItems.length - 1];
+                const lastItem = rootItems[rootItems.length - 1];
 
                 if (lastItem.upd.StackObjectsCount > removeCount)
                 {
@@ -970,9 +970,9 @@ class RagfairController
             {
                 foundNewItems = false;
 
-                for (let id of idsToRemove)
+                for (const id of idsToRemove)
                 {
-                    let newIds = offer.items.filter(i => !idsToRemove.includes(i._id) && idsToRemove.includes(i.parentId)).map(i => i._id);
+                    const newIds = offer.items.filter(i => !idsToRemove.includes(i._id) && idsToRemove.includes(i.parentId)).map(i => i._id);
 
                     if (newIds.length > 0)
                     {
@@ -998,7 +998,7 @@ class RagfairController
                 "upd": { "StackObjectsCount": requirement.count * boughtAmount }
             };
 
-            let stacks = ItemHelper.splitStack(requestedItem);
+            const stacks = ItemHelper.splitStack(requestedItem);
 
             for (const item of stacks)
             {
@@ -1057,10 +1057,10 @@ class RagfairController
 
     static createPlayerOffer(profile, requirements, items, sellInOnePiece, amountToSend)
     {
-        let loyalLevel = 1;
+        const loyalLevel = 1;
         const formattedItems = items.map(item =>
         {
-            let isChild = items.find(it => it._id === item.parentId);
+            const isChild = items.find(it => it._id === item.parentId);
 
             return {
                 "_id": item._id,

@@ -67,9 +67,9 @@ class ItemHelper
 
     static findAndReturnChildrenByItems(items, itemID)
     {
-        let list = [];
+        const list = [];
 
-        for (let childitem of items)
+        for (const childitem of items)
         {
             if (childitem.parentId === itemID)
             {
@@ -86,9 +86,9 @@ class ItemHelper
      */
     static findAndReturnChildrenAsItems(items, itemID)
     {
-        let list = [];
+        const list = [];
 
-        for (let childitem of items)
+        for (const childitem of items)
         {
             // Include itself.
             if (childitem._id === itemID)
@@ -112,7 +112,7 @@ class ItemHelper
     {
         let list = [];
 
-        for (let itemFromAssort of assort)
+        for (const itemFromAssort of assort)
         {
             if (itemFromAssort.parentId === itemIdToFind && !list.find(item => itemFromAssort._id === item._id))
             {
@@ -136,7 +136,7 @@ class ItemHelper
 
     static isNotSellable(itemid)
     {
-        let items = [
+        const items = [
             "544901bf4bdc2ddf018b456d", //wad of rubles
             "5449016a4bdc2d6f028b456f", // rubles
             "569668774bdc2da2298b4568", // euros
@@ -171,9 +171,9 @@ class ItemHelper
             return [item];
         }
 
-        let maxStack = DatabaseServer.tables.templates.items[item._tpl]._props.StackMaxSize;
+        const maxStack = DatabaseServer.tables.templates.items[item._tpl]._props.StackMaxSize;
         let count = item.upd.StackObjectsCount;
-        let stacks = [];
+        const stacks = [];
 
         // If the current count is already equal or less than the max
         // then just return the item as is.
@@ -185,8 +185,8 @@ class ItemHelper
 
         while (count)
         {
-            let amount = Math.min(count, maxStack);
-            let newStack = JsonUtil.clone(item);
+            const amount = Math.min(count, maxStack);
+            const newStack = JsonUtil.clone(item);
 
             newStack._id = HashUtil.generate();
             newStack.upd.StackObjectsCount = amount;
@@ -231,7 +231,7 @@ class ItemHelper
         // replace bsg shit long ID with proper one
         let string_inventory = JsonUtil.serialize(items);
 
-        for (let item of items)
+        for (const item of items)
         {
             if (pmcData !== null)
             {
@@ -254,15 +254,15 @@ class ItemHelper
             }
 
             // replace id
-            let old_id = item._id;
-            let new_id = HashUtil.generate();
+            const old_id = item._id;
+            const new_id = HashUtil.generate();
 
             string_inventory = string_inventory.replace(new RegExp(old_id, "g"), new_id);
 
             // Also replace in quick slot if the old ID exists.
             if (fastPanel !== null)
             {
-                for (let itemSlot in fastPanel)
+                for (const itemSlot in fastPanel)
                 {
                     if (fastPanel[itemSlot] === old_id)
                     {
@@ -275,26 +275,26 @@ class ItemHelper
         items = JsonUtil.deserialize(string_inventory);
 
         // fix duplicate id's
-        let dupes = {};
-        let newParents = {};
-        let childrenMapping = {};
-        let oldToNewIds = {};
+        const dupes = {};
+        const newParents = {};
+        const childrenMapping = {};
+        const oldToNewIds = {};
 
         // Finding duplicate IDs involves scanning the item three times.
         // First scan - Check which ids are duplicated.
         // Second scan - Map parents to items.
         // Third scan - Resolve IDs.
-        for (let item of items)
+        for (const item of items)
         {
             dupes[item._id] = (dupes[item._id] || 0) + 1;
         }
 
-        for (let item of items)
+        for (const item of items)
         {
             // register the parents
             if (dupes[item._id] > 1)
             {
-                let newId = HashUtil.generate();
+                const newId = HashUtil.generate();
 
                 newParents[item.parentId] = newParents[item.parentId] || [];
                 newParents[item.parentId].push(item);
@@ -303,23 +303,23 @@ class ItemHelper
             }
         }
 
-        for (let item of items)
+        for (const item of items)
         {
             if (dupes[item._id] > 1)
             {
-                let oldId = item._id;
-                let newId = oldToNewIds[oldId].splice(0, 1)[0];
+                const oldId = item._id;
+                const newId = oldToNewIds[oldId].splice(0, 1)[0];
                 item._id = newId;
 
                 // Extract one of the children that's also duplicated.
                 if (oldId in newParents && newParents[oldId].length > 0)
                 {
                     childrenMapping[newId] = {};
-                    for (let childIndex in newParents[oldId])
+                    for (const childIndex in newParents[oldId])
                     {
                         // Make sure we haven't already assigned another duplicate child of
                         // same slot and location to this parent.
-                        let childId = ItemHelper.getChildId(newParents[oldId][childIndex]);
+                        const childId = ItemHelper.getChildId(newParents[oldId][childIndex]);
 
                         if (!(childId in childrenMapping[newId]))
                         {

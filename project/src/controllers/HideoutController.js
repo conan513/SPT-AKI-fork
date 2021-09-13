@@ -35,7 +35,7 @@ class HideoutController
 {
     static upgrade(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         const items = body.items.map(reqItem =>
         {
             const item = pmcData.Inventory.items.find(invItem => invItem._id === reqItem.id);
@@ -46,7 +46,7 @@ class HideoutController
         });
 
         // If it's not money, its construction / barter items
-        for (let item of items)
+        for (const item of items)
         {
             if (!item.inventoryItem)
             {
@@ -83,11 +83,11 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        let ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
+        const ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
 
         if (ctime > 0)
         {
-            let timestamp = TimeUtil.getTimestamp();
+            const timestamp = TimeUtil.getTimestamp();
 
             hideoutArea.completeTime = timestamp + ctime;
             hideoutArea.constructing = true;
@@ -98,7 +98,7 @@ class HideoutController
 
     static upgradeComplete(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
 
         if (!hideoutArea)
@@ -121,11 +121,11 @@ class HideoutController
         }
 
         // Apply bonuses
-        let bonuses = hideoutData.stages[hideoutArea.level].bonuses;
+        const bonuses = hideoutData.stages[hideoutArea.level].bonuses;
 
         if (bonuses.length > 0)
         {
-            for (let bonus of bonuses)
+            for (const bonus of bonuses)
             {
                 HideoutController.applyPlayerUpgradesBonuses(pmcData, bonus);
             }
@@ -156,7 +156,7 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        for (let item of items)
+        for (const item of items)
         {
             if (!item.inventoryItem)
             {
@@ -201,8 +201,8 @@ class HideoutController
 
         if (hideoutArea.type === areaTypes.GENERATOR)
         {
-            let itemToMove = hideoutArea.slots[body.slots[0]].item[0];
-            let newReq = {
+            const itemToMove = hideoutArea.slots[body.slots[0]].item[0];
+            const newReq = {
                 "items": [{
                     "item_id": itemToMove._tpl,
                     "count": 1,
@@ -243,7 +243,7 @@ class HideoutController
                 return HttpResponse.appendErrorToOutput(output);
             }
 
-            let newReq = {
+            const newReq = {
                 "items": [{
                     "item_id": hideoutArea.slots[0].item[0]._tpl,
                     "count": 1,
@@ -267,7 +267,7 @@ class HideoutController
 
     static toggleArea(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
 
         if (!hideoutArea)
@@ -287,7 +287,7 @@ class HideoutController
 
         let output = ItemEventRouter.getOutput(sessionID);
 
-        for (let itemToDelete of body.items)
+        for (const itemToDelete of body.items)
         {
             output = InventoryController.removeItem(pmcData, itemToDelete.id, sessionID, output);
         }
@@ -319,7 +319,7 @@ class HideoutController
     {
         let output = ItemEventRouter.getOutput(sessionID);
 
-        for (let requestedItem of body.items)
+        for (const requestedItem of body.items)
         {
             const inventoryItem = pmcData.Inventory.items.find(item => item._id === requestedItem.id);
             if (!inventoryItem)
@@ -347,10 +347,10 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        let rarityItemCounter = {};
-        let products = [];
+        const rarityItemCounter = {};
+        const products = [];
 
-        for (let rarity in recipe.EndProducts)
+        for (const rarity in recipe.EndProducts)
         {
             // TODO: This ensures ScavCase always has the max amount of items possible. Should probably randomize this
             if (recipe.EndProducts[rarity].max > 0)
@@ -361,13 +361,13 @@ class HideoutController
 
         // TODO: This probably needs to be rewritten eventually, as poking at random items
         // and hoping to find one of the correct rarity is wildly inefficient and inconsistent
-        for (let rarityType in rarityItemCounter)
+        for (const rarityType in rarityItemCounter)
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = RandomUtil.getIntEx(Object.keys(DatabaseServer.tables.templates.items).length);
-                let randomKey = Object.keys(DatabaseServer.tables.templates.items)[random];
-                let tempItem = DatabaseServer.tables.templates.items[randomKey];
+                const random = RandomUtil.getIntEx(Object.keys(DatabaseServer.tables.templates.items).length);
+                const randomKey = Object.keys(DatabaseServer.tables.templates.items)[random];
+                const tempItem = DatabaseServer.tables.templates.items[randomKey];
 
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
@@ -401,7 +401,7 @@ class HideoutController
 
     static getBTC(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         const bitCoinCount = pmcData.Hideout.Production[BITCOIN_FARM].Products.length;
         if (!bitCoinCount)
@@ -410,7 +410,7 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        let newBTC = {
+        const newBTC = {
             "items": [{
                 "item_id": "59faff1d86f7746c51718c9c",
                 "count": pmcData.Hideout.Production[BITCOIN_FARM].Products.length,
@@ -418,7 +418,7 @@ class HideoutController
             "tid": "ragfair"
         };
 
-        let callback = () =>
+        const callback = () =>
         {
             pmcData.Hideout.Production[BITCOIN_FARM].Products = [];
         };
@@ -428,7 +428,7 @@ class HideoutController
 
     static takeProduction(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         if (body.recipeId === BITCOIN_FARM)
         {
@@ -447,7 +447,7 @@ class HideoutController
                 id = PresetController.getStandardPreset(id)._id;
             }
 
-            let newReq = {
+            const newReq = {
                 "items": [{
                     "item_id": id,
                     "count": recipe.count,
@@ -463,7 +463,7 @@ class HideoutController
             }
 
             // delete the production in profile Hideout.Production if addItem passes validation
-            let callback = () =>
+            const callback = () =>
             {
                 delete pmcData.Hideout.Production[kvp[0]];
             };
@@ -533,7 +533,7 @@ class HideoutController
         {
             case "StashSize":
 
-                for (let item in pmcData.Inventory.items)
+                for (const item in pmcData.Inventory.items)
                 {
                     if (pmcData.Inventory.items[item]._id === pmcData.Inventory.stash)
                     {
@@ -580,7 +580,7 @@ class HideoutController
     static updatePlayerHideout(sessionID)
     {
         const recipes = DatabaseServer.tables.hideout.production;
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
         let WaterCollectorHasFilter = false;
@@ -617,7 +617,7 @@ class HideoutController
                             HideoutController.registerProduction(pmcData, recipe, sessionID);
                         }
 
-                        for (let slot of area.slots)
+                        for (const slot of area.slots)
                         {
                             if (slot.item)
                             {
@@ -636,7 +636,7 @@ class HideoutController
                     break;
 
                 case areaTypes.BITCOIN_FARM:
-                    for (let slot of area.slots)
+                    for (const slot of area.slots)
                     {
                         if (slot.item)
                         {
@@ -648,7 +648,7 @@ class HideoutController
         }
 
         // update production time
-        for (let prod in pmcData.Hideout.Production)
+        for (const prod in pmcData.Hideout.Production)
         {
             const scavCaseRecipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === prod);
             if (!pmcData.Hideout.Production[prod].inProgress)

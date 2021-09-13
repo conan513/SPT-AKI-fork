@@ -15,7 +15,7 @@ class ItemEventRouter
         ItemEventRouter.resetOutput(sessionID);
         let result = {};
 
-        for (let body of info.data)
+        for (const body of info.data)
         {
             const pmcData = ProfileController.getPmcProfile(sessionID);
 

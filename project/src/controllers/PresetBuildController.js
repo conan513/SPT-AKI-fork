@@ -14,8 +14,8 @@ class PresetBuildController
         delete body.Action;
         body.id = HashUtil.generate();
 
-        let output = ItemEventRouter.getOutput(sessionID);
-        let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
+        const output = ItemEventRouter.getOutput(sessionID);
+        const savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
         // replace duplicate ID's. The first item is the base item.
         // The root ID and the base item ID need to match.
@@ -31,9 +31,9 @@ class PresetBuildController
 
     static removeBuild(pmcData, body, sessionID)
     {
-        let savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
+        const savedBuilds = SaveServer.profiles[sessionID].weaponbuilds;
 
-        for (let name in savedBuilds)
+        for (const name in savedBuilds)
         {
             if (savedBuilds[name].id === body.id)
             {

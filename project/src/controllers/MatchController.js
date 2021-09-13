@@ -60,12 +60,12 @@ class MatchController
 
     static joinMatch(info, sessionID)
     {
-        let match = MatchController.getMatch(info.location);
-        let output = [];
+        const match = MatchController.getMatch(info.location);
+        const output = [];
 
         // --- LOOP (DO THIS FOR EVERY PLAYER IN GROUP)
         // get player profile
-        let account = LauncherController.find(sessionID);
+        const account = LauncherController.find(sessionID);
         let profileID = "";
 
         if (info.savage === true)
@@ -105,7 +105,7 @@ class MatchController
 
     static createGroup(sessionID, info)
     {
-        let groupID = "test";
+        const groupID = "test";
 
         MatchController.locations[info.location].groups[groupID] = {
             "_id": groupID,
@@ -134,9 +134,9 @@ class MatchController
 
     static deleteGroup(info)
     {
-        for (let locationID in MatchController.locations)
+        for (const locationID in MatchController.locations)
         {
-            for (let groupID in MatchController.locations[locationID].groups)
+            for (const groupID in MatchController.locations[locationID].groups)
             {
                 if (groupID === info.groupId)
                 {

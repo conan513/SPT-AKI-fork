@@ -54,7 +54,7 @@ class WatermarkLocale
 class Watermark
 {
     static project = "SPT-AKI";
-    static version = "2.0.0-RC1";
+    static version = "2.0.0";
     static text = [];
     static versionLabel = "";
 
@@ -93,13 +93,13 @@ class Watermark
     /** Draw the watermark */
     static draw()
     {
-        let result = [];
+        const result = [];
 
         // calculate size
-        let longestLength = Watermark.text.reduce((a, b) =>
+        const longestLength = Watermark.text.reduce((a, b) =>
         {
-            let a2 = String(a).replace(/[\u0391-\uFFE5]/g, "ab");
-            let b2 = String(b).replace(/[\u0391-\uFFE5]/g, "ab");
+            const a2 = String(a).replace(/[\u0391-\uFFE5]/g, "ab");
+            const b2 = String(b).replace(/[\u0391-\uFFE5]/g, "ab");
             return a2.length > b2.length ? a2 : b2;
         }).length;
 
@@ -114,9 +114,9 @@ class Watermark
         // get watermark to draw
         result.push(`┌─${line}─┐`);
 
-        for (let text of Watermark.text)
+        for (const text of Watermark.text)
         {
-            let spacingSize = longestLength - Watermark.textLength(text);
+            const spacingSize = longestLength - Watermark.textLength(text);
             let spacingText = text;
 
             for (let i = 0; i < spacingSize; ++i)
@@ -130,7 +130,7 @@ class Watermark
         result.push(`└─${line}─┘`);
 
         // draw the watermark
-        for (let text of result)
+        for (const text of result)
         {
             Logger.log(text, "yellow");
         }

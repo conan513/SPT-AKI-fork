@@ -34,13 +34,13 @@ class TraderController
 
     static changeTraderDisplay(traderID, status, sessionID)
     {
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         pmcData.TradersInfo[traderID].unlocked = status;
     }
 
     static getAllTraders(sessionID)
     {
-        let traders = [];
+        const traders = [];
 
         for (const traderID in DatabaseServer.tables.traders)
         {
@@ -58,7 +58,7 @@ class TraderController
     static lvlUp(traderID, sessionID)
     {
         const loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyaltyLevels;
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
 
         // level up player
         pmcData.Info.Level = PlayerController.calculateLevel(pmcData);
@@ -202,7 +202,7 @@ class TraderController
         const assort = DatabaseServer.tables.traders[fenceID].assort;
         const itemPresets = DatabaseServer.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
-        let result = {
+        const result = {
             "items": [],
             "barter_scheme": {},
             "loyal_level_items": {}
@@ -211,8 +211,8 @@ class TraderController
         let presetCount = 0;
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
-            let itemID = names[RandomUtil.getInt(0, names.length - 1)];
-            let price = HandbookController.getTemplatePrice(itemID);
+            const itemID = names[RandomUtil.getInt(0, names.length - 1)];
+            const price = HandbookController.getTemplatePrice(itemID);
             const itemIsPreset = PresetController.isPreset(itemID);
 
             if (price === 0 || (price === 1 && !itemIsPreset) || price === 100)
@@ -258,14 +258,14 @@ class TraderController
             }
 
             const ItemRootOldId = itemPresets[itemID]._parent;
-            let items = JsonUtil.clone(itemPresets[itemID]._items);
+            const items = JsonUtil.clone(itemPresets[itemID]._items);
             let rub = 0;
 
             items[0]._id = HashUtil.generate();
 
             for (let i = 0; i < items.length; i++)
             {
-                let mod = items[i];
+                const mod = items[i];
 
                 //build root Item info
                 if (!("parentId" in mod))
@@ -315,9 +315,9 @@ class TraderController
         delete assort.barter_scheme[itemID];
         delete assort.loyal_level_items[itemID];
 
-        for (let i in ids_toremove)
+        for (const i in ids_toremove)
         {
-            for (let a in assort.items)
+            for (const a in assort.items)
             {
                 if (assort.items[a]._id === ids_toremove[i])
                 {
@@ -336,7 +336,7 @@ class TraderController
         const buy_price_coef = TraderController.getLoyaltyLevel(traderID, pmcData).buy_price_coef;
         const fenceInfo = TraderController.getFenceInfo(pmcData);
         const currency = PaymentController.getCurrency(trader.currency);
-        let output = {};
+        const output = {};
 
         // get sellable items
         for (const item of pmcData.Inventory.items)
@@ -403,9 +403,9 @@ class TraderController
     */
     static traderFilter(traderFilters, tplToCheck)
     {
-        for (let filter of traderFilters)
+        for (const filter of traderFilters)
         {
-            for (let iaaaaa of HandbookController.templatesWithParent(filter))
+            for (const iaaaaa of HandbookController.templatesWithParent(filter))
             {
                 if (iaaaaa === tplToCheck)
                 {
@@ -413,9 +413,9 @@ class TraderController
                 }
             }
 
-            for (let subcateg of HandbookController.childrenCategories(filter))
+            for (const subcateg of HandbookController.childrenCategories(filter))
             {
-                for (let itemFromSubcateg of HandbookController.templatesWithParent(subcateg))
+                for (const itemFromSubcateg of HandbookController.templatesWithParent(subcateg))
                 {
                     if (itemFromSubcateg === tplToCheck)
                     {
@@ -449,6 +449,11 @@ class TraderController
         if (!loyaltyLevel)
         {
             loyaltyLevel = 1;
+        }
+
+        if (loyaltyLevel > trader.loyaltyLevels.length)
+        {
+            loyaltyLevel = trader.loyaltyLevels.length;
         }
 
         return trader.loyaltyLevels[loyaltyLevel - 1];

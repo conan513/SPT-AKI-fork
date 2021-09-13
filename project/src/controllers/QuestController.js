@@ -6,11 +6,11 @@ class QuestController
 {
     static getClientQuests(sessionID)
     {
-        let quests = [];
-        let allQuests = QuestController.questValues();
+        const quests = [];
+        const allQuests = QuestController.questValues();
         const profile = ProfileController.getPmcProfile(sessionID);
 
-        for (let quest of allQuests)
+        for (const quest of allQuests)
         {
             // If a quest is already in the profile we need to just add it
             if (profile.Quests.includes(pq => pq.qid === quest._id))
@@ -66,7 +66,7 @@ class QuestController
                 // && (previousQuest.status === "AvailableForFinish" || previousQuest.status ===  "Success")
                 if ((condition._props.status[0] === QuestHelper.status.Started))
                 {
-                    let statusName = Object.keys(QuestHelper.status)[condition._props.status[0]];
+                    const statusName = Object.keys(QuestHelper.status)[condition._props.status[0]];
                     Logger.debug(`[QUESTS]: fix for polikhim bug: ${quest._id} (${QuestHelper.getQuestLocale(quest._id).name}) ${condition._props.status[0]}, ${statusName} != ${previousQuest.status}`);
                     continue;
                 }
@@ -106,11 +106,11 @@ class QuestController
     {
         let rewardItems = [];
         let targets = [];
-        let mods = [];
+        const mods = [];
 
         let itemCount = 1;
 
-        for (let item of reward.items)
+        for (const item of reward.items)
         {
             // reward items are granted Found in Raid
             if (!item.upd)
@@ -139,7 +139,7 @@ class QuestController
         // add mods to the base items, fix ids
         for (const target of targets)
         {
-            let items = [target];
+            const items = [target];
 
             for (const mod of mods)
             {
@@ -177,7 +177,7 @@ class QuestController
 
     static applyQuestReward(pmcData, body, state, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         let intelCenterBonus = 0; // percentage of money reward
 
         // find if player has money reward boost
@@ -248,7 +248,7 @@ class QuestController
     {
         const time = TimeUtil.getTimestamp();
         const state = "Started";
-        let quest = pmcData.Quests.find(q => q.qid === body.qid);
+        const quest = pmcData.Quests.find(q => q.qid === body.qid);
         if (quest)
         {
             // If the quest already exists, update its status
@@ -268,9 +268,9 @@ class QuestController
 
         // Create a dialog message for starting the quest.
         // Note that for starting quests, the correct locale field is "description", not "startedMessageText".
-        let questDb = DatabaseServer.tables.templates.quests[body.qid];
-        let questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
-        let questRewards = QuestController.getQuestRewardItems(questDb, state);
+        const questDb = DatabaseServer.tables.templates.quests[body.qid];
+        const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
+        const questRewards = QuestController.getQuestRewardItems(questDb, state);
         let messageContent = {
             "templateId": questLocale.startedMessageText,
             "type": DialogueController.getMessageTypeValue("questStart"),
@@ -288,7 +288,7 @@ class QuestController
 
         DialogueController.addDialogueMessage(questDb.traderId, messageContent, sessionID, questRewards);
 
-        let acceptQuestResponse = ItemEventRouter.getOutput(sessionID);
+        const acceptQuestResponse = ItemEventRouter.getOutput(sessionID);
         acceptQuestResponse.profileChanges[sessionID].quests = QuestController.acceptedUnlocked(body.qid, sessionID);
         return acceptQuestResponse;
     }
@@ -296,7 +296,7 @@ class QuestController
     static completeQuest(pmcData, body, sessionID)
     {
         const beforeQuests = QuestController.getClientQuests(sessionID);
-        let questRewards = QuestController.applyQuestReward(pmcData, body, "Success", sessionID);
+        const questRewards = QuestController.applyQuestReward(pmcData, body, "Success", sessionID);
 
         //Check if any of linked quest is failed, and that is unrestartable.
         const checkQuest = QuestController.questValues().filter((q) =>
@@ -328,9 +328,9 @@ class QuestController
         }
 
         // Create a dialog message for completing the quest.
-        let quest = DatabaseServer.tables.templates.quests[body.qid];
+        const quest = DatabaseServer.tables.templates.quests[body.qid];
         const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
-        let messageContent = {
+        const messageContent = {
             "templateId": questLocale.successMessageText,
             "type": DialogueController.getMessageTypeValue("questSuccess"),
             "maxStorageTime": QuestConfig.redeemTime * 3600
@@ -338,7 +338,7 @@ class QuestController
 
         DialogueController.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let completeQuestResponse = ItemEventRouter.getOutput(sessionID);
+        const completeQuestResponse = ItemEventRouter.getOutput(sessionID);
         completeQuestResponse.profileChanges[sessionID].quests = QuestHelper.getDeltaQuests(beforeQuests, QuestController.getClientQuests(sessionID));
         QuestHelper.dumpQuests(completeQuestResponse.profileChanges[sessionID].quests);
         Object.assign(completeQuestResponse.profileChanges[sessionID].traderRelations, pmcData.TradersInfo);
@@ -347,12 +347,12 @@ class QuestController
 
     static failQuest(pmcData, body, sessionID)
     {
-        let questRewards = QuestController.applyQuestReward(pmcData, body, "Fail", sessionID);
+        const questRewards = QuestController.applyQuestReward(pmcData, body, "Fail", sessionID);
 
         // Create a dialog message for completing the quest.
         const quest = DatabaseServer.tables.templates.quests[body.qid];
         const questLocale = DatabaseServer.tables.locales.global["en"].quest[body.qid];
-        let messageContent = {
+        const messageContent = {
             "templateId": questLocale.failMessageText,
             "type": DialogueController.getMessageTypeValue("questFail"),
             "maxStorageTime": QuestConfig.redeemTime * 3600
@@ -360,7 +360,7 @@ class QuestController
 
         DialogueController.addDialogueMessage(quest.traderId, messageContent, sessionID, questRewards);
 
-        let failedQuestResponse = ItemEventRouter.getOutput(sessionID);
+        const failedQuestResponse = ItemEventRouter.getOutput(sessionID);
         failedQuestResponse.profileChanges[sessionID].quests = QuestController.failedUnlocked(body.qid, sessionID);
 
         return failedQuestResponse;
@@ -370,13 +370,13 @@ class QuestController
     {
         const quest = DatabaseServer.tables.templates.quests[body.qid];
         const types = ["HandoverItem", "WeaponAssembly"];
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         let handoverMode = true;
         let value = 0;
         let counter = 0;
         let amount;
 
-        for (let condition of quest.conditions.AvailableForFinish)
+        for (const condition of quest.conditions.AvailableForFinish)
         {
             if (condition._props.id === body.conditionId && types.includes(condition._parent))
             {
@@ -440,7 +440,7 @@ class QuestController
     static acceptedUnlocked(acceptedQuestId, sessionID)
     {
         const profile = ProfileController.getPmcProfile(sessionID);
-        let quests = QuestController.questValues().filter((q) =>
+        const quests = QuestController.questValues().filter((q) =>
         {
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
@@ -463,7 +463,7 @@ class QuestController
     static failedUnlocked(failedQuestId, sessionID)
     {
         const profile = ProfileController.getPmcProfile(sessionID);
-        let quests = QuestController.questValues().filter((q) =>
+        const quests = QuestController.questValues().filter((q) =>
         {
             const acceptedQuestCondition = q.conditions.AvailableForStart.find(
                 c =>
@@ -485,7 +485,7 @@ class QuestController
 
     static applyMoneyBoost(quest, moneyBoost)
     {
-        for (let reward of quest.rewards.Success)
+        for (const reward of quest.rewards.Success)
         {
             if (reward.type === "Item")
             {
@@ -554,7 +554,7 @@ class QuestController
     */
     static questStatus(pmcData, questID)
     {
-        for (let quest of pmcData.Quests)
+        for (const quest of pmcData.Quests)
         {
             if (quest.qid === questID)
             {
@@ -584,9 +584,9 @@ class QuestController
 
     static resetProfileQuestCondition(sessionID, conditionId)
     {
-        let startedQuests = ProfileController.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
+        const startedQuests = ProfileController.getPmcProfile(sessionID).Quests.filter(q => q.status === "Started");
 
-        for (let quest of startedQuests)
+        for (const quest of startedQuests)
         {
             const index = quest.completedConditions.indexOf(conditionId);
 

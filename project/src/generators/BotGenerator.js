@@ -360,7 +360,7 @@ class BotGenerator
 
     static generateExtraPropertiesForItem(itemTemplate)
     {
-        let properties = {};
+        const properties = {};
 
         if (itemTemplate._props.MaxDurability)
         {
@@ -654,8 +654,8 @@ class BotGenerator
     static generateLoot(lootPool, itemCounts)
     {
         // Flatten all individual slot loot pools into one big pool, while filtering out potentially missing templates
-        let lootTemplates = [];
-        let specialLootTemplates = [];
+        const lootTemplates = [];
+        const specialLootTemplates = [];
 
         for (const [slot, pool] of Object.entries(lootPool))
         {

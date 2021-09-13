@@ -6,7 +6,7 @@ class ProfileController
 {
     static onLoad(sessionID)
     {
-        let profile = SaveServer.profiles[sessionID];
+        const profile = SaveServer.profiles[sessionID];
 
         if (!("characters" in profile))
         {
@@ -41,7 +41,7 @@ class ProfileController
 
     static getCompleteProfile(sessionID)
     {
-        let output = [];
+        const output = [];
 
         if (!LauncherController.isWiped(sessionID))
         {
@@ -56,7 +56,7 @@ class ProfileController
     {
         const account = LauncherController.find(sessionID);
         const profile = DatabaseServer.tables.templates.profiles[account.edition][info.side.toLowerCase()];
-        let pmcData = profile.character;
+        const pmcData = profile.character;
 
         // delete existing profile
         if (sessionID in SaveServer.profiles)
@@ -94,7 +94,7 @@ class ProfileController
         // pmc profile needs to exist first
         SaveServer.profiles[sessionID].characters.scav = ProfileController.generateScav(sessionID);
 
-        for (let traderID in DatabaseServer.tables.traders)
+        for (const traderID in DatabaseServer.tables.traders)
         {
             ProfileController.resetTrader(sessionID, traderID);
         }
@@ -222,11 +222,11 @@ class ProfileController
 
     static changeNickname(info, sessionID)
     {
-        let output = ProfileController.validateNickname(info, sessionID);
+        const output = ProfileController.validateNickname(info, sessionID);
 
         if (output === "OK")
         {
-            let pmcData = ProfileController.getPmcProfile(sessionID);
+            const pmcData = ProfileController.getPmcProfile(sessionID);
 
             pmcData.Info.Nickname = info.nickname;
             pmcData.Info.LowerNickname = info.nickname.toLowerCase();
