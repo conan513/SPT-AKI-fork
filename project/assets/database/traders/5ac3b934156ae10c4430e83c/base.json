@@ -14,14 +14,15 @@
     "discount_end": 0,
     "buyer_up": false,
     "currency": "RUB",
-    "nextResupply": 1631489044,
+    "nextResupply": 1615141448,
     "repair": {
         "availability": false,
         "quality": "1",
         "excluded_id_list": [],
         "excluded_category": [],
         "currency": "5449016a4bdc2d6f028b456f",
-        "currency_coefficient": 1
+        "currency_coefficient": 1,
+        "price_rate": 175
     },
     "insurance": {
         "availability": false,
@@ -33,7 +34,8 @@
     },
     "medic": false,
     "gridHeight": 200,
-    "loyaltyLevels": [{
+    "loyaltyLevels": [
+        {
             "minLevel": 1,
             "minSalesSum": 0,
             "minStanding": 0,
@@ -42,34 +44,39 @@
             "insurance_price_coef": 10,
             "exchange_price_coef": 0,
             "heal_price_coef": 0
-        }, {
-            "minLevel": "17",
+        },
+        {
+            "minLevel": 15,
             "minSalesSum": 750000,
             "minStanding": 0,
             "buy_price_coef": 38,
             "repair_price_coef": 170,
-            "insurance_price_coef": "12",
+            "insurance_price_coef": 9,
             "exchange_price_coef": 0,
             "heal_price_coef": 0
-        }, {
-            "minLevel": "32",
+        },
+        {
+            "minLevel": 30,
             "minSalesSum": 1600000,
             "minStanding": 0.3,
             "buy_price_coef": 38,
             "repair_price_coef": 165,
-            "insurance_price_coef": "14",
+            "insurance_price_coef": 8,
             "exchange_price_coef": 0,
             "heal_price_coef": 0
-        }, {
-            "minLevel": "42",
+        },
+        {
+            "minLevel": 40,
             "minSalesSum": 2500000,
             "minStanding": 0.6,
             "buy_price_coef": 38,
             "repair_price_coef": 160,
-            "insurance_price_coef": "17",
+            "insurance_price_coef": 7,
             "exchange_price_coef": 0,
             "heal_price_coef": 0
         }
     ],
-    "sell_category": []
+    "sell_category": [
+		"5b47574386f77428ca22b33f"
+	]
 }
