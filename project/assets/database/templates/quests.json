@@ -250,6 +250,15 @@
                         "parentId": "",
                         "value": "2"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5936d90786f7742b1420ba5b"
+                    }
                 }
             ],
             "Fail": []
@@ -386,6 +395,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "3"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5936da9e86f7742d65037edf"
                     }
                 }
             ],
@@ -577,6 +595,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "5"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5936da9e86f7742d65037edf"
                     }
                 }
             ],
@@ -818,6 +845,15 @@
                         "parentId": "",
                         "value": "6"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59c124d686f774189b3c843f"
+                    }
                 }
             ],
             "Fail": []
@@ -1010,6 +1046,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "9"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5967530a86f77462ba22226b"
                     }
                 }
             ],
@@ -1239,6 +1284,15 @@
                         "parentId": "",
                         "value": "10"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59675d6c86f7740a842fc482"
+                    }
                 }
             ],
             "Fail": []
@@ -1314,7 +1368,7 @@
         "type": "PickUp"
     },
     "596760e186f7741e11214d58": {
-        "QuestName": "Postman Pat, p. 2",
+        "QuestName": "Postman Pat p 2",
         "_id": "596760e186f7741e11214d58",
         "canShowNotificationsInGame": false,
         "conditions": {
@@ -1329,7 +1383,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [2],
+                        "target": "59675ea386f77414b32bded2"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5967611386f7741dfe4f46fb.jpg",
@@ -1448,6 +1512,15 @@
                         "parentId": "",
                         "target": "54cb50c76803fa8b248b4571",
                         "value": "2"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59675ea386f77414b32bded2"
                     }
                 }
             ],
@@ -1660,7 +1733,7 @@
         "type": "PickUp"
     },
     "59689ee586f7740d1570bbd5": {
-        "QuestName": "Sanitary Standards, p. 1",
+        "QuestName": "Sanitary Standards p 1",
         "_id": "59689ee586f7740d1570bbd5",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -1723,6 +1796,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "4"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5967733e86f774602332fc84"
                     }
                 }
             ],
@@ -1866,6 +1948,15 @@
                         "parentId": "",
                         "value": "6"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5967733e86f774602332fc84"
+                    }
                 }
             ],
             "Fail": []
@@ -1946,7 +2037,7 @@
         "type": "PickUp"
     },
     "5968eb3186f7741dde183a4d": {
-        "QuestName": "Operation Aquarius, p. 2",
+        "QuestName": "Operation Aquarius p 2",
         "_id": "5968eb3186f7741dde183a4d",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -1988,6 +2079,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "6"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59689fbd86f7740d137ebfc4"
                     }
                 }
             ],
@@ -2123,6 +2223,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "8"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "596a204686f774576d4c95de"
                     }
                 }
             ],
@@ -2309,6 +2418,15 @@
                         "parentId": "",
                         "value": "10"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f90786f77420d2328015"
+                    }
                 }
             ],
             "Fail": []
@@ -2470,6 +2588,15 @@
                         "parentId": "",
                         "value": "13"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f9e986f7741dde183a50"
+                    }
                 }
             ],
             "Fail": [{
@@ -2562,7 +2689,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [2],
+                        "target": "596a0e1686f7741ddf17dbee"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f9e986f7741dde183a50"
+                    }
+                }
+            ],
             "Fail": [{
                     "_parent": "Quest",
                     "_props": {
@@ -2657,7 +2803,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f9e986f7741dde183a50"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5979d3da86f774719f309082.jpg",
@@ -2745,7 +2901,7 @@
         "type": "Completion"
     },
     "596a204686f774576d4c95de": {
-        "QuestName": "Sanitary Standards, p. 2",
+        "QuestName": "Sanitary Standards p 2",
         "_id": "596a204686f774576d4c95de",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -2787,6 +2943,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "8"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59689ee586f7740d1570bbd5"
                     }
                 }
             ],
@@ -2908,7 +3073,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f9e986f7741dde183a50"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5979d3f986f7746d08051ce0.jpg",
@@ -3275,6 +3450,15 @@
                         "parentId": "",
                         "value": "7"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "596b36c586f77450d6045ad2"
+                    }
                 }
             ],
             "Fail": []
@@ -3443,6 +3627,15 @@
                         "parentId": "",
                         "value": "8"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "596b43fb86f77457ca186186"
+                    }
                 }
             ],
             "Fail": []
@@ -3567,7 +3760,7 @@
         "type": "Elimination"
     },
     "5979ed3886f77431307dc512": {
-        "QuestName": "What’s on the flash drive?",
+        "QuestName": "Whats on the flash drive",
         "_id": "5979ed3886f77431307dc512",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -3616,6 +3809,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "8"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "596b43fb86f77457ca186186"
                     }
                 }
             ],
@@ -3777,6 +3979,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "8"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5979ed3886f77431307dc512"
                     }
                 }
             ],
@@ -3980,7 +4191,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [2],
+                        "target": "5979f9ba86f7740f6c3fe9f2"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5979f91c86f77402996bf9c2.jpg",
@@ -4068,7 +4289,7 @@
         "type": "Elimination"
     },
     "5979f9ba86f7740f6c3fe9f2": {
-        "QuestName": "Chemical, p.1",
+        "QuestName": "Chemical p1",
         "_id": "5979f9ba86f7740f6c3fe9f2",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -4160,6 +4381,15 @@
                         "parentId": "",
                         "value": "10"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5979eee086f774311955e614"
+                    }
                 }
             ],
             "Fail": []
@@ -4220,7 +4450,7 @@
         "type": "PickUp"
     },
     "597a0b2986f77426d66c0633": {
-        "QuestName": "Chemical, p. 2",
+        "QuestName": "Chemical p 2",
         "_id": "597a0b2986f77426d66c0633",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -4304,6 +4534,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "10"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5979f9ba86f7740f6c3fe9f2"
                     }
                 }
             ],
@@ -4406,7 +4645,7 @@
         "type": "PickUp"
     },
     "597a0e5786f77426d66c0636": {
-        "QuestName": "Chemical, p. 3",
+        "QuestName": "Chemical p 3",
         "_id": "597a0e5786f77426d66c0636",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -4448,6 +4687,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "11"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0b2986f77426d66c0633"
                     }
                 }
             ],
@@ -4529,7 +4777,7 @@
         "type": "PickUp"
     },
     "597a0f5686f774273b74f676": {
-        "QuestName": "Chemical, p. 4",
+        "QuestName": "Chemical p 4",
         "_id": "597a0f5686f774273b74f676",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -4609,6 +4857,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "11"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0e5786f77426d66c0636"
                     }
                 }
             ],
@@ -4802,7 +5059,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [2],
+                        "target": "597a0f5686f774273b74f676"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0e5786f77426d66c0636"
+                    }
+                }
+            ],
             "Fail": [{
                     "_parent": "Quest",
                     "_props": {
@@ -4960,7 +5236,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [2],
+                        "target": "597a0f5686f774273b74f676"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0e5786f77426d66c0636"
+                    }
+                }
+            ],
             "Fail": [{
                     "_parent": "Quest",
                     "_props": {
@@ -5177,6 +5472,15 @@
                         "parentId": "",
                         "value": "5"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59674eb386f774539f14813a"
+                    }
                 }
             ],
             "Fail": []
@@ -5316,6 +5620,15 @@
                         "parentId": "",
                         "value": "17"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5967725e86f774601a446662"
+                    }
                 }
             ],
             "Fail": []
@@ -5413,7 +5726,7 @@
         "type": "Elimination"
     },
     "59c50c8886f7745fed3193bf": {
-        "QuestName": "The Punisher. Part 2.",
+        "QuestName": "The Punisher Part 2",
         "_id": "59c50c8886f7745fed3193bf",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -5484,6 +5797,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "18"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59c50a9e86f7745fef66f4ff"
                     }
                 }
             ],
@@ -5674,7 +5996,7 @@
         "type": "Elimination"
     },
     "59c512ad86f7741f0d09de9b": {
-        "QuestName": "The Punisher. Part 3.",
+        "QuestName": "The Punisher Part 3",
         "_id": "59c512ad86f7741f0d09de9b",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -5717,6 +6039,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "19"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59c50c8886f7745fed3193bf"
                     }
                 }
             ],
@@ -5945,7 +6276,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [5],
+                        "target": "597a160786f77477531d39d2"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0f5686f774273b74f676"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -5995,6 +6345,15 @@
                         "parentId": "",
                         "status": [5],
                         "target": "597a0f5686f774273b74f676"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0e5786f77426d66c0636"
                     }
                 }
             ],
@@ -6060,7 +6419,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [5],
+                        "target": "597a171586f77405ba6887d3"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0f5686f774273b74f676"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c273da86f77459b8017e7b.jpg",
@@ -6086,7 +6464,7 @@
         "type": "PickUp"
     },
     "59ca264786f77445a80ed044": {
-        "QuestName": "The Punisher. Part 4.",
+        "QuestName": "The Punisher Part 4",
         "_id": "59ca264786f77445a80ed044",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -6191,6 +6569,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "20"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59c512ad86f7741f0d09de9b"
                     }
                 }
             ],
@@ -6379,7 +6766,7 @@
         "type": "Elimination"
     },
     "59ca29fb86f77445ab465c87": {
-        "QuestName": "The Punisher. Part 5.",
+        "QuestName": "The Punisher Part 5",
         "_id": "59ca29fb86f77445ab465c87",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -6506,6 +6893,15 @@
                         "parentId": "",
                         "value": "20"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59ca264786f77445a80ed044"
+                    }
                 }
             ],
             "Fail": []
@@ -6595,7 +6991,7 @@
         "type": "PickUp"
     },
     "59ca2eb686f77445a80ed049": {
-        "QuestName": "The Punisher. Part 6.",
+        "QuestName": "The Punisher Part 6",
         "_id": "59ca2eb686f77445a80ed049",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -6687,6 +7083,15 @@
                         "parentId": "",
                         "value": "21"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59ca29fb86f77445ab465c87"
+                    }
                 }
             ],
             "Fail": []
@@ -6760,7 +7165,7 @@
         "type": "Elimination"
     },
     "5a03153686f77442d90e2171": {
-        "QuestName": "Spa Tour. Part 1",
+        "QuestName": "Spa Tour Part 1",
         "_id": "5a03153686f77442d90e2171",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -6804,6 +7209,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b87686f77460de0252a8"
                     }
                 }
             ],
@@ -6963,7 +7377,7 @@
         "type": "Elimination"
     },
     "5a03173786f77451cb427172": {
-        "QuestName": "Spa Tour. Part 2",
+        "QuestName": "Spa Tour Part 2",
         "_id": "5a03173786f77451cb427172",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -7033,6 +7447,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a03153686f77442d90e2171"
                     }
                 }
             ],
@@ -7106,7 +7529,7 @@
         "type": "Exploration"
     },
     "5a0327ba86f77456b9154236": {
-        "QuestName": "Spa Tour. Part 3",
+        "QuestName": "Spa Tour Part 3",
         "_id": "5a0327ba86f77456b9154236",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -7235,6 +7658,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a03173786f77451cb427172"
                     }
                 }
             ],
@@ -7390,7 +7822,7 @@
         "type": "PickUp"
     },
     "5a03296886f774569778596a": {
-        "QuestName": "Spa Tour. Part 4",
+        "QuestName": "Spa Tour Part 4",
         "_id": "5a03296886f774569778596a",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -7487,6 +7919,15 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a0327ba86f77456b9154236"
+                    }
                 }
             ],
             "Fail": []
@@ -7547,7 +7988,7 @@
         "type": "Discover"
     },
     "5a0449d586f77474e66227b7": {
-        "QuestName": "Spa Tour. Part 5",
+        "QuestName": "Spa Tour Part 5",
         "_id": "5a0449d586f77474e66227b7",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -7589,6 +8030,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a03296886f774569778596a"
                     }
                 }
             ],
@@ -7956,6 +8406,15 @@
                         "parentId": "",
                         "value": "10"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b75b86f7742e97191958"
+                    }
                 }
             ],
             "Fail": []
@@ -8129,6 +8588,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "10"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b7a786f774579c3eb376"
                     }
                 }
             ],
@@ -8421,6 +8889,15 @@
                         "parentId": "",
                         "value": "11"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b7d686f77460d847e6a6"
+                    }
                 }
             ],
             "Fail": []
@@ -8674,6 +9151,15 @@
                         "parentId": "",
                         "value": "11"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b80086f774429a5d7e20"
+                    }
                 }
             ],
             "Fail": []
@@ -8746,7 +9232,7 @@
         "type": "Discover"
     },
     "5a27b9de86f77464e5044585": {
-        "QuestName": "The Cult. Part 1",
+        "QuestName": "The Cult Part 1",
         "_id": "5a27b9de86f77464e5044585",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -8815,6 +9301,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b87686f77460de0252a8"
                     }
                 }
             ],
@@ -8888,7 +9383,7 @@
         "type": "Exploration"
     },
     "5a27ba1c86f77461ea5a3c56": {
-        "QuestName": "The Cult. Part 2",
+        "QuestName": "The Cult Part 2",
         "_id": "5a27ba1c86f77461ea5a3c56",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -8946,6 +9441,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b9de86f77464e5044585"
                     }
                 }
             ],
@@ -9070,7 +9574,7 @@
         "type": "Exploration"
     },
     "5a27ba9586f7741b543d8e85": {
-        "QuestName": "Spa Tour. Part 6",
+        "QuestName": "Spa Tour Part 6",
         "_id": "5a27ba9586f7741b543d8e85",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -9096,6 +9600,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a0449d586f77474e66227b7"
                     }
                 }
             ],
@@ -9141,7 +9654,7 @@
         "type": "Loyalty"
     },
     "5a27bafb86f7741c73584017": {
-        "QuestName": "Spa Tour. Part 7",
+        "QuestName": "Spa Tour Part 7",
         "_id": "5a27bafb86f7741c73584017",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -9264,6 +9777,15 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27ba9586f7741b543d8e85"
+                    }
                 }
             ],
             "Fail": []
@@ -9316,7 +9838,7 @@
         "type": "PickUp"
     },
     "5a27bb1e86f7741f27621b7e": {
-        "QuestName": "Cargo X. Part 1",
+        "QuestName": "Cargo X Part 1",
         "_id": "5a27bb1e86f7741f27621b7e",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -9360,6 +9882,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bafb86f7741c73584017"
                     }
                 }
             ],
@@ -9497,7 +10028,7 @@
         "type": "PickUp"
     },
     "5a27bb3d86f77411ea361a21": {
-        "QuestName": "Cargo X. Part 2",
+        "QuestName": "Cargo X Part 2",
         "_id": "5a27bb3d86f77411ea361a21",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -9560,6 +10091,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bb1e86f7741f27621b7e"
                     }
                 }
             ],
@@ -9707,7 +10247,7 @@
         "type": "Exploration"
     },
     "5a27bb5986f7741dfb660900": {
-        "QuestName": "Cargo X. Part 3",
+        "QuestName": "Cargo X Part 3",
         "_id": "5a27bb5986f7741dfb660900",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -9776,6 +10316,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bb3d86f77411ea361a21"
                     }
                 }
             ],
@@ -9862,7 +10411,7 @@
         "type": "Multi"
     },
     "5a27bb8386f7741c770d2d0a": {
-        "QuestName": "Wet Job. Part 1",
+        "QuestName": "Wet Job Part 1",
         "_id": "5a27bb8386f7741c770d2d0a",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -9906,6 +10455,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bafb86f7741c73584017"
                     }
                 }
             ],
@@ -9973,7 +10531,7 @@
         "type": "Elimination"
     },
     "5a27bbf886f774333a418eeb": {
-        "QuestName": "Wet Job. Part 2",
+        "QuestName": "Wet Job Part 2",
         "_id": "5a27bbf886f774333a418eeb",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -10053,6 +10611,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bb8386f7741c770d2d0a"
                     }
                 }
             ],
@@ -10154,7 +10721,7 @@
         "type": "Exploration"
     },
     "5a27bc1586f7741f6d40fa2f": {
-        "QuestName": "Wet Job. Part 3",
+        "QuestName": "Wet Job Part 3",
         "_id": "5a27bc1586f7741f6d40fa2f",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -10223,6 +10790,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bbf886f774333a418eeb"
                     }
                 }
             ],
@@ -10356,7 +10932,7 @@
         "type": "Exploration"
     },
     "5a27bc3686f7741c73584026": {
-        "QuestName": "Wet Job. Part 4",
+        "QuestName": "Wet Job Part 4",
         "_id": "5a27bc3686f7741c73584026",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -10399,6 +10975,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bc1586f7741f6d40fa2f"
                     }
                 }
             ],
@@ -10502,7 +11087,7 @@
         "type": "PickUp"
     },
     "5a27bc6986f7741c7358402b": {
-        "QuestName": "Wet Job. Part 5",
+        "QuestName": "Wet Job Part 5",
         "_id": "5a27bc6986f7741c7358402b",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -10544,6 +11129,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bc3686f7741c73584026"
                     }
                 }
             ],
@@ -10677,7 +11271,7 @@
         "type": "PickUp"
     },
     "5a27bc8586f7741b543d8ea4": {
-        "QuestName": "Wet Job. Part 6",
+        "QuestName": "Wet Job Part 6",
         "_id": "5a27bc8586f7741b543d8ea4",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -10701,6 +11295,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bc6986f7741c7358402b"
                     }
                 }
             ],
@@ -10849,7 +11452,7 @@
         "type": "Skill"
     },
     "5a27c99a86f7747d2c6bdd8e": {
-        "QuestName": "Friend from the West. Part 1",
+        "QuestName": "Friend from the West Part 1",
         "_id": "5a27c99a86f7747d2c6bdd8e",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -10914,6 +11517,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "9"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5979eee086f774311955e614"
                     }
                 }
             ],
@@ -11053,7 +11665,7 @@
         "type": "Elimination"
     },
     "5a27d2af86f7744e1115b323": {
-        "QuestName": "Friend from the West. Part 2",
+        "QuestName": "Friend from the West Part 2",
         "_id": "5a27d2af86f7744e1115b323",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -11079,6 +11691,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "9"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27c99a86f7747d2c6bdd8e"
                     }
                 }
             ],
@@ -11174,7 +11795,7 @@
         "type": "Completion"
     },
     "5a68661a86f774500f48afb0": {
-        "QuestName": "Health Care Privacy. Part 1",
+        "QuestName": "Health Care Privacy Part 1",
         "_id": "5a68661a86f774500f48afb0",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -11259,7 +11880,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f9e986f7741dde183a50"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -11330,7 +11961,7 @@
         "type": "Discover"
     },
     "5a68663e86f774501078f78a": {
-        "QuestName": "Health Care Privacy. Part 2",
+        "QuestName": "Health Care Privacy Part 2",
         "_id": "5a68663e86f774501078f78a",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -11400,7 +12031,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68661a86f774500f48afb0"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -11459,7 +12100,7 @@
         "type": "Discover"
     },
     "5a68665c86f774255929b4c7": {
-        "QuestName": "Health Care Privacy. Part 3",
+        "QuestName": "Health Care Privacy Part 3",
         "_id": "5a68665c86f774255929b4c7",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -11550,7 +12191,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68663e86f774501078f78a"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -11635,7 +12286,7 @@
         "type": "Discover"
     },
     "5a68667486f7742607157d28": {
-        "QuestName": "Health Care Privacy. Part 4",
+        "QuestName": "Health Care Privacy Part 4",
         "_id": "5a68667486f7742607157d28",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -11651,7 +12302,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68665c86f774255929b4c7"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -11724,7 +12385,7 @@
         "type": "Skill"
     },
     "5a68669a86f774255929b4d4": {
-        "QuestName": "Health Care Privacy. Part 5",
+        "QuestName": "Health Care Privacy Part 5",
         "_id": "5a68669a86f774255929b4d4",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -11770,7 +12431,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68667486f7742607157d28"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -11829,7 +12500,7 @@
         "type": "Multi"
     },
     "5ac23c6186f7741247042bad": {
-        "QuestName": "Gunsmith. Part 1",
+        "QuestName": "Gunsmith Part 1",
         "_id": "5ac23c6186f7741247042bad",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12001,7 +12672,7 @@
         "type": "WeaponAssembly"
     },
     "5ac2426c86f774138762edfe": {
-        "QuestName": "Gunsmith. Part 2",
+        "QuestName": "Gunsmith Part 2",
         "_id": "5ac2426c86f774138762edfe",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12070,6 +12741,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "11"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac23c6186f7741247042bad"
                     }
                 }
             ],
@@ -12203,7 +12883,7 @@
         "type": "WeaponAssembly"
     },
     "5ac2428686f77412450b42bf": {
-        "QuestName": "Gunsmith. Part 3",
+        "QuestName": "Gunsmith Part 3",
         "_id": "5ac2428686f77412450b42bf",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12272,6 +12952,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac23c6186f7741247042bad"
                     }
                 }
             ],
@@ -12398,7 +13087,7 @@
         "type": "WeaponAssembly"
     },
     "5ac242ab86f77412464f68b4": {
-        "QuestName": "Gunsmith. Part 5",
+        "QuestName": "Gunsmith Part 5",
         "_id": "5ac242ab86f77412464f68b4",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12467,6 +13156,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "17"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac244eb86f7741356335af1"
                     }
                 }
             ],
@@ -12556,7 +13254,7 @@
         "type": "WeaponAssembly"
     },
     "5ac244c486f77413e12cf945": {
-        "QuestName": "Gunsmith. Part 6",
+        "QuestName": "Gunsmith Part 6",
         "_id": "5ac244c486f77413e12cf945",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12626,6 +13324,15 @@
                         "parentId": "",
                         "value": "18"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac242ab86f77412464f68b4"
+                    }
                 }
             ],
             "Fail": []
@@ -12686,7 +13393,7 @@
         "type": "WeaponAssembly"
     },
     "5ac244eb86f7741356335af1": {
-        "QuestName": "Gunsmith. Part 4",
+        "QuestName": "Gunsmith Part 4",
         "_id": "5ac244eb86f7741356335af1",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12756,6 +13463,15 @@
                         "parentId": "",
                         "value": "15"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac2428686f77412450b42bf"
+                    }
                 }
             ],
             "Fail": []
@@ -12816,7 +13532,7 @@
         "type": "WeaponAssembly"
     },
     "5ac345dc86f774288030817f": {
-        "QuestName": "Farming. Part 1",
+        "QuestName": "Farming Part 1",
         "_id": "5ac345dc86f774288030817f",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -12897,6 +13613,15 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac23c6186f7741247042bad"
+                    }
                 }
             ],
             "Fail": []
@@ -12973,7 +13698,7 @@
         "type": "Completion"
     },
     "5ac3460c86f7742880308185": {
-        "QuestName": "Farming. Part 2",
+        "QuestName": "Farming Part 2",
         "_id": "5ac3460c86f7742880308185",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -13071,6 +13796,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac345dc86f774288030817f"
                     }
                 }
             ],
@@ -13181,7 +13915,7 @@
         "type": "PickUp"
     },
     "5ac3462b86f7741d6118b983": {
-        "QuestName": "Farming. Part 3",
+        "QuestName": "Farming Part 3",
         "_id": "5ac3462b86f7741d6118b983",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -13247,6 +13981,15 @@
                         "parentId": "",
                         "value": "14"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3460c86f7742880308185"
+                    }
                 }
             ],
             "Fail": []
@@ -13307,7 +14050,7 @@
         "type": "PickUp"
     },
     "5ac3464c86f7741d651d6877": {
-        "QuestName": "Farming. Part 4",
+        "QuestName": "Farming Part 4",
         "_id": "5ac3464c86f7741d651d6877",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -13377,6 +14120,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3462b86f7741d6118b983"
                     }
                 }
             ],
@@ -13488,7 +14240,7 @@
         "type": "PickUp"
     },
     "5ac3467986f7741d6224abc2": {
-        "QuestName": "Signal. Part 1",
+        "QuestName": "Signal Part 1",
         "_id": "5ac3467986f7741d6224abc2",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -13585,6 +14337,15 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac2426c86f774138762edfe"
+                    }
                 }
             ],
             "Fail": []
@@ -13645,7 +14406,7 @@
         "type": "Discover"
     },
     "5ac346a886f7744e1b083d67": {
-        "QuestName": "Signal. Part 2",
+        "QuestName": "Signal Part 2",
         "_id": "5ac346a886f7744e1b083d67",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -13768,6 +14529,15 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3467986f7741d6224abc2"
+                    }
                 }
             ],
             "Fail": []
@@ -13814,7 +14584,7 @@
         "type": "PickUp"
     },
     "5ac346cf86f7741d63233a02": {
-        "QuestName": "Signal. Part 3",
+        "QuestName": "Signal Part 3",
         "_id": "5ac346cf86f7741d63233a02",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -13907,6 +14677,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "15"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac346a886f7744e1b083d67"
                     }
                 }
             ],
@@ -14029,7 +14808,7 @@
         "type": "Completion"
     },
     "5ac346e886f7741d6118b99b": {
-        "QuestName": "Signal. Part 4",
+        "QuestName": "Signal Part 4",
         "_id": "5ac346e886f7741d6118b99b",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -14053,6 +14832,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "15"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac346cf86f7741d63233a02"
                     }
                 }
             ],
@@ -14212,6 +15000,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "12"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3460c86f7742880308185"
                     }
                 }
             ],
@@ -14437,6 +15234,15 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac346a886f7744e1b083d67"
+                    }
                 }
             ],
             "Fail": []
@@ -14522,6 +15328,24 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3467986f7741d6224abc2"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 2,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac2428686f77412450b42bf"
+                    }
                 }
             ],
             "Fail": []
@@ -14582,7 +15406,7 @@
         "type": "Standing"
     },
     "5ae3267986f7742a413592fe": {
-        "QuestName": "Gunsmith. Part 7",
+        "QuestName": "Gunsmith Part 7",
         "_id": "5ae3267986f7742a413592fe",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -14651,6 +15475,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "19"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac244c486f77413e12cf945"
                     }
                 }
             ],
@@ -14752,7 +15585,7 @@
         "type": "WeaponAssembly"
     },
     "5ae3270f86f77445ba41d4dd": {
-        "QuestName": "Gunsmith. Part 8",
+        "QuestName": "Gunsmith Part 8",
         "_id": "5ae3270f86f77445ba41d4dd",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -14822,6 +15655,15 @@
                         "parentId": "",
                         "value": "19"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae3267986f7742a413592fe"
+                    }
                 }
             ],
             "Fail": []
@@ -14882,7 +15724,7 @@
         "type": "WeaponAssembly"
     },
     "5ae3277186f7745973054106": {
-        "QuestName": "Gunsmith. Part 9",
+        "QuestName": "Gunsmith Part 9",
         "_id": "5ae3277186f7745973054106",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -14951,6 +15793,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "20"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae3270f86f77445ba41d4dd"
                     }
                 }
             ],
@@ -15102,7 +15953,7 @@
         "type": "WeaponAssembly"
     },
     "5ae327c886f7745c7b3f2f3f": {
-        "QuestName": "Gunsmith. Part 10",
+        "QuestName": "Gunsmith Part 10",
         "_id": "5ae327c886f7745c7b3f2f3f",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -15171,6 +16022,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "20"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae3277186f7745973054106"
                     }
                 }
             ],
@@ -15297,7 +16157,7 @@
         "type": "WeaponAssembly"
     },
     "5ae3280386f7742a41359364": {
-        "QuestName": "Gunsmith. Part 11",
+        "QuestName": "Gunsmith Part 11",
         "_id": "5ae3280386f7742a41359364",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -15366,6 +16226,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "20"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae327c886f7745c7b3f2f3f"
                     }
                 }
             ],
@@ -15546,7 +16415,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae448a386f7744d3730fff0"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a76086f774455f7d62d2.jpg",
@@ -15774,7 +16653,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae448a386f7744d3730fff0"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a76086f774455f7d62d2.jpg",
@@ -15918,7 +16807,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae448e586f7744dcf0c2a67"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a74386f7744748710d72.jpg",
@@ -16039,7 +16938,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae448f286f77448d73c0131"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a74386f7744748710d72.jpg",
@@ -16112,7 +17021,7 @@
         "type": "Completion"
     },
     "5ae4493486f7744efa289417": {
-        "QuestName": "Database. Part 1",
+        "QuestName": "Database Part 1",
         "_id": "5ae4493486f7744efa289417",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -16214,7 +17123,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae448e586f7744dcf0c2a67"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7d286f7744748710d74.jpg",
@@ -16343,7 +17262,7 @@
         "type": "Exploration"
     },
     "5ae4493d86f7744b8e15aa8f": {
-        "QuestName": "Database. Part 2",
+        "QuestName": "Database Part 2",
         "_id": "5ae4493d86f7744b8e15aa8f",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -16381,7 +17300,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4493486f7744efa289417"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7d286f7744748710d74.jpg",
@@ -16440,7 +17369,7 @@
         "type": "Completion"
     },
     "5ae4495086f77443c122bc40": {
-        "QuestName": "Sew it good. Part 1",
+        "QuestName": "Sew it good Part 1",
         "_id": "5ae4495086f77443c122bc40",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -16510,6 +17439,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "25"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4493d86f7744b8e15aa8f"
                     }
                 }
             ],
@@ -16586,7 +17524,7 @@
         "type": "PickUp"
     },
     "5ae4495c86f7744e87761355": {
-        "QuestName": "Sew it good. Part 2",
+        "QuestName": "Sew it good Part 2",
         "_id": "5ae4495c86f7744e87761355",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -16656,7 +17594,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4495086f77443c122bc40"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7d986f7743fee0a75b2.jpg",
@@ -16729,7 +17677,7 @@
         "type": "PickUp"
     },
     "5ae4496986f774459e77beb6": {
-        "QuestName": "Sew it good. Part 3",
+        "QuestName": "Sew it good Part 3",
         "_id": "5ae4496986f774459e77beb6",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -16799,7 +17747,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4495c86f7744e87761355"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7d986f7743fee0a75b2.jpg",
@@ -16858,7 +17816,7 @@
         "type": "PickUp"
     },
     "5ae4497b86f7744cf402ed00": {
-        "QuestName": "Sew it good. Part 4",
+        "QuestName": "Sew it good Part 4",
         "_id": "5ae4497b86f7744cf402ed00",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -16918,7 +17876,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4496986f774459e77beb6"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7d986f7743fee0a75b2.jpg",
@@ -17071,6 +18039,15 @@
                         "parentId": "",
                         "value": "26"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4495c86f7744e87761355"
+                    }
                 }
             ],
             "Fail": []
@@ -17159,7 +18136,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4497b86f7744cf402ed00"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7dd86f77448464ed2b2.jpg",
@@ -17234,7 +18221,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4498786f7744bde357695"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a7dd86f77448464ed2b2.jpg",
@@ -17367,7 +18364,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4490786f7744ca822adcc"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4493d86f7744b8e15aa8f"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5ae4a74386f7744748710d72.jpg",
@@ -17537,6 +18553,15 @@
                         "parentId": "",
                         "value": "30"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae449b386f77446d8741719"
+                    }
                 }
             ],
             "Fail": []
@@ -17656,6 +18681,24 @@
                         "parentId": "",
                         "value": "40"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae449c386f7744bde357697"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 2,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4498786f7744bde357695"
+                    }
                 }
             ],
             "Fail": []
@@ -17740,7 +18783,7 @@
         "type": "PickUp"
     },
     "5b47749f86f7746c5d6a5fd4": {
-        "QuestName": "Gunsmith. Part 12",
+        "QuestName": "Gunsmith Part 12",
         "_id": "5b47749f86f7746c5d6a5fd4",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -17809,6 +18852,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "23"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae3280386f7742a41359364"
                     }
                 }
             ],
@@ -17958,7 +19010,7 @@
         "type": "WeaponAssembly"
     },
     "5b47799d86f7746c5d6a5fd8": {
-        "QuestName": "Gunsmith. Part 13",
+        "QuestName": "Gunsmith Part 13",
         "_id": "5b47799d86f7746c5d6a5fd8",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -18027,6 +19079,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "25"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b47749f86f7746c5d6a5fd4"
                     }
                 }
             ],
@@ -18128,7 +19189,7 @@
         "type": "WeaponAssembly"
     },
     "5b477b6f86f7747290681823": {
-        "QuestName": "Gunsmith. Part 14",
+        "QuestName": "Gunsmith Part 14",
         "_id": "5b477b6f86f7747290681823",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -18197,6 +19258,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "27"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b47799d86f7746c5d6a5fd8"
                     }
                 }
             ],
@@ -18270,7 +19340,7 @@
         "type": "WeaponAssembly"
     },
     "5b477f7686f7744d1b23c4d2": {
-        "QuestName": "Gunsmith. Part 15",
+        "QuestName": "Gunsmith Part 15",
         "_id": "5b477f7686f7744d1b23c4d2",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -18339,6 +19409,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "29"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b477b6f86f7747290681823"
                     }
                 }
             ],
@@ -18435,7 +19514,7 @@
         "type": "WeaponAssembly"
     },
     "5b47825886f77468074618d3": {
-        "QuestName": "Gunsmith. Part 16",
+        "QuestName": "Gunsmith Part 16",
         "_id": "5b47825886f77468074618d3",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -18504,6 +19583,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "35"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b477f7686f7744d1b23c4d2"
                     }
                 }
             ],
@@ -18708,6 +19796,15 @@
                         "parentId": "",
                         "value": "23"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4495086f77443c122bc40"
+                    }
                 }
             ],
             "Fail": []
@@ -18905,6 +20002,15 @@
                         "parentId": "",
                         "value": "27"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4496986f774459e77beb6"
+                    }
                 }
             ],
             "Fail": []
@@ -19022,6 +20128,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "29"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae449b386f77446d8741719"
                     }
                 }
             ],
@@ -19189,6 +20304,15 @@
                         "parentId": "",
                         "value": "24"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae4493d86f7744b8e15aa8f"
+                    }
                 }
             ],
             "Fail": []
@@ -19249,7 +20373,7 @@
         "type": "Completion"
     },
     "5b478eca86f7744642012254": {
-        "QuestName": "\"Vitamins\" p.1",
+        "QuestName": "Vitamins p1",
         "_id": "5b478eca86f7744642012254",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -19336,6 +20460,15 @@
                         "parentId": "",
                         "value": "22"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0e5786f77426d66c0636"
+                    }
                 }
             ],
             "Fail": []
@@ -19417,7 +20550,7 @@
         "type": "PickUp"
     },
     "5b478ff486f7744d184ecbbf": {
-        "QuestName": "\"Vitamins\" p. 2",
+        "QuestName": "Vitamins p 2",
         "_id": "5b478ff486f7744d184ecbbf",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -19478,7 +20611,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b478eca86f7744642012254"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5b478eda86f77470315db899.jpg",
@@ -19672,6 +20815,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "24"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27d2af86f7744e1115b323"
                     }
                 }
             ],
@@ -19908,6 +21060,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "25"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27d2af86f7744e1115b323"
                     }
                 }
             ],
@@ -20147,6 +21308,15 @@
                         "parentId": "",
                         "value": "27"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b47926a86f7747ccc057c15"
+                    }
                 }
             ],
             "Fail": []
@@ -20236,7 +21406,7 @@
         "type": "Completion"
     },
     "5bc4776586f774512d07cf05": {
-        "QuestName": "\"The Tarkov shooter\" Part 1",
+        "QuestName": "The Tarkov shooter Part 1",
         "_id": "5bc4776586f774512d07cf05",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -20272,7 +21442,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac242ab86f77412464f68b4"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc9fab686f7742a90020769.jpg",
@@ -20359,7 +21539,7 @@
         "type": "Elimination"
     },
     "5bc479e586f7747f376c7da3": {
-        "QuestName": "\"The Tarkov shooter\" Part 2",
+        "QuestName": "The Tarkov shooter Part 2",
         "_id": "5bc479e586f7747f376c7da3",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -20425,7 +21605,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5bc4776586f774512d07cf05"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc9fab686f7742a90020769.jpg",
@@ -20510,7 +21700,7 @@
         "type": "Elimination"
     },
     "5bc47dbf86f7741ee74e93b9": {
-        "QuestName": "\"The Tarkov shooter\". Part 3",
+        "QuestName": "The Tarkov shooter Part 3",
         "_id": "5bc47dbf86f7741ee74e93b9",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -20545,7 +21735,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5bc479e586f7747f376c7da3"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
@@ -20670,7 +21870,7 @@
         "type": "Elimination"
     },
     "5bc480a686f7741af0342e29": {
-        "QuestName": "\"The Tarkov shooter\". Part 4",
+        "QuestName": "The Tarkov shooter Part 4",
         "_id": "5bc480a686f7741af0342e29",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -20686,7 +21886,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5bc47dbf86f7741ee74e93b9"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
@@ -20783,7 +21993,7 @@
         "type": "Elimination"
     },
     "5bc4826c86f774106d22d88b": {
-        "QuestName": "\"The Tarkov shooter\". Part 5",
+        "QuestName": "The Tarkov shooter Part 5",
         "_id": "5bc4826c86f774106d22d88b",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -20824,7 +22034,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5bc480a686f7741af0342e29"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
@@ -20909,7 +22129,7 @@
         "type": "Elimination"
     },
     "5bc4836986f7740c0152911c": {
-        "QuestName": "\"The Tarkov shooter\". Part 6",
+        "QuestName": "The Tarkov shooter Part 6",
         "_id": "5bc4836986f7740c0152911c",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -20941,7 +22161,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5bc4826c86f774106d22d88b"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
@@ -21026,7 +22256,7 @@
         "type": "Elimination"
     },
     "5bc4856986f77454c317bea7": {
-        "QuestName": "\"The Tarkov shooter\". Part 7",
+        "QuestName": "The Tarkov shooter Part 7",
         "_id": "5bc4856986f77454c317bea7",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -21062,7 +22292,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5bc4836986f7740c0152911c"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5bc481ec86f7740c8649a4f1.jpg",
@@ -21527,6 +22767,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "30"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b4795fb86f7745876267770"
                     }
                 }
             ],
@@ -22009,6 +23258,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "35"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b4795fb86f7745876267770"
                     }
                 }
             ],
@@ -22535,6 +23793,15 @@
                         "parentId": "",
                         "value": "35"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68667486f7742607157d28"
+                    }
                 }
             ],
             "Fail": []
@@ -22633,6 +23900,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "30"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68667486f7742607157d28"
                     }
                 }
             ],
@@ -22734,7 +24010,7 @@
         "type": "Skill"
     },
     "5c0d0f1886f77457b8210226": {
-        "QuestName": "Lend lease. Part 2",
+        "QuestName": "Lend lease Part 2",
         "_id": "5c0d0f1886f77457b8210226",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -22804,6 +24080,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "30"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b4794cb86f774598100d5d4"
                     }
                 }
             ],
@@ -23017,6 +24302,15 @@
                         "parentId": "",
                         "value": "30"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5967725e86f774601a446662"
+                    }
                 }
             ],
             "Fail": []
@@ -23170,6 +24464,15 @@
                         "parentId": "",
                         "status": [4],
                         "target": "5c0be5fc86f774467a116593"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68669a86f774255929b4d4"
                     }
                 }
             ],
@@ -24013,7 +25316,7 @@
         "type": "Exploration"
     },
     "5c10f94386f774227172c572": {
-        "QuestName": "The Blood of War Pt. 3",
+        "QuestName": "The Blood of War Pt 3",
         "_id": "5c10f94386f774227172c572",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -24087,6 +25390,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "30"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b47876e86f7744d1c353205"
                     }
                 }
             ],
@@ -24241,6 +25553,15 @@
                         "parentId": "",
                         "value": "30"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3464c86f7741d651d6877"
+                    }
                 }
             ],
             "Fail": []
@@ -24326,6 +25647,15 @@
                         "parentId": "",
                         "value": "25"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b478b1886f7744d1b23c57d"
+                    }
                 }
             ],
             "Fail": []
@@ -24384,7 +25714,7 @@
         "type": "Skill"
     },
     "5c1141f386f77430ff393792": {
-        "QuestName": "Living high is not a crime Pt.2",
+        "QuestName": "Living high is not a crime Pt2",
         "_id": "5c1141f386f77430ff393792",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -24453,6 +25783,16 @@
                         "parentId": "",
                         "status": [4],
                         "target": "5c10f94386f774227172c572"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "availableAfter": 0,
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5b47891f86f7744d1b23c571"
                     }
                 }
             ],
@@ -24829,6 +26169,15 @@
                         "parentId": "",
                         "value": "35"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5967725e86f774601a446662"
+                    }
                 }
             ],
             "Fail": []
@@ -24959,6 +26308,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "35"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3464c86f7741d651d6877"
                     }
                 }
             ],
@@ -26052,6 +27410,15 @@
                         "status": [2, 4],
                         "target": "5ac23c6186f7741247042bad"
                     }
+                }, {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "2"
+                    }
                 }
             ],
             "Fail": []
@@ -26218,7 +27585,7 @@
         "type": "Completion"
     },
     "5d25aed386f77442734d25d2": {
-        "QuestName": "The survivalist path. Unprotected, but dangerous",
+        "QuestName": "The survivalist path Unprotected but dangerous",
         "_id": "5d25aed386f77442734d25d2",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -26384,7 +27751,7 @@
         "type": "Completion"
     },
     "5d25b6be86f77444001e1b89": {
-        "QuestName": "The survivalist path. Thrifty",
+        "QuestName": "The survivalist path Thrifty",
         "_id": "5d25b6be86f77444001e1b89",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -26531,7 +27898,7 @@
         "type": "Completion"
     },
     "5d25bfd086f77442734d3007": {
-        "QuestName": "The survivalist path. Zhivchik",
+        "QuestName": "The survivalist path Zhivchik",
         "_id": "5d25bfd086f77442734d3007",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -26678,7 +28045,7 @@
         "type": "Experience"
     },
     "5d25c81b86f77443e625dd71": {
-        "QuestName": "The survivalist path. Wounded beast",
+        "QuestName": "The survivalist path Wounded beast",
         "_id": "5d25c81b86f77443e625dd71",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -26780,7 +28147,7 @@
         "type": "Completion"
     },
     "5d25cf2686f77443e75488d4": {
-        "QuestName": "The survivalist path. Tough guy",
+        "QuestName": "The survivalist path Tough guy",
         "_id": "5d25cf2686f77443e75488d4",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -26936,7 +28303,7 @@
         "type": "Completion"
     },
     "5d25d2c186f77443e35162e5": {
-        "QuestName": "The survivalist path. Cold blooded",
+        "QuestName": "The survivalist path Cold blooded",
         "_id": "5d25d2c186f77443e35162e5",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27160,7 +28527,7 @@
         "type": "Completion"
     },
     "5d25e29d86f7740a22516326": {
-        "QuestName": "The survivalist path. Eagle-owl",
+        "QuestName": "The survivalist path Eagle-owl",
         "_id": "5d25e29d86f7740a22516326",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27276,7 +28643,7 @@
         "type": "Completion"
     },
     "5d25e2a986f77409dd5cdf2a": {
-        "QuestName": "The survivalist path. Combat medic",
+        "QuestName": "The survivalist path Combat medic",
         "_id": "5d25e2a986f77409dd5cdf2a",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27354,7 +28721,7 @@
         "type": "Completion"
     },
     "5d25e2b486f77409de05bba0": {
-        "QuestName": "Huntsman path. Secured perimeter",
+        "QuestName": "Huntsman path Secured perimeter",
         "_id": "5d25e2b486f77409de05bba0",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27508,7 +28875,7 @@
         "type": "Completion"
     },
     "5d25e2c386f77443e7549029": {
-        "QuestName": "Huntsman path. The trophy",
+        "QuestName": "Huntsman path The trophy",
         "_id": "5d25e2c386f77443e7549029",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27669,7 +29036,7 @@
         "type": "Completion"
     },
     "5d25e2cc86f77443e47ae019": {
-        "QuestName": "Huntsman path. Woods cleaning",
+        "QuestName": "Huntsman path Woods cleaning",
         "_id": "5d25e2cc86f77443e47ae019",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27792,7 +29159,7 @@
         "type": "Completion"
     },
     "5d25e2d886f77442734d335e": {
-        "QuestName": "Huntsman path. Controller",
+        "QuestName": "Huntsman path Controller",
         "_id": "5d25e2d886f77442734d335e",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -27897,7 +29264,7 @@
         "type": "Completion"
     },
     "5d25e2e286f77444001e2e48": {
-        "QuestName": "Huntsman path. Sell-out",
+        "QuestName": "Huntsman path Sell-out",
         "_id": "5d25e2e286f77444001e2e48",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -28086,7 +29453,7 @@
         "type": "Elimination"
     },
     "5d25e2ee86f77443e35162ea": {
-        "QuestName": "Huntsman path. Woods keeper",
+        "QuestName": "Huntsman path Woods keeper",
         "_id": "5d25e2ee86f77443e35162ea",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -28247,7 +29614,7 @@
         "type": "Completion"
     },
     "5d25e43786f7740a212217fa": {
-        "QuestName": "Huntsman path. Justice",
+        "QuestName": "Huntsman path Justice",
         "_id": "5d25e43786f7740a212217fa",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -28374,7 +29741,7 @@
         "type": "Completion"
     },
     "5d25e44386f77409453bce7b": {
-        "QuestName": "Huntsman path. Evil watchman",
+        "QuestName": "Huntsman path Evil watchman",
         "_id": "5d25e44386f77409453bce7b",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -28500,7 +29867,7 @@
         "type": "Completion"
     },
     "5d25e44f86f77443e625e385": {
-        "QuestName": "Huntsman path. Eraser",
+        "QuestName": "Huntsman path Eraser",
         "_id": "5d25e44f86f77443e625e385",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -29096,6 +30463,15 @@
                         "parentId": "",
                         "value": "20"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5979ed3886f77431307dc512"
+                    }
                 }
             ],
             "Fail": []
@@ -29519,6 +30895,15 @@
                         "parentId": "",
                         "value": "30"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5d25e2ee86f77443e35162ea"
+                    }
                 }
             ],
             "Fail": []
@@ -29871,6 +31256,15 @@
                         "parentId": "",
                         "value": "20"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5d25e2b486f77409de05bba0"
+                    }
                 }
             ],
             "Fail": []
@@ -30041,6 +31435,15 @@
                         "parentId": "",
                         "value": "25"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5979f8bb86f7743ec214c7a6"
+                    }
                 }
             ],
             "Fail": []
@@ -30153,7 +31556,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a68665c86f774255929b4c7"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -30198,7 +31611,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27bc3686f7741c73584026"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5a27cafa86f77424e20615d6.jpg",
@@ -30298,7 +31721,7 @@
         "type": "Elimination"
     },
     "5e381b0286f77420e3417a74": {
-        "QuestName": "Textile. Part 1",
+        "QuestName": "Textile Part 1",
         "_id": "5e381b0286f77420e3417a74",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -30401,6 +31824,15 @@
                         "parentId": "",
                         "status": [4],
                         "target": "5ae4497b86f7744cf402ed00"
+                    }
+                }, {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "59a9269486f7747aab09a77c",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "42"
                     }
                 }
             ],
@@ -30650,6 +32082,24 @@
                         "status": [4],
                         "target": "5e381b0286f77420e3417a74"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5e383a6386f77465910ce1f3"
+                    }
+                }, {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "59a9269486f7747aab09a77c",
+                        "index": 1,
+                        "parentId": "",
+                        "value": "40"
+                    }
                 }
             ],
             "Fail": []
@@ -30832,7 +32282,7 @@
         "type": "PickUp"
     },
     "5eaaaa7c93afa0558f3b5a1c": {
-        "QuestName": "The survivalist path. Junkie",
+        "QuestName": "The survivalist path Junkie",
         "_id": "5eaaaa7c93afa0558f3b5a1c",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -31206,7 +32656,7 @@
         "type": "Discover"
     },
     "5edab4b1218d181e29451435": {
-        "QuestName": "Huntsman path. Sadist",
+        "QuestName": "Huntsman path Sadist",
         "_id": "5edab4b1218d181e29451435",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -31237,7 +32687,35 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edabd13218d181e29451442"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edaba7c0c502106f869bc02"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5f04886a3937dc337a6b8238"
+                    }
+                }
+            ],
             "Fail": [{
                     "_parent": "Quest",
                     "_props": {
@@ -31341,7 +32819,7 @@
         "type": "Elimination"
     },
     "5edab736cc183c769d778bc2": {
-        "QuestName": "Colleagues. Pt.1",
+        "QuestName": "Colleagues Pt1",
         "_id": "5edab736cc183c769d778bc2",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -31538,7 +33016,7 @@
         "type": "Discover"
     },
     "5edaba7c0c502106f869bc02": {
-        "QuestName": "Colleagues. Pt.2",
+        "QuestName": "Colleagues Pt2",
         "_id": "5edaba7c0c502106f869bc02",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -31598,7 +33076,17 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edab736cc183c769d778bc2"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c2742286f77475ec568d92.jpg",
@@ -31767,7 +33255,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "5a60963486f7745c452e10d1",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "22"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5eda19f0edce541157209cee"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/59c274ae86f77475060a9341.jpg",
@@ -32107,7 +33614,26 @@
                     }
                 }
             ],
-            "AvailableForStart": [],
+            "AvailableForStart": [{
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "5eda1a67ef0ad2643e73af31",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "20"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5eda19f0edce541157209cee"
+                    }
+                }
+            ],
             "Fail": []
         },
         "image": "/files/quest/icon/5969f96786f7741dde183a4f.jpg",
@@ -32244,7 +33770,7 @@
         "type": "PickUp"
     },
     "5edac34d0bb72a50635c2bfa": {
-        "QuestName": "Colleagues. Pt.3",
+        "QuestName": "Colleagues Pt3",
         "_id": "5edac34d0bb72a50635c2bfa",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -32377,6 +33903,42 @@
                         "parentId": "",
                         "status": [2],
                         "target": "5edab4b1218d181e29451435"
+                    }
+                }, {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "5eda1a67ef0ad2643e73af31",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "36"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edaba7c0c502106f869bc02"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 2,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edabd13218d181e29451442"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 3,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5f04886a3937dc337a6b8238"
                     }
                 }
             ],
@@ -32630,6 +34192,24 @@
                         "parentId": "",
                         "value": "23"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edac020218d181e29451446"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5edab4b1218d181e29451435"
+                    }
                 }
             ],
             "Fail": []
@@ -32770,7 +34350,7 @@
         "type": "PickUp"
     },
     "5ede55112c95834b583f052a": {
-        "QuestName": "Bunker. Part 1",
+        "QuestName": "Bunker Part 1",
         "_id": "5ede55112c95834b583f052a",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -32860,6 +34440,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "10"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59c124d686f774189b3c843f"
                     }
                 }
             ],
@@ -32989,7 +34578,7 @@
         "type": "Completion"
     },
     "5ede567cfa6dc072ce15d6e3": {
-        "QuestName": "Bunker. Part 2",
+        "QuestName": "Bunker Part 2",
         "_id": "5ede567cfa6dc072ce15d6e3",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -33147,6 +34736,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "11"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ede55112c95834b583f052a"
                     }
                 }
             ],
@@ -33551,6 +35149,15 @@
                         "parentId": "",
                         "value": "5"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5936d90786f7742b1420ba5b"
+                    }
                 }
             ],
             "Fail": []
@@ -33665,6 +35272,15 @@
                         "parentId": "",
                         "target": "5c0647fdd443bc2504c2d371",
                         "value": "4"
+                    }
+                }, {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "LevelHunterID",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "1"
                     }
                 }
             ],
@@ -34062,6 +35678,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "14"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5a27b80086f774429a5d7e20"
                     }
                 }
             ],
@@ -34474,6 +36099,24 @@
                         "parentId": "",
                         "value": "12"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "60bf748cbf90bf6b431e8965",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ede567cfa6dc072ce15d6e3"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "60bf7490db5461623517069e",
+                        "index": 2,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "59675d6c86f7740a842fc482"
+                    }
                 }
             ],
             "Fail": []
@@ -34687,6 +36330,15 @@
                         "parentId": "",
                         "value": "15"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "60bf738e81c6e80e702ccc0e",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5969f9e986f7741dde183a50"
+                    }
                 }
             ],
             "Fail": []
@@ -34824,6 +36476,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "13"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "60bf73682837926f405dd792",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ac3477486f7741d651d6885"
                     }
                 }
             ],
@@ -34973,6 +36634,15 @@
                         "parentId": "",
                         "value": "14"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "6089732b59b92115597ad789"
+                    }
                 }
             ],
             "Fail": []
@@ -35109,6 +36779,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "15"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 0,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "597a0f5686f774273b74f676"
                     }
                 }
             ],
@@ -35373,6 +37052,15 @@
                         "index": 0,
                         "parentId": "",
                         "value": "15"
+                    }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "608974d01a66564e74191fc0"
                     }
                 }
             ],
@@ -35788,6 +37476,15 @@
                         "parentId": "",
                         "status": [4],
                         "target": "5d25e2ee86f77443e35162ea"
+                    }
+                }, {
+                    "_parent": "Level",
+                    "_props": {
+                        "compareMethod": ">=",
+                        "id": "60cfa4cd646f74055e276545",
+                        "index": 0,
+                        "parentId": "",
+                        "value": "1"
                     }
                 }
             ],
