@@ -20926,7 +20926,7 @@
         "type": "Completion"
     },
     "5b4794cb86f774598100d5d4": {
-        "QuestName": "Lend lease",
+        "QuestName": "Lend lease pt 1",
         "_id": "5b4794cb86f774598100d5d4",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -22387,7 +22387,7 @@
         "type": "Elimination"
     },
     "5bc4893c86f774626f5ebf3e": {
-        "QuestName": "\"The Tarkov shooter\". Part 8",
+        "QuestName": "The Tarkov shooter Part 8",
         "_id": "5bc4893c86f774626f5ebf3e",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -23008,15 +23008,6 @@
                         "status": [4],
                         "target": "5c0d190cd09282029f5390d8"
                     }
-                }, {
-                    "_parent": "Quest",
-                    "_props": {
-                        "id": "",
-                        "index": 1,
-                        "parentId": "",
-                        "status": [4],
-                        "target": "5c0bd01e86f7747cdd799e56"
-                    }
                 }
             ],
             "Fail": []
@@ -23498,15 +23489,6 @@
                         "parentId": "",
                         "status": [4],
                         "target": "5ac3462b86f7741d6118b983"
-                    }
-                }, {
-                    "_parent": "Quest",
-                    "_props": {
-                        "id": "",
-                        "index": 1,
-                        "parentId": "",
-                        "status": [4],
-                        "target": "5ac3464c86f7741d651d6877"
                     }
                 }
             ],
@@ -37220,6 +37202,15 @@
                         "parentId": "",
                         "value": "15"
                     }
+                }, {
+                    "_parent": "Quest",
+                    "_props": {
+                        "id": "",
+                        "index": 1,
+                        "parentId": "",
+                        "status": [4],
+                        "target": "5ae448a386f7744d3730fff0"
+                    }
                 }
             ],
             "Fail": []
@@ -37427,7 +37418,7 @@
         "type": "Elimination"
     },
     "60c0c018f7afb4354815096a": {
-        "QuestName": "Tagilla",
+        "QuestName": "Huntsman Path - Factory Chief",
         "_id": "60c0c018f7afb4354815096a",
         "canShowNotificationsInGame": true,
         "conditions": {
