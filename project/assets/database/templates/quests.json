@@ -38782,7 +38782,7 @@
                 }, {
                     "_parent": "HandoverItem",
                     "_props": {
-                        "id": "60cfa5a85f9e6175514de2e3",
+                        "id": "60e73397479eef59b01b0bd5",
                         "index": 2,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -38812,7 +38812,7 @@
                 }, {
                     "_parent": "HandoverItem",
                     "_props": {
-                        "id": "60cfa5a85f9e6175514de2e3",
+                        "id": "60e733b80367e10a450f7807",
                         "index": 4,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -38842,7 +38842,7 @@
                 }, {
                     "_parent": "HandoverItem",
                     "_props": {
-                        "id": "60cfa5a85f9e6175514de2e3",
+                        "id": "60f0284e8b669d08a35bfada",
                         "index": 6,
                         "minDurability": 0,
                         "onlyFoundInRaid": true,
@@ -38867,7 +38867,7 @@
                         "id": "",
                         "index": 0,
                         "parentId": "",
-                        "value": "40"
+                        "value": "50"
                     }
                 }, {
                     "_parent": "Quest",
@@ -38886,7 +38886,7 @@
         "instantComplete": false,
         "isKey": false,
         "location": "any",
-        "min_level": 55,
+        "min_level": 50,
         "restartable": false,
         "rewards": {
             "Fail": [],
