@@ -31869,7 +31869,7 @@
         "type": "PickUp"
     },
     "5e383a6386f77465910ce1f3": {
-        "QuestName": "Unknown quest",
+        "QuestName": "Textile - Part 1",
         "_id": "5e383a6386f77465910ce1f3",
         "canShowNotificationsInGame": true,
         "conditions": {
@@ -31988,7 +31988,7 @@
         "type": "PickUp"
     },
     "5e4d4ac186f774264f758336": {
-        "QuestName": "Unknown quest",
+        "QuestName": "Textile - Part 2",
         "_id": "5e4d4ac186f774264f758336",
         "canShowNotificationsInGame": true,
         "conditions": {
