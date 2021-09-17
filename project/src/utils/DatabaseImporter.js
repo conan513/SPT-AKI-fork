@@ -15,7 +15,7 @@ class DatabaseImporter
 
     static loadRecursive(filepath)
     {
-        let result = {};
+        const result = {};
 
         // get all filepaths
         const files = VFS.getFiles(filepath);

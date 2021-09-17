@@ -6,12 +6,13 @@ class HealthController
 {
     static resetVitality(sessionID)
     {
-        let profile = SaveServer.profiles[sessionID];
+        const profile = SaveServer.profiles[sessionID];
 
         profile.vitality = {
             "health": {
                 "Hydration": 0,
                 "Energy": 0,
+                "Temperature": 0,
                 "Head": 0,
                 "Chest": 0,
                 "Stomach": 0,
@@ -36,33 +37,35 @@ class HealthController
 
     static offraidHeal(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         // update medkit used (hpresource)
-        for (let item of pmcData.Inventory.items)
+        const inventoryItem = pmcData.Inventory.items.find(item => item._id === body.item);
+        if (!inventoryItem)
         {
-            if (item._id === body.item)
-            {
-                if (!("upd" in item))
-                {
-                    item.upd = {};
-                }
+            Logger.error(`offraidHeal: Item ${inventoryItem._id} not found`);
+            // For now we just return nothing
+            return;
+        }
 
-                if ("MedKit" in item.upd)
-                {
-                    item.upd.MedKit.HpResource -= body.count;
-                }
-                else
-                {
-                    const maxhp = ItemHelper.getItem(item._tpl)[1]._props.MaxHpResource;
-                    item.upd.MedKit = {"HpResource": maxhp - body.count};
-                }
+        if (!("upd" in inventoryItem))
+        {
+            inventoryItem.upd = {};
+        }
 
-                if (item.upd.MedKit.HpResource <= 0)
-                {
-                    InventoryController.removeItem(pmcData, body.item, sessionID);
-                }
-            }
+        if ("MedKit" in inventoryItem.upd)
+        {
+            inventoryItem.upd.MedKit.HpResource -= body.count;
+        }
+        else
+        {
+            const maxhp = ItemHelper.getItem(inventoryItem._tpl)[1]._props.MaxHpResource;
+            inventoryItem.upd.MedKit = { "HpResource": maxhp - body.count };
+        }
+
+        if (inventoryItem.upd.MedKit.HpResource <= 0)
+        {
+            InventoryController.removeItem(pmcData, body.item, sessionID, output);
         }
 
         return output;
@@ -71,30 +74,33 @@ class HealthController
     static offraidEat(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
-        let resourceLeft;
-        let maxResource;
+        let resourceLeft = 0;
+        let maxResource = 0;
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
-            if (item._id === body.item)
+            if (item._id !== body.item)
             {
-                let itemProps = ItemHelper.getItem(item._tpl)[1]._props;
-                maxResource = itemProps.MaxResource;
-
-                if (maxResource > 1)
-                {
-                    if (item.upd.FoodDrink !== undefined)
-                    {
-                        item.upd.FoodDrink.HpPercent -= body.count;
-                    }
-                    else
-                    {
-                        item.upd.FoodDrink = {"HpPercent" : maxResource - body.count};
-                    }
-
-                    resourceLeft = item.upd.FoodDrink.HpPercent;
-                }
+                continue;
             }
+
+            maxResource = ItemHelper.getItem(item._tpl)[1]._props.MaxResource;
+
+            if (maxResource > 1)
+            {
+                if (item.upd.FoodDrink === undefined)
+                {
+                    item.upd.FoodDrink = { "HpPercent": maxResource - body.count };
+                }
+                else
+                {
+                    item.upd.FoodDrink.HpPercent -= body.count;
+                }
+
+                resourceLeft = item.upd.FoodDrink.HpPercent;
+            }
+
+            break;
         }
 
         if (maxResource === 1 || resourceLeft < 1)
@@ -109,8 +115,8 @@ class HealthController
     static saveVitality(pmcData, info, sessionID)
     {
         const BodyPartsList = info.Health;
-        let nodeHealth = SaveServer.profiles[sessionID].vitality.health;
-        let nodeEffects = SaveServer.profiles[sessionID].vitality.effects;
+        const nodeHealth = SaveServer.profiles[sessionID].vitality.health;
+        const nodeEffects = SaveServer.profiles[sessionID].vitality.effects;
 
         nodeHealth.Hydration = info.Hydration;
         nodeHealth.Energy = info.Energy;
@@ -142,16 +148,21 @@ class HealthController
 
     static healthTreatment(pmcData, info, sessionID)
     {
+        let output = ItemEventRouter.getOutput(sessionID);
         const body = {
             "Action": "RestoreHealth",
             "tid": "54cb57776803fa99248b456e",
             "scheme_items": info.items
         };
 
-        PaymentController.payMoney(pmcData, body, sessionID);
+        output = PaymentController.payMoney(pmcData, body, sessionID, output);
+        if (output.warnings.length > 0)
+        {
+            return output;
+        }
 
-        let BodyParts = info.difference.BodyParts;
-        let healthInfo = { "IsAlive": true, "Health": {} };
+        const BodyParts = info.difference.BodyParts;
+        const healthInfo = { "IsAlive": true, "Health": {} };
 
         for (const key in BodyParts)
         {
@@ -171,12 +182,12 @@ class HealthController
         healthInfo.Temperature = pmcData.Health.Temperature.Current;
 
         HealthController.saveVitality(pmcData, healthInfo, sessionID);
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static addEffect(pmcData, sessionID, info)
     {
-        let bodyPart = pmcData.Health.BodyParts[info.bodyPart];
+        const bodyPart = pmcData.Health.BodyParts[info.bodyPart];
 
         if (!bodyPart.Effects)
         {
@@ -204,7 +215,7 @@ class HealthController
             return;
         }
 
-        let nodeHealth = SaveServer.profiles[sessionID].vitality.health;
+        const nodeHealth = SaveServer.profiles[sessionID].vitality.health;
 
         for (const item in nodeHealth)
         {
@@ -222,6 +233,12 @@ class HealthController
             }
             else
             {
+                // set body part
+                if (target > pmcData.Health.BodyParts[item].Health.Maximum)
+                {
+                    target = pmcData.Health.BodyParts[item].Health.Maximum;
+                }
+
                 if (target === 0)
                 {
                     // blacked body part
@@ -253,7 +270,7 @@ class HealthController
                 switch (effect)
                 {
                     case "Fracture":
-                        HealthController.addEffect(pmcData, sessionID, {bodyPart: bodyPart, effectType: "Fracture"});
+                        HealthController.addEffect(pmcData, sessionID, { bodyPart: bodyPart, effectType: "Fracture" });
                         break;
                 }
             }
@@ -262,7 +279,7 @@ class HealthController
 
     static isEmpty(map)
     {
-        for (let key in map)
+        for (const key in map)
         {
             if (key in map)
             {

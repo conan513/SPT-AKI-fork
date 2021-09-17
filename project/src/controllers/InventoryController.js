@@ -4,12 +4,18 @@ require("../Lib.js");
 
 class InventoryController
 {
-    /* Based on the item action, determine whose inventories we should be looking at for from and to. */
+    /**
+     * Based on the item action, determine whose inventories we should be looking at for from and to.
+     *
+     * @param {Object} body - request Body
+     * @param {string} sessionID - Session id
+     * @returns response as JSON object
+     */
     static getOwnerInventoryItems(body, sessionID)
     {
         let isSameInventory = false;
-        let pmcItems = ProfileController.getPmcProfile(sessionID).Inventory.items;
-        let scavData = ProfileController.getScavProfile(sessionID);
+        const pmcItems = ProfileController.getPmcProfile(sessionID).Inventory.items;
+        const scavData = ProfileController.getScavProfile(sessionID);
         let fromInventoryItems = pmcItems;
         let fromType = "pmc";
 
@@ -51,15 +57,21 @@ class InventoryController
         };
     }
 
-    /* Move Item
+    /**
+    * Move Item
     * change location of item with parentId and slotId
     * transfers items from one profile to another if fromOwner/toOwner is set in the body.
     * otherwise, move is contained within the same profile_f.
-    * */
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns
+    */
     static moveItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
-        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
+        const items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (items.sameInventory)
         {
@@ -69,24 +81,28 @@ class InventoryController
         {
             InventoryController.moveItemToProfile(items.from, items.to, body);
         }
-
         return output;
     }
 
-    /* Internal helper function to transfer an item from one profile to another.
+    /**
+    * Internal helper function to transfer an item from one profile to another.
     * fromProfileData: Profile of the source.
     * toProfileData: Profile of the destination.
     * body: Move request
+    *
+    * @param {Array} fromItems
+    * @param {Array} toItems
+    * @param {Object} body
     */
     static moveItemToProfile(fromItems, toItems, body)
     {
         InventoryController.handleCartridges(fromItems, body);
 
-        let idsToMove = ItemHelper.findAndReturnChildrenByItems(fromItems, body.item);
+        const idsToMove = ItemHelper.findAndReturnChildrenByItems(fromItems, body.item);
 
-        for (let itemId of idsToMove)
+        for (const itemId of idsToMove)
         {
-            for (let itemIndex in fromItems)
+            for (const itemIndex in fromItems)
             {
                 if (fromItems[itemIndex]._id && fromItems[itemIndex]._id === itemId)
                 {
@@ -107,7 +123,6 @@ class InventoryController
                             }
                         }
                     }
-
                     toItems.push(fromItems[itemIndex]);
                     fromItems.splice(itemIndex, 1);
                 }
@@ -115,15 +130,18 @@ class InventoryController
         }
     }
 
-    /* Internal helper function to move item within the same profile_f.
-    * items: Items
-    * body: Move request
+    /**
+    * Internal helper function to move item within the same profile_f.
+    *
+    * @param {Object} items - Items to move
+    * @param {Object} body - Request body
+    * @returns response
     */
     static moveItemInternal(items, body)
     {
         InventoryController.handleCartridges(items, body);
 
-        for (let item of items)
+        for (const item of items)
         {
             if (item._id && item._id === body.item)
             {
@@ -141,15 +159,16 @@ class InventoryController
                         delete item.location;
                     }
                 }
-
                 return;
             }
         }
     }
 
-    /* Internal helper function to handle cartridges in inventory if any of them exist.
-    * items: Items
-    * body: Move request
+    /**
+    * Internal helper function to handle cartridges in inventory if any of them exist.
+    *
+    * @param {Object} Items - Cartridges in question
+    * @param {Object} body  - Body of the Move request
     */
     static handleCartridges(items, body)
     {
@@ -158,75 +177,99 @@ class InventoryController
         {
             let tmp_counter = 0;
 
-            for (let item_ammo in items)
+            for (const item_ammo in items)
             {
                 if (body.to.id === items[item_ammo].parentId)
                 {
                     tmp_counter++;
                 }
             }
-
             // wrong location for first cartrige
             body.to.location = tmp_counter;
         }
     }
 
-    /*
-    * Remove Item
-    * Deep tree item deletion, also removes insurance
+    /**
+    * Remove Item from Profile
+    * Deep tree item deletion, also removes items from insurance list
+    *
+    * @param {Object} pmcData   - PMC Profile data as JSON Object
+    * @param {string} itemId    - ID of the inventory Item to be removed
+    * @param {string} sessionID - Session ID
+    * @param {Object} [output=undefined]  - output object
+    * @returns {Object} - returns output object
     */
     static removeItem(pmcData, itemId, sessionID, output = undefined)
     {
-        const ids = InventoryHelper.findAndReturnChildren(pmcData, itemId);
-        let items = pmcData.Inventory.items;
-        let insurance = pmcData.InsuredItems;
-
-        output = output || ItemEventRouter.getOutput(sessionID);
-
-        for (const id of ids)
+        if (!itemId)
         {
-            output.profileChanges[sessionID].items.del.push({"_id": id});
-
-            for (const i in items)
-            {
-                if (items[i]._id === id)
-                {
-                    items.splice(i, 1);
-                }
-            }
-
-            for (let i in insurance)
-            {
-                if (insurance[i].itemId === id)
-                {
-                    insurance.splice(i, 1);
-                }
-            }
+            return output;
         }
 
+        const childIds = InventoryHelper.findAndReturnChildren(pmcData, itemId);
+        const inventoryItems = pmcData.Inventory.items;
+        const insuredItems = pmcData.InsuredItems;
+
+        if (output)
+        {
+            // client only needs to know the root item is deleted
+            output.profileChanges[sessionID].items.del.push({ "_id": itemId });
+        }
+
+        for (const childId of childIds)
+        {
+            // We expect that each inventory item and each insured item has unique "_id", respective "itemId".
+            // Therefore we want to use a NON-Greedy function and escape the iteration as soon as we find requested item.
+            const inventoryIndex = inventoryItems.findIndex(item => item._id === childId);
+            if (inventoryIndex > -1)
+            {
+                inventoryItems.splice(inventoryIndex, 1);
+            }
+
+            const insuredIndex = insuredItems.findIndex(item => item.itemId === childId);
+            if (insuredIndex > -1)
+            {
+                insuredItems.splice(insuredIndex, 1);
+            }
+        }
         return output;
     }
 
+    /**
+     * Implements functionality "Discard" from Main menu (Stash etc.)
+     * Removes item from PMC Profile
+     *
+     * @param {Object} pmcData - PMC Data portion of Profile Object
+     * @param {Object} body - rquest body
+     * @param {string} sessionID - session it
+     * @returns response object
+     */
     static discardItem(pmcData, body, sessionID)
     {
-        return InventoryController.removeItem(pmcData, body.item, sessionID);
+        return InventoryController.removeItem(pmcData, body.item, sessionID, ItemEventRouter.getOutput(sessionID));
     }
 
-    /* Split Item
-    * spliting 1 item into 2 separate items ...
-    * */
+    /**
+    * Split Item
+    * spliting 1 item-stack into 2 separate items ...
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns
+    */
     static splitItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         let location = body.container.location;
 
-        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
+        const items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
         if (!("location" in body.container) && body.container.container === "cartridges")
         {
             let tmp_counter = 0;
 
-            for (let item_ammo in items.to)
+            for (const item_ammo in items.to)
             {
                 if (items.to[item_ammo].parentId === body.container.id)
                 {
@@ -237,9 +280,8 @@ class InventoryController
             location = tmp_counter;//wrong location for first cartrige
         }
 
-
         // The item being merged is possible from three different sources: pmc, scav, or mail.
-        for (let item of items.from)
+        for (const item of items.from)
         {
             if (item._id && item._id === body.item)
             {
@@ -250,7 +292,7 @@ class InventoryController
                 output.profileChanges[sessionID].items.new.push({
                     "_id": newItemId,
                     "_tpl": item._tpl,
-                    "upd": {"StackObjectsCount": body.count}
+                    "upd": { "StackObjectsCount": body.count }
                 });
 
                 items.to.push({
@@ -259,7 +301,7 @@ class InventoryController
                     "parentId": body.container.id,
                     "slotId": body.container.container,
                     "location": location,
-                    "upd": {"StackObjectsCount": body.count}
+                    "upd": { "StackObjectsCount": body.count }
                 });
 
                 return output;
@@ -272,17 +314,22 @@ class InventoryController
     /**
      * Merge Item
      * merges 2 items into one, deletes item from `body.item` and adding number of stacks into `body.with`
+     *
+     * @param {Object} pmcData      - PMC Part of profile
+     * @param {Object} body         - Request Body
+     * @param {string} sessionID    - Session ID
+     * @returns response
      */
     static mergeItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
-        let items = InventoryController.getOwnerInventoryItems(body, sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
+        const items = InventoryController.getOwnerInventoryItems(body, sessionID);
 
-        for (let key in items.to)
+        for (const key in items.to)
         {
             if (items.to[key]._id === body.with)
             {
-                for (let key2 in items.from)
+                for (const key2 in items.from)
                 {
                     if (items.from[key2]._id && items.from[key2]._id === body.item)
                     {
@@ -291,11 +338,11 @@ class InventoryController
 
                         if (!(items.to[key].upd && items.to[key].upd.StackObjectsCount))
                         {
-                            items.to[key].upd = {"StackObjectsCount" : 1};
+                            items.to[key].upd = { "StackObjectsCount": 1 };
                         }
                         else if (!(items.from[key2].upd && items.from[key2].upd.StackObjectsCount))
                         {
-                            items.from[key2].upd = {"StackObjectsCount" : 1};
+                            items.from[key2].upd = { "StackObjectsCount": 1 };
                         }
 
                         if (items.to[key].upd !== undefined)
@@ -310,31 +357,37 @@ class InventoryController
 
                         if (stackItem0 === 1)
                         {
-                            Object.assign(items.to[key], {"upd": {"StackObjectsCount": 1}});
+                            Object.assign(items.to[key], { "upd": { "StackObjectsCount": 1 } });
                         }
 
                         items.to[key].upd.StackObjectsCount = stackItem0 + stackItem1;
-                        output.profileChanges[sessionID].items.del.push({"_id": items.from[key2]._id});
+                        output.profileChanges[sessionID].items.del.push({ "_id": items.from[key2]._id });
                         items.from.splice(key2, 1);
                         return output;
                     }
                 }
             }
         }
-
         return "";
     }
 
-    /* Transfer item
+
+    /**
+    * Transfer item
     * Used to take items from scav inventory into stash or to insert ammo into mags (shotgun ones) and reloading weapon by clicking "Reload"
-    * */
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns
+    */
     static transferItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
         let itemFrom = null;
         let itemTo = null;
 
-        for (let iterItem of pmcData.Inventory.items)
+        for (const iterItem of pmcData.Inventory.items)
         {
             if (iterItem._id === body.item)
             {
@@ -361,7 +414,7 @@ class InventoryController
             }
             else
             {
-                Object.assign(itemFrom, {"upd": {"StackObjectsCount": 1}});
+                Object.assign(itemFrom, { "upd": { "StackObjectsCount": 1 } });
             }
 
             if (stackFrom > body.count)
@@ -382,7 +435,7 @@ class InventoryController
             }
             else
             {
-                Object.assign(itemTo, {"upd": {"StackObjectsCount": 1}});
+                Object.assign(itemTo, { "upd": { "StackObjectsCount": 1 } });
             }
 
             itemTo.upd.StackObjectsCount = stackTo + body.count;
@@ -391,14 +444,20 @@ class InventoryController
         return output;
     }
 
-    /* Swap Item
+    /**
+    * Swap Item
     * its used for "reload" if you have weapon in hands and magazine is somewhere else in rig or backpack in equipment
-    * */
+    *
+    * @param {Object} pmcData
+    * @param {Object} body
+    * @param {string} sessionID
+    * @returns response object
+    */
     static swapItem(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
-        for (let iterItem of pmcData.Inventory.items)
+        for (const iterItem of pmcData.Inventory.items)
         {
             if (iterItem._id === body.item)
             {
@@ -414,20 +473,29 @@ class InventoryController
                 delete iterItem.location;
             }
         }
-
         return output;
     }
 
-    /* Give Item
+    /**
+    * Give Item
     * its used for "add" item like gifts etc.
-    * */
+    *
+    * @param {Object} pmcData   - PMC Part of profile as JSON object
+    * @param {Object} body      - request body
+    * @param {Object} output    - response body
+    * @param {string} sessionID     - Session ID
+    * @param {function} callback    - callback function
+    * @param {bool} [foundInRaid=false] - Found in Raid tag for given item
+    * @param {*} addUpd     - @Incomplete: ???
+    * @returns
+    */
     static addItem(pmcData, body, output, sessionID, callback, foundInRaid = false, addUpd = null)
     {
         const fenceID = "579dc571d53a0658a154fbec";
-        let itemLib = [];
-        let itemsToAdd = [];
+        const itemLib = [];
+        const itemsToAdd = [];
 
-        for (let baseItem of body.items)
+        for (const baseItem of body.items)
         {
             if (baseItem.item_id in DatabaseServer.tables.globals.ItemPresets)
             {
@@ -444,7 +512,19 @@ class InventoryController
             {
                 const fenceItem = TraderController.fenceAssort.items;
                 const item = fenceItem[fenceItem.findIndex(i => i._id === baseItem.item_id)];
-                itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
+
+                // handle when item being bought is preset
+                if (item.upd.presetId)
+                {
+                    const presetItems = JsonUtil.clone(DatabaseServer.tables.globals.ItemPresets[item.upd.presetId]._items);
+                    itemLib.push(...presetItems);
+                    baseItem.isPreset = true;
+                    baseItem.item_id = presetItems[0]._id;
+                }
+                else
+                {
+                    itemLib.push({ _id: baseItem.item_id, _tpl: item._tpl });
+                }
             }
             else
             {
@@ -455,7 +535,7 @@ class InventoryController
                 itemLib.push(...toAdd);
             }
 
-            for (let item of itemLib)
+            for (const item of itemLib)
             {
                 if (item._id === baseItem.item_id)
                 {
@@ -467,7 +547,7 @@ class InventoryController
                     if (baseItem.count > tmpItem._props.StackMaxSize)
                     {
                         let count = baseItem.count;
-                        let calc = baseItem.count - (Math.floor(baseItem.count / tmpItem._props.StackMaxSize) * tmpItem._props.StackMaxSize);
+                        const calc = baseItem.count - (Math.floor(baseItem.count / tmpItem._props.StackMaxSize) * tmpItem._props.StackMaxSize);
 
                         MaxStacks = (calc > 0) ? MaxStacks + Math.floor(count / tmpItem._props.StackMaxSize) : Math.floor(count / tmpItem._props.StackMaxSize);
 
@@ -475,7 +555,7 @@ class InventoryController
                         {
                             if (count > 0)
                             {
-                                let newItemToAdd = JsonUtil.clone(itemToAdd);
+                                const newItemToAdd = JsonUtil.clone(itemToAdd);
                                 if (count > tmpItem._props.StackMaxSize)
                                 {
                                     count = count - tmpItem._props.StackMaxSize;
@@ -501,17 +581,17 @@ class InventoryController
         // Find an empty slot in stash for each of the items being added
         let StashFS_2D = PlayerController.getStashSlotMap(pmcData, sessionID);
 
-        for (let itemToAdd of itemsToAdd)
+        for (const itemToAdd of itemsToAdd)
         {
-            let itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
-            let findSlotResult = ContainerHelper.findSlotForItem(StashFS_2D, itemSize[0], itemSize[1]);
+            const itemSize = InventoryHelper.getItemSize(itemToAdd.itemRef._tpl, itemToAdd.itemRef._id, itemLib);
+            const findSlotResult = ContainerHelper.findSlotForItem(StashFS_2D, itemSize[0], itemSize[1]);
 
             if (findSlotResult.success)
             {
                 /* Fill in the StashFS_2D with an imaginary item, to simulate it already being added
                 * so the next item to search for a free slot won't find the same one */
-                let itemSizeX = findSlotResult.rotation ? itemSize[1] : itemSize[0];
-                let itemSizeY = findSlotResult.rotation ? itemSize[0] : itemSize[1];
+                const itemSizeX = findSlotResult.rotation ? itemSize[1] : itemSize[0];
+                const itemSizeY = findSlotResult.rotation ? itemSize[0] : itemSize[1];
 
                 try
                 {
@@ -541,20 +621,20 @@ class InventoryController
         }
         catch (err)
         {
-            let message = typeof err === "string" ? err : "An unknown error occurred";
+            const message = typeof err === "string" ? err : "An unknown error occurred";
             return HttpResponse.appendErrorToOutput(output, message);
         }
 
-        for (let itemToAdd of itemsToAdd)
+        for (const itemToAdd of itemsToAdd)
         {
             let newItem = HashUtil.generate();
-            let toDo = [[itemToAdd.itemRef._id, newItem]];
-            let upd = {"StackObjectsCount": itemToAdd.count};
+            const toDo = [[itemToAdd.itemRef._id, newItem]];
+            let upd = { "StackObjectsCount": itemToAdd.count };
 
             //if it is from ItemPreset, load preset's upd data too.
             if (itemToAdd.isPreset)
             {
-                for (let updID in itemToAdd.itemRef.upd)
+                for (const updID in itemToAdd.itemRef.upd)
                 {
                     upd[updID] = itemToAdd.itemRef.upd[updID];
                 }
@@ -563,7 +643,7 @@ class InventoryController
             // add ragfair upd properties
             if (addUpd)
             {
-                upd = {...addUpd, ...upd};
+                upd = { ...addUpd, ...upd };
             }
 
             // hideout items need to be marked as found in raid
@@ -583,7 +663,7 @@ class InventoryController
                 "_tpl": itemToAdd.itemRef._tpl,
                 "parentId": pmcData.Inventory.stash,
                 "slotId": "hideout",
-                "location": {"x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": itemToAdd.location.rotation ? 1 : 0},
+                "location": { "x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": itemToAdd.location.rotation ? 1 : 0 },
                 "upd": upd
             });
 
@@ -592,33 +672,34 @@ class InventoryController
                 "_tpl": itemToAdd.itemRef._tpl,
                 "parentId": pmcData.Inventory.stash,
                 "slotId": "hideout",
-                "location": {"x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": itemToAdd.location.rotation ? 1 : 0},
+                "location": { "x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": itemToAdd.location.rotation ? 1 : 0 },
                 "upd": upd
             });
 
             // If this is an ammobox, add cartridges to it.
             // Damaged ammo box are not loaded.
             const itemInfo = ItemHelper.getItem(itemToAdd.itemRef._tpl)[1];
-            let ammoBoxInfo = itemInfo._props.StackSlots;
+            const ammoBoxInfo = itemInfo._props.StackSlots;
+
             if (ammoBoxInfo !== undefined && itemInfo._name.indexOf("_damaged") < 0)
             {
                 // Cartridge info seems to be an array of size 1 for some reason... (See AmmoBox constructor in client code)
                 let maxCount = ammoBoxInfo[0]._max_count;
-                let ammoTmplId = ammoBoxInfo[0]._props.filters[0].Filter[0];
-                let ammoStackMaxSize = ItemHelper.getItem(ammoTmplId)[1]._props.StackMaxSize;
-                let ammos = [];
+                const ammoTmplId = ammoBoxInfo[0]._props.filters[0].Filter[0];
+                const ammoStackMaxSize = ItemHelper.getItem(ammoTmplId)[1]._props.StackMaxSize;
+                const ammos = [];
                 let location = 0;
 
                 while (maxCount > 0)
                 {
-                    let ammoStackSize = maxCount <= ammoStackMaxSize ? maxCount : ammoStackMaxSize;
+                    const ammoStackSize = maxCount <= ammoStackMaxSize ? maxCount : ammoStackMaxSize;
                     ammos.push({
                         "_id": HashUtil.generate(),
                         "_tpl": ammoTmplId,
                         "parentId": toDo[0][1],
                         "slotId": "cartridges",
                         "location": location,
-                        "upd": {"StackObjectsCount": ammoStackSize}
+                        "upd": { "StackObjectsCount": ammoStackSize }
                     });
 
                     location++;
@@ -633,20 +714,20 @@ class InventoryController
 
             while (toDo.length > 0)
             {
-                for (let tmpKey in itemLib)
+                for (const tmpKey in itemLib)
                 {
                     if (itemLib[tmpKey].parentId && itemLib[tmpKey].parentId === toDo[0][0])
                     {
                         newItem = HashUtil.generate();
 
-                        let SlotID = itemLib[tmpKey].slotId;
+                        const SlotID = itemLib[tmpKey].slotId;
 
                         // if it is from ItemPreset, load preset's upd data too.
                         if (itemToAdd.isPreset)
                         {
-                            upd = {"StackObjectsCount": itemToAdd.count};
+                            upd = { "StackObjectsCount": itemToAdd.count };
 
-                            for (let updID in itemLib[tmpKey].upd)
+                            for (const updID in itemLib[tmpKey].upd)
                             {
                                 upd[updID] = itemLib[tmpKey].upd[updID];
                             }
@@ -664,7 +745,7 @@ class InventoryController
                                 "_tpl": itemLib[tmpKey]._tpl,
                                 "parentId": toDo[0][1],
                                 "slotId": SlotID,
-                                "location": {"x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": "Horizontal"},
+                                "location": { "x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": "Horizontal" },
                                 "upd": upd
                             });
 
@@ -673,13 +754,13 @@ class InventoryController
                                 "_tpl": itemLib[tmpKey]._tpl,
                                 "parentId": toDo[0][1],
                                 "slotId": itemLib[tmpKey].slotId,
-                                "location": {"x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": "Horizontal"},
+                                "location": { "x": itemToAdd.location.x, "y": itemToAdd.location.y, "r": "Horizontal" },
                                 "upd": upd
                             });
                         }
                         else
                         {
-                            let itemLocation = {};
+                            const itemLocation = {};
 
                             if (itemLib[tmpKey]["location"] !== undefined)
                             {
@@ -712,9 +793,18 @@ class InventoryController
                 toDo.splice(0, 1);
             }
         }
+
         return output;
     }
 
+    /**
+     * Handles folding of Weapons
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
+     */
     static foldItem(pmcData, body, sessionID)
     {
         // Fix for folding weapons while on they're in the Scav inventory
@@ -723,11 +813,11 @@ class InventoryController
             pmcData = ProfileController.getScavProfile(sessionID);
         }
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             if (item._id && item._id === body.item)
             {
-                item.upd.Foldable = {"Folded": body.value};
+                item.upd.Foldable = { "Folded": body.value };
                 return ItemEventRouter.getOutput(sessionID);
             }
         }
@@ -735,6 +825,14 @@ class InventoryController
         return "";
     }
 
+    /**
+     * Toggles "Toggleable" items like night vision goggles and face shields.
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
+     */
     static toggleItem(pmcData, body, sessionID)
     {
         // Fix for toggling items while on they're in the Scav inventory
@@ -743,11 +841,11 @@ class InventoryController
             pmcData = ProfileController.getScavProfile(sessionID);
         }
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             if (item._id && item._id === body.item)
             {
-                item.upd.Togglable = {"On": body.value};
+                item.upd.Togglable = { "On": body.value };
                 return ItemEventRouter.getOutput(sessionID);
             }
         }
@@ -755,21 +853,29 @@ class InventoryController
         return "";
     }
 
+    /**
+     * Handles Tagging of items (primary Containers).
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
+     */
     static tagItem(pmcData, body, sessionID)
     {
         const cleanedTag = body.TagName.replace(/[^\w\d\s]/g, "");
 
-        for (let item of pmcData.Inventory.items)
+        for (const item of pmcData.Inventory.items)
         {
             if (item._id === body.item)
             {
                 if ("upd" in item)
                 {
-                    item.upd.Tag = {"Color": body.TagColor, "Name": cleanedTag};
+                    item.upd.Tag = { "Color": body.TagColor, "Name": cleanedTag };
                 }
                 else
                 {
-                    item.upd = {"Tag": {"Color": body.TagColor, "Name": cleanedTag}};
+                    item.upd = { "Tag": { "Color": body.TagColor, "Name": cleanedTag } };
                 }
 
                 return ItemEventRouter.getOutput(sessionID);
@@ -779,9 +885,17 @@ class InventoryController
         return "";
     }
 
+    /**
+     * @Incomplete: ???
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
+     */
     static bindItem(pmcData, body, sessionID)
     {
-        for (let index in pmcData.Inventory.fastPanel)
+        for (const index in pmcData.Inventory.fastPanel)
         {
             if (pmcData.Inventory.fastPanel[index] === body.item)
             {
@@ -793,6 +907,14 @@ class InventoryController
         return ItemEventRouter.getOutput(sessionID);
     }
 
+    /**
+     * Handles examining of the item
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
+     */
     static examineItem(pmcData, body, sessionID)
     {
         let itemID = "";
@@ -870,7 +992,7 @@ class InventoryController
 
     static readEncyclopedia(pmcData, body, sessionID)
     {
-        for (let id of body.ids)
+        for (const id of body.ids)
         {
             pmcData.Encyclopedia[id] = true;
         }
@@ -878,6 +1000,14 @@ class InventoryController
         return ItemEventRouter.getOutput(sessionID);
     }
 
+    /**
+     * Handles sorting of Inventory.
+     *
+     * @param {Object} pmcData
+     * @param {Object} body
+     * @param {string} sessionID
+     * @returns
+     */
     static sortInventory(pmcData, body, sessionID)
     {
         let items = pmcData.Inventory.items;
@@ -888,23 +1018,38 @@ class InventoryController
             for (const target of body.changedItems)
             {
                 // remove unsorted items
+                let info = {};
+
                 items = items.filter((item) =>
                 {
+                    if (item._id === target._id)
+                    {
+                        info = JsonUtil.clone(item);
+                    }
                     return item._id !== target._id;
                 });
 
-                // fix currency StackObjectsCount when single stack
-                if (PaymentController.isMoneyTpl(target._tpl))
+                if (typeof (info._tpl) !== "string")
                 {
-                    target.upd = (target.upd || {});
-                    if (!target.upd.StackObjectsCount)
+                    info = target;
+                }
+                else if (typeof (target.location) !== "undefined")
+                {
+                    info.location = target.location;
+                }
+
+                // fix currency StackObjectsCount when single stack
+                if (PaymentController.isMoneyTpl(info._tpl))
+                {
+                    info.upd = (info.upd || {});
+                    if (!info.upd.StackObjectsCount)
                     {
-                        target.upd.StackObjectsCount = 1;
+                        info.upd.StackObjectsCount = 1;
                     }
                 }
 
                 // add sorted items
-                items.push(target);
+                items.push(info);
             }
         }
 
@@ -923,6 +1068,51 @@ class InventoryController
 
         pmcData.Inventory.items = items;
         return ItemEventRouter.getOutput(sessionID);
+    }
+
+    static createMapMarker(pmcData, body, sessionID)
+    {
+        const item = pmcData.Inventory.items.find(i => i._id === body.item);
+
+        // add marker
+        item.upd.Map = item.upd.Map || { "Markers": [] };
+        item.upd.Map.Markers.push(body.mapMarker);
+
+        // sync with client
+        const output = ItemEventRouter.getOutput(sessionID);
+        output.profileChanges[sessionID].items.change.push(item);
+        return output;
+    }
+
+    static deleteMapMarker(pmcData, body, sessionID)
+    {
+        const item = pmcData.Inventory.items.find(i => i._id === body.item);
+
+        // remove marker
+        const markers = item.upd.Map.Markers.filter((marker) =>
+        {
+            return marker.X !== body.X && marker.Y !== body.Y;
+        });
+        item.upd.Map.Markers = markers;
+
+        // sync with client
+        const output = ItemEventRouter.getOutput(sessionID);
+        output.profileChanges[sessionID].items.change.push(item);
+        return output;
+    }
+
+    static editMapMarker(pmcData, body, sessionID)
+    {
+        const item = pmcData.Inventory.items.find(i => i._id === body.item);
+
+        // edit marker
+        const index = item.upd.Map.Markers.findIndex(m => m.X === body.X && m.Y === body.Y);
+        item.upd.Map.Markers[index] = body.mapMarker;
+
+        // sync with client
+        const output = ItemEventRouter.getOutput(sessionID);
+        output.profileChanges[sessionID].items.change.push(item);
+        return output;
     }
 }
 

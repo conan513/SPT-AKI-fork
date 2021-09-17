@@ -10,7 +10,7 @@ class InsuranceController
     static onLoad(sessionID)
     {
         InsuranceController.generateTemplatesById();
-        let profile = SaveServer.profiles[sessionID];
+        const profile = SaveServer.profiles[sessionID];
 
         if (!("insurance" in profile))
         {
@@ -81,7 +81,7 @@ class InsuranceController
     {
         const preRaidGearHash = {};
         const offRaidGearHash = {};
-        let gears = [];
+        const gears = [];
 
         // Build a hash table to reduce loops
         for (const item of preRaidGear)
@@ -95,7 +95,7 @@ class InsuranceController
             offRaidGearHash[item._id] = item;
         }
 
-        for (let insuredItem of pmcData.InsuredItems)
+        for (const insuredItem of pmcData.InsuredItems)
         {
             if (preRaidGearHash[insuredItem.itemId])
             {
@@ -114,62 +114,56 @@ class InsuranceController
             }
         }
 
-        for (let gear of gears)
+        for (const gear of gears)
         {
             InsuranceController.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
         }
     }
 
     /* store insured items on pmc death */
-    static storeDeadGear(pmcData, offraidData, preRaidGear, sessionID)
+    static storeInsuredItemsForReturn(pmcData, offraidData, preRaidGear, sessionID)
     {
-        const preRaidGearHash = {};
-        const securedContainerItemHash = {};
-        const pmcItemsHash = {};
+        const preRaidGearDictionary = {};
+        const pmcItemsDictionary = {};
+        const itemsToReturn = [];
 
-        let gears = [];
-        let securedContainerItems = InventoryHelper.getSecureContainer(offraidData.profile.Inventory.items);
+        const securedContainerItemArray = InventoryHelper.getSecureContainerItems(offraidData.profile.Inventory.items);
 
         for (const item of preRaidGear)
         {
-            preRaidGearHash[item._id] = item;
-        }
-
-        for (const item of securedContainerItems)
-        {
-            securedContainerItemHash[item._id] = item;
+            preRaidGearDictionary[item._id] = item;
         }
 
         for (const item of pmcData.Inventory.items)
         {
-            pmcItemsHash[item._id] = item;
+            pmcItemsDictionary[item._id] = item;
         }
 
-        for (let insuredItem of pmcData.InsuredItems)
+        for (const insuredItem of pmcData.InsuredItems)
         {
-            if (preRaidGearHash[insuredItem.itemId]
-            && !(securedContainerItemHash[insuredItem.itemId])
-            && !(typeof pmcItemsHash[insuredItem.itemId] === "undefined")
-            && !(pmcItemsHash[insuredItem.itemId].slotId === "SecuredContainer"))
+            if (preRaidGearDictionary[insuredItem.itemId]
+                && !(securedContainerItemArray.includes(insuredItem.itemId))
+                && !(typeof pmcItemsDictionary[insuredItem.itemId] === "undefined")
+                && !(pmcItemsDictionary[insuredItem.itemId].slotId === "SecuredContainer"))
             {
-                gears.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsHash[insuredItem.itemId], "sessionID": sessionID });
+                itemsToReturn.push({ "pmcData": pmcData, "insuredItem": insuredItem, "item": pmcItemsDictionary[insuredItem.itemId], "sessionID": sessionID });
             }
         }
 
-        for (let gear of gears)
+        for (const item of itemsToReturn)
         {
-            InsuranceController.addGearToSend(gear.pmcData, gear.insuredItem, gear.item, gear.sessionID);
+            InsuranceController.addGearToSend(item.pmcData, item.insuredItem, item.item, item.sessionID);
         }
     }
 
     /* sends stored insured items as message */
     static sendInsuredItems(pmcData, sessionID)
     {
-        for (let traderId in InsuranceController.insured[sessionID])
+        for (const traderId in InsuranceController.insured[sessionID])
         {
-            let trader = TraderController.getTrader(traderId, sessionID);
-            let time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
-            let dialogueTemplates = DatabaseServer.tables.traders[traderId].dialogue;
+            const trader = TraderController.getTrader(traderId, sessionID);
+            const time = TimeUtil.getTimestamp() + RandomUtil.getInt(trader.insurance.min_return_hour * 3600, trader.insurance.max_return_hour * 3600);
+            const dialogueTemplates = DatabaseServer.tables.traders[traderId].dialogue;
             let messageContent = {
                 "templateId": RandomUtil.getArrayValue(dialogueTemplates.insuranceStart),
                 "type": DialogueController.getMessageTypeValue("npcTrader")
@@ -188,7 +182,7 @@ class InsuranceController
                 }
             };
 
-            for (let insuredItem of InsuranceController.insured[sessionID][traderId])
+            for (const insuredItem of InsuranceController.insured[sessionID][traderId])
             {
                 const isParentHere = InsuranceController.insured[sessionID][traderId].find(isParent => isParent._id === insuredItem.parentId);
                 if (!isParentHere)
@@ -215,19 +209,19 @@ class InsuranceController
 
         for (const sessionID in SaveServer.profiles)
         {
-            let insurance = SaveServer.profiles[sessionID].insurance;
+            const insurance = SaveServer.profiles[sessionID].insurance;
             let i = insurance.length;
 
             while (i-- > 0)
             {
-                let insured = insurance[i];
+                const insured = insurance[i];
 
                 if (time < insured.scheduledTime)
                 {
                     continue;
                 }
                 // Inject a little bit of a surprise by failing the insurance from time to time ;)
-                let toLook = [
+                const toLook = [
                     "hideout",
                     "main",
                     "mod_scope",
@@ -244,9 +238,9 @@ class InsuranceController
                     "mod_tactical_003",
                     "mod_nvg"
                 ];
-                let toDelete = [];
+                const toDelete = [];
 
-                for (let insuredItem of insured.items)
+                for (const insuredItem of insured.items)
                 {
                     if ((toLook.includes(insuredItem.slotId) || !isNaN(insuredItem.slotId)) && RandomUtil.getInt(0, 99) >= InsuranceConfig.returnChance && !toDelete.includes(insuredItem._id))
                     {
@@ -279,8 +273,9 @@ class InsuranceController
     /* add insurance to an item */
     static insure(pmcData, body, sessionID)
     {
-        let itemsToPay = [];
-        let inventoryItemsHash = {};
+        let output = ItemEventRouter.getOutput(sessionID);
+        const itemsToPay = [];
+        const inventoryItemsHash = {};
 
         for (const item of pmcData.Inventory.items)
         {
@@ -288,7 +283,7 @@ class InsuranceController
         }
 
         // get the price of all items
-        for (let key of body.items)
+        for (const key of body.items)
         {
             itemsToPay.push({
                 "id": inventoryItemsHash[key]._id,
@@ -296,15 +291,15 @@ class InsuranceController
             });
         }
 
-        // pay the item	to profile
-        if (!PaymentController.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID))
+        // pay for the item insurance
+        output = PaymentController.payMoney(pmcData, { "scheme_items": itemsToPay, "tid": body.tid }, sessionID, output);
+        if (output.warnings.length > 0)
         {
-            Logger.error("no money found");
-            return "";
+            return output;
         }
 
         // add items to InsuredItems list once money has been paid
-        for (let key of body.items)
+        for (const key of body.items)
         {
             pmcData.InsuredItems.push({
                 "tid": body.tid,
@@ -312,7 +307,7 @@ class InsuranceController
             });
         }
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static generateTemplatesById()
@@ -333,12 +328,12 @@ class InsuranceController
 
         if (InsuranceController.templatesById[_tpl] !== undefined)
         {
-            let template = InsuranceController.templatesById[_tpl];
+            const template = InsuranceController.templatesById[_tpl];
             price = template.Price;
         }
         else
         {
-            let item = DatabaseServer.tables.templates.items[_tpl];
+            const item = DatabaseServer.tables.templates.items[_tpl];
             price = item._props.CreditsPrice;
         }
 
@@ -361,20 +356,20 @@ class InsuranceController
     /* calculates insurance cost */
     static cost(info, sessionID)
     {
-        let output = {};
-        let pmcData = ProfileController.getPmcProfile(sessionID);
-        let inventoryItemsHash = {};
+        const output = {};
+        const pmcData = ProfileController.getPmcProfile(sessionID);
+        const inventoryItemsHash = {};
 
         for (const item of pmcData.Inventory.items)
         {
             inventoryItemsHash[item._id] = item;
         }
 
-        for (let trader of info.traders)
+        for (const trader of info.traders)
         {
-            let items = {};
+            const items = {};
 
-            for (let key of info.items)
+            for (const key of info.items)
             {
                 items[inventoryItemsHash[key]._tpl] = Math.round(InsuranceController.getPremium(pmcData, inventoryItemsHash[key], trader));
             }

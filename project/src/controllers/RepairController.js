@@ -4,17 +4,25 @@ require("../Lib.js");
 
 class RepairController
 {
+    static isWeaponTemplate(tpl)
+    {
+        const itemTemplates = DatabaseServer.tables.templates.items;
+        const baseItem = itemTemplates[tpl];
+        const baseNode = itemTemplates[baseItem._parent];
+        const parentNode = itemTemplates[baseNode._parent];
+        return parentNode._id === "5422acb9af1c889c16000029";
+    }
+
     static repair(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
-        const trader = TraderController.getTrader(body.tid, sessionID);
         const coef = TraderController.getLoyaltyLevel(body.tid, pmcData).repair_price_coef;
         const repairRate = (coef === 0) ? 1 : (coef / 100 + 1);
 
         // find the item to repair
-        for (let repairItem of body.repairItems)
+        for (const repairItem of body.repairItems)
         {
-            let itemToRepair = pmcData.Inventory.items.find((item) =>
+            const itemToRepair = pmcData.Inventory.items.find((item) =>
             {
                 return item._id === repairItem._id;
             });
@@ -36,28 +44,35 @@ class RepairController
                 "tid": body.tid
             };
 
-            if (!PaymentController.payMoney(pmcData, options, sessionID))
+            output = PaymentController.payMoney(pmcData, options, sessionID, output);
+            if (output.warnings.length > 0)
             {
-                Logger.error("no money found");
-                return "";
+                return output;
             }
 
             // change item durability
             const repairable = itemToRepair.upd.Repairable;
-            let durability = repairable.Durability + repairItem.count;
+            const durability = repairable.Durability + repairItem.count;
 
             itemToRepair.upd.Repairable = {
                 "Durability": (repairable.MaxDurability > durability) ? durability : repairable.MaxDurability,
                 "MaxDurability": (repairable.MaxDurability > durability) ? durability : repairable.MaxDurability
             };
 
-            //repairing mask cracks
+            // repairing mask cracks
             if ("FaceShield" in itemToRepair.upd && itemToRepair.upd.FaceShield.Hits > 0)
             {
                 itemToRepair.upd.FaceShield.Hits = 0;
             }
 
             output.profileChanges[sessionID].items.change.push(itemToRepair);
+
+            // add skill points for repairing weapons
+            if (RepairController.isWeaponTemplate(itemToRepair._tpl))
+            {
+                const progress = DatabaseServer.tables.globals.config.SkillsSettings.WeaponTreatment.SkillPointsPerRepair;
+                QuestHelper.rewardSkillPoints(sessionID, pmcData, output, "WeaponTreatment", progress);
+            }
         }
 
         return output;

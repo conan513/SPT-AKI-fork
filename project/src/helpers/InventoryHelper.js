@@ -4,59 +4,32 @@ require("../Lib.js");
 
 class InventoryHelper
 {
-    static getSecureContainer(items)
+    static getSecureContainerItems(items)
     {
-        // Player Slots we care about
-        const inventorySlots = ["SecuredContainer"];
-        let inventoryItems = [];
+        const secureContainer = items.find(x => x.slotId === "SecuredContainer");
 
-        // Get an array of root player items
-        for (let item of items)
+        // No container found, drop out
+        if (!secureContainer)
         {
-            if (inventorySlots.includes(item.slotId))
-            {
-                inventoryItems.push(item);
-            }
+            return [];
         }
 
-        // Loop through these items and get all of their children
-        let newItems = inventoryItems;
+        var itemsInSecureContainer = ItemHelper.findAndReturnChildrenByItems(items, secureContainer._id);
 
-        while (newItems.length > 0)
-        {
-            let foundItems = [];
-
-            for (let item of newItems)
-            {
-                for (let newItem of items)
-                {
-                    if (newItem.parentId === item._id)
-                    {
-                        foundItems.push(newItem);
-                    }
-                }
-            }
-
-            // Add these new found items to our list of inventory items
-            inventoryItems = [...inventoryItems, ...foundItems];
-
-            // Now find the children of these items
-            newItems = foundItems;
-        }
-
-        return inventoryItems;
+        // Return all items returned and exclude the secure container item itself
+        return itemsInSecureContainer.filter(x => x !== secureContainer._id);
     }
 
     static removeSecureContainer(profile)
     {
-        let items = profile.Inventory.items;
+        const items = profile.Inventory.items;
 
         // Remove secured container
-        for (let item of items)
+        for (const item of items)
         {
             if (item.slotId === "SecuredContainer")
             {
-                let toRemove = ItemHelper.findAndReturnChildrenByItems(items, item._id);
+                const toRemove = ItemHelper.findAndReturnChildrenByItems(items, item._id);
                 let n = items.length;
 
                 while (n-- > 0)
@@ -66,7 +39,6 @@ class InventoryHelper
                         items.splice(n, 1);
                     }
                 }
-
                 break;
             }
         }
@@ -78,28 +50,24 @@ class InventoryHelper
     static getStashType(sessionID)
     {
         const pmcData = ProfileController.getPmcProfile(sessionID);
-
-        const stashObj = pmcData.Inventory.items.find(
-            (item) => item._id === pmcData.Inventory.stash
-        );
+        const stashObj = pmcData.Inventory.items.find(item => item._id === pmcData.Inventory.stash);
         if (!stashObj)
         {
             Logger.error("No stash found");
             return "";
         }
-
         return stashObj._tpl;
     }
 
     static generateInventoryID(profile)
     {
         const defaultInventory = "55d7217a4bdc2d86028b456d";
-        let itemsByParentHash = {};
-        let inventoryItemHash = {};
+        const itemsByParentHash = {};
+        const inventoryItemHash = {};
         let inventoryId = "";
 
         // Generate inventoryItem list
-        for (let item of profile.Inventory.items)
+        for (const item of profile.Inventory.items)
         {
             inventoryItemHash[item._id] = item;
 
@@ -130,7 +98,7 @@ class InventoryHelper
         // update inventoryItem id
         if (inventoryId in itemsByParentHash)
         {
-            for (let item of itemsByParentHash[inventoryId])
+            for (const item of itemsByParentHash[inventoryId])
             {
                 item.parentId = newInventoryId;
             }
@@ -153,11 +121,11 @@ class InventoryHelper
     // -> Prepares item Width and height returns [sizeX, sizeY]
     static getSizeByInventoryItemHash(itemtpl, itemID, inventoryItemHash)
     {
-        let toDo = [itemID];
-        let tmpItem = ItemHelper.getItem(itemtpl)[1];
-        let rootItem = inventoryItemHash.byItemId[itemID];
-        let FoldableWeapon = tmpItem._props.Foldable || false;
-        let FoldedSlot = tmpItem._props.FoldedSlot;
+        const toDo = [itemID];
+        const tmpItem = ItemHelper.getItem(itemtpl)[1];
+        const rootItem = inventoryItemHash.byItemId[itemID];
+        const FoldableWeapon = tmpItem._props.Foldable || false;
+        const FoldedSlot = tmpItem._props.FoldedSlot;
 
         let SizeUp = 0;
         let SizeDown = 0;
@@ -169,13 +137,13 @@ class InventoryHelper
         let ForcedLeft = 0;
         let ForcedRight = 0;
         let outX = tmpItem._props.Width;
-        let outY = tmpItem._props.Height;
-        let skipThisItems = [
+        const outY = tmpItem._props.Height;
+        const skipThisItems = [
             "5448e53e4bdc2d60728b4567",
             "566168634bdc2d144c8b456c",
             "5795f317245977243854e041",
         ];
-        let rootFolded = rootItem.upd && rootItem.upd.Foldable && rootItem.upd.Foldable.Folded === true;
+        const rootFolded = rootItem.upd && rootItem.upd.Foldable && rootItem.upd.Foldable.Folded === true;
 
         //The item itself is collapsible
         if (FoldableWeapon && (FoldedSlot === undefined || FoldedSlot === "") && rootFolded)
@@ -189,7 +157,7 @@ class InventoryHelper
             {
                 if (toDo[0] in inventoryItemHash.byParentId)
                 {
-                    for (let item of inventoryItemHash.byParentId[toDo[0]])
+                    for (const item of inventoryItemHash.byParentId[toDo[0]])
                     {
                         //Filtering child items outside of mod slots, such as those inside containers, without counting their ExtraSize attribute
                         if (item.slotId.indexOf("mod_") < 0)
@@ -200,9 +168,9 @@ class InventoryHelper
                         toDo.push(item._id);
 
                         // If the barrel is folded the space in the barrel is not counted
-                        let itm = ItemHelper.getItem(item._tpl)[1];
-                        let childFoldable = itm._props.Foldable;
-                        let childFolded = item.upd && item.upd.Foldable && item.upd.Foldable.Folded === true;
+                        const itm = ItemHelper.getItem(item._tpl)[1];
+                        const childFoldable = itm._props.Foldable;
+                        const childFolded = item.upd && item.upd.Foldable && item.upd.Foldable.Folded === true;
 
                         if (FoldableWeapon && FoldedSlot === item.slotId && (rootFolded || childFolded))
                         {
@@ -259,22 +227,22 @@ class InventoryHelper
     static getPlayerStashSize(sessionID)
     {
         //this sets automaticly a stash size from items.json (its not added anywhere yet cause we still use base stash)
-        let stashTPL = InventoryHelper.getStashType(sessionID);
-        let stashX = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
-        let stashY = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
+        const stashTPL = InventoryHelper.getStashType(sessionID);
+        const stashX = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsH : 10;
+        const stashY = DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV !== 0 ? DatabaseServer.tables.templates.items[stashTPL]._props.Grids[0]._props.cellsV : 66;
         return [stashX, stashY];
     }
 
     static getInventoryItemHash(InventoryItem)
     {
-        let inventoryItemHash = {
+        const inventoryItemHash = {
             "byItemId": {},
             "byParentId": {},
         };
 
         for (let i = 0; i < InventoryItem.length; i++)
         {
-            let item = InventoryItem[i];
+            const item = InventoryItem[i];
             inventoryItemHash.byItemId[item._id] = item;
 
             if (!("parentId" in item))
@@ -286,10 +254,8 @@ class InventoryHelper
             {
                 inventoryItemHash.byParentId[item.parentId] = [];
             }
-
             inventoryItemHash.byParentId[item.parentId].push(item);
         }
-
         return inventoryItemHash;
     }
 
@@ -309,16 +275,12 @@ class InventoryHelper
                 return true;
             }
 
-            container = pmcData.Inventory.items.find(
-                (i) => i._id === container.parentId
-            );
-
+            container = pmcData.Inventory.items.find(i => i._id === container.parentId);
             if (!container)
             {
                 break;
             }
         }
-
         return false;
     }
 }

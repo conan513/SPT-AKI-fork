@@ -7,9 +7,9 @@ class LocationController
     /* generates a random location preset to use for local session */
     static generate(name)
     {
-        let location = DatabaseServer.tables.locations[name];
-        let output = location.base;
-        let ids = {};
+        const location = DatabaseServer.tables.locations[name];
+        const output = location.base;
+        const ids = {};
 
         output.UnixDateTime = TimeUtil.getTimestamp();
 
@@ -20,16 +20,16 @@ class LocationController
         }
 
         // generate loot
-        let forced = location.loot.forced;
-        let mounted = location.loot.mounted;
-        let statics = JsonUtil.clone(location.loot.static);
-        let dynamic = JsonUtil.clone(location.loot.dynamic);
+        const forced = location.loot.forced;
+        const mounted = location.loot.mounted;
+        const statics = JsonUtil.clone(location.loot.static);
+        const dynamic = JsonUtil.clone(location.loot.dynamic);
         output.Loot = [];
 
         // mounted weapons
-        for (let i in mounted)
+        for (const i in mounted)
         {
-            let data = mounted[i];
+            const data = mounted[i];
 
             if (data.Id in ids)
                 continue;
@@ -39,9 +39,9 @@ class LocationController
         }
 
         // forced loot
-        for (let i in forced)
+        for (const i in forced)
         {
-            let data = forced[i].data[0];
+            const data = forced[i].data[0];
 
             if (data.Id in ids)
                 continue;
@@ -52,9 +52,9 @@ class LocationController
 
         let count = 0;
         // static loot
-        for (let i in statics)
+        for (const i in statics)
         {
-            let data = statics[i];
+            const data = statics[i];
 
             if (data.Id in ids)
                 continue;
@@ -68,33 +68,40 @@ class LocationController
         Logger.success(`A total of ${count} containers generated`);
 
         // dyanmic loot
-        let max = LocationConfig.limits[name];
-        count = 0;
+        const maxAttemptsAtPlacingLootAllowedCount = LocationConfig.limits[name];
+        let placedLootCount = 0;
 
         // Loot position list for filtering the lootItem in the same position.
-        let lootPositions = [];
-        let maxCount = 0;
+        const lootPositions = [];
+        let failedAttemptsToPlaceLootCount = 0;
+        let failedSpawnChanceCheck = 0;
 
-        while (maxCount < max && dynamic.length > 0)
+        while ((failedAttemptsToPlaceLootCount + placedLootCount + failedSpawnChanceCheck) < maxAttemptsAtPlacingLootAllowedCount && dynamic.length > 0)
         {
             const result = LocationGenerator.generateDynamicLoot(dynamic, lootPositions, location);
 
             if (result.status === "success")
             {
-                count += 1;
+                placedLootCount ++;
                 lootPositions.push(result.position);
                 output.Loot.push(result.data);
             }
             else if (result.status === "error")
             {
-                continue;
+                if (result.reason === "duplicatelocation")
+                {
+                    failedAttemptsToPlaceLootCount++;
+                }
+                else if (result.reason === "failedspawnchancecheck")
+                {
+                    failedSpawnChanceCheck++;
+                }
             }
-
-            maxCount++;
         }
 
         // done generating
-        Logger.success(`A total of ${count} items spawned`);
+        Logger.success(`A total of ${placedLootCount} dynamic items spawned`);
+        Logger.debug(`A total of ${failedSpawnChanceCheck} dynamic items failed the spawn check`);
         Logger.success(`Generated location ${name}`);
         return output;
     }
@@ -102,26 +109,26 @@ class LocationController
     /* get a location with generated loot data */
     static get(location)
     {
-        let name = location.toLowerCase().replace(" ", "");
+        const name = location.toLowerCase().replace(" ", "");
         return LocationController.generate(name);
     }
 
     /* get all locations without loot data */
     static generateAll()
     {
-        let locations = DatabaseServer.tables.locations;
-        let base = DatabaseServer.tables.locations.base;
-        let data = {};
+        const locations = DatabaseServer.tables.locations;
+        const base = DatabaseServer.tables.locations.base;
+        const data = {};
 
         // use right id's and strip loot
-        for (let name in locations)
+        for (const name in locations)
         {
             if (name === "base")
             {
                 continue;
             }
 
-            let map = locations[name].base;
+            const map = locations[name].base;
 
             map.Loot = [];
             data[map._Id] = map;

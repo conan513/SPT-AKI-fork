@@ -26,10 +26,8 @@ class QuestHelper
                 {
                     return furtherFilter(c);
                 }
-
                 return true;
             }
-
             return false;
         });
 
@@ -51,7 +49,7 @@ class QuestHelper
      */
     static evaluateLevel(pmcProfile, cond)
     {
-        let level = pmcProfile.Info.Level;
+        const level = pmcProfile.Info.Level;
         if (cond._parent === "Level")
         {
             switch (cond._props.compareMethod)
@@ -73,9 +71,9 @@ class QuestHelper
 
     static getDeltaQuests(before, after)
     {
-        let knownQuestsIds = [];
+        const knownQuestsIds = [];
 
-        for (let q of before)
+        for (const q of before)
         {
             knownQuestsIds.push(q._id);
         }
@@ -88,6 +86,25 @@ class QuestHelper
             });
         }
         return after;
+    }
+
+    static rewardSkillPoints(sessionID, pmcData, output, skillName, progress)
+    {
+        const index = pmcData.Skills.Common.findIndex(s => s.Id === skillName);
+
+        if (index === -1)
+        {
+            Logger.error(`Skill ${skillName} not found!`);
+            return;
+        }
+
+        const profileSkill = pmcData.Skills.Common[index];
+        const clientSkill = output.profileChanges[sessionID].skills.Common[index];
+
+        profileSkill.Progress += parseInt(progress);
+        profileSkill.LastAccess = TimeUtil.getTimestamp();
+        clientSkill.Progress = profileSkill.Progress;
+        clientSkill.LastAccess = profileSkill.LastAccess;
     }
 
     /**

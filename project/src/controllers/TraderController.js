@@ -34,13 +34,13 @@ class TraderController
 
     static changeTraderDisplay(traderID, status, sessionID)
     {
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         pmcData.TradersInfo[traderID].unlocked = status;
     }
 
     static getAllTraders(sessionID)
     {
-        let traders = [];
+        const traders = [];
 
         for (const traderID in DatabaseServer.tables.traders)
         {
@@ -58,7 +58,7 @@ class TraderController
     static lvlUp(traderID, sessionID)
     {
         const loyaltyLevels = DatabaseServer.tables.traders[traderID].base.loyaltyLevels;
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
 
         // level up player
         pmcData.Info.Level = PlayerController.calculateLevel(pmcData);
@@ -93,16 +93,16 @@ class TraderController
         {
             const trader = DatabaseServer.tables.traders[traderID].base;
 
-            if (trader.supply_next_time > time)
+            if (trader.nextResupply > time)
             {
                 continue;
             }
 
             // get resupply time
-            const overdue = (time - trader.supply_next_time);
+            const overdue = (time - trader.nextResupply);
             const refresh = Math.floor(overdue / update) + 1;
 
-            trader.supply_next_time = trader.supply_next_time + refresh * update;
+            trader.nextResupply = trader.nextResupply + refresh * update;
             DatabaseServer.tables.traders[traderID].base = trader;
         }
 
@@ -112,15 +112,21 @@ class TraderController
     static stripLoyaltyAssort(sessionId, traderId, assort)
     {
         const pmcData = ProfileController.getPmcProfile(sessionId);
-
-        for (const itemId in assort.loyal_level_items)
+        // assort does not always contain loyal_level_items
+        if (!assort.loyal_level_items)
         {
-            if (assort.loyal_level_items[itemId] > pmcData.TradersInfo[traderId].loyaltyLevel)
+            Logger.warning(`stripQuestAssort: Assort for Trader ${traderId} does't contain "loyal_level_items"`);
+        }
+        else
+        {
+            for (const itemId in assort.loyal_level_items)
             {
-                assort = TraderController.removeItemFromAssort(assort, itemId);
+                if (assort.loyal_level_items[itemId] > pmcData.TradersInfo[traderId].loyaltyLevel)
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemId);
+                }
             }
         }
-
         return assort;
     }
 
@@ -128,25 +134,32 @@ class TraderController
     {
         const questassort = DatabaseServer.tables.traders[traderId].questassort;
         const pmcData = ProfileController.getPmcProfile(sessionId);
-
-        for (const itemID in assort.loyal_level_items)
+        // assort does not always contain loyal_level_items
+        if (!assort.loyal_level_items)
         {
-            if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
-            {
-                assort = TraderController.removeItemFromAssort(assort, itemID);
-            }
+            Logger.warning(`stripQuestAssort: Assort for Trader ${traderId} does't contain "loyal_level_items"`);
+        }
+        else
+        {
 
-            if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
+            for (const itemID in assort.loyal_level_items)
             {
-                assort = TraderController.removeItemFromAssort(assort, itemID);
-            }
+                if (itemID in questassort.started && QuestController.questStatus(pmcData, questassort.started[itemID]) !== "Started")
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemID);
+                }
 
-            if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
-            {
-                assort = TraderController.removeItemFromAssort(assort, itemID);
+                if (itemID in questassort.success && QuestController.questStatus(pmcData, questassort.success[itemID]) !== "Success")
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemID);
+                }
+
+                if (itemID in questassort.fail && QuestController.questStatus(pmcData, questassort.fail[itemID]) !== "Fail")
+                {
+                    assort = TraderController.removeItemFromAssort(assort, itemID);
+                }
             }
         }
-
         return assort;
     }
 
@@ -157,7 +170,7 @@ class TraderController
             const time = TimeUtil.getTimestamp();
             const trader = DatabaseServer.tables.traders[traderId].base;
 
-            if (!TraderController.fenceAssort || trader.supply_next_time < time)
+            if (!TraderController.fenceAssort || trader.nextResupply < time)
             {
                 Logger.warning("generating fence");
                 TraderController.fenceAssort = TraderController.generateFenceAssort(sessionID);
@@ -189,27 +202,40 @@ class TraderController
         const assort = DatabaseServer.tables.traders[fenceID].assort;
         const itemPresets = DatabaseServer.tables.globals.ItemPresets;
         const names = Object.keys(assort.loyal_level_items);
-        let result = {
+        const result = {
             "items": [],
             "barter_scheme": {},
             "loyal_level_items": {}
         };
 
+        let presetCount = 0;
         for (let i = 0; i < TraderConfig.fenceAssortSize; i++)
         {
-            let itemID = names[RandomUtil.getInt(0, names.length - 1)];
-            let price = HandbookController.getTemplatePrice(itemID);
+            const itemID = names[RandomUtil.getInt(0, names.length - 1)];
+            const price = HandbookController.getTemplatePrice(itemID);
+            const itemIsPreset = PresetController.isPreset(itemID);
 
-            if (price === 0 || price === 1 || price === 100)
+            if (price === 0 || (price === 1 && !itemIsPreset) || price === 100)
             {
                 // don't allow "special" items
                 i--;
                 continue;
             }
 
-            // it's the item
-            if (!(itemID in itemPresets))
+            // it's an item
+            if (!itemIsPreset)
             {
+                // Skip items that are on fence ignore list
+                if (TraderConfig.fenceItemIgnoreList.length > 0)
+                {
+                    if (ItemHelper.doesItemParentsIdMatch(itemID, TraderConfig.fenceItemIgnoreList)) // check blacklist against items parents
+                    {
+                        i--;
+                        Logger.debug(`Fence: ignored item ${itemID}`);
+                        continue;
+                    }
+                }
+
                 const toPush = JsonUtil.clone(assort.items[assort.items.findIndex(i => i._id === itemID)]);
 
                 toPush._id = HashUtil.generate();
@@ -226,15 +252,20 @@ class TraderController
             }
 
             // it's itemPreset
+            if (presetCount > TraderConfig.maxPresetsCount)
+            {
+                continue;
+            }
+
             const ItemRootOldId = itemPresets[itemID]._parent;
-            let items = JsonUtil.clone(itemPresets[itemID]._items);
+            const items = JsonUtil.clone(itemPresets[itemID]._items);
             let rub = 0;
 
             items[0]._id = HashUtil.generate();
 
             for (let i = 0; i < items.length; i++)
             {
-                let mod = items[i];
+                const mod = items[i];
 
                 //build root Item info
                 if (!("parentId" in mod))
@@ -243,8 +274,9 @@ class TraderController
                     mod.parentId = "hideout";
                     mod.slotId = "hideout";
                     mod.upd = {
-                        "UnlimitedCount": true,
-                        "StackObjectsCount": 999999999
+                        "UnlimitedCount": false,
+                        "StackObjectsCount": 1,
+                        "presetId": itemID
                     };
                 }
                 else if (mod.parentId === ItemRootOldId)
@@ -268,6 +300,8 @@ class TraderController
             {
                 result.barter_scheme[items[0]._id][0][0].count = rub * TraderController.getFenceInfo(pmcData).PriceModifier;
             }
+
+            presetCount++;
         }
 
         return result;
@@ -281,9 +315,9 @@ class TraderController
         delete assort.barter_scheme[itemID];
         delete assort.loyal_level_items[itemID];
 
-        for (let i in ids_toremove)
+        for (const i in ids_toremove)
         {
-            for (let a in assort.items)
+            for (const a in assort.items)
             {
                 if (assort.items[a]._id === ids_toremove[i])
                 {
@@ -302,7 +336,7 @@ class TraderController
         const buy_price_coef = TraderController.getLoyaltyLevel(traderID, pmcData).buy_price_coef;
         const fenceInfo = TraderController.getFenceInfo(pmcData);
         const currency = PaymentController.getCurrency(trader.currency);
-        let output = {};
+        const output = {};
 
         // get sellable items
         for (const item of pmcData.Inventory.items)
@@ -369,9 +403,9 @@ class TraderController
     */
     static traderFilter(traderFilters, tplToCheck)
     {
-        for (let filter of traderFilters)
+        for (const filter of traderFilters)
         {
-            for (let iaaaaa of HandbookController.templatesWithParent(filter))
+            for (const iaaaaa of HandbookController.templatesWithParent(filter))
             {
                 if (iaaaaa === tplToCheck)
                 {
@@ -379,9 +413,9 @@ class TraderController
                 }
             }
 
-            for (let subcateg of HandbookController.childrenCategories(filter))
+            for (const subcateg of HandbookController.childrenCategories(filter))
             {
-                for (let itemFromSubcateg of HandbookController.templatesWithParent(subcateg))
+                for (const itemFromSubcateg of HandbookController.templatesWithParent(subcateg))
                 {
                     if (itemFromSubcateg === tplToCheck)
                     {
@@ -412,9 +446,14 @@ class TraderController
         const trader = DatabaseServer.tables.traders[traderID].base;
         let loyaltyLevel = pmcData.TradersInfo[traderID].loyaltyLevel;
 
-        if (!loyaltyLevel)
+        if (!loyaltyLevel || loyaltyLevel < 1)
         {
             loyaltyLevel = 1;
+        }
+
+        if (loyaltyLevel > trader.loyaltyLevels.length)
+        {
+            loyaltyLevel = trader.loyaltyLevels.length;
         }
 
         return trader.loyaltyLevels[loyaltyLevel - 1];

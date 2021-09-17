@@ -30,7 +30,7 @@ class App
         for (const taskId in App.onUpdate)
         {
             let success = false;
-            let lastruntime = App.onUpdateLastRun[taskId] || 0;
+            const lastruntime = App.onUpdateLastRun[taskId] || 0;
 
             const timeSinceLastRun = TimeUtil.getTimestamp() - lastruntime;
 

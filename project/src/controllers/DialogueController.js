@@ -15,9 +15,9 @@ class DialogueController
     /* Set the content of the dialogue on the list tab. */
     static generateDialogueList(sessionID)
     {
-        let data = [];
+        const data = [];
 
-        for (let dialogueId in SaveServer.profiles[sessionID].dialogues)
+        for (const dialogueId in SaveServer.profiles[sessionID].dialogues)
         {
             data.push(DialogueController.getDialogueInfo(dialogueId, sessionID));
         }
@@ -28,7 +28,7 @@ class DialogueController
     /* Get the content of a dialogue. */
     static getDialogueInfo(dialogueId, sessionID)
     {
-        let dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
+        const dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
 
         return {
             "_id": dialogueId,
@@ -46,14 +46,14 @@ class DialogueController
 	*/
     static generateDialogueView(dialogueId, sessionID)
     {
-        let dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
+        const dialogue = SaveServer.profiles[sessionID].dialogues[dialogueId];
         dialogue.new = 0;
 
         // Set number of new attachments, but ignore those that have expired.
         let attachmentsNew = 0;
-        let currDt = Date.now() / 1000;
+        const currDt = Date.now() / 1000;
 
-        for (let message of dialogue.messages)
+        for (const message of dialogue.messages)
         {
             if (message.hasRewards && !message.rewardCollected && currDt < (message.dt + message.maxStorageTime))
             {
@@ -63,7 +63,7 @@ class DialogueController
 
         dialogue.attachmentsNew = attachmentsNew;
 
-        return HttpResponse.getBody({"messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages});
+        return HttpResponse.getBody({ "messages": SaveServer.profiles[sessionID].dialogues[dialogueId].messages });
     }
 
     /*
@@ -71,8 +71,8 @@ class DialogueController
 	*/
     static addDialogueMessage(dialogueID, messageContent, sessionID, rewards = [])
     {
-        let dialogueData = SaveServer.profiles[sessionID].dialogues;
-        let isNewDialogue = !(dialogueID in dialogueData);
+        const dialogueData = SaveServer.profiles[sessionID].dialogues;
+        const isNewDialogue = !(dialogueID in dialogueData);
         let dialogue = dialogueData[dialogueID];
 
         if (isNewDialogue)
@@ -91,7 +91,7 @@ class DialogueController
         dialogue.new += 1;
 
         // Generate item stash if we have rewards.
-        let items = {};
+        const items = {};
 
         if (rewards.length > 0)
         {
@@ -101,7 +101,7 @@ class DialogueController
             items.data = [];
             rewards = ItemHelper.replaceIDs(null, rewards);
 
-            for (let reward of rewards)
+            for (const reward of rewards)
             {
                 if (!("slotId" in reward) || reward.slotId === "hideout")
                 {
@@ -115,7 +115,7 @@ class DialogueController
             dialogue.attachmentsNew += 1;
         }
 
-        let message = {
+        const message = {
             "_id": HashUtil.generate(),
             "uid": dialogueID,
             "type": messageContent.type,
@@ -150,7 +150,7 @@ class DialogueController
     static getMessagePreview(dialogue)
     {
         // The last message of the dialogue should be shown on the preview.
-        let message = dialogue.messages[dialogue.messages.length - 1];
+        const message = dialogue.messages[dialogue.messages.length - 1];
 
         return {
             "dt": message.dt,
@@ -165,17 +165,17 @@ class DialogueController
 	*/
     static getMessageItemContents(messageId, sessionID)
     {
-        let dialogueData = SaveServer.profiles[sessionID].dialogues;
+        const dialogueData = SaveServer.profiles[sessionID].dialogues;
 
-        for (let dialogueId in dialogueData)
+        for (const dialogueId in dialogueData)
         {
-            let messages = dialogueData[dialogueId].messages;
+            const messages = dialogueData[dialogueId].messages;
 
-            for (let message of messages)
+            for (const message of messages)
             {
                 if (message._id === messageId)
                 {
-                    let attachmentsNew = SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
+                    const attachmentsNew = SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew;
                     if (attachmentsNew > 0)
                     {
                         SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = attachmentsNew - 1;
@@ -201,9 +201,9 @@ class DialogueController
 
     static setRead(dialogueIds, sessionID)
     {
-        let dialogueData = SaveServer.profiles[sessionID].dialogues;
+        const dialogueData = SaveServer.profiles[sessionID].dialogues;
 
-        for (let dialogId of dialogueIds)
+        for (const dialogId of dialogueIds)
         {
             dialogueData[dialogId].new = 0;
             dialogueData[dialogId].attachmentsNew = 0;
@@ -213,10 +213,10 @@ class DialogueController
 
     static getAllAttachments(dialogueId, sessionID)
     {
-        let output = [];
-        let timeNow = Date.now() / 1000;
+        const output = [];
+        const timeNow = Date.now() / 1000;
 
-        for (let message of SaveServer.profiles[sessionID].dialogues[dialogueId].messages)
+        for (const message of SaveServer.profiles[sessionID].dialogues[dialogueId].messages)
         {
             if (timeNow < (message.dt + message.maxStorageTime))
             {
@@ -225,7 +225,7 @@ class DialogueController
         }
 
         SaveServer.profiles[sessionID].dialogues[dialogueId].attachmentsNew = 0;
-        return {"messages": output};
+        return { "messages": output };
     }
 
     static update()
@@ -239,9 +239,9 @@ class DialogueController
     // deletion of items that has been expired. triggers when updating traders.
     static removeExpiredItems(sessionID)
     {
-        for (let dialogueId in SaveServer.profiles[sessionID].dialogues)
+        for (const dialogueId in SaveServer.profiles[sessionID].dialogues)
         {
-            for (let message of SaveServer.profiles[sessionID].dialogues[dialogueId].messages)
+            for (const message of SaveServer.profiles[sessionID].dialogues[dialogueId].messages)
             {
                 if ((Date.now() / 1000) > (message.dt + message.maxStorageTime))
                 {

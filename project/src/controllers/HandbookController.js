@@ -6,7 +6,7 @@ class LookupItem
 {
     constructor()
     {
-        this.byId = {},
+        this.byId = {};
         this.byParent = {};
     }
 }
@@ -28,14 +28,14 @@ class HandbookController
     {
         const lookup = new LookupCollection();
 
-        for (let x of DatabaseServer.tables.templates.handbook.Items)
+        for (const x of DatabaseServer.tables.templates.handbook.Items)
         {
             lookup.items.byId[x.Id] = x.Price;
             lookup.items.byParent[x.ParentId] || (lookup.items.byParent[x.ParentId] = []);
             lookup.items.byParent[x.ParentId].push(x.Id);
         }
 
-        for (let x of DatabaseServer.tables.templates.handbook.Categories)
+        for (const x of DatabaseServer.tables.templates.handbook.Categories)
         {
             lookup.categories.byId[x.Id] = x.ParentId ? x.ParentId : null;
 

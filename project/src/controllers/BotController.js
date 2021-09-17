@@ -41,7 +41,7 @@ class BotController
         const levelResult = BotController.generateRandomLevel(node.experience.level.min, node.experience.level.max);
 
         bot.Info.Nickname = `${RandomUtil.getArrayValue(node.firstName)} ${RandomUtil.getArrayValue(node.lastName) || ""}`;
-        bot.Info.experience = levelResult.exp;
+        bot.Info.Experience = levelResult.exp;
         bot.Info.Level = levelResult.level;
         bot.Info.Settings.Experience = RandomUtil.getInt(node.experience.reward.min, node.experience.reward.max);
         bot.Info.Settings.StandingForKill = node.experience.standingForKill;
@@ -69,9 +69,9 @@ class BotController
         return bot;
     }
 
-    static generate(info)
+    static generate(info, playerScav = false)
     {
-        let output = [];
+        const output = [];
 
         for (const condition of info.conditions)
         {
@@ -79,7 +79,7 @@ class BotController
             {
                 const pmcSide = (RandomUtil.getInt(0, 99) < BotConfig.pmc.isUsec) ? "Usec" : "Bear";
                 const role = condition.Role;
-                const isPmc = (role in BotConfig.pmc.types && RandomUtil.getInt(0, 99) < BotConfig.pmc.types[role]);
+                const isPmc = playerScav ? false : (role in BotConfig.pmc.types && RandomUtil.getInt(0, 99) < BotConfig.pmc.types[role]);
                 let bot = JsonUtil.clone(DatabaseServer.tables.bots.base);
 
                 bot.Info.Settings.BotDifficulty = condition.Difficulty;
@@ -101,7 +101,7 @@ class BotController
 
         // Get random level based on the exp table.
         let exp = 0;
-        let level = RandomUtil.getInt(min, maxLevel);
+        const level = RandomUtil.getInt(min, maxLevel);
 
         for (let i = 0; i < level; i++)
         {
@@ -114,7 +114,7 @@ class BotController
             exp += RandomUtil.getInt(0, expTable[level].exp - 1);
         }
 
-        return {level, exp};
+        return { level, exp };
     }
 
     /** Converts health object to the required format */
@@ -182,8 +182,8 @@ class BotController
 
     static generateSkills(skillsObj)
     {
-        let skills = [];
-        let masteries = [];
+        const skills = [];
+        const masteries = [];
 
         // skills
         if (skillsObj.Common)
@@ -236,7 +236,8 @@ class BotController
                     "KillerProfileId": "Unknown",
                     "KillerName": "Unknown",
                     "WeaponName": "Unknown"
-                }
+                },
+                "SpawnedInSession": true
             }
         });
 

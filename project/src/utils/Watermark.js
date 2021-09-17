@@ -7,7 +7,7 @@ class WatermarkLocale
     static locales = {
         "en-US": {
             "description": [
-                "https://www.guilded.gg/senkospub",
+                "https://discord.com/invite/f58U3MsF",
                 "",
                 "This work is free of charge",
                 "Commercial use is prohibited"
@@ -56,6 +56,7 @@ class Watermark
     static project = "SPT-AKI";
     static version = "2.0.0";
     static text = [];
+    static versionLabel = "";
 
     static initialize()
     {
@@ -67,7 +68,8 @@ class Watermark
             Watermark.version = `${Watermark.version}-BLEEDINGEDGE`;
         }
 
-        Watermark.text = [`${Watermark.project} ${Watermark.version}`];
+        Watermark.versionLabel = `${Watermark.project} ${Watermark.version}`;
+        Watermark.text = [Watermark.versionLabel];
         Watermark.text = [...Watermark.text, ...description];
 
         if (globalThis.G_DEBUG_CONFIGURATION)
@@ -79,7 +81,7 @@ class Watermark
     /** Set window title */
     static setTitle()
     {
-        process.title = `${Watermark.project} ${Watermark.version}`;
+        process.title = Watermark.versionLabel;
     }
 
     /** Reset console cursor to top */
@@ -91,12 +93,14 @@ class Watermark
     /** Draw the watermark */
     static draw()
     {
-        let result = [];
+        const result = [];
 
         // calculate size
-        let longestLength = Watermark.text.reduce((a, b) =>
+        const longestLength = Watermark.text.reduce((a, b) =>
         {
-            return a.length > b.length ? a : b;
+            const a2 = String(a).replace(/[\u0391-\uFFE5]/g, "ab");
+            const b2 = String(b).replace(/[\u0391-\uFFE5]/g, "ab");
+            return a2.length > b2.length ? a2 : b2;
         }).length;
 
         // get top-bottom line
@@ -110,9 +114,9 @@ class Watermark
         // get watermark to draw
         result.push(`┌─${line}─┐`);
 
-        for (let text of Watermark.text)
+        for (const text of Watermark.text)
         {
-            let spacingSize = longestLength - Watermark.textLength(text);
+            const spacingSize = longestLength - Watermark.textLength(text);
             let spacingText = text;
 
             for (let i = 0; i < spacingSize; ++i)
@@ -126,7 +130,7 @@ class Watermark
         result.push(`└─${line}─┘`);
 
         // draw the watermark
-        for (let text of result)
+        for (const text of result)
         {
             Logger.log(text, "yellow");
         }
@@ -135,22 +139,7 @@ class Watermark
     /** Caculate text length */
     static textLength(s)
     {
-        const arr = s.split("");
-        let result = 0;
-
-        for (const char of arr)
-        {
-            if (encodeURI(char).split(/%..|./).length - 1 > 1)
-            {
-                result += 2;
-            }
-            else
-            {
-                result++;
-            }
-        }
-
-        return result;
+        return String(s).replace(/[\u0391-\uFFE5]/g, "ab").length;
     }
 }
 

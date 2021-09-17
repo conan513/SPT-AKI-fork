@@ -35,6 +35,7 @@ class HideoutController
 {
     static upgrade(pmcData, body, sessionID)
     {
+        const output = ItemEventRouter.getOutput(sessionID);
         const items = body.items.map(reqItem =>
         {
             const item = pmcData.Inventory.items.find(invItem => invItem._id === reqItem.id);
@@ -45,12 +46,12 @@ class HideoutController
         });
 
         // If it's not money, its construction / barter items
-        for (let item of items)
+        for (const item of items)
         {
             if (!item.inventoryItem)
             {
                 Logger.error(`Failed to find item in inventory with id ${item.requestedItem.id}`);
-                return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+                return HttpResponse.appendErrorToOutput(output);
             }
 
             if (PaymentController.isMoneyTpl(item.inventoryItem._tpl)
@@ -62,7 +63,7 @@ class HideoutController
             }
             else
             {
-                InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID);
+                InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID, output);
             }
         }
 
@@ -71,35 +72,39 @@ class HideoutController
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === body.areaType);
+
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
-        let ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
+        const ctime = hideoutData.stages[hideoutArea.level + 1].constructionTime;
+
         if (ctime > 0)
         {
-            let timestamp = TimeUtil.getTimestamp();
+            const timestamp = TimeUtil.getTimestamp();
 
             hideoutArea.completeTime = timestamp + ctime;
             hideoutArea.constructing = true;
         }
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static upgradeComplete(pmcData, body, sessionID)
     {
+        const output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
+
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         // Upgrade area
@@ -108,23 +113,25 @@ class HideoutController
         hideoutArea.constructing = false;
 
         const hideoutData = DatabaseServer.tables.hideout.areas.find(area => area.type === hideoutArea.type);
+
         if (!hideoutData)
         {
             Logger.error(`Could not find area in database of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         // Apply bonuses
-        let bonuses = hideoutData.stages[hideoutArea.level].bonuses;
+        const bonuses = hideoutData.stages[hideoutArea.level].bonuses;
+
         if (bonuses.length > 0)
         {
-            for (let bonus of bonuses)
+            for (const bonus of bonuses)
             {
                 HideoutController.applyPlayerUpgradesBonuses(pmcData, bonus);
             }
         }
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     // Move items from hideout
@@ -149,7 +156,7 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        for (let item of items)
+        for (const item of items)
         {
             if (!item.inventoryItem)
             {
@@ -175,7 +182,7 @@ class HideoutController
                 hideoutArea.slots.splice(slot_position, 1, slot_to_add);
             }
 
-            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID);
+            output = InventoryController.removeItem(pmcData, item.inventoryItem._id, sessionID, output);
         }
 
         return output;
@@ -194,8 +201,8 @@ class HideoutController
 
         if (hideoutArea.type === areaTypes.GENERATOR)
         {
-            let itemToMove = hideoutArea.slots[body.slots[0]].item[0];
-            let newReq = {
+            const itemToMove = hideoutArea.slots[body.slots[0]].item[0];
+            const newReq = {
                 "items": [{
                     "item_id": itemToMove._tpl,
                     "count": 1,
@@ -236,7 +243,7 @@ class HideoutController
                 return HttpResponse.appendErrorToOutput(output);
             }
 
-            let newReq = {
+            const newReq = {
                 "items": [{
                     "item_id": hideoutArea.slots[0].item[0]._tpl,
                     "count": 1,
@@ -260,16 +267,18 @@ class HideoutController
 
     static toggleArea(pmcData, body, sessionID)
     {
+        const output = ItemEventRouter.getOutput(sessionID);
         const hideoutArea = pmcData.Hideout.Areas.find(area => area.type === body.areaType);
+
         if (!hideoutArea)
         {
             Logger.error(`Could not find area of type ${body.areaType}`);
-            return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
+            return HttpResponse.appendErrorToOutput(output);
         }
 
         hideoutArea.active = body.enabled;
 
-        return ItemEventRouter.getOutput(sessionID);
+        return output;
     }
 
     static singleProductionStart(pmcData, body, sessionID)
@@ -278,19 +287,39 @@ class HideoutController
 
         let output = ItemEventRouter.getOutput(sessionID);
 
-        for (let itemToDelete of body.items)
+        for (const itemToDelete of body.items)
         {
-            output = InventoryController.removeItem(pmcData, itemToDelete.id, sessionID);
+            output = InventoryController.removeItem(pmcData, itemToDelete.id, sessionID, output);
         }
 
         return output;
+    }
+
+    /**
+     * This convinience function intialies new Production Object
+     * with all the constants.
+     * @param {*} recipeId
+     * @param {*} productionTime
+     * @returns object
+     */
+    static initProduction(recipeId, productionTime)
+    {
+        return {
+            "Progress": 0,
+            "inProgress": true,
+            "RecipeId": recipeId,
+            "Products": [],
+            "SkipTime": 0,
+            "ProductionTime": productionTime,
+            "StartTimestamp": TimeUtil.getTimestamp()
+        };
     }
 
     static scavCaseProductionStart(pmcData, body, sessionID)
     {
         let output = ItemEventRouter.getOutput(sessionID);
 
-        for (let requestedItem of body.items)
+        for (const requestedItem of body.items)
         {
             const inventoryItem = pmcData.Inventory.items.find(item => item._id === requestedItem.id);
             if (!inventoryItem)
@@ -318,10 +347,10 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        let rarityItemCounter = {};
-        let products = [];
+        const rarityItemCounter = {};
+        const products = [];
 
-        for (let rarity in recipe.EndProducts)
+        for (const rarity in recipe.EndProducts)
         {
             // TODO: This ensures ScavCase always has the max amount of items possible. Should probably randomize this
             if (recipe.EndProducts[rarity].max > 0)
@@ -332,13 +361,13 @@ class HideoutController
 
         // TODO: This probably needs to be rewritten eventually, as poking at random items
         // and hoping to find one of the correct rarity is wildly inefficient and inconsistent
-        for (let rarityType in rarityItemCounter)
+        for (const rarityType in rarityItemCounter)
         {
             while (rarityItemCounter[rarityType] > 0)
             {
-                let random = RandomUtil.getIntEx(Object.keys(DatabaseServer.tables.templates.items).length);
-                let randomKey = Object.keys(DatabaseServer.tables.templates.items)[random];
-                let tempItem = DatabaseServer.tables.templates.items[randomKey];
+                const random = RandomUtil.getIntEx(Object.keys(DatabaseServer.tables.templates.items).length);
+                const randomKey = Object.keys(DatabaseServer.tables.templates.items)[random];
+                const tempItem = DatabaseServer.tables.templates.items[randomKey];
 
                 if (tempItem._props && tempItem._props.Rarity === rarityType)
                 {
@@ -356,14 +385,10 @@ class HideoutController
             "Products": products
         };
 
-        pmcData.Hideout.Production[body.recipeId] = {
-            "Progress": 0,
-            "inProgress": true,
-            "RecipeId": body.recipeId,
-            "Products": [],
-            "SkipTime": 0,
-            "StartTime": TimeUtil.getTimestamp()
-        };
+        // @Important: Here we need to be very exact:
+        // - normal recipe: Production time value is stored in attribute "productionType" with small "p"
+        // - scav case recipe: Production time value is stored in attribute "ProductionType" with capital "P"
+        pmcData.Hideout.Production[body.recipeId] = HideoutController.initProduction(body.recipeId, recipe.ProductionTime);
 
         return output;
     }
@@ -376,7 +401,7 @@ class HideoutController
 
     static getBTC(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         const bitCoinCount = pmcData.Hideout.Production[BITCOIN_FARM].Products.length;
         if (!bitCoinCount)
@@ -385,7 +410,7 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(output);
         }
 
-        let newBTC = {
+        const newBTC = {
             "items": [{
                 "item_id": "59faff1d86f7746c51718c9c",
                 "count": pmcData.Hideout.Production[BITCOIN_FARM].Products.length,
@@ -393,7 +418,7 @@ class HideoutController
             "tid": "ragfair"
         };
 
-        let callback = () =>
+        const callback = () =>
         {
             pmcData.Hideout.Production[BITCOIN_FARM].Products = [];
         };
@@ -403,7 +428,7 @@ class HideoutController
 
     static takeProduction(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         if (body.recipeId === BITCOIN_FARM)
         {
@@ -422,7 +447,7 @@ class HideoutController
                 id = PresetController.getStandardPreset(id)._id;
             }
 
-            let newReq = {
+            const newReq = {
                 "items": [{
                     "item_id": id,
                     "count": recipe.count,
@@ -438,7 +463,7 @@ class HideoutController
             }
 
             // delete the production in profile Hideout.Production if addItem passes validation
-            let callback = () =>
+            const callback = () =>
             {
                 delete pmcData.Hideout.Production[kvp[0]];
             };
@@ -491,14 +516,10 @@ class HideoutController
             return HttpResponse.appendErrorToOutput(ItemEventRouter.getOutput(sessionID));
         }
 
-        pmcData.Hideout.Production[body.recipeId] = {
-            "Progress": 0,
-            "inProgress": true,
-            "RecipeId": body.recipeId,
-            "Products": [],
-            "SkipTime": 0,
-            "StartTime": TimeUtil.getTimestamp()
-        };
+        // @Important: Here we need to be very exact:
+        // - normal recipe: Production time value is stored in attribute "productionType" with small "p"
+        // - scav case recipe: Production time value is stored in attribute "ProductionType" with capital "P"
+        pmcData.Hideout.Production[body.recipeId] = HideoutController.initProduction(body.recipeId, recipe.productionTime);
     }
 
     // BALIST0N, I got bad news for you
@@ -512,7 +533,7 @@ class HideoutController
         {
             case "StashSize":
 
-                for (let item in pmcData.Inventory.items)
+                for (const item in pmcData.Inventory.items)
                 {
                     if (pmcData.Inventory.items[item]._id === pmcData.Inventory.stash)
                     {
@@ -559,7 +580,7 @@ class HideoutController
     static updatePlayerHideout(sessionID)
     {
         const recipes = DatabaseServer.tables.hideout.production;
-        let pmcData = ProfileController.getPmcProfile(sessionID);
+        const pmcData = ProfileController.getPmcProfile(sessionID);
         let btcFarmCGs = 0;
         let isGeneratorOn = false;
         let WaterCollectorHasFilter = false;
@@ -596,7 +617,7 @@ class HideoutController
                             HideoutController.registerProduction(pmcData, recipe, sessionID);
                         }
 
-                        for (let slot of area.slots)
+                        for (const slot of area.slots)
                         {
                             if (slot.item)
                             {
@@ -615,7 +636,7 @@ class HideoutController
                     break;
 
                 case areaTypes.BITCOIN_FARM:
-                    for (let slot of area.slots)
+                    for (const slot of area.slots)
                     {
                         if (slot.item)
                         {
@@ -627,7 +648,7 @@ class HideoutController
         }
 
         // update production time
-        for (let prod in pmcData.Hideout.Production)
+        for (const prod in pmcData.Hideout.Production)
         {
             const scavCaseRecipe = DatabaseServer.tables.hideout.scavcase.find(r => r._id === prod);
             if (!pmcData.Hideout.Production[prod].inProgress)
@@ -637,14 +658,14 @@ class HideoutController
 
             if (scavCaseRecipe)
             {
-                const time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                const time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTimestamp) - pmcData.Hideout.Production[prod].Progress;
                 pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 continue;
             }
 
             if (prod === WATER_COLLECTOR)
             {
-                let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+                let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTimestamp) - pmcData.Hideout.Production[prod].Progress;
                 if (!isGeneratorOn)
                 {
                     time_elapsed = Math.floor(time_elapsed * 0.2);
@@ -652,6 +673,7 @@ class HideoutController
 
                 if (WaterCollectorHasFilter)
                 {
+
                     pmcData.Hideout.Production[prod].Progress += time_elapsed;
                 }
                 continue;
@@ -663,6 +685,7 @@ class HideoutController
                 continue;
             }
 
+            //other recipes
             const recipe = recipes.find(r => r._id === prod);
             if (!recipe)
             {
@@ -670,7 +693,7 @@ class HideoutController
                 continue;
             }
 
-            let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTime) - pmcData.Hideout.Production[prod].Progress;
+            let time_elapsed = (TimeUtil.getTimestamp() - pmcData.Hideout.Production[prod].StartTimestamp) - pmcData.Hideout.Production[prod].Progress;
             if (recipe.continuous && !isGeneratorOn)
             {
                 time_elapsed = Math.floor(time_elapsed * 0.2);
@@ -748,7 +771,7 @@ class HideoutController
 
     static updateWaterFilters(waterFilterArea, pwProd, isGeneratorOn)
     {
-        let time_elapsed = (TimeUtil.getTimestamp() - pwProd.StartTime) - pwProd.Progress;
+        let time_elapsed = (TimeUtil.getTimestamp() - pwProd.StartTimestamp) - pwProd.Progress;
         // 100 resources last 8 hrs 20 min, 100/8.33/60/60 = 0.00333
         let filterDrainRate = 0.00333;
         let production_time = 0;
@@ -865,7 +888,7 @@ class HideoutController
 
     static updateBitcoinFarm(btcProd, btcFarmCGs, isGeneratorOn)
     {
-        const time_elapsed = 4 * (TimeUtil.getTimestamp() - btcProd.StartTime);
+        const time_elapsed = 4 * (TimeUtil.getTimestamp() - btcProd.StartTimestamp);
 
         if (isGeneratorOn)
         {
@@ -898,7 +921,7 @@ class HideoutController
             }
         }
 
-        btcProd.StartTime = TimeUtil.getTimestamp();
+        btcProd.StartTimestamp = TimeUtil.getTimestamp();
         return btcProd;
     }
 }

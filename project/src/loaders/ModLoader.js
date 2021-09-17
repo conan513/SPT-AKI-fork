@@ -197,8 +197,8 @@ class ModLoader
 
     static getLoadOrder(mods)
     {
-        let result = {};
-        let visited = {};
+        const result = {};
+        const visited = {};
 
         for (const mod in mods)
         {

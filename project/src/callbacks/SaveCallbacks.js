@@ -15,7 +15,6 @@ class SaveCallbacks
         if (timeSinceLastRun > 15 * 1)
         {
             SaveServer.save();
-            Logger.debug("Saved profiles");
             return true;
         }
 

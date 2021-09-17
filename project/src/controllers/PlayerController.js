@@ -10,7 +10,7 @@ class PlayerController
     {
         let exp = 0;
 
-        for (let level in DatabaseServer.tables.globals.config.exp.level.exp_table)
+        for (const level in DatabaseServer.tables.globals.config.exp.level.exp_table)
         {
             if (pmcData.Info.Experience < exp)
             {
@@ -30,10 +30,10 @@ class PlayerController
     static getRandomExperience()
     {
         let exp = 0;
-        let expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
+        const expTable = DatabaseServer.tables.globals.config.exp.level.exp_table;
 
         // Get random level based on the exp table.
-        let randomLevel = RandomUtil.getInt(0, expTable.length - 1) + 1;
+        const randomLevel = RandomUtil.getInt(0, expTable.length - 1) + 1;
 
         for (let i = 0; i < randomLevel; i++)
         {

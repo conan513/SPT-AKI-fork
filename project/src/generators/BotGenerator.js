@@ -98,6 +98,9 @@ class BotGenerator
         const questStashItemsId = HashUtil.generate();
         const questStashItemsTpl = "5963866b86f7747bfa1c4462";
 
+        const sortingTableId = HashUtil.generate();
+        const sortingTableTpl = "602543c13fee350cd564d032";
+
         return {
             "items": [
                 {
@@ -115,12 +118,17 @@ class BotGenerator
                 {
                     "_id": questStashItemsId,
                     "_tpl": questStashItemsTpl
+                },
+                {
+                    "_id": sortingTableId,
+                    "_tpl": sortingTableTpl
                 }
             ],
             "equipment": equipmentId,
             "stash": stashId,
             "questRaidItems": questRaidItemsId,
             "questStashItems": questStashItemsId,
+            "sortingTable": sortingTableId,
             "fastPanel": {}
         };
     }
@@ -222,11 +230,13 @@ class BotGenerator
             if (preset)
             {
                 const parentItem = preset._items[0];
-                preset._items[0] = {...parentItem, ...{
-                    "parentId": BotGenerator.inventory.equipment,
-                    "slotId": equipmentSlot,
-                    ...BotGenerator.generateExtraPropertiesForItem(itemTemplate)
-                }};
+                preset._items[0] = {
+                    ...parentItem, ...{
+                        "parentId": BotGenerator.inventory.equipment,
+                        "slotId": equipmentSlot,
+                        ...BotGenerator.generateExtraPropertiesForItem(itemTemplate)
+                    }
+                };
                 weaponMods.push(...preset._items);
             }
             else
@@ -350,39 +360,39 @@ class BotGenerator
 
     static generateExtraPropertiesForItem(itemTemplate)
     {
-        let properties = {};
+        const properties = {};
 
         if (itemTemplate._props.MaxDurability)
         {
-            properties.Repairable = {"Durability": itemTemplate._props.MaxDurability};
+            properties.Repairable = { "Durability": itemTemplate._props.MaxDurability };
         }
 
         if (itemTemplate._props.HasHinge)
         {
-            properties.Togglable = {"On": true};
+            properties.Togglable = { "On": true };
         }
 
         if (itemTemplate._props.Foldable)
         {
-            properties.Foldable = {"Folded": false};
+            properties.Foldable = { "Folded": false };
         }
 
         if (itemTemplate._props.weapFireType && itemTemplate._props.weapFireType.length)
         {
-            properties.FireMode = {"FireMode": itemTemplate._props.weapFireType[0]};
+            properties.FireMode = { "FireMode": itemTemplate._props.weapFireType[0] };
         }
 
         if (itemTemplate._props.MaxHpResource)
         {
-            properties.MedKit = {"HpResource": itemTemplate._props.MaxHpResource};
+            properties.MedKit = { "HpResource": itemTemplate._props.MaxHpResource };
         }
 
         if (itemTemplate._props.MaxResource && itemTemplate._props.foodUseTime)
         {
-            properties.FoodDrink = {"HpPercent": itemTemplate._props.MaxResource};
+            properties.FoodDrink = { "HpPercent": itemTemplate._props.MaxResource };
         }
 
-        return Object.keys(properties).length ? {"upd": properties} : {};
+        return Object.keys(properties).length ? { "upd": properties } : {};
     }
 
     static isItemIncompatibleWithCurrentItems(items, tplToCheck, equipmentSlot)
@@ -429,8 +439,16 @@ class BotGenerator
         return true;
     }
 
-    /** Generates extra magazines or bullets (if magazine is internal) and adds them to TacticalVest and Pockets.
-    * Additionally, adds extra bullets to SecuredContainer */
+    /**
+    * Generates extra magazines or bullets (if magazine is internal) and adds them to TacticalVest and Pockets.
+    * Additionally, adds extra bullets to SecuredContainer
+    *
+    * @param {*} weaponMods
+    * @param {*} weaponTemplate
+    * @param {*} magCounts
+    * @param {*} ammoTpl
+    * @returns
+    */
     static generateExtraMagazines(weaponMods, weaponTemplate, magCounts, ammoTpl)
     {
         let magazineTpl = "";
@@ -484,7 +502,7 @@ class BotGenerator
                         "_tpl": ammoTpl,
                         "parentId": magId,
                         "slotId": "cartridges",
-                        "upd": {"StackObjectsCount": magTemplate._props.Cartridges[0]._max_count}
+                        "upd": { "StackObjectsCount": magTemplate._props.Cartridges[0]._max_count }
                     }
                 ];
 
@@ -538,7 +556,7 @@ class BotGenerator
             BotGenerator.addItemWithChildrenToEquipmentSlot([EquipmentSlots.SecuredContainer], id, ammoTpl, [{
                 "_id": id,
                 "_tpl": ammoTpl,
-                "upd": {"StackObjectsCount": ammoTemplate._props.StackMaxSize}
+                "upd": { "StackObjectsCount": ammoTemplate._props.StackMaxSize }
             }]);
         }
     }
@@ -548,7 +566,7 @@ class BotGenerator
         const ammoItems = ItemHelper.splitStack({
             "_id": HashUtil.generate(),
             "_tpl": ammoTpl,
-            "upd": {"StackObjectsCount": bulletCount}
+            "upd": { "StackObjectsCount": bulletCount }
         });
 
         for (const ammoItem of ammoItems)
@@ -561,7 +579,13 @@ class BotGenerator
         }
     }
 
-    /** Finds and returns tpl of ammo that should be used, while making sure it's compatible */
+    /**
+     * Finds and returns tpl of ammo that should be used, while making sure it's compatible
+     *
+     * @param {*} weaponMods
+     * @param {*} weaponTemplate
+     * @returns
+     */
     static getCompatibleAmmo(weaponMods, weaponTemplate)
     {
         let ammoTpl = "";
@@ -617,21 +641,21 @@ class BotGenerator
                 "_tpl": ammoTpl,
                 "parentId": magazine._id,
                 "slotId": "cartridges",
-                "upd": {"StackObjectsCount": stackSize}
+                "upd": { "StackObjectsCount": stackSize }
             });
         }
         else
         {
             cartridges._tpl = ammoTpl;
-            cartridges.upd = {"StackObjectsCount": stackSize};
+            cartridges.upd = { "StackObjectsCount": stackSize };
         }
     }
 
     static generateLoot(lootPool, itemCounts)
     {
         // Flatten all individual slot loot pools into one big pool, while filtering out potentially missing templates
-        let lootTemplates = [];
-        let specialLootTemplates = [];
+        const lootTemplates = [];
+        const specialLootTemplates = [];
 
         for (const [slot, pool] of Object.entries(lootPool))
         {

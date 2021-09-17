@@ -8,7 +8,7 @@ class CustomizationController
     {
         for (let i = 0; i < body.suites.length; i++)
         {
-            let suite = DatabaseServer.tables.templates.customization[body.suites[i]];
+            const suite = DatabaseServer.tables.templates.customization[body.suites[i]];
 
             // this parent reffers to Lower Node
             if (suite._parent === "5cd944d01388ce000a659df9")
@@ -29,10 +29,10 @@ class CustomizationController
 
     static getTraderSuits(traderID, sessionID)
     {
-        let pmcData = ProfileController.getPmcProfile(sessionID);
-        let templates = DatabaseServer.tables.templates.customization;
-        let suits = DatabaseServer.tables.traders[traderID].suits;
-        let result = [];
+        const pmcData = ProfileController.getPmcProfile(sessionID);
+        const templates = DatabaseServer.tables.templates.customization;
+        const suits = DatabaseServer.tables.traders[traderID].suits;
+        const result = [];
 
         // get only suites from the player's side (e.g. USEC)
         for (const suit of suits)
@@ -57,7 +57,7 @@ class CustomizationController
         const traders = DatabaseServer.tables.traders;
         let result = [];
 
-        for (let traderID in traders)
+        for (const traderID in traders)
         {
             if (traders[traderID].base.customization_seller === true)
             {
@@ -70,11 +70,11 @@ class CustomizationController
 
     static buyClothing(pmcData, body, sessionID)
     {
-        let output = ItemEventRouter.getOutput(sessionID);
+        const output = ItemEventRouter.getOutput(sessionID);
 
         // find suit offer
         const offers = CustomizationController.getAllTraderSuits(sessionID);
-        let offer = offers.find((suit) =>
+        const offer = offers.find((suit) =>
         {
             return body.offer === suit._id;
         });
@@ -95,11 +95,11 @@ class CustomizationController
         }
 
         // pay items
-        for (let sellItem of body.items)
+        for (const sellItem of body.items)
         {
-            for (let itemID in pmcData.Inventory.items)
+            for (const itemID in pmcData.Inventory.items)
             {
-                let item = pmcData.Inventory.items[itemID];
+                const item = pmcData.Inventory.items[itemID];
 
                 if (item._id !== sellItem.id)
                 {
@@ -121,7 +121,7 @@ class CustomizationController
                         "parentId": item.parentId,
                         "slotId": item.slotId,
                         "location": item.location,
-                        "upd": {"StackObjectsCount": item.upd.StackObjectsCount}
+                        "upd": { "StackObjectsCount": item.upd.StackObjectsCount }
                     });
                 }
             }

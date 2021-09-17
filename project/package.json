@@ -30,12 +30,12 @@
     },
     "dependencies": {
         "atomically": "^1.7.0",
+        "json-fixer": "1.6.10",
         "node-forge": "0.10.0",
         "node-powershell": "4.0.0",
         "os-locale": "^5.0.0",
         "proper-lockfile": "^4.1.2",
-        "ws": "^7.4.6",
-        "json-fixer": "1.6.10"
+        "ws": "^7.4.6"
     },
     "devDependencies": {
         "@babel/cli": "^7.13.16",
@@ -76,6 +76,12 @@
                 {
                     "loose": true
                 }
+            ],
+            [
+                "@babel/plugin-proposal-private-property-in-object",
+                {
+                    "loose": true
+                }
             ]
         ],
         "ignore": [
@@ -94,39 +100,39 @@
         },
         "rules": {
             "indent": [
-                "warn",
+                "error",
                 4,
                 {
                     "SwitchCase": 1
                 }
             ],
             "quotes": [
-                "warn",
+                "error",
                 "double"
             ],
             "semi": [
-                "warn",
+                "error",
                 "always"
             ],
             "no-undef": "off",
             "no-unused-vars": "off",
             "brace-style": [
-                "warn",
+                "error",
                 "allman",
                 {
                     "allowSingleLine": false
                 }
             ],
-            "no-prototype-builtins": "warn",
-            "no-constant-condition": "warn",
-            "no-trailing-spaces": "warn",
-            "keyword-spacing": "warn",
-            "space-infix-ops": "warn",
-            "space-in-parens": "warn",
-            "eqeqeq": "warn",
-            "comma-spacing": "warn",
+            "no-prototype-builtins": "error",
+            "no-constant-condition": "error",
+            "no-trailing-spaces": "error",
+            "keyword-spacing": "error",
+            "space-infix-ops": "error",
+            "space-in-parens": "error",
+            "eqeqeq": "error",
+            "comma-spacing": "error",
             "padding-line-between-statements": [
-                "warn",
+                "error",
                 {
                     "blankLine": "always",
                     "prev": "*",
@@ -152,7 +158,12 @@
                     "prev": "expression",
                     "next": "block-like"
                 }
-            ]
+            ],
+            "object-curly-spacing": [
+                "error",
+                "always"
+            ],
+            "prefer-const": "error"
         }
     }
 }

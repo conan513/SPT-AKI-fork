@@ -6,7 +6,7 @@ const util = require("util");
 
 class Logger
 {
-    static showDebug = 1;
+    static showDebugInConsole = false;
     static filepath = "user/logs/server.log";
     static colors = {
         "front": {
@@ -33,6 +33,8 @@ class Logger
 
     static initialize()
     {
+        Logger.showDebugInConsole = globalThis.G_DEBUG_CONFIGURATION;
+
         if (VFS.exists(Logger.filepath))
         {
             VFS.writeFile(Logger.filepath, "");
@@ -45,7 +47,7 @@ class Logger
         });
     }
 
-    static write(data)
+    static writeToLogFile(data)
     {
         VFS.writeFile(Logger.filepath, `${data}\n`, true);
     }
@@ -66,7 +68,7 @@ class Logger
         }
 
         // save logged message
-        Logger.write(util.format(data));
+        Logger.writeToLogFile(util.format(data));
     }
 
     static error(data)
@@ -91,9 +93,13 @@ class Logger
 
     static debug(data, isError = false)
     {
-        if (Logger.showDebug)
+        if (Logger.showDebugInConsole)
         {
             Logger.log(`[DEBUG] ${data}`, (isError) ? "red" : "green", "black");
+        }
+        else
+        {
+            Logger.writeToLogFile(util.format(data));
         }
     }
 

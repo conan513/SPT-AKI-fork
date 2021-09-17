@@ -120,6 +120,9 @@ module.exports = {
     "/singleplayer/settings/raid/menu": {
         "aki": InraidCallbacks.getRaidMenuSettings
     },
+    "/singleplayer/settings/version": {
+        "aki": GameCallbacks.getVersion
+    },
     "/client/insurance/items/list/cost": {
         "aki": InsuranceCallbacks.getInsuranceCost
     },
@@ -230,6 +233,9 @@ module.exports = {
     },
     "/client/game/profile/savage/regenerate": {
         "aki": ProfileCallbacks.regenerateScav
+    },
+    "/client/game/profile/voice/change": {
+        "aki": ProfileCallbacks.changeVoice
     },
     "/client/game/profile/nickname/change": {
         "aki": ProfileCallbacks.changeNickname

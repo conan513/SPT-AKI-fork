@@ -4,14 +4,18 @@ require("../Lib.js");
 
 class ItemEventRouter
 {
-    static output = null;
     static onEvent = require("../bindings/ItemEvents");
+    static output = {
+        "warnings": [],
+        "profileChanges": {}
+    };
 
     static handleEvents(info, sessionID)
     {
-        let result = "";
+        ItemEventRouter.resetOutput(sessionID);
+        let result = {};
 
-        for (let body of info.data)
+        for (const body of info.data)
         {
             const pmcData = ProfileController.getPmcProfile(sessionID);
 
@@ -19,22 +23,22 @@ class ItemEventRouter
             {
                 for (const callback in ItemEventRouter.onEvent[body.Action])
                 {
-                    result = ItemEventRouter.onEvent[body.Action][callback](pmcData, body, sessionID, result);
+                    result = ItemEventRouter.onEvent[body.Action][callback](pmcData, body, sessionID);
                 }
             }
             else
             {
                 Logger.error(`[UNHANDLED EVENT] ${body.Action}`);
+                Logger.writeToLogFile(body);
             }
         }
 
-        ItemEventRouter.resetOutput(sessionID);
         return result;
     }
 
     static getOutput(sessionID)
     {
-        if (!ItemEventRouter.output)
+        if (!ItemEventRouter.output.profileChanges[sessionID])
         {
             ItemEventRouter.resetOutput(sessionID);
         }
@@ -42,35 +46,29 @@ class ItemEventRouter
         return ItemEventRouter.output;
     }
 
-    static setOutput(data)
-    {
-        ItemEventRouter.output = data;
-    }
-
     static resetOutput(sessionID)
     {
-        if (!sessionID)
-        {
-            throw "SessionID is required";
-        }
+        const pmcData = ProfileController.getPmcProfile(sessionID);
 
-        ItemEventRouter.output = {
-            "profileChanges": {
-                [sessionID]: {
-                    "items": {
-                        "new": [],
-                        "change": [],
-                        "del": []
-                    },
-                    "quests": [],
-                    "ragFairOffers": [],
-                    "builds": [],
-                    "traderRelations": {},
-                    "production": {},
-                    "experience": 0
-                }
+        ItemEventRouter.output.warnings = [];
+        ItemEventRouter.output.profileChanges[sessionID] = {
+            "_id": sessionID,
+            "experience": 0,
+            "quests": [],
+            "ragFairOffers": [],
+            "builds": [],
+            "items": {
+                "new": [],
+                "change": [],
+                "del": []
             },
-            "warnings": []
+            "production": {},
+            "skills": {
+                "Common": JsonUtil.clone(pmcData.Skills.Common),
+                "Mastering": [],
+                "Points": 0
+            },
+            "traderRelations": {}
         };
     }
 }

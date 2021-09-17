@@ -10,7 +10,7 @@ class WishlistController
     * */
     static addToWishList(pmcData, body, sessionID)
     {
-        for (let item in pmcData["Wishlist"])
+        for (const item in pmcData["WishList"])
         {
             // don't add the item
             if (pmcData.WishList[item] === body["templateId"])

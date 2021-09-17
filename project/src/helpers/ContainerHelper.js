@@ -6,7 +6,7 @@ class FindSlotResult
 {
     constructor(success = false, x = null, y = null, rotation = false)
     {
-        this.success = success,
+        this.success = success;
         this.x = x;
         this.y = y;
         this.rotation = rotation;
@@ -57,11 +57,11 @@ class ContainerHelper
     static findSlotForItem(container2D, itemWidth, itemHeight)
     {
         let rotation = false;
-        let minVolume = (itemWidth < itemHeight ? itemWidth : itemHeight) - 1;
-        let containerY = container2D.length;
-        let containerX = container2D[0].length;
-        let limitY = containerY - minVolume;
-        let limitX = containerX - minVolume;
+        const minVolume = (itemWidth < itemHeight ? itemWidth : itemHeight) - 1;
+        const containerY = container2D.length;
+        const containerX = container2D[0].length;
+        const limitY = containerY - minVolume;
+        const limitX = containerX - minVolume;
 
         for (let y = 0; y < limitY; y++)
         {
@@ -97,8 +97,8 @@ class ContainerHelper
 
     static fillContainerMapWithItem(container2D, x, y, itemW, itemH, rotate)
     {
-        let itemWidth = rotate ? itemH : itemW;
-        let itemHeight = rotate ? itemW : itemH;
+        const itemWidth = rotate ? itemH : itemW;
+        const itemHeight = rotate ? itemW : itemH;
 
         for (let tmpY = y; tmpY < y + itemHeight; tmpY++)
         {

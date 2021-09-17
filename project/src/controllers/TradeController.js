@@ -6,7 +6,7 @@ class TradeController
 {
     static buyItem(pmcData, body, sessionID, foundInRaid, upd)
     {
-        const output = ItemEventRouter.getOutput(sessionID);
+        let output = ItemEventRouter.getOutput(sessionID);
         const newReq = {
             "items": [
                 {
@@ -18,9 +18,9 @@ class TradeController
         };
         const callback = () =>
         {
-            if (!PaymentController.payMoney(pmcData, body, sessionID))
+            output = PaymentController.payMoney(pmcData, body, sessionID, output);
+            if (output.warnings.length > 0)
             {
-                Logger.error("no money found");
                 throw "Transaction failed";
             }
 
@@ -36,15 +36,15 @@ class TradeController
     static sellItem(pmcData, body, sessionID)
     {
         let money = 0;
-        let prices = TraderController.getPurchasesData(body.tid, sessionID);
+        const prices = TraderController.getPurchasesData(body.tid, sessionID);
         let output = ItemEventRouter.getOutput(sessionID);
 
-        for (let sellItem of body.items)
+        for (const sellItem of body.items)
         {
-            for (let item of pmcData.Inventory.items)
+            for (const item of pmcData.Inventory.items)
             {
                 // profile inventory, look into it if item exist
-                let isThereSpace = sellItem.id.search(" ");
+                const isThereSpace = sellItem.id.search(" ");
                 let checkID = sellItem.id;
 
                 if (isThereSpace !== -1)
@@ -99,9 +99,9 @@ class TradeController
     {
         let output = ItemEventRouter.getOutput(sessionID);
 
-        for (let offer of body.offers)
+        for (const offer of body.offers)
         {
-            let data = RagfairServer.getOffer(offer.id);
+            const data = RagfairServer.getOffer(offer.id);
             console.log(offer);
 
             pmcData = ProfileController.getPmcProfile(sessionID);
